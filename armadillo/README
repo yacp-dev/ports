@@ -6,48 +6,47 @@ complex numbers are supported, as well as a subset of trigonometric and
 statistics functions.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libarmadillo-devel-15.4.2-1bl1
-  libarmadillo15-15.4.2-1bl1
+  cygwin-3.6.11-1
+  libarmadillo-devel-15.6.1-1bl1
+  libarmadillo15-15.6.1-1bl1
   libarpack0-3.9.1-1
   libgcc1-14.4.0-1
-  liblapack0-3.12.0-1
   libopenblas-0.3.25-1
-  libsuperlu7-7.0.1-1bl1
-  pkg-config-3.0.4-2
+  libsuperlu7-7.0.1-1bl2
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.3-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   libarpack-devel-3.9.1-1
   liblapack-devel-3.12.0-1
-  libsuperlu-devel-7.0.1-1bl1
+  libsuperlu-devel-7.0.1-1bl2
   ninja-1.13.2-1
 
 Canonical website:
   https://sourceforge.net/projects/arma/
 
 Canonical download:
-  mirror://sourceforge/arma/armadillo-15.4.2.tar.xz
+  mirror://sourceforge/arma/armadillo-15.6.1.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack armadillo-15.4.2-X-src.tar.xz
+  1. unpack armadillo-15.6.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./armadillo-15.4.2-X.cygport all
+        % cygport ./armadillo-15.6.1-X.cygport all
 
 This will create:
-  /usr/src/armadillo-15.4.2-X-src.tar.xz
-  /usr/src/armadillo-15.4.2-X.tar.xz
-  /usr/src/libarmadillo15-15.4.2-X.tar.xz
-  /usr/src/libarmadillo-devel-15.4.2-X.tar.xz
+  /usr/src/armadillo-15.6.1-X-src.tar.xz
+  /usr/src/armadillo-15.6.1-X.tar.xz
+  /usr/src/libarmadillo15-15.6.1-X.tar.xz
+  /usr/src/libarmadillo-devel-15.6.1-X.tar.xz
 
 -------------------------------------------
 
@@ -203,6 +202,7 @@ Files included in the binary package:
   /usr/include/armadillo_bits/fn_cor.hpp
   /usr/include/armadillo_bits/fn_cov.hpp
   /usr/include/armadillo_bits/fn_cross.hpp
+  /usr/include/armadillo_bits/fn_cubemul.hpp
   /usr/include/armadillo_bits/fn_cumprod.hpp
   /usr/include/armadillo_bits/fn_cumsum.hpp
   /usr/include/armadillo_bits/fn_det.hpp
@@ -229,8 +229,7 @@ Files included in the binary package:
   /usr/include/armadillo_bits/fn_histc.hpp
   /usr/include/armadillo_bits/fn_index_max.hpp
   /usr/include/armadillo_bits/fn_index_min.hpp
-  /usr/include/armadillo_bits/fn_inplace_strans.hpp
-  /usr/include/armadillo_bits/fn_inplace_trans.hpp
+  /usr/include/armadillo_bits/fn_inplace_xtrans.hpp
   /usr/include/armadillo_bits/fn_interp1.hpp
   /usr/include/armadillo_bits/fn_interp2.hpp
   /usr/include/armadillo_bits/fn_intersect.hpp
@@ -259,6 +258,7 @@ Files included in the binary package:
   /usr/include/armadillo_bits/fn_omit.hpp
   /usr/include/armadillo_bits/fn_ones.hpp
   /usr/include/armadillo_bits/fn_orth_null.hpp
+  /usr/include/armadillo_bits/fn_permute.hpp
   /usr/include/armadillo_bits/fn_pinv.hpp
   /usr/include/armadillo_bits/fn_polyfit.hpp
   /usr/include/armadillo_bits/fn_polyval.hpp
@@ -297,7 +297,6 @@ Files included in the binary package:
   /usr/include/armadillo_bits/fn_spsolve.hpp
   /usr/include/armadillo_bits/fn_sqrtmat.hpp
   /usr/include/armadillo_bits/fn_stddev.hpp
-  /usr/include/armadillo_bits/fn_strans.hpp
   /usr/include/armadillo_bits/fn_sum.hpp
   /usr/include/armadillo_bits/fn_svd.hpp
   /usr/include/armadillo_bits/fn_svds.hpp
@@ -305,7 +304,6 @@ Files included in the binary package:
   /usr/include/armadillo_bits/fn_symmat.hpp
   /usr/include/armadillo_bits/fn_toeplitz.hpp
   /usr/include/armadillo_bits/fn_trace.hpp
-  /usr/include/armadillo_bits/fn_trans.hpp
   /usr/include/armadillo_bits/fn_trapz.hpp
   /usr/include/armadillo_bits/fn_trig.hpp
   /usr/include/armadillo_bits/fn_trimat.hpp
@@ -317,6 +315,7 @@ Files included in the binary package:
   /usr/include/armadillo_bits/fn_vecnorm.hpp
   /usr/include/armadillo_bits/fn_vectorise.hpp
   /usr/include/armadillo_bits/fn_wishrnd.hpp
+  /usr/include/armadillo_bits/fn_xtrans.hpp
   /usr/include/armadillo_bits/fn_zeros.hpp
   /usr/include/armadillo_bits/glue_affmul_bones.hpp
   /usr/include/armadillo_bits/glue_affmul_meat.hpp
@@ -330,6 +329,8 @@ Files included in the binary package:
   /usr/include/armadillo_bits/glue_cov_meat.hpp
   /usr/include/armadillo_bits/glue_cross_bones.hpp
   /usr/include/armadillo_bits/glue_cross_meat.hpp
+  /usr/include/armadillo_bits/glue_cubemul_bones.hpp
+  /usr/include/armadillo_bits/glue_cubemul_meat.hpp
   /usr/include/armadillo_bits/glue_hist_bones.hpp
   /usr/include/armadillo_bits/glue_hist_meat.hpp
   /usr/include/armadillo_bits/glue_histc_bones.hpp
@@ -516,6 +517,8 @@ Files included in the binary package:
   /usr/include/armadillo_bits/op_omit_meat.hpp
   /usr/include/armadillo_bits/op_orth_null_bones.hpp
   /usr/include/armadillo_bits/op_orth_null_meat.hpp
+  /usr/include/armadillo_bits/op_permute_bones.hpp
+  /usr/include/armadillo_bits/op_permute_meat.hpp
   /usr/include/armadillo_bits/op_pinv_bones.hpp
   /usr/include/armadillo_bits/op_pinv_meat.hpp
   /usr/include/armadillo_bits/op_powmat_bones.hpp
@@ -720,7 +723,7 @@ Files included in the binary package:
   /usr/include/armadillo_bits/xvec_htrans_meat.hpp
   /usr/lib/cmake/Armadillo/ArmadilloConfig.cmake
   /usr/lib/cmake/Armadillo/ArmadilloConfigVersion.cmake
-  /usr/lib/cmake/Armadillo/ArmadilloLibraryDepends-release.cmake
+  /usr/lib/cmake/Armadillo/ArmadilloLibraryDepends-relwithdebinfo.cmake
   /usr/lib/cmake/Armadillo/ArmadilloLibraryDepends.cmake
   /usr/lib/libarmadillo.dll.a
   /usr/lib/pkgconfig/armadillo.pc
@@ -728,6 +731,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 15.6.1-1bl1 -----
+Version bump.
 
 ----- version 15.4.2-1bl1 -----
 Version bump.

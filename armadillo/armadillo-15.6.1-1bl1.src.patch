@@ -1,5 +1,5 @@
---- origsrc/armadillo-15.4.2/CMakeLists.txt	2016-06-17 02:17:42.000000000 +0900
-+++ src/armadillo-15.4.2/CMakeLists.txt	2026-07-31 09:47:26.515894500 +0900
+--- origsrc/armadillo-15.6.1/CMakeLists.txt	2016-06-16 17:17:51.000000000 +0000
++++ src/armadillo-15.6.1/CMakeLists.txt	2026-10-02 23:52:42.907655600 +0000
 @@ -673,7 +673,7 @@ configure_file(${PROJECT_SOURCE_DIR}/cma
  
  # Install the export set for use with the install-tree

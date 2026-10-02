@@ -31,9 +31,22 @@ jobs:
     if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'dorgann/')
     runs-on: ubuntu-latest
     steps:
+      # GitHub App installation token rather than a PAT, so the dispatch
+      # isn't tied to (or attributed to) any one person's account. The
+      # App needs Contents: Read and write on yacp-dev/dist, which is what
+      # POST /repos/{owner}/{repo}/dispatches requires.
+      - name: Generate dorgann token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.DORGANN_APP_ID }}
+          private-key: ${{ secrets.DORGANN_APP_PRIVATE_KEY }}
+          owner: yacp-dev
+          repositories: dist
+
       - name: Extract artifact_id and dispatch to dorgann
         env:
-          GH_TOKEN: ${{ secrets.DORGANN_SECRET }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
           BODY: ${{ github.event.pull_request.body }}
         run: |
           meta_json="$(printf '%s' "$BODY" | grep -o '<!-- dorgann-meta: .* -->' | sed -e 's/^<!-- dorgann-meta: //' -e 's/ -->$//')"

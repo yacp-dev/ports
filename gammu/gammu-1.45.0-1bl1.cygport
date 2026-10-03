@@ -15,6 +15,7 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gettext-devel
 	libdbi-devel
 	libglib2.0-devel
 	libiconv-devel
@@ -42,9 +43,9 @@ PKG_NAMES="
 	libGammu-devel
 "
 gammu_CONTENTS="
+	etc
 	usr/bin/*.exe
 	usr/bin/jadmaker
-	usr/share/bash-completion
 	usr/share/doc/Cygwin
 	usr/share/doc/${PN}/[CR]*
 	usr/share/${PN}

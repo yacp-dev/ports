@@ -1,6 +1,6 @@
---- origsrc/gammu-1.43.2/CMakeLists.txt	2026-02-10 00:20:04.000000000 +0900
-+++ src/gammu-1.43.2/CMakeLists.txt	2026-06-24 22:50:15.478902000 +0900
-@@ -528,12 +528,12 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMP
+--- origsrc/gammu-1.45.0/CMakeLists.txt	2026-09-16 10:35:50.000000000 +0000
++++ src/gammu-1.45.0/CMakeLists.txt	2026-10-03 03:07:31.483033700 +0000
+@@ -555,12 +555,12 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMP
      endif (WIN32 AND NOT CYGWIN AND BUILD_SHARED_LIBS)
  
      MACRO_TUNE_LINKER("-Wl,--as-needed")
@@ -15,8 +15,8 @@
      # Specs for MinGW to change msvcrt
      # This is not supported by MinGW and is broken currently
  #    if (CMAKE_COMPILER_IS_MINGW)
---- origsrc/gammu-1.43.2/cmake/templates/gammu-config.h.cmake	2026-02-10 00:20:04.000000000 +0900
-+++ src/gammu-1.43.2/cmake/templates/gammu-config.h.cmake	2026-06-24 22:50:15.486260900 +0900
+--- origsrc/gammu-1.45.0/cmake/templates/gammu-config.h.cmake	2026-09-16 10:35:50.000000000 +0000
++++ src/gammu-1.45.0/cmake/templates/gammu-config.h.cmake	2026-10-03 03:07:31.485049200 +0000
 @@ -384,7 +384,7 @@
  #define GAMMU_DATA_PATH "@CMAKE_INSTALL_PREFIX@/@INSTALL_DATA_DIR@"
  
@@ -26,8 +26,8 @@
  #define HAVE_WINDOWS_SERVICE
  #define HAVE_WINDOWS_EVENT_LOG
  #endif
---- origsrc/gammu-1.43.2/smsd/services/mysql.c	2026-02-10 00:20:04.000000000 +0900
-+++ src/gammu-1.43.2/smsd/services/mysql.c	2026-06-25 06:10:56.653882400 +0900
+--- origsrc/gammu-1.45.0/smsd/services/mysql.c	2026-09-16 10:35:50.000000000 +0000
++++ src/gammu-1.45.0/smsd/services/mysql.c	2026-10-03 03:07:31.485049200 +0000
 @@ -10,6 +10,8 @@
  #include <time.h>
  #include <stdlib.h>

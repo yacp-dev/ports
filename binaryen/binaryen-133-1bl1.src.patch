@@ -1,6 +1,6 @@
---- origsrc/binaryen-version_131/CMakeLists.txt	2026-07-16 04:10:52.000000000 +0900
-+++ src/binaryen-version_131/CMakeLists.txt	2026-08-01 23:40:40.520021700 +0900
-@@ -455,6 +455,10 @@ endif()
+--- origsrc/binaryen-version_133/CMakeLists.txt	2026-09-21 22:46:57.000000000 +0000
++++ src/binaryen-version_133/CMakeLists.txt	2026-10-03 06:03:17.274479300 +0000
+@@ -446,6 +446,10 @@ endif()
  # This will be either be STATIC or SHARED depending on BUILD_SHARED_LIBS
  add_library(binaryen)
  
@@ -11,7 +11,7 @@
  if(BUILD_SHARED_LIBS)
    add_definitions(-DBUILD_SHARED_LIBS)
    message(STATUS "Building libbinaryen as shared library.")
-@@ -574,3 +578,10 @@ if(EMSCRIPTEN)
+@@ -566,3 +570,10 @@ if(EMSCRIPTEN)
  endif()
  
  configure_file(scripts/binaryen-lit.in ${CMAKE_BINARY_DIR}/bin/binaryen-lit @ONLY)
@@ -22,8 +22,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/binaryen.pc.in ${CMAKE_BINARY_DIR}/binaryen.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/binaryen.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/binaryen-version_131/binaryen.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/binaryen-version_131/binaryen.pc.in	2026-08-01 23:40:40.520021700 +0900
+--- origsrc/binaryen-version_133/binaryen.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/binaryen-version_133/binaryen.pc.in	2026-10-03 06:03:17.274479300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

@@ -19,7 +19,7 @@ jobs:
           path: yacp
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '4.0'
       - run: bundle install
         working-directory: kelger
       - name: run kelger

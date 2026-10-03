@@ -1,6 +1,6 @@
---- origsrc/ticcutils-0.37/configure.ac	2025-12-11 17:29:29.000000000 +0900
-+++ src/ticcutils-0.37/configure.ac	2026-02-05 13:53:31.929458300 +0900
-@@ -91,7 +91,7 @@ PKG_CHECK_MODULES([XML2], [libxml-2.0 >=
+--- origsrc/ticcutils-0.38/configure.ac	2026-08-15 10:13:44.000000000 +0000
++++ src/ticcutils-0.38/configure.ac	2026-10-03 02:47:18.431451000 +0000
+@@ -103,7 +103,7 @@ PKG_CHECK_MODULES([XML2], [libxml-2.0 >=
  CXXFLAGS="$CXXFLAGS $XML2_CFLAGS"
  LIBS="$LIBS $XML2_LIBS"
  
@@ -9,8 +9,8 @@
  CXXFLAGS="$CXXFLAGS $ICU_CFLAGS"
  LIBS="$ICU_LIBS $LIBS"
  
---- origsrc/ticcutils-0.37/src/Makefile.am	2025-12-11 17:29:29.000000000 +0900
-+++ src/ticcutils-0.37/src/Makefile.am	2026-02-05 13:53:31.929458300 +0900
+--- origsrc/ticcutils-0.38/src/Makefile.am	2026-08-15 10:13:44.000000000 +0000
++++ src/ticcutils-0.38/src/Makefile.am	2026-10-03 02:47:18.431451000 +0000
 @@ -11,6 +11,7 @@ libticcutils_la_SOURCES = LogStream.cxx
  	FileUtils.cxx CommandLine.cxx SocketBasics.cxx ServerBase.cxx \
  	FdStream.cxx Unicode.cxx UniHash.cxx

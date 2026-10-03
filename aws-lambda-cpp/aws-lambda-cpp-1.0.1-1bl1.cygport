@@ -9,21 +9,23 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libcurl-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+	libgtest-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DCMAKE_MODULE_PATH:PATH=/usr/lib/cmake/s2n
 	-DENABLE_TESTS:BOOL=ON
+	-DVERSION:STRING=${PV}
 "
 
 src_test()
 {
 	cd ${B}
-	# Can not retrieve resource from http://169.254.169.254/latest/api/token
-#	./tests/aws-lambda-runtime-tests.exe
+	verbose ./tests/unit_tests.exe
 }
 
 PKG_NAMES="

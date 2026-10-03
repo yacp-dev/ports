@@ -3,43 +3,46 @@ aws-lambda-cpp
 C++ implementation of the AWS Lambda runtime
 
 Runtime requirements:
-  bash-5.2.15-3
-  cygwin-3.5.0-0.433.gf5e37b93a025
-  libaws-lambda-runtime0-0.2.8-1bl1
-  libcurl4-8.2.1-1
-  libstdc++6-11.4.0-1
-  pkg-config-2.0.3-1
+  bash-5.2.21-1
+  cygwin-3.7.0-0.618.g8f145421c964
+  libaws-lambda-runtime-devel-1.0.1-1bl1
+  libaws-lambda-runtime0-1.0.1-1bl1
+  libcurl4-8.22.0-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-3
-  cmake-3.25.3-1
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libcurl-devel-8.2.1-1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cmake-4.4.3-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libcurl-devel-8.22.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/awslabs/aws-lambda-cpp
 
 Canonical download:
-  https://github.com/awslabs/aws-lambda-cpp/archive/refs/tags/v0.2.8.tar.gz
+  https://github.com/awslabs/aws-lambda-cpp/archive/refs/tags/v1.0.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack aws-lambda-cpp-0.2.8-X-src.tar.xz
+  1. unpack aws-lambda-cpp-1.0.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./aws-lambda-cpp-0.2.8-X.cygport all
+        % cygport ./aws-lambda-cpp-1.0.1-X.cygport all
 
 This will create:
-  /usr/src/aws-lambda-cpp-0.2.8-X-src.tar.xz
-  /usr/src/aws-lambda-cpp-0.2.8-X.tar.xz
-  /usr/src/libaws-lambda-runtime0-0.2.8-X.tar.xz
-  /usr/src/libaws-lambda-runtime-devel-0.2.8-X.tar.xz
+  /usr/src/aws-lambda-cpp-1.0.1-X-src.tar.xz
+  /usr/src/aws-lambda-cpp-1.0.1-X.tar.xz
+  /usr/src/libaws-lambda-runtime0-1.0.1-X.tar.xz
+  /usr/src/libaws-lambda-runtime-devel-1.0.1-X.tar.xz
 
 -------------------------------------------
 
@@ -71,6 +74,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.1-1bl1 -----
+Version bump.
 
 ----- version 0.2.8-1bl1 -----
 Version bump.

@@ -3,15 +3,15 @@ bfs
 Breadth-first version of the UNIX find command
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
   libonig5-6.9.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.5-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   libonig-devel-6.9.10-1
   make-4.4.1-2
 
@@ -19,20 +19,20 @@ Canonical website:
   https://github.com/tavianator/bfs
 
 Canonical download:
-  https://github.com/tavianator/bfs/archive/refs/tags/4.1.tar.gz
+  https://github.com/tavianator/bfs/archive/refs/tags/4.1.4.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack bfs-4.1-X-src.tar.xz
+  1. unpack bfs-4.1.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./bfs-4.1-X.cygport all
+        % cygport ./bfs-4.1.4-X.cygport all
 
 This will create:
-  /usr/src/bfs-4.1-X-src.tar.xz
-  /usr/src/bfs-4.1-X.tar.xz
+  /usr/src/bfs-4.1.4-X-src.tar.xz
+  /usr/src/bfs-4.1.4-X.tar.xz
 
 -------------------------------------------
 
@@ -53,6 +53,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.1.4-1bl1 -----
+Version bump.
 
 ----- version 4.1-1bl1 -----
 Version bump.

@@ -1,5 +1,5 @@
---- origsrc/minitrace/CMakeLists.txt	2025-02-04 15:49:16.000000000 +0900
-+++ src/minitrace/CMakeLists.txt	2025-02-04 15:55:14.153484700 +0900
+--- origsrc/minitrace/CMakeLists.txt	2026-10-03 10:38:59.000000000 +0900
++++ src/minitrace/CMakeLists.txt	2026-10-03 10:39:02.656266700 +0900
 @@ -10,6 +10,10 @@ endif()
  add_library(${PROJECT_NAME} ${MTR_LIB_TYPE} minitrace.c)
  add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
@@ -36,7 +36,7 @@
 +configure_file(${CMAKE_SOURCE_DIR}/minitrace.pc.in ${CMAKE_BINARY_DIR}/minitrace.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/minitrace.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
 --- origsrc/minitrace/minitrace.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/minitrace/minitrace.pc.in	2025-02-04 15:55:17.617254400 +0900
++++ src/minitrace/minitrace.pc.in	2026-10-03 10:39:02.671280500 +0900
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

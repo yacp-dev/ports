@@ -1,23 +1,22 @@
 minitrace
 ------------------------------------------
-Simple C/C++ library for producing JSON traces suitable for Chrome's built-in
-trace viewer
+Simple C/C++ library for producing JSON traces suitable for Chrome's built-in trace viewer
 
 Runtime requirements:
-  cygwin-3.5.7-1
-  libgcc1-12.4.0-3
-  libminitrace-devel-0+git20241021-1bl1
-  libminitrace0-0+git20241021-1bl1
-  pkg-config-2.3.0-1
+  cygwin-3.7.0-0.618.g8f145421c964
+  libgcc1-14.4.0-1
+  libminitrace-devel-0+git20260831-1bl1
+  libminitrace0-0+git20260831-1bl1
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.3-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/hrydgard/minitrace
@@ -28,17 +27,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack minitrace-0+git20241021-X-src.tar.xz
+  1. unpack minitrace-0+git20260831-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./minitrace-0+git20241021-X.cygport all
+        % cygport ./minitrace-0+git20260831-X.cygport all
 
 This will create:
-  /usr/src/minitrace-0+git20241021-X-src.tar.xz
-  /usr/src/minitrace-0+git20241021-X.tar.xz
-  /usr/src/libminitrace0-0+git20241021-X.tar.xz
-  /usr/src/libminitrace-devel-0+git20241021-X.tar.xz
+  /usr/src/minitrace-0+git20260831-X-src.tar.xz
+  /usr/src/minitrace-0+git20260831-X.tar.xz
+  /usr/src/libminitrace0-0+git20260831-X.tar.xz
+  /usr/src/libminitrace-devel-0+git20260831-X.tar.xz
 
 -------------------------------------------
 
@@ -64,6 +63,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0+git20260831-1bl1 -----
+Version bump.
 
 ----- version 0+git20241021-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

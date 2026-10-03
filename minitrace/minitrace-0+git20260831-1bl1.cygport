@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/hrydgard/${PN}"
 GIT_URI="https://github.com/hrydgard/${PN}.git"
+GIT_REV="679ac44bfa1f6537a08dd4638c2ae4ae8c62f556"
 
 CATEGORY="Libs"
 SUMMARY="Simple C/C++ library for producing JSON traces suitable for Chrome's built-in trace viewer"
@@ -22,8 +23,8 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	./minitrace_test.exe
-	./minitrace_test_mt.exe
+	verbose ./minitrace_test.exe
+	verbose ./minitrace_test_mt.exe
 }
 
 PKG_NAMES="

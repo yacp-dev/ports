@@ -7,15 +7,15 @@ one and can't calculate the hex address offset for (512 - 16) MiB immediately,
 or the value when the 43rd bit of a 64-bit address is set, bcal is for you.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
   libreadline8-8.3-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   libreadline-devel-8.3-1
   make-4.4.1-2
 
@@ -23,20 +23,20 @@ Canonical website:
   https://github.com/jarun/bcal
 
 Canonical download:
-  https://github.com/jarun/bcal/archive/refs/tags/v2.5.tar.gz
+  https://github.com/jarun/bcal/archive/refs/tags/v2.6.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack bcal-2.5-X-src.tar.xz
+  1. unpack bcal-2.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./bcal-2.5-X.cygport all
+        % cygport ./bcal-2.6-X.cygport all
 
 This will create:
-  /usr/src/bcal-2.5-X-src.tar.xz
-  /usr/src/bcal-2.5-X.tar.xz
+  /usr/src/bcal-2.6-X-src.tar.xz
+  /usr/src/bcal-2.6-X.tar.xz
 
 -------------------------------------------
 
@@ -53,6 +53,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.6-1bl1 -----
+Version bump.
 
 ----- version 2.5-1bl1 -----
 Version bump.

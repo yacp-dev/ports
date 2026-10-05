@@ -1,41 +1,50 @@
 bstring
 ------------------------------------------
-This is a fork of Paul Hsiehs Better String Library.
+The Better String Library is an abstraction of a string data type which is
+superior to the C library char buffer string type. Among the features achieved are:
+ * Substantial mitigation of buffer overflow/overrun problems and other
+   failures that result from erroneous usage of the common C string library
+   functions
+ * Significantly simplified string manipulation
+ * High performance interoperability with other source/libraries which expect
+   '\0' terminated char buffers
+ * Improved overall performance of common string operations
+ * Functional equivalency with other more modern languages
 
 Runtime requirements:
-  cygwin-3.3.2-1
-  libbstring-devel-1.1.0-1bl1
-  libbstring0-1.1.0-1bl1
-  pkg-config-1.6.3-1
+  cygwin-3.6.11-1
+  libbstring-devel-1.1.1-1bl1
+  libbstring1-1.1.1-1bl1
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-2
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  meson-0.61.4-1
-  ninja-1.10.2-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  meson-1.9.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/msteinert/bstring
 
 Canonical download:
-  https://github.com/msteinert/bstring/archive/refs/tags/v1.1.0.tar.gz
+  https://github.com/msteinert/bstring/archive/refs/tags/v1.1.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack bstring-1.1.0-X-src.tar.xz
+  1. unpack bstring-1.1.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./bstring-1.1.0-X.cygport all
+        % cygport ./bstring-1.1.1-X.cygport all
 
 This will create:
-  /usr/src/bstring-1.1.0-X-src.tar.xz
-  /usr/src/bstring-1.1.0-X.tar.xz
-  /usr/src/libbstring0-1.1.0-X.tar.xz
-  /usr/src/libbstring-devel-1.1.0-X.tar.xz
+  /usr/src/bstring-1.1.1-X-src.tar.xz
+  /usr/src/bstring-1.1.1-X.tar.xz
+  /usr/src/libbstring1-1.1.1-X.tar.xz
+  /usr/src/libbstring-devel-1.1.1-X.tar.xz
 
 -------------------------------------------
 
@@ -50,20 +59,23 @@ Files included in the binary package:
   /usr/share/doc/bstring/porting.md
   /usr/share/doc/bstring/security.md
 
-(libbstring0)
-  /usr/bin/cygbstring-0.dll
+(libbstring1)
+  /usr/bin/cygbstring-1.dll
 
 (libbstring-devel)
-  /usr/include/bstring/bstraux.h
-  /usr/include/bstring/bstrlib.h
-  /usr/include/bstring/buniutil.h
-  /usr/include/bstring/utf8util.h
+  /usr/include/bstraux.h
+  /usr/include/bstrlib.h
+  /usr/include/buniutil.h
+  /usr/include/utf8util.h
   /usr/lib/libbstring.dll.a
   /usr/lib/pkgconfig/bstring.pc
 
 ------------------
 
 Port Notes:
+
+----- version 1.1.1-1bl1 -----
+Version bump.
 
 ----- version 1.1.0-1bl1 -----
 Bump to 1.1.0 by rdmark

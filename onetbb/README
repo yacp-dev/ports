@@ -5,48 +5,48 @@ programs that take full advantage of multicore performance, that are portable,
 composable and have future-proof scalability.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libhwloc15-2.12.2-1
-  libstdc++6-13.4.0-1
-  libtbb-devel-2022.3.0-1bl1
-  libtbb12-2022.3.0-1bl1
-  libtbbbind_2_5_3-2022.3.0-1bl1
-  libtbbmalloc2-2022.3.0-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libhwloc15-2.13.0-1
+  libstdc++6-14.4.0-1
+  libtbb-devel-2023.1.0-1bl1
+  libtbb12-2023.1.0-1bl1
+  libtbbbind_2_5_3-2023.1.0-1bl1
+  libtbbmalloc2-2023.1.0-1bl1
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libhwloc-devel-2.12.2-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libhwloc-devel-2.13.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/uxlfoundation/oneTBB
 
 Canonical download:
-  https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.3.0.tar.gz
+  https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2023.1.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack onetbb-2022.3.0-X-src.tar.xz
+  1. unpack onetbb-2023.1.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./onetbb-2022.3.0-X.cygport all
+        % cygport ./onetbb-2023.1.0-X.cygport all
 
 This will create:
-  /usr/src/onetbb-2022.3.0-X-src.tar.xz
-  /usr/src/onetbb-2022.3.0-X.tar.xz
-  /usr/src/libtbb12-2022.3.0-X.tar.xz
-  /usr/src/libtbbbind_2_5_3-2022.3.0-X.tar.xz
-  /usr/src/libtbbmalloc2-2022.3.0-X.tar.xz
-  /usr/src/libtbb-devel-2022.3.0-X.tar.xz
+  /usr/src/onetbb-2023.1.0-X-src.tar.xz
+  /usr/src/onetbb-2023.1.0-X.tar.xz
+  /usr/src/libtbb12-2023.1.0-X.tar.xz
+  /usr/src/libtbbbind_2_5_3-2023.1.0-X.tar.xz
+  /usr/src/libtbbmalloc2-2023.1.0-X.tar.xz
+  /usr/src/libtbb-devel-2023.1.0-X.tar.xz
 
 -------------------------------------------
 
@@ -69,6 +69,7 @@ Files included in the binary package:
   /usr/bin/cygtbbmalloc_proxy-2.dll
 
 (libtbb-devel)
+  /usr/include/oneapi/tbb.cppm
   /usr/include/oneapi/tbb.h
   /usr/include/oneapi/tbb/blocked_nd_range.h
   /usr/include/oneapi/tbb/blocked_range.h
@@ -108,6 +109,7 @@ Files included in the binary package:
   /usr/include/oneapi/tbb/detail/_flow_graph_node_impl.h
   /usr/include/oneapi/tbb/detail/_flow_graph_node_set_impl.h
   /usr/include/oneapi/tbb/detail/_flow_graph_nodes_deduction.h
+  /usr/include/oneapi/tbb/detail/_flow_graph_resource_limiting.h
   /usr/include/oneapi/tbb/detail/_flow_graph_tagged_buffer_impl.h
   /usr/include/oneapi/tbb/detail/_flow_graph_trace_impl.h
   /usr/include/oneapi/tbb/detail/_flow_graph_types_impl.h
@@ -140,6 +142,7 @@ Files included in the binary package:
   /usr/include/oneapi/tbb/mutex.h
   /usr/include/oneapi/tbb/null_mutex.h
   /usr/include/oneapi/tbb/null_rw_mutex.h
+  /usr/include/oneapi/tbb/numa_allocation.h
   /usr/include/oneapi/tbb/parallel_for.h
   /usr/include/oneapi/tbb/parallel_for_each.h
   /usr/include/oneapi/tbb/parallel_invoke.h
@@ -189,6 +192,7 @@ Files included in the binary package:
   /usr/include/tbb/mutex.h
   /usr/include/tbb/null_mutex.h
   /usr/include/tbb/null_rw_mutex.h
+  /usr/include/tbb/numa_allocation.h
   /usr/include/tbb/parallel_for.h
   /usr/include/tbb/parallel_for_each.h
   /usr/include/tbb/parallel_invoke.h
@@ -215,7 +219,7 @@ Files included in the binary package:
   /usr/include/tbb/version.h
   /usr/lib/cmake/TBB/TBBConfig.cmake
   /usr/lib/cmake/TBB/TBBConfigVersion.cmake
-  /usr/lib/cmake/TBB/TBBTargets-release.cmake
+  /usr/lib/cmake/TBB/TBBTargets-relwithdebinfo.cmake
   /usr/lib/cmake/TBB/TBBTargets.cmake
   /usr/lib/libtbb.dll.a
   /usr/lib/libtbbbind_2_5.dll.a
@@ -226,6 +230,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2023.1.0-1bl1 -----
+Version bump.
 
 ----- version 2022.3.0-1bl1 -----
 Version bump.

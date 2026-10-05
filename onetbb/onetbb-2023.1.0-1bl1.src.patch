@@ -1,6 +1,6 @@
---- origsrc/oneTBB-2022.3.0/cmake/compilers/GNU.cmake	2025-10-29 20:31:36.000000000 +0900
-+++ src/oneTBB-2022.3.0/cmake/compilers/GNU.cmake	2026-01-29 19:34:16.013819000 +0900
-@@ -113,7 +113,7 @@ endif ()
+--- origsrc/oneTBB-2023.1.0/cmake/compilers/GNU.cmake	2026-07-10 18:07:17.000000000 +0000
++++ src/oneTBB-2023.1.0/cmake/compilers/GNU.cmake	2026-10-05 21:17:36.836196200 +0000
+@@ -114,7 +114,7 @@ endif ()
  set(TBB_LIB_COMPILE_FLAGS ${TBB_LIB_COMPILE_FLAGS} $<$<NOT:$<VERSION_LESS:${CMAKE_CXX_COMPILER_VERSION},8.0>>:-fstack-clash-protection>)
  
  # -z switch is not supported on MacOS and MinGW
@@ -9,9 +9,9 @@
      set(TBB_LIB_LINK_FLAGS ${TBB_LIB_LINK_FLAGS} -Wl,-z,relro,-z,now,-z,noexecstack)
  endif()
  if (NOT CMAKE_CXX_FLAGS MATCHES "_FORTIFY_SOURCE")
---- origsrc/oneTBB-2022.3.0/include/oneapi/tbb/detail/_config.h	2025-10-29 20:31:36.000000000 +0900
-+++ src/oneTBB-2022.3.0/include/oneapi/tbb/detail/_config.h	2026-01-29 19:34:16.015825900 +0900
-@@ -202,7 +202,7 @@
+--- origsrc/oneTBB-2023.1.0/include/oneapi/tbb/detail/_config.h	2026-07-10 18:07:17.000000000 +0000
++++ src/oneTBB-2023.1.0/include/oneapi/tbb/detail/_config.h	2026-10-05 21:17:36.838222600 +0000
+@@ -208,7 +208,7 @@
  
  /** __TBB_WEAK_SYMBOLS_PRESENT denotes that the system supports the weak symbol mechanism **/
  #ifndef __TBB_WEAK_SYMBOLS_PRESENT
@@ -20,9 +20,9 @@
  #endif
  
  /** Presence of compiler features **/
---- origsrc/oneTBB-2022.3.0/test/common/common_arena_constraints.h	2025-10-29 20:31:36.000000000 +0900
-+++ src/oneTBB-2022.3.0/test/common/common_arena_constraints.h	2026-01-29 19:34:16.017572800 +0900
-@@ -87,7 +87,7 @@ int get_processors_group_count() { retur
+--- origsrc/oneTBB-2023.1.0/test/common/common_arena_constraints.h	2026-07-10 18:07:17.000000000 +0000
++++ src/oneTBB-2023.1.0/test/common/common_arena_constraints.h	2026-10-05 21:17:36.838222600 +0000
+@@ -91,7 +91,7 @@ int get_processors_group_count() { retur
  #define __HWLOC_TOPOLOGY_FLAG_RESTRICT_TO_CPUBINDING_PRESENT (HWLOC_API_VERSION >= 0x20500)
  // At this moment the hybrid CPUs HWLOC interfaces returns unexpected results on some Windows machines
  // in the 32-bit arch mode.
@@ -30,10 +30,10 @@
 +#define __HWLOC_HYBRID_CPUS_INTERFACES_VALID (!_WIN32)
  
  #define __HYBRID_CPUS_TESTING __HWLOC_HYBRID_CPUS_INTERFACES_PRESENT && __HWLOC_HYBRID_CPUS_INTERFACES_VALID
- #define __HWLOC_CPUBIND_PRESENT (!__APPLE__)
---- origsrc/oneTBB-2022.3.0/test/tbb/test_eh_thread.cpp	2025-10-29 20:31:36.000000000 +0900
-+++ src/oneTBB-2022.3.0/test/tbb/test_eh_thread.cpp	2026-01-29 19:34:16.019581100 +0900
-@@ -34,7 +34,7 @@
+ #define __HWLOC_CPUBIND_PRESENT (!__APPLE__ && !__gnu_hurd__)
+--- origsrc/oneTBB-2023.1.0/test/tbb/test_eh_thread.cpp	2026-07-10 18:07:17.000000000 +0000
++++ src/oneTBB-2023.1.0/test/tbb/test_eh_thread.cpp	2026-10-05 21:17:36.840244100 +0000
+@@ -35,7 +35,7 @@
  // On Windows there is no real thread number limit beside available memory.
  // Therefore, the test for thread limit is unreasonable.
  // TODO: enable limitThreads with sanitizer under docker

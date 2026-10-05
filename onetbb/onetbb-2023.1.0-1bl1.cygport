@@ -2,9 +2,9 @@ HOMEPAGE="https://github.com/uxlfoundation/oneTBB"
 SRC_URI="https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v${PV}.tar.gz"
 SRC_DIR="oneTBB-${PV}"
 PATCH_URI="
-	https://sources.debian.org/data/main/o/onetbb/2022.3.0-2/debian/patches/1000-remove-unaligned-test.patch
-	https://sources.debian.org/data/main/o/onetbb/2022.3.0-2/debian/patches/1010-test-less-stress.patch
-	https://sources.debian.org/data/main/o/onetbb/2022.3.0-2/debian/patches/1020-arch-generic.patch
+	https://sources.debian.org/data/main/o/onetbb/2023.1.0-3/debian/patches/1000-remove-unaligned-test.patch
+	https://sources.debian.org/data/main/o/onetbb/2023.1.0-3/debian/patches/1010-test-less-stress.patch
+	https://sources.debian.org/data/main/o/onetbb/2023.1.0-3/debian/patches/1020-arch-generic.patch
 "
 
 CATEGORY="Libs"

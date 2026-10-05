@@ -3,18 +3,18 @@ zlib-ng
 Zlib replacement with optimizations for next generation systems
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libz-ng-devel-2.3.3-1bl1
-  libz-ng2-2.3.3-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libz-ng-devel-2.3.3-1bl2
+  libz-ng2-2.3.3-1bl2
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -65,7 +65,7 @@ Files included in the binary package:
   /usr/include/zlib_name_mangling-ng.h
   /usr/lib/cmake/zlib-ng/zlib-ng-config-version.cmake
   /usr/lib/cmake/zlib-ng/zlib-ng-config.cmake
-  /usr/lib/cmake/zlib-ng/zlib-ng-targets-release.cmake
+  /usr/lib/cmake/zlib-ng/zlib-ng-targets-relwithdebinfo.cmake
   /usr/lib/cmake/zlib-ng/zlib-ng-targets.cmake
   /usr/lib/libz-ng.dll.a
   /usr/lib/pkgconfig/zlib-ng.pc
@@ -73,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.3.3-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.3.3-1bl1 -----
 Version bump.

@@ -1,6 +1,6 @@
---- origsrc/calceph-calceph_5_0_0/CMakeLists.txt	2026-07-06 18:34:32.000000000 +0900
-+++ src/calceph-calceph_5_0_0/CMakeLists.txt	2026-07-31 22:53:21.098112800 +0900
-@@ -409,3 +409,10 @@ export(PACKAGE calceph)
+--- origsrc/calceph-calceph_5_0_1/CMakeLists.txt	2026-09-18 15:23:33.000000000 +0000
++++ src/calceph-calceph_5_0_1/CMakeLists.txt	2026-10-06 01:42:53.772075300 +0000
+@@ -413,3 +413,10 @@ export(PACKAGE calceph)
  # create the developpment package file ...cmake
  #####################################################################
  include(toolchain/devconfig.cmake)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/calceph.pc.in ${CMAKE_BINARY_DIR}/calceph.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/calceph.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/calceph-calceph_5_0_0/calceph.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/calceph-calceph_5_0_0/calceph.pc.in	2026-07-31 22:53:21.104198500 +0900
+--- origsrc/calceph-calceph_5_0_1/calceph.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/calceph-calceph_5_0_1/calceph.pc.in	2026-10-06 01:42:53.772075300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,9 +24,9 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lcalceph
 +Cflags: -I${includedir}
---- origsrc/calceph-calceph_5_0_0/src/CMakeLists.txt	2026-07-06 18:34:32.000000000 +0900
-+++ src/calceph-calceph_5_0_0/src/CMakeLists.txt	2026-07-31 22:53:21.104198500 +0900
-@@ -109,7 +109,7 @@ if (CALCEPH_INSTALL)
+--- origsrc/calceph-calceph_5_0_1/src/CMakeLists.txt	2026-09-18 15:23:33.000000000 +0000
++++ src/calceph-calceph_5_0_1/src/CMakeLists.txt	2026-10-06 01:42:53.774089700 +0000
+@@ -117,7 +117,7 @@ if (CALCEPH_INSTALL)
          install(FILES "${CMAKE_CURRENT_BINARY_DIR}/calceph.mod" COMPONENT dev DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
      endif()
      install(TARGETS  calceph EXPORT calcephTargets ARCHIVE COMPONENT dev  DESTINATION "${CMAKE_INSTALL_LIBDIR}" LIBRARY COMPONENT lib  DESTINATION "${CMAKE_INSTALL_LIBDIR}")

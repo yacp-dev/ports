@@ -4,17 +4,17 @@ A minimal, zero-config, BSD licensed, readline replacement used in Redis,
 MongoDB, and Android.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  liblinenoise-devel-2.0-1bl1
-  liblinenoise0-2.0-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  liblinenoise-devel-2.0-1bl2
+  liblinenoise0-2.0-1bl2
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -54,7 +54,7 @@ Files included in the binary package:
   /usr/include/linenoise.h
   /usr/lib/cmake/linenoise/linenoiseConfig.cmake
   /usr/lib/cmake/linenoise/linenoiseConfigVersion.cmake
-  /usr/lib/cmake/linenoise/linenoiseTargets-release.cmake
+  /usr/lib/cmake/linenoise/linenoiseTargets-relwithdebinfo.cmake
   /usr/lib/cmake/linenoise/linenoiseTargets.cmake
   /usr/lib/liblinenoise.dll.a
   /usr/lib/pkgconfig/linenoise.pc
@@ -62,6 +62,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.0-1bl1 -----
 Version bump.

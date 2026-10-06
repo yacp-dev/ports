@@ -1,5 +1,5 @@
---- origsrc/cjose-0.6.2.7/test/Makefile.am	2026-06-26 23:28:01.000000000 +0900
-+++ src/cjose-0.6.2.7/test/Makefile.am	2026-08-01 12:27:31.868903300 +0900
+--- origsrc/cjose-0.6.2.8/test/Makefile.am	2026-08-12 12:52:55.000000000 +0000
++++ src/cjose-0.6.2.8/test/Makefile.am	2026-10-06 00:44:28.827548000 +0000
 @@ -7,7 +7,9 @@ TESTS = check_cjose
  
  check_PROGRAMS = $(TESTS)

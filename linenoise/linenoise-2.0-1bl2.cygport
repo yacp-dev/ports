@@ -1,5 +1,10 @@
 HOMEPAGE="https://github.com/antirez/${PN}"
-SRC_URI="https://github.com/antirez/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_URI="
+	https://github.com/antirez/${PN}/archive/refs/tags/${PV}.tar.gz
+	CMakeLists.txt
+	linenoise.pc.in
+	linenoiseConfig.cmake.in
+"
 
 CATEGORY="Libs"
 SUMMARY="Small self-contained alternative to readline and libedit"
@@ -9,6 +14,14 @@ MongoDB, and Android."
 LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	mkdir -p cmake
+	verbose mv linenoise.pc.in linenoiseConfig.cmake.in cmake/
+}
 
 inherit cmake
 

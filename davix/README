@@ -1,57 +1,57 @@
 davix
 ------------------------------------------
-Davix aims to make the task of managing files over HTTP-based protocols simple.
-It is being developed by IT-ST at CERN, and while the project's purpose is its
-use on the CERN grid, the functionality offered is generic.
+Davix aims to make the task of managing files over HTTP-based protocols
+simple. It is being developed by IT-ST at CERN, and while the project's
+purpose is its use on the CERN grid, the functionality offered is generic.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libcurl4-8.13.0-1
-  libdavix-devel-0.8.10-1bl1
-  libdavix0-0.8.10-1bl1
-  libgcc1-12.4.0-3
-  libgtest0-1.16.0-1bl1
-  libssl3-3.0.16-1
-  libstdc++6-12.4.0-3
+  cygwin-3.6.11-1
+  libcurl4-8.22.0-1
+  libdavix-devel-0.9.0-1bl1
+  libdavix0-0.9.0-1bl1
+  libgcc1-14.4.0-1
+  libgtest0-1.18.0-1bl1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
   libuuid1-2.40.2-2
-  libxml2-2.10.4-2
-  pkg-config-2.4.3-1
+  libxml2-2.13.9-2
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libcurl-devel-8.13.0-1
-  libgtest-devel-1.16.0-1bl1
-  libssl-devel-3.0.16-1
-  libtool-2.5.4-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libcurl-devel-8.22.0-1
+  libgtest-devel-1.18.0-1bl1
+  libssl-devel-3.5.9-1
   libuuid-devel-2.40.2-2
-  libxml2-devel-2.10.4-2
-  ninja-1.12.1-1
+  libxml2-devel-2.13.9-2
+  ninja-1.13.2-1
+  nlohmann_json-3.12.0-1bl3
 
 Canonical website:
   https://github.com/cern-fts/davix
 
 Canonical download:
-  https://github.com/cern-fts/davix/archive/refs/tags/R_0_8_10.tar.gz
+  https://github.com/cern-fts/davix/archive/refs/tags/R_0_9_0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack davix-0.8.10-X-src.tar.xz
+  1. unpack davix-0.9.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./davix-0.8.10-X.cygport all
+        % cygport ./davix-0.9.0-X.cygport all
 
 This will create:
-  /usr/src/davix-0.8.10-X-src.tar.xz
-  /usr/src/davix-0.8.10-X.tar.xz
-  /usr/src/libdavix0-0.8.10-X.tar.xz
-  /usr/src/libdavix-devel-0.8.10-X.tar.xz
+  /usr/src/davix-0.9.0-X-src.tar.xz
+  /usr/src/davix-0.9.0-X.tar.xz
+  /usr/src/libdavix0-0.9.0-X.tar.xz
+  /usr/src/libdavix-devel-0.9.0-X.tar.xz
 
 -------------------------------------------
 
@@ -119,6 +119,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.9.0-1bl1 -----
+Version bump.
 
 ----- version 0.8.10-1bl1 -----
 Version bump.

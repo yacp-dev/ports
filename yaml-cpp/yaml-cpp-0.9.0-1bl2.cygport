@@ -11,6 +11,7 @@ LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	libgmock-devel
 	libgtest-devel
 "
 

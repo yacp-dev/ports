@@ -3,45 +3,45 @@ cpptest
 Powerful, yet simple, C++ unit testing framework
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libcpptest-devel-2.0.0-1bl2
-  libcpptest1-2.0.0-1bl2
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  pkg-config-2.4.3-1
+  cygwin-3.6.11-1
+  libcpptest-devel-2.0.1-1bl1
+  libcpptest1-2.0.1-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
+  autoconf-20260320-3
   autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libtool-2.5.4-1
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/cpptest/cpptest
 
 Canonical download:
-  https://github.com/cpptest/cpptest/archive/refs/tags/2.0.0.tar.gz
+  https://github.com/cpptest/cpptest/archive/refs/tags/2.0.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack cpptest-2.0.0-X-src.tar.xz
+  1. unpack cpptest-2.0.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./cpptest-2.0.0-X.cygport all
+        % cygport ./cpptest-2.0.1-X.cygport all
 
 This will create:
-  /usr/src/cpptest-2.0.0-X-src.tar.xz
-  /usr/src/cpptest-2.0.0-X.tar.xz
-  /usr/src/libcpptest1-2.0.0-X.tar.xz
-  /usr/src/libcpptest-devel-2.0.0-X.tar.xz
+  /usr/src/cpptest-2.0.1-X-src.tar.xz
+  /usr/src/cpptest-2.0.1-X.tar.xz
+  /usr/src/libcpptest1-2.0.1-X.tar.xz
+  /usr/src/libcpptest-devel-2.0.1-X.tar.xz
 
 -------------------------------------------
 
@@ -76,6 +76,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.1-1bl1 -----
+Version bump.
 
 ----- version 2.0.0-1bl2 -----
 Rebuild with gcc-12.4.0

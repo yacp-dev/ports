@@ -9,6 +9,10 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
+BUILD_REQUIRES="
+	autoconf-archive
+"
+
 src_test()
 {
 	cd ${B}

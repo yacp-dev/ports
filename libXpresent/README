@@ -3,32 +3,32 @@ libXpresent
 X.Org libXpresent component
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libX11-devel-1.8.12-1
-  libX11_6-1.8.12-1
-  libXext-devel-1.3.6-1
+  cygwin-3.6.11-1
+  libX11-devel-1.8.13-1
+  libX11_6-1.8.13-1
+  libXext-devel-1.3.7-1
   libXfixes-devel-6.0.2-1
-  libXpresent-devel-1.0.2-1bl1
-  libXpresent1-1.0.2-1bl1
-  libXrandr-devel-1.5.4-1
-  pkg-config-2.5.1-1
-  xorgproto-2024.1-1
+  libXpresent-devel-1.0.2-1bl2
+  libXpresent1-1.0.2-1bl2
+  libXrandr-devel-1.5.5-1
+  pkg-config-3.0.7-1
+  xorgproto-2025.1-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libX11-devel-1.8.12-1
-  libXext-devel-1.3.6-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libX11-devel-1.8.13-1
+  libXext-devel-1.3.7-1
   libXfixes-devel-6.0.2-1
-  libXrandr-devel-1.5.4-1
-  libtool-2.5.4-1
+  libXrandr-devel-1.5.5-1
+  libtool-2.6.2-1
   make-4.4.1-2
   xorg-util-macros-1.20.2-1
-  xorgproto-2024.1-1
+  xorgproto-2025.1-1
 
 Canonical website:
   https://www.x.org/
@@ -82,6 +82,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.2-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.2-1bl1 -----
 Version bump.

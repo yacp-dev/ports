@@ -9,44 +9,44 @@ genome. Structural variants can be annotated using Delly-sansa and visualized
 using Delly-maze or Delly-suave.
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.11-1
   libboost_date_time1.66-1.66.0-1
   libboost_filesystem1.66-1.66.0-1
   libboost_iostreams1.66-1.66.0-1
   libboost_program_options1.66-1.66.0-1
   libboost_system1.66-1.66.0-1
   libgcc1-14.4.0-1
-  libhts3-1.23.1-1bl1
+  libhts3-1.24-1bl1
   libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  libhts-devel-1.23.1-1bl1
+  libhts-devel-1.24-1bl1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/dellytools/delly
 
 Canonical download:
-  https://github.com/dellytools/delly/archive/refs/tags/v2.5.1.tar.gz
+  https://github.com/dellytools/delly/archive/refs/tags/v2.7.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack delly-2.5.1-X-src.tar.xz
+  1. unpack delly-2.7.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./delly-2.5.1-X.cygport all
+        % cygport ./delly-2.7.0-X.cygport all
 
 This will create:
-  /usr/src/delly-2.5.1-X-src.tar.xz
-  /usr/src/delly-2.5.1-X.tar.xz
+  /usr/src/delly-2.7.0-X-src.tar.xz
+  /usr/src/delly-2.7.0-X.tar.xz
 
 -------------------------------------------
 
@@ -62,6 +62,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.7.0-1bl1 -----
+Version bump.
 
 ----- version 2.5.1-1bl1 -----
 Version bump.

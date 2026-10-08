@@ -1,5 +1,5 @@
---- origsrc/delly-2.5.1/Makefile	2026-07-23 21:30:25.000000000 +0900
-+++ src/delly-2.5.1/Makefile	2026-08-04 14:26:17.206992500 +0900
+--- origsrc/delly-2.7.0/Makefile	2026-10-05 14:07:21.000000000 +0000
++++ src/delly-2.7.0/Makefile	2026-10-08 00:52:49.767817200 +0000
 @@ -20,7 +20,7 @@ bindir ?= $(exec_prefix)/bin
  # Flags
  CXX ?= g++

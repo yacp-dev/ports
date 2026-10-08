@@ -9,42 +9,41 @@ homeomorphic to K2,3, K4, and K3,3. The C implementations in this repository
 are the reference implementations of algorithms.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libplanarity-devel-4.0.1.0-1bl1
-  libplanarity2-4.0.1.0-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libplanarity-devel-5.1.0.0-1bl1
+  libplanarity4-5.1.0.0-1bl1
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/graph-algorithms/edge-addition-planarity-suite
 
 Canonical download:
-  https://github.com/graph-algorithms/edge-addition-planarity-suite/archive/refs/tags/Version_4.0.1.0.tar.gz
+  https://github.com/graph-algorithms/edge-addition-planarity-suite/archive/refs/tags/Version_5.1.0.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack edge-addition-planarity-suite-4.0.1.0-X-src.tar.xz
+  1. unpack edge-addition-planarity-suite-5.1.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./edge-addition-planarity-suite-4.0.1.0-X.cygport all
+        % cygport ./edge-addition-planarity-suite-5.1.0.0-X.cygport all
 
 This will create:
-  /usr/src/edge-addition-planarity-suite-4.0.1.0-X-src.tar.xz
-  /usr/src/edge-addition-planarity-suite-4.0.1.0-X.tar.xz
-  /usr/src/libplanarity2-4.0.1.0-X.tar.xz
-  /usr/src/libplanarity-devel-4.0.1.0-X.tar.xz
+  /usr/src/edge-addition-planarity-suite-5.1.0.0-X-src.tar.xz
+  /usr/src/edge-addition-planarity-suite-5.1.0.0-X.tar.xz
+  /usr/src/libplanarity4-5.1.0.0-X.tar.xz
+  /usr/src/libplanarity-devel-5.1.0.0-X.tar.xz
 
 -------------------------------------------
 
@@ -55,6 +54,11 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/edge-addition-planarity-suite.README
   /usr/share/doc/edge-addition-planarity-suite/LICENSE.TXT
   /usr/share/doc/edge-addition-planarity-suite/README.md
+  /usr/share/doc/edge-addition-planarity-suite/samples/Digraph.transposeTest.0-based.graphml
+  /usr/share/doc/edge-addition-planarity-suite/samples/Digraph.transposeTest.0-based.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/Digraph.transposeTest.graphml
+  /usr/share/doc/edge-addition-planarity-suite/samples/Digraph.transposeTest.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/DirectedDFSTest.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/K10.g6
   /usr/share/doc/edge-addition-planarity-suite/samples/K10.g6.0-based.AdjList.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/K10.g6.0-based.AdjList.out.txt.0-based.G6.out.g6
@@ -73,15 +77,17 @@ Files included in the binary package:
   /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.0-based.txt.K23Search.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.0-based.txt.K33Search.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.0-based.txt.K4Search.out.txt
-  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.0-based.txt.OuterplanarEmbed.out.txt
-  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.0-based.txt.PlanarEmbed.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.0-based.txt.Outerplanarity.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.0-based.txt.Planarity.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.digraph.0-based.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.digraph.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.txt.ColorVertices.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.txt.K23Search.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.txt.K33Search.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.txt.K4Search.out.txt
-  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.txt.OuterplanarEmbed.out.txt
-  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.txt.PlanarEmbed.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.txt.Outerplanarity.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/Petersen.txt.Planarity.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/drawExample.0-based.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/drawExample.0-based.txt.ColorVertices.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/drawExample.0-based.txt.DrawPlanar.out.txt
@@ -90,52 +96,47 @@ Files included in the binary package:
   /usr/share/doc/edge-addition-planarity-suite/samples/drawExample.txt.ColorVertices.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/drawExample.txt.DrawPlanar.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/drawExample.txt.DrawPlanar.out.txt.render.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/faceListComponents.0-based.Drawing.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/faceListComponents.0-based.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/faceListComponents.0-based.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/faceListComponents.Drawing.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/faceListComponents.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/faceListComponents.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.0-based.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.0-based.txt.ColorVertices.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.0-based.txt.DrawPlanar.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.0-based.txt.DrawPlanar.out.txt.render.txt
-  /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.0-based.txt.PlanarEmbed.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.0-based.txt.Planarity.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.txt.ColorVertices.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.txt.DrawPlanar.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.txt.DrawPlanar.out.txt.render.txt
-  /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.txt.PlanarEmbed.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/maxPlanar5.txt.Planarity.out.txt
+  /usr/share/doc/edge-addition-planarity-suite/samples/n8.mALL.g6
   /usr/share/doc/edge-addition-planarity-suite/samples/nauty_example.g6
   /usr/share/doc/edge-addition-planarity-suite/samples/nauty_example.g6.0-based.AdjList.out.txt
   /usr/share/doc/edge-addition-planarity-suite/samples/nauty_example.g6.0-based.AdjList.out.txt.0-based.G6.out.g6
   /usr/share/doc/edge-addition-planarity-suite/samples/nauty_example.g6.0-based.AdjMat.out.txt
   /usr/share/man/man1/planarity.1.gz
 
-(libplanarity2)
-  /usr/bin/cygplanarity-2.dll
+(libplanarity4)
+  /usr/bin/cygplanarity-4.dll
 
 (libplanarity-devel)
-  /usr/include/planarity/c/graphLib/extensionSystem/graphExtensions.h
-  /usr/include/planarity/c/graphLib/extensionSystem/graphExtensions.private.h
-  /usr/include/planarity/c/graphLib/extensionSystem/graphFunctionTable.h
   /usr/include/planarity/c/graphLib/graph.h
+  /usr/include/planarity/c/graphLib/graphDFSUtils.h
   /usr/include/planarity/c/graphLib/graphLib.h
-  /usr/include/planarity/c/graphLib/graphStructures.h
   /usr/include/planarity/c/graphLib/homeomorphSearch/graphK23Search.h
-  /usr/include/planarity/c/graphLib/homeomorphSearch/graphK23Search.private.h
   /usr/include/planarity/c/graphLib/homeomorphSearch/graphK33Search.h
-  /usr/include/planarity/c/graphLib/homeomorphSearch/graphK33Search.private.h
   /usr/include/planarity/c/graphLib/homeomorphSearch/graphK4Search.h
-  /usr/include/planarity/c/graphLib/homeomorphSearch/graphK4Search.private.h
-  /usr/include/planarity/c/graphLib/io/g6-api-utilities.h
   /usr/include/planarity/c/graphLib/io/g6-read-iterator.h
   /usr/include/planarity/c/graphLib/io/g6-write-iterator.h
-  /usr/include/planarity/c/graphLib/io/strOrFile.h
-  /usr/include/planarity/c/graphLib/io/strbuf.h
+  /usr/include/planarity/c/graphLib/io/graphIO.h
   /usr/include/planarity/c/graphLib/lowLevelUtils/apiutils.h
   /usr/include/planarity/c/graphLib/lowLevelUtils/appconst.h
-  /usr/include/planarity/c/graphLib/lowLevelUtils/listcoll.h
-  /usr/include/planarity/c/graphLib/lowLevelUtils/platformTime.h
-  /usr/include/planarity/c/graphLib/lowLevelUtils/stack.h
   /usr/include/planarity/c/graphLib/planarityRelated/graphDrawPlanar.h
-  /usr/include/planarity/c/graphLib/planarityRelated/graphDrawPlanar.private.h
-  /usr/include/planarity/c/planarityApp/planarity.h
-  /usr/include/planarity/graph.h
+  /usr/include/planarity/c/graphLib/planarityRelated/graphOuterplanarity.h
+  /usr/include/planarity/c/graphLib/planarityRelated/graphPlanarity.h
   /usr/include/planarity/graphLib.h
   /usr/lib/libplanarity.dll.a
   /usr/lib/pkgconfig/libplanarity.pc
@@ -143,6 +144,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.1.0.0-1bl1 -----
+Version bump.
 
 ----- version 4.0.1.0-1bl1 -----
 Version bump.

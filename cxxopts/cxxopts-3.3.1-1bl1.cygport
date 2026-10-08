@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/jarro2783/${PN}"
 SRC_URI="https://github.com/jarro2783/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://github.com/jarro2783/${PN}/pull/468.patch
+"
 
 CATEGORY="Devel"
 SUMMARY="Lightweight C++ command line option parser"
@@ -9,4 +12,13 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libicu-devel
+"
+
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCXXOPTS_CXX_STANDARD:STRING=17
+	-DCXXOPTS_USE_UNICODE_HELP:BOOL=ON
+"

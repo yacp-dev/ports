@@ -1,8 +1,7 @@
 HOMEPAGE="https://www.enlightenment.org/${PN}"
 SRC_URI="https://prdownloads.sourceforge.net/enlightenment/${P}.tar.gz"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/0001-backgrounds-Save-backgrounds-after-modifying-one-in-.patch
-	https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/x11-wm/${PN}/files/${P}-fix-docdir.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/x11-wm/${PN}/files/${PN}-1.0.31-fix-docdir.patch
 "
 
 CATEGORY="X11"
@@ -20,6 +19,8 @@ LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	asciidoc
+	gettext-devel
 	libdbus1-devel
 	libGL-devel
 	libglib2.0-devel
@@ -55,3 +56,17 @@ CYGCONF_ARGS="
 	--enable-xscrnsaver
 	--disable-libhack
 "
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	# Upstream's misc/Makefile.am (install-data-hook) points
+	# /usr/bin/starte16 at the absolute /usr/share/e16/misc/starte16.
+	# Without e16 installed on the build system, `readlink -f` on it
+	# fails, which makes cygport's __list_deps abort silently and
+	# `cygport dep` print nothing.  Point it relatively instead; drop
+	# this once cygport guards that readlink -f.
+	verbose rm -f ${D}/usr/bin/starte16
+	dosym ../share/e16/misc/starte16 /usr/bin/starte16
+}

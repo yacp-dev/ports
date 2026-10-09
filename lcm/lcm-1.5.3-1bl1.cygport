@@ -18,7 +18,7 @@ BUILD_REQUIRES="
 	libglib2.0-devel
 	libgtest-devel
 	liblua-devel
-	python39-devel
+	python3-devel
 "
 
 inherit cmake
@@ -32,7 +32,7 @@ PKG_NAMES="
 	lib${PN}1
 	lib${PN}-devel
 	lua-${PN}
-	python39-${PN}
+	python3-${PN}
 "
 lcm_CONTENTS="
 	usr/bin/${PN}*.exe
@@ -52,11 +52,11 @@ liblcm_devel_CONTENTS="
 lua_lcm_CONTENTS="
 	usr/lib/lua
 "
-python39_lcm_CONTENTS="
-	usr/lib/python3.9
+python3_lcm_CONTENTS="
+	usr/lib/python3*
 "
 lcm_SUMMARY="${SUMMARY} (utilities)"
 liblcm1_SUMMARY="${SUMMARY} (runtime)"
 liblcm_devel_SUMMARY="${SUMMARY} (development)"
 lua_lcm_SUMMARY="${SUMMARY} (lua bindings)"
-python39_lcm_SUMMARY="${SUMMARY} (python39 bindings)"
+python3_lcm_SUMMARY="${SUMMARY} (python3 bindings)"

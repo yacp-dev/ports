@@ -1,13 +1,13 @@
---- origsrc/lcm-1.5.2/examples/cpp/lcm_log_writer/CMakeLists.txt	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/examples/cpp/lcm_log_writer/CMakeLists.txt	2026-01-15 10:30:10.529601600 +0900
+--- origsrc/lcm-1.5.3/examples/cpp/lcm_log_writer/CMakeLists.txt	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/examples/cpp/lcm_log_writer/CMakeLists.txt	2026-10-09 23:36:03.640171300 +0000
 @@ -23,4 +23,4 @@ target_include_directories(pjs_messages-
  
  # Create executable
  add_executable(lcm_log_writer "main.cpp")
 -lcm_target_link_libraries(lcm_log_writer pjs_messages-cpp ${LCM_NAMESPACE}lcm-static)
 +lcm_target_link_libraries(lcm_log_writer pjs_messages-cpp ${LCM_NAMESPACE}lcm)
---- origsrc/lcm-1.5.2/lcm/CMakeLists.txt	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/lcm/CMakeLists.txt	2026-01-15 09:24:38.928725300 +0900
+--- origsrc/lcm-1.5.3/lcm/CMakeLists.txt	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/lcm/CMakeLists.txt	2026-10-09 23:36:03.641197400 +0000
 @@ -46,10 +46,9 @@ endif()
  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
  
@@ -38,8 +38,8 @@
    EXPORT lcmTargets
    RUNTIME DESTINATION bin
    LIBRARY DESTINATION lib${LIB_SUFFIX}
---- origsrc/lcm-1.5.2/lcm-cmake/install.cmake	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/lcm-cmake/install.cmake	2026-01-15 10:37:07.172822400 +0900
+--- origsrc/lcm-1.5.3/lcm-cmake/install.cmake	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/lcm-cmake/install.cmake	2026-10-09 23:36:03.641197400 +0000
 @@ -1,9 +1,11 @@
  include(CMakePackageConfigHelpers)
  
@@ -56,8 +56,8 @@
  endif()
  
  # Java exported targets (note: must precede configure_package_config_file)
---- origsrc/lcm-1.5.2/lcm-cmake/lcmUtilities.cmake	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/lcm-cmake/lcmUtilities.cmake	2026-01-15 10:30:17.419807200 +0900
+--- origsrc/lcm-1.5.3/lcm-cmake/lcmUtilities.cmake	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/lcm-cmake/lcmUtilities.cmake	2026-10-09 23:36:03.643217000 +0000
 @@ -400,7 +400,7 @@ if(NOT CMAKE_VERSION VERSION_LESS 3.1)
        add_library(${NAME} ${_type} ${ARGN})
        add_dependencies(${NAME} ${NAME}.sources)
@@ -67,8 +67,8 @@
          PUBLIC ${LCM_NAMESPACE}lcm-coretypes)
  
      # C++ library
---- origsrc/lcm-1.5.2/lcm-logger/CMakeLists.txt	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/lcm-logger/CMakeLists.txt	2026-01-15 09:50:25.801998200 +0900
+--- origsrc/lcm-1.5.3/lcm-logger/CMakeLists.txt	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/lcm-logger/CMakeLists.txt	2026-10-09 23:36:03.643217000 +0000
 @@ -1,8 +1,8 @@
  add_executable(lcm-logger lcm_logger.c glib_util.c)
 -target_link_libraries(lcm-logger lcm-static ${lcm-winport} GLib2::glib)
@@ -80,8 +80,8 @@
  
  install(TARGETS
    lcm-logger
---- origsrc/lcm-1.5.2/lcm-python/CMakeLists.txt	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/lcm-python/CMakeLists.txt	2026-01-15 09:56:26.375692200 +0900
+--- origsrc/lcm-1.5.3/lcm-python/CMakeLists.txt	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/lcm-python/CMakeLists.txt	2026-10-09 23:36:03.643217000 +0000
 @@ -52,14 +52,14 @@ else ()
  endif ()
  
@@ -99,8 +99,8 @@
    )
  endif()
  
---- origsrc/lcm-1.5.2/liblcm-test/CMakeLists.txt	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/liblcm-test/CMakeLists.txt	2026-01-15 09:52:13.818264900 +0900
+--- origsrc/lcm-1.5.3/liblcm-test/CMakeLists.txt	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/liblcm-test/CMakeLists.txt	2026-10-09 23:36:03.645240900 +0000
 @@ -1,29 +1,29 @@
  add_executable(lcm-sink lcm-sink.c)
 -target_link_libraries(lcm-sink lcm-static)
@@ -138,8 +138,8 @@
  
  install(TARGETS
    lcm-sink
---- origsrc/lcm-1.5.2/test/CMakeLists.txt	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/test/CMakeLists.txt	2026-01-15 10:29:21.640856400 +0900
+--- origsrc/lcm-1.5.3/test/CMakeLists.txt	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/test/CMakeLists.txt	2026-10-09 23:36:03.645240900 +0000
 @@ -1,4 +1,9 @@
 -add_subdirectory(gtest)
 +find_package(gtest)
@@ -151,8 +151,8 @@
  
  add_subdirectory(types)
  
---- origsrc/lcm-1.5.2/test/c/CMakeLists.txt	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/test/c/CMakeLists.txt	2026-01-15 10:29:15.934885500 +0900
+--- origsrc/lcm-1.5.3/test/c/CMakeLists.txt	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/test/c/CMakeLists.txt	2026-10-09 23:36:03.647268500 +0000
 @@ -1,7 +1,7 @@
 -set(test_c_libs lcm-test-types-c-static lcm-static gtest gtest_main)
 +set(test_c_libs lcm-test-types-c lcm gtest gtest_main)
@@ -163,8 +163,8 @@
  
  add_executable(test-c-client client.cpp common.c)
  target_link_libraries(test-c-client ${test_c_libs})
---- origsrc/lcm-1.5.2/test/types/CMakeLists.txt	2025-10-24 00:25:33.000000000 +0900
-+++ src/lcm-1.5.2/test/types/CMakeLists.txt	2026-01-15 09:59:42.328421600 +0900
+--- origsrc/lcm-1.5.3/test/types/CMakeLists.txt	2026-09-24 14:39:41.000000000 +0000
++++ src/lcm-1.5.3/test/types/CMakeLists.txt	2026-10-09 23:36:03.647268500 +0000
 @@ -41,12 +41,6 @@ set_target_properties(lcm-test-types-c P
  target_include_directories(lcm-test-types-c INTERFACE
    ${CMAKE_CURRENT_BINARY_DIR})

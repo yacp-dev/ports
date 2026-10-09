@@ -1,5 +1,5 @@
---- origsrc/libdatovka-0.7.3/configure.ac	2026-03-09 22:04:00.000000000 +0900
-+++ src/libdatovka-0.7.3/configure.ac	2026-07-29 23:06:03.406733200 +0900
+--- origsrc/libdatovka-0.7.4/configure.ac	2026-03-09 22:04:00.000000000 +0900
++++ src/libdatovka-0.7.4/configure.ac	2026-07-29 23:06:03.40.7.4200 +0900
 @@ -144,13 +144,14 @@ AS_IF([test "x${enable_openssl_backend}"
    dnl Use default cryptographic back-end.
  
@@ -17,8 +17,8 @@
  ])
  AM_CONDITIONAL([USE_OPENSSL_BACKEND], [test "x${enable_openssl_backend}" = "xyes"])
  
---- origsrc/libdatovka-0.7.3/src/Makefile.am	2026-03-09 22:02:25.000000000 +0900
-+++ src/libdatovka-0.7.3/src/Makefile.am	2026-07-30 07:43:50.767861600 +0900
+--- origsrc/libdatovka-0.7.4/src/Makefile.am	2026-03-09 22:02:25.000000000 +0900
++++ src/libdatovka-0.7.4/src/Makefile.am	2026-07-30 07:43:50.767861600 +0900
 @@ -69,5 +69,5 @@ endif
  libdatovka_la_CPPFLAGS = @XML_CPPFLAGS@ @LIBCURL_CPPFLAGS@ \
  	-DLOCALEDIR=\"$(localedir)\" $(AM_CPPFLAGS)

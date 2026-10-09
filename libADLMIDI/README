@@ -3,44 +3,44 @@ libADLMIDI
 libADLMIDI is a free MIDI to WAV conversion library with OPL3 emulation.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libADLMIDI-devel-1.6.1-1bl1
-  libADLMIDI1-1.6.1-1bl1
-  libSDL2_2.0_0-2.32.70-1
+  cygwin-3.6.11-1
+  libADLMIDI-devel-1.6.2.1-1bl1
+  libADLMIDI1-1.6.2.1-1bl1
+  libSDL2_2.0_0-2.32.74-1
   libgcc1-14.4.0-1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.5-1
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
-  libSDL2-devel-2.32.70-1
+  libSDL2-devel-2.32.74-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/Wohlstand/libADLMIDI
 
 Canonical download:
-  https://github.com/Wohlstand/libADLMIDI/archive/refs/tags/v1.6.1.tar.gz
+  https://github.com/Wohlstand/libADLMIDI/archive/refs/tags/v1.6.2.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libADLMIDI-1.6.1-X-src.tar.xz
+  1. unpack libADLMIDI-1.6.2.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libADLMIDI-1.6.1-X.cygport all
+        % cygport ./libADLMIDI-1.6.2.1-X.cygport all
 
 This will create:
-  /usr/src/libADLMIDI-1.6.1-X-src.tar.xz
-  /usr/src/libADLMIDI-1.6.1-X.tar.xz
-  /usr/src/libADLMIDI1-1.6.1-X.tar.xz
-  /usr/src/libADLMIDI-devel-1.6.1-X.tar.xz
+  /usr/src/libADLMIDI-1.6.2.1-X-src.tar.xz
+  /usr/src/libADLMIDI-1.6.2.1-X.tar.xz
+  /usr/src/libADLMIDI1-1.6.2.1-X.tar.xz
+  /usr/src/libADLMIDI-devel-1.6.2.1-X.tar.xz
 
 -------------------------------------------
 
@@ -60,7 +60,7 @@ Files included in the binary package:
 
 (libADLMIDI-devel)
   /usr/include/adlmidi.h
-  /usr/lib/cmake/libADLMIDI/libADLMIDI-shared-targets-release.cmake
+  /usr/lib/cmake/libADLMIDI/libADLMIDI-shared-targets-relwithdebinfo.cmake
   /usr/lib/cmake/libADLMIDI/libADLMIDI-shared-targets.cmake
   /usr/lib/cmake/libADLMIDI/libADLMIDIConfig.cmake
   /usr/lib/libADLMIDI.dll.a
@@ -69,6 +69,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6.2.1-1bl1 -----
+Version bump.
 
 ----- version 1.6.1-1bl1 -----
 Version bump.

@@ -14,8 +14,6 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DSOVERSION:STRING=${PV[1]}
-	-DVERSION:STRING=${PV}
 "
 
 src_test()
@@ -45,7 +43,7 @@ isocline_CONTENTS="
 	usr/share
 "
 libisocline1_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-1.dll
 "
 libisocline_devel_CONTENTS="
 	usr/include

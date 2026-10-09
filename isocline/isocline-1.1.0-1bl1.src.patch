@@ -1,0 +1,82 @@
+--- origsrc/isocline-1.1.0/CMakeLists.txt	2026-04-21 23:07:42.000000000 +0000
++++ src/isocline-1.1.0/CMakeLists.txt	2026-10-09 21:17:43.142108700 +0000
+@@ -14,7 +14,7 @@ option(IC_DEBUG_MSG         "Enable prin
+ option(IC_SEPARATE_OBJS     "Compile with separate object files instead of one (warning: exports internal symbols)" OFF)
+ option(IC_BUILD_TESTS       "Build test binaries (example & test_colors)" ON)
+ 
+-set(ic_version "0.1")
++set(ic_version "1.1.0")
+ set(ic_sources          src/isocline.c)    
+ set(ic_example_sources  test/example.c test/test_colors.c)
+ 
+@@ -138,18 +138,20 @@ message(STATUS "Defines   : ${ic_cdefs}"
+ # message(STATUS "Flags     : ${ic_cflags}")
+ message(STATUS "")
+ 
+-
+ # -----------------------------------------------------------------------------
+-# Static library (libisocline.a) and samples (example)
++# Shared library (libisocline.so)
+ # -----------------------------------------------------------------------------
+ 
+-add_library(isocline STATIC ${ic_sources})
+-set_property(TARGET isocline PROPERTY POSITION_INDEPENDENT_CODE ON)
++add_library(isocline SHARED ${ic_sources})
++set_target_properties(isocline PROPERTIES
++    VERSION ${ic_version}
++    SOVERSION 1
++)
+ target_compile_options(isocline PRIVATE ${ic_cflags})
+ target_compile_definitions(isocline PRIVATE ${ic_cdefs})
+ target_include_directories(isocline PUBLIC
+     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+-    $<INSTALL_INTERFACE:${ic_install_dir}/include>
++    $<INSTALL_INTERFACE:include>
+ )
+ 
+ if (IC_BUILD_TESTS)
+@@ -165,32 +167,14 @@ if (IC_BUILD_TESTS)
+ endif()
+ 
+ # -----------------------------------------------------------------------------
+-# Shared library (libisocline.so)
+-# -----------------------------------------------------------------------------
+-
+-add_library(isocline_shared SHARED ${ic_sources})
+-set_target_properties(isocline_shared PROPERTIES
+-    OUTPUT_NAME isocline
+-    VERSION 1.0.9
+-    SOVERSION 1
+-)
+-target_compile_options(isocline_shared PRIVATE ${ic_cflags})
+-target_compile_definitions(isocline_shared PRIVATE ${ic_cdefs})
+-target_include_directories(isocline_shared PUBLIC
+-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+-    $<INSTALL_INTERFACE:include>
+-)
+-
+-
+-# -----------------------------------------------------------------------------
+ # Install rules
+ # -----------------------------------------------------------------------------
+ 
+ include(GNUInstallDirs)
+ 
+-install(TARGETS isocline isocline_shared
++install(TARGETS isocline isocline
+     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+ )
+ 
+ install(FILES include/isocline.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+--- origsrc/isocline-1.1.0/isocline.pc.in	2026-04-21 23:07:42.000000000 +0000
++++ src/isocline-1.1.0/isocline.pc.in	2026-10-09 21:17:43.143341200 +0000
+@@ -5,6 +5,6 @@ includedir=${prefix}/@CMAKE_INSTALL_INCL
+ 
+ Name: isocline
+ Description: Portable alternative to GNU Readline
+-Version: 1.0.9
++Version: @ic_version@
+ Libs: -L${libdir} -lisocline
+ Cflags: -I${includedir}

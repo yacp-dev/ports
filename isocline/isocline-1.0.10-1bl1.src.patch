@@ -1,5 +1,5 @@
---- origsrc/isocline-1.0.9/CMakeLists.txt	2022-01-16 10:37:06.000000000 +0900
-+++ src/isocline-1.0.9/CMakeLists.txt	2022-08-21 04:08:08.093183900 +0900
+--- origsrc/isocline-1.0.10/CMakeLists.txt	2022-01-16 10:37:06.000000000 +0900
++++ src/isocline-1.0.10/CMakeLists.txt	2022-08-21 04:08:08.093183900 +0900
 @@ -142,7 +142,7 @@ message(STATUS "")
  # Static library (libisocline.a) and samples (example)
  # -----------------------------------------------------------------------------
@@ -33,8 +33,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/isocline.pc.in ${CMAKE_BINARY_DIR}/isocline.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/isocline.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/isocline-1.0.9/isocline.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/isocline-1.0.9/isocline.pc.in	2022-08-21 04:07:42.018899100 +0900
+--- origsrc/isocline-1.0.10/isocline.pc.in	1970-01-01 09:00:00.000000000 +0900
++++ src/isocline-1.0.10/isocline.pc.in	2022-08-21 04:07:42.018899100 +0900
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

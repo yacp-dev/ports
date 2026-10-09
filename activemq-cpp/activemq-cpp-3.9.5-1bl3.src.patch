@@ -1,5 +1,5 @@
---- origsrc/activemq-cpp-library-3.9.5/src/main/Makefile.am	2019-01-26 05:52:51.000000000 +0900
-+++ src/activemq-cpp-library-3.9.5/src/main/Makefile.am	2024-09-19 14:59:10.305014500 +0900
+--- origsrc/activemq-cpp-library-3.9.5/src/main/Makefile.am	2019-01-25 20:52:51.000000000 +0000
++++ src/activemq-cpp-library-3.9.5/src/main/Makefile.am	2026-10-09 22:08:28.526066700 +0000
 @@ -1370,7 +1370,7 @@ lib_LTLIBRARIES= libactivemq-cpp.la
  libactivemq_cpp_la_SOURCES= $(h_sources) $(cc_sources)
  libactivemq_cpp_la_CXXFLAGS= $(AMQ_CXXFLAGS)

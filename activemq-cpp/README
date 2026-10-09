@@ -2,35 +2,36 @@ activemq-cpp
 ------------------------------------------
 CMS (stands for C++ Messaging Service) is a JMS-like API for C++ for
 interfacing with Message Brokers such as Apache ActiveMQ. CMS helps to make
-your C++ client code much neater and easier to follow. To get a better feel for
-CMS try the API Reference. ActiveMQ-CPP is a client only library, a message
-broker such as Apache ActiveMQ is still needed for your clients to communicate.
+your C++ client code much neater and easier to follow. To get a better feel
+for CMS try the API Reference. ActiveMQ-CPP is a client only library, a
+message broker such as Apache ActiveMQ is still needed for your clients to
+communicate.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.5.4-1
-  cygwin-devel-3.5.4-1
-  libactivemq-cpp-devel-3.9.5-1bl2
-  libactivemq-cpp19-3.9.5-1bl2
+  cygwin-3.6.11-1
+  cygwin-devel-3.6.11-1
+  libactivemq-cpp-devel-3.9.5-1bl3
+  libactivemq-cpp19-3.9.5-1bl3
   libapr1-1.6.5-1
   libapr1-devel-1.6.5-1
-  libgcc1-12.4.0-3
-  libssl3-3.0.15-1
-  libstdc++6-12.4.0-3
-  libuuid-devel-2.39.3-2
-  pkg-config-2.3.0-1
+  libgcc1-14.4.0-1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  libuuid-devel-2.40.2-2
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libapr1-devel-1.6.5-1
-  libssl-devel-3.0.15-1
-  libtool-2.4.7-1
+  libssl-devel-3.5.9-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -761,6 +762,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.9.5-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.9.5-1bl2 -----
 Rebuild for libssl

@@ -1,5 +1,5 @@
---- origsrc/e16-1.0.31/lib/Makefile.am	2024-03-11 05:40:43.000000000 +0900
-+++ src/e16-1.0.31/lib/Makefile.am	2026-01-06 04:46:32.908584300 +0900
+--- origsrc/e16-1.0.32/lib/Makefile.am	2024-03-10 20:40:43.000000000 +0000
++++ src/e16-1.0.32/lib/Makefile.am	2026-10-09 22:52:04.741885200 +0000
 @@ -13,7 +13,7 @@ LIB_HACK = libhack.la
  libhack_la_SOURCES  = e16_hack.c
  
@@ -18,8 +18,8 @@
  
  endif
  
---- origsrc/e16-1.0.31/src/xwin.h	2025-07-27 16:03:43.000000000 +0900
-+++ src/e16-1.0.31/src/xwin.h	2026-01-06 04:46:32.908584300 +0900
+--- origsrc/e16-1.0.32/src/xwin.h	2026-09-03 15:30:52.000000000 +0000
++++ src/e16-1.0.32/src/xwin.h	2026-10-09 22:52:04.741885200 +0000
 @@ -227,6 +227,10 @@ int             EQueryPointer(Win win, i
  
  unsigned int    EAllocColor(EX_Colormap cmap, unsigned int argb);

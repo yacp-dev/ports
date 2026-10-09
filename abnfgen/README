@@ -4,16 +4,16 @@ Given an Augmented Backus-Naur form (ABNF) grammar (Wikipedia, RFC 4234),
 abnfgen quickly generates lots of random documents that match that grammar.
 
 Runtime requirements:
-  cygwin-3.5.0-0.341.ga02144808c5b
+  cygwin-3.6.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.40-1
-  cygport-0.36.5-1
-  gcc-core-11.4.0-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -52,6 +52,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.21-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.21-1bl1 -----
 Version bump.

@@ -1,5 +1,5 @@
---- origsrc/lcalc-2.2.1/configure.ac	2026-04-07 12:37:04.000000000 +0900
-+++ src/lcalc-2.2.1/configure.ac	2026-07-28 15:32:11.970704300 +0900
+--- origsrc/lcalc-2.2.2/configure.ac	2026-09-30 19:38:27.000000000 +0000
++++ src/lcalc-2.2.2/configure.ac	2026-10-09 22:53:30.600420600 +0000
 @@ -11,7 +11,7 @@ PACKAGE_DESCRIPTION="Command-line utilit
  AC_SUBST(PACKAGE_DESCRIPTION)
  

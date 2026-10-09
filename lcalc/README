@@ -3,24 +3,23 @@ lcalc
 Package for working with L-functions
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libLfunction-devel-2.2.1-1bl1
-  libLfunction2-2.2.1-1bl1
+  cygwin-3.6.11-1
+  libLfunction-devel-2.2.2-1bl1
+  libLfunction2-2.2.2-1bl1
   libgcc1-14.4.0-1
   libgomp1-14.4.0-1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.4-2
+  pkg-config-3.0.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
+  autoconf-20260320-3
+  automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
-  gengetopt-2.23-1
+  gengetopt-2.23.1-1
   libtool-2.6.2-1
   make-4.4.1-2
 
@@ -28,22 +27,22 @@ Canonical website:
   https://gitlab.com/sagemath/lcalc
 
 Canonical download:
-  https://gitlab.com/sagemath/lcalc/-/archive/2.2.1/lcalc-2.2.1.tar.bz2
+  https://gitlab.com/sagemath/lcalc/-/archive/2.2.2/lcalc-2.2.2.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack lcalc-2.2.1-X-src.tar.xz
+  1. unpack lcalc-2.2.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./lcalc-2.2.1-X.cygport all
+        % cygport ./lcalc-2.2.2-X.cygport all
 
 This will create:
-  /usr/src/lcalc-2.2.1-X-src.tar.xz
-  /usr/src/lcalc-2.2.1-X.tar.xz
-  /usr/src/libLfunction2-2.2.1-X.tar.xz
-  /usr/src/libLfunction-devel-2.2.1-X.tar.xz
+  /usr/src/lcalc-2.2.2-X-src.tar.xz
+  /usr/src/lcalc-2.2.2-X.tar.xz
+  /usr/src/libLfunction2-2.2.2-X.tar.xz
+  /usr/src/libLfunction-devel-2.2.2-X.tar.xz
 
 -------------------------------------------
 
@@ -95,6 +94,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.2.2-1bl1 -----
+Version bump.
 
 ----- version 2.2.1-1bl1 -----
 Version bump.

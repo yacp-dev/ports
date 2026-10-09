@@ -1,14 +1,6 @@
---- origsrc/libaegis-0.10.3/CMakeLists.txt	2026-07-16 01:03:24.000000000 +0900
-+++ src/libaegis-0.10.3/CMakeLists.txt	2026-07-28 18:03:33.772144100 +0900
+--- origsrc/libaegis-0.10.6/CMakeLists.txt	2026-07-16 01:03:24.000000000 +0900
++++ src/libaegis-0.10.6/CMakeLists.txt	2026-07-28 18:03:33.772144100 +0900
 @@ -49,14 +49,16 @@ set(TARGETS_EXPORT_NAME "${PROJECT_NAME}
- 
- install(TARGETS "${PROJECT_NAME}"
-         EXPORT "${TARGETS_EXPORT_NAME}"
--        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-+        RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
-         ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
- 
- install(FILES ${HEADER_FILES} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
  
  # CMake find_package() support
  
@@ -30,8 +22,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libaegis.pc.in ${CMAKE_BINARY_DIR}/libaegis.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libaegis.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libaegis-0.10.3/libaegis.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libaegis-0.10.3/libaegis.pc.in	2026-07-28 18:03:33.784178900 +0900
+--- origsrc/libaegis-0.10.6/libaegis.pc.in	1970-01-01 09:00:00.000000000 +0900
++++ src/libaegis-0.10.6/libaegis.pc.in	2026-07-28 18:03:33.784178900 +0900
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

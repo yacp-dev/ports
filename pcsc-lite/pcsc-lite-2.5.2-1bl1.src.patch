@@ -1,16 +1,16 @@
---- origsrc/pcsc-lite-2.4.1/configure.ac	2026-01-02 02:37:00.000000000 +0900
-+++ src/pcsc-lite-2.4.1/configure.ac	2026-01-30 20:17:36.130890800 +0900
+--- origsrc/pcsc-lite-2.5.2/configure.ac	2026-01-02 02:37:00.000000000 +0900
++++ src/pcsc-lite-2.5.2/configure.ac	2026-01-30 20:17:36.130890800 +0900
 @@ -3,7 +3,7 @@
  
  AC_PREREQ([2.69])
  
 -AC_INIT([pcsc-lite], [2.2.0])
-+AC_INIT([pcsc-lite], [2.4.1])
++AC_INIT([pcsc-lite], [2.5.2])
  AC_CONFIG_SRCDIR(src/pcscdaemon.c)
  AM_INIT_AUTOMAKE(1.8 dist-bzip2 no-dist-gzip foreign subdir-objects)
  AC_CONFIG_HEADERS([config.h])
---- origsrc/pcsc-lite-2.4.1/src/Makefile.am	2026-01-02 02:37:00.000000000 +0900
-+++ src/pcsc-lite-2.4.1/src/Makefile.am	2026-01-30 17:53:31.141692000 +0900
+--- origsrc/pcsc-lite-2.5.2/src/Makefile.am	2026-01-02 02:37:00.000000000 +0900
++++ src/pcsc-lite-2.5.2/src/Makefile.am	2026-01-30 17:53:31.141692000 +0900
 @@ -7,7 +7,7 @@ lib_LTLIBRARIES = libpcsclite.la libpcsc
  check_LTLIBRARIES = libpcsclite_fake.la
  
@@ -38,8 +38,8 @@
  libpcsclite_real_la_CFLAGS = $(PTHREAD_CFLAGS) -DLIBPCSCLITE -DSIMCLIST_NO_DUMPRESTORE
  libpcsclite_real_la_LIBADD = $(PTHREAD_CFLAGS) $(PTHREAD_LIBS)
  
---- origsrc/pcsc-lite-2.4.1/src/spy/Makefile.am	2026-01-02 02:37:00.000000000 +0900
-+++ src/pcsc-lite-2.4.1/src/spy/Makefile.am	2026-01-30 17:53:31.147453600 +0900
+--- origsrc/pcsc-lite-2.5.2/src/spy/Makefile.am	2026-01-02 02:37:00.000000000 +0900
++++ src/pcsc-lite-2.5.2/src/spy/Makefile.am	2026-01-30 17:53:31.147453600 +0900
 @@ -7,6 +7,7 @@ dist_doc_DATA = setup_spy.sh
  libpcscspy_la_SOURCES = \
  	libpcscspy.c \

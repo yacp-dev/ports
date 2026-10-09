@@ -1,7 +1,7 @@
 HOMEPAGE="https://pcsclite.apdu.fr/"
 SRC_URI="https://pcsclite.apdu.fr/files/${P}.tar.xz"
 PATCH_URI="
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-apps/${PN}/files/${PN}-1.8.11-polkit-pcscd.patch
+	https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-apps/${PN}/files/${PN}-2.5.1-systemd-sysusers-fixup.patch
 "
 
 CATEGORY="Libs"

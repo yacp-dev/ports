@@ -8,52 +8,51 @@ variety of programming languages. It was originally designed and used by the
 MIT DARPA Urban Challenge Team as its message passing system.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
-  liblcm-devel-1.5.2-1bl1
-  liblcm1-1.5.2-1bl1
+  cygwin-3.6.11-1
+  libglib2.0-devel-2.90.0-1
+  libglib2.0_0-2.90.0-1
+  liblcm-devel-1.5.3-1bl1
+  liblcm1-1.5.3-1bl1
   liblua5.3-5.3.6-4
-  pkg-config-2.5.1-1
-  python39-3.9.16-1
+  pkg-config-3.0.7-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libglib2.0-devel-2.87.0-1
-  libgtest-devel-1.17.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libglib2.0-devel-2.90.0-1
+  libgtest-devel-1.18.0-1bl1
   liblua-devel-5.3.6-4
-  lua-5.3.6-4
   ninja-1.13.2-1
-  python39-3.9.16-1
-  python39-devel-3.9.16-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
 
 Canonical website:
   https://github.com/lcm-proj/lcm
 
 Canonical download:
-  https://github.com/lcm-proj/lcm/archive/refs/tags/v1.5.2.tar.gz
+  https://github.com/lcm-proj/lcm/archive/refs/tags/v1.5.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack lcm-1.5.2-X-src.tar.xz
+  1. unpack lcm-1.5.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./lcm-1.5.2-X.cygport all
+        % cygport ./lcm-1.5.3-X.cygport all
 
 This will create:
-  /usr/src/lcm-1.5.2-X-src.tar.xz
-  /usr/src/lcm-1.5.2-X.tar.xz
-  /usr/src/liblcm1-1.5.2-X.tar.xz
-  /usr/src/liblcm-devel-1.5.2-X.tar.xz
-  /usr/src/lua-lcm-1.5.2-X.tar.xz
-  /usr/src/python39-lcm-1.5.2-X.tar.xz
+  /usr/src/lcm-1.5.3-X-src.tar.xz
+  /usr/src/lcm-1.5.3-X.tar.xz
+  /usr/src/liblcm1-1.5.3-X.tar.xz
+  /usr/src/liblcm-devel-1.5.3-X.tar.xz
+  /usr/src/lua-lcm-1.5.3-X.tar.xz
+  /usr/src/python3-lcm-1.5.3-X.tar.xz
 
 -------------------------------------------
 
@@ -95,7 +94,7 @@ Files included in the binary package:
   /usr/include/lcm/lcm_version.h
   /usr/lib/cmake/lcm/lcmConfig.cmake
   /usr/lib/cmake/lcm/lcmConfigVersion.cmake
-  /usr/lib/cmake/lcm/lcmTargets-release.cmake
+  /usr/lib/cmake/lcm/lcmTargets-relwithdebinfo.cmake
   /usr/lib/cmake/lcm/lcmTargets.cmake
   /usr/lib/cmake/lcm/lcmUtilities.cmake
   /usr/lib/liblcm.dll.a
@@ -105,18 +104,21 @@ Files included in the binary package:
 (lua-lcm)
   /usr/lib/lua/5.3/lcm.dll
 
-(python39-lcm)
-  /usr/lib/python3.9/site-packages/lcm/__init__.py
-  /usr/lib/python3.9/site-packages/lcm/__init__.pyi
-  /usr/lib/python3.9/site-packages/lcm/__pycache__/__init__.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/lcm/__pycache__/__init__.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/lcm/__pycache__/__init__.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/lcm/_lcm.dll
-  /usr/lib/python3.9/site-packages/lcm/py.typed
+(python3-lcm)
+  /usr/lib/python3.12/site-packages/lcm/__init__.py
+  /usr/lib/python3.12/site-packages/lcm/__init__.pyi
+  /usr/lib/python3.12/site-packages/lcm/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/lcm/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/lcm/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/lcm/_lcm.dll
+  /usr/lib/python3.12/site-packages/lcm/py.typed
 
 ------------------
 
 Port Notes:
+
+----- version 1.5.3-1bl1 -----
+Version bump.
 
 ----- version 1.5.2-1bl1 -----
 Version bump.

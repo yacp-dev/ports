@@ -1,0 +1,29 @@
+HOMEPAGE="https://github.com/luau-lang/${PN}"
+SRC_URI="https://github.com/luau-lang/${PN}/archive/refs/tags/${PV}.tar.gz"
+
+CATEGORY="Interpreters"
+SUMMARY="Fast, small, safe, gradually typed embeddable scripting language derived from Lua"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	libisocline-devel
+"
+
+inherit cmake
+
+src_test()
+{
+	cd ${B}
+	verbose ./Luau.CLI.Test.exe
+	verbose ./Luau.UnitTest.exe
+}
+
+src_install()
+{
+	cd ${B}
+	dobin luau*.exe
+}

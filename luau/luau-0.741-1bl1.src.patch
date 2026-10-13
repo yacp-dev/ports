@@ -1,0 +1,113 @@
+--- origsrc/luau-0.741/CMakeLists.txt	2026-10-03 05:17:39.000000000 +0900
++++ src/luau-0.741/CMakeLists.txt	2026-10-10 10:21:15.822789000 +0900
+@@ -32,6 +32,9 @@ endif()
+ 
+ project(Luau LANGUAGES CXX C)
+ 
++find_package(pkgconfig)
++pkg_check_modules(ISOCLINE isocline)
++
+ if (LUAU_BUILD_SHARED)
+     add_library(Luau.Common SHARED)
+     add_library(Luau.CLI.lib SHARED)
+@@ -44,7 +47,9 @@ if (LUAU_BUILD_SHARED)
+     add_library(Luau.CodeGen SHARED)
+     add_library(Luau.VM SHARED)
+     add_library(Luau.Require SHARED)
+-    add_library(isocline SHARED)
++    if (NOT ISOCLINE_FOUND)
++        add_library(isocline SHARED)
++    endif()
+ else()
+     add_library(Luau.Common STATIC)
+     add_library(Luau.CLI.lib STATIC)
+@@ -57,7 +62,9 @@ else()
+     add_library(Luau.CodeGen STATIC)
+     add_library(Luau.VM STATIC)
+     add_library(Luau.Require STATIC)
+-    add_library(isocline STATIC)
++    if (NOT ISOCLINE_FOUND)
++        add_library(isocline STATIC)
++    endif()
+ endif()
+ 
+ if(LUAU_BUILD_CLI)
+@@ -106,6 +113,7 @@ target_link_libraries(Luau.Ast PUBLIC Lu
+ target_compile_features(Luau.Bytecode PUBLIC cxx_std_17)
+ target_include_directories(Luau.Bytecode PUBLIC Bytecode/include)
+ target_link_libraries(Luau.Bytecode PUBLIC Luau.Common)
++target_link_libraries(Luau.Bytecode PRIVATE Luau.Ast Luau.VM)
+ 
+ target_compile_features(Luau.Inliner PUBLIC cxx_std_17)
+ target_include_directories(Luau.Inliner PUBLIC Inliner/include)
+@@ -140,7 +148,9 @@ target_compile_features(Luau.Require PUB
+ target_include_directories(Luau.Require PUBLIC Require/include)
+ target_link_libraries(Luau.Require PUBLIC Luau.Config Luau.VM)
+ 
+-target_include_directories(isocline PUBLIC extern/isocline/include)
++if (NOT ISOCLINE_FOUND)
++    target_include_directories(isocline PUBLIC extern/isocline/include)
++endif()
+ 
+ target_include_directories(Luau.VM.Internals INTERFACE VM/src)
+ 
+@@ -193,7 +203,9 @@ target_compile_options(Luau.Analysis PRI
+ target_compile_options(Luau.CLI.lib PRIVATE ${LUAU_OPTIONS})
+ target_compile_options(Luau.CodeGen PRIVATE ${LUAU_OPTIONS})
+ target_compile_options(Luau.VM PRIVATE ${LUAU_OPTIONS})
+-target_compile_options(isocline PRIVATE ${LUAU_OPTIONS} ${ISOCLINE_OPTIONS})
++if (NOT ISOCLINE_FOUND)
++    target_compile_options(isocline PRIVATE ${LUAU_OPTIONS} ${ISOCLINE_OPTIONS})
++endif()
+ 
+ if(LUAU_EXTERN_C)
+     # enable extern "C" for VM (lua.h, lualib.h) and Compiler (luacode.h) to make Luau friendlier to use from non-C++ languages
+@@ -283,9 +295,18 @@ if(LUAU_BUILD_CLI)
+     target_compile_options(Luau.Compile.CLI PRIVATE ${LUAU_OPTIONS})
+     target_compile_options(Luau.Bytecode.CLI PRIVATE ${LUAU_OPTIONS})
+ 
+-    target_include_directories(Luau.Repl.CLI PRIVATE extern extern/isocline/include)
++    if (ISOCLINE_FOUND)
++        target_include_directories(Luau.Repl.CLI PRIVATE ${ISOCLINE_INCLUDE_DIRS})
++    else()
++        target_include_directories(Luau.Repl.CLI PRIVATE extern extern/isocline/include)
++    endif()
+ 
+-    target_link_libraries(Luau.Repl.CLI PRIVATE Luau.Compiler Luau.Inliner Luau.Config Luau.CodeGen Luau.VM Luau.Require Luau.CLI.lib isocline)
++    target_link_libraries(Luau.Repl.CLI PRIVATE Luau.Compiler Luau.Inliner Luau.Config Luau.CodeGen Luau.VM Luau.Require Luau.CLI.lib)
++    if (ISOCLINE_FOUND)
++        target_link_libraries(Luau.Repl.CLI PRIVATE ${ISOCLINE_LIBRARIES})
++    else()
++        target_link_libraries(Luau.Repl.CLI PRIVATE isocline)
++    endif()
+ 
+     target_link_libraries(Luau.Repl.CLI PRIVATE osthreads)
+     target_link_libraries(Luau.Reduce.CLI PRIVATE osthreads)
+@@ -311,7 +332,7 @@ if(LUAU_BUILD_TESTS)
+     target_compile_options(Luau.UnitTest PRIVATE ${LUAU_OPTIONS})
+     target_compile_definitions(Luau.UnitTest PRIVATE DOCTEST_CONFIG_DOUBLE_STRINGIFY DOCTEST_CONFIG_USE_STD_HEADERS)
+     target_include_directories(Luau.UnitTest PRIVATE extern)
+-    target_link_libraries(Luau.UnitTest PRIVATE Luau.Analysis Luau.Bytecode Luau.Compiler Luau.CodeGen)
++    target_link_libraries(Luau.UnitTest PRIVATE Luau.Analysis Luau.Bytecode Luau.Compiler Luau.CodeGen Luau.VM)
+ 
+     target_compile_options(Luau.Conformance PRIVATE ${LUAU_OPTIONS})
+     target_compile_definitions(Luau.Conformance PRIVATE DOCTEST_CONFIG_DOUBLE_STRINGIFY DOCTEST_CONFIG_USE_STD_HEADERS)
+--- origsrc/luau-0.741/Sources.cmake	2026-10-03 05:17:39.000000000 +0900
++++ src/luau-0.741/Sources.cmake	2026-10-10 06:44:42.701726800 +0900
+@@ -441,10 +441,12 @@ target_sources(Luau.VM PRIVATE
+     VM/src/lvm.h
+ )
+ 
+-target_sources(isocline PRIVATE
+-    extern/isocline/include/isocline.h
+-    extern/isocline/src/isocline.c
+-)
++if (NOT ISOCLINE_FOUND)
++    target_sources(isocline PRIVATE
++        extern/isocline/include/isocline.h
++        extern/isocline/src/isocline.c
++    )
++endif()
+ 
+ # Common sources shared between all CLI apps
+ target_sources(Luau.CLI.lib PRIVATE

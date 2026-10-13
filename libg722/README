@@ -5,39 +5,39 @@ for all three specified bit rates - 64000bps, 56000bps and 48000bps. It passes
 the ITU tests.
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libg722-devel-1.2.1-1bl1
-  libg722_0-1.2.1-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.11-1
+  libg722-devel-1.2.8-1bl1
+  libg722_1-1.2.8-1bl1
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/sippy/libg722
 
 Canonical download:
-  https://github.com/sippy/libg722/archive/refs/tags/v1.2.1.tar.gz
+  https://github.com/sippy/libg722/archive/refs/tags/v1.2.8.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libg722-1.2.1-X-src.tar.xz
+  1. unpack libg722-1.2.8-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libg722-1.2.1-X.cygport all
+        % cygport ./libg722-1.2.8-X.cygport all
 
 This will create:
-  /usr/src/libg722-1.2.1-X-src.tar.xz
-  /usr/src/libg722-1.2.1-X.tar.xz
-  /usr/src/libg722_0-1.2.1-X.tar.xz
-  /usr/src/libg722-devel-1.2.1-X.tar.xz
+  /usr/src/libg722-1.2.8-X-src.tar.xz
+  /usr/src/libg722-1.2.8-X.tar.xz
+  /usr/src/libg722_1-1.2.8-X.tar.xz
+  /usr/src/libg722-devel-1.2.8-X.tar.xz
 
 -------------------------------------------
 
@@ -48,8 +48,8 @@ Files included in the binary package:
   /usr/share/doc/libg722/LICENSE
   /usr/share/doc/libg722/README.md
 
-(libg722_0)
-  /usr/bin/cygg722-0.dll
+(libg722_1)
+  /usr/bin/cygg722-1.dll
 
 (libg722-devel)
   /usr/include/g722.h
@@ -62,6 +62,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.8-1bl1 -----
+Version bump.
 
 ----- version 1.2.1-1bl1 -----
 Version bump.

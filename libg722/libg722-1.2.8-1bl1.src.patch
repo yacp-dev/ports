@@ -1,0 +1,45 @@
+--- origsrc/libg722-1.2.8/CMakeLists.txt	2026-06-29 20:39:12.000000000 +0000
++++ src/libg722-1.2.8/CMakeLists.txt	2026-10-13 21:52:56.350390000 +0000
+@@ -67,6 +67,9 @@ if( ENABLE_SHARED_LIB )
+     VERSION 0
+     PUBLIC_HEADER "${PUBLIC_HEADERS}"
+   )
++  if (DEFINED SOVERSION)
++    set_target_properties(g722 PROPERTIES SOVERSION "${SOVERSION}")
++  endif()
+   configure_g722_target(g722)
+   install(TARGETS g722
+     RUNTIME DESTINATION bin
+@@ -152,3 +155,10 @@ else()
+     message(STATUS "LTO not supported: <${lto_error}>")
+   endif()
+ endif()
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/libg722.pc.in ${CMAKE_BINARY_DIR}/libg722.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/libg722.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/libg722-1.2.8/libg722.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libg722-1.2.8/libg722.pc.in	2026-10-13 21:52:56.350390000 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libg722
++Description: Implementation of the ITU G.722 specification
++Version: @VERSION@
++Libs: -L${libdir} -lg722
++Cflags: -I${includedir}
+--- origsrc/libg722-1.2.8/library.properties	2026-06-29 20:39:12.000000000 +0000
++++ src/libg722-1.2.8/library.properties	2026-10-13 21:52:56.350390000 +0000
+@@ -1,5 +1,5 @@
+ name=libg722
+-version=1.1.1
++version=1.2.8
+ author=Milton Anderson,Chengxiang Lu, and Alex Hauptmann
+ maintainer=Phil Schatzmann <phil.schatzmann@gmail.com>
+ sentence=G.722 codec

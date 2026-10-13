@@ -7,31 +7,33 @@ DESCRIPTION="The G.722 module is a bit exact implementation of the ITU G.722 spe
 for all three specified bit rates - 64000bps, 56000bps and 48000bps. It passes
 the ITU tests."
 
-# LICENSE="Public Domain"
+LICENSE="BSD-2-Clause AND LicenseRef-Public-Domain"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND LicenseRef-Public-Domain"
+LICENSE_URI="LICENSE"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DENABLE_STATIC_LIB:BOOL=OFF
-	-DSOVERSION:STRING=0
+	-DSOVERSION:STRING=${PV[1]}
 	-DVERSION:STRING=${PV}
 "
 
 PKG_NAMES="
 	libg722
-	libg722_0
+	libg722_${PV[1]}
 	libg722-devel
 "
 libg722_CONTENTS="
 	usr/share
 "
-libg722_0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libg722_1_CONTENTS="
+	usr/bin/cyg*-${PV[1]}.dll
 "
 libg722_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libg722_SUMMARY="${SUMMARY} (licensing & readmes)"
-libg722_0_SUMMARY="${SUMMARY} (runtime)"
+libg722_1_SUMMARY="${SUMMARY} (runtime)"
 libg722_devel_SUMMARY="${SUMMARY} (development)"

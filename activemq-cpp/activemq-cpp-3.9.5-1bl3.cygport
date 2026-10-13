@@ -1,5 +1,8 @@
 HOMEPAGE="https://activemq.apache.org/components/cms/"
 SRC_URI="https://dlcdn.apache.org/activemq/${PN}/${PV}/${PN}-library-${PV}-src.tar.bz2"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-3.8.2-system-zlib.patch
+"
 SRC_DIR="${PN}-library-${PV}"
 
 CATEGORY="Libs"
@@ -15,7 +18,11 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="libapr1-devel libssl-devel"
+BUILD_REQUIRES="
+	libapr1-devel
+	libssl-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

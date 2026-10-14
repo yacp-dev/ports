@@ -9,13 +9,15 @@ LICENSE="ISC"
 LICENSE_SPDX="SPDX-License-Identifier: ISC"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libssl-devel"
+BUILD_REQUIRES="
+	libssl-devel
+"
 
 src_compile()
 {
 	cd ${B}
 	lndirs
-	cygmake CYGCFLAGS="${CFLAGS}"
+	cygmake
 }
 
 src_install()

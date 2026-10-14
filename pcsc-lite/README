@@ -6,64 +6,66 @@ be compiled directly to a desired reader driver or can be used to dynamically
 allocate/deallocate reader drivers at runtime (default).
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libpcsclite-devel-2.4.1-1bl1
-  libpcsclite1-2.4.1-1bl1
-  pkg-config-2.5.1-1
-  python39-3.9.16-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libglib2.0_0-2.90.0-1
+  libpcsclite-devel-2.5.2-1bl1
+  libpcsclite1-2.5.2-1bl1
+  libpolkit-gobject1_0-127-1bl2
+  pkg-config-3.0.8-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
+  binutils-2.47-1
+  cygport-0.37.10-1
   flex-2.6.4-2
-  gcc-core-13.4.0-1
-  libtool-2.5.4-1
-  make-4.4.1-2
-  perl-5.40.3-1
+  gcc-core-14.4.0-1
+  libpolkit-gobject1-devel-127-1bl2
+  meson-1.9.2-1
+  ninja-1.13.2-1
+  perl-5.44.0-1
 
 Canonical website:
   https://pcsclite.apdu.fr/
 
 Canonical download:
-  https://pcsclite.apdu.fr/files/pcsc-lite-2.4.1.tar.xz
+  https://pcsclite.apdu.fr/files/pcsc-lite-2.5.2.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack pcsc-lite-2.4.1-X-src.tar.xz
+  1. unpack pcsc-lite-2.5.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./pcsc-lite-2.4.1-X.cygport all
+        % cygport ./pcsc-lite-2.5.2-X.cygport all
 
 This will create:
-  /usr/src/pcsc-lite-2.4.1-X-src.tar.xz
-  /usr/src/pcsc-lite-2.4.1-X.tar.xz
-  /usr/src/libpcsclite1-2.4.1-X.tar.xz
-  /usr/src/libpcsclite-devel-2.4.1-X.tar.xz
+  /usr/src/pcsc-lite-2.5.2-X-src.tar.xz
+  /usr/src/pcsc-lite-2.5.2-X.tar.xz
+  /usr/src/libpcsclite1-2.5.2-X.tar.xz
+  /usr/src/libpcsclite-devel-2.5.2-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (pcsc-lite)
+  /etc/defaults/etc/default/pcscd
+  /etc/postinstall/pcsc-lite.sh
+  /etc/preremove/pcsc-lite.sh
   /usr/sbin/pcscd.exe
   /usr/share/doc/Cygwin/pcsc-lite.README
   /usr/share/doc/pcsc-lite/AUTHORS
   /usr/share/doc/pcsc-lite/COPYING
   /usr/share/doc/pcsc-lite/ChangeLog
-  /usr/share/doc/pcsc-lite/NEWS
   /usr/share/doc/pcsc-lite/README
-  /usr/share/doc/pcsc-lite/README.md
-  /usr/share/doc/pcsc-lite/README.polkit
   /usr/share/doc/pcsc-lite/setup_spy.sh
   /usr/share/man/man5/reader.conf.5.gz
   /usr/share/man/man8/pcscd.8.gz
+  /usr/share/metainfo/fr.apdu.pcsclite.metainfo.xml
+  /usr/share/polkit-1/actions/org.debian.pcsc-lite.policy
 
 (libpcsclite1)
   /usr/bin/cygpcsclite-1.dll
@@ -87,6 +89,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.5.2-1bl1 -----
+Version bump.
 
 ----- version 2.4.1-1bl1 -----
 Version bump.

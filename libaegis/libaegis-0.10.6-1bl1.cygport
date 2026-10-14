@@ -15,7 +15,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DINSTALL_CONFIG_DIR:PATH=lib/cmake/${PN}
+	-DINSTALL_CONFIG_DIR:PATH=lib/cmake/aegis
 "
 
 src_install()

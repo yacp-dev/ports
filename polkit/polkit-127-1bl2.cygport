@@ -16,10 +16,14 @@ LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	docbook-xsl
+	gettext-devel
+	gobject-introspection
 	libduktape-devel
 	libexpat-devel
 	libglib2.0-devel
 	libintl-devel
+	libxslt
 "
 
 inherit meson

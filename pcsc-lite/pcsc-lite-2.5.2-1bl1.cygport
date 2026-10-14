@@ -1,8 +1,5 @@
 HOMEPAGE="https://pcsclite.apdu.fr/"
 SRC_URI="https://pcsclite.apdu.fr/files/${P}.tar.xz"
-PATCH_URI="
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-apps/${PN}/files/${PN}-1.8.11-polkit-pcscd.patch
-"
 
 CATEGORY="Libs"
 SUMMARY="Middleware to access a smart card using SCard API"
@@ -17,24 +14,33 @@ LICENSE_URI="COPYING"
 
 # perl: pod2man
 BUILD_REQUIRES="
+	flex
+	libpolkit-gobject1-devel
 	perl
 "
 
-# --disable-libusb: libusb-1.0/libusb.h includes w32api/windows.h
-CYGCONF_ARGS="
-	--enable-ipcdir=/var/run/pcscd
-	--enable-maintainer-mode
-	--disable-libusb
-	--enable-usbdropdir=/usr/lib/pcsc/drivers
-	--disable-libsystemd
-	--disable-polkit
+inherit meson
+
+CYGMESON_ARGS="
+	-Dlibsystemd=false
+	-Dlibudev=false
 "
 
-src_test()
-{
-	cd ${B}/src
-	verbose ./pcscd --version
+src_install() {
+	cd ${S}
+	meson_install
+
+	# import library for the executable is useless
+	verbose rm -f ${D}/usr/sbin/libpcscd.exe.a
+	# systemd is not available on Cygwin
+	verbose rm -rf ${D}/usr/lib/systemd ${D}/usr/sysusers.d
+
+	make_etc_defaults /etc/default/pcscd
 }
+
+DIFF_EXCLUDES="
+	pcsc-spy.1
+"
 
 PKG_NAMES="
 	${PN}
@@ -42,9 +48,12 @@ PKG_NAMES="
 	libpcsclite-devel
 "
 pcsc_lite_CONTENTS="
+	etc
 	usr/sbin
 	usr/share/doc
 	usr/share/man/man[58]
+	usr/share/metainfo
+	usr/share/polkit-1/actions
 "
 libpcsclite1_CONTENTS="
 	usr/bin/cygpcsclite*-1.dll

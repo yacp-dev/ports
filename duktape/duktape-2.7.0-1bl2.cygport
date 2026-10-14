@@ -1,5 +1,8 @@
 HOMEPAGE="https://duktape.org/"
-SRC_URI="https://duktape.org/${P}.tar.xz"
+SRC_URI="
+	https://duktape.org/${P}.tar.xz
+	CMakeLists.txt
+"
 
 CATEGORY="Devel"
 SUMMARY="Embeddable Javascript engine"
@@ -10,7 +13,9 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="liblinenoise-devel"
+BUILD_REQUIRES="
+	liblinenoise-devel
+"
 
 inherit cmake
 

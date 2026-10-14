@@ -1,10 +1,10 @@
 HOMEPAGE="https://github.com/ggml-org/${PN}"
 SRC_URI="https://github.com/ggml-org/${PN}/archive/refs/tags/v${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.18.1-1/debian/patches/cmake-Add-option-to-install-tests.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.18.1-1/debian/patches/Downgrade-ROCm-dependency-to-5.5.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.18.1-1/debian/patches/Use-only-CPU-backend-in-build-time-tests.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.18.1-1/debian/patches/Take-over-some-tests-from-llama.cpp.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/cmake-Add-option-to-install-tests.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/Downgrade-ROCm-dependency-to-5.5.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/Use-only-CPU-backend-in-build-time-tests.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/Take-over-some-tests-from-llama.cpp.patch
 "
 
 CATEGORY="Libs"

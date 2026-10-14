@@ -1,5 +1,5 @@
---- origsrc/ggml-0.20.2/CMakeLists.txt	2026-08-18 19:34:29.397038200 +0000
-+++ src/ggml-0.20.2/CMakeLists.txt	2026-08-18 19:34:32.387618300 +0000
+--- origsrc/ggml-0.26.0/CMakeLists.txt	2026-10-14 14:21:07.968563400 +0000
++++ src/ggml-0.26.0/CMakeLists.txt	2026-10-14 14:21:11.555815900 +0000
 @@ -11,7 +11,7 @@ set(GGML_VERSION_BASE "${GGML_VERSION_MA
  list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
  

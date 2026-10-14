@@ -1,6 +1,6 @@
---- origsrc/flatcc-0.6.1/src/compiler/CMakeLists.txt	2022-05-23 19:40:48.000000000 +0900
-+++ src/flatcc-0.6.1/src/compiler/CMakeLists.txt	2022-06-28 12:51:10.902953800 +0900
-@@ -38,6 +38,10 @@ endif(FLATCC_REFLECTION)
+--- origsrc/flatcc-0.6.4/src/compiler/CMakeLists.txt	2026-09-16 08:44:16.000000000 +0000
++++ src/flatcc-0.6.4/src/compiler/CMakeLists.txt	2026-10-14 15:50:14.938393400 +0000
+@@ -40,6 +40,10 @@ endif(FLATCC_REFLECTION)
  
  add_library(flatcc ${SOURCES})
  
@@ -12,11 +12,11 @@
 -    install(TARGETS flatcc DESTINATION ${lib_dir})
 +    install(TARGETS flatcc RUNTIME DESTINATION bin ARCHIVE DESTINATION ${lib_dir})
  endif()
---- origsrc/flatcc-0.6.1/src/runtime/CMakeLists.txt	2022-05-23 19:40:48.000000000 +0900
-+++ src/flatcc-0.6.1/src/runtime/CMakeLists.txt	2022-06-28 12:51:37.796231300 +0900
-@@ -11,6 +11,10 @@ add_library(flatccrt
-     json_printer.c
- )
+--- origsrc/flatcc-0.6.4/src/runtime/CMakeLists.txt	2026-09-16 08:44:16.000000000 +0000
++++ src/flatcc-0.6.4/src/runtime/CMakeLists.txt	2026-10-14 15:50:14.940405000 +0000
+@@ -10,6 +10,10 @@ add_library(flatccrt
+ target_include_directories(flatccrt PUBLIC
+     "${PROJECT_SOURCE_DIR}/include")
  
 +if (DEFINED SOVERSION)
 +    set_target_properties(flatccrt PROPERTIES SOVERSION ${SOVERSION})

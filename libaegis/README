@@ -5,16 +5,16 @@ authenticated ciphers (AEGIS-128L, AEGIS-128X2, AEGIS-128X4, AEGIS-256,
 AEGIS-256X2, AEGIS-256X4), with runtime CPU detection.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libaegis-devel-0.10.3-1bl1
-  libaegis0-0.10.3-1bl1
-  pkg-config-3.0.4-2
+  cygwin-3.6.11-1
+  libaegis-devel-0.10.6-1bl1
+  libaegis0-0.10.6-1bl1
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   ninja-1.13.2-1
 
@@ -22,22 +22,22 @@ Canonical website:
   https://github.com/aegis-aead/libaegis
 
 Canonical download:
-  https://github.com/aegis-aead/libaegis/archive/refs/tags/0.10.3.tar.gz
+  https://github.com/aegis-aead/libaegis/archive/refs/tags/0.10.6.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libaegis-0.10.3-X-src.tar.xz
+  1. unpack libaegis-0.10.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libaegis-0.10.3-X.cygport all
+        % cygport ./libaegis-0.10.6-X.cygport all
 
 This will create:
-  /usr/src/libaegis-0.10.3-X-src.tar.xz
-  /usr/src/libaegis-0.10.3-X.tar.xz
-  /usr/src/libaegis0-0.10.3-X.tar.xz
-  /usr/src/libaegis-devel-0.10.3-X.tar.xz
+  /usr/src/libaegis-0.10.6-X-src.tar.xz
+  /usr/src/libaegis-0.10.6-X.tar.xz
+  /usr/src/libaegis0-0.10.6-X.tar.xz
+  /usr/src/libaegis-devel-0.10.6-X.tar.xz
 
 -------------------------------------------
 
@@ -63,16 +63,19 @@ Files included in the binary package:
   /usr/include/aegis256x2.h
   /usr/include/aegis256x4.h
   /usr/include/aegis_raf.h
-  /usr/lib/cmake/libaegis/aegis-config-version.cmake
-  /usr/lib/cmake/libaegis/aegis-config.cmake
-  /usr/lib/cmake/libaegis/aegis-targets-release.cmake
-  /usr/lib/cmake/libaegis/aegis-targets.cmake
+  /usr/lib/cmake/aegis/aegis-config-version.cmake
+  /usr/lib/cmake/aegis/aegis-config.cmake
+  /usr/lib/cmake/aegis/aegis-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/aegis/aegis-targets.cmake
   /usr/lib/libaegis.dll.a
   /usr/lib/pkgconfig/libaegis.pc
 
 ------------------
 
 Port Notes:
+
+----- version 0.10.6-1bl1 -----
+Version bump.
 
 ----- version 0.10.3-1bl1 -----
 Version bump.

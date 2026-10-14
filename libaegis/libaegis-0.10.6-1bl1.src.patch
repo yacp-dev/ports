@@ -1,0 +1,35 @@
+--- origsrc/libaegis-0.10.6/CMakeLists.txt	2026-09-21 16:48:21.000000000 +0000
++++ src/libaegis-0.10.6/CMakeLists.txt	2026-10-14 13:11:09.493676800 +0000
+@@ -57,7 +57,8 @@ install(FILES ${HEADER_FILES} DESTINATIO
+ 
+ # CMake find_package() support
+ 
+-set(INSTALL_CONFIG_DIR "${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}")
++set(INSTALL_CONFIG_DIR "${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}"
++        CACHE PATH "Installation directory for CMake package config files")
+ 
+ set(TARGETS_EXPORT_FILE_NAME "${TARGETS_EXPORT_NAME}.cmake")
+ set(TARGETS_EXPORT_FILE "${PROJECT_BINARY_DIR}/${TARGETS_EXPORT_FILE_NAME}")
+@@ -82,3 +83,9 @@ install(FILES "${PROJECT_BINARY_DIR}/${P
+ export(EXPORT "${TARGETS_EXPORT_NAME}" FILE "${TARGETS_EXPORT_FILE}" NAMESPACE "${PROJECT_NAME}::")
+ 
+ export(PACKAGE "${PROJECT_NAME}")
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/libaegis.pc.in ${CMAKE_BINARY_DIR}/libaegis.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/libaegis.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/libaegis-0.10.6/libaegis.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libaegis-0.10.6/libaegis.pc.in	2026-10-14 13:11:09.495437100 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libaegis
++Description: Portable C implementations of the AEGIS family
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -laegis
++Cflags: -I${includedir}

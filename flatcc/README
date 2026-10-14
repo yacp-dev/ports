@@ -1,46 +1,46 @@
 flatcc
 ------------------------------------------
 flatcc has no external dependencies except for build and compiler tools, and
-the C runtime library. With concurrent Ninja builds, a small client project can
-build flatcc with libraries, generate schema code, link the project and execute
-a test case in a few seconds, produce binaries between 15K and 60K, read small
-buffers in 30ns, build FlatBuffers in about 600ns, and with a larger executable
-also handle optional json parsing or printing in less than 2 us for a 10 field
-mixed type message.
+the C runtime library. With concurrent Ninja builds, a small client project
+can build flatcc with libraries, generate schema code, link the project and
+execute a test case in a few seconds, produce binaries between 15K and 60K,
+read small buffers in 30ns, build FlatBuffers in about 600ns, and with a
+larger executable also handle optional json parsing or printing in less than 2
+us for a 10 field mixed type message.
 
 Runtime requirements:
-  cygwin-3.3.5-1
-  libflatcc0-0.6.1-1bl1
+  cygwin-3.6.11-1
+  libflatcc0-0.6.4-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cmake-3.20.0-1
-  cygport-0.35.1-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  ninja-1.11.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/dvidelabs/flatcc
 
 Canonical download:
-  https://github.com/dvidelabs/flatcc/archive/refs/tags/v0.6.1.tar.gz
+  https://github.com/dvidelabs/flatcc/archive/refs/tags/v0.6.4.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack flatcc-0.6.1-X-src.tar.xz
+  1. unpack flatcc-0.6.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./flatcc-0.6.1-X.cygport all
+        % cygport ./flatcc-0.6.4-X.cygport all
 
 This will create:
-  /usr/src/flatcc-0.6.1-X-src.tar.xz
-  /usr/src/flatcc-0.6.1-X.tar.xz
-  /usr/src/libflatcc0-0.6.1-X.tar.xz
-  /usr/src/libflatcc-devel-0.6.1-X.tar.xz
+  /usr/src/flatcc-0.6.4-X-src.tar.xz
+  /usr/src/flatcc-0.6.4-X.tar.xz
+  /usr/src/libflatcc0-0.6.4-X.tar.xz
+  /usr/src/libflatcc-devel-0.6.4-X.tar.xz
 
 -------------------------------------------
 
@@ -103,12 +103,14 @@ Files included in the binary package:
   /usr/include/flatcc/portable/pendian_detect.h
   /usr/include/flatcc/portable/pinline.h
   /usr/include/flatcc/portable/pinttypes.h
+  /usr/include/flatcc/portable/pmemaccess.h
   /usr/include/flatcc/portable/portable.h
   /usr/include/flatcc/portable/portable_basic.h
   /usr/include/flatcc/portable/pparsefp.h
   /usr/include/flatcc/portable/pparseint.h
   /usr/include/flatcc/portable/pprintfp.h
   /usr/include/flatcc/portable/pprintint.h
+  /usr/include/flatcc/portable/prestrict.h
   /usr/include/flatcc/portable/pstatic_assert.h
   /usr/include/flatcc/portable/pstatic_assert_scope.h
   /usr/include/flatcc/portable/pstdalign.h
@@ -134,6 +136,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.6.4-1bl1 -----
+Version bump.
 
 ----- version 0.6.1-1bl1 -----
 Version bump.

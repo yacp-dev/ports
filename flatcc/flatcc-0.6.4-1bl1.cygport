@@ -11,10 +11,15 @@ read small buffers in 30ns, build FlatBuffers in about 600ns, and with a
 larger executable also handle optional json parsing or printing in less than 2
 us for a 10 field mixed type message."
 
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE_URI="LICENSE"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DFLATCC_ALLOW_WERROR:BOOL=OFF
 	-DFLATCC_INSTALL:BOOL=ON
 	-DSOVERSION:STRING=${PV[1]}
 "
@@ -44,7 +49,7 @@ flatcc_CONTENTS="
 	usr/share
 "
 libflatcc0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-0.dll
 "
 libflatcc_devel_CONTENTS="
 	usr/include

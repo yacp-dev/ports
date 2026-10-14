@@ -3,19 +3,19 @@ ggml
 Tensor library for machine learning
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.11-1
   libgcc1-14.4.0-1
-  libggml-devel-0.20.2-1bl1
-  libggml0-0.20.2-1bl1
+  libggml-devel-0.26.0-1bl1
+  libggml0-0.26.0-1bl1
   libgomp1-14.4.0-1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.5-1
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   ninja-1.13.2-1
@@ -24,22 +24,22 @@ Canonical website:
   https://github.com/ggml-org/ggml
 
 Canonical download:
-  https://github.com/ggml-org/ggml/archive/refs/tags/v0.20.2.tar.gz
+  https://github.com/ggml-org/ggml/archive/refs/tags/v0.26.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ggml-0.20.2-X-src.tar.xz
+  1. unpack ggml-0.26.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ggml-0.20.2-X.cygport all
+        % cygport ./ggml-0.26.0-X.cygport all
 
 This will create:
-  /usr/src/ggml-0.20.2-X-src.tar.xz
-  /usr/src/ggml-0.20.2-X.tar.xz
-  /usr/src/libggml0-0.20.2-X.tar.xz
-  /usr/src/libggml-devel-0.20.2-X.tar.xz
+  /usr/src/ggml-0.26.0-X-src.tar.xz
+  /usr/src/ggml-0.26.0-X.tar.xz
+  /usr/src/libggml0-0.26.0-X.tar.xz
+  /usr/src/libggml-devel-0.26.0-X.tar.xz
 
 -------------------------------------------
 
@@ -86,6 +86,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.26.0-1bl1 -----
+Version bump.
 
 ----- version 0.20.2-1bl1 -----
 Version bump.

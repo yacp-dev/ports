@@ -3,63 +3,64 @@ libdatovka
 Client library for accessing ISDS SOAP services
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libcurl-devel-8.20.0-1
-  libcurl4-8.20.0-1
-  libdatovka-devel-0.7.3-1bl1
-  libdatovka8-0.7.3-1bl1
-  libexpat1-2.8.0-1
-  libgcrypt20-1.12.2-1
-  libgpg-error0-1.58-1
-  libgpgme11-1.24.2-1
+  cygwin-3.6.11-1
+  libcurl-devel-8.22.0-1
+  libcurl4-8.22.0-1
+  libdatovka-devel-0.7.4-1bl1
+  libdatovka8-0.7.4-1bl1
+  libexpat1-2.9.0-1
+  libgcrypt20-1.12.4-1
+  libgpg-error0-1.61-1
+  libgpgme45-2.2.0-1
   libiconv2-1.19-2
   libintl8-0.22.5-1
-  libjson-c5-0.18-1
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-3.0.4-2
+  libjson-c5-0.19-1
+  libxml2-2.13.9-2
+  libxml2-devel-2.13.9-2
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  automake-20250528-1
+  autoconf-20260320-3
+  automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.10-1
   docbook-xml45-4.5-1
   gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libcurl-devel-8.20.0-1
-  libexpat-devel-2.8.0-1
-  libgcrypt-devel-1.12.2-1
-  libgpg-error-devel-1.58-1
-  libgpgme-devel-1.24.2-1
+  libcurl-devel-8.22.0-1
+  libexpat-devel-2.9.0-1
+  libgcrypt-devel-1.12.4-1
+  libgpg-error-devel-1.61-1
+  libgpgme-devel-2.2.0-1
   libiconv-devel-1.19-2
   libintl-devel-0.22.5-1
-  libjson-c-devel-0.18-1
+  libjson-c-devel-0.19-1
   libtool-2.6.2-1
-  libxml2-devel-2.10.4-2
+  libxml2-devel-2.13.9-2
+  libxslt-1.1.43-1
   make-4.4.1-2
 
 Canonical website:
   https://www.datovka.cz/cs/pages/libdatovka.html
 
 Canonical download:
-  https://datovka.nic.cz/libdatovka/libdatovka-0.7.3.tar.xz
+  https://datovka.nic.cz/libdatovka/libdatovka-0.7.4.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libdatovka-0.7.3-X-src.tar.xz
+  1. unpack libdatovka-0.7.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libdatovka-0.7.3-X.cygport all
+        % cygport ./libdatovka-0.7.4-X.cygport all
 
 This will create:
-  /usr/src/libdatovka-0.7.3-X-src.tar.xz
-  /usr/src/libdatovka-0.7.3-X.tar.xz
-  /usr/src/libdatovka8-0.7.3-X.tar.xz
-  /usr/src/libdatovka-devel-0.7.3-X.tar.xz
+  /usr/src/libdatovka-0.7.4-X-src.tar.xz
+  /usr/src/libdatovka-0.7.4-X.tar.xz
+  /usr/src/libdatovka8-0.7.4-X.tar.xz
+  /usr/src/libdatovka-devel-0.7.4-X.tar.xz
 
 -------------------------------------------
 
@@ -87,6 +88,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.7.4-1bl1 -----
+Version bump.
 
 ----- version 0.7.3-1bl1 -----
 Version bump.

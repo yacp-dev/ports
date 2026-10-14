@@ -1,5 +1,5 @@
---- origsrc/libdatovka-0.7.3/configure.ac	2026-03-09 22:04:00.000000000 +0900
-+++ src/libdatovka-0.7.3/configure.ac	2026-07-29 23:06:03.406733200 +0900
+--- origsrc/libdatovka-0.7.4/configure.ac	2026-08-07 09:04:51.000000000 +0000
++++ src/libdatovka-0.7.4/configure.ac	2026-10-14 14:50:34.568329900 +0000
 @@ -144,13 +144,14 @@ AS_IF([test "x${enable_openssl_backend}"
    dnl Use default cryptographic back-end.
  
@@ -17,13 +17,13 @@
  ])
  AM_CONDITIONAL([USE_OPENSSL_BACKEND], [test "x${enable_openssl_backend}" = "xyes"])
  
---- origsrc/libdatovka-0.7.3/src/Makefile.am	2026-03-09 22:02:25.000000000 +0900
-+++ src/libdatovka-0.7.3/src/Makefile.am	2026-07-30 07:43:50.767861600 +0900
+--- origsrc/libdatovka-0.7.4/src/Makefile.am	2026-08-07 09:04:05.000000000 +0000
++++ src/libdatovka-0.7.4/src/Makefile.am	2026-10-14 14:50:34.568329900 +0000
 @@ -69,5 +69,5 @@ endif
  libdatovka_la_CPPFLAGS = @XML_CPPFLAGS@ @LIBCURL_CPPFLAGS@ \
  	-DLOCALEDIR=\"$(localedir)\" $(AM_CPPFLAGS)
  libdatovka_la_CFLAGS = @LIBGCRYPT_CFLAGS@ @GPGME_CFLAGS@ @JSON_C_CFLAGS@
--libdatovka_la_LDFLAGS = -version-info 10:0:2 @XML_LIBS@ @LIBCURL@ @LIBGCRYPT_LIBS@ \
+-libdatovka_la_LDFLAGS = -version-info 10:1:2 @XML_LIBS@ @LIBCURL@ @LIBGCRYPT_LIBS@ \
 -	@GPGME_LIBS@ @EXPAT_LIBS@ @LTLIBINTL@ @JSON_C_LIBS@
-+libdatovka_la_LDFLAGS = -no-undefined -version-info 10:0:2 @XML_LIBS@ @LIBCURL@ @LIBGCRYPT_LIBS@ \
++libdatovka_la_LDFLAGS = -no-undefined -version-info 10:1:2 @XML_LIBS@ @LIBCURL@ @LIBGCRYPT_LIBS@ \
 +	@GPGME_LIBS@ @EXPAT_LIBS@ @LTLIBINTL@ @JSON_C_LIBS@ @GPG_ERROR_LIBS@

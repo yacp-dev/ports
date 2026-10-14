@@ -15,6 +15,7 @@ LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	docbook-xml45
+	gettext-devel
 	libcurl-devel
 	libexpat-devel
 	libgcrypt-devel
@@ -24,6 +25,7 @@ BUILD_REQUIRES="
 	libintl-devel
 	libjson-c-devel
 	libxml2-devel
+	libxslt
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"

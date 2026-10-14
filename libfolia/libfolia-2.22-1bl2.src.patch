@@ -1,5 +1,5 @@
---- origsrc/libfolia-2.22/configure.ac	2025-12-11 21:07:55.000000000 +0900
-+++ src/libfolia-2.22/configure.ac	2026-02-05 15:10:38.867346400 +0900
+--- origsrc/libfolia-2.22/configure.ac	2025-12-11 12:07:55.000000000 +0000
++++ src/libfolia-2.22/configure.ac	2026-10-14 16:08:39.714295600 +0000
 @@ -52,14 +52,22 @@ else
      export PKG_CONFIG_PATH="$prefix/lib/pkgconfig:$PKG_CONFIG_PATH"
  fi
@@ -39,8 +39,8 @@
  CXXFLAGS="$CXXFLAGS $ICU_CFLAGS"
  LIBS="$ICU_LIBS $LIBS"
  
---- origsrc/libfolia-2.22/src/Makefile.am	2025-12-11 21:07:55.000000000 +0900
-+++ src/libfolia-2.22/src/Makefile.am	2026-02-05 15:10:38.872421400 +0900
+--- origsrc/libfolia-2.22/src/Makefile.am	2025-12-11 12:07:55.000000000 +0000
++++ src/libfolia-2.22/src/Makefile.am	2026-10-14 16:08:39.716063600 +0000
 @@ -10,6 +10,8 @@ libfolia_la_SOURCES = folia_impl.cxx fol
  	folia_types.cxx folia_properties.cxx folia_provenance.cxx \
  	folia_subclasses.cxx folia_textpolicy.cxx folia_engine.cxx

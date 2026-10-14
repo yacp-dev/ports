@@ -7,30 +7,30 @@ FoLiA documents. This software is a necessary dependency for various other
 tools that use FoLiA.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libfolia-devel-2.22-1bl1
-  libfolia22-2.22-1bl1
-  libgcc1-13.4.0-1
+  cygwin-3.6.11-1
+  libfolia-devel-2.22-1bl2
+  libfolia22-2.22-1bl2
+  libgcc1-14.4.0-1
   libicu76-76.1-2
-  libstdc++6-13.4.0-1
-  libticcutils10-0.37-1bl1
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-2.5.1-1
+  libstdc++6-14.4.0-1
+  libticcutils10-0.38-1bl1
+  libxml2-2.13.9-2
+  libxml2-devel-2.13.9-2
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
+  autoconf-20260320-3
   autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libicu-devel-76.1-2
-  libticcutils-devel-0.37-1bl1
-  libtool-2.5.4-1
-  libxml2-devel-2.10.4-2
+  libticcutils-devel-0.38-1bl1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-2
   make-4.4.1-2
 
 Canonical website:
@@ -91,6 +91,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.22-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.22-1bl1 -----
 Version bump.

@@ -1,5 +1,5 @@
---- origsrc/gravity-0.9.8/CMakeLists.txt	2026-08-05 15:22:24.000000000 +0000
-+++ src/gravity-0.9.8/CMakeLists.txt	2026-08-18 13:39:18.794222300 +0000
+--- origsrc/gravity-0.9.9/CMakeLists.txt	2026-10-11 12:04:23.000000000 +0000
++++ src/gravity-0.9.9/CMakeLists.txt	2026-10-14 13:58:45.132295900 +0000
 @@ -16,3 +16,10 @@ add_subdirectory(src)
  if(BUILD_CLI)
      add_subdirectory(src/cli)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/gravity.pc.in ${CMAKE_BINARY_DIR}/gravity.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/gravity.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/gravity-0.9.8/gravity.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/gravity-0.9.8/gravity.pc.in	2026-08-18 13:39:18.796243700 +0000
+--- origsrc/gravity-0.9.9/gravity.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/gravity-0.9.9/gravity.pc.in	2026-10-14 13:58:45.132295900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,8 +24,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lgravityapi
 +Cflags: -I${includedir}
---- origsrc/gravity-0.9.8/src/CMakeLists.txt	2026-08-05 15:22:24.000000000 +0000
-+++ src/gravity-0.9.8/src/CMakeLists.txt	2026-08-18 13:39:18.796243700 +0000
+--- origsrc/gravity-0.9.9/src/CMakeLists.txt	2026-10-11 12:04:23.000000000 +0000
++++ src/gravity-0.9.9/src/CMakeLists.txt	2026-10-14 13:58:45.134324000 +0000
 @@ -74,12 +74,16 @@ endif()
  if (BUILD_SHARED_LIBS)
      add_library(gravityapi SHARED ${SRC_FILES})
@@ -46,8 +46,8 @@
  else()
      set(GRAVITY_TARGETS gravityapi_s)
  endif()
---- origsrc/gravity-0.9.8/src/cli/CMakeLists.txt	2026-08-05 15:22:24.000000000 +0000
-+++ src/gravity-0.9.8/src/cli/CMakeLists.txt	2026-08-18 13:39:18.798259200 +0000
+--- origsrc/gravity-0.9.9/src/cli/CMakeLists.txt	2026-10-11 12:04:23.000000000 +0000
++++ src/gravity-0.9.9/src/cli/CMakeLists.txt	2026-10-14 13:58:45.134324000 +0000
 @@ -5,7 +5,7 @@ SET(GRAVITY_SRC gravity.c)
  
  # Executable

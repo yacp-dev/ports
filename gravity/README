@@ -5,16 +5,16 @@ language written in C without any external dependency (except stdlib). It is a
 class based concurrent scripting language with a modern Swift like syntax.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libgravity-devel-0.9.8-1bl1
-  libgravity0-0.9.8-1bl1
-  pkg-config-3.0.5-1
+  cygwin-3.6.11-1
+  libgravity-devel-0.9.9-1bl1
+  libgravity0-0.9.9-1bl1
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   ninja-1.13.2-1
@@ -23,22 +23,22 @@ Canonical website:
   https://github.com/marcobambini/gravity
 
 Canonical download:
-  https://github.com/marcobambini/gravity/archive/0.9.8.tar.gz
+  https://github.com/marcobambini/gravity/archive/0.9.9.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack gravity-0.9.8-X-src.tar.xz
+  1. unpack gravity-0.9.9-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./gravity-0.9.8-X.cygport all
+        % cygport ./gravity-0.9.9-X.cygport all
 
 This will create:
-  /usr/src/gravity-0.9.8-X-src.tar.xz
-  /usr/src/gravity-0.9.8-X.tar.xz
-  /usr/src/libgravity0-0.9.8-X.tar.xz
-  /usr/src/libgravity-devel-0.9.8-X.tar.xz
+  /usr/src/gravity-0.9.9-X-src.tar.xz
+  /usr/src/gravity-0.9.9-X.tar.xz
+  /usr/src/libgravity0-0.9.9-X.tar.xz
+  /usr/src/libgravity-devel-0.9.9-X.tar.xz
 
 -------------------------------------------
 
@@ -96,6 +96,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.9.9-1bl1 -----
+Version bump.
 
 ----- version 0.9.8-1bl1 -----
 Version bump.

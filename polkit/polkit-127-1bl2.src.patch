@@ -1,5 +1,5 @@
---- origsrc/polkit-127/meson.build	2025-12-18 01:14:53.000000000 +0900
-+++ src/polkit-127/meson.build	2026-01-30 22:28:44.471225200 +0900
+--- origsrc/polkit-127/meson.build	2025-12-17 16:14:53.000000000 +0000
++++ src/polkit-127/meson.build	2026-10-14 13:01:20.427087400 +0000
 @@ -212,7 +212,8 @@ if enable_logind
  endif
  config_data.set('HAVE_LIBSYSTEMD', enable_logind)
@@ -10,8 +10,8 @@
  
  # systemd unit / sysuser / tmpfiles.d file installation directories
  systemdsystemunitdir = get_option('systemdsystemunitdir')
---- origsrc/polkit-127/meson_options.txt	2025-12-18 01:14:53.000000000 +0900
-+++ src/polkit-127/meson_options.txt	2026-01-30 22:28:44.471225200 +0900
+--- origsrc/polkit-127/meson_options.txt	2025-12-17 16:14:53.000000000 +0000
++++ src/polkit-127/meson_options.txt	2026-10-14 13:01:20.429098900 +0000
 @@ -6,7 +6,7 @@ option('polkitd_user', type: 'string', v
  option('polkitd_uid', type: 'string', value: '-', description: 'Fixed UID for user running polkitd (polkitd)')
  option('privileged_group', type: 'string', value: '', description: 'Group to use for default privileged access (default: wheel)')
@@ -21,8 +21,8 @@
  option('os_type', type: 'combo', choices: ['redhat', 'suse', 'gentoo', 'pardus', 'solaris', 'netbsd', 'lfs', 'openembedded', 'debian', ''], value: '', description: 'distribution or OS')
  
  option('pam_include', type: 'string', value: '', description: 'pam file to include')
---- origsrc/polkit-127/src/polkitagent/polkitagenthelper-none.c	1970-01-01 09:00:00.000000000 +0900
-+++ src/polkit-127/src/polkitagent/polkitagenthelper-none.c	2026-01-30 22:28:44.480170100 +0900
+--- origsrc/polkit-127/src/polkitagent/polkitagenthelper-none.c	1970-01-01 00:00:00.000000000 +0000
++++ src/polkit-127/src/polkitagent/polkitagenthelper-none.c	2026-10-14 13:01:20.429098900 +0000
 @@ -0,0 +1,12 @@
 +
 +#include "polkitagenthelperprivate.h"

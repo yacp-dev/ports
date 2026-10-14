@@ -9,31 +9,34 @@ on multi-user UNIX-like operating systems. It does not imply or rely on any
 exotic kernel features.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  girepository-GLib2.0-1.86.0-1
-  girepository-Polkit1.0-127-1bl1
-  libduktape207-2.7.0-1bl1
-  libexpat1-2.7.3-1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
+  cygwin-3.6.11-1
+  girepository-GLib2.0-1.86.0-2
+  girepository-Polkit1.0-127-1bl2
+  libduktape207-2.7.0-1bl2
+  libexpat1-2.9.0-1
+  libglib2.0-devel-2.90.0-1
+  libglib2.0_0-2.90.0-1
   libintl8-0.22.5-1
-  libpolkit-agent1-devel-127-1bl1
-  libpolkit-agent1_0-127-1bl1
-  libpolkit-gobject1-devel-127-1bl1
-  libpolkit-gobject1_0-127-1bl1
-  pkg-config-2.5.1-1
+  libpolkit-agent1-devel-127-1bl2
+  libpolkit-agent1_0-127-1bl2
+  libpolkit-gobject1-devel-127-1bl2
+  libpolkit-gobject1_0-127-1bl2
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gobject-introspection-1.86.0-1
-  libduktape-devel-2.7.0-1bl1
-  libexpat-devel-2.7.3-1
-  libglib2.0-devel-2.87.0-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  docbook-xsl-1.77.1-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.22.5-1
+  gobject-introspection-1.86.0-2
+  libduktape-devel-2.7.0-1bl2
+  libexpat-devel-2.9.0-1
+  libglib2.0-devel-2.90.0-1
   libintl-devel-0.22.5-1
-  meson-1.5.2-1
+  libxslt-1.1.43-1
+  meson-1.9.2-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -178,6 +181,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 127-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 127-1bl1 -----
 Version bump.

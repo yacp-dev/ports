@@ -13,6 +13,10 @@ LICENSE="Unlicense"
 LICENSE_SPDX="SPDX-License-Identifier: Unlicense"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libgtest-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="

@@ -4,21 +4,21 @@ Duktape is an embeddable Javascript engine, with a focus on portability and
 compact footprint.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libduktape-devel-2.7.0-1bl1
-  libduktape207-2.7.0-1bl1
-  liblinenoise0-1.0+git20240223-1bl1
-  pkg-config-2.3.0-1
+  cygwin-3.6.11-1
+  libduktape-devel-2.7.0-1bl2
+  libduktape207-2.7.0-1bl2
+  liblinenoise0-2.0-1bl2
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  liblinenoise-devel-1.0+git20240223-1bl1
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  liblinenoise-devel-2.0-1bl2
+  ninja-1.13.2-1
 
 Canonical website:
   https://duktape.org/
@@ -64,6 +64,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.7.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.7.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

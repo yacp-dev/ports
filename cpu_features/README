@@ -4,18 +4,20 @@ A cross-platform C library to retrieve CPU features (such as available
 instructions) at runtime.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libcpu_features-devel-0.11.0-1bl1
-  libcpu_features0-0.11.0-1bl1
-  pkg-config-3.0.5-1
+  cygwin-3.7.0-0.622.g80df0a2b5d6b
+  libcpu_features-devel-0.11.0-1bl2
+  libcpu_features0-0.11.0-1bl2
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
   ninja-1.13.2-1
 
 Canonical website:
@@ -66,6 +68,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.11.0-1bl2 -----
+Fix BUILD_REQUIRES
 
 ----- version 0.11.0-1bl1 -----
 Version bump.

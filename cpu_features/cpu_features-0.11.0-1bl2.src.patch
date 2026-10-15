@@ -1,5 +1,5 @@
---- origsrc/cpu_features-0.11.0/CMakeLists.txt	2026-08-03 20:33:12.365883600 +0900
-+++ src/cpu_features-0.11.0/CMakeLists.txt	2026-08-03 20:33:13.840350600 +0900
+--- origsrc/cpu_features-0.11.0/CMakeLists.txt	2026-10-15 15:18:21.710149000 +0900
++++ src/cpu_features-0.11.0/CMakeLists.txt	2026-10-15 15:18:23.255709600 +0900
 @@ -211,40 +211,43 @@ if(BUILD_TESTING)
    # found.
    enable_language(CXX)
@@ -89,7 +89,7 @@
 +configure_file(${CMAKE_SOURCE_DIR}/cpu_features.pc.in ${CMAKE_BINARY_DIR}/cpu_features.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/cpu_features.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
 --- origsrc/cpu_features-0.11.0/cpu_features.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/cpu_features-0.11.0/cpu_features.pc.in	2026-08-03 20:33:13.844379400 +0900
++++ src/cpu_features-0.11.0/cpu_features.pc.in	2026-10-15 15:18:23.258790400 +0900
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -102,7 +102,7 @@
 +Libs: -L${libdir} -lcpu_features
 +Cflags: -I${includedir}
 --- origsrc/cpu_features-0.11.0/src/impl_x86_linux_or_android.c	2026-06-01 21:49:57.000000000 +0900
-+++ src/cpu_features-0.11.0/src/impl_x86_linux_or_android.c	2026-08-03 20:33:13.846393600 +0900
++++ src/cpu_features-0.11.0/src/impl_x86_linux_or_android.c	2026-10-15 15:18:23.265558100 +0900
 @@ -15,7 +15,7 @@
  #include "cpu_features_macros.h"
  
@@ -113,7 +113,7 @@
  #include "impl_x86__base_implementation.inl"
  
 --- origsrc/cpu_features-0.11.0/test/CMakeLists.txt	2026-06-01 21:49:57.000000000 +0900
-+++ src/cpu_features-0.11.0/test/CMakeLists.txt	2026-08-03 20:33:13.854026900 +0900
++++ src/cpu_features-0.11.0/test/CMakeLists.txt	2026-10-15 15:18:23.270292000 +0900
 @@ -19,7 +19,7 @@ target_compile_features(hwcaps_for_testi
  ##------------------------------------------------------------------------------
  add_library(stack_line_reader ../src/stack_line_reader.c)

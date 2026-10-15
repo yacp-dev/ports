@@ -1,0 +1,41 @@
+--- origsrc/hyphy-2.5.103/src/core/avllist.cpp	2026-10-06 15:28:06.000000000 +0000
++++ src/hyphy-2.5.103/src/core/avllist.cpp	2026-10-15 14:51:59.461493100 +0000
+@@ -37,6 +37,7 @@
+ 
+  */
+ 
++#include <alloca.h>
+ #include <ctype.h>
+ #include <limits.h>
+ #include <math.h>
+--- origsrc/hyphy-2.5.103/src/core/include/dataset_filter.h	2026-10-06 15:28:06.000000000 +0000
++++ src/hyphy-2.5.103/src/core/include/dataset_filter.h	2026-10-15 14:51:59.462264300 +0000
+@@ -44,6 +44,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ #include "stdlib.h"
+ #include "string_file_wrapper.h"
+ 
++#include <alloca.h>
++
+ //_________________________________________________________
+ enum _hy_dataset_filter_ambiguity_resolution {
+   kAmbiguityHandlingResolve,
+--- origsrc/hyphy-2.5.103/src/core/polynoml.cpp	2026-10-06 15:28:06.000000000 +0000
++++ src/hyphy-2.5.103/src/core/polynoml.cpp	2026-10-15 14:51:59.463288800 +0000
+@@ -37,6 +37,7 @@
+ 
+  */
+ 
++#include <alloca.h>
+ #include <math.h>
+ #include <string.h>
+ 
+--- origsrc/hyphy-2.5.103/src/core/simplelist.cpp	2026-10-06 15:28:06.000000000 +0000
++++ src/hyphy-2.5.103/src/core/simplelist.cpp	2026-10-15 14:51:59.467309200 +0000
+@@ -37,6 +37,7 @@
+ 
+ */
+ 
++#include <alloca.h>
+ #include <ctype.h>
+ #include <limits.h>
+ #include <math.h>

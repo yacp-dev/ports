@@ -5,8 +5,8 @@ instructions) at runtime.
 
 Runtime requirements:
   cygwin-3.7.0-0.622.g80df0a2b5d6b
-  libcpu_features-devel-0.11.0-1bl2
-  libcpu_features0-0.11.0-1bl2
+  libcpu_features-devel-0.11.0-1bl3
+  libcpu_features0-0.11.0-1bl3
   pkg-config-3.0.8-1
 
 Build requirements:
@@ -68,6 +68,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.11.0-1bl3 -----
+Fix REQUIRES
 
 ----- version 0.11.0-1bl2 -----
 Fix BUILD_REQUIRES

@@ -55,3 +55,6 @@ libcpu_features_devel_CONTENTS="
 cpu_features_SUMMARY="${SUMMARY} (utilities)"
 libcpu_features0_SUMMARY="${SUMMARY} (runtime)"
 libcpu_features_devel_SUMMARY="${SUMMARY} (development)"
+
+# CpuFeaturesTargets.cmake needs list_cpu_features.exe
+libcpu_features_devel_REQUIRES="cpu_features"

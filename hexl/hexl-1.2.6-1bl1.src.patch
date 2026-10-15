@@ -1,6 +1,6 @@
---- origsrc/hexl-1.2.5/CMakeLists.txt	2022-08-09 04:58:50.000000000 +0900
-+++ src/hexl-1.2.5/CMakeLists.txt	2023-12-06 22:06:19.224084000 +0900
-@@ -161,11 +161,17 @@ if (HEXL_TESTING OR HEXL_BENCHMARK OR HE
+--- origsrc/hexl-1.2.6/CMakeLists.txt	2025-05-29 18:46:16.000000000 +0000
++++ src/hexl-1.2.6/CMakeLists.txt	2026-10-15 23:54:18.448951400 +0000
+@@ -170,11 +170,17 @@ if (HEXL_TESTING OR HEXL_BENCHMARK OR HE
  endif()
  
  if (HEXL_TESTING)
@@ -20,8 +20,8 @@
  endif()
  
  if (HEXL_DEBUG)
---- origsrc/hexl-1.2.5/cmake/hexl/Findbenchmark.cmake	1970-01-01 09:00:00.000000000 +0900
-+++ src/hexl-1.2.5/cmake/hexl/Findbenchmark.cmake	2023-12-06 22:06:19.224084000 +0900
+--- origsrc/hexl-1.2.6/cmake/hexl/Findbenchmark.cmake	1970-01-01 00:00:00.000000000 +0000
++++ src/hexl-1.2.6/cmake/hexl/Findbenchmark.cmake	2026-10-15 23:54:18.448951400 +0000
 @@ -0,0 +1,54 @@
 +# Copyright Codeplay Software Ltd.
 +#
@@ -77,8 +77,8 @@
 +    INTERFACE_INCLUDE_DIRECTORIES "${BENCHMARK_INCLUDE_DIRS}"
 +  )
 +endif()
---- origsrc/hexl-1.2.5/hexl/CMakeLists.txt	2022-08-09 04:58:50.000000000 +0900
-+++ src/hexl-1.2.5/hexl/CMakeLists.txt	2023-12-06 22:06:19.224084000 +0900
+--- origsrc/hexl-1.2.6/hexl/CMakeLists.txt	2025-05-29 18:46:16.000000000 +0000
++++ src/hexl-1.2.6/hexl/CMakeLists.txt	2026-10-15 23:54:18.450717600 +0000
 @@ -65,6 +65,9 @@ configure_file(${HEXL_DEFINES_IN_FILENAM
  
  set_target_properties(hexl PROPERTIES POSITION_INDEPENDENT_CODE ON)

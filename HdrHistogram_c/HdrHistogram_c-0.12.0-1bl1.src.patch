@@ -1,5 +1,5 @@
---- origsrc/HdrHistogram_c-0.11.10/include/hdr/hdr_thread.h	2026-06-29 02:17:49.000000000 +0000
-+++ src/HdrHistogram_c-0.11.10/include/hdr/hdr_thread.h	2026-08-15 04:19:06.452382900 +0000
+--- origsrc/HdrHistogram_c-0.12.0/include/hdr/hdr_thread.h	2026-10-02 15:22:02.000000000 +0000
++++ src/HdrHistogram_c-0.12.0/include/hdr/hdr_thread.h	2026-10-15 04:01:46.673902500 +0000
 @@ -9,7 +9,7 @@
  
  #include <stdint.h>
@@ -9,8 +9,8 @@
  
  
  #define HDR_ALIGN_PREFIX(alignment) __declspec( align(alignment) )
---- origsrc/HdrHistogram_c-0.11.10/src/hdr_thread.c	2026-06-29 02:17:49.000000000 +0000
-+++ src/HdrHistogram_c-0.11.10/src/hdr_thread.c	2026-08-15 04:19:06.454392300 +0000
+--- origsrc/HdrHistogram_c-0.12.0/src/hdr_thread.c	2026-10-02 15:22:02.000000000 +0000
++++ src/HdrHistogram_c-0.12.0/src/hdr_thread.c	2026-10-15 04:01:46.673902500 +0000
 @@ -23,7 +23,7 @@ void hdr_mutex_free(struct hdr_mutex* mu
      hdr_free(mutex);
  }
@@ -20,8 +20,8 @@
  
  #if !defined(WIN32_LEAN_AND_MEAN)
  #define WIN32_LEAN_AND_MEAN
---- origsrc/HdrHistogram_c-0.11.10/test/CMakeLists.txt	2026-06-29 02:17:49.000000000 +0000
-+++ src/HdrHistogram_c-0.11.10/test/CMakeLists.txt	2026-08-15 04:19:06.454392300 +0000
+--- origsrc/HdrHistogram_c-0.12.0/test/CMakeLists.txt	2026-10-02 15:22:02.000000000 +0000
++++ src/HdrHistogram_c-0.12.0/test/CMakeLists.txt	2026-10-15 04:01:46.675928900 +0000
 @@ -51,10 +51,11 @@ function(hdr_histogram_add_test_executab
          minunit.h)
      target_link_libraries(${NAME}
@@ -36,8 +36,8 @@
      install(
          TARGETS ${NAME}
          DESTINATION ${CMAKE_INSTALL_BINDIR})
---- origsrc/HdrHistogram_c-0.11.10/test/hdr_histogram_perf.c	2026-06-29 02:17:49.000000000 +0000
-+++ src/HdrHistogram_c-0.11.10/test/hdr_histogram_perf.c	2026-08-15 04:19:06.456403400 +0000
+--- origsrc/HdrHistogram_c-0.12.0/test/hdr_histogram_perf.c	2026-10-02 15:22:02.000000000 +0000
++++ src/HdrHistogram_c-0.12.0/test/hdr_histogram_perf.c	2026-10-15 04:01:46.675928900 +0000
 @@ -13,7 +13,7 @@
  #include <string.h>
  

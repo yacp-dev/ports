@@ -9,12 +9,16 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libiconv-devel libusb-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libiconv-devel
+	libusb-devel
+"
 
 src_test()
 {
 	cd ${B}
-	./ifp.exe version
+	verbose ./ifp.exe version
 }
 
 PKG_IGNORE="

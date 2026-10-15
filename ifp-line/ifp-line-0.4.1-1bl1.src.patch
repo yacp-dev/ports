@@ -1,0 +1,39 @@
+--- origsrc/ifp-line-0.4.1/configure.ac	2026-04-18 15:02:51.000000000 +0000
++++ src/ifp-line-0.4.1/configure.ac	2026-10-15 23:40:58.422893700 +0000
+@@ -20,7 +20,7 @@ case "${host}" in
+ 		LIBUSB_LIBS=-lusb
+ 		;;
+ 	*)
+-		AM_PATH_LIBUSB(0.1.7, , AC_MSG_ERROR([libusb is required.]))
++		PKG_CHECK_MODULES([LIBUSB], [libusb])
+ 		;;
+ esac
+ 
+--- origsrc/ifp-line-0.4.1/ifp_routines.c	2026-01-04 02:22:08.000000000 +0000
++++ src/ifp-line-0.4.1/ifp_routines.c	2026-10-15 23:40:58.424912300 +0000
+@@ -11,6 +11,7 @@ static const char rcsid[] = "$Id: ifp_ro
+ #include <errno.h>
+ #include <fts.h>
+ #include <unistd.h>
++#include <limits.h>
+ 
+ #include "unicodehack.h"
+ #include "ifp_routines.h"
+@@ -72,7 +73,7 @@ int ifp_empty_dir(usb_dev_handle *dh, co
+ int ifp_isdir(usb_dev_handle *dh, const char *name);
+ int push_dir(char *name);
+ int pop_dir(char *name);
+-#ifdef __FreeBSD__
++#if defined(__FreeBSD__) || defined(__CYGWIN__)
+ int comparefts(const FTSENT * const *a, const FTSENT * const *b);
+ #else
+ int comparefts(const FTSENT **a, const FTSENT **b);
+@@ -1357,7 +1358,7 @@ int pop_dir(char *name) {
+     }
+ }
+ 
+-#ifdef __FreeBSD__
++#if defined(__FreeBSD__) || defined(__CYGWIN__)
+ int comparefts(const FTSENT * const *a, const FTSENT * const *b) {
+ #else
+ int comparefts(const FTSENT **a, const FTSENT **b) {

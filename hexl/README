@@ -2,50 +2,52 @@ hexl
 ------------------------------------------
 Intel HE Acceleration Library is an open-source library which provides
 efficient implementations of integer arithmetic on Galois fields. Such
-arithmetic is prevalent in cryptography, particularly in homomorphic encryption
-(HE) schemes. Intel HE Acceleration Library targets integer arithmetic with
-word-sized primes, typically 30-60 bits. Intel HE Acceleration Library provides
-an API for 64-bit unsigned integers and targets Intel CPUs.
+arithmetic is prevalent in cryptography, particularly in homomorphic
+encryption (HE) schemes. Intel HE Acceleration Library targets integer
+arithmetic with word-sized primes, typically 30-60 bits. Intel HE Acceleration
+Library provides an API for 64-bit unsigned integers and targets Intel CPUs.
 
 Runtime requirements:
-  cygwin-3.5.0-0.505.g0737bda6ff5a
-  libcpu_features0-0.9.0-1bl1
-  libgcc1-11.4.0-1
-  libhexl-devel-1.2.5-1bl1
-  libhexl1-1.2.5-1bl1
-  libstdc++6-11.4.0-1
-  pkg-config-2.1.0-1
+  cygwin-3.6.11-1
+  libcpu_features0-0.11.0-1bl3
+  libgcc1-14.4.0-1
+  libhexl-devel-1.2.6-1bl1
+  libhexl1-1.2.6-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-3
-  cmake-3.25.3-1
-  cygport-0.36.7-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libcpu_features-devel-0.9.0-1bl1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libbenchmark-devel-1.9.5-1bl2
+  libcpu_features-devel-0.11.0-1bl3
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/intel/hexl
+  https://github.com/IntelLabs/hexl
 
 Canonical download:
-  https://github.com/intel/hexl/archive/refs/tags/v1.2.5.tar.gz
+  https://github.com/IntelLabs/hexl/archive/refs/tags/v1.2.6.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack hexl-1.2.5-X-src.tar.xz
+  1. unpack hexl-1.2.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./hexl-1.2.5-X.cygport all
+        % cygport ./hexl-1.2.6-X.cygport all
 
 This will create:
-  /usr/src/hexl-1.2.5-X-src.tar.xz
-  /usr/src/hexl-1.2.5-X.tar.xz
-  /usr/src/libhexl1-1.2.5-X.tar.xz
-  /usr/src/libhexl-devel-1.2.5-X.tar.xz
+  /usr/src/hexl-1.2.6-X-src.tar.xz
+  /usr/src/hexl-1.2.6-X.tar.xz
+  /usr/src/libhexl1-1.2.6-X.tar.xz
+  /usr/src/libhexl-devel-1.2.6-X.tar.xz
 
 -------------------------------------------
 
@@ -79,6 +81,8 @@ Files included in the binary package:
   /usr/include/hexl/experimental/seal/dyadic-multiply.hpp
   /usr/include/hexl/experimental/seal/key-switch-internal.hpp
   /usr/include/hexl/experimental/seal/key-switch.hpp
+  /usr/include/hexl/experimental/seal/locks.hpp
+  /usr/include/hexl/experimental/seal/ntt-cache.hpp
   /usr/include/hexl/hexl.hpp
   /usr/include/hexl/logging/logging.hpp
   /usr/include/hexl/ntt/ntt.hpp
@@ -95,7 +99,7 @@ Files included in the binary package:
   /usr/include/hexl/util/util.hpp
   /usr/lib/cmake/hexl/HEXLConfig.cmake
   /usr/lib/cmake/hexl/HEXLConfigVersion.cmake
-  /usr/lib/cmake/hexl/HEXLTargets-release.cmake
+  /usr/lib/cmake/hexl/HEXLTargets-relwithdebinfo.cmake
   /usr/lib/cmake/hexl/HEXLTargets.cmake
   /usr/lib/libhexl.dll.a
   /usr/lib/pkgconfig/hexl.pc
@@ -103,6 +107,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.6-1bl1 -----
+Version bump.
 
 ----- version 1.2.5-1bl1 -----
 Version bump.

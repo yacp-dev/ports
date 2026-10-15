@@ -1,5 +1,5 @@
-HOMEPAGE="https://github.com/intel/${PN}"
-SRC_URI="https://github.com/intel/${PN}/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/IntelLabs/${PN}"
+SRC_URI="https://github.com/IntelLabs/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Intel Homomorphic Encryption (HE) Acceleration Library"
@@ -14,7 +14,11 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libcpu_features-devel"
+BUILD_REQUIRES="
+	libbenchmark-devel
+	libcpu_features-devel
+	libgtest-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

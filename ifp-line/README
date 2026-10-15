@@ -3,19 +3,19 @@ ifp-line
 Original command line utility and Midnight Commander plugin
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libiconv2-1.17-1
+  cygwin-3.6.11-1
+  libiconv2-1.19-2
   libusb0-1.2.6.0-2
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libiconv-devel-1.17-1
+  libiconv-devel-1.19-2
   libusb-devel-1.2.6.0-2
   make-4.4.1-2
 
@@ -23,20 +23,20 @@ Canonical website:
   https://sourceforge.net/projects/ifp-driver/
 
 Canonical download:
-  mirror://sourceforge/ifp-driver/ifp-line-0.3.tar.gz
+  mirror://sourceforge/ifp-driver/ifp-line-0.4.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ifp-line-0.3-X-src.tar.xz
+  1. unpack ifp-line-0.4.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ifp-line-0.3-X.cygport all
+        % cygport ./ifp-line-0.4.1-X.cygport all
 
 This will create:
-  /usr/src/ifp-line-0.3-X-src.tar.xz
-  /usr/src/ifp-line-0.3-X.tar.xz
+  /usr/src/ifp-line-0.4.1-X-src.tar.xz
+  /usr/src/ifp-line-0.4.1-X.tar.xz
 
 -------------------------------------------
 
@@ -56,6 +56,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.4.1-1bl1 -----
+Version bump.
 
 ----- version 0.3-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

@@ -10,7 +10,13 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libhdf5-devel libpng-devel octave-devel"
+BUILD_REQUIRES="
+	libhdf4-devel
+	libhdf5-devel
+	libjpeg-devel
+	libpng-devel
+	octave-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} `pkg-config octinterp --cflags`"
 export LDFLAGS="${LDFLAGS} `pkg-config octinterp --libs`"

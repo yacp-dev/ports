@@ -4,55 +4,60 @@ h5utils is a set of utilities for visualization and conversion of scientific
 data in the free, portable HDF5 format.
 
 Runtime requirements:
-  cygwin-3.4.5-1
-  libgcc1-11.3.0-1
-  libhdf5_200-1.12.2-1
-  libpng16-1.6.37-1
-  libstdc++6-11.3.0-1
-  octave-6.4.0-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libhdf4_11-4.4.0-1
+  libhdf5_320-2.2.0-1
+  libpng16-1.6.59-1
+  libstdc++6-14.4.0-1
+  octave-9.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.39-1
-  cygport-0.35.5-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libhdf5-devel-1.12.2-1
-  libpng-devel-1.6.37-1
-  make-4.4-1
-  octave-devel-6.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libhdf4-devel-4.4.0-1
+  libhdf5-devel-2.2.0-1
+  libjpeg-devel-3.2.0-1
+  libpng-devel-1.6.59-1
+  make-4.4.1-2
+  octave-devel-9.4.0-1
 
 Canonical website:
   https://github.com/stevengj/h5utils
 
 Canonical download:
-  https://github.com/stevengj/h5utils/archive/refs/tags/1.13.2.tar.gz
+  https://github.com/stevengj/h5utils/archive/refs/tags/1.13.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack h5utils-1.13.2-X-src.tar.xz
+  1. unpack h5utils-1.13.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./h5utils-1.13.2-X.cygport all
+        % cygport ./h5utils-1.13.3-X.cygport all
 
 This will create:
-  /usr/src/h5utils-1.13.2-X-src.tar.xz
-  /usr/src/h5utils-1.13.2-X.tar.xz
+  /usr/src/h5utils-1.13.3-X-src.tar.xz
+  /usr/src/h5utils-1.13.3-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (h5utils)
+  /usr/bin/h4fromh5.exe
+  /usr/bin/h5fromh4.exe
   /usr/bin/h5fromtxt.exe
   /usr/bin/h5topng.exe
   /usr/bin/h5totxt.exe
   /usr/bin/h5tovtk.exe
-  /usr/lib/octave/6.4.0/site/oct/x86_64-pc-cygwin/h5read.oct
+  /usr/lib/octave/9.4.0/site/oct/x86_64-pc-cygwin/h5read.oct
   /usr/share/doc/Cygwin/h5utils.README
   /usr/share/doc/h5utils/AUTHORS
   /usr/share/doc/h5utils/COPYING
@@ -85,6 +90,7 @@ Files included in the binary package:
   /usr/share/h5utils/colormaps/winter
   /usr/share/h5utils/colormaps/yarg
   /usr/share/h5utils/colormaps/yellow
+  /usr/share/man/man1/h5fromh4.1.gz
   /usr/share/man/man1/h5fromtxt.1.gz
   /usr/share/man/man1/h5topng.1.gz
   /usr/share/man/man1/h5totxt.1.gz
@@ -93,6 +99,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.13.3-1bl1 -----
+Version bump.
 
 ----- version 1.13.2-1bl1 -----
 Version bump.

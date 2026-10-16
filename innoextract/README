@@ -6,45 +6,46 @@ without running the actual installer using Wine. innoextract currently
 supports installers created by Inno Setup 1.2.10 to 6.0.5.
 
 Runtime requirements:
-  cygwin-3.6.9-1
+  cygwin-3.6.11-1
   libboost_filesystem1.66-1.66.0-1
   libboost_iostreams1.66-1.66.0-1
   libboost_program_options1.66-1.66.0-1
   libboost_system1.66-1.66.0-1
-  libgcc1-13.4.0-1
+  libgcc1-14.4.0-1
   libiconv2-1.19-2
-  liblzma5-5.8.3-1
-  libstdc++6-13.4.0-1
+  liblzma5-5.8.4-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  liblzma-devel-5.8.3-1
+  libbz2-devel-1.0.8-2
+  liblzma-devel-5.8.4-1
   ninja-1.13.2-1
 
 Canonical website:
   https://constexpr.org/innoextract/
 
 Canonical download:
-  https://constexpr.org/innoextract/files/innoextract-1.9.tar.gz
+  https://github.com/crazy-max/innoextract/archive/refs/tags/v1.13.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack innoextract-1.9-X-src.tar.xz
+  1. unpack innoextract-1.13.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./innoextract-1.9-X.cygport all
+        % cygport ./innoextract-1.13.0-X.cygport all
 
 This will create:
-  /usr/src/innoextract-1.9-X-src.tar.xz
-  /usr/src/innoextract-1.9-X.tar.xz
+  /usr/src/innoextract-1.13.0-X-src.tar.xz
+  /usr/src/innoextract-1.13.0-X.tar.xz
 
 -------------------------------------------
 
@@ -63,6 +64,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.13.0-1bl1 -----
+Version bump.
 
 ----- version 1.9-1bl2 -----
 Rebuild with gcc-13.4.0

@@ -3,40 +3,39 @@ iniparser
 iniparser is a free stand-alone ini file parsing library.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libiniparser-devel-4.2.6-1bl1
-  libiniparser4-4.2.6-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.11-1
+  libiniparser-devel-4.3.2-1bl1
+  libiniparser4-4.3.2-1bl1
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  make-4.4.1-2
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/ndevilla/iniparser
 
 Canonical download:
-  https://github.com/ndevilla/iniparser/archive/refs/tags/v4.2.6.tar.gz
+  https://github.com/ndevilla/iniparser/archive/refs/tags/v4.3.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack iniparser-4.2.6-X-src.tar.xz
+  1. unpack iniparser-4.3.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./iniparser-4.2.6-X.cygport all
+        % cygport ./iniparser-4.3.2-X.cygport all
 
 This will create:
-  /usr/src/iniparser-4.2.6-X-src.tar.xz
-  /usr/src/iniparser-4.2.6-X.tar.xz
-  /usr/src/libiniparser4-4.2.6-X.tar.xz
-  /usr/src/libiniparser-devel-4.2.6-X.tar.xz
+  /usr/src/iniparser-4.3.2-X-src.tar.xz
+  /usr/src/iniparser-4.3.2-X.tar.xz
+  /usr/src/libiniparser4-4.3.2-X.tar.xz
+  /usr/src/libiniparser-devel-4.3.2-X.tar.xz
 
 -------------------------------------------
 
@@ -56,9 +55,10 @@ Files included in the binary package:
 (libiniparser-devel)
   /usr/include/iniparser/dictionary.h
   /usr/include/iniparser/iniparser.h
+  /usr/include/iniparser/version.h
   /usr/lib/cmake/iniparser/iniparser-config-version.cmake
   /usr/lib/cmake/iniparser/iniparser-config.cmake
-  /usr/lib/cmake/iniparser/iniparser-sharedTargets-release.cmake
+  /usr/lib/cmake/iniparser/iniparser-sharedTargets-relwithdebinfo.cmake
   /usr/lib/cmake/iniparser/iniparser-sharedTargets.cmake
   /usr/lib/libiniparser.dll.a
   /usr/lib/pkgconfig/iniparser.pc
@@ -66,6 +66,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.3.2-1bl1 -----
+Version bump.
 
 ----- version 4.2.6-1bl1 -----
 Version bump.

@@ -14,19 +14,7 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_DOCS:BOOL=OFF
 	-DBUILD_STATIC_LIBS:BOOL=OFF
-	-DBUILD_TESTING:BOOL=ON
 "
-
-src_install()
-{
-	cd ${B}
-	ninja_install
-
-	cd ${D}
-	rm -rf usr/include/unity
-	rm -rf usr/lib/cmake/unity
-	rm -rf usr/lib/libunity.a
-}
 
 DOCS="
 	FAQ*.md

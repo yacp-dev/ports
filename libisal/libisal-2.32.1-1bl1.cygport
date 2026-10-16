@@ -11,7 +11,16 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="help2man nasm yasm"
+BUILD_REQUIRES="
+	help2man
+	nasm
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DISAL_BUILD_ISAL_SHIM:BOOL=OFF
+"
 
 DOCS="
 	Release_notes.txt
@@ -24,7 +33,6 @@ PKG_NAMES="
 	libisal-devel
 "
 libisal_CONTENTS="
-	usr/bin/*.exe
 	usr/share
 "
 libisal2_CONTENTS="
@@ -34,6 +42,6 @@ libisal_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
-libisal_SUMMARY="${SUMMARY} (utilities)"
+libisal_SUMMARY="${SUMMARY} (licensing & readmes)"
 libisal2_SUMMARY="${SUMMARY} (runtime)"
 libisal_devel_SUMMARY="${SUMMARY} (development)"

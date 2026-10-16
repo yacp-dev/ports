@@ -1,0 +1,80 @@
+--- origsrc/isa-l-2.32.1/CMakeLists.txt	2026-07-01 06:50:33.000000000 +0000
++++ src/isa-l-2.32.1/CMakeLists.txt	2026-10-16 22:18:06.757058700 +0000
+@@ -92,7 +92,7 @@ endif()
+ # Compiler and assembler setup
+ if(CPU_X86_64)
+     # Configure NASM flags
+-    if(WIN32)
++    if(WIN32 OR CYGWIN)
+         set(CMAKE_ASM_NASM_FLAGS "-f win64")
+     elseif(APPLE)
+         set(CMAKE_ASM_NASM_FLAGS "-f macho64 --prefix=_")
+@@ -189,6 +189,25 @@ add_library(isal
+     ${MISC_SOURCES}
+ )
+ 
++# On Cygwin, export the NASM-assembled functions as code (see
++# cmake/cygwin_asm_def.cmake).  The .def file is regenerated right before
++# linking, and --export-all-symbols keeps every other symbol auto-exported.
++if(CYGWIN AND CPU_X86_64 AND USE_NASM AND BUILD_SHARED_LIBS)
++    set(ISAL_CYGWIN_ASM_DEF "${CMAKE_CURRENT_BINARY_DIR}/isal_asm.def")
++    add_custom_command(TARGET isal PRE_LINK
++        COMMAND ${CMAKE_COMMAND}
++            -DNM=${CMAKE_NM}
++            -DOBJ_DIR=${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/isal.dir
++            -DDEF_FILE=${ISAL_CYGWIN_ASM_DEF}
++            -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/cygwin_asm_def.cmake
++        VERBATIM
++    )
++    target_link_options(isal PRIVATE
++        "LINKER:--export-all-symbols"
++        "${ISAL_CYGWIN_ASM_DEF}"
++    )
++endif()
++
+ # Set library properties
+ set_target_properties(isal PROPERTIES
+     VERSION ${LIBISAL_VERSION_MAJOR}.${LIBISAL_VERSION_MINOR}.${LIBISAL_VERSION_PATCH}
+--- origsrc/isa-l-2.32.1/cmake/cygwin_asm_def.cmake	1970-01-01 00:00:00.000000000 +0000
++++ src/isa-l-2.32.1/cmake/cygwin_asm_def.cmake	2026-10-16 22:18:06.757058700 +0000
+@@ -0,0 +1,40 @@
++# Generate a module definition file listing the global code symbols defined
++# by the NASM-assembled objects.
++#
++# Usage: cmake -DNM=<nm> -DOBJ_DIR=<dir> -DDEF_FILE=<out.def> -P cygwin_asm_def.cmake
++#
++# NASM's win64 COFF output cannot mark symbols as functions, so GNU ld's
++# auto-export treats them as data and creates no import-library thunks for
++# them.  Executables that call those functions without dllimport then rely on
++# 32-bit pseudo relocations, which fail at runtime when the DLL is mapped more
++# than 2 GB away.  Listing them in a .def file (used together with
++# --export-all-symbols) makes ld export them as code.
++
++file(GLOB_RECURSE objs "${OBJ_DIR}/*.asm.o")
++if(NOT objs)
++    message(FATAL_ERROR "no NASM objects found in ${OBJ_DIR}")
++endif()
++
++execute_process(
++    COMMAND ${NM} -g --defined-only ${objs}
++    OUTPUT_VARIABLE nm_out
++    RESULT_VARIABLE nm_rc
++)
++if(nm_rc)
++    message(FATAL_ERROR "${NM} failed: ${nm_rc}")
++endif()
++
++string(REGEX MATCHALL "[0-9a-fA-F]+ T [A-Za-z0-9_]+" lines "${nm_out}")
++set(syms)
++foreach(line IN LISTS lines)
++    string(REGEX REPLACE "^[0-9a-fA-F]+ T " "" sym "${line}")
++    list(APPEND syms "${sym}")
++endforeach()
++list(REMOVE_DUPLICATES syms)
++list(SORT syms)
++
++set(def "EXPORTS\n")
++foreach(sym IN LISTS syms)
++    string(APPEND def "    ${sym}\n")
++endforeach()
++file(WRITE "${DEF_FILE}" "${def}")

@@ -1,45 +1,45 @@
 ivykis
 ------------------------------------------
 libivykis is a thin wrapper over various OS'es implementation of I/O readiness
-notification facilities (such as poll(2), kqueue(2)) and is mainly intended for
-writing portable high-performance network servers.
+notification facilities (such as poll(2), kqueue(2)) and is mainly intended
+for writing portable high-performance network servers.
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libivykis-devel-0.43-1bl1
-  libivykis0-0.43-1bl1
-  pkg-config-2.2.0-1
+  cygwin-3.6.11-1
+  libivykis-devel-0.43.2-1bl1
+  libivykis0-0.43.2-1bl1
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.8-1
-  gcc-core-11.4.0-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://sourceforge.net/projects/libivykis/
 
 Canonical download:
-  mirror://sourceforge/libivykis/ivykis-0.43.tar.gz
+  mirror://sourceforge/libivykis/ivykis-0.43.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ivykis-0.43-X-src.tar.xz
+  1. unpack ivykis-0.43.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ivykis-0.43-X.cygport all
+        % cygport ./ivykis-0.43.2-X.cygport all
 
 This will create:
-  /usr/src/ivykis-0.43-X-src.tar.xz
-  /usr/src/ivykis-0.43-X.tar.xz
-  /usr/src/libivykis0-0.43-X.tar.xz
-  /usr/src/libivykis-devel-0.43-X.tar.xz
+  /usr/src/ivykis-0.43.2-X-src.tar.xz
+  /usr/src/ivykis-0.43.2-X.tar.xz
+  /usr/src/libivykis0-0.43.2-X.tar.xz
+  /usr/src/libivykis-devel-0.43.2-X.tar.xz
 
 -------------------------------------------
 
@@ -141,6 +141,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.43.2-1bl1 -----
+Version bump.
 
 ----- version 0.43-1bl1 -----
 Version bump.

@@ -1,0 +1,11 @@
+--- origsrc/iprange-2.1.1/Makefile.am	2026-06-20 20:54:18.000000000 +0000
++++ src/iprange-2.1.1/Makefile.am	2026-10-16 02:09:22.298084800 +0000
+@@ -155,7 +155,7 @@ check-sanitizers:
+ .PHONY: check-sanitizers
+ 
+ if MAINTAINER_MODE
+-%.1: %
++%.1: %$(EXEEXT)
+ 	$(HELP2MAN) \
+ 		-s 1 \
+ 		$(AM_H2MFLAGS) \

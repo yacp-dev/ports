@@ -3,16 +3,16 @@ iprange
 Manage IP ranges
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  automake-20250528-1
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   help2man-1.49.3-1
   make-4.4.1-2
 
@@ -20,20 +20,20 @@ Canonical website:
   https://github.com/firehol/iprange
 
 Canonical download:
-  https://github.com/firehol/iprange/archive/refs/tags/v2.0.0.tar.gz
+  https://github.com/firehol/iprange/archive/refs/tags/v2.1.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack iprange-2.0.0-X-src.tar.xz
+  1. unpack iprange-2.1.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./iprange-2.0.0-X.cygport all
+        % cygport ./iprange-2.1.1-X.cygport all
 
 This will create:
-  /usr/src/iprange-2.0.0-X-src.tar.xz
-  /usr/src/iprange-2.0.0-X.tar.xz
+  /usr/src/iprange-2.1.1-X-src.tar.xz
+  /usr/src/iprange-2.1.1-X.tar.xz
 
 -------------------------------------------
 
@@ -50,6 +50,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.1.1-1bl1 -----
+Version bump.
 
 ----- version 2.0.0-1bl1 -----
 Version bump.

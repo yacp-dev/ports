@@ -1,8 +1,5 @@
 HOMEPAGE="https://constexpr.org/${PN}/"
-SRC_URI="https://constexpr.org/${PN}/files/${P}.tar.gz"
-PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-4/debian/patches/CMake4.patch
-"
+SRC_URI="https://github.com/crazy-max/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Archive"
 SUMMARY="Tool to unpack installers created by Inno Setup"
@@ -17,12 +14,17 @@ LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	libboost-devel
+	libbz2-devel
 	liblzma-devel
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_DEFAULT_CMP0167=OLD
+"
 
 src_test()
 {

@@ -1,5 +1,5 @@
---- origsrc/jose-14/meson.build	2024-05-22 19:21:11.000000000 +0900
-+++ src/jose-14/meson.build	2024-07-19 07:30:47.181805900 +0900
+--- origsrc/jose-15/meson.build	2026-06-08 09:56:39.000000000 +0000
++++ src/jose-15/meson.build	2026-10-17 08:37:54.658112200 +0000
 @@ -67,7 +67,7 @@ pkg.generate(
  if a2x.found()
    foreach m : mans

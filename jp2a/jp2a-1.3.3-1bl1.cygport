@@ -10,10 +10,21 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcurl-devel libexif-devel libjpeg-devel libncurses-devel libpng-devel libwebp-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+	libexif-devel
+	libjpeg-devel
+	libncurses-devel
+	libpng-devel
+	libwebp-devel
+"
 
 src_test()
 {
 	cd ${B}
-	${S}/tests/run-tests.sh
+	verbose cp -r ${S}/tests ${B}/
+	pushd tests
+		./run-tests.sh
+	popd
+	verbose rm -fr tests
 }

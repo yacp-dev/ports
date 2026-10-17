@@ -1,78 +1,79 @@
-JAGS
+jags
 ------------------------------------------
 JAGS is Just Another Gibbs Sampler. It is a program for analysis of Bayesian
-hierarchical models using Markov Chain Monte Carlo (MCMC) simulation not wholly
-unlike BUGS.
+hierarchical models using Markov Chain Monte Carlo (MCMC) simulation not
+wholly unlike BUGS.
 
 Runtime requirements:
-  bash-5.2.15-3
-  cygwin-3.5.0-0.374.g2e7332d6bd02
-  libgcc1-11.4.0-1
-  libjags-devel-4.3.2-1bl1
-  libjags4-4.3.2-1bl1
-  liblapack0-3.11.0-2
-  libltdl7-2.4.7-1
-  libopenblas-0.3.23-1
-  libstdc++6-11.4.0-1
-  pkg-config-2.0.0-1
+  bash-5.2.21-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libjags-devel-5.0.0-1bl1
+  libjags5-5.0.0-1bl1
+  liblapack0-3.12.0-1
+  libltdl7-2.6.2-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-2
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
   cppunit-1.13.2-1
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  liblapack-devel-3.11.0-2
-  libtool-2.4.7-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  liblapack-devel-3.12.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://mcmc-jags.sourceforge.io/
 
 Canonical download:
-  mirror://sourceforge/mcmc-jags/JAGS-4.3.2.tar.gz
+  mirror://sourceforge/mcmc-jags/JAGS-5.0.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack JAGS-4.3.2-X-src.tar.xz
+  1. unpack jags-5.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./JAGS-4.3.2-X.cygport all
+        % cygport ./jags-5.0.0-X.cygport all
 
 This will create:
-  /usr/src/JAGS-4.3.2-X-src.tar.xz
-  /usr/src/JAGS-4.3.2-X.tar.xz
-  /usr/src/libjags4-4.3.2-X.tar.xz
-  /usr/src/libjags-devel-4.3.2-X.tar.xz
+  /usr/src/jags-5.0.0-X-src.tar.xz
+  /usr/src/jags-5.0.0-X.tar.xz
+  /usr/src/libjags5-5.0.0-X.tar.xz
+  /usr/src/libjags-devel-5.0.0-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
-(JAGS)
+(jags)
   /usr/bin/jags
-  /usr/lib/JAGS/modules-4/basemod.dll
-  /usr/lib/JAGS/modules-4/bugs.dll
-  /usr/lib/JAGS/modules-4/dic.dll
-  /usr/lib/JAGS/modules-4/glm.dll
-  /usr/lib/JAGS/modules-4/lecuyer.dll
-  /usr/lib/JAGS/modules-4/mix.dll
-  /usr/lib/JAGS/modules-4/msm.dll
+  /usr/lib/JAGS/modules-5/basemod.dll
+  /usr/lib/JAGS/modules-5/bugs.dll
+  /usr/lib/JAGS/modules-5/diag.dll
+  /usr/lib/JAGS/modules-5/dic.dll
+  /usr/lib/JAGS/modules-5/glm.dll
+  /usr/lib/JAGS/modules-5/lecuyer.dll
+  /usr/lib/JAGS/modules-5/mix.dll
+  /usr/lib/JAGS/modules-5/msm.dll
   /usr/libexec/jags-terminal.exe
-  /usr/share/doc/Cygwin/JAGS.README
-  /usr/share/doc/JAGS/AUTHORS
-  /usr/share/doc/JAGS/COPYING
-  /usr/share/doc/JAGS/NEWS
-  /usr/share/doc/JAGS/README
+  /usr/share/doc/Cygwin/jags.README
+  /usr/share/doc/jags/AUTHORS
+  /usr/share/doc/jags/COPYING
+  /usr/share/doc/jags/NEWS
+  /usr/share/doc/jags/README
   /usr/share/man/man1/jags.1.gz
 
-(libjags4)
-  /usr/bin/cygjags-4.dll
+(libjags5)
+  /usr/bin/cygjags-5.dll
   /usr/bin/cygjrmath-0.dll
 
 (libjags-devel)
@@ -82,7 +83,6 @@ Files included in the binary package:
   /usr/include/JAGS/compiler/Counter.h
   /usr/include/JAGS/compiler/CounterTab.h
   /usr/include/JAGS/compiler/LogicalFactory.h
-  /usr/include/JAGS/compiler/MixtureFactory.h
   /usr/include/JAGS/compiler/NodeFactory.h
   /usr/include/JAGS/compiler/ObsFuncTab.h
   /usr/include/JAGS/compiler/ParseTree.h
@@ -121,24 +121,37 @@ Files included in the binary package:
   /usr/include/JAGS/graph/LogicalNode.h
   /usr/include/JAGS/graph/MixTab.h
   /usr/include/JAGS/graph/MixtureNode.h
+  /usr/include/JAGS/graph/MixtureNodeError.h
   /usr/include/JAGS/graph/Node.h
   /usr/include/JAGS/graph/NodeError.h
-  /usr/include/JAGS/graph/ParentError.h
   /usr/include/JAGS/graph/ScalarLogicalNode.h
   /usr/include/JAGS/graph/ScalarStochasticNode.h
   /usr/include/JAGS/graph/StochasticNode.h
   /usr/include/JAGS/graph/VSLogicalNode.h
   /usr/include/JAGS/graph/VectorLogicalNode.h
   /usr/include/JAGS/graph/VectorStochasticNode.h
+  /usr/include/JAGS/matrix/blas.h
+  /usr/include/JAGS/matrix/lapack.h
+  /usr/include/JAGS/matrix/matrix.h
   /usr/include/JAGS/model/BUGSModel.h
+  /usr/include/JAGS/model/CovMonitor.h
+  /usr/include/JAGS/model/ESSWeight.h
+  /usr/include/JAGS/model/MeanMonitor.h
   /usr/include/JAGS/model/Model.h
   /usr/include/JAGS/model/Monitor.h
   /usr/include/JAGS/model/MonitorControl.h
   /usr/include/JAGS/model/MonitorFactory.h
   /usr/include/JAGS/model/MonitorInfo.h
+  /usr/include/JAGS/model/MonitorStat.h
   /usr/include/JAGS/model/NodeArray.h
   /usr/include/JAGS/model/NodeArraySubset.h
+  /usr/include/JAGS/model/StochasticIndex.h
   /usr/include/JAGS/model/SymTab.h
+  /usr/include/JAGS/model/TraceMonitor.h
+  /usr/include/JAGS/model/TraceWeight.h
+  /usr/include/JAGS/model/VarMonitor.h
+  /usr/include/JAGS/model/WeightMonitor.h
+  /usr/include/JAGS/model/WeightedTraceMonitor.h
   /usr/include/JAGS/module/Module.h
   /usr/include/JAGS/module/ModuleError.h
   /usr/include/JAGS/rng/RNG.h
@@ -165,10 +178,12 @@ Files included in the binary package:
   /usr/include/JAGS/sarray/RangeIterator.h
   /usr/include/JAGS/sarray/SArray.h
   /usr/include/JAGS/sarray/SimpleRange.h
+  /usr/include/JAGS/util/Factory.h
   /usr/include/JAGS/util/dim.h
   /usr/include/JAGS/util/integer.h
   /usr/include/JAGS/util/logical.h
   /usr/include/JAGS/util/nainf.h
+  /usr/include/JAGS/util/parallel.h
   /usr/include/JAGS/version.h
   /usr/lib/libjags.dll.a
   /usr/lib/libjrmath.dll.a
@@ -177,6 +192,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.0.0-1bl1 -----
+Version bump.
 
 ----- version 4.3.2-1bl1 -----
 Version bump.

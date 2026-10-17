@@ -1,0 +1,82 @@
+--- origsrc/JAGS-5.0.0/configure.ac	2026-06-29 20:39:01.000000000 +0000
++++ src/JAGS-5.0.0/configure.ac	2026-10-17 03:06:54.071597100 +0000
+@@ -69,12 +69,19 @@ R_FUNC_ISFINITE
+ fi
+ 
+ case "${host_os}" in
+-  mingw*)
++  mingw*|cygwin*)
+     win=true ;;
+   *)
+     win=false ;;
+ esac
+ AM_CONDITIONAL(WINDOWS, test x$win = xtrue)
++case "${host_os}" in
++  cygwin*)
++    cyg=true ;;
++  *)
++    cyg=false ;;
++esac
++AM_CONDITIONAL(CYGWIN, test x$cyg = xtrue)
+ 
+ ## Testing for OpenMP flags
+ AC_LANG_PUSH([C++])
+--- origsrc/JAGS-5.0.0/src/include/model/CovMonitor.h	2025-09-27 11:00:21.000000000 +0000
++++ src/JAGS-5.0.0/src/include/model/CovMonitor.h	2026-10-17 03:06:54.072002400 +0000
+@@ -3,6 +3,10 @@
+ 
+ #include <model/Monitor.h>
+ 
++#if defined(_S)
++#undef _S
++#endif
++
+ namespace jags {
+ 
+     class MonitorStat;
+--- origsrc/JAGS-5.0.0/src/include/model/MeanMonitor.h	2025-09-27 09:19:39.000000000 +0000
++++ src/JAGS-5.0.0/src/include/model/MeanMonitor.h	2026-10-17 03:06:54.072998500 +0000
+@@ -3,6 +3,10 @@
+ 
+ #include <model/Monitor.h>
+ 
++#if defined(_S)
++#undef _S
++#endif
++
+ namespace jags {
+ 
+     /**
+--- origsrc/JAGS-5.0.0/src/include/model/VarMonitor.h	2025-09-27 09:19:39.000000000 +0000
++++ src/JAGS-5.0.0/src/include/model/VarMonitor.h	2026-10-17 03:06:54.072998500 +0000
+@@ -5,6 +5,10 @@
+ 
+ #include <vector>
+ 
++#if defined(_S)
++#undef _S
++#endif
++
+ namespace jags {
+ 
+     /**
+--- origsrc/JAGS-5.0.0/src/terminal/Makefile.am	2025-12-11 19:25:10.000000000 +0000
++++ src/JAGS-5.0.0/src/terminal/Makefile.am	2026-10-17 03:06:54.072998500 +0000
+@@ -4,7 +4,7 @@ AM_YFLAGS = -d
+ libexec_PROGRAMS = jags-terminal
+ 
+ jags_terminal_SOURCES = parser.yy scanner.ll ReadData.cc 
+-if WINDOWS
++if !CYGWIN
+ ## 64-bit Windows build fails if we try pre-linking modules (although
+ ## 32-bit Windows allows it).  
+ jags_terminal_LDADD = $(LIBLTDL) ${top_builddir}/src/lib/libjags.la
+@@ -30,7 +30,7 @@ noinst_HEADERS = ReadData.h
+ ## The shell script is not required under Windows, so we do not
+ ## build or install it. Instead, we install a batch file 
+ 
+-if WINDOWS
++if !CYGWIN
+ 
+ dist_bin_SCRIPTS = jags.bat
+ 

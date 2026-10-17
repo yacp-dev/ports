@@ -1,5 +1,5 @@
---- origsrc/knot-3.5.3/configure.ac	2026-01-16 16:26:39.000000000 +0900
-+++ src/knot-3.5.3/configure.ac	2026-03-21 10:03:55.962558400 +0900
+--- origsrc/knot-3.6.1/configure.ac	2026-01-16 16:26:39.000000000 +0900
++++ src/knot-3.6.1/configure.ac	2026-03-21 10:03:55.962558400 +0900
 @@ -38,7 +38,7 @@ AC_PROG_CC
  AC_PROG_CPP_WERROR
  
@@ -9,8 +9,8 @@
  
  AX_CHECK_COMPILE_FLAG("-fpredictive-commoning", [CFLAGS="$CFLAGS -fpredictive-commoning"], [], "-Werror")
  AX_CHECK_LINK_FLAG(["-Wl,--exclude-libs,ALL"], [ldflag_exclude_libs="-Wl,--exclude-libs,ALL"], [ldflag_exclude_libs=""], "")
---- origsrc/knot-3.5.3/src/knot/server/server.c	2026-01-16 16:26:39.000000000 +0900
-+++ src/knot-3.5.3/src/knot/server/server.c	2026-03-21 10:03:55.971498900 +0900
+--- origsrc/knot-3.6.1/src/knot/server/server.c	2026-01-16 16:26:39.000000000 +0900
++++ src/knot-3.6.1/src/knot/server/server.c	2026-03-21 10:03:55.971498900 +0900
 @@ -195,7 +195,9 @@ static bool enable_pktinfo(int sock, int
  		break;
  	case AF_INET6:
@@ -21,8 +21,8 @@
  		break;
  	default:
  		assert(0);
---- origsrc/knot-3.5.3/src/knot/server/udp-handler.c	2026-01-16 16:26:39.000000000 +0900
-+++ src/knot-3.5.3/src/knot/server/udp-handler.c	2026-03-21 10:03:55.971498900 +0900
+--- origsrc/knot-3.6.1/src/knot/server/udp-handler.c	2026-01-16 16:26:39.000000000 +0900
++++ src/knot-3.6.1/src/knot/server/udp-handler.c	2026-03-21 10:03:55.971498900 +0900
 @@ -106,7 +106,7 @@ static void cmsg_handle_ecn(int **p_ecn,
  static void cmsg_handle_pktinfo(sockaddr_t *local, const iface_t *iface,
                                  struct cmsghdr *cmsg)
@@ -32,8 +32,8 @@
  	if (cmsg->cmsg_level == IPPROTO_IP && cmsg->cmsg_type == IP_PKTINFO) {
  		struct in_pktinfo *info = (struct in_pktinfo *)CMSG_DATA(cmsg);
  		info->ipi_spec_dst = info->ipi_addr;
---- origsrc/knot-3.5.3/tests/Makefile.am	2026-01-16 16:26:39.000000000 +0900
-+++ src/knot-3.5.3/tests/Makefile.am	2026-03-21 10:03:55.971498900 +0900
+--- origsrc/knot-3.6.1/tests/Makefile.am	2026-01-16 16:26:39.000000000 +0900
++++ src/knot-3.6.1/tests/Makefile.am	2026-03-21 10:03:55.971498900 +0900
 @@ -232,7 +232,7 @@ knot/test_semantic_check:
  	@chmod +x $(top_builddir)/tests/$@
  endif HAVE_LIBUTILS

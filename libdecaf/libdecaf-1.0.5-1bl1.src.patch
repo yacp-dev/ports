@@ -1,5 +1,5 @@
---- origsrc/libdecaf-1.0.3/CMakeLists.txt	2026-07-30 08:34:48.635353400 +0900
-+++ src/libdecaf-1.0.3/CMakeLists.txt	2026-07-30 08:40:05.505774900 +0900
+--- origsrc/libdecaf-1.0.5/CMakeLists.txt	2026-10-17 23:25:50.175792600 +0000
++++ src/libdecaf-1.0.5/CMakeLists.txt	2026-10-17 23:25:50.572627000 +0000
 @@ -130,3 +130,10 @@ set(CPACK_SOURCE_IGnore_FILES
  )
  
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libdecaf.pc.in ${CMAKE_BINARY_DIR}/libdecaf.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libdecaf.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libdecaf-1.0.3/libdecaf.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libdecaf-1.0.3/libdecaf.pc.in	2026-07-30 08:41:09.127260000 +0900
+--- origsrc/libdecaf-1.0.5/libdecaf.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libdecaf-1.0.5/libdecaf.pc.in	2026-10-17 23:25:50.574641600 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,8 +24,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -ldecaf
 +Cflags: -I${includedir}/decaf
---- origsrc/libdecaf-1.0.3/src/CMakeLists.txt	2026-04-30 04:06:31.000000000 +0900
-+++ src/libdecaf-1.0.3/src/CMakeLists.txt	2026-07-30 08:35:42.767985900 +0900
+--- origsrc/libdecaf-1.0.5/src/CMakeLists.txt	2026-09-21 17:36:31.000000000 +0000
++++ src/libdecaf-1.0.5/src/CMakeLists.txt	2026-10-17 23:25:50.574641600 +0000
 @@ -94,7 +94,7 @@ endif()
  if(ENABLE_SHARED)
  	add_library(decaf SHARED ${DECAF_HEADER_FILES} ${DECAF_SOURCE_FILES_C} ${DECAF_SOURCE_FILES_CXX} $<TARGET_OBJECTS:decaf-p25519> $<TARGET_OBJECTS:decaf-p448> $<TARGET_OBJECTS:decaf-curve25519> $<TARGET_OBJECTS:decaf-curve448>)

@@ -4,49 +4,49 @@ Jose is a C-language implementation of the Javascript Object Signing and
 Encryption standards.
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libjansson-devel-2.13.1-1
-  libjansson4-2.13.1-1
-  libjose-devel-14-1bl1
-  libjose0-14-1bl1
-  libssl-devel-3.0.14-1
-  libssl3-3.0.14-1
-  pkg-config-2.2.0-1
-  zlib-devel-1.3.1-1
-  zlib0-1.3.1-1
+  cygwin-3.6.11-1
+  libjansson-devel-2.15.1-1
+  libjansson4-2.15.1-1
+  libjose-devel-15-1bl1
+  libjose0-15-1bl1
+  libssl-devel-3.5.9-1
+  libssl3-3.5.9-1
+  pkg-config-3.0.8-1
+  zlib-devel-1.3.2-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  asciidoc-10.2.0-1
-  binutils-2.42-1
-  cygport-0.36.9-1
-  gcc-core-11.4.0-1
-  libjansson-devel-2.13.1-1
-  libssl-devel-3.0.14-1
-  meson-1.3.2-1
-  ninja-1.12.0-1
-  zlib-devel-1.3.1-1
+  asciidoc-10.2.1-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libjansson-devel-2.15.1-1
+  libssl-devel-3.5.9-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://github.com/latchset/jose
 
 Canonical download:
-  https://github.com/latchset/jose/archive/refs/tags/v14.tar.gz
+  https://github.com/latchset/jose/archive/refs/tags/v15.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack jose-14-X-src.tar.xz
+  1. unpack jose-15-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./jose-14-X.cygport all
+        % cygport ./jose-15-X.cygport all
 
 This will create:
-  /usr/src/jose-14-X-src.tar.xz
-  /usr/src/jose-14-X.tar.xz
-  /usr/src/libjose0-14-X.tar.xz
-  /usr/src/libjose-devel-14-X.tar.xz
+  /usr/src/jose-15-X-src.tar.xz
+  /usr/src/jose-15-X.tar.xz
+  /usr/src/libjose0-15-X.tar.xz
+  /usr/src/libjose-devel-15-X.tar.xz
 
 -------------------------------------------
 
@@ -100,6 +100,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 15-1bl1 -----
+Version bump.
 
 ----- version 14-1bl1 -----
 Version bump.

@@ -10,9 +10,20 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="asciidoc libjansson-devel libssl-devel zlib-devel"
+BUILD_REQUIRES="
+	asciidoc
+	libjansson-devel
+	libssl-devel
+	zlib-devel
+"
 
 inherit meson
+
+src_test()
+{
+	cd ${S}
+	PATH=${S}/_build.${CHOST}/lib:${PATH} meson_test
+}
 
 PKG_IGNORE="
 	usr/share/licenses/jose/COPYING

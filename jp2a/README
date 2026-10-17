@@ -4,55 +4,55 @@ jp2a is a small utility that converts JPG images to ASCII. It's written in C
 and released under the GPL.
 
 Runtime requirements:
-  cygwin-3.6.0-0.212.g6af8fea4bbad
-  libcurl4-8.10.1-1
-  libexif12-0.6.24-1
-  libjpeg8-3.0.4-1
+  cygwin-3.6.11-1
+  libcurl4-8.22.0-1
+  libexif12-0.6.26-1
+  libjpeg8-3.2.0-1
   libncursesw10-6.5+20240427-1
-  libpng16-1.6.42-1
-  libwebp7-1.4.0-1
+  libpng16-1.6.59-1
+  libwebp7-1.6.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libcurl-devel-8.10.1-1
-  libexif-devel-0.6.24-1
-  libjpeg-devel-3.0.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libcurl-devel-8.22.0-1
+  libexif-devel-0.6.26-1
+  libjpeg-devel-3.2.0-1
   libncurses-devel-6.5+20240427-1
-  libpng-devel-1.6.42-1
-  libwebp-devel-1.4.0-1
+  libpng-devel-1.6.59-1
+  libwebp-devel-1.6.0-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/Talinx/jp2a/
 
 Canonical download:
-  https://github.com/Talinx/jp2a/archive/refs/tags/v1.3.1.tar.gz
+  https://github.com/Talinx/jp2a/archive/refs/tags/v1.3.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack jp2a-1.3.1-X-src.tar.xz
+  1. unpack jp2a-1.3.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./jp2a-1.3.1-X.cygport all
+        % cygport ./jp2a-1.3.3-X.cygport all
 
 This will create:
-  /usr/src/jp2a-1.3.1-X-src.tar.xz
-  /usr/src/jp2a-1.3.1-X.tar.xz
+  /usr/src/jp2a-1.3.3-X-src.tar.xz
+  /usr/src/jp2a-1.3.3-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (jp2a)
+  /etc/bash_completion.d/jp2a
   /usr/bin/jp2a.exe
-  /usr/share/bash-completion/completions/jp2a
   /usr/share/doc/Cygwin/jp2a.README
   /usr/share/doc/jp2a/AUTHORS
   /usr/share/doc/jp2a/BUGS
@@ -60,13 +60,15 @@ Files included in the binary package:
   /usr/share/doc/jp2a/ChangeLog
   /usr/share/doc/jp2a/NEWS
   /usr/share/doc/jp2a/README
-  /usr/share/doc/jp2a/README.md
   /usr/share/man/man1/jp2a.1.gz
   /usr/share/zsh/site-functions/_jp2a
 
 ------------------
 
 Port Notes:
+
+----- version 1.3.3-1bl1 -----
+Version bump.
 
 ----- version 1.3.1-1bl1 -----
 Version bump.

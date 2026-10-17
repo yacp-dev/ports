@@ -2,7 +2,10 @@ if test -e ${top}/${P}.sha1; then
 	HASH=`cat ${top}/${P}.sha1`
 else
 	HASH=`curl --silent https://api.bitbucket.org/2.0/repositories/genomicepidemiology/${PN}/refs/tags/${PV} | jq ".target.hash" | cut -b 2-13`
-	echo "${HASH}" > ${top}/${P}.sha1
+	# curl/jq may not be installed yet (e.g. when only BUILD_REQUIRES is queried)
+	if test -n "${HASH}"; then
+		echo "${HASH}" > ${top}/${P}.sha1
+	fi
 fi
 
 HOMEPAGE="https://bitbucket.org/genomicepidemiology/${PN}"
@@ -24,6 +27,8 @@ LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="
+	curl
+	jq
 	zlib-devel
 "
 

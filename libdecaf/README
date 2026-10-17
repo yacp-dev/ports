@@ -3,16 +3,16 @@ libdecaf
 Ed448-Goldilocks is a new elliptic curve for cryptography.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libdecaf-devel-1.0.3-1bl1
-  libdecaf0-1.0.3-1bl1
-  pkg-config-3.0.4-2
+  cygwin-3.6.11-1
+  libdecaf-devel-1.0.5-1bl1
+  libdecaf0-1.0.5-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   ninja-1.13.2-1
@@ -21,22 +21,22 @@ Canonical website:
   https://sourceforge.net/projects/ed448goldilocks/
 
 Canonical download:
-  mirror://sourceforge/ed448goldilocks/libdecaf-1.0.3.tgz
+  mirror://sourceforge/ed448goldilocks/libdecaf-1.0.5.tgz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libdecaf-1.0.3-X-src.tar.xz
+  1. unpack libdecaf-1.0.5-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libdecaf-1.0.3-X.cygport all
+        % cygport ./libdecaf-1.0.5-X.cygport all
 
 This will create:
-  /usr/src/libdecaf-1.0.3-X-src.tar.xz
-  /usr/src/libdecaf-1.0.3-X.tar.xz
-  /usr/src/libdecaf0-1.0.3-X.tar.xz
-  /usr/src/libdecaf-devel-1.0.3-X.tar.xz
+  /usr/src/libdecaf-1.0.5-X-src.tar.xz
+  /usr/src/libdecaf-1.0.5-X.tar.xz
+  /usr/src/libdecaf0-1.0.5-X.tar.xz
+  /usr/src/libdecaf-devel-1.0.5-X.tar.xz
 
 -------------------------------------------
 
@@ -73,7 +73,7 @@ Files included in the binary package:
   /usr/include/decaf/decaf/spongerng.h
   /usr/include/decaf/decaf/spongerng.hxx
   /usr/lib/cmake/decaf/DecafConfig.cmake
-  /usr/lib/cmake/decaf/DecafTargets-release.cmake
+  /usr/lib/cmake/decaf/DecafTargets-relwithdebinfo.cmake
   /usr/lib/cmake/decaf/DecafTargets.cmake
   /usr/lib/libdecaf.dll.a
   /usr/lib/pkgconfig/libdecaf.pc
@@ -81,6 +81,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.5-1bl1 -----
+Version bump.
 
 ----- version 1.0.3-1bl1 -----
 Version bump.

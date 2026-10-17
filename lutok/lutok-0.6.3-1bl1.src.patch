@@ -1,6 +1,6 @@
---- origsrc/lutok-lutok-0.6.2/Makefile.am	2025-12-28 06:17:15.000000000 +0900
-+++ src/lutok-lutok-0.6.2/Makefile.am	2026-01-24 16:51:14.093910800 +0900
-@@ -69,7 +69,7 @@ liblutok_la_SOURCES += state.hpp
+--- origsrc/lutok-lutok-0.6.3/Makefile.am	2026-09-01 20:58:15.000000000 +0000
++++ src/lutok-lutok-0.6.3/Makefile.am	2026-10-17 09:26:28.174664200 +0000
+@@ -93,7 +93,7 @@ liblutok_la_SOURCES += state.hpp
  liblutok_la_SOURCES += state.ipp
  liblutok_la_SOURCES += test_utils.hpp
  liblutok_la_CPPFLAGS = $(LUTOK_CFLAGS)

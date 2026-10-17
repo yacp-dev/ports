@@ -1,5 +1,6 @@
 HOMEPAGE="https://mcmc-jags.sourceforge.io/"
-SRC_URI="mirror://sourceforge/mcmc-jags/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/mcmc-jags/JAGS-${PV}.tar.gz"
+SRC_DIR="JAGS-${PV}"
 
 CATEGORY="Math"
 SUMMARY="Just Another Gibbs Sampler"
@@ -11,7 +12,11 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="cppunit liblapack-devel"
+BUILD_REQUIRES="
+	cppunit
+	gcc-fortran
+	liblapack-devel
+"
 
 src_test()
 {
@@ -26,17 +31,17 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	${PN}
-	libjags4
+	libjags5
 	libjags-devel
 "
-JAGS_CONTENTS="
+jags_CONTENTS="
 	usr/bin/jags
-	usr/lib/${PN}
+	usr/lib/JAGS
 	usr/libexec/*.exe
 	usr/share
 "
-libjags4_CONTENTS="
-	usr/bin/cyg*-4.dll
+libjags5_CONTENTS="
+	usr/bin/cyg*-5.dll
 	usr/bin/cygjrmath-*.dll
 "
 libjags_devel_CONTENTS="
@@ -44,6 +49,6 @@ libjags_devel_CONTENTS="
 	usr/lib/lib*
 	usr/lib/pkgconfig
 "
-JAGS_SUMMARY="${SUMMARY} (utilities)"
-libjags4_SUMMARY="${SUMMARY} (runtime)"
+jags_SUMMARY="${SUMMARY} (utilities)"
+libjags5_SUMMARY="${SUMMARY} (runtime)"
 libjags_devel_SUMMARY="${SUMMARY} (development)"

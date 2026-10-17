@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/freebsd/${PN}"
-SRC_URI="https://github.com/freebsd/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_URI="https://github.com/freebsd/${PN}/archive/refs/tags/${P}.tar.gz"
+SRC_DIR="${PN}-${P}"
 
 CATEGORY="Devel"
 SUMMARY="Testing framework for infrastructure software"

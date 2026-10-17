@@ -8,26 +8,25 @@ original protoc. protobuf-c formerly included an RPC implementation; that code
 has been split out into the protobuf-c-rpc project.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libgcc1-12.4.0-3
-  libprotobuf-c-devel-1.5.2-1bl1
-  libprotobuf-c1-1.5.2-1bl1
-  libprotobuf-devel-21.12-1
-  libprotobuf32-21.12-1
-  libstdc++6-12.4.0-3
-  pkg-config-2.4.3-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libprotobuf-c-devel-1.5.2-1bl2
+  libprotobuf-c1-1.5.2-1bl2
+  libprotobuf-devel-21.12-2
+  libprotobuf32-21.12-2
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libprotobuf-devel-21.12-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libprotobuf-devel-21.12-2
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -79,6 +78,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.5.2-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.5.2-1bl1 -----
 Version bump.

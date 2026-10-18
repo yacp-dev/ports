@@ -21,6 +21,7 @@ BUILD_REQUIRES="
 	liblmdb-devel
 	libmaxminddb-devel
 	libnghttp2-devel
+	libngtcp2_crypto_gnutls-devel
 	libprotobuf-c-devel
 	liburcu-devel
 	protobuf-c
@@ -42,9 +43,7 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	${PN}
-	libdnssec10
-	libdnssec-devel
-	lib${PN}16
+	lib${PN}17
 	lib${PN}-devel
 	libzscanner5
 	libzscanner-devel
@@ -58,16 +57,8 @@ knot_CONTENTS="
 	usr/sbin
 	usr/share
 "
-libdnssec10_CONTENTS="
-	usr/bin/cygdnssec-10.dll
-"
-libdnssec_devel_CONTENTS="
-	usr/include/libdnssec
-	usr/lib/libdnssec.dll.a
-	usr/lib/pkgconfig/libdnssec.pc
-"
-libknot16_CONTENTS="
-	usr/bin/cygknot-16.dll
+libknot17_CONTENTS="
+	usr/bin/cygknot-17.dll
 "
 libknot_devel_CONTENTS="
 	usr/include/lib${PN}
@@ -83,9 +74,7 @@ libzscanner_devel_CONTENTS="
 	usr/lib/pkgconfig/libzscanner.pc
 "
 knot_SUMMARY="${SUMMARY} (utilities)"
-libdnssec10_SUMMARY="${SUMMARY} (runtime / dnssec)"
-libdnssec_devel_SUMMARY="${SUMMARY} (development / dnssec)"
-libknot16_SUMMARY="${SUMMARY} (runtime / knot)"
+libknot17_SUMMARY="${SUMMARY} (runtime / knot)"
 libknot_devel_SUMMARY="${SUMMARY} (development / knot)"
 libzscanner5_SUMMARY="${SUMMARY} (runtime / zscanner)"
 libzscanner_devel_SUMMARY="${SUMMARY} (development / zscanner)"

@@ -12,12 +12,18 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gobject-introspection
+	intltool
 	libbz2-devel
+	libchdr-devel
+	libgcrypt-devel
+	libgirepository1.0-devel
 	libglib2.0-devel
 	libintl-devel
 	liblzma-devel
 	libsamplerate-devel
 	libsndfile-devel
+	vala
 	zlib-devel
 "
 
@@ -29,7 +35,7 @@ CYGCMAKE_ARGS="
 
 PKG_NAMES="
 	${PN}
-	${PN}11
+	${PN}12
 	${PN}-devel
 	girepository-Mirage3.2
 	vala-${PN}
@@ -39,8 +45,8 @@ libmirage_CONTENTS="
 	usr/share/mime
 	usr/share/locale
 "
-libmirage11_CONTENTS="
-	usr/bin/cyg*-11.dll
+libmirage12_CONTENTS="
+	usr/bin/cyg*-12.dll
 	usr/lib/${PN}-*/*.dll
 "
 libmirage_devel_CONTENTS="
@@ -56,7 +62,7 @@ vala_libmirage_CONTENTS="
 	usr/share/vala
 "
 libmirage_SUMMARY="${SUMMARY} (licensing & readmes)"
-libmirage11_SUMMARY="${SUMMARY} (runtime)"
+libmirage12_SUMMARY="${SUMMARY} (runtime)"
 libmirage_devel_SUMMARY="${SUMMARY} (development)"
 girepository_Mirage3_2_SUMMARY="${SUMMARY} (GObject Introspection data)"
 vala_libmirage_SUMMARY="${SUMMARY} (vala bindings)"

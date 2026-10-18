@@ -5,58 +5,61 @@ GLib. It's aim is to provide uniform access to the data stored in various
 image formats.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  girepository-GLib2.0-1.86.0-1
+  cygwin-3.6.11-1
+  girepository-GLib2.0-1.86.0-2
   libbz2_1-1.0.8-2
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
+  libglib2.0-devel-2.90.0-1
+  libglib2.0_0-2.90.0-1
   libintl8-0.22.5-1
-  liblzma5-5.8.2-1
-  libmirage-devel-3.2.10-1bl1
-  libmirage11-3.2.10-1bl1
+  liblzma5-5.8.4-1
+  libmirage-devel-3.3.3-1bl1
+  libmirage12-3.3.3-1bl1
   libsamplerate0-0.2.2-1
   libsndfile1-1.2.2-2
-  pkg-config-2.5.1-1
-  zlib0-1.3.1-1
+  pkg-config-3.0.9-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gobject-introspection-1.86.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gobject-introspection-1.86.0-2
+  intltool-0.51.0-1
   libbz2-devel-1.0.8-2
-  libglib2.0-devel-2.87.0-1
+  libgirepository1.0-devel-1.86.0-2
+  libglib2.0-devel-2.90.0-1
   libintl-devel-0.22.5-1
-  liblzma-devel-5.8.2-1
+  liblzma-devel-5.8.4-1
   libsamplerate-devel-0.2.2-1
   libsndfile-devel-1.2.2-2
   ninja-1.13.2-1
-  zlib-devel-1.3.1-1
+  vala-0.56.18-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://cdemu.sourceforge.io/about/libmirage/
 
 Canonical download:
-  mirror://sourceforge/cdemu/libmirage-3.2.10.tar.xz
+  mirror://sourceforge/cdemu/libmirage-3.3.3.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmirage-3.2.10-X-src.tar.xz
+  1. unpack libmirage-3.3.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmirage-3.2.10-X.cygport all
+        % cygport ./libmirage-3.3.3-X.cygport all
 
 This will create:
-  /usr/src/libmirage-3.2.10-X-src.tar.xz
-  /usr/src/libmirage-3.2.10-X.tar.xz
-  /usr/src/libmirage11-3.2.10-X.tar.xz
-  /usr/src/libmirage-devel-3.2.10-X.tar.xz
-  /usr/src/girepository-Mirage3.2-3.2.10-X.tar.xz
-  /usr/src/vala-libmirage-3.2.10-X.tar.xz
+  /usr/src/libmirage-3.3.3-X-src.tar.xz
+  /usr/src/libmirage-3.3.3-X.tar.xz
+  /usr/src/libmirage12-3.3.3-X.tar.xz
+  /usr/src/libmirage-devel-3.3.3-X.tar.xz
+  /usr/src/girepository-Mirage3.2-3.3.3-X.tar.xz
+  /usr/src/vala-libmirage-3.3.3-X.tar.xz
 
 -------------------------------------------
 
@@ -68,6 +71,8 @@ Files included in the binary package:
   /usr/share/doc/libmirage/COPYING
   /usr/share/doc/libmirage/ChangeLog
   /usr/share/doc/libmirage/README
+  /usr/share/locale/ka/LC_MESSAGES/libmirage.mo
+  /usr/share/locale/ro/LC_MESSAGES/libmirage.mo
   /usr/share/locale/ru/LC_MESSAGES/libmirage.mo
   /usr/share/locale/sl/LC_MESSAGES/libmirage.mo
   /usr/share/mime/packages/libmirage-apple.xml
@@ -82,61 +87,59 @@ Files included in the binary package:
   /usr/share/mime/packages/libmirage-gbi.xml
   /usr/share/mime/packages/libmirage-isz.xml
   /usr/share/mime/packages/libmirage-mds.xml
-  /usr/share/mime/packages/libmirage-mdx.xml
   /usr/share/mime/packages/libmirage-nrg.xml
   /usr/share/mime/packages/libmirage-xcdroast.xml
   /usr/share/mime/packages/libmirage-xmd.xml
 
-(libmirage11)
-  /usr/bin/cygmirage-11.dll
-  /usr/lib/libmirage-3.2/filter-cso.dll
-  /usr/lib/libmirage-3.2/filter-daa.dll
-  /usr/lib/libmirage-3.2/filter-dmg.dll
-  /usr/lib/libmirage-3.2/filter-ecm.dll
-  /usr/lib/libmirage-3.2/filter-gzip.dll
-  /usr/lib/libmirage-3.2/filter-isz.dll
-  /usr/lib/libmirage-3.2/filter-macbinary.dll
-  /usr/lib/libmirage-3.2/filter-sndfile.dll
-  /usr/lib/libmirage-3.2/filter-xz.dll
-  /usr/lib/libmirage-3.2/image-b6t.dll
-  /usr/lib/libmirage-3.2/image-c2d.dll
-  /usr/lib/libmirage-3.2/image-ccd.dll
-  /usr/lib/libmirage-3.2/image-cdi.dll
-  /usr/lib/libmirage-3.2/image-cif.dll
-  /usr/lib/libmirage-3.2/image-cue.dll
-  /usr/lib/libmirage-3.2/image-harddisk.dll
-  /usr/lib/libmirage-3.2/image-iso.dll
-  /usr/lib/libmirage-3.2/image-mds.dll
-  /usr/lib/libmirage-3.2/image-mdx.dll
-  /usr/lib/libmirage-3.2/image-nrg.dll
-  /usr/lib/libmirage-3.2/image-readcd.dll
-  /usr/lib/libmirage-3.2/image-toc.dll
-  /usr/lib/libmirage-3.2/image-xcdroast.dll
+(libmirage12)
+  /usr/bin/cygmirage-12.dll
+  /usr/lib/libmirage-3.3/filter-cso.dll
+  /usr/lib/libmirage-3.3/filter-daa.dll
+  /usr/lib/libmirage-3.3/filter-dmg.dll
+  /usr/lib/libmirage-3.3/filter-ecm.dll
+  /usr/lib/libmirage-3.3/filter-gzip.dll
+  /usr/lib/libmirage-3.3/filter-isz.dll
+  /usr/lib/libmirage-3.3/filter-macbinary.dll
+  /usr/lib/libmirage-3.3/filter-sndfile.dll
+  /usr/lib/libmirage-3.3/filter-xz.dll
+  /usr/lib/libmirage-3.3/image-b6t.dll
+  /usr/lib/libmirage-3.3/image-c2d.dll
+  /usr/lib/libmirage-3.3/image-ccd.dll
+  /usr/lib/libmirage-3.3/image-cdi.dll
+  /usr/lib/libmirage-3.3/image-cif.dll
+  /usr/lib/libmirage-3.3/image-cue.dll
+  /usr/lib/libmirage-3.3/image-harddisk.dll
+  /usr/lib/libmirage-3.3/image-iso.dll
+  /usr/lib/libmirage-3.3/image-mds.dll
+  /usr/lib/libmirage-3.3/image-nrg.dll
+  /usr/lib/libmirage-3.3/image-readcd.dll
+  /usr/lib/libmirage-3.3/image-toc.dll
+  /usr/lib/libmirage-3.3/image-xcdroast.dll
 
 (libmirage-devel)
-  /usr/include/libmirage-3.2/mirage/cdtext-coder.h
-  /usr/include/libmirage-3.2/mirage/context.h
-  /usr/include/libmirage-3.2/mirage/contextual.h
-  /usr/include/libmirage-3.2/mirage/debug.h
-  /usr/include/libmirage-3.2/mirage/disc.h
-  /usr/include/libmirage-3.2/mirage/error.h
-  /usr/include/libmirage-3.2/mirage/file-stream.h
-  /usr/include/libmirage-3.2/mirage/filter-stream.h
-  /usr/include/libmirage-3.2/mirage/fragment.h
-  /usr/include/libmirage-3.2/mirage/index.h
-  /usr/include/libmirage-3.2/mirage/language.h
-  /usr/include/libmirage-3.2/mirage/mirage.h
-  /usr/include/libmirage-3.2/mirage/object.h
-  /usr/include/libmirage-3.2/mirage/parser.h
-  /usr/include/libmirage-3.2/mirage/plugin.h
-  /usr/include/libmirage-3.2/mirage/sector.h
-  /usr/include/libmirage-3.2/mirage/session.h
-  /usr/include/libmirage-3.2/mirage/stream.h
-  /usr/include/libmirage-3.2/mirage/track.h
-  /usr/include/libmirage-3.2/mirage/types.h
-  /usr/include/libmirage-3.2/mirage/utils.h
-  /usr/include/libmirage-3.2/mirage/version.h
-  /usr/include/libmirage-3.2/mirage/writer.h
+  /usr/include/libmirage-3.3/mirage/cdtext-coder.h
+  /usr/include/libmirage-3.3/mirage/context.h
+  /usr/include/libmirage-3.3/mirage/contextual.h
+  /usr/include/libmirage-3.3/mirage/debug.h
+  /usr/include/libmirage-3.3/mirage/disc.h
+  /usr/include/libmirage-3.3/mirage/error.h
+  /usr/include/libmirage-3.3/mirage/file-stream.h
+  /usr/include/libmirage-3.3/mirage/filter-stream.h
+  /usr/include/libmirage-3.3/mirage/fragment.h
+  /usr/include/libmirage-3.3/mirage/index.h
+  /usr/include/libmirage-3.3/mirage/language.h
+  /usr/include/libmirage-3.3/mirage/mirage.h
+  /usr/include/libmirage-3.3/mirage/object.h
+  /usr/include/libmirage-3.3/mirage/parser.h
+  /usr/include/libmirage-3.3/mirage/plugin.h
+  /usr/include/libmirage-3.3/mirage/sector.h
+  /usr/include/libmirage-3.3/mirage/session.h
+  /usr/include/libmirage-3.3/mirage/stream.h
+  /usr/include/libmirage-3.3/mirage/track.h
+  /usr/include/libmirage-3.3/mirage/types.h
+  /usr/include/libmirage-3.3/mirage/utils.h
+  /usr/include/libmirage-3.3/mirage/version.h
+  /usr/include/libmirage-3.3/mirage/writer.h
   /usr/lib/libmirage.dll.a
   /usr/lib/pkgconfig/libmirage.pc
 
@@ -150,6 +153,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.3.3-1bl1 -----
+Version bump.
 
 ----- version 3.2.10-1bl1 -----
 Version bump.

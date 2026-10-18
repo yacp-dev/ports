@@ -1,6 +1,6 @@
---- origsrc/libmirage-3.2.10/CMakeLists.txt	2025-03-30 07:38:45.000000000 +0900
-+++ src/libmirage-3.2.10/CMakeLists.txt	2026-01-19 13:07:49.504715500 +0900
-@@ -165,7 +165,7 @@ set_target_properties(mirage PROPERTIES
+--- origsrc/libmirage-3.3.3/CMakeLists.txt	2026-09-03 12:30:47.000000000 +0000
++++ src/libmirage-3.3.3/CMakeLists.txt	2026-10-18 12:09:05.017815000 +0000
+@@ -190,7 +190,7 @@ set_target_properties(mirage PROPERTIES
      SOVERSION ${MIRAGE_SOVERSION_MAJOR}
  )
  
@@ -9,7 +9,7 @@
  install(FILES ${libmirage_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libmirage-${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}/mirage)
  
  # Translations; we use the version provided by our FindIntlTool.cmake
-@@ -182,7 +182,7 @@ if(INTROSPECTION_ENABLED AND INTROSPECTI
+@@ -207,7 +207,7 @@ if(INTROSPECTION_ENABLED AND INTROSPECTI
          INCLUDES GObject-2.0 Gio-2.0 GLib-2.0 GModule-2.0
          LIBRARY mirage
          QUIET
@@ -18,9 +18,9 @@
          COMPILER_ARGS --includedir=${PROJECT_SOURCE_DIR} --includedir=${PROJECT_BINARY_DIR}
          CFLAGS -I${PROJECT_SOURCE_DIR} -I${PROJECT_BINARY_DIR}
          SYMBOL_PREFIXES mirage
---- origsrc/libmirage-3.2.10/mirage/mirage.c	2025-03-30 07:38:45.000000000 +0900
-+++ src/libmirage-3.2.10/mirage/mirage.c	2026-01-19 13:07:49.514451400 +0900
-@@ -155,7 +155,11 @@ gboolean mirage_initialize (GError **err
+--- origsrc/libmirage-3.3.3/mirage/mirage.c	2026-09-03 12:30:47.000000000 +0000
++++ src/libmirage-3.3.3/mirage/mirage.c	2026-10-18 12:09:05.017815000 +0000
+@@ -174,7 +174,11 @@ gboolean mirage_initialize (GError **err
  
      /* Check every file in the plugin dir */
      while ((plugin_file = g_dir_read_name(plugins_dir))) {

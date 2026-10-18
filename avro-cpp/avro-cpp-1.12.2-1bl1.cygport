@@ -1,9 +1,5 @@
 HOMEPAGE="https://avro.apache.org/"
-SRC_URI="
-	mirror://apache/avro/avro-${PV}/cpp/${P}.tar.gz
-	FindSnappy.cmake
-"
-# https://git.iti.cs.ovgu.de/elf/monet-elf/-/raw/e462058c12acf962e7e6015dea50682e16866931/cmake/Modules/FindSnappy.cmake?inline=false
+SRC_URI="mirror://apache/avro/avro-${PV}/cpp/${P}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Data serialization system (C++)"
@@ -13,7 +9,7 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libboost-devel libsnappy-devel"
+BUILD_REQUIRES="libboost-devel libfmt-devel libsnappy-devel zlib-devel"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 export CXXFLAGS="${CXXFLAGS} -Wno-c++20-compat -fpermissive"
@@ -22,6 +18,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DAVRO_BUILD_STATIC:BOOL=OFF
 	-DSOVERSION:STRING=${PV[1]}
 "
 

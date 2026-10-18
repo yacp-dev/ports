@@ -3,47 +3,48 @@ avro-cpp
 Apache Avro(TM) is a data serialization system.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libavrocpp-devel-1.12.0-1bl1
-  libavrocpp1-1.12.0-1bl1
-  libboost_iostreams1.66-1.66.0-1
-  libboost_program_options1.66-1.66.0-1
-  libgcc1-12.4.0-3
-  libsnappy1-1.2.1-1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.11-1
+  libavrocpp-devel-1.12.2-1bl1
+  libavrocpp1-1.12.2-1bl1
+  libgcc1-14.4.0-1
+  libsnappy1-1.3.1-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  libsnappy-devel-1.2.1-1
-  ninja-1.12.0-1
+  libfmt-devel-12.2.0-1bl1
+  libsnappy-devel-1.3.1-1
+  ninja-1.13.2-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://avro.apache.org/
 
 Canonical download:
-  mirror://apache/avro/avro-1.12.0/cpp/avro-cpp-1.12.0.tar.gz
+  mirror://apache/avro/avro-1.12.2/cpp/avro-cpp-1.12.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack avro-cpp-1.12.0-X-src.tar.xz
+  1. unpack avro-cpp-1.12.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./avro-cpp-1.12.0-X.cygport all
+        % cygport ./avro-cpp-1.12.2-X.cygport all
 
 This will create:
-  /usr/src/avro-cpp-1.12.0-X-src.tar.xz
-  /usr/src/avro-cpp-1.12.0-X.tar.xz
-  /usr/src/libavrocpp1-1.12.0-X.tar.xz
-  /usr/src/libavrocpp-devel-1.12.0-X.tar.xz
+  /usr/src/avro-cpp-1.12.2-X-src.tar.xz
+  /usr/src/avro-cpp-1.12.2-X.tar.xz
+  /usr/src/libavrocpp1-1.12.2-X.tar.xz
+  /usr/src/libavrocpp-devel-1.12.2-X.tar.xz
 
 -------------------------------------------
 
@@ -102,12 +103,19 @@ Files included in the binary package:
   /usr/include/avro/buffer/BufferStreambuf.hh
   /usr/include/avro/buffer/detail/BufferDetail.hh
   /usr/include/avro/buffer/detail/BufferDetailIterator.hh
+  /usr/lib/cmake/avro-cpp/avro-cpp-config-version.cmake
+  /usr/lib/cmake/avro-cpp/avro-cpp-config.cmake
+  /usr/lib/cmake/avro-cpp/avro-cpp-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/avro-cpp/avro-cpp-targets.cmake
   /usr/lib/libavrocpp.dll.a
   /usr/lib/pkgconfig/avro-cpp.pc
 
 ------------------
 
 Port Notes:
+
+----- version 1.12.2-1bl1 -----
+Version bump.
 
 ----- version 1.12.0-1bl1 -----
 Version bump.

@@ -1,0 +1,31 @@
+--- origsrc/glog-0.7.1/CMakeLists.txt	2024-06-08 15:07:34.000000000 +0000
++++ src/glog-0.7.1/CMakeLists.txt	2026-10-18 10:33:09.412009900 +0000
+@@ -481,7 +481,7 @@ target_include_directories (glog BEFORE
+   PRIVATE ${glog_BINARY_DIR}
+   PRIVATE ${glog_SOURCE_DIR}/src)
+ 
+-if (CYGWIN OR WIN32)
++if (WIN32)
+   target_include_directories (glog_internal PUBLIC
+     "$<BUILD_INTERFACE:${glog_SOURCE_DIR}/src/windows>"
+     PRIVATE ${glog_SOURCE_DIR}/src/windows)
+@@ -489,7 +489,7 @@ if (CYGWIN OR WIN32)
+   target_include_directories (glog PUBLIC
+     "$<BUILD_INTERFACE:${glog_SOURCE_DIR}/src/windows>"
+     PRIVATE ${glog_SOURCE_DIR}/src/windows)
+-endif (CYGWIN OR WIN32)
++endif (WIN32)
+ 
+ set_target_properties (glog PROPERTIES DEFINE_SYMBOL GOOGLE_GLOG_IS_A_DLL)
+ 
+--- origsrc/glog-0.7.1/src/logging.cc	2024-06-08 15:07:34.000000000 +0000
++++ src/glog-0.7.1/src/logging.cc	2026-10-18 10:33:09.414029000 +0000
+@@ -2446,7 +2446,7 @@ void TruncateLogFile(const char* path, u
+   // Don't follow symlinks unless they're our own fd symlinks in /proc
+   int flags = O_RDWR;
+   // TODO(hamaji): Support other environments.
+-#  ifdef GLOG_OS_LINUX
++#  if defined(GLOG_OS_LINUX) || defined(GLOG_OS_CYGWIN)
+   const char* procfd_prefix = "/proc/self/fd/";
+   if (strncmp(procfd_prefix, path, strlen(procfd_prefix))) flags |= O_NOFOLLOW;
+ #  endif

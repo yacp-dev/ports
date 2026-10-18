@@ -1,0 +1,15 @@
+--- origsrc/libeconf-0.8.6/tests/tst-econftool1.sh	2026-10-15 12:25:03.000000000 +0000
++++ src/libeconf-0.8.6/tests/tst-econftool1.sh	2026-10-18 01:45:26.216543100 +0000
+@@ -16,6 +16,12 @@ declare -a experr=("Usage: econftool"
+                    "Invalid number of Arguments"
+                    "Unknown command!")
+ 
++# Cygwin's getopt words an unknown option "unknown option -- j", not
++# glibc's "invalid option -- 'j'".
++if [[ "$(uname -o)" == "Cygwin" ]]; then
++    experr[2]="unknown option -- j"
++fi
++
+ 
+ teststringslength=${#teststrings[@]}
+ 

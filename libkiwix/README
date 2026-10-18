@@ -4,42 +4,43 @@ The Libkiwix provides the Kiwix software suite core. It contains the code
 shared by all Kiwix ports (Windows, GNU/Linux, macOS, Android, iOS, ...).
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libcurl-devel-8.19.0-1
-  libcurl4-8.19.0-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.11-1
+  libcurl-devel-8.22.0-1
+  libcurl4-8.22.0-1
+  libgcc1-14.4.0-1
   libicu-devel-76.1-2
   libicu76-76.1-2
-  libkiwix-devel-14.2.0-1bl1
-  libkiwix14-14.2.0-1bl1
-  libmicrohttpd-devel-1.0.2-1bl1
-  libmicrohttpd12-1.0.2-1bl1
+  libkiwix-devel-14.2.1-1bl1
+  libkiwix14-14.2.1-1bl1
+  libmicrohttpd-devel-1.0.10-1bl1
+  libmicrohttpd12-1.0.10-1bl1
   libpugixml1-1.9-1
-  libstdc++6-13.4.0-1
+  libstdc++6-14.4.0-1
   libxapian-devel-1.4.30-1
   libxapian30-1.4.30-1
-  libzim-devel-9.5.0-1bl1
-  libzim9-9.5.0-1bl1
-  pkg-config-2.5.1-1
-  python39-3.9.16-1
+  libzim-devel-9.8.2-1bl1
+  libzim9-9.8.2-1bl1
+  pkg-config-3.0.9-1
+  python3-3.12.12-1
   zlib-devel-1.3.2-1
   zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
   Mustache-4.1-1bl2
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libcurl-devel-8.19.0-1
-  libgtest-devel-1.17.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libcurl-devel-8.22.0-1
+  libgtest-devel-1.18.0-1bl1
   libicu-devel-76.1-2
-  libmicrohttpd-devel-1.0.2-1bl1
+  libmicrohttpd-devel-1.0.10-1bl1
   libpugixml-devel-1.9-1
   libxapian-devel-1.4.30-1
-  libzim-devel-9.5.0-1bl1
-  meson-1.6.1-1
+  libzim-devel-9.8.2-1bl1
+  meson-1.10.2-1
   ninja-1.13.2-1
   zlib-devel-1.3.2-1
 
@@ -47,22 +48,22 @@ Canonical website:
   https://github.com/kiwix/libkiwix
 
 Canonical download:
-  https://github.com/kiwix/libkiwix/archive/refs/tags/14.2.0.tar.gz
+  https://github.com/kiwix/libkiwix/archive/refs/tags/14.2.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libkiwix-14.2.0-X-src.tar.xz
+  1. unpack libkiwix-14.2.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libkiwix-14.2.0-X.cygport all
+        % cygport ./libkiwix-14.2.1-X.cygport all
 
 This will create:
-  /usr/src/libkiwix-14.2.0-X-src.tar.xz
-  /usr/src/libkiwix-14.2.0-X.tar.xz
-  /usr/src/libkiwix14-14.2.0-X.tar.xz
-  /usr/src/libkiwix-devel-14.2.0-X.tar.xz
+  /usr/src/libkiwix-14.2.1-X-src.tar.xz
+  /usr/src/libkiwix-14.2.1-X.tar.xz
+  /usr/src/libkiwix14-14.2.1-X.tar.xz
+  /usr/src/libkiwix-devel-14.2.1-X.tar.xz
 
 -------------------------------------------
 
@@ -104,6 +105,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 14.2.1-1bl1 -----
+Version bump.
 
 ----- version 14.2.0-1bl1 -----
 Version bump.

@@ -25,7 +25,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	cygninja check
+	PATH=${B}/lib:${PATH} cygninja check
 }
 
 PKG_NAMES="

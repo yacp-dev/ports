@@ -5,44 +5,43 @@ designed to integrate with applications that use openssl. Note, however, that
 the libp11 library is not thread safe.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libp11-devel-0.4.18-1bl1
-  libp11_3-0.4.18-1bl1
-  libssl3-3.0.19-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libp11-devel-0.4.21-1bl1
+  libp11_3-0.4.21-1bl1
+  libssl3-3.5.9-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  libssl-devel-3.0.19-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libssl-devel-3.5.9-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/OpenSC/libp11
 
 Canonical download:
-  https://github.com/OpenSC/libp11/archive/refs/tags/libp11-0.4.18.tar.gz
+  https://github.com/OpenSC/libp11/archive/refs/tags/libp11-0.4.21.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libp11-0.4.18-X-src.tar.xz
+  1. unpack libp11-0.4.21-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libp11-0.4.18-X.cygport all
+        % cygport ./libp11-0.4.21-X.cygport all
 
 This will create:
-  /usr/src/libp11-0.4.18-X-src.tar.xz
-  /usr/src/libp11-0.4.18-X.tar.xz
-  /usr/src/libp11_3-0.4.18-X.tar.xz
-  /usr/src/libp11-devel-0.4.18-X.tar.xz
+  /usr/src/libp11-0.4.21-X-src.tar.xz
+  /usr/src/libp11-0.4.21-X.tar.xz
+  /usr/src/libp11_3-0.4.21-X.tar.xz
+  /usr/src/libp11-devel-0.4.21-X.tar.xz
 
 -------------------------------------------
 
@@ -64,12 +63,16 @@ Files included in the binary package:
 (libp11-devel)
   /usr/include/libp11.h
   /usr/include/p11_err.h
+  /usr/include/p11_ver.h
   /usr/lib/libp11.dll.a
   /usr/lib/pkgconfig/libp11.pc
 
 ------------------
 
 Port Notes:
+
+----- version 0.4.21-1bl1 -----
+Version bump.
 
 ----- version 0.4.18-1bl1 -----
 Version bump.

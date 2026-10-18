@@ -1,5 +1,5 @@
---- origsrc/fstrm-0.6.1/Makefile.am	2021-04-06 02:06:59.000000000 +0900
-+++ src/fstrm-0.6.1/Makefile.am	2026-01-14 11:43:26.962104000 +0900
+--- origsrc/fstrm-0.6.1/Makefile.am	2021-04-05 17:06:59.000000000 +0000
++++ src/fstrm-0.6.1/Makefile.am	2026-10-18 04:10:08.182652300 +0000
 @@ -18,7 +18,7 @@ AM_CPPFLAGS = \
  	-include $(top_builddir)/config.h \
  	-I${top_srcdir}/fstrm

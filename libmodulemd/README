@@ -3,33 +3,31 @@ libmodulemd
 C Library for manipulating module metadata files
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  girepository-GLib2.0-1.84.0-1
-  libglib2.0-devel-2.85.1-1
-  libglib2.0_0-2.85.1-1
-  libmodulemd-devel-2.15.2-1bl1
-  libmodulemd2-2.15.2-1bl1
+  cygwin-3.6.11-1
+  girepository-GLib2.0-1.86.0-2
+  libglib2.0-devel-2.90.0-1
+  libglib2.0_0-2.90.0-1
+  libmodulemd-devel-2.15.3-1bl1
+  libmodulemd2-2.15.3-1bl1
   libyaml-devel-0.2.5-1
   libyaml0_2-0.2.5-1
-  pkg-config-2.4.3-1
-  python39-3.9.18-2
-  python39-gi-3.36.1-3
-  python39-six-1.17.0-1
+  pkg-config-3.0.9-1
+  python3-3.12.12-1
   rpm-4.18.0-1
   rpm-devel-4.18.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gobject-introspection-1.84.0-1
-  libglib2.0-devel-2.85.1-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gobject-introspection-1.86.0-2
+  libglib2.0-devel-2.90.0-1
   libyaml-devel-0.2.5-1
-  meson-1.4.2-1
-  ninja-1.12.1-1
-  python-gi-devel-3.36.1-3
-  python39-3.9.18-2
+  meson-1.10.2-1
+  ninja-1.13.2-1
+  python-gi-devel-3.58.1-1
+  python3-3.12.12-1
   python39-gi-3.36.1-3
   rpm-devel-4.18.0-1
 
@@ -37,24 +35,24 @@ Canonical website:
   https://github.com/fedora-modularity/libmodulemd
 
 Canonical download:
-  https://github.com/fedora-modularity/libmodulemd/archive/refs/tags/libmodulemd-2.15.2.tar.gz
+  https://github.com/fedora-modularity/libmodulemd/archive/refs/tags/libmodulemd-2.15.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmodulemd-2.15.2-X-src.tar.xz
+  1. unpack libmodulemd-2.15.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmodulemd-2.15.2-X.cygport all
+        % cygport ./libmodulemd-2.15.3-X.cygport all
 
 This will create:
-  /usr/src/libmodulemd-2.15.2-X-src.tar.xz
-  /usr/src/libmodulemd-2.15.2-X.tar.xz
-  /usr/src/libmodulemd2-2.15.2-X.tar.xz
-  /usr/src/libmodulemd-devel-2.15.2-X.tar.xz
-  /usr/src/girepository-Modulemd2.0-2.15.2-X.tar.xz
-  /usr/src/python39-libmodulemd-2.15.2-X.tar.xz
+  /usr/src/libmodulemd-2.15.3-X-src.tar.xz
+  /usr/src/libmodulemd-2.15.3-X.tar.xz
+  /usr/src/libmodulemd2-2.15.3-X.tar.xz
+  /usr/src/libmodulemd-devel-2.15.3-X.tar.xz
+  /usr/src/girepository-Modulemd2.0-2.15.3-X.tar.xz
+  /usr/src/python39-libmodulemd-2.15.3-X.tar.xz
 
 -------------------------------------------
 
@@ -114,6 +112,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.15.3-1bl1 -----
+Version bump.
 
 ----- version 2.15.2-1bl1 -----
 Version bump.

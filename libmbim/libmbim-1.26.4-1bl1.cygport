@@ -6,7 +6,11 @@ SUMMARY="Glib-based library for talking to WWAN modems and devices"
 DESCRIPTION="libmbim is a glib-based library for talking to WWAN modems and devices which
 speak the Mobile Interface Broadband Model (MBIM) protocol."
 
-BUILD_REQUIRES="libglib2.0-devel"
+BUILD_REQUIRES="
+	gobject-introspection
+	libgirepository1.0-devel
+	libglib2.0-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D__USE_LINUX_IOCTL_DEFS"
 

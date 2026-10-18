@@ -4,48 +4,49 @@ libmbim is a glib-based library for talking to WWAN modems and devices which
 speak the Mobile Interface Broadband Model (MBIM) protocol.
 
 Runtime requirements:
-  bash-4.4.12-3
-  cygwin-3.2.0-1
-  girepository-GLib2.0-1.54.1-3
-  libglib2.0-devel-2.54.3-1
-  libglib2.0_0-2.54.3-1
-  libmbim-glib-devel-1.24.8-1bl1
-  libmbim-glib4-1.24.8-1bl1
-  pkg-config-1.6.3-1
+  bash-5.2.21-1
+  cygwin-3.6.11-1
+  girepository-GLib2.0-1.86.0-2
+  libglib2.0-devel-2.90.0-1
+  libglib2.0_0-2.90.0-1
+  libmbim-glib-devel-1.26.4-1bl1
+  libmbim-glib4-1.26.4-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-11-1
-  binutils-2.36.1-2
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  gobject-introspection-1.54.1-3
-  libglib2.0-devel-2.54.3-1
-  libtool-2.4.6-7
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gobject-introspection-1.86.0-2
+  libgirepository1.0-devel-1.86.0-2
+  libglib2.0-devel-2.90.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://www.freedesktop.org/wiki/Software/libmbim/
 
 Canonical download:
-  https://www.freedesktop.org/software/libmbim/libmbim-1.24.8.tar.xz
+  https://www.freedesktop.org/software/libmbim/libmbim-1.26.4.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmbim-1.24.8-X-src.tar.xz
+  1. unpack libmbim-1.26.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmbim-1.24.8-X.cygport all
+        % cygport ./libmbim-1.26.4-X.cygport all
 
 This will create:
-  /usr/src/libmbim-1.24.8-X-src.tar.xz
-  /usr/src/libmbim-1.24.8-X.tar.xz
-  /usr/src/libmbim-glib4-1.24.8-X.tar.xz
-  /usr/src/libmbim-glib-devel-1.24.8-X.tar.xz
-  /usr/src/girepository-Mbim1.0-1.24.8-X.tar.xz
+  /usr/src/libmbim-1.26.4-X-src.tar.xz
+  /usr/src/libmbim-1.26.4-X.tar.xz
+  /usr/src/libmbim-glib4-1.26.4-X.tar.xz
+  /usr/src/libmbim-glib-devel-1.26.4-X.tar.xz
+  /usr/src/girepository-Mbim1.0-1.26.4-X.tar.xz
 
 -------------------------------------------
 
@@ -87,10 +88,14 @@ Files included in the binary package:
   /usr/include/libmbim-glib/mbim-ms-basic-connect-extensions.h
   /usr/include/libmbim-glib/mbim-ms-firmware-id.h
   /usr/include/libmbim-glib/mbim-ms-host-shutdown.h
+  /usr/include/libmbim-glib/mbim-ms-sar.h
+  /usr/include/libmbim-glib/mbim-ms-uicc-low-level-access.h
   /usr/include/libmbim-glib/mbim-phonebook.h
   /usr/include/libmbim-glib/mbim-proxy-control.h
   /usr/include/libmbim-glib/mbim-proxy.h
+  /usr/include/libmbim-glib/mbim-qdu.h
   /usr/include/libmbim-glib/mbim-qmi.h
+  /usr/include/libmbim-glib/mbim-quectel.h
   /usr/include/libmbim-glib/mbim-sms.h
   /usr/include/libmbim-glib/mbim-stk.h
   /usr/include/libmbim-glib/mbim-ussd.h
@@ -107,6 +112,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.26.4-1bl1 -----
+Version bump.
 
 ----- version 1.24.8-1bl1 -----
 Version bump.

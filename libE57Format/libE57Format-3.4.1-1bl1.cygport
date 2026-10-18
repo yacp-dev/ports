@@ -16,6 +16,7 @@ LICENSE_URI="LICENSE.md"
 BUILD_REQUIRES="
 	ccache
 	clang
+	libgtest-devel
 	libxerces-c-devel
 "
 
@@ -25,8 +26,15 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DE57_BUILD_TEST:BOOL=OFF
+	-DE57_BUILD_TEST:BOOL=ON
+	-DE57_USE_EXTERNAL_GTEST:BOOL=ON
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${PATH} ./testE57
+}
 
 PKG_NAMES="
 	${PN}

@@ -7,23 +7,24 @@ attributes associated with 3D point data (color & intensity), and 2D images
 (photos taken using a 3D imaging system).
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libE57Format-devel-3.4.0-1bl1
-  libE57Format3-3.4.0-1bl1
+  cygwin-3.6.11-1
+  libE57Format-devel-3.4.1-1bl1
+  libE57Format3-3.4.1-1bl1
   libgcc1-14.4.0-1
   libstdc++6-14.4.0-1
   libxerces-c31-3.1.4-1
-  pkg-config-3.0.5-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   ccache-3.1.9-2
-  clang-20.1.8-2
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  clang-22.1.8-3
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
   libxerces-c-devel-3.1.4-1
   ninja-1.13.2-1
 
@@ -31,22 +32,22 @@ Canonical website:
   https://github.com/asmaloney/libE57Format
 
 Canonical download:
-  https://github.com/asmaloney/libE57Format/archive/refs/tags/v3.4.0.tar.gz
+  https://github.com/asmaloney/libE57Format/archive/refs/tags/v3.4.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libE57Format-3.4.0-X-src.tar.xz
+  1. unpack libE57Format-3.4.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libE57Format-3.4.0-X.cygport all
+        % cygport ./libE57Format-3.4.1-X.cygport all
 
 This will create:
-  /usr/src/libE57Format-3.4.0-X-src.tar.xz
-  /usr/src/libE57Format-3.4.0-X.tar.xz
-  /usr/src/libE57Format3-3.4.0-X.tar.xz
-  /usr/src/libE57Format-devel-3.4.0-X.tar.xz
+  /usr/src/libE57Format-3.4.1-X-src.tar.xz
+  /usr/src/libE57Format-3.4.1-X.tar.xz
+  /usr/src/libE57Format3-3.4.1-X.tar.xz
+  /usr/src/libE57Format-devel-3.4.1-X.tar.xz
 
 -------------------------------------------
 
@@ -79,6 +80,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.4.1-1bl1 -----
+Version bump.
 
 ----- version 3.4.0-1bl1 -----
 Version bump.

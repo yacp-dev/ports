@@ -13,6 +13,7 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	autoconf-archive
 	libexttextcat2.0-devel
 	libfolia-devel
 	libicu-devel

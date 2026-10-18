@@ -6,35 +6,35 @@ case that you can all use to make your text suited for further processing such
 as indexing, part-of-speech tagging, or machine translation.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libexttextcat2.0_0-3.4.7-1bl2
-  libfolia22-2.22-1bl1
-  libgcc1-13.4.0-1
-  libgomp1-13.4.0-1
+  cygwin-3.6.11-1
+  libexttextcat2.0_1-3.4.8-1bl1
+  libfolia22-2.22-1bl2
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
   libicu76-76.1-2
   libreadline8-8.3-1
-  libstdc++6-13.4.0-1
-  libticcutils10-0.37-1bl1
-  libucto-devel-0.36-1bl1
-  libucto6-0.36-1bl1
-  pkg-config-2.5.1-1
+  libstdc++6-14.4.0-1
+  libticcutils10-0.38-1bl1
+  libucto-devel-0.37-1bl1
+  libucto6-0.37-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
+  autoconf-20260320-3
   autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libexttextcat2.0-devel-3.4.7-1bl2
-  libfolia-devel-2.22-1bl1
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libexttextcat2.0-devel-3.4.8-1bl1
+  libfolia-devel-2.22-1bl2
   libicu-devel-76.1-2
   libreadline-devel-8.3-1
-  libticcutils-devel-0.37-1bl1
-  libtool-2.5.4-1
-  libxml2-devel-2.10.4-2
+  libticcutils-devel-0.38-1bl1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-2
   make-4.4.1-2
   uctodata-0.11-1bl1
 
@@ -42,22 +42,22 @@ Canonical website:
   https://github.com/LanguageMachines/ucto
 
 Canonical download:
-  https://github.com/LanguageMachines/ucto/archive/refs/tags/v0.36.tar.gz
+  https://github.com/LanguageMachines/ucto/archive/refs/tags/v0.37.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ucto-0.36-X-src.tar.xz
+  1. unpack ucto-0.37-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ucto-0.36-X.cygport all
+        % cygport ./ucto-0.37-X.cygport all
 
 This will create:
-  /usr/src/ucto-0.36-X-src.tar.xz
-  /usr/src/ucto-0.36-X.tar.xz
-  /usr/src/libucto6-0.36-X.tar.xz
-  /usr/src/libucto-devel-0.36-X.tar.xz
+  /usr/src/ucto-0.37-X-src.tar.xz
+  /usr/src/ucto-0.37-X.tar.xz
+  /usr/src/libucto6-0.37-X.tar.xz
+  /usr/src/libucto-devel-0.37-X.tar.xz
 
 -------------------------------------------
 
@@ -93,6 +93,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.37-1bl1 -----
+Version bump.
 
 ----- version 0.36-1bl1 -----
 Version bump.

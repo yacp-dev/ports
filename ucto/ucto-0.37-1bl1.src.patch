@@ -1,5 +1,5 @@
---- origsrc/ucto-0.36/src/Makefile.am	2025-12-11 21:37:18.000000000 +0900
-+++ src/ucto-0.36/src/Makefile.am	2026-02-05 15:33:18.758700400 +0900
+--- origsrc/ucto-0.37/src/Makefile.am	2026-08-20 09:43:43.000000000 +0000
++++ src/ucto-0.37/src/Makefile.am	2026-10-18 05:12:33.631196100 +0000
 @@ -1,5 +1,5 @@
  AM_CPPFLAGS = -I@top_srcdir@/include
 -AM_CXXFLAGS = -DSYSCONF_PATH=\"$(datadir)\" -std=c++17 -W -Wall -pedantic -g -O3

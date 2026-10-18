@@ -4,46 +4,47 @@ libyang is a YANG data modelling language parser and toolkit written (and
 providing API) in C.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libpcre2-devel-10.47-1
-  libpcre2_8_0-10.47-1
-  libxxhash0-0.8.3-1
-  libyang-devel-4.2.2-1bl1
-  libyang4-4.2.2-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libpcre2-devel-10.49-1
+  libpcre2_8_0-10.49-1
+  libxxhash-devel-0.8.4-1
+  libxxhash0-0.8.4-1
+  libyang-devel-6.4.13-1bl1
+  libyang5-6.4.13-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   libcmocka-devel-2.0.2-1
   libpcre-devel-8.45-1
-  libxxhash-devel-0.8.3-1
+  libxxhash-devel-0.8.4-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/CESNET/libyang
 
 Canonical download:
-  https://github.com/CESNET/libyang/archive/refs/tags/v4.2.2.tar.gz
+  https://github.com/CESNET/libyang/archive/refs/tags/v6.4.13.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libyang-4.2.2-X-src.tar.xz
+  1. unpack libyang-6.4.13-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libyang-4.2.2-X.cygport all
+        % cygport ./libyang-6.4.13-X.cygport all
 
 This will create:
-  /usr/src/libyang-4.2.2-X-src.tar.xz
-  /usr/src/libyang-4.2.2-X.tar.xz
-  /usr/src/libyang4-4.2.2-X.tar.xz
-  /usr/src/libyang-devel-4.2.2-X.tar.xz
+  /usr/src/libyang-6.4.13-X-src.tar.xz
+  /usr/src/libyang-6.4.13-X.tar.xz
+  /usr/src/libyang5-6.4.13-X.tar.xz
+  /usr/src/libyang-devel-6.4.13-X.tar.xz
 
 -------------------------------------------
 
@@ -60,16 +61,24 @@ Files included in the binary package:
   /usr/share/man/man1/yangre.1.gz
   /usr/share/yang/modules/libyang/default@2025-06-18.yang
   /usr/share/yang/modules/libyang/ietf-datastores@2018-02-14.yang
-  /usr/share/yang/modules/libyang/ietf-inet-types@2013-07-15.yang
+  /usr/share/yang/modules/libyang/ietf-inet-types@2025-12-22.yang
+  /usr/share/yang/modules/libyang/ietf-sid-file@2024-07-31.yang
+  /usr/share/yang/modules/libyang/ietf-yang-library-augmentedby@2025-05-28.yang
+  /usr/share/yang/modules/libyang/ietf-yang-library-semver@2025-09-29.yang
+  /usr/share/yang/modules/libyang/ietf-yang-library-status@2025-09-16.yang
   /usr/share/yang/modules/libyang/ietf-yang-library@2019-01-04.yang
   /usr/share/yang/modules/libyang/ietf-yang-metadata@2016-08-05.yang
+  /usr/share/yang/modules/libyang/ietf-yang-revisions@2025-09-16.yang
+  /usr/share/yang/modules/libyang/ietf-yang-schema-comparison-output@2026-09-02.yang
+  /usr/share/yang/modules/libyang/ietf-yang-schema-comparison@2026-09-02.yang
   /usr/share/yang/modules/libyang/ietf-yang-schema-mount@2019-01-14.yang
+  /usr/share/yang/modules/libyang/ietf-yang-semver@2026-03-03.yang
   /usr/share/yang/modules/libyang/ietf-yang-structure-ext@2020-06-17.yang
-  /usr/share/yang/modules/libyang/ietf-yang-types@2013-07-15.yang
+  /usr/share/yang/modules/libyang/ietf-yang-types@2025-12-22.yang
   /usr/share/yang/modules/libyang/yang@2025-01-29.yang
 
-(libyang4)
-  /usr/bin/cygyang-4.dll
+(libyang5)
+  /usr/bin/cygyang-5.dll
 
 (libyang-devel)
   /usr/include/libyang/context.h
@@ -78,6 +87,7 @@ Files included in the binary package:
   /usr/include/libyang/in.h
   /usr/include/libyang/libyang.h
   /usr/include/libyang/log.h
+  /usr/include/libyang/ly_array.h
   /usr/include/libyang/ly_config.h
   /usr/include/libyang/metadata.h
   /usr/include/libyang/out.h
@@ -88,11 +98,11 @@ Files included in the binary package:
   /usr/include/libyang/plugins_types.h
   /usr/include/libyang/printer_data.h
   /usr/include/libyang/printer_schema.h
+  /usr/include/libyang/semver.h
   /usr/include/libyang/set.h
-  /usr/include/libyang/tree.h
   /usr/include/libyang/tree_data.h
-  /usr/include/libyang/tree_edit.h
   /usr/include/libyang/tree_schema.h
+  /usr/include/libyang/utils.h
   /usr/include/libyang/version.h
   /usr/lib/libyang.dll.a
   /usr/lib/pkgconfig/libyang.pc
@@ -100,6 +110,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 6.4.13-1bl1 -----
+Version bump.
 
 ----- version 4.2.2-1bl1 -----
 Version bump.

@@ -13,6 +13,7 @@ LICENSE_URI="LICENSE"
 BUILD_REQUIRES="
 	libcmocka-devel
 	libcrypt-devel
+	libcurl-devel
 	libssh-devel
 	libssl-devel
 	libyang-devel
@@ -30,10 +31,11 @@ PKG_NAMES="
 	libnetconf2-devel
 "
 libnetconf2_CONTENTS="
-	usr/share
+	usr/share/doc
 "
 libnetconf2_5_CONTENTS="
 	usr/bin/cyg*-5.dll
+	usr/share/yang
 "
 libnetconf2_devel_CONTENTS="
 	usr/include

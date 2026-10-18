@@ -29,7 +29,7 @@ libplctag_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libplctag2_6_CONTENTS="
+libplctag2_7_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libplctag_devel_CONTENTS="
@@ -37,5 +37,5 @@ libplctag_devel_CONTENTS="
 	usr/lib
 "
 libplctag_SUMMARY="${SUMMARY} (utilities)"
-libplctag2_6_SUMMARY="${SUMMARY} (runtime)"
+libplctag2_7_SUMMARY="${SUMMARY} (runtime)"
 libplctag_devel_SUMMARY="${SUMMARY} (development)"

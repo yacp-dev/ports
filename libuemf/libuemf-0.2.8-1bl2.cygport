@@ -2,9 +2,9 @@ HOMEPAGE="https://sourceforge.net/projects/${PN}/"
 SRC_URI="mirror://sourceforge/${PN}/libUEMF-${PV}.tar.gz"
 SRC_DIR="libUEMF-${PV}"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.2.8%2Bds-3/debian/patches/fix-printf.patch
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.2.8%2Bds-3/debian/patches/fix-install.patch
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.2.8%2Bds-3/debian/patches/uemf-link-with-m.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.2.8%2Bds-4/debian/patches/fix-printf.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.2.8%2Bds-4/debian/patches/fix-install.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.2.8%2Bds-4/debian/patches/uemf-link-with-m.patch
 "
 
 CATEGORY="Libs"
@@ -28,6 +28,10 @@ LICENSE_URI="COPYING"
 BUILD_REQUIRES="libiconv-devel"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
 
 PKG_NAMES="
 	libuemf

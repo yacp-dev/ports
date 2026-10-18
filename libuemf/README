@@ -3,31 +3,31 @@ libuemf
 libUEMF is a portable C99 implementation for reading and writing Windows
 Metafile, Enhanced Metafile, and Enhanced Metafile Plus (WMF, EMF, and EMF+)
 files. libUEMF avoids collisions with Microsoft defined functions and values,
-so portable programs which use it and have a Windows version do not require any
-conditional logic to separate the native GDI/GDI+ support from the equivalent
-functions provided by libUEMF. libUEMF does not implement GDI/GDI+ calls.
-Instead, for each metafile record type, and each object type incorporated into
-such a record, it provides corresponding *_set, *_get, *_print, and *_swap
-functions. Additional functions are provided for assembling the metafile in
-memory, debugging, and providing any needed byte swapping (an EMF file's
-internal data representation is always Little Endian.)
+so portable programs which use it and have a Windows version do not require
+any conditional logic to separate the native GDI/GDI+ support from the
+equivalent functions provided by libUEMF. libUEMF does not implement GDI/GDI+
+calls. Instead, for each metafile record type, and each object type
+incorporated into such a record, it provides corresponding *_set, *_get,
+*_print, and *_swap functions. Additional functions are provided for
+assembling the metafile in memory, debugging, and providing any needed byte
+swapping (an EMF file's internal data representation is always Little Endian.)
 
 Runtime requirements:
-  cygwin-3.5.7-1
-  libiconv2-1.17-1
-  libuemf-devel-0.2.8-1bl1
-  libuemf0-0.2.8-1bl1
-  pkg-config-2.3.0-1
+  cygwin-3.6.11-1
+  libiconv2-1.19-2
+  libuemf-devel-0.2.8-1bl2
+  libuemf0-0.2.8-1bl2
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libiconv-devel-1.17-1
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libiconv-devel-1.19-2
+  ninja-1.13.2-1
 
 Canonical website:
   https://sourceforge.net/projects/libuemf/
@@ -87,6 +87,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.8-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2.8-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

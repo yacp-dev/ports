@@ -4,55 +4,54 @@ The libpinyin project aims to provide the algorithms core for intelligent
 sentence-based Chinese pinyin input methods.
 
 Runtime requirements:
-  cygwin-3.6.6-1
+  cygwin-3.6.11-1
   libdb18.1-18.1.40-1
-  libgcc1-13.4.0-1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
-  libpinyin-devel-2.11.91-1bl1
-  libpinyin15-2.11.91-1bl1
-  libstdc++6-13.4.0-1
-  libzhuyin-devel-2.11.91-1bl1
-  libzhuyin15-2.11.91-1bl1
-  pkg-config-2.5.1-1
+  libgcc1-14.4.0-1
+  libglib2.0-devel-2.90.0-1
+  libglib2.0_0-2.90.0-1
+  libpinyin-devel-2.11.92-1bl1
+  libpinyin15-2.11.92-1bl1
+  libstdc++6-14.4.0-1
+  libzhuyin-devel-2.11.92-1bl1
+  libzhuyin15-2.11.92-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libdb-devel-18.1.40-1
-  libglib2.0-devel-2.87.0-1
-  libtool-2.5.4-1
+  libglib2.0-devel-2.90.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/libpinyin/libpinyin
 
 Canonical download:
-  https://github.com/libpinyin/libpinyin/archive/refs/tags/2.11.91.tar.gz
+  https://github.com/libpinyin/libpinyin/archive/refs/tags/v2.11.92.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libpinyin-2.11.91-X-src.tar.xz
+  1. unpack libpinyin-2.11.92-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libpinyin-2.11.91-X.cygport all
+        % cygport ./libpinyin-2.11.92-X.cygport all
 
 This will create:
-  /usr/src/libpinyin-2.11.91-X-src.tar.xz
-  /usr/src/libpinyin-2.11.91-X.tar.xz
-  /usr/src/libpinyin15-2.11.91-X.tar.xz
-  /usr/src/libpinyin-devel-2.11.91-X.tar.xz
-  /usr/src/libzhuyin15-2.11.91-X.tar.xz
-  /usr/src/libzhuyin-devel-2.11.91-X.tar.xz
-  /usr/src/libpinyin-data-2.11.91-X.tar.xz
+  /usr/src/libpinyin-2.11.92-X-src.tar.xz
+  /usr/src/libpinyin-2.11.92-X.tar.xz
+  /usr/src/libpinyin15-2.11.92-X.tar.xz
+  /usr/src/libpinyin-devel-2.11.92-X.tar.xz
+  /usr/src/libzhuyin15-2.11.92-X.tar.xz
+  /usr/src/libzhuyin-devel-2.11.92-X.tar.xz
+  /usr/src/libpinyin-data-2.11.92-X.tar.xz
 
 -------------------------------------------
 
@@ -73,9 +72,9 @@ Files included in the binary package:
   /usr/bin/cygpinyin-15.dll
 
 (libpinyin-devel)
-  /usr/include/libpinyin-2.11.91/novel_types.h
-  /usr/include/libpinyin-2.11.91/pinyin.h
-  /usr/include/libpinyin-2.11.91/pinyin_custom2.h
+  /usr/include/libpinyin-2.11.92/novel_types.h
+  /usr/include/libpinyin-2.11.92/pinyin.h
+  /usr/include/libpinyin-2.11.92/pinyin_custom2.h
   /usr/lib/libpinyin.dll.a
   /usr/lib/pkgconfig/libpinyin.pc
 
@@ -83,8 +82,8 @@ Files included in the binary package:
   /usr/bin/cygzhuyin-15.dll
 
 (libzhuyin-devel)
-  /usr/include/libpinyin-2.11.91/zhuyin.h
-  /usr/include/libpinyin-2.11.91/zhuyin_custom2.h
+  /usr/include/libpinyin-2.11.92/zhuyin.h
+  /usr/include/libpinyin-2.11.92/zhuyin_custom2.h
   /usr/lib/libzhuyin.dll.a
   /usr/lib/pkgconfig/libzhuyin.pc
 
@@ -116,6 +115,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.11.92-1bl1 -----
+Version bump.
 
 ----- version 2.11.91-1bl1 -----
 Version bump.

@@ -1,5 +1,5 @@
---- origsrc/libetpan-1.9.4/configure.ac	2025-12-26 12:13:28.662288400 +0900
-+++ src/libetpan-1.9.4/configure.ac	2025-12-26 12:13:34.455461300 +0900
+--- origsrc/libetpan-1.10.1/configure.ac	2026-10-18 05:41:19.588615700 +0000
++++ src/libetpan-1.10.1/configure.ac	2026-10-18 05:41:21.436061500 +0000
 @@ -159,8 +159,10 @@ AC_HEADER_STDC
  AC_CHECK_HEADERS(fcntl.h unistd.h ctype.h sys/types.h sys/stat.h sys/mman.h limits.h)
  AC_CHECK_HEADERS(netdb.h netinet/in.h sys/socket.h)
@@ -13,8 +13,8 @@
  
  AC_ARG_WITH([poll], use poll intead of select, use_poll=yes, use_poll=no)
  
---- origsrc/libetpan-1.9.4/src/Makefile.am	2019-11-02 02:58:50.000000000 +0900
-+++ src/libetpan-1.9.4/src/Makefile.am	2025-12-26 12:13:34.473558500 +0900
+--- origsrc/libetpan-1.10.1/src/Makefile.am	2026-06-14 19:21:04.000000000 +0000
++++ src/libetpan-1.10.1/src/Makefile.am	2026-10-18 05:41:21.448201200 +0000
 @@ -43,7 +43,6 @@ SUFFIXES: .rc .lo
  	$(LTRCCOMPILE) -i $< -o $@
  
@@ -36,14 +36,14 @@
  
  if HAVE_MINGW32_SYSTEM
    arch_sources = dummy.cpp
---- origsrc/libetpan-1.9.4/src/low-level/smtp/mailsmtp.c	2025-12-26 12:13:24.991536600 +0900
-+++ src/libetpan-1.9.4/src/low-level/smtp/mailsmtp.c	2025-12-26 12:13:34.477587500 +0900
-@@ -276,7 +276,7 @@ static int get_hostname(mailsmtp * sessi
+--- origsrc/libetpan-1.10.1/src/low-level/smtp/mailsmtp.c	2026-06-14 19:21:04.000000000 +0000
++++ src/libetpan-1.10.1/src/low-level/smtp/mailsmtp.c	2026-10-18 05:41:21.441633600 +0000
+@@ -281,7 +281,7 @@ static int get_hostname(mailsmtp * sessi
      if (r != 0)
        return MAILSMTP_ERROR_HOSTNAME;
  
 -#if (defined __linux__ || defined WIN32 || defined __sun)
 +#if (defined __linux__ || defined WIN32 || defined __sun || defined(__CYGWIN__))
-     r = getnameinfo(&addr, sizeof(addr), hostname, HOSTNAME_SIZE, NULL, 0, NI_NUMERICHOST);
+     r = getnameinfo(&addr, addr_len, hostname, HOSTNAME_SIZE, NULL, 0, NI_NUMERICHOST);
  #else
      r = getnameinfo(&addr, addr.sa_len, hostname, HOSTNAME_SIZE, NULL, 0, NI_NUMERICHOST);

@@ -23,10 +23,17 @@ DOCS="
 	CHANGELOG.md
 "
 
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	sed -i -e "s/^project(osmpbf VERSION .*)$/project(osmpbf VERSION ${PV})/" CMakeLists.txt
+}
+
 src_test()
 {
 	cd ${B}
-	PATH=${B}/${PN}:${PATH} ./tools/osmpbf-outline.exe ${S}/resources/sample.pbf
+	PATH=${B}/${PN}:${PATH} ./demo/osmpbf-outline.exe ${S}/resources/sample.pbf
 }
 
 src_install()
@@ -45,7 +52,6 @@ PKG_NAMES="
 	libosmpbf-devel
 "
 osmpbf_CONTENTS="
-	usr/bin/*.exe
 	usr/share
 "
 libosmpbf1_CONTENTS="
@@ -55,6 +61,6 @@ libosmpbf_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
-osmpbf_SUMMARY="${SUMMARY} (utilities)"
+osmpbf_SUMMARY="${SUMMARY} (sample data)"
 libosmpbf1_SUMMARY="${SUMMARY} (runtime)"
 libosmpbf_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,8 +1,5 @@
 HOMEPAGE="https://github.com/open-quantum-safe/${PN}"
 SRC_URI="https://github.com/open-quantum-safe/${PN}/archive/refs/tags/${PV}.tar.gz"
-PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/liboqs-0.10.0-std-stricter.patch
-"
 
 CATEGORY="Libs"
 SUMMARY="C library for prototyping and experimenting with quantum-resistant cryptography"
@@ -14,11 +11,8 @@ LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="
 	libssl-devel
-	python39
-	python39-exceptiongroup
-	python39-pytest
-	python39-tomli
-	python39-yaml
+	python3-pytest
+	python3-requests
 "
 
 export LDFLAGS="${LDFLAGS} -Wl,--allow-multiple-definition"
@@ -32,7 +26,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	cygninja run_tests
+	PATH=${B}/bin:${PATH} cygninja run_tests
 }
 
 DIFF_EXCLUDES="

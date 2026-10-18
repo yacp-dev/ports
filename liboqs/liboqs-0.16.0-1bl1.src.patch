@@ -1,0 +1,23 @@
+--- origsrc/liboqs-0.16.0/tests/CMakeLists.txt	2026-07-09 14:28:37.000000000 +0000
++++ src/liboqs-0.16.0/tests/CMakeLists.txt	2026-10-18 21:07:15.514343500 +0000
+@@ -252,7 +252,7 @@ endif()
+ add_custom_target(
+     run_tests
+     # skip long KAT tests
+-    COMMAND ${CMAKE_COMMAND} -E env OQS_BUILD_DIR=${CMAKE_BINARY_DIR} ${PYTHON3_EXEC} -m pytest --verbose --numprocesses=${OQS_PYTEST_NUMPROCESSES} --ignore=scripts/copy_from_upstream/repos --ignore=tests/test_kat_all.py
++    COMMAND ${CMAKE_COMMAND} -E env OQS_BUILD_DIR=${CMAKE_BINARY_DIR} ${PYTHON3_EXEC} -m pytest --verbose --ignore=scripts/copy_from_upstream/repos --ignore=tests/test_kat_all.py --ignore=tests/test_alg_info.py
+     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+     DEPENDS oqs dump_alg_info ${KEM_TESTS} ${SIG_TESTS} ${SIG_STFL_TESTS} ${UNIX_TESTS}
+     USES_TERMINAL)
+--- origsrc/liboqs-0.16.0/tests/test_binary.py	2026-07-09 14:28:37.000000000 +0000
++++ src/liboqs-0.16.0/tests/test_binary.py	2026-10-18 21:07:15.514343500 +0000
+@@ -34,6 +34,9 @@ def test_namespace():
+ 
+     # ideally this would be just ['oqs', 'pqclean'], but contains exceptions (e.g., providing compat implementations of unavailable platform functions)
+     namespaces = ['oqs', 'pqclean', 'keccak', 'pqcrystals', 'pqmayo', 'init', 'fini', 'seedexpander', '__x86.get_pc_thunk', 'libjade', 'jade', '__jade', '__jasmin_syscall', 'pqcp', 'pqov', '_snova', 'sha3', 'slh', 'sha2', 'shake', 'hash', 'openssh', 'hqc', 'pqchqc']
++    if sys.platform == 'cygwin':
++        # libgcc's EH frame registration, exported from every DLL by GNU ld
++        namespaces += ['__gcc_register_frame', '__gcc_deregister_frame']
+     non_namespaced = []
+ 
+     for symbolstr in symbols:

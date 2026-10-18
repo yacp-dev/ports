@@ -13,7 +13,6 @@ LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	libcurl-devel
-	libexpat-devel
 	libmicrohttpd-devel
 "
 

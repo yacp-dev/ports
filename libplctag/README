@@ -4,41 +4,41 @@ This library for Linux and Windows (not heavily tested) provides a means of
 accessing PLCs to read and write simple data.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libgcc1-13.4.0-1
-  libplctag-devel-2.6.15-1bl1
-  libplctag2.6-2.6.15-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libplctag-devel-2.7.2-1bl1
+  libplctag2.7-2.7.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/libplctag/libplctag
 
 Canonical download:
-  https://github.com/libplctag/libplctag/archive/refs/tags/v2.6.15.tar.gz
+  https://github.com/libplctag/libplctag/archive/refs/tags/v2.7.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libplctag-2.6.15-X-src.tar.xz
+  1. unpack libplctag-2.7.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libplctag-2.6.15-X.cygport all
+        % cygport ./libplctag-2.7.2-X.cygport all
 
 This will create:
-  /usr/src/libplctag-2.6.15-X-src.tar.xz
-  /usr/src/libplctag-2.6.15-X.tar.xz
-  /usr/src/libplctag2.6-2.6.15-X.tar.xz
-  /usr/src/libplctag-devel-2.6.15-X.tar.xz
+  /usr/src/libplctag-2.7.2-X-src.tar.xz
+  /usr/src/libplctag-2.7.2-X.tar.xz
+  /usr/src/libplctag2.7-2.7.2-X.tar.xz
+  /usr/src/libplctag-devel-2.7.2-X.tar.xz
 
 -------------------------------------------
 
@@ -52,8 +52,8 @@ Files included in the binary package:
   /usr/share/doc/libplctag/LICENSE-2.LGPL
   /usr/share/doc/libplctag/README.md
 
-(libplctag2.6)
-  /usr/bin/cygplctag-2.6.dll
+(libplctag2.7)
+  /usr/bin/cygplctag-2.7.dll
 
 (libplctag-devel)
   /usr/include/libplctag.h
@@ -63,6 +63,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.7.2-1bl1 -----
+Version bump.
 
 ----- version 2.6.15-1bl1 -----
 Version bump.

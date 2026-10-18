@@ -12,6 +12,8 @@ LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	gnutls
+	gobject-introspection
+	libgirepository1.0-devel
 	libglib2.0-devel
 	libgnutls-devel
 	libgpg-error-devel
@@ -19,6 +21,7 @@ BUILD_REQUIRES="
 	libintl-devel
 	libjson-glib1.0-devel
 	libssl-devel
+	vala
 "
 
 inherit meson

@@ -4,40 +4,41 @@ This library allows reading and writing gzip-compressed JSON catalog files,
 which can be used to store GPG, PKCS-7 and SHA-256 checksums for each file.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  girepository-GLib2.0-1.86.0-1
+  cygwin-3.6.11-1
+  girepository-GLib2.0-1.86.0-2
   girepository-Json1.0-1.4.2-1
-  libgcc1-13.4.0-1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
-  libgnutls-devel-3.8.9-1
-  libgnutls30-3.8.9-1
-  libgpg-error0-1.58-1
-  libgpgme11-1.24.2-1
+  libgcc1-14.4.0-1
+  libglib2.0-devel-2.90.0-1
+  libglib2.0_0-2.90.0-1
+  libgnutls-devel-3.8.13-1
+  libgnutls30-3.8.13-1
+  libgpg-error0-1.61-1
+  libgpgme45-2.2.0-1
   libintl8-0.22.5-1
-  libjcat-devel-0.2.5-1bl1
-  libjcat1-0.2.5-1bl1
+  libjcat-devel-0.2.6-1bl1
+  libjcat1-0.2.6-1bl1
   libjson-glib1.0-devel-1.4.2-1
   libjson-glib1.0_0-1.4.2-1
-  libssl-devel-3.0.18-1
-  libssl3-3.0.18-1
-  pkg-config-2.5.1-1
+  libssl-devel-3.5.9-1
+  libssl3-3.5.9-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gnutls-3.8.9-1
-  gobject-introspection-1.86.0-1
-  libglib2.0-devel-2.87.0-1
-  libgnutls-devel-3.8.9-1
-  libgpg-error-devel-1.58-1
-  libgpgme-devel-1.24.2-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gnutls-3.8.13-1
+  gobject-introspection-1.86.0-2
+  libgirepository1.0-devel-1.86.0-2
+  libglib2.0-devel-2.90.0-1
+  libgnutls-devel-3.8.13-1
+  libgpg-error-devel-1.61-1
+  libgpgme-devel-2.2.0-1
   libintl-devel-0.22.5-1
   libjson-glib1.0-devel-1.4.2-1
-  libssl-devel-3.0.18-1
-  meson-1.4.2-1
+  libssl-devel-3.5.9-1
+  meson-1.10.2-1
   ninja-1.13.2-1
   vala-0.56.18-1
 
@@ -45,24 +46,24 @@ Canonical website:
   https://github.com/hughsie/libjcat
 
 Canonical download:
-  https://github.com/hughsie/libjcat/archive/refs/tags/0.2.5.tar.gz
+  https://github.com/hughsie/libjcat/archive/refs/tags/0.2.6.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libjcat-0.2.5-X-src.tar.xz
+  1. unpack libjcat-0.2.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libjcat-0.2.5-X.cygport all
+        % cygport ./libjcat-0.2.6-X.cygport all
 
 This will create:
-  /usr/src/libjcat-0.2.5-X-src.tar.xz
-  /usr/src/libjcat-0.2.5-X.tar.xz
-  /usr/src/libjcat1-0.2.5-X.tar.xz
-  /usr/src/libjcat-devel-0.2.5-X.tar.xz
-  /usr/src/girepository-Jcat1.0-0.2.5-X.tar.xz
-  /usr/src/vala-libjcat-0.2.5-X.tar.xz
+  /usr/src/libjcat-0.2.6-X-src.tar.xz
+  /usr/src/libjcat-0.2.6-X.tar.xz
+  /usr/src/libjcat1-0.2.6-X.tar.xz
+  /usr/src/libjcat-devel-0.2.6-X.tar.xz
+  /usr/src/girepository-Jcat1.0-0.2.6-X.tar.xz
+  /usr/src/vala-libjcat-0.2.6-X.tar.xz
 
 -------------------------------------------
 
@@ -122,6 +123,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.6-1bl1 -----
+Version bump.
 
 ----- version 0.2.5-1bl1 -----
 Version bump.

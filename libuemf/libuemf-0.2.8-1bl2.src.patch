@@ -1,5 +1,5 @@
---- origsrc/libUEMF-0.2.8/CMakeLists.txt	2025-03-16 09:16:46.185296400 +0900
-+++ src/libUEMF-0.2.8/CMakeLists.txt	2025-03-16 09:24:38.774440200 +0900
+--- origsrc/libUEMF-0.2.8/CMakeLists.txt	2026-10-18 03:02:01.668867300 +0000
++++ src/libUEMF-0.2.8/CMakeLists.txt	2026-10-18 03:02:01.994488500 +0000
 @@ -1,5 +1,5 @@
  cmake_minimum_required (VERSION 3.0)
 -project(libUEMF VERSION 0.2.7 LANGUAGES C)
@@ -35,8 +35,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libuemf.pc.in ${CMAKE_BINARY_DIR}/libuemf.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libuemf.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libUEMF-0.2.8/libuemf.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libUEMF-0.2.8/libuemf.pc.in	2025-03-16 09:24:46.622351100 +0900
+--- origsrc/libUEMF-0.2.8/libuemf.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libUEMF-0.2.8/libuemf.pc.in	2026-10-18 03:02:01.994488500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

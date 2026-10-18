@@ -1,5 +1,5 @@
 HOMEPAGE="https://github.com/${PN}/${PN}"
-SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Library to deal with pinyin"

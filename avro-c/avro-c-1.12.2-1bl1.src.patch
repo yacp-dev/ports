@@ -1,5 +1,5 @@
---- origsrc/avro-c-1.12.1/CMakeLists.txt	2025-08-21 05:39:14.000000000 +0900
-+++ src/avro-c-1.12.1/CMakeLists.txt	2026-04-02 08:15:12.908673400 +0900
+--- origsrc/avro-c-1.12.2/CMakeLists.txt	2026-08-07 12:59:05.000000000 +0000
++++ src/avro-c-1.12.2/CMakeLists.txt	2026-10-18 05:23:33.884770100 +0000
 @@ -151,7 +151,9 @@ endif (ZLIB_FOUND)
  
  find_package(Snappy)
@@ -10,8 +10,8 @@
      add_definitions(-DSNAPPY_CODEC)
      include_directories(${SNAPPY_INCLUDE_DIRS})
      message("Enabled snappy codec")
---- origsrc/avro-c-1.12.1/examples/CMakeLists.txt	2025-08-17 15:23:58.000000000 +0900
-+++ src/avro-c-1.12.1/examples/CMakeLists.txt	2026-04-02 08:15:12.908673400 +0900
+--- origsrc/avro-c-1.12.2/examples/CMakeLists.txt	2026-08-07 12:59:04.000000000 +0000
++++ src/avro-c-1.12.2/examples/CMakeLists.txt	2026-10-18 05:23:33.886794100 +0000
 @@ -18,7 +18,7 @@
  #
  
@@ -21,8 +21,8 @@
  
  if (WIN32)
      set(exec_name ${CMAKE_CURRENT_BINARY_DIR}/Debug/quickstop.exe)
---- origsrc/avro-c-1.12.1/src/CMakeLists.txt	2025-08-17 15:23:58.000000000 +0900
-+++ src/avro-c-1.12.1/src/CMakeLists.txt	2026-04-02 08:15:12.908673400 +0900
+--- origsrc/avro-c-1.12.2/src/CMakeLists.txt	2026-08-07 12:59:04.000000000 +0000
++++ src/avro-c-1.12.2/src/CMakeLists.txt	2026-10-18 05:23:33.886794100 +0000
 @@ -84,10 +84,6 @@ source_group(Avro FILES ${AVRO_SRC})
  
  string(REPLACE ":" "." LIBAVRO_DOT_VERSION ${LIBAVRO_VERSION})
@@ -80,8 +80,8 @@
 +target_link_libraries(avromod avro-shared)
  install(TARGETS avromod RUNTIME DESTINATION bin)
  endif(NOT WIN32)
---- origsrc/avro-c-1.12.1/tests/CMakeLists.txt	2025-08-21 05:39:14.000000000 +0900
-+++ src/avro-c-1.12.1/tests/CMakeLists.txt	2026-04-02 08:15:12.908673400 +0900
+--- origsrc/avro-c-1.12.2/tests/CMakeLists.txt	2026-08-07 12:59:04.000000000 +0000
++++ src/avro-c-1.12.2/tests/CMakeLists.txt	2026-10-18 05:23:33.888807500 +0000
 @@ -23,7 +23,7 @@ macro(add_avro_executable name)
          set(source "${name}.c")
      endif (NOT source)

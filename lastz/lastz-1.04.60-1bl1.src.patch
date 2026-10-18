@@ -1,5 +1,5 @@
---- origsrc/lastz-1.04.52/src/Makefile	2025-11-30 16:43:55.460463300 +0900
-+++ src/lastz-1.04.52/src/Makefile	2025-11-30 16:44:39.381353000 +0900
+--- origsrc/lastz-1.04.60/src/Makefile	2026-09-28 22:02:28.000000000 +0000
++++ src/lastz-1.04.60/src/Makefile	2026-10-18 00:20:04.930676600 +0000
 @@ -55,7 +55,7 @@ builds = lastz lastz_D lastz_32 lastz_40
  #
  #---------

@@ -1,10 +1,7 @@
 HOMEPAGE="https://github.com/${PN}/${PN}"
 SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/propagate_cflags.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/fix_signed_char.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/spelling.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/nullchar.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.04.52-2/debian/patches/fix_signed_char.patch
 "
 
 CATEGORY="Science"

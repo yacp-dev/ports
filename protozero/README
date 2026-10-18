@@ -3,36 +3,35 @@ protozero
 Minimalist protocol buffer decoder and encoder in C++
 
 Runtime requirements:
-  pkg-config-2.5.1-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libprotobuf-devel-21.12-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/mapbox/protozero
 
 Canonical download:
-  https://github.com/mapbox/protozero/archive/refs/tags/v1.8.1.tar.gz
+  https://github.com/mapbox/protozero/archive/refs/tags/v1.8.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack protozero-1.8.1-X-src.tar.xz
+  1. unpack protozero-1.8.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./protozero-1.8.1-X.cygport all
+        % cygport ./protozero-1.8.2-X.cygport all
 
 This will create:
-  /usr/src/protozero-1.8.1-X-src.tar.xz
-  /usr/src/protozero-1.8.1-X.tar.xz
+  /usr/src/protozero-1.8.2-X-src.tar.xz
+  /usr/src/protozero-1.8.2-X.tar.xz
 
 -------------------------------------------
 
@@ -71,6 +70,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.8.2-1bl1 -----
+Version bump.
 
 ----- version 1.8.1-1bl1 -----
 Version bump.

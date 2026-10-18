@@ -6,39 +6,39 @@ different directories and builds the final configuration file for the
 application from it.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libeconf-devel-0.8.4-1bl1
-  libeconf0-0.8.4-1bl1
-  pkg-config-3.0.4-2
+  cygwin-3.6.11-1
+  libeconf-devel-0.8.6-1bl1
+  libeconf0-0.8.6-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
-  meson-1.8.5-1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/openSUSE/libeconf
 
 Canonical download:
-  https://github.com/openSUSE/libeconf/archive/refs/tags/v0.8.4.tar.gz
+  https://github.com/openSUSE/libeconf/archive/refs/tags/v0.8.6.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libeconf-0.8.4-X-src.tar.xz
+  1. unpack libeconf-0.8.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libeconf-0.8.4-X.cygport all
+        % cygport ./libeconf-0.8.6-X.cygport all
 
 This will create:
-  /usr/src/libeconf-0.8.4-X-src.tar.xz
-  /usr/src/libeconf-0.8.4-X.tar.xz
-  /usr/src/libeconf0-0.8.4-X.tar.xz
-  /usr/src/libeconf-devel-0.8.4-X.tar.xz
+  /usr/src/libeconf-0.8.6-X-src.tar.xz
+  /usr/src/libeconf-0.8.6-X.tar.xz
+  /usr/src/libeconf0-0.8.6-X.tar.xz
+  /usr/src/libeconf-devel-0.8.6-X.tar.xz
 
 -------------------------------------------
 
@@ -90,9 +90,11 @@ Files included in the binary package:
   /usr/share/man/man3/econf_getUIntValueDef.3.gz
   /usr/share/man/man3/econf_getValue.3.gz
   /usr/share/man/man3/econf_getValueDef.3.gz
+  /usr/share/man/man3/econf_hasQuotes.3.gz
   /usr/share/man/man3/econf_mergeFiles.3.gz
   /usr/share/man/man3/econf_newIniFile.3.gz
   /usr/share/man/man3/econf_newKeyFile.3.gz
+  /usr/share/man/man3/econf_newKeyFile_with_options.3.gz
   /usr/share/man/man3/econf_readConfig.3.gz
   /usr/share/man/man3/econf_readConfigWithCallback.3.gz
   /usr/share/man/man3/econf_readFile.3.gz
@@ -103,6 +105,7 @@ Files included in the binary package:
   /usr/share/man/man3/econf_setFloatValue.3.gz
   /usr/share/man/man3/econf_setInt64Value.3.gz
   /usr/share/man/man3/econf_setIntValue.3.gz
+  /usr/share/man/man3/econf_setQuotes.3.gz
   /usr/share/man/man3/econf_setStringValue.3.gz
   /usr/share/man/man3/econf_setUInt64Value.3.gz
   /usr/share/man/man3/econf_setValue.3.gz
@@ -115,6 +118,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.8.6-1bl1 -----
+Version bump.
 
 ----- version 0.8.4-1bl1 -----
 Version bump.

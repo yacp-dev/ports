@@ -14,6 +14,12 @@ LICENSE_URI="LICENSE"
 
 inherit meson
 
+# upstream adds -flto=auto to its own C flags; on Cygwin that leaves every
+# export of cygeconf-0.dll marked DATA in the import library, so the
+# executables linked against it (tests and econftool alike) die at startup
+# with "Invalid relocation ... doesn't fit into 32 bits".
+CFLAGS+=" -fno-lto"
+
 PKG_NAMES="
 	libeconf
 	libeconf0

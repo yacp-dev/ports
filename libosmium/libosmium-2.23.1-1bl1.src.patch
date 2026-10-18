@@ -1,0 +1,23 @@
+--- origsrc/libosmium-2.23.1/CMakeLists.txt	2026-04-01 14:52:46.000000000 +0000
++++ src/libosmium-2.23.1/CMakeLists.txt	2026-10-18 21:16:40.642925100 +0000
+@@ -57,6 +57,11 @@ set(CMAKE_CONFIGURATION_TYPES "Debug;Rel
+ 
+ project(libosmium VERSION 2.23.1 LANGUAGES CXX C)
+ 
++# CYGWIN is only set by project(); newlib hides POSIX functions with -std=c++NN
++if(CYGWIN)
++    set(CMAKE_CXX_EXTENSIONS ON)
++endif()
++
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+ 
+ 
+@@ -164,7 +169,7 @@ endif()
+ #
+ #-----------------------------------------------------------------------------
+ 
+-find_package(Boost CONFIG 1.38)
++find_package(Boost 1.38)
+ mark_as_advanced(CLEAR BOOST_ROOT)
+ 
+ if(Boost_FOUND)

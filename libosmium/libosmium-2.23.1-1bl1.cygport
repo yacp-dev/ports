@@ -9,4 +9,12 @@ LICENSE="BSL-1.0"
 LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libboost-devel
+	libbz2-devel
+	libexpat-devel
+	liblz4-devel
+	protozero
+"
+
 inherit cmake

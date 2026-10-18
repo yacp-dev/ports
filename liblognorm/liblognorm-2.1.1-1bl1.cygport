@@ -1,8 +1,5 @@
 HOMEPAGE="https://www.${PN}.com/"
 SRC_URI="https://www.${PN}.com/files/download/${P}.tar.gz"
-PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-2.0.6-rhbz2128320.patch
-"
 
 CATEGORY="Libs"
 SUMMARY="Fast samples-based log normalization library"
@@ -13,6 +10,7 @@ LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	autoconf-archive
 	libfastjson-devel
 	libestr-devel
 	libpcre2-devel

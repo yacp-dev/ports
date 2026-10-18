@@ -3,49 +3,49 @@ liblognorm
 Briefly described, liblognorm is a tool to normalize log data.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libestr0-0.1.11-1bl3
+  cygwin-3.6.11-1
+  libestr0-0.1.11-1bl4
   libfastjson-devel-1.2304.0-1
   libfastjson4-1.2304.0-1
-  liblognorm-devel-2.0.9-1bl1
-  liblognorm5-2.0.9-1bl1
-  libpcre2_8_0-10.47-1
-  pkg-config-2.5.1-1
+  liblognorm-devel-2.1.1-1bl1
+  liblognorm5-2.1.1-1bl1
+  libpcre2_8_0-10.49-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
+  autoconf-20260320-3
   autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libestr-devel-0.1.11-1bl3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libestr-devel-0.1.11-1bl4
   libfastjson-devel-1.2304.0-1
-  libpcre2-devel-10.47-1
-  libtool-2.5.4-1
+  libpcre2-devel-10.49-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://www.liblognorm.com/
 
 Canonical download:
-  https://www.liblognorm.com/files/download/liblognorm-2.0.9.tar.gz
+  https://www.liblognorm.com/files/download/liblognorm-2.1.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack liblognorm-2.0.9-X-src.tar.xz
+  1. unpack liblognorm-2.1.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./liblognorm-2.0.9-X.cygport all
+        % cygport ./liblognorm-2.1.1-X.cygport all
 
 This will create:
-  /usr/src/liblognorm-2.0.9-X-src.tar.xz
-  /usr/src/liblognorm-2.0.9-X.tar.xz
-  /usr/src/liblognorm5-2.0.9-X.tar.xz
-  /usr/src/liblognorm-devel-2.0.9-X.tar.xz
+  /usr/src/liblognorm-2.1.1-X-src.tar.xz
+  /usr/src/liblognorm-2.1.1-X.tar.xz
+  /usr/src/liblognorm5-2.1.1-X.tar.xz
+  /usr/src/liblognorm-devel-2.1.1-X.tar.xz
 
 -------------------------------------------
 
@@ -65,20 +65,18 @@ Files included in the binary package:
   /usr/bin/cyglognorm-5.dll
 
 (liblognorm-devel)
-  /usr/include/liblognorm/annot.h
-  /usr/include/liblognorm/enc.h
   /usr/include/liblognorm/liblognorm.h
   /usr/include/liblognorm/lognorm-features.h
-  /usr/include/liblognorm/lognorm.h
-  /usr/include/liblognorm/parser.h
-  /usr/include/liblognorm/pdag.h
-  /usr/include/liblognorm/samp.h
+  /usr/include/liblognorm/lognorm-turbo.h
   /usr/lib/liblognorm.dll.a
   /usr/lib/pkgconfig/lognorm.pc
 
 ------------------
 
 Port Notes:
+
+----- version 2.1.1-1bl1 -----
+Version bump.
 
 ----- version 2.0.9-1bl1 -----
 Version bump.

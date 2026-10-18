@@ -1,5 +1,5 @@
---- origsrc/libplist-2.7.0/configure.ac	2025-05-14 17:23:37.000000000 +0900
-+++ src/libplist-2.7.0/configure.ac	2025-06-24 15:13:58.168122500 +0900
+--- origsrc/libplist-2.8.0/configure.ac	2026-09-29 23:37:53.000000000 +0000
++++ src/libplist-2.8.0/configure.ac	2026-10-18 06:49:32.601087100 +0000
 @@ -62,7 +62,7 @@ AC_C_BIGENDIAN([AC_DEFINE([__BIG_ENDIAN_
  # Check for operating system
  AC_MSG_CHECKING([for platform-specific build settings])
@@ -9,8 +9,8 @@
      AC_MSG_RESULT([${host_os}])
      win32=true
      ;;
---- origsrc/libplist-2.7.0/cython/Makefile.am	2025-05-14 17:23:37.000000000 +0900
-+++ src/libplist-2.7.0/cython/Makefile.am	2025-06-24 15:13:58.183750200 +0900
+--- origsrc/libplist-2.8.0/cython/Makefile.am	2026-09-29 23:37:53.000000000 +0000
++++ src/libplist-2.8.0/cython/Makefile.am	2026-10-18 06:49:32.602308300 +0000
 @@ -42,9 +42,7 @@ plist_la_CFLAGS = \
  plist_la_LDFLAGS = -module -avoid-version $(PYTHON_LIBS) $(AM_LDFLAGS) -shared -export-dynamic
  plist_la_LIBADD = $(top_builddir)/src/libplist-2.0.la

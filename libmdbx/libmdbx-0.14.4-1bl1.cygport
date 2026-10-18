@@ -7,8 +7,8 @@ DESCRIPTION="libmdbx is an extremely fast, compact, powerful, embedded, transact
 key-value database, with permissive license. libmdbx has a specific set of
 properties and capabilities, focused on creating unique lightweight solutions."
 
-LICENSE="OLDAP-2.8"
-LICENSE_SPDX="SPDX-License-Identifier: OLDAP-2.8"
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
 tar()
@@ -23,6 +23,9 @@ tar()
 }
 
 inherit cmake
+
+# upstream adds -Werror whenever $CI is set (e.g. on GitHub Actions)
+unset CI
 
 CYGCMAKE_ARGS="
 	-DMDBX_DLL_INSTALL_DESTINATION:PATH=bin

@@ -5,42 +5,42 @@ key-value database, with permissive license. libmdbx has a specific set of
 properties and capabilities, focused on creating unique lightweight solutions.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libmdbx-devel-0.13.10-1bl1
-  libmdbx0-0.13.10-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libmdbx-devel-0.14.4-1bl1
+  libmdbx0-0.14.4-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://gitflic.ru/project/erthink/libmdbx
 
 Canonical download:
-  https://libmdbx.dqdkfa.ru/release/libmdbx-amalgamated-0.13.10.tar.xz
+  https://libmdbx.dqdkfa.ru/release/libmdbx-amalgamated-0.14.4.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmdbx-0.13.10-X-src.tar.xz
+  1. unpack libmdbx-0.14.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmdbx-0.13.10-X.cygport all
+        % cygport ./libmdbx-0.14.4-X.cygport all
 
 This will create:
-  /usr/src/libmdbx-0.13.10-X-src.tar.xz
-  /usr/src/libmdbx-0.13.10-X.tar.xz
-  /usr/src/libmdbx0-0.13.10-X.tar.xz
-  /usr/src/libmdbx-devel-0.13.10-X.tar.xz
+  /usr/src/libmdbx-0.14.4-X-src.tar.xz
+  /usr/src/libmdbx-0.14.4-X.tar.xz
+  /usr/src/libmdbx0-0.14.4-X.tar.xz
+  /usr/src/libmdbx-devel-0.14.4-X.tar.xz
 
 -------------------------------------------
 
@@ -49,14 +49,17 @@ Files included in the binary package:
 (libmdbx)
   /usr/bin/mdbx_chk.exe
   /usr/bin/mdbx_copy.exe
+  /usr/bin/mdbx_defrag.exe
   /usr/bin/mdbx_drop.exe
   /usr/bin/mdbx_dump.exe
   /usr/bin/mdbx_load.exe
   /usr/bin/mdbx_stat.exe
   /usr/share/doc/Cygwin/libmdbx.README
+  /usr/share/doc/libmdbx/COPYRIGHT
   /usr/share/doc/libmdbx/LICENSE
   /usr/share/doc/libmdbx/NOTICE
   /usr/share/doc/libmdbx/README.md
+  /usr/share/doc/libmdbx/TODO.md
   /usr/share/man/man1/mdbx_chk.1.gz
   /usr/share/man/man1/mdbx_copy.1.gz
   /usr/share/man/man1/mdbx_drop.1.gz
@@ -76,6 +79,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.14.4-1bl1 -----
+Version bump.
 
 ----- version 0.13.10-1bl1 -----
 Version bump.

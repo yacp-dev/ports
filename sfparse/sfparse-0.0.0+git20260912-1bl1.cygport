@@ -1,6 +1,6 @@
 HOMEPAGE="https://github.com/ngtcp2/${PN}"
 GIT_URI="https://github.com/ngtcp2/${PN}.git"
-GIT_REV="ff7f230e7df2844afef7dc49631cda03a30455f3"
+GIT_REV="e8e40faf2dcfd7e0d70586e0ee58ce14f778d0cd"
 
 CATEGORY="Libs"
 SUMMARY="Structured Field Values parser"

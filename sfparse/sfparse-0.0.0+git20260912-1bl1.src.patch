@@ -1,5 +1,5 @@
---- origsrc/sfparse/Makefile.am	2026-01-27 06:40:39.000000000 +0900
-+++ src/sfparse/Makefile.am	2026-01-27 06:40:46.832595400 +0900
+--- origsrc/sfparse/Makefile.am	2026-10-18 00:39:51.000000000 +0000
++++ src/sfparse/Makefile.am	2026-10-18 00:39:54.204093700 +0000
 @@ -59,6 +59,9 @@ test_SOURCES = sfparse_test_main.c sfpar
  
  test_CFLAGS = $(WARNCFLAGS) -I$(top_srcdir)
@@ -11,8 +11,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/sfparse/configure.ac	2026-01-27 06:40:39.000000000 +0900
-+++ src/sfparse/configure.ac	2026-01-27 06:40:46.832595400 +0900
+--- origsrc/sfparse/configure.ac	2026-10-18 00:39:51.000000000 +0000
++++ src/sfparse/configure.ac	2026-10-18 00:39:54.206106500 +0000
 @@ -24,7 +24,7 @@
  # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -30,8 +30,8 @@
  AC_OUTPUT
  
  AC_MSG_NOTICE([summary of build options:
---- origsrc/sfparse/sfparse.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/sfparse/sfparse.pc.in	2026-01-27 06:40:46.836555100 +0900
+--- origsrc/sfparse/sfparse.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/sfparse/sfparse.pc.in	2026-10-18 00:39:54.206106500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

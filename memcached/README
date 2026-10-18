@@ -5,42 +5,40 @@ system, generic in nature, but intended for use in speeding up dynamic web
 applications by alleviating database load.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libevent2.1_7-2.1.12-1
+  cygwin-3.6.11-1
+  libevent2.1_7-2.1.13-1
   libsasl2_3-2.1.27-1
-  perl-URI-5.34-1
-  perl_base-5.40.3-1
+  perl_base-5.44.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libevent-devel-2.1.12-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libevent-devel-2.1.13-1
   libsasl2-devel-2.1.27-1
-  lua-5.3.6-4
   make-4.4.1-2
 
 Canonical website:
   https://memcached.org/
 
 Canonical download:
-  https://memcached.org/files/memcached-1.6.40.tar.gz
+  https://memcached.org/files/memcached-1.6.45.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack memcached-1.6.40-X-src.tar.xz
+  1. unpack memcached-1.6.45-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./memcached-1.6.40-X.cygport all
+        % cygport ./memcached-1.6.45-X.cygport all
 
 This will create:
-  /usr/src/memcached-1.6.40-X-src.tar.xz
-  /usr/src/memcached-1.6.40-X.tar.xz
+  /usr/src/memcached-1.6.45-X-src.tar.xz
+  /usr/src/memcached-1.6.45-X.tar.xz
 
 -------------------------------------------
 
@@ -73,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6.45-1bl1 -----
+Version bump.
 
 ----- version 1.6.40-1bl1 -----
 Version bump.

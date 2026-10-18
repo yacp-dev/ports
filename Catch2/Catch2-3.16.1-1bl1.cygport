@@ -40,7 +40,7 @@ PKG_NAMES="
 Catch2_CONTENTS="
 	usr/share
 "
-libCatch2_3_15_3_CONTENTS="
+libCatch2_3_16_1_CONTENTS="
 	usr/bin/cyg*-${PV}.dll
 "
 libCatch2_devel_CONTENTS="
@@ -48,5 +48,5 @@ libCatch2_devel_CONTENTS="
 	usr/lib
 "
 Catch2_SUMMARY="${SUMMARY} (licensing & readmes)"
-libCatch2_3_15_3_SUMMARY="${SUMMARY} (runtime)"
+libCatch2_3_16_1_SUMMARY="${SUMMARY} (runtime)"
 libCatch2_devel_SUMMARY="${SUMMARY} (development)"

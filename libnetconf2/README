@@ -4,49 +4,50 @@ libnetconf2 is a NETCONF library in C intended for building NETCONF clients
 and servers. NETCONF is the NETwork CONFiguration protocol introduced by IETF.
 
 Runtime requirements:
-  cygwin-3.6.6-1
+  cygwin-3.6.11-1
   libcrypt2-4.5.2-1
-  libcurl4-8.18.0-1
-  libnetconf2-devel-4.1.2-1bl1
-  libnetconf2_5-4.1.2-1bl1
-  libssh4-0.11.1-1
-  libssl3-3.0.18-1
-  libyang4-4.2.2-1bl1
-  pkg-config-2.5.1-1
+  libcurl4-8.23.0-1
+  libnetconf2-devel-4.6.4-1bl1
+  libnetconf2_5-4.6.4-1bl1
+  libssh4-0.12.2-1
+  libssl3-3.5.9-1
+  libyang5-6.4.13-1bl2
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   libcmocka-devel-2.0.2-1
   libcrypt-devel-4.5.2-1
-  libssh-devel-0.11.1-1
-  libssl-devel-3.0.18-1
-  libyang-devel-4.2.2-1bl1
+  libcurl-devel-8.23.0-1
+  libssh-devel-0.12.2-1
+  libssl-devel-3.5.9-1
+  libyang-devel-6.4.13-1bl2
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/CESNET/libnetconf2
 
 Canonical download:
-  https://github.com/CESNET/libnetconf2/archive/refs/tags/v4.1.2.tar.gz
+  https://github.com/CESNET/libnetconf2/archive/refs/tags/v4.6.4.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libnetconf2-4.1.2-X-src.tar.xz
+  1. unpack libnetconf2-4.6.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libnetconf2-4.1.2-X.cygport all
+        % cygport ./libnetconf2-4.6.4-X.cygport all
 
 This will create:
-  /usr/src/libnetconf2-4.1.2-X-src.tar.xz
-  /usr/src/libnetconf2-4.1.2-X.tar.xz
-  /usr/src/libnetconf2_5-4.1.2-X.tar.xz
-  /usr/src/libnetconf2-devel-4.1.2-X.tar.xz
+  /usr/src/libnetconf2-4.6.4-X-src.tar.xz
+  /usr/src/libnetconf2-4.6.4-X.tar.xz
+  /usr/src/libnetconf2_5-4.6.4-X.tar.xz
+  /usr/src/libnetconf2-devel-4.6.4-X.tar.xz
 
 -------------------------------------------
 
@@ -57,6 +58,9 @@ Files included in the binary package:
   /usr/share/doc/libnetconf2/FAQ.md
   /usr/share/doc/libnetconf2/LICENSE
   /usr/share/doc/libnetconf2/README.md
+
+(libnetconf2_5)
+  /usr/bin/cygnetconf2-5.dll
   /usr/share/yang/modules/libnetconf2/iana-crypt-hash@2014-04-04.yang
   /usr/share/yang/modules/libnetconf2/iana-ssh-encryption-algs@2024-10-16.yang
   /usr/share/yang/modules/libnetconf2/iana-ssh-key-exchange-algs@2024-10-16.yang
@@ -67,7 +71,6 @@ Files included in the binary package:
   /usr/share/yang/modules/libnetconf2/ietf-keystore@2024-10-10.yang
   /usr/share/yang/modules/libnetconf2/ietf-netconf-acm@2018-02-14.yang
   /usr/share/yang/modules/libnetconf2/ietf-netconf-monitoring@2010-10-04.yang
-  /usr/share/yang/modules/libnetconf2/ietf-netconf-server@2023-12-28.yang
   /usr/share/yang/modules/libnetconf2/ietf-netconf-server@2025-04-24.yang
   /usr/share/yang/modules/libnetconf2/ietf-netconf@2013-09-29.yang
   /usr/share/yang/modules/libnetconf2/ietf-ssh-common@2024-10-10.yang
@@ -79,10 +82,7 @@ Files included in the binary package:
   /usr/share/yang/modules/libnetconf2/ietf-tls-server@2024-10-10.yang
   /usr/share/yang/modules/libnetconf2/ietf-truststore@2024-10-10.yang
   /usr/share/yang/modules/libnetconf2/ietf-x509-cert-to-name@2014-12-10.yang
-  /usr/share/yang/modules/libnetconf2/libnetconf2-netconf-server@2025-11-11.yang
-
-(libnetconf2_5)
-  /usr/bin/cygnetconf2-5.dll
+  /usr/share/yang/modules/libnetconf2/libnetconf2-netconf-server@2026-09-18.yang
 
 (libnetconf2-devel)
   /usr/include/libnetconf2/log.h
@@ -105,6 +105,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.6.4-1bl1 -----
+Version bump.
 
 ----- version 4.1.2-1bl1 -----
 Version bump.

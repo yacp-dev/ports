@@ -1,0 +1,41 @@
+--- origsrc/ngtcp2/examples/server.cc	2026-10-18 03:30:35.000000000 +0000
++++ src/ngtcp2/examples/server.cc	2026-10-18 03:30:39.551576700 +0000
+@@ -54,6 +54,11 @@
+ #include "http.h"
+ #include "template.h"
+ 
++#if defined(__CYGWIN__) && !defined(IPV6_RECVPKTINFO)
++// Winsock enables receiving IPV6_PKTINFO with IPV6_PKTINFO itself.
++#  define IPV6_RECVPKTINFO IPV6_PKTINFO
++#endif // __CYGWIN__ && !IPV6_RECVPKTINFO
++
+ using namespace ngtcp2;
+ using namespace std::literals;
+ 
+@@ -2263,7 +2268,13 @@ std::span<const uint8_t> Server::send_pa
+     cm->cmsg_len = CMSG_LEN(sizeof(in_pktinfo));
+     auto addrin = reinterpret_cast<sockaddr_in *>(local_addr.addr);
+     in_pktinfo pktinfo{
++#ifdef __CYGWIN__
++      // Cygwin's in_pktinfo has no ipi_spec_dst; Winsock takes the
++      // source address from ipi_addr.
++      .ipi_addr = addrin->sin_addr,
++#else  // !__CYGWIN__
+       .ipi_spec_dst = addrin->sin_addr,
++#endif // !__CYGWIN__
+     };
+     memcpy(CMSG_DATA(cm), &pktinfo, sizeof(pktinfo));
+ 
+--- origsrc/ngtcp2/tests/ngtcp2_qlog_test.c	2026-10-18 03:30:35.000000000 +0000
++++ src/ngtcp2/tests/ngtcp2_qlog_test.c	2026-10-18 03:30:39.553355500 +0000
+@@ -595,8 +595,8 @@ void test_ngtcp2_qlog_parameters_set_tra
+   ngtcp2_in6_addr v6addr;
+ 
+   memcpy(&v6addr,
+-         (uint8_t[]){0x5F, 0x6E, 0xEF, 0x1A, 0xDA, 0x56, 0x4F, 0x62, 0xE4, 0xDE,
+-                     0xA0, 0x76, 0x9B, 0x21, 0xC6, 0x2B},
++         ((uint8_t[]){0x5F, 0x6E, 0xEF, 0x1A, 0xDA, 0x56, 0x4F, 0x62, 0xE4, 0xDE,
++                     0xA0, 0x76, 0x9B, 0x21, 0xC6, 0x2B}),
+          sizeof(v6addr));
+ 
+   ngtcp2_qlog_init(&qlog, qlog_write, 0, buf);

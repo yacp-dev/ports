@@ -4,21 +4,32 @@ ngtcp2 project is an effort to implement QUIC protocol which is now being
 discussed in IETF QUICWG for its standardization.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libngtcp2-devel-1.20.0-1bl1
-  libngtcp2_16-1.20.0-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgnutls-devel-3.8.13-1
+  libgnutls30-3.8.13-1
+  libngtcp2-devel-1.25.0-1bl1
+  libngtcp2_16-1.25.0-1bl1
+  libngtcp2_crypto_gnutls-devel-1.25.0-1bl1
+  libngtcp2_crypto_gnutls8-1.25.0-1bl1
+  libngtcp2_crypto_ossl-devel-1.25.0-1bl1
+  libngtcp2_crypto_ossl0-1.25.0-1bl1
+  libssl-devel-3.5.9-1
+  libssl3-3.5.9-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libbrotli-devel-1.2.0-2
+  libev-devel-4.33-1
+  libgnutls-devel-3.8.13-1
+  libnghttp3-devel-1.18.0-1bl1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -30,17 +41,21 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack ngtcp2-1.20.0-X-src.tar.xz
+  1. unpack ngtcp2-1.25.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ngtcp2-1.20.0-X.cygport all
+        % cygport ./ngtcp2-1.25.0-X.cygport all
 
 This will create:
-  /usr/src/ngtcp2-1.20.0-X-src.tar.xz
-  /usr/src/ngtcp2-1.20.0-X.tar.xz
-  /usr/src/libngtcp2_16-1.20.0-X.tar.xz
-  /usr/src/libngtcp2-devel-1.20.0-X.tar.xz
+  /usr/src/ngtcp2-1.25.0-X-src.tar.xz
+  /usr/src/ngtcp2-1.25.0-X.tar.xz
+  /usr/src/libngtcp2_16-1.25.0-X.tar.xz
+  /usr/src/libngtcp2_crypto_gnutls8-1.25.0-X.tar.xz
+  /usr/src/libngtcp2_crypto_ossl0-1.25.0-X.tar.xz
+  /usr/src/libngtcp2-devel-1.25.0-X.tar.xz
+  /usr/src/libngtcp2_crypto_gnutls-devel-1.25.0-X.tar.xz
+  /usr/src/libngtcp2_crypto_ossl-devel-1.25.0-X.tar.xz
 
 -------------------------------------------
 
@@ -57,15 +72,35 @@ Files included in the binary package:
 (libngtcp2_16)
   /usr/bin/cygngtcp2-16.dll
 
+(libngtcp2_crypto_gnutls8)
+  /usr/bin/cygngtcp2_crypto_gnutls-8.dll
+
+(libngtcp2_crypto_ossl0)
+  /usr/bin/cygngtcp2_crypto_ossl-0.dll
+
 (libngtcp2-devel)
   /usr/include/ngtcp2/ngtcp2.h
+  /usr/include/ngtcp2/ngtcp2_crypto.h
   /usr/include/ngtcp2/version.h
   /usr/lib/libngtcp2.dll.a
   /usr/lib/pkgconfig/libngtcp2.pc
 
+(libngtcp2_crypto_gnutls-devel)
+  /usr/include/ngtcp2/ngtcp2_crypto_gnutls.h
+  /usr/lib/libngtcp2_crypto_gnutls.dll.a
+  /usr/lib/pkgconfig/libngtcp2_crypto_gnutls.pc
+
+(libngtcp2_crypto_ossl-devel)
+  /usr/include/ngtcp2/ngtcp2_crypto_ossl.h
+  /usr/lib/libngtcp2_crypto_ossl.dll.a
+  /usr/lib/pkgconfig/libngtcp2_crypto_ossl.pc
+
 ------------------
 
 Port Notes:
+
+----- version 1.25.0-1bl1 -----
+Version bump.
 
 ----- version 1.20.0-1bl1 -----
 Version bump.

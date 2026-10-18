@@ -1,0 +1,85 @@
+HOMEPAGE="https://github.com/${PN}/${PN}"
+GIT_URI="https://github.com/${PN}/${PN}.git"
+GIT_TAG="v${PV}"
+
+CATEGORY="Libs"
+SUMMARY="Effort to implement IETF QUIC protocol"
+DESCRIPTION="ngtcp2 project is an effort to implement QUIC protocol which is now being
+discussed in IETF QUICWG for its standardization."
+
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="COPYING"
+
+inherit git
+
+BUILD_REQUIRES="
+	libbrotli-devel
+	libev-devel
+	libgnutls-devel
+	libnghttp3-devel
+"
+
+CYGCONF_ARGS="
+	--with-gnutls
+	--with-libbrotlienc
+	--with-libbrotlidec
+	--with-libev
+	--with-libnghttp3
+"
+
+src_test()
+{
+	cd ${B}
+	cygmake check
+}
+
+DOCS="
+	SECURITY.md
+"
+
+PKG_NAMES="
+	ngtcp2
+	libngtcp2_16
+	libngtcp2_crypto_gnutls8
+	libngtcp2_crypto_ossl0
+	libngtcp2-devel
+	libngtcp2_crypto_gnutls-devel
+	libngtcp2_crypto_ossl-devel
+"
+ngtcp2_CONTENTS="
+	usr/share
+"
+libngtcp2_16_CONTENTS="
+	usr/bin/cyg*-16.dll
+"
+libngtcp2_crypto_gnutls8_CONTENTS="
+	usr/bin/cygngtcp2_crypto_gnutls-8.dll
+"
+libngtcp2_crypto_ossl0_CONTENTS="
+	usr/bin/cygngtcp2_crypto_ossl-0.dll
+"
+libngtcp2_devel_CONTENTS="
+	usr/include/ngtcp2/ngtcp2.h
+	usr/include/ngtcp2/ngtcp2_crypto.h
+	usr/include/ngtcp2/version.h
+	usr/lib/libngtcp2.dll.a
+	usr/lib/pkgconfig/libngtcp2.pc
+"
+libngtcp2_crypto_gnutls_devel_CONTENTS="
+	usr/include/ngtcp2/ngtcp2_crypto_gnutls.h
+	usr/lib/libngtcp2_crypto_gnutls.dll.a
+	usr/lib/pkgconfig/libngtcp2_crypto_gnutls.pc
+"
+libngtcp2_crypto_ossl_devel_CONTENTS="
+	usr/include/ngtcp2/ngtcp2_crypto_ossl.h
+	usr/lib/libngtcp2_crypto_ossl.dll.a
+	usr/lib/pkgconfig/libngtcp2_crypto_ossl.pc
+"
+ngtcp2_SUMMARY="${SUMMARY} (licensing & readmes)"
+libngtcp2_16_SUMMARY="${SUMMARY} (runtime)"
+libngtcp2_crypto_gnutls8_SUMMARY="${SUMMARY} (GnuTLS crypto helper runtime)"
+libngtcp2_crypto_ossl0_SUMMARY="${SUMMARY} (OpenSSL crypto helper runtime)"
+libngtcp2_devel_SUMMARY="${SUMMARY} (development)"
+libngtcp2_crypto_gnutls_devel_SUMMARY="${SUMMARY} (GnuTLS crypto helper development)"
+libngtcp2_crypto_ossl_devel_SUMMARY="${SUMMARY} (OpenSSL crypto helper development)"

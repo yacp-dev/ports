@@ -1,11 +1,11 @@
 HOMEPAGE="https://${PN}.org/"
 SRC_URI="https://${PN}.org/files/${P}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.40-1/debian/patches/0001-LSB-requirements.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.40-1/debian/patches/0002-Additions-for-service-unit-file.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.40-1/debian/patches/0003-Uses-retry-to-wait-up-to-5-seconds-for-the-killed-pr.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.40-1/debian/patches/0005-Source-etc-default-memcached-in-etc-init.d-memcached.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.40-1/debian/patches/0006-restore-systemd-sandboxing.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.45-1/debian/patches/0001-LSB-requirements.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.45-1/debian/patches/0002-Additions-for-service-unit-file.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.45-1/debian/patches/0003-Uses-retry-to-wait-up-to-5-seconds-for-the-killed-pr.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.45-1/debian/patches/0005-Source-etc-default-memcached-in-etc-init.d-memcached.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.6.45-1/debian/patches/0006-restore-systemd-sandboxing.patch
 	https://src.fedoraproject.org/rpms/memcached/raw/rawhide/f/${PN}-unit.patch
 	https://gitweb.gentoo.org/repo/gentoo.git/plain/net-misc/${PN}/files/${PN}-1.4.0-fix-as-needed-linking.patch
 "

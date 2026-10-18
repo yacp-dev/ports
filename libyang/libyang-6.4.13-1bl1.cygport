@@ -36,20 +36,20 @@ DOCS="
 
 PKG_NAMES="
 	libyang
-	libyang4
+	libyang5
 	libyang-devel
 "
 libyang_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libyang4_CONTENTS="
-	usr/bin/cyg*-4.dll
+libyang5_CONTENTS="
+	usr/bin/cyg*-5.dll
 "
 libyang_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libyang_SUMMARY="${SUMMARY} (utilities)"
-libyang4_SUMMARY="${SUMMARY} (runtime)"
+libyang5_SUMMARY="${SUMMARY} (runtime)"
 libyang_devel_SUMMARY="${SUMMARY} (development)"

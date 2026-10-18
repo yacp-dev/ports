@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/jbboehr/${PN}"
-SRC_URI="https://github.com/jbboehr/${PN}/archive/refs/tags/v${PV}.tar.gz"
+GIT_URI="https://github.com/jbboehr/${PN}.git"
+GIT_TAG="v${PV}"
 
 CATEGORY="Libs"
 SUMMARY="C++ implementation of Mustache"
@@ -9,11 +10,13 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE.md"
 
-inherit cmake
-
-CYGCMAKE_ARGS="
-	-DSOVERSION:STRING=0
+BUILD_REQUIRES="
+	libyaml-devel
+	nlohmann_json
 "
+
+inherit cmake
+inherit git
 
 src_test()
 {
@@ -21,22 +24,32 @@ src_test()
 	PATH=${B}/src:${PATH} ninja_test
 }
 
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	# the static library is built only for the test suite
+	rm ${D}/usr/lib/libmustache.a
+	rm ${D}/usr/lib/cmake/mustache/mustacheStaticTargets*.cmake
+}
+
 PKG_NAMES="
 	libmustache
-	libmustache0
+	libmustache6
 	libmustache-devel
 "
 libmustache_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libmustache0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libmustache6_CONTENTS="
+	usr/bin/cyg*-6.dll
 "
 libmustache_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libmustache_SUMMARY="${SUMMARY} (utilities)"
-libmustache0_SUMMARY="${SUMMARY} (runtime)"
+libmustache6_SUMMARY="${SUMMARY} (runtime)"
 libmustache_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,16 +1,8 @@
---- origsrc/OSM-binary-1.6.1/CMakeLists.txt	2025-12-20 18:45:14.000000000 +0900
-+++ src/OSM-binary-1.6.1/CMakeLists.txt	2026-01-19 23:35:57.444418600 +0900
-@@ -1,6 +1,6 @@
- cmake_minimum_required(VERSION 3.10)
- 
--project(osmpbf VERSION 1.5.0)
-+project(osmpbf VERSION 1.6.1)
- 
- include(GNUInstallDirs)
- 
-@@ -20,3 +20,10 @@ add_subdirectory(osmpbf)
+--- origsrc/OSM-binary-1.8.0/CMakeLists.txt	2026-10-18 21:15:09.846740700 +0000
++++ src/OSM-binary-1.8.0/CMakeLists.txt	2026-10-18 21:15:10.124432300 +0000
+@@ -22,3 +22,10 @@ add_subdirectory(osmpbf)
  if(NOT MSVC)
-     add_subdirectory(tools)
+     add_subdirectory(demo)
  endif()
 +
 +set(prefix ${CMAKE_INSTALL_PREFIX})
@@ -19,8 +11,19 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/osmpbf.pc.in ${CMAKE_BINARY_DIR}/osmpbf.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/osmpbf.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/OSM-binary-1.6.1/osmpbf/CMakeLists.txt	2025-12-20 18:45:14.000000000 +0900
-+++ src/OSM-binary-1.6.1/osmpbf/CMakeLists.txt	2026-01-19 23:11:43.137908100 +0900
+--- origsrc/OSM-binary-1.8.0/demo/CMakeLists.txt	2026-09-14 11:17:58.000000000 +0000
++++ src/OSM-binary-1.8.0/demo/CMakeLists.txt	2026-10-18 21:15:10.124432300 +0000
+@@ -9,7 +9,7 @@ add_definitions(-D_LARGEFILE_SOURCE -D_F
+ add_executable(osmpbf-outline osmpbf-outline.cpp)
+ 
+ target_include_directories(osmpbf-outline SYSTEM PRIVATE ${ZLIB_INCLUDE_DIR})
+-target_link_libraries(osmpbf-outline PRIVATE osmpbf ZLIB::ZLIB protobuf::libprotobuf)
++target_link_libraries(osmpbf-outline PRIVATE osmpbf_shared ZLIB::ZLIB protobuf::libprotobuf)
+ set_property(TARGET osmpbf-outline PROPERTY CXX_STANDARD 11)
+ 
+ #install(TARGETS osmpbf-outline RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+--- origsrc/OSM-binary-1.8.0/osmpbf/CMakeLists.txt	2026-09-14 11:17:58.000000000 +0000
++++ src/OSM-binary-1.8.0/osmpbf/CMakeLists.txt	2026-10-18 21:15:10.126195200 +0000
 @@ -1,10 +1,12 @@
  protobuf_generate_cpp(CPPS HS fileformat.proto osmformat.proto)
  
@@ -43,8 +46,8 @@
  
  install(FILES ${CMAKE_SOURCE_DIR}/include/osmpbf/osmpbf.h
                ${CMAKE_BINARY_DIR}/osmpbf/osmformat.pb.h
---- origsrc/OSM-binary-1.6.1/osmpbf.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/OSM-binary-1.6.1/osmpbf.pc.in	2026-01-19 23:11:43.137908100 +0900
+--- origsrc/OSM-binary-1.8.0/osmpbf.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/OSM-binary-1.8.0/osmpbf.pc.in	2026-10-18 21:15:10.126195200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -56,14 +59,3 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -losmpbf
 +Cflags: -I${includedir}
---- origsrc/OSM-binary-1.6.1/tools/CMakeLists.txt	2025-12-20 18:45:14.000000000 +0900
-+++ src/OSM-binary-1.6.1/tools/CMakeLists.txt	2026-01-19 23:11:43.139919700 +0900
-@@ -9,7 +9,7 @@ add_definitions(-D_LARGEFILE_SOURCE -D_F
- add_executable(osmpbf-outline osmpbf-outline.cpp)
- 
- target_include_directories(osmpbf-outline SYSTEM PRIVATE ${ZLIB_INCLUDE_DIR})
--target_link_libraries(osmpbf-outline PRIVATE osmpbf ZLIB::ZLIB protobuf::libprotobuf)
-+target_link_libraries(osmpbf-outline PRIVATE osmpbf_shared ZLIB::ZLIB protobuf::libprotobuf)
- set_property(TARGET osmpbf-outline PROPERTY CXX_STANDARD 11)
- 
- install(TARGETS osmpbf-outline RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

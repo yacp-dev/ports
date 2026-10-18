@@ -13,11 +13,19 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libglib2.0-devel libyaml-devel python-gi-devel python39-gi rpm-devel"
+BUILD_REQUIRES="
+	gobject-introspection
+	libglib2.0-devel
+	libyaml-devel
+	python-gi-devel
+	python39-gi
+	rpm-devel
+"
 
 inherit meson
 
 CYGMESON_ARGS="
+	-Dpython_name=python3.9
 	-Dwith_docs=false
 "
 

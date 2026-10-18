@@ -1,0 +1,53 @@
+--- origsrc/libmustache/CMakeLists.txt	2026-10-18 12:13:38.000000000 +0000
++++ src/libmustache/CMakeLists.txt	2026-10-18 12:13:41.659720700 +0000
+@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.18)
+ 
+ project(mustache VERSION 0.6.2 LANGUAGES CXX)
+ 
++# newlib hides POSIX declarations such as fileno and ftruncate under the
++# strict -std=c++17 this project uses. CMAKE_CXX_FLAGS also reaches try_run.
++if(CYGWIN)
++    string(APPEND CMAKE_CXX_FLAGS " -D_GNU_SOURCE")
++endif()
++
+ # Quoted public-header includes would select this file before the build header.
+ if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR AND
+         EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/src/mustache_config.h")
+--- origsrc/libmustache/src/compiled_template.hpp	2026-10-18 12:13:38.000000000 +0000
++++ src/libmustache/src/compiled_template.hpp	2026-10-18 12:13:41.661737200 +0000
+@@ -47,7 +47,7 @@ class CompiledTemplate {
+     std::shared_ptr<const State> state;
+ 
+ #if defined(MUSTACHE_HAVE_ARCHIVED_TEMPLATES)
+-#if defined(__GNUC__) && !defined(_WIN32)
++#if defined(__GNUC__) && !defined(_WIN32) && !defined(__CYGWIN__)
+     __attribute__((visibility("hidden")))
+ #endif
+     const void * archivedTemplateRoot() const noexcept;
+--- origsrc/libmustache/src/data.hpp	2026-10-18 12:13:38.000000000 +0000
++++ src/libmustache/src/data.hpp	2026-10-18 12:13:41.661737200 +0000
+@@ -165,11 +165,11 @@ class Data {
+     std::unique_ptr<Storage> storage_;
+ 
+     explicit Data(std::unique_ptr<Storage> storage) noexcept;
+-#if defined(__GNUC__) && !defined(_WIN32)
++#if defined(__GNUC__) && !defined(_WIN32) && !defined(__CYGWIN__)
+     __attribute__((visibility("hidden")))
+ #endif
+     static Data parsedFloating(double value, std::string spelling);
+-#if defined(__GNUC__) && !defined(_WIN32)
++#if defined(__GNUC__) && !defined(_WIN32) && !defined(__CYGWIN__)
+     __attribute__((visibility("hidden")))
+ #endif
+     static Data parseJSON(std::string_view string, const ParseLimits& limits);
+--- origsrc/libmustache/src/json_parser.cpp	2026-10-18 12:13:38.000000000 +0000
++++ src/libmustache/src/json_parser.cpp	2026-10-18 12:13:41.661737200 +0000
+@@ -83,7 +83,7 @@ std::optional<std::string> normalizeFloa
+ 
+ } // namespace
+ 
+-#if defined(__GNUC__) && !defined(_WIN32)
++#if defined(__GNUC__) && !defined(_WIN32) && !defined(__CYGWIN__)
+ #define MUSTACHE_LOCAL_CLASS __attribute__((visibility("hidden")))
+ #else
+ #define MUSTACHE_LOCAL_CLASS

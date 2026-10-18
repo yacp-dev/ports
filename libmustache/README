@@ -3,42 +3,46 @@ libmustache
 C++ implementation of Mustache
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libgcc1-12.4.0-3
-  libmustache-devel-0.5.0-1bl1
-  libmustache0-0.5.0-1bl1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libmustache-devel-0.6.2-1bl1
+  libmustache6-0.6.2-1bl1
+  libstdc++6-14.4.0-1
+  libyaml-devel-0.2.5-1
+  libyaml0_2-0.2.5-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libyaml-devel-0.2.5-1
+  ninja-1.13.2-1
+  nlohmann_json-3.12.0-1bl3
 
 Canonical website:
   https://github.com/jbboehr/libmustache
 
 Canonical download:
-  https://github.com/jbboehr/libmustache/archive/refs/tags/v0.5.0.tar.gz
+  https://github.com/jbboehr/libmustache.git
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmustache-0.5.0-X-src.tar.xz
+  1. unpack libmustache-0.6.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmustache-0.5.0-X.cygport all
+        % cygport ./libmustache-0.6.2-X.cygport all
 
 This will create:
-  /usr/src/libmustache-0.5.0-X-src.tar.xz
-  /usr/src/libmustache-0.5.0-X.tar.xz
-  /usr/src/libmustache0-0.5.0-X.tar.xz
-  /usr/src/libmustache-devel-0.5.0-X.tar.xz
+  /usr/src/libmustache-0.6.2-X-src.tar.xz
+  /usr/src/libmustache-0.6.2-X.tar.xz
+  /usr/src/libmustache6-0.6.2-X.tar.xz
+  /usr/src/libmustache-devel-0.6.2-X.tar.xz
 
 -------------------------------------------
 
@@ -50,28 +54,36 @@ Files included in the binary package:
   /usr/share/doc/libmustache/LICENSE.md
   /usr/share/doc/libmustache/README.md
 
-(libmustache0)
-  /usr/bin/cygmustache-0.dll
+(libmustache6)
+  /usr/bin/cygmustache-6.dll
 
 (libmustache-devel)
+  /usr/include/mustache/archived_template.hpp
+  /usr/include/mustache/compiled_template.hpp
   /usr/include/mustache/data.hpp
   /usr/include/mustache/exception.hpp
   /usr/include/mustache/lambda.hpp
   /usr/include/mustache/mustache.hpp
   /usr/include/mustache/mustache_config.h
+  /usr/include/mustache/mustache_export.hpp
   /usr/include/mustache/node.hpp
   /usr/include/mustache/renderer.hpp
   /usr/include/mustache/stack.hpp
   /usr/include/mustache/tokenizer.hpp
   /usr/include/mustache/utils.hpp
-  /usr/lib/cmake/mustache/mustache-release.cmake
-  /usr/lib/cmake/mustache/mustache.cmake
+  /usr/lib/cmake/mustache/mustacheConfig.cmake
+  /usr/lib/cmake/mustache/mustacheConfigVersion.cmake
+  /usr/lib/cmake/mustache/mustacheSharedTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/mustache/mustacheSharedTargets.cmake
   /usr/lib/libmustache.dll.a
   /usr/lib/pkgconfig/mustache.pc
 
 ------------------
 
 Port Notes:
+
+----- version 0.6.2-1bl1 -----
+Version bump.
 
 ----- version 0.5.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

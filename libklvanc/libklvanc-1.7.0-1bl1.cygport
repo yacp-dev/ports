@@ -31,3 +31,10 @@ libklvanc_devel_CONTENTS="
 libklvanc_SUMMARY="${SUMMARY} (utilities)"
 libklvanc0_SUMMARY="${SUMMARY} (runtime)"
 libklvanc_devel_SUMMARY="${SUMMARY} (development)"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	sed -i -e "/^AC_INIT/s/\[1\.0\]/[${PV}]/" configure.ac
+}

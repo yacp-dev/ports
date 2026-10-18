@@ -1,5 +1,5 @@
 --- origsrc/libyang-6.4.13/CMakeLists.txt	2026-10-14 11:30:29.000000000 +0000
-+++ src/libyang-6.4.13/CMakeLists.txt	2026-10-18 12:32:18.760607100 +0000
++++ src/libyang-6.4.13/CMakeLists.txt	2026-10-18 21:38:22.435638700 +0000
 @@ -497,7 +497,7 @@ endforeach()
  install(DIRECTORY "${PROJECT_SOURCE_DIR}/modules/" DESTINATION ${YANG_MODULE_DIR} FILES_MATCHING PATTERN "*.yang")
  

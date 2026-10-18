@@ -10,8 +10,8 @@ Runtime requirements:
   libpcre2_8_0-10.49-1
   libxxhash-devel-0.8.4-1
   libxxhash0-0.8.4-1
-  libyang-devel-6.4.13-1bl1
-  libyang5-6.4.13-1bl1
+  libyang-devel-6.4.13-1bl2
+  libyang5-6.4.13-1bl2
   pkg-config-3.0.9-1
 
 Build requirements:
@@ -59,6 +59,9 @@ Files included in the binary package:
   /usr/share/doc/libyang/README.md
   /usr/share/man/man1/yanglint.1.gz
   /usr/share/man/man1/yangre.1.gz
+
+(libyang5)
+  /usr/bin/cygyang-5.dll
   /usr/share/yang/modules/libyang/default@2025-06-18.yang
   /usr/share/yang/modules/libyang/ietf-datastores@2018-02-14.yang
   /usr/share/yang/modules/libyang/ietf-inet-types@2025-12-22.yang
@@ -76,9 +79,6 @@ Files included in the binary package:
   /usr/share/yang/modules/libyang/ietf-yang-structure-ext@2020-06-17.yang
   /usr/share/yang/modules/libyang/ietf-yang-types@2025-12-22.yang
   /usr/share/yang/modules/libyang/yang@2025-01-29.yang
-
-(libyang5)
-  /usr/bin/cygyang-5.dll
 
 (libyang-devel)
   /usr/include/libyang/context.h
@@ -110,6 +110,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 6.4.13-1bl2 -----
+Move YANG modules to libyang5
 
 ----- version 6.4.13-1bl1 -----
 Version bump.

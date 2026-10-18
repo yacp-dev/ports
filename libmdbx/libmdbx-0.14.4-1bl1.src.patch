@@ -1,16 +1,16 @@
---- origsrc/libmdbx-0.13.10/CMakeLists.txt	2025-12-17 23:57:38.000000000 +0900
-+++ src/libmdbx-0.13.10/CMakeLists.txt	2026-01-19 12:20:53.238986800 +0900
-@@ -984,6 +984,9 @@ if(MDBX_BUILD_SHARED_LIBRARY)
+--- origsrc/libmdbx-0.14.4/CMakeLists.txt	2026-09-18 19:56:23.000000000 +0000
++++ src/libmdbx-0.14.4/CMakeLists.txt	2026-10-18 11:39:42.873971100 +0000
+@@ -935,6 +935,9 @@ if(MDBX_BUILD_SHARED_LIBRARY)
    endif()
    list(APPEND MDBX_BUILD_FLAGS ${CMAKE_SHARED_LINKER_FLAGS})
    target_include_directories(mdbx INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}")
 +  if (CYGWIN)
 +    set_target_properties(mdbx PROPERTIES SOVERSION "${MDBX_VERSION_MAJOR}")
 +  endif()
- endif()
- 
- if(MDBX_BUILD_SHARED_LIBRARY AND MDBX_LINK_TOOLS_NONSTATIC)
-@@ -1064,7 +1067,7 @@ if(MDBX_BUILD_SHARED_LIBRARY)
+   if(MDBX_CLANG_BUILTINS_LIB)
+     target_link_libraries(mdbx PRIVATE "${MDBX_CLANG_BUILTINS_LIB}")
+   endif()
+@@ -1026,7 +1029,7 @@ if(MDBX_BUILD_SHARED_LIBRARY)
      install(
        TARGETS mdbx
        EXPORT libmdbx
@@ -19,7 +19,7 @@
        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT devel
        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} COMPONENT devel
        INCLUDES
-@@ -1074,9 +1077,8 @@ if(MDBX_BUILD_SHARED_LIBRARY)
+@@ -1036,9 +1039,8 @@ if(MDBX_BUILD_SHARED_LIBRARY)
      install(
        TARGETS mdbx
        EXPORT libmdbx
@@ -30,7 +30,7 @@
        OBJECTS DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT devel
        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT devel
        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} COMPONENT devel
-@@ -1285,3 +1287,10 @@ if(NOT SUBPROJECT)
+@@ -1256,3 +1258,10 @@ if(NOT SUBPROJECT)
  endif()
  
  cmake_policy(POP)
@@ -41,8 +41,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libmdbx.pc.in ${CMAKE_BINARY_DIR}/libmdbx.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libmdbx.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libmdbx-0.13.10/libmdbx.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libmdbx-0.13.10/libmdbx.pc.in	2026-01-19 12:20:53.238986800 +0900
+--- origsrc/libmdbx-0.14.4/libmdbx.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libmdbx-0.14.4/libmdbx.pc.in	2026-10-18 11:39:42.875993700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -54,20 +54,30 @@
 +Version: @MDBX_VERSION@
 +Libs: -L${libdir} -lmdbx
 +Cflags: -I${includedir}
---- origsrc/libmdbx-0.13.10/mdbx.c	2025-12-17 23:57:38.000000000 +0900
-+++ src/libmdbx-0.13.10/mdbx.c	2026-01-19 12:20:53.253353000 +0900
-@@ -193,6 +193,10 @@
+--- origsrc/libmdbx-0.14.4/mdbx-internals.h	2026-09-18 19:56:23.000000000 +0000
++++ src/libmdbx-0.14.4/mdbx-internals.h	2026-10-18 11:39:42.878009000 +0000
+@@ -51,7 +51,7 @@
+ #endif
+ #if MDBX_DISABLE_GNU_SOURCE
+ #undef _GNU_SOURCE
+-#elif (defined(__linux__) || defined(__gnu_linux__)) && !defined(_GNU_SOURCE)
++#elif (defined(__linux__) || defined(__gnu_linux__) || defined(__CYGWIN__)) && !defined(_GNU_SOURCE)
+ #define _GNU_SOURCE
+ #endif /* MDBX_DISABLE_GNU_SOURCE */
+ 
+@@ -223,6 +223,11 @@
  #include <string.h>
  #include <time.h>
  
 +#if defined(__CYGWIN__)
++#include <strings.h>
 +#include <sys/vfs.h>
 +#endif
 +
  /*----------------------------------------------------------------------------*/
  /* feature testing */
  
-@@ -1196,7 +1200,7 @@ typedef struct osal_mmap {
+@@ -1337,7 +1342,7 @@ typedef struct osal_mmap {
  } osal_mmap_t;
  
  #ifndef MDBX_HAVE_PWRITEV
@@ -76,7 +86,9 @@
  
  #define MDBX_HAVE_PWRITEV 0
  
-@@ -27908,6 +27912,10 @@ __extern_C void __assert(const char *fun
+--- origsrc/libmdbx-0.14.4/mdbx.c	2026-09-18 19:56:23.000000000 +0000
++++ src/libmdbx-0.14.4/mdbx.c	2026-10-18 11:39:42.884092800 +0000
+@@ -29514,6 +29514,10 @@ __extern_C void __assert(const char *fun
      ;
  #define __assert_fail(assertion, file, line, function) __assert(function, file, line, assertion)
  
@@ -86,4 +98,15 @@
 +
  #endif /* __assert_fail */
  
- __cold void mdbx_assert_fail(const MDBX_env *env, const char *msg, const char *func, unsigned line) {
+ __cold void osal_panic(const char *msg, const char *func, unsigned line) {
+--- origsrc/libmdbx-0.14.4/mdbx.h++	2026-09-18 19:56:23.000000000 +0000
++++ src/libmdbx-0.14.4/mdbx.h++	2026-10-18 11:39:42.885867900 +0000
+@@ -5072,7 +5072,7 @@ inline ::std::ostream &operator<<(::std:
+   return (it.is_freestanding() ? out << "buf-" << it.headroom() << "." << it.tailroom() : out << "ref-") << it.slice();
+ }
+ 
+-#if !(defined(__MINGW__) || defined(__MINGW32__) || defined(__MINGW64__)) || defined(LIBMDBX_EXPORTS)
++#if !(defined(__MINGW__) || defined(__MINGW32__) || defined(__MINGW64__) || defined(__CYGWIN__)) || defined(LIBMDBX_EXPORTS)
+ MDBX_EXTERN_API_TEMPLATE(LIBMDBX_API_TYPE, buffer<legacy_allocator, default_capacity_policy>);
+ 
+ #if MDBX_CXX_HAS_POLYMORPHIC_ALLOCATOR

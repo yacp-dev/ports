@@ -12,6 +12,7 @@ LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	Mustache
+	cmake
 	libcurl-devel
 	libgtest-devel
 	libicu-devel

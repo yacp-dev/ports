@@ -9,53 +9,53 @@ set explicitly in memory. During testing, new cases are classified by
 extrapolation from the most similar stored cases.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libgomp1-13.4.0-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
   libicu76-76.1-2
-  libstdc++6-13.4.0-1
-  libticcutils10-0.37-1bl1
-  libtimbl-devel-6.11-1bl1
-  libtimbl7-6.11-1bl1
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-2.5.1-1
+  libstdc++6-14.4.0-1
+  libticcutils10-0.38-1bl1
+  libtimbl-devel-7.0-1bl1
+  libtimbl8-7.0-1bl1
+  libxml2-2.13.9-2
+  libxml2-devel-2.13.9-2
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
+  autoconf-20260320-3
   autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libicu-devel-76.1-2
-  libticcutils-devel-0.37-1bl1
-  libtool-2.5.4-1
-  libxml2-devel-2.10.4-2
+  libticcutils-devel-0.38-1bl1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-2
   make-4.4.1-2
 
 Canonical website:
   https://github.com/LanguageMachines/timbl/
 
 Canonical download:
-  https://github.com/LanguageMachines/timbl/archive/refs/tags/v6.11.tar.gz
+  https://github.com/LanguageMachines/timbl/archive/refs/tags/v7.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack timbl-6.11-X-src.tar.xz
+  1. unpack timbl-7.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./timbl-6.11-X.cygport all
+        % cygport ./timbl-7.0-X.cygport all
 
 This will create:
-  /usr/src/timbl-6.11-X-src.tar.xz
-  /usr/src/timbl-6.11-X.tar.xz
-  /usr/src/libtimbl7-6.11-X.tar.xz
-  /usr/src/libtimbl-devel-6.11-X.tar.xz
+  /usr/src/timbl-7.0-X-src.tar.xz
+  /usr/src/timbl-7.0-X.tar.xz
+  /usr/src/libtimbl8-7.0-X.tar.xz
+  /usr/src/libtimbl-devel-7.0-X.tar.xz
 
 -------------------------------------------
 
@@ -69,9 +69,9 @@ Files included in the binary package:
   /usr/share/doc/timbl/MAINTAINERS
   /usr/share/doc/timbl/NEWS
   /usr/share/doc/timbl/README
-  /usr/share/doc/timbl/README.md
   /usr/share/doc/timbl/TODO
-  /usr/share/doc/timbl/Timbl_6.4_Manual.pdf
+  /usr/share/doc/timbl/Timbl_7.0_API.pdf
+  /usr/share/doc/timbl/Timbl_7.0_Manual.pdf
   /usr/share/doc/timbl/examples/cross_val.test
   /usr/share/doc/timbl/examples/dimin.script
   /usr/share/doc/timbl/examples/dimin.test
@@ -83,8 +83,8 @@ Files included in the binary package:
   /usr/share/doc/timbl/examples/small_5.train
   /usr/share/man/man1/timbl.1.gz
 
-(libtimbl7)
-  /usr/bin/cygtimbl-7.dll
+(libtimbl8)
+  /usr/bin/cygtimbl-8.dll
 
 (libtimbl-devel)
   /usr/include/timbl/BestArray.h
@@ -113,6 +113,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 7.0-1bl1 -----
+Version bump.
 
 ----- version 6.11-1bl1 -----
 Version bump.

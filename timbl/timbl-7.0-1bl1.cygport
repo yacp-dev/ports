@@ -16,6 +16,7 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	autoconf-archive
 	libicu-devel
 	libticcutils-devel
 	libxml2-devel
@@ -31,20 +32,20 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	${PN}
-	lib${PN}7
+	lib${PN}8
 	lib${PN}-devel
 "
 timbl_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libtimbl7_CONTENTS="
-	usr/bin/cyg*-7.dll
+libtimbl8_CONTENTS="
+	usr/bin/cyg*-8.dll
 "
 libtimbl_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 timbl_SUMMARY="${SUMMARY} (utilities)"
-libtimbl7_SUMMARY="${SUMMARY} (runtime)"
+libtimbl8_SUMMARY="${SUMMARY} (runtime)"
 libtimbl_devel_SUMMARY="${SUMMARY} (development)"

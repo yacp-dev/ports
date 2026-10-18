@@ -1,8 +1,0 @@
---- origsrc/liblognorm-2.0.9/src/Makefile.am	2018-05-04 19:10:23.000000000 +0900
-+++ src/liblognorm-2.0.9/src/Makefile.am	2026-01-19 10:12:34.611561000 +0900
-@@ -68,3 +68,5 @@ EXTRA_DIST += \
- 	v1_ptree.h
- 
- include_HEADERS = liblognorm.h samp.h lognorm.h pdag.h annot.h enc.h parser.h lognorm-features.h
-+
-+liblognorm_la_LDFLAGS += -no-undefined

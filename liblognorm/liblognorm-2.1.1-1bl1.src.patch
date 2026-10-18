@@ -1,0 +1,19 @@
+--- origsrc/liblognorm-2.1.1/src/Makefile.am	2026-09-08 13:07:55.000000000 +0000
++++ src/liblognorm-2.1.1/src/Makefile.am	2026-10-18 10:55:16.847361900 +0000
+@@ -90,3 +90,5 @@ liblognorm_la_SOURCES += \
+ 	turbo_snapshot.h
+ liblognorm_la_CPPFLAGS += $(TURBO_CFLAGS)
+ endif
++
++liblognorm_la_LDFLAGS += -no-undefined
+--- origsrc/liblognorm-2.1.1/tests/Makefile.am	2026-09-08 13:07:55.000000000 +0000
++++ src/liblognorm-2.1.1/tests/Makefile.am	2026-10-18 10:55:16.849139200 +0000
+@@ -28,7 +28,7 @@ unparsed_data_binary_LDFLAGS = -no-insta
+ 
+ literal_embedded_nul_SOURCES = literal_embedded_nul.c
+ literal_embedded_nul_CPPFLAGS = $(JSON_C_CFLAGS) $(WARN_CFLAGS) -I$(top_srcdir)/src
+-literal_embedded_nul_LDADD = $(top_builddir)/src/.libs/liblognorm.a $(JSON_C_LIBS) $(LIBESTR_LIBS)
++literal_embedded_nul_LDADD = $(LIBLOGNORM_LIBS) $(JSON_C_LIBS) $(LIBESTR_LIBS)
+ literal_embedded_nul_LDFLAGS = -no-install
+ 
+ #user_test_SOURCES = user_test.c

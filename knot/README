@@ -5,77 +5,72 @@ all key features of the domain name system including zone transfers and
 DNSSEC.
 
 Runtime requirements:
-  cygwin-3.6.7-1
+  cygwin-3.6.11-1
   libdbus1_3-1.16.2-1
-  libdnssec-devel-3.5.3-1bl1
-  libdnssec10-3.5.3-1bl1
   libedit0-20251016-1
-  libfstrm0-0.6.1-1bl2
-  libgcc1-13.4.0-1
-  libgnutls-devel-3.8.9-1
-  libgnutls30-3.8.9-1
-  libhiredis1-1.3.0-1bl1
+  libfstrm0-0.6.1-1bl3
+  libgcc1-14.4.0-1
+  libgnutls30-3.8.13-1
+  libhiredis1-1.4.1-1bl1
   libidn2_0-2.3.8-1
-  libknot-devel-3.5.3-1bl1
-  libknot16-3.5.3-1bl1
+  libknot-devel-3.6.1-1bl1
+  libknot17-3.6.1-1bl1
   liblmdb0-0.9.19-1
   libmaxminddb0-1.3.2-1
-  libnghttp2_14-1.68.0-1
-  libprotobuf-c1-1.5.2-1bl1
-  liburcu8-0.15.6-1bl1
-  libzscanner-devel-3.5.3-1bl1
-  libzscanner5-3.5.3-1bl1
-  pkg-config-2.5.1-1
+  libnghttp2_14-1.69.0-1
+  libngtcp2_16-1.25.0-1bl1
+  libngtcp2_crypto_gnutls8-1.25.0-1bl1
+  libprotobuf-c1-1.5.2-1bl2
+  liburcu8-0.15.7-1bl1
+  libzscanner-devel-3.6.1-1bl1
+  libzscanner5-3.6.1-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   libdbus1-devel-1.16.2-1
   libedit-devel-20251016-1
-  libfstrm-devel-0.6.1-1bl2
-  libgnutls-devel-3.8.9-1
-  libhiredis-devel-1.3.0-1bl1
+  libfstrm-devel-0.6.1-1bl3
+  libgnutls-devel-3.8.13-1
+  libhiredis-devel-1.4.1-1bl1
   libidn2-devel-2.3.8-1
   liblmdb-devel-0.9.19-1
   libmaxminddb-devel-1.3.2-1
-  libnghttp2-devel-1.68.0-1
-  libprotobuf-c-devel-1.5.2-1bl1
-  libprotobuf-devel-21.12-1
-  libtool-2.5.4-1
-  liburcu-devel-0.15.6-1bl1
+  libnghttp2-devel-1.69.0-1
+  libngtcp2_crypto_gnutls-devel-1.25.0-1bl1
+  libprotobuf-c-devel-1.5.2-1bl2
+  libtool-2.6.2-1
+  liburcu-devel-0.15.7-1bl1
   make-4.4.1-2
-  protobuf-c-1.5.2-1bl1
-  ragel-7.0.0.11-3
+  protobuf-c-1.5.2-1bl2
 
 Canonical website:
   https://www.knot-dns.cz/
 
 Canonical download:
-  https://secure.nic.cz/files/knot-dns/knot-3.5.3.tar.xz
+  https://secure.nic.cz/files/knot-dns/knot-3.6.1.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack knot-3.5.3-X-src.tar.xz
+  1. unpack knot-3.6.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./knot-3.5.3-X.cygport all
+        % cygport ./knot-3.6.1-X.cygport all
 
 This will create:
-  /usr/src/knot-3.5.3-X-src.tar.xz
-  /usr/src/knot-3.5.3-X.tar.xz
-  /usr/src/libdnssec10-3.5.3-X.tar.xz
-  /usr/src/libdnssec-devel-3.5.3-X.tar.xz
-  /usr/src/libknot16-3.5.3-X.tar.xz
-  /usr/src/libknot-devel-3.5.3-X.tar.xz
-  /usr/src/libzscanner5-3.5.3-X.tar.xz
-  /usr/src/libzscanner-devel-3.5.3-X.tar.xz
+  /usr/src/knot-3.6.1-X-src.tar.xz
+  /usr/src/knot-3.6.1-X.tar.xz
+  /usr/src/libknot17-3.6.1-X.tar.xz
+  /usr/src/libknot-devel-3.6.1-X.tar.xz
+  /usr/src/libzscanner5-3.6.1-X.tar.xz
+  /usr/src/libzscanner-devel-3.6.1-X.tar.xz
 
 -------------------------------------------
 
@@ -115,30 +110,8 @@ Files included in the binary package:
   /usr/share/man/man8/knotc.8.gz
   /usr/share/man/man8/knotd.8.gz
 
-(libdnssec10)
-  /usr/bin/cygdnssec-10.dll
-
-(libdnssec-devel)
-  /usr/include/libdnssec/binary.h
-  /usr/include/libdnssec/crypto.h
-  /usr/include/libdnssec/digest.h
-  /usr/include/libdnssec/dnssec.h
-  /usr/include/libdnssec/error.h
-  /usr/include/libdnssec/key.h
-  /usr/include/libdnssec/keyid.h
-  /usr/include/libdnssec/keystore.h
-  /usr/include/libdnssec/keytag.h
-  /usr/include/libdnssec/nsec.h
-  /usr/include/libdnssec/pem.h
-  /usr/include/libdnssec/random.h
-  /usr/include/libdnssec/sign.h
-  /usr/include/libdnssec/tsig.h
-  /usr/include/libdnssec/version.h
-  /usr/lib/libdnssec.dll.a
-  /usr/lib/pkgconfig/libdnssec.pc
-
-(libknot16)
-  /usr/bin/cygknot-16.dll
+(libknot17)
+  /usr/bin/cygknot-17.dll
 
 (libknot-devel)
   /usr/include/libknot/attribute.h
@@ -151,6 +124,18 @@ Files included in the binary package:
   /usr/include/libknot/db/db_trie.h
   /usr/include/libknot/descriptor.h
   /usr/include/libknot/dname.h
+  /usr/include/libknot/dnssec/binary.h
+  /usr/include/libknot/dnssec/crypto.h
+  /usr/include/libknot/dnssec/digest.h
+  /usr/include/libknot/dnssec/key.h
+  /usr/include/libknot/dnssec/keyid.h
+  /usr/include/libknot/dnssec/keystore.h
+  /usr/include/libknot/dnssec/keytag.h
+  /usr/include/libknot/dnssec/nsec.h
+  /usr/include/libknot/dnssec/pem.h
+  /usr/include/libknot/dnssec/random.h
+  /usr/include/libknot/dnssec/sign.h
+  /usr/include/libknot/dnssec/tsig.h
   /usr/include/libknot/dynarray.h
   /usr/include/libknot/endian.h
   /usr/include/libknot/errcode.h
@@ -164,6 +149,8 @@ Files included in the binary package:
   /usr/include/libknot/packet/wire.h
   /usr/include/libknot/probe/data.h
   /usr/include/libknot/probe/probe.h
+  /usr/include/libknot/quic/quic.h
+  /usr/include/libknot/quic/quic_conn.h
   /usr/include/libknot/quic/tls.h
   /usr/include/libknot/quic/tls_common.h
   /usr/include/libknot/rdata.h
@@ -209,6 +196,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.6.1-1bl1 -----
+Version bump.
 
 ----- version 3.5.3-1bl1 -----
 Version bump.

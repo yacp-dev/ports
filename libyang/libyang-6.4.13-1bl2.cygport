@@ -41,10 +41,12 @@ PKG_NAMES="
 "
 libyang_CONTENTS="
 	usr/bin/*.exe
-	usr/share
+	usr/share/doc
+	usr/share/man
 "
 libyang5_CONTENTS="
 	usr/bin/cyg*-5.dll
+	usr/share/yang
 "
 libyang_devel_CONTENTS="
 	usr/include

@@ -1,6 +1,6 @@
---- origsrc/libgcroots-0.3.2/Makefile.am	2020-08-23 08:03:25.000000000 +0900
-+++ src/libgcroots-0.3.2/Makefile.am	2026-05-25 21:38:02.883079800 +0900
-@@ -128,7 +128,7 @@ libgcroots_la_SOURCES = mark.c gcroots.c
+--- origsrc/libgcroots-0.3.6/Makefile.am	2026-10-11 02:00:29.000000000 +0000
++++ src/libgcroots-0.3.6/Makefile.am	2026-10-18 05:39:28.259130000 +0000
+@@ -133,7 +133,7 @@ libgcroots_la_SOURCES = mark.c gcroots.c
  
  libgcroots_la_LIBADD = @addobjs@ $(THREADDLLIBS) $(UNWINDLIBS)
  libgcroots_la_DEPENDENCIES = @addobjs@
@@ -9,8 +9,8 @@
  
  EXTRA_libgcroots_la_SOURCES = alpha_mach_dep.S \
      mips_sgi_mach_dep.s mips_ultrix_mach_dep.s \
---- origsrc/libgcroots-0.3.2/include/private/gcconfig.h	2020-08-23 08:03:25.000000000 +0900
-+++ src/libgcroots-0.3.2/include/private/gcconfig.h	2026-05-25 21:38:02.889163100 +0900
+--- origsrc/libgcroots-0.3.6/include/private/gcconfig.h	2026-10-11 02:00:29.000000000 +0000
++++ src/libgcroots-0.3.6/include/private/gcconfig.h	2026-10-18 05:39:28.259130000 +0000
 @@ -414,11 +414,16 @@
  #   endif
  #   define mach_type_known

@@ -17,20 +17,21 @@ CYGCONF_ARGS="
 
 PKG_NAMES="
 	libplist
-	libplist2.0_4
+	libplist2.0_12
 	libplist2.0-devel
 "
 libplist_CONTENTS="
 	usr/bin/*.exe
+	usr/bin/plist2json
 	usr/share
 "
-libplist2_0_4_CONTENTS="
-	usr/bin/cyg*-4.dll
+libplist2_0_12_CONTENTS="
+	usr/bin/cyg*-12.dll
 "
 libplist2_0_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libplist_SUMMARY="${SUMMARY} (utilities)"
-libplist2_0_4_SUMMARY="${SUMMARY} (runtime)"
+libplist2_0_12_SUMMARY="${SUMMARY} (runtime)"
 libplist2_0_devel_SUMMARY="${SUMMARY} (development)"

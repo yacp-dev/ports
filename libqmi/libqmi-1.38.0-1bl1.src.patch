@@ -1,0 +1,14 @@
+--- origsrc/libqmi-1.38.0/utils/swi-update.c	2026-01-02 01:02:50.000000000 +0000
++++ src/libqmi-1.38.0/utils/swi-update.c	2026-10-19 01:35:36.695084300 +0000
+@@ -33,7 +33,11 @@
+ #include <fcntl.h>
+ #include <getopt.h>
+ #include <limits.h>
++#if defined(__linux__)
+ #include <linux/types.h>
++#else
++#include <asm/types.h>
++#endif
+ #include <malloc.h>
+ #include <stdbool.h>
+ #include <stdio.h>

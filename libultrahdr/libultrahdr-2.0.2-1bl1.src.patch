@@ -1,19 +1,19 @@
---- origsrc/libultrahdr-1.4.0/CMakeLists.txt	2025-01-11 04:31:48.000000000 +0900
-+++ src/libultrahdr-1.4.0/CMakeLists.txt	2026-02-06 15:45:34.305627400 +0900
-@@ -38,6 +38,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Ems
- elseif(${CMAKE_SYSTEM_NAME} MATCHES "Android")
+--- origsrc/libultrahdr-2.0.2/CMakeLists.txt	2026-08-13 00:54:12.000000000 +0000
++++ src/libultrahdr-2.0.2/CMakeLists.txt	2026-10-19 15:59:16.530642800 +0000
+@@ -28,6 +28,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "And
+ elseif(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
  elseif(WIN32)
  elseif(APPLE)
 +elseif(CYGWIN)
  else()
    message(FATAL_ERROR "Platform ${CMAKE_SYSTEM_NAME} not recognized")
  endif()
-@@ -766,7 +767,7 @@ endif()
+@@ -943,7 +944,7 @@ endif()
  combine_static_libs(${UHDR_CORE_LIB_NAME} ${UHDR_TARGET_NAME})
  
  # Build static library as well
--if(BUILD_SHARED_LIBS)
-+if(NOT BUILD_SHARED_LIBS)
+-if(BUILD_SHARED_LIBS AND NOT MSVC)
++if(NOT BUILD_SHARED_LIBS AND NOT MSVC)
    set(UHDR_TARGET_NAME_STATIC uhdr-static)
    add_library(${UHDR_TARGET_NAME_STATIC} STATIC)
    add_dependencies(${UHDR_TARGET_NAME_STATIC} ${UHDR_CORE_LIB_NAME})

@@ -17,6 +17,10 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libjpeg-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
@@ -29,20 +33,20 @@ DOCS="
 
 PKG_NAMES="
 	libultrahdr
-	libuhdr1
+	libuhdr2
 	libuhdr-devel
 "
 libultrahdr_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libuhdr1_CONTENTS="
-	usr/bin/cyg*-1.dll
+libuhdr2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libuhdr_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libultrahdr_SUMMARY="${SUMMARY} (utilities)"
-libuhdr1_SUMMARY="${SUMMARY} (runtime)"
+libuhdr2_SUMMARY="${SUMMARY} (runtime)"
 libuhdr_devel_SUMMARY="${SUMMARY} (development)"

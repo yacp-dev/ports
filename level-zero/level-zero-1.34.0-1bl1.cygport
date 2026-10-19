@@ -11,7 +11,6 @@ LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	libgtest-devel
-	libspdlog-devel
 "
 
 CYGPORT_USE_UNSTABLE_API=1
@@ -30,7 +29,6 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_L0_LOADER_TESTS:BOOL=ON
-	-DSYSTEM_SPDLOG:BOOL=ON
 	-Dpkgconfig_prefix:PATH=usr
 	-Dpkgconfig_include_dir:PATH=include
 	-Dpkgconfig_lib_dir:PATH=lib

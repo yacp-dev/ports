@@ -1,7 +1,7 @@
---- origsrc/level-zero-1.27.0/CMakeLists.txt	2025-12-20 05:50:38.000000000 +0900
-+++ src/level-zero-1.27.0/CMakeLists.txt	2026-01-15 12:07:26.709320500 +0900
-@@ -16,25 +16,27 @@ endif()
- project(level-zero VERSION 1.27.0)
+--- origsrc/level-zero-1.34.0/CMakeLists.txt	2026-09-17 23:29:59.000000000 +0000
++++ src/level-zero-1.34.0/CMakeLists.txt	2026-10-19 02:42:56.525179400 +0000
+@@ -16,42 +16,46 @@ endif()
+ project(level-zero VERSION 1.34.0)
  include(GNUInstallDirs)
  
 -find_package(Git)
@@ -47,7 +47,6 @@
  endif()
  add_definitions(-DLOADER_VERSION_SHA="${VERSION_SHA}")
  
-@@ -52,17 +54,19 @@ endif()
  include(FetchContent)
  
  if(BUILD_L0_LOADER_TESTS)
@@ -77,7 +76,7 @@
  	enable_testing()
  endif()
  
-@@ -208,7 +212,9 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRE
+@@ -204,7 +208,9 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRE
        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
      endif()
    else()
@@ -88,12 +87,12 @@
    endif()
  endif()
  
---- origsrc/level-zero-1.27.0/source/CMakeLists.txt	2025-12-20 05:50:38.000000000 +0900
-+++ src/level-zero-1.27.0/source/CMakeLists.txt	2026-01-15 11:43:26.645360200 +0900
-@@ -75,9 +75,15 @@ install(TARGETS ze_loader
- )
+--- origsrc/level-zero-1.34.0/source/CMakeLists.txt	2026-09-17 23:29:59.000000000 +0000
++++ src/level-zero-1.34.0/source/CMakeLists.txt	2026-10-19 02:42:56.527205500 +0000
+@@ -87,9 +87,15 @@ if(CANONICAL_LIB_COMPONENT)
+     )
+ endif()
  
- if(NOT BUILD_INSTALLER)
 -file(RELATIVE_PATH pkgconfig_prefix "${CMAKE_INSTALL_FULL_LIBDIR}/pkgconfig" "${CMAKE_INSTALL_PREFIX}")
 -file(RELATIVE_PATH pkgconfig_include_dir "${CMAKE_INSTALL_PREFIX}" "${CMAKE_INSTALL_FULL_INCLUDEDIR}")
 -file(RELATIVE_PATH pkgconfig_lib_dir "${CMAKE_INSTALL_PREFIX}" "${CMAKE_INSTALL_FULL_LIBDIR}")
@@ -109,8 +108,8 @@
  
  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libze_loader.pc.in ${CMAKE_CURRENT_BINARY_DIR}/libze_loader.pc @ONLY)
  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/level-zero.pc.in ${CMAKE_CURRENT_BINARY_DIR}/level-zero.pc @ONLY)
---- origsrc/level-zero-1.27.0/source/inc/ze_util.h	2025-12-20 05:50:38.000000000 +0900
-+++ src/level-zero-1.27.0/source/inc/ze_util.h	2026-01-15 11:44:29.052383700 +0900
+--- origsrc/level-zero-1.34.0/source/inc/ze_util.h	2026-09-17 23:29:59.000000000 +0000
++++ src/level-zero-1.34.0/source/inc/ze_util.h	2026-10-19 02:42:56.527205500 +0000
 @@ -41,7 +41,9 @@ inline void getLastErrorString(std::stri
  #  define putenv_safe _putenv
  #  define strdup_safe _strdup
@@ -132,9 +131,47 @@
  #elif !defined(WIN32)
  #  define MAKE_LIBRARY_NAME(NAME, VERSION)    "lib" NAME ".so." VERSION
  #  define MAKE_LAYER_NAME(NAME)    "lib" NAME ".so." L0_VALIDATION_LAYER_SUPPORTED_VERSION
---- origsrc/level-zero-1.27.0/source/loader/ze_loader.cpp	2025-12-20 05:50:38.000000000 +0900
-+++ src/level-zero-1.27.0/source/loader/ze_loader.cpp	2026-01-15 11:45:41.522679200 +0900
-@@ -684,7 +684,7 @@ namespace loader
+--- origsrc/level-zero-1.34.0/source/loader/linux/driver_discovery_lin.cpp	2026-09-17 23:29:59.000000000 +0000
++++ src/level-zero-1.34.0/source/loader/linux/driver_discovery_lin.cpp	2026-10-19 02:42:56.529220300 +0000
+@@ -154,6 +154,17 @@ std::vector<DriverLibraryPath> discoverE
+           libName = libName.substr(0, dotPos);
+         }
+ 
++#if defined(__CYGWIN__)
++        // path is like "cygze_intel_gpu-1.dll"
++        if (libName.compare(0, 3, "cyg") == 0) {
++          libName = libName.substr(3);
++        }
++        size_t dashPos = libName.find('-');
++        if (dashPos != std::string::npos) {
++          libName = libName.substr(0, dashPos);
++        }
++#endif
++
+         // Now match against the core driver name (e.g., "ze_intel_gpu", "ze_intel_npu")
+         // Check for exact matches or word boundaries to avoid substring false positives
+         zel_driver_type_t driverType = ZEL_DRIVER_TYPE_FORCE_UINT32;
+--- origsrc/level-zero-1.34.0/source/loader/ze_loader.cpp	2026-09-17 23:29:59.000000000 +0000
++++ src/level-zero-1.34.0/source/loader/ze_loader.cpp	2026-10-19 02:42:56.529220300 +0000
+@@ -579,7 +579,7 @@ namespace loader
+             if( NULL != handle )
+             {
+                 if (debugTraceEnabled) {
+-#if !defined(_WIN32) && !defined(ANDROID)
++#if !defined(_WIN32) && !defined(ANDROID) && defined(RTLD_DI_LINKMAP)
+                     struct link_map *dlinfo_map;
+                     if (dlinfo(handle, RTLD_DI_LINKMAP, &dlinfo_map) == 0) {
+                         debug_trace_message("init driver " + driver.name + " resolved path: ", std::string(dlinfo_map->l_name));
+@@ -780,7 +780,7 @@ namespace loader
+             if( NULL != handle )
+             {
+                 if (debugTraceEnabled && debugTraceAdvanced) {
+-#if !defined(_WIN32) && !defined(ANDROID)
++#if !defined(_WIN32) && !defined(ANDROID) && defined(RTLD_DI_LINKMAP)
+                     struct link_map *dlinfo_map;
+                     if (dlinfo(handle, RTLD_DI_LINKMAP, &dlinfo_map) == 0) {
+                         debug_trace_message("Null Driver Library Path (resolved): ", std::string(dlinfo_map->l_name));
+@@ -811,7 +811,7 @@ namespace loader
                  {
                      if (debugTraceEnabled) {
                          std::string message = "Loading Driver " + driverInfo.path + " succeeded";
@@ -143,29 +180,54 @@
                          // TODO: implement same message for windows, move dlinfo to ze_util.h as a macro
                          struct link_map *dlinfo_map;
                          if (dlinfo(handle, RTLD_DI_LINKMAP, &dlinfo_map) == 0) {
---- origsrc/level-zero-1.27.0/source/utils/logging.h	2025-12-20 05:50:38.000000000 +0900
-+++ src/level-zero-1.27.0/source/utils/logging.h	2026-01-15 11:49:37.371387300 +0900
-@@ -191,10 +191,12 @@ inline std::shared_ptr<Logger> createLog
- #else
-       home_dir = getenv_string("HOME");
- 
-+#if !defined(__CYGWIN__)
-       if (home_dir == "") {
-           auto pwdir = getpwuid(getuid())->pw_dir;
-           home_dir = (pwdir == NULL) ? "." : std::string(pwdir);
-       }
-+#endif
-       log_directory = home_dir + "/" + LOADER_LOG_FILE_DIRECTORY;
- #endif
-   }
---- origsrc/level-zero-1.27.0/test/CMakeLists.txt	2025-12-20 05:50:38.000000000 +0900
-+++ src/level-zero-1.27.0/test/CMakeLists.txt	2026-01-15 12:26:48.785094300 +0900
-@@ -97,7 +97,7 @@ if(NOT BUILD_STATIC)
+@@ -860,7 +860,7 @@ namespace loader
+             if(validationLayer)
+             {
+                 if (debugTraceEnabled && debugTraceAdvanced) {
+-#if !defined(_WIN32) && !defined(ANDROID)
++#if !defined(_WIN32) && !defined(ANDROID) && defined(RTLD_DI_LINKMAP)
+                     struct link_map *dlinfo_map;
+                     if (dlinfo(validationLayer, RTLD_DI_LINKMAP, &dlinfo_map) == 0) {
+                         debug_trace_message("Validation Layer Library Path (resolved): ", std::string(dlinfo_map->l_name));
+@@ -907,7 +907,7 @@ namespace loader
+         if(tracingLayer)
+         {
+             if (debugTraceEnabled && debugTraceAdvanced) {
+-#if !defined(_WIN32) && !defined(ANDROID)
++#if !defined(_WIN32) && !defined(ANDROID) && defined(RTLD_DI_LINKMAP)
+                 struct link_map *dlinfo_map;
+                 if (dlinfo(tracingLayer, RTLD_DI_LINKMAP, &dlinfo_map) == 0) {
+                     debug_trace_message("Tracing Layer Library Path (resolved): ", std::string(dlinfo_map->l_name));
+--- origsrc/level-zero-1.34.0/test/CMakeLists.txt	2026-09-17 23:29:59.000000000 +0000
++++ src/level-zero-1.34.0/test/CMakeLists.txt	2026-10-19 02:42:56.530981700 +0000
+@@ -101,6 +101,19 @@ if(NOT BUILD_STATIC)
          $<TARGET_FILE_DIR:tests>/ze_fake_vpu.dll
        COMMENT "Copying null drivers to fake driver names for init_driver_unit_tests"
      )
--  else()
-+  elif(NOT CYGWIN)
++  elseif(CYGWIN)
++    add_custom_command(TARGET tests POST_BUILD
++      COMMAND ${CMAKE_COMMAND} -E copy_if_different
++        $<TARGET_FILE:ze_null>
++        $<TARGET_FILE_DIR:ze_null>/cygze_fake_gpu-1.dll
++      COMMAND ${CMAKE_COMMAND} -E copy_if_different
++        $<TARGET_FILE:ze_null_test1>
++        $<TARGET_FILE_DIR:ze_null_test1>/cygze_fake_npu-1.dll
++      COMMAND ${CMAKE_COMMAND} -E copy_if_different
++        $<TARGET_FILE:ze_null_test2>
++        $<TARGET_FILE_DIR:ze_null_test2>/cygze_fake_vpu-1.dll
++      COMMENT "Copying null drivers to fake driver names for init_driver_unit_tests"
++    )
+   else()
      add_custom_command(TARGET tests POST_BUILD
        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-         ${CMAKE_BINARY_DIR}/lib/libze_null.so.1
+--- origsrc/level-zero-1.34.0/test/init_driver_unit_tests.cpp	2026-09-17 23:29:59.000000000 +0000
++++ src/level-zero-1.34.0/test/init_driver_unit_tests.cpp	2026-10-19 02:42:56.533005700 +0000
+@@ -23,6 +23,8 @@ loader::driver_t createNullDriver(const
+ 
+ #ifdef _WIN32
+     driver.name = libraryPath + name + ".dll";
++#elif defined(__CYGWIN__)
++    driver.name = libraryPath + "cyg" + name + "-1.dll";
+ #else
+     driver.name = libraryPath + "lib" + name + ".so.1";
+ #endif

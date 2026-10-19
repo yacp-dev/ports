@@ -1,5 +1,5 @@
---- origsrc/libupnpp-1.0.3/meson.build	2025-05-26 15:48:35.000000000 +0900
-+++ src/libupnpp-1.0.3/meson.build	2025-09-03 14:46:30.406641500 +0900
+--- origsrc/libupnpp-1.0.4/meson.build	2026-03-20 08:33:25.000000000 +0000
++++ src/libupnpp-1.0.4/meson.build	2026-10-19 15:57:26.272032500 +0000
 @@ -23,7 +23,12 @@ elif host_machine.system() == 'sunos'
  endif
  
@@ -12,9 +12,9 @@
 +  deps += dependency('npupnp')
 +endif
  deps += dependency('libcurl')
- deps += dependency('expat')
- 
-@@ -106,10 +111,9 @@ cfile = configure_file(
+ if get_option('use_expat')
+   deps += dependency('expat')
+@@ -109,10 +114,9 @@ cfile = configure_file(
  
  
  libupnpp = library(

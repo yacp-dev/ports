@@ -1,0 +1,11 @@
+--- origsrc/libspatialaudio-0.4.1/CMakeLists.txt	2026-07-01 11:13:54.000000000 +0000
++++ src/libspatialaudio-0.4.1/CMakeLists.txt	2026-10-19 12:01:36.642256200 +0000
+@@ -201,7 +201,7 @@ configure_file(
+ )
+ 
+ install(TARGETS spatialaudio
+-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+     FILE_SET HEADERS
+         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/spatialaudio

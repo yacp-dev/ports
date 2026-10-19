@@ -18,33 +18,63 @@ LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
-	libfftw3-devel
 	libsndfile-devel
 "
 
-inherit meson
+inherit cmake
 
-CYGMESON_ARGS="
-	-Denable_examples=true
-	-Denable_tests=true
+CYGCMAKE_ARGS="
+	-DENABLE_EXAMPLES=ON
+	-DENABLE_TESTS=ON
+	-DSPECBLEACH_BUILD_EXTRAS=ON
 "
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+	newbin denoiser_demo.exe specbleach_denoiser_demo.exe
+	newbin simple_embed.exe specbleach_simple_embed.exe
+	newbin stereo_denoiser_demo.exe specbleach_stereo_denoiser_demo.exe
+}
 
 PKG_NAMES="
 	libspecbleach
 	libspecbleach0
+	libspecbleach_extras0
 	libspecbleach-devel
+	libspecbleach_extras-devel
 "
 libspecbleach_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
 libspecbleach0_CONTENTS="
-	usr/bin/cyg*-0.dll
+	usr/bin/cygspecbleach-0.dll
+"
+libspecbleach_extras0_CONTENTS="
+	usr/bin/cygspecbleach_extras-0.dll
 "
 libspecbleach_devel_CONTENTS="
-	usr/include
-	usr/lib
+	usr/include/specbleach.hpp
+	usr/include/specbleach_denoiser.h
+	usr/include/specbleach_export.h
+	usr/include/specbleach_version.h
+	usr/lib/cmake/libspecbleach/libspecbleachConfig*.cmake
+	usr/lib/cmake/libspecbleach/libspecbleachTargets*.cmake
+	usr/lib/libspecbleach.dll.a
+	usr/lib/pkgconfig/specbleach.pc
+"
+libspecbleach_extras_devel_CONTENTS="
+	usr/include/specbleach_stereo.h*
+	usr/lib/cmake/libspecbleach/libspecbleachExtrasTargets*.cmake
+	usr/lib/libspecbleach_extras.dll.a
+	usr/lib/pkgconfig/specbleach-extras.pc
 "
 libspecbleach_SUMMARY="${SUMMARY} (utilities)"
 libspecbleach0_SUMMARY="${SUMMARY} (runtime)"
+libspecbleach_extras0_SUMMARY="${SUMMARY} (multi-channel extras runtime)"
 libspecbleach_devel_SUMMARY="${SUMMARY} (development)"
+libspecbleach_extras_devel_SUMMARY="${SUMMARY} (multi-channel extras development)"
+
+libspecbleach_extras_devel_REQUIRES="libspecbleach-devel"

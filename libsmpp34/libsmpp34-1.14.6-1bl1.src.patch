@@ -1,5 +1,5 @@
---- origsrc/libsmpp34-1.14.5/src/smpp34_params.c	2025-12-04 14:20:50.000000000 +0900
-+++ src/libsmpp34-1.14.5/src/smpp34_params.c	2026-01-21 07:36:02.922913900 +0900
+--- origsrc/libsmpp34-1.14.6/src/smpp34_params.c	2026-08-21 05:21:07.000000000 +0000
++++ src/libsmpp34-1.14.6/src/smpp34_params.c	2026-10-19 12:04:00.893328200 +0000
 @@ -134,60 +134,50 @@ destroy_tlv( tlv_t *sourceList )
  
  char* str_tlv_id( uint16_t tlv_id, char* buff )
@@ -86,8 +86,8 @@
      return( buff );
  };
  
---- origsrc/libsmpp34-1.14.5/test_apps/tcp.c	2025-12-04 14:20:50.000000000 +0900
-+++ src/libsmpp34-1.14.5/test_apps/tcp.c	2026-01-21 07:36:02.922913900 +0900
+--- origsrc/libsmpp34-1.14.6/test_apps/tcp.c	2026-08-21 05:21:07.000000000 +0000
++++ src/libsmpp34-1.14.6/test_apps/tcp.c	2026-10-19 12:04:00.893842100 +0000
 @@ -81,15 +81,28 @@ int do_tcp_connect( xmlNodePtr p, int *s
          }
      }

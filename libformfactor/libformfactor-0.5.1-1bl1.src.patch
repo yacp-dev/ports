@@ -1,0 +1,45 @@
+--- origsrc/formfactor-v0.5.1/CMakeLists.txt	2026-08-10 16:30:25.000000000 +0000
++++ src/formfactor-v0.5.1/CMakeLists.txt	2026-10-19 13:39:10.333827500 +0000
+@@ -106,3 +106,10 @@ install(EXPORT formfactorTargets
+ 
+ export(EXPORT formfactorTargets
+     FILE "${CMAKE_CURRENT_BINARY_DIR}/formfactorTargets.cmake")
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_FULL_LIBDIR})
++set(includedir ${CMAKE_INSTALL_FULL_INCLUDEDIR})
++configure_file(${CMAKE_SOURCE_DIR}/libformfactor.pc.in ${CMAKE_BINARY_DIR}/libformfactor.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/libformfactor.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/formfactor-v0.5.1/ff/CMakeLists.txt	2026-08-10 16:30:25.000000000 +0000
++++ src/formfactor-v0.5.1/ff/CMakeLists.txt	2026-10-19 13:39:10.335211000 +0000
+@@ -32,12 +32,15 @@ set_target_properties(
+     ${lib} PROPERTIES
+     OUTPUT_NAME ${lib}
+     VERSION ${PROJECT_VERSION})
++if (DEFINED SOVERSION)
++    set_target_properties(${lib} PROPERTIES SOVERSION "${SOVERSION}")
++endif()
+ 
+ install(
+     TARGETS ${lib}
+     EXPORT formfactorTargets
+     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-    RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR}
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ 
+ install(
+--- origsrc/formfactor-v0.5.1/libformfactor.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/formfactor-v0.5.1/libformfactor.pc.in	2026-10-19 13:39:10.336515900 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libformfactor
++Description: C++ library for the efficient computation of scattering form factors (Fourier shape transforms) of arbitrary polyhedra
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -lformfactor
++Cflags: -I${includedir}

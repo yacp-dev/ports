@@ -1,6 +1,6 @@
-HOMEPAGE="https://jugit.fz-juelich.de/mlz/${PN}"
-SRC_URI="https://jugit.fz-juelich.de/mlz/${PN}/-/archive/v${PV}/${PN}-v${PV}.tar.bz2"
-SRC_DIR="${PN}-v${PV}"
+HOMEPAGE="https://jugit.fz-juelich.de/mlz/lib/formfactor"
+SRC_URI="https://jugit.fz-juelich.de/mlz/lib/formfactor/-/archive/v${PV}/formfactor-v${PV}.tar.bz2"
+SRC_DIR="formfactor-v${PV}"
 
 CATEGORY="Libs"
 SUMMARY="C++ library for the efficient computation of scattering form factors (Fourier shape transforms) of arbitrary polyhedra"
@@ -10,7 +10,9 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libheinz"
+BUILD_REQUIRES="
+	libheinz
+"
 
 inherit cmake
 

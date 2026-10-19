@@ -1,5 +1,5 @@
---- origsrc/libdial-2.6/Makefile.am	2024-08-30 16:38:10.000000000 +0900
-+++ src/libdial-2.6/Makefile.am	2026-01-17 15:43:28.679671500 +0900
+--- origsrc/libdial-2.7/Makefile.am	2023-06-20 08:38:29.000000000 +0000
++++ src/libdial-2.7/Makefile.am	2026-10-19 12:26:47.912220600 +0000
 @@ -1,7 +1,7 @@
  AUTOMAKE_OPTIONS = dist-bzip2
  lib_LTLIBRARIES = libdial.la

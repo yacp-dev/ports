@@ -3,51 +3,51 @@ libdial
 Library needed by tzclock
 
 Runtime requirements:
-  cygwin-3.6.6-1
+  cygwin-3.6.11-1
   libcairo2-1.18.4-1
-  libdial-devel-2.6-1bl1
-  libdial2-2.6-1bl1
-  libglib2.0_0-2.87.0-1
-  libgtk3_0-3.24.51-1
+  libdial-devel-2.7-1bl1
+  libdial2-2.7-1bl1
+  libglib2.0_0-2.90.0-1
+  libgtk3_0-3.24.52-1
   libintl8-0.22.5-1
-  libpango1.0_0-1.57.0-1
-  pkg-config-2.5.1-1
+  libpango1.0_0-1.58.2-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   libcairo-devel-1.18.4-1
-  libglib2.0-devel-2.87.0-1
-  libgtk3-devel-3.24.51-1
+  libglib2.0-devel-2.90.0-1
+  libgtk3-devel-3.24.52-1
   libintl-devel-0.22.5-1
-  libpango1.0-devel-1.57.0-1
-  libtool-2.5.4-1
+  libpango1.0-devel-1.58.2-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://theknight.co.uk/
 
 Canonical download:
-  https://theknight.co.uk/releases/Source/libdial-2.6.tar.bz2
+  https://theknight.co.uk/releases/Source/libdial-2.7.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libdial-2.6-X-src.tar.xz
+  1. unpack libdial-2.7-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libdial-2.6-X.cygport all
+        % cygport ./libdial-2.7-X.cygport all
 
 This will create:
-  /usr/src/libdial-2.6-X-src.tar.xz
-  /usr/src/libdial-2.6-X.tar.xz
-  /usr/src/libdial2-2.6-X.tar.xz
-  /usr/src/libdial-devel-2.6-X.tar.xz
+  /usr/src/libdial-2.7-X-src.tar.xz
+  /usr/src/libdial-2.7-X.tar.xz
+  /usr/src/libdial2-2.7-X.tar.xz
+  /usr/src/libdial-devel-2.7-X.tar.xz
 
 -------------------------------------------
 
@@ -69,6 +69,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.7-1bl1 -----
+Version bump.
 
 ----- version 2.6-1bl1 -----
 Version bump.

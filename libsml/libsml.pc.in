@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libsml
+Description: Implementation in C of the Smart Message Language (SML) protocol
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -lsml
+Cflags: -I${includedir}

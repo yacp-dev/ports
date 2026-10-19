@@ -1,5 +1,9 @@
 HOMEPAGE="https://github.com/volkszaehler/${PN}"
-SRC_URI="https://github.com/volkszaehler/${PN}/archive/refs/tags/v${PV}.tar.gz"
+SRC_URI="
+	https://github.com/volkszaehler/${PN}/archive/refs/tags/v${PV}.tar.gz
+	CMakeLists.txt
+	libsml.pc.in
+"
 
 CATEGORY="Libs"
 SUMMARY="Implementation in C of the Smart Message Language (SML) protocol"
@@ -11,7 +15,9 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libuuid-devel"
+BUILD_REQUIRES="
+	libuuid-devel
+"
 
 inherit cmake
 

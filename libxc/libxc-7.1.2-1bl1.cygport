@@ -13,6 +13,10 @@ LICENSE="MPL-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0"
 LICENSE_URI="COPYING"
 
+BUILD_REQUIRES="
+	gcc-fortran
+"
+
 PKG_NAMES="
 	${PN}
 	${PN}15

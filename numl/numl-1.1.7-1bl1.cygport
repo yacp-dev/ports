@@ -1,5 +1,6 @@
-HOMEPAGE="https://github.com/${PN}/${PN}"
-SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/NuML/NuML"
+SRC_URI="https://github.com/NuML/NuML/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="NuML-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="Numerical Markup Language"
@@ -8,13 +9,19 @@ archiving of numerical results. NuML originates from the numerical aspects of
 the Systems Biology Results Markup Language (SBRML) with the aim of re-using
 it in multiple other standardization efforts."
 
-BUILD_REQUIRES="libsbml-devel"
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="libnuml/LICENSE.txt"
+
+BUILD_REQUIRES="
+	libsbml-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DLIBNUML_SKIP_STATIC_LIBRARY:BOOL=ON
-	-DPACKAGE_CONFIG_DIR:STRING=/usr/lib/cmake/${PN}
+	-DPACKAGE_CONFIG_DIR:STRING=/usr/lib/cmake/NuML
 "
 
 src_compile()
@@ -39,11 +46,11 @@ DOCS="
 "
 
 PKG_NAMES="
-	NuML
+	numl
 	libnuml1
 	libnuml-devel
 "
-NuML_CONTENTS="
+numl_CONTENTS="
 	usr/share
 "
 libnuml1_CONTENTS="
@@ -53,6 +60,6 @@ libnuml_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
-NuML_SUMMARY="${SUMMARY} (licensing & readmes)"
+numl_SUMMARY="${SUMMARY} (licensing & readmes)"
 libnuml1_SUMMARY="${SUMMARY} (runtime)"
 libnuml_devel_SUMMARY="${SUMMARY} (development)"

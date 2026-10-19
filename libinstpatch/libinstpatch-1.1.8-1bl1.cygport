@@ -13,17 +13,23 @@ LICENSE="LGPL-2.1-only"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-only"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libglib2.0-devel libsndfile-devel"
+BUILD_REQUIRES="
+	libglib2.0-devel
+	libsndfile-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DINTROSPECTION_ENABLED:BOOL=OFF
-	-DLIB_SUFFIX:STRING=
 " # https://github.com/swami/libinstpatch/issues/34
 
 DOCS="
 	TODO.tasks
+"
+
+DIFF_EXCLUDES="
+	test-app
 "
 
 PKG_NAMES="

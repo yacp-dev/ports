@@ -1,5 +1,5 @@
---- origsrc/libsbml-5.21.0/CMakeLists.txt	2026-01-09 18:59:38.000000000 +0900
-+++ src/libsbml-5.21.0/CMakeLists.txt	2026-03-23 21:56:57.253149100 +0900
+--- origsrc/libsbml-5.21.2/CMakeLists.txt	2026-09-17 07:17:17.000000000 +0000
++++ src/libsbml-5.21.2/CMakeLists.txt	2026-10-19 05:51:39.832540200 +0000
 @@ -555,7 +555,9 @@ if(WITH_ZLIB)
  endif(WITH_ZLIB)
  
@@ -22,8 +22,8 @@
  
  ###############################################################################
  #
---- origsrc/libsbml-5.21.0/examples/CMakeLists.txt	2026-01-09 18:59:38.000000000 +0900
-+++ src/libsbml-5.21.0/examples/CMakeLists.txt	2026-03-23 21:56:57.268915000 +0900
+--- origsrc/libsbml-5.21.2/examples/CMakeLists.txt	2026-09-17 07:17:17.000000000 +0000
++++ src/libsbml-5.21.2/examples/CMakeLists.txt	2026-10-19 05:51:39.834300400 +0000
 @@ -55,47 +55,47 @@ endif(WITH_EXAMPLES)
  # the remaining language bindings do not need to be compiled in order to run. 
  
@@ -113,8 +113,8 @@
 -install(FILES ${l3_samples} DESTINATION ${MISC_PREFIX}examples/sample-models/from-spec/level-3)
 +install(FILES ${l3_samples} DESTINATION ${MISC_PREFIX}/examples/sample-models/from-spec/level-3)
  
---- origsrc/libsbml-5.21.0/examples/c/CMakeLists.txt	2026-01-09 18:59:38.000000000 +0900
-+++ src/libsbml-5.21.0/examples/c/CMakeLists.txt	2026-03-23 21:56:57.274956000 +0900
+--- origsrc/libsbml-5.21.2/examples/c/CMakeLists.txt	2026-09-17 07:17:17.000000000 +0000
++++ src/libsbml-5.21.2/examples/c/CMakeLists.txt	2026-10-19 05:51:39.836317900 +0000
 @@ -69,8 +69,11 @@ foreach(example
  )
  	add_executable(example_c_${example} ${example}.c util.c)
@@ -128,8 +128,8 @@
  endforeach()
  
  # run examples as test 
---- origsrc/libsbml-5.21.0/examples/c++/CMakeLists.txt	2026-01-09 18:59:38.000000000 +0900
-+++ src/libsbml-5.21.0/examples/c++/CMakeLists.txt	2026-03-23 21:56:57.274956000 +0900
+--- origsrc/libsbml-5.21.2/examples/c++/CMakeLists.txt	2026-09-17 07:17:17.000000000 +0000
++++ src/libsbml-5.21.2/examples/c++/CMakeLists.txt	2026-10-19 05:51:39.836317900 +0000
 @@ -80,14 +80,21 @@ foreach(example
  )
      add_executable(example_cpp_${example} ${example}.cpp util.c)

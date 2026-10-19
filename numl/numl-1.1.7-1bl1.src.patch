@@ -1,5 +1,5 @@
---- origsrc/NuML-1.1.6/libnuml/CMakeLists.txt	2022-04-19 17:09:02.000000000 +0900
-+++ src/NuML-1.1.6/libnuml/CMakeLists.txt	2022-05-07 20:17:39.193536300 +0900
+--- origsrc/NuML-1.1.7/libnuml/CMakeLists.txt	2025-03-27 10:03:17.000000000 +0000
++++ src/NuML-1.1.7/libnuml/CMakeLists.txt	2026-10-19 10:38:57.625545800 +0000
 @@ -271,7 +271,11 @@ endif()
  
  set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules;${CMAKE_MODULE_PATH}")

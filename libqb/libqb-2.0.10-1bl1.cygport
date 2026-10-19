@@ -16,8 +16,6 @@ BUILD_REQUIRES="
 	libxml2-devel
 "
 
-export CPPFLAGS="${CPPFLAGS} -D_KERNEL"
-
 DIFF_EXCLUDES="
 	*.dox
 	qbconfig.h

@@ -1,5 +1,5 @@
---- origsrc/libghthash-0.6.2/Makefile.am	2011-11-27 16:34:19.000000000 +0900
-+++ src/libghthash-0.6.2/Makefile.am	2025-09-18 13:23:52.438451500 +0900
+--- origsrc/libghthash-0.6.2/Makefile.am	2011-11-27 07:34:19.000000000 +0000
++++ src/libghthash-0.6.2/Makefile.am	2026-10-19 03:48:32.486028100 +0000
 @@ -1,4 +1,7 @@
  AUTOMAKE_OPTIONS = gnu
  SUBDIRS = src examples
@@ -9,8 +9,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libghthash-0.6.2/configure.in	2025-09-18 13:08:06.616849800 +0900
-+++ src/libghthash-0.6.2/configure.in	2025-09-18 13:25:32.258603400 +0900
+--- origsrc/libghthash-0.6.2/configure.in	2026-10-19 03:48:32.019387700 +0000
++++ src/libghthash-0.6.2/configure.in	2026-10-19 03:48:32.486028100 +0000
 @@ -132,7 +132,7 @@ AC_ARG_ENABLE(debug,
  if test x$DEBUG_ON = xyes; then
        CFLAGS="$CFLAGS -g"
@@ -25,8 +25,8 @@
  
  AC_OUTPUT(Makefile src/ght_hash_table.h src/Makefile examples/Makefile)
 +AC_OUTPUT(libghthash.pc)
---- origsrc/libghthash-0.6.2/libghthash.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libghthash-0.6.2/libghthash.pc.in	2025-09-18 13:23:52.365588100 +0900
+--- origsrc/libghthash-0.6.2/libghthash.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libghthash-0.6.2/libghthash.pc.in	2026-10-19 03:48:32.488043600 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -38,8 +38,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lghthash
 +Cflags: -I${includedir}
---- origsrc/libghthash-0.6.2/src/Makefile.am	2011-11-27 16:34:19.000000000 +0900
-+++ src/libghthash-0.6.2/src/Makefile.am	2025-09-18 13:09:01.091403000 +0900
+--- origsrc/libghthash-0.6.2/src/Makefile.am	2011-11-27 07:34:19.000000000 +0000
++++ src/libghthash-0.6.2/src/Makefile.am	2026-10-19 03:48:32.488043600 +0000
 @@ -5,6 +5,6 @@ libghthash_la_SOURCES = hash_table.c has
  include_HEADERS = ght_hash_table.h
  noinst_HEADERS =

@@ -5,13 +5,22 @@ CATEGORY="Libs"
 SUMMARY="Library to control your iBuddy device"
 DESCRIPTION="${SUMMARY}"
 
-# LICENSE="BSD"
-# LICENSE_SPDX="SPDX-License-Identifier: BSD"
-# LICENSE_URI=""
+LICENSE="ISC"
+LICENSE_SPDX="SPDX-License-Identifier: ISC"
+LICENSE_URI="src/ibuddy.h"
 
-BUILD_REQUIRES="libusb1.0-devel"
+BUILD_REQUIRES="
+	libusb1.0-devel
+"
 
 inherit cmake
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	sed -i -e "/VERSION_STRING/s/0\.0\.1/${PV}/" src/CMakeLists.txt
+}
 
 CYGCMAKE_ARGS="
 	-DSOVERSION:STRING=${PV[1]}

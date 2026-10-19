@@ -1,5 +1,5 @@
---- origsrc/libibuddy-0.0.2/CMakeLists.txt	2020-11-17 22:12:33.000000000 +0900
-+++ src/libibuddy-0.0.2/CMakeLists.txt	2022-10-01 22:52:12.812931700 +0900
+--- origsrc/libibuddy-0.0.3/CMakeLists.txt	2026-09-16 05:12:07.000000000 +0000
++++ src/libibuddy-0.0.3/CMakeLists.txt	2026-10-19 12:48:00.668250700 +0000
 @@ -7,3 +7,9 @@ add_subdirectory(tools)
  
  set(CMAKE_CXX_FLAGS "-g -Wall")
@@ -10,8 +10,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libibuddy.pc.in ${CMAKE_BINARY_DIR}/libibuddy.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libibuddy.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libibuddy-0.0.2/libibuddy.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libibuddy-0.0.2/libibuddy.pc.in	2022-10-01 22:52:12.666933100 +0900
+--- origsrc/libibuddy-0.0.3/libibuddy.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libibuddy-0.0.3/libibuddy.pc.in	2026-10-19 12:48:00.668250700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -23,17 +23,15 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -libuddy
 +Cflags: -I${includedir}
---- origsrc/libibuddy-0.0.2/src/CMakeLists.txt	2020-11-17 22:12:33.000000000 +0900
-+++ src/libibuddy-0.0.2/src/CMakeLists.txt	2022-10-01 22:47:28.398945100 +0900
-@@ -1,13 +1,22 @@
- include_directories(${LIBIBUDDY_SOURCE_DIR}/src /usr/include /usr/local/include)
+--- origsrc/libibuddy-0.0.3/src/CMakeLists.txt	2026-10-19 12:48:00.359349900 +0000
++++ src/libibuddy-0.0.3/src/CMakeLists.txt	2026-10-19 12:48:00.670274100 +0000
+@@ -2,12 +2,21 @@ include_directories(${LIBIBUDDY_SOURCE_D
  link_directories(${LIBIBUDDY_SOURCE_DIR}/src /usr/lib /usr/local/lib)
--add_definitions( -DLIBIBUDDY_VERSION_STRING=\"0.0.1\" )
-+add_definitions( -DLIBIBUDDY_VERSION_STRING=\"0.0.2\" )
-+
+ add_definitions( -DLIBIBUDDY_VERSION_STRING=\"0.0.3\" )
+ 
 +find_package(pkgconfig)
 +pkg_check_modules(LIBUSB libusb-1.0)
- 
++
  add_library(ibuddy SHARED  ibuddy.c util.c)
 -target_link_libraries(ibuddy usb)
 +target_include_directories(ibuddy PRIVATE ${LIBUSB_INCLUDE_DIRS})
@@ -51,3 +49,14 @@
 +        RUNTIME DESTINATION bin
 +        ARCHIVE DESTINATION lib
          PUBLIC_HEADER DESTINATION include)
+--- origsrc/libibuddy-0.0.3/src/ibuddy.h	2026-09-16 05:12:07.000000000 +0000
++++ src/libibuddy-0.0.3/src/ibuddy.h	2026-10-19 12:48:00.670274100 +0000
+@@ -77,7 +77,7 @@ void ibuddy_do_action(ibuddy_ref * id);
+ /* Reset buddy state (head,wings,body,heart) */
+ void ibuddy_reset_state(ibuddy_ref * id);
+ /* I-buddy test function */
+-void ibbudy_full_test(ibuddy_ref * id);
++void ibuddy_full_test(ibuddy_ref * id);
+ 
+ /* Ibuddy facilitators */
+ void ibuddy_flick_body(ibuddy_ref * id,int number,int delay);

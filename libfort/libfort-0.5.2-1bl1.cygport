@@ -5,11 +5,22 @@ CATEGORY="Libs"
 SUMMARY="C/C++ library to create formatted ASCII tables for console applications"
 DESCRIPTION="${SUMMARY}"
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 "
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	sed -i -e "/^project(libfort /s/VERSION [0-9.]*/VERSION ${PV}/" CMakeLists.txt
+}
 
 src_test()
 {
@@ -29,13 +40,13 @@ PKG_NAMES="
 libfort_CONTENTS="
 	usr/share
 "
-libfort0_4_CONTENTS="
-	usr/bin
+libfort0_5_CONTENTS="
+	usr/bin/cyg*-0.5.dll
 "
 libfort_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libfort_SUMMARY="${SUMMARY} (licensing & readmes)"
-libfort0_4_SUMMARY="${SUMMARY} (runtime)"
+libfort0_5_SUMMARY="${SUMMARY} (runtime)"
 libfort_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,16 +1,29 @@
 HOMEPAGE="https://www.freedesktop.org/wiki/Software/${PN}/"
-SRC_URI="https://www.freedesktop.org/software/${PN}/${P}.tar.xz"
+SRC_URI="https://gitlab.freedesktop.org/mobile-broadband/${PN}/-/archive/${PV}/${P}.tar.gz"
+
+inherit meson
 
 CATEGORY="Libs"
 SUMMARY="QMI modem protocol helper library"
 DESCRIPTION="This package contains the libraries that make it easier to use QMI
 functionality from applications that use glib."
 
-BUILD_REQUIRES="autoconf-archive libglib2.0-devel libmbim-glib-devel"
+LICENSE="GPL-2.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.1-or-later"
+LICENSE_URI="COPYING"
 
-CYGCONF_ARGS="
-	--enable-maintainer-mode
-	--without-udev
+BUILD_REQUIRES="
+	bash-completion-devel
+	gobject-introspection
+	help2man
+	libglib2.0-devel
+	libmbim-glib-devel
+"
+
+CYGMESON_ARGS="
+	-Dqrtr=false
+	-Drmnet=false
+	-Dudev=false
 "
 
 PKG_NAMES="

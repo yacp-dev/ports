@@ -1,5 +1,5 @@
---- origsrc/librtlsdr-2.0.2/Makefile.am	2024-04-23 18:42:58.000000000 +0900
-+++ src/librtlsdr-2.0.2/Makefile.am	2025-04-21 07:24:06.464606200 +0900
+--- origsrc/librtlsdr-2.0.3/Makefile.am	2026-08-11 22:11:56.000000000 +0000
++++ src/librtlsdr-2.0.3/Makefile.am	2026-10-19 05:48:12.907782000 +0000
 @@ -21,6 +21,7 @@ uninstall-udev-rules:
  
  EXTRA_DIST = git-version-gen .version
@@ -15,8 +15,8 @@
 +endif
  
  MOSTLYCLEANFILES = $(DX_CLEAN)
---- origsrc/librtlsdr-2.0.2/configure.ac	2024-04-23 18:42:58.000000000 +0900
-+++ src/librtlsdr-2.0.2/configure.ac	2025-04-21 07:24:06.464606200 +0900
+--- origsrc/librtlsdr-2.0.3/configure.ac	2026-08-11 22:11:56.000000000 +0000
++++ src/librtlsdr-2.0.3/configure.ac	2026-10-19 05:48:12.907782000 +0000
 @@ -22,6 +22,11 @@ CFLAGS="$CFLAGS $LIBUSB_CFLAGS"
  AC_PATH_PROG(DOXYGEN,doxygen,false)
  AM_CONDITIONAL(HAVE_DOXYGEN, test $DOXYGEN != false)
@@ -29,8 +29,8 @@
  AC_CONFIG_MACRO_DIR([m4])
  
  dnl checks for header files
---- origsrc/librtlsdr-2.0.2/src/Makefile.am	2024-04-23 18:42:58.000000000 +0900
-+++ src/librtlsdr-2.0.2/src/Makefile.am	2025-04-21 07:24:06.464606200 +0900
+--- origsrc/librtlsdr-2.0.3/src/Makefile.am	2026-08-11 22:11:56.000000000 +0000
++++ src/librtlsdr-2.0.3/src/Makefile.am	2026-10-19 05:48:12.909798500 +0000
 @@ -10,7 +10,7 @@ AM_CFLAGS = ${CFLAGS} -fPIC ${SYMBOL_VIS
  lib_LTLIBRARIES = librtlsdr.la
  

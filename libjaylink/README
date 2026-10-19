@@ -4,21 +4,21 @@ libjaylink is a shared library written in C to access SEGGER J-Link and
 compatible devices.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libjaylink-devel-0.4.0-1bl1
-  libjaylink0-0.4.0-1bl1
+  cygwin-3.6.11-1
+  libjaylink-devel-0.5.0-1bl1
+  libjaylink0-0.5.0-1bl1
   libusb1.0-1.0.21-1
   libusb1.0-devel-1.0.21-1
-  pkg-config-2.3.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   libusb1.0-devel-1.0.21-1
   make-4.4.1-2
 
@@ -31,17 +31,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack libjaylink-0.4.0-X-src.tar.xz
+  1. unpack libjaylink-0.5.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libjaylink-0.4.0-X.cygport all
+        % cygport ./libjaylink-0.5.0-X.cygport all
 
 This will create:
-  /usr/src/libjaylink-0.4.0-X-src.tar.xz
-  /usr/src/libjaylink-0.4.0-X.tar.xz
-  /usr/src/libjaylink0-0.4.0-X.tar.xz
-  /usr/src/libjaylink-devel-0.4.0-X.tar.xz
+  /usr/src/libjaylink-0.5.0-X-src.tar.xz
+  /usr/src/libjaylink-0.5.0-X.tar.xz
+  /usr/src/libjaylink0-0.5.0-X.tar.xz
+  /usr/src/libjaylink-devel-0.5.0-X.tar.xz
 
 -------------------------------------------
 
@@ -52,7 +52,7 @@ Files included in the binary package:
   /usr/share/doc/libjaylink/AUTHORS
   /usr/share/doc/libjaylink/COPYING
   /usr/share/doc/libjaylink/ChangeLog
-  /usr/share/doc/libjaylink/HACKING
+  /usr/share/doc/libjaylink/HACKING.md
   /usr/share/doc/libjaylink/NEWS
   /usr/share/doc/libjaylink/README.md
 
@@ -68,6 +68,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.0-1bl1 -----
+Version bump.
 
 ----- version 0.4.0-1bl1 -----
 Version bump.

@@ -1,0 +1,37 @@
+--- origsrc/libipuz-0.5.5/libipuz/meson.build	2026-07-06 05:02:12.000000000 +0000
++++ src/libipuz-0.5.5/libipuz/meson.build	2026-10-19 14:16:21.510638800 +0000
+@@ -98,7 +98,7 @@ libipuz_deps = [
+ 
+ subdir('rust')
+ 
+-libipuz_lib = shared_library('libipuz-' + api_version,
++libipuz_lib = shared_library('ipuz-' + api_version,
+   libipuz_sources + enum_sources + libipuz_private_headers + libipuz_private_sources,
+   dependencies: libipuz_deps,
+   link_with: ipuz_rust_lib,
+--- origsrc/libipuz-0.5.5/libipuz/rust/Cargo.lock	2026-07-06 05:02:12.000000000 +0000
++++ src/libipuz-0.5.5/libipuz/rust/Cargo.lock	2026-10-19 14:16:21.510638800 +0000
+@@ -10,9 +10,9 @@ checksum = "1b8e56985ec62d17e9c1001dc89c
+ 
+ [[package]]
+ name = "cfg-expr"
+-version = "0.20.0"
++version = "0.20.4"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "e34e221e91c7eb5e8315b5c9cf1a61670938c0626451f954a51693ed44b37f45"
++checksum = "9acd0bdbbf4b2612d09f52ba61da432140cb10930354079d0d53fafc12968726"
+ dependencies = [
+  "smallvec",
+  "target-lexicon",
+@@ -424,9 +424,9 @@ dependencies = [
+ 
+ [[package]]
+ name = "target-lexicon"
+-version = "0.13.2"
++version = "0.13.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "e502f78cdbb8ba4718f566c418c52bc729126ffd16baee5baa718cf25dd5a69a"
++checksum = "df7f62577c25e07834649fc3b39fafdc597c0a3527dc1c60129201ccfcbaa50c"
+ 
+ [[package]]
+ name = "toml"

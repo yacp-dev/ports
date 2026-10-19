@@ -1,0 +1,54 @@
+HOMEPAGE="https://gitlab.gnome.org/jrb/${PN}"
+SRC_URI="https://gitlab.gnome.org/jrb/${PN}/-/archive/${PV}/${P}.tar.bz2"
+
+CATEGORY="Libs"
+SUMMARY="Library for parsing ipuz files, for crossword puzzles, sudokus, etc."
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="LGPL-2.1-or-later OR MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later OR MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	cargo
+	gettext-devel
+	girepository-Json1.0
+	gobject-introspection
+	libgirepository1.0-devel
+	libglib2.0-devel
+	libjson-glib1.0-devel
+	rust
+"
+
+inherit meson
+
+CYGMESON_ARGS="-Ddocumentation=disabled"
+
+PKG_NAMES="
+	libipuz
+	libipuz0.5
+	libipuz0.5-devel
+	girepository-Ipuz1.0
+"
+libipuz_CONTENTS="
+	usr/libexec
+	usr/share/doc
+	usr/share/installed-tests
+	usr/share/locale
+"
+libipuz0_5_CONTENTS="
+	usr/bin/cyg*-0.5.dll
+"
+libipuz0_5_devel_CONTENTS="
+	usr/include
+	usr/lib/lib*.dll.a
+	usr/lib/pkgconfig
+"
+girepository_Ipuz1_0_CONTENTS="
+	usr/lib/girepository-1.0
+	usr/share/gir-1.0
+"
+libipuz_SUMMARY="${SUMMARY} (licensing & readmes)"
+libipuz0_5_SUMMARY="${SUMMARY} (runtime)"
+libipuz0_5_devel_SUMMARY="${SUMMARY} (development)"
+girepository_Ipuz1_0_SUMMARY="${SUMMARY} (GObject Introspection data)"

@@ -3,46 +3,56 @@ libipuz
 Library for parsing ipuz files, for crossword puzzles, sudokus, etc.
 
 Runtime requirements:
-  cygwin-3.4.10-1
-  libglib2.0-devel-2.64.6-1
-  libglib2.0_0-2.64.6-1
-  libintl8-0.22.4-1
-  libipuz0.4-0.4.4-1bl1
-  libipuz0.4-devel-0.4.4-1bl1
+  cygwin-3.6.11-1
+  girepository-GLib2.0-1.86.0-2
+  girepository-Json1.0-1.4.2-1
+  libgcc1-14.4.0-1
+  libglib2.0-devel-2.90.0-1
+  libglib2.0_0-2.90.0-1
+  libintl8-0.22.5-1
+  libipuz0.5-0.5.5-1bl1
+  libipuz0.5-devel-0.5.5-1bl1
   libjson-glib1.0-devel-1.4.2-1
   libjson-glib1.0_0-1.4.2-1
-  pkg-config-2.1.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-3
-  cygport-0.36.7-1
-  gcc-core-11.4.0-1
-  libglib2.0-devel-2.64.6-1
+  binutils-2.47-1
+  cargo-1.91.0-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.22.5-1
+  girepository-Json1.0-1.4.2-1
+  gobject-introspection-1.86.0-2
+  libgirepository1.0-devel-1.86.0-2
+  libglib2.0-devel-2.90.0-1
   libjson-glib1.0-devel-1.4.2-1
-  meson-1.2.3-1
-  ninja-1.11.1-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
+  rust-1.91.0-1
 
 Canonical website:
   https://gitlab.gnome.org/jrb/libipuz
 
 Canonical download:
-  https://gitlab.gnome.org/jrb/libipuz/-/archive/0.4.4/libipuz-0.4.4.tar.bz2
+  https://gitlab.gnome.org/jrb/libipuz/-/archive/0.5.5/libipuz-0.5.5.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libipuz-0.4.4-X-src.tar.xz
+  1. unpack libipuz-0.5.5-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libipuz-0.4.4-X.cygport all
+        % cygport ./libipuz-0.5.5-X.cygport all
 
 This will create:
-  /usr/src/libipuz-0.4.4-X-src.tar.xz
-  /usr/src/libipuz-0.4.4-X.tar.xz
-  /usr/src/libipuz0.4-0.4.4-X.tar.xz
-  /usr/src/libipuz0.4-devel-0.4.4-X.tar.xz
+  /usr/src/libipuz-0.5.5-X-src.tar.xz
+  /usr/src/libipuz-0.5.5-X.tar.xz
+  /usr/src/libipuz0.5-0.5.5-X.tar.xz
+  /usr/src/libipuz0.5-devel-0.5.5-X.tar.xz
+  /usr/src/girepository-Ipuz1.0-0.5.5-X.tar.xz
 
 -------------------------------------------
 
@@ -51,6 +61,8 @@ Files included in the binary package:
 (libipuz)
   /usr/libexec/installed-tests/libipuz-1.0/4962-modified.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/4962.ipuz
+  /usr/libexec/installed-tests/libipuz-1.0/MarchMadness-origin-bug.ipuz
+  /usr/libexec/installed-tests/libipuz-1.0/acrostic-source-first.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/acrostic.exe
   /usr/libexec/installed-tests/libipuz-1.0/acrostic1.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/acrostic2.ipuz
@@ -59,6 +71,8 @@ Files included in the binary package:
   /usr/libexec/installed-tests/libipuz-1.0/barred.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/calc-corrected.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/calc.ipuz
+  /usr/libexec/installed-tests/libipuz-1.0/cell_coord_array.exe
+  /usr/libexec/installed-tests/libipuz-1.0/charset.exe
   /usr/libexec/installed-tests/libipuz-1.0/cloud.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/clue-sets-fail.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/clue-sets.exe
@@ -66,58 +80,108 @@ Files included in the binary package:
   /usr/libexec/installed-tests/libipuz-1.0/clue-sets2.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/clue-sets3.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/corrections.exe
+  /usr/libexec/installed-tests/libipuz-1.0/countries.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/crossword.exe
   /usr/libexec/installed-tests/libipuz-1.0/crossword2.ipuz
+  /usr/libexec/installed-tests/libipuz-1.0/cryptic.exe
   /usr/libexec/installed-tests/libipuz-1.0/doghouse.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/enumeration.exe
+  /usr/libexec/installed-tests/libipuz-1.0/examples.exe
   /usr/libexec/installed-tests/libipuz-1.0/first-crossword-quarter.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/first-crossword.ipuz
+  /usr/libexec/installed-tests/libipuz-1.0/guesses.exe
   /usr/libexec/installed-tests/libipuz-1.0/html-to-markup.exe
+  /usr/libexec/installed-tests/libipuz-1.0/nonogram.exe
+  /usr/libexec/installed-tests/libipuz-1.0/nonogram.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/northwest.ipuz
+  /usr/libexec/installed-tests/libipuz-1.0/origin-bug.exe
+  /usr/libexec/installed-tests/libipuz-1.0/puzzle-info.exe
+  /usr/libexec/installed-tests/libipuz-1.0/puzzle.exe
+  /usr/libexec/installed-tests/libipuz-1.0/quad-pangram.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/simple-saved.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/simple.ipuz
   /usr/libexec/installed-tests/libipuz-1.0/style.exe
+  /usr/libexec/installed-tests/libipuz-1.0/vocab.exe
   /usr/share/doc/Cygwin/libipuz.README
-  /usr/share/doc/libipuz/COPYING
+  /usr/share/doc/libipuz/COPYING.LGPL
+  /usr/share/doc/libipuz/LICENSE
   /usr/share/doc/libipuz/NEWS.md
   /usr/share/doc/libipuz/README.md
   /usr/share/installed-tests/libipuz-1.0/acrostic.test
   /usr/share/installed-tests/libipuz-1.0/barred.test
+  /usr/share/installed-tests/libipuz-1.0/cell_coord_array.test
+  /usr/share/installed-tests/libipuz-1.0/charset.test
   /usr/share/installed-tests/libipuz-1.0/clue-sets.test
   /usr/share/installed-tests/libipuz-1.0/corrections.test
   /usr/share/installed-tests/libipuz-1.0/crossword.test
+  /usr/share/installed-tests/libipuz-1.0/cryptic.test
   /usr/share/installed-tests/libipuz-1.0/enumeration.test
+  /usr/share/installed-tests/libipuz-1.0/examples.test
+  /usr/share/installed-tests/libipuz-1.0/guesses.test
   /usr/share/installed-tests/libipuz-1.0/html-to-markup.test
+  /usr/share/installed-tests/libipuz-1.0/nonogram.test
+  /usr/share/installed-tests/libipuz-1.0/origin-bug.test
+  /usr/share/installed-tests/libipuz-1.0/puzzle-info.test
+  /usr/share/installed-tests/libipuz-1.0/puzzle.test
   /usr/share/installed-tests/libipuz-1.0/style.test
+  /usr/share/installed-tests/libipuz-1.0/vocab.test
+  /usr/share/locale/eu/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/he/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/hu/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/ka/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/kk/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/pt_BR/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/sl/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/sr/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/sv/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/tr/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/uk/LC_MESSAGES/libipuz-1.0.mo
+  /usr/share/locale/zh_CN/LC_MESSAGES/libipuz-1.0.mo
 
-(libipuz0.4)
-  /usr/bin/cygipuz-0.4.dll
+(libipuz0.5)
+  /usr/bin/cygipuz-0.5.dll
 
-(libipuz0.4-devel)
+(libipuz0.5-devel)
   /usr/include/libipuz/ipuz-acrostic.h
   /usr/include/libipuz/ipuz-arrowword.h
   /usr/include/libipuz/ipuz-barred.h
-  /usr/include/libipuz/ipuz-board.h
+  /usr/include/libipuz/ipuz-cell-coord-array.h
+  /usr/include/libipuz/ipuz-cell-coord.h
   /usr/include/libipuz/ipuz-cell.h
+  /usr/include/libipuz/ipuz-charset.h
   /usr/include/libipuz/ipuz-clue.h
+  /usr/include/libipuz/ipuz-clues.h
   /usr/include/libipuz/ipuz-crossword.h
   /usr/include/libipuz/ipuz-cryptic.h
   /usr/include/libipuz/ipuz-enumeration.h
   /usr/include/libipuz/ipuz-filippine.h
+  /usr/include/libipuz/ipuz-grid.h
   /usr/include/libipuz/ipuz-guesses.h
   /usr/include/libipuz/ipuz-misc.h
+  /usr/include/libipuz/ipuz-nonogram-clue.h
+  /usr/include/libipuz/ipuz-nonogram-color.h
+  /usr/include/libipuz/ipuz-nonogram.h
+  /usr/include/libipuz/ipuz-puzzle-info.h
   /usr/include/libipuz/ipuz-puzzle.h
   /usr/include/libipuz/ipuz-style.h
   /usr/include/libipuz/ipuz-symmetry.h
+  /usr/include/libipuz/ipuz-vocab.h
   /usr/include/libipuz/libipuz-enums.h
   /usr/include/libipuz/libipuz-version.h
   /usr/include/libipuz/libipuz.h
-  /usr/lib/libipuz-0.4.dll.a
-  /usr/lib/pkgconfig/libipuz-0.4.pc
+  /usr/lib/libipuz-0.5.dll.a
+  /usr/lib/pkgconfig/libipuz-0.5.pc
+
+(girepository-Ipuz1.0)
+  /usr/lib/girepository-1.0/Ipuz-1.0.typelib
+  /usr/share/gir-1.0/Ipuz-1.0.gir
 
 ------------------
 
 Port Notes:
+
+----- version 0.5.5-1bl1 -----
+Version bump.
 
 ----- version 0.4.4-1bl1 -----
 Version bump.

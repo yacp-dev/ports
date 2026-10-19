@@ -1,5 +1,5 @@
---- origsrc/libtexprintf-1.28/Makefile.am	2026-01-05 17:27:10.000000000 +0900
-+++ src/libtexprintf-1.28/Makefile.am	2026-01-21 10:36:11.673245500 +0900
+--- origsrc/libtexprintf-1.31/Makefile.am	2026-03-06 17:16:40.000000000 +0000
++++ src/libtexprintf-1.31/Makefile.am	2026-10-19 14:27:54.263925300 +0000
 @@ -8,3 +8,6 @@ TESTS=testsuite.sh testeqs.sh testfonts.
  EXTRA_DIST = testsuite.sh testeqs.sh testfonts.sh testerrors.sh testtexsymbols.sh test/testsuite.txt test/testeqs.txt test/testfonts.txt test/test.awk test/README
  
@@ -7,16 +7,16 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libtexprintf-1.28/configure.ac	2026-01-05 17:27:10.000000000 +0900
-+++ src/libtexprintf-1.28/configure.ac	2026-01-21 10:36:11.685715500 +0900
+--- origsrc/libtexprintf-1.31/configure.ac	2026-03-06 17:16:40.000000000 +0000
++++ src/libtexprintf-1.31/configure.ac	2026-10-19 14:27:54.265935400 +0000
 @@ -28,4 +28,5 @@ AC_CHECK_LIB([m],[cos])
  AC_CONFIG_FILES([
   Makefile src/Makefile
  ])
 +AC_CONFIG_FILES([libtexprintf.pc])
  AC_OUTPUT
---- origsrc/libtexprintf-1.28/libtexprintf.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libtexprintf-1.28/libtexprintf.pc.in	2026-01-21 10:36:11.599552700 +0900
+--- origsrc/libtexprintf-1.31/libtexprintf.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libtexprintf-1.31/libtexprintf.pc.in	2026-10-19 14:27:54.265935400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -28,8 +28,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -ltexprintf
 +Cflags: -I${includedir}
---- origsrc/libtexprintf-1.28/src/Makefile.am	2026-01-05 17:27:10.000000000 +0900
-+++ src/libtexprintf-1.28/src/Makefile.am	2026-01-21 10:06:35.864914800 +0900
+--- origsrc/libtexprintf-1.31/src/Makefile.am	2026-03-06 17:16:40.000000000 +0000
++++ src/libtexprintf-1.31/src/Makefile.am	2026-10-19 14:27:54.267953800 +0000
 @@ -7,7 +7,7 @@ libtexprintf_la_SOURCES = boxes.c  drawb
  nodist_libtexprintf_la_SOURCES = errorflags.h errormessages.h texprintfsymbols
  CLEANFILES = errorflags.h errormessages.h texprintfsymbols
@@ -45,8 +45,8 @@
  texprintfsymbols: gentexprintfsymbols.sh texprintf.h
 -	${SHELL} ${srcdir}/gentexprintfsymbols.sh
 +	srcdir=${srcdir} ${SHELL} ${srcdir}/gentexprintfsymbols.sh
---- origsrc/libtexprintf-1.28/src/gentexprintfsymbols.sh	2026-01-05 17:27:10.000000000 +0900
-+++ src/libtexprintf-1.28/src/gentexprintfsymbols.sh	2026-01-21 10:05:38.475340000 +0900
+--- origsrc/libtexprintf-1.31/src/gentexprintfsymbols.sh	2026-03-06 17:16:40.000000000 +0000
++++ src/libtexprintf-1.31/src/gentexprintfsymbols.sh	2026-10-19 14:27:54.267953800 +0000
 @@ -3,5 +3,5 @@
  # parses texprintf.h to collect all relavant symbols
  

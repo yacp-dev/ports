@@ -1,0 +1,11 @@
+--- origsrc/libspectrum-1.7.0/test/Makefile.am	2026-09-20 10:10:51.000000000 +0000
++++ src/libspectrum-1.7.0/test/Makefile.am	2026-10-19 15:03:24.888905600 +0000
+@@ -66,7 +66,7 @@ noinst_HEADERS += \
+ 	test/test.h
+ 
+ test/complete-tzx.tzx: test/complete-tzx.pl
+-	$(AM_V_GEN)$(PERL) $< > $@.tmp && mv $@.tmp $@
++	$(AM_V_GEN)mkdir -p test && $(PERL) $< > $@.tmp && mv $@.tmp $@
+ 
+ test/wav-mono-threshold.wav: test/wav-fixtures.pl
+ 	$(AM_V_GEN)$(PERL) $< mono-threshold > $@.tmp && mv $@.tmp $@

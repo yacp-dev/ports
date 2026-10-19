@@ -6,7 +6,17 @@ SUMMARY="ZX Spectrum emulator support library"
 DESCRIPTION="libspectrum is a library designed to make the input and output of some ZX
 Spectrum emulator files slightly easier."
 
-BUILD_REQUIRES="libaudiofile-devel libbz2-devel libgcrypt-devel libglib2.0-devel zlib-devel"
+LICENSE="GPL-2.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND MIT"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libaudiofile-devel
+	libbz2-devel
+	libgcrypt-devel
+	libglib2.0-devel
+	zlib-devel
+"
 
 CYGCONF_ARGS="
 	--enable-audiofiletest
@@ -17,16 +27,22 @@ DIFF_EXCLUDES="
 	*.tzx
 "
 
+src_test()
+{
+	cd ${B}
+	PATH=${B}/.libs:${PATH} cygtest
+}
+
 PKG_NAMES="
 	${PN}
-	${PN}9
+	${PN}21
 	${PN}-devel
 "
 libspectrum_CONTENTS="
 	usr/share/doc
 "
-libspectrum9_CONTENTS="
-	usr/bin
+libspectrum21_CONTENTS="
+	usr/bin/cyg*-21.dll
 "
 libspectrum_devel_CONTENTS="
 	usr/include
@@ -34,5 +50,5 @@ libspectrum_devel_CONTENTS="
 	usr/share/man
 "
 libspectrum_SUMMARY="${SUMMARY} (licensing & readmes)"
-libspectrum9_SUMMARY="${SUMMARY} (runtime)"
+libspectrum21_SUMMARY="${SUMMARY} (runtime)"
 libspectrum_devel_SUMMARY="${SUMMARY} (development)"

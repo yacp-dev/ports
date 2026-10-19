@@ -1,6 +1,6 @@
---- origsrc/librdkafka-2.13.2/src/CMakeLists.txt	2026-02-26 16:38:12.000000000 +0900
-+++ src/librdkafka-2.13.2/src/CMakeLists.txt	2026-03-23 11:02:38.954041100 +0900
-@@ -76,7 +76,6 @@ set(
+--- origsrc/librdkafka-2.16.0/src/CMakeLists.txt	2026-10-02 17:37:52.000000000 +0000
++++ src/librdkafka-2.16.0/src/CMakeLists.txt	2026-10-19 04:20:39.638679600 +0000
+@@ -81,7 +81,6 @@ set(
      tinycthread.c
      tinycthread_extra.c
      rdxxhash.c
@@ -8,7 +8,7 @@
  )
  
  if(WITH_SSL)
-@@ -133,6 +132,12 @@ if(NOT HAVE_REGEX)
+@@ -138,6 +137,12 @@ if(NOT HAVE_REGEX)
    list(APPEND sources regexp.c)
  endif()
  
@@ -21,7 +21,7 @@
  # Define flags with cmake instead of by defining them on win32_config.h
  if(WITHOUT_WIN32_CONFIG)
    list(APPEND rdkafka_compile_definitions WITHOUT_WIN32_CONFIG)
-@@ -280,6 +285,11 @@ if(WIN32)
+@@ -285,6 +290,11 @@ if(WIN32)
    endif()
  endif()
  
@@ -33,7 +33,7 @@
  # Generate pkg-config file
  set(PKG_CONFIG_VERSION "${PROJECT_VERSION}")
  set(PKG_CONFIG_REQUIRES_PRIVATE "")
-@@ -329,6 +339,10 @@ if(NOT RDKAFKA_BUILD_STATIC)
+@@ -334,6 +344,10 @@ if(NOT RDKAFKA_BUILD_STATIC)
      string(APPEND PKG_CONFIG_REQUIRES_PRIVATE "liblz4 ")
    endif()
  
@@ -44,8 +44,8 @@
    set(PKG_CONFIG_CFLAGS "-I\${includedir}")
    set(PKG_CONFIG_LIBS "-L\${libdir} -lrdkafka")
  
---- origsrc/librdkafka-2.13.2/src/rd.h	2026-02-26 16:38:12.000000000 +0900
-+++ src/librdkafka-2.13.2/src/rd.h	2026-03-23 11:02:38.954041100 +0900
+--- origsrc/librdkafka-2.16.0/src/rd.h	2026-10-02 17:37:52.000000000 +0000
++++ src/librdkafka-2.16.0/src/rd.h	2026-10-19 04:20:39.640709700 +0000
 @@ -216,7 +216,7 @@ static RD_INLINE RD_UNUSED char *rd_strn
  #ifdef __APPLE__
  /* Some versions of MacOSX dont have IOV_MAX */
@@ -55,8 +55,8 @@
  /* There is no IOV_MAX on MSVC or GNU but it is used internally in librdkafka */
  #define IOV_MAX 1024
  #else
---- origsrc/librdkafka-2.13.2/src/rdtime.h	2026-02-26 16:38:12.000000000 +0900
-+++ src/librdkafka-2.13.2/src/rdtime.h	2026-03-23 11:02:38.964709400 +0900
+--- origsrc/librdkafka-2.16.0/src/rdtime.h	2026-10-02 17:37:52.000000000 +0000
++++ src/librdkafka-2.16.0/src/rdtime.h	2026-10-19 04:20:39.640709700 +0000
 @@ -84,7 +84,7 @@ BOOL rd_ut_QueryPerformanceCounter(_Out_
   */
  static RD_INLINE rd_ts_t rd_clock(void) RD_UNUSED;
@@ -75,11 +75,11 @@
          struct timeval tv;
          gettimeofday(&tv, NULL);
          TIMEVAL_TO_TIMESPEC(&tv, tspec);
---- origsrc/librdkafka-2.13.2/tests/CMakeLists.txt	2026-02-26 16:38:12.000000000 +0900
-+++ src/librdkafka-2.13.2/tests/CMakeLists.txt	2026-03-23 11:02:38.966730100 +0900
-@@ -164,7 +164,7 @@ add_test(NAME RdKafkaTestInParallel COMM
- add_test(NAME RdKafkaTestSequentially COMMAND test-runner -p1)
+--- origsrc/librdkafka-2.16.0/tests/CMakeLists.txt	2026-10-02 17:37:52.000000000 +0000
++++ src/librdkafka-2.16.0/tests/CMakeLists.txt	2026-10-19 04:20:39.642733100 +0000
+@@ -190,7 +190,7 @@ add_test(NAME RdKafkaTestSequentially CO
  add_test(NAME RdKafkaTestBrokerLess COMMAND test-runner -p5 -l)
+ add_test(NAME RdKafkaTestBrokerLessQuick COMMAND test-runner -p5 -l -Q)
  
 -if(NOT WIN32 AND NOT APPLE)
 +if(NOT WIN32 AND NOT APPLE AND NOT CYGWIN)

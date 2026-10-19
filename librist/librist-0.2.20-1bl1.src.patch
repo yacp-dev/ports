@@ -1,5 +1,5 @@
---- origsrc/librist-v0.2.11/contrib/mbedtls/meson.build	2024-11-16 05:43:07.000000000 +0900
-+++ src/librist-v0.2.11/contrib/mbedtls/meson.build	2025-03-10 13:34:09.744733900 +0900
+--- origsrc/librist-v0.2.20/contrib/mbedtls/meson.build	2026-07-30 03:39:06.000000000 +0000
++++ src/librist-v0.2.20/contrib/mbedtls/meson.build	2026-10-19 10:00:18.588198700 +0000
 @@ -16,7 +16,7 @@ if not builtin_mbedtls
  #include <mbedtls/bignum.h>
  void test_has_func() { mbedtls_mpi_random(NULL, 0, NULL, NULL, NULL); }
@@ -9,9 +9,18 @@
      endif
  endif
  if builtin_mbedtls and not mbedcrypto_lib_found
---- origsrc/librist-v0.2.11/meson.build	2024-11-16 05:43:07.000000000 +0900
-+++ src/librist-v0.2.11/meson.build	2025-03-10 13:34:09.744733900 +0900
-@@ -306,7 +306,7 @@ cdata.set10('HAVE_NETTLE', use_gnutls an
+--- origsrc/librist-v0.2.20/meson.build	2026-07-30 03:39:06.000000000 +0000
++++ src/librist-v0.2.20/meson.build	2026-10-19 10:00:18.590211400 +0000
+@@ -161,6 +161,8 @@ void test(void) {
+ 	elif host_machine.system() == 'gnu'
+ 		test_args += '-D_GNU_SOURCE'
+ 		add_project_arguments('-D_GNU_SOURCE', language: 'c')
++	elif host_machine.system() == 'cygwin'
++		platform_files += 'src/tun_win.c'
+ 	elif host_machine.system() == 'emscripten'
+ 		platform_files += 'src/tun_emscripten.c'
+ 		add_project_arguments('-D_GNU_SOURCE', language: 'c')
+@@ -347,7 +349,7 @@ cdata.set10('HAVE_NETTLE', use_gnutls an
  # Generate config.h
  config_file = configure_file(output: 'config.h', configuration: cdata)
  
@@ -20,17 +29,17 @@
  	'src/crypto/crypto.c',
  	'src/crypto/psk.c',
  	'src/proto/gre.c',
-@@ -337,7 +337,6 @@ librist = library('librist',
- 		stdatomic_dependency,
+@@ -384,7 +386,6 @@ librist = library('librist',
  		cjson_lib,
+ 		lz4_lib,
  	],
 -	name_prefix : '',
  	version: librist_version,
  	soversion: librist_soversion,
  	prelink: filter_obj,
---- origsrc/librist-v0.2.11/src/network.c	2024-11-16 05:43:07.000000000 +0900
-+++ src/librist-v0.2.11/src/network.c	2025-03-10 13:34:09.754268400 +0900
-@@ -7,7 +7,7 @@
+--- origsrc/librist-v0.2.20/src/network.c	2026-07-30 03:39:06.000000000 +0000
++++ src/librist-v0.2.20/src/network.c	2026-10-19 10:00:18.591437600 +0000
+@@ -17,7 +17,7 @@ int _librist_network_get_macaddr(uint8_t
  #include <ifaddrs.h>
  #ifdef __linux__
  #include <netpacket/packet.h>
@@ -39,16 +48,16 @@
  #include <sys/ioctl.h>
  #include <net/if.h>
  #else
-@@ -20,7 +20,7 @@
+@@ -31,7 +31,7 @@ int _librist_network_get_macaddr(uint8_t
  int _librist_network_get_macaddr(uint8_t mac[]) {
    char mac_null[6] = {0};
  #ifndef _WIN32
 -#if defined(__GNU__)
 +#if defined(__GNU__) || defined(__CYGWIN__)
    int sock = socket(PF_INET, SOCK_DGRAM, 0);
- #endif
-   struct ifaddrs *ifaddr = NULL;
-@@ -38,7 +38,7 @@ int _librist_network_get_macaddr(uint8_t
+   if (sock < 0)
+     return -1;
+@@ -54,7 +54,7 @@ int _librist_network_get_macaddr(uint8_t
            break;
          }
        }
@@ -57,9 +66,20 @@
        struct ifreq ifr;
        strcpy(ifr.ifr_name, ifa->ifa_name);
        if (ioctl(sock, SIOCGIFHWADDR, &ifr) < 0) {
---- origsrc/librist-v0.2.11/src/udpsocket.c	2024-11-16 05:43:07.000000000 +0900
-+++ src/librist-v0.2.11/src/udpsocket.c	2025-03-10 13:34:09.754268400 +0900
-@@ -178,8 +178,12 @@ int udpsocket_set_mcast_iface(int sd, co
+--- origsrc/librist-v0.2.20/src/tun_win.c	2026-07-30 03:39:06.000000000 +0000
++++ src/librist-v0.2.20/src/tun_win.c	2026-10-19 10:00:18.592225200 +0000
+@@ -14,7 +14,7 @@
+  *   4. IP Helper API (SetUnicastIpAddressEntry) for address config
+  */
+ 
+-#ifdef _WIN32
++#if defined(_WIN32) || defined(__CYGWIN__)
+ 
+ #include "librist/tun.h"
+ #include <stdio.h>
+--- origsrc/librist-v0.2.20/src/udpsocket.c	2026-07-30 03:39:06.000000000 +0000
++++ src/librist-v0.2.20/src/udpsocket.c	2026-10-19 10:00:18.593451500 +0000
+@@ -364,8 +364,12 @@ int udpsocket_set_mcast_iface(int sd, co
  	if (family == AF_INET6) {
  		return setsockopt(sd, SOL_IPV6, IPV6_MULTICAST_IF, &scope, sizeof(scope));
  	} else {

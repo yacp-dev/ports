@@ -10,7 +10,12 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcjson-devel libmicrohttpd-devel mbedtls-devel"
+BUILD_REQUIRES="
+	libcjson-devel
+	liblz4-devel
+	libmicrohttpd-devel
+	mbedtls-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

@@ -16,19 +16,19 @@ CYGCONF_ARGS="
 
 PKG_NAMES="
 	libunibreak
-	libunibreak7
+	libunibreak8
 	libunibreak-devel
 "
 libunibreak_CONTENTS="
 	usr/share
 "
-libunibreak7_CONTENTS="
-	usr/bin/cyg*-7.dll
+libunibreak8_CONTENTS="
+	usr/bin/cyg*-8.dll
 "
 libunibreak_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libunibreak_SUMMARY="${SUMMARY} (licensing & readmes)"
-libunibreak7_SUMMARY="${SUMMARY} (runtime)"
+libunibreak8_SUMMARY="${SUMMARY} (runtime)"
 libunibreak_devel_SUMMARY="${SUMMARY} (development)"

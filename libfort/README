@@ -3,40 +3,40 @@ libfort
 C/C++ library to create formatted ASCII tables for console applications
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  libfort-devel-0.4.2-1bl1
-  libfort0.4-0.4.2-1bl1
-  pkg-config-1.6.3-1
+  cygwin-3.6.11-1
+  libfort-devel-0.5.2-1bl1
+  libfort0.5-0.5.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.36.1-2
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  gcc-g++-10.2.0-1
-  ninja-1.10.2-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/seleznevae/libfort
 
 Canonical download:
-  https://github.com/seleznevae/libfort/archive/v0.4.2.tar.gz
+  https://github.com/seleznevae/libfort/archive/v0.5.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libfort-0.4.2-X-src.tar.xz
+  1. unpack libfort-0.5.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libfort-0.4.2-X.cygport all
+        % cygport ./libfort-0.5.2-X.cygport all
 
 This will create:
-  /usr/src/libfort-0.4.2-X-src.tar.xz
-  /usr/src/libfort-0.4.2-X.tar.xz
-  /usr/src/libfort0.4-0.4.2-X.tar.xz
-  /usr/src/libfort-devel-0.4.2-X.tar.xz
+  /usr/src/libfort-0.5.2-X-src.tar.xz
+  /usr/src/libfort-0.5.2-X.tar.xz
+  /usr/src/libfort0.5-0.5.2-X.tar.xz
+  /usr/src/libfort-devel-0.5.2-X.tar.xz
 
 -------------------------------------------
 
@@ -49,15 +49,15 @@ Files included in the binary package:
   /usr/share/doc/libfort/LICENSE
   /usr/share/doc/libfort/README.md
 
-(libfort0.4)
-  /usr/bin/cygfort-0.4.dll
+(libfort0.5)
+  /usr/bin/cygfort-0.5.dll
 
 (libfort-devel)
   /usr/include/fort.h
   /usr/include/fort.hpp
   /usr/lib/cmake/libfort/libfort-config-version.cmake
   /usr/lib/cmake/libfort/libfort-config.cmake
-  /usr/lib/cmake/libfort/libfort-targets-release.cmake
+  /usr/lib/cmake/libfort/libfort-targets-relwithdebinfo.cmake
   /usr/lib/cmake/libfort/libfort-targets.cmake
   /usr/lib/libfort.dll.a
   /usr/lib/pkgconfig/libfort.pc
@@ -65,6 +65,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.2-1bl1 -----
+Version bump.
 
 ----- version 0.4.2-1bl1 -----
 Version bump.

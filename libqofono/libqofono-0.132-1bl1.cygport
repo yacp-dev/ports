@@ -16,9 +16,23 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-inherit qt5-qmake
+inherit cmake
 
-BUILD_REQUIRES="libQt5Core-devel libQt5Gui-devel libQt5Quick-devel"
+BUILD_REQUIRES="
+	libQt5Core-devel
+	libQt5Gui-devel
+	libQt5Quick-devel
+"
+
+CYGCMAKE_ARGS="
+	-DCMAKE_AUTOGEN_PARALLEL:STRING=1
+	-DQT_MAJOR_VERSION:STRING=5
+"
+
+src_test() {
+	cd ${B}
+	PATH=${B}/src:${PATH} ninja_test
+}
 
 PKG_NAMES="
 	libqofono
@@ -35,11 +49,9 @@ libqofono_qt5_0_CONTENTS="
 libqofono_qt5_devel_CONTENTS="
 	usr/include
 	usr/lib/lib*.dll.a
-	usr/lib/*.prl
 	usr/lib/pkgconfig
 	usr/libexec
 	usr/share/libqofono-qt5
-	usr/share/qt5
 "
 libqofono_SUMMARY="${SUMMARY} (licensing & readmes)"
 libqofono_qt5_0_SUMMARY="${SUMMARY} (runtime)"

@@ -1,5 +1,5 @@
---- origsrc/pslib-0.4.8/configure.ac	2024-07-10 15:42:43.000000000 +0900
-+++ src/pslib-0.4.8/configure.ac	2024-09-02 15:03:28.591021200 +0900
+--- origsrc/pslib-0.4.8/configure.ac	2024-07-10 06:42:43.000000000 +0000
++++ src/pslib-0.4.8/configure.ac	2026-10-19 10:22:50.166000500 +0000
 @@ -100,6 +100,8 @@ LIBHNJ_LIBS=
  AC_SUBST(LIBHNJ_CFLAGS)
  AC_SUBST(LIBHNJ_LIBS)
@@ -9,8 +9,8 @@
  PNG_PREFIX=no
  AC_ARG_WITH(png, [  --with-png=DIR          Path to png library (/usr)])
  case "${withval}" in
---- origsrc/pslib-0.4.8/src/Makefile.am	2024-07-10 16:26:30.000000000 +0900
-+++ src/pslib-0.4.8/src/Makefile.am	2024-09-02 15:12:39.992760600 +0900
+--- origsrc/pslib-0.4.8/src/Makefile.am	2024-07-10 07:26:30.000000000 +0000
++++ src/pslib-0.4.8/src/Makefile.am	2026-10-19 10:22:50.168023400 +0000
 @@ -7,7 +7,6 @@ noinst_HEADERS = \
  	ps_intern.h \
  	ps_memory.h \

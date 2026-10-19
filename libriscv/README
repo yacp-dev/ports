@@ -9,43 +9,42 @@ interpreters, JIT-compilers and binary translators. libriscv has specialized
 APIs that make passing data in and out of the sandbox safe and low-latency.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libriscv-devel-1.15-1bl1
-  libriscv1-1.15-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libriscv-devel-1.20-1bl1
+  libriscv1-1.20-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  make-4.4.1-2
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/libriscv/libriscv
 
 Canonical download:
-  https://github.com/libriscv/libriscv/archive/refs/tags/v1.15.tar.gz
+  https://github.com/libriscv/libriscv/archive/refs/tags/v1.20.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libriscv-1.15-X-src.tar.xz
+  1. unpack libriscv-1.20-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libriscv-1.15-X.cygport all
+        % cygport ./libriscv-1.20-X.cygport all
 
 This will create:
-  /usr/src/libriscv-1.15-X-src.tar.xz
-  /usr/src/libriscv-1.15-X.tar.xz
-  /usr/src/libriscv1-1.15-X.tar.xz
-  /usr/src/libriscv-devel-1.15-X.tar.xz
+  /usr/src/libriscv-1.20-X-src.tar.xz
+  /usr/src/libriscv-1.20-X.tar.xz
+  /usr/src/libriscv1-1.20-X.tar.xz
+  /usr/src/libriscv-devel-1.20-X.tar.xz
 
 -------------------------------------------
 
@@ -55,6 +54,7 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/libriscv.README
   /usr/share/doc/libriscv/LICENSE
   /usr/share/doc/libriscv/README.md
+  /usr/share/doc/libriscv/tinycc/COPYING
 
 (libriscv1)
   /usr/bin/cygriscv-1.dll
@@ -68,6 +68,20 @@ Files included in the binary package:
   /usr/include/libriscv/decoded_exec_segment.hpp
   /usr/include/libriscv/decoder_cache.hpp
   /usr/include/libriscv/elf.hpp
+  /usr/include/libriscv/guest/guest_arena_object.hpp
+  /usr/include/libriscv/guest/guest_common.hpp
+  /usr/include/libriscv/guest/guest_cpp_common.hpp
+  /usr/include/libriscv/guest/guest_cpp_hash.hpp
+  /usr/include/libriscv/guest/guest_cpp_string.hpp
+  /usr/include/libriscv/guest/guest_cpp_unordered_map.hpp
+  /usr/include/libriscv/guest/guest_cpp_variant.hpp
+  /usr/include/libriscv/guest/guest_cpp_vector.hpp
+  /usr/include/libriscv/guest/guest_rust_attributes.hpp
+  /usr/include/libriscv/guest/guest_rust_box.hpp
+  /usr/include/libriscv/guest/guest_rust_common.hpp
+  /usr/include/libriscv/guest/guest_rust_enum.hpp
+  /usr/include/libriscv/guest/guest_rust_string.hpp
+  /usr/include/libriscv/guest/guest_rust_vec.hpp
   /usr/include/libriscv/guest_datatypes.hpp
   /usr/include/libriscv/instr_helpers.hpp
   /usr/include/libriscv/instruction_counter.hpp
@@ -95,6 +109,7 @@ Files included in the binary package:
   /usr/include/libriscv/rvc.hpp
   /usr/include/libriscv/rvfd.hpp
   /usr/include/libriscv/rvv_registers.hpp
+  /usr/include/libriscv/shared_rodata.hpp
   /usr/include/libriscv/threads.hpp
   /usr/include/libriscv/types.hpp
   /usr/include/libriscv/util/buffer.hpp
@@ -105,6 +120,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.20-1bl1 -----
+Version bump.
 
 ----- version 1.15-1bl1 -----
 Version bump.

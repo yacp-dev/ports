@@ -1,0 +1,25 @@
+--- origsrc/libriscv-1.20/lib/CMakeLists.txt	2026-08-22 23:05:39.000000000 +0000
++++ src/libriscv-1.20/lib/CMakeLists.txt	2026-10-19 07:17:42.498659800 +0000
+@@ -364,6 +364,10 @@ if (RISCV_ASMJIT)
+ 	target_link_libraries(riscv PRIVATE asmjit::asmjit)
+ endif()
+ 
++if (DEFINED SOVERSION)
++	set_target_properties(riscv PROPERTIES SOVERSION ${SOVERSION})
++endif()
++
+ if (${CMAKE_PROJECT_NAME} STREQUAL "libriscv")
+ 	install(TARGETS riscv)
+ 	install(FILES
+--- origsrc/libriscv-1.20/lib/libriscv/linux/system_calls.cpp	2026-08-22 23:05:39.000000000 +0000
++++ src/libriscv-1.20/lib/libriscv/linux/system_calls.cpp	2026-10-19 07:17:42.498659800 +0000
+@@ -31,7 +31,9 @@ extern "C" int dup3(int oldfd, int newfd
+ #if __has_include(<termios.h>)
+ #include <termios.h>
+ #endif
++#if !defined(__CYGWIN__)
+ #include <sys/syscall.h>
++#endif
+ #ifndef EBADFD
+ #define EBADFD EBADF  // OpenBSD, FreeBSD
+ #endif

@@ -4,19 +4,19 @@ cJSON aims to be the dumbest possible parser that you can get your job done
 with. It's a single file of C, and a single header file.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libcjson-devel-1.7.19-1bl1
-  libcjson1-1.7.19-1bl1
-  libcjson_utils-devel-1.7.19-1bl1
-  libcjson_utils1-1.7.19-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libcjson-devel-1.7.19-1bl2
+  libcjson1-1.7.19-1bl2
+  libcjson_utils-devel-1.7.19-1bl2
+  libcjson_utils1-1.7.19-1bl2
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.5-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -60,7 +60,7 @@ Files included in the binary package:
   /usr/include/cjson/cJSON.h
   /usr/lib/cmake/cJSON/cJSONConfig.cmake
   /usr/lib/cmake/cJSON/cJSONConfigVersion.cmake
-  /usr/lib/cmake/cJSON/cjson-release.cmake
+  /usr/lib/cmake/cJSON/cjson-relwithdebinfo.cmake
   /usr/lib/cmake/cJSON/cjson.cmake
   /usr/lib/libcjson.dll.a
   /usr/lib/pkgconfig/libcjson.pc
@@ -70,7 +70,7 @@ Files included in the binary package:
 
 (libcjson_utils-devel)
   /usr/include/cjson/cJSON_Utils.h
-  /usr/lib/cmake/cJSON/cjson_utils-release.cmake
+  /usr/lib/cmake/cJSON/cjson_utils-relwithdebinfo.cmake
   /usr/lib/cmake/cJSON/cjson_utils.cmake
   /usr/lib/libcjson_utils.dll.a
   /usr/lib/pkgconfig/libcjson_utils.pc
@@ -78,6 +78,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.7.19-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.7.19-1bl1 -----
 Version bump.

@@ -2,7 +2,7 @@ HOMEPAGE="https://github.com/DaveGamble/cJSON"
 SRC_URI="https://github.com/DaveGamble/cJSON/archive/refs/tags/v${PV}.tar.gz"
 SRC_DIR="cJSON-${PV}"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.7.18-4/debian/patches/0002-make-compatible-with-cmake-4.0.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.7.19-2/debian/patches/0001-make-compatible-with-cmake-4.0.patch
 "
 
 CATEGORY="Libs"
@@ -48,7 +48,7 @@ libcjson_devel_CONTENTS="
 	usr/include/cjson/cJSON.h
 	usr/lib/cmake/cJSON/cJSONConfig.cmake
 	usr/lib/cmake/cJSON/cJSONConfigVersion.cmake
-	usr/lib/cmake/cJSON/cjson-release.cmake
+	usr/lib/cmake/cJSON/cjson-*.cmake
 	usr/lib/cmake/cJSON/cjson.cmake
 	usr/lib/libcjson.dll.a
 	usr/lib/pkgconfig/libcjson.pc
@@ -58,7 +58,7 @@ libcjson_utils1_CONTENTS="
 "
 libcjson_utils_devel_CONTENTS="
 	usr/include/cjson/cJSON_Utils.h
-	usr/lib/cmake/cJSON/cjson_utils-release.cmake
+	usr/lib/cmake/cJSON/cjson_utils-*.cmake
 	usr/lib/cmake/cJSON/cjson_utils.cmake
 	usr/lib/libcjson_utils.dll.a
 	usr/lib/pkgconfig/libcjson_utils.pc

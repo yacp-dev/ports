@@ -12,7 +12,8 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
-	python39-numpy
+	gcc-fortran
+	python3-numpy
 "
 
 inherit cmake
@@ -26,6 +27,12 @@ CYGCMAKE_ARGS="
 	-DWITH_F12:BOOL=ON
 	-DWITH_RANGE_COULOMB:BOOL=ON
 "
+
+src_test()
+{
+	cd ${B}
+	LIBCINT_PATH=${B}/cygcint-6.dll ninja_test
+}
 
 DOCS="
 	doc/program_ref.pdf

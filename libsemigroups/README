@@ -5,48 +5,47 @@ on Algorithms for computing finite semigroups, Expository Slides, and
 Semigroupe 2.01 by Jean-Eric Pin.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libfmt-devel-12.1.0-1bl1
-  libfmt12-12.1.0-1bl1
-  libgcc1-13.4.0-1
-  libsemigroups-devel-3.4.0-1bl1
-  libsemigroups3-3.4.0-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libfmt-devel-12.2.0-1bl1
+  libfmt12-12.2.0-1bl1
+  libgcc1-14.4.0-1
+  libsemigroups-devel-3.6.1-1bl1
+  libsemigroups3-3.6.1-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libfmt-devel-12.1.0-1bl1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libfmt-devel-12.2.0-1bl1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/libsemigroups/libsemigroups
 
 Canonical download:
-  https://github.com/libsemigroups/libsemigroups/archive/refs/tags/v3.4.0.tar.gz
+  https://github.com/libsemigroups/libsemigroups/archive/refs/tags/v3.6.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libsemigroups-3.4.0-X-src.tar.xz
+  1. unpack libsemigroups-3.6.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libsemigroups-3.4.0-X.cygport all
+        % cygport ./libsemigroups-3.6.1-X.cygport all
 
 This will create:
-  /usr/src/libsemigroups-3.4.0-X-src.tar.xz
-  /usr/src/libsemigroups-3.4.0-X.tar.xz
-  /usr/src/libsemigroups3-3.4.0-X.tar.xz
-  /usr/src/libsemigroups-devel-3.4.0-X.tar.xz
+  /usr/src/libsemigroups-3.6.1-X-src.tar.xz
+  /usr/src/libsemigroups-3.6.1-X.tar.xz
+  /usr/src/libsemigroups3-3.6.1-X.tar.xz
+  /usr/src/libsemigroups-devel-3.6.1-X.tar.xz
 
 -------------------------------------------
 
@@ -61,7 +60,8 @@ Files included in the binary package:
   /usr/bin/cygsemigroups-3.dll
 
 (libsemigroups-devel)
-  /usr/include/libsemigroups/Catch2-3.8.0/catch_amalgamated.hpp
+  /usr/include/libsemigroups/Catch2-3.14.0/catch_amalgamated.hpp
+  /usr/include/libsemigroups/Eigen/AccelerateSupport
   /usr/include/libsemigroups/Eigen/Cholesky
   /usr/include/libsemigroups/Eigen/CholmodSupport
   /usr/include/libsemigroups/Eigen/Core
@@ -72,6 +72,7 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/Householder
   /usr/include/libsemigroups/Eigen/IterativeLinearSolvers
   /usr/include/libsemigroups/Eigen/Jacobi
+  /usr/include/libsemigroups/Eigen/KLUSupport
   /usr/include/libsemigroups/Eigen/LU
   /usr/include/libsemigroups/Eigen/MetisSupport
   /usr/include/libsemigroups/Eigen/OrderingMethods
@@ -90,11 +91,17 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/StdList
   /usr/include/libsemigroups/Eigen/StdVector
   /usr/include/libsemigroups/Eigen/SuperLUSupport
+  /usr/include/libsemigroups/Eigen/ThreadPool
   /usr/include/libsemigroups/Eigen/UmfPackSupport
+  /usr/include/libsemigroups/Eigen/Version
+  /usr/include/libsemigroups/Eigen/src/AccelerateSupport/AccelerateSupport.h
+  /usr/include/libsemigroups/Eigen/src/AccelerateSupport/InternalHeaderCheck.h
+  /usr/include/libsemigroups/Eigen/src/Cholesky/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/Cholesky/LDLT.h
   /usr/include/libsemigroups/Eigen/src/Cholesky/LLT.h
   /usr/include/libsemigroups/Eigen/src/Cholesky/LLT_LAPACKE.h
   /usr/include/libsemigroups/Eigen/src/CholmodSupport/CholmodSupport.h
+  /usr/include/libsemigroups/Eigen/src/CholmodSupport/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/Core/ArithmeticSequence.h
   /usr/include/libsemigroups/Eigen/src/Core/Array.h
   /usr/include/libsemigroups/Eigen/src/Core/ArrayBase.h
@@ -104,7 +111,6 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Core/Assign_MKL.h
   /usr/include/libsemigroups/Eigen/src/Core/BandMatrix.h
   /usr/include/libsemigroups/Eigen/src/Core/Block.h
-  /usr/include/libsemigroups/Eigen/src/Core/BooleanRedux.h
   /usr/include/libsemigroups/Eigen/src/Core/CommaInitializer.h
   /usr/include/libsemigroups/Eigen/src/Core/ConditionEstimator.h
   /usr/include/libsemigroups/Eigen/src/Core/CoreEvaluators.h
@@ -117,11 +123,14 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Core/DenseBase.h
   /usr/include/libsemigroups/Eigen/src/Core/DenseCoeffsBase.h
   /usr/include/libsemigroups/Eigen/src/Core/DenseStorage.h
+  /usr/include/libsemigroups/Eigen/src/Core/DeviceWrapper.h
   /usr/include/libsemigroups/Eigen/src/Core/Diagonal.h
   /usr/include/libsemigroups/Eigen/src/Core/DiagonalMatrix.h
   /usr/include/libsemigroups/Eigen/src/Core/DiagonalProduct.h
   /usr/include/libsemigroups/Eigen/src/Core/Dot.h
   /usr/include/libsemigroups/Eigen/src/Core/EigenBase.h
+  /usr/include/libsemigroups/Eigen/src/Core/Fill.h
+  /usr/include/libsemigroups/Eigen/src/Core/FindCoeff.h
   /usr/include/libsemigroups/Eigen/src/Core/ForceAlignedAccess.h
   /usr/include/libsemigroups/Eigen/src/Core/Fuzzy.h
   /usr/include/libsemigroups/Eigen/src/Core/GeneralProduct.h
@@ -129,6 +138,8 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Core/GlobalFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/IO.h
   /usr/include/libsemigroups/Eigen/src/Core/IndexedView.h
+  /usr/include/libsemigroups/Eigen/src/Core/InnerProduct.h
+  /usr/include/libsemigroups/Eigen/src/Core/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/Core/Inverse.h
   /usr/include/libsemigroups/Eigen/src/Core/Map.h
   /usr/include/libsemigroups/Eigen/src/Core/MapBase.h
@@ -145,6 +156,8 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Core/Product.h
   /usr/include/libsemigroups/Eigen/src/Core/ProductEvaluators.h
   /usr/include/libsemigroups/Eigen/src/Core/Random.h
+  /usr/include/libsemigroups/Eigen/src/Core/RandomImpl.h
+  /usr/include/libsemigroups/Eigen/src/Core/RealView.h
   /usr/include/libsemigroups/Eigen/src/Core/Redux.h
   /usr/include/libsemigroups/Eigen/src/Core/Ref.h
   /usr/include/libsemigroups/Eigen/src/Core/Replicate.h
@@ -154,6 +167,7 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Core/Select.h
   /usr/include/libsemigroups/Eigen/src/Core/SelfAdjointView.h
   /usr/include/libsemigroups/Eigen/src/Core/SelfCwiseBinaryOp.h
+  /usr/include/libsemigroups/Eigen/src/Core/SkewSymmetricMatrix3.h
   /usr/include/libsemigroups/Eigen/src/Core/Solve.h
   /usr/include/libsemigroups/Eigen/src/Core/SolveTriangular.h
   /usr/include/libsemigroups/Eigen/src/Core/SolverBase.h
@@ -170,29 +184,46 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Core/arch/AVX/Complex.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AVX/MathFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AVX/PacketMath.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AVX/Reductions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AVX/TypeCasting.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/Complex.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/GemmKernel.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/MathFunctions.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/MathFunctionsFP16.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/PacketMath.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/PacketMathFP16.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/Reductions.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/TrsmKernel.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/TrsmUnrolls.inc
   /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/TypeCasting.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AVX512/TypeCastingFP16.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AltiVec/Complex.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AltiVec/MathFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AltiVec/MatrixProduct.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AltiVec/MatrixProductCommon.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/AltiVec/MatrixProductMMA.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AltiVec/MatrixProductMMAbfloat16.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AltiVec/MatrixVectorProduct.inc
   /usr/include/libsemigroups/Eigen/src/Core/arch/AltiVec/PacketMath.h
-  /usr/include/libsemigroups/Eigen/src/Core/arch/CUDA/Complex.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/AltiVec/TypeCasting.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/Default/BFloat16.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/Default/ConjHelper.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/Default/GenericPacketMathFunctionsFwd.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/Default/Half.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/Default/Settings.h
-  /usr/include/libsemigroups/Eigen/src/Core/arch/Default/TypeCasting.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/GPU/Complex.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/GPU/MathFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/GPU/PacketMath.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/GPU/Tuple.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/GPU/TypeCasting.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/HIP/hcc/math_constants.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/HVX/PacketMath.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/LSX/Complex.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/LSX/GeneralBlockPanelKernel.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/LSX/MathFunctions.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/LSX/PacketMath.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/LSX/TypeCasting.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/MSA/Complex.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/MSA/MathFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/MSA/PacketMath.h
@@ -201,9 +232,11 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Core/arch/NEON/MathFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/NEON/PacketMath.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/NEON/TypeCasting.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/NEON/UnaryFunctors.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/SSE/Complex.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/SSE/MathFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/SSE/PacketMath.h
+  /usr/include/libsemigroups/Eigen/src/Core/arch/SSE/Reductions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/SSE/TypeCasting.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/SVE/MathFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/SVE/PacketMath.h
@@ -211,7 +244,6 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Core/arch/SYCL/InteropHeaders.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/SYCL/MathFunctions.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/SYCL/PacketMath.h
-  /usr/include/libsemigroups/Eigen/src/Core/arch/SYCL/SyclMemoryModel.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/SYCL/TypeCasting.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/ZVector/Complex.h
   /usr/include/libsemigroups/Eigen/src/Core/arch/ZVector/MathFunctions.h
@@ -243,20 +275,26 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Core/products/TriangularSolverMatrix.h
   /usr/include/libsemigroups/Eigen/src/Core/products/TriangularSolverMatrix_BLAS.h
   /usr/include/libsemigroups/Eigen/src/Core/products/TriangularSolverVector.h
+  /usr/include/libsemigroups/Eigen/src/Core/util/Assert.h
   /usr/include/libsemigroups/Eigen/src/Core/util/BlasUtil.h
   /usr/include/libsemigroups/Eigen/src/Core/util/ConfigureVectorization.h
   /usr/include/libsemigroups/Eigen/src/Core/util/Constants.h
   /usr/include/libsemigroups/Eigen/src/Core/util/DisableStupidWarnings.h
+  /usr/include/libsemigroups/Eigen/src/Core/util/EmulateArray.h
   /usr/include/libsemigroups/Eigen/src/Core/util/ForwardDeclarations.h
+  /usr/include/libsemigroups/Eigen/src/Core/util/GpuHipCudaDefines.inc
+  /usr/include/libsemigroups/Eigen/src/Core/util/GpuHipCudaUndefines.inc
   /usr/include/libsemigroups/Eigen/src/Core/util/IndexedViewHelper.h
   /usr/include/libsemigroups/Eigen/src/Core/util/IntegralConstant.h
   /usr/include/libsemigroups/Eigen/src/Core/util/MKL_support.h
   /usr/include/libsemigroups/Eigen/src/Core/util/Macros.h
+  /usr/include/libsemigroups/Eigen/src/Core/util/MaxSizeVector.h
   /usr/include/libsemigroups/Eigen/src/Core/util/Memory.h
   /usr/include/libsemigroups/Eigen/src/Core/util/Meta.h
-  /usr/include/libsemigroups/Eigen/src/Core/util/NonMPL2.h
+  /usr/include/libsemigroups/Eigen/src/Core/util/MoreMeta.h
   /usr/include/libsemigroups/Eigen/src/Core/util/ReenableStupidWarnings.h
   /usr/include/libsemigroups/Eigen/src/Core/util/ReshapedHelper.h
+  /usr/include/libsemigroups/Eigen/src/Core/util/Serializer.h
   /usr/include/libsemigroups/Eigen/src/Core/util/StaticAssert.h
   /usr/include/libsemigroups/Eigen/src/Core/util/SymbolicIndex.h
   /usr/include/libsemigroups/Eigen/src/Core/util/XprHelper.h
@@ -267,6 +305,7 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h
   /usr/include/libsemigroups/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h
   /usr/include/libsemigroups/Eigen/src/Eigenvalues/HessenbergDecomposition.h
+  /usr/include/libsemigroups/Eigen/src/Eigenvalues/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h
   /usr/include/libsemigroups/Eigen/src/Eigenvalues/RealQZ.h
   /usr/include/libsemigroups/Eigen/src/Eigenvalues/RealSchur.h
@@ -279,6 +318,7 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Geometry/EulerAngles.h
   /usr/include/libsemigroups/Eigen/src/Geometry/Homogeneous.h
   /usr/include/libsemigroups/Eigen/src/Geometry/Hyperplane.h
+  /usr/include/libsemigroups/Eigen/src/Geometry/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/Geometry/OrthoMethods.h
   /usr/include/libsemigroups/Eigen/src/Geometry/ParametrizedLine.h
   /usr/include/libsemigroups/Eigen/src/Geometry/Quaternion.h
@@ -292,27 +332,36 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/Householder/BlockHouseholder.h
   /usr/include/libsemigroups/Eigen/src/Householder/Householder.h
   /usr/include/libsemigroups/Eigen/src/Householder/HouseholderSequence.h
+  /usr/include/libsemigroups/Eigen/src/Householder/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/IterativeLinearSolvers/BasicPreconditioners.h
   /usr/include/libsemigroups/Eigen/src/IterativeLinearSolvers/BiCGSTAB.h
   /usr/include/libsemigroups/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h
   /usr/include/libsemigroups/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h
   /usr/include/libsemigroups/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h
+  /usr/include/libsemigroups/Eigen/src/IterativeLinearSolvers/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h
   /usr/include/libsemigroups/Eigen/src/IterativeLinearSolvers/LeastSquareConjugateGradient.h
   /usr/include/libsemigroups/Eigen/src/IterativeLinearSolvers/SolveWithGuess.h
+  /usr/include/libsemigroups/Eigen/src/Jacobi/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/Jacobi/Jacobi.h
+  /usr/include/libsemigroups/Eigen/src/KLUSupport/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/KLUSupport/KLUSupport.h
   /usr/include/libsemigroups/Eigen/src/LU/Determinant.h
   /usr/include/libsemigroups/Eigen/src/LU/FullPivLU.h
+  /usr/include/libsemigroups/Eigen/src/LU/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/LU/InverseImpl.h
   /usr/include/libsemigroups/Eigen/src/LU/PartialPivLU.h
   /usr/include/libsemigroups/Eigen/src/LU/PartialPivLU_LAPACKE.h
   /usr/include/libsemigroups/Eigen/src/LU/arch/InverseSize4.h
+  /usr/include/libsemigroups/Eigen/src/MetisSupport/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/MetisSupport/MetisSupport.h
   /usr/include/libsemigroups/Eigen/src/OrderingMethods/Amd.h
   /usr/include/libsemigroups/Eigen/src/OrderingMethods/Eigen_Colamd.h
+  /usr/include/libsemigroups/Eigen/src/OrderingMethods/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/OrderingMethods/Ordering.h
+  /usr/include/libsemigroups/Eigen/src/PaStiXSupport/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/PaStiXSupport/PaStiXSupport.h
+  /usr/include/libsemigroups/Eigen/src/PardisoSupport/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/PardisoSupport/PardisoSupport.h
   /usr/include/libsemigroups/Eigen/src/QR/ColPivHouseholderQR.h
   /usr/include/libsemigroups/Eigen/src/QR/ColPivHouseholderQR_LAPACKE.h
@@ -320,18 +369,23 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/QR/FullPivHouseholderQR.h
   /usr/include/libsemigroups/Eigen/src/QR/HouseholderQR.h
   /usr/include/libsemigroups/Eigen/src/QR/HouseholderQR_LAPACKE.h
+  /usr/include/libsemigroups/Eigen/src/QR/InternalHeaderCheck.h
+  /usr/include/libsemigroups/Eigen/src/SPQRSupport/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/SPQRSupport/SuiteSparseQRSupport.h
   /usr/include/libsemigroups/Eigen/src/SVD/BDCSVD.h
+  /usr/include/libsemigroups/Eigen/src/SVD/BDCSVD_LAPACKE.h
+  /usr/include/libsemigroups/Eigen/src/SVD/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/SVD/JacobiSVD.h
   /usr/include/libsemigroups/Eigen/src/SVD/JacobiSVD_LAPACKE.h
   /usr/include/libsemigroups/Eigen/src/SVD/SVDBase.h
   /usr/include/libsemigroups/Eigen/src/SVD/UpperBidiagonalization.h
+  /usr/include/libsemigroups/Eigen/src/SparseCholesky/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/SparseCholesky/SimplicialCholesky.h
   /usr/include/libsemigroups/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h
   /usr/include/libsemigroups/Eigen/src/SparseCore/AmbiVector.h
   /usr/include/libsemigroups/Eigen/src/SparseCore/CompressedStorage.h
   /usr/include/libsemigroups/Eigen/src/SparseCore/ConservativeSparseSparseProduct.h
-  /usr/include/libsemigroups/Eigen/src/SparseCore/MappedSparseMatrix.h
+  /usr/include/libsemigroups/Eigen/src/SparseCore/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/SparseCore/SparseAssign.h
   /usr/include/libsemigroups/Eigen/src/SparseCore/SparseBlock.h
   /usr/include/libsemigroups/Eigen/src/SparseCore/SparseColEtree.h
@@ -358,6 +412,7 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/SparseCore/SparseVector.h
   /usr/include/libsemigroups/Eigen/src/SparseCore/SparseView.h
   /usr/include/libsemigroups/Eigen/src/SparseCore/TriangularSolver.h
+  /usr/include/libsemigroups/Eigen/src/SparseLU/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLUImpl.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_Memory.h
@@ -367,7 +422,6 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_column_bmod.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_column_dfs.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h
-  /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_gemm_kernel.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_heap_relax_snode.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_kernel_bmod.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_panel_bmod.h
@@ -375,29 +429,46 @@ Files included in the binary package:
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_pivotL.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_pruneL.h
   /usr/include/libsemigroups/Eigen/src/SparseLU/SparseLU_relax_snode.h
+  /usr/include/libsemigroups/Eigen/src/SparseQR/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/SparseQR/SparseQR.h
   /usr/include/libsemigroups/Eigen/src/StlSupport/StdDeque.h
   /usr/include/libsemigroups/Eigen/src/StlSupport/StdList.h
   /usr/include/libsemigroups/Eigen/src/StlSupport/StdVector.h
   /usr/include/libsemigroups/Eigen/src/StlSupport/details.h
+  /usr/include/libsemigroups/Eigen/src/SuperLUSupport/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/SuperLUSupport/SuperLUSupport.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/Barrier.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/CoreThreadPoolDevice.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/EventCount.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/ForkJoin.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/InternalHeaderCheck.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/NonBlockingThreadPool.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/RunQueue.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/ThreadCancel.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/ThreadEnvironment.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/ThreadLocal.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/ThreadPoolInterface.h
+  /usr/include/libsemigroups/Eigen/src/ThreadPool/ThreadYield.h
+  /usr/include/libsemigroups/Eigen/src/UmfPackSupport/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/UmfPackSupport/UmfPackSupport.h
   /usr/include/libsemigroups/Eigen/src/misc/Image.h
+  /usr/include/libsemigroups/Eigen/src/misc/InternalHeaderCheck.h
   /usr/include/libsemigroups/Eigen/src/misc/Kernel.h
   /usr/include/libsemigroups/Eigen/src/misc/RealSvd2x2.h
   /usr/include/libsemigroups/Eigen/src/misc/blas.h
-  /usr/include/libsemigroups/Eigen/src/misc/lapack.h
   /usr/include/libsemigroups/Eigen/src/misc/lapacke.h
+  /usr/include/libsemigroups/Eigen/src/misc/lapacke_helpers.h
   /usr/include/libsemigroups/Eigen/src/misc/lapacke_mangling.h
-  /usr/include/libsemigroups/Eigen/src/plugins/ArrayCwiseBinaryOps.h
-  /usr/include/libsemigroups/Eigen/src/plugins/ArrayCwiseUnaryOps.h
-  /usr/include/libsemigroups/Eigen/src/plugins/BlockMethods.h
-  /usr/include/libsemigroups/Eigen/src/plugins/CommonCwiseBinaryOps.h
-  /usr/include/libsemigroups/Eigen/src/plugins/CommonCwiseUnaryOps.h
-  /usr/include/libsemigroups/Eigen/src/plugins/IndexedViewMethods.h
-  /usr/include/libsemigroups/Eigen/src/plugins/MatrixCwiseBinaryOps.h
-  /usr/include/libsemigroups/Eigen/src/plugins/MatrixCwiseUnaryOps.h
-  /usr/include/libsemigroups/Eigen/src/plugins/ReshapedMethods.h
+  /usr/include/libsemigroups/Eigen/src/plugins/ArrayCwiseBinaryOps.inc
+  /usr/include/libsemigroups/Eigen/src/plugins/ArrayCwiseUnaryOps.inc
+  /usr/include/libsemigroups/Eigen/src/plugins/BlockMethods.inc
+  /usr/include/libsemigroups/Eigen/src/plugins/CommonCwiseBinaryOps.inc
+  /usr/include/libsemigroups/Eigen/src/plugins/CommonCwiseUnaryOps.inc
+  /usr/include/libsemigroups/Eigen/src/plugins/IndexedViewMethods.inc
+  /usr/include/libsemigroups/Eigen/src/plugins/InternalHeaderCheck.inc
+  /usr/include/libsemigroups/Eigen/src/plugins/MatrixCwiseBinaryOps.inc
+  /usr/include/libsemigroups/Eigen/src/plugins/MatrixCwiseUnaryOps.inc
+  /usr/include/libsemigroups/Eigen/src/plugins/ReshapedMethods.inc
   /usr/include/libsemigroups/action.hpp
   /usr/include/libsemigroups/action.tpp
   /usr/include/libsemigroups/adapters.hpp
@@ -405,6 +476,7 @@ Files included in the binary package:
   /usr/include/libsemigroups/aho-corasick.tpp
   /usr/include/libsemigroups/bipart.hpp
   /usr/include/libsemigroups/bitset.hpp
+  /usr/include/libsemigroups/bitset.tpp
   /usr/include/libsemigroups/bmat-adapters.hpp
   /usr/include/libsemigroups/bmat-fastest.hpp
   /usr/include/libsemigroups/bmat8.hpp
@@ -433,7 +505,6 @@ Files included in the binary package:
   /usr/include/libsemigroups/detail/fmt.hpp
   /usr/include/libsemigroups/detail/formatters.hpp
   /usr/include/libsemigroups/detail/function-ref.hpp
-  /usr/include/libsemigroups/detail/guard.hpp
   /usr/include/libsemigroups/detail/int-range.hpp
   /usr/include/libsemigroups/detail/iterator.hpp
   /usr/include/libsemigroups/detail/kambites-nf.hpp
@@ -443,6 +514,10 @@ Files included in the binary package:
   /usr/include/libsemigroups/detail/knuth-bendix-impl.hpp
   /usr/include/libsemigroups/detail/knuth-bendix-impl.tpp
   /usr/include/libsemigroups/detail/knuth-bendix-nf.hpp
+  /usr/include/libsemigroups/detail/matrix-common.hpp
+  /usr/include/libsemigroups/detail/matrix-common.tpp
+  /usr/include/libsemigroups/detail/matrix-exceptions.hpp
+  /usr/include/libsemigroups/detail/matrix-exceptions.tpp
   /usr/include/libsemigroups/detail/multi-view.hpp
   /usr/include/libsemigroups/detail/node-managed-graph.hpp
   /usr/include/libsemigroups/detail/node-managed-graph.tpp
@@ -463,6 +538,8 @@ Files included in the binary package:
   /usr/include/libsemigroups/detail/todd-coxeter-impl.hpp
   /usr/include/libsemigroups/detail/todd-coxeter-impl.tpp
   /usr/include/libsemigroups/detail/uf.hpp
+  /usr/include/libsemigroups/detail/value-guard.hpp
+  /usr/include/libsemigroups/detail/value-guard.tpp
   /usr/include/libsemigroups/detail/word-graph-with-sources.hpp
   /usr/include/libsemigroups/detail/word-graph-with-sources.tpp
   /usr/include/libsemigroups/detail/word-iterators.hpp
@@ -477,6 +554,7 @@ Files included in the binary package:
   /usr/include/libsemigroups/gabow.hpp
   /usr/include/libsemigroups/gabow.tpp
   /usr/include/libsemigroups/hpcombi.hpp
+  /usr/include/libsemigroups/hpcombi.mk
   /usr/include/libsemigroups/hpcombi.tpp
   /usr/include/libsemigroups/hpcombi/arch.hpp
   /usr/include/libsemigroups/hpcombi/bmat16.hpp
@@ -517,6 +595,7 @@ Files included in the binary package:
   /usr/include/libsemigroups/hpcombi/simde-0.8.2/x86/xop.h
   /usr/include/libsemigroups/hpcombi/vect16.hpp
   /usr/include/libsemigroups/hpcombi/vect_generic.hpp
+  /usr/include/libsemigroups/is-matrix.hpp
   /usr/include/libsemigroups/is-transf.hpp
   /usr/include/libsemigroups/is-transf.tpp
   /usr/include/libsemigroups/is_specialization_of.hpp
@@ -541,7 +620,21 @@ Files included in the binary package:
   /usr/include/libsemigroups/magic_enum/magic_enum_iostream.hpp
   /usr/include/libsemigroups/magic_enum/magic_enum_switch.hpp
   /usr/include/libsemigroups/magic_enum/magic_enum_utility.hpp
+  /usr/include/libsemigroups/matrix-adapters.hpp
+  /usr/include/libsemigroups/matrix-class.hpp
+  /usr/include/libsemigroups/matrix-class.tpp
+  /usr/include/libsemigroups/matrix-exceptions.hpp
+  /usr/include/libsemigroups/matrix-exceptions.tpp
+  /usr/include/libsemigroups/matrix-fmt.hpp
+  /usr/include/libsemigroups/matrix-fmt.tpp
+  /usr/include/libsemigroups/matrix-helpers.hpp
+  /usr/include/libsemigroups/matrix-helpers.tpp
+  /usr/include/libsemigroups/matrix-make.hpp
+  /usr/include/libsemigroups/matrix-make.tpp
+  /usr/include/libsemigroups/matrix-view.hpp
   /usr/include/libsemigroups/matrix.hpp
+  /usr/include/libsemigroups/max-plus-trunc-mat.hpp
+  /usr/include/libsemigroups/max-plus-trunc-mat.tpp
   /usr/include/libsemigroups/obvinf.hpp
   /usr/include/libsemigroups/order.hpp
   /usr/include/libsemigroups/order.tpp
@@ -585,13 +678,197 @@ Files included in the binary package:
   /usr/include/libsemigroups/types.hpp
   /usr/include/libsemigroups/ukkonen.hpp
   /usr/include/libsemigroups/ukkonen.tpp
+  /usr/include/libsemigroups/unsupported/Eigen/AdolcForward
+  /usr/include/libsemigroups/unsupported/Eigen/AlignedVector3
+  /usr/include/libsemigroups/unsupported/Eigen/ArpackSupport
+  /usr/include/libsemigroups/unsupported/Eigen/AutoDiff
+  /usr/include/libsemigroups/unsupported/Eigen/BVH
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/Tensor
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/TensorSymmetry
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/ThreadPool
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/Tensor.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorArgMax.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorAssign.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorBase.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorBlock.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorBroadcasting.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorChipping.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorConcatenation.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorContraction.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorContractionBlocking.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorContractionCuda.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorContractionGpu.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorContractionMapper.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorContractionSycl.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorContractionThreadPool.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorConversion.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorConvolution.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorConvolutionSycl.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorCostModel.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorCustomOp.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorDevice.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorDeviceCuda.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorDeviceDefault.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorDeviceGpu.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorDeviceSycl.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorDeviceThreadPool.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorDimensionList.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorDimensions.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorEvalTo.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorEvaluator.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorExecutor.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorExpr.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorFFT.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorFixedSize.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorForcedEval.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorForwardDeclarations.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorFunctors.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorGenerator.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorGlobalFunctions.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorIO.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorImagePatch.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorIndexList.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorInflation.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorInitializer.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorIntDiv.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorLayoutSwap.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorMacros.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorMap.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorMeta.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorMorphing.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorPadding.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorPatch.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorRandom.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorReduction.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorReductionGpu.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorReductionSycl.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorRef.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorReverse.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorRoll.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorScan.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorScanSycl.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorShuffling.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorStorage.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorStriding.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorTrace.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorTraits.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorUInt128.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/Tensor/TensorVolumePatch.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/TensorSymmetry/DynamicSymmetry.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/TensorSymmetry/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/TensorSymmetry/StaticSymmetry.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/TensorSymmetry/Symmetry.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/TensorSymmetry/util/TemplateGroupTheory.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/util/CXX11Meta.h
+  /usr/include/libsemigroups/unsupported/Eigen/CXX11/src/util/CXX11Workarounds.h
+  /usr/include/libsemigroups/unsupported/Eigen/EulerAngles
+  /usr/include/libsemigroups/unsupported/Eigen/FFT
+  /usr/include/libsemigroups/unsupported/Eigen/IterativeSolvers
+  /usr/include/libsemigroups/unsupported/Eigen/KroneckerProduct
+  /usr/include/libsemigroups/unsupported/Eigen/LevenbergMarquardt
+  /usr/include/libsemigroups/unsupported/Eigen/MPRealSupport
   /usr/include/libsemigroups/unsupported/Eigen/MatrixFunctions
+  /usr/include/libsemigroups/unsupported/Eigen/NNLS
+  /usr/include/libsemigroups/unsupported/Eigen/NonLinearOptimization
+  /usr/include/libsemigroups/unsupported/Eigen/NumericalDiff
+  /usr/include/libsemigroups/unsupported/Eigen/OpenGLSupport
+  /usr/include/libsemigroups/unsupported/Eigen/Polynomials
+  /usr/include/libsemigroups/unsupported/Eigen/SparseExtra
+  /usr/include/libsemigroups/unsupported/Eigen/SpecialFunctions
+  /usr/include/libsemigroups/unsupported/Eigen/Splines
+  /usr/include/libsemigroups/unsupported/Eigen/src/AutoDiff/AutoDiffJacobian.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/AutoDiff/AutoDiffScalar.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/AutoDiff/AutoDiffVector.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/AutoDiff/CoherentPadOp.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/AutoDiff/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/BVH/BVAlgorithms.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/BVH/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/BVH/KdBVH.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Eigenvalues/ArpackSelfAdjointEigenSolver.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Eigenvalues/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/EulerAngles/EulerAngles.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/EulerAngles/EulerSystem.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/EulerAngles/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/FFT/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/FFT/duccfft_impl.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/FFT/fftw_impl.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/FFT/imklfft_impl.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/FFT/kissfft_impl.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/FFT/pocketfft_impl.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/IterativeSolvers/BiCGSTABL.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/IterativeSolvers/DGMRES.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/IterativeSolvers/GMRES.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/IterativeSolvers/IDRS.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/IterativeSolvers/IDRSTABL.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/IterativeSolvers/IncompleteLU.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/IterativeSolvers/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/IterativeSolvers/MINRES.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/IterativeSolvers/Scaling.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/KroneckerProduct/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/KroneckerProduct/KroneckerTensorProduct.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/LevenbergMarquardt/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/LevenbergMarquardt/LMcovar.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/LevenbergMarquardt/LMonestep.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/LevenbergMarquardt/LMpar.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/LevenbergMarquardt/LMqrsolv.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/LevenbergMarquardt/LevenbergMarquardt.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/MatrixFunctions/InternalHeaderCheck.h
   /usr/include/libsemigroups/unsupported/Eigen/src/MatrixFunctions/MatrixExponential.h
   /usr/include/libsemigroups/unsupported/Eigen/src/MatrixFunctions/MatrixFunction.h
   /usr/include/libsemigroups/unsupported/Eigen/src/MatrixFunctions/MatrixLogarithm.h
   /usr/include/libsemigroups/unsupported/Eigen/src/MatrixFunctions/MatrixPower.h
   /usr/include/libsemigroups/unsupported/Eigen/src/MatrixFunctions/MatrixSquareRoot.h
   /usr/include/libsemigroups/unsupported/Eigen/src/MatrixFunctions/StemFunction.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/HybridNonLinearSolver.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/LevenbergMarquardt.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/chkder.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/covar.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/dogleg.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/fdjac1.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/lmpar.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/qrsolv.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/r1mpyq.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/r1updt.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NonLinearOptimization/rwupdt.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NumericalDiff/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/NumericalDiff/NumericalDiff.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Polynomials/Companion.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Polynomials/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Polynomials/PolynomialSolver.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Polynomials/PolynomialUtils.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SparseExtra/BlockSparseMatrix.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SparseExtra/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SparseExtra/MarketIO.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SparseExtra/MatrixMarketIterator.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SparseExtra/RandomSetter.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SparseExtra/SparseInverse.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/BesselFunctionsArrayAPI.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/BesselFunctionsBFloat16.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/BesselFunctionsFunctors.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/BesselFunctionsHalf.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/BesselFunctionsImpl.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/BesselFunctionsPacketMath.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/HipVectorCompatibility.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsArrayAPI.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsBFloat16.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsFunctors.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsHalf.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsImpl.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/SpecialFunctionsPacketMath.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/arch/AVX/BesselFunctions.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/arch/AVX/SpecialFunctions.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/arch/AVX512/BesselFunctions.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/arch/AVX512/SpecialFunctions.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/arch/GPU/SpecialFunctions.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/arch/NEON/BesselFunctions.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/SpecialFunctions/arch/NEON/SpecialFunctions.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Splines/InternalHeaderCheck.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Splines/Spline.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Splines/SplineFitting.h
+  /usr/include/libsemigroups/unsupported/Eigen/src/Splines/SplineFwd.h
   /usr/include/libsemigroups/word-graph-helpers.hpp
   /usr/include/libsemigroups/word-graph-helpers.tpp
   /usr/include/libsemigroups/word-graph-view.hpp
@@ -605,6 +882,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.6.1-1bl1 -----
+Version bump.
 
 ----- version 3.4.0-1bl1 -----
 Version bump.

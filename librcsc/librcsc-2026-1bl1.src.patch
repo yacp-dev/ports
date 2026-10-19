@@ -1,5 +1,5 @@
---- origsrc/librcsc-rc2024/CMakeLists.txt	2024-07-13 09:43:45.000000000 +0900
-+++ src/librcsc-rc2024/CMakeLists.txt	2024-09-02 14:24:06.646004900 +0900
+--- origsrc/librcsc-rc2026/CMakeLists.txt	2026-07-03 22:31:54.000000000 +0000
++++ src/librcsc-rc2026/CMakeLists.txt	2026-10-19 02:11:10.690647600 +0000
 @@ -16,7 +16,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
  if(NOT CMAKE_BUILD_TYPE)
    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
@@ -16,8 +16,8 @@
  
  # check funcs
  include(CheckCXXSymbolExists)
---- origsrc/librcsc-rc2024/librcsc-config.in	2024-07-13 09:43:45.000000000 +0900
-+++ src/librcsc-rc2024/librcsc-config.in	2024-09-02 14:52:34.960141300 +0900
+--- origsrc/librcsc-rc2026/librcsc-config.in	2026-07-03 22:31:54.000000000 +0000
++++ src/librcsc-rc2026/librcsc-config.in	2026-10-19 02:11:10.692663200 +0000
 @@ -37,7 +37,7 @@ if test ${libdir} != /usr/lib ; then
    libsL=-L${libdir}
  fi
@@ -27,8 +27,8 @@
  
  while test $# -gt 0; do
    case "$1" in
---- origsrc/librcsc-rc2024/rcsc/CMakeLists.txt	2024-07-13 09:43:45.000000000 +0900
-+++ src/librcsc-rc2024/rcsc/CMakeLists.txt	2024-09-02 14:40:16.801165500 +0900
+--- origsrc/librcsc-rc2026/rcsc/CMakeLists.txt	2026-07-03 22:31:54.000000000 +0000
++++ src/librcsc-rc2026/rcsc/CMakeLists.txt	2026-10-19 02:11:10.692663200 +0000
 @@ -50,6 +50,8 @@ target_include_directories(rcsc
  #  $<INSTALL_INTERFACE:include>
    )
@@ -38,8 +38,8 @@
  set_target_properties(rcsc PROPERTIES
    VERSION ${LIBRCSC_BUILDVERSION}
    SOVERSION ${LIBRCSC_SOVERSION}
---- origsrc/librcsc-rc2024/rcsc/net/host_address.h	2024-07-13 09:43:45.000000000 +0900
-+++ src/librcsc-rc2024/rcsc/net/host_address.h	2024-09-02 13:27:34.212360300 +0900
+--- origsrc/librcsc-rc2026/rcsc/net/host_address.h	2026-07-03 22:31:54.000000000 +0000
++++ src/librcsc-rc2026/rcsc/net/host_address.h	2026-10-19 02:11:10.692663200 +0000
 @@ -36,7 +36,7 @@
  #include <string>
  #include <cstdint>

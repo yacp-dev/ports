@@ -1,5 +1,5 @@
---- origsrc/librelp-1.12.0/src/Makefile.am	2025-09-08 19:08:47.000000000 +0900
-+++ src/librelp-1.12.0/src/Makefile.am	2026-01-20 12:37:30.015640700 +0900
+--- origsrc/librelp-1.13.0/src/Makefile.am	2022-12-14 09:24:15.000000000 +0000
++++ src/librelp-1.13.0/src/Makefile.am	2026-10-19 04:11:32.544755700 +0000
 @@ -50,6 +50,6 @@ librelp_la_CPPFLAGS = $(AM_CLFAGS) $(PTH
  librelp_la_LIBADD = $(rt_libs) $(GNUTLS_LIBS) $(OPENSSL_LIBS)
  # info on version-info:
@@ -8,8 +8,8 @@
 +librelp_la_LDFLAGS = -no-undefined -version-info 5:1:5 -export-symbols-regex '^relp[^_]*$$'
  
  include_HEADERS = librelp.h
---- origsrc/librelp-1.12.0/src/relp.h	2025-09-08 19:08:47.000000000 +0900
-+++ src/librelp-1.12.0/src/relp.h	2026-01-20 12:37:30.017651800 +0900
+--- origsrc/librelp-1.13.0/src/relp.h	2026-08-18 10:16:50.000000000 +0000
++++ src/librelp-1.13.0/src/relp.h	2026-10-19 04:11:32.546770500 +0000
 @@ -42,7 +42,7 @@
  #define PART_OF_API __attribute__((visibility("default")))
  

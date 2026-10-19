@@ -1,5 +1,5 @@
 HOMEPAGE="https://github.com/rsyslog/${PN}"
-SRC_URI="https://github.com/rsyslog/${PN}/archive/refs/tags/v${PV}.tar.gz"
+SRC_URI="https://download.rsyslog.com/${PN}/${P}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Reliable logging library"
@@ -14,6 +14,7 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	autoconf-archive
 	libgnutls-devel
 	libssl-devel
 "

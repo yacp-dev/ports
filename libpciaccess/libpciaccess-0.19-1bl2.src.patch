@@ -1,5 +1,5 @@
---- origsrc/libpciaccess-libpciaccess-0.19/src/x86_pci.c	2026-03-15 02:55:47.000000000 +0900
-+++ src/libpciaccess-libpciaccess-0.19/src/x86_pci.c	2026-03-22 23:41:32.976056400 +0900
+--- origsrc/libpciaccess-libpciaccess-0.19/src/x86_pci.c	2026-03-14 17:55:47.000000000 +0000
++++ src/libpciaccess-libpciaccess-0.19/src/x86_pci.c	2026-10-19 23:18:15.622731300 +0000
 @@ -106,7 +106,7 @@ INITIALIZEWINIO InitializeWinIo;
  MAPPHYSTOLIN MapPhysToLin;
  UNMAPPHYSMEM UnmapPhysicalMemory;

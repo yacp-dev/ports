@@ -5,47 +5,48 @@ This allows accessing ofono in qtquick and friends.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.4-1
+  cygwin-3.6.11-1
   libQt5Core5-5.9.4-2
   libQt5Gui5-5.9.4-2
   libQt5Quick5-5.9.4-1
-  libgcc1-13.4.0-1
-  libqofono-qt5-devel-0.124-1bl1
-  libqofono-qt5_0-0.124-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libgcc1-14.4.0-1
+  libqofono-qt5-devel-0.132-1bl1
+  libqofono-qt5_0-0.132-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
   libQt5Gui-devel-5.9.4-2
   libQt5Quick-devel-5.9.4-1
-  make-4.4.1-2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/sailfishos/libqofono
 
 Canonical download:
-  https://github.com/sailfishos/libqofono/archive/refs/tags/0.124.tar.gz
+  https://github.com/sailfishos/libqofono/archive/refs/tags/0.132.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libqofono-0.124-X-src.tar.xz
+  1. unpack libqofono-0.132-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libqofono-0.124-X.cygport all
+        % cygport ./libqofono-0.132-X.cygport all
 
 This will create:
-  /usr/src/libqofono-0.124-X-src.tar.xz
-  /usr/src/libqofono-0.124-X.tar.xz
-  /usr/src/libqofono-qt5_0-0.124-X.tar.xz
-  /usr/src/libqofono-qt5-devel-0.124-X.tar.xz
+  /usr/src/libqofono-0.132-X-src.tar.xz
+  /usr/src/libqofono-0.132-X.tar.xz
+  /usr/src/libqofono-qt5_0-0.132-X.tar.xz
+  /usr/src/libqofono-qt5-devel-0.132-X.tar.xz
 
 -------------------------------------------
 
@@ -137,8 +138,7 @@ Files included in the binary package:
   /usr/include/qofono-qt5/qofonovoicecall.h
   /usr/include/qofono-qt5/qofonovoicecallmanager.h
   /usr/lib/libqofono-qt5.dll.a
-  /usr/lib/libqofono.prl
-  /usr/lib/pkgconfig/qofono.pc
+  /usr/lib/pkgconfig/qofono-qt5.pc
   /usr/libexec/libqofono-qt5/ofonotest.exe
   /usr/libexec/libqofono-qt5/tests/runtest.sh
   /usr/libexec/libqofono-qt5/tests/tests.xml
@@ -165,12 +165,14 @@ Files included in the binary package:
   /usr/libexec/libqofono-qt5/tests/tst_qofonotest-qt5.exe
   /usr/libexec/libqofono-qt5/tests/tst_qofonovoicecall.exe
   /usr/libexec/libqofono-qt5/tests/tst_qofonovoicecallmanager.exe
-  /usr/share/libqofono-qt5/qml/ofonotest/main.qml/main.qml
-  /usr/share/qt5/mkspecs/features/qofono-qt5.prf
+  /usr/share/libqofono-qt5/qml/ofonotest/main.qml
 
 ------------------
 
 Port Notes:
+
+----- version 0.132-1bl1 -----
+Version bump.
 
 ----- version 0.124-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

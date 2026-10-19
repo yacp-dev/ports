@@ -20,25 +20,21 @@ BUILD_REQUIRES="
 
 inherit cmake
 
-CYGCMAKE_ARGS="
-	-DSOVERSION:STRING=${PV[1]}
-"
-
 PKG_NAMES="
 	libspatialaudio
-	libspatialaudio${PV[1]}
+	libspatialaudio2
 	libspatialaudio-devel
 "
 libspatialaudio_CONTENTS="
 	usr/share
 "
-libspatialaudio0_CONTENTS="
-	usr/bin/cyg*-${PV[1]}.dll
+libspatialaudio2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libspatialaudio_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libspatialaudio_SUMMARY="${SUMMARY} (licensing & readmes)"
-libspatialaudio0_SUMMARY="${SUMMARY} (runtime)"
+libspatialaudio2_SUMMARY="${SUMMARY} (runtime)"
 libspatialaudio_devel_SUMMARY="${SUMMARY} (development)"

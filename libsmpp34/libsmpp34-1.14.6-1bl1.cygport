@@ -12,6 +12,10 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
+BUILD_REQUIRES="
+	libxml2-devel
+"
+
 PKG_NAMES="
 	${PN}
 	${PN}_1

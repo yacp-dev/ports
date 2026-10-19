@@ -14,7 +14,14 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libghthash-devel libgif-devel libjpeg-devel libpng-devel libtiff-devel"
+BUILD_REQUIRES="
+	intltool
+	libghthash-devel
+	libgif-devel
+	libjpeg-devel
+	libpng-devel
+	libtiff-devel
+"
 
 PKG_NAMES="
 	${PN}

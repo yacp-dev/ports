@@ -1,8 +1,0 @@
---- origsrc/libheinz-v2.0.1/CMakeLists.txt	2025-03-26 19:16:22.000000000 +0900
-+++ src/libheinz-v2.0.1/CMakeLists.txt	2025-04-14 16:10:05.063359300 +0900
-@@ -66,4 +66,4 @@ write_basic_package_version_file(
- install(FILES
-     "${PROJECT_BINARY_DIR}/LibHeinzConfig.cmake"
-     "${PROJECT_BINARY_DIR}/LibHeinzConfigVersion.cmake"
--    DESTINATION cmake COMPONENT dev)
-+    DESTINATION lib/cmake/libheinz COMPONENT dev)

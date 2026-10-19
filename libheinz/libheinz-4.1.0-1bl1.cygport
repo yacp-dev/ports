@@ -1,6 +1,6 @@
-HOMEPAGE="https://jugit.fz-juelich.de/mlz/${PN}"
-SRC_URI="https://jugit.fz-juelich.de/mlz/${PN}/-/archive/v${PV}/${PN}-v${PV}.tar.bz2"
-SRC_DIR="${PN}-v${PV}"
+HOMEPAGE="https://jugit.fz-juelich.de/mlz/lib/heinz"
+SRC_URI="https://jugit.fz-juelich.de/mlz/lib/heinz/-/archive/v${PV}/heinz-v${PV}.tar.bz2"
+SRC_DIR="heinz-v${PV}"
 
 CATEGORY="Devel"
 SUMMARY="C++ base library of Heinz Maier-Leibnitz Zentrum"

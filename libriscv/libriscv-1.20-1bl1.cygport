@@ -1,5 +1,10 @@
 HOMEPAGE="https://github.com/${PN}/${PN}"
-SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz"
+# tinycc's mob branch as of the v${PV} tag (lib/CMakeLists.txt fetches it with git)
+TINYCC_REV="5f89cb5d2d62b614ecbef572e1dd66d25fe46647"
+SRC_URI="
+	https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/fwsGonzo/tinycc/archive/${TINYCC_REV}.tar.gz
+"
 
 CATEGORY="Libs"
 SUMMARY="Fastest RISC-V sandbox"
@@ -11,8 +16,8 @@ libriscv requires 3ns. libriscv is also routinely faster than other
 interpreters, JIT-compilers and binary translators. libriscv has specialized
 APIs that make passing data in and out of the sandbox safe and low-latency."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND LGPL-2.1-or-later"
 LICENSE_URI="LICENSE"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
@@ -24,10 +29,36 @@ CYGCMAKE_ARGS="
 	-DSOVERSION:STRING=${PV[1]}
 "
 
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	cygcmake -DFETCHCONTENT_SOURCE_DIR_TINYCC=${srcdir}/tinycc-${TINYCC_REV}
+	cygninja
+}
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	cd ${srcdir}/tinycc-${TINYCC_REV}
+	docinto tinycc
+	dodoc COPYING
+}
+
 DIFF_EXCLUDES="
+	config.h
 	examples
 	tests
 "
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/project (libriscv VERSION [0-9.]*/project (libriscv VERSION ${PV}/" CMakeLists.txt
+}
 
 PKG_NAMES="
 	libriscv

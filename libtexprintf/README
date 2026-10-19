@@ -9,41 +9,41 @@ libtexprintf/utftex to unlock the math capabilities of Unicode in mono-space
 text applications.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libtexprintf-devel-1.28-1bl1
-  libtexprintf1-1.28-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libtexprintf-devel-1.31-1bl1
+  libtexprintf1-1.31-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/bartp5/libtexprintf
 
 Canonical download:
-  https://github.com/bartp5/libtexprintf/archive/refs/tags/v1.28.tar.gz
+  https://github.com/bartp5/libtexprintf/archive/refs/tags/v1.31.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libtexprintf-1.28-X-src.tar.xz
+  1. unpack libtexprintf-1.31-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libtexprintf-1.28-X.cygport all
+        % cygport ./libtexprintf-1.31-X.cygport all
 
 This will create:
-  /usr/src/libtexprintf-1.28-X-src.tar.xz
-  /usr/src/libtexprintf-1.28-X.tar.xz
-  /usr/src/libtexprintf1-1.28-X.tar.xz
-  /usr/src/libtexprintf-devel-1.28-X.tar.xz
+  /usr/src/libtexprintf-1.31-X-src.tar.xz
+  /usr/src/libtexprintf-1.31-X.tar.xz
+  /usr/src/libtexprintf1-1.31-X.tar.xz
+  /usr/src/libtexprintf-devel-1.31-X.tar.xz
 
 -------------------------------------------
 
@@ -73,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.31-1bl1 -----
+Version bump.
 
 ----- version 1.28-1bl1 -----
 Version bump.

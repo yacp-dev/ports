@@ -5,19 +5,19 @@ portable, clear in its code and easy to use. You can store any kind of data in
 it, regardless of size etc.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libghthash-devel-0.6.2-1bl9
-  libghthash1-0.6.2-1bl9
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libghthash-devel-0.6.2-1bl10
+  libghthash1-0.6.2-1bl10
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -74,6 +74,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.6.2-1bl10 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.6.2-1bl9 -----
 Rebuild with gcc-13.4.0

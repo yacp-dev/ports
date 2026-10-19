@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/fbergmann/${PN}"
 SRC_URI="https://github.com/fbergmann/${PN}/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="libSEDML-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="SED-ML library based on libSBML"
@@ -10,7 +11,14 @@ based library comes up. This project makes use of libSBML XML layer as well as
 code generation as starting point to produce a library for reading and writing
 of SED-ML models."
 
-BUILD_REQUIRES="libnuml-devel libsbml-devel"
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	libnuml-devel
+	libsbml-devel
+"
 
 inherit cmake
 
@@ -21,7 +29,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	ninja_test
+	PATH=${B}/src/sedml:${PATH} ninja_test
 }
 
 src_install()

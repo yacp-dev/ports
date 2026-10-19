@@ -5,20 +5,20 @@ the chip allows transferring the raw I/Q samples to the host, which is
 officially used for DAB/DAB+/FM demodulation.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  librtlsdr-devel-2.0.2-1bl1
-  librtlsdr0-2.0.2-1bl1
+  cygwin-3.6.11-1
+  librtlsdr-devel-2.0.3-1bl1
+  librtlsdr0-2.0.3-1bl1
   libusb1.0-1.0.21-1
-  pkg-config-2.4.3-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   libusb1.0-devel-1.0.21-1
   make-4.4.1-2
 
@@ -26,22 +26,22 @@ Canonical website:
   https://github.com/steve-m/librtlsdr
 
 Canonical download:
-  https://github.com/steve-m/librtlsdr/archive/refs/tags/v2.0.2.tar.gz
+  https://github.com/steve-m/librtlsdr/archive/refs/tags/v2.0.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack librtlsdr-2.0.2-X-src.tar.xz
+  1. unpack librtlsdr-2.0.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./librtlsdr-2.0.2-X.cygport all
+        % cygport ./librtlsdr-2.0.3-X.cygport all
 
 This will create:
-  /usr/src/librtlsdr-2.0.2-X-src.tar.xz
-  /usr/src/librtlsdr-2.0.2-X.tar.xz
-  /usr/src/librtlsdr0-2.0.2-X.tar.xz
-  /usr/src/librtlsdr-devel-2.0.2-X.tar.xz
+  /usr/src/librtlsdr-2.0.3-X-src.tar.xz
+  /usr/src/librtlsdr-2.0.3-X.tar.xz
+  /usr/src/librtlsdr0-2.0.3-X.tar.xz
+  /usr/src/librtlsdr-devel-2.0.3-X.tar.xz
 
 -------------------------------------------
 
@@ -72,6 +72,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.3-1bl1 -----
+Version bump.
 
 ----- version 2.0.2-1bl1 -----
 Version bump.

@@ -1,6 +1,6 @@
---- origsrc/log4cplus/configure.ac	2026-07-27 22:25:32.000000000 +0900
-+++ src/log4cplus/configure.ac	2026-07-27 22:26:02.071118800 +0900
-@@ -460,6 +460,9 @@ AS_CASE(["$target_os"],
+--- origsrc/log4cplus/configure.ac	2026-10-20 03:37:40.000000000 +0000
++++ src/log4cplus/configure.ac	2026-10-20 03:37:50.943577100 +0000
+@@ -452,6 +452,9 @@ AS_CASE(["$target_os"],
  
  dnl Checks for header files.
  
@@ -10,8 +10,8 @@
  AC_CHECK_INCLUDES_DEFAULT
  AC_PROG_EGREP
  
---- origsrc/log4cplus/m4/ax_swig_multi_module_support.m4	2026-07-27 22:25:32.000000000 +0900
-+++ src/log4cplus/m4/ax_swig_multi_module_support.m4	2026-07-27 22:26:02.071118800 +0900
+--- origsrc/log4cplus/m4/ax_swig_multi_module_support.m4	2026-10-20 03:37:40.000000000 +0000
++++ src/log4cplus/m4/ax_swig_multi_module_support.m4	2026-10-20 03:37:50.945591200 +0000
 @@ -52,5 +52,4 @@
  AU_ALIAS([SWIG_MULTI_MODULE_SUPPORT], [AX_SWIG_MULTI_MODULE_SUPPORT])
  AC_DEFUN([AX_SWIG_MULTI_MODULE_SUPPORT],[

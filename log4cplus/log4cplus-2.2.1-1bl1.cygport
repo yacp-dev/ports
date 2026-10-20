@@ -14,7 +14,8 @@ LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	libQt5Core-devel
-	python39-devel
+	python3-devel
+	swig
 "
 
 inherit git
@@ -33,7 +34,7 @@ PKG_NAMES="
 	${PN}
 	lib${PN}11
 	lib${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 log4cplus_CONTENTS="
 	usr/share
@@ -46,10 +47,10 @@ liblog4cplus_devel_CONTENTS="
 	usr/lib/lib*.dll.a
 	usr/lib/pkgconfig
 "
-python39_log4cplus_CONTENTS="
-	usr/lib/python3.9
+python312_log4cplus_CONTENTS="
+	usr/lib/python3.12
 "
 log4cplus_SUMMARY="${SUMMARY} (licensing & readmes)"
 liblog4cplus11_SUMMARY="${SUMMARY} (runtime)"
 liblog4cplus_devel_SUMMARY="${SUMMARY} (development)"
-python39_log4cplus_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_log4cplus_SUMMARY="${SUMMARY} (python312 bindings)"

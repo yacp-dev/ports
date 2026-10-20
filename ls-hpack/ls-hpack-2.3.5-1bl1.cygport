@@ -10,7 +10,9 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libxxhash-devel"
+BUILD_REQUIRES="
+	libxxhash-devel
+"
 
 inherit cmake
 
@@ -21,6 +23,7 @@ src_test()
 }
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DLSHPACK_XXH:BOOL=OFF
 	-DSHARED:STRING=1
 	-DSOVERSION:STRING=${PV[1]}

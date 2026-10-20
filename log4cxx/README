@@ -5,61 +5,62 @@ which uses Apache Portable Runtime for most platform-specific code and should
 be usable on any platform supported by APR.
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.11-1
   libQt5Core5-5.9.4-2
   libapr1-1.6.5-1
   libapr1-devel-1.6.5-1
   libaprutil1-1.6.1-1
   libaprutil1-devel-1.6.1-1
   libesmtp6-1.0.6-2
-  libfmt12-12.1.0-1bl1
+  libfmt12-12.2.0-1bl1
   libgcc1-14.4.0-1
   libiodbc2-3.52.8-2
-  liblog4cxx-devel-1.7.0-1bl1
-  liblog4cxx-qt-devel-1.7.0-1bl1
-  liblog4cxx-qt15-1.7.0-1bl1
-  liblog4cxx15-1.7.0-1bl1
+  liblog4cxx-devel-1.8.0-1bl1
+  liblog4cxx-qt-devel-1.8.0-1bl1
+  liblog4cxx-qt15-1.8.0-1bl1
+  liblog4cxx15-1.8.0-1bl1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.4-2
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
   libapr1-devel-1.6.5-1
   libaprutil1-devel-1.6.1-1
   libesmtp-devel-1.0.6-2
-  libexpat-devel-2.8.0-1
-  libfmt-devel-12.1.0-1bl1
+  libexpat-devel-2.9.0-1
+  libfmt-devel-12.2.0-1bl1
   libiodbc-devel-3.52.8-2
   ninja-1.13.2-1
+  zip-3.0-13
 
 Canonical website:
   https://logging.apache.org/log4cxx/latest_stable/
 
 Canonical download:
-  https://archive.apache.org/dist/logging/log4cxx/1.7.0/apache-log4cxx-1.7.0.tar.gz
+  https://archive.apache.org/dist/logging/log4cxx/1.8.0/apache-log4cxx-1.8.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack log4cxx-1.7.0-X-src.tar.xz
+  1. unpack log4cxx-1.8.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./log4cxx-1.7.0-X.cygport all
+        % cygport ./log4cxx-1.8.0-X.cygport all
 
 This will create:
-  /usr/src/log4cxx-1.7.0-X-src.tar.xz
-  /usr/src/log4cxx-1.7.0-X.tar.xz
-  /usr/src/liblog4cxx15-1.7.0-X.tar.xz
-  /usr/src/liblog4cxx-devel-1.7.0-X.tar.xz
-  /usr/src/liblog4cxx-qt15-1.7.0-X.tar.xz
-  /usr/src/liblog4cxx-qt-devel-1.7.0-X.tar.xz
+  /usr/src/log4cxx-1.8.0-X-src.tar.xz
+  /usr/src/log4cxx-1.8.0-X.tar.xz
+  /usr/src/liblog4cxx15-1.8.0-X.tar.xz
+  /usr/src/liblog4cxx-devel-1.8.0-X.tar.xz
+  /usr/src/liblog4cxx-qt15-1.8.0-X.tar.xz
+  /usr/src/liblog4cxx-qt-devel-1.8.0-X.tar.xz
 
 -------------------------------------------
 
@@ -255,11 +256,11 @@ Files included in the binary package:
   /usr/include/log4cxx/writerappender.h
   /usr/include/log4cxx/xml/domconfigurator.h
   /usr/include/log4cxx/xml/xmllayout.h
-  /usr/lib/cmake/log4cxx/log4cxx-qtTargets-release.cmake
+  /usr/lib/cmake/log4cxx/log4cxx-qtTargets-relwithdebinfo.cmake
   /usr/lib/cmake/log4cxx/log4cxx-qtTargets.cmake
   /usr/lib/cmake/log4cxx/log4cxxConfig.cmake
   /usr/lib/cmake/log4cxx/log4cxxConfigVersion.cmake
-  /usr/lib/cmake/log4cxx/log4cxxTargets-release.cmake
+  /usr/lib/cmake/log4cxx/log4cxxTargets-relwithdebinfo.cmake
   /usr/lib/cmake/log4cxx/log4cxxTargets.cmake
   /usr/lib/liblog4cxx.dll.a
   /usr/lib/pkgconfig/liblog4cxx.pc
@@ -273,7 +274,7 @@ Files included in the binary package:
   /usr/include/log4cxx-qt/messagebuffer.h
   /usr/include/log4cxx-qt/messagehandler.h
   /usr/include/log4cxx-qt/transcoder.h
-  /usr/lib/cmake/log4cxx-qt/log4cxx-qtConfig-release.cmake
+  /usr/lib/cmake/log4cxx-qt/log4cxx-qtConfig-relwithdebinfo.cmake
   /usr/lib/cmake/log4cxx-qt/log4cxx-qtConfig.cmake
   /usr/lib/cmake/log4cxx-qt/log4cxx-qtConfigVersion.cmake
   /usr/lib/liblog4cxx-qt.dll.a
@@ -282,6 +283,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.8.0-1bl1 -----
+Version bump.
 
 ----- version 1.7.0-1bl1 -----
 Version bump.

@@ -1,0 +1,9 @@
+--- origsrc/vid.stab-1.1.2/CMakeLists.txt	2026-01-04 14:53:14.000000000 +0000
++++ src/vid.stab-1.1.2/CMakeLists.txt	2026-10-20 23:49:27.144045600 +0000
+@@ -107,3 +107,6 @@ INSTALL(TARGETS vidstab
+ 
+ include(create_pkgconfig_file)
+ create_pkgconfig_file(vidstab "Vid.Stab, a library for stabilizing video clips")
++
++add_subdirectory(tests)
++

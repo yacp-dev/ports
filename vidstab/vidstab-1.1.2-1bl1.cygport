@@ -29,19 +29,19 @@ DOCS="
 
 PKG_NAMES="
 	vidstab
-	libvidstab1.1
+	libvidstab1.2
 	libvidstab-devel
 "
 vidstab_CONTENTS="
 	usr/share
 "
-libvidstab1_1_CONTENTS="
-	usr/bin/cyg*-1.1.dll
+libvidstab1_2_CONTENTS="
+	usr/bin/cyg*-1.2.dll
 "
 libvidstab_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 vidstab_SUMMARY="${SUMMARY} (licensing & readmes)"
-libvidstab1_1_SUMMARY="${SUMMARY} (runtime)"
+libvidstab1_2_SUMMARY="${SUMMARY} (runtime)"
 libvidstab_devel_SUMMARY="${SUMMARY} (development)"

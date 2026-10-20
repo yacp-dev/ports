@@ -20,6 +20,7 @@ BUILD_REQUIRES="
 	libfmt-devel
 	libiodbc-devel
 	libQt5Core-devel
+	zip
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
@@ -35,7 +36,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	PATH=${B}/src/main/cpp:${PATH} ninja_test
+	PATH=${B}/src/main/cpp:${B}/src/main/cpp-qt:${PATH} ninja_test
 }
 
 DIFF_EXCLUDES="

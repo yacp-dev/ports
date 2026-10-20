@@ -5,29 +5,29 @@ and arbitrarily granular control over log management and configuration. It is
 modelled after the Java log4j API.
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.11-1
   libQt5Core5-5.9.4-2
   libgcc1-14.4.0-1
-  liblog4cplus-devel-2.2.0.1-1bl1
-  liblog4cplus11-2.2.0.1-1bl1
+  liblog4cplus-devel-2.2.1-1bl1
+  liblog4cplus11-2.2.1-1bl1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.4-1
-  python39-3.9.16-1
+  pkg-config-3.0.9-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
+  autoconf-20260320-3
+  automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
   libtool-2.6.2-1
   make-4.4.1-2
-  python39-3.9.16-1
-  python39-devel-3.9.16-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  swig-4.5.1-1
 
 Canonical website:
   https://github.com/log4cplus/log4cplus
@@ -38,18 +38,18 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack log4cplus-2.2.0.1-X-src.tar.xz
+  1. unpack log4cplus-2.2.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./log4cplus-2.2.0.1-X.cygport all
+        % cygport ./log4cplus-2.2.1-X.cygport all
 
 This will create:
-  /usr/src/log4cplus-2.2.0.1-X-src.tar.xz
-  /usr/src/log4cplus-2.2.0.1-X.tar.xz
-  /usr/src/liblog4cplus11-2.2.0.1-X.tar.xz
-  /usr/src/liblog4cplus-devel-2.2.0.1-X.tar.xz
-  /usr/src/python39-log4cplus-2.2.0.1-X.tar.xz
+  /usr/src/log4cplus-2.2.1-X-src.tar.xz
+  /usr/src/log4cplus-2.2.1-X.tar.xz
+  /usr/src/liblog4cplus11-2.2.1-X.tar.xz
+  /usr/src/liblog4cplus-devel-2.2.1-X.tar.xz
+  /usr/src/python312-log4cplus-2.2.1-X.tar.xz
 
 -------------------------------------------
 
@@ -70,6 +70,7 @@ Files included in the binary package:
   /usr/bin/cyglog4cplusqt5debugappender-11.dll
 
 (liblog4cplus-devel)
+  /usr/include/log4cplus/androidappender.h
   /usr/include/log4cplus/appender.h
   /usr/include/log4cplus/asyncappender.h
   /usr/include/log4cplus/boost/deviceappender.hxx
@@ -153,16 +154,19 @@ Files included in the binary package:
   /usr/lib/liblog4cplusqt5debugappender.dll.a
   /usr/lib/pkgconfig/log4cplus.pc
 
-(python39-log4cplus)
-  /usr/lib/python3.9/site-packages/log4cplus/__pycache__/log4cplus.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/log4cplus/__pycache__/log4cplus.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/log4cplus/__pycache__/log4cplus.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/log4cplus/_log4cplus.dll
-  /usr/lib/python3.9/site-packages/log4cplus/log4cplus.py
+(python312-log4cplus)
+  /usr/lib/python3.12/site-packages/log4cplus/__pycache__/log4cplus.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/log4cplus/__pycache__/log4cplus.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/log4cplus/__pycache__/log4cplus.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/log4cplus/_log4cplus.dll
+  /usr/lib/python3.12/site-packages/log4cplus/log4cplus.py
 
 ------------------
 
 Port Notes:
+
+----- version 2.2.1-1bl1 -----
+Version bump.
 
 ----- version 2.2.0.1-1bl1 -----
 Version bump.

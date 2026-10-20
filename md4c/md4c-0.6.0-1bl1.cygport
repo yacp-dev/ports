@@ -1,6 +1,6 @@
 HOMEPAGE="https://github.com/mity/${PN}"
-SRC_URI="https://github.com/mity/${PN}/archive/release-${PV}.tar.gz"
-SRC_DIR="${PN}-release-${PV}"
+SRC_URI="https://github.com/mity/${PN}/archive/v${PV}.tar.gz"
+SRC_DIR="${PN}-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="C Markdown parser"

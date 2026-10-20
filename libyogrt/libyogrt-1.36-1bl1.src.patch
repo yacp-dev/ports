@@ -1,0 +1,37 @@
+--- origsrc/libyogrt-1.36/Makefile.am	2026-02-27 23:20:48.000000000 +0000
++++ src/libyogrt-1.36/Makefile.am	2026-10-20 13:29:01.503520400 +0000
+@@ -1,6 +1,7 @@
+ SUBDIRS = src doc test
+ EXTRA_DIST = COPYING COPYING.LESSER DISCLAIMER INSTALL libyogrt.spec README.md
+ dist_sysconf_DATA = yogrt.conf.example
++ACLOCAL_AMFLAGS = -I config
+ 
+ EXTRA_DIST += $(top_srcdir)/.version
+ BUILT_SOURCES = $(top_srcdir)/.version
+--- origsrc/libyogrt-1.36/src/Makefile.am	2026-02-27 23:20:48.000000000 +0000
++++ src/libyogrt-1.36/src/Makefile.am	2026-10-20 13:29:01.505050600 +0000
+@@ -24,6 +24,8 @@ libyogrt_la_SOURCES = yogrt.c
+ libyogrt_la_LIBADD = -ldl
+ libyogrt_la_CPPFLAGS = \
+ 	-DBACKENDDIR=\"$(libdir)/libyogrt\" \
++	-DBACKENDDLLDIR=\"$(bindir)\" \
++	-DBACKENDDLLMAJOR="($(LIBYOGRT_LT_CURRENT)-$(LIBYOGRT_LT_AGE))" \
+ 	-DCONFIGPATH=\"$(sysconfdir)\"
+ libyogrt_la_LDFLAGS = \
+ 	-no-undefined \
+--- origsrc/libyogrt-1.36/src/yogrt.c	2026-02-27 23:20:48.000000000 +0000
++++ src/libyogrt-1.36/src/yogrt.c	2026-10-20 13:29:01.505546500 +0000
+@@ -246,7 +246,13 @@ static inline int load_backend(void)
+ 		strcpy(backend_name, "none");
+ 	}
+ 
++#ifdef __CYGWIN__
++	/* libtool installs the backend DLLs to bindir as cygyogrt-NAME-MAJOR.dll */
++	snprintf(path, sizeof(path), "%s/cygyogrt-%s-%d.dll", BACKENDDLLDIR,
++		 backend_name, BACKENDDLLMAJOR);
++#else
+ 	snprintf(path, sizeof(path), "%s/libyogrt-%s.so", BACKENDDIR, backend_name);
++#endif
+ 	debug3("Testing for %s.\n", path);
+ 	if (stat(path, st) == -1) {
+ 		snprintf(path, sizeof(path), "%s/libyogrt-%s.a",

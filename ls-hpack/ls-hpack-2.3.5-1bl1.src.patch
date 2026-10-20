@@ -1,5 +1,5 @@
---- origsrc/ls-hpack-2.3.4/CMakeLists.txt	2025-02-07 01:17:41.000000000 +0900
-+++ src/ls-hpack-2.3.4/CMakeLists.txt	2025-03-15 08:11:59.754828700 +0900
+--- origsrc/ls-hpack-2.3.5/CMakeLists.txt	2026-05-24 05:00:10.000000000 +0000
++++ src/ls-hpack-2.3.5/CMakeLists.txt	2026-10-20 13:21:18.573916000 +0000
 @@ -18,6 +18,10 @@ ELSE()
  ENDIF()
  INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
@@ -20,7 +20,15 @@
  ENDIF()
  
  check_include_files("sys/queue.h" HAVE_SYS_QUEUE_H)
-@@ -61,7 +67,7 @@ IF (CMAKE_C_COMPILER_ID STREQUAL GNU
+@@ -57,11 +63,14 @@ IF (CMAKE_C_COMPILER_ID STREQUAL GNU
+         IF (CMAKE_BUILD_TYPE STREQUAL Release)
+             SET(MY_CMAKE_FLAGS "${MY_CMAKE_FLAGS} -g0 -O3")
+         ELSE()
+-            SET(MY_CMAKE_FLAGS "${MY_CMAKE_FLAGS} -g3 -O0 -fsanitize=address")
++            SET(MY_CMAKE_FLAGS "${MY_CMAKE_FLAGS} -g3 -O0")
++            IF (NOT CYGWIN)
++                SET(MY_CMAKE_FLAGS "${MY_CMAKE_FLAGS} -fsanitize=address")
++            ENDIF()
          ENDIF()
  ENDIF()
  
@@ -29,7 +37,7 @@
      SET(MY_CMAKE_FLAGS "${MY_CMAKE_FLAGS} -DLS_HPACK_EMIT_TEST_CODE=1")
  ENDIF()
  
-@@ -79,12 +85,22 @@ SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${MY
+@@ -79,12 +88,22 @@ SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${MY
  
  MESSAGE(STATUS "Compiler flags: ${CMAKE_C_FLAGS}")
  
@@ -54,8 +62,8 @@
 +SET(includedir ${CMAKE_INSTALL_PREFIX}/include/ls-hpack)
 +CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/ls-hpack.pc.in ${CMAKE_BINARY_DIR}/ls-hpack.pc @ONLY)
 +INSTALL(FILES ${CMAKE_BINARY_DIR}/ls-hpack.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/ls-hpack-2.3.4/bin/CMakeLists.txt	2025-02-07 01:17:41.000000000 +0900
-+++ src/ls-hpack-2.3.4/bin/CMakeLists.txt	2025-03-15 08:11:34.847961100 +0900
+--- origsrc/ls-hpack-2.3.5/bin/CMakeLists.txt	2026-05-24 05:00:10.000000000 +0000
++++ src/ls-hpack-2.3.5/bin/CMakeLists.txt	2026-10-20 13:21:18.575692300 +0000
 @@ -1,16 +1,41 @@
 -add_executable(encode-qif encode-qif.c ../deps/xxhash/xxhash.c)
 +add_executable(encode-qif encode-qif.c)
@@ -105,8 +113,8 @@
 +else()
 +    target_link_libraries(find-xxh PRIVATE xxhash)
 +endif()
---- origsrc/ls-hpack-2.3.4/bin/calc-xxh.c	2025-02-07 01:17:41.000000000 +0900
-+++ src/ls-hpack-2.3.4/bin/calc-xxh.c	2025-03-15 08:11:34.847961100 +0900
+--- origsrc/ls-hpack-2.3.5/bin/calc-xxh.c	2026-05-24 05:00:10.000000000 +0000
++++ src/ls-hpack-2.3.5/bin/calc-xxh.c	2026-10-20 13:21:18.575692300 +0000
 @@ -14,7 +14,7 @@ main (int argc, char **argv)
      uint32_t seed, name_hash, nameval_hash;
      size_t name_len, value_len;
@@ -140,8 +148,8 @@
 +    XXH32_freeState(hash_state);
      return 0;
  }
---- origsrc/ls-hpack-2.3.4/ls-hpack.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/ls-hpack-2.3.4/ls-hpack.pc.in	2025-03-15 08:11:34.847961100 +0900
+--- origsrc/ls-hpack-2.3.5/ls-hpack.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/ls-hpack-2.3.5/ls-hpack.pc.in	2026-10-20 13:21:18.577718700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -153,15 +161,15 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lls-hpack
 +Cflags: -I${includedir}
---- origsrc/ls-hpack-2.3.4/test/CMakeLists.txt	2025-02-07 01:17:41.000000000 +0900
-+++ src/ls-hpack-2.3.4/test/CMakeLists.txt	2025-03-15 08:11:34.847961100 +0900
+--- origsrc/ls-hpack-2.3.5/test/CMakeLists.txt	2026-05-24 05:00:10.000000000 +0000
++++ src/ls-hpack-2.3.5/test/CMakeLists.txt	2026-10-20 13:21:18.577718700 +0000
 @@ -2,13 +2,24 @@ ENABLE_TESTING()
  
  FOREACH(HASH 0 1)
      FOREACH(HTTP 0 1)
 -        ADD_EXECUTABLE(test_hpack_hash${HASH}_http${HTTP} test_hpack.c ../lshpack.c ../deps/xxhash/xxhash.c)
 +        ADD_EXECUTABLE(test_hpack_hash${HASH}_http${HTTP} test_hpack.c)
-+        TARGET_LINK_LIBRARIES(test_hpack_hash${HASH}_http${HTTP} ls-hpack)
++        TARGET_LINK_LIBRARIES(test_hpack_hash${HASH}_http${HTTP} PRIVATE ls-hpack)
 +        IF (LSHPACK_XXH)
 +            TARGET_SOURCES(test_hpack_hash${HASH}_http${HTTP} PRIVATE ../deps/xxhash/xxhash.c)
 +        ELSE()
@@ -174,11 +182,12 @@
  ENDFOREACH(HASH)
  
 -ADD_EXECUTABLE(test_int test_int.c ../deps/xxhash/xxhash.c)
+-TARGET_LINK_LIBRARIES(test_int ls-hpack)
 +ADD_EXECUTABLE(test_int test_int.c)
 +IF (LSHPACK_XXH)
 +    TARGET_SOURCES(test_int PRIVATE ../deps/xxhash/xxhash.c)
 +ELSE()
 +    TARGET_LINK_LIBRARIES(test_int PRIVATE xxhash)
 +ENDIF()
- TARGET_LINK_LIBRARIES(test_int ls-hpack)
++TARGET_LINK_LIBRARIES(test_int PRIVATE ls-hpack)
  ADD_TEST(int test_int)

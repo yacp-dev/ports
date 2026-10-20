@@ -6,42 +6,42 @@ Internet-Draft is has been stable for some time and we don't expect functional
 changes to it before the final RFC is released.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libls-qpack-devel-2.6.2-1bl1
-  libls-qpack2-2.6.2-1bl1
-  libxxhash-devel-0.8.3-1
-  libxxhash0-0.8.3-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libls-qpack-devel-2.7.0-1bl1
+  libls-qpack2-2.7.0-1bl1
+  libxxhash-devel-0.8.4-1
+  libxxhash0-0.8.4-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libxxhash-devel-0.8.3-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libxxhash-devel-0.8.4-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/litespeedtech/ls-qpack
 
 Canonical download:
-  https://github.com/litespeedtech/ls-qpack/archive/refs/tags/v2.6.2.tar.gz
+  https://github.com/litespeedtech/ls-qpack/archive/refs/tags/v2.7.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ls-qpack-2.6.2-X-src.tar.xz
+  1. unpack ls-qpack-2.7.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ls-qpack-2.6.2-X.cygport all
+        % cygport ./ls-qpack-2.7.0-X.cygport all
 
 This will create:
-  /usr/src/ls-qpack-2.6.2-X-src.tar.xz
-  /usr/src/ls-qpack-2.6.2-X.tar.xz
-  /usr/src/libls-qpack2-2.6.2-X.tar.xz
-  /usr/src/libls-qpack-devel-2.6.2-X.tar.xz
+  /usr/src/ls-qpack-2.7.0-X-src.tar.xz
+  /usr/src/ls-qpack-2.7.0-X.tar.xz
+  /usr/src/libls-qpack2-2.7.0-X.tar.xz
+  /usr/src/libls-qpack-devel-2.7.0-X.tar.xz
 
 -------------------------------------------
 
@@ -63,7 +63,7 @@ Files included in the binary package:
   /usr/include/lsqpack.h
   /usr/include/lsxpack_header.h
   /usr/lib/cmake/ls-qpack/ls-qpack-config.cmake
-  /usr/lib/cmake/ls-qpack/ls-qpack-targets-release.cmake
+  /usr/lib/cmake/ls-qpack/ls-qpack-targets-relwithdebinfo.cmake
   /usr/lib/cmake/ls-qpack/ls-qpack-targets.cmake
   /usr/lib/libls-qpack.dll.a
   /usr/lib/pkgconfig/lsqpack.pc
@@ -71,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.7.0-1bl1 -----
+Version bump.
 
 ----- version 2.6.2-1bl1 -----
 Version bump.

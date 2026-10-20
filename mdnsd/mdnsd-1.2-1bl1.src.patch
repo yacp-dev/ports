@@ -1,0 +1,50 @@
+--- origsrc/mdnsd-1.2/Makefile.am	2026-07-31 17:28:00.000000000 +0000
++++ src/mdnsd-1.2/Makefile.am	2026-10-20 23:35:50.824030200 +0000
+@@ -25,3 +25,6 @@ release: distcheck
+ # Workaround for systemd unit file duing distcheck
+ DISTCHECK_CONFIGURE_FLAGS = --with-systemd=$$dc_install_base/$(systemd) --disable-silent-rules --enable-tests
+ DISTCLEANFILES = lib/.libs/*
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/mdnsd-1.2/configure.ac	2026-07-31 17:28:00.000000000 +0000
++++ src/mdnsd-1.2/configure.ac	2026-10-20 23:35:50.824030200 +0000
+@@ -118,6 +118,7 @@ AS_IF([test -z "$runstatedir"], runstate
+ AC_SUBST(runstatedir)
+ 
+ # Create all config files
++AC_CONFIG_FILES([mdnsd.pc])
+ AC_OUTPUT
+ 
+ # Expand directories for configuration summary, unexpanded defaults:
+--- origsrc/mdnsd-1.2/libmdnsd/Makefile.am	2026-07-31 17:28:00.000000000 +0000
++++ src/mdnsd-1.2/libmdnsd/Makefile.am	2026-10-20 23:35:50.826047000 +0000
+@@ -3,4 +3,4 @@ lib_LTLIBRARIES      = libmdnsd.la
+ libmdnsd_la_SOURCES  = mdnsd.c mdnsd.h log.c 1035.c 1035.h sdtxt.c sdtxt.h xht.c xht.h inet.c inet.h
+ libmdnsd_la_CFLAGS   = -std=gnu99 -W -Wall -Wextra
+ libmdnsd_la_CPPFLAGS = -D_GNU_SOURCE -D_BSD_SOURCE -D_DEFAULT_SOURCE
+-libmdnsd_la_LDFLAGS  = $(AM_LDFLAGS) -version-info 3:1:1
++libmdnsd_la_LDFLAGS  = $(AM_LDFLAGS) -no-undefined -version-info 3:1:1
+--- origsrc/mdnsd-1.2/mdnsd.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/mdnsd-1.2/mdnsd.pc.in	2026-10-20 23:35:50.826047000 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: mdnsd
++Description: Embeddable Multicast DNS Daemon
++Version: @VERSION@
++Libs: -L${libdir} -lmdnsd
++Cflags: -I${includedir}
+--- origsrc/mdnsd-1.2/test/xht.c	2026-07-31 17:28:00.000000000 +0000
++++ src/mdnsd-1.2/test/xht.c	2026-10-20 23:35:50.828065300 +0000
+@@ -1,6 +1,6 @@
+ #include "unittest.h"
+ 
+-void test1()
++static void test1(__attribute__((__unused__)) void **state)
+ {
+ 	xht_t *ptr;
+ 

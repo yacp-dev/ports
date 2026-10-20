@@ -15,10 +15,19 @@ LICENSE="GPL-3.0-only"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libicu-devel libticcutils-devel libtimbl-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	libicu-devel
+	libticcutils-devel
+	libtimbl-devel
+"
 
 DIFF_EXCLUDES="
 	*.m4
+"
+
+DOCS="
+	README.md
 "
 
 PKG_NAMES="

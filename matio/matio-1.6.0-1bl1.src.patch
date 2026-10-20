@@ -1,5 +1,5 @@
---- origsrc/matio-1.5.28/matio.pc.in	2024-10-31 05:54:50.000000000 +0900
-+++ src/matio-1.5.28/matio.pc.in	2025-03-17 11:30:54.292779700 +0900
+--- origsrc/matio/matio.pc.in	2026-10-20 16:03:00.000000000 +0000
++++ src/matio/matio.pc.in	2026-10-20 16:03:14.934738100 +0000
 @@ -6,6 +6,6 @@ includedir=@includedir@
  Name: MATIO
  Description: MATIO Library
@@ -9,9 +9,9 @@
  Cflags: -I${includedir}
 -Requires.private: @HDF5_REQUIRES_PRIVATE@ @ZLIB_REQUIRES_PRIVATE@
 +Requires.private: @ZLIB_REQUIRES_PRIVATE@
---- origsrc/matio-1.5.28/src/safe-math.h	2024-10-31 05:54:50.000000000 +0900
-+++ src/matio-1.5.28/src/safe-math.h	2025-03-17 11:30:54.292779700 +0900
-@@ -127,7 +127,9 @@
+--- origsrc/matio/src/safe-math.h	2026-10-20 16:03:00.000000000 +0000
++++ src/matio/src/safe-math.h	2026-10-20 16:03:14.936505000 +0000
+@@ -130,7 +130,9 @@
  #    pragma warning(push)
  #    pragma warning(disable:4005)
  #  endif

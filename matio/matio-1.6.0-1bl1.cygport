@@ -1,5 +1,9 @@
-HOMEPAGE="https://sourceforge.net/projects/${PN}/"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+HOMEPAGE="https://github.com/tbeu/${PN}"
+GIT_URI="https://github.com/tbeu/${PN}.git"
+GIT_TAG="v${PV}"
+PATCH_URI="
+	https://sources.debian.org/data/main/libm/libmatio/1.6.0-2/debian/patches/big-endian.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Library for reading and writing matlab files"
@@ -9,30 +13,38 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libhdf5-devel zlib-devel"
+BUILD_REQUIRES="
+	gcc-fortran
+	libhdf5-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 export LT_LDFLAGS="-no-undefined"
 
+inherit git
+
 CYGCONF_ARGS="
 	--enable-maintainer-mode
+	--enable-fortran
 "
 
 DIFF_EXCLUDES="
 	testsuite
+	package.m4
 "
 
 PKG_NAMES="
 	${PN}
-	lib${PN}13
+	lib${PN}14
 	lib${PN}-devel
 "
 matio_CONTENTS="
 	usr/bin/*.exe
 	usr/share/doc
 "
-libmatio13_CONTENTS="
-	usr/bin/cyg*-13.dll
+libmatio14_CONTENTS="
+	usr/bin/cyg*-14.dll
 "
 libmatio_devel_CONTENTS="
 	usr/include
@@ -40,5 +52,5 @@ libmatio_devel_CONTENTS="
 	usr/share/man
 "
 matio_SUMMARY="${SUMMARY} (utilities)"
-libmatio13_SUMMARY="${SUMMARY} (runtime)"
+libmatio14_SUMMARY="${SUMMARY} (runtime)"
 libmatio_devel_SUMMARY="${SUMMARY} (development)"

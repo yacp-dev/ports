@@ -4,41 +4,41 @@ Vidstab is a video stabilization library which can be plugged-in with Ffmpeg
 and Transcode.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  cygwin-devel-3.6.5-1
-  libgomp1-13.4.0-1
-  libvidstab-devel-1.1.1-1bl2
-  libvidstab1.1-1.1.1-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  cygwin-devel-3.6.11-1
+  libgomp1-14.4.0-1
+  libvidstab-devel-1.1.2-1bl1
+  libvidstab1.2-1.1.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.4-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/georgmartius/vid.stab
 
 Canonical download:
-  https://github.com/georgmartius/vid.stab/archive/refs/tags/v1.1.1.tar.gz
+  https://github.com/georgmartius/vid.stab/archive/refs/tags/v1.1.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack vidstab-1.1.1-X-src.tar.xz
+  1. unpack vidstab-1.1.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./vidstab-1.1.1-X.cygport all
+        % cygport ./vidstab-1.1.2-X.cygport all
 
 This will create:
-  /usr/src/vidstab-1.1.1-X-src.tar.xz
-  /usr/src/vidstab-1.1.1-X.tar.xz
-  /usr/src/libvidstab1.1-1.1.1-X.tar.xz
-  /usr/src/libvidstab-devel-1.1.1-X.tar.xz
+  /usr/src/vidstab-1.1.2-X-src.tar.xz
+  /usr/src/vidstab-1.1.2-X.tar.xz
+  /usr/src/libvidstab1.2-1.1.2-X.tar.xz
+  /usr/src/libvidstab-devel-1.1.2-X.tar.xz
 
 -------------------------------------------
 
@@ -51,11 +51,12 @@ Files included in the binary package:
   /usr/share/doc/vidstab/README.md
   /usr/share/doc/vidstab/Todo
 
-(libvidstab1.1)
-  /usr/bin/cygvidstab-1.1.dll
+(libvidstab1.2)
+  /usr/bin/cygvidstab-1.2.dll
 
 (libvidstab-devel)
   /usr/include/vid.stab/boxblur.h
+  /usr/include/vid.stab/compat.h
   /usr/include/vid.stab/frameinfo.h
   /usr/include/vid.stab/libvidstab.h
   /usr/include/vid.stab/localmotion2transform.h
@@ -63,12 +64,14 @@ Files included in the binary package:
   /usr/include/vid.stab/motiondetect_internal.h
   /usr/include/vid.stab/motiondetect_opt.h
   /usr/include/vid.stab/serialize.h
+  /usr/include/vid.stab/sse2neon.h
   /usr/include/vid.stab/transform.h
   /usr/include/vid.stab/transform_internal.h
   /usr/include/vid.stab/transformfixedpoint.h
   /usr/include/vid.stab/transformfloat.h
   /usr/include/vid.stab/transformtype.h
   /usr/include/vid.stab/transformtype_operations.h
+  /usr/include/vid.stab/vidstab_api.h
   /usr/include/vid.stab/vidstabdefines.h
   /usr/include/vid.stab/vsvector.h
   /usr/lib/libvidstab.dll.a
@@ -77,6 +80,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.2-1bl1 -----
+Version bump.
 
 ----- version 1.1.1-1bl2 -----
 Rebuild with gcc-13.4.0

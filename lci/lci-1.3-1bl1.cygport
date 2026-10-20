@@ -10,8 +10,6 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libreadline-devel"
-
 inherit cmake
 
 DOCS="

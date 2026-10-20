@@ -9,9 +9,17 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libcmocka-devel
+"
+CYGCONF_ARGS="
+	--enable-static
+	--enable-tests
+"
+
 PKG_NAMES="
 	mdnsd
-	libmdnsd1
+	libmdnsd2
 	libmdnsd-devel
 "
 mdnsd_CONTENTS="
@@ -20,13 +28,31 @@ mdnsd_CONTENTS="
 	usr/sbin
 	usr/share
 "
-libmdnsd1_CONTENTS="
-	usr/bin/*.dll
+libmdnsd2_CONTENTS="
+	usr/bin/cygmdnsd-2.dll
 "
 libmdnsd_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 mdnsd_SUMMARY="${SUMMARY} (utilities)"
-libmdnsd1_SUMMARY="${SUMMARY} (runtime)"
+libmdnsd2_SUMMARY="${SUMMARY} (runtime)"
 libmdnsd_devel_SUMMARY="${SUMMARY} (development)"
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+	rm -f ${D}/usr/lib/libmdnsd.{a,la}
+}
+
+src_test()
+{
+	local t
+
+	cd ${B}/test
+	for t in xht addr answer label sdtxt conflict
+	do
+		make check TESTS=${t} || error "unit test ${t} failed"
+	done
+}

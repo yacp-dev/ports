@@ -1,5 +1,5 @@
---- origsrc/luau-0.741/CMakeLists.txt	2026-10-03 05:17:39.000000000 +0900
-+++ src/luau-0.741/CMakeLists.txt	2026-10-10 10:21:15.822789000 +0900
+--- origsrc/luau-0.743/CMakeLists.txt	2026-10-16 20:41:27.000000000 +0000
++++ src/luau-0.743/CMakeLists.txt	2026-10-20 14:30:39.793341800 +0000
 @@ -32,6 +32,9 @@ endif()
  
  project(Luau LANGUAGES CXX C)
@@ -92,9 +92,9 @@
  
      target_compile_options(Luau.Conformance PRIVATE ${LUAU_OPTIONS})
      target_compile_definitions(Luau.Conformance PRIVATE DOCTEST_CONFIG_DOUBLE_STRINGIFY DOCTEST_CONFIG_USE_STD_HEADERS)
---- origsrc/luau-0.741/Sources.cmake	2026-10-03 05:17:39.000000000 +0900
-+++ src/luau-0.741/Sources.cmake	2026-10-10 06:44:42.701726800 +0900
-@@ -441,10 +441,12 @@ target_sources(Luau.VM PRIVATE
+--- origsrc/luau-0.743/Sources.cmake	2026-10-16 20:41:27.000000000 +0000
++++ src/luau-0.743/Sources.cmake	2026-10-20 14:30:39.794281000 +0000
+@@ -442,10 +442,12 @@ target_sources(Luau.VM PRIVATE
      VM/src/lvm.h
  )
  

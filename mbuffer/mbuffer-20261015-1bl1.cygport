@@ -1,0 +1,30 @@
+HOMEPAGE="http://www.maier-komor.de/${PN}.html"
+SRC_URI="http://www.maier-komor.de/software/${PN}/${P}.tgz"
+
+CATEGORY="System"
+SUMMARY="M(easuring)buffer is a replacement for buffer with additional functionality"
+DESCRIPTION="Measuring Buffer is an enhanced version of buffer. It features display of
+throughput, memory-mapped file I/O for huge buffers, and multithreading."
+
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libssl-devel
+"
+
+DIFF_EXCLUDES="
+	install-sh
+"
+
+src_compile()
+{
+	cd ${S}
+	cygautoreconf
+	cd ${B}
+	lndirs
+	cygconf
+	# idev.so and tapetest.so (LD_PRELOAD hooks for the tests) need RTLD_NEXT
+	cygmake mbuffer.exe
+}

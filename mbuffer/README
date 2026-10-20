@@ -1,54 +1,39 @@
 mbuffer
 ------------------------------------------
-mbuffer is a tool for buffering data streams with a large set of unique
-features:
-
- * direct support for TCP based network targets (IPv4 and IPv6)
- * ability to send to multiple targets in parallel (distribution mode)
- * support for multiple volumes
- * I/O rate limitation
- * high/low watermark based restart criteria
- * configurable buffer size
- * on the fly MD5 hash calculation
- * highly efficient, multi-threaded implementation
-
-It is especially useful, if you are writing backups to fast tape drives or
-libraries. Those drives tend to stop and rewind if they have a buffer
-underrun. This so called tape screwing reduces the lifetime of the motors.
-
-mbuffer can prevent buffer underruns, if used correctly and speed up the
-whole backup process. Please read the man page for details, how to use it.
+Measuring Buffer is an enhanced version of buffer. It features display of
+throughput, memory-mapped file I/O for huge buffers, and multithreading.
 
 Runtime requirements:
-  cygwin-2.8.2-1
-  libmhash2-0.9.9.9-2
+  cygwin-3.6.11-1
+  libssl3-3.5.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  binutils-2.25-4
-  cygport-0.24.1-1
-  gcc-core-5.4.0-1
-  make-4.2.1-2
+  autoconf-20260320-3
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libssl-devel-3.5.9-1
+  make-4.4.1-2
 
 Canonical website:
   http://www.maier-komor.de/mbuffer.html
 
 Canonical download:
-  http://www.maier-komor.de/software/mbuffer/mbuffer-20170515.tgz
+  http://www.maier-komor.de/software/mbuffer/mbuffer-20261015.tgz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mbuffer-20170515-X-src.tar.xz
+  1. unpack mbuffer-20261015-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mbuffer-20170515-X.cygport all
+        % cygport ./mbuffer-20261015-X.cygport all
 
 This will create:
-  /usr/src/mbuffer-20170515-X-src.tar.xz
-  /usr/src/mbuffer-20170515-X.tar.xz
+  /usr/src/mbuffer-20261015-X-src.tar.xz
+  /usr/src/mbuffer-20261015-X.tar.xz
 
 -------------------------------------------
 
@@ -68,6 +53,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20261015-1bl1 -----
+Version bump.
 
 ----- version 20170515-1bl1 -----
 Version bump.

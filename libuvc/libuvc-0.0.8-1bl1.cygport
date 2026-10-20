@@ -13,7 +13,10 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="libusb1.0-devel"
+BUILD_REQUIRES="
+	libjpeg-devel
+	libusb1.0-devel
+"
 
 inherit cmake
 
@@ -44,3 +47,4 @@ libuvc_devel_CONTENTS="
 libuvc_SUMMARY="${SUMMARY} (licensing & readmes)"
 libuvc0_SUMMARY="${SUMMARY} (runtime)"
 libuvc_devel_SUMMARY="${SUMMARY} (development)"
+libuvc_devel_REQUIRES="libjpeg-devel"

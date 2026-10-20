@@ -1,0 +1,30 @@
+--- origsrc/libuvc-0.0.8/include/libuvc/libuvc_internal.h	2026-09-13 04:47:10.000000000 +0000
++++ src/libuvc-0.0.8/include/libuvc/libuvc_internal.h	2026-10-20 00:11:22.024879600 +0000
+@@ -72,6 +72,9 @@
+ /* http://stackoverflow.com/questions/19452971/array-size-macro-that-rejects-pointers */
+ #define IS_INDEXABLE(arg) (sizeof(arg[0]))
+ #define IS_ARRAY(arg) (IS_INDEXABLE(arg) && (((void *) &arg) == ((void *) arg)))
++#if defined(ARRAYSIZE)
++#undef ARRAYSIZE
++#endif
+ #define ARRAYSIZE(arr) (sizeof(arr) / (IS_ARRAY(arr) ? sizeof(arr[0]) : 0))
+ 
+ /** Video interface subclass code (A.2) */
+--- origsrc/libuvc-0.0.8/src/frame-mjpeg.c	2026-09-13 04:47:10.000000000 +0000
++++ src/libuvc-0.0.8/src/frame-mjpeg.c	2026-10-20 00:11:22.027150200 +0000
+@@ -37,7 +37,15 @@
+  */
+ #include "libuvc/libuvc.h"
+ #include "libuvc/libuvc_internal.h"
++#ifdef __CYGWIN__
++/* <windows.h> (via <libusb.h>) typedefs boolean as unsigned char, but
++   libjpeg's ABI uses int: give libjpeg's typedef its own name. */
++#define boolean jpeg_boolean
++#endif
+ #include <jpeglib.h>
++#ifdef __CYGWIN__
++#undef boolean
++#endif
+ #include <setjmp.h>
+ 
+ extern uvc_error_t uvc_ensure_frame_size(uvc_frame_t *frame, size_t need_bytes);

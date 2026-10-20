@@ -12,6 +12,9 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gcc-fortran
+	libevent-devel
+	libhwloc-devel
 	libopenmpi-devel
 "
 

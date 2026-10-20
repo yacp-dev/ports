@@ -6,23 +6,25 @@ problems with real sparse matrices using iterative methods.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.10-1
+  cygwin-3.6.11-1
   libgfortran5-14.4.0-1
   libgomp1-14.4.0-1
-  liblis-devel-2.1.11-1bl1
-  liblis0-2.1.11-1bl1
+  liblis-devel-2.1.17-1bl1
+  liblis0-2.1.17-1bl1
   libopenmpi40-4.1.6-1
   libopenmpifh40-4.1.6-1
-  pkg-config-3.0.4-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  automake-20250528-1
+  autoconf-20260320-3
+  automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.10-1
   gcc-core-14.4.0-1
   gcc-fortran-14.4.0-1
+  libevent-devel-2.1.13-1
+  libhwloc-devel-2.13.0-1
   libopenmpi-devel-4.1.6-1
   libtool-2.6.2-1
   make-4.4.1-2
@@ -31,22 +33,22 @@ Canonical website:
   https://www.ssisc.org/lis/index.en.html
 
 Canonical download:
-  https://www.ssisc.org/lis/dl/lis-2.1.11.zip
+  https://www.ssisc.org/lis/dl/lis-2.1.17.zip
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack lis-2.1.11-X-src.tar.xz
+  1. unpack lis-2.1.17-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./lis-2.1.11-X.cygport all
+        % cygport ./lis-2.1.17-X.cygport all
 
 This will create:
-  /usr/src/lis-2.1.11-X-src.tar.xz
-  /usr/src/lis-2.1.11-X.tar.xz
-  /usr/src/liblis0-2.1.11-X.tar.xz
-  /usr/src/liblis-devel-2.1.11-X.tar.xz
+  /usr/src/lis-2.1.17-X-src.tar.xz
+  /usr/src/lis-2.1.17-X.tar.xz
+  /usr/src/liblis0-2.1.17-X.tar.xz
+  /usr/src/liblis-devel-2.1.17-X.tar.xz
 
 -------------------------------------------
 
@@ -81,6 +83,8 @@ Files included in the binary package:
   /usr/lib/lis/examples/getest1.exe
   /usr/lib/lis/examples/getest5.exe
   /usr/lib/lis/examples/getest5b.exe
+  /usr/lib/lis/examples/getestoperator.exe
+  /usr/lib/lis/examples/getestuser.exe
   /usr/lib/lis/examples/spmvtest1.exe
   /usr/lib/lis/examples/spmvtest2.exe
   /usr/lib/lis/examples/spmvtest2b.exe
@@ -105,12 +109,50 @@ Files included in the binary package:
   /usr/lib/lis/examples/test7.exe
   /usr/lib/lis/examples/test7f.exe
   /usr/lib/lis/examples/test8f.exe
+  /usr/lib/lis/examples/testbreakretry.exe
+  /usr/lib/lis/examples/testcapabilities.exe
+  /usr/lib/lis/examples/testchangingsystem.exe
+  /usr/lib/lis/examples/testcoarseapply.exe
+  /usr/lib/lis/examples/testcoarsesetup.exe
+  /usr/lib/lis/examples/testdiagonal.exe
+  /usr/lib/lis/examples/testexternalstorage.exe
+  /usr/lib/lis/examples/testfgcrodr.exe
+  /usr/lib/lis/examples/testgcrodrconfig.exe
+  /usr/lib/lis/examples/testgcrodroptions.exe
+  /usr/lib/lis/examples/testgcrodrsequence.exe
+  /usr/lib/lis/examples/testgmreswork.exe
+  /usr/lib/lis/examples/testilupivot.exe
+  /usr/lib/lis/examples/testjacobiuser.exe
+  /usr/lib/lis/examples/testkrylovrobust.exe
   /usr/lib/lis/examples/testmat.mtx
   /usr/lib/lis/examples/testmat0.mtx
   /usr/lib/lis/examples/testmat2.mtx
   /usr/lib/lis/examples/testmat3.mtx
   /usr/lib/lis/examples/testmat4.mtx
+  /usr/lib/lis/examples/testmatrixgeneration.exe
+  /usr/lib/lis/examples/testmfamg.exe
+  /usr/lib/lis/examples/testnearnullspace.exe
+  /usr/lib/lis/examples/testoperator.exe
+  /usr/lib/lis/examples/testparamupdate.exe
+  /usr/lib/lis/examples/testprebuiltuser.exe
+  /usr/lib/lis/examples/testpreconlifecycle.exe
+  /usr/lib/lis/examples/testpreconpolicy.exe
+  /usr/lib/lis/examples/testpreconpsd.exe
+  /usr/lib/lis/examples/testpreconreuse.exe
+  /usr/lib/lis/examples/testrecovery.exe
+  /usr/lib/lis/examples/testrepeatedsystems.exe
+  /usr/lib/lis/examples/testrhistoryerror.exe
+  /usr/lib/lis/examples/testrqirestore.exe
+  /usr/lib/lis/examples/testsequence.exe
+  /usr/lib/lis/examples/testshellscale.exe
+  /usr/lib/lis/examples/testsymmdiagguard.exe
+  /usr/lib/lis/examples/testthreads.exe
+  /usr/lib/lis/examples/testuser.exe
+  /usr/lib/lis/examples/testuserrow.exe
   /usr/lib/lis/examples/testvec0.mtx
+  /usr/lib/lis/examples/testwarmstart.exe
+  /usr/lib/lis/examples/testworkcompat.exe
+  /usr/lib/lis/examples/testworkreuse.exe
   /usr/share/doc/Cygwin/lis.README
   /usr/share/doc/lis/AUTHORS
   /usr/share/doc/lis/COPYING
@@ -410,6 +452,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.1.17-1bl1 -----
+Version bump.
 
 ----- version 2.1.11-1bl1 -----
 Version bump.

@@ -3,44 +3,43 @@ libunicode
 Modern C++20 Unicode Library
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  libunicode0.8-0.8.0-1bl1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libunicode0.9-0.9.4-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libCatch2-devel-3.12.0-1bl1
-  libbenchmark-devel-1.9.5-1bl1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libCatch2-devel-3.16.1-1bl1
+  libbenchmark-devel-1.9.5-1bl2
   ninja-1.13.2-1
-  ragel-7.0.0.11-3
   unicode-ucd-17.0.0-1
 
 Canonical website:
   https://github.com/contour-terminal/libunicode
 
 Canonical download:
-  https://github.com/contour-terminal/libunicode/archive/refs/tags/v0.8.0.tar.gz
+  https://github.com/contour-terminal/libunicode/archive/refs/tags/v0.9.4.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libunicode-0.8.0-X-src.tar.xz
+  1. unpack libunicode-0.9.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libunicode-0.8.0-X.cygport all
+        % cygport ./libunicode-0.9.4-X.cygport all
 
 This will create:
-  /usr/src/libunicode-0.8.0-X-src.tar.xz
-  /usr/src/libunicode-0.8.0-X.tar.xz
-  /usr/src/libunicode0.8-0.8.0-X.tar.xz
-  /usr/src/libunicode-devel-0.8.0-X.tar.xz
+  /usr/src/libunicode-0.9.4-X-src.tar.xz
+  /usr/src/libunicode-0.9.4-X.tar.xz
+  /usr/src/libunicode0.9-0.9.4-X.tar.xz
+  /usr/src/libunicode-devel-0.9.4-X.tar.xz
 
 -------------------------------------------
 
@@ -53,16 +52,16 @@ Files included in the binary package:
   /usr/share/doc/libunicode/README.md
   /usr/share/doc/libunicode/TODO.md
 
-(libunicode0.8)
-  /usr/bin/cygunicode-0.8.dll
-  /usr/bin/cygunicode_loader-0.8.dll
-  /usr/bin/cygunicode_ucd-0.8.dll
+(libunicode0.9)
+  /usr/bin/cygunicode-0.9.dll
+  /usr/bin/cygunicode_ucd-0.9.dll
 
 (libunicode-devel)
   /usr/include/libunicode/capi.h
   /usr/include/libunicode/case_mapping.h
   /usr/include/libunicode/codepoint_properties.h
   /usr/include/libunicode/convert.h
+  /usr/include/libunicode/convert_simd_impl.h
   /usr/include/libunicode/emoji_segmenter.h
   /usr/include/libunicode/grapheme_segmenter.h
   /usr/include/libunicode/intrinsics.h
@@ -84,15 +83,17 @@ Files included in the binary package:
   /usr/include/libunicode/word_segmenter.h
   /usr/lib/cmake/libunicode/libunicode-config-version.cmake
   /usr/lib/cmake/libunicode/libunicode-config.cmake
-  /usr/lib/cmake/libunicode/libunicode-targets-release.cmake
+  /usr/lib/cmake/libunicode/libunicode-targets-relwithdebinfo.cmake
   /usr/lib/cmake/libunicode/libunicode-targets.cmake
   /usr/lib/libunicode.dll.a
-  /usr/lib/libunicode_loader.dll.a
   /usr/lib/libunicode_ucd.dll.a
 
 ------------------
 
 Port Notes:
+
+----- version 0.9.4-1bl1 -----
+Version bump.
 
 ----- version 0.8.0-1bl1 -----
 Version bump.

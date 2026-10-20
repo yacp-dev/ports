@@ -1,8 +1,7 @@
 HOMEPAGE="https://github.com/richgel999/${PN}"
 SRC_URI="https://github.com/richgel999/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-2.2.0-Examples-to-include-system-miniz.h.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-cmake4.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/478c086dc6a497985f1765f9b850038e6fb1ace9/f/${PN}-2.2.0-Examples-to-include-system-miniz.h.patch
 "
 
 CATEGORY="Libs"

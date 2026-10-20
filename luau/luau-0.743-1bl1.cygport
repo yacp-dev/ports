@@ -17,9 +17,10 @@ inherit cmake
 
 src_test()
 {
-	cd ${B}
-	verbose ./Luau.CLI.Test.exe
-	verbose ./Luau.UnitTest.exe
+	# tests look for tests/require upwards from the working directory
+	cd ${S}
+	verbose ${B}/Luau.CLI.Test.exe
+	verbose ${B}/Luau.UnitTest.exe
 }
 
 src_install()

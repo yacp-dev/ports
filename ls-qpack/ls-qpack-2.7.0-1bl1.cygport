@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/litespeedtech/${PN}"
 SRC_URI="https://github.com/litespeedtech/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://raw.githubusercontent.com/gentoo/gentoo/9f4669b06c90eaf1890f57764856d6094aff0f07/dev-libs/ls-qpack/files/ls-qpack-2.7.0-fortify.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="QPACK compression library for use with HTTP/3"
@@ -23,9 +26,17 @@ CYGCMAKE_ARGS="
 	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DLSQPACK_TESTS:BOOL=ON
 	-DLSQPACK_XXH:BOOL=OFF
-	-DSOVERSION:STRING=${PV[1]}
-	-DVERSION:STRING=${PV}
 "
+
+# The scenario and qif tests take PATH from configure time, so the
+# in-tree DLL has to be on it then already.
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	PATH=${B}:${PATH} cygcmake
+	cygninja
+}
 
 src_test()
 {

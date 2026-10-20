@@ -31,8 +31,8 @@ lmfit_CONTENTS="
 	usr/share/doc/Cygwin
 	usr/share/doc/${PN}/[CR]*
 "
-liblmfit10_CONTENTS="
-	usr/bin/cyg*-10.dll
+liblmfit11_CONTENTS="
+	usr/bin/cyg*-11.dll
 "
 liblmfit_devel_CONTENTS="
 	usr/include
@@ -41,5 +41,5 @@ liblmfit_devel_CONTENTS="
 	usr/share/doc/${PN}/html
 "
 lmfit_SUMMARY="${SUMMARY} (licensing & readmes)"
-liblmfit10_SUMMARY="${SUMMARY} (runtime)"
+liblmfit11_SUMMARY="${SUMMARY} (runtime)"
 liblmfit_devel_SUMMARY="${SUMMARY} (development)"

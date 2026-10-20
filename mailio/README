@@ -4,49 +4,47 @@ mailio is a cross platform C++ library for MIME format and SMTP, POP3 and IMAP
 protocols. It is based on the standard C++ 17 and Boost library.
 
 Runtime requirements:
-  cygwin-3.5.7-1
-  libboost_date_time1.66-1.66.0-1
+  cygwin-3.6.11-1
   libboost_regex1.66-1.66.0-1
   libboost_system1.66-1.66.0-1
-  libboost_test1.66-1.66.0-1
-  libgcc1-12.4.0-3
-  libmailio-devel-0.24.1-1bl1
-  libmailio1-0.24.1-1bl1
-  libssl3-3.0.16-1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  libgcc1-14.4.0-1
+  libmailio-devel-0.26.1-1bl1
+  libmailio2-0.26.1-1bl1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  libssl-devel-3.0.16-1
-  ninja-1.12.1-1
+  libssl-devel-3.5.9-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/karastojko/mailio
 
 Canonical download:
-  https://github.com/karastojko/mailio/archive/refs/tags/0.24.1.tar.gz
+  https://github.com/karastojko/mailio/archive/refs/tags/0.26.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mailio-0.24.1-X-src.tar.xz
+  1. unpack mailio-0.26.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mailio-0.24.1-X.cygport all
+        % cygport ./mailio-0.26.1-X.cygport all
 
 This will create:
-  /usr/src/mailio-0.24.1-X-src.tar.xz
-  /usr/src/mailio-0.24.1-X.tar.xz
-  /usr/src/libmailio1-0.24.1-X.tar.xz
-  /usr/src/libmailio-devel-0.24.1-X.tar.xz
+  /usr/src/mailio-0.26.1-X-src.tar.xz
+  /usr/src/mailio-0.26.1-X.tar.xz
+  /usr/src/libmailio2-0.26.1-X.tar.xz
+  /usr/src/libmailio-devel-0.26.1-X.tar.xz
 
 -------------------------------------------
 
@@ -56,26 +54,9 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/mailio.README
   /usr/share/doc/mailio/LICENSE
   /usr/share/doc/mailio/README.md
-  /usr/share/mailio/examples/aleph0.png
-  /usr/share/mailio/examples/imap_folders.exe
-  /usr/share/mailio/examples/imap_remove_msg.exe
-  /usr/share/mailio/examples/imaps_search.exe
-  /usr/share/mailio/examples/imaps_stat.exe
-  /usr/share/mailio/examples/infinity.png
-  /usr/share/mailio/examples/message.exe
-  /usr/share/mailio/examples/pop3_remove_msg.exe
-  /usr/share/mailio/examples/pop3s_attachment.exe
-  /usr/share/mailio/examples/pop3s_fetch_one.exe
-  /usr/share/mailio/examples/smtp_utf8_qp_msg.exe
-  /usr/share/mailio/examples/smtps_attachment.exe
-  /usr/share/mailio/examples/smtps_multipart.exe
-  /usr/share/mailio/examples/smtps_simple_msg.exe
-  /usr/share/mailio/test/aleph0.png
-  /usr/share/mailio/test/cv.txt
-  /usr/share/mailio/test/test_message.exe
 
-(libmailio1)
-  /usr/bin/cygmailio-1.dll
+(libmailio2)
+  /usr/bin/cygmailio-2.dll
 
 (libmailio-devel)
   /usr/include/mailio/base64.hpp
@@ -95,14 +76,19 @@ Files included in the binary package:
   /usr/include/mailio/quoted_printable.hpp
   /usr/include/mailio/smtp.hpp
   /usr/include/mailio/version.hpp
-  /usr/lib/cmake/mailio/mailioConfig-release.cmake
-  /usr/lib/cmake/mailio/mailioConfig.cmake
+  /usr/lib/cmake/mailio/mailio-config-version.cmake
+  /usr/lib/cmake/mailio/mailio-config.cmake
+  /usr/lib/cmake/mailio/mailio-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/mailio/mailio-targets.cmake
   /usr/lib/libmailio.dll.a
   /usr/lib/pkgconfig/mailio.pc
 
 ------------------
 
 Port Notes:
+
+----- version 0.26.1-1bl1 -----
+Version bump.
 
 ----- version 0.24.1-1bl1 -----
 Version bump.

@@ -1,8 +1,8 @@
 HOMEPAGE="https://github.com/karastojko/${PN}"
 SRC_URI="https://github.com/karastojko/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.23.0%2Bgit20241012.8821f91-1/debian/patches/soname.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.23.0%2Bgit20241012.8821f91-1/debian/patches/spelling.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.26.0-1/debian/patches/soname.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.26.0-1/debian/patches/spelling.patch
 "
 
 CATEGORY="Libs"
@@ -14,7 +14,10 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libboost-devel libssl-devel"
+BUILD_REQUIRES="
+	libboost-devel
+	libssl-devel
+"
 
 inherit cmake
 
@@ -27,25 +30,25 @@ CYGCMAKE_ARGS="
 
 src_test()
 {
-	cd ${B}
-	./test/test_message.exe
+	cd ${S}/test
+	PATH=${B}:${PATH} ${B}/test/test_message.exe
 }
 
 PKG_NAMES="
 	mailio
-	libmailio1
+	libmailio2
 	libmailio-devel
 "
 mailio_CONTENTS="
 	usr/share
 "
-libmailio1_CONTENTS="
-	usr/bin/cyg*-1.dll
+libmailio2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libmailio_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 mailio_SUMMARY="${SUMMARY} (licensing & readmes)"
-libmailio1_SUMMARY="${SUMMARY} (runtime)"
+libmailio2_SUMMARY="${SUMMARY} (runtime)"
 libmailio_devel_SUMMARY="${SUMMARY} (development)"

@@ -15,7 +15,7 @@ BUILD_REQUIRES="
 	unicode-ucd
 "
 
-export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -U_GLIBCXX_DEBUG"
 
 inherit cmake
 
@@ -39,7 +39,7 @@ libunicode_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libunicode0_8_CONTENTS="
+libunicode0_9_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libunicode_devel_CONTENTS="
@@ -47,5 +47,5 @@ libunicode_devel_CONTENTS="
 	usr/lib
 "
 libunicode_SUMMARY="${SUMMARY} (utilities)"
-libunicode0_8_SUMMARY="${SUMMARY} (runtime)"
+libunicode0_9_SUMMARY="${SUMMARY} (runtime)"
 libunicode_devel_SUMMARY="${SUMMARY} (development)"

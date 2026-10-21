@@ -1,5 +1,5 @@
-HOMEPAGE="https://perso.ens-lyon.fr/nathalie.revol/software.html"
-SRC_URI="https://perso.ens-lyon.fr/nathalie.revol/softwares/${P}.tar.bz2"
+HOMEPAGE="https://gitlab.inria.fr/mpfi/mpfi"
+SRC_URI="https://gitlab.inria.fr/mpfi/mpfi/-/archive/${PV}/${P}.tar.bz2"
 
 CATEGORY="Libs"
 SUMMARY="Multiple Precision Floating-point Interval library"
@@ -14,7 +14,14 @@ to benefit from the correct roundings provided by MPFR. Further advantages of
 using MPFR are its portability and compliance with the IEEE 754 standard for
 floating-point arithmetic."
 
-BUILD_REQUIRES="libgmp-devel libmpfr-devel"
+LICENSE="LGPL-3.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later AND LGPL-2.1-or-later"
+LICENSE_URI="COPYING.LESSER"
+
+BUILD_REQUIRES="
+	libgmp-devel
+	libmpfr-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode

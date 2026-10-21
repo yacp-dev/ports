@@ -4,19 +4,19 @@ libebur128 is a library that implements the EBU R 128 standard for loudness
 normalisation.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libebur128-devel-1.2.6-1bl2
-  libebur128_1-1.2.6-1bl2
-  pkg-config-2.3.0-1
+  cygwin-3.6.11-1
+  libebur128-devel-1.2.6-1bl3
+  libebur128_1-1.2.6-1bl3
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libsndfile-devel-1.2.2-2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/jiixyj/libebur128
@@ -61,6 +61,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.6-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.2.6-1bl2 -----
 Rebuild with gcc-12.4.0

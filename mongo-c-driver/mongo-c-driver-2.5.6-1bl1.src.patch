@@ -1,0 +1,15 @@
+--- origsrc/mongo-c-driver-2.5.6/build/cmake/TestProject.cmake	2026-10-08 12:57:25.000000000 +0000
++++ src/mongo-c-driver-2.5.6/build/cmake/TestProject.cmake	2026-10-21 11:21:13.355057400 +0000
+@@ -250,8 +250,11 @@ function(__do_test_project)
+     endif()
+     message(STATUS "Project build completed")
+ 
++    # Let the tests find the DLLs installed into the temporary prefix
+     execute_process(
+-        COMMAND ${CMAKE_CTEST_COMMAND}
++        COMMAND ${CMAKE_COMMAND} -E env
++            --modify "PATH=path_list_prepend:${tmp_install_prefix}/bin"
++            ${CMAKE_CTEST_COMMAND}
+             -T Start -T Test
+             -C "${TEST_PROJECT_CONFIG}"
+             --output-on-failure

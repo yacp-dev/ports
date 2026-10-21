@@ -1,0 +1,44 @@
+--- origsrc/mruby-4.0.0/mrbgems/mruby-dir/mrbgem.rake	2026-04-20 08:43:06.000000000 +0000
++++ src/mruby-4.0.0/mrbgems/mruby-dir/mrbgem.rake	2026-10-21 01:37:05.591111400 +0000
+@@ -10,7 +10,7 @@ MRuby::Gem::Specification.new('mruby-dir
+       ENV['MRUBY_DIR_HAL']
+     elsif spec.for_windows?
+       'hal-win-dir'
+-    elsif RUBY_PLATFORM =~ /linux|darwin|bsd/
++    elsif RUBY_PLATFORM =~ /linux|darwin|bsd|cygwin/
+       'hal-posix-dir'
+     else
+       nil
+--- origsrc/mruby-4.0.0/mrbgems/mruby-io/mrbgem.rake	2026-04-20 08:43:06.000000000 +0000
++++ src/mruby-4.0.0/mrbgems/mruby-io/mrbgem.rake	2026-10-21 01:37:05.591111400 +0000
+@@ -12,7 +12,7 @@ MRuby::Gem::Specification.new('mruby-io'
+     # No HAL found - determine appropriate error message or auto-load
+     suggested_hal = if spec.for_windows?
+       'hal-win-io'
+-    elsif RUBY_PLATFORM =~ /linux|darwin|bsd/
++    elsif RUBY_PLATFORM =~ /linux|darwin|bsd|cygwin/
+       'hal-posix-io'
+     else
+       nil
+--- origsrc/mruby-4.0.0/mrbgems/mruby-socket/mrbgem.rake	2026-04-20 08:43:06.000000000 +0000
++++ src/mruby-4.0.0/mrbgems/mruby-socket/mrbgem.rake	2026-10-21 01:37:05.593130500 +0000
+@@ -15,7 +15,7 @@ MRuby::Gem::Specification.new('mruby-soc
+     # No HAL found - determine appropriate error message or auto-load
+     suggested_hal = if spec.for_windows?
+       'hal-win-socket'
+-    elsif RUBY_PLATFORM =~ /linux|darwin|bsd/
++    elsif RUBY_PLATFORM =~ /linux|darwin|bsd|cygwin/
+       'hal-posix-socket'
+     else
+       nil
+--- origsrc/mruby-4.0.0/mrbgems/mruby-task/mrbgem.rake	2026-04-20 08:43:06.000000000 +0000
++++ src/mruby-4.0.0/mrbgems/mruby-task/mrbgem.rake	2026-10-21 01:37:05.595151900 +0000
+@@ -13,7 +13,7 @@ MRuby::Gem::Specification.new('mruby-tas
+     suggested_hal = if spec.for_windows?
+       # Windows (including MinGW) - use Windows HAL
+       'hal-win-task'
+-    elsif RUBY_PLATFORM =~ /linux|darwin|bsd/
++    elsif RUBY_PLATFORM =~ /linux|darwin|bsd|cygwin/
+       'hal-posix-task'
+     else
+       nil

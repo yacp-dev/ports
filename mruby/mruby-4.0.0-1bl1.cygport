@@ -11,7 +11,13 @@ compiled byte code using the mruby compiler 'mrbc'. All those tools reside in
 'bin' directory. The 'mrbc' is also able to generate compiled byte code in a C
 source file. You can check the 'mrbtest' program under the 'test' directory."
 
-BUILD_REQUIRES="libreadline-devel"
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libreadline-devel
+"
 
 src_compile()
 {
@@ -20,8 +26,14 @@ src_compile()
 	cygmake
 }
 
+src_test()
+{
+	cd ${B}
+	cygmake test
+}
+
 DOCS="
-	MITL
+	LICENSE
 	doc/*.md
 	doc/guides/*.md
 "
@@ -29,5 +41,5 @@ DOCS="
 src_install()
 {
 	cd ${B}
-	dobin bin/*.exe
+	dobin build/host/bin/*.exe
 }

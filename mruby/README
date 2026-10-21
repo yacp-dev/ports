@@ -9,38 +9,35 @@ using the mruby compiler 'mrbc'. All those tools reside in 'bin' directory. The
 check the 'mrbtest' program under the 'test' directory.
 
 Runtime requirements:
-  cygwin-3.3.5-1
-  libreadline7-8.1-2
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  bison-3.8.2-1
-  cygport-0.35.1-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libprotobuf-devel-3.19.3-1
-  libreadline-devel-8.1-2
-  make-4.3-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libreadline-devel-8.3-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/mruby/mruby
 
 Canonical download:
-  https://github.com/mruby/mruby/archive/refs/tags/3.1.0.tar.gz
+  https://github.com/mruby/mruby/archive/refs/tags/4.0.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mruby-3.1.0-X-src.tar.xz
+  1. unpack mruby-4.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mruby-3.1.0-X.cygport all
+        % cygport ./mruby-4.0.0-X.cygport all
 
 This will create:
-  /usr/src/mruby-3.1.0-X-src.tar.xz
-  /usr/src/mruby-3.1.0-X.tar.xz
+  /usr/src/mruby-4.0.0-X-src.tar.xz
+  /usr/src/mruby-4.0.0-X.tar.xz
 
 -------------------------------------------
 
@@ -50,29 +47,44 @@ Files included in the binary package:
   /usr/bin/mirb.exe
   /usr/bin/mrbc.exe
   /usr/bin/mrbtest.exe
+  /usr/bin/mrdb.exe
   /usr/bin/mruby-strip.exe
   /usr/bin/mruby.exe
   /usr/share/doc/Cygwin/mruby.README
   /usr/share/doc/mruby/AUTHORS
   /usr/share/doc/mruby/LEGAL
   /usr/share/doc/mruby/LICENSE
-  /usr/share/doc/mruby/NEWS
+  /usr/share/doc/mruby/NEWS.md
   /usr/share/doc/mruby/README.md
   /usr/share/doc/mruby/TODO.md
+  /usr/share/doc/mruby/amalgamation.md
+  /usr/share/doc/mruby/capi.md
   /usr/share/doc/mruby/compile.md
   /usr/share/doc/mruby/debugger.md
   /usr/share/doc/mruby/gc-arena-howto.md
+  /usr/share/doc/mruby/getting-started.md
+  /usr/share/doc/mruby/hier.md
+  /usr/share/doc/mruby/language.md
   /usr/share/doc/mruby/limitations.md
   /usr/share/doc/mruby/link.md
+  /usr/share/doc/mruby/memory.md
   /usr/share/doc/mruby/mrbconf.md
   /usr/share/doc/mruby/mrbgems.md
   /usr/share/doc/mruby/mruby3.0.md
   /usr/share/doc/mruby/mruby3.1.md
+  /usr/share/doc/mruby/mruby3.2.md
+  /usr/share/doc/mruby/mruby3.3.md
+  /usr/share/doc/mruby/mruby3.4.md
+  /usr/share/doc/mruby/mruby4.0.md
+  /usr/share/doc/mruby/rom-method-table.md
   /usr/share/doc/mruby/symbol.md
 
 ------------------
 
 Port Notes:
+
+----- version 4.0.0-1bl1 -----
+Version bump.
 
 ----- version 3.1.0-1bl1 -----
 Version bump.

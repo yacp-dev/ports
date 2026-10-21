@@ -1,0 +1,21 @@
+--- origsrc/msgpack-c-cpp-9.0.0/CMakeLists.txt	2026-08-25 08:55:29.000000000 +0000
++++ src/msgpack-c-cpp-9.0.0/CMakeLists.txt	2026-10-21 23:26:16.764900000 +0000
+@@ -69,6 +69,8 @@ IF (MSGPACK_USE_BOOST)
+         (CMAKE_VERSION VERSION_EQUAL 3.30))
+         IF (NOT MSGPACK_BOOST_USE_OLD_CMAKE)
+             CMAKE_POLICY(SET CMP0167 NEW)
++        ELSE ()
++            CMAKE_POLICY(SET CMP0167 OLD)
+         ENDIF ()
+     ENDIF ()
+     SET (Boost_USE_MULTITHREADED ON)
+--- origsrc/msgpack-c-cpp-9.0.0/example/boost/CMakeLists.txt	2026-08-25 08:55:29.000000000 +0000
++++ src/msgpack-c-cpp-9.0.0/example/boost/CMakeLists.txt	2026-10-21 23:26:16.764900000 +0000
+@@ -23,6 +23,7 @@ FOREACH (source_file ${exec_PROGRAMS})
+     TARGET_LINK_LIBRARIES (${source_file_we} PRIVATE
+         msgpack-cxx
+         Threads::Threads
++        boost_system
+     )
+     IF (ZLIB_FOUND)
+         TARGET_LINK_LIBRARIES (${source_file_we} PRIVATE ZLIB::ZLIB)

@@ -8,33 +8,30 @@ Runtime requirements:
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   libboost-devel-1.66.0-1
-  ninja-1.12.1-1
-  zlib-devel-1.3.1-1
+  ninja-1.13.2-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://github.com/msgpack/msgpack-c
 
 Canonical download:
-  https://github.com/msgpack/msgpack-c/archive/refs/tags/cpp-7.0.0.tar.gz
+  https://github.com/msgpack/msgpack-c/archive/refs/tags/cpp-9.0.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack msgpack-cxx-7.0.0-X-src.tar.xz
+  1. unpack msgpack-cxx-9.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./msgpack-cxx-7.0.0-X.cygport all
+        % cygport ./msgpack-cxx-9.0.0-X.cygport all
 
 This will create:
-  /usr/src/msgpack-cxx-7.0.0-X-src.tar.xz
-  /usr/src/msgpack-cxx-7.0.0-X.tar.xz
+  /usr/src/msgpack-cxx-9.0.0-X-src.tar.xz
+  /usr/src/msgpack-cxx-9.0.0-X.tar.xz
 
 -------------------------------------------
 
@@ -786,6 +783,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 9.0.0-1bl1 -----
+Version bump.
 
 ----- version 7.0.0-1bl1 -----
 Version bump.

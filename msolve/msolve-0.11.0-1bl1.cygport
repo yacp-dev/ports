@@ -1,7 +1,7 @@
 HOMEPAGE="https://github.com/algebraic-solving/${PN}"
 SRC_URI="https://github.com/algebraic-solving/${PN}/archive/refs/tags/v${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/m/msolve/0.7.5-1/debian/patches/x86-baseline.patch
+	https://sources.debian.org/data/main/m/msolve/0.11.0-2/debian/patches/x86-baseline.patch
 "
 
 CATEGORY="Libs"
@@ -14,24 +14,28 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libflint-devel libgmp-devel libmpfr-devel"
+BUILD_REQUIRES="
+	libflint-devel
+	libgmp-devel
+	libmpfr-devel
+"
 
 PKG_NAMES="
 	msolve
-	libmsolve0
+	libmsolve4
 	libmsolve-devel
 "
 msolve_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libmsolve0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libmsolve4_CONTENTS="
+	usr/bin/cyg*-4.dll
 "
 libmsolve_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 msolve_SUMMARY="${SUMMARY} (licensing & readmes)"
-libmsolve0_SUMMARY="${SUMMARY} (runtime)"
+libmsolve4_SUMMARY="${SUMMARY} (runtime)"
 libmsolve_devel_SUMMARY="${SUMMARY} (development)"

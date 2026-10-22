@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/awesomized/${PN}/"
 SRC_URI="https://github.com/awesomized/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	https://raw.githubusercontent.com/gentoo/gentoo/0127311d25f4c05b22e477e1107283aa00bf49a3/dev-libs/libmemcached-awesome/files/libmemcached-awesome-1.1.4-memcached-1.6.40.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="C and C++ client library for memcached"
@@ -11,7 +14,13 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libevent-devel libsasl2-devel"
+BUILD_REQUIRES="
+	bison
+	flex
+	libevent-devel
+	libsasl2-devel
+	memcached
+"
 
 export CXXFLAGS="${CXXFLAGS} -fpermissive"
 

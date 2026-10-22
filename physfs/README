@@ -17,21 +17,20 @@ determine if CD-ROMs are available, the user's home directory, where in the
 real filesystem your program is running, etc.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libphysfs-devel-3.2.0-1bl2
-  libphysfs1-3.2.0-1bl2
-  libreadline7-8.2-2
-  pkg-config-2.4.3-1
+  cygwin-3.6.11-1
+  libphysfs-devel-3.2.0-1bl3
+  libphysfs1-3.2.0-1bl3
+  libreadline8-8.3-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libreadline-devel-8.2-2
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libreadline-devel-8.3-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/icculus/physfs
@@ -73,7 +72,7 @@ Files included in the binary package:
 
 (libphysfs-devel)
   /usr/include/physfs.h
-  /usr/lib/cmake/PhysFS/PhysFSConfig-release.cmake
+  /usr/lib/cmake/PhysFS/PhysFSConfig-relwithdebinfo.cmake
   /usr/lib/cmake/PhysFS/PhysFSConfig.cmake
   /usr/lib/libphysfs.dll.a
   /usr/lib/pkgconfig/physfs.pc
@@ -81,6 +80,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.2.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.2.0-1bl2 -----
 Rebuild with gcc-12.4.0

@@ -1,0 +1,10 @@
+--- origsrc/libcerror-20260703/Makefile.am	2026-07-03 17:25:15.000000000 +0000
++++ src/libcerror-20260703/Makefile.am	2026-10-22 13:04:42.288279100 +0000
+@@ -4,7 +4,6 @@ SUBDIRS = \
+ 	include \
+ 	common \
+ 	libcerror \
+-	po \
+ 	manuals \
+ 	tests \
+ 	msvscpp

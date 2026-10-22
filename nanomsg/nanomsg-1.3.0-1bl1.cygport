@@ -23,20 +23,20 @@ inherit cmake
 
 PKG_NAMES="
 	${PN}
-	lib${PN}6
+	lib${PN}7
 	lib${PN}-devel
 "
 nanomsg_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libnanomsg6_CONTENTS="
-	usr/bin/cyg*-6.dll
+libnanomsg7_CONTENTS="
+	usr/bin/cyg*-7.dll
 "
 libnanomsg_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 nanomsg_SUMMARY="${SUMMARY} (utilities)"
-libnanomsg6_SUMMARY="${SUMMARY} (runtime)"
+libnanomsg7_SUMMARY="${SUMMARY} (runtime)"
 libnanomsg_devel_SUMMARY="${SUMMARY} (development)"

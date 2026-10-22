@@ -1,0 +1,9 @@
+--- origsrc/giza-2.0.2/test/C/Makefile.am	2026-10-15 06:13:00.000000000 +0000
++++ src/giza-2.0.2/test/C/Makefile.am	2026-10-22 13:10:24.418439200 +0000
+@@ -1,5 +1,5 @@
+ AM_CFLAGS = $(WERROR_CFLAGS) $(WARN_CFLAGS)
+-AM_CPPFLAGS = -I../../src -I../../include $(CAIRO_CFLAGS) $(X11_CFLAGS)
++AM_CPPFLAGS = -I../../src -I$(top_srcdir)/src -I../../include $(CAIRO_CFLAGS) $(X11_CFLAGS)
+ AM_LDFLAGS = -no-install -lm
+ LDADD = ../../src/libgiza.la
+ 

@@ -5,52 +5,51 @@ pdf, ps, png and X-Windows. Written in C with no dependencies (other than
 cairo) as a direct replacement for PGPLOT.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libX11_6-1.8.10-1
-  libcairo2-1.18.4-1
-  libfontconfig1-2.16.0-2
+  cygwin-3.6.11-1
+  libX11_6-1.8.13-1
+  libcairo2-1.18.6-1
+  libfontconfig1-2.18.3-1
   libfreetype6-2.13.3-1
-  libgfortran5-12.4.0-3
-  libgiza-devel-1.5.0-1bl1
-  libgiza2-1.5.0-1bl1
-  pkg-config-2.4.3-1
+  libgfortran5-14.4.0-1
+  libgiza-devel-2.0.2-1bl1
+  libgiza2-2.0.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  flex-2.6.4-2
-  gcc-core-12.4.0-3
-  gcc-fortran-12.4.0-3
-  libX11-devel-1.8.10-1
-  libcairo-devel-1.18.4-1
-  libfontconfig-devel-2.16.0-2
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libX11-devel-1.8.13-1
+  libcairo-devel-1.18.6-1
+  libfontconfig-devel-2.18.3-1
   libfreetype-devel-2.13.3-1
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/danieljprice/giza
 
 Canonical download:
-  https://github.com/danieljprice/giza/archive/refs/tags/v1.5.0.tar.gz
+  https://github.com/danieljprice/giza/archive/refs/tags/v2.0.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack giza-1.5.0-X-src.tar.xz
+  1. unpack giza-2.0.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./giza-1.5.0-X.cygport all
+        % cygport ./giza-2.0.2-X.cygport all
 
 This will create:
-  /usr/src/giza-1.5.0-X-src.tar.xz
-  /usr/src/giza-1.5.0-X.tar.xz
-  /usr/src/libgiza2-1.5.0-X.tar.xz
-  /usr/src/libgiza-devel-1.5.0-X.tar.xz
+  /usr/src/giza-2.0.2-X-src.tar.xz
+  /usr/src/giza-2.0.2-X.tar.xz
+  /usr/src/libgiza2-2.0.2-X.tar.xz
+  /usr/src/libgiza-devel-2.0.2-X.tar.xz
 
 -------------------------------------------
 
@@ -60,8 +59,8 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/giza.README
   /usr/share/doc/giza/AUTHORS
   /usr/share/doc/giza/COPYING
+  /usr/share/doc/giza/COPYING.LESSER
   /usr/share/doc/giza/ChangeLog
-  /usr/share/doc/giza/INSTALL
   /usr/share/doc/giza/LATEST.md
   /usr/share/doc/giza/NEWS
   /usr/share/doc/giza/README.md
@@ -88,6 +87,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.2-1bl1 -----
+Version bump.
 
 ----- version 1.5.0-1bl1 -----
 Version bump.

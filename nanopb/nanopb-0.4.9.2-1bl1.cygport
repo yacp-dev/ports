@@ -11,9 +11,15 @@ LICENSE="Zlib"
 LICENSE_SPDX="SPDX-License-Identifier: Zlib"
 LICENSE_URI="LICENSE.txt"
 
+BUILD_REQUIRES="
+	libprotobuf-devel
+	python3
+"
+
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DBUILD_STATIC_LIBS:BOOL=OFF
+	-Dnanopb_PYTHON_INSTDIR_OVERRIDE:PATH=/usr/lib/python3.12/site-packages
 "
 
 inherit cmake
@@ -27,13 +33,13 @@ PKG_NAMES="
 	nanopb
 	libprotobuf-nanopb0
 	libprotobuf-nanopb-devel
-	python39-nanopb
+	python312-nanopb
 "
 nanopb_CONTENTS="
 	usr/share
 "
 libprotobuf_nanopb0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-0.dll
 "
 libprotobuf_nanopb_devel_CONTENTS="
 	usr/include
@@ -41,11 +47,11 @@ libprotobuf_nanopb_devel_CONTENTS="
 	usr/lib/lib*.dll.a
 	usr/lib/pkgconfig
 "
-python39_nanopb_CONTENTS="
+python312_nanopb_CONTENTS="
 	usr/bin/[np]*
-	usr/lib/python3.9
+	usr/lib/python3.12
 "
 nanopb_SUMMARY="${SUMMARY} (licensing & readmes)"
 libprotobuf_nanopb0_SUMMARY="${SUMMARY} (runtime)"
 libprotobuf_nanopb_devel_SUMMARY="${SUMMARY} (development)"
-python39_nanopb_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_nanopb_SUMMARY="${SUMMARY} (python312 bindings)"

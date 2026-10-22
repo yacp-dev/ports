@@ -5,45 +5,43 @@ especially suitable for use in microcontrollers, but fits any memory restricted
 system.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libprotobuf-nanopb-devel-0.4.9.1-1bl1
-  libprotobuf-nanopb0-0.4.9.1-1bl1
-  pkg-config-2.3.0-1
-  python39-3.9.18-2
-  python39-nanopb-0.4.9.1-1bl1
+  cygwin-3.6.11-1
+  libprotobuf-nanopb-devel-0.4.9.2-1bl1
+  libprotobuf-nanopb0-0.4.9.2-1bl1
+  pkg-config-3.0.9-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libprotobuf-devel-21.12-1
-  ninja-1.12.1-1
-  python39-3.9.18-2
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libprotobuf-devel-21.12-2
+  ninja-1.13.2-1
+  python3-3.12.12-1
 
 Canonical website:
   https://github.com/nanopb/nanopb
 
 Canonical download:
-  https://github.com/nanopb/nanopb/archive/refs/tags/0.4.9.1.tar.gz
+  https://github.com/nanopb/nanopb/archive/refs/tags/0.4.9.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack nanopb-0.4.9.1-X-src.tar.xz
+  1. unpack nanopb-0.4.9.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./nanopb-0.4.9.1-X.cygport all
+        % cygport ./nanopb-0.4.9.2-X.cygport all
 
 This will create:
-  /usr/src/nanopb-0.4.9.1-X-src.tar.xz
-  /usr/src/nanopb-0.4.9.1-X.tar.xz
-  /usr/src/libprotobuf-nanopb0-0.4.9.1-X.tar.xz
-  /usr/src/libprotobuf-nanopb-devel-0.4.9.1-X.tar.xz
-  /usr/src/python39-nanopb-0.4.9.1-X.tar.xz
+  /usr/src/nanopb-0.4.9.2-X-src.tar.xz
+  /usr/src/nanopb-0.4.9.2-X.tar.xz
+  /usr/src/libprotobuf-nanopb0-0.4.9.2-X.tar.xz
+  /usr/src/libprotobuf-nanopb-devel-0.4.9.2-X.tar.xz
+  /usr/src/python312-nanopb-0.4.9.2-X.tar.xz
 
 -------------------------------------------
 
@@ -67,44 +65,47 @@ Files included in the binary package:
   /usr/include/nanopb/pb_encode.h
   /usr/lib/cmake/nanopb/nanopb-config-version.cmake
   /usr/lib/cmake/nanopb/nanopb-config.cmake
-  /usr/lib/cmake/nanopb/nanopb-targets-release.cmake
+  /usr/lib/cmake/nanopb/nanopb-targets-relwithdebinfo.cmake
   /usr/lib/cmake/nanopb/nanopb-targets.cmake
   /usr/lib/libprotobuf-nanopb.dll.a
   /usr/lib/pkgconfig/nanopb.pc
 
-(python39-nanopb)
+(python312-nanopb)
   /usr/bin/nanopb_generator
   /usr/bin/nanopb_generator.py
   /usr/bin/protoc-gen-nanopb
-  /usr/lib/python3.9/site-packages/nanopb/__init__.py
-  /usr/lib/python3.9/site-packages/nanopb/__pycache__/__init__.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/nanopb/__pycache__/__init__.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/nanopb/__pycache__/__init__.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/__init__.py
-  /usr/lib/python3.9/site-packages/nanopb/generator/__pycache__/__init__.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/__pycache__/__init__.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/__pycache__/__init__.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/__pycache__/nanopb_generator.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/__pycache__/nanopb_generator.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/__pycache__/nanopb_generator.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/nanopb_generator.py
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__init__.py
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__pycache__/__init__.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__pycache__/__init__.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__pycache__/__init__.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__pycache__/_utils.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__pycache__/_utils.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__pycache__/_utils.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__pycache__/nanopb_pb2.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__pycache__/nanopb_pb2.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/__pycache__/nanopb_pb2.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/_utils.py
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/nanopb.proto
-  /usr/lib/python3.9/site-packages/nanopb/generator/proto/nanopb_pb2.py
+  /usr/lib/python3.12/site-packages/nanopb/__init__.py
+  /usr/lib/python3.12/site-packages/nanopb/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/nanopb/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/nanopb/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/__init__.py
+  /usr/lib/python3.12/site-packages/nanopb/generator/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/__pycache__/nanopb_generator.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/__pycache__/nanopb_generator.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/__pycache__/nanopb_generator.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/nanopb_generator.py
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__init__.py
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__pycache__/_utils.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__pycache__/_utils.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__pycache__/_utils.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__pycache__/nanopb_pb2.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__pycache__/nanopb_pb2.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/__pycache__/nanopb_pb2.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/_utils.py
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/nanopb.proto
+  /usr/lib/python3.12/site-packages/nanopb/generator/proto/nanopb_pb2.py
 
 ------------------
 
 Port Notes:
+
+----- version 0.4.9.2-1bl1 -----
+Version bump.
 
 ----- version 0.4.9.1-1bl1 -----
 Version bump.

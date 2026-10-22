@@ -1,5 +1,5 @@
---- origsrc/nanopb-0.4.9.1/CMakeLists.txt	2024-12-01 19:21:56.000000000 +0900
-+++ src/nanopb-0.4.9.1/CMakeLists.txt	2025-03-19 19:07:15.897181700 +0900
+--- origsrc/nanopb-0.4.9.2/CMakeLists.txt	2026-08-24 13:49:03.000000000 +0000
++++ src/nanopb-0.4.9.2/CMakeLists.txt	2026-10-22 04:04:54.349046700 +0000
 @@ -185,3 +185,10 @@ if(nanopb_BUILD_RUNTIME)
      install(FILES pb.h pb_common.h pb_encode.h pb_decode.h
          DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/nanopb)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/nanopb.pc.in ${CMAKE_BINARY_DIR}/nanopb.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/nanopb.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/nanopb-0.4.9.1/nanopb.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/nanopb-0.4.9.1/nanopb.pc.in	2025-03-19 19:07:15.897181700 +0900
+--- origsrc/nanopb-0.4.9.2/nanopb.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/nanopb-0.4.9.2/nanopb.pc.in	2026-10-22 04:04:54.350298100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

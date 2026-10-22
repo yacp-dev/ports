@@ -1,6 +1,9 @@
 HOMEPAGE="https://github.com/icculus/${PN}"
 SRC_URI="https://github.com/icculus/${PN}/archive/refs/tags/release-${PV}.tar.gz"
 SRC_DIR="${PN}-release-${PV}"
+PATCH_URI="
+	https://raw.githubusercontent.com/gentoo/gentoo/d8285cc934efe2d3c025d26ad1ad405c8096c8fd/dev-games/physfs/files/physfs-3.2.0-cmake4.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Abstraction layer for filesystem and archive access"
@@ -24,7 +27,9 @@ LICENSE="Zlib"
 LICENSE_SPDX="SPDX-License-Identifier: Zlib"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="libreadline-devel"
+BUILD_REQUIRES="
+	libreadline-devel
+"
 
 inherit cmake
 

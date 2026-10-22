@@ -6,46 +6,46 @@ QCSchema, and program specific formats, for example compatible with Turbomole
 or Vasp.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libgfortran5-13.4.0-1
-  libjonquil-devel-0.3.0-1bl1
-  libjonquil0-0.3.0-1bl1
-  libmctc-lib-devel-0.5.1-1bl1
-  libmctc-lib0-0.5.1-1bl1
-  libtoml-f0-0.4.3-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgfortran5-14.4.0-1
+  libjonquil-devel-0.3.2-1bl1
+  libjonquil0-0.3.2-1bl1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmctc-lib0-0.7.0-1bl1
+  libtoml-f0-0.5.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-fortran-13.4.0-1
-  libjonquil-devel-0.3.0-1bl1
-  libtoml-f-devel-0.4.3-1bl1
-  meson-1.4.2-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libjonquil-devel-0.3.2-1bl1
+  libtoml-f-devel-0.5.2-1bl1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/grimme-lab/mctc-lib
 
 Canonical download:
-  https://github.com/grimme-lab/mctc-lib/archive/refs/tags/v0.5.1.tar.gz
+  https://github.com/grimme-lab/mctc-lib/archive/refs/tags/v0.7.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mctc-lib-0.5.1-X-src.tar.xz
+  1. unpack mctc-lib-0.7.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mctc-lib-0.5.1-X.cygport all
+        % cygport ./mctc-lib-0.7.0-X.cygport all
 
 This will create:
-  /usr/src/mctc-lib-0.5.1-X-src.tar.xz
-  /usr/src/mctc-lib-0.5.1-X.tar.xz
-  /usr/src/libmctc-lib0-0.5.1-X.tar.xz
-  /usr/src/libmctc-lib-devel-0.5.1-X.tar.xz
+  /usr/src/mctc-lib-0.7.0-X-src.tar.xz
+  /usr/src/mctc-lib-0.7.0-X.tar.xz
+  /usr/src/libmctc-lib0-0.7.0-X.tar.xz
+  /usr/src/libmctc-lib-devel-0.7.0-X.tar.xz
 
 -------------------------------------------
 
@@ -61,6 +61,9 @@ Files included in the binary package:
   /usr/bin/cygmctc-lib-0.dll
 
 (libmctc-lib-devel)
+  /usr/include/mctc-lib/modules/mctc_csrlist.mod
+  /usr/include/mctc-lib/modules/mctc_csrlist_linal.mod
+  /usr/include/mctc-lib/modules/mctc_csrlist_type.mod
   /usr/include/mctc-lib/modules/mctc_cutoff.mod
   /usr/include/mctc-lib/modules/mctc_data.mod
   /usr/include/mctc-lib/modules/mctc_data_atomicrad.mod
@@ -72,6 +75,7 @@ Files included in the binary package:
   /usr/include/mctc-lib/modules/mctc_env_error.mod
   /usr/include/mctc-lib/modules/mctc_env_system.mod
   /usr/include/mctc-lib/modules/mctc_env_testing.mod
+  /usr/include/mctc-lib/modules/mctc_env_timer.mod
   /usr/include/mctc-lib/modules/mctc_io.mod
   /usr/include/mctc-lib/modules/mctc_io_codata2018.mod
   /usr/include/mctc-lib/modules/mctc_io_constants.mod
@@ -118,12 +122,21 @@ Files included in the binary package:
   /usr/include/mctc-lib/modules/mctc_ncoord_exp.mod
   /usr/include/mctc-lib/modules/mctc_ncoord_type.mod
   /usr/include/mctc-lib/modules/mctc_version.mod
+  /usr/include/mctc-lib/modules/mctc_wignerseitz.mod
+  /usr/lib/cmake/mctc-lib/Findjonquil.cmake
+  /usr/lib/cmake/mctc-lib/Findtoml-f.cmake
+  /usr/lib/cmake/mctc-lib/mctc-lib-config.cmake
+  /usr/lib/cmake/mctc-lib/mctc-lib-targets.cmake
+  /usr/lib/cmake/mctc-lib/mctc-utils.cmake
   /usr/lib/libmctc-lib.dll.a
   /usr/lib/pkgconfig/mctc-lib.pc
 
 ------------------
 
 Port Notes:
+
+----- version 0.7.0-1bl1 -----
+Version bump.
 
 ----- version 0.5.1-1bl1 -----
 Version bump.

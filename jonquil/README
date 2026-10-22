@@ -3,45 +3,45 @@ jonquil
 Bringing TOML blooms to JSON land
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libgfortran5-13.4.0-1
-  libjonquil-devel-0.3.0-1bl1
-  libjonquil0-0.3.0-1bl1
-  libtoml-f-devel-0.4.2-1bl2
-  libtoml-f0-0.4.2-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgfortran5-14.4.0-1
+  libjonquil-devel-0.3.2-1bl1
+  libjonquil0-0.3.2-1bl1
+  libtoml-f-devel-0.5.2-1bl1
+  libtoml-f0-0.5.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-fortran-13.4.0-1
-  libtest-drive-devel-0.5.0-1bl1
-  libtoml-f-devel-0.4.2-1bl2
-  meson-1.4.2-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libtest-drive-devel-0.6.1-1bl1
+  libtoml-f-devel-0.5.2-1bl1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/toml-f/jonquil
 
 Canonical download:
-  https://github.com/toml-f/jonquil/archive/refs/tags/v0.3.0.tar.gz
+  https://github.com/toml-f/jonquil/archive/refs/tags/v0.3.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack jonquil-0.3.0-X-src.tar.xz
+  1. unpack jonquil-0.3.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./jonquil-0.3.0-X.cygport all
+        % cygport ./jonquil-0.3.2-X.cygport all
 
 This will create:
-  /usr/src/jonquil-0.3.0-X-src.tar.xz
-  /usr/src/jonquil-0.3.0-X.tar.xz
-  /usr/src/libjonquil0-0.3.0-X.tar.xz
-  /usr/src/libjonquil-devel-0.3.0-X.tar.xz
+  /usr/src/jonquil-0.3.2-X-src.tar.xz
+  /usr/src/jonquil-0.3.2-X.tar.xz
+  /usr/src/libjonquil0-0.3.2-X.tar.xz
+  /usr/src/libjonquil-devel-0.3.2-X.tar.xz
 
 -------------------------------------------
 
@@ -63,12 +63,19 @@ Files included in the binary package:
   /usr/include/jonquil/modules/jonquil_parser.mod
   /usr/include/jonquil/modules/jonquil_ser.mod
   /usr/include/jonquil/modules/jonquil_version.mod
+  /usr/lib/cmake/jonquil/Findtest-drive.cmake
+  /usr/lib/cmake/jonquil/Findtoml-f.cmake
+  /usr/lib/cmake/jonquil/jonquil-config.cmake
+  /usr/lib/cmake/jonquil/jonquil-targets.cmake
   /usr/lib/libjonquil.dll.a
   /usr/lib/pkgconfig/jonquil.pc
 
 ------------------
 
 Port Notes:
+
+----- version 0.3.2-1bl1 -----
+Version bump.
 
 ----- version 0.3.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

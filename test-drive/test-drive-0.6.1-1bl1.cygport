@@ -9,6 +9,10 @@ LICENSE="Apache-2.0 OR MIT"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 OR MIT"
 LICENSE_URI="LICENSE-Apache"
 
+BUILD_REQUIRES="
+	gcc-fortran
+"
+
 inherit meson
 
 CYGMESON_ARGS="

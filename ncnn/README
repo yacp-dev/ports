@@ -1,55 +1,54 @@
 ncnn
 ------------------------------------------
 ncnn is a high-performance neural network inference computing framework
-optimized for mobile platforms. ncnn is deeply considerate about deployment
-and uses on mobile phones from the beginning of design. ncnn does not have
-third party dependencies. it is cross-platform, and runs faster than all known
-open source frameworks on mobile phone cpu. Developers can easily deploy deep
+optimized for mobile platforms. ncnn is deeply considerate about deployment and
+uses on mobile phones from the beginning of design. ncnn does not have third
+party dependencies. it is cross-platform, and runs faster than all known open
+source frameworks on mobile phone cpu. Developers can easily deploy deep
 learning algorithm models to the mobile platform by using efficient ncnn
 implementation, create intelligent APPs, and bring the artificial intelligence
 to your fingertips. ncnn is currently being used in many Tencent applications,
 such as QQ, Qzone, WeChat, Pitu and so on.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libgomp1-13.4.0-1
-  libncnn-devel-20260113-1bl1
-  libncnn1-20260113-1bl1
-  libprotobuf32-21.12-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libncnn-devel-20261020-1bl1
+  libncnn1-20261020-1bl1
+  libprotobuf32-21.12-2
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libprotobuf-devel-21.12-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libprotobuf-devel-21.12-2
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/Tencent/ncnn
 
 Canonical download:
-  https://github.com/Tencent/ncnn/archive/refs/tags/20260113.tar.gz
+  https://github.com/Tencent/ncnn/archive/refs/tags/20261020.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ncnn-20260113-X-src.tar.xz
+  1. unpack ncnn-20261020-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ncnn-20260113-X.cygport all
+        % cygport ./ncnn-20261020-X.cygport all
 
 This will create:
-  /usr/src/ncnn-20260113-X-src.tar.xz
-  /usr/src/ncnn-20260113-X.tar.xz
-  /usr/src/libncnn1-20260113-X.tar.xz
-  /usr/src/libncnn-devel-20260113-X.tar.xz
+  /usr/src/ncnn-20261020-X-src.tar.xz
+  /usr/src/ncnn-20261020-X.tar.xz
+  /usr/src/libncnn1-20261020-X.tar.xz
+  /usr/src/libncnn-devel-20261020-X.tar.xz
 
 -------------------------------------------
 
@@ -62,6 +61,8 @@ Files included in the binary package:
   /usr/bin/ncnn2int8.exe
   /usr/bin/ncnn2mem.exe
   /usr/bin/ncnn2table.exe
+  /usr/bin/ncnnllm2int.exe
+  /usr/bin/ncnnllm2table.exe
   /usr/bin/ncnnmerge.exe
   /usr/bin/ncnnoptimize.exe
   /usr/share/doc/Cygwin/ncnn.README
@@ -99,6 +100,8 @@ Files included in the binary package:
   /usr/share/doc/ncnn/docs/developer-guide/preload-practice.zh.md
   /usr/share/doc/ncnn/docs/developer-guide/tensorflow-op-combination.md
   /usr/share/doc/ncnn/docs/developer-guide/vulkan-driver-loader.md
+  /usr/share/doc/ncnn/docs/developer-guide/vulkan-pipeline-cache.md
+  /usr/share/doc/ncnn/docs/developer-guide/vulkan-shader-coverage.md
   /usr/share/doc/ncnn/docs/faq.en.md
   /usr/share/doc/ncnn/docs/faq.md
   /usr/share/doc/ncnn/docs/how-to-build/build-mlir2ncnn.md
@@ -115,6 +118,7 @@ Files included in the binary package:
   /usr/share/doc/ncnn/docs/how-to-use-and-FAQ/quantized-int8-inference.md
   /usr/share/doc/ncnn/docs/how-to-use-and-FAQ/use-ncnn-with-alexnet.md
   /usr/share/doc/ncnn/docs/how-to-use-and-FAQ/use-ncnn-with-alexnet.zh.md
+  /usr/share/doc/ncnn/docs/how-to-use-and-FAQ/use-ncnn-with-android-hardware-buffer.md
   /usr/share/doc/ncnn/docs/how-to-use-and-FAQ/use-ncnn-with-opencv.md
   /usr/share/doc/ncnn/docs/how-to-use-and-FAQ/use-ncnn-with-own-project.md
   /usr/share/doc/ncnn/docs/how-to-use-and-FAQ/use-ncnn-with-pytorch-or-onnx.md
@@ -154,7 +158,7 @@ Files included in the binary package:
   /usr/include/ncnn/simplestl.h
   /usr/include/ncnn/simplevk.h
   /usr/include/ncnn/vulkan_header_fix.h
-  /usr/lib/cmake/ncnn/ncnn-release.cmake
+  /usr/lib/cmake/ncnn/ncnn-relwithdebinfo.cmake
   /usr/lib/cmake/ncnn/ncnn.cmake
   /usr/lib/cmake/ncnn/ncnnConfig.cmake
   /usr/lib/cmake/ncnn/ncnnConfigVersion.cmake
@@ -164,6 +168,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20261020-1bl1 -----
+Version bump.
 
 ----- version 20260113-1bl1 -----
 Version bump.

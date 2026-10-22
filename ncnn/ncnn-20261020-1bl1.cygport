@@ -13,8 +13,8 @@ implementation, create intelligent APPs, and bring the artificial intelligence
 to your fingertips. ncnn is currently being used in many Tencent applications,
 such as QQ, Qzone, WeChat, Pitu and so on."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND BSD-2-Clause AND Zlib AND MIT AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause AND Zlib AND MIT AND Apache-2.0"
 LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="
@@ -31,6 +31,8 @@ CYGCMAKE_ARGS="
 
 src_test()
 {
+	verbose ln -sfn ${S}/examples ${B}/../examples
+
 	cd ${B}
 	PATH=${B}/src:${PATH} ninja_test
 }

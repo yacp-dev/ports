@@ -4,42 +4,42 @@ A TOML parser implementation for data serialization and deserialization in
 Fortran.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libgfortran5-13.4.0-1
-  libtoml-f-devel-0.4.3-1bl1
-  libtoml-f0-0.4.3-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgfortran5-14.4.0-1
+  libtoml-f-devel-0.5.2-1bl1
+  libtoml-f0-0.5.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-fortran-13.4.0-1
-  libtest-drive-devel-0.5.0-1bl2
-  meson-1.4.2-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libtest-drive-devel-0.6.1-1bl1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/toml-f/toml-f
 
 Canonical download:
-  https://github.com/toml-f/toml-f/archive/refs/tags/v0.4.3.tar.gz
+  https://github.com/toml-f/toml-f/archive/refs/tags/v0.5.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack toml-f-0.4.3-X-src.tar.xz
+  1. unpack toml-f-0.5.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./toml-f-0.4.3-X.cygport all
+        % cygport ./toml-f-0.5.2-X.cygport all
 
 This will create:
-  /usr/src/toml-f-0.4.3-X-src.tar.xz
-  /usr/src/toml-f-0.4.3-X.tar.xz
-  /usr/src/libtoml-f0-0.4.3-X.tar.xz
-  /usr/src/libtoml-f-devel-0.4.3-X.tar.xz
+  /usr/src/toml-f-0.5.2-X-src.tar.xz
+  /usr/src/toml-f-0.5.2-X.tar.xz
+  /usr/src/libtoml-f0-0.5.2-X.tar.xz
+  /usr/src/libtoml-f-devel-0.5.2-X.tar.xz
 
 -------------------------------------------
 
@@ -91,12 +91,18 @@ Files included in the binary package:
   /usr/include/toml-f/modules/tomlf_utils_io.mod
   /usr/include/toml-f/modules/tomlf_utils_sort.mod
   /usr/include/toml-f/modules/tomlf_version.mod
+  /usr/lib/cmake/toml-f/Findtest-drive.cmake
+  /usr/lib/cmake/toml-f/toml-f-config.cmake
+  /usr/lib/cmake/toml-f/toml-f-targets.cmake
   /usr/lib/libtoml-f.dll.a
   /usr/lib/pkgconfig/toml-f.pc
 
 ------------------
 
 Port Notes:
+
+----- version 0.5.2-1bl1 -----
+Version bump.
 
 ----- version 0.4.3-1bl1 -----
 Version bump.

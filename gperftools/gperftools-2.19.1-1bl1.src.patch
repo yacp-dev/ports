@@ -1,0 +1,137 @@
+--- origsrc/gperftools-gperftools-2.19.1/Makefile.am	2026-10-21 19:08:27.000000000 +0000
++++ src/gperftools-gperftools-2.19.1/Makefile.am	2026-10-22 14:22:13.456416400 +0000
+@@ -284,7 +284,7 @@ libtcmalloc_minimal_la_SOURCES = $(TCMAL
+ libtcmalloc_minimal_la_CXXFLAGS = -DNO_TCMALLOC_SAMPLES \
+                                   -DNDEBUG $(AM_CXXFLAGS)
+ # -version-info gets passed to libtool
+-libtcmalloc_minimal_la_LDFLAGS = -version-info @TCMALLOC_SO_VERSION@ $(AM_LDFLAGS)
++libtcmalloc_minimal_la_LDFLAGS = -no-undefined -version-info @TCMALLOC_SO_VERSION@ $(AM_LDFLAGS)
+ libtcmalloc_minimal_la_LIBADD = libcommon.la
+ 
+ ### ------- unit tests for various internal modules of tcmalloc
+@@ -630,7 +630,7 @@ lib_LTLIBRARIES += libtcmalloc.la
+ libtcmalloc_la_SOURCES = $(TCMALLOC_CC) $(FULL_MALLOC_SRC)
+ libtcmalloc_la_CXXFLAGS = -DNDEBUG $(AM_CXXFLAGS) \
+                           $(EMERGENCY_MALLOC_DEFINE)
+-libtcmalloc_la_LDFLAGS = -version-info @TCMALLOC_SO_VERSION@ $(AM_LDFLAGS)
++libtcmalloc_la_LDFLAGS = -no-undefined -version-info @TCMALLOC_SO_VERSION@ $(AM_LDFLAGS)
+ libtcmalloc_la_LIBADD = libstacktrace.la liblow_level_alloc.la libcommon.la
+ 
+ ### Unittests
+@@ -805,7 +805,7 @@ libprofiler_la_SOURCES = src/profiler.cc
+ libprofiler_la_LIBADD = libstacktrace.la libcommon.la
+ # We have to include ProfileData for profiledata_unittest
+ CPU_PROFILER_SYMBOLS = '(ProfilerStart|ProfilerStartWithOptions|ProfilerStop|ProfilerFlush|ProfilerEnable|ProfilerDisable|ProfilingIsEnabledForAllThreads|ProfilerRegisterThread|ProfilerGetCurrentState|ProfilerState|ProfileData|ProfileHandler|ProfilerGetStackTrace)'
+-libprofiler_la_LDFLAGS = -export-symbols-regex $(CPU_PROFILER_SYMBOLS) \
++libprofiler_la_LDFLAGS = -no-undefined -export-symbols-regex $(CPU_PROFILER_SYMBOLS) \
+                          -version-info @PROFILER_SO_VERSION@
+ 
+ ### Unittests
+@@ -863,7 +863,7 @@ libtcmalloc_and_profiler_la_SOURCES = $(
+ libtcmalloc_and_profiler_la_CXXFLAGS = $(libtcmalloc_la_CXXFLAGS) $(libprofiler_la_CXXFLAGS)
+ # Since this library is meant to be used as a .a, I don't worry as much
+ # about .so versioning.  I just give the libtcmalloc version number.
+-libtcmalloc_and_profiler_la_LDFLAGS = -version-info @TCMALLOC_AND_PROFILER_SO_VERSION@ \
++libtcmalloc_and_profiler_la_LDFLAGS = -no-undefined -version-info @TCMALLOC_AND_PROFILER_SO_VERSION@ \
+                                       $(AM_LDFLAGS)
+ libtcmalloc_and_profiler_la_LIBADD = $(libtcmalloc_la_LIBADD)
+ 
+--- origsrc/gperftools-gperftools-2.19.1/src/base/basictypes.h	2026-10-21 19:08:27.000000000 +0000
++++ src/gperftools-gperftools-2.19.1/src/base/basictypes.h	2026-10-22 14:22:13.457923400 +0000
+@@ -127,7 +127,7 @@ inline void bit_store(Dest* dest, const
+   memcpy(dest, source, sizeof(Dest));
+ }
+ 
+-#ifdef HAVE___ATTRIBUTE__
++#if defined(HAVE___ATTRIBUTE__) && defined(__ELF__)
+ #define ATTRIBUTE_WEAK __attribute__((weak))
+ #define ATTRIBUTE_NOINLINE __attribute__((noinline))
+ #else
+--- origsrc/gperftools-gperftools-2.19.1/src/base/proc_maps_iterator.cc	2026-10-21 19:08:27.000000000 +0000
++++ src/gperftools-gperftools-2.19.1/src/base/proc_maps_iterator.cc	2026-10-22 14:22:13.458436800 +0000
+@@ -203,7 +203,7 @@ bool StringToIntegerUntilCharWithCheck(u
+   return true;
+ }
+ 
+-#if defined(__linux__) || defined(__NetBSD__)
++#if defined(__linux__) || defined(__NetBSD__) || defined(__CYGWIN__)
+ bool ParseProcMapsLine(char* text, uint64_t* start, uint64_t* end, char* flags, uint64_t* offset, uint64_t* inode,
+                        unsigned* filename_offset) {
+   /*
+@@ -252,7 +252,7 @@ bool DoIterateLinux(const char* path, vo
+     return true;
+   });
+ }
+-#endif  // __linux__ || __NetBSD__
++#endif  // __linux__ || __NetBSD__ || __CYGWIN__
+ 
+ #if defined(__QNXNTO__)
+ bool DoIterateQNX(void (*body)(const ProcMapping& mapping, void* arg), void* arg) {
+@@ -539,7 +539,7 @@ bool DoForEachProcMapping(void (*body)(c
+   return DoIterateQNX(body, arg);
+ #elif defined(__FreeBSD__)
+   return DoIterateFreeBSD(body, arg);
+-#elif defined(__linux__) || defined(__NetBSD__)
++#elif defined(__linux__) || defined(__NetBSD__) || defined(__CYGWIN__)
+   return DoIterateLinux("/proc/self/maps", body, arg);
+ #else
+   return false;
+--- origsrc/gperftools-gperftools-2.19.1/src/base/sysinfo.cc	2026-10-21 19:08:27.000000000 +0000
++++ src/gperftools-gperftools-2.19.1/src/base/sysinfo.cc	2026-10-22 14:22:13.460456300 +0000
+@@ -319,8 +319,7 @@ const char* GetProgramInvocationName() {
+   static const char* argv0 = readlink_strdup("/proc/self/path/a.out");
+   return argv0;
+ #elif defined(HAVE_PROGRAM_INVOCATION_NAME)
+-  extern char* program_invocation_name;  // gcc provides this
+-  return program_invocation_name;
++  return ::program_invocation_name;
+ #elif defined(__MACH__)
+   // We don't want to allocate memory for this since we may be
+   // calculating it when memory is corrupted.
+--- origsrc/gperftools-gperftools-2.19.1/src/base/threading.h	2026-10-21 19:08:27.000000000 +0000
++++ src/gperftools-gperftools-2.19.1/src/base/threading.h	2026-10-22 14:22:13.461477900 +0000
+@@ -96,7 +96,8 @@ using TlsKey = pthread_key_t;
+ // in standard (even without pthread_key_create_once_np), but we
+ // have what we have. It's value is (int)(-1). And, indeed, -1 seems
+ // like most sensible value.
+-constexpr inline TlsKey kInvalidTLSKey = static_cast<TlsKey>(~uintptr_t{0});
++//
++inline TlsKey kInvalidTLSKey = reinterpret_cast<TlsKey>(~uintptr_t{0});
+ static_assert(sizeof(pthread_key_t) <= sizeof(uintptr_t));
+ 
+ ATTRIBUTE_VISIBILITY_HIDDEN inline int CreateTlsKey(TlsKey* pkey, void (*destructor)(void*)) {
+--- origsrc/gperftools-gperftools-2.19.1/src/tests/generic_writer_test.cc	2026-10-21 19:08:27.000000000 +0000
++++ src/gperftools-gperftools-2.19.1/src/tests/generic_writer_test.cc	2026-10-22 14:22:13.461995400 +0000
+@@ -4,6 +4,9 @@
+ #include "base/generic_writer.h"
+ 
+ #include <stdio.h>
++#if defined(__CYGWIN__)
++#include <io.h>
++#endif
+ #define _USE_MATH_DEFINES
+ #include <math.h>
+ 
+@@ -47,7 +50,11 @@ TEST(GenericWriterTest, File) {
+   }
+ 
+   {
++#if defined(__CYGWIN__)
++    tcmalloc::RawFDGenericWriter<128> writer(reinterpret_cast<RawFD>(get_osfhandle(fileno(f))));
++#else
+     tcmalloc::RawFDGenericWriter<128> writer(static_cast<RawFD>(fileno(f)));
++#endif
+     PrintLargeAmount(&writer);
+   }
+ 
+--- origsrc/gperftools-gperftools-2.19.1/src/tests/min_per_thread_cache_size_test.cc	2026-10-21 19:08:27.000000000 +0000
++++ src/gperftools-gperftools-2.19.1/src/tests/min_per_thread_cache_size_test.cc	2026-10-22 14:22:13.464269400 +0000
+@@ -34,6 +34,8 @@
+ #include <new>
+ #include <thread>
+ #include <vector>
++#include <condition_variable>
++#include <mutex>
+ 
+ #include <gperftools/malloc_extension.h>
+ #include <gperftools/malloc_extension_c.h>

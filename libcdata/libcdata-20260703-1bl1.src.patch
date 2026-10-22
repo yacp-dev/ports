@@ -1,5 +1,5 @@
---- origsrc/libcdata-20240414/Makefile.am	2024-04-14 12:59:58.000000000 +0900
-+++ src/libcdata-20240414/Makefile.am	2025-05-15 18:43:52.137988100 +0900
+--- origsrc/libcdata-20260703/Makefile.am	2026-07-03 17:33:31.000000000 +0000
++++ src/libcdata-20260703/Makefile.am	2026-10-22 14:01:24.476767500 +0000
 @@ -3,10 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -11,9 +11,9 @@
  	manuals \
  	tests \
  	msvscpp
---- origsrc/libcdata-20240414/configure.ac	2024-04-14 12:59:58.000000000 +0900
-+++ src/libcdata-20240414/configure.ac	2025-05-15 18:44:02.877750800 +0900
-@@ -94,8 +94,6 @@ dnl Generate Makefiles
+--- origsrc/libcdata-20260703/configure.ac	2026-07-03 17:33:31.000000000 +0000
++++ src/libcdata-20260703/configure.ac	2026-10-22 14:01:24.478250800 +0000
+@@ -104,8 +104,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])

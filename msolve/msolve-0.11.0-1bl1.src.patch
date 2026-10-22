@@ -1,0 +1,32 @@
+--- origsrc/msolve-0.11.0/Makefile.am	2026-10-09 08:33:39.000000000 +0000
++++ src/msolve-0.11.0/Makefile.am	2026-10-22 00:45:27.176675000 +0000
+@@ -1,6 +1,7 @@
+ AUTOMAKE_OPTIONS = color-tests
+ SUBDIRS = src/usolve src/fglm src/neogb src/msolve
+ 
++AM_CPPFLAGS	= -I$(top_builddir)/src/msolve
+ AM_CFLAGS	= $(SIMD_FLAGS) $(CPUEXT_FLAGS) $(OPENMP_CFLAGS)
+ LDADD 		= src/neogb/libneogb.la src/fglm/libfglm.la src/usolve/libusolve.la
+ 
+--- origsrc/msolve-0.11.0/src/msolve/Makefile.am	2026-10-09 08:33:39.000000000 +0000
++++ src/msolve-0.11.0/src/msolve/Makefile.am	2026-10-22 00:45:27.177436500 +0000
+@@ -1,9 +1,10 @@
+ lib_LTLIBRARIES 			= libmsolve.la
+ libmsolve_la_SOURCES 	= libmsolve.c
++libmsolve_la_CPPFLAGS	= -I$(builddir)
+ libmsolve_ladir				=	$(includedir)/msolve/msolve
+ libmsolve_la_HEADERS	= msolve-data.h msolve-version.h msolve.h 
+ libmsolve_la_CFLAGS		= $(SIMD_FLAGS) $(CPUEXT_FLAGS) $(OPENMP_CFLAGS) -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare
+-libmsolve_la_LDFLAGS	= -version-info $(LT_VERSION)
++libmsolve_la_LDFLAGS	= -no-undefined -version-info $(LT_VERSION)
+ libmsolve_la_LIBADD		=	../usolve/libusolve.la ../fglm/libfglm.la ../neogb/libneogb.la
+ 
+ EXTRA_DIST	=	  msolve-data.h \
+--- origsrc/msolve-0.11.0/src/neogb/Makefile.am	2026-10-09 08:33:39.000000000 +0000
++++ src/msolve-0.11.0/src/neogb/Makefile.am	2026-10-22 00:45:27.178684600 +0000
+@@ -1,4 +1,4 @@
+-lib_LTLIBRARIES 		= libneogb.la
++noinst_LTLIBRARIES 		= libneogb.la
+ libneogb_la_SOURCES = libneogb.h gb.c
+ libneogb_ladir			=	$(includedir)/msolve/neogb
+ libneogb_la_HEADERS	=libneogb.h basis.h data.h engine.h f4.h sba.h hash.h \

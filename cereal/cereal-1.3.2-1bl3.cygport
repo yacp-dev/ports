@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/USCiLab/${PN}"
 SRC_URI="https://github.com/USCiLab/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://raw.githubusercontent.com/gentoo/gentoo/888e0bf6e558c4ce3032783c73ba9d4973132463/dev-libs/cereal/files/1.3.2-clang-tuple.patch
+"
 
 CATEGORY="Devel"
 SUMMARY="C++11 library for serialization"
@@ -12,6 +15,10 @@ easily bundled with other code or used standalone."
 LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libboost-devel
+"
 
 inherit cmake
 

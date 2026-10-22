@@ -1,7 +1,7 @@
---- origsrc/nativefiledialog-extended-1.3.0/CMakeLists.txt	2026-01-07 02:42:03.000000000 +0900
-+++ src/nativefiledialog-extended-1.3.0/CMakeLists.txt	2026-01-26 17:48:44.436485200 +0900
-@@ -50,3 +50,10 @@ add_subdirectory(src)
- if(${NFD_BUILD_TESTS} OR ${NFD_BUILD_SDL2_TESTS})
+--- origsrc/nativefiledialog-extended-1.4.1/CMakeLists.txt	2026-10-02 05:04:30.000000000 +0000
++++ src/nativefiledialog-extended-1.4.1/CMakeLists.txt	2026-10-22 04:58:01.379280800 +0000
+@@ -52,3 +52,10 @@ add_subdirectory(src)
+ if(${NFD_BUILD_TESTS} OR ${NFD_BUILD_SDL2_TESTS} OR ${NFD_BUILD_SDL3_TESTS} OR ${NFD_BUILD_GLFW3_TESTS})
    add_subdirectory(test)
  endif()
 +
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/nativefiledialog-extended.pc.in ${CMAKE_BINARY_DIR}/nativefiledialog-extended.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/nativefiledialog-extended.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/nativefiledialog-extended-1.3.0/nativefiledialog-extended.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/nativefiledialog-extended-1.3.0/nativefiledialog-extended.pc.in	2026-01-26 17:48:44.443697200 +0900
+--- origsrc/nativefiledialog-extended-1.4.1/nativefiledialog-extended.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/nativefiledialog-extended-1.4.1/nativefiledialog-extended.pc.in	2026-10-22 04:58:01.381046300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

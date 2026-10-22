@@ -1,5 +1,5 @@
 --- origsrc/libmemcached-1.1.4/CMakeLists.txt	2023-03-06 08:47:30.000000000 +0000
-+++ src/libmemcached-1.1.4/CMakeLists.txt	2026-10-22 13:04:25.862380500 +0000
++++ src/libmemcached-1.1.4/CMakeLists.txt	2026-10-22 20:10:02.293782900 +0000
 @@ -6,7 +6,7 @@ endif()
  
  include(CMakeVersions.txt)
@@ -10,7 +10,7 @@
          DESCRIPTION "libmemcached-awesome, a C/C++ memcached client library"
          )
 --- origsrc/libmemcached-1.1.4/src/p9y/CMakeLists.txt	2023-03-06 08:47:30.000000000 +0000
-+++ src/libmemcached-1.1.4/src/p9y/CMakeLists.txt	2026-10-22 13:04:25.862875900 +0000
++++ src/libmemcached-1.1.4/src/p9y/CMakeLists.txt	2026-10-22 20:10:02.295792900 +0000
 @@ -20,6 +20,7 @@ target_include_directories(p9y PRIVATE
      ${CMAKE_BINARY_DIR}/include
      )

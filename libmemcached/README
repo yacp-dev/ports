@@ -8,12 +8,12 @@ Runtime requirements:
   cygwin-3.6.11-1
   libevent2.1_7-2.1.13-1
   libgcc1-14.4.0-1
-  libhashkit2-1.1.4-1bl3
-  libmemcached-devel-1.1.4-1bl3
-  libmemcached11-1.1.4-1bl3
-  libmemcachedprotocol0-1.1.4-1bl3
-  libmemcachedutil-devel-1.1.4-1bl3
-  libmemcachedutil2-1.1.4-1bl3
+  libhashkit2-1.1.4-1bl4
+  libmemcached-devel-1.1.4-1bl4
+  libmemcached11-1.1.4-1bl4
+  libmemcachedprotocol0-1.1.4-1bl4
+  libmemcachedutil-devel-1.1.4-1bl4
+  libmemcachedutil2-1.1.4-1bl4
   libsasl2-devel-2.1.27-1
   libsasl2_3-2.1.27-1
   libstdc++6-14.4.0-1
@@ -224,6 +224,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.4-1bl4 -----
+Add libhashkit-devel to libmemcached-devel REQUIRES
 
 ----- version 1.1.4-1bl3 -----
 Rebuild with gcc-14.4.0

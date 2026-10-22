@@ -5,32 +5,32 @@ memcached server (https://memcached.org/). It has been designed to be light on
 memory usage, thread safe, and provide full access to server side methods.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libevent2.1_7-2.1.12-1
-  libgcc1-13.4.0-1
-  libhashkit2-1.1.4-1bl2
-  libmemcached-devel-1.1.4-1bl2
-  libmemcached11-1.1.4-1bl2
-  libmemcachedprotocol0-1.1.4-1bl2
-  libmemcachedutil-devel-1.1.4-1bl2
-  libmemcachedutil2-1.1.4-1bl2
+  cygwin-3.6.11-1
+  libevent2.1_7-2.1.13-1
+  libgcc1-14.4.0-1
+  libhashkit2-1.1.4-1bl3
+  libmemcached-devel-1.1.4-1bl3
+  libmemcached11-1.1.4-1bl3
+  libmemcachedprotocol0-1.1.4-1bl3
+  libmemcachedutil-devel-1.1.4-1bl3
+  libmemcachedutil2-1.1.4-1bl3
   libsasl2-devel-2.1.27-1
   libsasl2_3-2.1.27-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
+  binutils-2.47-1
   bison-3.8.2-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
   flex-2.6.4-2
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libevent-devel-2.1.12-1
+  gcc-core-14.4.0-1
+  libevent-devel-2.1.13-1
   libsasl2-devel-2.1.27-1
-  ninja-1.13.1-1
+  memcached-1.6.45-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/awesomized/libmemcached/
@@ -160,7 +160,7 @@ Files included in the binary package:
   /usr/include/libmemcached/memcached.hpp
   /usr/include/libmemcached/util.h
   /usr/lib/cmake/libmemcached/libmemcached-config.cmake
-  /usr/lib/cmake/libmemcached/libmemcached-targets-release.cmake
+  /usr/lib/cmake/libmemcached/libmemcached-targets-relwithdebinfo.cmake
   /usr/lib/cmake/libmemcached/libmemcached-targets.cmake
   /usr/lib/cmake/libmemcached/libmemcached-version.cmake
   /usr/lib/libmemcached.dll.a
@@ -176,7 +176,7 @@ Files included in the binary package:
   /usr/include/libmemcachedprotocol-0.0/configure.h
   /usr/include/libmemcachedprotocol-0.0/handler.h
   /usr/include/libmemcachedprotocol-0.0/vbucket.h
-  /usr/lib/cmake/libmemcached/libmemcachedprotocol-targets-release.cmake
+  /usr/lib/cmake/libmemcached/libmemcachedprotocol-targets-relwithdebinfo.cmake
   /usr/lib/cmake/libmemcached/libmemcachedprotocol-targets.cmake
   /usr/lib/cmake/libmemcached/libmemcachedprotocol-version.cmake
   /usr/lib/libmemcachedprotocol.dll.a
@@ -192,7 +192,7 @@ Files included in the binary package:
   /usr/include/libmemcachedutil-1.0/pool.h
   /usr/include/libmemcachedutil-1.0/util.h
   /usr/include/libmemcachedutil-1.0/version.h
-  /usr/lib/cmake/libmemcached/libmemcachedutil-targets-release.cmake
+  /usr/lib/cmake/libmemcached/libmemcachedutil-targets-relwithdebinfo.cmake
   /usr/lib/cmake/libmemcached/libmemcachedutil-targets.cmake
   /usr/lib/cmake/libmemcached/libmemcachedutil-version.cmake
   /usr/lib/libmemcachedutil.dll.a
@@ -216,7 +216,7 @@ Files included in the binary package:
   /usr/include/libhashkit-1.0/types.h
   /usr/include/libhashkit-1.0/visibility.h
   /usr/include/libhashkit/hashkit.h
-  /usr/lib/cmake/libmemcached/libhashkit-targets-release.cmake
+  /usr/lib/cmake/libmemcached/libhashkit-targets-relwithdebinfo.cmake
   /usr/lib/cmake/libmemcached/libhashkit-targets.cmake
   /usr/lib/cmake/libmemcached/libhashkit-version.cmake
   /usr/lib/libhashkit.dll.a
@@ -224,6 +224,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.4-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.1.4-1bl2 -----
 Rebuild with gcc-13.4.0

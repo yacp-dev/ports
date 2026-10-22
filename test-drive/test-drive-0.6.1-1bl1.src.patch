@@ -1,0 +1,11 @@
+--- origsrc/test-drive-0.6.1/meson.build	2026-06-13 08:39:33.000000000 +0000
++++ src/test-drive-0.6.1/meson.build	2026-10-22 00:53:09.884319800 +0000
+@@ -63,7 +63,7 @@ if install
+     install_tag: 'doc',
+   )
+ 
+-  module_id = meson.project_name() / fc_id + '-' + fc.version()
++  module_id = meson.project_name() / 'modules'
+   meson.add_install_script(
+     'config'/'install-mod.py',
+     get_option('includedir') / module_id,

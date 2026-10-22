@@ -15,11 +15,13 @@ BUILD_REQUIRES="
 	libarchive-devel
 	libcurl-devel
 	libpkgconf-devel
+	scdoc
 "
 
 inherit meson
 
 CYGMESON_ARGS="
+	-Dmeson-docs=disabled
 	-Dnative_backtrace=disabled
 	-Dtracy=disabled
 	-Dwebsite=disabled

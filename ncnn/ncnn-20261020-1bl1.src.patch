@@ -1,6 +1,6 @@
---- origsrc/ncnn-20260113/CMakeLists.txt	2026-01-13 11:57:43.000000000 +0900
-+++ src/ncnn-20260113/CMakeLists.txt	2026-01-26 18:29:00.812983600 +0900
-@@ -890,3 +890,10 @@ endif()
+--- origsrc/ncnn-20261020/CMakeLists.txt	2026-10-20 02:50:53.000000000 +0000
++++ src/ncnn-20261020/CMakeLists.txt	2026-10-22 08:35:45.367029500 +0000
+@@ -956,3 +956,10 @@ endif()
  if(NCNN_PYTHON)
      add_subdirectory(python)
  endif()
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/ncnn.pc.in ${CMAKE_BINARY_DIR}/ncnn.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/ncnn.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/ncnn-20260113/ncnn.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/ncnn-20260113/ncnn.pc.in	2026-01-26 18:29:00.818789100 +0900
+--- origsrc/ncnn-20261020/ncnn.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/ncnn-20261020/ncnn.pc.in	2026-10-22 08:35:45.367029500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

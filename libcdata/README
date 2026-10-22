@@ -3,46 +3,46 @@ libcdata
 libcdata is a library for cross-platform C data functions.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libcdata-devel-20240414-1bl1
-  libcdata1-20240414-1bl1
-  libcerror1-20240413-1bl1
-  libcthreads1-20240413-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.11-1
+  libcdata-devel-20260703-1bl1
+  libcdata1-20260703-1bl1
+  libcerror1-20260703-1bl1
+  libcthreads1-20260703-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libcerror-devel-20240413-1bl1
-  libcthreads-devel-20240413-1bl1
-  libtool-2.5.4-1
+  libcerror-devel-20260703-1bl1
+  libcthreads-devel-20260703-1bl1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/libyal/libcdata
 
 Canonical download:
-  https://github.com/libyal/libcdata/archive/refs/tags/20240414.tar.gz
+  https://github.com/libyal/libcdata/archive/refs/tags/20260703.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libcdata-20240414-X-src.tar.xz
+  1. unpack libcdata-20260703-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libcdata-20240414-X.cygport all
+        % cygport ./libcdata-20260703-X.cygport all
 
 This will create:
-  /usr/src/libcdata-20240414-X-src.tar.xz
-  /usr/src/libcdata-20240414-X.tar.xz
-  /usr/src/libcdata1-20240414-X.tar.xz
-  /usr/src/libcdata-devel-20240414-X.tar.xz
+  /usr/src/libcdata-20260703-X-src.tar.xz
+  /usr/src/libcdata-20260703-X.tar.xz
+  /usr/src/libcdata1-20260703-X.tar.xz
+  /usr/src/libcdata-devel-20260703-X.tar.xz
 
 -------------------------------------------
 
@@ -73,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20260703-1bl1 -----
+Version bump.
 
 ----- version 20240414-1bl1 -----
 Version bump.

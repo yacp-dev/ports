@@ -1,39 +1,38 @@
 libapparmor
 ------------------------------------------
-AppArmor protects systems from insecure or untrusted processes by
-running them in restricted confinement, while still allowing processes
-to share files, exercise privilege and communicate with other processes.
-AppArmor is a Mandatory Access Control (MAC) mechanism which uses the
-Linux Security Module (LSM) framework. The confinement's restrictions
-are mandatory and are not bound to identity, group membership, or object
-ownership. The protections provided are in addition to the kernel's
-regular access control mechanisms (including DAC) and can be used to
-restrict the superuser.
+AppArmor protects systems from insecure or untrusted processes by running them
+in restricted confinement, while still allowing processes to share files,
+exercise privilege and communicate with other processes. AppArmor is a
+Mandatory Access Control (MAC) mechanism which uses the Linux Security Module
+(LSM) framework. The confinement's restrictions are mandatory and are not bound
+to identity, group membership, or object ownership. The protections provided
+are in addition to the kernel's regular access control mechanisms (including
+DAC) and can be used to restrict the superuser.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libapparmor-devel-5.0.2-1bl1
-  libapparmor1-5.0.2-1bl1
-  pkg-config-3.0.4-2
-  python39-3.9.16-1
+  cygwin-3.6.11-1
+  libapparmor-devel-5.0.2-1bl2
+  libapparmor1-5.0.2-1bl2
+  pkg-config-3.0.9-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
+  autoconf-20260320-3
   autoconf-archive-2024.10.16-1
-  automake-20250528-1
+  automake-20260320-2
   binutils-2.47-1
   bison-3.8.2-1
-  cygport-0.37.7-1
+  cygport-0.37.10-1
+  dejagnu-1.6.3-1
   flex-2.6.4-2
   gcc-core-14.4.0-1
-  gcc-g++-14.4.0-1
   libtool-2.6.2-1
   make-4.4.1-2
-  perl-5.40.3-1
-  python39-3.9.16-1
-  python39-devel-3.9.16-1
-  swig-4.4.1-1
+  perl-5.44.0-1
+  python3-3.12.12-1
+  python312-devel-3.12.12-1
+  swig-4.5.1-1
 
 Canonical website:
   https://apparmor.net/
@@ -55,7 +54,7 @@ This will create:
   /usr/src/libapparmor-5.0.2-X.tar.xz
   /usr/src/libapparmor1-5.0.2-X.tar.xz
   /usr/src/libapparmor-devel-5.0.2-X.tar.xz
-  /usr/src/python39-libapparmor-5.0.2-X.tar.xz
+  /usr/src/python312-libapparmor-5.0.2-X.tar.xz
 
 -------------------------------------------
 
@@ -65,7 +64,6 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/libapparmor.README
   /usr/share/doc/libapparmor/COPYING.LGPL
   /usr/share/doc/libapparmor/ChangeLog
-  /usr/share/doc/libapparmor/LICENSE
   /usr/share/doc/libapparmor/README
   /usr/share/doc/libapparmor/README.md
 
@@ -89,20 +87,23 @@ Files included in the binary package:
   /usr/share/man/man3/aa_policy_cache.3.gz
   /usr/share/man/man3/aa_splitcon.3.gz
 
-(python39-libapparmor)
-  /usr/lib/python3.9/site-packages/LibAppArmor-5.0.2-py3.9.egg-info/PKG-INFO
-  /usr/lib/python3.9/site-packages/LibAppArmor-5.0.2-py3.9.egg-info/SOURCES.txt
-  /usr/lib/python3.9/site-packages/LibAppArmor-5.0.2-py3.9.egg-info/dependency_links.txt
-  /usr/lib/python3.9/site-packages/LibAppArmor-5.0.2-py3.9.egg-info/top_level.txt
-  /usr/lib/python3.9/site-packages/LibAppArmor.py
-  /usr/lib/python3.9/site-packages/_LibAppArmor.cpython-39-x86_64-cygwin.dll
-  /usr/lib/python3.9/site-packages/__pycache__/LibAppArmor.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/LibAppArmor.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/LibAppArmor.cpython-39.pyc
+(python312-libapparmor)
+  /usr/lib/python3.12/site-packages/LibAppArmor-5.0.2-py3.12.egg-info/PKG-INFO
+  /usr/lib/python3.12/site-packages/LibAppArmor-5.0.2-py3.12.egg-info/SOURCES.txt
+  /usr/lib/python3.12/site-packages/LibAppArmor-5.0.2-py3.12.egg-info/dependency_links.txt
+  /usr/lib/python3.12/site-packages/LibAppArmor-5.0.2-py3.12.egg-info/top_level.txt
+  /usr/lib/python3.12/site-packages/LibAppArmor.py
+  /usr/lib/python3.12/site-packages/_LibAppArmor.cpython-312-x86_64-cygwin.dll
+  /usr/lib/python3.12/site-packages/__pycache__/LibAppArmor.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/LibAppArmor.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/LibAppArmor.cpython-312.pyc
 
 ------------------
 
 Port Notes:
+
+----- version 5.0.2-1bl2 -----
+Rebuild for python312
 
 ----- version 5.0.2-1bl1 -----
 Version bump.

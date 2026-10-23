@@ -9,8 +9,8 @@ suitable for protein-protein search as well as DNA-protein search on short
 reads and longer sequences including contigs and assemblies, providing a
 speedup of BLAST ranging up to x20,000."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND Apache-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -20,6 +20,11 @@ BUILD_REQUIRES="
 "
 
 inherit cmake
+
+# GCC can't realign the stack for 32-byte AVX spills on x86_64 Windows
+# (GCC PR 54412), so vmovdqa to the stack faults in the AVX2 swipe code;
+# have the assembler emit unaligned moves instead.
+CXXFLAGS+=" -Wa,-muse-unaligned-vector-move"
 
 CYGCMAKE_ARGS="
 	-DWITH_ZSTD:BOOL=ON

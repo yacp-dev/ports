@@ -1,17 +1,6 @@
---- origsrc/diamond-2.1.25/CMakeLists.txt	2026-05-06 01:39:42.000000000 +0900
-+++ src/diamond-2.1.25/CMakeLists.txt	2026-05-10 13:30:23.797457400 +0900
-@@ -493,7 +493,7 @@ target_link_libraries(diamond ${SQLite3_
- 
- if(WITH_ZSTD)
-   find_path(${ZSTD_INCLUDE_DIR} NAMES zstd.h PATHS ${ZSTD_INCLUDE_DIR})
--  find_library(ZSTD_LIBRARY NAMES libzstd.a libzstd_static)
-+  find_library(ZSTD_LIBRARY NAMES libzstd.dll.a libzstd.a libzstd_static)
-   message(STATUS "Zstd Library: ${ZSTD_LIBRARY}")
-   target_include_directories(diamond PRIVATE "${ZSTD_INCLUDE_DIR}")
-   target_link_libraries(diamond ${ZSTD_LIBRARY})
---- origsrc/diamond-2.1.25/src/util/memory/memory_resource.h	2026-05-06 01:39:42.000000000 +0900
-+++ src/diamond-2.1.25/src/util/memory/memory_resource.h	2026-05-10 13:30:23.806015100 +0900
-@@ -29,6 +29,18 @@ limitations under the License.
+--- origsrc/diamond-2.2.8/src/util/memory/memory_resource.h	2026-09-19 18:54:22.000000000 +0000
++++ src/diamond-2.2.8/src/util/memory/memory_resource.h	2026-10-23 09:41:09.187093800 +0000
+@@ -31,6 +31,18 @@ along with this program.  If not, see <h
  
  #ifdef HAVE_MEMORY_RESOURCE
  #include <memory_resource>

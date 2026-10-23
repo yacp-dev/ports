@@ -1,5 +1,5 @@
---- origsrc/liboauth2-2.2.0/Makefile.am	2026-01-06 13:59:06.000000000 +0900
-+++ src/liboauth2-2.2.0/Makefile.am	2026-01-19 19:21:55.780910600 +0900
+--- origsrc/liboauth2-2.4.0/Makefile.am	2026-09-10 16:43:53.000000000 +0000
++++ src/liboauth2-2.4.0/Makefile.am	2026-10-23 04:15:54.409256700 +0000
 @@ -6,7 +6,7 @@ EXTRA_DIST = autogen.sh ChangeLog README
  # generic
  #
@@ -7,23 +7,35 @@
 -AM_CPPFLAGS = -Wall -Werror -Wno-error=deprecated-declarations -I${srcdir}/include -I${srcdir}/src @JANSSON_CFLAGS@ @OPENSSL_CFLAGS@
 +AM_CPPFLAGS = -Wall -Wno-error=deprecated-declarations -I${builddir}/include -I${srcdir}/include -I${srcdir}/src @JANSSON_CFLAGS@ @OPENSSL_CFLAGS@
  AM_CPPFLAGS += $(CODE_COVERAGE_CPPFLAGS) $(CODE_COVERAGE_CFLAGS)
- AM_LDFLAGS = --coverage
- 
-@@ -50,6 +50,7 @@ liboauth2_la_pkgconfig_DATA = liboauth2.
- 
+ AM_LDFLAGS =
+ if CODE_COVERAGE_ENABLED
+@@ -54,7 +54,7 @@ liboauth2_la_pkgconfig_DATA = liboauth2.
  liboauth2_la_CFLAGS = @CURL_CFLAGS@ @CJOSE_CFLAGS@ @PCRE2_CFLAGS@
  liboauth2_la_LIBADD = @CURL_LIBS@ @CJOSE_LIBS@ @PCRE2_LIBS@
-+liboauth2_la_LDFLAGS = -no-undefined
+ 
+-liboauth2_la_LDFLAGS = @LIBTOOL_EXTRA_FLAGS@
++liboauth2_la_LDFLAGS = @LIBTOOL_EXTRA_FLAGS@ -no-undefined
  
  liboauth2_la_SOURCES = \
  	src/version.c \
-@@ -133,7 +134,8 @@ liboauth2_apache_la_pkgconfig_DATA = lib
+@@ -139,8 +139,8 @@ liboauth2_apache_la_pkgconfig_DATA = lib
  
  liboauth2_apache_la_CPPFLAGS = $(AM_CPPFLAGS) -DHAVE_APACHE
  liboauth2_apache_la_CFLAGS = @APACHE_CFLAGS@ @PCRE2_CFLAGS@
 -liboauth2_apache_la_LIBADD = liboauth2.la @APR_LIBS@ @JANSSON_LIBS@
+-liboauth2_apache_la_LDFLAGS = @LIBTOOL_EXTRA_FLAGS@
 +liboauth2_apache_la_LIBADD = liboauth2.la @APR_LIBS@ @JANSSON_LIBS@ -lhttpd
-+liboauth2_apache_la_LDFLAGS = -no-undefined
++liboauth2_apache_la_LDFLAGS = @LIBTOOL_EXTRA_FLAGS@ -no-undefined
  
  includesub_HEADERS += \
  	include/oauth2/apache.h
+--- origsrc/liboauth2-2.4.0/configure.ac	2026-09-10 16:43:53.000000000 +0000
++++ src/liboauth2-2.4.0/configure.ac	2026-10-23 04:15:54.409256700 +0000
+@@ -7,6 +7,7 @@ AM_PROG_AR
+ LT_INIT([dlopen])
+ AC_PROG_CC
+ 
++m4_pattern_allow([^_AX_CODE_COVERAGE_GCOV_PROG_WITH$])
+ AX_CODE_COVERAGE
+ 
+ LIBOAUTH2_LIBRARY_VERSION=2:0:1

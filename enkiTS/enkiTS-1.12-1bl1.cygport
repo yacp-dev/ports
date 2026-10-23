@@ -6,6 +6,10 @@ SUMMARY="C and C++ Task Scheduler for creating parallel programs"
 DESCRIPTION="A permissively licensed C and C++ Task Scheduler for creating parallel
 programs. Requires C++11 support."
 
+LICENSE="Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: Zlib"
+LICENSE_URI="License.txt"
+
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
@@ -13,7 +17,6 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DENKITS_BUILD_SHARED:BOOL=ON
 	-DENKITS_INSTALL:BOOL=ON
-	-DSOVERSION:STRING=${PV[1]}
 	-DVERSION:STRING=${PV}
 "
 
@@ -26,7 +29,7 @@ enkiTS_CONTENTS="
 	usr/share
 "
 libenkiTS1_CONTENTS="
-	usr/bin
+	usr/bin/cygenkiTS-1.dll
 "
 libenkiTS_devel_CONTENTS="
 	usr/include

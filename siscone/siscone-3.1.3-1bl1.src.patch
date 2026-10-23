@@ -1,5 +1,5 @@
---- origsrc/siscone-3.1.2/siscone/CMakeLists.txt	2025-06-20 04:48:18.000000000 +0900
-+++ src/siscone-3.1.2/siscone/CMakeLists.txt	2026-02-02 13:31:02.149261900 +0900
+--- origsrc/siscone-3.1.3/siscone/CMakeLists.txt	2025-06-19 20:32:00.000000000 +0000
++++ src/siscone-3.1.3/siscone/CMakeLists.txt	2026-10-23 06:09:16.187458700 +0000
 @@ -47,6 +47,10 @@ target_include_directories(siscone
                             )
  target_link_libraries(siscone PUBLIC ${siscone_LIBRARIES})
@@ -11,8 +11,8 @@
  # here we specify that runtime library components (e.g. .dlls, but not .so or .dylib)
  # go into the binary directory (e.g. /bin, rather than the library directory e.g /lib)
  # this is typical organization on windows installs
---- origsrc/siscone-3.1.2/siscone/spherical/CMakeLists.txt	2025-06-20 04:48:18.000000000 +0900
-+++ src/siscone-3.1.2/siscone/spherical/CMakeLists.txt	2026-02-02 13:31:14.539385200 +0900
+--- origsrc/siscone-3.1.3/siscone/spherical/CMakeLists.txt	2025-06-19 20:32:00.000000000 +0000
++++ src/siscone-3.1.3/siscone/spherical/CMakeLists.txt	2026-10-23 06:09:16.189482000 +0000
 @@ -32,6 +32,10 @@ elseif (NOT MSVC)
    set_target_properties(siscone_spherical PROPERTIES INSTALL_RPATH "$ORIGIN")
  endif()

@@ -5,20 +5,20 @@ One is the standard CDR serialization mechanism, while the other is a faster
 implementation that modifies the standard.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libfastcdr-devel-2.3.6-1bl1
-  libfastcdr2-2.3.6-1bl1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libfastcdr-devel-2.4.0-1bl1
+  libfastcdr2-2.4.0-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46.1-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
   make-4.4.1-2
   ninja-1.13.2-1
 
@@ -26,22 +26,22 @@ Canonical website:
   https://github.com/eProsima/Fast-CDR
 
 Canonical download:
-  https://github.com/eProsima/Fast-CDR/archive/refs/tags/v2.3.6.tar.gz
+  https://github.com/eProsima/Fast-CDR/archive/refs/tags/v2.4.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack fast-cdr-2.3.6-X-src.tar.xz
+  1. unpack fast-cdr-2.4.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./fast-cdr-2.3.6-X.cygport all
+        % cygport ./fast-cdr-2.4.0-X.cygport all
 
 This will create:
-  /usr/src/fast-cdr-2.3.6-X-src.tar.xz
-  /usr/src/fast-cdr-2.3.6-X.tar.xz
-  /usr/src/libfastcdr2-2.3.6-X.tar.xz
-  /usr/src/libfastcdr-devel-2.3.6-X.tar.xz
+  /usr/src/fast-cdr-2.4.0-X-src.tar.xz
+  /usr/src/fast-cdr-2.4.0-X.tar.xz
+  /usr/src/libfastcdr2-2.4.0-X.tar.xz
+  /usr/src/libfastcdr-devel-2.4.0-X.tar.xz
 
 -------------------------------------------
 
@@ -58,6 +58,7 @@ Files included in the binary package:
 
 (libfastcdr-devel)
   /usr/include/fastcdr/Cdr.h
+  /usr/include/fastcdr/CdrContext.hpp
   /usr/include/fastcdr/CdrEncoding.hpp
   /usr/include/fastcdr/CdrSizeCalculator.hpp
   /usr/include/fastcdr/FastBuffer.h
@@ -79,7 +80,7 @@ Files included in the binary package:
   /usr/include/fastcdr/xcdr/optional.hpp
   /usr/lib/cmake/fastcdr/fastcdr-config-version.cmake
   /usr/lib/cmake/fastcdr/fastcdr-config.cmake
-  /usr/lib/cmake/fastcdr/fastcdr-shared-targets-release.cmake
+  /usr/lib/cmake/fastcdr/fastcdr-shared-targets-relwithdebinfo.cmake
   /usr/lib/cmake/fastcdr/fastcdr-shared-targets.cmake
   /usr/lib/libfastcdr.dll.a
   /usr/lib/pkgconfig/fast-cdr.pc
@@ -87,6 +88,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.4.0-1bl1 -----
+Version bump.
 
 ----- version 2.3.6-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

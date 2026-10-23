@@ -1,5 +1,5 @@
 HOMEPAGE="https://${PN}.hepforge.org/"
-SRC_URI="https://www.hepforge.org/archive/${PN}/${P}.tar.gz"
+SRC_URI="https://${PN}.hepforge.org/downloads/${P}.tar.gz"
 
 CATEGORY="Science"
 SUMMARY="Hadron Seedless Infrared-Safe Cone jet algorithm"

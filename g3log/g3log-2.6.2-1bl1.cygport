@@ -41,7 +41,7 @@ g3log_CONTENTS="
 	usr/share
 "
 libg3log2_CONTENTS="
-	usr/bin/cyg*-${PV[1]}.dll
+	usr/bin/cyg*-2.dll
 "
 libg3log_devel_CONTENTS="
 	usr/include

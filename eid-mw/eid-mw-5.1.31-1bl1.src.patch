@@ -1,5 +1,5 @@
---- origsrc/eid-mw-5.1.27/cardcomm/pkcs11/src/Makefile.am	2026-01-07 07:59:13.574892600 +0900
-+++ src/eid-mw-5.1.27/cardcomm/pkcs11/src/Makefile.am	2026-01-07 07:59:39.623266000 +0900
+--- origsrc/eid-mw-5.1.31/cardcomm/pkcs11/src/Makefile.am	2026-10-23 08:07:59.653038900 +0000
++++ src/eid-mw-5.1.31/cardcomm/pkcs11/src/Makefile.am	2026-10-23 08:08:02.110394500 +0000
 @@ -6,6 +6,7 @@ libbeidpkcs11_la_CFLAGS = $(AM_CFLAGS) -
  libbeidpkcs11_la_CXXFLAGS = $(AM_CXXFLAGS) -DUSING_DL_OPEN -DEIDMW_CAL_EXPORT -DCAL_BEID -DCARDPLUGIN_IN_CAL -DBEID_35 -DNDEBUG -DBEID_OLD_PINPAD -DLTC_NO_ASM -fvisibility=hidden -I$(srcdir)/common -I$(srcdir)/fuzz -I$(srcdir)/cardlayer -I$(top_srcdir)/doc/sdk/include/v240 @PCSC_CFLAGS@
  libbeidpkcs11_la_CPPFLAGS = -I$(srcdir)/common -I$(srcdir)/fuzz -I$(srcdir)/cardlayer -I$(top_srcdir)/doc/sdk/include/v240 @PCSC_CFLAGS@ -DLIBEXECDIR='"$(libexecdir)"' -fvisibility=hidden
@@ -25,8 +25,19 @@
  endif
  
  beid_askpin_SOURCES = dialogs/dialogsgtk/parent.c dialogs/dialogsgtk/beid-askpin.c
---- origsrc/eid-mw-5.1.27/configure.ac	2026-01-07 07:59:12.714454800 +0900
-+++ src/eid-mw-5.1.27/configure.ac	2026-01-07 07:59:39.644365500 +0900
+--- origsrc/eid-mw-5.1.31/cardcomm/pkcs11/src/beid_p11.h	2026-05-29 11:11:56.000000000 +0000
++++ src/eid-mw-5.1.31/cardcomm/pkcs11/src/beid_p11.h	2026-10-23 08:08:02.112407900 +0000
+@@ -22,6 +22,8 @@
+ #define __beid_p11_h__
+ 
+ #ifndef _WIN32
++/* the PKCS#11 functions are defined here, not imported (see unix.h) */
++#define BEIDPKCS11_BUILD
+ #include "unix.h"
+ #include "pkcs11.h"
+ #else
+--- origsrc/eid-mw-5.1.31/configure.ac	2026-10-23 08:07:59.484251900 +0000
++++ src/eid-mw-5.1.31/configure.ac	2026-10-23 08:08:02.112407900 +0000
 @@ -63,6 +63,11 @@ then
  	AC_MSG_ERROR([assuan-based dialogs requested, but libassuan could not be found])
  fi
@@ -39,9 +50,27 @@
  AM_CONDITIONAL(ASSUAN,[test x"$ASSUAN" = x"y"])
  
  AC_ARG_ENABLE([test-fuzzer],AS_HELP_STRING([--enable-test-fuzzer],[Build a version of eid-mw instrumented for fuzzing (not meant for production use!)]),[fuzzer=$enableval],[fuzzer=no])
---- origsrc/eid-mw-5.1.27/plugins_tools/eid-viewer/Makefile.am	2026-01-07 07:59:13.576902200 +0900
-+++ src/eid-mw-5.1.27/plugins_tools/eid-viewer/Makefile.am	2026-01-07 07:59:39.647370500 +0900
-@@ -136,7 +136,7 @@ if FUZZING
+--- origsrc/eid-mw-5.1.31/doc/sdk/include/v240/unix.h	2026-05-29 11:11:56.000000000 +0000
++++ src/eid-mw-5.1.31/doc/sdk/include/v240/unix.h	2026-10-23 08:08:02.114422000 +0000
+@@ -11,8 +11,15 @@
+ #define CK_DEFINE_FUNCTION(returnType, name) \
+    returnType EXPORTED name
+ 
++#if defined(__CYGWIN__) && !defined(BEIDPKCS11_BUILD)
++/* A DLL function only has one address outside the DLL when it is
++ * declared dllimport; otherwise it is that of a local import thunk. */
++#define CK_DECLARE_FUNCTION(returnType, name) \
++   returnType __declspec(dllimport) name
++#else
+ #define CK_DECLARE_FUNCTION(returnType, name) \
+    returnType EXPORTED name
++#endif
+ 
+ #define CK_DECLARE_FUNCTION_POINTER(returnType, name) \
+    returnType (* name)
+--- origsrc/eid-mw-5.1.31/plugins_tools/eid-viewer/Makefile.am	2026-10-23 08:07:59.655055100 +0000
++++ src/eid-mw-5.1.31/plugins_tools/eid-viewer/Makefile.am	2026-10-23 08:08:02.116437000 +0000
+@@ -138,7 +138,7 @@ if FUZZING
  eid_viewer_LDADD += $(top_builddir)/cardcomm/pkcs11/src/libbeidpkcs11.la
  endif
  libeidviewer_la_LIBADD = $(top_builddir)/plugins_tools/util/liblabels.la $(top_builddir)/cardcomm/pkcs11/src/libbeidpkcs11.la @SSL_LIBS@ @XML2_LIBS@
@@ -50,8 +79,8 @@
  AM_CFLAGS = @GTK_CFLAGS@ -I. -I$(srcdir)/include -Igtk -DDATAROOTDIR='"$(datarootdir)"' -I$(top_srcdir)/doc/sdk/include/v240 -I$(top_srcdir)/cardcomm/pkcs11/src/fuzz -I$(top_srcdir)/plugins_tools/util @SSL_CFLAGS@ @GIO_CFLAGS@ @XML2_CFLAGS@ @CURL_CFLAGS@ @libproxy_CFLAGS@ -fvisibility=hidden @FUZZING@
  AM_CXXFLAGS = $(AM_CFLAGS) -std=c++98
  SUBDIRS = . gtk/po test
---- origsrc/eid-mw-5.1.27/tests/unit/serial_linux.c	2025-12-02 00:10:56.000000000 +0900
-+++ src/eid-mw-5.1.27/tests/unit/serial_linux.c	2026-01-07 07:59:39.651367900 +0900
+--- origsrc/eid-mw-5.1.31/tests/unit/serial_linux.c	2026-05-29 11:11:56.000000000 +0000
++++ src/eid-mw-5.1.31/tests/unit/serial_linux.c	2026-10-23 08:08:02.116437000 +0000
 @@ -44,11 +44,13 @@ Serial* serial_open(char *portname) {
  		free(rv);
  		return NULL;

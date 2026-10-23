@@ -11,13 +11,15 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="zlib-devel"
+BUILD_REQUIRES="
+	zlib-devel
+"
 
 src_compile()
 {
 	cd ${B}
 	lndirs
-	cygmake
+	cygmake CXXFLAGS="${CXXFLAGS} -Wall -W" LDFLAGS="${LDFLAGS}"
 }
 
 DOCS="

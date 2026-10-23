@@ -5,33 +5,33 @@ set of installed trust anchors, based on crl_url files or IGTF-style info
 files. It will install these for use with OpenSSL, NSS or third-party tools.
 
 Runtime requirements:
-  perl-5.32.1-2
-  perl-libwww-perl-6.67-1
-  perl_base-5.32.1-2
+  perl-5.44.0-1
+  perl-libwww-perl-6.830.0-1
+  perl_base-5.44.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  cygport-0.35.5-1
-  make-4.4-1
+  cygport-0.37.10-1
+  make-4.4.1-2
 
 Canonical website:
   https://wiki.nikhef.nl/grid/FetchCRL3
 
 Canonical download:
-  https://dist.eugridpma.info/distribution/util/fetch-crl3/fetch-crl-3.0.23.tar.gz
+  https://dist.eugridpma.info/distribution/util/fetch-crl3/fetch-crl-3.0.25.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack fetch-crl-3.0.23-X-src.tar.xz
+  1. unpack fetch-crl-3.0.25-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./fetch-crl-3.0.23-X.cygport all
+        % cygport ./fetch-crl-3.0.25-X.cygport all
 
 This will create:
-  /usr/src/fetch-crl-3.0.23-X-src.tar.xz
-  /usr/src/fetch-crl-3.0.23-X.tar.xz
+  /usr/src/fetch-crl-3.0.25-X-src.tar.xz
+  /usr/src/fetch-crl-3.0.25-X.tar.xz
 
 -------------------------------------------
 
@@ -39,8 +39,8 @@ Files included in the binary package:
 
 (fetch-crl)
   /etc/fetch-crl.conf
-  /usr/sbin/clean-crl
-  /usr/sbin/fetch-crl
+  /usr/bin/clean-crl
+  /usr/bin/fetch-crl
   /usr/share/doc/Cygwin/fetch-crl.README
   /usr/share/doc/fetch-crl/CHANGES
   /usr/share/doc/fetch-crl/LICENSE
@@ -56,6 +56,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0.25-1bl1 -----
+Version bump.
 
 ----- version 3.0.23-1bl1 -----
 Version bump.

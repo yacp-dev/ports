@@ -30,15 +30,15 @@ src_test()
 
 PKG_NAMES="
 	draco
-	libdraco9
+	libdraco11
 	libdraco-devel
 "
 draco_CONTENTS="
 	usr/bin/${PN}*
 	usr/share
 "
-libdraco9_CONTENTS="
-	usr/bin/cyg*-9.dll
+libdraco11_CONTENTS="
+	usr/bin/cyg*-11.dll
 "
 libdraco_devel_CONTENTS="
 	usr/include
@@ -47,5 +47,5 @@ libdraco_devel_CONTENTS="
 	usr/lib/pkgconfig
 "
 draco_SUMMARY="${SUMMARY} (utilities)"
-libdraco9_SUMMARY="${SUMMARY} (runtime)"
+libdraco11_SUMMARY="${SUMMARY} (runtime)"
 libdraco_devel_SUMMARY="${SUMMARY} (development)"

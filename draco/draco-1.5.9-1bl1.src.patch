@@ -1,6 +1,6 @@
---- origsrc/draco/CMakeLists.txt	2025-12-08 08:43:02.000000000 +0900
-+++ src/draco/CMakeLists.txt	2025-12-08 08:45:29.039521700 +0900
-@@ -1005,7 +1005,7 @@ else()
+--- origsrc/draco/CMakeLists.txt	2026-10-23 07:06:19.000000000 +0000
++++ src/draco/CMakeLists.txt	2026-10-23 07:07:06.670847000 +0000
+@@ -983,7 +983,7 @@ else()
    endif()
  
    # Library targets that consume the object collections.
@@ -9,8 +9,8 @@
      # In order to produce a DLL and import library the Windows tools require
      # that the exported symbols are part of the DLL target. The unfortunate side
      # effect of this is that a single configuration cannot output both the
---- origsrc/draco/cmake/draco.pc.template	2025-12-08 08:43:02.000000000 +0900
-+++ src/draco/cmake/draco.pc.template	2025-12-08 08:45:29.045513000 +0900
+--- origsrc/draco/cmake/draco.pc.template	2026-10-23 07:06:19.000000000 +0000
++++ src/draco/cmake/draco.pc.template	2026-10-23 07:07:06.670847000 +0000
 @@ -1,6 +1,6 @@
  Name: @PROJECT_NAME@
  Description: Draco geometry de(com)pression library.
@@ -20,8 +20,8 @@
 +Cflags: -I@CMAKE_INSTALL_PREFIX@/@includes_path@
 +Libs: -L@CMAKE_INSTALL_PREFIX@/@libs_path@ -ldraco
  Libs.private: @CMAKE_THREAD_LIBS_INIT@
---- origsrc/draco/cmake/draco_build_definitions.cmake	2025-12-08 08:43:02.000000000 +0900
-+++ src/draco/cmake/draco_build_definitions.cmake	2025-12-08 08:45:29.049570000 +0900
+--- origsrc/draco/cmake/draco_build_definitions.cmake	2026-10-23 07:06:19.000000000 +0000
++++ src/draco/cmake/draco_build_definitions.cmake	2026-10-23 07:07:06.672606700 +0000
 @@ -20,7 +20,7 @@ set(DRACO_CMAKE_DRACO_BUILD_DEFINITIONS_
  # Utility for controlling the main draco library dependency. This changes in
  # shared builds, and when an optional target requires a shared library build.
@@ -31,10 +31,10 @@
      set(draco_dependency draco)
      set(draco_plugin_dependency ${draco_dependency})
    else()
---- origsrc/draco/cmake/draco_install.cmake	2025-12-08 08:43:02.000000000 +0900
-+++ src/draco/cmake/draco_install.cmake	2025-12-08 08:45:29.051582300 +0900
-@@ -58,7 +58,7 @@ macro(draco_setup_install_target)
-       install(TARGETS draco_transcoder DESTINATION "${bin_path}")
+--- origsrc/draco/cmake/draco_install.cmake	2026-10-23 07:06:19.000000000 +0000
++++ src/draco/cmake/draco_install.cmake	2026-10-23 07:07:06.672606700 +0000
+@@ -59,7 +59,7 @@ macro(draco_setup_install_target)
+       endif()
      endif()
  
 -    if(MSVC)

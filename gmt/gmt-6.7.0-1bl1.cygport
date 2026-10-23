@@ -1,5 +1,6 @@
 HOMEPAGE="https://www.generic-mapping-tools.org/"
 SRC_URI="https://github.com/GenericMappingTools/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="https://sources.debian.org/data/main/g/gmt/6.7.0+dfsg-3/debian/patches/gmt_update.patch"
 
 CATEGORY="Libs"
 SUMMARY="Generic Mapping Tools"
@@ -38,6 +39,7 @@ CYGCMAKE_ARGS="
 	-DGMT_DATADIR:STRING=share/${PN}
 	-DGMT_DOCDIR:STRING=share/doc/${PN}
 	-DGMT_MANDIR:STRING=share/man
+	-DWITH_GMT_UPDATE:BOOL=OFF
 "
 
 PKG_NAMES="

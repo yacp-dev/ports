@@ -1,5 +1,5 @@
---- origsrc/gmt-6.6.0/CMakeLists.txt	2025-07-23 19:39:53.000000000 +0900
-+++ src/gmt-6.6.0/CMakeLists.txt	2025-11-12 16:17:15.076620100 +0900
+--- origsrc/gmt-6.7.0/CMakeLists.txt	2026-07-27 22:02:54.000000000 +0000
++++ src/gmt-6.7.0/CMakeLists.txt	2026-10-23 04:21:56.884658300 +0000
 @@ -96,9 +96,9 @@ find_package (LATEX COMPONENTS DVIPS)
  add_subdirectory (src)
  add_subdirectory (share)      # share must be processed *after* src (GSHHG_PATH)
@@ -12,8 +12,8 @@
  add_subdirectory (cmake/dist) # make distribution bundles (always last)
  
  # Source release target
---- origsrc/gmt-6.6.0/src/CMakeLists.txt	2025-07-23 19:39:53.000000000 +0900
-+++ src/gmt-6.6.0/src/CMakeLists.txt	2025-11-12 16:17:15.082370200 +0900
+--- origsrc/gmt-6.7.0/src/CMakeLists.txt	2026-10-23 04:21:54.037103200 +0000
++++ src/gmt-6.7.0/src/CMakeLists.txt	2026-10-23 04:21:56.886672800 +0000
 @@ -512,15 +512,25 @@ if (HAVE_DLADDR AND HAVE_LIBDL)
  endif (HAVE_DLADDR AND HAVE_LIBDL)
  
@@ -87,7 +87,7 @@
  
  # If a renaming of the gmt dll has been set in ConfigUserAdvanced.cmake
  if (WIN32 AND GMT_DLL_RENAME)
-@@ -705,9 +726,9 @@ endif (BUILD_DEVELOPER)
+@@ -719,9 +740,9 @@ endif (BUILD_DEVELOPER)
  ##	Settings for GMT and non-GMT supplemental libraries
  ##
  if (BUILD_SUPPLEMENTS)

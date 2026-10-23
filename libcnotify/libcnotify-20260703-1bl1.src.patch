@@ -1,5 +1,5 @@
---- origsrc/libcnotify-20240414/Makefile.am	2024-04-14 14:29:46.000000000 +0900
-+++ src/libcnotify-20240414/Makefile.am	2025-05-16 14:06:57.769600200 +0900
+--- origsrc/libcnotify-20260703/Makefile.am	2026-07-03 17:24:17.000000000 +0000
++++ src/libcnotify-20260703/Makefile.am	2026-10-23 04:27:08.756708200 +0000
 @@ -3,9 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -10,9 +10,9 @@
  	manuals \
  	tests \
  	msvscpp
---- origsrc/libcnotify-20240414/configure.ac	2024-04-14 14:29:46.000000000 +0900
-+++ src/libcnotify-20240414/configure.ac	2025-05-16 14:06:57.785229400 +0900
-@@ -91,7 +91,6 @@ dnl Generate Makefiles
+--- origsrc/libcnotify-20260703/configure.ac	2026-07-03 17:24:17.000000000 +0000
++++ src/libcnotify-20260703/configure.ac	2026-10-23 04:27:08.758728600 +0000
+@@ -101,7 +101,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])

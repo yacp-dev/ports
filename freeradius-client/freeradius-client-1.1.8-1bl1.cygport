@@ -1,10 +1,8 @@
 HOMEPAGE="https://github.com/FreeRADIUS/${PN}"
 SRC_URI="https://github.com/FreeRADIUS/${PN}/archive/refs/tags/release_${PV//./_}.tar.gz"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-size_t.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-ipv6-attr-fix.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-autoconf-c99.patch
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/net-dialup/${PN}/files/${P}-ar-configure.in.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/12ee8b567ce2a1b6637ad01e5806a15eeef410cc/f/${PN}-1.1.7-autoconf-c99.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/809f1c5f959aa94ffdcb16464c233207ba10bc4e/net-dialup/${PN}/files/${PN}-1.1.7-ar-configure.in.patch
 "
 SRC_DIR="${PN}-release_${PV//./_}"
 
@@ -19,7 +17,9 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYRIGHT"
 
-BUILD_REQUIRES="libcrypt-devel"
+BUILD_REQUIRES="
+	libcrypt-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode

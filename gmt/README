@@ -2,68 +2,67 @@ gmt
 ------------------------------------------
 GMT is an open-source collection of command-line tools for manipulating
 geographic and Cartesian data sets (including filtering, trend fitting,
-gridding, projecting, etc.) and producing PostScript illustrations ranging
-from simple x–y plots via contour maps to artificially illuminated surfaces
-and 3D perspective views. It supports many map projections and transformations
-and includes supporting data such as coastlines, rivers, and political
-boundaries and optionally country polygons.
+gridding, projecting, etc.) and producing PostScript illustrations ranging from
+simple x–y plots via contour maps to artificially illuminated surfaces and 3D
+perspective views. It supports many map projections and transformations and
+includes supporting data such as coastlines, rivers, and political boundaries
+and optionally country polygons.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.5-1
-  libcurl4-8.17.0-1
-  libfftw3_3-3.3.10-1
-  libgdal36-3.10.2-1
-  libgeos_c1-3.14.1-1
-  libgmt6-6.6.0-1bl1
+  cygwin-3.6.11-1
+  libcurl4-8.23.0-1
+  libfftw3_3-3.3.11-1
+  libgdal38-3.12.1-1
+  libgeos_c1-3.15.0-1
+  libgmt6-6.7.0-1bl1
   liblapack0-3.12.0-1
-  libnetcdf22-4.9.3-1
-  libopenblas-0.3.25-1
+  libnetcdf22-4.10.1-1
   libpcre1-8.45-1
-  perl_base-5.40.3-1
-  zlib0-1.3.1-1
+  perl_base-5.44.0-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  GraphicsMagick-1.3.45-2
-  binutils-2.45-1
-  cmake-3.31.3-1
-  cygport-0.37.3-1
-  ffmpeg-8.0-1
-  gcc-core-13.4.0-1
-  gdal-3.10.2-1
-  ghostscript-10.03.1-1
-  libcurl-devel-8.17.0-1
-  libfftw3-devel-3.3.10-1
-  libgdal-devel-3.10.2-1
-  libgeos-devel-3.14.1-1
+  GraphicsMagick-1.3.49-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.10-1
+  ffmpeg-9.0.2-2
+  gcc-core-14.4.0-1
+  gdal-3.12.1-1
+  ghostscript-10.08.0-1
+  libcurl-devel-8.23.0-1
+  libfftw3-devel-3.3.11-1
+  libgdal-devel-3.12.1-1
+  libgeos-devel-3.15.0-1
   liblapack-devel-3.12.0-1
-  libnetcdf-devel-4.9.3-1
+  libnetcdf-devel-4.10.1-1
   libpcre-devel-8.45-1
-  ninja-1.13.1-1
+  ninja-1.13.2-1
   xdg-utils-1.1.1-2
-  zlib-devel-1.3.1-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://www.generic-mapping-tools.org/
 
 Canonical download:
-  https://github.com/GenericMappingTools/gmt/archive/refs/tags/6.6.0.tar.gz
+  https://github.com/GenericMappingTools/gmt/archive/refs/tags/6.7.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack gmt-6.6.0-X-src.tar.xz
+  1. unpack gmt-6.7.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./gmt-6.6.0-X.cygport all
+        % cygport ./gmt-6.7.0-X.cygport all
 
 This will create:
-  /usr/src/gmt-6.6.0-X-src.tar.xz
-  /usr/src/gmt-6.6.0-X.tar.xz
-  /usr/src/libgmt6-6.6.0-X.tar.xz
-  /usr/src/libgmt-devel-6.6.0-X.tar.xz
+  /usr/src/gmt-6.7.0-X-src.tar.xz
+  /usr/src/gmt-6.7.0-X.tar.xz
+  /usr/src/libgmt6-6.7.0-X.tar.xz
+  /usr/src/libgmt-devel-6.7.0-X.tar.xz
 
 -------------------------------------------
 
@@ -85,7 +84,6 @@ Files included in the binary package:
   /usr/share/doc/gmt/copying/COPYINGv3
   /usr/share/doc/gmt/copying/LICENSE.TXT
   /usr/share/doc/gmt/copying/README.TRIANGLE
-  /usr/share/doc/gmt/examples/CMakeLists.txt
   /usr/share/doc/gmt/examples/README.examples
   /usr/share/doc/gmt/examples/anim01/anim01.sh
   /usr/share/doc/gmt/examples/anim02/anim02.sh
@@ -179,6 +177,7 @@ Files included in the binary package:
   /usr/share/doc/gmt/supplements/gshhg/README.gshhg
   /usr/share/doc/gmt/supplements/img/README.img
   /usr/share/doc/gmt/supplements/mgd77/README.mgd77
+  /usr/share/doc/gmt/supplements/nswing/README.nswing
   /usr/share/doc/gmt/supplements/potential/README.potential
   /usr/share/doc/gmt/supplements/segy/README.segy
   /usr/share/doc/gmt/supplements/seis/README.seis
@@ -269,6 +268,14 @@ Files included in the binary package:
   /usr/share/gmt/cpt/cpt-city/dem1.cpt
   /usr/share/gmt/cpt/cpt-city/dem4.cpt
   /usr/share/gmt/cpt/cpt-city/elevation.cpt
+  /usr/share/gmt/cpt/geological/Exxon88.cpt
+  /usr/share/gmt/cpt/geological/GTS2004.cpt
+  /usr/share/gmt/cpt/geological/GTS2012_ages.cpt
+  /usr/share/gmt/cpt/geological/GTS2012_eons.cpt
+  /usr/share/gmt/cpt/geological/GTS2012_epochs.cpt
+  /usr/share/gmt/cpt/geological/GTS2012_eras.cpt
+  /usr/share/gmt/cpt/geological/GTS2012_periods.cpt
+  /usr/share/gmt/cpt/geological/GeeK07.cpt
   /usr/share/gmt/cpt/gmt/abyss.cpt
   /usr/share/gmt/cpt/gmt/bathy.cpt
   /usr/share/gmt/cpt/gmt/categorical.cpt
@@ -324,6 +331,7 @@ Files included in the binary package:
   /usr/share/gmt/custom/diamond.def
   /usr/share/gmt/custom/flash.def
   /usr/share/gmt/custom/gmt_custom_symbols.conf
+  /usr/share/gmt/custom/heart.def
   /usr/share/gmt/custom/hexagon.def
   /usr/share/gmt/custom/hlens.def
   /usr/share/gmt/custom/hlozenge.def
@@ -331,6 +339,7 @@ Files included in the binary package:
   /usr/share/gmt/custom/hurricane.def
   /usr/share/gmt/custom/invtriangle.def
   /usr/share/gmt/custom/lcrescent.def
+  /usr/share/gmt/custom/leaf.def
   /usr/share/gmt/custom/lflag.def
   /usr/share/gmt/custom/ltriangle.def
   /usr/share/gmt/custom/meca.def
@@ -363,6 +372,8 @@ Files included in the binary package:
   /usr/share/gmt/localization/gmt_dk.locale
   /usr/share/gmt/localization/gmt_eh.locale
   /usr/share/gmt/localization/gmt_es.locale
+  /usr/share/gmt/localization/gmt_fa.locale
+  /usr/share/gmt/localization/gmt_fa_ascii.locale
   /usr/share/gmt/localization/gmt_fi.locale
   /usr/share/gmt/localization/gmt_fr.locale
   /usr/share/gmt/localization/gmt_gr.locale
@@ -520,6 +531,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 6.7.0-1bl1 -----
+Version bump.
 
 ----- version 6.6.0-1bl1 -----
 Version bump.

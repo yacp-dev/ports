@@ -3,27 +3,27 @@ multicharge
 Electronegativity equilibration model for atomic partial charges
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libgfortran5-13.4.0-1
-  libgomp1-13.4.0-1
+  cygwin-3.6.11-1
+  libgfortran5-14.4.0-1
+  libgomp1-14.4.0-1
   liblapack-devel-3.12.0-1
   liblapack0-3.12.0-1
-  libmctc-lib-devel-0.5.1-1bl1
-  libmctc-lib0-0.5.1-1bl1
-  libmulticharge-devel-0.5.0-1bl1
-  libmulticharge0-0.5.0-1bl1
-  libopenblas-0.3.25-1
-  pkg-config-2.5.1-1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmctc-lib0-0.7.0-1bl1
+  libmulticharge-devel-0.5.0-1bl2
+  libmulticharge0-0.5.0-1bl2
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-fortran-13.4.0-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
   liblapack-devel-3.12.0-1
-  libmctc-lib-devel-0.5.1-1bl1
-  meson-1.4.2-1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmstore-devel-0.4.0-1bl1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -83,6 +83,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.5.0-1bl1 -----
 Version bump.

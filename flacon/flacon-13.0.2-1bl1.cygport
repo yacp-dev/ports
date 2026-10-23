@@ -9,9 +9,22 @@ uses information from the appropriate CUE file. Besides, Flacon makes it
 possible to conveniently revise or specify tags both for all tracks at once or
 for each tag separately."
 
-BUILD_REQUIRES="libQt5Core-devel libQt5Gui-devel libtag-devel libuchardet-devel"
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libQt5Core-devel
+	libQt5Gui-devel
+	libiconv-devel
+	libtag-devel
+	libuchardet-devel
+	qt5-linguist-tools
+"
 
 inherit cmake
+
+CYGCMAKE_ARGS="-DUSE_QT5=ON"
 
 DOCS="
     doc/*.pdf

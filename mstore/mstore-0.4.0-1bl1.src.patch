@@ -1,5 +1,5 @@
---- origsrc/mstore-0.3.0/meson.build	2024-06-13 23:16:18.000000000 +0900
-+++ src/mstore-0.3.0/meson.build	2025-09-09 17:48:41.577676200 +0900
+--- origsrc/mstore-0.4.0/meson.build	2026-10-04 19:43:09.000000000 +0000
++++ src/mstore-0.4.0/meson.build	2026-10-23 07:53:00.661760300 +0000
 @@ -68,7 +68,7 @@ if install
      install_dir: get_option('datadir')/'licenses'/meson.project_name()
    )

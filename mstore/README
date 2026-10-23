@@ -3,44 +3,44 @@ mstore
 Molecular structure store for testing
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libgfortran5-13.4.0-1
-  libmctc-lib-devel-0.5.0-1bl1
-  libmctc-lib0-0.5.0-1bl1
-  libmstore-devel-0.3.0-1bl2
-  libmstore0-0.3.0-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgfortran5-14.4.0-1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmctc-lib0-0.7.0-1bl1
+  libmstore-devel-0.4.0-1bl1
+  libmstore0-0.4.0-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-fortran-13.4.0-1
-  libmctc-lib-devel-0.5.0-1bl1
-  meson-1.4.2-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libmctc-lib-devel-0.7.0-1bl1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/grimme-lab/mstore
 
 Canonical download:
-  https://github.com/grimme-lab/mstore/archive/refs/tags/v0.3.0.tar.gz
+  https://github.com/grimme-lab/mstore/archive/refs/tags/v0.4.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mstore-0.3.0-X-src.tar.xz
+  1. unpack mstore-0.4.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mstore-0.3.0-X.cygport all
+        % cygport ./mstore-0.4.0-X.cygport all
 
 This will create:
-  /usr/src/mstore-0.3.0-X-src.tar.xz
-  /usr/src/mstore-0.3.0-X.tar.xz
-  /usr/src/libmstore0-0.3.0-X.tar.xz
-  /usr/src/libmstore-devel-0.3.0-X.tar.xz
+  /usr/src/mstore-0.4.0-X-src.tar.xz
+  /usr/src/mstore-0.4.0-X.tar.xz
+  /usr/src/libmstore0-0.4.0-X.tar.xz
+  /usr/src/libmstore-devel-0.4.0-X.tar.xz
 
 -------------------------------------------
 
@@ -58,6 +58,7 @@ Files included in the binary package:
 (libmstore-devel)
   /usr/include/mstore/modules/mstore.mod
   /usr/include/mstore/modules/mstore_amino20x4.mod
+  /usr/include/mstore/modules/mstore_amylose.mod
   /usr/include/mstore/modules/mstore_but14diol.mod
   /usr/include/mstore/modules/mstore_data_collection.mod
   /usr/include/mstore/modules/mstore_data_record.mod
@@ -67,6 +68,8 @@ Files included in the binary package:
   /usr/include/mstore/modules/mstore_ice10.mod
   /usr/include/mstore/modules/mstore_il16.mod
   /usr/include/mstore/modules/mstore_mb16_43.mod
+  /usr/include/mstore/modules/mstore_polyalanine.mod
+  /usr/include/mstore/modules/mstore_rc21.mod
   /usr/include/mstore/modules/mstore_upu23.mod
   /usr/include/mstore/modules/mstore_version.mod
   /usr/include/mstore/modules/mstore_x23.mod
@@ -76,6 +79,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.4.0-1bl1 -----
+Version bump.
 
 ----- version 0.3.0-1bl2 -----
 Rebuild with gcc-13.4.0

@@ -1,5 +1,5 @@
---- origsrc/gammu-1.45.0/CMakeLists.txt	2026-09-16 10:35:50.000000000 +0000
-+++ src/gammu-1.45.0/CMakeLists.txt	2026-10-03 03:07:31.483033700 +0000
+--- origsrc/gammu-1.45.1/CMakeLists.txt	2026-10-19 12:44:43.000000000 +0000
++++ src/gammu-1.45.1/CMakeLists.txt	2026-10-23 06:14:19.598804800 +0000
 @@ -555,12 +555,12 @@ if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMP
      endif (WIN32 AND NOT CYGWIN AND BUILD_SHARED_LIBS)
  
@@ -15,8 +15,8 @@
      # Specs for MinGW to change msvcrt
      # This is not supported by MinGW and is broken currently
  #    if (CMAKE_COMPILER_IS_MINGW)
---- origsrc/gammu-1.45.0/cmake/templates/gammu-config.h.cmake	2026-09-16 10:35:50.000000000 +0000
-+++ src/gammu-1.45.0/cmake/templates/gammu-config.h.cmake	2026-10-03 03:07:31.485049200 +0000
+--- origsrc/gammu-1.45.1/cmake/templates/gammu-config.h.cmake	2026-10-19 12:44:43.000000000 +0000
++++ src/gammu-1.45.1/cmake/templates/gammu-config.h.cmake	2026-10-23 06:14:19.598804800 +0000
 @@ -384,7 +384,7 @@
  #define GAMMU_DATA_PATH "@CMAKE_INSTALL_PREFIX@/@INSTALL_DATA_DIR@"
  
@@ -26,8 +26,19 @@
  #define HAVE_WINDOWS_SERVICE
  #define HAVE_WINDOWS_EVENT_LOG
  #endif
---- origsrc/gammu-1.45.0/smsd/services/mysql.c	2026-09-16 10:35:50.000000000 +0000
-+++ src/gammu-1.45.0/smsd/services/mysql.c	2026-10-03 03:07:31.485049200 +0000
+--- origsrc/gammu-1.45.1/smsd/core.c	2026-10-19 12:44:43.000000000 +0000
++++ src/gammu-1.45.1/smsd/core.c	2026-10-23 06:14:19.600813900 +0000
+@@ -999,7 +999,7 @@ GSM_Error SMSD_ReadConfig(const char *fi
+ 		fullpath[PATH_MAX] = 0;
+ 	}
+ 	Config->shm_key = ftok(fullpath, SMSD_SHM_VERSION);
+-	if (Config->shm_key < 0) {
++	if (Config->shm_key == (key_t) -1) {
+ 		fprintf(stderr, "Failed to generate SHM key!\n");
+ 		return FALSE;
+ 	}
+--- origsrc/gammu-1.45.1/smsd/services/mysql.c	2026-10-19 12:44:43.000000000 +0000
++++ src/gammu-1.45.1/smsd/services/mysql.c	2026-10-23 06:14:19.600813900 +0000
 @@ -10,6 +10,8 @@
  #include <time.h>
  #include <stdlib.h>

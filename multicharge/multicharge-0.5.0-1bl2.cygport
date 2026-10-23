@@ -6,12 +6,14 @@ SUMMARY="Electronegativity equilibration model for atomic partial charges"
 DESCRIPTION="${SUMMARY}"
 
 LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"l
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	gcc-fortran
 	liblapack-devel
 	libmctc-lib-devel
+	libmstore-devel
 "
 
 inherit meson

@@ -1,5 +1,5 @@
---- origsrc/multicharge-0.5.0/meson.build	2025-11-10 21:57:52.000000000 +0900
-+++ src/multicharge-0.5.0/meson.build	2026-01-04 20:48:32.531187100 +0900
+--- origsrc/multicharge-0.5.0/meson.build	2025-11-10 12:57:52.000000000 +0000
++++ src/multicharge-0.5.0/meson.build	2026-10-23 08:19:31.900462800 +0000
 @@ -74,7 +74,7 @@ if install
      install_dir: get_option('datadir')/'licenses'/meson.project_name()
    )

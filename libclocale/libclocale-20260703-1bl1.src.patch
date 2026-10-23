@@ -1,0 +1,22 @@
+--- origsrc/libclocale-20260703/Makefile.am	2026-07-03 18:57:58.000000000 +0000
++++ src/libclocale-20260703/Makefile.am	2026-10-23 04:49:40.643397000 +0000
+@@ -3,9 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
+ SUBDIRS = \
+ 	include \
+ 	common \
+-	libcerror \
+ 	libclocale \
+-	po \
+ 	manuals \
+ 	tests \
+ 	msvscpp
+--- origsrc/libclocale-20260703/configure.ac	2026-07-03 18:57:58.000000000 +0000
++++ src/libclocale-20260703/configure.ac	2026-10-23 04:49:40.643397000 +0000
+@@ -104,7 +104,6 @@ dnl Generate Makefiles
+ AC_CONFIG_FILES([Makefile])
+ AC_CONFIG_FILES([include/Makefile])
+ AC_CONFIG_FILES([common/Makefile])
+-AC_CONFIG_FILES([libcerror/Makefile])
+ AC_CONFIG_FILES([libclocale/Makefile])
+ AC_CONFIG_FILES([po/Makefile.in])
+ AC_CONFIG_FILES([po/Makevars])

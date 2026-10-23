@@ -16,6 +16,7 @@ LICENSE_URI="LICENSE-APACHE"
 
 BUILD_REQUIRES="
 	doctest
+	git
 "
 
 inherit cmake

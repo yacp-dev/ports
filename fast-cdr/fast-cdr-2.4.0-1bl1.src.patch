@@ -1,6 +1,6 @@
---- origsrc/Fast-CDR-2.3.6/CMakeLists.txt	2026-06-02 18:22:01.000000000 +0900
-+++ src/Fast-CDR-2.3.6/CMakeLists.txt	2026-06-26 16:38:47.452899600 +0900
-@@ -249,3 +249,10 @@ if(BUILD_DOCUMENTATION)
+--- origsrc/Fast-CDR-2.4.0/CMakeLists.txt	2026-07-30 09:58:50.000000000 +0000
++++ src/Fast-CDR-2.4.0/CMakeLists.txt	2026-10-23 06:46:22.905077200 +0000
+@@ -254,3 +254,10 @@ if(BUILD_DOCUMENTATION)
          COMPONENT documentation)
      endif()
  endif()
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/fast-cdr.pc.in ${CMAKE_BINARY_DIR}/fast-cdr.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/fast-cdr.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/Fast-CDR-2.3.6/fast-cdr.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/Fast-CDR-2.3.6/fast-cdr.pc.in	2026-06-26 16:38:39.863387900 +0900
+--- origsrc/Fast-CDR-2.4.0/fast-cdr.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/Fast-CDR-2.4.0/fast-cdr.pc.in	2026-10-23 06:46:22.907092800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,9 +24,9 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lfastcdr
 +Cflags: -I${includedir}
---- origsrc/Fast-CDR-2.3.6/include/fastcdr/CdrSizeCalculator.hpp	2026-06-02 18:22:01.000000000 +0900
-+++ src/Fast-CDR-2.3.6/include/fastcdr/CdrSizeCalculator.hpp	2026-06-26 15:38:31.228737100 +0900
-@@ -1059,9 +1059,9 @@ public:
+--- origsrc/Fast-CDR-2.4.0/include/fastcdr/CdrSizeCalculator.hpp	2026-07-30 09:58:50.000000000 +0000
++++ src/Fast-CDR-2.4.0/include/fastcdr/CdrSizeCalculator.hpp	2026-10-23 06:46:22.909105400 +0000
+@@ -1089,9 +1089,9 @@ public:
       * @param[inout] current_alignment Current alignment in the encoding.
       * @return Encoded size of the instance.
       */
@@ -38,7 +38,7 @@
              size_t num_elements,
              size_t& current_alignment)
      {
-@@ -1069,7 +1069,7 @@ public:
+@@ -1099,7 +1099,7 @@ public:
          {
              return 0;
          }
@@ -47,8 +47,8 @@
      }
  
      /*!
---- origsrc/Fast-CDR-2.3.6/include/fastcdr/detail/container_recursive_inspector.hpp	2026-06-02 18:22:01.000000000 +0900
-+++ src/Fast-CDR-2.3.6/include/fastcdr/detail/container_recursive_inspector.hpp	2026-06-26 14:23:30.504164300 +0900
+--- origsrc/Fast-CDR-2.4.0/include/fastcdr/detail/container_recursive_inspector.hpp	2026-07-30 09:58:50.000000000 +0000
++++ src/Fast-CDR-2.4.0/include/fastcdr/detail/container_recursive_inspector.hpp	2026-10-23 06:46:22.909105400 +0000
 @@ -40,9 +40,9 @@ constexpr bool is_multi_array_primitive(
      return true;
  }
@@ -61,12 +61,12 @@
  {
      return is_multi_array_primitive(static_cast<_T const*>(nullptr));
  }
---- origsrc/Fast-CDR-2.3.6/src/cpp/CMakeLists.txt	2026-06-02 18:22:01.000000000 +0900
-+++ src/Fast-CDR-2.3.6/src/cpp/CMakeLists.txt	2026-06-26 14:18:44.207617200 +0900
-@@ -32,9 +32,12 @@ set(${PROJECT_NAME}_source_files
-     exceptions/Exception.cpp
+--- origsrc/Fast-CDR-2.4.0/src/cpp/CMakeLists.txt	2026-07-30 09:58:50.000000000 +0000
++++ src/Fast-CDR-2.4.0/src/cpp/CMakeLists.txt	2026-10-23 06:46:22.911120300 +0000
+@@ -33,9 +33,12 @@ set(${PROJECT_NAME}_source_files
      exceptions/LockedExternalAccessException.cpp
      exceptions/NotEnoughMemoryException.cpp
+     helpers/memory_helpers.cpp
 -    FastCdr.rc
      )
  
@@ -77,20 +77,49 @@
  configure_file(${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}/config.h.in
      ${PROJECT_BINARY_DIR}/include/${PROJECT_NAME}/config.h)
  
---- origsrc/Fast-CDR-2.3.6/test/cdr/CMakeLists.txt	2026-06-02 18:22:01.000000000 +0900
-+++ src/Fast-CDR-2.3.6/test/cdr/CMakeLists.txt	2026-06-26 16:15:15.320202800 +0900
-@@ -12,13 +12,25 @@
+--- origsrc/Fast-CDR-2.4.0/src/cpp/FastCdr.cpp	2026-07-30 09:58:50.000000000 +0000
++++ src/Fast-CDR-2.4.0/src/cpp/FastCdr.cpp	2026-10-23 06:46:22.911120300 +0000
+@@ -154,12 +154,12 @@ FastCdr& FastCdr::serialize(
+ 
+         if (((last_position_ - current_position_) >= bytes_length) || resize(bytes_length))
+         {
+-#if defined(_WIN32)
++#if defined(_WIN32) || defined(__CYGWIN__)
+             serialize_array(string_t, wstrlen);
+ #else
+             current_position_.memcopy(string_t, bytes_length);
+             current_position_ += bytes_length; // size on bytes
+-#endif // if defined(_WIN32)
++#endif // if defined(_WIN32) || defined(__CYGWIN__)
+         }
+         else
+         {
+@@ -418,7 +418,7 @@ FastCdr& FastCdr::deserialize(
+         // Allocate memory.
+         string_t = reinterpret_cast<wchar_t*>(calloc(length + 1, sizeof(wchar_t))); // WStrings never serialize terminating zero
+ 
+-#if defined(_WIN32)
++#if defined(_WIN32) || defined(__CYGWIN__)
+         for (size_t idx = 0; idx < length; ++idx)
+         {
+             uint32_t temp;
+@@ -429,7 +429,7 @@ FastCdr& FastCdr::deserialize(
+ #else
+         memcpy(string_t, &current_position_, length * sizeof(wchar_t));
+         current_position_ += length * sizeof(wchar_t);
+-#endif // if defined(_WIN32)
++#endif // if defined(_WIN32) || defined(__CYGWIN__)
+ 
+         return *this;
+     }
+--- origsrc/Fast-CDR-2.4.0/test/cdr/CMakeLists.txt	2026-07-30 09:58:50.000000000 +0000
++++ src/Fast-CDR-2.4.0/test/cdr/CMakeLists.txt	2026-10-23 06:46:22.913131900 +0000
+@@ -12,13 +12,19 @@
  # See the License for the specific language governing permissions and
  # limitations under the License.
  
 +if(WIN32 OR CYGWIN)
-+    set(FASTCDR_DLL_PATH "$<TARGET_FILE_DIR:fastcdr>")
-+    set(GTEST_DLL_PATHS "$<TARGET_FILE_DIR:GTest::gtest>")
-+    set(TEST_PATH_ENV "PATH=${FASTCDR_DLL_PATH};${GTEST_DLL_PATHS};$ENV{PATH}")
-+    set(GTEST_DISCOVER_EXTRA_ARGS
-+        PROPERTIES ENVIRONMENT "${TEST_PATH_ENV}"
-+        DISCOVERY_MODE PRE_TEST
-+    )
++    set(GTEST_DISCOVER_EXTRA_ARGS DISCOVERY_MODE PRE_TEST)
 +else()
 +    set(GTEST_DISCOVER_EXTRA_ARGS "")
 +endif()
@@ -106,7 +135,7 @@
  
  ###############################################################################
  # array_as_std_vector tests
-@@ -26,7 +38,7 @@ gtest_discover_tests(FixedSizeStringTest
+@@ -26,7 +32,7 @@ gtest_discover_tests(FixedSizeStringTest
  add_executable(ArrayAsSTDVectorTests array_as_std_vector.cpp)
  set_common_compile_options(ArrayAsSTDVectorTests)
  target_link_libraries(ArrayAsSTDVectorTests fastcdr GTest::gtest_main)
@@ -115,15 +144,18 @@
  
  ###############################################################################
  # Old cdr unit tests
-@@ -35,4 +47,4 @@ set(UNITTESTS_SOURCE SimpleTest.cpp Resi
+@@ -35,7 +41,7 @@ set(UNITTESTS_SOURCE SimpleTest.cpp Resi
  add_executable(UnitTests ${UNITTESTS_SOURCE})
  set_common_compile_options(UnitTests)
  target_link_libraries(UnitTests fastcdr GTest::gtest_main)
 -gtest_discover_tests(UnitTests)
 +gtest_discover_tests(UnitTests ${GTEST_DISCOVER_EXTRA_ARGS})
---- origsrc/Fast-CDR-2.3.6/test/cdr/SimpleTest.cpp	2026-06-02 18:22:01.000000000 +0900
-+++ src/Fast-CDR-2.3.6/test/cdr/SimpleTest.cpp	2026-06-26 15:26:42.347134900 +0900
-@@ -327,10 +327,10 @@ static void check_no_space(
+ 
+ ###############################################################################
+ # Bool strict serialization tests
+--- origsrc/Fast-CDR-2.4.0/test/cdr/SimpleTest.cpp	2026-07-30 09:58:50.000000000 +0000
++++ src/Fast-CDR-2.4.0/test/cdr/SimpleTest.cpp	2026-10-23 06:46:22.915408300 +0000
+@@ -364,10 +364,10 @@ static void check_no_space(
      }
  }
  
@@ -137,7 +169,7 @@
  {
      // Check good case.
      char buffer[BUFFER_LENGTH];
-@@ -346,7 +346,7 @@ static void check_no_space(
+@@ -383,7 +383,7 @@ static void check_no_space(
      {
          FastBuffer cdrbuffer(buffer, buf_size);
          Cdr cdr_des(cdrbuffer);
@@ -146,16 +178,15 @@
  
          EXPECT_THROW(cdr_des >> output_value, NotEnoughMemoryException);
      }
---- origsrc/Fast-CDR-2.3.6/test/xcdr/CMakeLists.txt	2026-06-02 18:22:01.000000000 +0900
-+++ src/Fast-CDR-2.3.6/test/xcdr/CMakeLists.txt	2026-06-26 16:26:34.062623500 +0900
-@@ -28,4 +28,11 @@ set(XCDR_TEST_SOURCE
+--- origsrc/Fast-CDR-2.4.0/test/xcdr/CMakeLists.txt	2026-07-30 09:58:50.000000000 +0000
++++ src/Fast-CDR-2.4.0/test/xcdr/CMakeLists.txt	2026-10-23 06:46:22.916905300 +0000
+@@ -28,4 +28,10 @@ set(XCDR_TEST_SOURCE
  add_executable(xcdr_tests ${XCDR_TEST_SOURCE})
  set_common_compile_options(xcdr_tests)
  target_link_libraries(xcdr_tests fastcdr GTest::gtest_main)
 -gtest_discover_tests(xcdr_tests)
 +if(WIN32 OR CYGWIN)
 +    gtest_discover_tests(xcdr_tests
-+        PROPERTIES ENVIRONMENT "PATH=$<TARGET_FILE_DIR:fastcdr>;$<TARGET_FILE_DIR:GTest::gtest>;$ENV{PATH}"
 +        DISCOVERY_MODE PRE_TEST
 +    )
 +else()

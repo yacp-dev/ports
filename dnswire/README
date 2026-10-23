@@ -1,30 +1,31 @@
 dnswire
 ------------------------------------------
-A C library for encoding/decoding different DNS encapsulations and
-transporting them over different protocols.
+A C library for encoding/decoding different DNS encapsulations and transporting
+them over different protocols.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libdnswire-devel-0.5.0-1bl1
-  libdnswire1-0.5.0-1bl1
-  libprotobuf-c-devel-1.5.2-1bl1
-  libprotobuf-c1-1.5.2-1bl1
-  libtinyframe-devel-0.1.1-1bl1
-  libtinyframe0-0.1.1-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libdnswire-devel-0.5.1-1bl1
+  libdnswire1-0.5.1-1bl1
+  libprotobuf-c-devel-1.5.2-1bl2
+  libprotobuf-c1-1.5.2-1bl2
+  libtinyframe-devel-0.1.2-1bl1
+  libtinyframe0-0.1.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  libprotobuf-c-devel-1.5.2-1bl1
-  libprotobuf-devel-21.12-1
-  libtinyframe-devel-0.1.1-1bl1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.10-1
+  gcc-core-14.4.0-1
+  libprotobuf-c-devel-1.5.2-1bl2
+  libtinyframe-devel-0.1.2-1bl1
+  libtool-2.6.2-1
+  libuv-devel-1.53.0-1
   make-4.4.1-2
+  protobuf-c-1.5.2-1bl2
 
 Canonical website:
   https://codeberg.org/DNS-OARC/dnswire
@@ -35,17 +36,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack dnswire-0.5.0-X-src.tar.xz
+  1. unpack dnswire-0.5.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./dnswire-0.5.0-X.cygport all
+        % cygport ./dnswire-0.5.1-X.cygport all
 
 This will create:
-  /usr/src/dnswire-0.5.0-X-src.tar.xz
-  /usr/src/dnswire-0.5.0-X.tar.xz
-  /usr/src/libdnswire1-0.5.0-X.tar.xz
-  /usr/src/libdnswire-devel-0.5.0-X.tar.xz
+  /usr/src/dnswire-0.5.1-X-src.tar.xz
+  /usr/src/dnswire-0.5.1-X.tar.xz
+  /usr/src/libdnswire1-0.5.1-X.tar.xz
+  /usr/src/libdnswire-devel-0.5.1-X.tar.xz
 
 -------------------------------------------
 
@@ -78,6 +79,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.1-1bl1 -----
+Version bump.
 
 ----- version 0.5.0-1bl1 -----
 Version bump.

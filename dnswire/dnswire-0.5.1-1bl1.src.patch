@@ -1,5 +1,5 @@
---- origsrc/dnswire/src/Makefile.am	2026-03-17 12:05:40.000000000 +0900
-+++ src/dnswire/src/Makefile.am	2026-03-17 12:05:46.799203100 +0900
+--- origsrc/dnswire/src/Makefile.am	2026-10-23 07:46:19.000000000 +0000
++++ src/dnswire/src/Makefile.am	2026-10-23 07:46:21.759925500 +0000
 @@ -18,7 +18,7 @@ nobase_include_HEADERS = dnswire/decoder
    dnswire/dnswire.h dnswire/encoder.h dnswire/reader.h dnswire/writer.h
  nobase_nodist_include_HEADERS = dnswire/version.h dnswire/dnstap.pb-c.h \
@@ -9,8 +9,8 @@
    $(protobuf_c_LIBS) \
    $(tinyframe_LIBS)
  
---- origsrc/dnswire/src/test/Makefile.am	2026-03-17 12:05:40.000000000 +0900
-+++ src/dnswire/src/test/Makefile.am	2026-03-17 12:05:46.799203100 +0900
+--- origsrc/dnswire/src/test/Makefile.am	2026-10-23 07:46:19.000000000 +0000
++++ src/dnswire/src/test/Makefile.am	2026-10-23 07:46:21.761491000 +0000
 @@ -17,47 +17,47 @@ EXTRA_DIST = create_dnstap.c print_dnsta
  
  reader_read_SOURCES = reader_read.c

@@ -11,6 +11,8 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
+REQUIRES="perl-libwww-perl"
+
 src_compile()
 {
 	:

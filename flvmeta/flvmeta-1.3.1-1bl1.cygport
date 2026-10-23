@@ -1,5 +1,5 @@
-HOMEPAGE="https://www.flvmeta.com/"
-SRC_URI="https://flvmeta.com/files/${P}.tar.gz"
+HOMEPAGE="https://github.com/noirotm/${PN}"
+SRC_URI="https://github.com/noirotm/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Video"
 SUMMARY="Manipulate Adobe flash video file"
@@ -10,7 +10,9 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="LICENSE.md"
 
-BUILD_REQUIRES="libyaml-devel"
+BUILD_REQUIRES="
+	libyaml-devel
+"
 
 inherit cmake
 

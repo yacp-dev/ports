@@ -1,5 +1,5 @@
---- origsrc/g3log-2.6.1/Build.cmake	2026-08-03 22:24:05.000000000 +0000
-+++ src/g3log-2.6.1/Build.cmake	2026-10-14 15:09:19.081393800 +0000
+--- origsrc/g3log-2.6.2/Build.cmake	2026-10-19 22:28:55.000000000 +0000
++++ src/g3log-2.6.2/Build.cmake	2026-10-23 04:52:14.735044000 +0000
 @@ -102,7 +102,7 @@ FIND_PACKAGE(Threads REQUIRED)
  TARGET_LINK_LIBRARIES(${G3LOG_LIBRARY} Threads::Threads )
  
@@ -9,8 +9,8 @@
  	# the backtrace module does not provide a modern cmake target
  	FIND_PACKAGE(Backtrace REQUIRED)
  	if(Backtrace_FOUND)
---- origsrc/g3log-2.6.1/CMakeLists.txt	2026-08-03 22:24:05.000000000 +0000
-+++ src/g3log-2.6.1/CMakeLists.txt	2026-10-14 15:09:19.083415200 +0000
+--- origsrc/g3log-2.6.2/CMakeLists.txt	2026-10-19 22:28:55.000000000 +0000
++++ src/g3log-2.6.2/CMakeLists.txt	2026-10-23 04:52:14.735567300 +0000
 @@ -170,3 +170,10 @@ if(NOT MSVC)
    add_custom_target(clean-cmake COMMAND ${CMAKE_COMMAND} -P
                                          ${g3log_SOURCE_DIR}/CleanAll.cmake)
@@ -22,8 +22,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/g3log.pc.in ${CMAKE_BINARY_DIR}/g3log.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/g3log.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/g3log-2.6.1/g3log.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/g3log-2.6.1/g3log.pc.in	2026-10-14 15:09:19.083415200 +0000
+--- origsrc/g3log-2.6.2/g3log.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/g3log-2.6.2/g3log.pc.in	2026-10-23 04:52:14.737058900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -35,8 +35,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lg3log
 +Cflags: -I${includedir}
---- origsrc/g3log-2.6.1/src/crashhandler_unix.cpp	2026-08-03 22:24:05.000000000 +0000
-+++ src/g3log-2.6.1/src/crashhandler_unix.cpp	2026-10-14 15:09:19.085436200 +0000
+--- origsrc/g3log-2.6.2/src/crashhandler_unix.cpp	2026-10-19 22:28:55.000000000 +0000
++++ src/g3log-2.6.2/src/crashhandler_unix.cpp	2026-10-23 04:52:14.737586700 +0000
 @@ -16,7 +16,9 @@
  #endif
  
@@ -61,8 +61,8 @@
  
           // dump stack: skip first frame, since that is here
           std::ostringstream oss;
---- origsrc/g3log-2.6.1/test_unit/Test.cmake	2026-08-03 22:24:05.000000000 +0000
-+++ src/g3log-2.6.1/test_unit/Test.cmake	2026-10-14 15:09:19.085436200 +0000
+--- origsrc/g3log-2.6.2/test_unit/Test.cmake	2026-10-19 22:28:55.000000000 +0000
++++ src/g3log-2.6.2/test_unit/Test.cmake	2026-10-23 04:52:14.739608800 +0000
 @@ -23,6 +23,7 @@
     # 4. create the unit tests for g3log --- ONLY TESTED THE UNIT TEST ON LINUX
     # =========================

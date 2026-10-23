@@ -1,5 +1,5 @@
---- origsrc/freeradius-client-release_1_1_7/lib/Makefile.am	2015-01-20 01:18:26.000000000 +0900
-+++ src/freeradius-client-release_1_1_7/lib/Makefile.am	2024-11-08 16:38:42.635000100 +0900
+--- origsrc/freeradius-client-release_1_1_8/lib/Makefile.am	2021-07-29 14:49:30.000000000 +0000
++++ src/freeradius-client-release_1_1_8/lib/Makefile.am	2026-10-23 04:50:59.668610400 +0000
 @@ -27,6 +27,6 @@ if !ENABLE_NETTLE
  libfreeradius_client_la_SOURCES += md5.c md5.h
  endif

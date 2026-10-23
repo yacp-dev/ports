@@ -1,37 +1,35 @@
 gammu
 ------------------------------------------
-Gammu is command line utility and library to work with mobile phones
-from many vendors. Support for different models differs, but basic
-functions should work with majority of them. Program can work with
-contacts, messages (SMS, EMS and MMS), calendar, todos, filesystem,
-integrated radio, camera, etc. It also supports daemon mode to send and
-receive SMSes.
+Gammu is command line utility and library to work with mobile phones from many
+vendors. Support for different models differs, but basic functions should work
+with majority of them. Program can work with contacts, messages (SMS, EMS and
+MMS), calendar, todos, filesystem, integrated radio, camera, etc. It also
+supports daemon mode to send and receive SMSes.
 
 Runtime requirements:
   bash-5.2.21-1
   cygwin-3.6.11-1
   cygwin-devel-3.6.11-1
-  libGammu-devel-1.45.0-1bl1
-  libGammu8-1.45.0-1bl1
+  libGammu-devel-1.45.1-1bl1
+  libGammu8-1.45.1-1bl1
   libdbi1-0.9.0-1
-  libglib2.0_0-2.90.0-1
+  libglib2.0_0-2.90.1-1
   libiconv2-1.19-2
   libintl8-0.22.5-1
   libiodbc2-3.52.8-2
   libmariadb3-3.3.19-1
   libpq5-18.6-1
-  pkg-config-3.0.7-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.4.3-1
+  cmake-4.4.4-1
   cygport-0.37.10-1
   gcc-core-14.4.0-1
-  gcc-g++-14.4.0-1
   gettext-devel-0.22.5-1
   libdbi-devel-0.9.0-1
-  libglib2.0-devel-2.90.0-1
+  libglib2.0-devel-2.90.1-1
   libiconv-devel-1.19-2
   libintl-devel-0.22.5-1
   libiodbc-devel-3.52.8-2
@@ -43,22 +41,22 @@ Canonical website:
   https://github.com/gammu/gammu/
 
 Canonical download:
-  https://github.com/gammu/gammu/archive/refs/tags/1.45.0.tar.gz
+  https://github.com/gammu/gammu/archive/refs/tags/1.45.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack gammu-1.45.0-X-src.tar.xz
+  1. unpack gammu-1.45.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./gammu-1.45.0-X.cygport all
+        % cygport ./gammu-1.45.1-X.cygport all
 
 This will create:
-  /usr/src/gammu-1.45.0-X-src.tar.xz
-  /usr/src/gammu-1.45.0-X.tar.xz
-  /usr/src/libGammu8-1.45.0-X.tar.xz
-  /usr/src/libGammu-devel-1.45.0-X.tar.xz
+  /usr/src/gammu-1.45.1-X-src.tar.xz
+  /usr/src/gammu-1.45.1-X.tar.xz
+  /usr/src/libGammu8-1.45.1-X.tar.xz
+  /usr/src/libGammu-devel-1.45.1-X.tar.xz
 
 -------------------------------------------
 
@@ -352,6 +350,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.45.1-1bl1 -----
+Version bump.
 
 ----- version 1.45.0-1bl1 -----
 Version bump.

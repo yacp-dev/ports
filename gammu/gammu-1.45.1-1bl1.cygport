@@ -34,7 +34,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	PATH=${B}/libgammu:${PATH} ninja_test
+	PATH=${B}/libgammu:${B}/smsd:${PATH} ninja_test
 }
 
 PKG_NAMES="

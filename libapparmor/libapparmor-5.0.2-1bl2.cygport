@@ -1,6 +1,9 @@
 HOMEPAGE="https://apparmor.net/"
 SRC_URI="https://gitlab.com/apparmor/apparmor/-/archive/v${PV}/apparmor-v${PV}.tar.bz2"
 SRC_DIR="apparmor-v${PV}"
+PATCH_URI="
+	https://gitlab.com/apparmor/apparmor/-/commit/6b80489953728aab8aeb4f9075283feb26e2e262.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Effective and easy-to-use Linux application security system"
@@ -14,13 +17,17 @@ ownership. The protections provided are in addition to the kernel's
 regular access control mechanisms (including DAC) and can be used to
 restrict the superuser."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
-LICENSE_URI="LICENSE"
+LICENSE="LGPL-2.1-only"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-only"
+LICENSE_URI="libraries/libapparmor/COPYING.LGPL"
 
 BUILD_REQUIRES="
+	autoconf-archive
+	bison
+	dejagnu
+	flex
 	perl
-	python39-devel
+	python312-devel
 	swig
 "
 
@@ -43,6 +50,12 @@ src_compile()
 	cygmake
 }
 
+src_test()
+{
+	cd ${B}
+	PATH=${B}/src/.libs:${PATH} cygtest
+}
+
 DOCS="
 	libraries/${PN}/COPYING.LGPL
 	libraries/${PN}/ChangeLog
@@ -53,13 +66,18 @@ DIFF_EXCLUDES="
 	bar
 "
 
+PKG_IGNORE="
+	usr/share/doc/${PN}/LICENSE
+"
+
 PKG_NAMES="
 	libapparmor
 	libapparmor1
 	libapparmor-devel
-	python39-libapparmor
+	python312-libapparmor
 "
 libapparmor_CONTENTS="
+	--exclude=usr/share/doc/${PN}/LICENSE
 	usr/share/doc
 "
 libapparmor1_CONTENTS="
@@ -71,10 +89,10 @@ libapparmor_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man
 "
-python39_libapparmor_CONTENTS="
-	usr/lib/python3.9
+python312_libapparmor_CONTENTS="
+	usr/lib/python3.12
 "
 libapparmor_SUMMARY="${SUMMARY} (licensing & readmes)"
 libapparmor1_SUMMARY="${SUMMARY} (runtime)"
 libapparmor_devel_SUMMARY="${SUMMARY} (development)"
-python39_libapparmor_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libapparmor_SUMMARY="${SUMMARY} (python312 bindings)"

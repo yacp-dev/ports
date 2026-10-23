@@ -1,0 +1,180 @@
+--- origsrc/apparmor-v5.0.2/libraries/libapparmor/src/Makefile.am	2026-07-13 07:28:09.000000000 +0000
++++ src/apparmor-v5.0.2/libraries/libapparmor/src/Makefile.am	2026-10-23 05:56:22.896931700 +0000
+@@ -56,7 +56,7 @@ lib_LTLIBRARIES = libapparmor.la
+ noinst_HEADERS = grammar.h parser.h scanner.h af_protos.h private.h PMurHash.h
+ 
+ libapparmor_la_SOURCES = grammar.y libaalogparse.c kernel.c scanner.c private.c features.c kernel_interface.c policy_cache.c PMurHash.c
+-libapparmor_la_LDFLAGS = -version-info $(AA_LIB_CURRENT):$(AA_LIB_REVISION):$(AA_LIB_AGE) -XCClinker -Bdynamic -pthread \
++libapparmor_la_LDFLAGS = -no-undefined -version-info $(AA_LIB_CURRENT):$(AA_LIB_REVISION):$(AA_LIB_AGE) -XCClinker -Bdynamic -pthread \
+ 	-Wl,--version-script=$(top_srcdir)/src/libapparmor.map
+ 
+ pkgconfigdir = $(libdir)/pkgconfig
+@@ -68,24 +68,29 @@ CLEANFILES = libapparmor.pc
+ 	$(AM_V_GEN)cd "$(top_builddir)" && \
+ 	$(SHELL) ./config.status --file="src/$@"
+ 
++# The tests use internal symbols that the DLL does not export, so link
++# them against the objects through a convenience library instead.
++check_LTLIBRARIES = libapparmor_check.la
++libapparmor_check_la_SOURCES = $(libapparmor_la_SOURCES)
++
+ tst_aalogmisc_SOURCES = tst_aalogmisc.c
+-tst_aalogmisc_LDADD = .libs/libapparmor.a
++tst_aalogmisc_LDADD = libapparmor_check.la
+ 
+ tst_aalogparse_cpp_SOURCES = tst_aalogparse_cpp.cpp
+-tst_aalogparse_cpp_LDADD = .libs/libapparmor.a
++tst_aalogparse_cpp_LDADD = libapparmor_check.la
+ 
+ tst_aalogparse_oldname_SOURCES = tst_aalogparse_oldname.c
+-tst_aalogparse_oldname_LDADD = .libs/libapparmor.a
++tst_aalogparse_oldname_LDADD = libapparmor_check.la
+ 
+ tst_aalogparse_reentrancy_SOURCES = tst_aalogparse_reentrancy.c
+-tst_aalogparse_reentrancy_LDADD = .libs/libapparmor.a
++tst_aalogparse_reentrancy_LDADD = libapparmor_check.la
+ tst_aalogparse_reentrancy_LDFLAGS = -pthread
+ 
+ tst_features_SOURCES = tst_features.c
+-tst_features_LDADD = .libs/libapparmor.a
++tst_features_LDADD = libapparmor_check.la
+ 
+ tst_kernel_SOURCES = tst_kernel.c
+-tst_kernel_LDADD = .libs/libapparmor.a
++tst_kernel_LDADD = libapparmor_check.la
+ tst_kernel_LDFLAGS = -pthread
+ 
+ check_PROGRAMS = tst_aalogmisc tst_aalogparse_cpp tst_aalogparse_reentrancy tst_aalogparse_oldname tst_features tst_kernel
+@@ -93,6 +98,7 @@ TESTS = $(check_PROGRAMS)
+ 
+ .PHONY: check-local
+ check-local:
+-	test -f ./.libs/$(EXPECTED_SO_NAME) || { echo '*** unexpected .so name/number for libapparmor (expected $(EXPECTED_SO_NAME), the actual filename is shown below) ***' ; ls -l ./.libs/libapparmor.so.*.* ; exit 1; }
++	case "$(host_os)" in cygwin*) expected=cygapparmor-$$(($(AA_LIB_CURRENT) - $(AA_LIB_AGE))).dll ;; *) expected=$(EXPECTED_SO_NAME) ;; esac; \
++	test -f ./.libs/$$expected || { echo '*** unexpected .so name/number for libapparmor (expected '"$$expected"', the actual filename is shown below) ***' ; ls -l ./.libs/libapparmor.so.*.* ; exit 1; }
+ 
+ EXTRA_DIST = grammar.y scanner.l libapparmor.map libapparmor.pc
+--- origsrc/apparmor-v5.0.2/libraries/libapparmor/src/kernel.c	2026-07-13 07:28:09.000000000 +0000
++++ src/apparmor-v5.0.2/libraries/libapparmor/src/kernel.c	2026-10-23 05:56:22.897750500 +0000
+@@ -21,7 +21,9 @@
+ #include <unistd.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
++#if !defined(__CYGWIN__)
+ #include <sys/syscall.h>
++#endif
+ #include <sys/socket.h>
+ #include <fcntl.h>
+ #include <errno.h>
+@@ -39,10 +41,15 @@
+ # define PATH_MAX 4096
+ #endif
+ 
++#if defined(__ELF__)
+ #define symbol_version(real, name, version) \
+ 		__asm__ (".symver " #real "," #name "@" #version)
+ #define default_symbol_version(real, name, version) \
+ 		__asm__ (".symver " #real "," #name "@@" #version)
++#else
++#define symbol_version(real, name, version)
++#define default_symbol_version(real, name, version)
++#endif
+ #define DLLEXPORT __attribute__((visibility("default"),externally_visible))
+ 
+ #define UNCONFINED		"unconfined"
+@@ -1506,9 +1513,15 @@ int query_label(uint32_t mask, char *que
+ /* export multiple aa_query_label symbols to compensate for downstream
+  * releases with differing symbol versions. */
+ DLLEXPORT extern typeof((query_label)) __aa_query_label __attribute__((alias ("query_label")));
++#if defined(__ELF__)
+ symbol_version(__aa_query_label, aa_query_label, APPARMOR_1.1);
+ default_symbol_version(query_label, aa_query_label, APPARMOR_2.9);
+-
++#else
++int aa_query_label(uint32_t mask, char *query, size_t size, int *allowed, int *audited)
++{
++	return query_label(mask, query, size, allowed, audited);
++}
++#endif
+ 
+ /**
+  * aa_query_file_path_len - query access permissions for a file @path
+--- origsrc/apparmor-v5.0.2/libraries/libapparmor/swig/python/Makefile.am	2026-07-13 07:28:09.000000000 +0000
++++ src/apparmor-v5.0.2/libraries/libapparmor/swig/python/Makefile.am	2026-10-23 05:56:22.898945800 +0000
+@@ -17,7 +17,7 @@ all-local: libapparmor_wrap.c setup.py
+ 	CC="$(CC)" CFLAGS="$(PYTHON_CPPFLAGS) $(CFLAGS) $(EXTRA_WARNINGS)" LDSHARED="$(CC) -shared" LDFLAGS="$(PYTHON_LDFLAGS) $(LDFLAGS)" $(PYTHON) setup.py build
+ 
+ install-exec-local:
+-	$(PYTHON) setup.py install --root="/$(DESTDIR)" --prefix="$(prefix)"
++	$(PYTHON) setup.py install --root="$(DESTDIR)" --prefix="$(prefix)"
+ 
+ clean-local:
+ 	if test -x "$(PYTHON)"; then $(PYTHON) setup.py clean; fi
+--- origsrc/apparmor-v5.0.2/libraries/libapparmor/swig/python/test/Makefile.am	2026-07-13 07:28:09.000000000 +0000
++++ src/apparmor-v5.0.2/libraries/libapparmor/swig/python/test/Makefile.am	2026-10-23 05:56:22.900718400 +0000
+@@ -10,7 +10,7 @@ test_python.py: test_python.py.in $(top_
+ 
+ CLEANFILES = test_python.py
+ 
+-PYTHON_DIST_BUILD_PATH = '$(builddir)/../build/$$($(PYTHON) buildpath.py)'
++PYTHON_DIST_BUILD_PATH = '$(builddir)/../build/$$($(PYTHON) $(srcdir)/buildpath.py)'
+ 
+ TESTS	= test_python.py
+ TESTS_ENVIRONMENT = \
+--- origsrc/apparmor-v5.0.2/libraries/libapparmor/swig/python/test/test_python.py.in	2026-07-13 07:28:09.000000000 +0000
++++ src/apparmor-v5.0.2/libraries/libapparmor/swig/python/test/test_python.py.in	2026-10-23 05:56:22.900718400 +0000
+@@ -16,7 +16,7 @@ import unittest
+ 
+ import LibAppArmor as libapparmor
+ 
+-TESTDIR = "../../../testsuite/test_multi"
++TESTDIR = "@abs_top_srcdir@/testsuite/test_multi"
+ 
+ # map of testsuite .out entries that aren't a simple to_lower() and
+ # s/ /_/ of the field name
+--- origsrc/apparmor-v5.0.2/libraries/libapparmor/testsuite/lib/libaalogparse_init.exp	2026-07-13 07:28:09.000000000 +0000
++++ src/apparmor-v5.0.2/libraries/libapparmor/testsuite/lib/libaalogparse_init.exp	2026-10-23 05:56:22.902744700 +0000
+@@ -84,9 +84,11 @@ proc single-run { src } {
+ 
+ 
+ proc multi-run { src } {
++  global srcdir
+   set errorOccured 0
+   set path [split $src "/"]
+   set filename [lindex $path [expr [llength $path]-1]]
++  regsub {\.exe$} $filename "" filename
+ 
+   # extract basename and check extension
+ 
+@@ -111,7 +113,7 @@ proc multi-run { src } {
+ 
+   puts "Running $base_name..."
+ 
+-  set testcases [glob $base_name/*.in ]
++  set testcases [glob $srcdir/$base_name/*.in ]
+ 
+   foreach testcase $testcases {
+       set testPath [split $testcase "/"]
+@@ -124,9 +126,9 @@ proc multi-run { src } {
+ 
+       exec mkdir -p ./$base_name/out
+       set errfile ./$base_name/out/$testBase_name.err
+-      set referrfile ./$base_name/$testBase_name.err
++      set referrfile $srcdir/$base_name/$testBase_name.err
+       set outfile ./$base_name/out/$testBase_name.out
+-      set refoutfile ./$base_name/$testBase_name.out
++      set refoutfile $srcdir/$base_name/$testBase_name.out
+ 
+       # run the test
+ 
+--- origsrc/apparmor-v5.0.2/libraries/libapparmor/testsuite/libaalogparse.test/multi_test.exp	2026-07-13 07:28:09.000000000 +0000
++++ src/apparmor-v5.0.2/libraries/libapparmor/testsuite/libaalogparse.test/multi_test.exp	2026-10-23 05:56:22.902744700 +0000
+@@ -14,7 +14,7 @@
+ # are identically equal to the files "<programname>.out" and
+ # "<programname>.err".
+ 
+-if { [catch {  set filenames [glob $srcdir/*.multi] } ] } {
++if { [catch {  set filenames [glob $objdir/*.multi{,.exe}] } ] } {
+     puts "No .multi files found"
+ } else {
+     # foreach file, call multi-run (from testsuite/lib)

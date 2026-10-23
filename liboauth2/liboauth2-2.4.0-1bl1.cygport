@@ -1,9 +1,5 @@
 HOMEPAGE="https://github.com/OpenIDC/${PN}"
 SRC_URI="https://github.com/OpenIDC/${PN}/archive/refs/tags/v${PV}.tar.gz"
-PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/0001-Fix-use-of-strchr-with-new-GCC.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/0001-Few-more-fixes-for-discarded-qualifiers-in-tests.patch
-"
 
 CATEGORY="Libs"
 SUMMARY="OAuth 2.x and OpenID Connect C library"
@@ -30,19 +26,19 @@ CYGCONF_ARGS="
 
 PKG_NAMES="
 	liboauth2
-	liboauth2_0
+	liboauth2_1
 	liboauth2-devel
 "
 liboauth2_CONTENTS="
 	usr/share
 "
-liboauth2_0_CONTENTS="
-	usr/bin/cyg*-0.dll
+liboauth2_1_CONTENTS="
+	usr/bin/cyg*-1.dll
 "
 liboauth2_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 liboauth2_SUMMARY="${SUMMARY} (licensing & readmes)"
-liboauth2_0_SUMMARY="${SUMMARY} (runtime)"
+liboauth2_1_SUMMARY="${SUMMARY} (runtime)"
 liboauth2_devel_SUMMARY="${SUMMARY} (development)"

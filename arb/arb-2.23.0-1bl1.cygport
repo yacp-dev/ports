@@ -7,11 +7,21 @@ DESCRIPTION="Arb is a C library for arbitrary-precision interval arithmetic. It 
 support for both real and complex numbers. The library is thread-safe,
 portable, and extensively tested."
 
-BUILD_REQUIRES="libflint-devel libgmp-devel libmpfr-devel"
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libflint-devel
+	libgmp-devel
+	libmpfr-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_BUILD_TYPE:STRING=Release
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DARB_MAJOR:STRING=${PV[1]}
 	-DARB_MINOR:STRING=${PV[2]}
 	-DARB_PATCH:STRING=${PV[3]}
@@ -26,7 +36,7 @@ arb_CONTENTS="
 	usr/share
 "
 libarb2_CONTENTS="
-	usr/bin
+	usr/bin/cygarb-2.dll
 "
 libarb_devel_CONTENTS="
 	usr/include

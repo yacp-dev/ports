@@ -1,5 +1,5 @@
---- origsrc/arb-2.22.1/CMakeLists.txt	2022-01-25 21:07:17.000000000 +0900
-+++ src/arb-2.22.1/CMakeLists.txt	2022-04-27 16:19:01.753486500 +0900
+--- origsrc/arb-2.23.0/CMakeLists.txt	2022-01-25 21:07:17.000000000 +0900
++++ src/arb-2.23.0/CMakeLists.txt	2022-04-27 16:19:01.753486500 +0900
 @@ -2,13 +2,15 @@ cmake_minimum_required(VERSION 3.1)
  
  project(arb C)
@@ -48,8 +48,8 @@
 +  configure_file(${CMAKE_SOURCE_DIR}/arb.pc.in ${CMAKE_BINARY_DIR}/arb.pc @ONLY)
 +  install(FILES ${CMAKE_BINARY_DIR}/arb.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
 +endif()
---- origsrc/arb-2.22.1/arb.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/arb-2.22.1/arb.pc.in	2022-04-27 16:23:20.757394800 +0900
+--- origsrc/arb-2.23.0/arb.pc.in	1970-01-01 09:00:00.000000000 +0900
++++ src/arb-2.23.0/arb.pc.in	2022-04-27 16:23:20.757394800 +0900
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

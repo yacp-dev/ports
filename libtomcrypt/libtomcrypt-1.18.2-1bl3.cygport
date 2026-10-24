@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/libtom/${PN}"
 SRC_URI="https://github.com/libtom/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/libt/libtomcrypt/1.18.2-6/debian/patches/CVE-2019-17362.diff
+"
 
 CATEGORY="Libs"
 SUMMARY="Fairly comprehensive, modular and portable cryptographic toolkit"
@@ -8,7 +11,13 @@ toolkit that provides developers with a vast array of well known published
 block ciphers, one-way hash functions, chaining modes, pseudo-random number
 generators, public key cryptography and a plethora of other routines."
 
-#LICENSE="Public Domain"
+LICENSE="LicenseRef-PublicDomain OR WTFPL"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-PublicDomain OR WTFPL"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libtommath-devel
+"
 
 export CFLAGS="${CFLAGS} -DUSE_LTM -DLTM_DESC"
 

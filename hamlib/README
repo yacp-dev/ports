@@ -1,66 +1,66 @@
 hamlib
 ------------------------------------------
 The Hamlib project's purpose is to develop flexible and portable shared
-libraries that offer a standardized API to control any radio oriented
-equipment through a computer interface.
+libraries that offer a standardized API to control any radio oriented equipment
+through a computer interface.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libhamlib-devel-4.6.5-1bl1
-  libhamlib4-4.6.5-1bl1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libhamlib-devel-4.7.2-1bl1
+  libhamlib4-4.7.2-1bl1
   liblua5.3-5.3.6-4
   libreadline8-8.3-1
-  libstdc++6-13.4.0-1
+  libstdc++6-14.4.0-1
   libusb1.0-1.0.21-1
   libusb1.0-devel-1.0.21-1
-  perl_base-5.40.3-1
-  pkg-config-2.5.1-1
-  python39-3.9.16-1
+  perl_base-5.44.0-1
+  pkg-config-3.0.9-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   liblua-devel-5.3.6-4
   libreadline-devel-8.3-1
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   libusb1.0-devel-1.0.21-1
-  libxml2-devel-2.10.4-2
+  libxml2-devel-2.13.9-2
   lua-5.3.6-4
   make-4.4.1-2
-  perl-5.40.3-1
-  python39-3.9.16-1
-  python39-devel-3.9.16-1
+  perl-5.44.0-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  swig-4.5.1-1
 
 Canonical website:
   https://github.com/Hamlib/Hamlib/
 
 Canonical download:
-  https://github.com/Hamlib/Hamlib/archive/refs/tags/4.6.5.tar.gz
+  https://github.com/Hamlib/Hamlib/archive/refs/tags/4.7.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack hamlib-4.6.5-X-src.tar.xz
+  1. unpack hamlib-4.7.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./hamlib-4.6.5-X.cygport all
+        % cygport ./hamlib-4.7.2-X.cygport all
 
 This will create:
-  /usr/src/hamlib-4.6.5-X-src.tar.xz
-  /usr/src/hamlib-4.6.5-X.tar.xz
-  /usr/src/libhamlib4-4.6.5-X.tar.xz
-  /usr/src/libhamlib-devel-4.6.5-X.tar.xz
-  /usr/src/lua-hamlib-4.6.5-X.tar.xz
-  /usr/src/perl-hamlib-4.6.5-X.tar.xz
-  /usr/src/python39-hamlib-4.6.5-X.tar.xz
+  /usr/src/hamlib-4.7.2-X-src.tar.xz
+  /usr/src/hamlib-4.7.2-X.tar.xz
+  /usr/src/libhamlib4-4.7.2-X.tar.xz
+  /usr/src/libhamlib-devel-4.7.2-X.tar.xz
+  /usr/src/lua-hamlib-4.7.2-X.tar.xz
+  /usr/src/perl-hamlib-4.7.2-X.tar.xz
+  /usr/src/python312-hamlib-4.7.2-X.tar.xz
 
 -------------------------------------------
 
@@ -74,7 +74,6 @@ Files included in the binary package:
   /usr/bin/rigctld.exe
   /usr/bin/rigctlsync.exe
   /usr/bin/rigctltcp.exe
-  /usr/bin/rigfreqwalk.exe
   /usr/bin/rigmem.exe
   /usr/bin/rigsmtr.exe
   /usr/bin/rigswr.exe
@@ -101,9 +100,13 @@ Files included in the binary package:
   /usr/share/man/man1/rigctlcom.1.gz
   /usr/share/man/man1/rigctld.1.gz
   /usr/share/man/man1/rigctlsync.1.gz
+  /usr/share/man/man1/rigctltcp.1.gz
   /usr/share/man/man1/rigmem.1.gz
   /usr/share/man/man1/rigsmtr.1.gz
   /usr/share/man/man1/rigswr.1.gz
+  /usr/share/man/man1/rigtestlibusb.1.gz
+  /usr/share/man/man1/rigtestmcast.1.gz
+  /usr/share/man/man1/rigtestmcastrx.1.gz
   /usr/share/man/man1/rotctl.1.gz
   /usr/share/man/man1/rotctld.1.gz
   /usr/share/man/man7/hamlib-primer.7.gz
@@ -115,14 +118,18 @@ Files included in the binary package:
   /usr/bin/cyghamlib-4.dll
 
 (libhamlib-devel)
+  /usr/include/hamlib/amp_state.h
   /usr/include/hamlib/ampclass.h
   /usr/include/hamlib/amplifier.h
   /usr/include/hamlib/amplist.h
   /usr/include/hamlib/multicast.h
+  /usr/include/hamlib/port.h
   /usr/include/hamlib/rig.h
   /usr/include/hamlib/rig_dll.h
+  /usr/include/hamlib/rig_state.h
   /usr/include/hamlib/rigclass.h
   /usr/include/hamlib/riglist.h
+  /usr/include/hamlib/rot_state.h
   /usr/include/hamlib/rotator.h
   /usr/include/hamlib/rotclass.h
   /usr/include/hamlib/rotlist.h
@@ -136,21 +143,23 @@ Files included in the binary package:
   /usr/share/doc/hamlib/examples/luatest.lua
 
 (perl-hamlib)
-  /usr/lib/perl5/vendor_perl/5.40/x86_64-cygwin-threads/Hamlib.pm
-  /usr/lib/perl5/vendor_perl/5.40/x86_64-cygwin-threads/auto/Hamlib/Hamlib.dll
+  /usr/lib/perl5/vendor_perl/5.44/x86_64-cygwin-threads/Hamlib.pm
+  /usr/lib/perl5/vendor_perl/5.44/x86_64-cygwin-threads/auto/Hamlib/Hamlib.dll
   /usr/share/doc/hamlib/examples/perltest.pl
 
-(python39-hamlib)
-  /usr/lib/python3.9/site-packages/Hamlib.py
-  /usr/lib/python3.9/site-packages/_Hamlib.dll
-  /usr/lib/python3.9/site-packages/__pycache__/Hamlib.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/Hamlib.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/Hamlib.cpython-39.pyc
-  /usr/share/doc/hamlib/examples/py3test.py
+(python312-hamlib)
+  /usr/lib/python3.12/site-packages/Hamlib.py
+  /usr/lib/python3.12/site-packages/_Hamlib.dll
+  /usr/lib/python3.12/site-packages/__pycache__/Hamlib.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/Hamlib.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/Hamlib.cpython-312.pyc
 
 ------------------
 
 Port Notes:
+
+----- version 4.7.2-1bl1 -----
+Version bump.
 
 ----- version 4.6.5-1bl1 -----
 Version bump.

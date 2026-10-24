@@ -4,7 +4,7 @@ SRC_DIR="Hamlib-${PV}"
 PATCH_URI="
 	https://sources.debian.org/data/main/h/hamlib/4.6.5-5/debian/patches/perl-buildflags
 	https://sources.debian.org/data/main/h/hamlib/4.6.5-5/debian/patches/filepathlen
-	https://sources.debian.org/data/main/h/hamlib/4.6.5-5/debian/patches/0001-lib-precise_time.c-Remove-dead-code.patch
+	https://sources.debian.org/data/main/h/hamlib/4.7.2-2/debian/patches/build-with-swig-4.5.0.patch
 "
 
 CATEGORY="Libs"
@@ -13,8 +13,8 @@ DESCRIPTION="The Hamlib project's purpose is to develop flexible and portable sh
 libraries that offer a standardized API to control any radio oriented
 equipment through a computer interface."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND GPL-2.0-or-later"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -22,8 +22,10 @@ BUILD_REQUIRES="
 	libreadline-devel
 	libusb1.0-devel
 	libxml2-devel
+	lua
 	perl
-	python39-devel
+	python3-devel
+	swig
 "
 
 export PYTHON=python3
@@ -41,13 +43,18 @@ DIFF_EXCLUDES="
 	macros
 "
 
+src_test() {
+	cd ${B}
+	PATH=${B}/src/.libs:${PATH} cygtest
+}
+
 PKG_NAMES="
 	${PN}
 	lib${PN}4
 	lib${PN}-devel
 	lua-${PN}
 	perl-${PN}
-	python39-${PN}
+	python312-${PN}
 "
 hamlib_CONTENTS="
 	usr/bin/*.exe
@@ -72,13 +79,12 @@ perl_hamlib_CONTENTS="
 	usr/lib/perl*
 	usr/share/doc/hamlib/examples/perltest.pl
 "
-python39_hamlib_CONTENTS="
-	usr/lib/python3.9
-	usr/share/doc/hamlib/examples/py3test.py
+python312_hamlib_CONTENTS="
+	usr/lib/python3.12
 "
 hamlib_SUMMARY="${SUMMARY} (utilities)"
 libhamlib4_SUMMARY="${SUMMARY} (runtime)"
 libhamlib_devel_SUMMARY="${SUMMARY} (development)"
 lua_hamlib_SUMMARY="${SUMMARY} (lua bindings)"
 perl_hamlib_SUMMARY="${SUMMARY} (perl bindings)"
-python39_hamlib_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_hamlib_SUMMARY="${SUMMARY} (python312 bindings)"

@@ -3,16 +3,13 @@ simde
 Implementations of SIMD instruction sets
 
 Runtime requirements:
-  pkg-config-2.2.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.42-1
-  cygport-0.36.9-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  meson-1.3.2-1
-  ninja-1.12.0-1
+  cygport-0.37.11-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/simd-everywhere/simde
@@ -515,6 +512,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.8.2-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.8.2-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

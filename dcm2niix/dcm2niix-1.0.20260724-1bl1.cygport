@@ -12,18 +12,19 @@ version for Linux, MacOS, and Windows of the most recent stable release is
 included with MRIcroGL. A full manual for this software is available in the
 form of a NITRC wiki."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-2-Clause AND BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause AND MIT"
 LICENSE_URI="license.txt"
 
 BUILD_REQUIRES="
+	git
 	libjasper-devel
 	libturbojpeg-devel
 	libyaml-cpp-devel
 	zlib-devel
 "
 
-export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DJAS_NO_SET_MAX_ALIGN_T"
 
 inherit cmake
 

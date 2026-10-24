@@ -1,5 +1,5 @@
---- origsrc/mecab-0.996/Makefile.am	2012-09-30 01:44:28.000000000 +0900
-+++ src/mecab-0.996/Makefile.am	2025-12-12 16:40:40.861395400 +0900
+--- origsrc/mecab-0.996/Makefile.am	2012-09-29 16:44:28.000000000 +0000
++++ src/mecab-0.996/Makefile.am	2026-10-24 13:15:25.661590700 +0000
 @@ -89,3 +89,6 @@ export-package:
  	python googlecode_upload.py -p mecab -s mecab-python -u taku@chasen.org -w `cat ~/.googlecode_upload_password` mecab-python-@VERSION@.tar.gz
  	python googlecode_upload.py -p mecab -s mecab-java   -u taku@chasen.org -w `cat ~/.googlecode_upload_password` mecab-java-@VERSION@.tar.gz
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/mecab-0.996/configure.in	2013-02-15 17:07:36.000000000 +0900
-+++ src/mecab-0.996/configure.in	2025-12-12 16:44:47.363880900 +0900
+--- origsrc/mecab-0.996/configure.in	2013-02-15 08:07:36.000000000 +0000
++++ src/mecab-0.996/configure.in	2026-10-24 13:15:25.662837800 +0000
 @@ -37,7 +37,10 @@ AC_C_CONST
  AC_C_BIGENDIAN
  AC_CHECK_HEADERS(string.h stdlib.h unistd.h fcntl.h stdint.h \
@@ -54,8 +54,8 @@
              Makefile
  	    src/Makefile
  	    src/Makefile.msvc
---- origsrc/mecab-0.996/mecab.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/mecab-0.996/mecab.pc.in	2025-12-12 16:40:40.867855800 +0900
+--- origsrc/mecab-0.996/mecab.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/mecab-0.996/mecab.pc.in	2026-10-24 13:15:25.663620900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -67,8 +67,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lmecab
 +Cflags: -I${includedir}
---- origsrc/mecab-0.996/src/Makefile.am	2013-01-24 14:35:35.000000000 +0900
-+++ src/mecab-0.996/src/Makefile.am	2025-12-12 16:40:40.869610400 +0900
+--- origsrc/mecab-0.996/src/Makefile.am	2013-01-24 05:35:35.000000000 +0000
++++ src/mecab-0.996/src/Makefile.am	2026-10-24 13:15:25.663620900 +0000
 @@ -4,6 +4,7 @@ EXTRA_DIST = Makefile.msvc.in make.bat
  pkglibexecdir = ${libexecdir}/mecab
  INCLUDES = -DDIC_VERSION=$(DIC_VERSION) $(MECAB_NO_TLS) $(MECAB_USE_UTF8_ONLY) -DMECAB_DEFAULT_RC="\"$(MECAB_DEFAULT_RC)\""
@@ -77,8 +77,8 @@
  libmecab_la_SOURCES = viterbi.cpp tagger.cpp  utils.cpp utils.h eval.cpp iconv_utils.cpp iconv_utils.h \
                        dictionary_rewriter.h dictionary_rewriter.cpp dictionary_generator.cpp \
  	              dictionary_compiler.cpp context_id.h context_id.cpp \
---- origsrc/mecab-0.996/src/common.h	2012-09-30 01:44:27.000000000 +0900
-+++ src/mecab-0.996/src/common.h	2025-12-12 16:40:40.871620800 +0900
+--- origsrc/mecab-0.996/src/common.h	2012-09-29 16:44:27.000000000 +0000
++++ src/mecab-0.996/src/common.h	2026-10-24 13:15:25.664862900 +0000
 @@ -15,10 +15,6 @@
  #include <iostream>
  #include <sstream>
@@ -90,8 +90,8 @@
  #ifdef HAVE_CONFIG_H
  #include "config.h"
  #endif
---- origsrc/mecab-0.996/src/winmain.h	2012-10-28 13:07:01.000000000 +0900
-+++ src/mecab-0.996/src/winmain.h	2025-12-12 16:40:40.871620800 +0900
+--- origsrc/mecab-0.996/src/winmain.h	2012-10-28 04:07:01.000000000 +0000
++++ src/mecab-0.996/src/winmain.h	2026-10-24 13:15:25.665652300 +0000
 @@ -2,7 +2,7 @@
  //
  //  Copyright(C) 2001-2011 Taku Kudo <taku@chasen.org>

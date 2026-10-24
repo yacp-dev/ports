@@ -5,6 +5,8 @@ PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-15.1/debian/patches/remove-urchin.patch
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-15.1/debian/patches/0006-fix-typo.patch
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-15.1/debian/patches/fix_python_wrapper
+	https://raw.githubusercontent.com/gentoo/gentoo/0ad96e879b651cc7e8214159d5841d6b633bef8a/app-text/mecab/files/mecab-0.996-clang-16-register.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/0ad96e879b651cc7e8214159d5841d6b633bef8a/app-text/mecab/files/mecab-0.996-clang-16-binary_function.patch
 "
 
 CATEGORY="Text"
@@ -17,6 +19,7 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause OR GPL-3.0-or-later OR LGPL-
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gettext-devel
 	libiconv-devel
 "
 

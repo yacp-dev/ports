@@ -6,13 +6,15 @@ SUMMARY="Generally Applicable Atomic-Charge Dependent London Dispersion Correcti
 DESCRIPTION="This is a minimal standalone version of DFT-D4 providing the D4(EEQ)-ATM and
 D4(EEQ)-MBD methods."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
-LICENSE_URI="COPYING"
+LICENSE="LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE_URI="COPYING.LESSER"
 
 BUILD_REQUIRES="
+	gcc-fortran
 	liblapack-devel
 	libmctc-lib-devel
+	libmstore-devel
 	libmulticharge-devel
 "
 

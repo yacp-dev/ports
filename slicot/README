@@ -1,0 +1,79 @@
+slicot
+------------------------------------------
+SLICOT - Subroutine Library In COntrol Theory - is a general purpose basic
+mathematical library for control theoretical computations. The library provides
+tools to perform essential system analysis and synthesis tasks. The main
+emphasis in SLICOT is on numerical reliability of implemented algorithms and
+the numerical robustness and efficiency of routines. Providing algorithmic
+flexibility and the use of rigorous implementation and documentation standards
+are other SLICOT features.
+
+Runtime requirements:
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  liblapack0-3.12.0-1
+  libslicot-devel-5.9.1-1bl1
+  libslicot5-5.9.1-1bl1
+  pkg-config-3.0.9-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  liblapack-devel-3.12.0-1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/SLICOT/SLICOT-Reference
+
+Canonical download:
+  https://github.com/SLICOT/SLICOT-Reference/archive/refs/tags/v5.9.1.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack slicot-5.9.1-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./slicot-5.9.1-X.cygport all
+
+This will create:
+  /usr/src/slicot-5.9.1-X-src.tar.xz
+  /usr/src/slicot-5.9.1-X.tar.xz
+  /usr/src/libslicot5-5.9.1-X.tar.xz
+  /usr/src/libslicot-devel-5.9.1-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(slicot)
+  /usr/share/doc/Cygwin/slicot.README
+  /usr/share/doc/slicot/CONTRIBUTORS.md
+  /usr/share/doc/slicot/KNOWN_ISSUES.md
+  /usr/share/doc/slicot/LICENSE
+  /usr/share/doc/slicot/README.md
+  /usr/share/doc/slicot/ReleaseNotes.md
+
+(libslicot5)
+  /usr/bin/cygslicot-5.dll
+
+(libslicot-devel)
+  /usr/lib/cmake/SLICOT/SLICOTConfig.cmake
+  /usr/lib/cmake/SLICOT/SLICOTConfigVersion.cmake
+  /usr/lib/cmake/SLICOT/SLICOTTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/SLICOT/SLICOTTargets.cmake
+  /usr/lib/libslicot.dll.a
+  /usr/lib/pkgconfig/slicot.pc
+
+------------------
+
+Port Notes:
+
+----- version 5.9.1-1bl1 -----
+Initial release by fd0 <https://github.com/fd00/>

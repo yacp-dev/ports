@@ -1,0 +1,51 @@
+HOMEPAGE="https://github.com/SLICOT/SLICOT-Reference"
+SRC_URI="https://github.com/SLICOT/SLICOT-Reference/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="SLICOT-Reference-${PV}"
+
+CATEGORY="Libs"
+SUMMARY="Subroutine Library In COntrol Theory"
+DESCRIPTION="SLICOT - Subroutine Library In COntrol Theory - is a general purpose basic
+mathematical library for control theoretical computations. The library provides
+tools to perform essential system analysis and synthesis tasks. The main
+emphasis in SLICOT is on numerical reliability of implemented algorithms and
+the numerical robustness and efficiency of routines. Providing algorithmic
+flexibility and the use of rigorous implementation and documentation standards
+are other SLICOT features."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	gcc-fortran
+	liblapack-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+"
+
+DOCS="
+	KNOWN_ISSUES.md
+	ReleaseNotes.md
+"
+
+PKG_NAMES="
+	slicot
+	libslicot5
+	libslicot-devel
+"
+slicot_CONTENTS="
+	usr/share
+"
+libslicot5_CONTENTS="
+	usr/bin/cyg*-5.dll
+"
+libslicot_devel_CONTENTS="
+	usr/lib
+"
+slicot_SUMMARY="${SUMMARY} (licensing & readmes)"
+libslicot5_SUMMARY="${SUMMARY} (runtime)"
+libslicot_devel_SUMMARY="${SUMMARY} (development)"

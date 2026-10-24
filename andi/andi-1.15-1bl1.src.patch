@@ -1,5 +1,5 @@
---- origsrc/andi-0.14/src/Makefile.am	2021-11-28 22:43:24.000000000 +0900
-+++ src/andi-0.14/src/Makefile.am	2023-11-04 14:23:24.868715200 +0900
+--- origsrc/andi-1.15/src/Makefile.am	2026-02-15 10:17:23.000000000 +0000
++++ src/andi-1.15/src/Makefile.am	2026-10-24 23:11:15.491931600 +0000
 @@ -2,7 +2,7 @@ bin_PROGRAMS = andi
  
  andi_SOURCES = andi.c esa.c process.c sequence.c io.c global.h esa.h process.h sequence.h io.h dist_hack.h \
@@ -9,8 +9,8 @@
  andi_CFLAGS = $(OPENMP_CFLAGS) -Wall -Wextra -Wno-missing-field-initializers
  andi_LDADD = $(top_builddir)/libs/libpfasta.a $(top_builddir)/opt/libcompat.a
  
---- origsrc/andi-0.14/src/dist_hack.h	2021-11-28 22:43:24.000000000 +0900
-+++ src/andi-0.14/src/dist_hack.h	2023-11-04 14:34:06.668223000 +0900
+--- origsrc/andi-1.15/src/dist_hack.h	2026-02-15 10:17:23.000000000 +0000
++++ src/andi-1.15/src/dist_hack.h	2026-10-24 23:11:15.493146100 +0000
 @@ -5,7 +5,11 @@
  // clang-format off
  #ifdef FAST
@@ -36,8 +36,21 @@
  // clang-format on
  
  /** @brief This function calls dist_andi for pairs of subjects and queries, and
---- origsrc/andi-0.14/test/Makefile.am	2021-11-28 22:43:24.000000000 +0900
-+++ src/andi-0.14/test/Makefile.am	2023-11-04 14:23:51.385169000 +0900
+--- origsrc/andi-1.15/src/process.c	2026-02-15 10:17:23.000000000 +0000
++++ src/andi-1.15/src/process.c	2026-10-24 23:11:15.493957600 +0000
+@@ -22,9 +22,7 @@
+ int calculate_bootstrap(const struct model *M, const seq_t *sequences,
+ 						size_t n);
+ 
+-typedef _Bool bool;
+-#define false 0
+-#define true !false
++#include <stdbool.h>
+ 
+ /**
+  * @brief This structure captures properties of an anchor.
+--- origsrc/andi-1.15/test/Makefile.am	2026-02-15 10:17:23.000000000 +0000
++++ src/andi-1.15/test/Makefile.am	2026-10-24 23:11:15.495979600 +0000
 @@ -2,17 +2,17 @@ check_PROGRAMS = test_esa test_seq test_
  dist_noinst_DATA = test_extra.sh test_random.sh test_join.sh nan.sh low_homo.sh
  

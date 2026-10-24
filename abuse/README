@@ -6,42 +6,40 @@ creatures to destroy. It is now maintained by Sam Hocevar in an attempt to
 prevent it from vanishing from the Internet.
 
 Runtime requirements:
-  cygwin-3.1.7-1
-  libgcc1-10.2.0-1
-  libGL1-19.1.6-1
-  libSDL1.2_0-1.2.15-3
-  libSDL_mixer1.2_0-1.2.12-4
-  libstdc++6-10.2.0-1
+  cygwin-3.6.11-1
+  libSDL2_2.0_0-2.32.74-1
+  libSDL2_mixer2.0_0-2.0.2-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-11-1
-  binutils-2.34+1git.de9c1b7cfe-1
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  gcc-g++-10.2.0-1
-  libtool-2.4.6-7
-  make-4.3-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libSDL2-devel-2.32.74-1
+  libSDL2_mixer-devel-2.0.2-1
+  ninja-1.13.2-1
 
 Canonical website:
-  http://abuse.zoy.org/
+  https://github.com/Xenoveritas/abuse
 
 Canonical download:
-  http://abuse.zoy.org/raw-attachment/wiki/download/abuse-0.8.tar.gz
+  https://github.com/Xenoveritas/abuse/archive/refs/tags/v0.9.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack abuse-0.8-X-src.tar.xz
+  1. unpack abuse-0.9.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./abuse-0.8-X.cygport all
+        % cygport ./abuse-0.9.1-X.cygport all
 
 This will create:
-  /usr/src/abuse-0.8-X-src.tar.xz
-  /usr/src/abuse-0.8-X.tar.xz
+  /usr/src/abuse-0.9.1-X-src.tar.xz
+  /usr/src/abuse-0.9.1-X.tar.xz
 
 -------------------------------------------
 
@@ -55,11 +53,9 @@ Files included in the binary package:
   /usr/share/doc/abuse/COPYING
   /usr/share/doc/abuse/ChangeLog
   /usr/share/doc/abuse/NEWS
-  /usr/share/doc/abuse/README
-  /usr/share/doc/abuse/TODO
-  /usr/share/games/abuse/abuse.bmp
+  /usr/share/doc/abuse/README.md
+  /usr/share/doc/abuse/TODO.md
   /usr/share/games/abuse/abuse.lsp
-  /usr/share/games/abuse/abuse.png
   /usr/share/games/abuse/addon/aliens/adie01.wav
   /usr/share/games/abuse/addon/aliens/adie02.wav
   /usr/share/games/abuse/addon/aliens/adie03.wav
@@ -608,6 +604,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.9.1-1bl1 -----
+Version bump.
 
 ----- version 0.8-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

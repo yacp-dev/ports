@@ -1,9 +1,0 @@
-HOMEPAGE="http://${PN}.zoy.org/"
-SRC_URI="http://${PN}.zoy.org/raw-attachment/wiki/download/${P}.tar.gz"
-
-CATEGORY="Games"
-SUMMARY="Dark 2D side-scrolling platform game"
-DESCRIPTION="Abuse is a dark 2D side-scrolling platform game developed by Crack dot Com in
-1995. It features beautiful lighting, realistic animation and nasty alien-like
-creatures to destroy. It is now maintained by Sam Hocevar in an attempt to
-prevent it from vanishing from the Internet."

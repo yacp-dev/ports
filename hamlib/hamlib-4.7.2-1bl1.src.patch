@@ -1,0 +1,19 @@
+--- origsrc/Hamlib-4.7.2/bindings/Makefile.am	2026-06-21 13:07:37.000000000 +0000
++++ src/Hamlib-4.7.2/bindings/Makefile.am	2026-10-24 12:43:02.113986600 +0000
+@@ -216,14 +216,14 @@ nodist_Hamliblua_la_SOURCES = hamliblua_
+ 
+ Hamliblua_la_CPPFLAGS = $(LUA_INCLUDE) -I$(top_srcdir)/include -I$(top_srcdir)/src
+ Hamliblua_la_LDFLAGS = -no-undefined -module -avoid-version
+-Hamliblua_la_LIBADD = $(top_builddir)/src/libhamlib.la
++Hamliblua_la_LIBADD = $(top_builddir)/src/libhamlib.la $(LUA_LIB)
+ Hamliblua_ladir = $(luaexecdir)
+ Hamliblua_la_LTLIBRARIES = $(luaexec_ltlib)
+ 
+ all-lua: $(luaexec_ltlib)
+ 
+ check-lua: all-lua
+-	$(AM_V_at)LUA_CPATH="$(abs_builddir)/.libs/?.so" $(LUA) $(srcdir)/luatest.lua
++	$(AM_V_at)LUA_CPATH="$(abs_builddir)/.libs/?.so;$(abs_builddir)/.libs/?.dll" $(LUA) $(srcdir)/luatest.lua
+ 
+ Hamlib.lua: hamliblua_wrap.c
+ 

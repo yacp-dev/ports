@@ -4,40 +4,40 @@ Freundlich's C++ Toolkit (fcppt) is a collection of libraries that aim to
 improve general C++ code through better typing and functional programming.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libfcppt5.0-5.0.0-1bl1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
+  cygwin-3.6.11-1
+  libfcppt5.2-5.2.0-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.4-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libCatch2-devel-3.16.1-1bl1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/cpreh/fcppt
 
 Canonical download:
-  https://github.com/cpreh/fcppt/archive/refs/tags/5.0.0.tar.gz
+  https://github.com/cpreh/fcppt/archive/refs/tags/5.2.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack fcppt-5.0.0-X-src.tar.xz
+  1. unpack fcppt-5.2.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./fcppt-5.0.0-X.cygport all
+        % cygport ./fcppt-5.2.0-X.cygport all
 
 This will create:
-  /usr/src/fcppt-5.0.0-X-src.tar.xz
-  /usr/src/fcppt-5.0.0-X.tar.xz
-  /usr/src/libfcppt5.0-5.0.0-X.tar.xz
-  /usr/src/libfcppt-devel-5.0.0-X.tar.xz
+  /usr/src/fcppt-5.2.0-X-src.tar.xz
+  /usr/src/fcppt-5.2.0-X.tar.xz
+  /usr/src/libfcppt5.2-5.2.0-X.tar.xz
+  /usr/src/libfcppt-devel-5.2.0-X.tar.xz
 
 -------------------------------------------
 
@@ -49,11 +49,11 @@ Files included in the binary package:
   /usr/share/doc/fcppt/README.markdown
   /usr/share/doc/fcppt/todo.txt
 
-(libfcppt5.0)
-  /usr/bin/cygfcppt_core-5.0.dll
-  /usr/bin/cygfcppt_filesystem-5.0.dll
-  /usr/bin/cygfcppt_log-5.0.dll
-  /usr/bin/cygfcppt_options-5.0.dll
+(libfcppt5.2)
+  /usr/bin/cygfcppt_core-5.2.dll
+  /usr/bin/cygfcppt_filesystem-5.2.dll
+  /usr/bin/cygfcppt_log-5.2.dll
+  /usr/bin/cygfcppt_options-5.2.dll
 
 (libfcppt-devel)
   /usr/include/fcppt/absurd.hpp
@@ -96,6 +96,7 @@ Files included in the binary package:
   /usr/include/fcppt/algorithm/map_tuple.hpp
   /usr/include/fcppt/algorithm/remove.hpp
   /usr/include/fcppt/algorithm/remove_if.hpp
+  /usr/include/fcppt/algorithm/remove_suffix.hpp
   /usr/include/fcppt/algorithm/repeat.hpp
   /usr/include/fcppt/algorithm/reverse.hpp
   /usr/include/fcppt/algorithm/sequence_iteration.hpp
@@ -431,6 +432,7 @@ Files included in the binary package:
   /usr/include/fcppt/container/uncons.hpp
   /usr/include/fcppt/container/uncons_result.hpp
   /usr/include/fcppt/container/uncons_result_fwd.hpp
+  /usr/include/fcppt/container/uncons_string_view.hpp
   /usr/include/fcppt/copy.hpp
   /usr/include/fcppt/cyclic_iterator.hpp
   /usr/include/fcppt/cyclic_iterator_decl.hpp
@@ -453,9 +455,6 @@ Files included in the binary package:
   /usr/include/fcppt/detail/check_cpp.hpp
   /usr/include/fcppt/detail/const.hpp
   /usr/include/fcppt/detail/cyclic_iterator_base.hpp
-  /usr/include/fcppt/detail/indent/extra.hpp
-  /usr/include/fcppt/detail/indent/level.hpp
-  /usr/include/fcppt/detail/indent/print.hpp
   /usr/include/fcppt/detail/main.hpp
   /usr/include/fcppt/detail/main_wchar.hpp
   /usr/include/fcppt/detail/make_char_literals.hpp
@@ -480,6 +479,7 @@ Files included in the binary package:
   /usr/include/fcppt/either/bind.hpp
   /usr/include/fcppt/either/comparison.hpp
   /usr/include/fcppt/either/construct.hpp
+  /usr/include/fcppt/either/detail/successes_unsafe.hpp
   /usr/include/fcppt/either/error.hpp
   /usr/include/fcppt/either/error_from_optional.hpp
   /usr/include/fcppt/either/error_fwd.hpp
@@ -488,6 +488,7 @@ Files included in the binary package:
   /usr/include/fcppt/either/failure_reference_type.hpp
   /usr/include/fcppt/either/failure_type.hpp
   /usr/include/fcppt/either/first_success.hpp
+  /usr/include/fcppt/either/from.hpp
   /usr/include/fcppt/either/from_optional.hpp
   /usr/include/fcppt/either/is_object.hpp
   /usr/include/fcppt/either/is_object_v.hpp
@@ -513,6 +514,7 @@ Files included in the binary package:
   /usr/include/fcppt/either/partition_result.hpp
   /usr/include/fcppt/either/partition_result_fwd.hpp
   /usr/include/fcppt/either/sequence.hpp
+  /usr/include/fcppt/either/sequence_all.hpp
   /usr/include/fcppt/either/sequence_error.hpp
   /usr/include/fcppt/either/success_move_type.hpp
   /usr/include/fcppt/either/success_opt.hpp
@@ -619,6 +621,10 @@ Files included in the binary package:
   /usr/include/fcppt/hash.hpp
   /usr/include/fcppt/hash_combine.hpp
   /usr/include/fcppt/identity.hpp
+  /usr/include/fcppt/indent/extra.hpp
+  /usr/include/fcppt/indent/level.hpp
+  /usr/include/fcppt/indent/print.hpp
+  /usr/include/fcppt/indent/start.hpp
   /usr/include/fcppt/insert_extract_locale.hpp
   /usr/include/fcppt/int_iterator_decl.hpp
   /usr/include/fcppt/int_iterator_fwd.hpp
@@ -1130,6 +1136,7 @@ Files included in the binary package:
   /usr/include/fcppt/mpl/set/unique.hpp
   /usr/include/fcppt/mpl/size_type.hpp
   /usr/include/fcppt/mpl/size_type_concept.hpp
+  /usr/include/fcppt/mpl/type.hpp
   /usr/include/fcppt/narrow.hpp
   /usr/include/fcppt/narrow_locale.hpp
   /usr/include/fcppt/no_init.hpp
@@ -1177,6 +1184,7 @@ Files included in the binary package:
   /usr/include/fcppt/optional/reference.hpp
   /usr/include/fcppt/optional/reference_fwd.hpp
   /usr/include/fcppt/optional/reference_type.hpp
+  /usr/include/fcppt/optional/return_if.hpp
   /usr/include/fcppt/optional/sequence.hpp
   /usr/include/fcppt/optional/std_hash.hpp
   /usr/include/fcppt/optional/to_container.hpp
@@ -1219,16 +1227,19 @@ Files included in the binary package:
   /usr/include/fcppt/options/deref.hpp
   /usr/include/fcppt/options/deref_type.hpp
   /usr/include/fcppt/options/detail/apply.hpp
+  /usr/include/fcppt/options/detail/check_name.hpp
   /usr/include/fcppt/options/detail/check_short_long_names.hpp
   /usr/include/fcppt/options/detail/check_sub_command_names.hpp
-  /usr/include/fcppt/options/detail/combine_errors.hpp
+  /usr/include/fcppt/options/detail/combine_errors_product.hpp
+  /usr/include/fcppt/options/detail/combine_errors_sum.hpp
   /usr/include/fcppt/options/detail/concrete_decl.hpp
   /usr/include/fcppt/options/detail/concrete_fwd.hpp
   /usr/include/fcppt/options/detail/concrete_impl.hpp
-  /usr/include/fcppt/options/detail/flag_is_short.hpp
   /usr/include/fcppt/options/detail/help_label.hpp
   /usr/include/fcppt/options/detail/left_tag.hpp
   /usr/include/fcppt/options/detail/missing_error_to_error.hpp
+  /usr/include/fcppt/options/detail/option_name_equal.hpp
+  /usr/include/fcppt/options/detail/option_name_hash.hpp
   /usr/include/fcppt/options/detail/parse_to_empty.hpp
   /usr/include/fcppt/options/detail/pop_arg.hpp
   /usr/include/fcppt/options/detail/right_tag.hpp
@@ -1249,8 +1260,10 @@ Files included in the binary package:
   /usr/include/fcppt/options/error.hpp
   /usr/include/fcppt/options/error_fwd.hpp
   /usr/include/fcppt/options/error_output.hpp
-  /usr/include/fcppt/options/error_pair.hpp
-  /usr/include/fcppt/options/error_pair_fwd.hpp
+  /usr/include/fcppt/options/error_product.hpp
+  /usr/include/fcppt/options/error_product_fwd.hpp
+  /usr/include/fcppt/options/error_sum.hpp
+  /usr/include/fcppt/options/error_sum_fwd.hpp
   /usr/include/fcppt/options/error_variant.hpp
   /usr/include/fcppt/options/error_variant_fwd.hpp
   /usr/include/fcppt/options/exception.hpp
@@ -1275,6 +1288,10 @@ Files included in the binary package:
   /usr/include/fcppt/options/inactive_value_tag.hpp
   /usr/include/fcppt/options/invalid_command_error.hpp
   /usr/include/fcppt/options/invalid_command_error_fwd.hpp
+  /usr/include/fcppt/options/invalid_name.hpp
+  /usr/include/fcppt/options/invalid_name_fwd.hpp
+  /usr/include/fcppt/options/is_short.hpp
+  /usr/include/fcppt/options/is_short_fwd.hpp
   /usr/include/fcppt/options/left.hpp
   /usr/include/fcppt/options/left_fwd.hpp
   /usr/include/fcppt/options/leftover_error.hpp
@@ -1304,8 +1321,10 @@ Files included in the binary package:
   /usr/include/fcppt/options/missing_command_error_fwd.hpp
   /usr/include/fcppt/options/missing_error.hpp
   /usr/include/fcppt/options/missing_error_fwd.hpp
-  /usr/include/fcppt/options/missing_error_pair.hpp
-  /usr/include/fcppt/options/missing_error_pair_fwd.hpp
+  /usr/include/fcppt/options/missing_error_product.hpp
+  /usr/include/fcppt/options/missing_error_product_fwd.hpp
+  /usr/include/fcppt/options/missing_error_sum.hpp
+  /usr/include/fcppt/options/missing_error_sum_fwd.hpp
   /usr/include/fcppt/options/missing_error_variant.hpp
   /usr/include/fcppt/options/missing_error_variant_fwd.hpp
   /usr/include/fcppt/options/missing_flag_error.hpp
@@ -1324,7 +1343,6 @@ Files included in the binary package:
   /usr/include/fcppt/options/option_fwd.hpp
   /usr/include/fcppt/options/option_impl.hpp
   /usr/include/fcppt/options/option_name.hpp
-  /usr/include/fcppt/options/option_name_comparison.hpp
   /usr/include/fcppt/options/option_name_fwd.hpp
   /usr/include/fcppt/options/option_name_set.hpp
   /usr/include/fcppt/options/option_usage.hpp
@@ -1740,12 +1758,14 @@ Files included in the binary package:
   /usr/include/fcppt/parse/skipper/tag.hpp
   /usr/include/fcppt/parse/space.hpp
   /usr/include/fcppt/parse/space_set.hpp
+  /usr/include/fcppt/parse/stream_error.hpp
+  /usr/include/fcppt/parse/stream_error_fwd.hpp
+  /usr/include/fcppt/parse/stream_error_output.hpp
   /usr/include/fcppt/parse/string.hpp
   /usr/include/fcppt/parse/string_decl.hpp
   /usr/include/fcppt/parse/string_fwd.hpp
   /usr/include/fcppt/parse/string_impl.hpp
   /usr/include/fcppt/parse/tag.hpp
-  /usr/include/fcppt/parse/type_name_tag_fwd.hpp
   /usr/include/fcppt/parse/typed_error_decl.hpp
   /usr/include/fcppt/parse/typed_error_fwd.hpp
   /usr/include/fcppt/parse/typed_error_impl.hpp
@@ -1757,6 +1777,7 @@ Files included in the binary package:
   /usr/include/fcppt/parse/with_location_decl.hpp
   /usr/include/fcppt/parse/with_location_fwd.hpp
   /usr/include/fcppt/parse/with_location_impl.hpp
+  /usr/include/fcppt/preprocessor/cat.hpp
   /usr/include/fcppt/preprocessor/detail/disable_clang_warning.h
   /usr/include/fcppt/preprocessor/detail/disable_gcc_warning.h
   /usr/include/fcppt/preprocessor/detail/disable_gnu_gcc_warning.h
@@ -1791,6 +1812,7 @@ Files included in the binary package:
   /usr/include/fcppt/preprocessor/push_warning.h
   /usr/include/fcppt/preprocessor/push_warning.hpp
   /usr/include/fcppt/preprocessor/stringize.hpp
+  /usr/include/fcppt/preprocessor/stringize_narrow.hpp
   /usr/include/fcppt/preprocessor/todo.hpp
   /usr/include/fcppt/public_config.hpp
   /usr/include/fcppt/random/distribution/base_type.hpp
@@ -1876,6 +1898,7 @@ Files included in the binary package:
   /usr/include/fcppt/record/detail/map_result.hpp
   /usr/include/fcppt/record/detail/tag_base.hpp
   /usr/include/fcppt/record/detail/tag_name.hpp
+  /usr/include/fcppt/record/detail/tag_suffix.hpp
   /usr/include/fcppt/record/disjoint_product.hpp
   /usr/include/fcppt/record/element.hpp
   /usr/include/fcppt/record/element_fwd.hpp
@@ -1982,6 +2005,7 @@ Files included in the binary package:
   /usr/include/fcppt/string.hpp
   /usr/include/fcppt/string_conv_locale.hpp
   /usr/include/fcppt/string_literal.hpp
+  /usr/include/fcppt/string_to_wstring_conversion_failed.hpp
   /usr/include/fcppt/string_view.hpp
   /usr/include/fcppt/strong_typedef.hpp
   /usr/include/fcppt/strong_typedef_apply.hpp
@@ -2011,14 +2035,11 @@ Files included in the binary package:
   /usr/include/fcppt/symbol/import.h
   /usr/include/fcppt/symbol/import.hpp
   /usr/include/fcppt/system.hpp
+  /usr/include/fcppt/system_conversion_failed.hpp
   /usr/include/fcppt/tag.hpp
   /usr/include/fcppt/tag_fwd.hpp
   /usr/include/fcppt/tag_type.hpp
   /usr/include/fcppt/text.hpp
-  /usr/include/fcppt/time/gmtime.hpp
-  /usr/include/fcppt/time/localtime.hpp
-  /usr/include/fcppt/time/output_tm.hpp
-  /usr/include/fcppt/time/std_time.hpp
   /usr/include/fcppt/to_std_string.hpp
   /usr/include/fcppt/to_std_string_locale.hpp
   /usr/include/fcppt/to_std_wstring.hpp
@@ -2088,6 +2109,7 @@ Files included in the binary package:
   /usr/include/fcppt/type_traits/is_value.hpp
   /usr/include/fcppt/type_traits/numeric_max.hpp
   /usr/include/fcppt/type_traits/safe_integral_cast.hpp
+  /usr/include/fcppt/type_traits/size_type.hpp
   /usr/include/fcppt/type_traits/to_bool.hpp
   /usr/include/fcppt/type_traits/value_type.hpp
   /usr/include/fcppt/unique_ptr.hpp
@@ -2154,7 +2176,7 @@ Files included in the binary package:
   /usr/lib/cmake/fcppt/FcpptExport.cmake
   /usr/lib/cmake/fcppt/FcpptSymbol.cmake
   /usr/lib/cmake/fcppt/fcppt-config.cmake
-  /usr/lib/cmake/fcppt/fcpptTargets-release.cmake
+  /usr/lib/cmake/fcppt/fcpptTargets-relwithdebinfo.cmake
   /usr/lib/cmake/fcppt/fcpptTargets.cmake
   /usr/lib/libfcppt_core.dll.a
   /usr/lib/libfcppt_filesystem.dll.a
@@ -2164,6 +2186,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.2.0-1bl1 -----
+Version bump.
 
 ----- version 5.0.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

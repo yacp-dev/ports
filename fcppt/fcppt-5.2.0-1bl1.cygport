@@ -10,6 +10,10 @@ LICENSE="BSL-1.0"
 LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
 LICENSE_URI="LICENSE_1_0.txt"
 
+BUILD_REQUIRES="
+	libCatch2-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
@@ -30,7 +34,7 @@ PKG_NAMES="
 fcppt_CONTENTS="
 	usr/share
 "
-libfcppt5_0_CONTENTS="
+libfcppt5_2_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libfcppt_devel_CONTENTS="
@@ -38,5 +42,5 @@ libfcppt_devel_CONTENTS="
 	usr/lib
 "
 fcppt_SUMMARY="${SUMMARY} (licensing & readmes)"
-libfcppt5_0_SUMMARY="${SUMMARY} (runtime)"
+libfcppt5_2_SUMMARY="${SUMMARY} (runtime)"
 libfcppt_devel_SUMMARY="${SUMMARY} (development)"

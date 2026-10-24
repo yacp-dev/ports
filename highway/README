@@ -3,22 +3,21 @@ highway
 Performance-portable, length-agnostic SIMD with runtime dispatch
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.11-1
   libgcc1-14.4.0-1
-  libgtest-devel-1.17.0-1bl1
-  libhwy-devel-1.4.0-1bl1
-  libhwy1-1.4.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  libhwy-devel-1.4.0-1bl2
+  libhwy1-1.4.0-1bl2
   libstdc++6-14.4.0-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46.1-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-14.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
   gcc-g++-14.4.0-1
-  libgtest-devel-1.17.0-1bl1
+  libgtest-devel-1.18.0-1bl1
   ninja-1.13.2-1
 
 Canonical website:
@@ -122,7 +121,7 @@ Files included in the binary package:
   /usr/include/hwy/timer-inl.h
   /usr/include/hwy/timer.h
   /usr/include/hwy/x86_cpuid.h
-  /usr/lib/cmake/hwy/hwy-config-release.cmake
+  /usr/lib/cmake/hwy/hwy-config-relwithdebinfo.cmake
   /usr/lib/cmake/hwy/hwy-config-version.cmake
   /usr/lib/cmake/hwy/hwy-config.cmake
   /usr/lib/libhwy.dll.a
@@ -135,6 +134,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.4.0-1bl2 -----
+Rebuild
 
 ----- version 1.4.0-1bl1 -----
 Version bump.

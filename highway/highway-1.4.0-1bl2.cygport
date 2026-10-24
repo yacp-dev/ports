@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="Performance-portable, length-agnostic SIMD with runtime dispatch"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="Apache-2.0 OR BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 OR BSD-3-Clause"
+LICENSE="(Apache-2.0 OR BSD-3-Clause) AND CC0-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: (Apache-2.0 OR BSD-3-Clause) AND CC0-1.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -14,6 +14,8 @@ BUILD_REQUIRES="
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+# gcc PR 54412: 32/64-byte stack slots end up misaligned on the Win64 ABI
+export CXXFLAGS="${CXXFLAGS} -Wa,-muse-unaligned-vector-move"
 
 inherit cmake
 
@@ -27,7 +29,7 @@ src_compile()
 	cd ${B}
 	: ${CYGCMAKE_GENERATOR=Ninja}
 	cygcmake
-	cygninja -j1
+	cygninja
 }
 
 DOCS="

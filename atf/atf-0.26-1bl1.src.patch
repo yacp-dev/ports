@@ -1,0 +1,90 @@
+--- origsrc/atf-atf-0.26/Makefile.am	2026-09-21 20:40:05.000000000 +0000
++++ src/atf-atf-0.26/Makefile.am	2026-10-24 23:37:19.836621300 +0000
+@@ -84,7 +84,7 @@ endif
+ # test runs below.
+ KYUA_TEST_CONFIG_FILE = none
+ 
+-testsdir = $(exec_prefix)/tests
++testsdir = $(exec_prefix)/share
+ pkgtestsdir = $(testsdir)/$(PACKAGE)
+ 
+ PHONY_TARGETS += installcheck-kyua
+--- origsrc/atf-atf-0.26/atf-c/Makefile.am.inc	2026-09-21 20:40:05.000000000 +0000
++++ src/atf-atf-0.26/atf-c/Makefile.am.inc	2026-10-24 23:37:19.833574100 +0000
+@@ -46,7 +46,7 @@ libatf_c_la_CPPFLAGS = "-DATF_BUILD_CC=\
+                        "-DATF_BUILD_CPPFLAGS=\"$(ATF_BUILD_CPPFLAGS)\"" \
+                        "-DATF_BUILD_CXX=\"$(ATF_BUILD_CXX)\"" \
+                        "-DATF_BUILD_CXXFLAGS=\"$(ATF_BUILD_CXXFLAGS)\""
+-libatf_c_la_LDFLAGS = -version-info 1:0:0
++libatf_c_la_LDFLAGS = -no-undefined -version-info 1:0:0
+ 
+ include_HEADERS += atf-c.h
+ atf_c_HEADERS = atf-c/build.h \
+--- origsrc/atf-atf-0.26/atf-c/detail/process.h	2026-09-21 20:40:05.000000000 +0000
++++ src/atf-atf-0.26/atf-c/detail/process.h	2026-10-24 23:37:19.832885700 +0000
+@@ -35,6 +35,44 @@
+ #include <atf-c/detail/list.h>
+ #include <atf-c/error_fwd.h>
+ 
++#if defined(__CYGWIN__) && !defined(WEXITED)
++#include <sys/wait.h>
++
++#include <string.h>
++
++/* Cygwin has no waitid(2): emulate waitid(P_PID, pid, info, WEXITED),
++ * the only form ATF uses, with waitpid(2). */
++#define P_PID 1
++#define WEXITED 4
++
++static inline int
++atf_cygwin_waitid(int idtype, pid_t id, siginfo_t *info, int options)
++{
++    int status;
++    pid_t pid;
++
++    (void)idtype;
++    (void)options;
++
++    pid = waitpid(id, &status, 0);
++    if (pid == -1)
++        return -1;
++
++    memset(info, 0, sizeof(*info));
++    info->si_signo = SIGCHLD;
++    info->si_pid = pid;
++    if (WIFEXITED(status)) {
++        info->si_code = CLD_EXITED;
++        info->si_status = WEXITSTATUS(status);
++    } else {
++        info->si_code = WCOREDUMP(status) ? CLD_DUMPED : CLD_KILLED;
++        info->si_status = WTERMSIG(status);
++    }
++    return 0;
++}
++#define waitid atf_cygwin_waitid
++#endif
++
+ /* ---------------------------------------------------------------------
+  * The "atf_process_stream" type.
+  * --------------------------------------------------------------------- */
+--- origsrc/atf-atf-0.26/atf-c/utils.c	2026-09-21 20:40:05.000000000 +0000
++++ src/atf-atf-0.26/atf-c/utils.c	2026-10-24 23:37:19.834600900 +0000
+@@ -41,6 +41,7 @@
+ #include <atf-c.h>
+ 
+ #include "atf-c/detail/dynstr.h"
++#include "atf-c/detail/process.h"
+ 
+ /* No prototype in header for this one, it's a little sketchy (internal). */
+ void atf_tc_set_resultsfile(const char *);
+--- origsrc/atf-atf-0.26/atf-c++/Makefile.am.inc	2026-09-21 20:40:05.000000000 +0000
++++ src/atf-atf-0.26/atf-c++/Makefile.am.inc	2026-10-24 23:37:19.834600900 +0000
+@@ -38,7 +38,7 @@ libatf_c___la_SOURCES = atf-c++/build.cp
+                         atf-c++/tests.hpp \
+                         atf-c++/utils.cpp \
+                         atf-c++/utils.hpp
+-libatf_c___la_LDFLAGS = -version-info 2:0:0
++libatf_c___la_LDFLAGS = -no-undefined -version-info 2:0:0
+ 
+ include_HEADERS += atf-c++.hpp
+ atf_c___HEADERS = atf-c++/build.hpp \

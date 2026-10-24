@@ -1,6 +1,6 @@
---- origsrc/fcppt-5.0.0/CMakeLists.txt	2025-10-04 16:10:17.000000000 +0900
-+++ src/fcppt-5.0.0/CMakeLists.txt	2025-12-13 13:37:20.238885700 +0900
-@@ -127,7 +127,7 @@ function(make_fcppt_library_base targetn
+--- origsrc/fcppt-5.2.0/CMakeLists.txt	2026-05-15 17:46:15.000000000 +0000
++++ src/fcppt-5.2.0/CMakeLists.txt	2026-10-24 09:53:03.026680500 +0000
+@@ -128,7 +128,7 @@ function(make_fcppt_library_base targetn
    endif()
  
    if(NOT ${_VARIANT} STREQUAL INTERFACE)
@@ -9,8 +9,8 @@
                                                     ${FCPPT_USED_SO_VERSION})
  
      fcppt_utils_set_target_compiler_flags(${targetname})
---- origsrc/fcppt-5.0.0/cmake/modules/FcpptCMakeUtilsFunctions.cmake	2025-10-04 16:10:17.000000000 +0900
-+++ src/fcppt-5.0.0/cmake/modules/FcpptCMakeUtilsFunctions.cmake	2025-12-13 13:41:00.387995500 +0900
+--- origsrc/fcppt-5.2.0/cmake/modules/FcpptCMakeUtilsFunctions.cmake	2026-05-15 17:46:15.000000000 +0000
++++ src/fcppt-5.2.0/cmake/modules/FcpptCMakeUtilsFunctions.cmake	2026-10-24 09:53:03.028706700 +0000
 @@ -117,8 +117,10 @@ set(FCPPT_UTILS_EXPORT_NAME "${PROJECT_N
  function(fcppt_utils_export_install_target target_name)
    install(
@@ -24,8 +24,8 @@
  endfunction()
  
  # Generates a config file for other projects to use via find_package.
---- origsrc/fcppt-5.0.0/cmake/modules/FcpptCMakeUtilsPaths.cmake	2025-10-04 16:10:17.000000000 +0900
-+++ src/fcppt-5.0.0/cmake/modules/FcpptCMakeUtilsPaths.cmake	2025-12-13 14:26:28.482839500 +0900
+--- origsrc/fcppt-5.2.0/cmake/modules/FcpptCMakeUtilsPaths.cmake	2026-05-15 17:46:15.000000000 +0000
++++ src/fcppt-5.2.0/cmake/modules/FcpptCMakeUtilsPaths.cmake	2026-10-24 09:53:03.028706700 +0000
 @@ -7,7 +7,7 @@ set(FCPPT_UTILS_PROJECT_BINARY_DIR "${${
  set(FCPPT_UTILS_INSTALL_DATA_DIR "${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}")
  

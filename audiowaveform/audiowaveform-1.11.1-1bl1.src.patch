@@ -1,5 +1,5 @@
---- origsrc/audiowaveform-1.10.3/CMakeLists.txt	2025-08-21 04:41:47.000000000 +0900
-+++ src/audiowaveform-1.10.3/CMakeLists.txt	2026-07-12 21:46:49.491904000 +0900
+--- origsrc/audiowaveform/CMakeLists.txt	2026-05-17 10:20:27.000000000 +0000
++++ src/audiowaveform/CMakeLists.txt	2026-10-24 23:53:06.127885600 +0000
 @@ -51,7 +51,7 @@ endif()
  
  # CMP0167: The FindBoost module is removed.
@@ -20,7 +20,7 @@
  else()
      # Set GTEST_LANG_CXX11=0 to disable C++11 features when compiling googlemock.
      # Without this compilation fails with g++ 4.6.3 on gmock-matchers.h.
-@@ -309,10 +311,14 @@ endif()
+@@ -322,10 +324,14 @@ endif()
  if(ENABLE_TESTS)
      enable_testing()
  
@@ -37,7 +37,7 @@
  
      set(TESTS
          test/FileFormatTest.cpp
-@@ -335,8 +341,12 @@ if(ENABLE_TESTS)
+@@ -348,8 +354,12 @@ if(ENABLE_TESTS)
          test/util/Streams.cpp
      )
  

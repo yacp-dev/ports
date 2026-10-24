@@ -1,0 +1,308 @@
+--- origsrc/gnunet-0.29.0/src/contrib/service/consensus/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/contrib/service/consensus/meson.build	2026-10-24 16:35:41.735445900 +0000
+@@ -43,6 +43,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ executable(
+--- origsrc/gnunet-0.29.0/src/contrib/service/conversation/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/contrib/service/conversation/meson.build	2026-10-24 16:35:41.735445900 +0000
+@@ -93,6 +93,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ executable(
+--- origsrc/gnunet-0.29.0/src/contrib/service/set/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/contrib/service/set/meson.build	2026-10-24 16:35:41.737211900 +0000
+@@ -41,6 +41,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ executable(
+     'gnunet-service-set',
+--- origsrc/gnunet-0.29.0/src/lib/util/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/lib/util/meson.build	2026-10-24 16:35:41.739226800 +0000
+@@ -708,6 +708,7 @@ testplugin_plug = shared_module(
+     include_directories: [incdir, configuration_inc],
+     build_by_default: false,
+     install: false,
++    name_prefix: 'lib',
+ )
+ testplugin = executable(
+     'test_plugin',
+--- origsrc/gnunet-0.29.0/src/plugin/block/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/block/meson.build	2026-10-24 16:35:41.739226800 +0000
+@@ -7,6 +7,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ shared_module(
+@@ -17,5 +18,6 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: false,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+--- origsrc/gnunet-0.29.0/src/plugin/datacache/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/datacache/meson.build	2026-10-24 16:35:41.740250500 +0000
+@@ -12,6 +12,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ shared_module(
+@@ -22,6 +23,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ if pq_dep.found()
+@@ -33,5 +35,6 @@ if pq_dep.found()
+         include_directories: [incdir, configuration_inc],
+         install: true,
+         install_dir: get_option('libdir') / 'gnunet',
++        name_prefix: 'lib',
+     )
+ endif
+--- origsrc/gnunet-0.29.0/src/plugin/datastore/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/datastore/meson.build	2026-10-24 16:35:41.741249500 +0000
+@@ -12,6 +12,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ shared_module(
+@@ -22,6 +23,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ if pq_dep.found()
+@@ -33,6 +35,7 @@ if pq_dep.found()
+         include_directories: [incdir, configuration_inc],
+         install: true,
+         install_dir: get_option('libdir') / 'gnunet',
++        name_prefix: 'lib',
+     )
+ endif
+ 
+--- origsrc/gnunet-0.29.0/src/plugin/dht/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/dht/meson.build	2026-10-24 16:35:41.742270600 +0000
+@@ -10,4 +10,5 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+--- origsrc/gnunet-0.29.0/src/plugin/dns/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/dns/meson.build	2026-10-24 16:35:41.743274700 +0000
+@@ -5,4 +5,5 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+--- origsrc/gnunet-0.29.0/src/plugin/fs/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/fs/meson.build	2026-10-24 16:35:41.744291400 +0000
+@@ -5,5 +5,6 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+--- origsrc/gnunet-0.29.0/src/plugin/gns/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/gns/meson.build	2026-10-24 16:35:41.744291400 +0000
+@@ -6,6 +6,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ shared_module(
+     'gnunet_plugin_block_gns',
+@@ -19,5 +20,6 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+--- origsrc/gnunet-0.29.0/src/plugin/gnsrecord/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/gnsrecord/meson.build	2026-10-24 16:35:41.745291900 +0000
+@@ -6,4 +6,5 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+--- origsrc/gnunet-0.29.0/src/plugin/messenger/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/messenger/meson.build	2026-10-24 16:35:41.746310000 +0000
+@@ -6,4 +6,5 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+--- origsrc/gnunet-0.29.0/src/plugin/namecache/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/namecache/meson.build	2026-10-24 16:35:41.747321300 +0000
+@@ -27,6 +27,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ shared_module(
+@@ -37,6 +38,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ if pq_dep.found()
+@@ -53,6 +55,7 @@ if pq_dep.found()
+         include_directories: [incdir, configuration_inc],
+         install: true,
+         install_dir: get_option('libdir') / 'gnunet',
++        name_prefix: 'lib',
+     )
+ endif
+ 
+--- origsrc/gnunet-0.29.0/src/plugin/namestore/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/namestore/meson.build	2026-10-24 16:35:41.748331300 +0000
+@@ -13,6 +13,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ configure_file(
+@@ -51,6 +52,7 @@ if pq_dep.found()
+         include_directories: [incdir, configuration_inc],
+         install: true,
+         install_dir: get_option('libdir') / 'gnunet',
++        name_prefix: 'lib',
+     )
+     configure_file(
+         copy: true,
+--- origsrc/gnunet-0.29.0/src/plugin/peerstore/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/peerstore/meson.build	2026-10-24 16:35:41.749338900 +0000
+@@ -6,4 +6,5 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+--- origsrc/gnunet-0.29.0/src/plugin/reclaim/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/reclaim/meson.build	2026-10-24 16:35:41.750348700 +0000
+@@ -6,6 +6,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ shared_module(
+@@ -16,6 +17,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ shared_module(
+     'gnunet_plugin_reclaim_credential_jwt',
+@@ -29,5 +31,6 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+--- origsrc/gnunet-0.29.0/src/plugin/regex/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/regex/meson.build	2026-10-24 16:35:41.751356800 +0000
+@@ -26,6 +26,7 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+ 
+--- origsrc/gnunet-0.29.0/src/plugin/revocation/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/revocation/meson.build	2026-10-24 16:35:41.751356800 +0000
+@@ -9,5 +9,6 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+--- origsrc/gnunet-0.29.0/src/plugin/seti/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/seti/meson.build	2026-10-24 16:35:41.752990000 +0000
+@@ -6,5 +6,6 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+--- origsrc/gnunet-0.29.0/src/plugin/setu/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/plugin/setu/meson.build	2026-10-24 16:35:41.752990000 +0000
+@@ -6,5 +6,6 @@ shared_module(
+     include_directories: [incdir, configuration_inc],
+     install: true,
+     install_dir: get_option('libdir') / 'gnunet',
++    name_prefix: 'lib',
+ )
+ 
+--- origsrc/gnunet-0.29.0/src/service/core/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/service/core/meson.build	2026-10-24 16:35:41.752990000 +0000
+@@ -90,6 +90,7 @@ shared_module(
+     ],
+     include_directories: [incdir, configuration_inc],
+     install: false,
++    name_prefix: 'lib',
+ )
+ 
+ shared_module(
+@@ -107,6 +108,7 @@ shared_module(
+     ],
+     include_directories: [incdir, configuration_inc],
+     install: false,
++    name_prefix: 'lib',
+ )
+ 
+ executable(
+--- origsrc/gnunet-0.29.0/src/service/pils/meson.build	2026-08-20 11:40:30.000000000 +0000
++++ src/gnunet-0.29.0/src/service/pils/meson.build	2026-10-24 16:35:41.755002100 +0000
+@@ -50,6 +50,7 @@ shared_module(
+     ],
+     include_directories: [incdir, configuration_inc],
+     install: false,
++    name_prefix: 'lib',
+ )
+ 
+ executable(

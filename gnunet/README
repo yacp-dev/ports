@@ -1,132 +1,132 @@
 gnunet
 ------------------------------------------
 GNUnet is peer-to-peer framework providing a network abstractions and
-applications focusing on security and privacy.  So far, we have
-created applications for anonymous file-sharing, decentralized naming
-and identity management, decentralized and confidential telephony and
-tunneling IP traffic over GNUnet.  GNUnet is currently developed by a
-worldwide group of independent free software developers.  GNUnet is a
-GNU package (https://www.gnu.org/).
+applications focusing on security and privacy. So far, we have created
+applications for anonymous file-sharing, decentralized naming and identity
+management, decentralized and confidential telephony and tunneling IP traffic
+over GNUnet. GNUnet is currently developed by a worldwide group of independent
+free software developers. GNUnet is a GNU package (https://www.gnu.org/).
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.9-1
-  libcurl-devel-8.20.0-1
-  libcurl4-8.20.0-1
-  libextractor-devel-1.13-1bl2
-  libgcc1-13.4.0-1
-  libgcrypt-devel-1.12.2-1
-  libgcrypt20-1.12.2-1
+  cygwin-3.6.11-1
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libextractor-devel-1.19-1bl1
+  libgcrypt-devel-1.12.4-1
+  libgcrypt20-1.12.4-1
   libgmp10-6.3.0-1
-  libgnunet-devel-0.27.0-1bl1
-  libgnunetabd0-0.27.0-1bl1
-  libgnunetarm2-0.27.0-1bl1
-  libgnunetblock0-0.27.0-1bl1
-  libgnunetblockgroup0-0.27.0-1bl1
-  libgnunetcadet7-0.27.0-1bl1
-  libgnunetconsensus0-0.27.0-1bl1
-  libgnunetconversation0-0.27.0-1bl1
-  libgnunetcore0-0.27.0-1bl1
-  libgnunetcoreunderlaydummy0.0.0-0.27.0-1bl1
-  libgnunetcurl0-0.27.0-1bl1
-  libgnunetdatacache0-0.27.0-1bl1
-  libgnunetdatastore1-0.27.0-1bl1
-  libgnunetdht4-0.27.0-1bl1
-  libgnunetdid0-0.27.0-1bl1
-  libgnunetdns0-0.27.0-1bl1
-  libgnunetfs2-0.27.0-1bl1
-  libgnunetgns0-0.27.0-1bl1
-  libgnunetgnsrecord0-0.27.0-1bl1
-  libgnunetgnsrecordjson0-0.27.0-1bl1
-  libgnunethello0-0.27.0-1bl1
-  libgnunetidentity1-0.27.0-1bl1
-  libgnunetjson3-0.27.0-1bl1
-  libgnunetmessenger0-0.27.0-1bl1
-  libgnunetmhd0-0.27.0-1bl1
-  libgnunetmicrophone0-0.27.0-1bl1
-  libgnunetnamecache0-0.27.0-1bl1
-  libgnunetnamestore0-0.27.0-1bl1
-  libgnunetnat2-0.27.0-1bl1
-  libgnunetnatauto0-0.27.0-1bl1
-  libgnunetnatnew2-0.27.0-1bl1
-  libgnunetnse0-0.27.0-1bl1
-  libgnunetpeerstore0-0.27.0-1bl1
-  libgnunetpils0-0.27.0-1bl1
-  libgnunetpq5-0.27.0-1bl1
-  libgnunetreclaim0-0.27.0-1bl1
-  libgnunetregex3-0.27.0-1bl1
-  libgnunetregexblock1-0.27.0-1bl1
-  libgnunetrest0-0.27.0-1bl1
-  libgnunetrevocation0-0.27.0-1bl1
-  libgnunetrps0-0.27.0-1bl1
-  libgnunetscalarproduct0-0.27.0-1bl1
-  libgnunetsecretsharing0-0.27.0-1bl1
-  libgnunetset0-0.27.0-1bl1
-  libgnunetseti0-0.27.0-1bl1
-  libgnunetsetu0-0.27.0-1bl1
-  libgnunetspeaker0-0.27.0-1bl1
-  libgnunetsq0-0.27.0-1bl1
-  libgnunetstatistics2-0.27.0-1bl1
-  libgnunettestbed0-0.27.0-1bl1
-  libgnunettesting3-0.27.0-1bl1
-  libgnunettestingarm0-0.27.0-1bl1
-  libgnunettestingcore0-0.27.0-1bl1
-  libgnunettestingtestbed0-0.27.0-1bl1
-  libgnunettestingtransport0-0.27.0-1bl1
-  libgnunettransportapplication0-0.27.0-1bl1
-  libgnunettransportcommunicator0-0.27.0-1bl1
-  libgnunettransportcore0-0.27.0-1bl1
-  libgnunettransportmonitor0-0.27.0-1bl1
-  libgnunetutil22-0.27.0-1bl1
-  libgnunetvpn0-0.27.0-1bl1
+  libgnunet-devel-0.29.0-1bl1
+  libgnunetabd0-0.29.0-1bl1
+  libgnunetarm2-0.29.0-1bl1
+  libgnunetblock0-0.29.0-1bl1
+  libgnunetblockgroup0-0.29.0-1bl1
+  libgnunetcadet7-0.29.0-1bl1
+  libgnunetconsensus0-0.29.0-1bl1
+  libgnunetconversation0-0.29.0-1bl1
+  libgnunetcore0-0.29.0-1bl1
+  libgnunetcoreunderlaydummy0.0.0-0.29.0-1bl1
+  libgnunetcurl0-0.29.0-1bl1
+  libgnunetdatacache0-0.29.0-1bl1
+  libgnunetdatastore1-0.29.0-1bl1
+  libgnunetdht4-0.29.0-1bl1
+  libgnunetdid0-0.29.0-1bl1
+  libgnunetdns0-0.29.0-1bl1
+  libgnunetfs2-0.29.0-1bl1
+  libgnunetgns0-0.29.0-1bl1
+  libgnunetgnsrecord1-0.29.0-1bl1
+  libgnunetgnsrecordjson0-0.29.0-1bl1
+  libgnunethello0-0.29.0-1bl1
+  libgnunetidentity1-0.29.0-1bl1
+  libgnunetjson3-0.29.0-1bl1
+  libgnunetmessenger0-0.29.0-1bl1
+  libgnunetmhd0-0.29.0-1bl1
+  libgnunetmicrophone0-0.29.0-1bl1
+  libgnunetnamecache0-0.29.0-1bl1
+  libgnunetnamestore0-0.29.0-1bl1
+  libgnunetnat2-0.29.0-1bl1
+  libgnunetnatauto0-0.29.0-1bl1
+  libgnunetnatnew2-0.29.0-1bl1
+  libgnunetnse0-0.29.0-1bl1
+  libgnunetpeerstore0-0.29.0-1bl1
+  libgnunetpils0-0.29.0-1bl1
+  libgnunetpq10-0.29.0-1bl1
+  libgnunetreclaim0-0.29.0-1bl1
+  libgnunetregex3-0.29.0-1bl1
+  libgnunetregexblock1-0.29.0-1bl1
+  libgnunetrest0-0.29.0-1bl1
+  libgnunetrevocation0-0.29.0-1bl1
+  libgnunetrps0-0.29.0-1bl1
+  libgnunetscalarproduct0-0.29.0-1bl1
+  libgnunetsecretsharing0-0.29.0-1bl1
+  libgnunetset0-0.29.0-1bl1
+  libgnunetseti0-0.29.0-1bl1
+  libgnunetsetu0-0.29.0-1bl1
+  libgnunetspeaker0-0.29.0-1bl1
+  libgnunetsq0-0.29.0-1bl1
+  libgnunetstatistics2-0.29.0-1bl1
+  libgnunettestbed0-0.29.0-1bl1
+  libgnunettesting3-0.29.0-1bl1
+  libgnunettestingarm0-0.29.0-1bl1
+  libgnunettestingcore0-0.29.0-1bl1
+  libgnunettestingtestbed0-0.29.0-1bl1
+  libgnunettestingtransport0-0.29.0-1bl1
+  libgnunettransportapplication0-0.29.0-1bl1
+  libgnunettransportcommunicator0-0.29.0-1bl1
+  libgnunettransportcore0-0.29.0-1bl1
+  libgnunettransportmonitor0-0.29.0-1bl1
+  libgnunetutil23-0.29.0-1bl1
+  libgnunetvpn0-0.29.0-1bl1
   libgnutls30-3.8.13-1
   libidn2-devel-2.3.8-1
   libidn2_0-2.3.8-1
-  libjansson-devel-2.13.1-1
-  libjansson4-2.13.1-1
-  libjose0-14-1bl1
-  libltdl7-2.5.4-1
-  libmicrohttpd-devel-1.0.2-1bl1
-  libmicrohttpd12-1.0.2-1bl1
+  libjansson-devel-2.15.1-1
+  libjansson4-2.15.1-1
+  libjose0-15-1bl1
+  libltdl7-2.6.2-1
+  libmicrohttpd-devel-1.0.10-1bl1
+  libmicrohttpd12-1.0.10-1bl1
   libogg0-1.3.6-1
   libopus0-1.6.1-1
-  libpq5-18.4-1
+  libpq-devel-18.6-1
+  libpq5-18.6-1
   libpulse0-17.0-4
   libsodium-devel-1.0.20-1
   libsodium26-1.0.20-1
   libsqlite3-devel-3.49.1-1
   libsqlite3_0-3.49.1-1
   libunistring5-1.4.1-1
-  libzbar0-0.23.93-1
-  pkg-config-2.5.1-1
+  libzbar0-0.23.93-2
+  pkg-config-3.0.9-1
   zlib-devel-1.3.2-1
   zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  libcurl-devel-8.20.0-1
-  libextractor-devel-1.13-1bl2
-  libgcrypt-devel-1.12.2-1
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.22.5-1
+  libcurl-devel-8.23.0-1
+  libextractor-devel-1.19-1bl1
+  libgcrypt-devel-1.12.4-1
   libgmp-devel-6.3.0-1
   libgnutls-devel-3.8.13-1
   libidn2-devel-2.3.8-1
   libintl-devel-0.22.5-1
-  libjansson-devel-2.13.1-1
-  libjose-devel-14-1bl1
-  libmicrohttpd-devel-1.0.2-1bl1
+  libjansson-devel-2.15.1-1
+  libjose-devel-15-1bl1
+  libmicrohttpd-devel-1.0.10-1bl1
   libogg-devel-1.3.6-1
   libopus-devel-1.6.1-1
-  libpq-devel-18.4-1
+  libpq-devel-18.6-1
+  libpq5-18.6-1
   libpulse-devel-17.0-4
   libsodium-devel-1.0.20-1
   libsqlite3-devel-3.49.1-1
   libunistring-devel-1.4.1-1
-  libzbar-devel-0.23.93-1
-  lua-5.3.6-4
-  meson-1.7.2-1
+  libzbar-devel-0.23.93-2
+  meson-1.10.2-1
   ninja-1.13.2-1
   zlib-devel-1.3.2-1
 
@@ -134,81 +134,81 @@ Canonical website:
   https://www.gnunet.org/en/
 
 Canonical download:
-  mirror://gnu/gnunet/gnunet-0.27.0.tar.gz
+  mirror://gnu/gnunet/gnunet-0.29.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack gnunet-0.27.0-X-src.tar.xz
+  1. unpack gnunet-0.29.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./gnunet-0.27.0-X.cygport all
+        % cygport ./gnunet-0.29.0-X.cygport all
 
 This will create:
-  /usr/src/gnunet-0.27.0-X-src.tar.xz
-  /usr/src/gnunet-0.27.0-X.tar.xz
-  /usr/src/libgnunetabd0-0.27.0-X.tar.xz
-  /usr/src/libgnunetarm2-0.27.0-X.tar.xz
-  /usr/src/libgnunetblock0-0.27.0-X.tar.xz
-  /usr/src/libgnunetblockgroup0-0.27.0-X.tar.xz
-  /usr/src/libgnunetcadet7-0.27.0-X.tar.xz
-  /usr/src/libgnunetconsensus0-0.27.0-X.tar.xz
-  /usr/src/libgnunetconversation0-0.27.0-X.tar.xz
-  /usr/src/libgnunetcore0-0.27.0-X.tar.xz
-  /usr/src/libgnunetcoreunderlaydummy0.0.0-0.27.0-X.tar.xz
-  /usr/src/libgnunetcurl0-0.27.0-X.tar.xz
-  /usr/src/libgnunetdatacache0-0.27.0-X.tar.xz
-  /usr/src/libgnunetdatastore1-0.27.0-X.tar.xz
-  /usr/src/libgnunetdht4-0.27.0-X.tar.xz
-  /usr/src/libgnunetdid0-0.27.0-X.tar.xz
-  /usr/src/libgnunetdns0-0.27.0-X.tar.xz
-  /usr/src/libgnunetfs2-0.27.0-X.tar.xz
-  /usr/src/libgnunetgns0-0.27.0-X.tar.xz
-  /usr/src/libgnunetgnsrecord0-0.27.0-X.tar.xz
-  /usr/src/libgnunetgnsrecordjson0-0.27.0-X.tar.xz
-  /usr/src/libgnunethello0-0.27.0-X.tar.xz
-  /usr/src/libgnunetidentity1-0.27.0-X.tar.xz
-  /usr/src/libgnunetjson3-0.27.0-X.tar.xz
-  /usr/src/libgnunetmessenger0-0.27.0-X.tar.xz
-  /usr/src/libgnunetmicrophone0-0.27.0-X.tar.xz
-  /usr/src/libgnunetmhd0-0.27.0-X.tar.xz
-  /usr/src/libgnunetnamecache0-0.27.0-X.tar.xz
-  /usr/src/libgnunetnamestore0-0.27.0-X.tar.xz
-  /usr/src/libgnunetnat2-0.27.0-X.tar.xz
-  /usr/src/libgnunetnatauto0-0.27.0-X.tar.xz
-  /usr/src/libgnunetnatnew2-0.27.0-X.tar.xz
-  /usr/src/libgnunetnse0-0.27.0-X.tar.xz
-  /usr/src/libgnunetpeerstore0-0.27.0-X.tar.xz
-  /usr/src/libgnunetpils0-0.27.0-X.tar.xz
-  /usr/src/libgnunetpq5-0.27.0-X.tar.xz
-  /usr/src/libgnunetreclaim0-0.27.0-X.tar.xz
-  /usr/src/libgnunetregex3-0.27.0-X.tar.xz
-  /usr/src/libgnunetregexblock1-0.27.0-X.tar.xz
-  /usr/src/libgnunetrest0-0.27.0-X.tar.xz
-  /usr/src/libgnunetrevocation0-0.27.0-X.tar.xz
-  /usr/src/libgnunetrps0-0.27.0-X.tar.xz
-  /usr/src/libgnunetscalarproduct0-0.27.0-X.tar.xz
-  /usr/src/libgnunetsecretsharing0-0.27.0-X.tar.xz
-  /usr/src/libgnunetset0-0.27.0-X.tar.xz
-  /usr/src/libgnunetseti0-0.27.0-X.tar.xz
-  /usr/src/libgnunetsetu0-0.27.0-X.tar.xz
-  /usr/src/libgnunetspeaker0-0.27.0-X.tar.xz
-  /usr/src/libgnunetsq0-0.27.0-X.tar.xz
-  /usr/src/libgnunetstatistics2-0.27.0-X.tar.xz
-  /usr/src/libgnunettestbed0-0.27.0-X.tar.xz
-  /usr/src/libgnunettesting3-0.27.0-X.tar.xz
-  /usr/src/libgnunettestingarm0-0.27.0-X.tar.xz
-  /usr/src/libgnunettestingcore0-0.27.0-X.tar.xz
-  /usr/src/libgnunettestingtestbed0-0.27.0-X.tar.xz
-  /usr/src/libgnunettestingtransport0-0.27.0-X.tar.xz
-  /usr/src/libgnunettransportapplication0-0.27.0-X.tar.xz
-  /usr/src/libgnunettransportcommunicator0-0.27.0-X.tar.xz
-  /usr/src/libgnunettransportcore0-0.27.0-X.tar.xz
-  /usr/src/libgnunettransportmonitor0-0.27.0-X.tar.xz
-  /usr/src/libgnunetutil22-0.27.0-X.tar.xz
-  /usr/src/libgnunetvpn0-0.27.0-X.tar.xz
-  /usr/src/libgnunet-devel-0.27.0-X.tar.xz
+  /usr/src/gnunet-0.29.0-X-src.tar.xz
+  /usr/src/gnunet-0.29.0-X.tar.xz
+  /usr/src/libgnunetabd0-0.29.0-X.tar.xz
+  /usr/src/libgnunetarm2-0.29.0-X.tar.xz
+  /usr/src/libgnunetblock0-0.29.0-X.tar.xz
+  /usr/src/libgnunetblockgroup0-0.29.0-X.tar.xz
+  /usr/src/libgnunetcadet7-0.29.0-X.tar.xz
+  /usr/src/libgnunetconsensus0-0.29.0-X.tar.xz
+  /usr/src/libgnunetconversation0-0.29.0-X.tar.xz
+  /usr/src/libgnunetcore0-0.29.0-X.tar.xz
+  /usr/src/libgnunetcoreunderlaydummy0.0.0-0.29.0-X.tar.xz
+  /usr/src/libgnunetcurl0-0.29.0-X.tar.xz
+  /usr/src/libgnunetdatacache0-0.29.0-X.tar.xz
+  /usr/src/libgnunetdatastore1-0.29.0-X.tar.xz
+  /usr/src/libgnunetdht4-0.29.0-X.tar.xz
+  /usr/src/libgnunetdid0-0.29.0-X.tar.xz
+  /usr/src/libgnunetdns0-0.29.0-X.tar.xz
+  /usr/src/libgnunetfs2-0.29.0-X.tar.xz
+  /usr/src/libgnunetgns0-0.29.0-X.tar.xz
+  /usr/src/libgnunetgnsrecord1-0.29.0-X.tar.xz
+  /usr/src/libgnunetgnsrecordjson0-0.29.0-X.tar.xz
+  /usr/src/libgnunethello0-0.29.0-X.tar.xz
+  /usr/src/libgnunetidentity1-0.29.0-X.tar.xz
+  /usr/src/libgnunetjson3-0.29.0-X.tar.xz
+  /usr/src/libgnunetmessenger0-0.29.0-X.tar.xz
+  /usr/src/libgnunetmicrophone0-0.29.0-X.tar.xz
+  /usr/src/libgnunetmhd0-0.29.0-X.tar.xz
+  /usr/src/libgnunetnamecache0-0.29.0-X.tar.xz
+  /usr/src/libgnunetnamestore0-0.29.0-X.tar.xz
+  /usr/src/libgnunetnat2-0.29.0-X.tar.xz
+  /usr/src/libgnunetnatauto0-0.29.0-X.tar.xz
+  /usr/src/libgnunetnatnew2-0.29.0-X.tar.xz
+  /usr/src/libgnunetnse0-0.29.0-X.tar.xz
+  /usr/src/libgnunetpeerstore0-0.29.0-X.tar.xz
+  /usr/src/libgnunetpils0-0.29.0-X.tar.xz
+  /usr/src/libgnunetpq10-0.29.0-X.tar.xz
+  /usr/src/libgnunetreclaim0-0.29.0-X.tar.xz
+  /usr/src/libgnunetregex3-0.29.0-X.tar.xz
+  /usr/src/libgnunetregexblock1-0.29.0-X.tar.xz
+  /usr/src/libgnunetrest0-0.29.0-X.tar.xz
+  /usr/src/libgnunetrevocation0-0.29.0-X.tar.xz
+  /usr/src/libgnunetrps0-0.29.0-X.tar.xz
+  /usr/src/libgnunetscalarproduct0-0.29.0-X.tar.xz
+  /usr/src/libgnunetsecretsharing0-0.29.0-X.tar.xz
+  /usr/src/libgnunetset0-0.29.0-X.tar.xz
+  /usr/src/libgnunetseti0-0.29.0-X.tar.xz
+  /usr/src/libgnunetsetu0-0.29.0-X.tar.xz
+  /usr/src/libgnunetspeaker0-0.29.0-X.tar.xz
+  /usr/src/libgnunetsq0-0.29.0-X.tar.xz
+  /usr/src/libgnunetstatistics2-0.29.0-X.tar.xz
+  /usr/src/libgnunettestbed0-0.29.0-X.tar.xz
+  /usr/src/libgnunettesting3-0.29.0-X.tar.xz
+  /usr/src/libgnunettestingarm0-0.29.0-X.tar.xz
+  /usr/src/libgnunettestingcore0-0.29.0-X.tar.xz
+  /usr/src/libgnunettestingtestbed0-0.29.0-X.tar.xz
+  /usr/src/libgnunettestingtransport0-0.29.0-X.tar.xz
+  /usr/src/libgnunettransportapplication0-0.29.0-X.tar.xz
+  /usr/src/libgnunettransportcommunicator0-0.29.0-X.tar.xz
+  /usr/src/libgnunettransportcore0-0.29.0-X.tar.xz
+  /usr/src/libgnunettransportmonitor0-0.29.0-X.tar.xz
+  /usr/src/libgnunetutil23-0.29.0-X.tar.xz
+  /usr/src/libgnunetvpn0-0.29.0-X.tar.xz
+  /usr/src/libgnunet-devel-0.29.0-X.tar.xz
 
 -------------------------------------------
 
@@ -263,40 +263,11 @@ Files included in the binary package:
   /usr/bin/gnunet-testbed.exe
   /usr/bin/gnunet-testing-netjail-launcher.exe
   /usr/bin/gnunet-transport-certificate-creation
+  /usr/bin/gnunet-transport.exe
   /usr/bin/gnunet-unindex.exe
   /usr/bin/gnunet-uri.exe
   /usr/bin/gnunet-vpn.exe
   /usr/bin/gnunet-zoneimport.exe
-  /usr/lib/gnunet/cyggnunet_plugin_block_consensus.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_dht.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_dns.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_fs.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_gns.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_regex.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_revocation.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_set_test.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_seti_test.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_setu_test.dll
-  /usr/lib/gnunet/cyggnunet_plugin_block_test.dll
-  /usr/lib/gnunet/cyggnunet_plugin_datacache_heap.dll
-  /usr/lib/gnunet/cyggnunet_plugin_datacache_postgres.dll
-  /usr/lib/gnunet/cyggnunet_plugin_datacache_sqlite.dll
-  /usr/lib/gnunet/cyggnunet_plugin_datastore_heap.dll
-  /usr/lib/gnunet/cyggnunet_plugin_datastore_postgres.dll
-  /usr/lib/gnunet/cyggnunet_plugin_datastore_sqlite.dll
-  /usr/lib/gnunet/cyggnunet_plugin_gnsrecord_conversation.dll
-  /usr/lib/gnunet/cyggnunet_plugin_gnsrecord_dns.dll
-  /usr/lib/gnunet/cyggnunet_plugin_gnsrecord_gns.dll
-  /usr/lib/gnunet/cyggnunet_plugin_gnsrecord_messenger.dll
-  /usr/lib/gnunet/cyggnunet_plugin_gnsrecord_reclaim.dll
-  /usr/lib/gnunet/cyggnunet_plugin_namecache_flat.dll
-  /usr/lib/gnunet/cyggnunet_plugin_namecache_postgres.dll
-  /usr/lib/gnunet/cyggnunet_plugin_namecache_sqlite.dll
-  /usr/lib/gnunet/cyggnunet_plugin_namestore_postgres.dll
-  /usr/lib/gnunet/cyggnunet_plugin_namestore_sqlite.dll
-  /usr/lib/gnunet/cyggnunet_plugin_peerstore_sqlite.dll
-  /usr/lib/gnunet/cyggnunet_plugin_reclaim_attribute_basic.dll
-  /usr/lib/gnunet/cyggnunet_plugin_reclaim_credential_jwt.dll
   /usr/lib/gnunet/libexec/gnunet-bcd.exe
   /usr/lib/gnunet/libexec/gnunet-cmds-helper.exe
   /usr/lib/gnunet/libexec/gnunet-communicator-tcp.exe
@@ -354,6 +325,36 @@ Files included in the binary package:
   /usr/lib/gnunet/libexec/gnunet-service-zonemaster.exe
   /usr/lib/gnunet/libexec/gnunet-suidfix
   /usr/lib/gnunet/libexec/gnunet-timeout.exe
+  /usr/lib/gnunet/libgnunet_plugin_block_consensus.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_dht.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_dns.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_fs.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_gns.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_regex.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_revocation.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_set_test.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_seti_test.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_setu_test.dll
+  /usr/lib/gnunet/libgnunet_plugin_block_test.dll
+  /usr/lib/gnunet/libgnunet_plugin_datacache_heap.dll
+  /usr/lib/gnunet/libgnunet_plugin_datacache_postgres.dll
+  /usr/lib/gnunet/libgnunet_plugin_datacache_sqlite.dll
+  /usr/lib/gnunet/libgnunet_plugin_datastore_heap.dll
+  /usr/lib/gnunet/libgnunet_plugin_datastore_postgres.dll
+  /usr/lib/gnunet/libgnunet_plugin_datastore_sqlite.dll
+  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_conversation.dll
+  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_dns.dll
+  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_gns.dll
+  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_messenger.dll
+  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_reclaim.dll
+  /usr/lib/gnunet/libgnunet_plugin_namecache_flat.dll
+  /usr/lib/gnunet/libgnunet_plugin_namecache_postgres.dll
+  /usr/lib/gnunet/libgnunet_plugin_namecache_sqlite.dll
+  /usr/lib/gnunet/libgnunet_plugin_namestore_postgres.dll
+  /usr/lib/gnunet/libgnunet_plugin_namestore_sqlite.dll
+  /usr/lib/gnunet/libgnunet_plugin_peerstore_sqlite.dll
+  /usr/lib/gnunet/libgnunet_plugin_reclaim_attribute_basic.dll
+  /usr/lib/gnunet/libgnunet_plugin_reclaim_credential_jwt.dll
   /usr/share/applications/gnunet-uri.desktop
   /usr/share/doc/Cygwin/gnunet.README
   /usr/share/doc/gnunet/AUTHORS
@@ -554,8 +555,8 @@ Files included in the binary package:
 (libgnunetgns0)
   /usr/bin/cyggnunetgns-0.dll
 
-(libgnunetgnsrecord0)
-  /usr/bin/cyggnunetgnsrecord-0.dll
+(libgnunetgnsrecord1)
+  /usr/bin/cyggnunetgnsrecord-1.dll
 
 (libgnunetgnsrecordjson0)
   /usr/bin/cyggnunetgnsrecordjson-0.dll
@@ -602,8 +603,8 @@ Files included in the binary package:
 (libgnunetpils0)
   /usr/bin/cyggnunetpils-0.dll
 
-(libgnunetpq5)
-  /usr/bin/cyggnunetpq-5.dll
+(libgnunetpq10)
+  /usr/bin/cyggnunetpq-10.dll
 
 (libgnunetreclaim0)
   /usr/bin/cyggnunetreclaim-0.dll
@@ -677,8 +678,8 @@ Files included in the binary package:
 (libgnunettransportmonitor0)
   /usr/bin/cyggnunettransportmonitor-0.dll
 
-(libgnunetutil22)
-  /usr/bin/cyggnunetutil-22.dll
+(libgnunetutil23)
+  /usr/bin/cyggnunetutil-23.dll
 
 (libgnunetvpn0)
   /usr/bin/cyggnunetvpn-0.dll
@@ -799,36 +800,6 @@ Files included in the binary package:
   /usr/include/gnunet/gnunet_uri_lib.h
   /usr/include/gnunet/gnunet_util_lib.h
   /usr/include/gnunet/gnunet_vpn_service.h
-  /usr/lib/gnunet/libgnunet_plugin_block_consensus.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_dht.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_dns.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_fs.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_gns.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_regex.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_revocation.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_set_test.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_seti_test.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_setu_test.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_block_test.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_datacache_heap.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_datacache_postgres.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_datacache_sqlite.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_datastore_heap.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_datastore_postgres.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_datastore_sqlite.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_conversation.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_dns.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_gns.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_messenger.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_gnsrecord_reclaim.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_namecache_flat.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_namecache_postgres.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_namecache_sqlite.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_namestore_postgres.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_namestore_sqlite.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_peerstore_sqlite.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_reclaim_attribute_basic.dll.a
-  /usr/lib/gnunet/libgnunet_plugin_reclaim_credential_jwt.dll.a
   /usr/lib/libgnunetabd.dll.a
   /usr/lib/libgnunetarm.dll.a
   /usr/lib/libgnunetblock.dll.a
@@ -896,6 +867,7 @@ Files included in the binary package:
   /usr/lib/pkgconfig/gnunetconsensus.pc
   /usr/lib/pkgconfig/gnunetconversation.pc
   /usr/lib/pkgconfig/gnunetcore.pc
+  /usr/lib/pkgconfig/gnunetcurl.pc
   /usr/lib/pkgconfig/gnunetdatacache.pc
   /usr/lib/pkgconfig/gnunetdatastore.pc
   /usr/lib/pkgconfig/gnunetdht.pc
@@ -917,6 +889,7 @@ Files included in the binary package:
   /usr/lib/pkgconfig/gnunetnse.pc
   /usr/lib/pkgconfig/gnunetpeerstore.pc
   /usr/lib/pkgconfig/gnunetpils.pc
+  /usr/lib/pkgconfig/gnunetpq.pc
   /usr/lib/pkgconfig/gnunetreclaim.pc
   /usr/lib/pkgconfig/gnunetregex.pc
   /usr/lib/pkgconfig/gnunetrest.pc
@@ -942,6 +915,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.29.0-1bl1 -----
+Version bump.
 
 ----- version 0.27.0-1bl1 -----
 Version bump.

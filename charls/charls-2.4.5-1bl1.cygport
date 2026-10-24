@@ -22,7 +22,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	verbose ./test/charlstest.exe
+	PATH=${B}:${PATH} ctest --output-on-failure
 }
 
 DOCS="

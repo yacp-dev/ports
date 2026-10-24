@@ -18,5 +18,7 @@ inherit cmake
 src_test()
 {
 	cd ${B}
-	verbose ./stable/${PN}.exe
+	# without an IOS image it prints its usage and exits 1
+	{ ./stable/${PN}.exe 2>&1 || true; } | grep -F "(version ${PV}-" \
+		|| error "${PN}.exe did not report version ${PV}"
 }

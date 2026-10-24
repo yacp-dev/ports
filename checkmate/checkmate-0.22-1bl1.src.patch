@@ -1,5 +1,5 @@
---- origsrc/checkmate-0.21/Makefile.am	2017-06-22 23:21:22.000000000 +0900
-+++ src/checkmate-0.21/Makefile.am	2025-12-13 17:38:41.836035800 +0900
+--- origsrc/checkmate-0.22/Makefile.am	2026-10-12 13:05:48.000000000 +0000
++++ src/checkmate-0.22/Makefile.am	2026-10-24 07:43:07.312133900 +0000
 @@ -2,7 +2,7 @@
  
  EXTRA_DIST = ABOUT_FIXING HISTORY mpck.1 vc++ mp3checker debian README.md

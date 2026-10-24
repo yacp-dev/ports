@@ -1,5 +1,6 @@
-HOMEPAGE="https://github.com/bbc/${PN}"
-SRC_URI="https://github.com/bbc/${PN}/archive/refs/tags/${PV}.tar.gz"
+HOMEPAGE="https://codeberg.org/chrisn/${PN}"
+SRC_URI="https://codeberg.org/chrisn/${PN}/archive/${PV}.tar.gz"
+SRC_DIR="${PN}"
 
 CATEGORY="Audio"
 SUMMARY="C++ program to generate waveform data and render waveform images from audio files"
@@ -33,3 +34,12 @@ DOCS="
 DIFF_EXCLUDES="
 	build
 "
+
+# The tests open their data as ../test/data/... and run ./audiowaveform, i.e.
+# they expect to run from a build directory directly under the source tree.
+src_test() {
+	mkdir -p ${S}/build
+	cd ${S}/build
+	cp -f ${B}/audiowaveform.exe .
+	${B}/audiowaveform_tests
+}

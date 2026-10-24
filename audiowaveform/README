@@ -2,11 +2,11 @@ audiowaveform
 ------------------------------------------
 audiowaveform is a C++ command-line application that generates waveform data
 from either MP3, WAV, or FLAC format audio files. Waveform data can be used to
-produce a visual rendering of the audio, similar in appearance to audio
-editing applications.
+produce a visual rendering of the audio, similar in appearance to audio editing
+applications.
 
 Runtime requirements:
-  cygwin-3.6.9-1
+  cygwin-3.6.11-1
   libboost_filesystem1.66-1.66.0-1
   libboost_program_options1.66-1.66.0-1
   libboost_regex1.66-1.66.0-1
@@ -14,44 +14,43 @@ Runtime requirements:
   libgcc1-14.4.0-1
   libgd3-2.3.3-1
   libid3tag0-0.16.4-1
-  libmad0-0.16.4-1
+  libmad0-0.16.5-1
   libsndfile1-1.2.2-2
   libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46.1-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-14.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
   gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
   libgd-devel-2.3.3-1
-  libgmock-devel-1.17.0-1bl1
-  libgtest-devel-1.17.0-1bl1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
   libid3tag-devel-0.16.4-1
-  libmad-devel-0.16.4-1
+  libmad-devel-0.16.5-1
   libsndfile-devel-1.2.2-2
   ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/bbc/audiowaveform
+  https://codeberg.org/chrisn/audiowaveform
 
 Canonical download:
-  https://github.com/bbc/audiowaveform/archive/refs/tags/1.10.3.tar.gz
+  https://codeberg.org/chrisn/audiowaveform/archive/1.11.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack audiowaveform-1.10.3-X-src.tar.xz
+  1. unpack audiowaveform-1.11.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./audiowaveform-1.10.3-X.cygport all
+        % cygport ./audiowaveform-1.11.1-X.cygport all
 
 This will create:
-  /usr/src/audiowaveform-1.10.3-X-src.tar.xz
-  /usr/src/audiowaveform-1.10.3-X.tar.xz
+  /usr/src/audiowaveform-1.11.1-X-src.tar.xz
+  /usr/src/audiowaveform-1.11.1-X.tar.xz
 
 -------------------------------------------
 
@@ -72,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.11.1-1bl1 -----
+Version bump.
 
 ----- version 1.10.3-1bl1 -----
 Version bump.

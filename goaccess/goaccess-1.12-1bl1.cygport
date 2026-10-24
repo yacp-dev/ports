@@ -12,7 +12,13 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libintl-devel libmaxminddb-devel libncurses-devel libssl-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libintl-devel
+	libmaxminddb-devel
+	libncurses-devel
+	libssl-devel
+"
 
 CYGCONF_ARGS="
 	--enable-geoip=mmdb

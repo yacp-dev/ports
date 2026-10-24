@@ -1,0 +1,10 @@
+--- origsrc/goaccess-1.12/src/win/mmap.c	2026-04-29 23:55:54.000000000 +0000
++++ src/goaccess-1.12/src/win/mmap.c	2026-10-24 13:22:10.923458100 +0000
+@@ -1,6 +1,6 @@
+ #include <stdlib.h>
+ #include <windows.h>
+-#ifdef _WIN32
++#if defined _WIN32 || defined __CYGWIN__
+ #include <io.h>
+ #endif
+ #include <errno.h>

@@ -4,46 +4,45 @@ AdapterRemoval searches for and removes adapter sequences from High-Throughput
 Sequencing (HTS) data and (optionally) trims low quality bases from the 3' end
 of reads following adapter removal. AdapterRemoval can analyze both single end
 and paired end data, and can be used to merge overlapping paired-ended reads
-into (longer) consensus sequences. Additionally, AdapterRemoval can construct
-a consensus adapter sequence for paired-ended reads, if which this information
-is not available.
+into (longer) consensus sequences. Additionally, AdapterRemoval can construct a
+consensus adapter sequence for paired-ended reads, if which this information is
+not available.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libdeflate0-1.25-1
-  libgcc1-13.4.0-1
-  libisal2-2.32.0-1bl1
-  libstdc++6-13.4.0-1
+  cygwin-3.6.11-1
+  libdeflate0-1.26-1
+  libgcc1-14.4.0-1
+  libisal2-2.32.1-1bl1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libdeflate-devel-1.25-1
-  libisal-devel-2.32.0-1bl1
-  meson-1.7.2-1
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libdeflate-devel-1.26-1
+  libisal-devel-2.32.1-1bl1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/MikkelSchubert/adapterremoval
 
 Canonical download:
-  https://github.com/MikkelSchubert/adapterremoval/archive/refs/tags/v3.0.0.tar.gz
+  https://github.com/MikkelSchubert/adapterremoval/archive/refs/tags/v3.0.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack adapterremoval-3.0.0-X-src.tar.xz
+  1. unpack adapterremoval-3.0.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./adapterremoval-3.0.0-X.cygport all
+        % cygport ./adapterremoval-3.0.2-X.cygport all
 
 This will create:
-  /usr/src/adapterremoval-3.0.0-X-src.tar.xz
-  /usr/src/adapterremoval-3.0.0-X.tar.xz
+  /usr/src/adapterremoval-3.0.2-X-src.tar.xz
+  /usr/src/adapterremoval-3.0.2-X.tar.xz
 
 -------------------------------------------
 
@@ -71,6 +70,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0.2-1bl1 -----
+Version bump.
 
 ----- version 3.0.0-1bl1 -----
 Version bump.

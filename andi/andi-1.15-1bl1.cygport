@@ -13,7 +13,11 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libdivsufsort-devel libgsl-devel"
+BUILD_REQUIRES="
+	libdivsufsort-devel
+	libglib2.0-devel
+	libgsl-devel
+"
 
 CYGCONF_ARGS="
 	--enable-unit-tests

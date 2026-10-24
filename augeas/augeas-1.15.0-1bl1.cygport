@@ -12,7 +12,12 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libreadline-devel libxml2-devel"
+BUILD_REQUIRES="
+	bison
+	flex
+	libreadline-devel
+	libxml2-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -DDLL_EXPORTED="
 
@@ -33,6 +38,7 @@ src_compile()
 }
 
 DIFF_EXCLUDES="
+	gitlog-to-changelog
 	gnulib
 "
 

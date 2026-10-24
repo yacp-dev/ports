@@ -5,29 +5,29 @@ native formats and transforms them into a tree. Configuration changes are made
 by manipulating this tree and saving it back into native config files.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libaugeas-devel-1.14.1-1bl1
-  libaugeas0-1.14.1-1bl1
-  libfa-devel-1.14.1-1bl1
-  libfa1-1.14.1-1bl1
-  libgcc1-12.4.0-3
-  libreadline7-8.2-2
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-2.3.0-1
+  cygwin-3.6.11-1
+  libaugeas-devel-1.15.0-1bl1
+  libaugeas0-1.15.0-1bl1
+  libfa-devel-1.15.0-1bl1
+  libfa1-1.15.0-1bl1
+  libgcc1-14.4.0-1
+  libreadline8-8.3-1
+  libxml2-2.13.9-2
+  libxml2-devel-2.13.9-2
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
   bison-3.8.2-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libreadline-devel-8.2-2
-  libtool-2.5.3-1
-  libxml2-devel-2.10.4-2
+  cygport-0.37.11-1
+  flex-2.6.4-2
+  gcc-core-14.4.0-1
+  libreadline-devel-8.3-1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-2
   make-4.4.1-2
 
 Canonical website:
@@ -39,19 +39,19 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack augeas-1.14.1-X-src.tar.xz
+  1. unpack augeas-1.15.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./augeas-1.14.1-X.cygport all
+        % cygport ./augeas-1.15.0-X.cygport all
 
 This will create:
-  /usr/src/augeas-1.14.1-X-src.tar.xz
-  /usr/src/augeas-1.14.1-X.tar.xz
-  /usr/src/libaugeas0-1.14.1-X.tar.xz
-  /usr/src/libaugeas-devel-1.14.1-X.tar.xz
-  /usr/src/libfa1-1.14.1-X.tar.xz
-  /usr/src/libfa-devel-1.14.1-X.tar.xz
+  /usr/src/augeas-1.15.0-X-src.tar.xz
+  /usr/src/augeas-1.15.0-X.tar.xz
+  /usr/src/libaugeas0-1.15.0-X.tar.xz
+  /usr/src/libaugeas-devel-1.15.0-X.tar.xz
+  /usr/src/libfa1-1.15.0-X.tar.xz
+  /usr/src/libfa-devel-1.15.0-X.tar.xz
 
 -------------------------------------------
 
@@ -98,6 +98,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.15.0-1bl1 -----
+Version bump.
 
 ----- version 1.14.1-1bl1 -----
 Version bump.

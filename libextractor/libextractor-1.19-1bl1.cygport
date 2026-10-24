@@ -1,11 +1,8 @@
 HOMEPAGE="https://www.gnu.org/software/${PN}/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/1%3A1.13-9/debian/patches/exiv2-path.diff
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/1%3A1.13-9/debian/patches/fix-deprecated-warning.diff
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/1%3A1.13-9/debian/patches/fix-ipc-test-fuzzy-failure.diff
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/0001-Fix-test_exiv2.c-for-exiv2-0.28.0.patch
-
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/1%3A1.19-2/debian/patches/fix-deprecated-warning.diff
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/1%3A1.19-2/debian/patches/fix-ipc-test-fuzzy-failure.diff
 "
 
 CATEGORY="Libs"
@@ -25,6 +22,7 @@ LICENSE_URI="COPYING"
 BUILD_REQUIRES="
 	file-devel
 	flac-devel
+	gettext-devel
 	libapparmor-devel
 	libarchive-devel
 	libbz2-devel
@@ -57,7 +55,8 @@ libextractor_CONTENTS="
 	usr/share/man/man1
 "
 libextractor3_CONTENTS="
-	usr/bin/cyg*.dll
+	usr/bin/cygextractor-3.dll
+	usr/bin/cygextractor_common-1.dll
 	usr/lib/${PN}/*.dll
 	usr/share/locale
 "

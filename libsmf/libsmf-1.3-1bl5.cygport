@@ -10,7 +10,10 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libglib2.0-devel libreadline-devel"
+BUILD_REQUIRES="
+	libglib2.0-devel
+	libreadline-devel
+"
 
 PKG_NAMES="
 	${PN}

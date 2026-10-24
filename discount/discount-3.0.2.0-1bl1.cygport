@@ -19,6 +19,30 @@ src_compile()
 	cygninja
 }
 
+# The CMake build doesn't build the test framework or run tests/*.t;
+# do what "make test" in the configure.sh build does.
+src_test()
+{
+	local t rc=0
+
+	cd ${B}
+	# 300.c and rep.c are K&R C (rep.c leaves argc's type implicit)
+	for t in 300 cols echo rep space2nl
+	do
+		${CC} ${CFLAGS} -std=gnu89 -o ${t} ${S}/tools/${t}.c || error "${t} build failed"
+	done
+	${CC} ${CFLAGS} -I${B} -I${S} -o pandoc_headers \
+		${S}/tools/pandoc_headers.c ${S}/gethopt.c ${S}/notspecial.c \
+		-L${B} -lmarkdown || error "pandoc_headers build failed"
+	ln -sfn ${S}/tests tests
+
+	for t in tests/*.t
+	do
+		sh ${t} || rc=1
+	done
+	[ ${rc} -eq 0 ] || error "tests failed"
+}
+
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5

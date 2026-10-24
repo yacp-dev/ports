@@ -3,16 +3,16 @@ discount
 My C implementation of John Gruber's Markdown markup language
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libmarkdown-devel-3.0.1.3-1bl1
-  libmarkdown3-3.0.1.3-1bl1
-  pkg-config-3.0.5-1
+  cygwin-3.6.11-1
+  libmarkdown-devel-3.0.2.0-1bl1
+  libmarkdown3-3.0.2.0-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
   gcc-core-14.4.0-1
   ninja-1.13.2-1
 
@@ -20,22 +20,22 @@ Canonical website:
   https://github.com/Orc/discount
 
 Canonical download:
-  https://github.com/Orc/discount/archive/refs/tags/v3.0.1.3.tar.gz
+  https://github.com/Orc/discount/archive/refs/tags/v3.0.2.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack discount-3.0.1.3-X-src.tar.xz
+  1. unpack discount-3.0.2.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./discount-3.0.1.3-X.cygport all
+        % cygport ./discount-3.0.2.0-X.cygport all
 
 This will create:
-  /usr/src/discount-3.0.1.3-X-src.tar.xz
-  /usr/src/discount-3.0.1.3-X.tar.xz
-  /usr/src/libmarkdown3-3.0.1.3-X.tar.xz
-  /usr/src/libmarkdown-devel-3.0.1.3-X.tar.xz
+  /usr/src/discount-3.0.2.0-X-src.tar.xz
+  /usr/src/discount-3.0.2.0-X.tar.xz
+  /usr/src/libmarkdown3-3.0.2.0-X.tar.xz
+  /usr/src/libmarkdown-devel-3.0.2.0-X.tar.xz
 
 -------------------------------------------
 
@@ -55,7 +55,7 @@ Files included in the binary package:
   /usr/include/mkdio.h
   /usr/lib/cmake/discount/discount-config-version.cmake
   /usr/lib/cmake/discount/discount-config.cmake
-  /usr/lib/cmake/discount/discount-targets-release.cmake
+  /usr/lib/cmake/discount/discount-targets-relwithdebinfo.cmake
   /usr/lib/cmake/discount/discount-targets.cmake
   /usr/lib/libmarkdown.dll.a
   /usr/lib/pkgconfig/libmarkdown.pc
@@ -63,6 +63,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0.2.0-1bl1 -----
+Version bump.
 
 ----- version 3.0.1.3-1bl1 -----
 Version bump.

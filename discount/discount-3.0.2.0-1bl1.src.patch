@@ -1,0 +1,25 @@
+--- origsrc/discount-3.0.2.0/cmake/CMakeLists.txt	2026-08-29 03:34:06.000000000 +0000
++++ src/discount-3.0.2.0/cmake/CMakeLists.txt	2026-10-24 09:06:44.692349500 +0000
+@@ -168,6 +168,10 @@ target_include_directories(libmarkdown
+         $<BUILD_INTERFACE:${_ROOT}>
+ )
+ 
++if (DEFINED SOVERSION)
++    set_target_properties(libmarkdown PROPERTIES SOVERSION ${SOVERSION})
++endif()
++
+ if(NOT ${PROJECT_NAME}_ONLY_LIBRARY)
+     add_library(common OBJECT
+         "${_ROOT}/pgm_options.c"
+--- origsrc/discount-3.0.2.0/cmake/config.h.in	2026-08-29 03:34:06.000000000 +0000
++++ src/discount-3.0.2.0/cmake/config.h.in	2026-10-24 09:06:44.694629900 +0000
+@@ -26,6 +26,9 @@
+ #ifndef USE_EXTRA_DL
+ #define USE_EXTRA_DL 1
+ #endif
++#ifndef MAX_RECURSION
++#define MAX_RECURSION 200
++#endif
+ 
+ #ifdef _MSC_VER
+ 

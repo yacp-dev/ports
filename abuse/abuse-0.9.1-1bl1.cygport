@@ -1,0 +1,47 @@
+HOMEPAGE="https://github.com/Xenoveritas/${PN}"
+# 0.9.1 doesn't carry the non-free sfx and music, nor some add-ons and levels;
+# take them from the last abuse.zoy.org release, as Gentoo and RPM Fusion do
+DATA_PV="0.8"
+SRC_URI="
+	https://github.com/Xenoveritas/${PN}/archive/refs/tags/v${PV}.tar.gz
+	http://${PN}.zoy.org/raw-attachment/wiki/download/${PN}-${DATA_PV}.tar.gz
+"
+
+CATEGORY="Games"
+SUMMARY="Dark 2D side-scrolling platform game"
+DESCRIPTION="Abuse is a dark 2D side-scrolling platform game developed by Crack dot Com in
+1995. It features beautiful lighting, realistic animation and nasty alien-like
+creatures to destroy. It is now maintained by Sam Hocevar in an attempt to
+prevent it from vanishing from the Internet."
+
+LICENSE="GPL-2.0-or-later AND WTFPL AND LicenseRef-PublicDomain AND LicenseRef-Abuse-SFX AND LicenseRef-Abuse-Claudio"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND WTFPL AND LicenseRef-PublicDomain AND LicenseRef-Abuse-SFX AND LicenseRef-Abuse-Claudio"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libSDL2-devel
+	libSDL2_mixer-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	local data=${srcdir}/${PN}-${DATA_PV}/data
+	local assetdir=${D}/usr/share/games/${PN}
+	cp -r ${data}/music ${data}/sfx ${assetdir}/ || error "copying sfx and music failed"
+	cp -r ${data}/addon/{aliens,claudio,leon,newart,twist} ${assetdir}/addon/ || error "copying add-ons failed"
+	cp -r ${data}/levels/frabs* ${assetdir}/levels/ || error "copying levels failed"
+
+	cd ${S}/doc
+	sed -e "s/@VERSION@/${PV}/" abuse.6.in > ${T}/abuse.6
+	sed -e "s/@VERSION@/${PV}/" abuse-tool.6.in > ${T}/abuse-tool.6
+	doman ${T}/abuse.6 ${T}/abuse-tool.6
+}

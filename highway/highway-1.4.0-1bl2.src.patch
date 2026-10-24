@@ -1,0 +1,11 @@
+--- origsrc/highway-1.4.0/hwy/ops/shared-inl.h	2026-04-23 01:17:25.000000000 +0900
++++ src/highway-1.4.0/hwy/ops/shared-inl.h	2026-10-25 01:53:58.037138955 +0900
+@@ -66,7 +66,7 @@
+ // Even better is to avoid passing vector arguments to non-inlined functions,
+ // because the SVE and RISC-V ABIs are still works in progress and may lead to
+ // incorrect codegen.
+-#if HWY_COMPILER_GCC_ACTUAL && (HWY_OS_WIN || HWY_ARCH_ARM_A64)
++#if HWY_COMPILER_GCC_ACTUAL && (HWY_OS_WIN || defined(__CYGWIN__) || HWY_ARCH_ARM_A64)
+ template <class V>
+ using VecArg = const V&;
+ #else

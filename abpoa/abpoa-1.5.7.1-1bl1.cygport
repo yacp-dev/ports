@@ -2,8 +2,8 @@ HOMEPAGE="https://github.com/yangao07/abPOA"
 SRC_URI="https://github.com/yangao07/abPOA/archive/refs/tags/v${PV}.tar.gz"
 SRC_DIR="abPOA-${PV}"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/debian-simde.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/baseline.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.5.7-1/debian/patches/debian-simde.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.5.7-1/debian/patches/baseline.patch
 "
 
 CATEGORY="Libs"
@@ -15,6 +15,7 @@ LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	graphviz
 	simde
 	zlib-devel
 "
@@ -22,7 +23,6 @@ BUILD_REQUIRES="
 inherit cmake
 
 CYGCMAKE_ARGS="
-	-DabPOA_VERSION:STRING=${PV}
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DSOVERSION:STRING=${PV[1]}
@@ -51,5 +51,5 @@ libabpoa_devel_CONTENTS="
 	usr/lib
 "
 abpoa_SUMMARY="${SUMMARY} (utilities)"
-libabpoa10_SUMMARY="${SUMMARY} (runtime)"
+libabpoa1_SUMMARY="${SUMMARY} (runtime)"
 libabpoa_devel_SUMMARY="${SUMMARY} (development)"

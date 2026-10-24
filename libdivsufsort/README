@@ -5,20 +5,20 @@ library to construct the suffix array and the Burrows-Wheeler transformed
 string for any input string of a constant-size alphabet.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libdivsufsort-devel-2.0.1-1bl4
-  libdivsufsort3-2.0.1-1bl4
-  libdivsufsort64-devel-2.0.1-1bl4
-  libdivsufsort64_3-2.0.1-1bl4
-  libgomp1-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libdivsufsort-devel-2.0.1-1bl5
+  libdivsufsort3-2.0.1-1bl5
+  libdivsufsort64-devel-2.0.1-1bl5
+  libdivsufsort64_3-2.0.1-1bl5
+  libgomp1-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.5-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -77,6 +77,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.1-1bl5 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.0.1-1bl4 -----
 Rebuild with gcc-13.4.0

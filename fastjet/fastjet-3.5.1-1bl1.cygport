@@ -16,7 +16,11 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libsiscone-devel python39-devel"
+BUILD_REQUIRES="
+	gcc-fortran
+	libsiscone-devel
+	python3-devel
+"
 
 CYGCONF_ARGS="
 	--disable-debug
@@ -35,13 +39,13 @@ PKG_NAMES="
 	${PN}
 	lib${PN}0
 	lib${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 fastjet_CONTENTS="
 	usr/share/doc
 "
 libfastjet0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-0.dll
 "
 libfastjet_devel_CONTENTS="
 	usr/bin/${PN}-config
@@ -49,10 +53,10 @@ libfastjet_devel_CONTENTS="
 	usr/lib/lib${PN}*
 	usr/share/${PN}
 "
-python39_fastjet_CONTENTS="
-	usr/lib/python3*
+python312_fastjet_CONTENTS="
+	usr/lib/python3.12
 "
 fastjet_SUMMARY="${SUMMARY} (licensing & readmes)"
 libfastjet0_SUMMARY="${SUMMARY} (runtime)"
 libfastjet_devel_SUMMARY="${SUMMARY} (development)"
-python39_fastjet_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_fastjet_SUMMARY="${SUMMARY} (python312 bindings)"

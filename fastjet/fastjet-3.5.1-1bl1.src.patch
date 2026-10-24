@@ -1,5 +1,5 @@
---- origsrc/fastjet-3.4.3/configure.ac	2024-09-28 09:54:54.872259700 +0900
-+++ src/fastjet-3.4.3/configure.ac	2024-09-28 10:24:46.070507400 +0900
+--- origsrc/fastjet-3.5.1/configure.ac	2026-10-24 10:42:42.419198100 +0000
++++ src/fastjet-3.5.1/configure.ac	2026-10-24 10:42:43.484067800 +0000
 @@ -53,7 +53,7 @@ dnl  - the libtoolize manpage says that
  dnl    portable to keep using ACLOCAL_AMFLAGS.
  dnl  - the autoconf manual mentions that since we use 'aclocal -I m4'
@@ -9,7 +9,7 @@
  dnl Question: is it compatible with older versions of libtool?
  dnl   AC_CONFIG_MACRO_DIR([m4])
  
-@@ -631,9 +631,10 @@ AC_ARG_ENABLE(pyext,
+@@ -637,9 +637,10 @@ AC_ARG_ENABLE(pyext,
  	[ENABLE_PYEXT_FLAG="no"])
  AC_MSG_RESULT(${ENABLE_PYEXT_FLAG})
  if test "$ENABLE_PYEXT_FLAG" = "yes" ; then
@@ -21,7 +21,7 @@
      AS_IF([test -z "$PYTHON_INCLUDE"], [
          AS_IF([test -z "$PYTHON_CONFIG"], [
              AC_PATH_PROGS([PYTHON_CONFIG],
-@@ -646,6 +647,18 @@ if test "$ENABLE_PYEXT_FLAG" = "yes" ; t
+@@ -652,6 +653,18 @@ if test "$ENABLE_PYEXT_FLAG" = "yes" ; t
          PYTHON_INCLUDE=`$PYTHON_CONFIG --includes`
          AC_MSG_RESULT([$PYTHON_INCLUDE])
      ])
@@ -40,9 +40,9 @@
  
      # at a deeper level, one may want to be able to run swig dynamically
      #
---- origsrc/fastjet-3.4.3/example/Makefile.am	2024-09-28 09:54:54.872259700 +0900
-+++ src/fastjet-3.4.3/example/Makefile.am	2024-09-28 10:17:53.565946900 +0900
-@@ -41,9 +41,9 @@ noinst_PROGRAMS += 03-plugin
+--- origsrc/fastjet-3.5.1/example/Makefile.am	2026-10-24 10:42:42.419198100 +0000
++++ src/fastjet-3.5.1/example/Makefile.am	2026-10-24 10:42:43.485839200 +0000
+@@ -40,9 +40,9 @@ noinst_PROGRAMS += 03-plugin
  03_plugin_SOURCES = 03-plugin.cc
  #03_plugin_SHORTNAME = 03
  03_plugin_CXXFLAGS = $(AM_CXXFLAGS) $(CGAL_CPPFLAGS) -I$(srcdir)/../include
@@ -54,8 +54,8 @@
  else
  EXTRA_DIST += 03-plugin.cc
  endif
---- origsrc/fastjet-3.4.3/plugins/Makefile.am	2024-07-05 20:34:55.000000000 +0900
-+++ src/fastjet-3.4.3/plugins/Makefile.am	2024-09-28 10:00:05.889026300 +0900
+--- origsrc/fastjet-3.5.1/plugins/Makefile.am	2025-07-01 12:31:45.000000000 +0000
++++ src/fastjet-3.5.1/plugins/Makefile.am	2026-10-24 10:42:43.485839200 +0000
 @@ -83,6 +83,7 @@ libfastjetplugins_la_LIBADD += GridJet/l
  endif
  # end monolithic plugin section -- do not modify this line
@@ -64,30 +64,31 @@
  
  DIST_SUBDIRS = GridJet D0RunICone CMSIterativeCone Jade EECambridge ATLASCone TrackJet SISCone CDFCones PxCone D0RunIICone NestedDefs
  
---- origsrc/fastjet-3.4.3/pyinterface/Makefile.am	2024-07-05 20:34:55.000000000 +0900
-+++ src/fastjet-3.4.3/pyinterface/Makefile.am	2024-09-28 10:21:50.735811900 +0900
-@@ -69,8 +69,8 @@ pyexec_LTLIBRARIES = _fastjet.la
- _fastjet_la_LIBTOOLFLAGS = --silent
- _fastjet_la_SOURCES = swig_wrap.cpp
- _fastjet_la_CPPFLAGS = $(PYTHON_INCLUDE) $(AM_CXXFLAGS) $(CGAL_CPPFLAGS) -I../include -I$(top_srcdir)/include -I$(top_srcdir)/tools -DSWIG -DSWIG_TYPE_TABLE=fastjet
--_fastjet_la_LDFLAGS = -module
--_fastjet_la_LIBADD = ../src/libfastjet.la ../tools/libfastjettools.la $(CGAL_LIBS)
-+_fastjet_la_LDFLAGS = -no-undefined -avoid-version -module
-+_fastjet_la_LIBADD = ../src/libfastjet.la ../tools/libfastjettools.la $(CGAL_LIBS) $(PYTHON_LIBS)
+--- origsrc/fastjet-3.5.1/pyinterface/Makefile.am	2025-07-01 12:31:45.000000000 +0000
++++ src/fastjet-3.5.1/pyinterface/Makefile.am	2026-10-24 10:42:43.487858000 +0000
+@@ -69,8 +69,8 @@ pyexec_LTLIBRARIES = _fastjet_swig.la
+ _fastjet_swig_la_LIBTOOLFLAGS = --silent
+ _fastjet_swig_la_SOURCES = swig_wrap.cpp
+ _fastjet_swig_la_CPPFLAGS = $(PYTHON_INCLUDE) $(AM_CXXFLAGS) $(CGAL_CPPFLAGS) -I../include -I$(top_srcdir)/include -I$(top_srcdir)/tools -DSWIG -DSWIG_TYPE_TABLE=fastjet_swig
+-_fastjet_swig_la_LDFLAGS = -module
+-_fastjet_swig_la_LIBADD = ../src/libfastjet.la ../tools/libfastjettools.la $(CGAL_LIBS)
++_fastjet_swig_la_LDFLAGS = -no-undefined -avoid-version -module
++_fastjet_swig_la_LIBADD = ../src/libfastjet.la ../tools/libfastjettools.la $(CGAL_LIBS) $(PYTHON_LIBS)
  
  # include the interface file for completeness
  pyinterfacedir=$(datadir)/fastjet/pyinterface
---- origsrc/fastjet-3.4.3/src/Makefile.am	2024-07-05 20:34:55.000000000 +0900
-+++ src/fastjet-3.4.3/src/Makefile.am	2024-09-28 09:58:42.754613300 +0900
-@@ -23,5 +23,6 @@ libfastjet_la_SOURCES = DnnPlane.cc\
+--- origsrc/fastjet-3.5.1/src/Makefile.am	2025-07-01 12:31:45.000000000 +0000
++++ src/fastjet-3.5.1/src/Makefile.am	2026-10-24 10:42:43.487858000 +0000
+@@ -23,6 +23,7 @@ libfastjet_la_SOURCES = DnnPlane.cc\
          LazyTiling25.cc \
          LazyTiling9SeparateGhosts.cc \
          RectangularGrid.cc
 +libfastjet_la_LDFLAGS = -no-undefined
  
  EXTRA_DIST = makefile.static genconfig.sh
---- origsrc/fastjet-3.4.3/tools/Makefile.am	2024-07-05 20:34:55.000000000 +0900
-+++ src/fastjet-3.4.3/tools/Makefile.am	2024-09-28 09:59:20.598529100 +0900
+ EXTRA_DIST += CMakeLists.txt
+--- origsrc/fastjet-3.5.1/tools/Makefile.am	2025-07-01 12:31:45.000000000 +0000
++++ src/fastjet-3.5.1/tools/Makefile.am	2026-10-24 10:42:43.489878100 +0000
 @@ -3,7 +3,7 @@
  SUBDIRS=fastjet
  lib_LTLIBRARIES = libfastjettools.la
@@ -97,10 +98,11 @@
  libfastjettools_la_SOURCES = \
    BackgroundEstimatorBase.cc \
    JetMedianBackgroundEstimator.cc \
-@@ -12,5 +12,6 @@ libfastjettools_la_SOURCES = \
+@@ -12,6 +12,7 @@ libfastjettools_la_SOURCES = \
    Filter.cc Pruner.cc Subtractor.cc\
    MassDropTagger.cc RestFrameNSubjettinessTagger.cc CASubJetTagger.cc \
    JHTopTagger.cc TopTaggerBase.cc
 +libfastjettools_la_LDFLAGS = -no-undefined
  
  # EXTRA_DIST = makefile.static 
+ EXTRA_DIST = CMakeLists.txt

@@ -13,6 +13,11 @@ LICENSE_URI="LICENSE.md"
 
 BUILD_REQUIRES="
 	libX11-devel
+	libXcursor-devel
+	libXext-devel
+	libXi-devel
+	libXinerama-devel
+	libXrandr-devel
 "
 
 inherit cmake

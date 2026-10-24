@@ -1,6 +1,6 @@
---- origsrc/dbcsr-2.9.1/CMakeLists.txt	2025-12-19 17:38:58.000000000 +0900
-+++ src/dbcsr-2.9.1/CMakeLists.txt	2025-12-22 11:38:13.735330900 +0900
-@@ -401,3 +401,10 @@ include(CustomTargets)
+--- origsrc/dbcsr-2.10.0/CMakeLists.txt	2026-06-27 11:56:55.152392100 +0000
++++ src/dbcsr-2.10.0/CMakeLists.txt	2026-10-24 08:14:57.365991400 +0000
+@@ -437,3 +437,10 @@ include(CustomTargets)
  
  # Disable LTO
  set(CMAKE_INTERPROCEDURAL_OPTIMIZATION FALSE FORCE)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/dbcsr.pc.in ${CMAKE_BINARY_DIR}/dbcsr.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/dbcsr.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/dbcsr-2.9.1/dbcsr.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/dbcsr-2.9.1/dbcsr.pc.in	2025-12-22 11:38:13.739386300 +0900
+--- origsrc/dbcsr-2.10.0/dbcsr.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/dbcsr-2.10.0/dbcsr.pc.in	2026-10-24 08:14:57.365991400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,9 +24,9 @@
 +Version: @dbcsr_VERSION@
 +Libs: -L${libdir} -ldbcsr
 +Cflags: -I${includedir}
---- origsrc/dbcsr-2.9.1/src/CMakeLists.txt	2025-12-22 11:38:08.316472400 +0900
-+++ src/dbcsr-2.9.1/src/CMakeLists.txt	2025-12-22 11:38:13.745181600 +0900
-@@ -333,7 +333,7 @@ set(config_namespace "DBCSR::")
+--- origsrc/dbcsr-2.10.0/src/CMakeLists.txt	2026-10-24 08:14:56.506370700 +0000
++++ src/dbcsr-2.10.0/src/CMakeLists.txt	2026-10-24 08:14:57.368007600 +0000
+@@ -360,7 +360,7 @@ set(config_namespace "DBCSR::")
  install(
    TARGETS dbcsr
    EXPORT DBCSRTargets
@@ -35,7 +35,7 @@
    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
  # See https://gitlab.kitware.com/cmake/cmake/-/issues/19608
  # CMAKE_INSTALL_Fortran_MODULES may not be an "official" variable
-@@ -352,7 +352,7 @@ if (WITH_C_API)
+@@ -379,7 +379,7 @@ if (WITH_C_API)
      TARGETS dbcsr_c
      EXPORT DBCSRTargets
      COMPONENT C

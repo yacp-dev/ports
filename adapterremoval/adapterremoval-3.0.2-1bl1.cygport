@@ -11,8 +11,8 @@ into (longer) consensus sequences. Additionally, AdapterRemoval can construct
 a consensus adapter sequence for paired-ended reads, if which this information
 is not available."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -28,3 +28,10 @@ CYGMESON_ARGS="
 	-Dmanpage=disabled
 	-Duv=disabled
 "
+
+src_test()
+{
+	cd ${S}/_build.${CHOST}
+	cygninja run-unit-tests
+	cygninja tests/regression/regression
+}

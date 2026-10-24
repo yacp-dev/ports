@@ -47,7 +47,7 @@ PKG_NAMES="
 actor_framework_CONTENTS="
 	usr/share/doc
 "
-libcaf1_1_0_CONTENTS="
+libcaf1_2_0_CONTENTS="
 	usr/bin/cyg*-${PV}.dll
 "
 libcaf_devel_CONTENTS="
@@ -56,5 +56,5 @@ libcaf_devel_CONTENTS="
 	usr/share/caf
 "
 actor_framework_SUMMARY="${SUMMARY} (licensing & readmes)"
-libcaf1_1_0_SUMMARY="${SUMMARY} (runtime)"
+libcaf1_2_0_SUMMARY="${SUMMARY} (runtime)"
 libcaf_devel_SUMMARY="${SUMMARY} (development)"

@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="Behavior Trees Library in C++"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND (MIT-0 OR Unlicense)"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND (MIT-0 OR Unlicense)"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -36,6 +36,7 @@ src_install()
 {
 	cd ${B}
 	ninja_install
+	rm -f ${D}/usr/share/behaviortree_cpp/bt_plugins/*.dll.a
 
 	cd ${S}
 	docinto docs

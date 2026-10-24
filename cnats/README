@@ -3,46 +3,45 @@ cnats
 A C client for the NATS messaging system.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libnats-devel-3.13.0-1bl1
-  libnats3.13-3.13.0-1bl1
-  libprotobuf-c1-1.5.2-1bl1
+  cygwin-3.6.11-1
+  libnats-devel-3.14.0-1bl1
+  libnats3.14-3.14.0-1bl1
+  libprotobuf-c1-1.5.2-1bl2
   libsodium26-1.0.20-1
-  libssl3-3.5.7-1
-  pkg-config-3.0.4-2
+  libssl3-3.5.9-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
   gcc-core-14.4.0-1
-  gcc-g++-14.4.0-1
-  libprotobuf-c-devel-1.5.2-1bl1
+  libprotobuf-c-devel-1.5.2-1bl2
   libsodium-devel-1.0.20-1
-  libssl-devel-3.5.7-1
+  libssl-devel-3.5.9-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/nats-io/nats.c
 
 Canonical download:
-  https://github.com/nats-io/nats.c/archive/refs/tags/v3.13.0.tar.gz
+  https://github.com/nats-io/nats.c/archive/refs/tags/v3.14.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack cnats-3.13.0-X-src.tar.xz
+  1. unpack cnats-3.14.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./cnats-3.13.0-X.cygport all
+        % cygport ./cnats-3.14.0-X.cygport all
 
 This will create:
-  /usr/src/cnats-3.13.0-X-src.tar.xz
-  /usr/src/cnats-3.13.0-X.tar.xz
-  /usr/src/libnats3.13-3.13.0-X.tar.xz
-  /usr/src/libnats-devel-3.13.0-X.tar.xz
+  /usr/src/cnats-3.14.0-X-src.tar.xz
+  /usr/src/cnats-3.14.0-X.tar.xz
+  /usr/src/libnats3.14-3.14.0-X.tar.xz
+  /usr/src/libnats-devel-3.14.0-X.tar.xz
 
 -------------------------------------------
 
@@ -58,8 +57,8 @@ Files included in the binary package:
   /usr/share/doc/cnats/README.md
   /usr/share/doc/cnats/dependencies.md
 
-(libnats3.13)
-  /usr/bin/cygnats-3.13.dll
+(libnats3.14)
+  /usr/bin/cygnats-3.14.dll
 
 (libnats-devel)
   /usr/include/nats.h
@@ -68,7 +67,7 @@ Files included in the binary package:
   /usr/include/nats/nats.h
   /usr/include/nats/status.h
   /usr/include/nats/version.h
-  /usr/lib/cmake/cnats/cnats-config-release.cmake
+  /usr/lib/cmake/cnats/cnats-config-relwithdebinfo.cmake
   /usr/lib/cmake/cnats/cnats-config-version.cmake
   /usr/lib/cmake/cnats/cnats-config.cmake
   /usr/lib/libnats.dll.a
@@ -77,6 +76,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.14.0-1bl1 -----
+Version bump.
 
 ----- version 3.13.0-1bl1 -----
 Version bump.

@@ -12,9 +12,17 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="license"
 
-BUILD_REQUIRES="libhidapi-devel"
+BUILD_REQUIRES="
+	libhidapi-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DHEADSETCONTROL_VERSION=${PV}
+"
 
 src_test()
 {
@@ -25,3 +33,26 @@ src_test()
 DOCS="
 	license
 "
+
+PKG_NAMES="
+	${PN}
+	libheadsetcontrol1
+	libheadsetcontrol-devel
+"
+HeadsetControl_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libheadsetcontrol1_CONTENTS="
+	usr/bin/cyg*-1.dll
+"
+libheadsetcontrol_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+HeadsetControl_SUMMARY="${SUMMARY} (utilities)"
+libheadsetcontrol1_SUMMARY="${SUMMARY} (runtime)"
+libheadsetcontrol_devel_SUMMARY="${SUMMARY} (development)"
+
+# device.hpp includes <hidapi.h>
+libheadsetcontrol_devel_REQUIRES="libhidapi-devel"

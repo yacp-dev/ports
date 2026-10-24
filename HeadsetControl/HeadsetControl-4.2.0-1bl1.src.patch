@@ -1,0 +1,50 @@
+--- origsrc/HeadsetControl-4.2.0/CMakeLists.txt	2026-10-20 19:52:53.000000000 +0000
++++ src/HeadsetControl-4.2.0/CMakeLists.txt	2026-10-24 13:03:20.435094200 +0000
+@@ -241,7 +241,12 @@ endif()
+ option(BUILD_SHARED_LIBRARY "Build shared library for FFI bindings (Python, etc.)" OFF)
+ 
+ # Create the HeadsetControl static library
++if(CYGWIN)
++    add_library(headsetcontrol_lib SHARED ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
++    set_target_properties(headsetcontrol_lib PROPERTIES SOVERSION 1)
++else()
+ add_library(headsetcontrol_lib STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
++endif()
+ 
+ # Set library properties
+ # On MSVC, use different name to avoid conflict with DLL import library
+@@ -346,7 +351,7 @@ if(PROJECT_IS_TOP_LEVEL)
+     # ------------------------------------------------------------------------------
+ 
+     install(TARGETS headsetcontrol DESTINATION bin)
+-    install(TARGETS headsetcontrol_lib DESTINATION lib)
++    install(TARGETS headsetcontrol_lib RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+ 
+     # Install shared library if built
+     if(BUILD_SHARED_LIBRARY)
+@@ -363,7 +368,7 @@ if(PROJECT_IS_TOP_LEVEL)
+     )
+ 
+     # install udev files on linux
+-    if(UNIX AND NOT APPLE AND NOT ${CMAKE_HOST_SYSTEM_NAME} MATCHES "FreeBSD")
++    if(UNIX AND NOT APPLE AND NOT CYGWIN AND NOT ${CMAKE_HOST_SYSTEM_NAME} MATCHES "FreeBSD")
+         set(rules_file 70-headsets.rules)
+         set(udev_rules_dir lib/udev/rules.d/
+             CACHE PATH "Path to the directory where udev rules should be installed")
+--- origsrc/HeadsetControl-4.2.0/cmake_modules/Findhidapi.cmake	2026-10-20 19:52:53.000000000 +0000
++++ src/HeadsetControl-4.2.0/cmake_modules/Findhidapi.cmake	2026-10-24 13:03:20.433832400 +0000
+@@ -67,7 +67,7 @@ ELSEIF(APPLE)
+ 	endif()
+ ELSE()
+ 	find_library(HIDAPI_LIBRARY
+-		NAMES hidapi-hidraw hidapi)
++		NAMES hidapi-hidraw hidapi hidapi-libusb)
+ ENDIF()
+ 
+ IF(APPLE)
+--- origsrc/HeadsetControl-4.2.0/lib/version.h	1970-01-01 00:00:00.000000000 +0000
++++ src/HeadsetControl-4.2.0/lib/version.h	2026-10-24 13:03:24.575087600 +0000
+@@ -0,0 +1,3 @@
++#pragma once
++
++#define VERSION "4.2.0"

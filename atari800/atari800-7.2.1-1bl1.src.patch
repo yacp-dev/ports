@@ -1,5 +1,5 @@
---- origsrc/atari800-ATARI800_7_0_0/configure.ac	2026-06-27 20:16:48.000000000 +0900
-+++ src/atari800-ATARI800_7_0_0/configure.ac	2026-07-12 16:13:49.065133600 +0900
+--- origsrc/atari800-ATARI800_7_2_1/configure.ac	2026-09-13 10:08:28.000000000 +0000
++++ src/atari800-ATARI800_7_2_1/configure.ac	2026-10-24 23:42:25.258124500 +0000
 @@ -84,16 +84,6 @@ WANT_POKEYREC="yes"
  SUPPORTS_RDEVICE="yes"
  SUPPORTS_NETSIO="yes"
@@ -17,8 +17,8 @@
  case $host_os in
      i386-pc-os2-emx)
          a8_host="os/2"
---- origsrc/atari800-ATARI800_7_0_0/src/rdevice.c	2026-06-27 20:16:48.000000000 +0900
-+++ src/atari800-ATARI800_7_0_0/src/rdevice.c	2026-07-12 16:13:49.071180600 +0900
+--- origsrc/atari800-ATARI800_7_2_1/src/rdevice.c	2026-09-13 10:08:28.000000000 +0000
++++ src/atari800-ATARI800_7_2_1/src/rdevice.c	2026-10-24 23:42:25.260134700 +0000
 @@ -818,7 +818,7 @@ static void open_connection(char * addre
  
  
@@ -28,3 +28,12 @@
  #define TTY_DEV_NAME "/dev/ttyS0"   /* Linux */
  #elif defined (__NetBSD__) && (defined(__i386__) || defined(__amd64__))
  #define TTY_DEV_NAME "/dev/tty00"   /* NetBSD/x86 */
+@@ -1206,7 +1206,7 @@ void RDevice_STAT(void)
+   int len;
+ #else
+ #ifdef R_NETWORK
+-  unsigned int len;
++  socklen_t len;
+ #endif
+ #endif
+   int bytesread;

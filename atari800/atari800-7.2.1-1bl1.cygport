@@ -31,5 +31,5 @@ CYGCONF_ARGS="
 src_test()
 {
 	cd ${B}
-	verbose ./src/${PN}.exe --version
+	cygmake check
 }

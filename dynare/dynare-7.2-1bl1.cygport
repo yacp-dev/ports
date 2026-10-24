@@ -18,16 +18,29 @@ financial intermediaries. Some degree of heterogeneity can be achieved by
 including several distinct classes of agents in each of the aforementioned
 agent categories."
 
-LICENSE="LGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND LGPL-3.0-or-later AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND LGPL-3.0-or-later AND BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="liblapack-devel libmatio-devel"
+BUILD_REQUIRES="
+	bison
+	flex
+	gcc-fortran
+	libboost-devel
+	liblapack-devel
+	libslicot-devel
+	libumfpack-devel
+	octave-devel
+"
 
-CYGCONF_ARGS="
-	--disable-doc
-	--disable-matlab
-	--disable-octave
+inherit meson
+
+# Dynare 6 dropped the autotools build, and with it the build without
+# MATLAB or Octave: meson builds the preprocessor along with the Octave
+# MEX files (as Debian does).
+CYGMESON_ARGS="
+	-Dbuild_for=octave
+	-Dpardiso=disabled
 "
 
 DOCS="

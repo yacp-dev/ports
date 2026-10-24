@@ -1,0 +1,11 @@
+--- origsrc/dynare-7.2/meson.build	2026-09-11 10:27:04.000000000 +0000
++++ src/dynare-7.2/meson.build	2026-10-24 12:12:52.891617900 +0000
+@@ -231,7 +231,7 @@ else # Octave build
+   # and macOS (under Windows, --enable-link-all-dependencies is hardcoded in
+   # src/mkoctfile.cc.in; under macOS, the Homebrew formula passes
+   # --enable-link-all-dependencies to the configure script).
+-  if octave_version.version_compare('>=10') or (host_machine.system() == 'windows' or host_machine.system() == 'darwin')
++  if octave_version.version_compare('>=10') or (host_machine.system() == 'windows' or host_machine.system() == 'cygwin' or host_machine.system() == 'darwin')
+     octave_link_args += [ '-L' + octlibdir ] + octave_libs
+   endif
+ 

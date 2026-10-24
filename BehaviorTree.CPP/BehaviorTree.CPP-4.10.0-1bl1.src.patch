@@ -1,6 +1,6 @@
---- origsrc/BehaviorTree.CPP-4.9.0/CMakeLists.txt	2026-02-11 18:15:58.000000000 +0900
-+++ src/BehaviorTree.CPP-4.9.0/CMakeLists.txt	2026-03-15 17:56:09.394535200 +0900
-@@ -104,10 +104,29 @@ else()
+--- origsrc/BehaviorTree.CPP-4.10.0/CMakeLists.txt	2026-07-24 06:56:05.000000000 +0000
++++ src/BehaviorTree.CPP-4.10.0/CMakeLists.txt	2026-10-24 04:57:37.519427300 +0000
+@@ -106,10 +106,29 @@ else()
      if(USE_VENDORED_TINYXML2)
          add_subdirectory(3rdparty/tinyxml2)
      else()
@@ -31,7 +31,7 @@
  #############################################################
  # Handle dependencies
  
-@@ -218,6 +237,10 @@ else()
+@@ -221,6 +240,10 @@ else()
      add_library(${BTCPP_LIBRARY} STATIC ${BT_SOURCE})
  endif()
  
@@ -42,7 +42,7 @@
  message(STATUS "BTCPP_EXTRA_LIBRARIES: ${BTCPP_EXTRA_LIBRARIES}")
  
  target_link_libraries(${BTCPP_LIBRARY}
-@@ -329,3 +352,10 @@ INSTALL( DIRECTORY ${CMAKE_CURRENT_SOURC
+@@ -332,3 +355,10 @@ INSTALL( DIRECTORY ${CMAKE_CURRENT_SOURC
      FILES_MATCHING PATTERN "*.h*")
  
  export_btcpp_package()
@@ -53,8 +53,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/behaviortree_cpp.pc.in ${CMAKE_BINARY_DIR}/behaviortree_cpp.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/behaviortree_cpp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/BehaviorTree.CPP-4.9.0/behaviortree_cpp.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/BehaviorTree.CPP-4.9.0/behaviortree_cpp.pc.in	2026-03-15 17:56:09.398401300 +0900
+--- origsrc/BehaviorTree.CPP-4.10.0/behaviortree_cpp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/BehaviorTree.CPP-4.10.0/behaviortree_cpp.pc.in	2026-10-24 04:57:37.519817200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -66,9 +66,9 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lbehaviortree_cpp
 +Cflags: -I${includedir}
---- origsrc/BehaviorTree.CPP-4.9.0/tests/CMakeLists.txt	2026-02-11 18:15:58.000000000 +0900
-+++ src/BehaviorTree.CPP-4.9.0/tests/CMakeLists.txt	2026-03-15 17:56:09.398401300 +0900
-@@ -84,7 +84,7 @@ else()
+--- origsrc/BehaviorTree.CPP-4.10.0/tests/CMakeLists.txt	2026-07-24 06:56:05.000000000 +0000
++++ src/BehaviorTree.CPP-4.10.0/tests/CMakeLists.txt	2026-10-24 04:57:37.519817200 +0000
+@@ -95,7 +95,7 @@ else()
  
      # gtest_discover_tests queries the test executable for available tests and registers them on ctest individually
      # On Windows it needs a little help to find the shared libraries

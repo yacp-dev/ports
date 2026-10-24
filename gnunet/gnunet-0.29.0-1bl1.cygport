@@ -11,11 +11,12 @@ tunneling IP traffic over GNUnet.  GNUnet is currently developed by a
 worldwide group of independent free software developers.  GNUnet is a
 GNU package (https://www.gnu.org/)."
 
-LICENSE="AGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later"
+LICENSE="AGPL-3.0-or-later AND MIT AND 0BSD"
+LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later AND MIT AND 0BSD"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gettext-devel
 	libcurl-devel
 	libextractor-devel
 	libgcrypt-devel
@@ -29,6 +30,7 @@ BUILD_REQUIRES="
 	libogg-devel
 	libopus-devel
 	libpq-devel
+	libpq5
 	libpulse-devel
 	libsodium-devel
 	libsqlite3-devel
@@ -47,6 +49,9 @@ src_install() {
 
 	# Move DLLs from /usr/lib to /usr/bin (Cygwin convention)
 	mv ${D}/usr/lib/*.dll ${D}/usr/bin/
+
+	# Plugins are only dlopen()ed; nothing links against their import libraries
+	rm -f ${D}/usr/lib/gnunet/*.dll.a
 
 	rm -fr ${D}/usr/share/doc/gnunet/html
 }
@@ -79,7 +84,7 @@ PKG_NAMES="
 	libgnunetdns0
 	libgnunetfs2
 	libgnunetgns0
-	libgnunetgnsrecord0
+	libgnunetgnsrecord1
 	libgnunetgnsrecordjson0
 	libgnunethello0
 	libgnunetidentity1
@@ -95,7 +100,7 @@ PKG_NAMES="
 	libgnunetnse0
 	libgnunetpeerstore0
 	libgnunetpils0
-	libgnunetpq5
+	libgnunetpq10
 	libgnunetreclaim0
 	libgnunetregex3
 	libgnunetregexblock1
@@ -120,7 +125,7 @@ PKG_NAMES="
 	libgnunettransportcommunicator0
 	libgnunettransportcore0
 	libgnunettransportmonitor0
-	libgnunetutil22
+	libgnunetutil23
 	libgnunetvpn0
 	libgnunet-devel
 "
@@ -186,8 +191,8 @@ libgnunetfs2_CONTENTS="
 libgnunetgns0_CONTENTS="
 	usr/bin/cyggnunetgns-0.dll
 "
-libgnunetgnsrecord0_CONTENTS="
-	usr/bin/cyggnunetgnsrecord-0.dll
+libgnunetgnsrecord1_CONTENTS="
+	usr/bin/cyggnunetgnsrecord-1.dll
 "
 libgnunetgnsrecordjson0_CONTENTS="
 	usr/bin/cyggnunetgnsrecordjson-0.dll
@@ -234,8 +239,8 @@ libgnunetpeerstore0_CONTENTS="
 libgnunetpils0_CONTENTS="
 	usr/bin/cyggnunetpils-0.dll
 "
-libgnunetpq5_CONTENTS="
-	usr/bin/cyggnunetpq-5.dll
+libgnunetpq10_CONTENTS="
+	usr/bin/cyggnunetpq-10.dll
 "
 libgnunetreclaim0_CONTENTS="
 	usr/bin/cyggnunetreclaim-0.dll
@@ -309,8 +314,8 @@ libgnunettransportcore0_CONTENTS="
 libgnunettransportmonitor0_CONTENTS="
 	usr/bin/cyggnunettransportmonitor-0.dll
 "
-libgnunetutil22_CONTENTS="
-	usr/bin/cyggnunetutil-22.dll
+libgnunetutil23_CONTENTS="
+	usr/bin/cyggnunetutil-23.dll
 "
 libgnunetvpn0_CONTENTS="
 	usr/bin/cyggnunetvpn-0.dll
@@ -319,7 +324,6 @@ libgnunet_devel_CONTENTS="
 	usr/include
 	usr/lib/*.dll.a
 	usr/lib/pkgconfig
-	usr/lib/gnunet/*.dll.a
 "
 gnunet_SUMMARY="${SUMMARY} (utilities)"
 libgnunetabd0_SUMMARY="${SUMMARY} (runtime / abd)"
@@ -339,7 +343,7 @@ libgnunetdid0_SUMMARY="${SUMMARY} (runtime / did)"
 libgnunetdns0_SUMMARY="${SUMMARY} (runtime / dns)"
 libgnunetfs2_SUMMARY="${SUMMARY} (runtime / fs)"
 libgnunetgns0_SUMMARY="${SUMMARY} (runtime / gns)"
-libgnunetgnsrecord0_SUMMARY="${SUMMARY} (runtime / gnsrecord)"
+libgnunetgnsrecord1_SUMMARY="${SUMMARY} (runtime / gnsrecord)"
 libgnunetgnsrecordjson0_SUMMARY="${SUMMARY} (runtime / gnsrecordjson)"
 libgnunethello0_SUMMARY="${SUMMARY} (runtime / hello)"
 libgnunetidentity1_SUMMARY="${SUMMARY} (runtime / identity)"
@@ -355,7 +359,7 @@ libgnunetnatnew2_SUMMARY="${SUMMARY} (runtime / natnew)"
 libgnunetnse0_SUMMARY="${SUMMARY} (runtime / nse)"
 libgnunetpeerstore0_SUMMARY="${SUMMARY} (runtime / peerstore)"
 libgnunetpils0_SUMMARY="${SUMMARY} (runtime / pils)"
-libgnunetpq5_SUMMARY="${SUMMARY} (runtime / pq)"
+libgnunetpq10_SUMMARY="${SUMMARY} (runtime / pq)"
 libgnunetreclaim0_SUMMARY="${SUMMARY} (runtime / reclaim)"
 libgnunetregex3_SUMMARY="${SUMMARY} (runtime / regex)"
 libgnunetregexblock1_SUMMARY="${SUMMARY} (runtime / regexblock)"
@@ -380,6 +384,6 @@ libgnunettransportapplication0_SUMMARY="${SUMMARY} (runtime / transportapplicati
 libgnunettransportcommunicator0_SUMMARY="${SUMMARY} (runtime / transportcommunicator)"
 libgnunettransportcore0_SUMMARY="${SUMMARY} (runtime / transportcore)"
 libgnunettransportmonitor0_SUMMARY="${SUMMARY} (runtime / transportmonitor)"
-libgnunetutil22_SUMMARY="${SUMMARY} (runtime / util)"
+libgnunetutil23_SUMMARY="${SUMMARY} (runtime / util)"
 libgnunetvpn0_SUMMARY="${SUMMARY} (runtime / vpn)"
 libgnunet_devel_SUMMARY="${SUMMARY} (development)"

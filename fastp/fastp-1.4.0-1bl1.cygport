@@ -1,9 +1,7 @@
 HOMEPAGE="https://github.com/OpenGene/${PN}"
 SRC_URI="https://github.com/OpenGene/${PN}/archive/refs/tags/v${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/f/fastp/1.0.1%2Bdfsg-1/debian/patches/makefile.patch
 	https://sources.debian.org/data/main/f/fastp/1.0.1%2Bdfsg-1/debian/patches/fix-i386.patch
-	https://sources.debian.org/data/main/f/fastp/1.0.1%2Bdfsg-1/debian/patches/fix-riscv64.patch
 "
 
 CATEGORY="Science"
@@ -18,6 +16,7 @@ LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	libdeflate-devel
+	libhwy-devel
 	libisal-devel
 "
 

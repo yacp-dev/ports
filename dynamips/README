@@ -3,15 +3,15 @@ dynamips
 Cisco 7200/3600/3725/3745/2600/1700 Router Emulator
 
 Runtime requirements:
-  cygwin-3.6.9-1
+  cygwin-3.6.11-1
   libelf0-0.8.13-3
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
   libelf-devel-0.8.13-3
   ninja-1.13.2-1
 
@@ -19,20 +19,20 @@ Canonical website:
   https://github.com/GNS3/dynamips
 
 Canonical download:
-  https://github.com/GNS3/dynamips/archive/refs/tags/v0.2.24.tar.gz
+  https://github.com/GNS3/dynamips/archive/refs/tags/v0.2.25.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack dynamips-0.2.24-X-src.tar.xz
+  1. unpack dynamips-0.2.25-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./dynamips-0.2.24-X.cygport all
+        % cygport ./dynamips-0.2.25-X.cygport all
 
 This will create:
-  /usr/src/dynamips-0.2.24-X-src.tar.xz
-  /usr/src/dynamips-0.2.24-X.tar.xz
+  /usr/src/dynamips-0.2.25-X-src.tar.xz
+  /usr/src/dynamips-0.2.25-X.tar.xz
 
 -------------------------------------------
 
@@ -56,6 +56,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.25-1bl1 -----
+Version bump.
 
 ----- version 0.2.24-1bl1 -----
 Version bump.

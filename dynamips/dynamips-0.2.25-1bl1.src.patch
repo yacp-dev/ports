@@ -1,0 +1,12 @@
+--- origsrc/dynamips-0.2.25/cmake/dependencies.cmake	2026-09-12 09:18:03.000000000 +0000
++++ src/dynamips-0.2.25/cmake/dependencies.cmake	2026-10-24 09:30:47.237363800 +0000
+@@ -39,9 +39,6 @@ set ( DYNAMIPS_FLAGS -Wall -O2 -fomit-fr
+ set ( DYNAMIPS_DEFINITIONS )
+ set ( DYNAMIPS_INCLUDES )
+ set ( DYNAMIPS_LIBRARIES ${CMAKE_DL_LIBS} )
+-if ( CYGWIN )
+-   list ( APPEND DYNAMIPS_FLAGS -static -static-libgcc )
+-endif ( CYGWIN )
+ macro ( set_cmake_required )
+    string ( REPLACE ";" " " _required_flags "${DYNAMIPS_FLAGS}" )
+    set ( CMAKE_REQUIRED_FLAGS       "${_required_flags}" )

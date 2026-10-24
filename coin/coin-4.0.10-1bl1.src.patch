@@ -1,6 +1,6 @@
---- origsrc/coin/CMakeLists.txt	2026-04-21 04:03:55.000000000 +0900
-+++ src/coin/CMakeLists.txt	2026-04-21 04:07:08.961643000 +0900
-@@ -629,6 +629,9 @@ check_include_file(time.h HAVE_TIME_H)
+--- origsrc/coin/CMakeLists.txt	2026-10-24 08:24:33.000000000 +0000
++++ src/coin/CMakeLists.txt	2026-10-24 08:24:48.553503700 +0000
+@@ -639,6 +639,9 @@ check_include_file(time.h HAVE_TIME_H)
  check_include_files("stdlib.h;stdarg.h;string.h;float.h" STDC_HEADERS)
  
  check_include_file(windows.h HAVE_WINDOWS_H)
@@ -10,9 +10,9 @@
  if(HAVE_WINDOWS_H)
    check_include_file(direct.h HAVE_DIRECT_H)
    check_include_files("windows.h;tlhelp32.h" HAVE_TLHELP32_H)
---- origsrc/coin/src/CMakeLists.txt	2026-04-21 04:03:56.000000000 +0900
-+++ src/coin/src/CMakeLists.txt	2026-04-21 04:08:26.776443900 +0900
-@@ -396,7 +396,7 @@ if(COIN_BUILD_MAC_FRAMEWORK)
+--- origsrc/coin/src/CMakeLists.txt	2026-10-24 08:24:33.000000000 +0000
++++ src/coin/src/CMakeLists.txt	2026-10-24 08:24:48.555527100 +0000
+@@ -408,7 +408,7 @@ if(COIN_BUILD_MAC_FRAMEWORK)
    set(COIN_CONFIG_PACKAGE_LOCATION ${COIN_MAC_FRAMEWORK_NAME}.framework/Resources/CMake)
    string(TOLOWER ${COIN_MAC_FRAMEWORK_NAME} COIN_CONFIG_PACKAGE_BASENAME)
  else()
@@ -21,9 +21,9 @@
    string(TOLOWER ${PROJECT_NAME} COIN_CONFIG_PACKAGE_BASENAME)
    if(UNIX OR MINGW)
      configure_file("${PROJECT_SOURCE_DIR}/${PROJECT_NAME}.pc.cmake.in" "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc" @ONLY)
---- origsrc/coin/src/io/SoInput.cpp	2026-04-21 04:03:57.000000000 +0900
-+++ src/coin/src/io/SoInput.cpp	2026-04-21 06:34:37.256364600 +0900
-@@ -1418,7 +1418,7 @@ SoInput::read(double & d)
+--- origsrc/coin/src/io/SoInput.cpp	2026-10-24 08:24:34.000000000 +0000
++++ src/coin/src/io/SoInput.cpp	2026-10-24 08:24:48.557551300 +0000
+@@ -1430,7 +1430,7 @@ SoInput::read(double & d)
    return TRUE;
  }
  
@@ -32,8 +32,8 @@
  
  SbBool
  SoInput::read(long int & i)
---- origsrc/coin/src/io/SoOutput.cpp	2026-04-21 04:03:57.000000000 +0900
-+++ src/coin/src/io/SoOutput.cpp	2026-04-21 06:34:58.064996200 +0900
+--- origsrc/coin/src/io/SoOutput.cpp	2026-10-24 08:24:34.000000000 +0000
++++ src/coin/src/io/SoOutput.cpp	2026-10-24 08:24:48.559570700 +0000
 @@ -1002,7 +1002,7 @@ SoOutput::write(const double d)
    }
  }
@@ -43,3 +43,14 @@
  void
  SoOutput::write(long int i)
  {
+--- origsrc/coin/src/xml/document.cpp	2026-10-24 08:24:34.000000000 +0000
++++ src/coin/src/xml/document.cpp	2026-10-24 08:24:48.559570700 +0000
+@@ -52,7 +52,7 @@
+ #include <Inventor/lists/SbList.h>
+ #include <Inventor/SbString.h>
+ 
+-#include "expat/expat.h"
++#include <expat.h>
+ #include "utils.h"
+ #include "elementp.h"
+ 

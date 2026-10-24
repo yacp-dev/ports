@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="C port of the HdrHistogram"
 DESCRIPTION="C port of High Dynamic Range (HDR) Histogram"
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="CC0-1.0 OR BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: CC0-1.0 OR BSD-2-Clause"
 LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="

@@ -1,0 +1,28 @@
+--- origsrc/abPOA-1.5.7.1/CMakeLists.txt	2026-09-17 17:40:30.000000000 +0900
++++ src/abPOA-1.5.7.1/CMakeLists.txt	2026-10-24 23:45:32.152498978 +0900
+@@ -68,6 +68,10 @@
+ target_compile_options(abpoa PRIVATE -Wall -Wno-unused-function)
+ target_link_libraries(abpoa ZLIB::ZLIB Threads::Threads m)
+ 
++if (DEFINED SOVERSION)
++    set_target_properties(abpoa PROPERTIES SOVERSION ${SOVERSION})
++endif()
++
+ target_include_directories(abpoa
+     PUBLIC
+         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+@@ -190,10 +194,13 @@
+     add_executable(abpoa_bin src/abpoa.c)
+     target_link_libraries(abpoa_bin abpoa)
+     set_target_properties(abpoa_bin PROPERTIES OUTPUT_NAME abpoa)
++
++    add_executable(abpoa_example example.c)
++    target_link_libraries(abpoa_example abpoa)
+ endif()
+ 
+ if(ABPOA_INSTALL)
+-    install(TARGETS abpoa DESTINATION ${CMAKE_INSTALL_LIBDIR})
++    install(TARGETS abpoa RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+     if(ABPOA_BUILD_EXE)
+         install(TARGETS abpoa_bin DESTINATION ${CMAKE_INSTALL_BINDIR})
+     endif()

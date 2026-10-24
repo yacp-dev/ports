@@ -1,0 +1,16 @@
+HOMEPAGE="https://github.com/simd-everywhere/${PN}"
+SRC_URI="https://github.com/simd-everywhere/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://github.com/simd-everywhere/simde/commit/6b772fe4e9a0b647f5413a2b56489c776406eaa9.patch
+	https://src.fedoraproject.org/rpms/simde/raw/33e297c26c691e451b574f514472b00e6b8a8200/f/simde-clang20.patch
+"
+
+CATEGORY="Devel"
+SUMMARY="Implementations of SIMD instruction sets"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="MIT AND CC0-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND CC0-1.0"
+LICENSE_URI="COPYING"
+
+inherit meson

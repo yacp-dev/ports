@@ -1,5 +1,9 @@
 HOMEPAGE="https://www.csie.ntu.edu.tw/~cjlin/${PN}/"
-SRC_URI="https://www.csie.ntu.edu.tw/~cjlin/${PN}/${P}.tar.gz"
+SRC_URI="
+	https://www.csie.ntu.edu.tw/~cjlin/${PN}/${P}.tar.gz
+	CMakeLists.txt
+	liblinear.pc.in
+"
 
 CATEGORY="Math"
 SUMMARY="Library for Large Linear Classification"
@@ -12,7 +16,9 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYRIGHT"
 
-BUILD_REQUIRES="liblapack-devel"
+BUILD_REQUIRES="
+	liblapack-devel
+"
 
 inherit cmake
 

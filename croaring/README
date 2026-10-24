@@ -1,25 +1,22 @@
 croaring
 ------------------------------------------
 Roaring bitmaps are compressed bitmaps which tend to outperform conventional
-compressed bitmaps such as WAH, EWAH or Concise. In some instances, they can
-be hundreds of times faster and they often offer significantly better
-compression.
+compressed bitmaps such as WAH, EWAH or Concise. In some instances, they can be
+hundreds of times faster and they often offer significantly better compression.
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.11-1
   libgcc1-14.4.0-1
-  libroaring-devel-4.7.2-1bl1
-  libroaring22-4.7.2-1bl1
-  pkg-config-3.0.5-1
+  libroaring-devel-5.3.2-1bl1
+  libroaring29-5.3.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
   gcc-core-14.4.0-1
-  gcc-g++-14.4.0-1
-  libbenchmark-devel-1.9.5-1bl1
   libcmocka-devel-2.0.2-1
   ninja-1.13.2-1
 
@@ -27,22 +24,22 @@ Canonical website:
   https://roaringbitmap.org/
 
 Canonical download:
-  https://github.com/RoaringBitmap/CRoaring/archive/refs/tags/v4.7.2.tar.gz
+  https://github.com/RoaringBitmap/CRoaring/archive/refs/tags/v5.3.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack croaring-4.7.2-X-src.tar.xz
+  1. unpack croaring-5.3.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./croaring-4.7.2-X.cygport all
+        % cygport ./croaring-5.3.2-X.cygport all
 
 This will create:
-  /usr/src/croaring-4.7.2-X-src.tar.xz
-  /usr/src/croaring-4.7.2-X.tar.xz
-  /usr/src/libroaring22-4.7.2-X.tar.xz
-  /usr/src/libroaring-devel-4.7.2-X.tar.xz
+  /usr/src/croaring-5.3.2-X-src.tar.xz
+  /usr/src/croaring-5.3.2-X.tar.xz
+  /usr/src/libroaring29-5.3.2-X.tar.xz
+  /usr/src/libroaring-devel-5.3.2-X.tar.xz
 
 -------------------------------------------
 
@@ -54,8 +51,8 @@ Files included in the binary package:
   /usr/share/doc/croaring/LICENSE
   /usr/share/doc/croaring/README.md
 
-(libroaring22)
-  /usr/bin/cygroaring-22.dll
+(libroaring29)
+  /usr/bin/cygroaring-29.dll
 
 (libroaring-devel)
   /usr/include/roaring/array_util.h
@@ -83,6 +80,7 @@ Files included in the binary package:
   /usr/include/roaring/roaring.h
   /usr/include/roaring/roaring.hh
   /usr/include/roaring/roaring64.h
+  /usr/include/roaring/roaring64.hh
   /usr/include/roaring/roaring64map.hh
   /usr/include/roaring/roaring_array.h
   /usr/include/roaring/roaring_types.h
@@ -90,7 +88,7 @@ Files included in the binary package:
   /usr/include/roaring/utilasm.h
   /usr/lib/cmake/roaring/roaring-config-version.cmake
   /usr/lib/cmake/roaring/roaring-config.cmake
-  /usr/lib/cmake/roaring/roaring-targets-release.cmake
+  /usr/lib/cmake/roaring/roaring-targets-relwithdebinfo.cmake
   /usr/lib/cmake/roaring/roaring-targets.cmake
   /usr/lib/libroaring.dll.a
   /usr/lib/pkgconfig/roaring.pc
@@ -98,6 +96,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.3.2-1bl1 -----
+Version bump.
 
 ----- version 4.7.2-1bl1 -----
 Version bump.

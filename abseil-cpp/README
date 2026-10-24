@@ -1,52 +1,49 @@
 abseil-cpp
 ------------------------------------------
-Abseil is an open-source collection of C++ library code designed to augment
-the C++ standard library. The Abseil library code is collected from Google's
-own C++ code base, has been extensively tested and used in production, and is
-the same code we depend on in our daily coding lives.
+Abseil is an open-source collection of C++ library code designed to augment the
+C++ standard library. The Abseil library code is collected from Google's own
+C++ code base, has been extensively tested and used in production, and is the
+same code we depend on in our daily coding lives.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  cygwin-devel-3.6.5-1
-  libabseil-devel-20250814.0-1bl1
-  libabseil2508.0.0-20250814.0-1bl1
-  libgcc1-13.4.0-1
-  libgmock0-1.17.0-1bl1
-  libgtest0-1.17.0-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  cygwin-devel-3.6.11-1
+  libgcc1-14.4.0-1
+  libgmock0-1.18.0-1bl1
+  libgtest0-1.18.0-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.4-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libgmock-devel-1.17.0-1bl1
-  libgtest-devel-1.17.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/abseil/abseil-cpp
 
 Canonical download:
-  https://github.com/abseil/abseil-cpp/archive/refs/tags/20250814.0.tar.gz
+  https://github.com/abseil/abseil-cpp/archive/refs/tags/20260817.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack abseil-cpp-20250814.0-X-src.tar.xz
+  1. unpack abseil-cpp-20260817.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./abseil-cpp-20250814.0-X.cygport all
+        % cygport ./abseil-cpp-20260817.0-X.cygport all
 
 This will create:
-  /usr/src/abseil-cpp-20250814.0-X-src.tar.xz
-  /usr/src/abseil-cpp-20250814.0-X.tar.xz
-  /usr/src/libabseil2508.0.0-20250814.0-X.tar.xz
-  /usr/src/libabseil-devel-20250814.0-X.tar.xz
+  /usr/src/abseil-cpp-20260817.0-X-src.tar.xz
+  /usr/src/abseil-cpp-20260817.0-X.tar.xz
+  /usr/src/libabseil2608.0.0-20260817.0-X.tar.xz
+  /usr/src/libabseil-devel-20260817.0-X.tar.xz
 
 -------------------------------------------
 
@@ -59,111 +56,116 @@ Files included in the binary package:
   /usr/share/doc/abseil-cpp/LICENSE
   /usr/share/doc/abseil-cpp/README.md
 
-(libabseil2508.0.0)
-  /usr/bin/cygabsl_atomic_hook_test_helper-2508.0.0.dll
-  /usr/bin/cygabsl_base-2508.0.0.dll
-  /usr/bin/cygabsl_city-2508.0.0.dll
-  /usr/bin/cygabsl_civil_time-2508.0.0.dll
-  /usr/bin/cygabsl_cord-2508.0.0.dll
-  /usr/bin/cygabsl_cord_internal-2508.0.0.dll
-  /usr/bin/cygabsl_cordz_functions-2508.0.0.dll
-  /usr/bin/cygabsl_cordz_handle-2508.0.0.dll
-  /usr/bin/cygabsl_cordz_info-2508.0.0.dll
-  /usr/bin/cygabsl_cordz_sample_token-2508.0.0.dll
-  /usr/bin/cygabsl_crc32c-2508.0.0.dll
-  /usr/bin/cygabsl_crc_cord_state-2508.0.0.dll
-  /usr/bin/cygabsl_crc_cpu_detect-2508.0.0.dll
-  /usr/bin/cygabsl_crc_internal-2508.0.0.dll
-  /usr/bin/cygabsl_debugging_internal-2508.0.0.dll
-  /usr/bin/cygabsl_decode_rust_punycode-2508.0.0.dll
-  /usr/bin/cygabsl_demangle_internal-2508.0.0.dll
-  /usr/bin/cygabsl_demangle_rust-2508.0.0.dll
-  /usr/bin/cygabsl_die_if_null-2508.0.0.dll
-  /usr/bin/cygabsl_examine_stack-2508.0.0.dll
-  /usr/bin/cygabsl_exception_safety_testing-2508.0.0.dll
-  /usr/bin/cygabsl_exponential_biased-2508.0.0.dll
-  /usr/bin/cygabsl_failure_signal_handler-2508.0.0.dll
-  /usr/bin/cygabsl_flags_commandlineflag-2508.0.0.dll
-  /usr/bin/cygabsl_flags_commandlineflag_internal-2508.0.0.dll
-  /usr/bin/cygabsl_flags_config-2508.0.0.dll
-  /usr/bin/cygabsl_flags_internal-2508.0.0.dll
-  /usr/bin/cygabsl_flags_marshalling-2508.0.0.dll
-  /usr/bin/cygabsl_flags_parse-2508.0.0.dll
-  /usr/bin/cygabsl_flags_private_handle_accessor-2508.0.0.dll
-  /usr/bin/cygabsl_flags_program_name-2508.0.0.dll
-  /usr/bin/cygabsl_flags_reflection-2508.0.0.dll
-  /usr/bin/cygabsl_flags_usage-2508.0.0.dll
-  /usr/bin/cygabsl_flags_usage_internal-2508.0.0.dll
-  /usr/bin/cygabsl_graphcycles_internal-2508.0.0.dll
-  /usr/bin/cygabsl_hash-2508.0.0.dll
-  /usr/bin/cygabsl_hash_generator_testing-2508.0.0.dll
-  /usr/bin/cygabsl_hashtable_profiler-2508.0.0.dll
-  /usr/bin/cygabsl_hashtablez_sampler-2508.0.0.dll
-  /usr/bin/cygabsl_int128-2508.0.0.dll
-  /usr/bin/cygabsl_kernel_timeout_internal-2508.0.0.dll
-  /usr/bin/cygabsl_leak_check-2508.0.0.dll
-  /usr/bin/cygabsl_log_entry-2508.0.0.dll
-  /usr/bin/cygabsl_log_flags-2508.0.0.dll
-  /usr/bin/cygabsl_log_globals-2508.0.0.dll
-  /usr/bin/cygabsl_log_initialize-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_check_op-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_conditions-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_fnmatch-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_format-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_globals-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_log_sink_set-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_message-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_nullguard-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_proto-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_structured_proto-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_test_actions-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_test_helpers-2508.0.0.dll
-  /usr/bin/cygabsl_log_internal_test_matchers-2508.0.0.dll
-  /usr/bin/cygabsl_log_severity-2508.0.0.dll
-  /usr/bin/cygabsl_log_sink-2508.0.0.dll
-  /usr/bin/cygabsl_malloc_internal-2508.0.0.dll
-  /usr/bin/cygabsl_per_thread_sem_test_common-2508.0.0.dll
-  /usr/bin/cygabsl_periodic_sampler-2508.0.0.dll
-  /usr/bin/cygabsl_poison-2508.0.0.dll
-  /usr/bin/cygabsl_pow10_helper-2508.0.0.dll
-  /usr/bin/cygabsl_profile_builder-2508.0.0.dll
-  /usr/bin/cygabsl_random_distributions-2508.0.0.dll
-  /usr/bin/cygabsl_random_internal_distribution_test_util-2508.0.0.dll
-  /usr/bin/cygabsl_random_internal_entropy_pool-2508.0.0.dll
-  /usr/bin/cygabsl_random_internal_platform-2508.0.0.dll
-  /usr/bin/cygabsl_random_internal_randen-2508.0.0.dll
-  /usr/bin/cygabsl_random_internal_randen_hwaes-2508.0.0.dll
-  /usr/bin/cygabsl_random_internal_randen_hwaes_impl-2508.0.0.dll
-  /usr/bin/cygabsl_random_internal_randen_slow-2508.0.0.dll
-  /usr/bin/cygabsl_random_internal_seed_material-2508.0.0.dll
-  /usr/bin/cygabsl_random_seed_gen_exception-2508.0.0.dll
-  /usr/bin/cygabsl_random_seed_sequences-2508.0.0.dll
-  /usr/bin/cygabsl_raw_hash_set-2508.0.0.dll
-  /usr/bin/cygabsl_raw_logging_internal-2508.0.0.dll
-  /usr/bin/cygabsl_scoped_mock_log-2508.0.0.dll
-  /usr/bin/cygabsl_scoped_set_env-2508.0.0.dll
-  /usr/bin/cygabsl_spinlock_test_common-2508.0.0.dll
-  /usr/bin/cygabsl_spinlock_wait-2508.0.0.dll
-  /usr/bin/cygabsl_stack_consumption-2508.0.0.dll
-  /usr/bin/cygabsl_stacktrace-2508.0.0.dll
-  /usr/bin/cygabsl_status-2508.0.0.dll
-  /usr/bin/cygabsl_status_matchers-2508.0.0.dll
-  /usr/bin/cygabsl_statusor-2508.0.0.dll
-  /usr/bin/cygabsl_str_format_internal-2508.0.0.dll
-  /usr/bin/cygabsl_strerror-2508.0.0.dll
-  /usr/bin/cygabsl_string_view-2508.0.0.dll
-  /usr/bin/cygabsl_strings-2508.0.0.dll
-  /usr/bin/cygabsl_strings_internal-2508.0.0.dll
-  /usr/bin/cygabsl_symbolize-2508.0.0.dll
-  /usr/bin/cygabsl_synchronization-2508.0.0.dll
-  /usr/bin/cygabsl_test_instance_tracker-2508.0.0.dll
-  /usr/bin/cygabsl_throw_delegate-2508.0.0.dll
-  /usr/bin/cygabsl_time-2508.0.0.dll
-  /usr/bin/cygabsl_time_internal_test_util-2508.0.0.dll
-  /usr/bin/cygabsl_time_zone-2508.0.0.dll
-  /usr/bin/cygabsl_tracing_internal-2508.0.0.dll
-  /usr/bin/cygabsl_utf8_for_code_point-2508.0.0.dll
-  /usr/bin/cygabsl_vlog_config_internal-2508.0.0.dll
+(libabseil2608.0.0)
+  /usr/bin/cygabsl_atomic_hook_test_helper-2608.0.0.dll
+  /usr/bin/cygabsl_base-2608.0.0.dll
+  /usr/bin/cygabsl_base_cpu_detect-2608.0.0.dll
+  /usr/bin/cygabsl_city-2608.0.0.dll
+  /usr/bin/cygabsl_civil_time-2608.0.0.dll
+  /usr/bin/cygabsl_clock_interface-2608.0.0.dll
+  /usr/bin/cygabsl_cord-2608.0.0.dll
+  /usr/bin/cygabsl_cord_internal-2608.0.0.dll
+  /usr/bin/cygabsl_cordz_functions-2608.0.0.dll
+  /usr/bin/cygabsl_cordz_handle-2608.0.0.dll
+  /usr/bin/cygabsl_cordz_info-2608.0.0.dll
+  /usr/bin/cygabsl_cordz_sample_token-2608.0.0.dll
+  /usr/bin/cygabsl_crc32c-2608.0.0.dll
+  /usr/bin/cygabsl_crc_cord_state-2608.0.0.dll
+  /usr/bin/cygabsl_crc_internal-2608.0.0.dll
+  /usr/bin/cygabsl_debugging_internal-2608.0.0.dll
+  /usr/bin/cygabsl_decode_rust_punycode-2608.0.0.dll
+  /usr/bin/cygabsl_demangle_internal-2608.0.0.dll
+  /usr/bin/cygabsl_demangle_rust-2608.0.0.dll
+  /usr/bin/cygabsl_die_if_null-2608.0.0.dll
+  /usr/bin/cygabsl_examine_stack-2608.0.0.dll
+  /usr/bin/cygabsl_exception_safety_testing-2608.0.0.dll
+  /usr/bin/cygabsl_exponential_biased-2608.0.0.dll
+  /usr/bin/cygabsl_failure_signal_handler-2608.0.0.dll
+  /usr/bin/cygabsl_flags_commandlineflag-2608.0.0.dll
+  /usr/bin/cygabsl_flags_commandlineflag_internal-2608.0.0.dll
+  /usr/bin/cygabsl_flags_config-2608.0.0.dll
+  /usr/bin/cygabsl_flags_internal-2608.0.0.dll
+  /usr/bin/cygabsl_flags_marshalling-2608.0.0.dll
+  /usr/bin/cygabsl_flags_parse-2608.0.0.dll
+  /usr/bin/cygabsl_flags_private_handle_accessor-2608.0.0.dll
+  /usr/bin/cygabsl_flags_program_name-2608.0.0.dll
+  /usr/bin/cygabsl_flags_reflection-2608.0.0.dll
+  /usr/bin/cygabsl_flags_usage-2608.0.0.dll
+  /usr/bin/cygabsl_flags_usage_internal-2608.0.0.dll
+  /usr/bin/cygabsl_generic_printer_internal-2608.0.0.dll
+  /usr/bin/cygabsl_graphcycles_internal-2608.0.0.dll
+  /usr/bin/cygabsl_hardening-2608.0.0.dll
+  /usr/bin/cygabsl_hash-2608.0.0.dll
+  /usr/bin/cygabsl_hash_generator_testing-2608.0.0.dll
+  /usr/bin/cygabsl_hashtable_profiler-2608.0.0.dll
+  /usr/bin/cygabsl_hashtablez_sampler-2608.0.0.dll
+  /usr/bin/cygabsl_int128-2608.0.0.dll
+  /usr/bin/cygabsl_kernel_timeout_internal-2608.0.0.dll
+  /usr/bin/cygabsl_leak_check-2608.0.0.dll
+  /usr/bin/cygabsl_log_entry-2608.0.0.dll
+  /usr/bin/cygabsl_log_flags-2608.0.0.dll
+  /usr/bin/cygabsl_log_globals-2608.0.0.dll
+  /usr/bin/cygabsl_log_initialize-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_check_op-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_conditions-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_fnmatch-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_format-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_globals-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_log_sink_set-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_message-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_nullguard-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_proto-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_structured_proto-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_test_actions-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_test_helpers-2608.0.0.dll
+  /usr/bin/cygabsl_log_internal_test_matchers-2608.0.0.dll
+  /usr/bin/cygabsl_log_severity-2608.0.0.dll
+  /usr/bin/cygabsl_log_sink-2608.0.0.dll
+  /usr/bin/cygabsl_malloc_internal-2608.0.0.dll
+  /usr/bin/cygabsl_per_thread_sem_test_common-2608.0.0.dll
+  /usr/bin/cygabsl_periodic_sampler-2608.0.0.dll
+  /usr/bin/cygabsl_poison-2608.0.0.dll
+  /usr/bin/cygabsl_pow10_helper-2608.0.0.dll
+  /usr/bin/cygabsl_profile_builder-2608.0.0.dll
+  /usr/bin/cygabsl_random_distributions-2608.0.0.dll
+  /usr/bin/cygabsl_random_internal_distribution_test_util-2608.0.0.dll
+  /usr/bin/cygabsl_random_internal_entropy_pool-2608.0.0.dll
+  /usr/bin/cygabsl_random_internal_platform-2608.0.0.dll
+  /usr/bin/cygabsl_random_internal_randen-2608.0.0.dll
+  /usr/bin/cygabsl_random_internal_randen_hwaes-2608.0.0.dll
+  /usr/bin/cygabsl_random_internal_randen_hwaes_impl-2608.0.0.dll
+  /usr/bin/cygabsl_random_internal_randen_slow-2608.0.0.dll
+  /usr/bin/cygabsl_random_internal_seed_material-2608.0.0.dll
+  /usr/bin/cygabsl_random_seed_gen_exception-2608.0.0.dll
+  /usr/bin/cygabsl_random_seed_sequences-2608.0.0.dll
+  /usr/bin/cygabsl_raw_hash_set-2608.0.0.dll
+  /usr/bin/cygabsl_raw_logging_internal-2608.0.0.dll
+  /usr/bin/cygabsl_scoped_mock_log-2608.0.0.dll
+  /usr/bin/cygabsl_scoped_set_env-2608.0.0.dll
+  /usr/bin/cygabsl_simulated_clock-2608.0.0.dll
+  /usr/bin/cygabsl_source_location-2608.0.0.dll
+  /usr/bin/cygabsl_spinlock_test_common-2608.0.0.dll
+  /usr/bin/cygabsl_spinlock_wait-2608.0.0.dll
+  /usr/bin/cygabsl_stack_consumption-2608.0.0.dll
+  /usr/bin/cygabsl_stacktrace-2608.0.0.dll
+  /usr/bin/cygabsl_status-2608.0.0.dll
+  /usr/bin/cygabsl_status_builder-2608.0.0.dll
+  /usr/bin/cygabsl_status_matchers-2608.0.0.dll
+  /usr/bin/cygabsl_statusor-2608.0.0.dll
+  /usr/bin/cygabsl_str_format_internal-2608.0.0.dll
+  /usr/bin/cygabsl_strerror-2608.0.0.dll
+  /usr/bin/cygabsl_strings-2608.0.0.dll
+  /usr/bin/cygabsl_strings_internal-2608.0.0.dll
+  /usr/bin/cygabsl_symbolize-2608.0.0.dll
+  /usr/bin/cygabsl_synchronization-2608.0.0.dll
+  /usr/bin/cygabsl_test_instance_tracker-2608.0.0.dll
+  /usr/bin/cygabsl_throw_delegate-2608.0.0.dll
+  /usr/bin/cygabsl_time-2608.0.0.dll
+  /usr/bin/cygabsl_time_internal_test_util-2608.0.0.dll
+  /usr/bin/cygabsl_time_zone-2608.0.0.dll
+  /usr/bin/cygabsl_tracing_internal-2608.0.0.dll
+  /usr/bin/cygabsl_utf8_for_code_point-2608.0.0.dll
+  /usr/bin/cygabsl_vlog_config_internal-2608.0.0.dll
 
 (libabseil-devel)
   /usr/include/absl/algorithm/algorithm.h
@@ -177,6 +179,7 @@ Files included in the binary package:
   /usr/include/absl/base/fast_type_id.h
   /usr/include/absl/base/internal/atomic_hook.h
   /usr/include/absl/base/internal/atomic_hook_test_helper.h
+  /usr/include/absl/base/internal/cpu_detect.h
   /usr/include/absl/base/internal/cycleclock.h
   /usr/include/absl/base/internal/cycleclock_config.h
   /usr/include/absl/base/internal/direct_mmap.h
@@ -185,12 +188,13 @@ Files included in the binary package:
   /usr/include/absl/base/internal/errno_saver.h
   /usr/include/absl/base/internal/exception_safety_testing.h
   /usr/include/absl/base/internal/exception_testing.h
+  /usr/include/absl/base/internal/hardening.h
   /usr/include/absl/base/internal/hide_ptr.h
-  /usr/include/absl/base/internal/identity.h
   /usr/include/absl/base/internal/iterator_traits.h
   /usr/include/absl/base/internal/iterator_traits_test_helper.h
   /usr/include/absl/base/internal/low_level_alloc.h
   /usr/include/absl/base/internal/low_level_scheduling.h
+  /usr/include/absl/base/internal/nullability_traits.h
   /usr/include/absl/base/internal/per_thread_tls.h
   /usr/include/absl/base/internal/poison.h
   /usr/include/absl/base/internal/pretty_function.h
@@ -206,7 +210,6 @@ Files included in the binary package:
   /usr/include/absl/base/internal/strerror.h
   /usr/include/absl/base/internal/sysinfo.h
   /usr/include/absl/base/internal/thread_identity.h
-  /usr/include/absl/base/internal/throw_delegate.h
   /usr/include/absl/base/internal/tracing.h
   /usr/include/absl/base/internal/tsan_mutex_interface.h
   /usr/include/absl/base/internal/unaligned_access.h
@@ -222,11 +225,13 @@ Files included in the binary package:
   /usr/include/absl/base/port.h
   /usr/include/absl/base/prefetch.h
   /usr/include/absl/base/thread_annotations.h
+  /usr/include/absl/base/throw_delegate.h
   /usr/include/absl/cleanup/cleanup.h
   /usr/include/absl/cleanup/internal/cleanup.h
   /usr/include/absl/container/btree_map.h
   /usr/include/absl/container/btree_set.h
   /usr/include/absl/container/btree_test.h
+  /usr/include/absl/container/chunked_queue.h
   /usr/include/absl/container/fixed_array.h
   /usr/include/absl/container/flat_hash_map.h
   /usr/include/absl/container/flat_hash_set.h
@@ -234,6 +239,7 @@ Files included in the binary package:
   /usr/include/absl/container/inlined_vector.h
   /usr/include/absl/container/internal/btree.h
   /usr/include/absl/container/internal/btree_container.h
+  /usr/include/absl/container/internal/chunked_queue.h
   /usr/include/absl/container/internal/common.h
   /usr/include/absl/container/internal/common_policy_traits.h
   /usr/include/absl/container/internal/compressed_tuple.h
@@ -246,6 +252,7 @@ Files included in the binary package:
   /usr/include/absl/container/internal/hashtable_debug.h
   /usr/include/absl/container/internal/hashtable_debug_hooks.h
   /usr/include/absl/container/internal/hashtablez_sampler.h
+  /usr/include/absl/container/internal/heterogeneous_lookup_testing.h
   /usr/include/absl/container/internal/inlined_vector.h
   /usr/include/absl/container/internal/layout.h
   /usr/include/absl/container/internal/node_slot_policy.h
@@ -263,10 +270,11 @@ Files included in the binary package:
   /usr/include/absl/container/internal/unordered_set_lookup_test.h
   /usr/include/absl/container/internal/unordered_set_members_test.h
   /usr/include/absl/container/internal/unordered_set_modifiers_test.h
+  /usr/include/absl/container/linked_hash_map.h
+  /usr/include/absl/container/linked_hash_set.h
   /usr/include/absl/container/node_hash_map.h
   /usr/include/absl/container/node_hash_set.h
   /usr/include/absl/crc/crc32c.h
-  /usr/include/absl/crc/internal/cpu_detect.h
   /usr/include/absl/crc/internal/crc.h
   /usr/include/absl/crc/internal/crc32_x86_arm_combined_simd.h
   /usr/include/absl/crc/internal/crc32c.h
@@ -326,9 +334,12 @@ Files included in the binary package:
   /usr/include/absl/flags/usage.h
   /usr/include/absl/flags/usage_config.h
   /usr/include/absl/functional/any_invocable.h
+  /usr/include/absl/functional/any_invocable_test.h
+  /usr/include/absl/functional/bind_back.h
   /usr/include/absl/functional/bind_front.h
   /usr/include/absl/functional/function_ref.h
   /usr/include/absl/functional/internal/any_invocable.h
+  /usr/include/absl/functional/internal/back_binder.h
   /usr/include/absl/functional/internal/front_binder.h
   /usr/include/absl/functional/internal/function_ref.h
   /usr/include/absl/functional/overload.h
@@ -353,6 +364,7 @@ Files included in the binary package:
   /usr/include/absl/log/internal/check_op.h
   /usr/include/absl/log/internal/conditions.h
   /usr/include/absl/log/internal/config.h
+  /usr/include/absl/log/internal/container.h
   /usr/include/absl/log/internal/flags.h
   /usr/include/absl/log/internal/fnmatch.h
   /usr/include/absl/log/internal/globals.h
@@ -381,6 +393,8 @@ Files included in the binary package:
   /usr/include/absl/log/structured.h
   /usr/include/absl/log/vlog_is_on.h
   /usr/include/absl/memory/memory.h
+  /usr/include/absl/meta/internal/constexpr_testing.h
+  /usr/include/absl/meta/internal/requires.h
   /usr/include/absl/meta/type_traits.h
   /usr/include/absl/numeric/bits.h
   /usr/include/absl/numeric/int128.h
@@ -430,6 +444,7 @@ Files included in the binary package:
   /usr/include/absl/random/internal/wide_multiply.h
   /usr/include/absl/random/log_uniform_int_distribution.h
   /usr/include/absl/random/mock_distributions.h
+  /usr/include/absl/random/mocking_access.h
   /usr/include/absl/random/mocking_bit_gen.h
   /usr/include/absl/random/poisson_distribution.h
   /usr/include/absl/random/random.h
@@ -442,6 +457,8 @@ Files included in the binary package:
   /usr/include/absl/status/internal/status_matchers.h
   /usr/include/absl/status/internal/statusor_internal.h
   /usr/include/absl/status/status.h
+  /usr/include/absl/status/status_builder.h
+  /usr/include/absl/status/status_macros.h
   /usr/include/absl/status/status_matchers.h
   /usr/include/absl/status/status_payload_printer.h
   /usr/include/absl/status/statusor.h
@@ -456,6 +473,7 @@ Files included in the binary package:
   /usr/include/absl/strings/escaping.h
   /usr/include/absl/strings/has_absl_stringify.h
   /usr/include/absl/strings/has_ostream_operator.h
+  /usr/include/absl/strings/internal/append_and_overwrite.h
   /usr/include/absl/strings/internal/charconv_bigint.h
   /usr/include/absl/strings/internal/charconv_parse.h
   /usr/include/absl/strings/internal/cord_data_edge.h
@@ -477,12 +495,13 @@ Files included in the binary package:
   /usr/include/absl/strings/internal/damerau_levenshtein_distance.h
   /usr/include/absl/strings/internal/escaping.h
   /usr/include/absl/strings/internal/escaping_test_common.h
+  /usr/include/absl/strings/internal/generic_printer.h
+  /usr/include/absl/strings/internal/generic_printer_internal.h
   /usr/include/absl/strings/internal/memutil.h
   /usr/include/absl/strings/internal/numbers_test_common.h
   /usr/include/absl/strings/internal/ostringstream.h
   /usr/include/absl/strings/internal/pow10_helper.h
   /usr/include/absl/strings/internal/resize_uninitialized.h
-  /usr/include/absl/strings/internal/stl_type_traits.h
   /usr/include/absl/strings/internal/str_format/arg.h
   /usr/include/absl/strings/internal/str_format/bind.h
   /usr/include/absl/strings/internal/str_format/checker.h
@@ -495,9 +514,11 @@ Files included in the binary package:
   /usr/include/absl/strings/internal/str_split_internal.h
   /usr/include/absl/strings/internal/string_constant.h
   /usr/include/absl/strings/internal/stringify_sink.h
+  /usr/include/absl/strings/internal/stringify_stream.h
   /usr/include/absl/strings/internal/utf8.h
   /usr/include/absl/strings/match.h
   /usr/include/absl/strings/numbers.h
+  /usr/include/absl/strings/resize_and_overwrite.h
   /usr/include/absl/strings/str_cat.h
   /usr/include/absl/strings/str_format.h
   /usr/include/absl/strings/str_join.h
@@ -525,6 +546,7 @@ Files included in the binary package:
   /usr/include/absl/synchronization/notification.h
   /usr/include/absl/time/civil_time.h
   /usr/include/absl/time/clock.h
+  /usr/include/absl/time/clock_interface.h
   /usr/include/absl/time/internal/cctz/include/cctz/civil_time.h
   /usr/include/absl/time/internal/cctz/include/cctz/civil_time_detail.h
   /usr/include/absl/time/internal/cctz/include/cctz/time_zone.h
@@ -535,27 +557,35 @@ Files included in the binary package:
   /usr/include/absl/time/internal/cctz/src/time_zone_impl.h
   /usr/include/absl/time/internal/cctz/src/time_zone_info.h
   /usr/include/absl/time/internal/cctz/src/time_zone_libc.h
+  /usr/include/absl/time/internal/cctz/src/time_zone_name_win.h
   /usr/include/absl/time/internal/cctz/src/time_zone_posix.h
   /usr/include/absl/time/internal/cctz/src/tzfile.h
   /usr/include/absl/time/internal/get_current_time_chrono.inc
   /usr/include/absl/time/internal/get_current_time_posix.inc
   /usr/include/absl/time/internal/test_util.h
+  /usr/include/absl/time/simulated_clock.h
   /usr/include/absl/time/time.h
   /usr/include/absl/types/any.h
+  /usr/include/absl/types/any_span.h
   /usr/include/absl/types/compare.h
+  /usr/include/absl/types/internal/any_span.h
   /usr/include/absl/types/internal/span.h
   /usr/include/absl/types/optional.h
+  /usr/include/absl/types/optional_ref.h
+  /usr/include/absl/types/source_location.h
   /usr/include/absl/types/span.h
   /usr/include/absl/types/variant.h
   /usr/include/absl/utility/utility.h
   /usr/lib/cmake/absl/abslConfig.cmake
   /usr/lib/cmake/absl/abslConfigVersion.cmake
-  /usr/lib/cmake/absl/abslTargets-release.cmake
+  /usr/lib/cmake/absl/abslTargets-relwithdebinfo.cmake
   /usr/lib/cmake/absl/abslTargets.cmake
   /usr/lib/libabsl_atomic_hook_test_helper.dll.a
   /usr/lib/libabsl_base.dll.a
+  /usr/lib/libabsl_base_cpu_detect.dll.a
   /usr/lib/libabsl_city.dll.a
   /usr/lib/libabsl_civil_time.dll.a
+  /usr/lib/libabsl_clock_interface.dll.a
   /usr/lib/libabsl_cord.dll.a
   /usr/lib/libabsl_cord_internal.dll.a
   /usr/lib/libabsl_cordz_functions.dll.a
@@ -564,7 +594,6 @@ Files included in the binary package:
   /usr/lib/libabsl_cordz_sample_token.dll.a
   /usr/lib/libabsl_crc32c.dll.a
   /usr/lib/libabsl_crc_cord_state.dll.a
-  /usr/lib/libabsl_crc_cpu_detect.dll.a
   /usr/lib/libabsl_crc_internal.dll.a
   /usr/lib/libabsl_debugging_internal.dll.a
   /usr/lib/libabsl_decode_rust_punycode.dll.a
@@ -586,7 +615,9 @@ Files included in the binary package:
   /usr/lib/libabsl_flags_reflection.dll.a
   /usr/lib/libabsl_flags_usage.dll.a
   /usr/lib/libabsl_flags_usage_internal.dll.a
+  /usr/lib/libabsl_generic_printer_internal.dll.a
   /usr/lib/libabsl_graphcycles_internal.dll.a
+  /usr/lib/libabsl_hardening.dll.a
   /usr/lib/libabsl_hash.dll.a
   /usr/lib/libabsl_hash_generator_testing.dll.a
   /usr/lib/libabsl_hashtable_profiler.dll.a
@@ -634,16 +665,18 @@ Files included in the binary package:
   /usr/lib/libabsl_raw_logging_internal.dll.a
   /usr/lib/libabsl_scoped_mock_log.dll.a
   /usr/lib/libabsl_scoped_set_env.dll.a
+  /usr/lib/libabsl_simulated_clock.dll.a
+  /usr/lib/libabsl_source_location.dll.a
   /usr/lib/libabsl_spinlock_test_common.dll.a
   /usr/lib/libabsl_spinlock_wait.dll.a
   /usr/lib/libabsl_stack_consumption.dll.a
   /usr/lib/libabsl_stacktrace.dll.a
   /usr/lib/libabsl_status.dll.a
+  /usr/lib/libabsl_status_builder.dll.a
   /usr/lib/libabsl_status_matchers.dll.a
   /usr/lib/libabsl_statusor.dll.a
   /usr/lib/libabsl_str_format_internal.dll.a
   /usr/lib/libabsl_strerror.dll.a
-  /usr/lib/libabsl_string_view.dll.a
   /usr/lib/libabsl_strings.dll.a
   /usr/lib/libabsl_strings_internal.dll.a
   /usr/lib/libabsl_symbolize.dll.a
@@ -663,13 +696,16 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_algorithm_container.pc
   /usr/lib/pkgconfig/absl_any.pc
   /usr/lib/pkgconfig/absl_any_invocable.pc
+  /usr/lib/pkgconfig/absl_any_span.pc
   /usr/lib/pkgconfig/absl_atomic_hook.pc
   /usr/lib/pkgconfig/absl_atomic_hook_test_helper.pc
   /usr/lib/pkgconfig/absl_bad_any_cast.pc
   /usr/lib/pkgconfig/absl_bad_optional_access.pc
   /usr/lib/pkgconfig/absl_bad_variant_access.pc
   /usr/lib/pkgconfig/absl_base.pc
+  /usr/lib/pkgconfig/absl_base_cpu_detect.pc
   /usr/lib/pkgconfig/absl_base_internal.pc
+  /usr/lib/pkgconfig/absl_bind_back.pc
   /usr/lib/pkgconfig/absl_bind_front.pc
   /usr/lib/pkgconfig/absl_bits.pc
   /usr/lib/pkgconfig/absl_bounded_utf8_length_sequence.pc
@@ -677,14 +713,17 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_btree_test_common.pc
   /usr/lib/pkgconfig/absl_charset.pc
   /usr/lib/pkgconfig/absl_check.pc
+  /usr/lib/pkgconfig/absl_chunked_queue.pc
   /usr/lib/pkgconfig/absl_city.pc
   /usr/lib/pkgconfig/absl_civil_time.pc
   /usr/lib/pkgconfig/absl_cleanup.pc
   /usr/lib/pkgconfig/absl_cleanup_internal.pc
+  /usr/lib/pkgconfig/absl_clock_interface.pc
   /usr/lib/pkgconfig/absl_common_policy_traits.pc
   /usr/lib/pkgconfig/absl_compare.pc
   /usr/lib/pkgconfig/absl_compressed_tuple.pc
   /usr/lib/pkgconfig/absl_config.pc
+  /usr/lib/pkgconfig/absl_constexpr_testing_internal.pc
   /usr/lib/pkgconfig/absl_container_common.pc
   /usr/lib/pkgconfig/absl_container_memory.pc
   /usr/lib/pkgconfig/absl_cord.pc
@@ -702,7 +741,6 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_core_headers.pc
   /usr/lib/pkgconfig/absl_crc32c.pc
   /usr/lib/pkgconfig/absl_crc_cord_state.pc
-  /usr/lib/pkgconfig/absl_crc_cpu_detect.pc
   /usr/lib/pkgconfig/absl_crc_internal.pc
   /usr/lib/pkgconfig/absl_debugging.pc
   /usr/lib/pkgconfig/absl_debugging_internal.pc
@@ -736,7 +774,9 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_flat_hash_map.pc
   /usr/lib/pkgconfig/absl_flat_hash_set.pc
   /usr/lib/pkgconfig/absl_function_ref.pc
+  /usr/lib/pkgconfig/absl_generic_printer_internal.pc
   /usr/lib/pkgconfig/absl_graphcycles_internal.pc
+  /usr/lib/pkgconfig/absl_hardening.pc
   /usr/lib/pkgconfig/absl_has_ostream_operator.pc
   /usr/lib/pkgconfig/absl_hash.pc
   /usr/lib/pkgconfig/absl_hash_container_defaults.pc
@@ -750,14 +790,18 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_hashtable_debug_hooks.pc
   /usr/lib/pkgconfig/absl_hashtable_profiler.pc
   /usr/lib/pkgconfig/absl_hashtablez_sampler.pc
+  /usr/lib/pkgconfig/absl_heterogeneous_lookup_testing.pc
   /usr/lib/pkgconfig/absl_inlined_vector.pc
   /usr/lib/pkgconfig/absl_inlined_vector_internal.pc
   /usr/lib/pkgconfig/absl_int128.pc
+  /usr/lib/pkgconfig/absl_internal_optional_ref.pc
   /usr/lib/pkgconfig/absl_iterator_traits_internal.pc
   /usr/lib/pkgconfig/absl_iterator_traits_test_helper_internal.pc
   /usr/lib/pkgconfig/absl_kernel_timeout_internal.pc
   /usr/lib/pkgconfig/absl_layout.pc
   /usr/lib/pkgconfig/absl_leak_check.pc
+  /usr/lib/pkgconfig/absl_linked_hash_map.pc
+  /usr/lib/pkgconfig/absl_linked_hash_set.pc
   /usr/lib/pkgconfig/absl_log.pc
   /usr/lib/pkgconfig/absl_log_entry.pc
   /usr/lib/pkgconfig/absl_log_flags.pc
@@ -768,6 +812,7 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_log_internal_check_op.pc
   /usr/lib/pkgconfig/absl_log_internal_conditions.pc
   /usr/lib/pkgconfig/absl_log_internal_config.pc
+  /usr/lib/pkgconfig/absl_log_internal_container.pc
   /usr/lib/pkgconfig/absl_log_internal_flags.pc
   /usr/lib/pkgconfig/absl_log_internal_fnmatch.pc
   /usr/lib/pkgconfig/absl_log_internal_format.pc
@@ -800,6 +845,7 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_non_temporal_arm_intrinsics.pc
   /usr/lib/pkgconfig/absl_non_temporal_memcpy.pc
   /usr/lib/pkgconfig/absl_nullability.pc
+  /usr/lib/pkgconfig/absl_nullability_traits_internal.pc
   /usr/lib/pkgconfig/absl_numeric.pc
   /usr/lib/pkgconfig/absl_numeric_representation.pc
   /usr/lib/pkgconfig/absl_optional.pc
@@ -838,6 +884,7 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_random_internal_traits.pc
   /usr/lib/pkgconfig/absl_random_internal_uniform_helper.pc
   /usr/lib/pkgconfig/absl_random_internal_wide_multiply.pc
+  /usr/lib/pkgconfig/absl_random_mocking_access.pc
   /usr/lib/pkgconfig/absl_random_mocking_bit_gen.pc
   /usr/lib/pkgconfig/absl_random_random.pc
   /usr/lib/pkgconfig/absl_random_seed_gen_exception.pc
@@ -846,9 +893,12 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_raw_hash_set.pc
   /usr/lib/pkgconfig/absl_raw_hash_set_resize_impl.pc
   /usr/lib/pkgconfig/absl_raw_logging_internal.pc
+  /usr/lib/pkgconfig/absl_requires_internal.pc
   /usr/lib/pkgconfig/absl_sample_recorder.pc
   /usr/lib/pkgconfig/absl_scoped_mock_log.pc
   /usr/lib/pkgconfig/absl_scoped_set_env.pc
+  /usr/lib/pkgconfig/absl_simulated_clock.pc
+  /usr/lib/pkgconfig/absl_source_location.pc
   /usr/lib/pkgconfig/absl_span.pc
   /usr/lib/pkgconfig/absl_spinlock_test_common.pc
   /usr/lib/pkgconfig/absl_spinlock_wait.pc
@@ -856,14 +906,19 @@ Files included in the binary package:
   /usr/lib/pkgconfig/absl_stack_consumption.pc
   /usr/lib/pkgconfig/absl_stacktrace.pc
   /usr/lib/pkgconfig/absl_status.pc
+  /usr/lib/pkgconfig/absl_status_builder.pc
+  /usr/lib/pkgconfig/absl_status_macros.pc
   /usr/lib/pkgconfig/absl_status_matchers.pc
   /usr/lib/pkgconfig/absl_statusor.pc
   /usr/lib/pkgconfig/absl_str_format.pc
   /usr/lib/pkgconfig/absl_str_format_internal.pc
   /usr/lib/pkgconfig/absl_strerror.pc
   /usr/lib/pkgconfig/absl_string_view.pc
+  /usr/lib/pkgconfig/absl_stringify_stream.pc
   /usr/lib/pkgconfig/absl_strings.pc
+  /usr/lib/pkgconfig/absl_strings_append_and_overwrite.pc
   /usr/lib/pkgconfig/absl_strings_internal.pc
+  /usr/lib/pkgconfig/absl_strings_resize_and_overwrite.pc
   /usr/lib/pkgconfig/absl_symbolize.pc
   /usr/lib/pkgconfig/absl_synchronization.pc
   /usr/lib/pkgconfig/absl_test_allocator.pc
@@ -894,6 +949,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20260817.0-1bl1 -----
+Version bump.
 
 ----- version 20250814.0-1bl1 -----
 Version bump.

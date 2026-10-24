@@ -30,19 +30,19 @@ CYGCMAKE_ARGS="
 
 PKG_NAMES="
 	abseil-cpp
-	libabseil2508.0.0
+	libabseil2608.0.0
 	libabseil-devel
 "
 abseil_cpp_CONTENTS="
 	usr/share
 "
-libabseil2508_0_0_CONTENTS="
-	usr/bin/cyg*-2508.0.0.dll
+libabseil2608_0_0_CONTENTS="
+	usr/bin/cyg*-2608.0.0.dll
 "
 libabseil_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 abseil_cpp_SUMMARY="${SUMMARY} (licensing & readmes)"
-libabseil2508_0_0_SUMMARY="${SUMMARY} (runtime)"
+libabseil2608_0_0_SUMMARY="${SUMMARY} (runtime)"
 libabseil_devel_SUMMARY="${SUMMARY} (development)"

@@ -14,7 +14,6 @@ LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 OR MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
-	libbenchmark-devel
 	libcmocka-devel
 "
 
@@ -39,19 +38,19 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	croaring
-	libroaring22
+	libroaring29
 	libroaring-devel
 "
 croaring_CONTENTS="
 	usr/share
 "
-libroaring22_CONTENTS="
-	usr/bin/cyg*-22.dll
+libroaring29_CONTENTS="
+	usr/bin/cyg*-29.dll
 "
 libroaring_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 croaring_SUMMARY="${SUMMARY} (licensing & readmes)"
-libroaring22_SUMMARY="${SUMMARY} (runtime)"
+libroaring29_SUMMARY="${SUMMARY} (runtime)"
 libroaring_devel_SUMMARY="${SUMMARY} (development)"

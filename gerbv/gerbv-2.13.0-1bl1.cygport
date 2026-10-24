@@ -1,0 +1,76 @@
+HOMEPAGE="https://github.com/${PN}/${PN}"
+SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/gerbv/raw/5b9c255ef9ad66256a518c81151c862c6f4d3ea1/f/gerbv-2.13.0-Fix-Fails-GCC15.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/d60951a8eea3af2906c9660f174aa785c35b6d7d/sci-electronics/gerbv/files/gerbv-2.13.0-release_version.patch
+"
+
+CATEGORY="Libs"
+SUMMARY="Gerber (RS-274X) viewer"
+DESCRIPTION="Gerbv is an open source Gerber file (RS-274X only) viewer. Gerbv lets you load
+several files on top of each other, do measurements on the displayed image,
+etc. Besides viewing Gerbers, you may also view Excellon drill files as well
+as pick-place file"
+
+LICENSE="GPL-2.0-or-later AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND BSD-3-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	ImageMagick
+	gettext-devel
+	libcairo-devel
+	libgdk_pixbuf2.0-devel
+	libglib2.0-devel
+	libgtk2.0-devel
+	libintl-devel
+"
+
+inherit cmake
+
+# upstream builds with -std=c23 (no GNU extensions), which hides fileno() etc. in newlib
+export CFLAGS="${CFLAGS//-Werror=format-security/} -D_DEFAULT_SOURCE"
+export LDFLAGS="${LDFLAGS} -Wl,--allow-multiple-definition"
+
+DIFF_EXCLUDES="
+	gerbv.po
+	gerbv.pot
+	mismatch
+	outputs
+	test-image-rotation-1-rotated.gbx
+	test-merge-a+b_temporary.gbx
+"
+
+src_test()
+{
+	cd ${B}
+	# the golden PNGs were rendered with cairo 1.16; cairo 1.18 and the
+	# label font differ by a few pixels (gerbv/gerbv#290, max MAE seen 59.6)
+	GERBV_TEST_MAE_THRESHOLD=100 ctest
+}
+
+PKG_IGNORE="
+	usr/lib/libgerbv.a
+"
+
+PKG_NAMES="
+	gerbv
+	libgerbv1
+	libgerbv-devel
+"
+gerbv_CONTENTS="
+	etc
+	usr/bin/*.exe
+	usr/share
+"
+libgerbv1_CONTENTS="
+	usr/bin/cyg*-1.dll
+"
+libgerbv_devel_CONTENTS="
+	usr/include
+	usr/lib/lib*.dll.a
+	usr/lib/pkgconfig
+"
+gerbv_SUMMARY="${SUMMARY} (utilities)"
+libgerbv1_SUMMARY="${SUMMARY} (runtime)"
+libgerbv_devel_SUMMARY="${SUMMARY} (development)"

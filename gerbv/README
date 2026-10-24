@@ -6,55 +6,56 @@ etc. Besides viewing Gerbers, you may also view Excellon drill files as well as
 pick-place file
 
 Runtime requirements:
-  cygwin-3.5.0-0.438.g322c7150b25e
-  libcairo2-1.17.4-1
+  cygwin-3.6.11-1
+  libcairo2-1.18.6-1
+  libgcc1-14.4.0-1
   libgdk_pixbuf2.0_0-2.36.11-1
-  libgerbv-devel-2.10.0-1bl1
-  libgerbv1-2.10.0-1bl1
-  libglib2.0-devel-2.64.6-1
-  libglib2.0_0-2.64.6-1
+  libgerbv-devel-2.13.0-1bl1
+  libgerbv1-2.13.0-1bl1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
   libgtk2.0-devel-2.24.33-1
   libgtk2.0_0-2.24.33-1
-  libintl8-0.22-1
-  pkg-config-2.0.3-1
+  libintl8-0.22.5-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  gettext-devel-0.22-1
-  libcairo-devel-1.17.4-1
+  ImageMagick-7.1.2.30-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  gettext-devel-0.22.5-1
+  libcairo-devel-1.18.6-1
   libgdk_pixbuf2.0-devel-2.36.11-1
-  libglib2.0-devel-2.64.6-1
+  libglib2.0-devel-2.90.1-1
   libgtk2.0-devel-2.24.33-1
-  libintl-devel-0.22-1
-  libtool-2.4.7-1
-  make-4.4.1-2
+  libintl-devel-0.22.5-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/gerbv/gerbv
 
 Canonical download:
-  https://github.com/gerbv/gerbv/archive/refs/tags/v2.10.0.tar.gz
+  https://github.com/gerbv/gerbv/archive/refs/tags/v2.13.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack gerbv-2.10.0-X-src.tar.xz
+  1. unpack gerbv-2.13.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./gerbv-2.10.0-X.cygport all
+        % cygport ./gerbv-2.13.0-X.cygport all
 
 This will create:
-  /usr/src/gerbv-2.10.0-X-src.tar.xz
-  /usr/src/gerbv-2.10.0-X.tar.xz
-  /usr/src/libgerbv1-2.10.0-X.tar.xz
-  /usr/src/libgerbv-devel-2.10.0-X.tar.xz
+  /usr/src/gerbv-2.13.0-X-src.tar.xz
+  /usr/src/gerbv-2.13.0-X.tar.xz
+  /usr/src/libgerbv1-2.13.0-X.tar.xz
+  /usr/src/libgerbv-devel-2.13.0-X.tar.xz
 
 -------------------------------------------
 
@@ -69,14 +70,145 @@ Files included in the binary package:
   /usr/share/doc/gerbv/BUGS
   /usr/share/doc/gerbv/CONTRIBUTORS
   /usr/share/doc/gerbv/COPYING
-  /usr/share/doc/gerbv/ChangeLog
   /usr/share/doc/gerbv/HACKING
-  /usr/share/doc/gerbv/NEWS
-  /usr/share/doc/gerbv/README
   /usr/share/doc/gerbv/README.md
+  /usr/share/doc/gerbv/example/Mentor-BoardStation/README.txt
+  /usr/share/doc/gerbv/example/Mentor-BoardStation/artwork_1.grb
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/README.md
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0-Plated.TXT
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0-RectHoles-Plated.TXT
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GBL
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GBO
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GBP
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GBS
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GD1
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GG1
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GM1
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GTL
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GTO
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GTP
+  /usr/share/doc/gerbv/example/Ruthie_V1R0/Ruthie_V1R0.GTS
+  /usr/share/doc/gerbv/example/am-test/am-test.gbx
+  /usr/share/doc/gerbv/example/amacro-ref/1.grb
+  /usr/share/doc/gerbv/example/amacro-ref/README.txt
+  /usr/share/doc/gerbv/example/amacro-ref/full-ex.grb
+  /usr/share/doc/gerbv/example/amacro-ref/gerbv_am_expression_bug.ger
+  /usr/share/doc/gerbv/example/amacro-ref/jj1.drl
+  /usr/share/doc/gerbv/example/amacro-ref/jj1.grb
+  /usr/share/doc/gerbv/example/amacro-ref/limit-ex.grb
+  /usr/share/doc/gerbv/example/amacro-ref/stp0.grb
+  /usr/share/doc/gerbv/example/cslk/README.txt
+  /usr/share/doc/gerbv/example/cslk/cslk.gbx
+  /usr/share/doc/gerbv/example/cslk/cslk.ps
+  /usr/share/doc/gerbv/example/dan/README.txt
+  /usr/share/doc/gerbv/example/dan/top.gbx
+  /usr/share/doc/gerbv/example/dan/top_sr.gbx
+  /usr/share/doc/gerbv/example/eaglecad1/top-cop.gbx
+  /usr/share/doc/gerbv/example/eaglecad1/top-cop.pdf
+  /usr/share/doc/gerbv/example/ekf/README
+  /usr/share/doc/gerbv/example/ekf/ekf.gap
+  /usr/share/doc/gerbv/example/ekf/ekf_08.apt
+  /usr/share/doc/gerbv/example/ekf/l1.off
+  /usr/share/doc/gerbv/example/ekf2/README.txt
+  /usr/share/doc/gerbv/example/ekf2/d1.grb
+  /usr/share/doc/gerbv/example/ekf2/drill0.exc
+  /usr/share/doc/gerbv/example/ekf2/drill1.exc
+  /usr/share/doc/gerbv/example/ekf2/drill20.exc
+  /usr/share/doc/gerbv/example/ekf2/drill30.exc
+  /usr/share/doc/gerbv/example/ekf2/gnd.grb
+  /usr/share/doc/gerbv/example/ekf2/l0.grb
+  /usr/share/doc/gerbv/example/ekf2/l1.grb
+  /usr/share/doc/gerbv/example/ekf2/l2.grb
+  /usr/share/doc/gerbv/example/ekf2/l3.grb
+  /usr/share/doc/gerbv/example/ekf2/l4.grb
+  /usr/share/doc/gerbv/example/ekf2/l5.grb
+  /usr/share/doc/gerbv/example/ekf2/pow.grb
+  /usr/share/doc/gerbv/example/ekf2/pow3.grb
+  /usr/share/doc/gerbv/example/ekf2/resplan.grb
+  /usr/share/doc/gerbv/example/ekf2/sieb0.grb
+  /usr/share/doc/gerbv/example/ekf2/sieb1.grb
+  /usr/share/doc/gerbv/example/ekf2/stp0.grb
+  /usr/share/doc/gerbv/example/ekf2/stp1.grb
+  /usr/share/doc/gerbv/example/exposure/README.txt
+  /usr/share/doc/gerbv/example/exposure/example.grb
+  /usr/share/doc/gerbv/example/exposure/example.jpg
+  /usr/share/doc/gerbv/example/hellboard/README
+  /usr/share/doc/gerbv/example/hellboard/hellboard.back.gbr
+  /usr/share/doc/gerbv/example/hellboard/hellboard.fab.gbr
+  /usr/share/doc/gerbv/example/hellboard/hellboard.front.gbr
+  /usr/share/doc/gerbv/example/hellboard/hellboard.group1.gbr
+  /usr/share/doc/gerbv/example/hellboard/hellboard.group2.gbr
+  /usr/share/doc/gerbv/example/hellboard/hellboard.pcb
+  /usr/share/doc/gerbv/example/hellboard/hellboard.plated-drill.cnc
+  /usr/share/doc/gerbv/example/jj/README.txt
+  /usr/share/doc/gerbv/example/jj/l1-1.grb
+  /usr/share/doc/gerbv/example/jj/l1-2.grb
+  /usr/share/doc/gerbv/example/jj/l1-3.grb
+  /usr/share/doc/gerbv/example/jj/l1-orig.grb
+  /usr/share/doc/gerbv/example/nollezappare/AssemblyTop.gdo
+  /usr/share/doc/gerbv/example/nollezappare/EtchLayer2Bottom.gdo
+  /usr/share/doc/gerbv/example/nollezappare/ThruHolePlated.ncd
+  /usr/share/doc/gerbv/example/numpres/numpres.pcb
+  /usr/share/doc/gerbv/example/numpres/numpres.pcb.output_componentmask.grb
+  /usr/share/doc/gerbv/example/numpres/numpres.pcb.output_componentsilk.grb
+  /usr/share/doc/gerbv/example/numpres/numpres.pcb.output_group1.grb
+  /usr/share/doc/gerbv/example/numpres/numpres.pcb.output_group2.grb
+  /usr/share/doc/gerbv/example/numpres/numpres.pcb.output_plated-drill.grb
+  /usr/share/doc/gerbv/example/numpres/numpres.pcb.output_soldermask.grb
+  /usr/share/doc/gerbv/example/numpres/numpres.pcb.output_unplated-drill.grb
+  /usr/share/doc/gerbv/example/orcad/README.txt
+  /usr/share/doc/gerbv/example/orcad/ast.ps
+  /usr/share/doc/gerbv/example/orcad/rs232_cm.asb
+  /usr/share/doc/gerbv/example/orcad/rs232_cm.ast
+  /usr/share/doc/gerbv/example/orcad/rs232_cm.bot
+  /usr/share/doc/gerbv/example/orcad/rs232_cm.drd
+  /usr/share/doc/gerbv/example/orcad/rs232_cm.smb
+  /usr/share/doc/gerbv/example/orcad/rs232_cm.smt
+  /usr/share/doc/gerbv/example/orcad/rs232_cm.ssb
+  /usr/share/doc/gerbv/example/orcad/rs232_cm.sst
+  /usr/share/doc/gerbv/example/orcad/rs232_cm.top
+  /usr/share/doc/gerbv/example/orcad/thruhole.tap
+  /usr/share/doc/gerbv/example/pick-and-place/LED.frontsilk.gbr
+  /usr/share/doc/gerbv/example/pick-and-place/LED.xy
+  /usr/share/doc/gerbv/example/polarity/6_vbat.gbr
+  /usr/share/doc/gerbv/example/polarity/README.txt
+  /usr/share/doc/gerbv/example/protel-pnp/Assembly_Drawings.pdf
+  /usr/share/doc/gerbv/example/protel-pnp/Final_Artwork_Prints.pdf
+  /usr/share/doc/gerbv/example/protel-pnp/Pick_Place_for_SE_SG_IF_V2.csv
+  /usr/share/doc/gerbv/example/protel-pnp/Pick_Place_for_SE_SG_IF_V2.txt
+  /usr/share/doc/gerbv/example/protel-pnp/README.txt
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.DRL
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.DRR
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GBL
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GBO
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GBS
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GD1
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GG1
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GM1
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GM2
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GTL
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GTO
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.GTS
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.LDP
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.REP
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.RUL
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.TXT
+  /usr/share/doc/gerbv/example/protel-pnp/SE_SG_IF_V2.apr
+  /usr/share/doc/gerbv/example/protel-pnp/Status_Report.txt
+  /usr/share/doc/gerbv/example/thermal/README.txt
+  /usr/share/doc/gerbv/example/thermal/bpB.GP1
+  /usr/share/doc/gerbv/example/thermal/bpB.png
+  /usr/share/doc/gerbv/example/thermal/dsp.GP1
+  /usr/share/doc/gerbv/example/thermal/dsp.png
+  /usr/share/doc/gerbv/example/trailing/README.txt
+  /usr/share/doc/gerbv/example/trailing/cd1r2.1_sieb0.off
+  /usr/share/doc/gerbv/example/trailing/cd1r2.1_sieb1.off
+  /usr/share/doc/gerbv/example/uwe/example-cairo.png
+  /usr/share/doc/gerbv/example/uwe/example-gdk.png
+  /usr/share/doc/gerbv/example/uwe/example-viewmate.png
+  /usr/share/doc/gerbv/example/uwe/example.gbr
+  /usr/share/doc/gerbv/example/uwe/mail.txt
   /usr/share/gerbv/gerbv_icon.ico
-  /usr/share/gerbv/scheme/gerb-debug.scm
-  /usr/share/gerbv/scheme/gerb-ps.scm
   /usr/share/gerbv/scheme/init.scm
   /usr/share/glib-2.0/schemas/org.geda-user.gerbv.gschema.xml
   /usr/share/icons/hicolor/16x16/apps/gerbv.png
@@ -85,19 +217,24 @@ Files included in the binary package:
   /usr/share/icons/hicolor/32x32/apps/gerbv.png
   /usr/share/icons/hicolor/48x48/apps/gerbv.png
   /usr/share/icons/hicolor/scalable/apps/gerbv.svg
+  /usr/share/locale/ja/LC_MESSAGES/gerbv.mo
+  /usr/share/locale/ru/LC_MESSAGES/gerbv.mo
   /usr/share/man/man1/gerbv.1.gz
 
 (libgerbv1)
   /usr/bin/cyggerbv-1.dll
 
 (libgerbv-devel)
-  /usr/include/gerbv-2.10.0/gerbv.h
+  /usr/include/gerbv/gerbv.h
   /usr/lib/libgerbv.dll.a
   /usr/lib/pkgconfig/libgerbv.pc
 
 ------------------
 
 Port Notes:
+
+----- version 2.13.0-1bl1 -----
+Version bump.
 
 ----- version 2.10.0-1bl1 -----
 Version bump.

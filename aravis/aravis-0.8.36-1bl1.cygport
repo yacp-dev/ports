@@ -1,6 +1,4 @@
-inherit gnome2
-
-HOMEPAGE="https://wiki.gnome.org/action/show/Projects/Aravis"
+HOMEPAGE="https://github.com/AravisProject/${PN}"
 SRC_URI="https://github.com/AravisProject/${PN}/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Video"
@@ -13,7 +11,19 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libglib2.0-devel libgstreamer1.0-devel libintl-devel libusb1.0-devel libxml2-devel zlib-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	gobject-introspection
+	libglib2.0-devel
+	libgstinterfaces1.0-devel
+	libgstreamer1.0-devel
+	libgtk3-devel
+	libintl-devel
+	libusb1.0-devel
+	libxml2-devel
+	python312-gi
+	zlib-devel
+"
 
 inherit meson
 
@@ -22,9 +32,13 @@ CYGMESON_ARGS="
 	-Dpacket-socket=disabled
 "
 
-PKG_IGNORE="
-	usr/lib/gstreamer-1.0/libgstaravis.0.8.dll.a
-"
+src_install()
+{
+	cd ${S}
+	meson_install
+
+	verbose rm -f ${D}/usr/lib/gstreamer-1.0/*.dll.a
+}
 
 PKG_NAMES="
 	${PN}
@@ -43,7 +57,7 @@ aravis_CONTENTS="
 	usr/share/metainfo
 "
 libaravis0_8_0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-0.dll
 "
 libaravis0_8_devel_CONTENTS="
 	usr/include

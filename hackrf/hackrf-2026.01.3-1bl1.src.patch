@@ -1,5 +1,5 @@
---- origsrc/hackrf-2026.01.1/host/libhackrf/libhackrf.pc.in	2026-01-05 11:45:01.000000000 +0900
-+++ src/hackrf-2026.01.1/host/libhackrf/libhackrf.pc.in	2026-01-10 12:39:26.263042100 +0900
+--- origsrc/hackrf-2026.01.3/host/libhackrf/libhackrf.pc.in	2026-01-30 03:47:16.000000000 +0000
++++ src/hackrf-2026.01.3/host/libhackrf/libhackrf.pc.in	2026-10-24 12:02:41.072561900 +0000
 @@ -5,7 +5,7 @@ includedir=@includedir@
  
  Name: HackRF Library
@@ -9,8 +9,8 @@
  Cflags: -I${includedir} -I${includedir}/libhackrf @HACKRF_PC_CFLAGS@
  Libs: -L${libdir} -lhackrf
  Libs.private: @HACKRF_PC_LIBS@
---- origsrc/hackrf-2026.01.1/host/libhackrf/src/CMakeLists.txt	2026-01-05 11:45:01.000000000 +0900
-+++ src/hackrf-2026.01.1/host/libhackrf/src/CMakeLists.txt	2026-01-10 12:10:06.609131700 +0900
+--- origsrc/hackrf-2026.01.3/host/libhackrf/src/CMakeLists.txt	2026-01-30 03:47:16.000000000 +0000
++++ src/hackrf-2026.01.3/host/libhackrf/src/CMakeLists.txt	2026-10-24 12:02:41.072561900 +0000
 @@ -35,10 +35,10 @@ option(
    ANDROID)
  

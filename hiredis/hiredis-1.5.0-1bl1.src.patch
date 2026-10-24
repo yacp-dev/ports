@@ -1,0 +1,11 @@
+--- origsrc/hiredis-1.5.0/CMakeLists.txt	2026-10-15 13:47:43.000000000 +0000
++++ src/hiredis-1.5.0/CMakeLists.txt	2026-10-24 11:43:14.405459400 +0000
+@@ -188,7 +188,7 @@ IF(ENABLE_SSL)
+             PROPERTIES COMPILE_FLAGS /Z7)
+     ENDIF()
+     TARGET_LINK_LIBRARIES(hiredis_ssl PRIVATE OpenSSL::SSL)
+-    IF(WIN32)
++    IF(CYGWIN OR WIN32)
+         TARGET_LINK_LIBRARIES(hiredis_ssl PRIVATE hiredis)
+     ENDIF()
+     CONFIGURE_FILE(hiredis_ssl.pc.in hiredis_ssl.pc @ONLY)

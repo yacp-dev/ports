@@ -15,10 +15,15 @@ BUILD_REQUIRES="
 	libEGL-devel
 	libGL-devel
 	libX11-devel
+	libexpat-devel
 "
 
 inherit cmake
 inherit git
+
+CYGCMAKE_ARGS="
+	-DUSE_EXTERNAL_EXPAT=ON
+"
 
 PKG_NAMES="
 	coin

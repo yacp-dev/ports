@@ -1,5 +1,5 @@
---- origsrc/nats.c-3.13.0/CMakeLists.txt	2026-05-30 04:58:57.000000000 +0900
-+++ src/nats.c-3.13.0/CMakeLists.txt	2026-08-01 14:53:58.034633600 +0900
+--- origsrc/nats.c-3.14.0/CMakeLists.txt	2026-09-17 17:57:40.000000000 +0000
++++ src/nats.c-3.14.0/CMakeLists.txt	2026-10-24 07:43:35.927301000 +0000
 @@ -130,7 +130,7 @@ if(NATS_BUILD_USE_SODIUM)
        ${NATS_SODIUM_DIR}
    )
@@ -9,8 +9,8 @@
      HINTS ${NATS_SODIUM_DIR}
    )
    FIND_PACKAGE_HANDLE_STANDARD_ARGS(libsodium DEFAULT_MSG
---- origsrc/nats.c-3.13.0/src/CMakeLists.txt	2026-05-30 04:58:57.000000000 +0900
-+++ src/nats.c-3.13.0/src/CMakeLists.txt	2026-08-01 15:21:44.080959600 +0900
+--- origsrc/nats.c-3.14.0/src/CMakeLists.txt	2026-09-17 17:57:40.000000000 +0000
++++ src/nats.c-3.14.0/src/CMakeLists.txt	2026-10-24 07:43:35.929317300 +0000
 @@ -63,7 +63,7 @@ if(NATS_BUILD_LIB_SHARED)
    target_include_directories(nats PUBLIC
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
@@ -20,8 +20,8 @@
    install(EXPORT cnats-targets
          NAMESPACE cnats::
          FILE cnats-config.cmake
---- origsrc/nats.c-3.13.0/src/libnats.pc.in	2026-05-30 04:58:57.000000000 +0900
-+++ src/nats.c-3.13.0/src/libnats.pc.in	2026-08-01 17:02:48.944201100 +0900
+--- origsrc/nats.c-3.14.0/src/libnats.pc.in	2026-09-17 17:57:40.000000000 +0000
++++ src/nats.c-3.14.0/src/libnats.pc.in	2026-10-24 07:43:35.929317300 +0000
 @@ -1,12 +1,12 @@
 -prefix="@CMAKE_INSTALL_PREFIX@"
 -exec_prefix="${prefix}"
@@ -42,8 +42,8 @@
 +Cflags: -I${includedir}
 +Libs: -L${libdir} -lnats
 +Libs.private: -L${libdir} -lnats @PKGCONF_LIBS_PRIV@
---- origsrc/nats.c-3.13.0/test/CMakeLists.txt	2026-05-30 04:58:57.000000000 +0900
-+++ src/nats.c-3.13.0/test/CMakeLists.txt	2026-08-01 14:44:07.884950400 +0900
+--- origsrc/nats.c-3.14.0/test/CMakeLists.txt	2026-09-17 17:57:40.000000000 +0000
++++ src/nats.c-3.14.0/test/CMakeLists.txt	2026-10-24 07:43:35.931080000 +0000
 @@ -6,12 +6,6 @@ if(NOT BUILD_TESTING)
    return()
  endif()
@@ -66,10 +66,10 @@
 +# Link with the library
 +target_link_libraries(testsuite nats ${NATS_EXTRA_LIB})
  
- set(BENCH_LIST ${PROJECT_SOURCE_DIR}/test/list_bench.txt)
- set(STAN_LIST ${PROJECT_SOURCE_DIR}/test/list_stan.txt)
---- origsrc/nats.c-3.13.0/test/check_cpp/CMakeLists.txt	2026-05-30 04:58:57.000000000 +0900
-+++ src/nats.c-3.13.0/test/check_cpp/CMakeLists.txt	2026-08-01 14:44:36.955780400 +0900
+ if(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
+   target_link_libraries(testsuite execinfo)
+--- origsrc/nats.c-3.14.0/test/check_cpp/CMakeLists.txt	2026-09-17 17:57:40.000000000 +0000
++++ src/nats.c-3.14.0/test/check_cpp/CMakeLists.txt	2026-10-24 07:43:35.931080000 +0000
 @@ -2,12 +2,6 @@ if(NOT BUILD_TESTING)
    return()
  endif()
@@ -89,8 +89,8 @@
  
 -target_link_libraries(check_cpp nats_static ${NATS_EXTRA_LIB})
 +target_link_libraries(check_cpp nats ${NATS_EXTRA_LIB})
---- origsrc/nats.c-3.13.0/test/no_crash_on_exit/CMakeLists.txt	2026-05-30 04:58:57.000000000 +0900
-+++ src/nats.c-3.13.0/test/no_crash_on_exit/CMakeLists.txt	2026-08-01 14:54:33.589385400 +0900
+--- origsrc/nats.c-3.14.0/test/no_crash_on_exit/CMakeLists.txt	2026-09-17 17:57:40.000000000 +0000
++++ src/nats.c-3.14.0/test/no_crash_on_exit/CMakeLists.txt	2026-10-24 07:43:35.933897200 +0000
 @@ -2,12 +2,6 @@ if(NOT BUILD_TESTING)
    return()
  endif()
@@ -110,9 +110,9 @@
  
 -target_link_libraries(nocrashonexit nats_static ${NATS_EXTRA_LIB})
 +target_link_libraries(nocrashonexit nats ${NATS_EXTRA_LIB})
---- origsrc/nats.c-3.13.0/test/test.c	2026-05-30 04:58:57.000000000 +0900
-+++ src/nats.c-3.13.0/test/test.c	2026-08-01 14:46:53.284706100 +0900
-@@ -43649,7 +43649,7 @@ static void _sigsegv_handler(int sig) {
+--- origsrc/nats.c-3.14.0/test/test.c	2026-09-17 17:57:40.000000000 +0000
++++ src/nats.c-3.14.0/test/test.c	2026-10-24 07:43:35.941969700 +0000
+@@ -45266,7 +45266,7 @@ static void _sigsegv_handler(int sig) {
  // Android doesn't support backtrace before API Level 33.
  // Because this is for tests it's good enough to check
  // for Android only, until there is need for a better solution.
@@ -121,7 +121,7 @@
    void *array[20];
    int size = backtrace(array, 20);
  #endif // ANDROID
-@@ -43657,7 +43657,7 @@ static void _sigsegv_handler(int sig) {
+@@ -45274,7 +45274,7 @@ static void _sigsegv_handler(int sig) {
    // print out all the frames to stderr
    fprintf(stderr, "Error: signal %d:\n", sig);
  
@@ -130,8 +130,8 @@
    backtrace_symbols_fd(array, size, STDERR_FILENO);
  #endif // ANDROID
  
---- origsrc/nats.c-3.13.0/test/test.h	2026-05-30 04:58:57.000000000 +0900
-+++ src/nats.c-3.13.0/test/test.h	2026-08-01 14:56:55.710921800 +0900
+--- origsrc/nats.c-3.14.0/test/test.h	2026-09-17 17:57:40.000000000 +0000
++++ src/nats.c-3.14.0/test/test.h	2026-10-24 07:43:35.945189300 +0000
 @@ -13,8 +13,10 @@
  
  #ifndef _WIN32

@@ -7,24 +7,24 @@ included with MRIcroGL. A full manual for this software is available in the
 form of a NITRC wiki.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libgcc1-13.4.0-1
-  libjasper4-2.0.14-1
-  libstdc++6-13.4.0-1
-  libturbojpeg0-3.1.4.1-1
-  libyaml-cpp0.9-0.9.0-1bl1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libjasper7-4.2.9-1
+  libstdc++6-14.4.0-1
+  libturbojpeg0-3.2.0-1
+  libyaml-cpp0.9-0.9.0-1bl2
   zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libjasper-devel-2.0.14-1
-  libturbojpeg-devel-3.1.4.1-1
-  libyaml-cpp-devel-0.9.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  git-2.51.0-1
+  libjasper-devel-4.2.9-1
+  libturbojpeg-devel-3.2.0-1
+  libyaml-cpp-devel-0.9.0-1bl2
   ninja-1.13.2-1
   zlib-devel-1.3.2-1
 
@@ -32,20 +32,20 @@ Canonical website:
   https://github.com/rordenlab/dcm2niix
 
 Canonical download:
-  https://github.com/rordenlab/dcm2niix/archive/refs/tags/v1.0.20260416.tar.gz
+  https://github.com/rordenlab/dcm2niix/archive/refs/tags/v1.0.20260724.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack dcm2niix-1.0.20260416-X-src.tar.xz
+  1. unpack dcm2niix-1.0.20260724-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./dcm2niix-1.0.20260416-X.cygport all
+        % cygport ./dcm2niix-1.0.20260724-X.cygport all
 
 This will create:
-  /usr/src/dcm2niix-1.0.20260416-X-src.tar.xz
-  /usr/src/dcm2niix-1.0.20260416-X.tar.xz
+  /usr/src/dcm2niix-1.0.20260724-X-src.tar.xz
+  /usr/src/dcm2niix-1.0.20260724-X.tar.xz
 
 -------------------------------------------
 
@@ -55,6 +55,7 @@ Files included in the binary package:
   /usr/bin/dcm2niibatch.exe
   /usr/bin/dcm2niix.exe
   /usr/share/doc/Cygwin/dcm2niix.README
+  /usr/share/doc/dcm2niix/AGENTS.md
   /usr/share/doc/dcm2niix/BATCH.md
   /usr/share/doc/dcm2niix/CLAUDE.md
   /usr/share/doc/dcm2niix/COMPILE.md
@@ -63,12 +64,16 @@ Files included in the binary package:
   /usr/share/doc/dcm2niix/FILENAMING.md
   /usr/share/doc/dcm2niix/README.md
   /usr/share/doc/dcm2niix/RENAMING.md
+  /usr/share/doc/dcm2niix/REPROIN.md
   /usr/share/doc/dcm2niix/VERSIONS.md
   /usr/share/doc/dcm2niix/license.txt
 
 ------------------
 
 Port Notes:
+
+----- version 1.0.20260724-1bl1 -----
+Version bump.
 
 ----- version 1.0.20260416-1bl1 -----
 Version bump.

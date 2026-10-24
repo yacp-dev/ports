@@ -1,0 +1,11 @@
+--- origsrc/dcm2niix-1.0.20260724/console/nifti1.h	2026-07-24 19:16:20.000000000 +0000
++++ src/dcm2niix-1.0.20260724/console/nifti1.h	2026-10-24 08:39:37.483392200 +0000
+@@ -480,7 +480,7 @@ typedef struct nifti1_extension nifti1_e
+    when it encounters a dataset with a type it doesn't like.
+ -----------------------------------------------------------------------------*/
+ 
+-#ifndef __USE_MISC /* Check __USE_MISC which includes DT_UNKNOWN in dirent.h */
++#if !defined(__USE_MISC) && !defined(__CYGWIN__) /* Check __USE_MISC which includes DT_UNKNOWN in dirent.h */
+ #ifndef DT_UNKNOWN
+ #define DT_UNKNOWN 0 /* Define DT_UNKNOWN only if it is not already defined */
+ #endif

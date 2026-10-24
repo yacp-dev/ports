@@ -1,5 +1,5 @@
---- origsrc/tinyxml/Makefile.am	1970-01-01 09:00:00.000000000 +0900
-+++ src/tinyxml/Makefile.am	2024-10-25 01:03:57.716170700 +0900
+--- origsrc/tinyxml/Makefile.am	1970-01-01 00:00:00.000000000 +0000
++++ src/tinyxml/Makefile.am	2026-10-24 13:10:11.256174300 +0000
 @@ -0,0 +1,15 @@
 +
 +check_PROGRAMS = xmltest
@@ -16,8 +16,8 @@
 +pkgconfig_DATA = tinyxml.pc
 +
 +TESTS = xmltest
---- origsrc/tinyxml/configure.ac	1970-01-01 09:00:00.000000000 +0900
-+++ src/tinyxml/configure.ac	2024-10-25 01:03:57.716170700 +0900
+--- origsrc/tinyxml/configure.ac	1970-01-01 00:00:00.000000000 +0000
++++ src/tinyxml/configure.ac	2026-10-24 13:10:11.256174300 +0000
 @@ -0,0 +1,30 @@
 +#                                               -*- Autoconf -*-
 +# Process this file with autoconf to produce a configure script.
@@ -49,8 +49,8 @@
 +
 +AC_CONFIG_FILES([tinyxml.pc Makefile])
 +AC_OUTPUT
---- origsrc/tinyxml/tinyxml.pc.in	2024-10-25 01:03:55.747423200 +0900
-+++ src/tinyxml/tinyxml.pc.in	2024-10-25 01:03:57.716170700 +0900
+--- origsrc/tinyxml/tinyxml.pc.in	2026-10-24 13:10:10.835526600 +0000
++++ src/tinyxml/tinyxml.pc.in	2026-10-24 13:10:11.257885800 +0000
 @@ -5,6 +5,6 @@ includedir=@includedir@
  
  Name: TinyXML
@@ -59,8 +59,8 @@
 +Version: @VERSION@
  Libs: -L${libdir} -ltinyxml
  Cflags: -I${includedir} -DTIXML_USE_STL=YES
---- origsrc/tinyxml/xmltest.cpp	2024-10-25 01:03:56.153736200 +0900
-+++ src/tinyxml/xmltest.cpp	2024-10-25 01:17:01.575737200 +0900
+--- origsrc/tinyxml/xmltest.cpp	2026-10-24 13:10:10.952818000 +0000
++++ src/tinyxml/xmltest.cpp	2026-10-24 13:10:11.257885800 +0000
 @@ -2,6 +2,7 @@
     Test program for TinyXML.
  */

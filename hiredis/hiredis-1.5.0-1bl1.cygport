@@ -5,11 +5,13 @@ CATEGORY="Libs"
 SUMMARY="Minimalistic C client for Redis >= 1.2"
 DESCRIPTION="Hiredis is a minimalistic C client library for the Redis database."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libssl-devel"
+BUILD_REQUIRES="
+	libssl-devel
+"
 
 inherit cmake
 

@@ -4,52 +4,53 @@ Utilities library used by Belledonne Communications softwares like belle-sip,
 mediastreamer2 and linphone.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libbctoolbox-devel-5.4.116-1bl1
-  libbctoolbox1-5.4.116-1bl1
-  libbcunit-devel-5.4.115-1bl1
-  libbcunit1-5.4.115-1bl1
-  libdecaf0-1.0.2-1bl2
-  libgcc1-13.4.0-1
+  cygwin-3.6.11-1
+  libbctoolbox-devel-5.4.128-1bl1
+  libbctoolbox1-5.4.128-1bl1
+  libbcunit-devel-5.4.126-1bl1
+  libbcunit1-5.4.126-1bl1
+  libdecaf0-1.0.5-1bl1
+  libgcc1-14.4.0-1
   libiconv2-1.19-2
   libintl8-0.22.5-1
-  libssl3-3.5.6-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libbcunit-devel-5.4.115-1bl1
-  libdecaf-devel-1.0.2-1bl2
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libbcunit-devel-5.4.126-1bl1
+  libdecaf-devel-1.0.5-1bl1
   libiconv-devel-1.19-2
-  libssl-devel-3.5.6-1
+  libncurses-devel-6.5+20240427-1
+  libssl-devel-3.5.9-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/BelledonneCommunications/bctoolbox
 
 Canonical download:
-  https://github.com/BelledonneCommunications/bctoolbox/archive/refs/tags/5.4.116.tar.gz
+  https://github.com/BelledonneCommunications/bctoolbox/archive/refs/tags/5.4.128.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack bctoolbox-5.4.116-X-src.tar.xz
+  1. unpack bctoolbox-5.4.128-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./bctoolbox-5.4.116-X.cygport all
+        % cygport ./bctoolbox-5.4.128-X.cygport all
 
 This will create:
-  /usr/src/bctoolbox-5.4.116-X-src.tar.xz
-  /usr/src/bctoolbox-5.4.116-X.tar.xz
-  /usr/src/libbctoolbox1-5.4.116-X.tar.xz
-  /usr/src/libbctoolbox-devel-5.4.116-X.tar.xz
+  /usr/src/bctoolbox-5.4.128-X-src.tar.xz
+  /usr/src/bctoolbox-5.4.128-X.tar.xz
+  /usr/src/libbctoolbox1-5.4.128-X.tar.xz
+  /usr/src/libbctoolbox-devel-5.4.128-X.tar.xz
 
 -------------------------------------------
 
@@ -91,7 +92,7 @@ Files included in the binary package:
   /usr/lib/cmake/bctoolbox/BCToolboxCMakeUtils.cmake
   /usr/lib/cmake/bctoolbox/BCToolboxConfig.cmake
   /usr/lib/cmake/bctoolbox/BCToolboxConfigVersion.cmake
-  /usr/lib/cmake/bctoolbox/BCToolboxTargets-release.cmake
+  /usr/lib/cmake/bctoolbox/BCToolboxTargets-relwithdebinfo.cmake
   /usr/lib/cmake/bctoolbox/BCToolboxTargets.cmake
   /usr/lib/cmake/bctoolbox/ConfigureSpecfile.cmake
   /usr/lib/cmake/bctoolbox/FindDecaf.cmake
@@ -105,6 +106,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.4.128-1bl1 -----
+Version bump.
 
 ----- version 5.4.116-1bl1 -----
 Version bump.

@@ -14,6 +14,7 @@ BUILD_REQUIRES="
 	libbcunit-devel
 	libdecaf-devel
 	libiconv-devel
+	libncurses-devel
 	libssl-devel
 "
 
@@ -28,6 +29,13 @@ CYGCMAKE_ARGS="
 	-DENABLE_OPENSSL:BOOL=ON
 	-DENABLE_STRICT:BOOL=OFF
 "
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/^project(BCToolbox VERSION .*)/project(BCToolbox VERSION ${PV})/" CMakeLists.txt
+}
 
 src_test()
 {

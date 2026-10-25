@@ -1,5 +1,5 @@
---- origsrc/libdaq-3.0.27/Makefile.am	2026-03-18 10:33:32.000000000 +0900
-+++ src/libdaq-3.0.27/Makefile.am	2026-03-21 18:13:49.919573900 +0900
+--- origsrc/libdaq-3.0.28/Makefile.am	2026-07-20 21:27:16.000000000 +0000
++++ src/libdaq-3.0.28/Makefile.am	2026-10-25 14:33:12.337889800 +0000
 @@ -7,6 +7,8 @@ pkgconfig_DATA = libdaq.pc
  if BUILD_MODULES
      MODULES_DIR = modules
@@ -10,8 +10,8 @@
 +SUBDIRS = api $(MODULES_DIR) test
  
  ACLOCAL_AMFLAGS = -I m4
---- origsrc/libdaq-3.0.27/api/Makefile.am	2026-03-18 10:33:32.000000000 +0900
-+++ src/libdaq-3.0.27/api/Makefile.am	2026-03-21 18:13:49.919573900 +0900
+--- origsrc/libdaq-3.0.28/api/Makefile.am	2026-07-20 21:27:16.000000000 +0000
++++ src/libdaq-3.0.28/api/Makefile.am	2026-10-25 14:33:12.339666700 +0000
 @@ -6,5 +6,5 @@ lib_LTLIBRARIES = libdaq.la
  libdaq_la_SOURCES = daq_base.c daq_base_api.c daq_config.c daq_instance_api_defaults.c daq_mod_ops.c
  libdaq_la_CPPFLAGS = $(AM_CPPFLAGS) $(CODE_COVERAGE_CPPFLAGS)
@@ -19,9 +19,9 @@
 -libdaq_la_LDFLAGS = $(CODE_COVERAGE_LDFLAGS) -version-info 3:0:0
 +libdaq_la_LDFLAGS = -no-undefined $(CODE_COVERAGE_LDFLAGS) -version-info 3:0:0
  libdaq_la_LIBADD = $(LIBDL)
---- origsrc/libdaq-3.0.27/configure.ac	2026-03-18 10:33:32.000000000 +0900
-+++ src/libdaq-3.0.27/configure.ac	2026-03-21 18:13:49.931135900 +0900
-@@ -16,7 +16,7 @@ AC_INIT([libdaq],[daq_version_str],[snor
+--- origsrc/libdaq-3.0.28/configure.ac	2026-07-20 21:27:16.000000000 +0000
++++ src/libdaq-3.0.28/configure.ac	2026-10-25 14:33:12.339666700 +0000
+@@ -17,7 +17,7 @@ AC_INIT([libdaq],[daq_version_str],[snor
  AC_CONFIG_MACRO_DIR([m4])
  AC_CONFIG_SRCDIR([api/daq.h])
  AC_CONFIG_HEADERS([config.h])
@@ -30,8 +30,8 @@
  
  DAQ_MAJOR_VERSION=daq_major_version
  DAQ_MINOR_VERSION=daq_minor_version
---- origsrc/libdaq-3.0.27/test/mock_stdio.c	2026-03-18 10:33:32.000000000 +0900
-+++ src/libdaq-3.0.27/test/mock_stdio.c	2026-03-21 18:13:49.931135900 +0900
+--- origsrc/libdaq-3.0.28/test/mock_stdio.c	2026-07-20 21:27:16.000000000 +0000
++++ src/libdaq-3.0.28/test/mock_stdio.c	2026-10-25 14:33:12.341691600 +0000
 @@ -47,6 +47,18 @@ int __wrap___fprintf_chk(FILE* const fil
  /* Function declaration to make the compiler happy. */
  int __real_printf(const char *fmt, ...) __attribute__ ((weak)) CMOCKA_PRINTF_ATTRIBUTE(1, 2);

@@ -7,68 +7,72 @@ Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, OCaml
 and Delphi and other languages.
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.11-1
   libQt5Core5-5.9.4-2
-  libevent2.1_7-2.1.12-1
+  libevent2.1_7-2.1.13-1
   libgcc1-14.4.0-1
-  libglib2.0-devel-2.88.2-1
-  libglib2.0_0-2.88.2-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
   libintl8-0.22.5-1
   liblua5.3-5.3.6-4
-  libssl3-3.5.7-1
+  libssl3-3.5.9-1
   libstdc++6-14.4.0-1
-  libthrift-devel-0.24.0-1bl1
-  libthrift0.24.0-0.24.0-1bl1
-  libthrift_c_glib-devel-0.24.0-1bl1
-  libthrift_c_glib0-0.24.0-1bl1
-  lua-thrift-0.24.0-1bl1
-  pkg-config-3.0.4-2
+  libthrift-devel-0.25.0-1bl1
+  libthrift0.25.0-0.25.0-1bl1
+  libthrift_c_glib-devel-0.25.0-1bl1
+  libthrift_c_glib0-0.25.0-1bl1
+  lua-thrift-0.25.0-1bl1
+  pkg-config-3.0.9-1
+  python3-3.12.12-1
   zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
+  autoconf-20260320-3
+  automake-20260320-2
   binutils-2.47-1
-  bison-3.8.2-1
-  cygport-0.37.7-1
-  flex-2.6.4-2
+  cygport-0.37.11-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
-  libevent-devel-2.1.12-1
-  libglib2.0-devel-2.88.2-1
+  libboost-devel-1.66.0-1
+  libevent-devel-2.1.13-1
+  libglib2.0-devel-2.90.1-1
   liblua-devel-5.3.6-4
-  libssl-devel-3.5.7-1
+  libssl-devel-3.5.9-1
   libtool-2.6.2-1
   lua-5.3.6-4
   make-4.4.1-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  python312-pip-26.2.2-1
+  python312-setuptools-80.9.0-1
   zlib-devel-1.3.2-1
 
 Canonical website:
   https://thrift.apache.org/
 
 Canonical download:
-  mirror://apache/thrift/0.24.0/thrift-0.24.0.tar.gz
+  mirror://apache/thrift/0.25.0/thrift-0.25.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack thrift-0.24.0-X-src.tar.xz
+  1. unpack thrift-0.25.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./thrift-0.24.0-X.cygport all
+        % cygport ./thrift-0.25.0-X.cygport all
 
 This will create:
-  /usr/src/thrift-0.24.0-X-src.tar.xz
-  /usr/src/thrift-0.24.0-X.tar.xz
-  /usr/src/libthrift0.24.0-0.24.0-X.tar.xz
-  /usr/src/libthrift-devel-0.24.0-X.tar.xz
-  /usr/src/libthrift_c_glib0-0.24.0-X.tar.xz
-  /usr/src/libthrift_c_glib-devel-0.24.0-X.tar.xz
-  /usr/src/lua-thrift-0.24.0-X.tar.xz
+  /usr/src/thrift-0.25.0-X-src.tar.xz
+  /usr/src/thrift-0.25.0-X.tar.xz
+  /usr/src/libthrift0.25.0-0.25.0-X.tar.xz
+  /usr/src/libthrift-devel-0.25.0-X.tar.xz
+  /usr/src/libthrift_c_glib0-0.25.0-X.tar.xz
+  /usr/src/libthrift_c_glib-devel-0.25.0-X.tar.xz
+  /usr/src/lua-thrift-0.25.0-X.tar.xz
+  /usr/src/python312-thrift-0.25.0-X.tar.xz
 
 -------------------------------------------
 
@@ -77,9 +81,7 @@ Files included in the binary package:
 (thrift)
   /usr/bin/thrift.exe
   /usr/share/doc/Cygwin/thrift.README
-  /usr/share/doc/thrift/AGENTS.md
   /usr/share/doc/thrift/CHANGES.md
-  /usr/share/doc/thrift/CLAUDE.md
   /usr/share/doc/thrift/CONTRIBUTING.md
   /usr/share/doc/thrift/FUZZING.md
   /usr/share/doc/thrift/HeaderFormat.md
@@ -93,7 +95,6 @@ Files included in the binary package:
   /usr/share/doc/thrift/coding_standards.md
   /usr/share/doc/thrift/committers.md
   /usr/share/doc/thrift/idl.md
-  /usr/share/doc/thrift/otp-base-license.txt
   /usr/share/doc/thrift/thrift-binary-protocol.md
   /usr/share/doc/thrift/thrift-compact-protocol.md
   /usr/share/doc/thrift/thrift-parameter-validation-proposal.md
@@ -102,11 +103,11 @@ Files included in the binary package:
   /usr/share/doc/thrift/thrift-sasl-spec.txt
   /usr/share/doc/thrift/thrift-tconfiguration.md
 
-(libthrift0.24.0)
-  /usr/bin/cygthrift-0-24-0.dll
-  /usr/bin/cygthriftnb-0-24-0.dll
-  /usr/bin/cygthriftqt5-0-24-0.dll
-  /usr/bin/cygthriftz-0-24-0.dll
+(libthrift0.25.0)
+  /usr/bin/cygthrift-0-25-0.dll
+  /usr/bin/cygthriftnb-0-25-0.dll
+  /usr/bin/cygthriftqt5-0-25-0.dll
+  /usr/bin/cygthriftz-0-25-0.dll
 
 (libthrift-devel)
   /usr/include/thrift/TApplicationException.h
@@ -260,10 +261,155 @@ Files included in the binary package:
   /usr/lib/libluabpack.dll.a
   /usr/lib/liblualongnumber.dll.a
   /usr/lib/libluasocket.dll.a
+  /usr/share/lua/5.3/TBinaryProtocol.lua
+  /usr/share/lua/5.3/TBufferedTransport.lua
+  /usr/share/lua/5.3/TCompactProtocol.lua
+  /usr/share/lua/5.3/TFramedTransport.lua
+  /usr/share/lua/5.3/THttpTransport.lua
+  /usr/share/lua/5.3/TJsonProtocol.lua
+  /usr/share/lua/5.3/TMemoryBuffer.lua
+  /usr/share/lua/5.3/TProtocol.lua
+  /usr/share/lua/5.3/TServer.lua
+  /usr/share/lua/5.3/TSocket.lua
+  /usr/share/lua/5.3/TTransport.lua
+  /usr/share/lua/5.3/Thrift.lua
+
+(python312-thrift)
+  /usr/lib/python3.12/site-packages/thrift-0.25.0.dist-info/INSTALLER
+  /usr/lib/python3.12/site-packages/thrift-0.25.0.dist-info/METADATA
+  /usr/lib/python3.12/site-packages/thrift-0.25.0.dist-info/RECORD
+  /usr/lib/python3.12/site-packages/thrift-0.25.0.dist-info/REQUESTED
+  /usr/lib/python3.12/site-packages/thrift-0.25.0.dist-info/WHEEL
+  /usr/lib/python3.12/site-packages/thrift-0.25.0.dist-info/direct_url.json
+  /usr/lib/python3.12/site-packages/thrift-0.25.0.dist-info/top_level.txt
+  /usr/lib/python3.12/site-packages/thrift/TMultiplexedProcessor.py
+  /usr/lib/python3.12/site-packages/thrift/TRecursive.py
+  /usr/lib/python3.12/site-packages/thrift/TSCons.py
+  /usr/lib/python3.12/site-packages/thrift/TSerialization.py
+  /usr/lib/python3.12/site-packages/thrift/TTornado.py
+  /usr/lib/python3.12/site-packages/thrift/Thrift.py
+  /usr/lib/python3.12/site-packages/thrift/__init__.py
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TMultiplexedProcessor.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TMultiplexedProcessor.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TMultiplexedProcessor.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TRecursive.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TRecursive.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TRecursive.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TSCons.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TSCons.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TSCons.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TSerialization.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TSerialization.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TSerialization.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TTornado.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TTornado.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/TTornado.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/Thrift.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/Thrift.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/Thrift.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/TBase.py
+  /usr/lib/python3.12/site-packages/thrift/protocol/TBinaryProtocol.py
+  /usr/lib/python3.12/site-packages/thrift/protocol/TCompactProtocol.py
+  /usr/lib/python3.12/site-packages/thrift/protocol/THeaderProtocol.py
+  /usr/lib/python3.12/site-packages/thrift/protocol/TJSONProtocol.py
+  /usr/lib/python3.12/site-packages/thrift/protocol/TMultiplexedProtocol.py
+  /usr/lib/python3.12/site-packages/thrift/protocol/TProtocol.py
+  /usr/lib/python3.12/site-packages/thrift/protocol/TProtocolDecorator.py
+  /usr/lib/python3.12/site-packages/thrift/protocol/__init__.py
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TBase.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TBase.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TBase.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TBinaryProtocol.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TBinaryProtocol.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TBinaryProtocol.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TCompactProtocol.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TCompactProtocol.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TCompactProtocol.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/THeaderProtocol.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/THeaderProtocol.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/THeaderProtocol.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TJSONProtocol.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TJSONProtocol.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TJSONProtocol.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TMultiplexedProtocol.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TMultiplexedProtocol.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TMultiplexedProtocol.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TProtocol.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TProtocol.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TProtocol.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TProtocolDecorator.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TProtocolDecorator.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/TProtocolDecorator.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/protocol/fastbinary.cpython-312-x86_64-cygwin.dll
+  /usr/lib/python3.12/site-packages/thrift/server/THttpServer.py
+  /usr/lib/python3.12/site-packages/thrift/server/TNonblockingServer.py
+  /usr/lib/python3.12/site-packages/thrift/server/TProcessPoolServer.py
+  /usr/lib/python3.12/site-packages/thrift/server/TServer.py
+  /usr/lib/python3.12/site-packages/thrift/server/__init__.py
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/THttpServer.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/THttpServer.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/THttpServer.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/TNonblockingServer.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/TNonblockingServer.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/TNonblockingServer.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/TProcessPoolServer.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/TProcessPoolServer.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/TProcessPoolServer.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/TServer.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/TServer.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/TServer.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/server/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/THeaderTransport.py
+  /usr/lib/python3.12/site-packages/thrift/transport/THttpClient.py
+  /usr/lib/python3.12/site-packages/thrift/transport/TSSLSocket.py
+  /usr/lib/python3.12/site-packages/thrift/transport/TSocket.py
+  /usr/lib/python3.12/site-packages/thrift/transport/TTransport.py
+  /usr/lib/python3.12/site-packages/thrift/transport/TTwisted.py
+  /usr/lib/python3.12/site-packages/thrift/transport/TZlibTransport.py
+  /usr/lib/python3.12/site-packages/thrift/transport/__init__.py
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/THeaderTransport.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/THeaderTransport.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/THeaderTransport.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/THttpClient.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/THttpClient.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/THttpClient.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TSSLSocket.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TSSLSocket.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TSSLSocket.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TSocket.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TSocket.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TSocket.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TTransport.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TTransport.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TTransport.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TTwisted.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TTwisted.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TTwisted.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TZlibTransport.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TZlibTransport.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/TZlibTransport.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/sslcompat.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/sslcompat.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/__pycache__/sslcompat.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/thrift/transport/sslcompat.py
 
 ------------------
 
 Port Notes:
+
+----- version 0.25.0-1bl1 -----
+Version bump.
 
 ----- version 0.24.0-1bl1 -----
 Version bump.

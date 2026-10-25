@@ -14,11 +14,16 @@ LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	libboost-devel
 	libevent-devel
 	libglib2.0-devel
 	liblua-devel
 	libQt5Core-devel
 	libssl-devel
+	lua
+	python3-devel
+	python312-pip
+	python312-setuptools
 	zlib-devel
 "
 
@@ -28,7 +33,6 @@ CYGCONF_ARGS="
 	--with-java=no
 	--with-erlang=no
 	--with-nodejs=no
-	--with-python=no
 	--with-php=no
 	--with-ruby=no
 	--with-go=no
@@ -37,14 +41,43 @@ CYGCONF_ARGS="
 	--with-d=no
 "
 
+src_compile()
+{
+	cd ${S}
+	cygautoreconf
+	cd ${B}
+	# test/py's pattern rules depend on $(THRIFT), and make's directory
+	# lookup for them doesn't find the compiler without its .exe
+	cygconf THRIFT=${B}/compiler/cpp/thrift.exe
+	# lib/py's Makefile runs setup.py from the build directory, and
+	# generates code from ../../test/*.thrift
+	cp -r ${S}/lib/py/. ${B}/lib/py/
+	cp -r ${S}/test/*.thrift ${S}/test/v0.16 ${B}/test/
+	cygmake
+}
+
+src_install()
+{
+	cd ${B}
+	# pip would otherwise download setuptools into an isolated build environment
+	cyginstall PYTHON_SETUPUTIL_ARGS="--no-build-isolation --no-deps --no-index"
+}
+
 src_test()
 {
 	cd ${B}
+	# lib/cpp/test's SSL tests look for their certificates in ../../../test/keys
+	cp -r ${S}/test/keys ${B}/test/
 	cygmake check
 }
 
 DOCS="
-	*.md
+	CHANGES.md
+	CONTRIBUTING.md
+	FUZZING.md
+	LANGUAGES.md
+	README.md
+	SECURITY.md
 	doc/*.md
 	doc/licenses/*.txt
 	doc/specs/*.md
@@ -65,12 +98,13 @@ PKG_NAMES="
 	lib${PN}_c_glib0
 	lib${PN}_c_glib-devel
 	lua-thrift
+	python312-thrift
 "
 thrift_CONTENTS="
 	usr/bin/${PN}.exe
-	usr/share
+	usr/share/doc
 "
-libthrift0_24_0_CONTENTS="
+libthrift0_25_0_CONTENTS="
 	usr/bin/cyg${PN}*-${PV//./-}.dll
 "
 libthrift_devel_CONTENTS="
@@ -94,10 +128,15 @@ lua_thrift_CONTENTS="
 	usr/bin/cyglua*.dll
 	usr/include/thrift/lua
 	usr/lib/liblua*.dll.a
+	usr/share/lua
+"
+python312_thrift_CONTENTS="
+	usr/lib/python3.12
 "
 thrift_SUMMARY="${SUMMARY} (utilities)"
-libthrift0_24_0_SUMMARY="${SUMMARY} (runtime)"
+libthrift0_25_0_SUMMARY="${SUMMARY} (runtime)"
 libthrift_devel_SUMMARY="${SUMMARY} (development)"
 libthrift_c_glib0_SUMMARY="${SUMMARY} (runtime / glib)"
 libthrift_c_glib_devel_SUMMARY="${SUMMARY} (development / glib)"
 lua_thrift_SUMMARY="${SUMMARY} (lua bindings)"
+python312_thrift_SUMMARY="${SUMMARY} (python bindings)"

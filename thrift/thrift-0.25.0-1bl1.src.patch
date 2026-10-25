@@ -1,5 +1,5 @@
---- origsrc/thrift-0.24.0/build/cmake/ConfigureChecks.cmake	2026-04-09 05:33:34.000000000 +0900
-+++ src/thrift-0.24.0/build/cmake/ConfigureChecks.cmake	2026-08-01 22:16:58.732008600 +0900
+--- origsrc/thrift-0.25.0/build/cmake/ConfigureChecks.cmake	2026-09-18 06:58:00.000000000 +0000
++++ src/thrift-0.25.0/build/cmake/ConfigureChecks.cmake	2026-10-25 05:02:18.076459000 +0000
 @@ -58,10 +58,14 @@ check_include_file(strings.h HAVE_STRING
  # Check for afunix.h on Windows (since Windows 10 Insider Build 17063):
  check_cxx_source_compiles(
@@ -15,9 +15,13 @@
    int main(){(void)sizeof(((struct sockaddr_un *)0)->sun_path); return 0;}
    "
    HAVE_AF_UNIX_H)
---- origsrc/thrift-0.24.0/configure.ac	2026-07-05 20:27:17.000000000 +0900
-+++ src/thrift-0.24.0/configure.ac	2026-08-01 22:16:58.732008600 +0900
-@@ -151,11 +151,11 @@ if test "$with_cpp" = "yes";  then
+--- origsrc/thrift-0.25.0/configure.ac	2026-09-24 16:52:49.000000000 +0000
++++ src/thrift-0.25.0/configure.ac	2026-10-25 05:02:18.076459000 +0000
+@@ -148,14 +148,15 @@ fi
+ AX_THRIFT_LIB(cpp, [C++], yes)
+ have_cpp=no
+ if test "$with_cpp" = "yes";  then
++  m4_pattern_allow([^_AX_BOOST_BASE_TONUMERICVERSION_RET$])
    AX_BOOST_BASE([1.56.0])
    if test "x$succeeded" = "xyes" ; then
      AC_SUBST([BOOST_LIB_DIR], [$(echo "$BOOST_LDFLAGS" | sed -e 's/^\-L//')])
@@ -34,7 +38,7 @@
      have_cpp="yes"
    fi
  
-@@ -344,16 +344,6 @@ if test "$with_php" = "yes"; then
+@@ -351,16 +352,6 @@ if test "$with_php" = "yes"; then
  fi
  AM_CONDITIONAL(WITH_PHP, [test "$have_php" = "yes"])
  
@@ -51,8 +55,8 @@
  AM_CONDITIONAL(WITH_PHP_EXTENSION, [test "$have_php_extension" = "yes"])
  
  AX_THRIFT_LIB(dart, [DART], yes)
---- origsrc/thrift-0.24.0/lib/c_glib/Makefile.am	2026-04-09 05:33:34.000000000 +0900
-+++ src/thrift-0.24.0/lib/c_glib/Makefile.am	2026-08-01 22:16:58.741915500 +0900
+--- origsrc/thrift-0.25.0/lib/c_glib/Makefile.am	2026-04-08 20:33:34.000000000 +0000
++++ src/thrift-0.25.0/lib/c_glib/Makefile.am	2026-10-25 05:02:18.078469400 +0000
 @@ -24,7 +24,7 @@ pkgconfigdir = $(libdir)/pkgconfig
  lib_LTLIBRARIES = libthrift_c_glib.la
  pkgconfig_DATA = thrift_c_glib.pc
@@ -71,8 +75,8 @@
  
  include_thriftdir = $(includedir)/thrift/c_glib
  include_thrift_HEADERS = \
---- origsrc/thrift-0.24.0/lib/cpp/Makefile.am	2026-05-21 05:18:23.000000000 +0900
-+++ src/thrift-0.24.0/lib/cpp/Makefile.am	2026-08-01 22:16:58.742927400 +0900
+--- origsrc/thrift-0.25.0/lib/cpp/Makefile.am	2026-05-20 20:18:23.000000000 +0000
++++ src/thrift-0.25.0/lib/cpp/Makefile.am	2026-10-25 05:02:18.078469400 +0000
 @@ -32,7 +32,7 @@ pkgconfigdir = $(libdir)/pkgconfig
  
  lib_LTLIBRARIES = libthrift.la
@@ -107,9 +111,9 @@
  
  include_thriftdir = $(includedir)/thrift
  include_thrift_HEADERS = \
---- origsrc/thrift-0.24.0/lib/cpp/test/Makefile.am	2026-06-18 17:07:14.000000000 +0900
-+++ src/thrift-0.24.0/lib/cpp/test/Makefile.am	2026-08-01 22:16:58.742927400 +0900
-@@ -468,7 +468,7 @@ gen-cpp/Thrift5272_types.cpp gen-cpp/Thr
+--- origsrc/thrift-0.25.0/lib/cpp/test/Makefile.am	2026-09-24 16:52:49.000000000 +0000
++++ src/thrift-0.25.0/lib/cpp/test/Makefile.am	2026-10-25 05:02:18.080479600 +0000
+@@ -512,7 +512,7 @@ gen-cpp/Thrift5272_types.cpp gen-cpp/Thr
  gen-cpp/ChildService.cpp gen-cpp/ChildService.h gen-cpp/ParentService.cpp gen-cpp/ParentService.h gen-cpp/proc_types.cpp gen-cpp/proc_types.h: processor/proc.thrift
  	$(THRIFT) --gen cpp:templates,cob_style $<
  
@@ -118,8 +122,8 @@
  AM_LDFLAGS = $(BOOST_LDFLAGS)
  AM_CXXFLAGS = -Wall -Wextra -pedantic
  
---- origsrc/thrift-0.24.0/lib/cpp/test/fuzz/Makefile.am	2026-05-21 05:18:23.000000000 +0900
-+++ src/thrift-0.24.0/lib/cpp/test/fuzz/Makefile.am	2026-08-01 22:16:58.742927400 +0900
+--- origsrc/thrift-0.25.0/lib/cpp/test/fuzz/Makefile.am	2026-05-20 20:18:23.000000000 +0000
++++ src/thrift-0.25.0/lib/cpp/test/fuzz/Makefile.am	2026-10-25 05:02:18.080479600 +0000
 @@ -31,7 +31,7 @@ libfuzztest_gen_la_LIBADD = $(top_buildd
  noinst_HEADERS = FuzzCommon.tcc
  
@@ -129,8 +133,8 @@
  
  check_PROGRAMS = FuzzParseCompact FuzzParseBinary FuzzRoundtripCompact FuzzRoundtripBinary FuzzParseJson FuzzRoundtripJson
  
---- origsrc/thrift-0.24.0/lib/lua/Makefile.am	2026-07-06 02:56:36.000000000 +0900
-+++ src/thrift-0.24.0/lib/lua/Makefile.am	2026-08-01 22:16:58.757755100 +0900
+--- origsrc/thrift-0.25.0/lib/lua/Makefile.am	2026-09-24 16:52:49.000000000 +0000
++++ src/thrift-0.25.0/lib/lua/Makefile.am	2026-10-25 05:02:18.080479600 +0000
 @@ -21,6 +21,8 @@ AUTOMAKE_OPTIONS = subdir-objects nostdi
  
  SUBDIRS = .
@@ -150,8 +154,8 @@
  
  libluasocket_la_CPPFLAGS = $(AM_CPPFLAGS) $(LUA_INCLUDE) -DLUA_COMPAT_MODULE
  libluasocket_la_LDFLAGS = $(AM_LDFLAGS)
---- origsrc/thrift-0.24.0/test/cpp/Makefile.am	2026-07-06 05:02:01.000000000 +0900
-+++ src/thrift-0.24.0/test/cpp/Makefile.am	2026-08-01 22:16:58.757755100 +0900
+--- origsrc/thrift-0.25.0/test/cpp/Makefile.am	2026-07-16 12:51:12.000000000 +0000
++++ src/thrift-0.25.0/test/cpp/Makefile.am	2026-10-25 05:02:18.082488600 +0000
 @@ -247,7 +247,7 @@ gen-cpp/Service.cpp: $(top_srcdir)/test/
  gen-cpp/SpecificNameTest_types.cpp gen-cpp/EchoService.cpp: $(top_srcdir)/test/SpecificName.thrift $(THRIFT)
  	$(THRIFT) --gen cpp $<
@@ -161,8 +165,8 @@
  AM_CXXFLAGS = -Wall -Wextra -pedantic -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
  AM_LDFLAGS = $(BOOST_LDFLAGS) $(LIBEVENT_LDFLAGS) $(ZLIB_LIBS)
  
---- origsrc/thrift-0.24.0/tutorial/c_glib/Makefile.am	2026-04-09 05:33:34.000000000 +0900
-+++ src/thrift-0.24.0/tutorial/c_glib/Makefile.am	2026-08-01 22:16:58.757755100 +0900
+--- origsrc/thrift-0.25.0/tutorial/c_glib/Makefile.am	2026-04-08 20:33:34.000000000 +0000
++++ src/thrift-0.25.0/tutorial/c_glib/Makefile.am	2026-10-25 05:02:18.082488600 +0000
 @@ -25,7 +25,7 @@ BUILT_SOURCES = \
  	gen-c_glib/tutorial_types.h
  
@@ -172,8 +176,8 @@
  AM_LDFLAGS = $(GLIB_LIBS) $(GOBJECT_LIBS) $(OPENSSL_LDFLAGS) $(OPENSSL_LIBS) @GCOV_LDFLAGS@
  
  noinst_LTLIBRARIES = \
---- origsrc/thrift-0.24.0/tutorial/cpp/Makefile.am	2026-04-09 05:33:34.000000000 +0900
-+++ src/thrift-0.24.0/tutorial/cpp/Makefile.am	2026-08-01 22:16:58.757755100 +0900
+--- origsrc/thrift-0.25.0/tutorial/cpp/Makefile.am	2026-04-08 20:33:34.000000000 +0000
++++ src/thrift-0.25.0/tutorial/cpp/Makefile.am	2026-10-25 05:02:18.084498000 +0000
 @@ -62,7 +62,7 @@ TutorialClient_LDADD = \
  gen-cpp/Calculator.cpp gen-cpp/SharedService.cpp gen-cpp/shared_types.cpp gen-cpp/tutorial_constants.cpp gen-cpp/tutorial_types.cpp: $(top_srcdir)/tutorial/tutorial.thrift
  	$(THRIFT) --gen cpp -r $<

@@ -5,9 +5,10 @@ libuv where possible for maximum portability.
 
 Runtime requirements:
   cygwin-3.6.11-1
+  libuv-devel-1.53.0-1
   libuv1-1.53.0-1
-  libuvwasi-devel-0.0.23-1bl2
-  libuvwasi0-0.0.23-1bl2
+  libuvwasi-devel-0.0.23-1bl3
+  libuvwasi0-0.0.23-1bl3
   pkg-config-3.0.9-1
 
 Build requirements:
@@ -66,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.0.23-1bl3 -----
+Fix uvwasi.pc
 
 ----- version 0.0.23-1bl2 -----
 Rebuild with gcc-14.4.0

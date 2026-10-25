@@ -6,11 +6,14 @@ CATEGORY="Libs"
 SUMMARY="C/C++ library to scrobble your played tracks on last.fm"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND Zlib"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcurl-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+	libgtest-devel
+"
 
 CYGCONF_ARGS="
 	--enable-unittests

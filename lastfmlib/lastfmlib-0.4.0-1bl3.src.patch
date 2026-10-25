@@ -1,5 +1,5 @@
---- origsrc/lastfmlib-lastfmlib-0.4.0/Makefile.am	2009-11-28 18:18:51.000000000 +0900
-+++ src/lastfmlib-lastfmlib-0.4.0/Makefile.am	2024-10-21 14:27:07.379152700 +0900
+--- origsrc/lastfmlib-lastfmlib-0.4.0/Makefile.am	2009-11-28 09:18:51.000000000 +0000
++++ src/lastfmlib-lastfmlib-0.4.0/Makefile.am	2026-10-25 07:29:19.275096900 +0000
 @@ -49,7 +49,7 @@ nobase_include_HEADERS   =      lastfmli
                                  lastfmlib/utils/log.h
  
@@ -16,8 +16,8 @@
 -testrunner_LDADD    =   liblastfmlib.la $(UNITTEST_LIBS) $(CURL_LIBS) -lpthread
 +testrunner_LDADD    =   liblastfmlib.la $(GTEST_LIBS) $(CURL_LIBS) -lpthread
  
---- origsrc/lastfmlib-lastfmlib-0.4.0/configure.ac	2009-11-28 18:18:51.000000000 +0900
-+++ src/lastfmlib-lastfmlib-0.4.0/configure.ac	2024-10-21 14:27:07.379152700 +0900
+--- origsrc/lastfmlib-lastfmlib-0.4.0/configure.ac	2009-11-28 09:18:51.000000000 +0000
++++ src/lastfmlib-lastfmlib-0.4.0/configure.ac	2026-10-25 07:29:19.277110800 +0000
 @@ -55,8 +55,7 @@ if test "$ENABLE_UNITTEST" = "yes"; then
      AC_CHECK_HEADERS(
      [gtest/gtest.h],,
@@ -28,8 +28,8 @@
  fi
  AM_CONDITIONAL(ENABLE_UNITTEST, test "$enable_unittests" = "yes")
  
---- origsrc/lastfmlib-lastfmlib-0.4.0/lastfmlib/utils/stringoperations.h	2009-11-28 18:18:51.000000000 +0900
-+++ src/lastfmlib-lastfmlib-0.4.0/lastfmlib/utils/stringoperations.h	2024-10-21 14:27:07.379152700 +0900
+--- origsrc/lastfmlib-lastfmlib-0.4.0/lastfmlib/utils/stringoperations.h	2009-11-28 09:18:51.000000000 +0000
++++ src/lastfmlib-lastfmlib-0.4.0/lastfmlib/utils/stringoperations.h	2026-10-25 07:29:19.277110800 +0000
 @@ -55,7 +55,7 @@ namespace StringOperations
      }
  
@@ -39,8 +39,8 @@
      {
          std::wstringstream ss;
          ss << numeric;
---- origsrc/lastfmlib-lastfmlib-0.4.0/liblastfmlib.pc.in	2009-11-28 18:18:51.000000000 +0900
-+++ src/lastfmlib-lastfmlib-0.4.0/liblastfmlib.pc.in	2024-10-21 14:27:07.379152700 +0900
+--- origsrc/lastfmlib-lastfmlib-0.4.0/liblastfmlib.pc.in	2009-11-28 09:18:51.000000000 +0000
++++ src/lastfmlib-lastfmlib-0.4.0/liblastfmlib.pc.in	2026-10-25 07:29:19.279125900 +0000
 @@ -5,6 +5,6 @@ includedir=@includedir@/liblastfm
  
  Name: liblastfm

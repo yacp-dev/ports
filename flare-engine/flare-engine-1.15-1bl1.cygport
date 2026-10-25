@@ -10,7 +10,12 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libSDL2-devel libSDL2_image-devel libSDL2_mixer-devel libSDL2_ttf-devel"
+BUILD_REQUIRES="
+	libSDL2-devel
+	libSDL2_image-devel
+	libSDL2_mixer-devel
+	libSDL2_ttf-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

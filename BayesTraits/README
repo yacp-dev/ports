@@ -9,39 +9,40 @@ continuously varying traits. Hypotheses can be tested about models of
 evolution, about ancestral states and about correlations among pairs of traits.
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  libgomp1-11.2.0-1
+  cygwin-3.6.11-1
+  libgomp1-14.4.0-1
   libgsl19-2.3-2
-  liblapack0-3.9.1-1
-  libnlopt0-2.7.0-1bl1
+  liblapack0-3.12.0-1
+  libnlopt1-2.11.0-1bl1
+  libopenblas-0.3.25-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-1
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
   libgsl-devel-2.3-2
-  liblapack-devel-3.9.1-1
-  libnlopt-devel-2.7.0-1bl1
+  liblapack-devel-3.12.0-1
+  libnlopt-devel-2.11.0-1bl1
 
 Canonical website:
-  http://www.evolution.rdg.ac.uk/BayesTraitsV3.0.5/BayesTraitsV3.0.5.html
+  https://www.evolution.reading.ac.uk/BayesTraitsV5.0.3/BayesTraitsV5.0.3.html
 
 Canonical download:
-  http://www.evolution.rdg.ac.uk/BayesTraitsV3.0.5/Files/BayesTraitsV3.0.5-src.tar.gz
+  https://github.com/AndrewPMeade/BayesTraits-Release/archive/4e0b220b50485685d88bff9324d6085b3187552c.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack BayesTraits-3.0.5-X-src.tar.xz
+  1. unpack BayesTraits-5.0.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./BayesTraits-3.0.5-X.cygport all
+        % cygport ./BayesTraits-5.0.3-X.cygport all
 
 This will create:
-  /usr/src/BayesTraits-3.0.5-X-src.tar.xz
-  /usr/src/BayesTraits-3.0.5-X.tar.xz
+  /usr/src/BayesTraits-5.0.3-X-src.tar.xz
+  /usr/src/BayesTraits-5.0.3-X.tar.xz
 
 -------------------------------------------
 
@@ -49,11 +50,15 @@ Files included in the binary package:
 
 (BayesTraits)
   /usr/bin/bayestraits.exe
+  /usr/share/doc/BayesTraits/README.md
   /usr/share/doc/Cygwin/BayesTraits.README
 
 ------------------
 
 Port Notes:
+
+----- version 5.0.3-1bl1 -----
+Version bump.
 
 ----- version 3.0.5-1bl1 -----
 Version bump.

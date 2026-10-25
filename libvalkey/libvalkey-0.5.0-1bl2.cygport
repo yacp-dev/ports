@@ -13,7 +13,6 @@ LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	libssl-devel
-	perl-JSON-MaybeXS
 "
 
 inherit cmake

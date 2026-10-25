@@ -5,6 +5,10 @@ CATEGORY="Libs"
 SUMMARY="C++ universal value object and JSON library"
 DESCRIPTION="A universal value object, with JSON encoding (output) and decoding (input)."
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="COPYING"
+
 src_test()
 {
 	cd ${B}
@@ -20,7 +24,7 @@ univalue_CONTENTS="
 	usr/share
 "
 libunivalue0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 libunivalue_devel_CONTENTS="
 	usr/include

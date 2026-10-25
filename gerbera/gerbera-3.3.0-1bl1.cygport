@@ -7,13 +7,14 @@ DESCRIPTION="Gerbera is a UPnP media server which allows you to stream your digi
 through your home network and consume it on a variety of UPnP compatible
 devices."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-only AND MIT AND OFL-1.1"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-only AND MIT AND OFL-1.1"
 LICENSE_URI="LICENSE.md"
 
 BUILD_REQUIRES="
 	file-devel
 	libavcodec-devel
+	libavfilter-devel
 	libavformat-devel
 	libavutil-devel
 	libcurl-devel
@@ -23,6 +24,7 @@ BUILD_REQUIRES="
 	libexiv2-devel
 	libffmpegthumbnailer-devel
 	libfmt-devel
+	libgmock-devel
 	libgtest-devel
 	libiconv-devel
 	libicu-devel
@@ -61,6 +63,7 @@ CYGCMAKE_ARGS="
 	-DWITH_SYSTEMD:BOOL=OFF
 	-DWITH_TESTS:BOOL=ON
 	-DWITH_WAVPACK:BOOL=ON
+	-DWITH_ZIP:BOOL=OFF
 "
 # -DWITH_PGSQL:BOOL=ON : /usr/include/pqxx/tuple.hxx:95:33: error: ISO C++17 does not allow dynamic exception specifications
 

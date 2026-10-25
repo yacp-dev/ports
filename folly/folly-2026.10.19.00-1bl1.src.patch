@@ -1,0 +1,132 @@
+--- origsrc/folly-2026.10.19.00/CMake/folly-deps.cmake	2026-10-19 15:57:41.000000000 +0900
++++ src/folly-2026.10.19.00/CMake/folly-deps.cmake	2026-10-25 13:34:57.261889984 +0900
+@@ -554,12 +554,14 @@
+ cmake_pop_check_state()
+ 
+ set(FOLLY_USE_SYMBOLIZER OFF)
+-check_include_file_cxx(elf.h FOLLY_HAVE_ELF)
++if (NOT CYGWIN)
++  check_include_file_cxx(elf.h FOLLY_HAVE_ELF)
++endif ()
+ find_package(Backtrace)
+ 
+ set(FOLLY_HAVE_BACKTRACE ${Backtrace_FOUND})
+ set(FOLLY_HAVE_DWARF ${LIBDWARF_FOUND})
+-if (NOT WIN32 AND NOT APPLE)
++if (NOT WIN32 AND NOT APPLE AND NOT CYGWIN)
+   set(FOLLY_USE_SYMBOLIZER ON)
+ endif ()
+ message(STATUS "Setting FOLLY_USE_SYMBOLIZER: ${FOLLY_USE_SYMBOLIZER}")
+--- origsrc/folly-2026.10.19.00/CMake/FollyFunctions.cmake	2026-10-19 15:57:41.000000000 +0900
++++ src/folly-2026.10.19.00/CMake/FollyFunctions.cmake	2026-10-25 13:34:57.262618315 +0900
+@@ -720,6 +720,9 @@
+     # These are NOT in the monolithic folly, so they need their own implementation
+     add_library(${_target_name} SHARED $<TARGET_OBJECTS:${_obj_target}>)
+     set_property(TARGET ${_target_name} PROPERTY VERSION ${PACKAGE_VERSION})
++    if (DEFINED SOVERSION)
++      set_property(TARGET ${_target_name} PROPERTY SOVERSION "${SOVERSION}")
++    endif ()
+ 
+     target_include_directories(
+       ${_target_name}
+@@ -871,6 +874,9 @@
+     set_property(TARGET folly PROPERTY POSITION_INDEPENDENT_CODE ON)
+   endif ()
+   set_property(TARGET folly PROPERTY VERSION ${PACKAGE_VERSION})
++  if (DEFINED SOVERSION)
++    set_property(TARGET folly PROPERTY SOVERSION "${SOVERSION}")
++  endif ()
+ 
+   apply_folly_compile_options_to_target(folly)
+   target_compile_features(folly INTERFACE cxx_generic_lambdas)
+--- origsrc/folly-2026.10.19.00/CMakeLists.txt	2026-10-19 15:57:41.000000000 +0900
++++ src/folly-2026.10.19.00/CMakeLists.txt	2026-10-25 13:34:57.262041234 +0900
+@@ -338,6 +338,9 @@
+   PUBLIC FOLLY_CERTS_DIR="${FOLLY_DIR}/io/async/test/certs"
+ )
+ set_property(TARGET folly_test_util PROPERTY VERSION ${PACKAGE_VERSION})
++if (DEFINED SOVERSION)
++  set_property(TARGET folly_test_util PROPERTY SOVERSION "${SOVERSION}")
++endif ()
+ target_link_libraries(folly_test_util PUBLIC folly ${LIBGMOCK_LIBRARIES})
+ apply_folly_compile_options_to_target(folly_test_util)
+ list(APPEND FOLLY_INSTALL_TARGETS folly_test_util)
+--- origsrc/folly-2026.10.19.00/folly/memory/Malloc.h	2026-10-19 15:57:41.000000000 +0900
++++ src/folly-2026.10.19.00/folly/memory/Malloc.h	2026-10-25 13:34:45.399873796 +0900
+@@ -243,6 +243,7 @@
+     return 0;
+   }
+ 
++#if defined(USE_JEMALLOC)
+   if (!canNallocx()) {
+     // No nallocx - no smarts
+     return minSize;
+@@ -252,6 +253,9 @@
+   // a goodMallocSize if you want minSize
+   auto rv = nallocx(minSize, 0);
+   return rv ? rv : minSize;
++#else
++  return minSize;
++#endif
+ }
+ 
+ // We always request "good" sizes for allocation, so jemalloc can
+@@ -328,11 +332,15 @@
+  * @param size Size to free
+  */
+ inline void sizedFree(void* ptr, size_t size) {
++#if defined(USE_JEMALLOC)
+   if (canSdallocx()) {
+     sdallocx(ptr, size, 0);
+   } else {
+     free(ptr);
+   }
++#else
++  free(ptr);
++#endif
+ }
+ 
+ /**
+--- origsrc/folly-2026.10.19.00/folly/portability/Stdlib.cpp	2026-10-19 15:57:41.000000000 +0900
++++ src/folly-2026.10.19.00/folly/portability/Stdlib.cpp	2026-10-25 13:34:45.400657127 +0900
+@@ -150,6 +150,7 @@
+ 
+ #include <string>
+ #include <vector>
++#include <unistd.h>
+ 
+ int folly::portability::stdlib::clearenv() {
+   std::vector<std::string> data;
+--- origsrc/folly-2026.10.19.00/folly/portability/SysSyscall.h	2026-10-19 15:57:41.000000000 +0900
++++ src/folly-2026.10.19.00/folly/portability/SysSyscall.h	2026-10-25 13:34:57.262752565 +0900
+@@ -22,7 +22,7 @@
+ #include <folly/CPortability.h>
+ #include <folly/Portability.h>
+ 
+-#if !defined(_WIN32)
++#if !defined(_WIN32) && !defined(__CYGWIN__)
+ 
+ #include <unistd.h>
+ 
+@@ -128,8 +128,8 @@
+ template <typename... A>
+ FOLLY_ERASE long linux_syscall(
+     [[maybe_unused]] long number, [[maybe_unused]] A... a) {
+-#if defined(_WIN32) || (defined(__EMSCRIPTEN__) && !defined(syscall)) || \
+-    FOLLY_APPLE_TVOS
++#if defined(__CYGWIN__) || defined(_WIN32) || \
++    (defined(__EMSCRIPTEN__) && !defined(syscall)) || FOLLY_APPLE_TVOS
+   errno = ENOSYS;
+   return -1;
+ #else
+--- origsrc/folly-2026.10.19.00/folly/system/ThreadId.cpp	2026-10-19 15:57:41.000000000 +0900
++++ src/folly-2026.10.19.00/folly/system/ThreadId.cpp	2026-10-25 13:34:57.262880481 +0900
+@@ -61,6 +61,8 @@
+   return uint64_t(tid);
+ #elif defined(__EMSCRIPTEN__)
+   return uint64_t(gettid());
++#elif defined(__CYGWIN__)
++  return uint64_t(pthread_self());
+ #else
+   return uint64_t(syscall(FOLLY_SYS_gettid));
+ #endif

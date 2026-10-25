@@ -5,11 +5,26 @@ CATEGORY="Libs"
 SUMMARY="Open-source C++ library developed and used at Facebook"
 DESCRIPTION="Folly is an open-source C++ library developed and used at Facebook."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libboost-devel libbz2-devel libdouble-conversion-devel libevent-devel libfmt-devel libgflags-devel libglog-devel liblz4-devel liblzma-devel libsnappy-devel libsodium-devel libssl-devel libzstd-devel zlib-devel"
+BUILD_REQUIRES="
+	libboost-devel
+	libbz2-devel
+	libdouble-conversion-devel
+	libevent-devel
+	libfmt-devel
+	libgflags-devel
+	libglog-devel
+	liblz4-devel
+	liblzma-devel
+	libsnappy-devel
+	libsodium-devel
+	libssl-devel
+	libzstd-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -Doff64_t=_off64_t"
 

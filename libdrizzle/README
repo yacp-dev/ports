@@ -4,25 +4,23 @@ Client and protocol library for the Drizzle database
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.3-1
-  libdrizzle-devel-5.1.4-1bl1
-  libdrizzle9-5.1.4-1bl1
-  libstdc++6-12.4.0-3
-  pkg-config-2.4.3-1
-  zlib0-1.3.1-1
+  cygwin-3.6.11-1
+  libdrizzle-devel-5.1.4-1bl2
+  libdrizzle9-5.1.4-1bl2
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
-  zlib-devel-1.3.1-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://launchpad.net/libdrizzle
@@ -87,6 +85,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.1.4-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 5.1.4-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

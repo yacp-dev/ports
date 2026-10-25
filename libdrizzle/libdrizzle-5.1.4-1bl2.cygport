@@ -9,7 +9,9 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="zlib-devel"
+BUILD_REQUIRES="
+	zlib-devel
+"
 
 DIFF_EXCLUDES="
 	config.in

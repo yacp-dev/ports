@@ -1,5 +1,5 @@
---- origsrc/libdrizzle-5.1.4/Makefile.am	2013-04-03 15:13:15.000000000 +0900
-+++ src/libdrizzle-5.1.4/Makefile.am	2025-06-08 18:56:22.469037600 +0900
+--- origsrc/libdrizzle-5.1.4/Makefile.am	2013-04-03 06:13:15.000000000 +0000
++++ src/libdrizzle-5.1.4/Makefile.am	2026-10-25 05:24:49.035820300 +0000
 @@ -71,3 +71,6 @@ maintainer-clean-local:
  	-rm -f @PACKAGE@-*.rpm
  
@@ -7,9 +7,17 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libdrizzle-5.1.4/configure.ac	2013-04-25 19:25:56.000000000 +0900
-+++ src/libdrizzle-5.1.4/configure.ac	2025-06-08 18:56:22.476710500 +0900
-@@ -109,6 +109,7 @@ AC_CONFIG_FILES([Makefile
+--- origsrc/libdrizzle-5.1.4/configure.ac	2013-04-25 10:25:56.000000000 +0000
++++ src/libdrizzle-5.1.4/configure.ac	2026-10-25 05:24:49.035820300 +0000
+@@ -22,6 +22,7 @@ AC_USE_SYSTEM_EXTENSIONS
+ 
+ AC_CONFIG_MACRO_DIR([m4])
+ 
++m4_pattern_allow([^AX_(DOLLAR|SRB|SLB|BS|DQ)$])
+ AC_CONFIG_HEADERS([config.h:config.in])dnl Keep filename to 8.3 for MS-DOS.
+ 
+ AC_CONFIG_SRCDIR([libdrizzle/drizzle.cc])
+@@ -109,6 +110,7 @@ AC_CONFIG_FILES([Makefile
                   libdrizzle-5.1/version.h
                   ])
  
@@ -17,8 +25,55 @@
  AC_OUTPUT
  
  echo "---"
---- origsrc/libdrizzle-5.1.4/libdrizzle/conn.cc	2013-04-25 17:25:59.000000000 +0900
-+++ src/libdrizzle-5.1.4/libdrizzle/conn.cc	2025-06-08 18:37:39.541352300 +0900
+--- origsrc/libdrizzle-5.1.4/libdrizzle/conn.cc	2013-04-25 08:25:59.000000000 +0000
++++ src/libdrizzle-5.1.4/libdrizzle/conn.cc	2026-10-25 05:24:49.037847800 +0000
+@@ -80,7 +80,7 @@ static bool connect_poll(drizzle_st *con
+ {
+   struct pollfd fds[1];
+   fds[0].fd= con->fd;
+-  fds[0].events= POLLIN;
++  fds[0].events= POLLIN | POLLOUT;
+ 
+   size_t loop_max= 5; // This should only be used for EINTR
+   while (--loop_max) // Should only loop on cases of ERESTART or EINTR
+@@ -88,18 +88,6 @@ static bool connect_poll(drizzle_st *con
+     int error= poll(fds, 1, con->timeout);
+     if (error == 1)
+     {
+-      if (fds[0].revents & (POLLIN))
+-      {
+-        drizzle_log_debug(con, "poll(POLLIN)");
+-        return true;
+-      }
+-
+-      if (fds[0].revents & (POLLOUT))
+-      {
+-        drizzle_log_debug(con, "poll(POLLOUT)");
+-        return true;
+-      }
+-
+       if (fds[0].revents & (POLLERR | POLLHUP | POLLNVAL))
+       {
+ #ifdef __MINGW32__
+@@ -125,6 +113,18 @@ static bool connect_poll(drizzle_st *con
+         return false;
+       }
+ 
++      if (fds[0].revents & (POLLIN))
++      {
++        drizzle_log_debug(con, "poll(POLLIN)");
++        return true;
++      }
++
++      if (fds[0].revents & (POLLOUT))
++      {
++        drizzle_log_debug(con, "poll(POLLOUT)");
++        return true;
++      }
++
+       assert(0);
+ 
+       return false;
 @@ -966,9 +966,9 @@ drizzle_return_t drizzle_state_connect(d
  
    if (con->socket_type == DRIZZLE_CON_SOCKET_UDS)
@@ -73,16 +128,16 @@
  
      drizzle_log_debug(con, "write fd=%d return=%zd ssl=%d errno=%s",
                        con->fd, write_size,
---- origsrc/libdrizzle-5.1.4/libdrizzle/include.am	2013-01-28 06:25:19.000000000 +0900
-+++ src/libdrizzle-5.1.4/libdrizzle/include.am	2025-06-08 18:21:46.466389600 +0900
+--- origsrc/libdrizzle-5.1.4/libdrizzle/include.am	2013-01-27 21:25:19.000000000 +0000
++++ src/libdrizzle-5.1.4/libdrizzle/include.am	2026-10-25 05:24:49.038875100 +0000
 @@ -65,4 +65,4 @@ libdrizzle_libdrizzle_la_SOURCES+= libdr
  libdrizzle_libdrizzle_la_SOURCES+= libdrizzle/statement.cc
  libdrizzle_libdrizzle_la_SOURCES+= libdrizzle/statement_param.cc
  
 -libdrizzle_libdrizzle_la_LDFLAGS+= -version-info ${LIBDRIZZLE_LIBRARY_VERSION}
 +libdrizzle_libdrizzle_la_LDFLAGS+= -no-undefined -version-info ${LIBDRIZZLE_LIBRARY_VERSION}
---- origsrc/libdrizzle-5.1.4/libdrizzle/structs.h	2013-04-03 15:13:15.000000000 +0900
-+++ src/libdrizzle-5.1.4/libdrizzle/structs.h	2025-06-08 18:36:24.614453300 +0900
+--- origsrc/libdrizzle-5.1.4/libdrizzle/structs.h	2013-04-03 06:13:15.000000000 +0000
++++ src/libdrizzle-5.1.4/libdrizzle/structs.h	2026-10-25 05:24:49.038875100 +0000
 @@ -66,7 +66,7 @@ extern "C" {
  #include "libdrizzle/datetime.h"
  #include "libdrizzle/packet.h"
@@ -92,8 +147,8 @@
  typedef SOCKET socket_t;
  #else
  typedef int socket_t;
---- origsrc/libdrizzle-5.1.4/libdrizzle.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libdrizzle-5.1.4/libdrizzle.pc.in	2025-06-08 18:56:22.413782900 +0900
+--- origsrc/libdrizzle-5.1.4/libdrizzle.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libdrizzle-5.1.4/libdrizzle.pc.in	2026-10-25 05:24:49.040902300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

@@ -1,53 +1,52 @@
 nsd
 ------------------------------------------
-The NLnet Labs Name Server Daemon (NSD) is an authoritative DNS name server.
-It has been developed for operations in environments where speed, reliability,
+The NLnet Labs Name Server Daemon (NSD) is an authoritative DNS name server. It
+has been developed for operations in environments where speed, reliability,
 stability and security are of high importance.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.6-1
-  libevent2.1_7-2.1.12-1
-  libfstrm0-0.6.1-1bl2
-  libprotobuf-c1-1.5.2-1bl1
-  libssl3-3.0.18-1
-  libzone0-0.2.4-1bl1
+  cygwin-3.6.11-1
+  libevent2.1_7-2.1.13-1
+  libfstrm0-0.6.1-1bl3
+  libprotobuf-c1-1.5.2-1bl2
+  libssl3-3.5.9-1
+  libzone0-0.2.8-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  binutils-2.45.1-1
+  autoconf-20260320-3
+  binutils-2.47-1
   bison-3.8.2-1
-  cygport-0.37.6-1
+  cygport-0.37.11-1
   flex-2.6.4-2
-  gcc-core-13.4.0-1
-  libevent-devel-2.1.12-1
-  libfstrm-devel-0.6.1-1bl2
-  libprotobuf-c-devel-1.5.2-1bl1
-  libprotobuf-devel-21.12-1
-  libssl-devel-3.0.18-1
-  libzone-devel-0.2.4-1bl1
+  gcc-core-14.4.0-1
+  libevent-devel-2.1.13-1
+  libfstrm-devel-0.6.1-1bl3
+  libprotobuf-c-devel-1.5.2-1bl2
+  libssl-devel-3.5.9-1
+  libzone-devel-0.2.8-1bl1
   make-4.4.1-2
+  protobuf-c-1.5.2-1bl2
 
 Canonical website:
   https://www.nlnetlabs.nl/projects/nsd/about/
 
 Canonical download:
-  https://www.nlnetlabs.nl/downloads/nsd/nsd-4.14.0.tar.gz
+  https://www.nlnetlabs.nl/downloads/nsd/nsd-4.15.4.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack nsd-4.14.0-X-src.tar.xz
+  1. unpack nsd-4.15.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./nsd-4.14.0-X.cygport all
+        % cygport ./nsd-4.15.4-X.cygport all
 
 This will create:
-  /usr/src/nsd-4.14.0-X-src.tar.xz
-  /usr/src/nsd-4.14.0-X.tar.xz
+  /usr/src/nsd-4.15.4-X-src.tar.xz
+  /usr/src/nsd-4.15.4-X.tar.xz
 
 -------------------------------------------
 
@@ -72,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.15.4-1bl1 -----
+Version bump.
 
 ----- version 4.14.0-1bl1 -----
 Version bump.

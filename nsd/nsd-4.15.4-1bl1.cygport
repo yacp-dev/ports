@@ -9,14 +9,17 @@ stability and security are of high importance."
 
 LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
-LICENSE_URI="COPYING"
+LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	bison
+	flex
 	libevent-devel
 	libfstrm-devel
 	libprotobuf-c-devel
 	libssl-devel
 	libzone-devel
+	protobuf-c
 "
 
 src_test()

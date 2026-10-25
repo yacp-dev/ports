@@ -21,6 +21,9 @@ CYGMESON_ARGS="
 	--default-library shared
 "
 
+# test outputs written into the source tree
+DIFF_EXCLUDES="tmp"
+
 src_install()
 {
 	cd ${S}
@@ -43,7 +46,7 @@ janet_CONTENTS="
 	usr/bin/j*
 	usr/share
 "
-libjanet1_41_CONTENTS="
+libjanet1_42_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libjanet_devel_CONTENTS="
@@ -51,5 +54,5 @@ libjanet_devel_CONTENTS="
 	usr/lib
 "
 janet_SUMMARY="${SUMMARY} (utilities)"
-libjanet1_41_SUMMARY="${SUMMARY} (runtime)"
+libjanet1_42_SUMMARY="${SUMMARY} (runtime)"
 libjanet_devel_SUMMARY="${SUMMARY} (development)"

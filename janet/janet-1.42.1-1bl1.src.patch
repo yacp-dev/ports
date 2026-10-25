@@ -1,0 +1,43 @@
+--- origsrc/janet-1.42.1/meson.build	2026-09-10 21:45:02.000000000 +0000
++++ src/janet-1.42.1/meson.build	2026-10-25 06:20:26.533127700 +0000
+@@ -41,12 +41,25 @@ m_dep = cc.find_library('m', required :
+ dl_dep = cc.find_library('dl', required : false)
+ 
+ # for MINGW/MSYS2
++# Cygwin uses POSIX sockets; linking Winsock would shadow them
++if build_machine.system() != 'cygwin'
+ native_ws2_dep = native_cc.find_library('ws2_32', required: false)
+ native_psapi_dep = native_cc.find_library('psapi', required: false)
+ native_wsock_dep = native_cc.find_library('wsock32', required: false)
++else
++native_ws2_dep = dependency('', required: false)
++native_psapi_dep = dependency('', required: false)
++native_wsock_dep = dependency('', required: false)
++endif
++if host_machine.system() != 'cygwin'
+ ws2_dep = cc.find_library('ws2_32', required: false)
+ psapi_dep = cc.find_library('psapi', required: false)
+ wsock_dep = cc.find_library('wsock32', required: false)
++else
++ws2_dep = dependency('', required: false)
++psapi_dep = dependency('', required: false)
++wsock_dep = dependency('', required: false)
++endif
+ 
+ android_spawn_dep = cc.find_library('android-spawn', required : false)
+ thread_dep = dependency('threads')
+--- origsrc/janet-1.42.1/src/core/ffi.c	2026-09-10 21:45:02.000000000 +0000
++++ src/janet-1.42.1/src/core/ffi.c	2026-10-25 06:20:26.535145000 +0000
+@@ -1794,7 +1794,12 @@ JANET_CORE_FN(janet_core_native_lookup,
+     JanetAbstractNative *anative = janet_getabstract(argv, 0, &janet_native_type);
+     const char *sym = janet_getcstring(argv, 1);
+     if (anative->closed) janet_panic("native object already closed");
++#ifdef __CYGWIN__
++    /* dlopen(NULL) on Cygwin only covers the executable itself */
++    void *value = anative->is_self ? dlsym(RTLD_DEFAULT, sym) : symbol_clib(anative->clib, sym);
++#else
+     void *value = symbol_clib(anative->clib, sym);
++#endif
+     if (NULL == value) return janet_wrap_nil();
+     return janet_wrap_pointer(value);
+ }

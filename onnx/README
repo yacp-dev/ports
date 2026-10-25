@@ -1,49 +1,49 @@
 onnx
 ------------------------------------------
 Open Neural Network Exchange (ONNX) is an open ecosystem that empowers AI
-developers to choose the right tools as their project evolves. ONNX provides
-an open source format for AI models, both deep learning and traditional ML.
-It defines an extensible computation graph model, as well as definitions of
+developers to choose the right tools as their project evolves. ONNX provides an
+open source format for AI models, both deep learning and traditional ML. It
+defines an extensible computation graph model, as well as definitions of
 built-in operators and standard data types. Currently we focus on the
 capabilities needed for inferencing (scoring).
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libonnx1-1.20.1-1bl1
-  libprotobuf32-21.12-1
-  libstdc++6-13.4.0-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libonnx1-1.23.2-1bl1
+  libprotobuf32-21.12-2
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libprotobuf-devel-21.12-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  libprotobuf-devel-21.12-2
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/onnx/onnx
 
 Canonical download:
-  https://github.com/onnx/onnx/archive/refs/tags/v1.20.1.tar.gz
+  https://github.com/onnx/onnx/archive/refs/tags/v1.23.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack onnx-1.20.1-X-src.tar.xz
+  1. unpack onnx-1.23.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./onnx-1.20.1-X.cygport all
+        % cygport ./onnx-1.23.2-X.cygport all
 
 This will create:
-  /usr/src/onnx-1.20.1-X-src.tar.xz
-  /usr/src/onnx-1.20.1-X.tar.xz
-  /usr/src/libonnx1-1.20.1-X.tar.xz
-  /usr/src/libonnx-devel-1.20.1-X.tar.xz
+  /usr/src/onnx-1.23.2-X-src.tar.xz
+  /usr/src/onnx-1.23.2-X.tar.xz
+  /usr/src/libonnx1-1.23.2-X.tar.xz
+  /usr/src/libonnx-devel-1.23.2-X.tar.xz
 
 -------------------------------------------
 
@@ -52,6 +52,7 @@ Files included in the binary package:
 (onnx)
   /usr/share/doc/Cygwin/onnx.README
   /usr/share/doc/onnx/LICENSE
+  /usr/share/doc/onnx/NOTICE
   /usr/share/doc/onnx/README.md
 
 (libonnx1)
@@ -73,6 +74,8 @@ Files included in the binary package:
   /usr/include/onnx/common/path.h
   /usr/include/onnx/common/platform_helpers.h
   /usr/include/onnx/common/proto_util.h
+  /usr/include/onnx/common/safe_math.h
+  /usr/include/onnx/common/scoped_resource.h
   /usr/include/onnx/common/status.h
   /usr/include/onnx/common/tensor.h
   /usr/include/onnx/common/version.h
@@ -81,6 +84,7 @@ Files included in the binary package:
   /usr/include/onnx/defs/controlflow/utils.h
   /usr/include/onnx/defs/data_propagators.h
   /usr/include/onnx/defs/data_type_utils.h
+  /usr/include/onnx/defs/doc_strings.h
   /usr/include/onnx/defs/function.h
   /usr/include/onnx/defs/generator/utils.h
   /usr/include/onnx/defs/math/utils.h
@@ -89,6 +93,7 @@ Files included in the binary package:
   /usr/include/onnx/defs/operator_sets_ml.h
   /usr/include/onnx/defs/operator_sets_preview.h
   /usr/include/onnx/defs/operator_sets_training.h
+  /usr/include/onnx/defs/optional/utils.h
   /usr/include/onnx/defs/parser.h
   /usr/include/onnx/defs/printer.h
   /usr/include/onnx/defs/reduction/utils.h
@@ -99,6 +104,7 @@ Files included in the binary package:
   /usr/include/onnx/defs/tensor_proto_util.h
   /usr/include/onnx/defs/tensor_util.h
   /usr/include/onnx/defs/traditionalml/utils.h
+  /usr/include/onnx/defs/type_builders.h
   /usr/include/onnx/inliner/inliner.h
   /usr/include/onnx/onnx-data.pb.h
   /usr/include/onnx/onnx-ml.pb.h
@@ -112,6 +118,7 @@ Files included in the binary package:
   /usr/include/onnx/string_utils.h
   /usr/include/onnx/version_converter/BaseConverter.h
   /usr/include/onnx/version_converter/adapters/Attention_24_23.h
+  /usr/include/onnx/version_converter/adapters/Attention_25_24.h
   /usr/include/onnx/version_converter/adapters/adapter.h
   /usr/include/onnx/version_converter/adapters/axes_attribute_to_input.h
   /usr/include/onnx/version_converter/adapters/axes_input_to_attribute.h
@@ -120,6 +127,7 @@ Files included in the binary package:
   /usr/include/onnx/version_converter/adapters/batch_normalization_13_14.h
   /usr/include/onnx/version_converter/adapters/broadcast_backward_compatibility.h
   /usr/include/onnx/version_converter/adapters/broadcast_forward_compatibility.h
+  /usr/include/onnx/version_converter/adapters/cast_28_27.h
   /usr/include/onnx/version_converter/adapters/cast_9_8.h
   /usr/include/onnx/version_converter/adapters/clip_10_11.h
   /usr/include/onnx/version_converter/adapters/compatible.h
@@ -131,15 +139,22 @@ Files included in the binary package:
   /usr/include/onnx/version_converter/adapters/group_normalization_20_21.h
   /usr/include/onnx/version_converter/adapters/maxpool_8_7.h
   /usr/include/onnx/version_converter/adapters/no_previous_version.h
+  /usr/include/onnx/version_converter/adapters/optional_ops.h
   /usr/include/onnx/version_converter/adapters/pad_10_11.h
   /usr/include/onnx/version_converter/adapters/q_dq_21_20.h
+  /usr/include/onnx/version_converter/adapters/quantize_linear_28_27.h
+  /usr/include/onnx/version_converter/adapters/range_27_26.h
+  /usr/include/onnx/version_converter/adapters/reduce_log_sum_27_28.h
   /usr/include/onnx/version_converter/adapters/remove_consumed_inputs.h
   /usr/include/onnx/version_converter/adapters/reshape_4_5.h
   /usr/include/onnx/version_converter/adapters/reshape_5_4.h
   /usr/include/onnx/version_converter/adapters/resize_10_11.h
+  /usr/include/onnx/version_converter/adapters/resize_18_17.h
   /usr/include/onnx/version_converter/adapters/scan_8_9.h
   /usr/include/onnx/version_converter/adapters/scan_9_8.h
   /usr/include/onnx/version_converter/adapters/scatter_10_11.h
+  /usr/include/onnx/version_converter/adapters/scatter_16_15.h
+  /usr/include/onnx/version_converter/adapters/scatter_18_17.h
   /usr/include/onnx/version_converter/adapters/slice_9_10.h
   /usr/include/onnx/version_converter/adapters/softmax_12_13.h
   /usr/include/onnx/version_converter/adapters/softmax_13_12.h
@@ -158,7 +173,7 @@ Files included in the binary package:
   /usr/include/onnx/version_converter/helper.h
   /usr/lib/cmake/ONNX/ONNXConfig.cmake
   /usr/lib/cmake/ONNX/ONNXConfigVersion.cmake
-  /usr/lib/cmake/ONNX/ONNXTargets-release.cmake
+  /usr/lib/cmake/ONNX/ONNXTargets-relwithdebinfo.cmake
   /usr/lib/cmake/ONNX/ONNXTargets.cmake
   /usr/lib/libonnx.dll.a
   /usr/lib/libonnx_proto.dll.a
@@ -166,6 +181,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.23.2-1bl1 -----
+Version bump.
 
 ----- version 1.20.1-1bl1 -----
 Version bump.

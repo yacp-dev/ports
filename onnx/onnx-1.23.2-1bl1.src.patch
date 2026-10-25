@@ -1,0 +1,37 @@
+--- origsrc/onnx-1.23.2/CMakeLists.txt	2026-10-05 23:03:09.000000000 +0000
++++ src/onnx-1.23.2/CMakeLists.txt	2026-10-25 08:17:48.093316600 +0000
+@@ -690,7 +690,9 @@ endif()
+ if(ONNX_INSTALL)
+   install(TARGETS
+     onnx onnx_proto
+-    EXPORT ONNXTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})
++    EXPORT ONNXTargets
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ 
+   install(EXPORT ONNXTargets
+     DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/ONNX"
+@@ -711,5 +713,9 @@ if(ONNX_BUILD_TESTS)
+   include(${ONNX_ROOT}/cmake/unittest.cmake)
+ endif()
+ 
++# https://sources.debian.org/patches/onnx/1.21.0-1/soversion.patch/
++set_target_properties(onnx PROPERTIES VERSION 1 SOVERSION 1)
++set_target_properties(onnx_proto PROPERTIES VERSION 1 SOVERSION 1)
++
+ include(cmake/summary.cmake)
+ onnx_print_configuration_summary()
+--- origsrc/onnx-1.23.2/onnx/defs/parser.cc	2026-10-05 23:03:09.000000000 +0000
++++ src/onnx-1.23.2/onnx/defs/parser.cc	2026-10-25 08:17:48.095327600 +0000
+@@ -5,6 +5,11 @@
+ // Experimental language syntax and parser for ONNX. Please note that the syntax as formalized
+ // by this parser is preliminary and may change.
+ 
++#if defined(__CYGWIN__) && !defined(_GNU_SOURCE)
++// newlib declares strtof_l/strtod_l only under __GNU_VISIBLE.
++#define _GNU_SOURCE
++#endif
++
+ #include "onnx/defs/parser.h"
+ 
+ // POSIX locale extensions (newlocale, freelocale, strtof_l, strtod_l) are used

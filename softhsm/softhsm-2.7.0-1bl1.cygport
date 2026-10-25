@@ -1,0 +1,39 @@
+HOMEPAGE="https://www.softhsm.org/"
+SRC_URI="https://github.com/softhsm/SoftHSMv2/archive/refs/tags/${PV}.tar.gz"
+SRC_DIR="SoftHSMv2-${PV}"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/${PN}/raw/ea9f8ed257afcf5c5534dc3063ae9d329ea4f7c7/f/prevent-global-deleted-objects-access.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/655065c1d428e0aed26fd58e29acd7d7babf89c0/dev-libs/softhsm/files/${P}-byteString2oid-leak.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/655065c1d428e0aed26fd58e29acd7d7babf89c0/dev-libs/softhsm/files/${P}-openssl-4.patch
+"
+
+CATEGORY="Security"
+SUMMARY="Software PKCS11 implementation"
+DESCRIPTION="SoftHSM is an implementation of a cryptographic store accessible through a
+PKCS#11 interface."
+
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	cppunit
+	libp11-kit-devel
+	libsqlite3-devel
+	libssl-devel
+	sqlite3
+"
+
+CYGCONF_ARGS="
+	--with-migrate
+"
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/src/lib/.libs:${PATH} cygtest
+}
+
+DOCS="
+	*.md
+"

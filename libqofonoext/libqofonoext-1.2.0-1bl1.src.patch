@@ -1,0 +1,13 @@
+--- origsrc/libqofonoext-1.2.0/plugin/CMakeLists.txt	2026-08-27 16:54:41.000000000 +0000
++++ src/libqofonoext-1.2.0/plugin/CMakeLists.txt	2026-10-25 15:23:35.361958400 +0000
+@@ -6,7 +6,9 @@ set(PLUGIN_SOURCES
+     qofonoextsimlistmodel.cpp
+ )
+ 
+-add_library(qofonoextdeclarative SHARED ${PLUGIN_SOURCES})
++add_library(qofonoextdeclarative MODULE ${PLUGIN_SOURCES})
++
++target_compile_definitions(qofonoextdeclarative PRIVATE QOFONOEXT_LIBRARY)
+ 
+ target_include_directories(qofonoextdeclarative PRIVATE
+     ${CMAKE_SOURCE_DIR}/src ${QOFONO_QT_INCLUDE_DIRS}

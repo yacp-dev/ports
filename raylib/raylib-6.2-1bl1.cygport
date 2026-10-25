@@ -7,14 +7,18 @@ DESCRIPTION="raylib is highly inspired by Borland BGI graphics lib and by XNA fr
 it's specially well suited for prototyping, tooling, graphical applications,
 embedded systems and education."
 
-LICENSE="Zlib"
-LICENSE_SPDX="SPDX-License-Identifier: Zlib"
+LICENSE="Zlib AND MIT AND (MIT OR Unlicense) AND (MIT-0 OR Unlicense) AND WTFPL"
+LICENSE_SPDX="SPDX-License-Identifier: Zlib AND MIT AND (MIT OR Unlicense) AND (MIT-0 OR Unlicense) AND WTFPL"
 LICENSE_URI="LICENSE"
 
 # Not defined in glfw-3.3.8
 export CPPFLAGS="${CPPFLAGS} -DGLFW_MOUSE_PASSTHROUGH=0x0002000D"
 
-BUILD_REQUIRES="libglfw-devel"
+BUILD_REQUIRES="
+	libGL-devel
+	libX11-devel
+	libglfw-devel
+"
 
 inherit cmake
 
@@ -32,19 +36,19 @@ DOCS="
 
 PKG_NAMES="
 	raylib
-	libraylib550
+	libraylib620
 	libraylib-devel
 "
 raylib_CONTENTS="
 	usr/share
 "
-libraylib550_CONTENTS="
-	usr/bin/cyg*-550.dll
+libraylib620_CONTENTS="
+	usr/bin/cyg*-620.dll
 "
 libraylib_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 raylib_SUMMARY="${SUMMARY} (licensing & readmes)"
-libraylib550_SUMMARY="${SUMMARY} (runtime)"
+libraylib620_SUMMARY="${SUMMARY} (runtime)"
 libraylib_devel_SUMMARY="${SUMMARY} (development)"

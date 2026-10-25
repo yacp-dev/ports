@@ -5,43 +5,44 @@ it's specially well suited for prototyping, tooling, graphical applications,
 embedded systems and education.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libglfw-devel-3.4-1bl1
-  libglfw3-3.4-1bl1
-  libraylib-devel-5.5-1bl1
-  libraylib550-5.5-1bl1
-  pkg-config-2.3.0-1
+  cygwin-3.6.11-1
+  libglfw-devel-3.5.1-1bl1
+  libglfw3-3.5.1-1bl1
+  libraylib-devel-6.2-1bl1
+  libraylib620-6.2-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libglfw-devel-3.4-1bl1
-  lua-5.3.6-4
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  libGL-devel-23.3.6-1
+  libX11-devel-1.8.13-1
+  libglfw-devel-3.5.1-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/raysan5/raylib
 
 Canonical download:
-  https://github.com/raysan5/raylib/archive/refs/tags/5.5.tar.gz
+  https://github.com/raysan5/raylib/archive/refs/tags/6.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack raylib-5.5-X-src.tar.xz
+  1. unpack raylib-6.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./raylib-5.5-X.cygport all
+        % cygport ./raylib-6.2-X.cygport all
 
 This will create:
-  /usr/src/raylib-5.5-X-src.tar.xz
-  /usr/src/raylib-5.5-X.tar.xz
-  /usr/src/libraylib550-5.5-X.tar.xz
-  /usr/src/libraylib-devel-5.5-X.tar.xz
+  /usr/src/raylib-6.2-X-src.tar.xz
+  /usr/src/raylib-6.2-X.tar.xz
+  /usr/src/libraylib620-6.2-X.tar.xz
+  /usr/src/libraylib-devel-6.2-X.tar.xz
 
 -------------------------------------------
 
@@ -58,22 +59,29 @@ Files included in the binary package:
   /usr/share/doc/raylib/LICENSE
   /usr/share/doc/raylib/README.md
   /usr/share/doc/raylib/ROADMAP.md
+  /usr/share/doc/raylib/SECURITY.md
 
-(libraylib550)
-  /usr/bin/cygraylib-550.dll
+(libraylib620)
+  /usr/bin/cygraylib-620.dll
 
 (libraylib-devel)
   /usr/include/raylib.h
   /usr/include/raymath.h
+  /usr/include/rcamera.h
   /usr/include/rlgl.h
   /usr/lib/cmake/raylib/raylib-config-version.cmake
   /usr/lib/cmake/raylib/raylib-config.cmake
+  /usr/lib/cmake/raylib/raylib-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/raylib/raylib-targets.cmake
   /usr/lib/libraylib.dll.a
   /usr/lib/pkgconfig/raylib.pc
 
 ------------------
 
 Port Notes:
+
+----- version 6.2-1bl1 -----
+Version bump.
 
 ----- version 5.5-1bl1 -----
 Version bump.

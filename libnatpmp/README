@@ -6,18 +6,18 @@ all calls of the API are asynchronous. It is therefore very easy to integrate
 the NAT-PMP code to any event driven code.
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libnatpmp-devel-20230423-1bl2
-  libnatpmp1-20230423-1bl2
-  pkg-config-2.4.3-1
+  cygwin-3.6.11-1
+  libnatpmp-devel-20230423-1bl3
+  libnatpmp1-20230423-1bl3
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   http://miniupnp.free.fr/libnatpmp.html
@@ -57,12 +57,16 @@ Files included in the binary package:
 
 (libnatpmp-devel)
   /usr/include/natpmp.h
+  /usr/include/natpmp_declspec.h
   /usr/lib/libnatpmp.dll.a
   /usr/lib/pkgconfig/libnatpmp.pc
 
 ------------------
 
 Port Notes:
+
+----- version 20230423-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 20230423-1bl2 -----
 Rebuild with gcc-12.4.0

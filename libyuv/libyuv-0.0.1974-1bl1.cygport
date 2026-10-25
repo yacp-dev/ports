@@ -1,6 +1,6 @@
 HOMEPAGE="https://chromium.googlesource.com/${PN}/${PN}/"
 GIT_URI="https://chromium.googlesource.com/${PN}/${PN}/"
-GIT_REV="500f45652c459cfccd20f83f297eb66cb7b015cb"
+GIT_REV="18835bfb35cf75a61fc5ce4d19777f0fd4d6530a"
 
 CATEGORY="Libs"
 SUMMARY="YUV conversion and scaling functionality"

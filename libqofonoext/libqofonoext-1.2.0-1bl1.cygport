@@ -10,9 +10,14 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="LICENSE.LGPL"
 
-BUILD_REQUIRES="libQt5Core-devel libQt5Quick-devel libqofono-qt5-devel"
+BUILD_REQUIRES="
+	extra-cmake-modules
+	libQt5Core-devel
+	libQt5Quick-devel
+	libqofono-qt5-devel
+"
 
-inherit qt5-qmake
+inherit cmake
 
 PKG_NAMES="
 	libqofonoext

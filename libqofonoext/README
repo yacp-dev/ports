@@ -4,47 +4,48 @@ A library for accessing Sailfish OS specific ofono extensions, and a
 declarative plugin for it.
 
 Runtime requirements:
-  cygwin-3.6.4-1
+  cygwin-3.6.11-1
   libQt5Core5-5.9.4-2
   libQt5Quick5-5.9.4-1
-  libgcc1-13.4.0-1
-  libqofono-qt5_0-0.124-1bl1
-  libqofonoext-devel-1.0.32-1bl1
-  libqofonoext1-1.0.32-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libgcc1-14.4.0-1
+  libqofono-qt5_0-0.132-1bl1
+  libqofonoext-devel-1.2.0-1bl1
+  libqofonoext1-1.2.0-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  extra-cmake-modules-5.43.0-1
+  gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
   libQt5Quick-devel-5.9.4-1
-  libqofono-qt5-devel-0.124-1bl1
-  make-4.4.1-2
+  libqofono-qt5-devel-0.132-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/sailfishos/libqofonoext
 
 Canonical download:
-  https://github.com/sailfishos/libqofonoext/archive/refs/tags/1.0.32.tar.gz
+  https://github.com/sailfishos/libqofonoext/archive/refs/tags/1.2.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libqofonoext-1.0.32-X-src.tar.xz
+  1. unpack libqofonoext-1.2.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libqofonoext-1.0.32-X.cygport all
+        % cygport ./libqofonoext-1.2.0-X.cygport all
 
 This will create:
-  /usr/src/libqofonoext-1.0.32-X-src.tar.xz
-  /usr/src/libqofonoext-1.0.32-X.tar.xz
-  /usr/src/libqofonoext1-1.0.32-X.tar.xz
-  /usr/src/libqofonoext-devel-1.0.32-X.tar.xz
+  /usr/src/libqofonoext-1.2.0-X-src.tar.xz
+  /usr/src/libqofonoext-1.2.0-X.tar.xz
+  /usr/src/libqofonoext1-1.2.0-X.tar.xz
+  /usr/src/libqofonoext-devel-1.2.0-X.tar.xz
 
 -------------------------------------------
 
@@ -74,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.0-1bl1 -----
+Version bump.
 
 ----- version 1.0.32-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

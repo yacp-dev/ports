@@ -1,54 +1,51 @@
 wolfssl
 ------------------------------------------
 The wolfssl embedded SSL library is a lightweight, portable, C-language-based
-SSL/TLS library targeted at embedded and RTOS environments primarily because
-of its size, speed, and feature set. It works seamlessly in regular desktop,
+SSL/TLS library targeted at embedded and RTOS environments primarily because of
+its size, speed, and feature set. It works seamlessly in regular desktop,
 enterprise, and cloud environments as well. wolfssl supports industry standards
-up to the current TLS 1.2 and DTLS 1.2, is up to 20 times smaller than
-OpenSSL, offers a simple API, an OpenSSL compatibility layer, OCSP and CRL
-support, is backed by the robust wolfCrypt cryptography library, and much
-more.
+up to the current TLS 1.2 and DTLS 1.2, is up to 20 times smaller than OpenSSL,
+offers a simple API, an OpenSSL compatibility layer, OCSP and CRL support, is
+backed by the robust wolfCrypt cryptography library, and much more.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libwolfssl-devel-5.8.4-1bl1
-  libwolfssl44-5.8.4-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libwolfssl-devel-5.9.4-1bl1
+  libwolfssl46-5.9.4-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://www.wolfssl.com/
 
 Canonical download:
-  https://github.com/wolfSSL/wolfssl/archive/refs/tags/v5.8.4-stable.tar.gz
+  https://github.com/wolfSSL/wolfssl/archive/refs/tags/v5.9.4-stable.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack wolfssl-5.8.4-X-src.tar.xz
+  1. unpack wolfssl-5.9.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./wolfssl-5.8.4-X.cygport all
+        % cygport ./wolfssl-5.9.4-X.cygport all
 
 This will create:
-  /usr/src/wolfssl-5.8.4-X-src.tar.xz
-  /usr/src/wolfssl-5.8.4-X.tar.xz
-  /usr/src/libwolfssl44-5.8.4-X.tar.xz
-  /usr/src/libwolfssl-devel-5.8.4-X.tar.xz
+  /usr/src/wolfssl-5.9.4-X-src.tar.xz
+  /usr/src/wolfssl-5.9.4-X.tar.xz
+  /usr/src/libwolfssl46-5.9.4-X.tar.xz
+  /usr/src/libwolfssl-devel-5.9.4-X.tar.xz
 
 -------------------------------------------
 
@@ -56,18 +53,23 @@ Files included in the binary package:
 
 (wolfssl)
   /usr/share/doc/Cygwin/wolfssl.README
+  /usr/share/doc/wolfssl/ALGORITHM_DEFINES.md
+  /usr/share/doc/wolfssl/ASM_AND_MATH_DEFINES.md
   /usr/share/doc/wolfssl/COPYING
+  /usr/share/doc/wolfssl/CRA.md
   /usr/share/doc/wolfssl/ChangeLog.md
   /usr/share/doc/wolfssl/LICENSING
   /usr/share/doc/wolfssl/QUIC.md
   /usr/share/doc/wolfssl/README
   /usr/share/doc/wolfssl/README.md
   /usr/share/doc/wolfssl/README.txt
+  /usr/share/doc/wolfssl/SBOM.md
+  /usr/share/doc/wolfssl/dilithium-to-mldsa-migration.md
   /usr/share/doc/wolfssl/taoCert.txt
   /usr/share/wolfssl/wnr-example.conf
 
-(libwolfssl44)
-  /usr/bin/cygwolfssl-44.dll
+(libwolfssl46)
+  /usr/bin/cygwolfssl-46.dll
 
 (libwolfssl-devel)
   /usr/bin/wolfssl-config
@@ -130,6 +132,7 @@ Files included in the binary package:
   /usr/include/wolfssl/openssl/ssl23.h
   /usr/include/wolfssl/openssl/stack.h
   /usr/include/wolfssl/openssl/tls1.h
+  /usr/include/wolfssl/openssl/ts.h
   /usr/include/wolfssl/openssl/txt_db.h
   /usr/include/wolfssl/openssl/ui.h
   /usr/include/wolfssl/openssl/x509.h
@@ -144,6 +147,7 @@ Files included in the binary package:
   /usr/include/wolfssl/version.h
   /usr/include/wolfssl/wolfcrypt/aes.h
   /usr/include/wolfssl/wolfcrypt/arc4.h
+  /usr/include/wolfssl/wolfcrypt/argon2.h
   /usr/include/wolfssl/wolfcrypt/ascon.h
   /usr/include/wolfssl/wolfcrypt/asn.h
   /usr/include/wolfssl/wolfcrypt/asn_public.h
@@ -169,9 +173,6 @@ Files included in the binary package:
   /usr/include/wolfssl/wolfcrypt/ed25519.h
   /usr/include/wolfssl/wolfcrypt/ed448.h
   /usr/include/wolfssl/wolfcrypt/error-crypt.h
-  /usr/include/wolfssl/wolfcrypt/ext_lms.h
-  /usr/include/wolfssl/wolfcrypt/ext_mlkem.h
-  /usr/include/wolfssl/wolfcrypt/ext_xmss.h
   /usr/include/wolfssl/wolfcrypt/falcon.h
   /usr/include/wolfssl/wolfcrypt/fe_448.h
   /usr/include/wolfssl/wolfcrypt/fe_operations.h
@@ -183,7 +184,6 @@ Files included in the binary package:
   /usr/include/wolfssl/wolfcrypt/hpke.h
   /usr/include/wolfssl/wolfcrypt/integer.h
   /usr/include/wolfssl/wolfcrypt/kdf.h
-  /usr/include/wolfssl/wolfcrypt/lms.h
   /usr/include/wolfssl/wolfcrypt/logging.h
   /usr/include/wolfssl/wolfcrypt/md2.h
   /usr/include/wolfssl/wolfcrypt/md4.h
@@ -191,17 +191,18 @@ Files included in the binary package:
   /usr/include/wolfssl/wolfcrypt/mem_track.h
   /usr/include/wolfssl/wolfcrypt/memory.h
   /usr/include/wolfssl/wolfcrypt/misc.h
-  /usr/include/wolfssl/wolfcrypt/mlkem.h
   /usr/include/wolfssl/wolfcrypt/mpi_class.h
   /usr/include/wolfssl/wolfcrypt/mpi_superclass.h
   /usr/include/wolfssl/wolfcrypt/oid_sum.h
   /usr/include/wolfssl/wolfcrypt/pkcs12.h
   /usr/include/wolfssl/wolfcrypt/pkcs7.h
   /usr/include/wolfssl/wolfcrypt/poly1305.h
+  /usr/include/wolfssl/wolfcrypt/puf.h
   /usr/include/wolfssl/wolfcrypt/pwdbased.h
   /usr/include/wolfssl/wolfcrypt/random.h
   /usr/include/wolfssl/wolfcrypt/rc2.h
   /usr/include/wolfssl/wolfcrypt/ripemd.h
+  /usr/include/wolfssl/wolfcrypt/rng_bank.h
   /usr/include/wolfssl/wolfcrypt/rsa.h
   /usr/include/wolfssl/wolfcrypt/sakke.h
   /usr/include/wolfssl/wolfcrypt/settings.h
@@ -215,27 +216,37 @@ Files included in the binary package:
   /usr/include/wolfssl/wolfcrypt/sm3.h
   /usr/include/wolfssl/wolfcrypt/sm4.h
   /usr/include/wolfssl/wolfcrypt/sp_int.h
-  /usr/include/wolfssl/wolfcrypt/sphincs.h
   /usr/include/wolfssl/wolfcrypt/srp.h
   /usr/include/wolfssl/wolfcrypt/tfm.h
+  /usr/include/wolfssl/wolfcrypt/tsp.h
   /usr/include/wolfssl/wolfcrypt/types.h
   /usr/include/wolfssl/wolfcrypt/visibility.h
+  /usr/include/wolfssl/wolfcrypt/wc_compat.h
   /usr/include/wolfssl/wolfcrypt/wc_encrypt.h
+  /usr/include/wolfssl/wolfcrypt/wc_frodokem.h
+  /usr/include/wolfssl/wolfcrypt/wc_frodokem_mat.h
+  /usr/include/wolfssl/wolfcrypt/wc_keystore.h
   /usr/include/wolfssl/wolfcrypt/wc_lms.h
+  /usr/include/wolfssl/wolfcrypt/wc_mldsa.h
   /usr/include/wolfssl/wolfcrypt/wc_mlkem.h
   /usr/include/wolfssl/wolfcrypt/wc_port.h
+  /usr/include/wolfssl/wolfcrypt/wc_she.h
+  /usr/include/wolfssl/wolfcrypt/wc_slhdsa.h
   /usr/include/wolfssl/wolfcrypt/wc_xmss.h
+  /usr/include/wolfssl/wolfcrypt/wolfentropy.h
   /usr/include/wolfssl/wolfcrypt/wolfevent.h
   /usr/include/wolfssl/wolfcrypt/wolfmath.h
-  /usr/include/wolfssl/wolfcrypt/xmss.h
   /usr/include/wolfssl/wolfio.h
+  /usr/lib/cmake/wolfssl/wolfssl-config-version.cmake
+  /usr/lib/cmake/wolfssl/wolfssl-config.cmake
+  /usr/lib/cmake/wolfssl/wolfssl-targets.cmake
   /usr/lib/libwolfssl.dll.a
   /usr/lib/pkgconfig/wolfssl.pc
-  /usr/share/doc/wolfssl/example/async_client.c
-  /usr/share/doc/wolfssl/example/async_server.c
   /usr/share/doc/wolfssl/example/client.c
+  /usr/share/doc/wolfssl/example/dtls_bench.c
   /usr/share/doc/wolfssl/example/echoclient.c
   /usr/share/doc/wolfssl/example/echoserver.c
+  /usr/share/doc/wolfssl/example/ocsp_responder.c
   /usr/share/doc/wolfssl/example/sctp-client-dtls.c
   /usr/share/doc/wolfssl/example/sctp-client.c
   /usr/share/doc/wolfssl/example/sctp-server-dtls.c
@@ -246,6 +257,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.9.4-1bl1 -----
+Version bump.
 
 ----- version 5.8.4-1bl1 -----
 Version bump.

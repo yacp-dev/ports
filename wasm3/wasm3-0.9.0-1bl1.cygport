@@ -1,6 +1,5 @@
 HOMEPAGE="https://github.com/${PN}/${PN}"
-GIT_URI="https://github.com/${PN}/${PN}.git"
-GIT_BRANCH="main"
+SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Interpreters"
 SUMMARY="Fastest WebAssembly interpreter"
@@ -10,15 +9,18 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libuvwasi-devel"
+BUILD_REQUIRES="
+	libuvwasi-devel
+	python3
+"
 
 inherit cmake
-inherit git
 
 src_test()
 {
-	cd ${B}
-	./${PN}.exe --version
+	cd ${S}/test
+	python3 run-regression-test.py --exec ${B}/${PN}.exe
+	python3 run-wasi-test.py --exec ${B}/${PN}.exe
 }
 
 src_install()

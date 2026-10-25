@@ -1,0 +1,72 @@
+--- origsrc/wasm3-0.9.0/CMakeLists.txt	2026-08-24 16:40:11.000000000 +0000
++++ src/wasm3-0.9.0/CMakeLists.txt	2026-10-25 13:07:06.100114900 +0000
+@@ -187,6 +187,11 @@ else()
+   set(CMAKE_EXE_LINKER_FLAGS_DEBUG "-O0")
+   set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-O3")
+ 
++  if(CYGWIN)
++    # d_m3MaxNativeStack assumes an 8MB native stack; the PE default is 2MB
++    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--stack,8388608")
++  endif()
++
+   target_link_libraries(${OUT_FILE} m)
+ 
+ endif()
+@@ -198,28 +203,36 @@ if(BUILD_WASI MATCHES "simple")
+ elseif(BUILD_WASI MATCHES "metawasi")
+   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Dd_m3HasMetaWASI")
+ elseif(BUILD_WASI MATCHES "uvwasi")
+-  include(FetchContent)
+-  set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+-  set(CMAKE_POSITION_INDEPENDENT_CODE ON CACHE BOOL "" FORCE)
+-  set(LIBUV_BUILD_SHARED OFF CACHE BOOL "" FORCE)
+-  set(UVWASI_BUILD_SHARED OFF CACHE BOOL "" FORCE)
+-  set(INSTALL_UVWASI OFF CACHE BOOL "" FORCE)
+-
+-  FetchContent_Declare(
+-    libuv
+-    GIT_REPOSITORY https://github.com/libuv/libuv.git
+-    GIT_TAG        v1.52.1
+-  )
+-  FetchContent_Declare(
+-    uvwasi
+-    GIT_REPOSITORY  https://github.com/nodejs/uvwasi.git
+-    GIT_TAG         main
+-  )
+-  FetchContent_MakeAvailable(libuv)
+-  FetchContent_MakeAvailable(uvwasi)
+-  include_directories("${uvwasi_SOURCE_DIR}/include")
++  find_package(pkgconfig)
++  pkg_check_modules(UVWASI uvwasi)
++  if (NOT UVWASI_FOUND)
++    include(FetchContent)
++    set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
++    set(CMAKE_POSITION_INDEPENDENT_CODE ON CACHE BOOL "" FORCE)
++    set(LIBUV_BUILD_SHARED OFF CACHE BOOL "" FORCE)
++    set(UVWASI_BUILD_SHARED OFF CACHE BOOL "" FORCE)
++    set(INSTALL_UVWASI OFF CACHE BOOL "" FORCE)
++
++    FetchContent_Declare(
++      libuv
++      GIT_REPOSITORY https://github.com/libuv/libuv.git
++      GIT_TAG        v1.52.1
++    )
++    FetchContent_Declare(
++      uvwasi
++      GIT_REPOSITORY  https://github.com/nodejs/uvwasi.git
++      GIT_TAG         main
++    )
++    FetchContent_MakeAvailable(libuv)
++    FetchContent_MakeAvailable(uvwasi)
++    include_directories("${uvwasi_SOURCE_DIR}/include")
++  endif()
+   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Dd_m3HasUVWASI")
+-  target_link_libraries(${OUT_FILE} uvwasi_a uv_a)
++  if (UVWASI_FOUND)
++    target_link_libraries(${OUT_FILE} ${UVWASI_LIBRARIES})
++  else()
++    target_link_libraries(${OUT_FILE} uvwasi_a uv_a)
++  endif()
+ endif()
+ 
+ check_ipo_supported(RESULT result)

@@ -15,6 +15,7 @@ LICENSE_URI="COPYING"
 BUILD_REQUIRES="
 	libbrotli-devel
 	libbz2-devel
+	libcrypt-devel
 	libdb-devel
 	liblmdb-devel
 	libmemcached-devel

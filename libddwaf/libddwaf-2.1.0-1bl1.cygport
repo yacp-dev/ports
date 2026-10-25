@@ -7,17 +7,17 @@ DESCRIPTION="libddwaf is Datadog's implementation of a Web Application Firewall 
 engine, with a goal of low performance and memory overhead, and embeddability
 in a wide variety of language runtimes through a C API."
 
-LICENSE="Apache-2.0 OR BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 OR BSD-3-Clause"
+LICENSE="(Apache-2.0 OR BSD-3-Clause) AND Apache-2.0 AND BSD-3-Clause AND BSD-4-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: (Apache-2.0 OR BSD-3-Clause) AND Apache-2.0 AND BSD-3-Clause AND BSD-4-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	git
 	libiconv-devel
 	libintl-devel
 	libgmock-devel
 	libgtest-devel
 	libyaml-cpp-devel
-	rapidjson-devel
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DRAPIDJSON_HAS_STDSTRING=1"
@@ -25,7 +25,7 @@ export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DRAPIDJSON_HAS_STDSTRING=1"
 inherit cmake
 
 CYGCMAKE_ARGS="
-	-DBUILD_ID:STRING=da7fd66355b0ef3651b82b3fa025878b836a31c9
+	-DGIT_COMMIT:STRING=e3d0670d01cbfa44c2d3028b2e96b5a37ac99836
 	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DLIBDDWAF_BUILD_STATIC:BOOL=OFF
 	-DSOVERSION:STRING=${PV[1]}
@@ -66,7 +66,7 @@ PKG_NAMES="
 libddwaf_CONTENTS="
 	usr/share
 "
-libddwaf1_CONTENTS="
+libddwaf2_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.dll
 "
 libddwaf_devel_CONTENTS="
@@ -74,5 +74,5 @@ libddwaf_devel_CONTENTS="
 	usr/lib
 "
 libddwaf_SUMMARY="${SUMMARY} (licensing & readmes)"
-libddwaf1_SUMMARY="${SUMMARY} (runtime)"
+libddwaf2_SUMMARY="${SUMMARY} (runtime)"
 libddwaf_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,6 +1,6 @@
---- origsrc/libddwaf-1.30.1/CMakeLists.txt	2025-12-11 21:52:17.000000000 +0900
-+++ src/libddwaf-1.30.1/CMakeLists.txt	2026-01-17 10:42:08.844441900 +0900
-@@ -133,3 +133,10 @@ if (LIBDDWAF_TESTING)
+--- origsrc/libddwaf-2.1.0/CMakeLists.txt	2026-09-15 12:18:21.000000000 +0000
++++ src/libddwaf-2.1.0/CMakeLists.txt	2026-10-25 15:06:09.039359000 +0000
+@@ -128,3 +128,10 @@ if (LIBDDWAF_TESTING)
      include(cmake/clang-tidy.cmake)
      include(cmake/clang-format.cmake)
  endif()
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libddwaf.pc.in ${CMAKE_BINARY_DIR}/libddwaf.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libddwaf.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libddwaf-1.30.1/cmake/package.cmake	2025-12-11 21:52:17.000000000 +0900
-+++ src/libddwaf-1.30.1/cmake/package.cmake	2026-01-17 10:42:08.844441900 +0900
+--- origsrc/libddwaf-2.1.0/cmake/package.cmake	2026-09-15 12:18:21.000000000 +0000
++++ src/libddwaf-2.1.0/cmake/package.cmake	2026-10-25 15:06:09.041112500 +0000
 @@ -1,7 +1,7 @@
  # Packaging
  
@@ -22,52 +22,11 @@
  
  if(APPLE AND NOT CMAKE_OSX_ARCHITECTURES STREQUAL "")
      set(LIBDDWAF_PACKAGE_PROCESSOR ${CMAKE_OSX_ARCHITECTURES} CACHE STRING "Alternative processor for packaging purposes")
-@@ -16,20 +16,24 @@ set(CPACK_GENERATOR "TGZ")
- set(CPACK_SOURCE_GENERATOR "TGZ")
- 
- ## Package name
-+if (EXISTS "${libddwaf_SOURCE_DIR}/.git")
- execute_process(COMMAND git describe --exact-match --tags HEAD
-     WORKING_DIRECTORY ${libddwaf_SOURCE_DIR}
-     OUTPUT_VARIABLE DDWAF_VERSION
-     OUTPUT_STRIP_TRAILING_WHITESPACE
-     ERROR_QUIET
- )
-+endif()
- 
- if (NOT DDWAF_VERSION)
-     set(DDWAF_VERSION ${CMAKE_PROJECT_VERSION})
-+    if (EXISTS "${libddwaf_SOURCE_DIR}/.git")
-     execute_process(COMMAND git rev-parse --short HEAD
-         WORKING_DIRECTORY ${libddwaf_SOURCE_DIR}
-         OUTPUT_VARIABLE SHORT_BUILD_ID
-         OUTPUT_STRIP_TRAILING_WHITESPACE
-     )
-+    endif()
+--- origsrc/libddwaf-2.1.0/cmake/shared.cmake	2026-09-15 12:18:21.000000000 +0000
++++ src/libddwaf-2.1.0/cmake/shared.cmake	2026-10-25 15:06:09.041112500 +0000
+@@ -19,8 +19,13 @@ if(MINGW)
+     set_target_properties(libddwaf_shared PROPERTIES PREFIX "")
  endif()
- 
- set(CPACK_PACKAGE_FILE_NAME ${CMAKE_PROJECT_NAME}-${DDWAF_VERSION}-${CMAKE_SYSTEM_NAME}-${LIBDDWAF_PACKAGE_PROCESSOR})
---- origsrc/libddwaf-1.30.1/cmake/shared.cmake	2025-12-11 21:52:17.000000000 +0900
-+++ src/libddwaf-1.30.1/cmake/shared.cmake	2026-01-17 10:42:08.851362400 +0900
-@@ -1,8 +1,10 @@
--execute_process(COMMAND git rev-parse HEAD
--    WORKING_DIRECTORY ${libddwaf_SOURCE_DIR}
--    OUTPUT_VARIABLE BUILD_ID
--    OUTPUT_STRIP_TRAILING_WHITESPACE
--)
-+if (NOT DEFINED BUILD_ID AND EXISTS "${libddwaf_SOURCE_DIR}/.git")
-+    execute_process(COMMAND git rev-parse HEAD
-+        WORKING_DIRECTORY ${libddwaf_SOURCE_DIR}
-+        OUTPUT_VARIABLE BUILD_ID
-+        OUTPUT_STRIP_TRAILING_WHITESPACE
-+    )
-+endif()
- 
- message(STATUS "Build id is ${BUILD_ID}")
- string(SUBSTRING "${BUILD_ID}" 0 2 BUILD_ID_PREFIX)
-@@ -12,8 +14,13 @@ add_library(libddwaf_shared SHARED
-     $<TARGET_OBJECTS:libddwaf_shared_objects> $<$<BOOL:${MSVC}>:libddwaf.def>)
- set_target_properties(libddwaf_shared PROPERTIES OUTPUT_NAME ddwaf)
  
 +if (DEFINED SOVERSION)
 +    set_target_properties(libddwaf_shared PROPERTIES SOVERSION ${SOVERSION})
@@ -80,8 +39,8 @@
      INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
  
  if(LINUX)
---- origsrc/libddwaf-1.30.1/libddwaf.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libddwaf-1.30.1/libddwaf.pc.in	2026-01-17 10:42:08.853389700 +0900
+--- origsrc/libddwaf-2.1.0/libddwaf.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libddwaf-2.1.0/libddwaf.pc.in	2026-10-25 15:06:09.041112500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -93,9 +52,9 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lddwaf
 +Cflags: -I${includedir}
---- origsrc/libddwaf-1.30.1/src/context_allocator.hpp	2025-12-11 21:52:17.000000000 +0900
-+++ src/libddwaf-1.30.1/src/context_allocator.hpp	2026-01-17 12:36:57.234349600 +0900
-@@ -89,8 +89,8 @@ public:
+--- origsrc/libddwaf-2.1.0/src/context_allocator.hpp	2026-09-15 12:18:21.000000000 +0000
++++ src/libddwaf-2.1.0/src/context_allocator.hpp	2026-10-25 15:06:09.041112500 +0000
+@@ -82,8 +82,8 @@ public:
          mr->deallocate(p, n * sizeof(T), alignof(T));
      }
  
@@ -106,10 +65,10 @@
  };
  
  // Required STL type definitions with context allocator
---- origsrc/libddwaf-1.30.1/tests/CMakeLists.txt	2025-12-11 21:52:17.000000000 +0900
-+++ src/libddwaf-1.30.1/tests/CMakeLists.txt	2026-01-17 14:14:08.920400500 +0900
-@@ -14,7 +14,7 @@ if (LIBDDWAF_VECTORIZED_TRANSFORMERS)
-     target_compile_definitions(waf_test PRIVATE LIBDDWAF_VECTORIZED_TRANSFORMERS)
+--- origsrc/libddwaf-2.1.0/tests/CMakeLists.txt	2026-09-15 12:18:21.000000000 +0000
++++ src/libddwaf-2.1.0/tests/CMakeLists.txt	2026-10-25 15:06:09.043124900 +0000
+@@ -18,7 +18,7 @@ if (LIBDDWAF_TESTING AND LIBDDWAF_ON_VAL
+         target_compile_definitions(waf_test PRIVATE RE2_ON_VALGRIND)
  endif()
  
 -set(LIBDDWAF_TEST_LIBRARIES lib_gtest lib_gmock libddwaf_objects lib_yamlcpp lib_rapidjson)
@@ -117,8 +76,8 @@
  if(NOT MSVC AND LIBDDWAF_TEST_COVERAGE)
      target_compile_options(waf_test PRIVATE -ggdb --coverage)
      list(APPEND LIBDDWAF_TEST_LIBRARIES gcov)
---- origsrc/libddwaf-1.30.1/tests/common/json_utils.hpp	2025-12-11 21:52:17.000000000 +0900
-+++ src/libddwaf-1.30.1/tests/common/json_utils.hpp	2026-01-17 11:46:49.857271700 +0900
+--- origsrc/libddwaf-2.1.0/tests/common/json_utils.hpp	2026-09-15 12:18:21.000000000 +0000
++++ src/libddwaf-2.1.0/tests/common/json_utils.hpp	2026-10-25 15:06:09.043124900 +0000
 @@ -5,7 +5,9 @@
  // Copyright 2021 Datadog, Inc.
  #pragma once
@@ -129,71 +88,11 @@
  #include <rapidjson/prettywriter.h>
  #include <rapidjson/schema.h>
  #include <unordered_map>
---- origsrc/libddwaf-1.30.1/third_party/CMakeLists.txt	2025-12-11 21:52:17.000000000 +0900
-+++ src/libddwaf-1.30.1/third_party/CMakeLists.txt	2026-01-17 10:42:08.859428600 +0900
-@@ -15,27 +15,38 @@ if(NOT MSVC)
-     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wno-unused-parameter -Wno-shadow")
- endif()
- 
--set(RAPIDJSON_COMMIT 24b5e7a8b27f42fa16b96fc70aade9106cf7102f)
--ExternalProject_Add(proj_rapidjson
--    URL               https://github.com/Tencent/rapidjson/archive/${RAPIDJSON_COMMIT}.tar.gz
--    INSTALL_DIR       ${INSTALL_DIR}
--    CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
--               -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
--               -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
--               -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
--               -DCMAKE_CXX_FLAGS_RELEASE=${CMAKE_CXX_FLAGS_RELEASE}
--               -DCMAKE_CXX_FLAGS_RELWITHDEBINFO=${CMAKE_CXX_FLAGS_RELWITHDEBINFO}
--               -DCMAKE_CXX_FLAGS_DEBUG=${CMAKE_CXX_FLAGS_DEBUG}
--               -DCMAKE_OSX_ARCHITECTURES=${CMAKE_OSX_ARCHITECTURES}
--               -DCMAKE_POLICY_VERSION_MINIMUM=3.5
--    BUILD_COMMAND     ""
--    INSTALL_COMMAND   ${CMAKE_COMMAND} -E copy_directory "<SOURCE_DIR>/include/" "<INSTALL_DIR>/include/"
--)
--add_library(lib_rapidjson INTERFACE IMPORTED GLOBAL)
--target_include_directories(lib_rapidjson INTERFACE ${INSTALL_DIR}/include)
--add_dependencies(lib_rapidjson proj_rapidjson)
--target_compile_definitions(lib_rapidjson INTERFACE RAPIDJSON_HAS_STDSTRING=1)
--set_target_properties(proj_rapidjson PROPERTIES EXCLUDE_FROM_ALL TRUE)
-+# Try to find RapidJSON in system
-+find_package(RapidJSON QUIET)
-+
-+if(NOT RapidJSON_FOUND)
-+    message(STATUS "RapidJSON not found in system, will download")
-+    set(RAPIDJSON_COMMIT 24b5e7a8b27f42fa16b96fc70aade9106cf7102f)
-+    ExternalProject_Add(proj_rapidjson
-+        URL               https://github.com/Tencent/rapidjson/archive/${RAPIDJSON_COMMIT}.tar.gz
-+        INSTALL_DIR       ${INSTALL_DIR}
-+        CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
-+                   -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
-+                   -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
-+                   -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
-+                   -DCMAKE_CXX_FLAGS_RELEASE=${CMAKE_CXX_FLAGS_RELEASE}
-+                   -DCMAKE_CXX_FLAGS_RELWITHDEBINFO=${CMAKE_CXX_FLAGS_RELWITHDEBINFO}
-+                   -DCMAKE_CXX_FLAGS_DEBUG=${CMAKE_CXX_FLAGS_DEBUG}
-+                   -DCMAKE_OSX_ARCHITECTURES=${CMAKE_OSX_ARCHITECTURES}
-+                   -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-+        BUILD_COMMAND     ""
-+        INSTALL_COMMAND   ${CMAKE_COMMAND} -E copy_directory "<SOURCE_DIR>/include/" "<INSTALL_DIR>/include/"
-+    )
-+    add_library(lib_rapidjson INTERFACE IMPORTED GLOBAL)
-+    target_include_directories(lib_rapidjson INTERFACE ${INSTALL_DIR}/include)
-+    add_dependencies(lib_rapidjson proj_rapidjson)
-+    target_compile_definitions(lib_rapidjson INTERFACE RAPIDJSON_HAS_STDSTRING=1)
-+    set_target_properties(proj_rapidjson PROPERTIES EXCLUDE_FROM_ALL TRUE)
-+else()
-+    message(STATUS "Using system RapidJSON")
-+    add_library(lib_rapidjson INTERFACE IMPORTED GLOBAL)
-+    target_include_directories(lib_rapidjson INTERFACE ${RAPIDJSON_INCLUDE_DIRS})
-+    target_compile_definitions(lib_rapidjson INTERFACE RAPIDJSON_HAS_STDSTRING=1)
-+endif()
- 
- if(NOT MSVC)
-     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fPIC")
-@@ -43,87 +54,112 @@ if(NOT MSVC)
-     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fPIC")
- endif()
+--- origsrc/libddwaf-2.1.0/third_party/CMakeLists.txt	2026-09-15 12:18:21.000000000 +0000
++++ src/libddwaf-2.1.0/third_party/CMakeLists.txt	2026-10-25 15:06:09.045133200 +0000
+@@ -12,87 +12,112 @@ set(INSTALL_DIR ${CMAKE_BINARY_DIR}/thir
+ # Work around imported include directories having to exist at configure time.
+ file(MAKE_DIRECTORY ${INSTALL_DIR}/include)
  
 -if(CMAKE_BUILD_TYPE MATCHES Debug)
 -    set(LIBGTEST_FILENAME ${CMAKE_STATIC_LIBRARY_PREFIX}gtestd${CMAKE_STATIC_LIBRARY_SUFFIX})
@@ -331,7 +230,7 @@
 +                    BUILD_BYPRODUCTS ${INSTALL_DIR}/lib/${LIBYAML_FILENAME}
 +    )
 +    add_library(lib_yamlcpp STATIC IMPORTED GLOBAL)
-+    set_target_properties(lib_yamlcpp PROPERTIES  IMPORTED_LOCATION ${INSTALL_DIR}/lib/${LIBYAML_FILENAME})
++    set_target_properties(lib_yamlcpp PROPERTIES IMPORTED_LOCATION ${INSTALL_DIR}/lib/${LIBYAML_FILENAME})
 +    target_include_directories(lib_yamlcpp INTERFACE ${INSTALL_DIR}/include)
 +    add_dependencies(lib_yamlcpp proj_yamlcpp)
 +    set_target_properties(lib_yamlcpp proj_yamlcpp PROPERTIES EXCLUDE_FROM_ALL TRUE)
@@ -367,7 +266,7 @@
 -                BUILD_BYPRODUCTS ${INSTALL_DIR}/lib/${LIBYAML_FILENAME}
 -)
 -add_library(lib_yamlcpp STATIC IMPORTED GLOBAL)
--set_target_properties(lib_yamlcpp PROPERTIES  IMPORTED_LOCATION ${INSTALL_DIR}/lib/${LIBYAML_FILENAME})
+-set_target_properties(lib_yamlcpp PROPERTIES IMPORTED_LOCATION ${INSTALL_DIR}/lib/${LIBYAML_FILENAME})
 -target_include_directories(lib_yamlcpp INTERFACE ${INSTALL_DIR}/include)
 -add_dependencies(lib_yamlcpp proj_yamlcpp)
 -set_target_properties(lib_yamlcpp proj_yamlcpp PROPERTIES EXCLUDE_FROM_ALL TRUE)

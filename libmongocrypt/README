@@ -3,49 +3,50 @@ libmongocrypt
 The companion C library for client side encryption in drivers.
 
 Runtime requirements:
-  cygwin-3.3.5-1
-  libbson1.0-devel-1.20.1-1bl1
-  libbson1.0_0-1.20.1-1bl1
-  libkms_message-devel-1.4.0-1bl1
-  libkms_message0-1.4.0-1bl1
-  libmongocrypt-devel-1.4.0-1bl1
-  libmongocrypt0-1.4.0-1bl1
-  libssl1.1-1.1.1o-1
-  pkg-config-1.8.0-1
+  cygwin-3.6.11-1
+  libbson2-devel-2.5.6-1bl1
+  libbson2_2-2.5.6-1bl1
+  libkms_message-devel-1.21.1-1bl1
+  libkms_message0-1.21.1-1bl1
+  libmongocrypt-devel-1.21.1-1bl1
+  libmongocrypt0-1.21.1-1bl1
+  libssl3-3.5.9-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cmake-3.20.0-1
-  cygport-0.35.0-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libbson1.0-devel-1.20.1-1bl1
-  libssl-devel-1.1.1o-1
-  ninja-1.11.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  git-2.51.0-1
+  libbson2-devel-2.5.6-1bl1
+  libssl-devel-3.5.9-1
+  make-4.4.1-2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/mongodb/libmongocrypt
 
 Canonical download:
-  https://github.com/mongodb/libmongocrypt/archive/refs/tags/1.4.0.tar.gz
+  https://github.com/mongodb/libmongocrypt/archive/refs/tags/1.21.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmongocrypt-1.4.0-X-src.tar.xz
+  1. unpack libmongocrypt-1.21.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmongocrypt-1.4.0-X.cygport all
+        % cygport ./libmongocrypt-1.21.1-X.cygport all
 
 This will create:
-  /usr/src/libmongocrypt-1.4.0-X-src.tar.xz
-  /usr/src/libmongocrypt-1.4.0-X.tar.xz
-  /usr/src/libmongocrypt0-1.4.0-X.tar.xz
-  /usr/src/libmongocrypt-devel-1.4.0-X.tar.xz
-  /usr/src/libkms_message0-1.4.0-X.tar.xz
-  /usr/src/libkms_message-devel-1.4.0-X.tar.xz
+  /usr/src/libmongocrypt-1.21.1-X-src.tar.xz
+  /usr/src/libmongocrypt-1.21.1-X.tar.xz
+  /usr/src/libmongocrypt0-1.21.1-X.tar.xz
+  /usr/src/libmongocrypt-devel-1.21.1-X.tar.xz
+  /usr/src/libkms_message0-1.21.1-X.tar.xz
+  /usr/src/libkms_message-devel-1.21.1-X.tar.xz
 
 -------------------------------------------
 
@@ -67,7 +68,7 @@ Files included in the binary package:
   /usr/include/mongocrypt/mongocrypt.h
   /usr/lib/cmake/mongocrypt/mongocrypt-config-version.cmake
   /usr/lib/cmake/mongocrypt/mongocrypt-config.cmake
-  /usr/lib/cmake/mongocrypt/mongocrypt_targets-release.cmake
+  /usr/lib/cmake/mongocrypt/mongocrypt_targets-relwithdebinfo.cmake
   /usr/lib/cmake/mongocrypt/mongocrypt_targets.cmake
   /usr/lib/libmongocrypt.dll.a
   /usr/lib/pkgconfig/libmongocrypt.pc
@@ -93,7 +94,7 @@ Files included in the binary package:
   /usr/include/kms_message/kms_response_parser.h
   /usr/lib/cmake/kms_message/kms_message-config-version.cmake
   /usr/lib/cmake/kms_message/kms_message-config.cmake
-  /usr/lib/cmake/kms_message/kms_message_targets-release.cmake
+  /usr/lib/cmake/kms_message/kms_message_targets-relwithdebinfo.cmake
   /usr/lib/cmake/kms_message/kms_message_targets.cmake
   /usr/lib/libkms_message.dll.a
   /usr/lib/pkgconfig/libkms_message.pc
@@ -101,6 +102,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.21.1-1bl1 -----
+Version bump.
 
 ----- version 1.4.0-1bl1 -----
 Version bump.

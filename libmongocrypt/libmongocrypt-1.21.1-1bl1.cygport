@@ -5,13 +5,23 @@ CATEGORY="Libs"
 SUMMARY="C library for Client Side Encryption"
 DESCRIPTION="The companion C library for client side encryption in drivers."
 
-BUILD_REQUIRES="libbson1.0-devel libssl-devel"
+LICENSE="Apache-2.0 AND SSPL-1.0 AND BSD-3-Clause AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND SSPL-1.0 AND BSD-3-Clause AND ISC"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	git
+	libbson2-devel
+	libssl-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_VERSION:STRING=${PV}
-	-DENABLE_SHARED_BSON:BOOL=ON
+	-DMONGOCRYPT_MONGOC_DIR:STRING=USE-SYSTEM
+	-DUSE_SHARED_LIBBSON:BOOL=ON
+	-DENABLE_ONLINE_TESTS:BOOL=OFF
 	-DENABLE_STATIC:BOOL=OFF
 "
 

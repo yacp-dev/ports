@@ -7,85 +7,82 @@ images over a network connection, as well as demonstrative image storage and
 worklist servers.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libdcmtk-devel-3.7.0-1bl1
-  libdcmtk20-3.7.0-1bl1
-  libgcc1-13.4.0-1
-  libicu-devel-76.1-2
+  cygwin-3.6.11-1
+  libdcmtk-devel-3.7.1-1bl1
+  libdcmtk21-3.7.1-1bl1
+  libgcc1-14.4.0-1
   libintl8-0.22.5-1
   libopenjp2-devel-2.5.4-1
-  libpng-devel-1.6.47-2
-  libpng16-1.6.47-2
+  libpng-devel-1.6.59-1
+  libpng16-1.6.59-1
   libsndfile-devel-1.2.2-2
-  libssl-devel-3.0.18-1
-  libssl3-3.0.18-1
-  libstdc++6-13.4.0-1
-  libtiff-devel-4.7.1-1
-  libtiff7-4.7.1-1
+  libssl-devel-3.5.9-1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  libtiff-devel-4.7.2-1
+  libtiff7-4.7.2-1
   libwrap0-7.6-26
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-2.5.1-1
-  zlib-devel-1.3.1-1
-  zlib0-1.3.1-1
+  libxml2-2.13.9-2
+  libxml2-devel-2.13.9-2
+  pkg-config-3.0.9-1
+  zlib-devel-1.3.2-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  bison-3.8.2-1
-  cmake-4.1.3-1
-  cygport-0.37.6-1
-  flex-2.6.4-2
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libiconv-devel-1.17-1
-  libicu-devel-76.1-2
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libiconv-devel-1.19-2
   libintl-devel-0.22.5-1
   libopenjp2-devel-2.5.4-1
-  libpng-devel-1.6.47-2
+  libpng-devel-1.6.59-1
   libsndfile-devel-1.2.2-2
-  libssl-devel-3.0.18-1
-  libtiff-devel-4.7.1-1
+  libssl-devel-3.5.9-1
+  libtiff-devel-4.7.2-1
   libwrap-devel-7.6-26
-  libxml2-devel-2.10.4-2
+  libxml2-devel-2.13.9-2
   ninja-1.13.2-1
-  zlib-devel-1.3.1-1
+  openjpeg2-2.5.4-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://dicom.offis.de/dcmtk/
 
 Canonical download:
-  https://dicom.offis.de/download/dcmtk/dcmtk370/dcmtk-3.7.0.tar.gz
+  https://dicom.offis.de/download/dcmtk/dcmtk371/dcmtk-3.7.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack dcmtk-3.7.0-X-src.tar.xz
+  1. unpack dcmtk-3.7.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./dcmtk-3.7.0-X.cygport all
+        % cygport ./dcmtk-3.7.1-X.cygport all
 
 This will create:
-  /usr/src/dcmtk-3.7.0-X-src.tar.xz
-  /usr/src/dcmtk-3.7.0-X.tar.xz
-  /usr/src/libdcmtk20-3.7.0-X.tar.xz
-  /usr/src/libdcmtk-devel-3.7.0-X.tar.xz
+  /usr/src/dcmtk-3.7.1-X-src.tar.xz
+  /usr/src/dcmtk-3.7.1-X.tar.xz
+  /usr/src/libdcmtk21-3.7.1-X.tar.xz
+  /usr/src/libdcmtk-devel-3.7.1-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (dcmtk)
-  /etc/dcmtk-3.7.0/consolog.cfg
-  /etc/dcmtk-3.7.0/dcmpstat.cfg
-  /etc/dcmtk-3.7.0/dcmqrprf.cfg
-  /etc/dcmtk-3.7.0/dcmqrscp.cfg
-  /etc/dcmtk-3.7.0/filelog.cfg
-  /etc/dcmtk-3.7.0/logger.cfg
-  /etc/dcmtk-3.7.0/printers.cfg
-  /etc/dcmtk-3.7.0/storescp.cfg
-  /etc/dcmtk-3.7.0/storescu.cfg
+  /etc/dcmtk-3.7.1/consolog.cfg
+  /etc/dcmtk-3.7.1/dcmpstat.cfg
+  /etc/dcmtk-3.7.1/dcmqrprf.cfg
+  /etc/dcmtk-3.7.1/dcmqrscp.cfg
+  /etc/dcmtk-3.7.1/filelog.cfg
+  /etc/dcmtk-3.7.1/logger.cfg
+  /etc/dcmtk-3.7.1/printers.cfg
+  /etc/dcmtk-3.7.1/storescp.cfg
+  /etc/dcmtk-3.7.1/storescu.cfg
   /usr/bin/cda2dcm.exe
   /usr/bin/dcm2cda.exe
   /usr/bin/dcm2img.exe
@@ -129,6 +126,7 @@ Files included in the binary package:
   /usr/bin/dcmscale.exe
   /usr/bin/dcmsend.exe
   /usr/bin/dcmsign.exe
+  /usr/bin/dcmtk.exe
   /usr/bin/dcod2lum.exe
   /usr/bin/dconvlum.exe
   /usr/bin/drtdump.exe
@@ -152,148 +150,148 @@ Files included in the binary package:
   /usr/bin/wlmscpfs.exe
   /usr/bin/xml2dcm.exe
   /usr/bin/xml2dsr.exe
-  /usr/share/dcmtk-3.7.0/SC.dump
-  /usr/share/dcmtk-3.7.0/VLP.dump
-  /usr/share/dcmtk-3.7.0/acrnema.dic
-  /usr/share/dcmtk-3.7.0/camera.lut
-  /usr/share/dcmtk-3.7.0/csmapper/CP/CP936EXT%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/CP/UCS%CP936EXT.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/GB18030%UCS@BMP.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/GB2312%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/GB2312EXT%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/GB2312GBK%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/GB2312UDA1%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/GB2312UDA2%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/GBKEXT%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/GBKUDA%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/UCS%GB2312.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/UCS%GB2312EXT.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/UCS%GB2312UDA1.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/UCS%GB2312UDA2.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/UCS%GBKEXT.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/UCS%GBKUDA.mps
-  /usr/share/dcmtk-3.7.0/csmapper/GB/UCS@BMP%GB18030.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-11%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-15%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-2%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-3%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-4%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-5%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-6%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-7%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-8%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/ISO-8859-9%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-11.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-15.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-2.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-3.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-4.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-5.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-6.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-7.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-8.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO-8859/UCS%ISO-8859-9.mps
-  /usr/share/dcmtk-3.7.0/csmapper/ISO646/ISO646-JP%UCS.646
-  /usr/share/dcmtk-3.7.0/csmapper/ISO646/ISO646-US%UCS.646
-  /usr/share/dcmtk-3.7.0/csmapper/JIS/JISX0201-KANA%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/JIS/JISX0208@1990%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/JIS/JISX0212%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/JIS/UCS%JISX0201-KANA.mps
-  /usr/share/dcmtk-3.7.0/csmapper/JIS/UCS%JISX0208@1990.mps
-  /usr/share/dcmtk-3.7.0/csmapper/JIS/UCS%JISX0212.mps
-  /usr/share/dcmtk-3.7.0/csmapper/KS/KSC5601HANGUL%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/KS/KSC5601HANJA%UCS.mps
-  /usr/share/dcmtk-3.7.0/csmapper/KS/UCS%KSC5601HANGUL.mps
-  /usr/share/dcmtk-3.7.0/csmapper/KS/UCS%KSC5601HANJA.mps
-  /usr/share/dcmtk-3.7.0/csmapper/charset.pivot.pvdb
-  /usr/share/dcmtk-3.7.0/csmapper/mapper.dir
-  /usr/share/dcmtk-3.7.0/csmapper/mapper.dir.db
-  /usr/share/dcmtk-3.7.0/dcm2xml.dtd
-  /usr/share/dcmtk-3.7.0/dicom.dic
-  /usr/share/dcmtk-3.7.0/diconde.dic
-  /usr/share/dcmtk-3.7.0/dsr2xml.xsd
-  /usr/share/dcmtk-3.7.0/dumppat.txt
-  /usr/share/dcmtk-3.7.0/esdb/EUC/EUC-CN.esdb
-  /usr/share/dcmtk-3.7.0/esdb/EUC/EUC-KR.esdb
-  /usr/share/dcmtk-3.7.0/esdb/GB/GB18030.esdb
-  /usr/share/dcmtk-3.7.0/esdb/GB/GBK.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-1.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-11.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-15.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-2.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-3.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-4.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-5.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-6.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-7.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-8.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO-8859/ISO-8859-9.esdb
-  /usr/share/dcmtk-3.7.0/esdb/ISO646/ISO646-US.esdb
-  /usr/share/dcmtk-3.7.0/esdb/MISC/JISX0201-KANA.esdb
-  /usr/share/dcmtk-3.7.0/esdb/MISC/JISX0208@1990.esdb
-  /usr/share/dcmtk-3.7.0/esdb/MISC/JISX0212.esdb
-  /usr/share/dcmtk-3.7.0/esdb/MISC/Shift_JIS.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-16-INTERNAL.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-16-SWAPPED.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-16.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-16BE.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-16LE.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-32-INTERNAL.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-32-SWAPPED.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-32.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-32BE.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-32LE.esdb
-  /usr/share/dcmtk-3.7.0/esdb/UTF/UTF-8.esdb
-  /usr/share/dcmtk-3.7.0/esdb/esdb.alias.db
-  /usr/share/dcmtk-3.7.0/esdb/esdb.dir.db
-  /usr/share/dcmtk-3.7.0/monitor.lut
-  /usr/share/dcmtk-3.7.0/philips.lut
-  /usr/share/dcmtk-3.7.0/printer.lut
-  /usr/share/dcmtk-3.7.0/private.dic
-  /usr/share/dcmtk-3.7.0/report.css
-  /usr/share/dcmtk-3.7.0/reportx.css
-  /usr/share/dcmtk-3.7.0/scanner.lut
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/lockfile
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist1.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist10.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist2.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist3.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist4.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist5.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist6.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist7.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist8.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/OFFIS/wklist9.dump
-  /usr/share/dcmtk-3.7.0/wlistdb/README
-  /usr/share/dcmtk-3.7.0/wlistqry/README
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry0.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry1.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry10.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry11.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry12.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry2.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry3.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry4.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry5.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry6.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry7.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry8.dump
-  /usr/share/dcmtk-3.7.0/wlistqry/wlistqry9.dump
+  /usr/share/dcmtk-3.7.1/SC.dump
+  /usr/share/dcmtk-3.7.1/VLP.dump
+  /usr/share/dcmtk-3.7.1/acrnema.dic
+  /usr/share/dcmtk-3.7.1/camera.lut
+  /usr/share/dcmtk-3.7.1/csmapper/CP/CP936EXT%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/CP/UCS%CP936EXT.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/GB18030%UCS@BMP.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/GB2312%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/GB2312EXT%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/GB2312GBK%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/GB2312UDA1%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/GB2312UDA2%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/GBKEXT%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/GBKUDA%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/UCS%GB2312.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/UCS%GB2312EXT.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/UCS%GB2312UDA1.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/UCS%GB2312UDA2.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/UCS%GBKEXT.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/UCS%GBKUDA.mps
+  /usr/share/dcmtk-3.7.1/csmapper/GB/UCS@BMP%GB18030.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-11%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-15%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-2%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-3%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-4%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-5%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-6%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-7%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-8%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/ISO-8859-9%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-11.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-15.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-2.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-3.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-4.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-5.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-6.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-7.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-8.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO-8859/UCS%ISO-8859-9.mps
+  /usr/share/dcmtk-3.7.1/csmapper/ISO646/ISO646-JP%UCS.646
+  /usr/share/dcmtk-3.7.1/csmapper/ISO646/ISO646-US%UCS.646
+  /usr/share/dcmtk-3.7.1/csmapper/JIS/JISX0201-KANA%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/JIS/JISX0208@1990%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/JIS/JISX0212%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/JIS/UCS%JISX0201-KANA.mps
+  /usr/share/dcmtk-3.7.1/csmapper/JIS/UCS%JISX0208@1990.mps
+  /usr/share/dcmtk-3.7.1/csmapper/JIS/UCS%JISX0212.mps
+  /usr/share/dcmtk-3.7.1/csmapper/KS/KSC5601HANGUL%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/KS/KSC5601HANJA%UCS.mps
+  /usr/share/dcmtk-3.7.1/csmapper/KS/UCS%KSC5601HANGUL.mps
+  /usr/share/dcmtk-3.7.1/csmapper/KS/UCS%KSC5601HANJA.mps
+  /usr/share/dcmtk-3.7.1/csmapper/charset.pivot.pvdb
+  /usr/share/dcmtk-3.7.1/csmapper/mapper.dir
+  /usr/share/dcmtk-3.7.1/csmapper/mapper.dir.db
+  /usr/share/dcmtk-3.7.1/dcm2xml.dtd
+  /usr/share/dcmtk-3.7.1/dicom.dic
+  /usr/share/dcmtk-3.7.1/diconde.dic
+  /usr/share/dcmtk-3.7.1/dsr2xml.xsd
+  /usr/share/dcmtk-3.7.1/dumppat.txt
+  /usr/share/dcmtk-3.7.1/esdb/EUC/EUC-CN.esdb
+  /usr/share/dcmtk-3.7.1/esdb/EUC/EUC-KR.esdb
+  /usr/share/dcmtk-3.7.1/esdb/GB/GB18030.esdb
+  /usr/share/dcmtk-3.7.1/esdb/GB/GBK.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-1.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-11.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-15.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-2.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-3.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-4.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-5.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-6.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-7.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-8.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO-8859/ISO-8859-9.esdb
+  /usr/share/dcmtk-3.7.1/esdb/ISO646/ISO646-US.esdb
+  /usr/share/dcmtk-3.7.1/esdb/MISC/JISX0201-KANA.esdb
+  /usr/share/dcmtk-3.7.1/esdb/MISC/JISX0208@1990.esdb
+  /usr/share/dcmtk-3.7.1/esdb/MISC/JISX0212.esdb
+  /usr/share/dcmtk-3.7.1/esdb/MISC/Shift_JIS.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-16-INTERNAL.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-16-SWAPPED.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-16.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-16BE.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-16LE.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-32-INTERNAL.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-32-SWAPPED.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-32.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-32BE.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-32LE.esdb
+  /usr/share/dcmtk-3.7.1/esdb/UTF/UTF-8.esdb
+  /usr/share/dcmtk-3.7.1/esdb/esdb.alias.db
+  /usr/share/dcmtk-3.7.1/esdb/esdb.dir.db
+  /usr/share/dcmtk-3.7.1/monitor.lut
+  /usr/share/dcmtk-3.7.1/philips.lut
+  /usr/share/dcmtk-3.7.1/printer.lut
+  /usr/share/dcmtk-3.7.1/private.dic
+  /usr/share/dcmtk-3.7.1/report.css
+  /usr/share/dcmtk-3.7.1/reportx.css
+  /usr/share/dcmtk-3.7.1/scanner.lut
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/lockfile
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist1.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist10.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist2.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist3.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist4.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist5.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist6.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist7.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist8.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/OFFIS/wklist9.dump
+  /usr/share/dcmtk-3.7.1/wlistdb/README
+  /usr/share/dcmtk-3.7.1/wlistqry/README
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry0.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry1.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry10.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry11.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry12.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry2.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry3.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry4.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry5.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry6.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry7.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry8.dump
+  /usr/share/dcmtk-3.7.1/wlistqry/wlistqry9.dump
   /usr/share/doc/Cygwin/dcmtk.README
-  /usr/share/doc/dcmtk-3.7.0/VERSION
-  /usr/share/doc/dcmtk-3.7.0/asconfig.txt
-  /usr/share/doc/dcmtk-3.7.0/ciphers.txt
-  /usr/share/doc/dcmtk-3.7.0/config.txt
-  /usr/share/doc/dcmtk-3.7.0/datadict.txt
-  /usr/share/doc/dcmtk-3.7.0/dcmqrcnf.txt
-  /usr/share/doc/dcmtk-3.7.0/dcmqrset.txt
-  /usr/share/doc/dcmtk-3.7.0/dirstruc.txt
-  /usr/share/doc/dcmtk-3.7.0/envvars.txt
-  /usr/share/doc/dcmtk-3.7.0/macros.txt
-  /usr/share/doc/dcmtk-3.7.0/modules.txt
-  /usr/share/doc/dcmtk-3.7.0/randseed.txt
-  /usr/share/doc/dcmtk-3.7.0/testing.txt
-  /usr/share/doc/dcmtk-3.7.0/wlmsetup.txt
+  /usr/share/doc/dcmtk-3.7.1/VERSION
+  /usr/share/doc/dcmtk-3.7.1/asconfig.txt
+  /usr/share/doc/dcmtk-3.7.1/ciphers.txt
+  /usr/share/doc/dcmtk-3.7.1/config.txt
+  /usr/share/doc/dcmtk-3.7.1/datadict.txt
+  /usr/share/doc/dcmtk-3.7.1/dcmqrcnf.txt
+  /usr/share/doc/dcmtk-3.7.1/dcmqrset.txt
+  /usr/share/doc/dcmtk-3.7.1/dirstruc.txt
+  /usr/share/doc/dcmtk-3.7.1/envvars.txt
+  /usr/share/doc/dcmtk-3.7.1/macros.txt
+  /usr/share/doc/dcmtk-3.7.1/modules.txt
+  /usr/share/doc/dcmtk-3.7.1/randseed.txt
+  /usr/share/doc/dcmtk-3.7.1/testing.txt
+  /usr/share/doc/dcmtk-3.7.1/wlmsetup.txt
   /usr/share/doc/dcmtk/ANNOUNCE
   /usr/share/doc/dcmtk/CHANGES
   /usr/share/doc/dcmtk/COPYRIGHT
@@ -301,7 +299,6 @@ Files included in the binary package:
   /usr/share/doc/dcmtk/FAQ
   /usr/share/doc/dcmtk/HISTORY
   /usr/share/doc/dcmtk/README
-  /usr/share/doc/dcmtk/README.md
   /usr/share/man/man1/cda2dcm.1.gz
   /usr/share/man/man1/dcm2cda.1.gz
   /usr/share/man/man1/dcm2img.1.gz
@@ -345,6 +342,7 @@ Files included in the binary package:
   /usr/share/man/man1/dcmscale.1.gz
   /usr/share/man/man1/dcmsend.1.gz
   /usr/share/man/man1/dcmsign.1.gz
+  /usr/share/man/man1/dcmtk.1.gz
   /usr/share/man/man1/dcod2lum.1.gz
   /usr/share/man/man1/dconvlum.1.gz
   /usr/share/man/man1/drtdump.1.gz
@@ -369,36 +367,36 @@ Files included in the binary package:
   /usr/share/man/man1/xml2dcm.1.gz
   /usr/share/man/man1/xml2dsr.1.gz
 
-(libdcmtk20)
-  /usr/bin/cygcmr-20.dll
-  /usr/bin/cygdcmdata-20.dll
-  /usr/bin/cygdcmdsig-20.dll
-  /usr/bin/cygdcmect-20.dll
-  /usr/bin/cygdcmfg-20.dll
-  /usr/bin/cygdcmimage-20.dll
-  /usr/bin/cygdcmimgle-20.dll
-  /usr/bin/cygdcmiod-20.dll
-  /usr/bin/cygdcmjpeg-20.dll
-  /usr/bin/cygdcmjpls-20.dll
-  /usr/bin/cygdcmnet-20.dll
-  /usr/bin/cygdcmpmap-20.dll
-  /usr/bin/cygdcmpstat-20.dll
-  /usr/bin/cygdcmqrdb-20.dll
-  /usr/bin/cygdcmrt-20.dll
-  /usr/bin/cygdcmseg-20.dll
-  /usr/bin/cygdcmsr-20.dll
-  /usr/bin/cygdcmtkcharls-20.dll
-  /usr/bin/cygdcmtls-20.dll
-  /usr/bin/cygdcmtract-20.dll
-  /usr/bin/cygdcmwlm-20.dll
-  /usr/bin/cygdcmxml-20.dll
-  /usr/bin/cygi2d-20.dll
-  /usr/bin/cygijg12-20.dll
-  /usr/bin/cygijg16-20.dll
-  /usr/bin/cygijg8-20.dll
-  /usr/bin/cygoficonv-20.dll
-  /usr/bin/cygoflog-20.dll
-  /usr/bin/cygofstd-20.dll
+(libdcmtk21)
+  /usr/bin/cygcmr-21.dll
+  /usr/bin/cygdcmdata-21.dll
+  /usr/bin/cygdcmdsig-21.dll
+  /usr/bin/cygdcmect-21.dll
+  /usr/bin/cygdcmfg-21.dll
+  /usr/bin/cygdcmimage-21.dll
+  /usr/bin/cygdcmimgle-21.dll
+  /usr/bin/cygdcmiod-21.dll
+  /usr/bin/cygdcmjpeg-21.dll
+  /usr/bin/cygdcmjpls-21.dll
+  /usr/bin/cygdcmnet-21.dll
+  /usr/bin/cygdcmpmap-21.dll
+  /usr/bin/cygdcmpstat-21.dll
+  /usr/bin/cygdcmqrdb-21.dll
+  /usr/bin/cygdcmrt-21.dll
+  /usr/bin/cygdcmseg-21.dll
+  /usr/bin/cygdcmsr-21.dll
+  /usr/bin/cygdcmtkcharls-21.dll
+  /usr/bin/cygdcmtls-21.dll
+  /usr/bin/cygdcmtract-21.dll
+  /usr/bin/cygdcmwlm-21.dll
+  /usr/bin/cygdcmxml-21.dll
+  /usr/bin/cygi2d-21.dll
+  /usr/bin/cygijg12-21.dll
+  /usr/bin/cygijg16-21.dll
+  /usr/bin/cygijg8-21.dll
+  /usr/bin/cygoficonv-21.dll
+  /usr/bin/cygoflog-21.dll
+  /usr/bin/cygofstd-21.dll
 
 (libdcmtk-devel)
   /usr/include/dcmtk/config/osconfig.h
@@ -1353,6 +1351,8 @@ Files included in the binary package:
   /usr/include/dcmtk/ofstd/diag/clangprg.def
   /usr/include/dcmtk/ofstd/diag/cnvrsn.def
   /usr/include/dcmtk/ofstd/diag/constexp.def
+  /usr/include/dcmtk/ofstd/diag/deprecat.def
+  /usr/include/dcmtk/ofstd/diag/formtrnc.def
   /usr/include/dcmtk/ofstd/diag/ignrattr.def
   /usr/include/dcmtk/ofstd/diag/memacces.def
   /usr/include/dcmtk/ofstd/diag/mmtag.def
@@ -1436,6 +1436,7 @@ Files included in the binary package:
   /usr/include/dcmtk/ofstd/ofuoset.h
   /usr/include/dcmtk/ofstd/ofutil.h
   /usr/include/dcmtk/ofstd/ofuuid.h
+  /usr/include/dcmtk/ofstd/ofuuidgn.h
   /usr/include/dcmtk/ofstd/ofvector.h
   /usr/include/dcmtk/ofstd/ofvriant.h
   /usr/include/dcmtk/ofstd/ofwhere.h
@@ -1447,7 +1448,7 @@ Files included in the binary package:
   /usr/include/dcmtk/ofstd/variadic/variant.h
   /usr/lib/cmake/dcmtk/DCMTKConfig.cmake
   /usr/lib/cmake/dcmtk/DCMTKConfigVersion.cmake
-  /usr/lib/cmake/dcmtk/DCMTKTargets-release.cmake
+  /usr/lib/cmake/dcmtk/DCMTKTargets-relwithdebinfo.cmake
   /usr/lib/cmake/dcmtk/DCMTKTargets.cmake
   /usr/lib/libcmr.dll.a
   /usr/lib/libdcmdata.dll.a
@@ -1483,6 +1484,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.7.1-1bl1 -----
+Version bump.
 
 ----- version 3.7.0-1bl1 -----
 Version bump.

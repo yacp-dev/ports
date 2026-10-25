@@ -9,13 +9,12 @@ converting DICOM image files, handling offline media, sending and receiving
 images over a network connection, as well as demonstrative image storage and
 worklist servers."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND BSD-2-Clause AND BSD-4-Clause AND BSD-4.3TAHOE AND Apache-2.0 AND IJG AND ISC AND MIT AND (MIT OR WTFPL)"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause AND BSD-4-Clause AND BSD-4.3TAHOE AND Apache-2.0 AND IJG AND ISC AND MIT AND (MIT OR WTFPL)"
 LICENSE_URI="COPYRIGHT"
 
 BUILD_REQUIRES="
 	libiconv-devel
-	libicu-devel
 	libintl-devel
 	libopenjp2-devel
 	libpng-devel
@@ -24,6 +23,7 @@ BUILD_REQUIRES="
 	libtiff-devel
 	libwrap-devel
 	libxml2-devel
+	openjpeg2
 	zlib-devel
 "
 
@@ -33,7 +33,6 @@ CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS=YES
 	-DDCMTK_CXX11_FLAGS=-std=gnu++11
 	-DDCMTK_WITH_ICONV:BOOL=ON
-	-DDCMTK_WITH_ICU:BOOL=ON
 	-DDCMTK_WITH_OPENJPEG:BOOL=ON
 	-DDCMTK_WITH_OPENSSL:BOOL=ON
 	-DDCMTK_WITH_SNDFILE:BOOL=ON
@@ -55,7 +54,7 @@ src_install()
 
 PKG_NAMES="
 	dcmtk
-	libdcmtk20
+	libdcmtk21
 	libdcmtk-devel
 "
 dcmtk_CONTENTS="
@@ -63,13 +62,13 @@ dcmtk_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libdcmtk20_CONTENTS="
-	usr/bin/cyg*-20.dll
+libdcmtk21_CONTENTS="
+	usr/bin/cyg*-21.dll
 "
 libdcmtk_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 dcmtk_SUMMARY="${SUMMARY} (utilities)"
-libdcmtk20_SUMMARY="${SUMMARY} (runtime)"
+libdcmtk21_SUMMARY="${SUMMARY} (runtime)"
 libdcmtk_devel_SUMMARY="${SUMMARY} (development)"

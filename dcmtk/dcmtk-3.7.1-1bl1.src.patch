@@ -1,5 +1,5 @@
---- origsrc/dcmtk-3.7.0/CMake/dcmtk.pc.in	2025-12-15 16:28:13.000000000 +0900
-+++ src/dcmtk-3.7.0/CMake/dcmtk.pc.in	2026-01-03 23:23:13.035364200 +0900
+--- origsrc/dcmtk-3.7.1/CMake/dcmtk.pc.in	2026-10-15 09:24:29.000000000 +0000
++++ src/dcmtk-3.7.1/CMake/dcmtk.pc.in	2026-10-25 04:35:50.797476200 +0000
 @@ -1,7 +1,7 @@
 -prefix="@CMAKE_INSTALL_PREFIX@"
 -exec_prefix="${prefix}"

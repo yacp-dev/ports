@@ -1,6 +1,6 @@
---- origsrc/box2d-3.1.1/CMakeLists.txt	2025-06-04 09:50:24.000000000 +0900
-+++ src/box2d-3.1.1/CMakeLists.txt	2025-12-31 23:11:44.930130300 +0900
-@@ -135,3 +135,10 @@ endif()
+--- origsrc/box2d-3.2.0/CMakeLists.txt	2026-10-19 02:27:55.000000000 +0000
++++ src/box2d-3.2.0/CMakeLists.txt	2026-10-25 01:20:07.763630200 +0000
+@@ -159,3 +159,10 @@ endif()
  # # Building on clang in windows
  # cmake -S .. -B . -G "Visual Studio 17 2022" -A x64 -T ClangCL
  # https://clang.llvm.org/docs/UsersManual.html#clang-cl
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/box2d.pc.in ${CMAKE_BINARY_DIR}/box2d.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/box2d.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/box2d-3.1.1/box2d.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/box2d-3.1.1/box2d.pc.in	2025-12-31 23:12:02.518244100 +0900
+--- origsrc/box2d-3.2.0/box2d.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/box2d-3.2.0/box2d.pc.in	2026-10-25 01:20:07.765650200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,9 +24,9 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lbox2d
 +Cflags: -I${includedir}
---- origsrc/box2d-3.1.1/src/core.h	2025-06-04 09:50:24.000000000 +0900
-+++ src/box2d-3.1.1/src/core.h	2025-12-31 23:00:57.604234700 +0900
-@@ -29,7 +29,7 @@
+--- origsrc/box2d-3.2.0/src/core.h	2026-10-19 02:27:55.000000000 +0000
++++ src/box2d-3.2.0/src/core.h	2026-10-25 01:20:07.765650200 +0000
+@@ -21,7 +21,7 @@
  	#define B2_PLATFORM_WINDOWS
  #elif defined( __ANDROID__ )
  	#define B2_PLATFORM_ANDROID

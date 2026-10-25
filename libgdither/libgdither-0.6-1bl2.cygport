@@ -1,5 +1,8 @@
 HOMEPAGE="https://web.archive.org/web/20230819182328/http://plugin.org.uk/${PN}/README"
-SRC_URI="https://web.archive.org/web/20231011003149/http://plugin.org.uk/${PN}/${P}.tar.gz"
+SRC_URI="
+	https://web.archive.org/web/20231011003149/http://plugin.org.uk/${PN}/${P}.tar.gz
+	CMakeLists.txt
+"
 PATCH_URI="
 	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-default.patch
 	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-gavl.patch
@@ -13,6 +16,10 @@ DESCRIPTION="${SUMMARY}"
 LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libfftw3-devel
+"
 
 inherit cmake
 

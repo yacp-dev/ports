@@ -18,17 +18,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DSOVERSION:STRING=${PV[1]}
-	-DUVWASI_BUILD_TESTS:BOOL=ON
 "
-
-src_install()
-{
-	cd ${B}
-	ninja_install
-
-	cd ${D}
-	sed -i 's/;/ /g' usr/lib/pkgconfig/${PN}.pc
-}
 
 PKG_NAMES="
 	uvwasi

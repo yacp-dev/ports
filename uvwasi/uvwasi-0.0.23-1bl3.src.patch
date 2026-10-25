@@ -1,5 +1,5 @@
 --- origsrc/uvwasi-0.0.23/CMakeLists.txt	2025-09-03 19:56:15.000000000 +0000
-+++ src/uvwasi-0.0.23/CMakeLists.txt	2026-10-25 10:38:36.717514800 +0000
++++ src/uvwasi-0.0.23/CMakeLists.txt	2026-10-25 12:43:37.965154200 +0000
 @@ -99,18 +99,6 @@ if(ASAN AND CMAKE_C_COMPILER_ID MATCHES
      set (CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address")
  endif()
@@ -48,12 +48,20 @@
          RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
          ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 --- origsrc/uvwasi-0.0.23/cmake/uvwasi.pc.in	2025-09-03 19:56:15.000000000 +0000
-+++ src/uvwasi-0.0.23/cmake/uvwasi.pc.in	2026-10-25 10:38:36.719528900 +0000
-@@ -9,6 +9,6 @@ Name: @PROJECT_NAME@
++++ src/uvwasi-0.0.23/cmake/uvwasi.pc.in	2026-10-25 12:43:37.967181200 +0000
+@@ -3,12 +3,11 @@ exec_prefix=${prefix}
+ libdir=@CMAKE_INSTALL_FULL_LIBDIR@
+ includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
+ bindir=@CMAKE_INSTALL_FULL_BINDIR@
+-libuv_includedir=@LIBUV_INCLUDE_DIR@
+ 
+ Name: @PROJECT_NAME@
  Description: @PROJECT_DESCRIPTION@
  Version: @PROJECT_VERSION@
  
 -Libs: -L${libdir}
+-Libs.private: -l@LIBUV_LIBRARIES@
+-Cflags: -I${includedir} -I${libuv_includedir} @uvwasi_cflags@
++Requires.private: libuv
 +Libs: -L${libdir} -luvwasi
- Libs.private: -l@LIBUV_LIBRARIES@
- Cflags: -I${includedir} -I${libuv_includedir} @uvwasi_cflags@
++Cflags: -I${includedir}

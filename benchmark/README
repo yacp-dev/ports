@@ -3,45 +3,44 @@ benchmark
 A library to support the benchmarking of functions, similar to unit-tests.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libbenchmark-devel-1.9.5-1bl2
-  libbenchmark1-1.9.5-1bl2
+  cygwin-3.6.11-1
+  libbenchmark-devel-1.10.0-1bl1
+  libbenchmark1-1.10.0-1bl1
   libgcc1-14.4.0-1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.5-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-14.4.0-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
   gcc-g++-14.4.0-1
   libgmock-devel-1.18.0-1bl1
   libgtest-devel-1.18.0-1bl1
   ninja-1.13.2-1
-  python39-3.9.16-1
+  python3-3.12.12-1
 
 Canonical website:
   https://github.com/google/benchmark
 
 Canonical download:
-  https://github.com/google/benchmark/archive/refs/tags/v1.9.5.tar.gz
+  https://github.com/google/benchmark/archive/refs/tags/v1.10.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack benchmark-1.9.5-X-src.tar.xz
+  1. unpack benchmark-1.10.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./benchmark-1.9.5-X.cygport all
+        % cygport ./benchmark-1.10.0-X.cygport all
 
 This will create:
-  /usr/src/benchmark-1.9.5-X-src.tar.xz
-  /usr/src/benchmark-1.9.5-X.tar.xz
-  /usr/src/libbenchmark1-1.9.5-X.tar.xz
-  /usr/src/libbenchmark-devel-1.9.5-X.tar.xz
+  /usr/src/benchmark-1.10.0-X-src.tar.xz
+  /usr/src/benchmark-1.10.0-X.tar.xz
+  /usr/src/libbenchmark1-1.10.0-X.tar.xz
+  /usr/src/libbenchmark-devel-1.10.0-X.tar.xz
 
 -------------------------------------------
 
@@ -50,42 +49,17 @@ Files included in the binary package:
 (benchmark)
   /usr/share/doc/Cygwin/benchmark.README
   /usr/share/doc/benchmark/AUTHORS
-  /usr/share/doc/benchmark/AssemblyTests.md
-  /usr/share/doc/benchmark/CONTRIBUTING.md
   /usr/share/doc/benchmark/CONTRIBUTORS
   /usr/share/doc/benchmark/LICENSE
   /usr/share/doc/benchmark/README.md
-  /usr/share/doc/benchmark/_config.yml
-  /usr/share/doc/benchmark/assets/images/icon.png
-  /usr/share/doc/benchmark/assets/images/icon.xcf
-  /usr/share/doc/benchmark/assets/images/icon_black.png
-  /usr/share/doc/benchmark/assets/images/icon_black.xcf
-  /usr/share/doc/benchmark/dependencies.md
-  /usr/share/doc/benchmark/index.md
-  /usr/share/doc/benchmark/perf_counters.md
-  /usr/share/doc/benchmark/platform_specific_build_instructions.md
-  /usr/share/doc/benchmark/python_bindings.md
   /usr/share/doc/benchmark/random_interleaving.md
   /usr/share/doc/benchmark/reducing_variance.md
-  /usr/share/doc/benchmark/releasing.md
   /usr/share/doc/benchmark/tools.md
   /usr/share/doc/benchmark/user_guide.md
-  /usr/share/googlebenchmark/tools/BUILD.bazel
   /usr/share/googlebenchmark/tools/compare.py
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test1_run1.json
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test1_run2.json
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test2_run.json
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test3_run0.json
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test3_run1.json
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test4_run.json
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test4_run0.json
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test4_run1.json
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test5_run0.json
-  /usr/share/googlebenchmark/tools/gbench/Inputs/test5_run1.json
   /usr/share/googlebenchmark/tools/gbench/__init__.py
   /usr/share/googlebenchmark/tools/gbench/report.py
   /usr/share/googlebenchmark/tools/gbench/util.py
-  /usr/share/googlebenchmark/tools/libpfm.BUILD.bazel
   /usr/share/googlebenchmark/tools/requirements.txt
   /usr/share/googlebenchmark/tools/strip_asm.py
 
@@ -95,7 +69,18 @@ Files included in the binary package:
 
 (libbenchmark-devel)
   /usr/include/benchmark/benchmark.h
+  /usr/include/benchmark/benchmark_api.h
+  /usr/include/benchmark/counter.h
   /usr/include/benchmark/export.h
+  /usr/include/benchmark/macros.h
+  /usr/include/benchmark/managers.h
+  /usr/include/benchmark/registration.h
+  /usr/include/benchmark/reporter.h
+  /usr/include/benchmark/state.h
+  /usr/include/benchmark/statistics.h
+  /usr/include/benchmark/sysinfo.h
+  /usr/include/benchmark/types.h
+  /usr/include/benchmark/utils.h
   /usr/lib/cmake/benchmark/benchmarkConfig.cmake
   /usr/lib/cmake/benchmark/benchmarkConfigVersion.cmake
   /usr/lib/cmake/benchmark/benchmarkTargets-relwithdebinfo.cmake
@@ -108,6 +93,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.10.0-1bl1 -----
+Version bump.
 
 ----- version 1.9.5-1bl2 -----
 Rebuild with gcc-14.4.0-1

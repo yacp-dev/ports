@@ -1,0 +1,31 @@
+--- origsrc/benchmark-1.10.0/CMakeLists.txt	2026-10-14 10:08:42.000000000 +0000
++++ src/benchmark-1.10.0/CMakeLists.txt	2026-10-25 00:49:20.077060000 +0000
+@@ -100,6 +100,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_C
+ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+ 
+ 
++if (EXISTS ${PROJECT_SOURCE_DIR}/.git)
+ # Read the git tags to determine the project version
+ include(GetGitVersion)
+ get_git_version(GIT_VERSION)
+@@ -111,6 +112,9 @@ if ("${GIT_VERSION}" STREQUAL "v0.0.0")
+ else()
+   set(VERSION "${GIT_VERSION}")
+ endif()
++else()
++  set(VERSION "${PROJECT_VERSION}")
++endif()
+ 
+ # Normalize version: drop "v" prefix, replace first "-" with ".",
+ # drop everything after second "-" (including said "-").
+--- origsrc/benchmark-1.10.0/src/CMakeLists.txt	2026-10-14 10:08:42.000000000 +0000
++++ src/benchmark-1.10.0/src/CMakeLists.txt	2026-10-25 00:49:20.079075000 +0000
+@@ -223,5 +223,7 @@ set(CMAKE_INSTALL_PYTOOLSDIR "${CMAKE_IN
+ if (BENCHMARK_ENABLE_INSTALL AND BENCHMARK_INSTALL_TOOLS)
+   install(
+     DIRECTORY "${PROJECT_SOURCE_DIR}/tools/"
+-    DESTINATION ${CMAKE_INSTALL_PYTOOLSDIR})
++    DESTINATION ${CMAKE_INSTALL_PYTOOLSDIR}
++    PATTERN "Inputs" EXCLUDE
++    PATTERN "*.bazel" EXCLUDE)
+ endif()

@@ -10,7 +10,11 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="help2man libssl-devel"
+BUILD_REQUIRES="
+	gengetopt
+	help2man
+	libssl-devel
+"
 
 MAKEOPTS="-j1"
 

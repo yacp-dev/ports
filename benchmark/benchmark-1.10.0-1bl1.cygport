@@ -18,14 +18,18 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBENCHMARK_ENABLE_WERROR:BOOL=OFF
+	-DBENCHMARK_INSTALL_DOCS:BOOL=OFF
 	-DBENCHMARK_USE_BUNDLED_GTEST:BOOL=OFF
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DVERSION:STRING=${PV}
 "
 
 DOCS="
-	*.md
-	docs/*.md
+	README.md
+	docs/random_interleaving.md
+	docs/reducing_variance.md
+	docs/tools.md
+	docs/user_guide.md
 "
 
 src_test()

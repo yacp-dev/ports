@@ -13,7 +13,21 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libfontconfig-devel libfreetype-devel libiconv-devel libjpeg-devel libpng-devel libtiff-devel libwebp-devel libX11-devel libXcursor-devel libXext-devel libXi-devel zlib-devel"
+BUILD_REQUIRES="
+	libfontconfig-devel
+	libfreetype-devel
+	libiconv-devel
+	libjpeg-devel
+	libpng-devel
+	libtiff-devel
+	libwebp-devel
+	libX11-devel
+	libXcursor-devel
+	libXext-devel
+	libXi-devel
+	ninja
+	zlib-devel
+"
 
 src_compile()
 {

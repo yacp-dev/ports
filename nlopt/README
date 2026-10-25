@@ -1,57 +1,59 @@
 nlopt
 ------------------------------------------
 NLopt is a free/open-source library for nonlinear optimization, providing a
-common interface for a number of different free optimization routines
-available online as well as original implementations of various other
-algorithms.
+common interface for a number of different free optimization routines available
+online as well as original implementations of various other algorithms.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
   libguile3.0_1-3.0.11-1
-  libnlopt-devel-2.10.0-1bl1
-  libnlopt1-2.10.0-1bl1
-  libstdc++6-13.4.0-1
+  libnlopt-devel-2.11.0-1bl1
+  libnlopt1-2.11.0-1bl1
+  libstdc++6-14.4.0-1
   octave-9.4.0-1
-  pkg-config-2.5.1-1
-  python39-3.9.16-1
+  pkg-config-3.0.9-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libgmp-devel-6.3.0-1
   libguile3.0-devel-3.0.11-1
   ninja-1.13.2-1
   octave-devel-9.4.0-1
-  python39-3.9.16-1
-  python39-devel-3.9.16-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  python312-numpy-2.5.4-1
+  swig-4.5.1-1
 
 Canonical website:
   https://github.com/stevengj/nlopt
 
 Canonical download:
-  https://github.com/stevengj/nlopt/archive/refs/tags/v2.10.0.tar.gz
+  https://github.com/stevengj/nlopt/archive/refs/tags/v2.11.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack nlopt-2.10.0-X-src.tar.xz
+  1. unpack nlopt-2.11.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./nlopt-2.10.0-X.cygport all
+        % cygport ./nlopt-2.11.0-X.cygport all
 
 This will create:
-  /usr/src/nlopt-2.10.0-X-src.tar.xz
-  /usr/src/nlopt-2.10.0-X.tar.xz
-  /usr/src/libnlopt1-2.10.0-X.tar.xz
-  /usr/src/libnlopt-devel-2.10.0-X.tar.xz
-  /usr/src/guile-nlopt-2.10.0-X.tar.xz
-  /usr/src/octave-nlopt-2.10.0-X.tar.xz
-  /usr/src/python39-nlopt-2.10.0-X.tar.xz
+  /usr/src/nlopt-2.11.0-X-src.tar.xz
+  /usr/src/nlopt-2.11.0-X.tar.xz
+  /usr/src/libnlopt1-2.11.0-X.tar.xz
+  /usr/src/libnlopt-devel-2.11.0-X.tar.xz
+  /usr/src/guile-nlopt-2.11.0-X.tar.xz
+  /usr/src/octave-nlopt-2.11.0-X.tar.xz
+  /usr/src/python312-nlopt-2.11.0-X.tar.xz
 
 -------------------------------------------
 
@@ -76,7 +78,7 @@ Files included in the binary package:
   /usr/include/nlopt.hpp
   /usr/lib/cmake/nlopt/NLoptConfig.cmake
   /usr/lib/cmake/nlopt/NLoptConfigVersion.cmake
-  /usr/lib/cmake/nlopt/NLoptLibraryDepends-release.cmake
+  /usr/lib/cmake/nlopt/NLoptLibraryDepends-relwithdebinfo.cmake
   /usr/lib/cmake/nlopt/NLoptLibraryDepends.cmake
   /usr/lib/libnlopt.dll.a
   /usr/lib/pkgconfig/nlopt.pc
@@ -136,17 +138,20 @@ Files included in the binary package:
   /usr/share/octave/9.4.0/site/m/nlopt_minimize.m
   /usr/share/octave/9.4.0/site/m/nlopt_minimize_constrained.m
 
-(python39-nlopt)
-  /usr/lib/python3.9/site-packages/__pycache__/nlopt.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/nlopt.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/nlopt.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/_nlopt.dll
-  /usr/lib/python3.9/site-packages/nlopt-2.10.0.dist-info/METADATA
-  /usr/lib/python3.9/site-packages/nlopt.py
+(python312-nlopt)
+  /usr/lib/python3.12/site-packages/__pycache__/nlopt.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/nlopt.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/nlopt.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/_nlopt.dll
+  /usr/lib/python3.12/site-packages/nlopt-2.11.0.dist-info/METADATA
+  /usr/lib/python3.12/site-packages/nlopt.py
 
 ------------------
 
 Port Notes:
+
+----- version 2.11.0-1bl1 -----
+Version bump.
 
 ----- version 2.10.0-1bl1 -----
 Version bump.

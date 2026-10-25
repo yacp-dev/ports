@@ -8,14 +8,18 @@ common interface for a number of different free optimization routines
 available online as well as original implementations of various other
 algorithms."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND MIT AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND MIT AND BSD-3-Clause"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gcc-fortran
+	libgmp-devel
 	libguile3.0-devel
 	octave-devel
-	python39-devel
+	python3-devel
+	python312-numpy
+	swig
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
@@ -39,7 +43,7 @@ PKG_NAMES="
 	lib${PN}-devel
 	guile-${PN}
 	octave-${PN}
-	python39-${PN}
+	python312-${PN}
 "
 nlopt_CONTENTS="
 	usr/share/doc
@@ -62,12 +66,12 @@ octave_nlopt_CONTENTS="
 	usr/lib/octave/*/site/oct/*/nlopt_optimize.oct
 	usr/share/octave
 "
-python39_nlopt_CONTENTS="
-	usr/lib/python3.9
+python312_nlopt_CONTENTS="
+	usr/lib/python3.12
 "
 nlopt_SUMMARY="${SUMMARY} (licensing & readmes)"
 libnlopt1_SUMMARY="${SUMMARY} (runtime)"
 libnlopt_devel_SUMMARY="${SUMMARY} (development)"
 guile_nlopt_SUMMARY="${SUMMARY} (guile bindings)"
 octave_nlopt_SUMMARY="${SUMMARY} (octave bindings)"
-python39_nlopt_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_nlopt_SUMMARY="${SUMMARY} (python312 bindings)"

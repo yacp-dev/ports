@@ -1,6 +1,15 @@
---- origsrc/nlopt-2.10.0/CMakeLists.txt	2025-02-05 03:29:30.000000000 +0900
-+++ src/nlopt-2.10.0/CMakeLists.txt	2026-01-26 15:52:45.930343400 +0900
-@@ -343,8 +343,16 @@ else ()
+--- origsrc/nlopt-2.11.0/CMakeLists.txt	2026-06-05 18:42:06.000000000 +0000
++++ src/nlopt-2.11.0/CMakeLists.txt	2026-10-25 00:47:00.671557600 +0000
+@@ -190,7 +190,7 @@ set_property(SOURCE src/algs/bobyqa/boby
+ 
+ # workaround for false positive in newuoa
+ if (CMAKE_C_COMPILER_ID MATCHES "GNU" AND CMAKE_C_COMPILER_VERSION VERSION_GREATER_EQUAL 12)
+-  set_source_files_properties(src/algs/newuoa/newuoa.c PROPERTIES COMPILE_FLAGS -U_FORTIFY_SOURCE)
++  set_source_files_properties(src/algs/newuoa/newuoa.c PROPERTIES COMPILE_FLAGS -Wp,-U_FORTIFY_SOURCE)
+ endif ()
+ 
+ if (NLOPT_CXX)
+@@ -315,8 +315,17 @@ else ()
    set (INSTALL_PYTHON_DIR ${NLOPT_INSTALL_LIBDIR}/python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}/site-packages CACHE STRING "site packages dir")
  endif ()
  
@@ -12,15 +21,16 @@
 +  pkg_get_variable(GUILE_ROOT_DIR guile-3.0 prefix)
 +  pkg_get_variable(GUILE_SITE_DIR guile-3.0 sitedir)
 +  pkg_get_variable(GUILE_EXTENSION_DIR guile-3.0 extensiondir)
++  find_program(GUILE_EXECUTABLE NAMES guile-3.0 guile)
 +  if (NOT GUILE_FOUND)
 +    find_package (Guile)
 +  endif()
  endif ()
  
  if (NLOPT_JAVA)
---- origsrc/nlopt-2.10.0/src/octave/CMakeLists.txt	2025-02-05 03:29:30.000000000 +0900
-+++ src/nlopt-2.10.0/src/octave/CMakeLists.txt	2026-01-26 15:43:39.604872700 +0900
-@@ -45,7 +45,7 @@ if (OCTAVE_FOUND)
+--- origsrc/nlopt-2.11.0/src/octave/CMakeLists.txt	2026-06-05 18:42:06.000000000 +0000
++++ src/nlopt-2.11.0/src/octave/CMakeLists.txt	2026-10-25 00:47:00.672987600 +0000
+@@ -42,7 +42,7 @@ if (OCTAVE_FOUND)
    if (NOT DEFINED INSTALL_OCT_DIR)
      file (RELATIVE_PATH INSTALL_OCT_DIR ${OCTAVE_ROOT_DIR} ${OCTAVE_OCT_SITE_DIR})
    endif ()

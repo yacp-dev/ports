@@ -7,40 +7,40 @@ tuples). The language also supports bridging to native code written in C,
 meta-programming with macros, and bytecode assembly.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libgcc1-13.4.0-1
-  libjanet-devel-1.41.2-1bl1
-  libjanet1.41-1.41.2-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libjanet-devel-1.42.1-1bl1
+  libjanet1.42-1.42.1-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  meson-1.6.1-1
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/janet-lang/janet
 
 Canonical download:
-  https://github.com/janet-lang/janet/archive/refs/tags/v1.41.2.tar.gz
+  https://github.com/janet-lang/janet/archive/refs/tags/v1.42.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack janet-1.41.2-X-src.tar.xz
+  1. unpack janet-1.42.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./janet-1.41.2-X.cygport all
+        % cygport ./janet-1.42.1-X.cygport all
 
 This will create:
-  /usr/src/janet-1.41.2-X-src.tar.xz
-  /usr/src/janet-1.41.2-X.tar.xz
-  /usr/src/libjanet1.41-1.41.2-X.tar.xz
-  /usr/src/libjanet-devel-1.41.2-X.tar.xz
+  /usr/src/janet-1.42.1-X-src.tar.xz
+  /usr/src/janet-1.42.1-X.tar.xz
+  /usr/src/libjanet1.42-1.42.1-X.tar.xz
+  /usr/src/libjanet-devel-1.42.1-X.tar.xz
 
 -------------------------------------------
 
@@ -59,13 +59,13 @@ Files included in the binary package:
   /usr/share/doc/janet/assets/janet-w200.png
   /usr/share/man/man1/janet.1.gz
 
-(libjanet1.41)
-  /usr/bin/cygjanet-1.41.dll
+(libjanet1.42)
+  /usr/bin/cygjanet-1.42.dll
 
 (libjanet-devel)
   /usr/include/janet.h
   /usr/include/janet/janet.h
-  /usr/include/janet/janet_1.41.2.h
+  /usr/include/janet/janet_1.42.1.h
   /usr/lib/janet/.keep
   /usr/lib/libjanet.dll.a
   /usr/lib/pkgconfig/janet.pc
@@ -73,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.42.1-1bl1 -----
+Version bump.
 
 ----- version 1.41.2-1bl1 -----
 Version bump.

@@ -1,53 +1,52 @@
 libconfig
 ------------------------------------------
-Libconfig is a simple library for manipulating structured configuration
-files. This file format is more compact and more readable than XML. And
-unlike XML, it is type-aware, so it is not necessary to do string parsing
-in application code.
+Libconfig is a simple library for manipulating structured configuration files.
+This file format is more compact and more readable than XML. And unlike XML, it
+is type-aware, so it is not necessary to do string parsing in application code.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libconfig++-devel-1.8.2-1bl1
-  libconfig++15-1.8.2-1bl1
-  libconfig-devel-1.8.2-1bl1
-  libconfig15-1.8.2-1bl1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libconfig++-devel-1.8.3-1bl1
+  libconfig++15-1.8.3-1bl1
+  libconfig-devel-1.8.3-1bl1
+  libconfig15-1.8.3-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/hyperrealm/libconfig/
 
 Canonical download:
-  https://github.com/hyperrealm/libconfig/archive/refs/tags/v1.8.2.tar.gz
+  https://github.com/hyperrealm/libconfig/archive/refs/tags/v1.8.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libconfig-1.8.2-X-src.tar.xz
+  1. unpack libconfig-1.8.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libconfig-1.8.2-X.cygport all
+        % cygport ./libconfig-1.8.3-X.cygport all
 
 This will create:
-  /usr/src/libconfig-1.8.2-X-src.tar.xz
-  /usr/src/libconfig-1.8.2-X.tar.xz
-  /usr/src/libconfig15-1.8.2-X.tar.xz
-  /usr/src/libconfig-devel-1.8.2-X.tar.xz
-  /usr/src/libconfig++15-1.8.2-X.tar.xz
-  /usr/src/libconfig++-devel-1.8.2-X.tar.xz
+  /usr/src/libconfig-1.8.3-X-src.tar.xz
+  /usr/src/libconfig-1.8.3-X.tar.xz
+  /usr/src/libconfig15-1.8.3-X.tar.xz
+  /usr/src/libconfig-devel-1.8.3-X.tar.xz
+  /usr/src/libconfig++15-1.8.3-X.tar.xz
+  /usr/src/libconfig++-devel-1.8.3-X.tar.xz
 
 -------------------------------------------
 
@@ -86,6 +85,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.8.3-1bl1 -----
+Version bump.
 
 ----- version 1.8.2-1bl1 -----
 Version bump.

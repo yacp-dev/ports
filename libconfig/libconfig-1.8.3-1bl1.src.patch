@@ -1,5 +1,5 @@
---- origsrc/libconfig-1.8.2/configure.ac	2025-12-15 02:14:59.000000000 +0900
-+++ src/libconfig-1.8.2/configure.ac	2026-01-16 13:56:32.769995100 +0900
+--- origsrc/libconfig-1.8.3/configure.ac	2026-10-22 02:04:18.000000000 +0000
++++ src/libconfig-1.8.3/configure.ac	2026-10-25 13:32:01.990675000 +0000
 @@ -146,7 +146,7 @@ AM_CONDITIONAL(BUILDTESTS, test x$dotest
  dnl Check for MinGW. Workaround for libtool's DLL_EXPORT stupidity.
  

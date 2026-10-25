@@ -1,0 +1,76 @@
+--- origsrc/OpenSC-0.27.1/configure.ac	2026-03-31 11:22:04.000000000 +0000
++++ src/OpenSC-0.27.1/configure.ac	2026-10-25 10:42:25.242528100 +0000
+@@ -970,11 +970,16 @@ AC_SUBST(DYN_LIB_EXT)
+ AC_SUBST(LIBDIR)
+ AC_SUBST(LIB_PRE)
+ case "${host}" in
+-	*-mingw*|*-winnt*|*-cygwin*)
++	*-mingw*|*-winnt*)
+ 		DYN_LIB_EXT=".dll"
+ 		LIBDIR=""
+ 		LIB_PRE=""
+ 		;;
++	*-cygwin*)
++		DYN_LIB_EXT=".dll"
++		LIBDIR="\$(libdir)/"
++		LIB_PRE="cyg"
++		;;
+ 	*)
+ 		DYN_LIB_EXT=".so"
+ 		LIBDIR="\$(libdir)/"
+@@ -987,7 +992,7 @@ if test "${enable_sm}" = "yes"; then
+ 
+ 	DEFAULT_SM_MODULE="${LIB_PRE}smm-local${DYN_LIB_EXT}"
+ 	case "${host}" in
+-		*-mingw*|*-winnt*|*-cygwin*)
++		*-mingw*|*-winnt*)
+ 			DEFAULT_SM_MODULE_PATH="%PROGRAMFILES%\\\OpenSC Project\\\OpenSC\\\tools"
+ 		;;
+ 		*)
+--- origsrc/OpenSC-0.27.1/src/libopensc/Makefile.am	2026-03-31 11:22:04.000000000 +0000
++++ src/OpenSC-0.27.1/src/libopensc/Makefile.am	2026-10-25 10:42:25.242528100 +0000
+@@ -5,7 +5,8 @@ MAINTAINERCLEANFILES = $(srcdir)/Makefil
+ EXTRA_DIST = Makefile.mak
+ 
+ lib_LTLIBRARIES = libopensc.la
+-noinst_HEADERS = cards.h ctbcs.h internal.h muscle.h muscle-filesystem.h \
++pkgincludedir = $(includedir)/libopensc
++pkginclude_HEADERS = cards.h ctbcs.h internal.h muscle.h muscle-filesystem.h \
+ 	internal-winscard.h pkcs15-syn.h pkcs15-emulator-filter.h \
+ 	opensc.h pkcs15.h gp.h \
+ 	cardctl.h asn1.h log.h simpletlv.h \
+--- origsrc/OpenSC-0.27.1/src/pkcs11/opensc-pkcs11.pc.in	2026-03-31 11:22:04.000000000 +0000
++++ src/OpenSC-0.27.1/src/pkcs11/opensc-pkcs11.pc.in	2026-10-25 10:42:25.244543000 +0000
+@@ -6,4 +6,4 @@ includedir=@includedir@
+ Name: OpenSC smartcard framework
+ Description: OpenSC PKCS#11 module
+ Version: @VERSION@
+-Libs: -L${libdir} -lopensc-pkcs11
++Libs: -L${libdir} -l@PACKAGE@
+--- origsrc/OpenSC-0.27.1/tests/init-softhsm.sh	2026-03-31 11:22:04.000000000 +0000
++++ src/OpenSC-0.27.1/tests/init-softhsm.sh	2026-10-25 10:42:25.244543000 +0000
+@@ -7,7 +7,8 @@ softhsm_paths="/usr/local/lib/softhsm/li
+ 	/usr/lib/softhsm/libsofthsm2.so \
+ 	/usr/lib64/pkcs11/libsofthsm2.so \
+ 	/usr/lib/i386-linux-gnu/softhsm/libsofthsm2.so \
+-	/usr/lib/x86_64-linux-gnu/softhsm/libsofthsm2.so"
++	/usr/lib/x86_64-linux-gnu/softhsm/libsofthsm2.so \
++	/usr/lib/softhsm/cygsofthsm2.dll"
+ 
+ for LIB in $softhsm_paths; do
+ 	echo "Testing $LIB"
+--- origsrc/OpenSC-0.27.1/tests/test-p11test.sh	2026-03-31 11:22:04.000000000 +0000
++++ src/OpenSC-0.27.1/tests/test-p11test.sh	2026-10-25 10:42:25.246558200 +0000
+@@ -66,7 +66,11 @@ echo "==================================
+ echo "Run p11test with PKCS11SPY"
+ echo "======================================================="
+ export PKCS11SPY="$P11LIB"
+-$VALGRIND "$BUILD_PATH/src/tests/p11test/p11test" -v -m "$BUILD_PATH/src/pkcs11/.libs/pkcs11-spy.so" -o $TOKENTYPE.json -p $PIN
++SPYLIB="$BUILD_PATH/src/pkcs11/.libs/pkcs11-spy.so"
++if [ "$(uname -o)" = "Cygwin" ]; then
++	SPYLIB="$BUILD_PATH/src/pkcs11/.libs/pkcs11-spy.dll"
++fi
++$VALGRIND "$BUILD_PATH/src/tests/p11test/p11test" -v -m "$SPYLIB" -o $TOKENTYPE.json -p $PIN
+ assert $? "Failed running tests"
+ 
+ echo "Comparing with $REF_FILE"

@@ -23,7 +23,7 @@ CYGCMAKE_ARGS="
 	-DENABLE_BCUNIT_TEST:BOOL=ON
 	-DSOVERSION:STRING=1
 "
-# SOVERSION : https://github.com/BelledonneCommunications/bcunit/blob/5.4.115/configure.in
+# SOVERSION : https://github.com/BelledonneCommunications/bcunit/blob/5.4.126/configure.in
 
 src_test()
 {

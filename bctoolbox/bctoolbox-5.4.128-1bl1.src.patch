@@ -1,14 +1,5 @@
---- origsrc/bctoolbox-5.4.116/CMakeLists.txt	2026-03-26 17:56:41.000000000 +0900
-+++ src/bctoolbox-5.4.116/CMakeLists.txt	2026-05-26 08:25:49.032362900 +0900
-@@ -22,7 +22,7 @@
- 
- cmake_minimum_required(VERSION 3.22)
- 
--project(BCToolbox VERSION 5.4.0)
-+project(BCToolbox VERSION 5.4.116)
- 
- set(BCTOOLBOX_VERSION "${PROJECT_VERSION}")
- set(BCTOOLBOX_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+--- origsrc/bctoolbox-5.4.128/CMakeLists.txt	2026-10-25 02:44:06.267311900 +0000
++++ src/bctoolbox-5.4.128/CMakeLists.txt	2026-10-25 02:44:06.637973300 +0000
 @@ -64,7 +64,7 @@ if(NOT CPACK_GENERATOR AND NOT CMAKE_INS
  	message(STATUS "Setting install rpath to ${CMAKE_INSTALL_RPATH}")
  endif()
@@ -27,8 +18,8 @@
  configure_package_config_file("cmake/${PROJECT_NAME}Config.cmake.in" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
  	INSTALL_DESTINATION "${CMAKE_MODULES_INSTALL_DIR}"
  	PATH_VARS CMAKE_MODULES_INSTALL_DIR
---- origsrc/bctoolbox-5.4.116/src/CMakeLists.txt	2026-03-26 17:56:41.000000000 +0900
-+++ src/bctoolbox-5.4.116/src/CMakeLists.txt	2026-05-26 08:25:17.990007300 +0900
+--- origsrc/bctoolbox-5.4.128/src/CMakeLists.txt	2026-06-03 13:16:36.000000000 +0000
++++ src/bctoolbox-5.4.128/src/CMakeLists.txt	2026-10-25 02:44:06.639989400 +0000
 @@ -144,6 +144,10 @@ if(APPLE)
  	endif()
  endif()
@@ -40,8 +31,8 @@
  if(WIN32)
  	set_target_properties(bctoolbox PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
  	if(NOT CMAKE_SYSTEM_NAME STREQUAL "WindowsStore")
---- origsrc/bctoolbox-5.4.116/src/utils/port.c	2026-03-26 17:56:41.000000000 +0900
-+++ src/bctoolbox-5.4.116/src/utils/port.c	2026-05-26 08:25:17.996936700 +0900
+--- origsrc/bctoolbox-5.4.128/src/utils/port.c	2026-06-03 13:16:36.000000000 +0000
++++ src/bctoolbox-5.4.128/src/utils/port.c	2026-10-25 02:44:06.642004200 +0000
 @@ -361,7 +361,9 @@ void bctbx_set_self_thread_name(const ch
  	prctl(PR_SET_NAME, name, NULL, NULL, NULL);
  #elif TARGET_OS_MAC
@@ -53,3 +44,12 @@
  	bctbx_warning("bctbx_set_self_thread_name(): not implemented on this platform.");
  #endif
  }
+@@ -1318,7 +1320,7 @@ static struct addrinfo *convert_to_v4map
+ 	return res;
+ }
+ 
+-#if defined(__ANDROID__) || defined(_WIN32)
++#if defined(__ANDROID__) || defined(_WIN32) || defined(__CYGWIN__)
+ 
+ /*
+  * SHAME !!! bionic's getaddrinfo does not implement the AI_V4MAPPED flag !

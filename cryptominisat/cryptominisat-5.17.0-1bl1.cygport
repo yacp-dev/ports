@@ -1,0 +1,106 @@
+HOMEPAGE="https://www.msoos.org/${PN}5/"
+# meelgroup's cadical and cadiback as of the release/v${PV} tag (CMakeLists.txt
+# fetches their master/main with git); built static and linked in, as Arch does
+CADICAL_REV="818c9562f114b315a9246ced943b66b60b38e8fb"
+CADIBACK_REV="445ddc2f2b5e54421af64e0652c2eb8444175322"
+SRC_URI="
+	https://github.com/msoos/${PN}/archive/refs/tags/release/v${PV}.tar.gz
+	https://github.com/meelgroup/cadical/archive/${CADICAL_REV}.tar.gz
+	https://github.com/meelgroup/cadiback/archive/${CADIBACK_REV}.tar.gz
+"
+SRC_DIR="${PN}-release-v${PV}"
+
+CATEGORY="Math"
+SUMMARY="Advanced SAT solver"
+DESCRIPTION="CryptoMiniSat is a modern, multi-threaded, feature-rich, simplifying SAT
+solver."
+
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	libgmp-devel
+	pkg-config
+	zlib-devel
+"
+
+# CMAKE_CXX_EXTENSIONS is OFF, so -std=c++20 hides posix_memalign() from newlib's stdlib.h
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+inherit cmake
+
+src_compile()
+{
+	: ${CYGCMAKE_GENERATOR=Ninja}
+
+	mkdir -p ${B}/cadical
+	cd ${B}/cadical
+	CYGCMAKE_SOURCE=${srcdir}/cadical-${CADICAL_REV} cygcmake \
+		-DBUILD_SHARED_LIBS:BOOL=OFF \
+		-DCMAKE_INSTALL_PREFIX:PATH=${B}/deps
+	cygninja
+	DESTDIR= cmake --install . || error "cadical install failed"
+
+	mkdir -p ${B}/cadiback
+	cd ${B}/cadiback
+	CYGCMAKE_SOURCE=${srcdir}/cadiback-${CADIBACK_REV} cygcmake \
+		-DBUILD_SHARED_LIBS:BOOL=OFF \
+		-DCMAKE_INSTALL_PREFIX:PATH=${B}/deps \
+		-Dcadical_DIR:PATH=${B}/deps
+	cygninja
+	DESTDIR= cmake --install . || error "cadiback install failed"
+
+	cd ${B}
+	cygcmake \
+		-Dcadical_DIR:PATH=${B}/deps \
+		-Dcadiback_DIR:PATH=${B}/deps
+	cygninja
+}
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+	cd ${srcdir}/cadical-${CADICAL_REV}
+	docinto cadical
+	dodoc LICENSE
+	cd ${srcdir}/cadiback-${CADIBACK_REV}
+	docinto cadiback
+	dodoc LICENSE
+}
+
+# CMake Error at tests/CMakeLists.txt:34 (message):
+#   Could not find 'lit' tool.  You need to install it by e.g.  'pip install
+#   lit' or 'python -m pip install lit'.  If it's already installed, set
+#   LIT_TOOL to the full path for lit
+#
+# CYGCMAKE_ARGS="-DENABLE_TESTING:BOOL=ON"
+
+# -DNOM4RI:BOOL=OFF : /src/toplevelgauss.cpp:257:64: error: no matching function for call to ‘CMSat::Solver::propagate_occur<false>()’
+
+DOCS="
+	README.md
+"
+
+PKG_NAMES="
+	${PN}
+	lib${PN}5_${PV[1]}.${PV[2]}
+	lib${PN}5-devel
+"
+cryptominisat_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libcryptominisat5_5_17_CONTENTS="
+	usr/bin/cyg*-5.17.dll
+"
+libcryptominisat5_devel_CONTENTS="
+	usr/include
+	usr/lib/cmake
+	usr/lib/lib*.dll.a
+	usr/lib/pkgconfig
+"
+cryptominisat_SUMMARY="${SUMMARY} (utilities)"
+libcryptominisat5_5_17_SUMMARY="${SUMMARY} (runtime)"
+libcryptominisat5_devel_SUMMARY="${SUMMARY} (development)"

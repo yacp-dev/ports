@@ -4,45 +4,47 @@ CryptoMiniSat is a modern, multi-threaded, feature-rich, simplifying SAT
 solver.
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libcryptominisat5-devel-5.11.21-1bl1
-  libcryptominisat5_5.11-5.11.21-1bl1
-  libgcc1-11.4.0-1
-  libstdc++6-11.4.0-1
-  pkg-config-2.2.0-1
-  zlib0-1.3.1-1
+  cygwin-3.6.11-1
+  libcryptominisat5-devel-5.17.0-1bl1
+  libcryptominisat5_5.17-5.17.0-1bl1
+  libgcc1-14.4.0-1
+  libgmp10-6.3.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.42-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libboost-devel-1.66.0-1
-  ninja-1.12.0-1
-  zlib-devel-1.3.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libgmp-devel-6.3.0-1
+  ninja-1.13.2-1
+  pkg-config-3.0.9-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://www.msoos.org/cryptominisat5/
 
 Canonical download:
-  https://github.com/msoos/cryptominisat/archive/refs/tags/5.11.21.tar.gz
+  https://github.com/msoos/cryptominisat/archive/refs/tags/release/v5.17.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack cryptominisat-5.11.21-X-src.tar.xz
+  1. unpack cryptominisat-5.17.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./cryptominisat-5.11.21-X.cygport all
+        % cygport ./cryptominisat-5.17.0-X.cygport all
 
 This will create:
-  /usr/src/cryptominisat-5.11.21-X-src.tar.xz
-  /usr/src/cryptominisat-5.11.21-X.tar.xz
-  /usr/src/libcryptominisat5_5.11-5.11.21-X.tar.xz
-  /usr/src/libcryptominisat5-devel-5.11.21-X.tar.xz
+  /usr/src/cryptominisat-5.17.0-X-src.tar.xz
+  /usr/src/cryptominisat-5.17.0-X.tar.xz
+  /usr/src/libcryptominisat5_5.17-5.17.0-X.tar.xz
+  /usr/src/libcryptominisat5-devel-5.17.0-X.tar.xz
 
 -------------------------------------------
 
@@ -50,30 +52,40 @@ Files included in the binary package:
 
 (cryptominisat)
   /usr/bin/cryptominisat5.exe
+  /usr/bin/oracle.exe
   /usr/share/doc/Cygwin/cryptominisat.README
   /usr/share/doc/cryptominisat/AUTHORS
   /usr/share/doc/cryptominisat/LICENSE.txt
-  /usr/share/doc/cryptominisat/README.markdown
+  /usr/share/doc/cryptominisat/README.md
+  /usr/share/doc/cryptominisat/cadiback/LICENSE
+  /usr/share/doc/cryptominisat/cadical/LICENSE
 
-(libcryptominisat5_5.11)
-  /usr/bin/cygcryptominisat5-5.11.dll
+(libcryptominisat5_5.17)
+  /usr/bin/cygcryptominisat5-5.17.dll
+  /usr/bin/cygoracle-5.17.dll
 
 (libcryptominisat5-devel)
   /usr/include/cryptominisat5/cryptominisat.h
   /usr/include/cryptominisat5/cryptominisat_c.h
   /usr/include/cryptominisat5/dimacsparser.h
+  /usr/include/cryptominisat5/mpicosat.h
   /usr/include/cryptominisat5/solvertypesmini.h
   /usr/include/cryptominisat5/streambuffer.h
+  /usr/include/oracle/oracle.h
   /usr/lib/cmake/cryptominisat5/cryptominisat5Config.cmake
   /usr/lib/cmake/cryptominisat5/cryptominisat5ConfigVersion.cmake
-  /usr/lib/cmake/cryptominisat5/cryptominisat5Targets-release.cmake
+  /usr/lib/cmake/cryptominisat5/cryptominisat5Targets-relwithdebinfo.cmake
   /usr/lib/cmake/cryptominisat5/cryptominisat5Targets.cmake
   /usr/lib/libcryptominisat5.dll.a
+  /usr/lib/liboracle.dll.a
   /usr/lib/pkgconfig/cryptominisat.pc
 
 ------------------
 
 Port Notes:
+
+----- version 5.17.0-1bl1 -----
+Version bump.
 
 ----- version 5.11.21-1bl1 -----
 Version bump.

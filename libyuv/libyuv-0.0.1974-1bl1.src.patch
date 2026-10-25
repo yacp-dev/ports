@@ -1,6 +1,6 @@
---- origsrc/libyuv/CMakeLists.txt	2025-11-29 10:43:05.000000000 +0900
-+++ src/libyuv/CMakeLists.txt	2025-11-29 10:43:09.298891200 +0900
-@@ -13,7 +13,6 @@ set ( ly_src_dir	${ly_base_dir}/source )
+--- origsrc/libyuv/CMakeLists.txt	2026-10-25 10:55:27.000000000 +0000
++++ src/libyuv/CMakeLists.txt	2026-10-25 10:55:28.757886000 +0000
+@@ -14,7 +14,6 @@ set ( ly_src_dir	${ly_base_dir}/source )
  set ( ly_inc_dir	${ly_base_dir}/include )
  set ( ly_tst_dir	${ly_base_dir}/unit_test )
  set ( ly_lib_name	yuv )
@@ -8,7 +8,7 @@
  set ( ly_lib_shared	${ly_lib_name}_shared )
  
  # We cannot use GLOB here since we want to be able to separate out files that
-@@ -169,28 +168,31 @@ if(LOONGARCH64)
+@@ -212,28 +211,31 @@ if(LOONGARCH64)
    endif()
  endif()
  
@@ -44,19 +44,19 @@
  add_executable      ( yuvconstants ${ly_base_dir}/util/yuvconstants.c )
 -target_link_libraries  ( yuvconstants ${ly_lib_static} )
 +target_link_libraries  ( yuvconstants ${ly_lib_shared} )
- 
- find_package ( JPEG )
- if (JPEG_FOUND)
-@@ -220,7 +222,7 @@ if(UNIT_TEST)
+ if(NOT MSVC)
+   target_link_libraries  ( yuvconstants m )
+ endif()
+@@ -268,7 +270,7 @@ if(UNIT_TEST)
    endif()
  
    add_executable(libyuv_unittest ${ly_unittest_sources})
 -  target_link_libraries(libyuv_unittest ${ly_lib_name} ${GTEST_LIBRARY})
 +  target_link_libraries(libyuv_unittest ${ly_lib_shared} ${GTEST_LIBRARY})
-   find_library(PTHREAD_LIBRARY pthread)
-   if(NOT PTHREAD_LIBRARY STREQUAL "PTHREAD_LIBRARY-NOTFOUND")
-     target_link_libraries(libyuv_unittest pthread)
-@@ -243,10 +245,15 @@ endif()
+   if(NOT MSVC)
+     target_link_libraries(libyuv_unittest m)
+   endif()
+@@ -294,10 +296,15 @@ endif()
  
  # install the conversion tool, .so, .a, and all the header files
  install ( TARGETS yuvconvert DESTINATION bin )
@@ -74,8 +74,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libyuv.pc.in ${CMAKE_BINARY_DIR}/libyuv.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libyuv.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libyuv/libyuv.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libyuv/libyuv.pc.in	2025-11-29 10:43:09.300889300 +0900
+--- origsrc/libyuv/libyuv.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libyuv/libyuv.pc.in	2026-10-25 10:55:28.758886200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

@@ -4,42 +4,42 @@ A user-friendly, thread-safe, and object-oriented API for reading and writing
 JSON files, written in modern Fortran.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libgcc1-13.4.0-1
-  libgfortran5-13.4.0-1
-  libjsonfortran-devel-9.2.1-1bl1
-  libjsonfortran9.2-9.2.1-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libjsonfortran-devel-9.3.1-1bl1
+  libjsonfortran9.3-9.3.1-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-fortran-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/jacobwilliams/json-fortran
 
 Canonical download:
-  https://github.com/jacobwilliams/json-fortran/archive/refs/tags/9.2.1.tar.gz
+  https://github.com/jacobwilliams/json-fortran/archive/refs/tags/9.3.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack json-fortran-9.2.1-X-src.tar.xz
+  1. unpack json-fortran-9.3.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./json-fortran-9.2.1-X.cygport all
+        % cygport ./json-fortran-9.3.1-X.cygport all
 
 This will create:
-  /usr/src/json-fortran-9.2.1-X-src.tar.xz
-  /usr/src/json-fortran-9.2.1-X.tar.xz
-  /usr/src/libjsonfortran9.2-9.2.1-X.tar.xz
-  /usr/src/libjsonfortran-devel-9.2.1-X.tar.xz
+  /usr/src/json-fortran-9.3.1-X-src.tar.xz
+  /usr/src/json-fortran-9.3.1-X.tar.xz
+  /usr/src/libjsonfortran9.3-9.3.1-X.tar.xz
+  /usr/src/libjsonfortran-devel-9.3.1-X.tar.xz
 
 -------------------------------------------
 
@@ -50,15 +50,15 @@ Files included in the binary package:
   /usr/share/doc/json-fortran/CHANGELOG.md
   /usr/share/doc/json-fortran/LICENSE
   /usr/share/doc/json-fortran/README.md
-  /usr/share/doc/json-fortran/json-fortran.md
+  /usr/share/doc/json-fortran/ford.md
   /usr/share/doc/json-fortran/media/json-fortran-32x32.png
   /usr/share/doc/json-fortran/media/json-fortran-logo-2.png
   /usr/share/doc/json-fortran/media/json-fortran-logo-2.svg
   /usr/share/doc/json-fortran/media/json-fortran-logo-250px.png
   /usr/share/doc/json-fortran/media/json-fortran-logo.svg
 
-(libjsonfortran9.2)
-  /usr/bin/cygjsonfortran-9.2.dll
+(libjsonfortran9.3)
+  /usr/bin/cygjsonfortran-9.3.dll
 
 (libjsonfortran-devel)
   /usr/include/json-fortran/json_file_module.mod
@@ -69,7 +69,7 @@ Files included in the binary package:
   /usr/include/json-fortran/json_value_module.mod
   /usr/lib/cmake/json-fortran/jsonfortran-gnu-config-version.cmake
   /usr/lib/cmake/json-fortran/jsonfortran-gnu-config.cmake
-  /usr/lib/cmake/json-fortran/jsonfortran-gnu-targets-release.cmake
+  /usr/lib/cmake/json-fortran/jsonfortran-gnu-targets-relwithdebinfo.cmake
   /usr/lib/cmake/json-fortran/jsonfortran-gnu-targets.cmake
   /usr/lib/libjsonfortran.dll.a
   /usr/lib/pkgconfig/json-fortran.pc
@@ -77,6 +77,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 9.3.1-1bl1 -----
+Version bump.
 
 ----- version 9.2.1-1bl1 -----
 Version bump.

@@ -9,11 +9,18 @@ provide high performance OpenGL visualizations for C/C++ applications that use
 CUDA/OpenCL. Forge uses OpenGL >=3.3 forward compatible contexts, so please
 make sure you have capable hardware before trying it out."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
-# LICENSE_URI=""
+LICENSE="BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT"
+LICENSE_URI=".github/LICENSE"
 
-BUILD_REQUIRES="libboost-devel libfontconfig-devel libfreetype-devel libGL-devel libglfw-devel"
+BUILD_REQUIRES="
+	git
+	libboost-devel
+	libfontconfig-devel
+	libfreetype-devel
+	libGL-devel
+	libglfw-devel
+"
 
 inherit cmake
 

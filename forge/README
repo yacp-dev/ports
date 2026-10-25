@@ -7,28 +7,29 @@ CUDA/OpenCL. Forge uses OpenGL >=3.3 forward compatible contexts, so please
 make sure you have capable hardware before trying it out.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libGL1-19.1.6-1
-  libfontconfig1-2.15.0-3
-  libforge1-1.0.8-1bl2
+  cygwin-3.6.11-1
+  libGL1-23.3.6-1
+  libfontconfig1-2.18.3-1
+  libforge1-1.0.8-1bl3
   libfreetype6-2.13.3-1
-  libgcc1-12.4.0-3
-  libglfw3-3.4-1bl1
-  libstdc++6-12.4.0-3
+  libgcc1-14.4.0-1
+  libglfw3-3.5.1-1bl1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libGL-devel-19.1.6-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  git-2.51.0-1
+  libGL-devel-23.3.6-1
   libboost-devel-1.66.0-1
-  libfontconfig-devel-2.15.0-3
+  libfontconfig-devel-2.18.3-1
   libfreetype-devel-2.13.3-1
-  libglfw-devel-3.4-1bl1
-  ninja-1.12.0-1
+  libglfw-devel-3.5.1-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/arrayfire/forge
@@ -79,7 +80,7 @@ Files included in the binary package:
   /usr/include/forge.h
   /usr/lib/cmake/forge/ForgeConfig.cmake
   /usr/lib/cmake/forge/ForgeConfigVersion.cmake
-  /usr/lib/cmake/forge/ForgeTargets-release.cmake
+  /usr/lib/cmake/forge/ForgeTargets-relwithdebinfo.cmake
   /usr/lib/cmake/forge/ForgeTargets.cmake
   /usr/lib/libforge.dll.a
   /usr/share/Forge/examples/.clang-format
@@ -119,6 +120,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.8-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.8-1bl2 -----
 Rebuild with gcc-12.4.0

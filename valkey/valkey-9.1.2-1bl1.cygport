@@ -1,10 +1,8 @@
 HOMEPAGE="https://github.com/${PN}-io/${PN}"
 SRC_URI="https://github.com/${PN}-io/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/8.1.1%2Bdfsg1-3/debian/patches/0002-Add-CPPFLAGS-to-upstream-makefiles.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/8.1.1%2Bdfsg1-3/debian/patches/0003-Use-get_current_dir_name-over-PATHMAX.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/8.1.1%2Bdfsg1-3/debian/patches/0005-Incorporate-Redis-CVE-for-CVE-2025-27151-2146.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/8.1.1%2Bdfsg1-3/debian/patches/CVE-2025-49112.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/9.1.2-1/debian/patches/0002-Add-CPPFLAGS-to-upstream-makefiles.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/9.1.2-1/debian/patches/0003-Use-get_current_dir_name-over-PATHMAX.patch
 "
 
 CATEGORY="Net"
@@ -13,21 +11,21 @@ DESCRIPTION="Valkey is a high-performance data structure server that primarily s
 key/value workloads. It supports a wide range of native structures and an
 extensible plugin system for adding new data structures and access patterns."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND MIT AND (Apache-2.0 OR BSL-1.0 OR MIT)"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT AND (Apache-2.0 OR BSL-1.0 OR MIT)"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	libfpconv-devel
 	libhdr_histogram-devel
-	libhiredis-devel
-	libhiredis_ssl-devel
 	liblinenoise-devel
 	libssl-devel
+	libvalkey-devel
+	libvalkey_tls-devel
 	libtcmalloc-devel
 "
 
-export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DNO_SDSCOMPAT_H -DUSE_SYSTEM_HDR_HISTOGRAM -DUSE_SYSTEM_FPCONV -DUSE_SYSTEM_LINENOISE"
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DUSE_SYSTEM_HDR_HISTOGRAM -DUSE_SYSTEM_LINENOISE"
 
 inherit cmake
 
@@ -36,7 +34,6 @@ CYGCMAKE_ARGS="
 	-DBUILD_MALLOC:STRING=tcmalloc
 	-DBUILD_TEST_MODULES:BOOL=ON
 	-DBUILD_TLS:BOOL=ON
-	-DBUILD_UNIT_TESTS:BOOL=ON
 "
 
 src_install()
@@ -46,13 +43,15 @@ src_install()
 
 	cd ${D}
 	rm -rf usr/bin/lib*.dll.a
+	# The Lua engine, linked into valkey-server as a whole archive
+	rm -f usr/lib/libvalkeylua.a
 	mkdir -p usr/lib/valkey
 	mv usr/bin/*.dll usr/lib/valkey
 }
 
 DOCS="
 	00-RELEASENOTES
-	*.md
+	README.md
 "
 
 DIFF_EXCLUDES="

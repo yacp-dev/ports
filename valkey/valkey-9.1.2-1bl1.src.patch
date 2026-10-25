@@ -1,0 +1,188 @@
+--- origsrc/valkey-9.1.2/cmake/Modules/ValkeySetup.cmake	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/cmake/Modules/ValkeySetup.cmake	2026-10-25 14:51:42.973396000 +0000
+@@ -22,7 +22,7 @@ set(VALKEY_EXE_PERMISSIONS
+     WORLD_EXECUTE
+     WORLD_READ)
+ 
+-set(VALKEY_SERVER_CFLAGS "")
++set(VALKEY_SERVER_CFLAGS "${CMAKE_C_FLAGS}")
+ set(VALKEY_SERVER_LDFLAGS "")
+ 
+ # ----------------------------------------------------
+@@ -99,7 +99,7 @@ macro (valkey_build_and_install_bin targ
+     endif ()
+ 
+     # Enable all warnings + fail on warning
+-    target_compile_options(${target} PRIVATE -Werror -Wall)
++    target_compile_options(${target} PRIVATE -Wall)
+ 
+     # Install cli tool and create a redis symbolic link
+     valkey_install_bin(${target})
+@@ -277,10 +277,7 @@ if (BUILD_SANITIZER)
+     endif ()
+ endif ()
+ 
+-include_directories("${CMAKE_SOURCE_DIR}/deps/libvalkey/include")
+ include_directories("${CMAKE_SOURCE_DIR}/src/modules/lua")
+-include_directories("${CMAKE_SOURCE_DIR}/deps/linenoise")
+-include_directories("${CMAKE_SOURCE_DIR}/deps/hdr_histogram")
+ include_directories("${CMAKE_SOURCE_DIR}/deps/fpconv")
+ 
+ add_subdirectory("${CMAKE_SOURCE_DIR}/deps")
+--- origsrc/valkey-9.1.2/deps/CMakeLists.txt	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/deps/CMakeLists.txt	2026-10-25 14:51:42.975412500 +0000
+@@ -29,10 +29,26 @@ endif ()
+ set(DICT_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/src)
+ set(SDS_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/src)
+ 
+-add_subdirectory(libvalkey)
+-add_subdirectory(linenoise)
+-add_subdirectory(fpconv)
+-add_subdirectory(hdr_histogram)
++# valkey_install_bin needs CMAKE_INSTALL_BINDIR, which deps/libvalkey used to set
++include(GNUInstallDirs)
++find_package(valkey CONFIG REQUIRED GLOBAL)
++if (USE_TLS)
++    find_package(valkey_tls CONFIG REQUIRED GLOBAL)
++endif ()
++pkg_check_modules(LINENOISE linenoise)
++if (NOT LINENOISE_FOUND)
++    include_directories("${CMAKE_SOURCE_DIR}/deps/linenoise")
++    add_subdirectory(linenoise)
++endif()
++pkg_check_modules(FPCONV fpconv)
++if (NOT FPCONV_FOUND)
++    add_subdirectory(fpconv)
++endif ()
++pkg_check_modules(HDR_HISTOGRAM hdr_histogram)
++if (NOT HDR_HISTOGRAM_FOUND)
++    include_directories("${CMAKE_SOURCE_DIR}/deps/hdr_histogram")
++    add_subdirectory(hdr_histogram)
++endif()
+ add_subdirectory(fast_float)
+ 
+ # Clear any cached variables passed to libvalkey from the cache
+--- origsrc/valkey-9.1.2/src/fmacros.h	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/src/fmacros.h	2026-10-25 14:51:42.975412500 +0000
+@@ -73,7 +73,7 @@
+  *
+  * NOTE: We do not use the poison pragma since it
+  * will error on stdlib definitions in files as well*/
+-#if (__GNUC__ && __GNUC__ >= 4) && !defined __APPLE__
++#if (__GNUC__ && __GNUC__ >= 4) && !defined __APPLE__ && !defined(__CYGWIN__)
+ 
+ /* These deprecation attributes rely on C-only constructs (e.g. `restrict`)
+  * and redeclare libc symbols. They are disabled for building gtest
+--- origsrc/valkey-9.1.2/src/latency.c	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/src/latency.c	2026-10-25 14:51:42.977427300 +0000
+@@ -34,7 +34,7 @@
+  */
+ 
+ #include "server.h"
+-#include "hdr_histogram.h"
++#include <hdr/hdr_histogram.h>
+ 
+ /* Dictionary type for latency events. */
+ int dictStringKeyCompare(const void *key1, const void *key2) {
+--- origsrc/valkey-9.1.2/src/module.c	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/src/module.c	2026-10-25 14:51:42.979443200 +0000
+@@ -61,7 +61,7 @@
+ #include "rdb.h"
+ #include "monotonic.h"
+ #include "script.h"
+-#include "hdr_histogram.h"
++#include <hdr/hdr_histogram.h>
+ #include "crc16_slottable.h"
+ #include "valkeymodule.h"
+ #include "module.h"
+--- origsrc/valkey-9.1.2/src/release.h	1970-01-01 00:00:00.000000000 +0000
++++ src/valkey-9.1.2/src/release.h	2026-10-25 14:51:42.981455800 +0000
+@@ -0,0 +1,5 @@
++#define REDIS_GIT_SHA1 "00000000"
++#define REDIS_GIT_DIRTY "417601"
++#define REDIS_BUILD_ID "fd0vmware-1757045272"
++#include "version.h"
++#define REDIS_BUILD_ID_RAW SERVER_NAME VALKEY_VERSION REDIS_BUILD_ID REDIS_GIT_DIRTY REDIS_GIT_SHA1
+--- origsrc/valkey-9.1.2/src/server.c	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/src/server.c	2026-10-25 14:51:42.983230800 +0000
+@@ -42,7 +42,7 @@
+ #include "latency.h"
+ #include "mt19937-64.h"
+ #include "functions.h"
+-#include "hdr_histogram.h"
++#include <hdr/hdr_histogram.h>
+ #include "syscheck.h"
+ #include "threads_mngr.h"
+ #include "fmtargs.h"
+--- origsrc/valkey-9.1.2/src/valkey-benchmark.c	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/src/valkey-benchmark.c	2026-10-25 14:51:42.985247400 +0000
+@@ -58,7 +58,7 @@
+ #include "dict.h"
+ #include "zmalloc.h"
+ #include "crc16_slottable.h"
+-#include "hdr_histogram.h"
++#include <hdr/hdr_histogram.h>
+ #include "cli_common.h"
+ #include "mt19937-64.h"
+ 
+@@ -1205,7 +1205,9 @@ static void showReport(void) {
+             /* After the 2 milliseconds latency to have percentages split
+              * by decimals will just add a lot of noise to the output. */
+             if (iter.highest_equivalent_value > 2000) {
++#if !defined(USE_SYSTEM_HDR_HISTOGRAM)
+                 hdr_iter_linear_set_value_units_per_bucket(&iter, 1000);
++#endif
+             }
+             previous_cumulative_count = cumulative_count;
+         }
+--- origsrc/valkey-9.1.2/src/valkey-check-rdb.c	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/src/valkey-check-rdb.c	2026-10-25 14:51:42.985247400 +0000
+@@ -32,7 +32,7 @@
+ #include "rdb.h"
+ #include "module.h"
+ #include "cluster.h"
+-#include "hdr_histogram.h"
++#include <hdr/hdr_histogram.h>
+ #include "fpconv_dtoa.h"
+ 
+ #include <stdarg.h>
+--- origsrc/valkey-9.1.2/src/valkey-cli.c	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/src/valkey-cli.c	2026-10-25 14:51:42.987262400 +0000
+@@ -3351,7 +3351,11 @@ static void repl(void) {
+             if (argv == NULL) {
+                 printf("Invalid argument(s)\n");
+                 fflush(stdout);
++#if defined(USE_SYSTEM_LINENOISE)
++                if (history) linenoiseHistoryAdd(line);
++#else
+                 if (history) linenoiseHistoryAdd(line, 0);
++#endif
+                 if (historyfile) linenoiseHistorySave(historyfile);
+                 linenoiseFree(line);
+                 continue;
+@@ -3380,7 +3384,11 @@ static void repl(void) {
+             /* Always keep in-memory history. But for commands with sensitive information,
+              * avoid writing them to the history file. */
+             int is_sensitive = isSensitiveCommand(argc - skipargs, argv + skipargs);
++#if defined(USE_SYSTEM_LINENOISE)
++            if (history) linenoiseHistoryAdd(line);
++#else
+             if (history) linenoiseHistoryAdd(line, is_sensitive);
++#endif
+             if (!is_sensitive && historyfile) linenoiseHistorySave(historyfile);
+ 
+             if (strcasecmp(argv[0], "quit") == 0 || strcasecmp(argv[0], "exit") == 0) {
+--- origsrc/valkey-9.1.2/tests/modules/CMakeLists.txt	2026-08-31 23:40:24.000000000 +0000
++++ src/valkey-9.1.2/tests/modules/CMakeLists.txt	2026-10-25 14:51:42.989276700 +0000
+@@ -43,6 +43,11 @@ list(APPEND MODULES_LIST "crash")
+ list(APPEND MODULES_LIST "cluster")
+ list(APPEND MODULES_LIST "helloscripting")
+ 
++if (CYGWIN)
++    # These call VM_CallArgv and VM_ReplyRaw, which only the executable defines
++    list(REMOVE_ITEM MODULES_LIST "basics" "blockedclient" "misc" "usercall")
++endif ()
++
+ foreach (MODULE_NAME ${MODULES_LIST})
+     message(STATUS "Building test module: ${MODULE_NAME}")
+     add_library(${MODULE_NAME} SHARED "${CMAKE_SOURCE_DIR}/tests/modules/${MODULE_NAME}.c")

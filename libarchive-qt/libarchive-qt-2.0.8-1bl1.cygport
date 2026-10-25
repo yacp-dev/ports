@@ -6,7 +6,17 @@ CATEGORY="Libs"
 SUMMARY="Qt based archiving solution with libarchive backend"
 DESCRIPTION="${SUMMARY}"
 
-BUILD_REQUIRES="libarchive-devel libbz2-devel liblzma-devel libQt5Core-devel zlib-devel"
+LICENSE="LGPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later AND MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libarchive-devel
+	libbz2-devel
+	liblzma-devel
+	libQt5Core-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -26,7 +36,7 @@ libarchive_qt_CONTENTS="
 	usr/share
 "
 libarchiveqt5_2_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-2.dll
 "
 libarchiveqt5_devel_CONTENTS="
 	usr/include

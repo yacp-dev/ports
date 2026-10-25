@@ -1,5 +1,5 @@
---- origsrc/libarchive-qt-v2.0.7/archiver/meson.build	2022-03-06 06:50:27.000000000 +0900
-+++ src/libarchive-qt-v2.0.7/archiver/meson.build	2022-05-16 15:50:41.613302400 +0900
+--- origsrc/libarchive-qt-v2.0.8/archiver/meson.build	2023-05-04 04:36:58.000000000 +0000
++++ src/libarchive-qt-v2.0.8/archiver/meson.build	2026-10-25 13:20:31.751248600 +0000
 @@ -1,6 +1,6 @@
  archiver = executable(
      'archiver', [ 'archiver.cpp' ],
@@ -8,9 +8,9 @@
      include_directories: Includes,
      cpp_args: [ '-DARCHIVEQT_VERSION_STR="v@0@"'.format( meson.project_version() ) ],
      install: true
---- origsrc/libarchive-qt-v2.0.7/lib/meson.build	2022-03-06 06:50:27.000000000 +0900
-+++ src/libarchive-qt-v2.0.7/lib/meson.build	2022-05-16 15:45:53.616777500 +0900
-@@ -58,7 +58,6 @@ shared = shared_library(
+--- origsrc/libarchive-qt-v2.0.8/lib/meson.build	2023-05-04 04:36:58.000000000 +0000
++++ src/libarchive-qt-v2.0.8/lib/meson.build	2026-10-25 13:20:31.751248600 +0000
+@@ -28,7 +28,6 @@ shared = shared_library(
      dependencies: Deps,
      install: true,
      link_args: ['-rdynamic','-fPIC'],
@@ -18,8 +18,8 @@
  )
  
  static = static_library(
-@@ -66,7 +65,6 @@ static = static_library(
- 		include_directories: Includes,
+@@ -36,7 +35,6 @@ static = static_library(
+     include_directories: Includes,
      dependencies: Deps,
      install: get_option( 'install_static' ),
 -    install_dir: join_paths( get_option( 'libdir' ) )

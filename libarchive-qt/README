@@ -3,57 +3,57 @@ libarchive-qt
 Qt based archiving solution with libarchive backend
 
 Runtime requirements:
-  cygwin-3.3.5-1
+  cygwin-3.6.11-1
   libQt5Core-devel-5.9.4-2
   libQt5Core5-5.9.4-2
-  libarchive-devel-3.6.1-1
-  libarchive13-3.6.1-1
-  libarchiveqt5-devel-2.0.7-1bl1
-  libarchiveqt5_2-2.0.7-1bl1
-  libbz2-devel-1.0.8-1
-  libbz2_1-1.0.8-1
-  libgcc1-11.3.0-1
-  liblzma-devel-5.2.5-1
-  liblzma5-5.2.5-1
-  libstdc++6-11.3.0-1
-  pkg-config-1.8.0-1
-  zlib-devel-1.2.12-1
-  zlib0-1.2.12-1
+  libarchive-devel-3.8.10-1
+  libarchive13-3.8.10-1
+  libarchiveqt5-devel-2.0.8-1bl1
+  libarchiveqt5_2-2.0.8-1bl1
+  libbz2-devel-1.0.8-2
+  libbz2_1-1.0.8-2
+  libgcc1-14.4.0-1
+  liblzma-devel-5.8.4-1
+  liblzma5-5.8.4-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
+  zlib-devel-1.3.2-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cygport-0.35.0-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
-  libarchive-devel-3.6.1-1
-  libbz2-devel-1.0.8-1
-  liblzma-devel-5.2.5-1
-  meson-0.61.4-1
-  ninja-1.10.2-1
-  zlib-devel-1.2.12-1
+  libarchive-devel-3.8.10-1
+  libbz2-devel-1.0.8-2
+  liblzma-devel-5.8.4-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://gitlab.com/marcusbritanicus/libarchive-qt
 
 Canonical download:
-  https://gitlab.com/marcusbritanicus/libarchive-qt/-/archive/v2.0.7/libarchive-qt-v2.0.7.tar.bz2
+  https://gitlab.com/marcusbritanicus/libarchive-qt/-/archive/v2.0.8/libarchive-qt-v2.0.8.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libarchive-qt-2.0.7-X-src.tar.xz
+  1. unpack libarchive-qt-2.0.8-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libarchive-qt-2.0.7-X.cygport all
+        % cygport ./libarchive-qt-2.0.8-X.cygport all
 
 This will create:
-  /usr/src/libarchive-qt-2.0.7-X-src.tar.xz
-  /usr/src/libarchive-qt-2.0.7-X.tar.xz
-  /usr/src/libarchiveqt5_2-2.0.7-X.tar.xz
-  /usr/src/libarchiveqt5-devel-2.0.7-X.tar.xz
+  /usr/src/libarchive-qt-2.0.8-X-src.tar.xz
+  /usr/src/libarchive-qt-2.0.8-X.tar.xz
+  /usr/src/libarchiveqt5_2-2.0.8-X.tar.xz
+  /usr/src/libarchiveqt5-devel-2.0.8-X.tar.xz
 
 -------------------------------------------
 
@@ -77,6 +77,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.8-1bl1 -----
+Version bump.
 
 ----- version 2.0.7-1bl1 -----
 Version bump.

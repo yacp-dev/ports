@@ -3,24 +3,25 @@ wabt
 WABT (we pronounce it wabbit) is a suite of tools for WebAssembly
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libssl3-3.0.19-1
-  libstdc++6-13.4.0-1
-  libuvwasi0-0.0.23-1bl1
-  libwabt1-1.0.39-1bl1
-  libwasm-rt-impl1-1.0.39-1bl1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  libuvwasi0-0.0.23-1bl3
+  libwabt1-1.0.42-1bl1
+  libwasm-rt-impl1-1.0.42-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libssl-devel-3.0.19-1
-  libuvwasi-devel-0.0.23-1bl1
-  lua-5.3.6-4
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  libssl-devel-3.5.9-1
+  libuv-devel-1.53.0-1
+  libuvwasi-devel-0.0.23-1bl3
   ninja-1.13.2-1
 
 Canonical website:
@@ -32,19 +33,19 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack wabt-1.0.39-X-src.tar.xz
+  1. unpack wabt-1.0.42-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./wabt-1.0.39-X.cygport all
+        % cygport ./wabt-1.0.42-X.cygport all
 
 This will create:
-  /usr/src/wabt-1.0.39-X-src.tar.xz
-  /usr/src/wabt-1.0.39-X.tar.xz
-  /usr/src/libwabt1-1.0.39-X.tar.xz
-  /usr/src/libwabt-devel-1.0.39-X.tar.xz
-  /usr/src/libwasm-rt-impl1-1.0.39-X.tar.xz
-  /usr/src/libwasm-rt-impl-devel-1.0.39-X.tar.xz
+  /usr/src/wabt-1.0.42-X-src.tar.xz
+  /usr/src/wabt-1.0.42-X.tar.xz
+  /usr/src/libwabt1-1.0.42-X.tar.xz
+  /usr/src/libwabt-devel-1.0.42-X.tar.xz
+  /usr/src/libwasm-rt-impl1-1.0.42-X.tar.xz
+  /usr/src/libwasm-rt-impl-devel-1.0.42-X.tar.xz
 
 -------------------------------------------
 
@@ -52,7 +53,6 @@ Files included in the binary package:
 
 (wabt)
   /usr/bin/spectest-interp.exe
-  /usr/bin/wasm-decompile.exe
   /usr/bin/wasm-interp.exe
   /usr/bin/wasm-objdump.exe
   /usr/bin/wasm-stats.exe
@@ -67,7 +67,6 @@ Files included in the binary package:
   /usr/share/doc/wabt/LICENSE
   /usr/share/doc/wabt/README.md
   /usr/share/man/man1/spectest-interp.1.gz
-  /usr/share/man/man1/wasm-decompile.1.gz
   /usr/share/man/man1/wasm-interp.1.gz
   /usr/share/man/man1/wasm-objdump.1.gz
   /usr/share/man/man1/wasm-stats.1.gz
@@ -100,10 +99,6 @@ Files included in the binary package:
   /usr/include/wabt/color.h
   /usr/include/wabt/common.h
   /usr/include/wabt/config.h
-  /usr/include/wabt/decompiler-ast.h
-  /usr/include/wabt/decompiler-ls.h
-  /usr/include/wabt/decompiler-naming.h
-  /usr/include/wabt/decompiler.h
   /usr/include/wabt/error-formatter.h
   /usr/include/wabt/error.h
   /usr/include/wabt/expr-visitor.h
@@ -149,7 +144,7 @@ Files included in the binary package:
   /usr/include/wabt/wat-writer.h
   /usr/lib/cmake/wabt/wabt-config-version.cmake
   /usr/lib/cmake/wabt/wabt-config.cmake
-  /usr/lib/cmake/wabt/wabt-targets-release.cmake
+  /usr/lib/cmake/wabt/wabt-targets-relwithdebinfo.cmake
   /usr/lib/cmake/wabt/wabt-targets.cmake
   /usr/lib/libwabt.dll.a
 
@@ -170,6 +165,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.42-1bl1 -----
+Version bump.
 
 ----- version 1.0.39-1bl1 -----
 Version bump.

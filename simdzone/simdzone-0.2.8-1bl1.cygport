@@ -5,9 +5,13 @@ CATEGORY="Libs"
 SUMMARY="Fast and standards compliant DNS zone parser"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND BSD-2-Clause AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause AND ISC"
 LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libcmocka-devel
+"
 
 inherit cmake
 
@@ -16,6 +20,13 @@ CYGCMAKE_ARGS="
 	-DBUILD_TESTING:BOOL=ON
 	-DSOVERSION:STRING=0
 "
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/VERSION 0\.1\.0/VERSION ${PV}/" CMakeLists.txt
+}
 
 src_test()
 {

@@ -1,14 +1,5 @@
---- origsrc/simdzone-0.2.4/CMakeLists.txt	2025-12-04 19:05:17.000000000 +0900
-+++ src/simdzone-0.2.4/CMakeLists.txt	2026-02-02 10:02:44.320931700 +0900
-@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.10)
- project(
-   simdzone
-   LANGUAGES C
--  VERSION 0.1.0
-+  VERSION 0.2.4
-   DESCRIPTION "Fast and standards compliant DNS presentation format parser")
- 
- set(CMAKE_C_STANDARD 99)
+--- origsrc/simdzone-0.2.8/CMakeLists.txt	2026-10-25 07:44:41.918773600 +0000
++++ src/simdzone-0.2.8/CMakeLists.txt	2026-10-25 07:44:42.351537000 +0000
 @@ -148,6 +148,10 @@ endif()
  
  add_library(zone)
@@ -20,7 +11,7 @@
  generate_export_header(
    zone BASE_NAME ZONE EXPORT_FILE_NAME include/zone/export.h)
  
-@@ -318,3 +322,10 @@ install(
+@@ -320,3 +324,10 @@ install(
    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
@@ -31,8 +22,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/simdzone.pc.in ${CMAKE_BINARY_DIR}/simdzone.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/simdzone.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/simdzone-0.2.4/simdzone.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/simdzone-0.2.4/simdzone.pc.in	2026-02-02 10:02:19.812143000 +0900
+--- origsrc/simdzone-0.2.8/simdzone.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/simdzone-0.2.8/simdzone.pc.in	2026-10-25 07:44:42.352552200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -44,8 +35,8 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lzone
 +Cflags: -I${includedir}
---- origsrc/simdzone-0.2.4/src/fallback/parser.c	2025-12-04 19:05:17.000000000 +0900
-+++ src/simdzone-0.2.4/src/fallback/parser.c	2026-02-02 10:02:19.824963300 +0900
+--- origsrc/simdzone-0.2.8/src/fallback/parser.c	2026-10-21 08:08:31.000000000 +0000
++++ src/simdzone-0.2.8/src/fallback/parser.c	2026-10-25 07:44:42.352552200 +0000
 @@ -44,6 +44,7 @@
  diagnostic_push()
  clang_diagnostic_ignored(missing-prototypes)
@@ -54,8 +45,8 @@
  int32_t zone_fallback_parse(parser_t *parser)
  {
    return parse(parser);
---- origsrc/simdzone-0.2.4/src/haswell/parser.c	2025-12-04 19:05:17.000000000 +0900
-+++ src/simdzone-0.2.4/src/haswell/parser.c	2026-02-02 10:02:19.826974600 +0900
+--- origsrc/simdzone-0.2.8/src/haswell/parser.c	2026-10-21 08:08:31.000000000 +0000
++++ src/simdzone-0.2.8/src/haswell/parser.c	2026-10-25 07:44:42.354568300 +0000
 @@ -45,6 +45,7 @@
  diagnostic_push()
  clang_diagnostic_ignored(missing-prototypes)
@@ -64,8 +55,8 @@
  int32_t zone_haswell_parse(parser_t *parser)
  {
    return parse(parser);
---- origsrc/simdzone-0.2.4/src/westmere/parser.c	2025-12-04 19:05:17.000000000 +0900
-+++ src/simdzone-0.2.4/src/westmere/parser.c	2026-02-02 10:02:19.828985300 +0900
+--- origsrc/simdzone-0.2.8/src/westmere/parser.c	2026-10-21 08:08:31.000000000 +0000
++++ src/simdzone-0.2.8/src/westmere/parser.c	2026-10-25 07:44:42.354568300 +0000
 @@ -45,6 +45,7 @@
  diagnostic_push()
  clang_diagnostic_ignored(missing-prototypes)
@@ -74,8 +65,8 @@
  int32_t zone_westmere_parse(parser_t *parser)
  {
    return parse(parser);
---- origsrc/simdzone-0.2.4/src/zone.c	2025-12-04 19:05:17.000000000 +0900
-+++ src/simdzone-0.2.4/src/zone.c	2026-02-02 10:02:19.830995200 +0900
+--- origsrc/simdzone-0.2.8/src/zone.c	2026-10-21 08:08:31.000000000 +0000
++++ src/simdzone-0.2.8/src/zone.c	2026-10-25 07:44:42.356583300 +0000
 @@ -328,6 +328,7 @@ int32_t zone_open_file(
    return code;
  }

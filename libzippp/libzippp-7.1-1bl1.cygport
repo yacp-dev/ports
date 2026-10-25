@@ -1,0 +1,55 @@
+HOMEPAGE="https://github.com/ctabin/${PN}"
+SRC_URI="https://github.com/ctabin/${PN}/archive/${PN}-v${PV}-1.10.1.tar.gz"
+SRC_DIR="${PN}-${PN}-v${PV}-1.10.1"
+
+CATEGORY="Libs"
+SUMMARY="C++ wrapper for libzip"
+DESCRIPTION="libzippp is a simple basic C++ wrapper around the libzip library.
+It is meant to be a portable and easy-to-use library for Zip handling."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENCE"
+
+BUILD_REQUIRES="
+	libzip-devel
+	zlib-devel
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	sed -i -e "s/^        VERSION 6\.0\.0$/        VERSION ${PV}/" CMakeLists.txt
+}
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DLIBZIPPP_GNUINSTALLDIRS:BOOL=ON
+"
+
+src_test()
+{
+	cd ${B}
+	./libzippp_shared_test.exe
+}
+
+PKG_NAMES="
+	${PN}
+	${PN}7
+	${PN}-devel
+"
+libzippp_CONTENTS="
+	usr/share
+"
+libzippp7_CONTENTS="
+	usr/bin/cyg*-7.dll
+"
+libzippp_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+libzippp_SUMMARY="${SUMMARY} (licensing & readmes)"
+libzippp7_SUMMARY="${SUMMARY} (runtime)"
+libzippp_devel_SUMMARY="${SUMMARY} (development)"

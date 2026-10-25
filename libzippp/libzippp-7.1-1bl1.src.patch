@@ -1,0 +1,15 @@
+--- origsrc/libzippp-libzippp-v7.1-1.10.1/CMakeLists.txt	2024-01-24 00:25:17.000000000 +0900
++++ src/libzippp-libzippp-v7.1-1.10.1/CMakeLists.txt	2026-10-25 14:12:11.501617589 +0900
+@@ -64,7 +64,11 @@
+     $<INSTALL_INTERFACE:${install_include_location}>
+ 
+ )
+-set_target_properties(libzippp PROPERTIES PREFIX "") # Avoid duplicate "lib" prefix
++if(CYGWIN)
++  set_target_properties(libzippp PROPERTIES OUTPUT_NAME zippp SOVERSION 7)
++else()
++  set_target_properties(libzippp PROPERTIES PREFIX "") # Avoid duplicate "lib" prefix
++endif()
+ target_link_libraries(libzippp PRIVATE libzip::zip)
+ 
+ if(LIBZIPPP_ENABLE_ENCRYPTION)

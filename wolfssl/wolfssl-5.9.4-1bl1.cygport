@@ -13,8 +13,8 @@ OpenSSL, offers a simple API, an OpenSSL compatibility layer, OCSP and CRL
 support, is backed by the robust wolfCrypt cryptography library, and much
 more."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
 CYGCONF_ARGS="
@@ -49,9 +49,7 @@ CYGCONF_ARGS="
 src_test()
 {
 	cd ${B}
-	verbose cp -R ${S}/certs .
 	cygtest
-	verbose rm -rf certs
 }
 
 src_install()
@@ -78,16 +76,16 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	${PN}
-	lib${PN}44
+	lib${PN}46
 	lib${PN}-devel
 "
 wolfssl_CONTENTS="
 	usr/share/doc/Cygwin
-	usr/share/doc/${PN}/[CLQRrt]*
+	usr/share/doc/${PN}/[ACLQRSdrt]*
 	usr/share/${PN}
 "
-libwolfssl44_CONTENTS="
-	usr/bin/cyg*-44.dll
+libwolfssl46_CONTENTS="
+	usr/bin/cyg*-46.dll
 "
 libwolfssl_devel_CONTENTS="
 	usr/bin/*-config
@@ -96,5 +94,5 @@ libwolfssl_devel_CONTENTS="
 	usr/share/doc/${PN}/example
 "
 wolfssl_SUMMARY="${SUMMARY} (licensing & readmes)"
-libwolfssl44_SUMMARY="${SUMMARY} (runtime)"
+libwolfssl46_SUMMARY="${SUMMARY} (runtime)"
 libwolfssl_devel_SUMMARY="${SUMMARY} (development)"

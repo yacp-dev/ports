@@ -1,5 +1,5 @@
---- origsrc/json-fortran-9.2.1/CMakeLists.txt	2026-02-23 03:01:45.000000000 +0900
-+++ src/json-fortran-9.2.1/CMakeLists.txt	2026-03-20 17:08:07.835020300 +0900
+--- origsrc/json-fortran-9.3.1/CMakeLists.txt	2026-04-09 19:21:48.000000000 +0000
++++ src/json-fortran-9.3.1/CMakeLists.txt	2026-10-25 05:51:11.255331100 +0000
 @@ -129,9 +129,11 @@ endif ()
  # Put package export CMake files where they can be found
  # use `find_package ( jsonfortran-${CMAKE_Fortran_COMPILER_ID} <version> REQUIRED )`
@@ -135,8 +135,8 @@
  
  # Code to  fix the dylib install name on Mac.
  include ( cmake/fixupInstallNameDir.cmake )
---- origsrc/json-fortran-9.2.1/packaging/CMakeLists.txt	2026-02-23 03:01:45.000000000 +0900
-+++ src/json-fortran-9.2.1/packaging/CMakeLists.txt	2026-03-20 17:08:07.835020300 +0900
+--- origsrc/json-fortran-9.3.1/packaging/CMakeLists.txt	2026-04-09 19:21:48.000000000 +0000
++++ src/json-fortran-9.3.1/packaging/CMakeLists.txt	2026-10-25 05:51:11.257355300 +0000
 @@ -26,7 +26,11 @@ install ( FILES
  #----------------------------------------------
  # Make build tree targets accessible for import

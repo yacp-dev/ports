@@ -6,9 +6,13 @@ SUMMARY="Fortran 2008 JSON API"
 DESCRIPTION="A user-friendly, thread-safe, and object-oriented API for reading and writing
 JSON files, written in modern Fortran."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT"
 LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	gcc-fortran
+"
 
 inherit cmake
 
@@ -57,7 +61,7 @@ PKG_NAMES="
 json_fortran_CONTENTS="
 	usr/share
 "
-libjsonfortran9_2_CONTENTS="
+libjsonfortran9_3_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libjsonfortran_devel_CONTENTS="
@@ -65,5 +69,5 @@ libjsonfortran_devel_CONTENTS="
 	usr/lib
 "
 json_fortran_SUMMARY="${SUMMARY} (licensing & readmes)"
-libjsonfortran9_2_SUMMARY="${SUMMARY} (runtime)"
+libjsonfortran9_3_SUMMARY="${SUMMARY} (runtime)"
 libjsonfortran_devel_SUMMARY="${SUMMARY} (development)"

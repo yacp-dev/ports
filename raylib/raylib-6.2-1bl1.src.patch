@@ -1,5 +1,5 @@
---- origsrc/raylib-5.5/raylib.pc.in	2024-11-18 21:21:10.000000000 +0900
-+++ src/raylib-5.5/raylib.pc.in	2025-01-10 04:29:04.182450800 +0900
+--- origsrc/raylib-6.2/raylib.pc.in	2026-10-15 15:12:55.000000000 +0000
++++ src/raylib-6.2/raylib.pc.in	2026-10-25 08:23:04.669400400 +0000
 @@ -7,7 +7,7 @@ Name: raylib
  Description: A simple and easy-to-use library to enjoy videogames programming
  URL: https://github.com/raysan5/raylib

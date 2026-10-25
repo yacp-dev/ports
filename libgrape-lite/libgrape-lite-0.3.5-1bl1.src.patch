@@ -1,0 +1,94 @@
+--- origsrc/libgrape-lite-0.3.5/CMakeLists.txt	2025-05-26 05:59:49.000000000 +0000
++++ src/libgrape-lite-0.3.5/CMakeLists.txt	2026-10-25 15:17:53.292661300 +0000
+@@ -79,13 +79,16 @@ set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE
+ set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+ 
+-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wall")
+ 
+ 
+ if (APPLE)
+   set(CMAKE_MACOSX_RPATH ON)
+ else ()
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -Werror -Wl,-rpath,$ORIGIN -march=native")
++  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -Wl,-rpath,$ORIGIN")
++  if (NOT CYGWIN)
++    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -march=native")
++  endif()
+ endif ()
+ if (USE_SIMD)
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx2")
+@@ -103,7 +106,7 @@ endif ()
+ find_package(CUDA 9 QUIET)
+ if (CUDA_VERSION VERSION_LESS "9.0")
+   message(WARNING "Disable gpu support because cuda >= 9.0 not found")
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
++  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+ else()
+   # find NCCL, 2.7 at least
+   include("cmake/FindNCCL.cmake")
+@@ -159,7 +162,10 @@ endif ()
+ # ------------------------------------------------------------------------------
+ # find_libraries
+ # ------------------------------------------------------------------------------
+-find_package(MPI REQUIRED)
++find_package(MPI)
++if (NOT MPI_CXX_FOUND)
++  pkg_check_modules(MPI_CXX ompi-cxx)
++endif()
+ include_directories(SYSTEM ${MPI_CXX_INCLUDE_PATH})
+ 
+ # find Threads------------------------------------------------------------------
+@@ -234,6 +240,8 @@ if (JEMALLOC_FOUND)
+   target_link_libraries(grape-lite ${JEMALLOC_LIBRARIES})
+ endif ()
+ 
++set_target_properties(grape-lite PROPERTIES SOVERSION ${LIBGRAPELITE_MAJOR_VERSION})
++
+ if (NOT GFLAGS_FOUND)
+   message(WARNING "Disable analytical_apps because gflags not found")
+ else ()
+@@ -393,3 +401,9 @@ if(BUILD_LIBGRAPELITE_DOCS)
+                     VERBATIM)
+ endif()
+ 
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/libgrape-lite.pc.in ${CMAKE_BINARY_DIR}/libgrape-lite.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/libgrape-lite.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/libgrape-lite-0.3.5/grape/io/local_io_adaptor.cc	2025-05-26 05:59:49.000000000 +0000
++++ src/libgrape-lite-0.3.5/grape/io/local_io_adaptor.cc	2026-10-25 15:17:53.294683900 +0000
+@@ -16,6 +16,7 @@ limitations under the License.
+ #include "grape/io/local_io_adaptor.h"
+ 
+ #include <sys/stat.h>
++#include <unistd.h>
+ 
+ #include <string>
+ 
+--- origsrc/libgrape-lite-0.3.5/grape/util.h	2025-05-26 05:59:49.000000000 +0000
++++ src/libgrape-lite-0.3.5/grape/util.h	2026-10-25 15:17:53.294683900 +0000
+@@ -26,6 +26,7 @@ limitations under the License.
+ #include <stdio.h>
+ #include <sys/stat.h>
+ #include <sys/time.h>
++#include <unistd.h>
+ 
+ #include <algorithm>
+ #include <cassert>
+--- origsrc/libgrape-lite-0.3.5/libgrape-lite.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libgrape-lite-0.3.5/libgrape-lite.pc.in	2026-10-25 15:17:53.296696600 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libgrape-lite
++Description: C++ library for parallel graph processing
++Version: @LIBGRAPELITE_VERSION@
++Libs: -L${libdir} -lgrape-lite
++Cflags: -I${includedir}

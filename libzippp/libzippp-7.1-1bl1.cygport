@@ -12,6 +12,7 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENCE"
 
 BUILD_REQUIRES="
+	libbz2-devel
 	libzip-devel
 	zlib-devel
 "

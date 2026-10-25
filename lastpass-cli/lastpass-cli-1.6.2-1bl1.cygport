@@ -8,13 +8,23 @@ CATEGORY="Security"
 SUMMARY="LastPass command line interface tool"
 DESCRIPTION="Command line interface to LastPass.com."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND ISC"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="asciidoc bash-completion-devel libcurl-devel libssl-devel libxml2-devel"
+BUILD_REQUIRES="
+	asciidoc
+	bash-completion-devel
+	libcurl-devel
+	libssl-devel
+	libxml2-devel
+"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
 
 src_compile()
 {
@@ -38,7 +48,18 @@ src_install()
 	newins completions-lpass.fish lpass.fish
 }
 
+src_test()
+{
+	# test/include.sh runs ../build/lpass-test
+	cd ${B}
+	cygninja lpass-test
+	ln -sfn ${B} ${S}/build
+	ninja_test
+	rm -f ${S}/build
+}
+
 DIFF_EXCLUDES="
+	.lpass
 	version.h
 "
 

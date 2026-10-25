@@ -1,0 +1,91 @@
+--- origsrc/gerbera-3.3.0/CMakeLists.txt	2026-09-20 05:25:25.000000000 +0000
++++ src/gerbera-3.3.0/CMakeLists.txt	2026-10-25 07:47:54.020938600 +0000
+@@ -564,7 +564,8 @@ if(WITH_NPUPNP)
+     message(STATUS "Found libnpupnp: ${_UPNP_LIB} (found version ${_UPNP_VERSION})")
+ 
+     target_compile_definitions(libgerbera PUBLIC USING_NPUPNP)
+-    target_link_libraries(libgerbera PUBLIC NPUPNP::NPUPNP)
++    target_include_directories(libgerbera PUBLIC ${NPUPNP_INCLUDE_DIR})
++    target_link_libraries(libgerbera PUBLIC ${NPUPNP_LIBRARY})
+ else()
+     set(REQ_UPNP_VERSION 1.14.6)
+     if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+--- origsrc/gerbera-3.3.0/cmake/FindLastFMLib.cmake	2026-09-20 05:25:25.000000000 +0000
++++ src/gerbera-3.3.0/cmake/FindLastFMLib.cmake	2026-10-25 07:47:54.020938600 +0000
+@@ -1,10 +1,10 @@
+ include(FindPackageHandleStandardArgs)
+ 
+ find_package(PkgConfig REQUIRED QUIET)
+-pkg_search_module(LastFMLib liblastfm liblastfmlib QUIET)
++pkg_search_module(LastFMLib liblastfm liblastfmlib )
+ 
+ find_package_handle_standard_args(
+-    LastFMLib DEFAULT_MSG LastFMLib_FOUND QUIET)
++    LastFMLib DEFAULT_MSG LastFMLib_FOUND )
+ 
+ mark_as_advanced(
+     LastFMLib_LIBRARIES LastFMLib_INCLUDE_DIRS)
+--- origsrc/gerbera-3.3.0/cmake/FindNPUPNP.cmake	2026-09-20 05:25:25.000000000 +0000
++++ src/gerbera-3.3.0/cmake/FindNPUPNP.cmake	2026-10-25 07:47:54.030515300 +0000
+@@ -10,7 +10,7 @@
+ # ~~~
+ 
+ find_package(PkgConfig QUIET)
+-pkg_search_module(PC_NPUPNP libnpupnp QUIET)
++pkg_search_module(PC_NPUPNP libnpupnp npupnp QUIET)
+ 
+ find_path(
+     NPUPNP_INCLUDE_DIR upnp.h
+--- origsrc/gerbera-3.3.0/src/config/result/edit_helper.h	2026-09-20 05:25:25.000000000 +0000
++++ src/gerbera-3.3.0/src/config/result/edit_helper.h	2026-10-25 07:47:54.032533900 +0000
+@@ -194,4 +194,13 @@ void EditHelper<Editable>::_add(const st
+     list.push_back(editable);
+     indexMap[index] = editable;
+ }
++
++// Forward declaration to allow specialization declaration without including dynamic_content.h
++class DynamicContent;
++
++// Explicit specialization is defined in dynamic_content.cc.
++// Declare it here to prevent implicit instantiation of the primary template
++// for EditHelper<DynamicContent>::_add in multiple translation units.
++template <>
++void EditHelper<DynamicContent>::_add(const std::shared_ptr<DynamicContent>& editable, std::size_t index);
+ #endif
+--- origsrc/gerbera-3.3.0/src/database/sql_table.h	2026-09-20 05:25:25.000000000 +0000
++++ src/gerbera-3.3.0/src/database/sql_table.h	2026-10-25 07:47:54.036553200 +0000
+@@ -451,6 +451,17 @@ private:
+     static const std::vector<PlaystatusColumn> tableColumnOrder;
+ };
+ 
++// Explicit specializations are defined in sql_table.cc.
++// Declare them here to prevent implicit instantiation of the primary
++// template in multiple translation units (avoids ODR violations).
++template <>
++std::string TableAdaptor<BrowseColumn, CdsObject>::sqlForInsert(
++    const std::shared_ptr<CdsObject>& obj) const;
++
++template <>
++std::string TableAdaptor<MetadataColumn, CdsObject>::sqlForInsert(
++    const std::shared_ptr<CdsObject>& obj) const;
++
+ template <class Tab, class Item>
+ std::string TableAdaptor<Tab, Item>::sqlForInsert(
+     const std::shared_ptr<Item>& obj) const
+--- origsrc/gerbera-3.3.0/src/util/tools.cc	2026-09-20 05:25:25.000000000 +0000
++++ src/gerbera-3.3.0/src/util/tools.cc	2026-10-25 07:47:54.042689200 +0000
+@@ -507,11 +507,11 @@ std::string transliterate(const std::str
+             delete trans;
+         }
+ 
+-        std::ostringstream result;
+-        result << unicodeString;
++        std::string result;
++        unicodeString.toUTF8String(result);
+ 
+         // remember for future
+-        translitCache[input] = result.str();
++        translitCache[input] = result;
+     }
+ 
+     // return remembered transliterated text

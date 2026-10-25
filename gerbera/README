@@ -5,87 +5,90 @@ through your home network and consume it on a variety of UPnP compatible
 devices.
 
 Runtime requirements:
-  cygwin-3.6.5-1
+  cygwin-3.6.11-1
   file-5.46-1
-  libavcodec62-8.0.1-2
-  libavformat62-8.0.1-2
-  libavutil60-8.0.1-2
-  libcurl4-8.17.0-1
-  libduktape207-2.7.0-1bl1
+  libavcodec63-9.0.2-2
+  libavfilter12-9.0.2-2
+  libavformat63-9.0.2-2
+  libavutil61-9.0.2-2
+  libcurl4-8.23.0-1
+  libduktape207-2.7.0-1bl2
   libebml4-1.3.6-1
-  libexif12-0.6.25-1
-  libexiv2_28-0.28.7-1
-  libffmpegthumbnailer4-2.3.0-1bl1
-  libfmt12-12.1.0-1bl1
-  libgcc1-13.4.0-1
-  libiconv2-1.17-1
+  libexif12-0.6.26-1
+  libexiv2_28-0.28.9-1
+  libffmpegthumbnailer4-2.3.1-1bl1
+  libfmt12-12.2.0-1bl1
+  libgcc1-14.4.0-1
+  libiconv2-1.19-2
   libicu76-76.1-2
   libintl8-0.22.5-1
-  libjsoncpp26-1.9.6-1
-  liblastfmlib1-0.4.0-1bl2
-  libmariadb3-3.0.9-1
+  libjsoncpp27-1.9.8-1
+  liblastfmlib1-0.4.0-1bl3
+  libmariadb3-3.3.19-1
   libmatroska6-1.4.9-1
-  libnpupnp13-6.2.1-1bl1
+  libnpupnp13-6.3.0-1bl1
   libpugixml1-1.9-1
-  libspdlog1.17-1.17.0-1bl1
+  libspdlog1.17-1.17.0-1bl2
   libsqlite3_0-3.49.1-1
-  libstdc++6-13.4.0-1
-  libtag2-2.0.2-1
+  libstdc++6-14.4.0-1
+  libtag2-2.3.2-1
   libuuid1-2.40.2-2
-  libwavpack1-5.7.0-1
+  libwavpack1-5.9.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.6-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
   file-devel-5.46-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libavcodec-devel-8.0.1-2
-  libavformat-devel-8.0.1-2
-  libavutil-devel-8.0.1-2
-  libcurl-devel-8.17.0-1
-  libduktape-devel-2.7.0-1bl1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libavcodec-devel-9.0.2-2
+  libavfilter-devel-9.0.2-2
+  libavformat-devel-9.0.2-2
+  libavutil-devel-9.0.2-2
+  libcurl-devel-8.23.0-1
+  libduktape-devel-2.7.0-1bl2
   libebml-devel-1.3.6-1
-  libexif-devel-0.6.25-1
-  libexiv2-devel-0.28.7-1
-  libffmpegthumbnailer-devel-2.3.0-1bl1
-  libfmt-devel-12.1.0-1bl1
-  libgtest-devel-1.17.0-1bl1
-  libiconv-devel-1.17-1
+  libexif-devel-0.6.26-1
+  libexiv2-devel-0.28.9-1
+  libffmpegthumbnailer-devel-2.3.1-1bl1
+  libfmt-devel-12.2.0-1bl1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  libiconv-devel-1.19-2
   libicu-devel-76.1-2
-  libjsoncpp-devel-1.9.6-1
-  liblastfmlib-devel-0.4.0-1bl2
-  libmariadb-devel-3.0.9-1
+  libjsoncpp-devel-1.9.8-1
+  liblastfmlib-devel-0.4.0-1bl3
+  libmariadb-devel-3.3.19-1
   libmatroska-devel-1.4.9-1
-  libnpupnp-devel-6.2.1-1bl1
+  libnpupnp-devel-6.3.0-1bl1
   libpugixml-devel-1.9-1
-  libspdlog-devel-1.17.0-1bl1
+  libspdlog-devel-1.17.0-1bl2
   libsqlite3-devel-3.49.1-1
-  libtag-devel-2.0.2-1
+  libtag-devel-2.3.2-1
   libuuid-devel-2.40.2-2
-  libwavpack-devel-5.7.0-1
+  libwavpack-devel-5.9.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://gerbera.io/
 
 Canonical download:
-  https://github.com/gerbera/gerbera/archive/refs/tags/v3.0.0.tar.gz
+  https://github.com/gerbera/gerbera/archive/refs/tags/v3.3.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack gerbera-3.0.0-X-src.tar.xz
+  1. unpack gerbera-3.3.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./gerbera-3.0.0-X.cygport all
+        % cygport ./gerbera-3.3.0-X.cygport all
 
 This will create:
-  /usr/src/gerbera-3.0.0-X-src.tar.xz
-  /usr/src/gerbera-3.0.0-X.tar.xz
+  /usr/src/gerbera-3.3.0-X-src.tar.xz
+  /usr/src/gerbera-3.3.0-X.tar.xz
 
 -------------------------------------------
 
@@ -111,10 +114,12 @@ Files included in the binary package:
   /usr/share/gerbera/config2.xsd
   /usr/share/gerbera/js/audio.js
   /usr/share/gerbera/js/common.js
+  /usr/share/gerbera/js/cuesheet.js
   /usr/share/gerbera/js/image.js
   /usr/share/gerbera/js/import.js
   /usr/share/gerbera/js/metadata.js
   /usr/share/gerbera/js/playlists.js
+  /usr/share/gerbera/js/shared.js
   /usr/share/gerbera/js/trailer.js
   /usr/share/gerbera/js/video.js
   /usr/share/gerbera/mysql-drop.sql
@@ -205,6 +210,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.3.0-1bl1 -----
+Version bump.
 
 ----- version 3.0.0-1bl1 -----
 Version bump.

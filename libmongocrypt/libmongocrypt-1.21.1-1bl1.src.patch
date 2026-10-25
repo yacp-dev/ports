@@ -1,0 +1,82 @@
+--- origsrc/libmongocrypt-1.21.1/cmake/ImportBSON.cmake	2026-10-22 10:03:09.000000000 +0000
++++ src/libmongocrypt-1.21.1/cmake/ImportBSON.cmake	2026-10-25 20:54:10.266026500 +0000
+@@ -73,7 +73,12 @@ endif ()
+ function (_import_bson)
+    if (MONGOCRYPT_MONGOC_DIR STREQUAL "USE-SYSTEM" AND USE_SHARED_LIBBSON AND NOT ENABLE_ONLINE_TESTS)
+       message (STATUS "NOTE: Using system-wide libbson library. This is intended only for package maintainers.")
+-      find_library (_MONGOCRYPT_SYSTEM_LIBBSON_SHARED "${CMAKE_SHARED_LIBRARY_PREFIX}bson2${CMAKE_SHARED_LIBRARY_SUFFIX}")
++      if (CYGWIN)
++         # Cygwin links against the import library, not the DLL
++         find_library (_MONGOCRYPT_SYSTEM_LIBBSON_SHARED bson2)
++      else ()
++         find_library (_MONGOCRYPT_SYSTEM_LIBBSON_SHARED "${CMAKE_SHARED_LIBRARY_PREFIX}bson2${CMAKE_SHARED_LIBRARY_SUFFIX}")
++      endif ()
+       find_library (_MONGOCRYPT_SYSTEM_LIBBSON_STATIC "${CMAKE_STATIC_LIBRARY_PREFIX}bson2${CMAKE_STATIC_LIBRARY_SUFFIX}")
+       find_package (bson 2.0 REQUIRED)
+       get_target_property (_BSON_SHARED_INCL_DIR_PROP bson::shared INTERFACE_INCLUDE_DIRECTORIES)
+@@ -85,6 +90,9 @@ function (_import_bson)
+          INTERFACE_INCLUDE_DIRECTORIES "${_MONGOCRYPT_SYSTEM_LIBBSON_INCLUDE_DIR}"
+          )
+       set_property (TARGET bson_shared PROPERTY IMPORTED_LOCATION "${_MONGOCRYPT_SYSTEM_LIBBSON_SHARED}")
++      if (CYGWIN)
++         set_property (TARGET bson_shared PROPERTY IMPORTED_IMPLIB "${_MONGOCRYPT_SYSTEM_LIBBSON_SHARED}")
++      endif ()
+       set_property (TARGET bson_static PROPERTY IMPORTED_LOCATION "${_MONGOCRYPT_SYSTEM_LIBBSON_STATIC}")
+       set_property (
+          CACHE _MONGOCRYPT_SYSTEM_LIBBSON_SHARED
+@@ -170,7 +178,12 @@ else ()
+    target_link_libraries (_mongocrypt-libbson_for_shared INTERFACE $<BUILD_INTERFACE:bson_static>)
+ endif ()
+ # libbson_for_static always links to the static libbson:
+-target_link_libraries (_mongocrypt-libbson_for_static INTERFACE $<BUILD_INTERFACE:bson_static>)
++if (CYGWIN AND MONGOCRYPT_MONGOC_DIR STREQUAL "USE-SYSTEM" AND USE_SHARED_LIBBSON)
++   # Cygwin's libbson ships no static library: use the shared one
++   target_link_libraries (_mongocrypt-libbson_for_static INTERFACE $<BUILD_INTERFACE:bson_shared>)
++else ()
++   target_link_libraries (_mongocrypt-libbson_for_static INTERFACE $<BUILD_INTERFACE:bson_static>)
++endif ()
+ 
+ if (TARGET mongoc_static)
+    # And an alias to the mongoc target for use in some test cases
+--- origsrc/libmongocrypt-1.21.1/src/os_posix/os_dll.c	2026-10-22 10:03:09.000000000 +0000
++++ src/libmongocrypt-1.21.1/src/os_posix/os_dll.c	2026-10-25 20:54:10.268055500 +0000
+@@ -122,6 +122,39 @@ bool mcr_dll_path_supported(void) {
+     return true;
+ }
+ 
++#elif defined(__CYGWIN__)
++
++#include <errno.h>
++#include <stdlib.h>
++#include <sys/cygwin.h>
++#include <windows.h>
++
++mcr_dll_path_result mcr_dll_path(mcr_dll dll) {
++    // dlopen() returns the module handle on Cygwin
++    const DWORD size = 32768;
++    wchar_t *wpath = calloc(size, sizeof(wchar_t));
++    if (!wpath) {
++        return (mcr_dll_path_result){.error_string = mstr_copy_cstr(strerror(errno))};
++    }
++    DWORD len = GetModuleFileNameW((HMODULE)dll._native_handle, wpath, size);
++    if (len == 0 || len == size) {
++        free(wpath);
++        return (mcr_dll_path_result){.error_string = mstr_copy_cstr("GetModuleFileNameW() failed")};
++    }
++    char *path = cygwin_create_path(CCP_WIN_W_TO_POSIX, wpath);
++    free(wpath);
++    if (!path) {
++        return (mcr_dll_path_result){.error_string = mstr_copy_cstr(strerror(errno))};
++    }
++    mstr ret = mstr_copy_cstr(path);
++    free(path);
++    return (mcr_dll_path_result){.path = ret};
++}
++
++bool mcr_dll_path_supported(void) {
++    return true;
++}
++
+ #elif defined(_WIN32)
+ 
+ // Handled in os_win/os_dll.c

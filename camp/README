@@ -4,19 +4,18 @@ Compiler agnostic metaprogramming library providing concepts, type operations
 and tuples for C++ and cuda
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libcamp-devel-2026.07.0-1bl1
-  libcamp0-2026.07.0-1bl1
+  cygwin-3.6.11-1
+  libcamp-devel-2026.07.2-1bl1
+  libcamp0-2026.07.2-1bl1
   libgcc1-14.4.0-1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.4-2
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-14.4.0-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
   gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
@@ -29,17 +28,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack camp-2026.07.0-X-src.tar.xz
+  1. unpack camp-2026.07.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./camp-2026.07.0-X.cygport all
+        % cygport ./camp-2026.07.2-X.cygport all
 
 This will create:
-  /usr/src/camp-2026.07.0-X-src.tar.xz
-  /usr/src/camp-2026.07.0-X.tar.xz
-  /usr/src/libcamp0-2026.07.0-X.tar.xz
-  /usr/src/libcamp-devel-2026.07.0-X.tar.xz
+  /usr/src/camp-2026.07.2-X-src.tar.xz
+  /usr/src/camp-2026.07.2-X.tar.xz
+  /usr/src/libcamp0-2026.07.2-X.tar.xz
+  /usr/src/libcamp-devel-2026.07.2-X.tar.xz
 
 -------------------------------------------
 
@@ -64,6 +63,7 @@ Files included in the binary package:
   /usr/include/camp/detail/sfinae.hpp
   /usr/include/camp/detail/test.hpp
   /usr/include/camp/helpers.hpp
+  /usr/include/camp/init_helpers.hpp
   /usr/include/camp/lambda.hpp
   /usr/include/camp/list.hpp
   /usr/include/camp/list/at.hpp
@@ -94,7 +94,7 @@ Files included in the binary package:
   /usr/lib/cmake/camp/BLTThirdPartyConfigFlags.cmake
   /usr/lib/cmake/camp/campConfig.cmake
   /usr/lib/cmake/camp/campConfigVersion.cmake
-  /usr/lib/cmake/camp/campTargets-release.cmake
+  /usr/lib/cmake/camp/campTargets-relwithdebinfo.cmake
   /usr/lib/cmake/camp/campTargets.cmake
   /usr/lib/libcamp.dll.a
   /usr/lib/pkgconfig/camp.pc
@@ -102,6 +102,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2026.07.2-1bl1 -----
+Version bump.
 
 ----- version 2026.07.0-1bl1 -----
 Version bump.

@@ -1,5 +1,5 @@
---- origsrc/camp/CMakeLists.txt	2026-07-31 23:20:28.000000000 +0900
-+++ src/camp/CMakeLists.txt	2026-07-31 23:20:44.991220100 +0900
+--- origsrc/camp/CMakeLists.txt	2026-10-25 02:23:42.000000000 +0000
++++ src/camp/CMakeLists.txt	2026-10-25 02:23:48.341656900 +0000
 @@ -151,6 +151,10 @@ target_include_directories (camp PUBLIC
  set_target_properties (camp PROPERTIES
    INTERFACE_LIB_VERSION ${PROJECT_VERSION})
@@ -30,8 +30,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/camp.pc.in ${CMAKE_BINARY_DIR}/camp.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/camp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/camp/camp.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/camp/camp.pc.in	2026-07-31 23:20:44.993231800 +0900
+--- origsrc/camp/camp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/camp/camp.pc.in	2026-10-25 02:23:48.342413400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

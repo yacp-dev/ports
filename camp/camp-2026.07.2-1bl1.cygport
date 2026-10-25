@@ -7,8 +7,8 @@ SUMMARY="Concepts And Meta-Programming library"
 DESCRIPTION="Compiler agnostic metaprogramming library providing concepts, type operations
 and tuples for C++ and cuda"
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND Apache-2.0 WITH LLVM-exception"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0 WITH LLVM-exception"
 LICENSE_URI="LICENSE"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"

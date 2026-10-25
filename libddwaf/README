@@ -5,49 +5,48 @@ engine, with a goal of low performance and memory overhead, and embeddability
 in a wide variety of language runtimes through a C API.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libddwaf-devel-1.30.1-1bl1
-  libddwaf1-1.30.1-1bl1
-  libgcc1-13.4.0-1
-  libiconv2-1.17-1
+  cygwin-3.6.11-1
+  libddwaf-devel-2.1.0-1bl1
+  libddwaf2-2.1.0-1bl1
+  libgcc1-14.4.0-1
+  libiconv2-1.19-2
   libintl8-0.22.5-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libgmock-devel-1.17.0-1bl1
-  libgtest-devel-1.17.0-1bl1
-  libiconv-devel-1.17-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  git-2.51.0-1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  libiconv-devel-1.19-2
   libintl-devel-0.22.5-1
-  libyaml-cpp-devel-0.8.0-1bl2
+  libyaml-cpp-devel-0.9.0-1bl2
   ninja-1.13.2-1
-  rapidjson-devel-1.1.0p577-1
 
 Canonical website:
   https://github.com/DataDog/libddwaf
 
 Canonical download:
-  https://github.com/DataDog/libddwaf/archive/refs/tags/1.30.1.tar.gz
+  https://github.com/DataDog/libddwaf/archive/refs/tags/2.1.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libddwaf-1.30.1-X-src.tar.xz
+  1. unpack libddwaf-2.1.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libddwaf-1.30.1-X.cygport all
+        % cygport ./libddwaf-2.1.0-X.cygport all
 
 This will create:
-  /usr/src/libddwaf-1.30.1-X-src.tar.xz
-  /usr/src/libddwaf-1.30.1-X.tar.xz
-  /usr/src/libddwaf1-1.30.1-X.tar.xz
-  /usr/src/libddwaf-devel-1.30.1-X.tar.xz
+  /usr/src/libddwaf-2.1.0-X-src.tar.xz
+  /usr/src/libddwaf-2.1.0-X.tar.xz
+  /usr/src/libddwaf2-2.1.0-X.tar.xz
+  /usr/src/libddwaf-devel-2.1.0-X.tar.xz
 
 -------------------------------------------
 
@@ -55,20 +54,18 @@ Files included in the binary package:
 
 (libddwaf)
   /usr/share/doc/Cygwin/libddwaf.README
-  /usr/share/doc/libddwaf/BINDING_IMPL_NOTES.md
-  /usr/share/doc/libddwaf/CHANGELOG.md
   /usr/share/doc/libddwaf/CONTRIBUTING.md
   /usr/share/doc/libddwaf/LICENSE
   /usr/share/doc/libddwaf/NOTICE
   /usr/share/doc/libddwaf/README.md
   /usr/share/doc/libddwaf/UPGRADING.md
 
-(libddwaf1)
-  /usr/bin/cygddwaf-1.dll
+(libddwaf2)
+  /usr/bin/cygddwaf-2.dll
 
 (libddwaf-devel)
   /usr/include/ddwaf.h
-  /usr/lib/cmake/libddwaf/libddwaf-config-release.cmake
+  /usr/lib/cmake/libddwaf/libddwaf-config-relwithdebinfo.cmake
   /usr/lib/cmake/libddwaf/libddwaf-config.cmake
   /usr/lib/libddwaf.dll.a
   /usr/lib/pkgconfig/libddwaf.pc
@@ -76,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.1.0-1bl1 -----
+Version bump.
 
 ----- version 1.30.1-1bl1 -----
 Version bump.

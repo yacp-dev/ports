@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: fpconv
+Description: Fast and accurate double to string conversion
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -lfpconv
+Cflags: -I${includedir}

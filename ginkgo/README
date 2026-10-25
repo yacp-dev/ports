@@ -6,48 +6,50 @@ C++ (you will need at least C++14 compliant compiler to build it), with GPU
 kernels implemented in CUDA and HIP.
 
 Runtime requirements:
-  cygwin-3.5.0-0.363.gdedbbd74d0a8
-  libgcc1-11.4.0-1
-  libginkgo-devel-1.6.0-1bl1
-  libginkgo1.6.0-1.6.0-1bl1
-  libgomp1-11.4.0-1
-  libmetis0-5.1.0-1
-  libopenmpi40-4.1.5-1
-  libstdc++6-11.4.0-1
-  pkg-config-1.9.5-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libginkgo-devel-1.11.0-1bl1
+  libginkgo1.11.0-1.11.0-1bl1
+  libgomp1-14.4.0-1
+  libmetis0-5.2.1-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-1
-  cmake-3.25.3-1
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libmetis-devel-5.1.0-1
-  libopenmpi-devel-4.1.5-1
-  make-4.4.1-2
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libgflags-devel-2.2.2-1
+  libgklib-devel-5.1.1-1+git8bd6bad
+  libgtest-devel-1.18.0-1bl1
+  libmetis-devel-5.2.1-1
+  libopenmpi-devel-4.1.6-1
+  libyaml-cpp-devel-0.9.0-1bl2
+  ninja-1.13.2-1
+  nlohmann_json-3.12.0-1bl3
 
 Canonical website:
   https://github.com/ginkgo-project/ginkgo
 
 Canonical download:
-  https://github.com/ginkgo-project/ginkgo/archive/refs/tags/v1.6.0.tar.gz
+  https://github.com/ginkgo-project/ginkgo/archive/refs/tags/v1.11.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ginkgo-1.6.0-X-src.tar.xz
+  1. unpack ginkgo-1.11.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ginkgo-1.6.0-X.cygport all
+        % cygport ./ginkgo-1.11.0-X.cygport all
 
 This will create:
-  /usr/src/ginkgo-1.6.0-X-src.tar.xz
-  /usr/src/ginkgo-1.6.0-X.tar.xz
-  /usr/src/libginkgo1.6.0-1.6.0-X.tar.xz
-  /usr/src/libginkgo-devel-1.6.0-X.tar.xz
+  /usr/src/ginkgo-1.11.0-X-src.tar.xz
+  /usr/src/ginkgo-1.11.0-X.tar.xz
+  /usr/src/libginkgo1.11.0-1.11.0-X.tar.xz
+  /usr/src/libginkgo-devel-1.11.0-X.tar.xz
 
 -------------------------------------------
 
@@ -66,28 +68,37 @@ Files included in the binary package:
   /usr/share/doc/ginkgo/README.md
   /usr/share/doc/ginkgo/TESTING.md
 
-(libginkgo1.6.0)
-  /usr/bin/cygginkgo-1.6.0.dll
-  /usr/bin/cygginkgo_cuda-1.6.0.dll
-  /usr/bin/cygginkgo_device-1.6.0.dll
-  /usr/bin/cygginkgo_dpcpp-1.6.0.dll
-  /usr/bin/cygginkgo_hip-1.6.0.dll
-  /usr/bin/cygginkgo_omp-1.6.0.dll
-  /usr/bin/cygginkgo_reference-1.6.0.dll
+(libginkgo1.11.0)
+  /usr/bin/cygginkgo-1.11.0.dll
+  /usr/bin/cygginkgo_core-1.11.0.dll
+  /usr/bin/cygginkgo_cuda-1.11.0.dll
+  /usr/bin/cygginkgo_device-1.11.0.dll
+  /usr/bin/cygginkgo_dpcpp-1.11.0.dll
+  /usr/bin/cygginkgo_hip-1.11.0.dll
+  /usr/bin/cygginkgo_omp-1.11.0.dll
+  /usr/bin/cygginkgo_reference-1.11.0.dll
 
 (libginkgo-devel)
   /usr/include/ginkgo/config.hpp
   /usr/include/ginkgo/core/base/abstract_factory.hpp
   /usr/include/ginkgo/core/base/array.hpp
+  /usr/include/ginkgo/core/base/batch_dim.hpp
+  /usr/include/ginkgo/core/base/batch_lin_op.hpp
+  /usr/include/ginkgo/core/base/batch_multi_vector.hpp
+  /usr/include/ginkgo/core/base/bfloat16.hpp
+  /usr/include/ginkgo/core/base/block_operator.hpp
   /usr/include/ginkgo/core/base/combination.hpp
   /usr/include/ginkgo/core/base/composition.hpp
   /usr/include/ginkgo/core/base/dense_cache.hpp
   /usr/include/ginkgo/core/base/device.hpp
   /usr/include/ginkgo/core/base/device_matrix_data.hpp
   /usr/include/ginkgo/core/base/dim.hpp
+  /usr/include/ginkgo/core/base/event.hpp
   /usr/include/ginkgo/core/base/exception.hpp
   /usr/include/ginkgo/core/base/exception_helpers.hpp
   /usr/include/ginkgo/core/base/executor.hpp
+  /usr/include/ginkgo/core/base/fwd_decls.hpp
+  /usr/include/ginkgo/core/base/half.hpp
   /usr/include/ginkgo/core/base/index_set.hpp
   /usr/include/ginkgo/core/base/intrinsics.hpp
   /usr/include/ginkgo/core/base/lin_op.hpp
@@ -95,6 +106,7 @@ Files included in the binary package:
   /usr/include/ginkgo/core/base/math.hpp
   /usr/include/ginkgo/core/base/matrix_assembly_data.hpp
   /usr/include/ginkgo/core/base/matrix_data.hpp
+  /usr/include/ginkgo/core/base/memory.hpp
   /usr/include/ginkgo/core/base/mpi.hpp
   /usr/include/ginkgo/core/base/mtx_io.hpp
   /usr/include/ginkgo/core/base/name_demangling.hpp
@@ -104,37 +116,57 @@ Files included in the binary package:
   /usr/include/ginkgo/core/base/range.hpp
   /usr/include/ginkgo/core/base/range_accessors.hpp
   /usr/include/ginkgo/core/base/scoped_device_id_guard.hpp
+  /usr/include/ginkgo/core/base/segmented_array.hpp
   /usr/include/ginkgo/core/base/std_extensions.hpp
+  /usr/include/ginkgo/core/base/stream.hpp
   /usr/include/ginkgo/core/base/temporary_clone.hpp
   /usr/include/ginkgo/core/base/temporary_conversion.hpp
   /usr/include/ginkgo/core/base/timer.hpp
+  /usr/include/ginkgo/core/base/type_traits.hpp
   /usr/include/ginkgo/core/base/types.hpp
   /usr/include/ginkgo/core/base/utils.hpp
   /usr/include/ginkgo/core/base/utils_helper.hpp
   /usr/include/ginkgo/core/base/version.hpp
+  /usr/include/ginkgo/core/config/config.hpp
+  /usr/include/ginkgo/core/config/property_tree.hpp
+  /usr/include/ginkgo/core/config/registry.hpp
+  /usr/include/ginkgo/core/config/type_descriptor.hpp
+  /usr/include/ginkgo/core/distributed/assembly.hpp
   /usr/include/ginkgo/core/distributed/base.hpp
-  /usr/include/ginkgo/core/distributed/lin_op.hpp
+  /usr/include/ginkgo/core/distributed/collective_communicator.hpp
+  /usr/include/ginkgo/core/distributed/dense_communicator.hpp
+  /usr/include/ginkgo/core/distributed/index_map.hpp
   /usr/include/ginkgo/core/distributed/matrix.hpp
+  /usr/include/ginkgo/core/distributed/neighborhood_communicator.hpp
   /usr/include/ginkgo/core/distributed/partition.hpp
-  /usr/include/ginkgo/core/distributed/polymorphic_object.hpp
+  /usr/include/ginkgo/core/distributed/partition_helpers.hpp
   /usr/include/ginkgo/core/distributed/preconditioner/schwarz.hpp
+  /usr/include/ginkgo/core/distributed/row_gatherer.hpp
   /usr/include/ginkgo/core/distributed/vector.hpp
+  /usr/include/ginkgo/core/distributed/vector_cache.hpp
   /usr/include/ginkgo/core/factorization/cholesky.hpp
   /usr/include/ginkgo/core/factorization/factorization.hpp
   /usr/include/ginkgo/core/factorization/ic.hpp
   /usr/include/ginkgo/core/factorization/ilu.hpp
+  /usr/include/ginkgo/core/factorization/incomplete_factorization.hpp
   /usr/include/ginkgo/core/factorization/lu.hpp
   /usr/include/ginkgo/core/factorization/par_ic.hpp
   /usr/include/ginkgo/core/factorization/par_ict.hpp
   /usr/include/ginkgo/core/factorization/par_ilu.hpp
   /usr/include/ginkgo/core/factorization/par_ilut.hpp
+  /usr/include/ginkgo/core/log/batch_logger.hpp
   /usr/include/ginkgo/core/log/convergence.hpp
   /usr/include/ginkgo/core/log/logger.hpp
   /usr/include/ginkgo/core/log/papi.hpp
   /usr/include/ginkgo/core/log/performance_hint.hpp
   /usr/include/ginkgo/core/log/profiler_hook.hpp
   /usr/include/ginkgo/core/log/record.hpp
+  /usr/include/ginkgo/core/log/solver_progress.hpp
   /usr/include/ginkgo/core/log/stream.hpp
+  /usr/include/ginkgo/core/matrix/batch_csr.hpp
+  /usr/include/ginkgo/core/matrix/batch_dense.hpp
+  /usr/include/ginkgo/core/matrix/batch_ell.hpp
+  /usr/include/ginkgo/core/matrix/batch_identity.hpp
   /usr/include/ginkgo/core/matrix/coo.hpp
   /usr/include/ginkgo/core/matrix/csr.hpp
   /usr/include/ginkgo/core/matrix/dense.hpp
@@ -146,25 +178,35 @@ Files included in the binary package:
   /usr/include/ginkgo/core/matrix/identity.hpp
   /usr/include/ginkgo/core/matrix/permutation.hpp
   /usr/include/ginkgo/core/matrix/row_gatherer.hpp
+  /usr/include/ginkgo/core/matrix/scaled_permutation.hpp
   /usr/include/ginkgo/core/matrix/sellp.hpp
   /usr/include/ginkgo/core/matrix/sparsity_csr.hpp
   /usr/include/ginkgo/core/multigrid/fixed_coarsening.hpp
   /usr/include/ginkgo/core/multigrid/multigrid_level.hpp
   /usr/include/ginkgo/core/multigrid/pgm.hpp
+  /usr/include/ginkgo/core/preconditioner/batch_jacobi.hpp
+  /usr/include/ginkgo/core/preconditioner/gauss_seidel.hpp
   /usr/include/ginkgo/core/preconditioner/ic.hpp
   /usr/include/ginkgo/core/preconditioner/ilu.hpp
   /usr/include/ginkgo/core/preconditioner/isai.hpp
   /usr/include/ginkgo/core/preconditioner/jacobi.hpp
+  /usr/include/ginkgo/core/preconditioner/sor.hpp
+  /usr/include/ginkgo/core/preconditioner/utils.hpp
   /usr/include/ginkgo/core/reorder/amd.hpp
+  /usr/include/ginkgo/core/reorder/mc64.hpp
   /usr/include/ginkgo/core/reorder/nested_dissection.hpp
   /usr/include/ginkgo/core/reorder/rcm.hpp
   /usr/include/ginkgo/core/reorder/reordering_base.hpp
   /usr/include/ginkgo/core/reorder/scaled_reordered.hpp
+  /usr/include/ginkgo/core/solver/batch_bicgstab.hpp
+  /usr/include/ginkgo/core/solver/batch_cg.hpp
+  /usr/include/ginkgo/core/solver/batch_solver_base.hpp
   /usr/include/ginkgo/core/solver/bicg.hpp
   /usr/include/ginkgo/core/solver/bicgstab.hpp
   /usr/include/ginkgo/core/solver/cb_gmres.hpp
   /usr/include/ginkgo/core/solver/cg.hpp
   /usr/include/ginkgo/core/solver/cgs.hpp
+  /usr/include/ginkgo/core/solver/chebyshev.hpp
   /usr/include/ginkgo/core/solver/direct.hpp
   /usr/include/ginkgo/core/solver/fcg.hpp
   /usr/include/ginkgo/core/solver/gcr.hpp
@@ -172,12 +214,15 @@ Files included in the binary package:
   /usr/include/ginkgo/core/solver/idr.hpp
   /usr/include/ginkgo/core/solver/ir.hpp
   /usr/include/ginkgo/core/solver/lower_trs.hpp
+  /usr/include/ginkgo/core/solver/minres.hpp
   /usr/include/ginkgo/core/solver/multigrid.hpp
+  /usr/include/ginkgo/core/solver/pipe_cg.hpp
   /usr/include/ginkgo/core/solver/solver_base.hpp
   /usr/include/ginkgo/core/solver/solver_traits.hpp
   /usr/include/ginkgo/core/solver/triangular.hpp
   /usr/include/ginkgo/core/solver/upper_trs.hpp
   /usr/include/ginkgo/core/solver/workspace.hpp
+  /usr/include/ginkgo/core/stop/batch_stop_enum.hpp
   /usr/include/ginkgo/core/stop/combined.hpp
   /usr/include/ginkgo/core/stop/criterion.hpp
   /usr/include/ginkgo/core/stop/iteration.hpp
@@ -186,10 +231,16 @@ Files included in the binary package:
   /usr/include/ginkgo/core/stop/stopping_status.hpp
   /usr/include/ginkgo/core/stop/time.hpp
   /usr/include/ginkgo/core/synthesizer/containers.hpp
+  /usr/include/ginkgo/extensions/config/json_config.hpp
+  /usr/include/ginkgo/extensions/config/yaml_config.hpp
+  /usr/include/ginkgo/extensions/kokkos.hpp
+  /usr/include/ginkgo/extensions/kokkos/config.hpp
+  /usr/include/ginkgo/extensions/kokkos/spaces.hpp
+  /usr/include/ginkgo/extensions/kokkos/types.hpp
   /usr/include/ginkgo/ginkgo.hpp
   /usr/lib/cmake/Ginkgo/GinkgoConfig.cmake
   /usr/lib/cmake/Ginkgo/GinkgoConfigVersion.cmake
-  /usr/lib/cmake/Ginkgo/GinkgoTargets-release.cmake
+  /usr/lib/cmake/Ginkgo/GinkgoTargets-relwithdebinfo.cmake
   /usr/lib/cmake/Ginkgo/GinkgoTargets.cmake
   /usr/lib/cmake/Ginkgo/Modules/CudaArchitectureSelector.cmake
   /usr/lib/cmake/Ginkgo/Modules/FindHWLOC.cmake
@@ -201,6 +252,7 @@ Files included in the binary package:
   /usr/lib/cmake/Ginkgo/Modules/FindVTune.cmake
   /usr/lib/cmake/Ginkgo/Modules/hwloc_helpers.cmake
   /usr/lib/libginkgo.dll.a
+  /usr/lib/libginkgo_core.dll.a
   /usr/lib/libginkgo_cuda.dll.a
   /usr/lib/libginkgo_device.dll.a
   /usr/lib/libginkgo_dpcpp.dll.a
@@ -208,10 +260,14 @@ Files included in the binary package:
   /usr/lib/libginkgo_omp.dll.a
   /usr/lib/libginkgo_reference.dll.a
   /usr/lib/pkgconfig/ginkgo.pc
+  /usr/lib/pkgconfig/ginkgo_RelWithDebInfo.pc
 
 ------------------
 
 Port Notes:
+
+----- version 1.11.0-1bl1 -----
+Version bump.
 
 ----- version 1.6.0-1bl1 -----
 Version bump.

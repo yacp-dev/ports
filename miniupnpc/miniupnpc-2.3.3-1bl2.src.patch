@@ -1,5 +1,5 @@
---- origsrc/miniupnp-miniupnpc_2_3_3/miniupnpc/miniupnpc.pc.in	2025-05-27 08:00:20.000000000 +0900
-+++ src/miniupnp-miniupnpc_2_3_3/miniupnpc/miniupnpc.pc.in	2026-01-25 00:28:07.258402500 +0900
+--- origsrc/miniupnp-miniupnpc_2_3_3/miniupnpc/miniupnpc.pc.in	2025-05-26 23:00:20.000000000 +0000
++++ src/miniupnp-miniupnpc_2_3_3/miniupnpc/miniupnpc.pc.in	2026-10-25 01:47:37.594764700 +0000
 @@ -5,14 +5,14 @@
  # Good tutoral for understanding .pc files: 
  # https://people.freedesktop.org/~dbn/pkg-config-guide.html

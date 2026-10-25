@@ -1,8 +1,5 @@
-HOMEPAGE="https://github.com/ipfire/${PN}"
-SRC_URI="https://github.com/ipfire/${PN}/archive/refs/tags/${PV}.tar.gz"
-PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-0.9.18-address-Fix-endianess-problem-when-fetching-octets-i.patch
-"
+HOMEPAGE="https://www.ipfire.org/location/"
+SRC_URI="https://source.ipfire.org/releases/${PN}/${P}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Library to determine the location of someone on the Internet"
@@ -12,9 +9,23 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="asciidoc liblua-devel libssl-devel perl python39-devel"
+BUILD_REQUIRES="
+	asciidoc
+	gettext-devel
+	intltool
+	liblua-devel
+	libssl-devel
+	perl
+	python3-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -DLUA_VERSION_RELEASE_NUM=503"
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/src/.libs:${PATH} cygmake check
+}
 
 PKG_NAMES="
 	libloc
@@ -22,7 +33,7 @@ PKG_NAMES="
 	libloc-devel
 	lua-libloc
 	perl-libloc
-	python39-libloc
+	python312-libloc
 "
 libloc_CONTENTS="
 	etc
@@ -49,12 +60,12 @@ perl_libloc_CONTENTS="
 	usr/lib/perl5
 	usr/share/man/man3/*.3pm.gz
 "
-python39_libloc_CONTENTS="
-	usr/lib/python3.9
+python312_libloc_CONTENTS="
+	usr/lib/python3.12
 "
 libloc_SUMMARY="${SUMMARY} (utilities)"
 libloc1_SUMMARY="${SUMMARY} (runtime)"
 libloc_devel_SUMMARY="${SUMMARY} (development)"
 lua_libloc_SUMMARY="${SUMMARY} (lua bindings)"
 perl_libloc_SUMMARY="${SUMMARY} (perl bindings)"
-python39_libloc_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libloc_SUMMARY="${SUMMARY} (python312 bindings)"

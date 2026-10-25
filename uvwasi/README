@@ -4,20 +4,20 @@ uvwasi implements the WASI system call API. Under the hood, uvwasi leverages
 libuv where possible for maximum portability.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libuv1-1.50.0-1
-  libuvwasi-devel-0.0.23-1bl1
-  libuvwasi0-0.0.23-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.11-1
+  libuv1-1.53.0-1
+  libuvwasi-devel-0.0.23-1bl2
+  libuvwasi0-0.0.23-1bl2
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  libuv-devel-1.50.0-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  libuv-devel-1.53.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/nodejs/uvwasi
@@ -58,7 +58,7 @@ Files included in the binary package:
   /usr/include/wasi_types.h
   /usr/lib/cmake/uvwasi/uvwasiConfig.cmake
   /usr/lib/cmake/uvwasi/uvwasiConfigVersion.cmake
-  /usr/lib/cmake/uvwasi/uvwasiTargets-release.cmake
+  /usr/lib/cmake/uvwasi/uvwasiTargets-relwithdebinfo.cmake
   /usr/lib/cmake/uvwasi/uvwasiTargets.cmake
   /usr/lib/libuvwasi.dll.a
   /usr/lib/pkgconfig/uvwasi.pc
@@ -66,6 +66,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.0.23-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.0.23-1bl1 -----
 Version bump.

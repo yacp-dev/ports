@@ -1,0 +1,69 @@
+--- origsrc/azpainter-v3.0.12/configure.c	2025-05-05 01:36:38.000000000 +0000
++++ src/azpainter-v3.0.12/configure.c	2026-10-25 00:08:26.371881700 +0000
+@@ -509,6 +509,48 @@ static void _check_lib(const char *name,
+  * func: NULL でライブラリのチェックのみ
+  * return: 1 で存在する */
+ 
++#ifdef __CYGWIN__
++
++/* Cygwin: lib*.so can't be dlopen'ed, so link a test program against lib */
++
++static int _check_dynamic_lib(const char *lib,const char *func)
++{
++	string str;
++	FILE *fp;
++	int ret;
++
++	fp = fopen("build/conftest.c", "w");
++	if(!fp) return 0;
++
++	if(func)
++		fprintf(fp, "char %s(void);\nint main(void){ %s(); return 0; }\n", func, func);
++	else
++		fprintf(fp, "int main(void){ return 0; }\n");
++
++	fclose(fp);
++
++	if(str_alloc(&str)) return 0;
++
++	str_settext(&str, cc_str);
++	str_addtext(&str, " -o build/conftest build/conftest.c ");
++	str_addtext(&str, str_ldflags.buf);
++	str_addtext(&str, " -l");
++	str_addtext(&str, lib + 3);
++	str_addtext(&str, " > /dev/null 2>&1");
++
++	fflush(stdout);
++	ret = (system(str.buf) == 0);
++
++	remove("build/conftest.c");
++	remove("build/conftest");
++	remove("build/conftest.exe");
++	str_free(&str);
++
++	return ret;
++}
++
++#else
++
+ static int _check_dynamic_lib(const char *lib,const char *func)
+ {
+ 	string str;
+@@ -534,11 +576,17 @@ static int _check_dynamic_lib(const char
+ 	return ret;
+ }
+ 
++#endif
++
+ /* libc に関数が含まれているかチェック */
+ 
+ static int _check_libc_func(const char *name)
+ {
++#ifdef RTLD_NEXT
+ 	return (dlsym(RTLD_NEXT, name) != 0);
++#else
++	return (dlsym(RTLD_DEFAULT, name) != 0);
++#endif
+ }
+ 
+ static const uint16_t g_endian_val = 0x1234;

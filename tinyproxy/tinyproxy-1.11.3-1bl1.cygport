@@ -1,5 +1,11 @@
 HOMEPAGE="https://github.com/${PN}/${PN}"
 SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/${PN}/raw/0550f2fc6cfb2122177ef02ef8016b6fd14b5be4/f/0001-reqs-check-negative-length-values-and-prevent-potential-int-overflow-when-parsing-chunked-data.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/0550f2fc6cfb2122177ef02ef8016b6fd14b5be4/f/0002-reqs-fix-case-sensitive-matching-of-chunked-605.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/0550f2fc6cfb2122177ef02ef8016b6fd14b5be4/f/0003-reqs-prevent-request-smuggling-via-both-content-length-and-chunked.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/0550f2fc6cfb2122177ef02ef8016b6fd14b5be4/f/0004-reqs-prevent-multiple-content-lengths-getting-emitted.patch
+"
 
 CATEGORY="Net"
 SUMMARY="Light-weight HTTP/HTTPS proxy daemon"

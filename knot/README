@@ -1,8 +1,7 @@
 knot
 ------------------------------------------
-Knot DNS is a high-performance authoritative-only DNS server which supports
-all key features of the domain name system including zone transfers and
-DNSSEC.
+Knot DNS is a high-performance authoritative-only DNS server which supports all
+key features of the domain name system including zone transfers and DNSSEC.
 
 Runtime requirements:
   cygwin-3.6.11-1
@@ -11,10 +10,10 @@ Runtime requirements:
   libfstrm0-0.6.1-1bl3
   libgcc1-14.4.0-1
   libgnutls30-3.8.13-1
-  libhiredis1-1.4.1-1bl1
+  libhiredis1-1.5.0-1bl1
   libidn2_0-2.3.8-1
-  libknot-devel-3.6.1-1bl1
-  libknot17-3.6.1-1bl1
+  libknot-devel-3.6.2-1bl1
+  libknot17-3.6.2-1bl1
   liblmdb0-0.9.19-1
   libmaxminddb0-1.3.2-1
   libnghttp2_14-1.69.0-1
@@ -22,8 +21,8 @@ Runtime requirements:
   libngtcp2_crypto_gnutls8-1.25.0-1bl1
   libprotobuf-c1-1.5.2-1bl2
   liburcu8-0.15.7-1bl1
-  libzscanner-devel-3.6.1-1bl1
-  libzscanner5-3.6.1-1bl1
+  libzscanner-devel-3.6.2-1bl1
+  libzscanner5-3.6.2-1bl1
   pkg-config-3.0.9-1
 
 Build requirements:
@@ -31,13 +30,13 @@ Build requirements:
   autoconf-20260320-3
   automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.10-1
+  cygport-0.37.11-1
   gcc-core-14.4.0-1
   libdbus1-devel-1.16.2-1
   libedit-devel-20251016-1
   libfstrm-devel-0.6.1-1bl3
   libgnutls-devel-3.8.13-1
-  libhiredis-devel-1.4.1-1bl1
+  libhiredis-devel-1.5.0-1bl1
   libidn2-devel-2.3.8-1
   liblmdb-devel-0.9.19-1
   libmaxminddb-devel-1.3.2-1
@@ -53,24 +52,24 @@ Canonical website:
   https://www.knot-dns.cz/
 
 Canonical download:
-  https://secure.nic.cz/files/knot-dns/knot-3.6.1.tar.xz
+  https://secure.nic.cz/files/knot-dns/knot-3.6.2.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack knot-3.6.1-X-src.tar.xz
+  1. unpack knot-3.6.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./knot-3.6.1-X.cygport all
+        % cygport ./knot-3.6.2-X.cygport all
 
 This will create:
-  /usr/src/knot-3.6.1-X-src.tar.xz
-  /usr/src/knot-3.6.1-X.tar.xz
-  /usr/src/libknot17-3.6.1-X.tar.xz
-  /usr/src/libknot-devel-3.6.1-X.tar.xz
-  /usr/src/libzscanner5-3.6.1-X.tar.xz
-  /usr/src/libzscanner-devel-3.6.1-X.tar.xz
+  /usr/src/knot-3.6.2-X-src.tar.xz
+  /usr/src/knot-3.6.2-X.tar.xz
+  /usr/src/libknot17-3.6.2-X.tar.xz
+  /usr/src/libknot-devel-3.6.2-X.tar.xz
+  /usr/src/libzscanner5-3.6.2-X.tar.xz
+  /usr/src/libzscanner-devel-3.6.2-X.tar.xz
 
 -------------------------------------------
 
@@ -196,6 +195,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.6.2-1bl1 -----
+Version bump.
 
 ----- version 3.6.1-1bl1 -----
 Version bump.

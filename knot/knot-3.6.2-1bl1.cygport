@@ -7,8 +7,8 @@ DESCRIPTION="Knot DNS is a high-performance authoritative-only DNS server which 
 all key features of the domain name system including zone transfers and
 DNSSEC."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-3-Clause AND ISC AND MIT AND OLDAP-2.8"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND BSD-3-Clause AND ISC AND MIT AND OLDAP-2.8"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="

@@ -1,15 +1,27 @@
 HOMEPAGE="https://github.com/rnpgp/${PN}"
-SRC_URI="https://github.com/rnpgp/${PN}/archive/refs/tags/v${PV}.tar.gz"
+SRC_URI="https://github.com/rnpgp/${PN}/releases/download/v${PV}/${PN}-v${PV}.tar.gz"
+SRC_DIR="${PN}-v${PV}"
 
 CATEGORY="Libs"
 SUMMARY="High performance C++ OpenPGP library"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND Apache-2.0 AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND Apache-2.0 AND MIT"
 LICENSE_URI="LICENSE.md"
 
-BUILD_REQUIRES="libbz2-devel libjson-c-devel libssl-devel zlib-devel"
+# git: without it, cmake/version.cmake's execute_process() of
+# GIT_EXECUTABLE-NOTFOUND fails to spawn, and project()'s next
+# execute_process (uname -r) never returns.
+BUILD_REQUIRES="
+	asciidoctor
+	git
+	libbz2-devel
+	libgtest-devel
+	libjson-c-devel
+	libssl-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -19,13 +31,12 @@ CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DCRYPTO_BACKEND:STRING=openssl
 	-DDOWNLOAD_GTEST:BOOL=OFF
-	-DDOWNLOAD_RUBYRNP:BOOL=OFF
 "
 
 src_test()
 {
 	cd ${B}
-	ninja_test
+	PATH=${B}/src/lib:${PATH} ninja_test
 }
 
 PKG_NAMES="
@@ -39,7 +50,7 @@ rnp_CONTENTS="
 	usr/share/man/man1
 "
 librnp0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-0.dll
 "
 librnp_devel_CONTENTS="
 	usr/include

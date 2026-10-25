@@ -1,0 +1,11 @@
+--- origsrc/rnp-v0.18.1/src/lib/CMakeLists.txt	2025-11-21 13:21:08.000000000 +0000
++++ src/rnp-v0.18.1/src/lib/CMakeLists.txt	2026-10-25 13:03:17.162410100 +0000
+@@ -578,7 +578,7 @@ if (BUILD_SHARED_LIBS)
+   )
+ 
+ # install dll only for windows
+-  if (WIN32)
++  if (WIN32 OR CYGWIN)
+     install(TARGETS librnp
+       RUNTIME
+         DESTINATION "${CMAKE_INSTALL_BINDIR}"

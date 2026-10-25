@@ -1,0 +1,44 @@
+--- origsrc/jsonnet-0.22.0/CMakeLists.txt	2026-03-24 14:14:29.000000000 +0000
++++ src/jsonnet-0.22.0/CMakeLists.txt	2026-10-25 05:53:49.481876500 +0000
+@@ -249,6 +249,14 @@ if(BUILD_SHARED_LIBS OR (BUILD_SOME_BINA
+     endif()
+ endif()
+ 
++#### pkg-config files.
++#
++
++configure_file(core/jsonnet.pc.in jsonnet.pc @ONLY)
++configure_file(cpp/jsonnet++.pc.in jsonnet++.pc @ONLY)
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/jsonnet.pc" "${CMAKE_CURRENT_BINARY_DIR}/jsonnet++.pc"
++    DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
++
+ #### Alias the library to use for binaries.
+ #
+ 
+--- origsrc/jsonnet-0.22.0/core/jsonnet.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/jsonnet-0.22.0/core/jsonnet.pc.in	2026-10-25 05:53:49.481876500 +0000
+@@ -0,0 +1,10 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
++includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
++
++Name: libjsonnet
++Description: C API for Jsonnet - The data templating language
++Version: @JSONNET_HEADER_VERSION@
++Libs: -L${libdir} -ljsonnet
++Cflags: -I${includedir}
+--- origsrc/jsonnet-0.22.0/cpp/jsonnet++.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/jsonnet-0.22.0/cpp/jsonnet++.pc.in	2026-10-25 05:53:49.483888000 +0000
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=${prefix}/@CMAKE_INSTALL_LIBDIR@
++includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
++
++Name: libjsonnet++
++Description: C++ API for Jsonnet - The data templating language
++Version: @JSONNET_HEADER_VERSION@
++Requires: jsonnet
++Libs: -L${libdir} -ljsonnet++
++Cflags: -I${includedir}

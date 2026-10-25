@@ -1,15 +1,19 @@
 HOMEPAGE="https://github.com/google/${PN}"
 SRC_URI="https://github.com/google/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/jsonnet/raw/93dd182c45218575f33e8bdefe6c5aba1b3b3413/f/0004-chore-fix-cast-conformance-in-C-23.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Data templating language"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND MIT AND BSD-2-Clause AND BSL-1.0 AND RSA-MD"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND MIT AND BSD-2-Clause AND BSL-1.0 AND RSA-MD"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	libgmock-devel
 	libgtest-devel
 	nlohmann_json
 "
@@ -21,22 +25,9 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_STATIC_LIBS:BOOL=OFF
 	-DBUILD_SHARED_BINARIES:BOOL=ON
-	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DUSE_SYSTEM_GTEST:BOOL=ON
 	-DUSE_SYSTEM_JSON:BOOL=ON
-	-DVERSION:STRING=${PV}
 "
-
-src_install()
-{
-	cd ${B}
-	ninja_install
-
-	cd ${D}
-	rm -fr usr/include/c4
-	rm -fr usr/lib/cmake/c4core
-	rm -fr usr/lib/libc4core.a
-}
 
 DIFF_EXCLUDES="
 	std.jsonnet.h

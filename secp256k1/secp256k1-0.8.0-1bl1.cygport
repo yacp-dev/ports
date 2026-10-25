@@ -24,19 +24,19 @@ DOCS="
 
 PKG_NAMES="
 	${PN}
-	lib${PN}_5
+	lib${PN}_7
 	lib${PN}-devel
 "
 secp256k1_CONTENTS="
 	usr/share
 "
-libsecp256k1_5_CONTENTS="
-	usr/bin/cyg*-5.dll
+libsecp256k1_7_CONTENTS="
+	usr/bin/cyg*-7.dll
 "
 libsecp256k1_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 secp256k1_SUMMARY="${SUMMARY} (licensing & readmes)"
-libsecp256k1_5_SUMMARY="${SUMMARY} (runtime)"
+libsecp256k1_7_SUMMARY="${SUMMARY} (runtime)"
 libsecp256k1_devel_SUMMARY="${SUMMARY} (development)"

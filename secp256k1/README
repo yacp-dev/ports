@@ -3,41 +3,41 @@ secp256k1
 Optimized C library for EC operations on curve secp256k1
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libsecp256k1-devel-0.6.0-1bl1
-  libsecp256k1_5-0.6.0-1bl1
-  pkg-config-2.3.0-1
+  cygwin-3.6.11-1
+  libsecp256k1-devel-0.8.0-1bl1
+  libsecp256k1_7-0.8.0-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/bitcoin-core/secp256k1
 
 Canonical download:
-  https://github.com/bitcoin-core/secp256k1/archive/refs/tags/v0.6.0.tar.gz
+  https://github.com/bitcoin-core/secp256k1/archive/refs/tags/v0.8.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack secp256k1-0.6.0-X-src.tar.xz
+  1. unpack secp256k1-0.8.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./secp256k1-0.6.0-X.cygport all
+        % cygport ./secp256k1-0.8.0-X.cygport all
 
 This will create:
-  /usr/src/secp256k1-0.6.0-X-src.tar.xz
-  /usr/src/secp256k1-0.6.0-X.tar.xz
-  /usr/src/libsecp256k1_5-0.6.0-X.tar.xz
-  /usr/src/libsecp256k1-devel-0.6.0-X.tar.xz
+  /usr/src/secp256k1-0.8.0-X-src.tar.xz
+  /usr/src/secp256k1-0.8.0-X.tar.xz
+  /usr/src/libsecp256k1_7-0.8.0-X.tar.xz
+  /usr/src/libsecp256k1-devel-0.8.0-X.tar.xz
 
 -------------------------------------------
 
@@ -51,8 +51,8 @@ Files included in the binary package:
   /usr/share/doc/secp256k1/README.md
   /usr/share/doc/secp256k1/SECURITY.md
 
-(libsecp256k1_5)
-  /usr/bin/cygsecp256k1-5.dll
+(libsecp256k1_7)
+  /usr/bin/cygsecp256k1-7.dll
 
 (libsecp256k1-devel)
   /usr/include/secp256k1.h
@@ -63,12 +63,16 @@ Files included in the binary package:
   /usr/include/secp256k1_preallocated.h
   /usr/include/secp256k1_recovery.h
   /usr/include/secp256k1_schnorrsig.h
+  /usr/include/secp256k1_silentpayments.h
   /usr/lib/libsecp256k1.dll.a
   /usr/lib/pkgconfig/libsecp256k1.pc
 
 ------------------
 
 Port Notes:
+
+----- version 0.8.0-1bl1 -----
+Version bump.
 
 ----- version 0.6.0-1bl1 -----
 Version bump.

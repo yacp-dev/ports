@@ -9,11 +9,13 @@ SUMMARY="Ultimate Disassembler"
 DESCRIPTION="Capstone is a lightweight multi-platform, multi-architecture disassembly
 framework."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND NCSA"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND NCSA"
 LICENSE_URI="LICENSE.TXT"
 
-BUILD_REQUIRES="libcmocka-devel"
+BUILD_REQUIRES="
+	libcmocka-devel
+"
 
 inherit cmake
 

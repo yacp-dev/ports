@@ -4,42 +4,41 @@ Capstone is a lightweight multi-platform, multi-architecture disassembly
 framework.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libcapstone-devel-5.0.6-1bl1
-  libcapstone5-5.0.6-1bl1
-  libcmocka0-1.1.7-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.11-1
+  libcapstone-devel-5.0.9-1bl1
+  libcapstone5-5.0.9-1bl1
+  libcmocka0-2.0.2-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libcmocka-devel-1.1.7-1bl1
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  libcmocka-devel-2.0.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/capstone-engine/capstone
 
 Canonical download:
-  https://github.com/capstone-engine/capstone/archive/refs/tags/5.0.6.tar.gz
+  https://github.com/capstone-engine/capstone/archive/refs/tags/5.0.9.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack capstone-5.0.6-X-src.tar.xz
+  1. unpack capstone-5.0.9-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./capstone-5.0.6-X.cygport all
+        % cygport ./capstone-5.0.9-X.cygport all
 
 This will create:
-  /usr/src/capstone-5.0.6-X-src.tar.xz
-  /usr/src/capstone-5.0.6-X.tar.xz
-  /usr/src/libcapstone5-5.0.6-X.tar.xz
-  /usr/src/libcapstone-devel-5.0.6-X.tar.xz
+  /usr/src/capstone-5.0.9-X-src.tar.xz
+  /usr/src/capstone-5.0.9-X.tar.xz
+  /usr/src/libcapstone5-5.0.9-X.tar.xz
+  /usr/src/libcapstone-devel-5.0.9-X.tar.xz
 
 -------------------------------------------
 
@@ -85,7 +84,7 @@ Files included in the binary package:
   /usr/include/capstone/xcore.h
   /usr/lib/cmake/capstone/capstone-config-version.cmake
   /usr/lib/cmake/capstone/capstone-config.cmake
-  /usr/lib/cmake/capstone/capstone-targets-release.cmake
+  /usr/lib/cmake/capstone/capstone-targets-relwithdebinfo.cmake
   /usr/lib/cmake/capstone/capstone-targets.cmake
   /usr/lib/libcapstone.dll.a
   /usr/lib/pkgconfig/capstone.pc
@@ -93,6 +92,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.0.9-1bl1 -----
+Version bump.
 
 ----- version 5.0.6-1bl1 -----
 Version bump.

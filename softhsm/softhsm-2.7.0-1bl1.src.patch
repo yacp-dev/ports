@@ -1,6 +1,15 @@
---- origsrc/softhsm-2.6.1/configure.ac	2020-04-29 19:10:12.000000000 +0900
-+++ src/softhsm-2.6.1/configure.ac	2024-09-21 18:55:19.372342200 +0900
-@@ -131,7 +131,7 @@ softhsmtokendir=${full_localstatedir}/li
+--- origsrc/SoftHSMv2-2.7.0/configure.ac	2026-01-20 06:25:10.000000000 +0000
++++ src/SoftHSMv2-2.7.0/configure.ac	2026-10-25 09:29:01.792826600 +0000
+@@ -52,7 +52,7 @@ CXXFLAGS="${CXXFLAGS} -D_FILE_OFFSET_BIT
+ ACX_PEDANTIC
+ ACX_STRICT
+ ACX_64BIT
+-AX_CXX_COMPILE_STDCXX_11([noext],[optional])
++AX_CXX_COMPILE_STDCXX_11([],[optional])
+ 
+ # Check for libraries (-ldl can be required by OpenSSL too)
+ ACX_DLOPEN
+@@ -133,7 +133,7 @@ softhsmtokendir=${full_localstatedir}/li
  # Install the library in a sub-directory
  full_libdir="$full_libdir/softhsm"
  libdir=$full_libdir
@@ -9,8 +18,8 @@
  
  # For getConfigPath()
  AC_CHECK_FUNCS([getpwuid_r])
---- origsrc/softhsm-2.6.1/src/lib/Makefile.am	2018-09-10 21:00:41.000000000 +0900
-+++ src/softhsm-2.6.1/src/lib/Makefile.am	2024-09-21 18:55:19.387967400 +0900
+--- origsrc/SoftHSMv2-2.7.0/src/lib/Makefile.am	2026-01-20 06:25:10.000000000 +0000
++++ src/SoftHSMv2-2.7.0/src/lib/Makefile.am	2026-10-25 09:29:01.794841800 +0000
 @@ -24,7 +24,7 @@ libsofthsm2_la_LIBADD =		common/libsofth
  				object_store/libsofthsm_objectstore.la \
  				session_mgr/libsofthsm_sessionmgr.la \

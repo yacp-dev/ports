@@ -1,5 +1,5 @@
---- origsrc/bcunit-5.4.115/BCUnit/Sources/CMakeLists.txt	2024-05-16 16:27:24.000000000 +0900
-+++ src/bcunit-5.4.115/BCUnit/Sources/CMakeLists.txt	2026-05-25 22:50:42.617526100 +0900
+--- origsrc/bcunit-5.4.126/BCUnit/Sources/CMakeLists.txt	2024-05-16 07:27:24.000000000 +0000
++++ src/bcunit-5.4.126/BCUnit/Sources/CMakeLists.txt	2026-10-25 01:11:32.570160400 +0000
 @@ -163,11 +163,15 @@ target_include_directories(bcunit PUBLIC
  )
  set_target_properties(bcunit PROPERTIES VERSION 1.0.1)
@@ -27,8 +27,8 @@
  
  	add_subdirectory(Test)
  endif()
---- origsrc/bcunit-5.4.115/BCUnit/Sources/Curses/Curses.c	2024-05-16 16:27:24.000000000 +0900
-+++ src/bcunit-5.4.115/BCUnit/Sources/Curses/Curses.c	2026-05-25 22:53:01.652630700 +0900
+--- origsrc/bcunit-5.4.126/BCUnit/Sources/Curses/Curses.c	2024-05-16 07:27:24.000000000 +0000
++++ src/bcunit-5.4.126/BCUnit/Sources/Curses/Curses.c	2026-10-25 01:11:32.571393200 +0000
 @@ -256,10 +256,10 @@ static bool initialize_windows(void)
  
    start_color();
@@ -102,8 +102,8 @@
  
    for (i = 0, pCurTest = pSuite->pTest ;
         NULL != pCurTest ;
---- origsrc/bcunit-5.4.115/BCUnit/Sources/Test/CMakeLists.txt	2024-05-16 16:27:24.000000000 +0900
-+++ src/bcunit-5.4.115/BCUnit/Sources/Test/CMakeLists.txt	2026-05-25 22:53:24.450500100 +0900
+--- origsrc/bcunit-5.4.126/BCUnit/Sources/Test/CMakeLists.txt	2024-05-16 07:27:24.000000000 +0000
++++ src/bcunit-5.4.126/BCUnit/Sources/Test/CMakeLists.txt	2026-10-25 01:11:32.572174400 +0000
 @@ -21,5 +21,5 @@
  ############################################################################
  
@@ -111,8 +111,8 @@
 -target_link_libraries(test_bcunit bcunit_test)
 +target_link_libraries(test_bcunit bcunit_test bcunit)
  target_compile_definitions(test_bcunit PUBLIC MEMTRACE BCUNIT_BUILD_TESTS BCUNIT_DO_NOT_DEFINE_UNLESS_BUILDING_TESTS)
---- origsrc/bcunit-5.4.115/CMakeLists.txt	2024-05-16 16:27:24.000000000 +0900
-+++ src/bcunit-5.4.115/CMakeLists.txt	2026-05-25 22:54:17.499587600 +0900
+--- origsrc/bcunit-5.4.126/CMakeLists.txt	2024-05-16 07:27:24.000000000 +0000
++++ src/bcunit-5.4.126/CMakeLists.txt	2026-10-25 01:11:32.573144600 +0000
 @@ -22,7 +22,7 @@
  
  cmake_minimum_required(VERSION 3.22)
@@ -144,8 +144,8 @@
  configure_package_config_file("${PROJECT_NAME}Config.cmake.in" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
  	INSTALL_DESTINATION "${CMAKE_MODULES_INSTALL_DIR}"
  	NO_SET_AND_CHECK_MACRO
---- origsrc/bcunit-5.4.115/bcunit.pc.in	2024-05-16 16:27:24.000000000 +0900
-+++ src/bcunit-5.4.115/bcunit.pc.in	2026-05-25 22:54:31.541676200 +0900
+--- origsrc/bcunit-5.4.126/bcunit.pc.in	2024-05-16 07:27:24.000000000 +0000
++++ src/bcunit-5.4.126/bcunit.pc.in	2026-10-25 01:11:32.573144600 +0000
 @@ -5,6 +5,6 @@ includedir=@includedir@
  
  Name: BCUnit
@@ -154,8 +154,8 @@
 +Version: @VERSION@
  Libs: -L${libdir} -lbcunit
  Cflags: -I${includedir}
---- origsrc/bcunit-5.4.115/build/CMakeLists.txt	2024-05-16 16:27:24.000000000 +0900
-+++ src/bcunit-5.4.115/build/CMakeLists.txt	2026-05-25 22:54:50.879462400 +0900
+--- origsrc/bcunit-5.4.126/build/CMakeLists.txt	2024-05-16 07:27:24.000000000 +0000
++++ src/bcunit-5.4.126/build/CMakeLists.txt	2026-10-25 01:11:32.573144600 +0000
 @@ -49,7 +49,7 @@ set(CPACK_SOURCE_IGNORE_FILES
  #set(CPACK_COMPONENT_DEVEL_DISPLAY_NAME ${PACKAGE}-devel)
  

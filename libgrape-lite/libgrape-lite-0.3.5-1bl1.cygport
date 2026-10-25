@@ -1,24 +1,29 @@
 HOMEPAGE="https://github.com/alibaba/${PN}"
-GIT_URI="https://github.com/alibaba/${PN}.git"
-GIT_TAG="v${PV}"
+SRC_URI="https://github.com/alibaba/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="C++ library for parallel graph processing"
 DESCRIPTION="libgrape-lite is a C++ library from Alibaba for parallel graph processing."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSL-1.0 AND MIT AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND Apache-2.0 WITH LLVM-exception AND BSL-1.0 AND MIT AND Zlib"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libgflags-devel libglog-devel libopenmpi-devel librdkafka-devel"
+BUILD_REQUIRES="
+	libgflags-devel
+	libglog-devel
+	libopenmpi-devel
+	librdkafka++-devel
+	librdkafka-devel
+"
 
-export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DGLOG_USE_GLOG_EXPORT"
 
 inherit cmake
-inherit git
 
 CYGCMAKE_ARGS="
 	-DBUILD_LIBGRAPELITE_DOCS:BOOL=OFF
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 DIFF_EXCLUDES="

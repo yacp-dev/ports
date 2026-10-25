@@ -3,51 +3,51 @@ libgrape-lite
 libgrape-lite is a C++ library from Alibaba for parallel graph processing.
 
 Runtime requirements:
-  cygwin-3.5.0-0.438.g322c7150b25e
-  libgcc1-11.4.0-1
-  libgflags2.2-2.2.2-1bl2
-  libglog1-0.6.0-1bl1
-  libgomp1-11.4.0-1
-  libgrape-lite-devel-0.3.4-1bl1
-  libgrape-lite0-0.3.4-1bl1
-  libopenmpi40-4.1.5-1
-  librdkafka1-2.2.0-1bl1
-  libstdc++6-11.4.0-1
-  pkg-config-2.0.3-1
+  cygwin-3.6.11-1
+  libgcc1-14.4.0-1
+  libgflags2.2-2.2.2-1
+  libglog2-0.7.1-1bl2
+  libgomp1-14.4.0-1
+  libgrape-lite-devel-0.3.5-1bl1
+  libgrape-lite0-0.3.5-1bl1
+  libopenmpi40-4.1.6-1
+  librdkafka++1-2.16.0-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-3
-  cmake-3.25.3-1
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libgflags-devel-2.2.2-1bl2
-  libglog-devel-0.6.0-1bl1
-  libopenmpi-devel-4.1.5-1
-  librdkafka-devel-2.2.0-1bl1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libgflags-devel-2.2.2-1
+  libglog-devel-0.7.1-1bl2
+  libopenmpi-devel-4.1.6-1
+  librdkafka++-devel-2.16.0-1bl1
+  librdkafka-devel-2.16.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/alibaba/libgrape-lite
 
 Canonical download:
-  https://github.com/alibaba/libgrape-lite.git
+  https://github.com/alibaba/libgrape-lite/archive/refs/tags/v0.3.5.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libgrape-lite-0.3.4-X-src.tar.xz
+  1. unpack libgrape-lite-0.3.5-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libgrape-lite-0.3.4-X.cygport all
+        % cygport ./libgrape-lite-0.3.5-X.cygport all
 
 This will create:
-  /usr/src/libgrape-lite-0.3.4-X-src.tar.xz
-  /usr/src/libgrape-lite-0.3.4-X.tar.xz
-  /usr/src/libgrape-lite0-0.3.4-X.tar.xz
-  /usr/src/libgrape-lite-devel-0.3.4-X.tar.xz
+  /usr/src/libgrape-lite-0.3.5-X-src.tar.xz
+  /usr/src/libgrape-lite-0.3.5-X.tar.xz
+  /usr/src/libgrape-lite0-0.3.5-X.tar.xz
+  /usr/src/libgrape-lite-devel-0.3.5-X.tar.xz
 
 -------------------------------------------
 
@@ -130,6 +130,8 @@ Files included in the binary package:
   /usr/include/grape/analytical_apps/pagerank/pagerank_push_context.h
   /usr/include/grape/analytical_apps/pagerank/pagerank_push_opt.h
   /usr/include/grape/analytical_apps/pagerank/pagerank_push_opt_context.h
+  /usr/include/grape/analytical_apps/pagerank/pagerank_vc.h
+  /usr/include/grape/analytical_apps/pagerank/pagerank_vc_context.h
   /usr/include/grape/analytical_apps/sssp/sssp.h
   /usr/include/grape/analytical_apps/sssp/sssp_auto.h
   /usr/include/grape/analytical_apps/sssp/sssp_auto_context.h
@@ -145,6 +147,7 @@ Files included in the binary package:
   /usr/include/grape/app/auto_app_base.h
   /usr/include/grape/app/batch_shuffle_app_base.h
   /usr/include/grape/app/context_base.h
+  /usr/include/grape/app/gather_scatter_app_base.h
   /usr/include/grape/app/mutation_context.h
   /usr/include/grape/app/parallel_app_base.h
   /usr/include/grape/app/vertex_data_context.h
@@ -184,19 +187,26 @@ Files included in the binary package:
   /usr/include/grape/cuda/vertex_map/device_vertex_map.h
   /usr/include/grape/cuda/worker/gpu_batch_shuffle_worker.h
   /usr/include/grape/cuda/worker/gpu_worker.h
+  /usr/include/grape/fragment/basic_efile_fragment_loader.h
   /usr/include/grape/fragment/basic_fragment_loader.h
+  /usr/include/grape/fragment/basic_fragment_loader_base.h
   /usr/include/grape/fragment/basic_fragment_mutator.h
+  /usr/include/grape/fragment/basic_local_fragment_loader.h
+  /usr/include/grape/fragment/basic_rb_fragment_loader.h
+  /usr/include/grape/fragment/basic_vc_ds_fragment_loader.h
+  /usr/include/grape/fragment/basic_vc_fragment_loader.h
   /usr/include/grape/fragment/csr_edgecut_fragment_base.h
   /usr/include/grape/fragment/edgecut_fragment_base.h
   /usr/include/grape/fragment/ev_fragment_loader.h
   /usr/include/grape/fragment/ev_fragment_mutator.h
-  /usr/include/grape/fragment/ev_fragment_rebalance_loader.h
   /usr/include/grape/fragment/fragment_base.h
   /usr/include/grape/fragment/id_parser.h
   /usr/include/grape/fragment/immutable_edgecut_fragment.h
+  /usr/include/grape/fragment/immutable_vertexcut_fragment.h
   /usr/include/grape/fragment/loader.h
   /usr/include/grape/fragment/mutable_edgecut_fragment.h
-  /usr/include/grape/fragment/partitioner.h
+  /usr/include/grape/fragment/rebalancer.h
+  /usr/include/grape/fragment/vc_fragment_loader.h
   /usr/include/grape/grape.h
   /usr/include/grape/graph/adj_list.h
   /usr/include/grape/graph/de_mutable_csr.h
@@ -213,6 +223,7 @@ Files included in the binary package:
   /usr/include/grape/parallel/auto_parallel_message_manager.h
   /usr/include/grape/parallel/batch_shuffle_message_manager.h
   /usr/include/grape/parallel/default_message_manager.h
+  /usr/include/grape/parallel/gather_scatter_message_manager.h
   /usr/include/grape/parallel/message_in_buffer.h
   /usr/include/grape/parallel/message_manager_base.h
   /usr/include/grape/parallel/parallel_engine.h
@@ -221,6 +232,8 @@ Files included in the binary package:
   /usr/include/grape/parallel/parallel_message_manager_opt.h
   /usr/include/grape/parallel/sync_buffer.h
   /usr/include/grape/parallel/thread_local_message_buffer.h
+  /usr/include/grape/parallel/thread_local_message_buffer_opt.h
+  /usr/include/grape/serialization/fixed_in_archive.h
   /usr/include/grape/serialization/in_archive.h
   /usr/include/grape/serialization/out_archive.h
   /usr/include/grape/types.h
@@ -232,20 +245,52 @@ Files included in the binary package:
   /usr/include/grape/utils/gcontainer.h
   /usr/include/grape/utils/hp_allocator.h
   /usr/include/grape/utils/iterator_pair.h
+  /usr/include/grape/utils/memory_tracker.h
+  /usr/include/grape/utils/message_buffer_pool.h
+  /usr/include/grape/utils/pthash_utils/ef_sequence_view.h
+  /usr/include/grape/utils/pthash_utils/encoders_view.h
+  /usr/include/grape/utils/pthash_utils/ph_indexer_view.h
+  /usr/include/grape/utils/pthash_utils/single_phf_view.h
+  /usr/include/grape/utils/ref_vector.h
   /usr/include/grape/utils/string_view_vector.h
   /usr/include/grape/utils/thread_pool.h
   /usr/include/grape/utils/varint.h
   /usr/include/grape/utils/vertex_array.h
   /usr/include/grape/utils/vertex_set.h
-  /usr/include/grape/vertex_map/global_vertex_map.h
-  /usr/include/grape/vertex_map/local_vertex_map.h
-  /usr/include/grape/vertex_map/vertex_map_base.h
+  /usr/include/grape/vertex_map/idxers/hashmap_idxer.h
+  /usr/include/grape/vertex_map/idxers/hashmap_idxer_view.h
+  /usr/include/grape/vertex_map/idxers/idxer_base.h
+  /usr/include/grape/vertex_map/idxers/idxers.h
+  /usr/include/grape/vertex_map/idxers/local_idxer.h
+  /usr/include/grape/vertex_map/idxers/pthash_idxer.h
+  /usr/include/grape/vertex_map/idxers/sorted_array_idxer.h
+  /usr/include/grape/vertex_map/partitioner.h
+  /usr/include/grape/vertex_map/vertex_map.h
   /usr/include/grape/worker/comm_spec.h
   /usr/include/grape/worker/worker.h
+  /usr/include/pthash/builders/external_memory_builder_single_phf.hpp
+  /usr/include/pthash/builders/internal_memory_builder_single_phf.hpp
+  /usr/include/pthash/builders/search.hpp
+  /usr/include/pthash/builders/util.hpp
+  /usr/include/pthash/encoders/bit_vector.hpp
+  /usr/include/pthash/encoders/compact_vector.hpp
+  /usr/include/pthash/encoders/darray.hpp
+  /usr/include/pthash/encoders/ef_sequence.hpp
+  /usr/include/pthash/encoders/encoders.hpp
+  /usr/include/pthash/encoders/util.hpp
+  /usr/include/pthash/essentials/essentials.hpp
+  /usr/include/pthash/fastmod/fastmod.h
+  /usr/include/pthash/mm_file/mm_file.hpp
+  /usr/include/pthash/pthash.hpp
+  /usr/include/pthash/single_phf.hpp
+  /usr/include/pthash/utils/bucketers.hpp
+  /usr/include/pthash/utils/hasher.hpp
+  /usr/include/pthash/utils/logger.hpp
+  /usr/include/pthash/utils/util.hpp
   /usr/include/string_view/string_view.hpp
   /usr/lib/cmake/libgrapelite/libgrapelite-config-version.cmake
   /usr/lib/cmake/libgrapelite/libgrapelite-config.cmake
-  /usr/lib/cmake/libgrapelite/libgrapelite-targets-release.cmake
+  /usr/lib/cmake/libgrapelite/libgrapelite-targets-relwithdebinfo.cmake
   /usr/lib/cmake/libgrapelite/libgrapelite-targets.cmake
   /usr/lib/libgrape-lite.dll.a
   /usr/lib/pkgconfig/libgrape-lite.pc
@@ -253,6 +298,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.3.5-1bl1 -----
+Version bump.
 
 ----- version 0.3.4-1bl1 -----
 Version bump.

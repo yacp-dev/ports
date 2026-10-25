@@ -1,6 +1,18 @@
---- origsrc/wabt/CMakeLists.txt	2026-02-07 09:21:28.000000000 +0900
-+++ src/wabt/CMakeLists.txt	2026-02-07 09:23:18.330311700 +0900
-@@ -396,10 +396,14 @@ set(WABT_LIBRARY_H
+--- origsrc/wabt/CMakeLists.txt	2026-10-25 13:18:34.000000000 +0000
++++ src/wabt/CMakeLists.txt	2026-10-25 13:19:07.079483800 +0000
+@@ -191,6 +191,11 @@ else ()
+     add_definitions(-D_POSIX_C_SOURCE=200809L)
+   endif()
+ 
++  if (CYGWIN)
++    # _POSIX_C_SOURCE hides BSD functions (usleep, ...) that glibc shows by default.
++    add_definitions(-D_DEFAULT_SOURCE)
++  endif()
++
+   if (COMPILER_IS_GNU)
+     # disable -Wclobbered: it seems to be guessing incorrectly about a local
+     # variable being clobbered by longjmp.
+@@ -391,10 +396,14 @@ set(WABT_LIBRARY_H
  
  set(WABT_LIBRARY_SRC ${WABT_LIBRARY_CC} ${WABT_LIBRARY_H})
  
@@ -16,7 +28,7 @@
  if (HAVE_OPENSSL_SHA_H)
    target_link_libraries(wabt OpenSSL::Crypto)
  else()
-@@ -430,9 +434,12 @@ endif ()
+@@ -425,9 +434,12 @@ endif ()
  if (HAVE_SETJMP_H)
    set(WASM_RT_FILES "wasm2c/wasm-rt-impl.h" "wasm2c/wasm-rt-impl.c" "wasm2c/wasm-rt-exceptions-impl.c" "wasm2c/wasm-rt-mem-impl.c" "wasm2c/wasm-rt-impl-tableops.inc" "wasm2c/wasm-rt-mem-impl-helper.inc")
  
@@ -30,7 +42,7 @@
    if (WABT_BIG_ENDIAN)
      target_compile_definitions(wasm-rt-impl PUBLIC WABT_BIG_ENDIAN=1)
    endif ()
-@@ -443,6 +450,8 @@ if (HAVE_SETJMP_H)
+@@ -438,6 +450,8 @@ if (HAVE_SETJMP_H)
        EXPORT wabt-targets
        COMPONENT wabt-development
        INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
@@ -39,7 +51,7 @@
      )
      install(
        FILES "wasm2c/wasm-rt.h" "wasm2c/wasm-rt-exceptions.h"
-@@ -479,6 +488,9 @@ if (BUILD_LIBWASM)
+@@ -474,6 +488,9 @@ if (BUILD_LIBWASM)
      target_compile_definitions(wasm PRIVATE "WASM_API_EXTERN=__attribute__((visibility(\"default\")))")
    endif ()
    set_target_properties(wasm PROPERTIES CXX_VISIBILITY_PRESET hidden)
@@ -49,7 +61,7 @@
  endif ()
  
  if (CODE_COVERAGE)
-@@ -577,22 +589,30 @@ if (BUILD_TOOLS)
+@@ -580,22 +597,30 @@ if (BUILD_TOOLS)
      INSTALL
    )
  
@@ -82,14 +94,28 @@
    endif()
  
    # wasm-interp
---- origsrc/wabt/test/run-spec-wasm2c.py	2026-02-07 09:21:29.000000000 +0900
-+++ src/wabt/test/run-spec-wasm2c.py	2026-02-07 09:23:18.332333400 +0900
-@@ -472,7 +472,7 @@ def Compile(cc, c_filename, out_dir, use
+--- origsrc/wabt/test/run-spec-wasm2c.py	2026-10-25 13:18:34.000000000 +0000
++++ src/wabt/test/run-spec-wasm2c.py	2026-10-25 13:19:07.079483800 +0000
+@@ -471,7 +471,7 @@ def Compile(cc, c_filename, out_dir, use
          else:
              args.append('-std=c99')
-         args += ['-c', c_filename, '-o', o_filename, '-O2',
+         args += ['-c', c_filename, '-o', o_filename, '-O3',
 -                 '-Wall', '-Werror', '-Wno-unused',
 +                 '-Wall', '-Wno-unused',
                   '-Wno-array-bounds',
                   '-Wno-ignored-optimization-argument',
                   '-Wno-tautological-constant-out-of-range-compare',
+--- origsrc/wabt/wasm2c/wasm-rt.h	2026-10-25 13:18:35.000000000 +0000
++++ src/wabt/wasm2c/wasm-rt.h	2026-10-25 13:19:07.081508700 +0000
+@@ -583,7 +583,11 @@ typedef struct {
+   /** Is the jmp buf intialized? */
+   bool initialized;
+   /** jmp_buf contents */
++#ifndef _WIN32
++  sigjmp_buf buffer;
++#else
+   jmp_buf buffer;
++#endif
+ } wasm_rt_jmp_buf;
+ 
+ #ifndef _WIN32

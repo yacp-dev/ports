@@ -2,6 +2,10 @@ HOMEPAGE="https://github.com/WebAssembly/${PN}"
 GIT_URI="https://github.com/WebAssembly/${PN}.git"
 GIT_TAG="${PV}"
 
+PATCH_URI="
+	https://sources.debian.org/data/main/w/wabt/1.0.42+dfsg+~cs1.0.39-2/debian/patches/CVE-2026-90648.patch
+"
+
 CATEGORY="Libs"
 SUMMARY="WebAssembly Binary Toolkit"
 DESCRIPTION="WABT (we pronounce it wabbit) is a suite of tools for WebAssembly"
@@ -11,11 +15,11 @@ LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	libgtest-devel
 	libssl-devel
+	libuv-devel
 	libuvwasi-devel
 "
-
-export CPPFLAGS="${CPPFLAGS} -I/usr/include/uvwasi"
 
 inherit cmake
 inherit git
@@ -29,7 +33,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	cygninja check
+	PATH=${B}:${PATH} cygninja check
 
 	verbose ${CC} ${S}/wasm2c/examples/fac/fac.c ${S}/wasm2c/examples/fac/main.c -I${S}/wasm2c -L. -lwasm-rt-impl -o fac.exe
 	verbose ./fac.exe 10

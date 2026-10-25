@@ -1,6 +1,6 @@
---- origsrc/cryptominisat-5.11.21/CMakeLists.txt	2024-02-09 06:49:54.000000000 +0900
-+++ src/cryptominisat-5.11.21/CMakeLists.txt	2024-06-27 15:21:18.945404100 +0900
-@@ -775,3 +775,10 @@ install(
+--- origsrc/cryptominisat-release-v5.17.0/CMakeLists.txt	2026-10-09 21:38:38.000000000 +0000
++++ src/cryptominisat-release-v5.17.0/CMakeLists.txt	2026-10-25 03:13:04.655595900 +0000
+@@ -691,3 +691,10 @@ install(
      EXPORT ${CRYPTOMINISAT5_EXPORT_NAME}
      DESTINATION "${CRYPTOMINISAT5_INSTALL_CMAKE_DIR}"
  )
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/cryptominisat.pc.in ${CMAKE_BINARY_DIR}/cryptominisat.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/cryptominisat.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/cryptominisat-5.11.21/cryptominisat.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/cryptominisat-5.11.21/cryptominisat.pc.in	2024-06-27 15:21:18.945404100 +0900
+--- origsrc/cryptominisat-release-v5.17.0/cryptominisat.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/cryptominisat-release-v5.17.0/cryptominisat.pc.in	2026-10-25 03:13:04.657614400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

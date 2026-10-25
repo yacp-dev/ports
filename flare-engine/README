@@ -4,44 +4,43 @@ Flare is an open source, 2D action RPG licensed under the GPL3 license. Its
 game play can be likened to the games in the Diablo series.
 
 Runtime requirements:
-  cygwin-3.4.3-1
-  libSDL2_2.0_0-2.0.7-1
+  cygwin-3.6.11-1
+  libSDL2_2.0_0-2.32.74-1
   libSDL2_image2.0_0-2.0.2-1
   libSDL2_mixer2.0_0-2.0.2-1
   libSDL2_ttf2.0_0-2.0.14-1
-  libstdc++6-11.3.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.39-1
-  cmake-3.23.2-1
-  cygport-0.35.5-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libSDL2-devel-2.0.7-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libSDL2-devel-2.32.74-1
   libSDL2_image-devel-2.0.2-1
   libSDL2_mixer-devel-2.0.2-1
   libSDL2_ttf-devel-2.0.14-1
-  ninja-1.11.1-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://flarerpg.org/
 
 Canonical download:
-  https://github.com/flareteam/flare-engine/archive/refs/tags/v1.14.tar.gz
+  https://github.com/flareteam/flare-engine/archive/refs/tags/v1.15.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack flare-engine-1.14-X-src.tar.xz
+  1. unpack flare-engine-1.15-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./flare-engine-1.14-X.cygport all
+        % cygport ./flare-engine-1.15-X.cygport all
 
 This will create:
-  /usr/src/flare-engine-1.14-X-src.tar.xz
-  /usr/src/flare-engine-1.14-X.tar.xz
+  /usr/src/flare-engine-1.15-X-src.tar.xz
+  /usr/src/flare-engine-1.15-X.tar.xz
 
 -------------------------------------------
 
@@ -58,6 +57,7 @@ Files included in the binary package:
   /usr/share/doc/flare-engine/README.md
   /usr/share/doc/flare-engine/RELEASE_NOTES.txt
   /usr/share/flare/mods/default/cutscenes/credits.txt
+  /usr/share/flare/mods/default/cutscenes/credits_engine.txt
   /usr/share/flare/mods/default/cutscenes/intro.txt
   /usr/share/flare/mods/default/engine/classes.txt
   /usr/share/flare/mods/default/engine/combat.txt
@@ -65,7 +65,6 @@ Files included in the binary package:
   /usr/share/flare/mods/default/engine/damage_types.txt
   /usr/share/flare/mods/default/engine/death_penalty.txt
   /usr/share/flare/mods/default/engine/default_music.txt
-  /usr/share/flare/mods/default/engine/elements.txt
   /usr/share/flare/mods/default/engine/equip_flags.txt
   /usr/share/flare/mods/default/engine/font_colors.txt
   /usr/share/flare/mods/default/engine/font_settings.txt
@@ -108,6 +107,7 @@ Files included in the binary package:
   /usr/share/flare/mods/default/images/menus/movement_type_mouse.png
   /usr/share/flare/mods/default/images/menus/tab_active.png
   /usr/share/flare/mods/default/images/menus/tab_inactive.png
+  /usr/share/flare/mods/default/languages/credits_settings.txt
   /usr/share/flare/mods/default/languages/data.be.po
   /usr/share/flare/mods/default/languages/data.bg.po
   /usr/share/flare/mods/default/languages/data.ca.po
@@ -120,6 +120,7 @@ Files included in the binary package:
   /usr/share/flare/mods/default/languages/data.fr.po
   /usr/share/flare/mods/default/languages/data.gd.po
   /usr/share/flare/mods/default/languages/data.gl.po
+  /usr/share/flare/mods/default/languages/data.hi_IN.po
   /usr/share/flare/mods/default/languages/data.hu.po
   /usr/share/flare/mods/default/languages/data.id.po
   /usr/share/flare/mods/default/languages/data.it.po
@@ -134,6 +135,7 @@ Files included in the binary package:
   /usr/share/flare/mods/default/languages/data.ru.po
   /usr/share/flare/mods/default/languages/data.sk.po
   /usr/share/flare/mods/default/languages/data.sv.po
+  /usr/share/flare/mods/default/languages/data.th_TH.po
   /usr/share/flare/mods/default/languages/data.uk.po
   /usr/share/flare/mods/default/languages/data.vi.po
   /usr/share/flare/mods/default/languages/data.zh.po
@@ -150,6 +152,7 @@ Files included in the binary package:
   /usr/share/flare/mods/default/languages/engine.fr.po
   /usr/share/flare/mods/default/languages/engine.gd.po
   /usr/share/flare/mods/default/languages/engine.gl.po
+  /usr/share/flare/mods/default/languages/engine.hi_IN.po
   /usr/share/flare/mods/default/languages/engine.hu.po
   /usr/share/flare/mods/default/languages/engine.id.po
   /usr/share/flare/mods/default/languages/engine.it.po
@@ -164,6 +167,7 @@ Files included in the binary package:
   /usr/share/flare/mods/default/languages/engine.ru.po
   /usr/share/flare/mods/default/languages/engine.sk.po
   /usr/share/flare/mods/default/languages/engine.sv.po
+  /usr/share/flare/mods/default/languages/engine.th_TH.po
   /usr/share/flare/mods/default/languages/engine.uk.po
   /usr/share/flare/mods/default/languages/engine.vi.po
   /usr/share/flare/mods/default/languages/engine.zh.po
@@ -186,6 +190,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.15-1bl1 -----
+Version bump.
 
 ----- version 1.14-1bl1 -----
 Version bump.

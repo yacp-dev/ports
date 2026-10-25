@@ -1,0 +1,11 @@
+--- origsrc/flare-engine-1.15/src/Widget.cpp	2026-05-08 14:23:57.000000000 +0000
++++ src/flare-engine-1.15/src/Widget.cpp	2026-10-25 04:43:17.362221300 +0000
+@@ -23,6 +23,8 @@ FLARE.  If not, see http://www.gnu.org/l
+ #include "Utils.h"
+ #include "Widget.h"
+ 
++#include <math.h>
++
+ Widget::Widget()
+ 	: in_focus(false)
+ 	, enable_tablist_nav(true)

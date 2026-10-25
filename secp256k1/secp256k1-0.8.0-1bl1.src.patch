@@ -1,15 +1,15 @@
---- origsrc/secp256k1-0.6.0/Makefile.am	2024-11-05 02:13:32.000000000 +0900
-+++ src/secp256k1-0.6.0/Makefile.am	2025-01-07 12:18:05.231508300 +0900
-@@ -121,7 +121,7 @@ noinst_PROGRAMS += noverify_tests
+--- origsrc/secp256k1-0.8.0/Makefile.am	2026-08-03 21:51:27.000000000 +0000
++++ src/secp256k1-0.8.0/Makefile.am	2026-10-25 01:22:41.360715200 +0000
+@@ -125,7 +125,7 @@ noinst_PROGRAMS += noverify_tests
  noverify_tests_SOURCES = src/tests.c
- noverify_tests_CPPFLAGS = $(SECP_CONFIG_DEFINES)
+ noverify_tests_CPPFLAGS = $(SECP_CONFIG_DEFINES) $(TEST_DEFINES)
  noverify_tests_LDADD = $(COMMON_LIB) $(PRECOMPUTED_LIB)
 -noverify_tests_LDFLAGS = -static
 +noverify_tests_LDFLAGS = 
  if !ENABLE_COVERAGE
  TESTS += tests
  noinst_PROGRAMS += tests
-@@ -148,7 +148,7 @@ exhaustive_tests_CPPFLAGS += -DVERIFY
+@@ -152,7 +152,7 @@ exhaustive_tests_CPPFLAGS += -DVERIFY
  endif
  # Note: do not include $(PRECOMPUTED_LIB) in exhaustive_tests (it uses runtime-generated tables).
  exhaustive_tests_LDADD = $(COMMON_LIB)
@@ -18,7 +18,7 @@
  TESTS += exhaustive_tests
  endif
  
-@@ -157,7 +157,7 @@ noinst_PROGRAMS += ecdsa_example
+@@ -161,7 +161,7 @@ noinst_PROGRAMS += ecdsa_example
  ecdsa_example_SOURCES = examples/ecdsa.c
  ecdsa_example_CPPFLAGS = -I$(top_srcdir)/include -DSECP256K1_STATIC
  ecdsa_example_LDADD = libsecp256k1.la
@@ -27,7 +27,7 @@
  if BUILD_WINDOWS
  ecdsa_example_LDFLAGS += -lbcrypt
  endif
-@@ -167,7 +167,7 @@ noinst_PROGRAMS += ecdh_example
+@@ -171,7 +171,7 @@ noinst_PROGRAMS += ecdh_example
  ecdh_example_SOURCES = examples/ecdh.c
  ecdh_example_CPPFLAGS = -I$(top_srcdir)/include -DSECP256K1_STATIC
  ecdh_example_LDADD = libsecp256k1.la
@@ -36,7 +36,7 @@
  if BUILD_WINDOWS
  ecdh_example_LDFLAGS += -lbcrypt
  endif
-@@ -178,7 +178,7 @@ noinst_PROGRAMS += schnorr_example
+@@ -182,7 +182,7 @@ noinst_PROGRAMS += schnorr_example
  schnorr_example_SOURCES = examples/schnorr.c
  schnorr_example_CPPFLAGS = -I$(top_srcdir)/include -DSECP256K1_STATIC
  schnorr_example_LDADD = libsecp256k1.la

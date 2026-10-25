@@ -1,5 +1,5 @@
---- origsrc/openpace-1.1.3/configure.ac	2023-06-08 14:58:55.000000000 +0900
-+++ src/openpace-1.1.3/configure.ac	2023-08-23 07:55:30.998791200 +0900
+--- origsrc/openpace-1.1.4/configure.ac	2026-02-27 07:55:29.000000000 +0000
++++ src/openpace-1.1.4/configure.ac	2026-10-25 07:35:32.940478700 +0000
 @@ -34,7 +34,6 @@ case "${host}" in
          DYN_LIB_EXT="dll"
          ;;
@@ -8,8 +8,8 @@
          DYN_LIB_EXT="dll"
          ;;
      *-*-openbsd*)
---- origsrc/openpace-1.1.3/src/Makefile.am	2023-06-08 14:58:55.000000000 +0900
-+++ src/openpace-1.1.3/src/Makefile.am	2023-08-23 07:55:30.998791200 +0900
+--- origsrc/openpace-1.1.4/src/Makefile.am	2026-02-27 07:55:29.000000000 +0000
++++ src/openpace-1.1.4/src/Makefile.am	2026-10-25 07:35:32.940478700 +0000
 @@ -49,7 +49,7 @@ endif
  libvc_la_SOURCES  = vc.c
  
@@ -30,10 +30,10 @@
 +openpace_example_LDADD        = $(EAC_LIBS)
 +openpace_example_CFLAGS       = $(EAC_CFLAGS)
  
- 
- cvc-create-cmdline.c cvc-create-cmdline.h: cvc-create.ggo
---- origsrc/openpace-1.1.3/src/ssl_compat.c	2023-06-08 14:58:55.000000000 +0900
-+++ src/openpace-1.1.3/src/ssl_compat.c	2023-08-23 07:55:30.998791200 +0900
+ # FIXME test and fix parallel execution of make jobs
+ .NOTPARALLEL:
+--- origsrc/openpace-1.1.4/src/ssl_compat.c	2026-02-27 07:55:29.000000000 +0000
++++ src/openpace-1.1.4/src/ssl_compat.c	2026-10-25 07:35:32.942494000 +0000
 @@ -174,7 +174,7 @@ void *OPENSSL_zalloc(size_t num)
  #ifndef HAVE_EC_POINT_GET_AFFINE_COORDINATES
  int EC_POINT_get_affine_coordinates(const EC_GROUP *group, const EC_POINT *p, BIGNUM *x, BIGNUM *y, BN_CTX *ctx)

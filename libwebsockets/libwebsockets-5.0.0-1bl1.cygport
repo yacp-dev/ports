@@ -6,16 +6,22 @@ SUMMARY="C Websockets Server Library"
 DESCRIPTION="libwebsockets is a lightweight GPL2 http and websocket server that hides all
 the protocol handshakes and detail from the user code driving the server."
 
-LICENSE="Apache-2.0 AND CC0-1.0 AND BSD-2-Clause AND BSD-3-Clause AND MIT AND Zlib"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND CC0-1.0 AND BSD-2-Clause AND BSD-3-Clause AND MIT AND Zlib"
+LICENSE="CC0-1.0 AND BSD-3-Clause AND MIT AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: CC0-1.0 AND BSD-3-Clause AND MIT AND Zlib"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	libavcodec-devel
+	libavformat-devel
+	libavutil-devel
 	libbrotli-devel
 	libdbus1-devel
 	libevent-devel
 	libglib2.0-devel
+	libsqlite3-devel
 	libssl-devel
+	libswresample-devel
+	libswscale-devel
 	libuv-devel
 	zlib-devel
 "
@@ -25,7 +31,6 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DDISABLE_WERROR:BOOL=ON
 	-DLWS_IPV6:BOOL=ON
-	-DLWS_LINK_TESTAPPS_DYNAMIC:BOOL=ON
 	-DLWS_ROLE_DBUS:BOOL=ON
 	-DLWS_ROLE_MQTT:BOOL=ON
 	-DLWS_ROLE_RAW_PROXY:BOOL=ON
@@ -38,6 +43,7 @@ CYGCMAKE_ARGS="
 	-DLWS_WITH_GLIB:BOOL=ON
 	-DLWS_WITH_GTK:BOOL=ON
 	-DLWS_WITH_HTTP2:BOOL=ON
+	-DLWS_WITH_HTTP3:BOOL=OFF
 	-DLWS_WITH_HTTP_BROTLI:BOOL=ON
 	-DLWS_WITH_HTTP_PROXY:BOOL=ON
 	-DLWS_WITH_HTTP_STREAM_COMPRESSION:BOOL=ON
@@ -83,20 +89,20 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	${PN}
-	${PN}21
+	${PN}22
 	${PN}-devel
 "
 libwebsockets_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libwebsockets21_CONTENTS="
-	usr/bin/cyg*-21.dll
+libwebsockets22_CONTENTS="
+	usr/bin/cyg*-22.dll
 "
 libwebsockets_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libwebsockets_SUMMARY="${SUMMARY} (utilities)"
-libwebsockets21_SUMMARY="${SUMMARY} (runtime)"
+libwebsockets22_SUMMARY="${SUMMARY} (runtime)"
 libwebsockets_devel_SUMMARY="${SUMMARY} (development)"

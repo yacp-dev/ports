@@ -1,5 +1,5 @@
---- origsrc/re2-2025-11-05/CMakeLists.txt	2025-11-05 23:38:27.000000000 +0900
-+++ src/re2-2025-11-05/CMakeLists.txt	2025-12-07 10:49:38.456297600 +0900
+--- origsrc/re2-2025-11-05/CMakeLists.txt	2025-11-05 14:38:27.000000000 +0000
++++ src/re2-2025-11-05/CMakeLists.txt	2026-10-26 02:52:18.478811200 +0000
 @@ -190,7 +190,7 @@ if(RE2_BUILD_TESTING OR RE2_TEST OR RE2_
      target_compile_definitions(testing PRIVATE -DRE2_BUILD_TESTING_DLL)
    endif()
@@ -9,8 +9,8 @@
  
    if(RE2_BUILD_TESTING OR RE2_TEST)
      if(NOT TARGET GTest::gtest)
---- origsrc/re2-2025-11-05/re2/testing/re2_test.cc	2025-11-05 23:38:27.000000000 +0900
-+++ src/re2-2025-11-05/re2/testing/re2_test.cc	2025-12-07 10:51:58.197837900 +0900
+--- origsrc/re2-2025-11-05/re2/testing/re2_test.cc	2025-11-05 14:38:27.000000000 +0000
++++ src/re2-2025-11-05/re2/testing/re2_test.cc	2026-10-26 02:52:18.480075300 +0000
 @@ -24,7 +24,7 @@
  #include "gtest/gtest.h"
  #include "re2/regexp.h"

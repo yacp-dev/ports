@@ -5,26 +5,26 @@ expression engines like those used in PCRE, Perl, and Python. It is a C++
 library.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libabseil-devel-20250814.0-1bl1
-  libabseil2508.0.0-20250814.0-1bl1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libabseil-devel-20260817.0-1bl2
+  libabseil2608.0.0-20260817.0-1bl2
+  libgcc1-14.4.0-1
   libicu-devel-76.1-2
   libicu76-76.1-2
-  libre2-devel-20251105-1bl1
-  libre2_11-20251105-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libre2-devel-20251105-1bl2
+  libre2_11-20251105-1bl2
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.4-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libabseil-devel-20250814.0-1bl1
-  libgtest-devel-1.17.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libabseil-devel-20260817.0-1bl2
+  libbenchmark-devel-1.10.0-1bl1
+  libgtest-devel-1.18.0-1bl1
   libicu-devel-76.1-2
   libpcre-devel-8.45-1
   ninja-1.13.2-1
@@ -71,7 +71,7 @@ Files included in the binary package:
   /usr/include/re2/stringpiece.h
   /usr/lib/cmake/re2/re2Config.cmake
   /usr/lib/cmake/re2/re2ConfigVersion.cmake
-  /usr/lib/cmake/re2/re2Targets-release.cmake
+  /usr/lib/cmake/re2/re2Targets-relwithdebinfo.cmake
   /usr/lib/cmake/re2/re2Targets.cmake
   /usr/lib/libre2.dll.a
   /usr/lib/pkgconfig/re2.pc
@@ -79,6 +79,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20251105-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 20251105-1bl1 -----
 Version bump.

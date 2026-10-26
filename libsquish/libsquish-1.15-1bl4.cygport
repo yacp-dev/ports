@@ -1,5 +1,6 @@
 HOMEPAGE="https://sourceforge.net/projects/${PN}/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tgz"
+PATCH_URI="https://sources.debian.org/data/main/libs/libsquish/1.15-4/debian/patches/fixup-pkgconfig.patch"
 
 CATEGORY="Libs"
 SUMMARY="Open source DXT compression library"
@@ -10,7 +11,9 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="libpng-devel"
+BUILD_REQUIRES="
+	libpng-devel
+"
 
 tar()
 {
@@ -28,6 +31,7 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DBUILD_SQUISH_EXTRA:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 src_test()

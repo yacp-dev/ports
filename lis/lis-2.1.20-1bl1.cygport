@@ -16,6 +16,7 @@ BUILD_REQUIRES="
 	libevent-devel
 	libhwloc-devel
 	libopenmpi-devel
+	zlib-devel
 "
 
 export MPIF77="mpif90"

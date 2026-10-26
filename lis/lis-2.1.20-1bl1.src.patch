@@ -1,5 +1,5 @@
---- origsrc/lis-2.1.17/Makefile.am	2023-05-24 06:31:09.000000000 +0000
-+++ src/lis-2.1.17/Makefile.am	2026-10-20 02:07:33.636113900 +0000
+--- origsrc/lis-2.1.20/Makefile.am	2026-10-21 01:38:53.000000000 +0000
++++ src/lis-2.1.20/Makefile.am	2026-10-26 13:50:44.867771100 +0000
 @@ -648,3 +648,6 @@ man_MANS =   doc/man/man1/lsolve.1 \
  ACLOCAL_AMFLAGS = -I m4
  
@@ -7,9 +7,9 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/lis-2.1.17/configure.ac	2026-10-16 11:23:34.000000000 +0000
-+++ src/lis-2.1.17/configure.ac	2026-10-20 02:07:33.634084400 +0000
-@@ -1305,7 +1305,7 @@ LIBS="-lm $LIBS"
+--- origsrc/lis-2.1.20/configure.ac	2026-10-25 01:15:01.000000000 +0000
++++ src/lis-2.1.20/configure.ac	2026-10-26 13:50:44.867771100 +0000
+@@ -1321,7 +1321,7 @@ LIBS="-lm $LIBS"
  
  # Output
  
@@ -18,8 +18,8 @@
                   src/Makefile
                   src/vector/Makefile
                   src/matrix/Makefile
---- origsrc/lis-2.1.17/lis.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/lis-2.1.17/lis.pc.in	2026-10-20 02:07:33.636113900 +0000
+--- origsrc/lis-2.1.20/lis.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/lis-2.1.20/lis.pc.in	2026-10-26 13:50:44.869782900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -31,8 +31,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -llis
 +Cflags: -I${includedir}
---- origsrc/lis-2.1.17/src/Makefile.am	2015-01-08 14:07:02.000000000 +0000
-+++ src/lis-2.1.17/src/Makefile.am	2026-10-20 02:07:33.638142900 +0000
+--- origsrc/lis-2.1.20/src/Makefile.am	2026-10-21 01:38:53.000000000 +0000
++++ src/lis-2.1.20/src/Makefile.am	2026-10-26 13:50:44.869782900 +0000
 @@ -19,11 +19,12 @@ liblis@LIBSUFFIX@_la_LIBADD = array/liba
                     system/libsystem.la \
                     vector/libvector.la
@@ -49,11 +49,11 @@
  endif
  liblis@LIBSUFFIX@_la_SOURCES = 
 +liblis@LIBSUFFIX@_la_LDFLAGS = -no-undefined
---- origsrc/lis-2.1.17/src/solver/lis_solver_fgcrodr.c	2026-10-16 11:22:31.000000000 +0000
-+++ src/lis-2.1.17/src/solver/lis_solver_fgcrodr.c	2026-10-20 02:07:33.640179000 +0000
-@@ -7,6 +7,14 @@
-  * The actual flexible recycling iteration is added separately.
-  */
+--- origsrc/lis-2.1.20/src/solver/lis_solver_fgcrodr.c	2026-10-25 01:12:05.000000000 +0000
++++ src/lis-2.1.20/src/solver/lis_solver_fgcrodr.c	2026-10-26 13:50:44.871793400 +0000
+@@ -15,6 +15,14 @@
+ #endif
+ #endif
  
 +#ifdef HAVE_CONFIG_H
 +	#include "lis_config.h"
@@ -66,8 +66,8 @@
  #include <math.h>
  #include <string.h>
  
---- origsrc/lis-2.1.17/test/Makefile.am	2026-10-16 11:22:31.000000000 +0000
-+++ src/lis-2.1.17/test/Makefile.am	2026-10-20 02:07:33.642196700 +0000
+--- origsrc/lis-2.1.20/test/Makefile.am	2026-10-25 01:12:05.000000000 +0000
++++ src/lis-2.1.20/test/Makefile.am	2026-10-26 13:50:44.871793400 +0000
 @@ -5,7 +5,7 @@ AM_LDFLAGS = $(AMDEFS)
  
  EXTRA_DIST = defs test.sh testmat.mtx testmat2.mtx testmat3.mtx testmat4.mtx testmat0.mtx testvec0.mtx

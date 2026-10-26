@@ -8,11 +8,18 @@ DESCRIPTION="GNU LibreDWG is a free C library to handle DWG files. It aims to be
 replacement for the OpenDWG libraries. DWG is the native file format of
 AutoCAD."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libpcre2-devel libps-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libpcre2-devel
+	libps-devel
+	perl
+	python3-devel
+	swig
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -28,7 +35,14 @@ src_patch_hook()
 CYGCONF_ARGS="
 	--disable-werror
 	--enable-python=python3
+	--with-perl-install=vendor
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/src/.libs:${PATH} cygmake check
+}
 
 DIFF_EXCLUDES="
 	.version
@@ -43,7 +57,8 @@ PKG_NAMES="
 	${PN}
 	${PN}0
 	${PN}-devel
-	python39-${PN}
+	perl-${PN}
+	python312-${PN}
 "
 libredwg_CONTENTS="
 	usr/bin/d*
@@ -51,7 +66,7 @@ libredwg_CONTENTS="
 	usr/share/man
 "
 libredwg0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-0.dll
 "
 libredwg_devel_CONTENTS="
 	usr/include
@@ -59,11 +74,15 @@ libredwg_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/info
 "
-python39_libredwg_CONTENTS="
-	usr/lib/python3*
+perl_libredwg_CONTENTS="
+	usr/lib/perl5
+"
+python312_libredwg_CONTENTS="
+	usr/lib/python3.12
 	usr/share/${PN}
 "
 libredwg_SUMMARY="${SUMMARY} (utilities)"
 libredwg0_SUMMARY="${SUMMARY} (runtime)"
 libredwg_devel_SUMMARY="${SUMMARY} (development)"
-python39_libredwg_SUMMARY="${SUMMARY} (python39 bindings)"
+perl_libredwg_SUMMARY="${SUMMARY} (perl bindings)"
+python312_libredwg_SUMMARY="${SUMMARY} (python312 bindings)"

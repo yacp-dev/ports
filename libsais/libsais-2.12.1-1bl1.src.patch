@@ -1,5 +1,5 @@
---- origsrc/libsais-2.12.0/CMakeLists.txt	2026-10-19 04:17:37.000000000 +0000
-+++ src/libsais-2.12.0/CMakeLists.txt	2026-10-19 10:23:26.053470700 +0000
+--- origsrc/libsais-2.12.1/CMakeLists.txt	2026-10-21 17:04:45.000000000 +0000
++++ src/libsais-2.12.1/CMakeLists.txt	2026-10-26 12:55:05.013728800 +0000
 @@ -23,17 +23,15 @@ else()
      set(LIBSAIS_LIBRARY_TYPE STATIC)
  endif()
@@ -64,8 +64,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libsais.pc.in ${CMAKE_BINARY_DIR}/libsais.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libsais.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libsais-2.12.0/libsais.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/libsais-2.12.0/libsais.pc.in	2026-10-19 10:23:26.053470700 +0000
+--- origsrc/libsais-2.12.1/libsais.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libsais-2.12.1/libsais.pc.in	2026-10-26 12:55:05.013728800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

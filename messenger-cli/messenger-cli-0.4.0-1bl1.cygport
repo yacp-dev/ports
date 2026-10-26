@@ -11,6 +11,7 @@ LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	libgnunet-devel
+	libgnunetchat-devel
 	libncurses-devel
 "
 

@@ -1,0 +1,96 @@
+--- origsrc/libwebsockets-5.0.0/CMakeLists.txt	2026-07-26 14:15:43.000000000 +0000
++++ src/libwebsockets-5.0.0/CMakeLists.txt	2026-10-26 14:13:05.398592200 +0000
+@@ -578,7 +578,7 @@ endmacro()
+ #
+ 
+ find_package(Git)
+-if(GIT_EXECUTABLE)
++if(GIT_EXECUTABLE AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
+ 	execute_process(
+ 		WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+ 		COMMAND "${GIT_EXECUTABLE}" describe --tags --always
+@@ -619,7 +619,11 @@ set(CPACK_PACKAGE_VERSION_MAJOR "5")
+ set(CPACK_PACKAGE_VERSION_MINOR "0")
+ set(CPACK_PACKAGE_VERSION_PATCH_NUMBER "0")
+ 
+-set(CPACK_PACKAGE_VERSION_PATCH "${CPACK_PACKAGE_VERSION_PATCH_NUMBER}-${LWS_BUILD_HASH}")
++if (LWS_BUILD_HASH STREQUAL "unknown")
++	set(CPACK_PACKAGE_VERSION_PATCH "${CPACK_PACKAGE_VERSION_PATCH_NUMBER}")
++else()
++	set(CPACK_PACKAGE_VERSION_PATCH "${CPACK_PACKAGE_VERSION_PATCH_NUMBER}-${LWS_BUILD_HASH}")
++endif()
+ set(CPACK_PACKAGE_RELEASE 1)
+ 
+ set(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
+@@ -847,6 +851,7 @@ else()
+ 	CHECK_C_SOURCE_COMPILES("#include <net/ethernet.h>\nvoid main(void) { while(1) ; } void xxexit(void){}" LWS_HAVE_NET_ETHERNET_H)
+ endif()
+ CHECK_C_SOURCE_COMPILES("#include <systemd/sd-daemon.h>\nvoid main(void) { while(1) ; } void xxexit(void){}" LWS_HAVE_SYSTEMD_H)
++CHECK_C_SOURCE_COMPILES("#include <net/route.h>\nvoid main(void) { while(1) ; } void xxexit(void){}" LWS_HAVE_NET_ROUTE_H)
+ 
+ if (${CMAKE_SYSTEM_NAME} MATCHES "SunOS")
+ 	unset(LWS_HAVE_CTIME_R CACHE)
+--- origsrc/libwebsockets-5.0.0/cmake/LwsCheckRequirements.cmake	2026-07-26 14:15:43.000000000 +0000
++++ src/libwebsockets-5.0.0/cmake/LwsCheckRequirements.cmake	2026-10-26 14:13:05.398947500 +0000
+@@ -28,7 +28,7 @@ MACRO(require_lws_config reqconfig _val
+ 	string(COMPARE EQUAL "${result}" requirements _cmp)
+ 
+ 	# we go in the first clause if in-tree
+-	if (LWS_WITH_MINIMAL_EXAMPLES AND NOT ${SAME})
++	if ((LWS_WITH_MINIMAL_EXAMPLES OR CMAKE_PROJECT_NAME STREQUAL "libwebsockets") AND NOT ${SAME})
+                if (${result} EQUAL "requirements")
+                        if (${_val})
+                                message("${SAMP}: skipping as lws being built without ${reqconfig} (${_val} / ${rq})")
+@@ -38,7 +38,7 @@ MACRO(require_lws_config reqconfig _val
+ 		endif()
+ 		set(${result} 0)
+ 	else()
+-		if (LWS_WITH_MINIMAL_EXAMPLES)
++		if (LWS_WITH_MINIMAL_EXAMPLES OR CMAKE_PROJECT_NAME STREQUAL "libwebsockets")
+ 			set(MET ${SAME})
+ 		else()
+ 			CHECK_C_SOURCE_COMPILES("#include <libwebsockets.h>\nint main(void) {\n#if defined(${reqconfig})\n return 0;\n#else\n fail;\n#endif\n return 0;\n}\n" HAS_${reqconfig})
+--- origsrc/libwebsockets-5.0.0/include/libwebsockets.h	2026-07-26 14:15:43.000000000 +0000
++++ src/libwebsockets-5.0.0/include/libwebsockets.h	2026-10-26 14:13:05.400201500 +0000
+@@ -48,7 +48,7 @@ extern "C" {
+ #if defined(LWS_HAVE_NET_IF_ETHER_H)
+ #include <net/if_ether.h>
+ #endif
+-#if defined(_WIN32) && !defined(ETHER_ADDR_LEN)
++#if !defined(ETHER_ADDR_LEN)
+ #define ETHER_ADDR_LEN 6
+ #endif
+ #if defined (__sun)
+--- origsrc/libwebsockets-5.0.0/lib/CMakeLists.txt	2026-07-26 14:15:43.000000000 +0000
++++ src/libwebsockets-5.0.0/lib/CMakeLists.txt	2026-10-26 14:13:05.400955200 +0000
+@@ -427,7 +427,7 @@ endif()
+ # Generate and install pkgconfig.
+ # (This is not indented, because the tabs will be part of the output)
+ file(WRITE "${PROJECT_BINARY_DIR}/libwebsockets.pc"
+-"prefix=\"${CMAKE_INSTALL_PREFIX}\"
++"prefix=${CMAKE_INSTALL_PREFIX}
+ exec_prefix=\${prefix}
+ libdir=${PKG_CONFIG_LIBDIR}
+ includedir=${PKG_CONFIG_INCLUDEDIR}
+--- origsrc/libwebsockets-5.0.0/lib/plat/unix/unix-sockets.c	2026-07-26 14:15:43.000000000 +0000
++++ src/libwebsockets-5.0.0/lib/plat/unix/unix-sockets.c	2026-10-26 14:13:05.402220000 +0000
+@@ -36,7 +36,7 @@
+ 
+ #include <sys/ioctl.h>
+ 
+-#if !defined(LWS_DETECTED_PLAT_IOS)
++#if defined(LWS_HAVE_NET_ROUTE_H)
+ #include <net/route.h>
+ #endif
+ 
+--- origsrc/libwebsockets-5.0.0/plugins/CMakeLists.txt	2026-07-26 14:15:43.000000000 +0000
++++ src/libwebsockets-5.0.0/plugins/CMakeLists.txt	2026-10-26 14:13:05.402964600 +0000
+@@ -205,7 +205,7 @@ if (LWS_WITH_PLUGINS AND NOT LWS_WITH_PL
+ 	if (PLUGINS_LIST)
+ 		install(TARGETS ${PLUGINS_LIST}
+ 			PERMISSIONS  OWNER_WRITE OWNER_EXECUTE GROUP_EXECUTE WORLD_EXECUTE OWNER_READ GROUP_READ WORLD_READ
+-			DESTINATION "${LWS_INSTALL_PLUGIN_DIR}"
++			RUNTIME DESTINATION "${LWS_INSTALL_PLUGIN_DIR}"
+ 			COMPONENT plugins)
+ 	endif()
+ endif()

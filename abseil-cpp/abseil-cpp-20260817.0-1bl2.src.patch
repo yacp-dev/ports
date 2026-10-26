@@ -1,5 +1,5 @@
 --- origsrc/abseil-cpp-20260817.0/absl/base/attributes.h	2026-08-18 12:53:30.000000000 +0000
-+++ src/abseil-cpp-20260817.0/absl/base/attributes.h	2026-10-24 14:00:49.746330600 +0000
++++ src/abseil-cpp-20260817.0/absl/base/attributes.h	2026-10-26 00:49:55.471714800 +0000
 @@ -143,7 +143,7 @@
      (!defined(_WIN32) ||                                          \
       (defined(__clang__) && __clang_major__ >= 9 &&               \
@@ -10,7 +10,7 @@
  #define ABSL_ATTRIBUTE_WEAK __attribute__((weak))
  #define ABSL_HAVE_ATTRIBUTE_WEAK 1
 --- origsrc/abseil-cpp-20260817.0/absl/base/config.h	2026-08-18 12:53:30.000000000 +0000
-+++ src/abseil-cpp-20260817.0/absl/base/config.h	2026-10-24 14:00:49.746330600 +0000
++++ src/abseil-cpp-20260817.0/absl/base/config.h	2026-10-26 00:49:55.473729800 +0000
 @@ -380,7 +380,7 @@ static_assert(ABSL_INTERNAL_INLINE_NAMES
      defined(__myriad2__) || defined(__HAIKU__) || defined(__OpenBSD__) || \
      defined(__NetBSD__) || defined(__QNX__) || defined(__VXWORKS__) ||    \
@@ -21,7 +21,7 @@
  #endif
  
 --- origsrc/abseil-cpp-20260817.0/absl/base/internal/sysinfo.cc	2026-08-18 12:53:30.000000000 +0000
-+++ src/abseil-cpp-20260817.0/absl/base/internal/sysinfo.cc	2026-10-24 14:00:49.748337700 +0000
++++ src/abseil-cpp-20260817.0/absl/base/internal/sysinfo.cc	2026-10-26 00:49:55.473729800 +0000
 @@ -472,6 +472,14 @@ pid_t GetTID() {
    return static_cast<pid_t>(zx_thread_self());
  }
@@ -38,7 +38,7 @@
  
  // Fallback implementation of `GetTID` using `pthread_self`.
 --- origsrc/abseil-cpp-20260817.0/absl/base/policy_checks.h	2026-08-18 12:53:30.000000000 +0000
-+++ src/abseil-cpp-20260817.0/absl/base/policy_checks.h	2026-10-24 14:00:49.748337700 +0000
++++ src/abseil-cpp-20260817.0/absl/base/policy_checks.h	2026-10-26 00:49:55.475744600 +0000
 @@ -35,14 +35,6 @@
  #endif
  

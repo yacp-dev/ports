@@ -950,6 +950,9 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 20260817.0-1bl2 -----
+Fix libabseil-devel REQUIRES
+
 ----- version 20260817.0-1bl1 -----
 Version bump.
 

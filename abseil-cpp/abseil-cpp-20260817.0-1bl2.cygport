@@ -46,3 +46,5 @@ libabseil_devel_CONTENTS="
 abseil_cpp_SUMMARY="${SUMMARY} (licensing & readmes)"
 libabseil2608_0_0_SUMMARY="${SUMMARY} (runtime)"
 libabseil_devel_SUMMARY="${SUMMARY} (development)"
+# abslTargets.cmake checks that every DLL it imports exists
+libabseil_devel_REQUIRES="libabseil2608.0.0"

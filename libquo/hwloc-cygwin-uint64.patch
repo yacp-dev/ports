@@ -1,0 +1,19 @@
+Cygwin x86_64 is LP64: uint64_t is unsigned long, while DWORDLONG is
+unsigned long long, so hwloc_uint64_t from windows.h does not match the
+uint64_t used alongside it, which gcc 14 rejects.
+
+--- a/src/hwloc/include/hwloc/autogen/config.h.in
++++ b/src/hwloc/include/hwloc/autogen/config.h.in
+@@ -207,7 +207,12 @@
+ #ifdef HWLOC_HAVE_WINDOWS_H
+ 
+ #  include <windows.h>
++#  ifdef __CYGWIN__
++#    include <stdint.h>
++typedef uint64_t hwloc_uint64_t;
++#  else
+ typedef DWORDLONG hwloc_uint64_t;
++#  endif
+ 
+ #else /* HWLOC_HAVE_WINDOWS_H */
+ 

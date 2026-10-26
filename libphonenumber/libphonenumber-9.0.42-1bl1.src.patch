@@ -1,5 +1,5 @@
---- origsrc/libphonenumber-9.0.26/cpp/CMakeLists.txt	2026-03-12 19:07:59.000000000 +0900
-+++ src/libphonenumber-9.0.26/cpp/CMakeLists.txt	2026-03-23 07:18:55.591069500 +0900
+--- origsrc/libphonenumber-9.0.42/cpp/CMakeLists.txt	2026-10-22 15:21:10.000000000 +0000
++++ src/libphonenumber-9.0.42/cpp/CMakeLists.txt	2026-10-26 04:25:51.112739000 +0000
 @@ -462,7 +462,7 @@ if (BUILD_STATIC_LIB)
  
    if (BUILD_GEOCODER)
@@ -68,8 +68,28 @@
    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
  
---- origsrc/libphonenumber-9.0.26/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-03-12 19:07:59.000000000 +0900
-+++ src/libphonenumber-9.0.26/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-03-23 07:18:55.591069500 +0900
+--- origsrc/libphonenumber-9.0.42/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-10-22 15:21:10.000000000 +0000
++++ src/libphonenumber-9.0.42/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-10-26 04:25:51.114397500 +0000
+@@ -77,7 +77,7 @@ void PhoneNumberOfflineGeocoder::Init(
+ }
+ 
+ PhoneNumberOfflineGeocoder::~PhoneNumberOfflineGeocoder() {
+-  absl::MutexLock l(&mu_);
++  absl::MutexLock l(mu_);
+   gtl::STLDeleteContainerPairSecondPointers(
+       available_maps_.begin(), available_maps_.end());
+ }
+@@ -195,7 +195,7 @@ const char* PhoneNumberOfflineGeocoder::
+   const int country_calling_code = number.country_code();
+   // NANPA area is not split in C++ code.
+   const int phone_prefix = country_calling_code;
+-  absl::MutexLock l(&mu_);
++  absl::MutexLock l(mu_);
+   const AreaCodeMap* const descriptions = GetPhonePrefixDescriptions(
+       phone_prefix, lang, script, region);
+   const char* description = descriptions ? descriptions->Lookup(number) : NULL;
+--- origsrc/libphonenumber-9.0.42/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-10-22 15:21:10.000000000 +0000
++++ src/libphonenumber-9.0.42/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-10-26 04:25:51.114752300 +0000
 @@ -31,6 +31,8 @@
  namespace i18n {
  namespace phonenumbers {

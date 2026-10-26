@@ -10,14 +10,16 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcrypt-devel"
+BUILD_REQUIRES="
+	libcrypt-devel
+"
 
 src_compile()
 {
 	cd ${B}
 	lndirs
 	cd src
-	cygmake
+	cygmake CPPFLAGS=-DHAVE_CRYPT_H
 }
 
 src_test()

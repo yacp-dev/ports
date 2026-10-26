@@ -14,6 +14,7 @@ LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	libabseil-devel
+	libbenchmark-devel
 	libicu-devel
 	libgtest-devel
 	libpcre-devel

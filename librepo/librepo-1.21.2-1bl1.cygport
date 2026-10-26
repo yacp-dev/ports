@@ -11,13 +11,14 @@ LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	check
 	libcurl-devel
 	libglib2.0-devel
 	libgpgme-devel
 	libssl-devel
 	libxml2-devel
 	libzck-devel
-	python39-devel
+	python3-devel
 "
 
 inherit cmake
@@ -42,7 +43,7 @@ PKG_NAMES="
 	${PN}
 	${PN}0
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 librepo_CONTENTS="
 	usr/share
@@ -55,10 +56,10 @@ librepo_devel_CONTENTS="
 	usr/lib/${PN}*
 	usr/lib/pkgconfig
 "
-python39_librepo_CONTENTS="
-	usr/lib/python3.9
+python312_librepo_CONTENTS="
+	usr/lib/python3.12
 "
 librepo_SUMMARY="${SUMMARY} (licensing & readmes)"
 librepo0_SUMMARY="${SUMMARY} (runtime)"
 librepo_devel_SUMMARY="${SUMMARY} (development)"
-python39_librepo_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_librepo_SUMMARY="${SUMMARY} (python312 bindings)"

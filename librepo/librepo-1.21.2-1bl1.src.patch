@@ -1,0 +1,49 @@
+--- origsrc/librepo-1.21.2/librepo/CMakeLists.txt	2026-09-28 09:40:32.000000000 +0000
++++ src/librepo-1.21.2/librepo/CMakeLists.txt	2026-10-26 13:18:55.370211300 +0000
+@@ -101,7 +101,7 @@ IF (CMAKE_SIZEOF_VOID_P MATCHES "8")
+ ENDIF (CMAKE_SIZEOF_VOID_P MATCHES "8")
+ 
+ INSTALL(FILES ${librepo_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/librepo)
+-INSTALL(TARGETS librepo LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
++INSTALL(TARGETS librepo RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ IF (ENABLE_STATIC)
+     INSTALL(TARGETS librepo-static ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ ENDIF (ENABLE_STATIC)
+--- origsrc/librepo-1.21.2/librepo/checksum.c	2026-09-28 09:40:32.000000000 +0000
++++ src/librepo-1.21.2/librepo/checksum.c	2026-10-26 13:18:55.368191100 +0000
+@@ -273,7 +273,12 @@ lr_checksum_fd_compare(LrChecksumType ty
+     *matches = (strcmp(expected, checksum)) ? FALSE : TRUE;
+ 
+     if (fsync(fd) != 0) {
++#ifdef __CYGWIN__
++        // FlushFileBuffers() needs write access: EACCES on a read-only fd
++        if (errno == EROFS || errno == EINVAL || errno == EACCES) {
++#else
+         if (errno == EROFS || errno == EINVAL) {
++#endif
+             g_debug("fsync failed: %s", strerror(errno));
+         } else {
+             g_set_error(err, LR_CHECKSUM_ERROR, LRE_FILE,
+--- origsrc/librepo-1.21.2/librepo/python/CMakeLists.txt	2026-09-28 09:40:32.000000000 +0000
++++ src/librepo-1.21.2/librepo/python/CMakeLists.txt	2026-10-26 13:18:55.371979200 +0000
+@@ -36,6 +36,7 @@ FILE(COPY ${librepo_COPIES} DESTINATION
+ ADD_LIBRARY(_librepo SHARED ${librepomodule_SRCS})
+ SET_TARGET_PROPERTIES(_librepo PROPERTIES PREFIX "")
+ SET_TARGET_PROPERTIES(_librepo PROPERTIES LIBRARY_OUTPUT_DIRECTORY "./librepo")
++SET_TARGET_PROPERTIES(_librepo PROPERTIES RUNTIME_OUTPUT_DIRECTORY "./librepo")
+ TARGET_LINK_LIBRARIES(_librepo librepo)
+ TARGET_LINK_LIBRARIES(_librepo
+                         ${CURL_LIBRARY}
+@@ -43,6 +44,6 @@ TARGET_LINK_LIBRARIES(_librepo
+                      )
+ 
+ INSTALL(FILES ${pylibrepo_SRCDIR}/__init__.py DESTINATION ${PYTHON_INSTALL_DIR}/librepo)
+-INSTALL(TARGETS _librepo LIBRARY DESTINATION ${PYTHON_INSTALL_DIR}/librepo)
++INSTALL(TARGETS _librepo RUNTIME DESTINATION ${PYTHON_INSTALL_DIR}/librepo)
+ 
+ SET(CMAKE_SKIP_RPATH TRUE)
+--- origsrc/librepo-1.21.2/tests/python/tests/run_unittests.sh.in	2026-09-28 09:40:32.000000000 +0000
++++ src/librepo-1.21.2/tests/python/tests/run_unittests.sh.in	2026-10-26 13:18:55.371979200 +0000
+@@ -1 +1,2 @@
++#!/bin/sh
+ LD_LIBRARY_PATH="${CMAKE_BINARY_DIR}/librepo/:" PYTHONPATH="${CMAKE_BINARY_DIR}/librepo/python/" ${PYTHON_EXECUTABLE} -m unittest discover -s "${CMAKE_CURRENT_SOURCE_DIR}/../"

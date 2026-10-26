@@ -1,0 +1,119 @@
+--- origsrc/libquo-1.4.1/configure.ac	2026-08-10 14:50:04.000000000 +0000
++++ src/libquo-1.4.1/configure.ac	2026-10-26 01:11:54.213995200 +0000
+@@ -17,6 +17,9 @@ AC_INIT([libquo],
+ AC_CONFIG_MACRO_DIR([config])
+ AC_CONFIG_SRCDIR([src])
+ 
++m4_pattern_allow([^AX_PROG_MPI(CC|FC|CXX)_HAVE_MPI(CC|FC|CXX)$])
++m4_pattern_allow([^AX_PKG_QUO_XPM_HAVE_XPM$])
++
+ AX_QUO_LIBTOOL_VERSION
+ 
+ ################################################################################
+--- origsrc/libquo-1.4.1/src/Makefile.am	2026-08-10 14:50:04.000000000 +0000
++++ src/libquo-1.4.1/src/Makefile.am	2026-10-26 01:11:54.216015300 +0000
+@@ -38,5 +38,5 @@ quo.h quo.c \
+ quof.c
+ 
+ libquo_la_CFLAGS =
+-libquo_la_LDFLAGS = -version-info @QUO_LIBVINFO@
++libquo_la_LDFLAGS = -no-undefined -version-info @QUO_LIBVINFO@
+ libquo_la_LIBADD = $(HWLOC_EMBEDDED_LDADD) $(HWLOC_EMBEDDED_LIBS)
+--- origsrc/libquo-1.4.1/src/fortran/Makefile.am	2026-08-10 14:50:04.000000000 +0000
++++ src/libquo-1.4.1/src/fortran/Makefile.am	2026-10-26 01:11:54.216015300 +0000
+@@ -24,7 +24,7 @@ if QUO_WITH_MPIFC
+ libquo_usequo_la_SOURCES = quof.f90
+ 
+ libquo_usequo_la_FCFLAGS = -I$(top_srcdir)/src
+-libquo_usequo_la_LDFLAGS = -version-info @QUO_LIBVINFO@
++libquo_usequo_la_LDFLAGS = -no-undefined -version-info @QUO_LIBVINFO@
+ libquo_usequo_la_LIBADD = $(top_builddir)/src/libquo.la
+ endif
+ 
+@@ -35,12 +35,12 @@ MOSTLYCLEANFILES = `ls *.mod`
+ # may generate different filenames, so we have to use a glob.  :-(
+ install-exec-hook:
+ 	@ for file in `ls *.mod`; do \
+-	  echo $(INSTALL) $$file $(DESTDIR)$(libdir); \
+-	  $(INSTALL) $$file $(DESTDIR)$(libdir); \
++	  echo $(INSTALL) $$file $(DESTDIR)$(includedir); \
++	  $(INSTALL) $$file $(DESTDIR)$(includedir); \
+ 	done
+ 
+ uninstall-local:
+ 	@ for file in `ls *.mod`; do \
+-	  echo rm -f $(DESTDIR)$(libdir)/$$file; \
+-	  rm -f $(DESTDIR)$(libdir)/$$file; \
++	  echo rm -f $(DESTDIR)$(includedir)/$$file; \
++	  rm -f $(DESTDIR)$(includedir)/$$file; \
+ 	done
+--- origsrc/libquo-1.4.1/src/quo-hwloc.c	2026-08-10 14:50:04.000000000 +0000
++++ src/libquo-1.4.1/src/quo-hwloc.c	2026-10-26 01:11:54.218036900 +0000
+@@ -38,6 +38,10 @@
+ #ifdef HAVE_SYSCALL_H
+ #include <syscall.h>
+ #endif
++#ifdef __CYGWIN__
++#include <windows.h>
++#include <sys/cygwin.h>
++#endif
+ 
+ /** Constant that dictates the max size of the bind stack - should be plenty. */
+ #define BIND_STACK_SIZE 128
+@@ -162,6 +166,12 @@ get_cur_bind(const quo_hwloc_t *hwloc,
+ {
+     int rc = QUO_SUCCESS;
+     hwloc_cpuset_t cur_bind = NULL;
++#ifdef __CYGWIN__
++    /* hwloc's Windows backend takes a process HANDLE, not a Cygwin pid. */
++    HANDLE who = NULL;
++#else
++    pid_t who = who_pid;
++#endif
+ 
+     if (!hwloc || !out_cpuset) return QUO_ERR_INVLD_ARG;
+ 
+@@ -170,9 +180,20 @@ get_cur_bind(const quo_hwloc_t *hwloc,
+         rc = QUO_ERR_OOR;
+         goto out;
+     }
++#ifdef __CYGWIN__
++    DWORD winpid = (DWORD)cygwin_internal(CW_CYGWIN_PID_TO_WINPID, who_pid);
++    if (0 == winpid ||
++        NULL == (who = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION,
++                                   FALSE, winpid))) {
++        fprintf(stderr, QUO_ERR_PREFIX"%s failure in %s: pid %d\n",
++                "OpenProcess", __func__, (int)who_pid);
++        rc = QUO_ERR_TOPO;
++        goto out;
++    }
++#endif
+     if (hwloc_get_proc_cpubind(
+             hwloc->topo,
+-            who_pid,
++            who,
+             cur_bind,
+             HWLOC_CPUBIND_PROCESS
+        )) {
+@@ -185,6 +206,9 @@ get_cur_bind(const quo_hwloc_t *hwloc,
+     /* caller is responsible for calling hwloc_bitmap_free */
+     *out_cpuset = cur_bind;
+ out:
++#ifdef __CYGWIN__
++    if (who) CloseHandle(who);
++#endif
+     /* cleanup on failure */
+     if (QUO_SUCCESS != rc) {
+         if (cur_bind) hwloc_bitmap_free(cur_bind);
+--- origsrc/libquo-1.4.1/src/quo-private.h	2026-08-10 14:50:04.000000000 +0000
++++ src/libquo-1.4.1/src/quo-private.h	2026-10-26 01:11:54.220053700 +0000
+@@ -25,6 +25,9 @@
+ #ifdef HAVE_STDBOOL_H
+ #include <stdbool.h>
+ #endif
++#ifdef HAVE_UNISTD_H
++#include <unistd.h>
++#endif
+ 
+ /** Library version. */
+ #define QUO_VER    QUO_VERSION_CURRENT

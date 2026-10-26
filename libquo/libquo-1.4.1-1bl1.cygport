@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/lanl/${PN}"
 SRC_URI="https://github.com/lanl/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="hwloc-cygwin-uint64.patch"
 
 CATEGORY="Libs"
 SUMMARY="Dynamic execution environments for coupled, thread-heterogeneous MPI+X applications"
@@ -7,11 +8,19 @@ DESCRIPTION="QUO (as in 'status quo') is a runtime library that aids in accommod
 thread-level heterogeneity in dynamic, phased MPI+X applications comprising
 single- and multi-threaded libraries."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND ISC AND LicenseRef-scancode-ibm-dhcp"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND ISC AND LicenseRef-scancode-ibm-dhcp"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="liblevel-zero-devel openmpi"
+BUILD_REQUIRES="
+	gcc-fortran
+	libevent-devel
+	libhwloc-devel
+	liblevel-zero-devel
+	libopenmpi-devel
+	openmpi
+	zlib-devel
+"
 
 export CC=mpicc
 export FC=mpif90

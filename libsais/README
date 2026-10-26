@@ -7,17 +7,17 @@ extra memory (with 2n bytes as absolute worst-case; where n is the length of
 the string). OpenMP acceleration uses 200KB of addition memory per thread.
 
 Runtime requirements:
-  cygwin-3.6.11-1
+  cygwin-3.6.12-1
   libgomp1-14.4.0-1
-  libsais-devel-2.12.0-1bl1
-  libsais2-2.12.0-1bl1
+  libsais-devel-2.12.1-1bl1
+  libsais2-2.12.1-1bl1
   pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   cmake-4.4.4-1
-  cygport-0.37.10-1
+  cygport-0.37.11-1
   gcc-core-14.4.0-1
   ninja-1.13.2-1
 
@@ -25,22 +25,22 @@ Canonical website:
   https://github.com/IlyaGrebnov/libsais
 
 Canonical download:
-  https://github.com/IlyaGrebnov/libsais/archive/refs/tags/v2.12.0.tar.gz
+  https://github.com/IlyaGrebnov/libsais/archive/refs/tags/v2.12.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libsais-2.12.0-X-src.tar.xz
+  1. unpack libsais-2.12.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libsais-2.12.0-X.cygport all
+        % cygport ./libsais-2.12.1-X.cygport all
 
 This will create:
-  /usr/src/libsais-2.12.0-X-src.tar.xz
-  /usr/src/libsais-2.12.0-X.tar.xz
-  /usr/src/libsais2-2.12.0-X.tar.xz
-  /usr/src/libsais-devel-2.12.0-X.tar.xz
+  /usr/src/libsais-2.12.1-X-src.tar.xz
+  /usr/src/libsais-2.12.1-X.tar.xz
+  /usr/src/libsais2-2.12.1-X.tar.xz
+  /usr/src/libsais-devel-2.12.1-X.tar.xz
 
 -------------------------------------------
 
@@ -70,6 +70,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.12.1-1bl1 -----
+Version bump.
 
 ----- version 2.12.0-1bl1 -----
 Version bump.

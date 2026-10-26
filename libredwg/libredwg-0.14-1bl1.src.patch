@@ -1,0 +1,58 @@
+--- origsrc/libredwg/bindings/perl/Makefile.PL.in	2026-10-26 14:35:20.000000000 +0000
++++ src/libredwg/bindings/perl/Makefile.PL.in	2026-10-26 14:35:39.325926900 +0000
+@@ -10,19 +10,18 @@ my $ccopts = ccopts;
+ chomp($ccopts);
+ 
+ # we are in bindings/perl. didn't check for out-of-dir configure
++my $libs = '-lredwg';
+ if (-d '../../bindings' &&
+-    -d '../../src/.libs' &&
+-    -d '../../include') {
++    -d '../../src/.libs') {
+   # needs to be in front to prefer over installed (old) /usr/local/include
+   $ccopts = "-I../../include $ccopts";
+   $ldopts = "-L../../src/.libs $ldopts";
+   $lddlflags = "-L../../src/.libs $lddlflags";
++  $libs = "-L../../src/.libs $libs";
+ } # else link to the installed libredwg
+ 
+ # swig_perl.c is 9MB, too big
+ $ccopts =~ s/-O\d //;
+-$ldopts .= " -lredwg";
+-$lddlflags .= " -lredwg";
+ 
+ WriteMakefile (
+   NAME         => 'LibreDWG',
+@@ -30,7 +29,7 @@ WriteMakefile (
+   ($ccopts ? (CCFLAGS => $ccopts) : ()),
+   ($ldopts ? (LDFLAGS => $ldopts) : ()),
+   ($lddlflags ? (LDDLFLAGS => $lddlflags) : ()),
+-  #LIBS => ['-lredwg'],
++  LIBS => [$libs],
+   OPTIMIZE => '',
+   clean => { FILES => 'MYMETA.json MYMETA.yml' },
+   ($] >= 5.005
+--- origsrc/libredwg/configure.ac	2026-10-26 14:35:20.000000000 +0000
++++ src/libredwg/configure.ac	2026-10-26 14:35:39.327760400 +0000
+@@ -233,9 +233,6 @@ darwin*|macos*)
+ #endif])
+     ;;
+ esac
+-case "$host_os" in
+-cygwin*) AC_DEFINE([__XSI_VISIBLE],[700],[Needed for cygwin strdup]) ;;
+-esac
+ 
+ AX_IS_RELEASE([git-directory])
+ dnl ability to override with a .git dir, to test release features
+--- origsrc/libredwg/src/common.h	2026-10-26 14:35:20.000000000 +0000
++++ src/libredwg/src/common.h	2026-10-26 14:35:39.327760400 +0000
+@@ -357,7 +357,9 @@ EXPORT int my_strcasecmp (const char *a,
+ #if _GNUC_VERSION >= 303 && !defined(__cplusplus)
+ #  undef __nonnull
+ #  define __nonnull(params) __attribute__ ((__nonnull__ params))
++#if !defined(__nonnull_all)
+ #  define __nonnull_all __attribute__ ((__nonnull__))
++#endif
+ #  define HAVE_NONNULL
+ #else
+ #  ifndef __nonnull

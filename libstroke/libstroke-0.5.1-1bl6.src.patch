@@ -1,13 +1,13 @@
---- origsrc/libstroke-0.5.1/Makefile.am	2023-10-07 14:09:33.558358400 +0900
-+++ src/libstroke-0.5.1/Makefile.am	2023-10-07 14:15:40.327914100 +0900
+--- origsrc/libstroke-0.5.1/Makefile.am	2026-10-26 13:18:43.552326700 +0000
++++ src/libstroke-0.5.1/Makefile.am	2026-10-26 13:18:43.978681800 +0000
 @@ -17,3 +17,5 @@ CLEANFILES = core *~
  DISTCLEANFILES = core *~
  MAINTAINERCLEANFILES = core *~
  
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libstroke-0.5.1/configure.in	2023-10-07 14:09:33.558358400 +0900
-+++ src/libstroke-0.5.1/configure.in	2023-10-07 14:19:21.006713900 +0900
+--- origsrc/libstroke-0.5.1/configure.in	2026-10-26 13:18:43.550314400 +0000
++++ src/libstroke-0.5.1/configure.in	2026-10-26 13:18:43.980704000 +0000
 @@ -1,14 +1,8 @@
  dnl Process this file with autoconf to produce a configure script.
 -AC_INIT(libstroke/stroke.c)
@@ -34,8 +34,8 @@
    libstroke/Makefile \
    libgstroke/Makefile \
    doc/Makefile \
---- origsrc/libstroke-0.5.1/libstroke/Makefile.am	2023-10-07 14:09:33.230233200 +0900
-+++ src/libstroke-0.5.1/libstroke/Makefile.am	2023-10-07 14:10:01.732081900 +0900
+--- origsrc/libstroke-0.5.1/libstroke/Makefile.am	2026-10-26 13:18:43.375769000 +0000
++++ src/libstroke-0.5.1/libstroke/Makefile.am	2026-10-26 13:18:43.980704000 +0000
 @@ -29,7 +29,7 @@ lib_LTLIBRARIES = libstroke.la
  #libstroke_tcl_la_LDFLAGS = -ltcl -version-info 0:5:0
  libstroke_la_SOURCES = stroke.c stroke.h
@@ -45,8 +45,8 @@
  
  include_HEADERS = stroke.h
  
---- origsrc/libstroke-0.5.1/libstroke.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libstroke-0.5.1/libstroke.pc.in	2023-10-07 14:14:16.700073500 +0900
+--- origsrc/libstroke-0.5.1/libstroke.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libstroke-0.5.1/libstroke.pc.in	2026-10-26 13:18:43.980704000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

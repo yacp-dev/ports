@@ -1,23 +1,22 @@
 libslirp
 ------------------------------------------
-libslirp is a user-mode networking library used by virtual machines,
-containers or various tools.
+libslirp is a user-mode networking library used by virtual machines, containers
+or various tools.
 
 Runtime requirements:
-  cygwin-3.6.11-1
-  libglib2.0-devel-2.90.0-1
-  libglib2.0_0-2.90.0-1
-  libslirp-devel-4.9.5-1bl1
-  libslirp0-4.9.5-1bl1
+  cygwin-3.6.12-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libslirp-devel-4.9.6-1bl1
+  libslirp0-4.9.6-1bl1
   pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.10-1
+  cygport-0.37.11-1
   gcc-core-14.4.0-1
-  gcc-g++-14.4.0-1
-  libglib2.0-devel-2.90.0-1
+  libglib2.0-devel-2.90.1-1
   meson-1.10.2-1
   ninja-1.13.2-1
 
@@ -25,22 +24,22 @@ Canonical website:
   https://gitlab.freedesktop.org/slirp/libslirp
 
 Canonical download:
-  https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.5/libslirp-v4.9.5.tar.bz2
+  https://gitlab.freedesktop.org/slirp/libslirp/-/archive/v4.9.6/libslirp-v4.9.6.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libslirp-4.9.5-X-src.tar.xz
+  1. unpack libslirp-4.9.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libslirp-4.9.5-X.cygport all
+        % cygport ./libslirp-4.9.6-X.cygport all
 
 This will create:
-  /usr/src/libslirp-4.9.5-X-src.tar.xz
-  /usr/src/libslirp-4.9.5-X.tar.xz
-  /usr/src/libslirp0-4.9.5-X.tar.xz
-  /usr/src/libslirp-devel-4.9.5-X.tar.xz
+  /usr/src/libslirp-4.9.6-X-src.tar.xz
+  /usr/src/libslirp-4.9.6-X.tar.xz
+  /usr/src/libslirp0-4.9.6-X.tar.xz
+  /usr/src/libslirp-devel-4.9.6-X.tar.xz
 
 -------------------------------------------
 
@@ -65,6 +64,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.9.6-1bl1 -----
+Version bump.
 
 ----- version 4.9.5-1bl1 -----
 Version bump.

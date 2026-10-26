@@ -1,56 +1,57 @@
 libphonenumber
 ------------------------------------------
-Google's common Java, C++ and JavaScript library for parsing, formatting,
-and validating international phone numbers. The Java version is optimized for
+Google's common Java, C++ and JavaScript library for parsing, formatting, and
+validating international phone numbers. The Java version is optimized for
 running on smartphones, and is used by the Android framework since 4.0 (Ice
 Cream Sandwich).
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libabseil2508.0.0-20250814.0-1bl1
+  cygwin-3.6.12-1
+  libabseil2608.0.0-20260817.0-1bl2
   libboost_system1.66-1.66.0-1
   libboost_thread1.66-1.66.0-1
-  libgcc1-13.4.0-1
+  libgcc1-14.4.0-1
   libicu76-76.1-2
-  libphonenumber9-9.0.26-1bl1
-  libprotobuf32-21.12-1
-  libre2_11-20251105-1bl1
-  libstdc++6-13.4.0-1
+  libphonenumber9-9.0.42-1bl1
+  libprotobuf32-21.12-2
+  libre2_11-20251105-1bl2
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libabseil-devel-20250814.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libabseil-devel-20260817.0-1bl2
   libboost-devel-1.66.0-1
+  libgtest-devel-1.18.0-1bl1
   libicu-devel-76.1-2
-  libprotobuf-devel-21.12-1
-  libre2-devel-20251105-1bl1
+  libprotobuf-devel-21.12-2
+  libre2-devel-20251105-1bl2
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/google/libphonenumber
 
 Canonical download:
-  https://github.com/google/libphonenumber/archive/refs/tags/v9.0.26.tar.gz
+  https://github.com/google/libphonenumber/archive/refs/tags/v9.0.42.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libphonenumber-9.0.26-X-src.tar.xz
+  1. unpack libphonenumber-9.0.42-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libphonenumber-9.0.26-X.cygport all
+        % cygport ./libphonenumber-9.0.42-X.cygport all
 
 This will create:
-  /usr/src/libphonenumber-9.0.26-X-src.tar.xz
-  /usr/src/libphonenumber-9.0.26-X.tar.xz
-  /usr/src/libphonenumber9-9.0.26-X.tar.xz
-  /usr/src/libphonenumber-devel-9.0.26-X.tar.xz
+  /usr/src/libphonenumber-9.0.42-X-src.tar.xz
+  /usr/src/libphonenumber-9.0.42-X.tar.xz
+  /usr/src/libphonenumber9-9.0.42-X.tar.xz
+  /usr/src/libphonenumber-devel-9.0.42-X.tar.xz
 
 -------------------------------------------
 
@@ -109,7 +110,7 @@ Files included in the binary package:
   /usr/include/phonenumbers/utf/unicodetext.h
   /usr/lib/cmake/libphonenumber/libphonenumber-config-version.cmake
   /usr/lib/cmake/libphonenumber/libphonenumber-config.cmake
-  /usr/lib/cmake/libphonenumber/libphonenumber-targets-release.cmake
+  /usr/lib/cmake/libphonenumber/libphonenumber-targets-relwithdebinfo.cmake
   /usr/lib/cmake/libphonenumber/libphonenumber-targets.cmake
   /usr/lib/libgeocoding.dll.a
   /usr/lib/libphonenumber.dll.a
@@ -117,6 +118,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 9.0.42-1bl1 -----
+Version bump.
 
 ----- version 9.0.26-1bl1 -----
 Version bump.

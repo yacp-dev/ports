@@ -8,13 +8,14 @@ and validating international phone numbers. The Java version is optimized for
 running on smartphones, and is used by the Android framework since 4.0 (Ice
 Cream Sandwich)."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	libabseil-devel
 	libboost-devel
+	libgtest-devel
 	libicu-devel
 	libprotobuf-devel
 	libre2-devel

@@ -1,5 +1,5 @@
---- origsrc/libsquish-1.15/CMakeLists.txt	2017-03-14 16:40:13.000000000 +0900
-+++ src/libsquish-1.15/CMakeLists.txt	2024-10-05 00:31:56.529968800 +0900
+--- origsrc/libsquish-1.15/CMakeLists.txt	2017-03-14 07:40:13.000000000 +0000
++++ src/libsquish-1.15/CMakeLists.txt	2026-10-26 13:22:25.114235900 +0000
 @@ -95,6 +95,7 @@ IF (BUILD_SQUISH_EXTRA)
      ADD_EXECUTABLE(squishtest ${SQUISHTEST_SRCS})
      SET_TARGET_PROPERTIES(squishtest PROPERTIES DEBUG_POSTFIX "d")
@@ -28,9 +28,9 @@
 +SET(LIB_PATH lib)
 +CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/libsquish.pc.in ${CMAKE_BINARY_DIR}/libsquish.pc @ONLY)
 +INSTALL(FILES ${CMAKE_BINARY_DIR}/libsquish.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libsquish-1.15/libsquish.pc.in	2016-09-24 19:46:01.000000000 +0900
-+++ src/libsquish-1.15/libsquish.pc.in	2024-10-05 00:31:56.529968800 +0900
-@@ -6,8 +6,8 @@ includedir=${prefix}/include
+--- origsrc/libsquish-1.15/libsquish.pc.in	2026-10-26 13:22:24.779126200 +0000
++++ src/libsquish-1.15/libsquish.pc.in	2026-10-26 13:22:25.114235900 +0000
+@@ -6,7 +6,7 @@ includedir=${prefix}/include
  
  Name: libsquish
  Description: squish DXT library
@@ -38,6 +38,4 @@
 +Version: 1.15
  
  Requires:
--Libs: -L${libdir} -L${sharedlibdir} -llibsquish
-+Libs: -L${libdir} -L${sharedlibdir} -lsquish
- Cflags: -I${includedir}
+ Libs: -L${libdir} -L${sharedlibdir} -lsquish

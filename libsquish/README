@@ -4,24 +4,23 @@ The squish library (abbreviated to libsquish) is an open source DXT compression
 library written in C++.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libgcc1-12.4.0-3
-  libgomp1-12.4.0-3
-  libpng16-1.6.42-1
-  libsquish-devel-1.15-1bl3
-  libsquish0.0-1.15-1bl3
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libpng16-1.6.59-1
+  libsquish-devel-1.15-1bl4
+  libsquish0.0-1.15-1bl4
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libpng-devel-1.6.42-1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
+  libpng-devel-1.6.59-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://sourceforge.net/projects/libsquish/
@@ -69,6 +68,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.15-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.15-1bl3 -----
 Rebuild with gcc-12.4.0

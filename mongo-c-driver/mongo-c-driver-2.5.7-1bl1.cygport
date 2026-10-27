@@ -7,8 +7,8 @@ DESCRIPTION="The MongoDB C Driver, also known as “libmongoc”, is a library f
 MongoDB from C applications, and for writing MongoDB drivers in higher-level
 languages."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND BSD-3-Clause AND ISC AND MIT AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-3-Clause AND ISC AND MIT AND Zlib"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="

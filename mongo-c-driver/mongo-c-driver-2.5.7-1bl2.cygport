@@ -81,3 +81,8 @@ libmongoc2_2_SUMMARY="${SUMMARY} (runtime)"
 libmongoc2_devel_SUMMARY="${SUMMARY} (development)"
 libbson2_2_SUMMARY="Library providing useful routines related to building, parsing, and iterating BSON documents (runtime)"
 libbson2_devel_SUMMARY="Library providing useful routines related to building, parsing, and iterating BSON documents (development)"
+libmongoc2_devel_REQUIRES="
+	libsasl2-devel
+	libssl-devel
+	libutf8proc-devel
+"

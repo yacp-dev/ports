@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/eclipse-mosquitto/${PN}/"
 SRC_URI="https://github.com/eclipse-mosquitto/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/m/mosquitto/2.1.2-3/debian/patches/3547.patch
+"
 
 CATEGORY="Net"
 SUMMARY="Open source MQTT broker"
@@ -8,21 +11,24 @@ implements the MQTT protocol versions 5.0, 3.1.1 and 3.1. Mosquitto is
 lightweight and is suitable for use on all devices from low power single
 board computers to full servers."
 
-LICENSE="EPL-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: EPL-2.0"
+LICENSE="(EPL-2.0 OR BSD-3-Clause) AND BSD-1-Clause AND curl AND (MIT OR Artistic-1.0-Perl OR GPL-1.0-or-later)"
+LICENSE_SPDX="SPDX-License-Identifier: (EPL-2.0 OR BSD-3-Clause) AND BSD-1-Clause AND curl AND (MIT OR Artistic-1.0-Perl OR GPL-1.0-or-later)"
 LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="
+	CUnit
 	libcares-devel
 	libcjson-devel
+	libedit-devel
+	libgmock-devel
+	libgtest-devel
 	libssl-devel
-	libwebsockets-devel
 	libwrap-devel
 "
 
 CYGCMAKE_ARGS="
 	-DCMAKE_INSTALL_SYSCONFDIR:STRING=/etc
-	-DDOCUMENTATION:BOOL=OFF
+	-DWITH_DOCS:BOOL=OFF
 	-DUSE_LIBWRAP:BOOL=ON
 	-DWITH_BUNDLED_DEPS:BOOL=ON
 	-DWITH_PLUGINS:BOOL=OFF
@@ -60,6 +66,7 @@ libmosquitto1_CONTENTS="
 	usr/bin/cyg${PN}-1.dll
 "
 libmosquitto_devel_CONTENTS="
+	usr/include/${PN}/
 	usr/include/${PN}.h
 	usr/include/${PN}_*.h
 	usr/include/mqtt*.h

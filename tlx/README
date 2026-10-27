@@ -1,22 +1,22 @@
 tlx
 ------------------------------------------
-Collection of Sophisticated C++ Data Structures, Algorithms, and Miscellaneous Helpers
+Collection of Sophisticated C++ Data Structures, Algorithms, and Miscellaneous
+Helpers
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  libtlx-devel-0.6.1-1bl2
-  libtlx0.6-0.6.1-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libtlx-devel-0.6.1-1bl3
+  libtlx0.6-0.6.1-1bl3
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -238,7 +238,7 @@ Files included in the binary package:
   /usr/include/tlx/vector_free.hpp
   /usr/include/tlx/version.hpp
   /usr/lib/cmake/tlx/tlx-config.cmake
-  /usr/lib/cmake/tlx/tlx-targets-release.cmake
+  /usr/lib/cmake/tlx/tlx-targets-relwithdebinfo.cmake
   /usr/lib/cmake/tlx/tlx-targets.cmake
   /usr/lib/cmake/tlx/tlx-version.cmake
   /usr/lib/libtlx.dll.a
@@ -247,6 +247,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.6.1-1bl3 -----
+Fix library name
 
 ----- version 0.6.1-1bl2 -----
 Rebuild with gcc-13.4.0

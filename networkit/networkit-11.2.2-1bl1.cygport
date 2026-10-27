@@ -13,11 +13,12 @@ analysis. NetworKit is focused on scalability and comprehensiveness. NetworKit
 is also a testbed for algorithm engineering and contains novel algorithms from
 recently published research (see list of publications below)."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSD-3-Clause"
 LICENSE_URI="License.txt"
 
 BUILD_REQUIRES="
+	libgmock-devel
 	libgtest-devel
 	libtlx-devel
 "
@@ -30,6 +31,11 @@ CYGCMAKE_ARGS="
 	-DNETWORKIT_EXT_TLX:STRING=/usr
 	-DVERSION:STRING=${PV}
 	-DSOVERSION:STRING=${PV[1]}
+"
+
+# the tests write their results into ${S}/output
+DIFF_EXCLUDES="
+	output
 "
 
 DOCS="

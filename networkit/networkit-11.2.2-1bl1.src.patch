@@ -1,5 +1,5 @@
---- origsrc/networkit/CMakeLists.txt	2026-01-26 21:49:11.000000000 +0900
-+++ src/networkit/CMakeLists.txt	2026-01-27 06:04:33.125961000 +0900
+--- origsrc/networkit/CMakeLists.txt	2026-10-27 07:29:29.000000000 +0000
++++ src/networkit/CMakeLists.txt	2026-10-27 07:29:44.459560800 +0000
 @@ -224,10 +224,14 @@ if(NOT NETWORKIT_EXT_TLX)
  				"Please run `git submodule update --init` to fetch the submodule.")
  	endif()
@@ -36,7 +36,7 @@
  
  	target_include_directories(networkit BEFORE PUBLIC "${PROJECT_SOURCE_DIR}/include")
  	target_include_directories(networkit PUBLIC "${PROJECT_SOURCE_DIR}/extlibs/ttmath/")
-@@ -454,6 +462,8 @@ endfunction()
+@@ -455,6 +463,8 @@ endfunction()
  if (NETWORKIT_BUILD_TESTS)
  	enable_testing()
  
@@ -45,7 +45,7 @@
  	if(EXISTS "${PROJECT_SOURCE_DIR}/extlibs/googletest/CMakeLists.txt")
  		if (MSVC)
  			# While by default MSVC projects link against the shared runtime library
-@@ -469,6 +479,7 @@ if (NETWORKIT_BUILD_TESTS)
+@@ -470,6 +480,7 @@ if (NETWORKIT_BUILD_TESTS)
  			"Missing GoogleTest and GoogleMock in extlibs/googletest. "
  			"Please run `git submodule update --init` to fetch the submodule.")
  	endif()
@@ -53,8 +53,8 @@
  
  	if (NETWORKIT_MONOLITH)
  		add_executable(networkit_tests networkit/cpp/Unittests-X.cpp)
---- origsrc/networkit/networkit.pc	2026-01-26 21:49:12.000000000 +0900
-+++ src/networkit/networkit.pc	2026-01-26 21:49:59.162466500 +0900
+--- origsrc/networkit/networkit.pc	2026-10-27 07:29:29.000000000 +0000
++++ src/networkit/networkit.pc	2026-10-27 07:29:44.460364500 +0000
 @@ -6,6 +6,6 @@ libdir=${exec_prefix}/@NETWORKIT_INSTALL
  Name: networkit
  Description: networkit

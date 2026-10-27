@@ -1,0 +1,92 @@
+--- origsrc/munge-munge-0.5.18/src/libmunge/Makefile.am	2026-02-10 08:07:53.000000000 +0000
++++ src/munge-munge-0.5.18/src/libmunge/Makefile.am	2026-10-27 05:26:01.077886200 +0000
+@@ -50,7 +50,7 @@ libmunge_la_CPPFLAGS = \
+ 	-I$(top_srcdir)/src/libcommon \
+ 	# End of libmunge_la_CPPFLAGS
+ 
+-libmunge_la_LDFLAGS = \
++libmunge_la_LDFLAGS = -no-undefined \
+ 	-export-symbols-regex "^munge_.*" \
+ 	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \
+ 	# End of libmunge_la_LDFLAGS
+--- origsrc/munge-munge-0.5.18/src/libmunge/m_msg_client.c	2026-02-10 08:07:53.000000000 +0000
++++ src/munge-munge-0.5.18/src/libmunge/m_msg_client.c	2026-10-27 05:26:01.079902300 +0000
+@@ -31,6 +31,7 @@
+ 
+ #include <assert.h>
+ #include <errno.h>
++#include <poll.h>
+ #include <string.h>
+ #include <sys/socket.h>
+ #include <sys/stat.h>
+@@ -53,6 +54,9 @@
+  *****************************************************************************/
+ 
+ static munge_err_t _m_msg_client_connect (m_msg_t m, char *path);
++#ifdef __CYGWIN__
++static int _m_msg_client_connect_wait (int sd);
++#endif /* __CYGWIN__ */
+ static munge_err_t _m_msg_client_disconnect (m_msg_t m);
+ static munge_err_t _m_msg_client_millisleep (m_msg_t m, unsigned long msecs);
+ 
+@@ -223,6 +227,15 @@ _m_msg_client_connect (m_msg_t m, char *
+          */
+         n = connect (sd, (struct sockaddr *) &addr, sizeof (addr));
+ 
++#ifdef __CYGWIN__
++        /*
++         * Cygwin: connect() returns EINPROGRESS for nonblocking UNIX domain
++         *   sockets if the connection cannot be completed immediately.
++         */
++        if ((n < 0) && (errno == EINPROGRESS)) {
++            n = _m_msg_client_connect_wait (sd);
++        }
++#endif /* __CYGWIN__ */
+         if (n == 0) {
+             break;
+         }
+@@ -253,6 +266,44 @@ _m_msg_client_connect (m_msg_t m, char *
+ }
+ 
+ 
++#ifdef __CYGWIN__
++static int
++_m_msg_client_connect_wait (int sd)
++{
++/*  Waits for a nonblocking connect() on socket [sd] to complete.
++ *  Returns 0 on success, or -1 on error (with errno set).
++ */
++    struct pollfd  pfd;
++    int            n;
++    int            e;
++    socklen_t      len;
++
++    pfd.fd = sd;
++    pfd.events = POLLOUT;
++    do {
++        n = poll (&pfd, 1, MUNGE_SOCKET_TIMEOUT_MSECS);
++    } while ((n < 0) && (errno == EINTR));
++
++    if (n < 0) {
++        return (-1);
++    }
++    if (n == 0) {
++        errno = ETIMEDOUT;
++        return (-1);
++    }
++    len = sizeof (e);
++    if (getsockopt (sd, SOL_SOCKET, SO_ERROR, &e, &len) < 0) {
++        return (-1);
++    }
++    if (e != 0) {
++        errno = e;
++        return (-1);
++    }
++    return (0);
++}
++#endif /* __CYGWIN__ */
++
++
+ static munge_err_t
+ _m_msg_client_disconnect (m_msg_t m) {
+     munge_err_t e;

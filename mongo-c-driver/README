@@ -4,13 +4,13 @@ The MongoDB C Driver, also known as “libmongoc”, is a library for using Mong
 from C applications, and for writing MongoDB drivers in higher-level languages.
 
 Runtime requirements:
-  cygwin-3.6.11-1
-  cygwin-devel-3.6.11-1
-  libbson2-devel-2.5.6-1bl1
-  libbson2_2-2.5.6-1bl1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libbson2-devel-2.5.7-1bl1
+  libbson2_2-2.5.7-1bl1
   libgcc1-14.4.0-1
-  libmongoc2-devel-2.5.6-1bl1
-  libmongoc2_2-2.5.6-1bl1
+  libmongoc2-devel-2.5.7-1bl1
+  libmongoc2_2-2.5.7-1bl1
   libsasl2_3-2.1.27-1
   libsnappy1-1.3.1-1
   libssl3-3.5.9-1
@@ -23,7 +23,7 @@ Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   cmake-4.4.4-1
-  cygport-0.37.10-1
+  cygport-0.37.11-1
   gcc-core-14.4.0-1
   libsasl2-devel-2.1.27-1
   libsnappy-devel-1.3.1-1
@@ -37,24 +37,24 @@ Canonical website:
   https://github.com/mongodb/mongo-c-driver
 
 Canonical download:
-  https://github.com/mongodb/mongo-c-driver/archive/refs/tags/2.5.6.tar.gz
+  https://github.com/mongodb/mongo-c-driver/archive/refs/tags/2.5.7.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mongo-c-driver-2.5.6-X-src.tar.xz
+  1. unpack mongo-c-driver-2.5.7-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mongo-c-driver-2.5.6-X.cygport all
+        % cygport ./mongo-c-driver-2.5.7-X.cygport all
 
 This will create:
-  /usr/src/mongo-c-driver-2.5.6-X-src.tar.xz
-  /usr/src/mongo-c-driver-2.5.6-X.tar.xz
-  /usr/src/libmongoc2_2-2.5.6-X.tar.xz
-  /usr/src/libmongoc2-devel-2.5.6-X.tar.xz
-  /usr/src/libbson2_2-2.5.6-X.tar.xz
-  /usr/src/libbson2-devel-2.5.6-X.tar.xz
+  /usr/src/mongo-c-driver-2.5.7-X-src.tar.xz
+  /usr/src/mongo-c-driver-2.5.7-X.tar.xz
+  /usr/src/libmongoc2_2-2.5.7-X.tar.xz
+  /usr/src/libmongoc2-devel-2.5.7-X.tar.xz
+  /usr/src/libbson2_2-2.5.7-X.tar.xz
+  /usr/src/libbson2-devel-2.5.7-X.tar.xz
 
 -------------------------------------------
 
@@ -73,63 +73,63 @@ Files included in the binary package:
   /usr/bin/cygmongoc2-2.dll
 
 (libmongoc2-devel)
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-apm.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-bulk-operation.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-bulkwrite.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-change-stream.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-client-pool.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-client-session.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-client-side-encryption.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-client.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-collection.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-config.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-cursor.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-database.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-error.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-find-and-modify.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-flags.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-gridfs-bucket.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-gridfs-file-list.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-gridfs-file-page.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-gridfs-file.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-gridfs.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-handshake.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-host-list.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-init.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-iovec.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-log.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-macros.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-oidc-callback.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-opcode.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-optional.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-prelude.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-rand.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-read-concern.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-read-prefs.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-server-api.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-server-description.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-sleep.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-socket.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-ssl.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-stream-buffered.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-stream-file.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-stream-gridfs.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-stream-socket.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-stream-tls-openssl.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-stream-tls.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-stream.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-structured-log.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-topology-description.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-uri.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-version-functions.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-version.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc-write-concern.h
-  /usr/include/mongoc-2.5.6/mongoc/mongoc.h
-  /usr/lib/cmake/mongoc-2.5.6/3rdParty/FindSASL2.cmake
-  /usr/lib/cmake/mongoc-2.5.6/mongoc-targets-relwithdebinfo.cmake
-  /usr/lib/cmake/mongoc-2.5.6/mongoc-targets.cmake
-  /usr/lib/cmake/mongoc-2.5.6/mongocConfig.cmake
-  /usr/lib/cmake/mongoc-2.5.6/mongocConfigVersion.cmake
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-apm.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-bulk-operation.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-bulkwrite.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-change-stream.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-client-pool.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-client-session.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-client-side-encryption.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-client.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-collection.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-config.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-cursor.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-database.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-error.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-find-and-modify.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-flags.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-gridfs-bucket.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-gridfs-file-list.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-gridfs-file-page.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-gridfs-file.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-gridfs.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-handshake.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-host-list.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-init.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-iovec.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-log.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-macros.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-oidc-callback.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-opcode.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-optional.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-prelude.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-rand.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-read-concern.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-read-prefs.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-server-api.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-server-description.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-sleep.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-socket.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-ssl.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-stream-buffered.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-stream-file.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-stream-gridfs.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-stream-socket.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-stream-tls-openssl.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-stream-tls.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-stream.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-structured-log.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-topology-description.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-uri.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-version-functions.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-version.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc-write-concern.h
+  /usr/include/mongoc-2.5.7/mongoc/mongoc.h
+  /usr/lib/cmake/mongoc-2.5.7/3rdParty/FindSASL2.cmake
+  /usr/lib/cmake/mongoc-2.5.7/mongoc-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/mongoc-2.5.7/mongoc-targets.cmake
+  /usr/lib/cmake/mongoc-2.5.7/mongocConfig.cmake
+  /usr/lib/cmake/mongoc-2.5.7/mongocConfigVersion.cmake
   /usr/lib/libmongoc2.dll.a
   /usr/lib/pkgconfig/mongoc2.pc
 
@@ -137,43 +137,46 @@ Files included in the binary package:
   /usr/bin/cygbson2-2.dll
 
 (libbson2-devel)
-  /usr/include/bson-2.5.6/bson/bson-bcon.h
-  /usr/include/bson-2.5.6/bson/bson-clock.h
-  /usr/include/bson-2.5.6/bson/bson-context.h
-  /usr/include/bson-2.5.6/bson/bson-decimal128.h
-  /usr/include/bson-2.5.6/bson/bson-endian.h
-  /usr/include/bson-2.5.6/bson/bson-iter.h
-  /usr/include/bson-2.5.6/bson/bson-json.h
-  /usr/include/bson-2.5.6/bson/bson-keys.h
-  /usr/include/bson-2.5.6/bson/bson-oid.h
-  /usr/include/bson-2.5.6/bson/bson-prelude.h
-  /usr/include/bson-2.5.6/bson/bson-reader.h
-  /usr/include/bson-2.5.6/bson/bson-string.h
-  /usr/include/bson-2.5.6/bson/bson-types.h
-  /usr/include/bson-2.5.6/bson/bson-utf8.h
-  /usr/include/bson-2.5.6/bson/bson-value.h
-  /usr/include/bson-2.5.6/bson/bson-vector.h
-  /usr/include/bson-2.5.6/bson/bson-version-functions.h
-  /usr/include/bson-2.5.6/bson/bson-writer.h
-  /usr/include/bson-2.5.6/bson/bson.h
-  /usr/include/bson-2.5.6/bson/bson_t.h
-  /usr/include/bson-2.5.6/bson/compat.h
-  /usr/include/bson-2.5.6/bson/config.h
-  /usr/include/bson-2.5.6/bson/error.h
-  /usr/include/bson-2.5.6/bson/macros.h
-  /usr/include/bson-2.5.6/bson/memory.h
-  /usr/include/bson-2.5.6/bson/version.h
-  /usr/lib/cmake/bson-2.5.6/00-mongo-platform-targets.cmake
-  /usr/lib/cmake/bson-2.5.6/bsonConfig.cmake
-  /usr/lib/cmake/bson-2.5.6/bsonConfigVersion.cmake
-  /usr/lib/cmake/bson-2.5.6/bson_shared-targets-relwithdebinfo.cmake
-  /usr/lib/cmake/bson-2.5.6/bson_shared-targets.cmake
+  /usr/include/bson-2.5.7/bson/bson-bcon.h
+  /usr/include/bson-2.5.7/bson/bson-clock.h
+  /usr/include/bson-2.5.7/bson/bson-context.h
+  /usr/include/bson-2.5.7/bson/bson-decimal128.h
+  /usr/include/bson-2.5.7/bson/bson-endian.h
+  /usr/include/bson-2.5.7/bson/bson-iter.h
+  /usr/include/bson-2.5.7/bson/bson-json.h
+  /usr/include/bson-2.5.7/bson/bson-keys.h
+  /usr/include/bson-2.5.7/bson/bson-oid.h
+  /usr/include/bson-2.5.7/bson/bson-prelude.h
+  /usr/include/bson-2.5.7/bson/bson-reader.h
+  /usr/include/bson-2.5.7/bson/bson-string.h
+  /usr/include/bson-2.5.7/bson/bson-types.h
+  /usr/include/bson-2.5.7/bson/bson-utf8.h
+  /usr/include/bson-2.5.7/bson/bson-value.h
+  /usr/include/bson-2.5.7/bson/bson-vector.h
+  /usr/include/bson-2.5.7/bson/bson-version-functions.h
+  /usr/include/bson-2.5.7/bson/bson-writer.h
+  /usr/include/bson-2.5.7/bson/bson.h
+  /usr/include/bson-2.5.7/bson/bson_t.h
+  /usr/include/bson-2.5.7/bson/compat.h
+  /usr/include/bson-2.5.7/bson/config.h
+  /usr/include/bson-2.5.7/bson/error.h
+  /usr/include/bson-2.5.7/bson/macros.h
+  /usr/include/bson-2.5.7/bson/memory.h
+  /usr/include/bson-2.5.7/bson/version.h
+  /usr/lib/cmake/bson-2.5.7/00-mongo-platform-targets.cmake
+  /usr/lib/cmake/bson-2.5.7/bsonConfig.cmake
+  /usr/lib/cmake/bson-2.5.7/bsonConfigVersion.cmake
+  /usr/lib/cmake/bson-2.5.7/bson_shared-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/bson-2.5.7/bson_shared-targets.cmake
   /usr/lib/libbson2.dll.a
   /usr/lib/pkgconfig/bson2.pc
 
 ------------------
 
 Port Notes:
+
+----- version 2.5.7-1bl1 -----
+Version bump.
 
 ----- version 2.5.6-1bl1 -----
 Version bump.

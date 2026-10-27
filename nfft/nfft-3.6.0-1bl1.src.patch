@@ -1,0 +1,18 @@
+--- origsrc/nfft-3.6.0/Makefile.am	2026-09-18 15:27:55.000000000 +0000
++++ src/nfft-3.6.0/Makefile.am	2026-10-27 06:23:36.583553200 +0000
+@@ -100,6 +100,7 @@ endif
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = nfft3@PREC_SUFFIX@.pc
+ 
++if DX_COND_doc
+ install-data-hook:
+ 	if test -f "$(abs_top_srcdir)/doc/html/index.html"; then \
+ 		$(MKDIR_P) $(DESTDIR)$(docdir)/html; \
+@@ -111,6 +112,7 @@ uninstall-hook:
+ 		chmod -Rf u+rwX $(DESTDIR)$(docdir); \
+ 		rm -Rf $(DESTDIR)$(docdir); \
+ 	fi
++endif
+ 
+ clean-local:
+ 	rm -f $(abs_top_builddir)/doc/doxygen_sqlite3.db

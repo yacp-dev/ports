@@ -1,5 +1,5 @@
---- origsrc/libident-0.32/Makefile.am	2004-01-19 02:28:37.000000000 +0900
-+++ src/libident-0.32/Makefile.am	2024-05-27 05:20:56.013981600 +0900
+--- origsrc/libident-0.32/Makefile.am	2004-01-18 17:28:37.000000000 +0000
++++ src/libident-0.32/Makefile.am	2026-10-27 07:50:45.497603000 +0000
 @@ -5,6 +5,7 @@ man3_MANS = ident.3
  lib_LTLIBRARIES = libident.la
  libident_la_SOURCES = ident.c id_open.c id_close.c id_query.c id_parse.c \
@@ -15,8 +15,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libident-0.32/configure.ac	2004-01-19 02:34:29.000000000 +0900
-+++ src/libident-0.32/configure.ac	2024-05-27 05:20:56.013981600 +0900
+--- origsrc/libident-0.32/configure.ac	2004-01-18 17:34:29.000000000 +0000
++++ src/libident-0.32/configure.ac	2026-10-27 07:50:45.499618500 +0000
 @@ -53,5 +53,5 @@ if test x$testers = xtrue; then
  fi
  AM_CONDITIONAL(TESTERS, test x$testers = xtrue)
@@ -24,8 +24,8 @@
 -AC_CONFIG_FILES([Makefile])
 +AC_CONFIG_FILES([libident.pc Makefile])
  AC_OUTPUT
---- origsrc/libident-0.32/identtestd-xinetd	2003-08-11 17:07:42.000000000 +0900
-+++ src/libident-0.32/identtestd-xinetd	2024-05-27 05:20:56.029557800 +0900
+--- origsrc/libident-0.32/identtestd-xinetd	2003-08-11 08:07:42.000000000 +0000
++++ src/libident-0.32/identtestd-xinetd	2026-10-27 07:50:45.499618500 +0000
 @@ -9,7 +9,7 @@ service identtestd
  	port		= 9999
  	protocol	= tcp
@@ -35,8 +35,8 @@
  	wait		= no
  	disable		= yes
  }                                                                               
---- origsrc/libident-0.32/libident.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libident-0.32/libident.pc.in	2024-05-27 05:20:56.029557800 +0900
+--- origsrc/libident-0.32/libident.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libident-0.32/libident.pc.in	2026-10-27 07:50:45.501634000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -48,8 +48,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lident
 +Cflags: -I${includedir}
---- origsrc/libident-0.32/sockaddr.m4	2003-11-23 19:29:54.000000000 +0900
-+++ src/libident-0.32/sockaddr.m4	2024-05-27 05:20:56.029557800 +0900
+--- origsrc/libident-0.32/sockaddr.m4	2003-11-23 10:29:54.000000000 +0000
++++ src/libident-0.32/sockaddr.m4	2026-10-27 07:50:45.501634000 +0000
 @@ -10,7 +10,7 @@
  # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
  # PARTICULAR PURPOSE.

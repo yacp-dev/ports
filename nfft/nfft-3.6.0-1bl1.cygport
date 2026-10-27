@@ -1,5 +1,5 @@
 HOMEPAGE="https://www-user.tu-chemnitz.de/~potts/${PN}/"
-SRC_URI="https://www-user.tu-chemnitz.de/~potts/${PN}/download/${P}.tar.gz"
+SRC_URI="https://github.com/NFFT/${PN}/releases/download/${PV}/${P}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Library for nonequispaced discrete Fourier transform"
@@ -11,7 +11,10 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libfftw3-devel"
+BUILD_REQUIRES="
+	CUnit
+	libfftw3-devel
+"
 
 CYGCONF_ARGS="
 	--disable-doxygen-doc
@@ -33,7 +36,7 @@ nfft_CONTENTS="
 	usr/share
 "
 libnfft3_4_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-4.dll
 "
 libnfft3_devel_CONTENTS="
 	usr/include

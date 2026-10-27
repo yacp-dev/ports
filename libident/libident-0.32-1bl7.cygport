@@ -1,5 +1,10 @@
 HOMEPAGE="https://www.remlab.net/files/${PN}/ident.3.html"
 SRC_URI="https://www.remlab.net/files/${PN}/${P}.tar.bz2"
+PATCH_URI="
+	https://sources.debian.org/data/main/libi/libident/0.32-5/debian/patches/0001-PH-patch-id_parse.c.patch
+	https://sources.debian.org/data/main/libi/libident/0.32-5/debian/patches/0002-PH-fix-support.c.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/4eb72a46071c8858ed00dcde39117d9766399cd1/net-libs/libident/files/libident-0.32-fix_c23.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Small C library for RFC 1413 Identification protocol"
@@ -7,8 +12,8 @@ DESCRIPTION="LibIdent is a small C library for interfacing with RFC 1413 Identif
 protocol servers, which are used for identifying users. LibIdent supports both
 IPv4 and IPv6 addresses transparently."
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
+LICENSE="LicenseRef-libident"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-libident"
 LICENSE_URI="COPYING"
 
 CYGPORT_USE_UNSTABLE_API=1

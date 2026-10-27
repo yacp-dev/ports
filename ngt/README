@@ -6,23 +6,21 @@ several 10 million items of data) in high dimensional vector data space
 (several ten to several thousand dimensions).
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libgomp1-13.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
   liblapack0-3.12.0-1
-  libngt-devel-2.5.1-1bl1
-  libngt2-2.5.1-1bl1
-  libopenblas-0.3.25-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libngt-devel-2.8.1-1bl1
+  libngt2-2.8.1-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.4-1
+  cygport-0.37.11-1
+  gcc-g++-14.4.0-1
   liblapack-devel-3.12.0-1
   ninja-1.13.2-1
 
@@ -30,22 +28,22 @@ Canonical website:
   https://github.com/yahoojapan/NGT
 
 Canonical download:
-  https://github.com/yahoojapan/NGT/archive/refs/tags/v2.5.1.tar.gz
+  https://github.com/yahoojapan/NGT/archive/refs/tags/v2.8.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ngt-2.5.1-X-src.tar.xz
+  1. unpack ngt-2.8.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ngt-2.5.1-X.cygport all
+        % cygport ./ngt-2.8.1-X.cygport all
 
 This will create:
-  /usr/src/ngt-2.5.1-X-src.tar.xz
-  /usr/src/ngt-2.5.1-X.tar.xz
-  /usr/src/libngt2-2.5.1-X.tar.xz
-  /usr/src/libngt-devel-2.5.1-X.tar.xz
+  /usr/src/ngt-2.8.1-X-src.tar.xz
+  /usr/src/ngt-2.8.1-X.tar.xz
+  /usr/src/libngt2-2.8.1-X.tar.xz
+  /usr/src/libngt-devel-2.8.1-X.tar.xz
 
 -------------------------------------------
 
@@ -57,7 +55,6 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/ngt.README
   /usr/share/doc/ngt/LICENSE
   /usr/share/doc/ngt/README-jp.md
-  /usr/share/doc/ngt/README.jp
   /usr/share/doc/ngt/README.md
   /usr/share/doc/ngt/assets/logo.png
   /usr/share/doc/ngt/assets/logo.svg
@@ -102,6 +99,7 @@ Files included in the binary package:
   /usr/include/NGT/ObjectSpaceRepository.h
   /usr/include/NGT/Optimizer.h
   /usr/include/NGT/PrimitiveComparator.h
+  /usr/include/NGT/PrimitiveComparatorArm.h
   /usr/include/NGT/PrimitiveComparatorNoArch.h
   /usr/include/NGT/PrimitiveComparatorX86.h
   /usr/include/NGT/SharedMemoryAllocator.h
@@ -117,6 +115,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.8.1-1bl1 -----
+Version bump.
 
 ----- version 2.5.1-1bl1 -----
 Version bump.

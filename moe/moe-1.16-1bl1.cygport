@@ -14,11 +14,13 @@ indentation, word wrapping, file name completion, directory browser, duplicate
 removal from prompt histories, delimiter matching, text conversion from/to
 UTF-8, romanization, etc."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libncurses-devel"
+BUILD_REQUIRES="
+	libncurses-devel
+"
 
 export PKG_CONFIG=pkg-config
 

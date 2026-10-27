@@ -1,6 +1,6 @@
---- origsrc/NGT-2.5.1/CMakeLists.txt	2026-01-22 09:08:15.000000000 +0900
-+++ src/NGT-2.5.1/CMakeLists.txt	2026-01-27 11:05:27.530898800 +0900
-@@ -100,3 +100,10 @@ if(${UNIX})
+--- origsrc/NGT-2.8.1/CMakeLists.txt	2026-09-25 02:46:00.000000000 +0000
++++ src/NGT-2.8.1/CMakeLists.txt	2026-10-27 07:32:48.596639200 +0000
+@@ -137,3 +137,10 @@ if(${UNIX})
      add_subdirectory("${PROJECT_SOURCE_DIR}/bin")
      add_subdirectory("${PROJECT_SOURCE_DIR}/samples")
  endif(${UNIX})
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/ngt.pc.in ${CMAKE_BINARY_DIR}/ngt.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/ngt.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/NGT-2.5.1/lib/NGT/CMakeLists.txt	2026-01-22 09:08:15.000000000 +0900
-+++ src/NGT-2.5.1/lib/NGT/CMakeLists.txt	2026-01-27 11:05:27.536175200 +0900
+--- origsrc/NGT-2.8.1/lib/NGT/CMakeLists.txt	2026-09-25 02:46:00.000000000 +0000
++++ src/NGT-2.8.1/lib/NGT/CMakeLists.txt	2026-10-27 07:32:48.596639200 +0000
 @@ -11,18 +11,9 @@ if( ${UNIX} )
  	file(GLOB HEADER_FILES *.h *.hpp)
  	file(GLOB NGTQ_HEADER_FILES NGTQ/*.h NGTQ/*.hpp)
@@ -29,11 +29,16 @@
  	set_target_properties(ngt PROPERTIES VERSION ${ngt_VERSION})
  	set_target_properties(ngt PROPERTIES SOVERSION ${ngt_SOVERSION})
 -	add_dependencies(ngt ngtstatic)
-         if(NOT DEFINED NGT_QBG_DISABLED OR (NOT ${NGT_QBG_DISABLED}))
- 		target_link_libraries(ngt lapack blas)
- 	endif()
-@@ -38,10 +29,9 @@ if( ${UNIX} )
- 
+ 	if((NOT DEFINED NGT_QBG_DISABLED) OR (NOT ${NGT_QBG_DISABLED}))
+ 		if((DEFINED NGT_X86SIMDSORT) OR (DEFINED NGTQG_X86SIMDSORT))
+ 			target_link_libraries(ngt lapack blas x86simdsortcpp)
+@@ -40,15 +31,13 @@ if( ${UNIX} )
+ 		target_link_libraries(ngt gomp rt)
+ 		if(NGT_FOREST)
+ 			target_link_libraries(ngt stdc++fs)
+-			target_link_libraries(ngtstatic stdc++fs)
+ 		endif()
+ 	endif(${APPLE})
  	add_custom_command(OUTPUT command DEPENDS ${NGT_SOURCES} WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} COMMAND sh ${PROJECT_SOURCE_DIR}/utils/mk_version_defs_h.sh ${PROJECT_SOURCE_DIR} version_defs.h)
  	add_custom_target(versiondef DEPENDS command)
 -	add_dependencies(ngtstatic versiondef)
@@ -44,8 +49,20 @@
  		RUNTIME DESTINATION bin
  		LIBRARY DESTINATION lib
  		ARCHIVE DESTINATION lib)
---- origsrc/NGT-2.5.1/ngt.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/NGT-2.5.1/ngt.pc.in	2026-01-27 11:05:27.538188400 +0900
+--- origsrc/NGT-2.8.1/lib/NGT/Common.h	2026-09-25 02:46:00.000000000 +0000
++++ src/NGT-2.8.1/lib/NGT/Common.h	2026-10-27 07:32:48.598646500 +0000
+@@ -40,7 +40,9 @@
+ #include <type_traits>
+ #include <limits>
+ 
++#if !defined(__CYGWIN__)
+ #include <execinfo.h>
++#endif
+ #include <sys/time.h>
+ #include <fcntl.h>
+ #if defined(__linux__)
+--- origsrc/NGT-2.8.1/ngt.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/NGT-2.8.1/ngt.pc.in	2026-10-27 07:32:48.598646500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

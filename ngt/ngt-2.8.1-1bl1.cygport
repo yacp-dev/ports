@@ -9,8 +9,8 @@ nearest neighbor searches against a large volume of data (several million to
 several 10 million items of data) in high dimensional vector data space
 (several ten to several thousand dimensions)."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -34,7 +34,6 @@ src_install()
 
 DOCS="
 	README-jp.md
-	README.jp
 "
 
 PKG_NAMES="

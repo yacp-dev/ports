@@ -12,7 +12,17 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libiconv-devel libident-devel libssl-devel libwrap-devel zlib-devel"
+BUILD_REQUIRES="
+	expect
+	inetutils
+	libiconv-devel
+	libident-devel
+	libssl-devel
+	libwrap-devel
+	openssl
+	procps-ng
+	zlib-devel
+"
 
 CYGCONF_ARGS="
 	--enable-ipv6

@@ -7,8 +7,8 @@ SUMMARY="Feed reader for terminal"
 DESCRIPTION="Newsraft is a feed reader with ncurses user interface. It is greatly inspired
 by Newsboat and tries to be its lightweight counterpart."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="ISC AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: ISC AND MIT"
 LICENSE_URI="doc/license.txt"
 
 BUILD_REQUIRES="

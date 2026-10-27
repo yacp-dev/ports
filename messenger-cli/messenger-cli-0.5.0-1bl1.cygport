@@ -9,6 +9,11 @@ LICENSE="AGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libgnunet-devel libncurses-devel"
+BUILD_REQUIRES="
+	libgnunet-devel
+	libgnunetchat-devel
+	libncurses-devel
+	libsecret1-devel
+"
 
 inherit meson

@@ -3,51 +3,55 @@ libgnunetchat
 Client-side library for applications to utilize the Messenger service of GNUnet
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libgnunet-devel-0.27.0-1bl1
-  libgnunetarm2-0.27.0-1bl1
-  libgnunetchat-devel-0.7.0-1bl1
-  libgnunetchat0-0.7.0-1bl1
-  libgnunetfs2-0.27.0-1bl1
-  libgnunetgns0-0.27.0-1bl1
-  libgnunetgnsrecord0-0.27.0-1bl1
-  libgnunetidentity1-0.27.0-1bl1
-  libgnunetmessenger0-0.27.0-1bl1
-  libgnunetnamestore0-0.27.0-1bl1
-  libgnunetreclaim0-0.27.0-1bl1
-  libgnunetregex3-0.27.0-1bl1
-  libgnunetutil22-0.27.0-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgnunet-devel-0.29.0-1bl1
+  libgnunetarm2-0.29.0-1bl1
+  libgnunetchat-devel-0.8.0-1bl1
+  libgnunetchat0-0.8.0-1bl1
+  libgnunetfs2-0.29.0-1bl1
+  libgnunetgns0-0.29.0-1bl1
+  libgnunetgnsrecord1-0.29.0-1bl1
+  libgnunethello0-0.29.0-1bl1
+  libgnunetidentity1-0.29.0-1bl1
+  libgnunetmessenger0-0.29.0-1bl1
+  libgnunetnamestore0-0.29.0-1bl1
+  libgnunetpils0-0.29.0-1bl1
+  libgnunetreclaim0-0.29.0-1bl1
+  libgnunetregex3-0.29.0-1bl1
+  libgnunetutil23-0.29.0-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  libgnunet-devel-0.27.0-1bl1
-  meson-1.7.2-1
+  binutils-2.47-1
+  check-0.15.2-1
+  cygport-0.37.11-1
+  gcc-core-14.4.0-1
+  gnunet-0.29.0-1bl1
+  libgnunet-devel-0.29.0-1bl1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://www.gnunet.org/
 
 Canonical download:
-  mirror://gnu/gnunet/libgnunetchat-0.7.0.tar.gz
+  mirror://gnu/gnunet/libgnunetchat-0.8.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libgnunetchat-0.7.0-X-src.tar.xz
+  1. unpack libgnunetchat-0.8.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libgnunetchat-0.7.0-X.cygport all
+        % cygport ./libgnunetchat-0.8.0-X.cygport all
 
 This will create:
-  /usr/src/libgnunetchat-0.7.0-X-src.tar.xz
-  /usr/src/libgnunetchat-0.7.0-X.tar.xz
-  /usr/src/libgnunetchat0-0.7.0-X.tar.xz
-  /usr/src/libgnunetchat-devel-0.7.0-X.tar.xz
+  /usr/src/libgnunetchat-0.8.0-X-src.tar.xz
+  /usr/src/libgnunetchat-0.8.0-X.tar.xz
+  /usr/src/libgnunetchat0-0.8.0-X.tar.xz
+  /usr/src/libgnunetchat-devel-0.8.0-X.tar.xz
 
 -------------------------------------------
 
@@ -74,6 +78,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.8.0-1bl1 -----
+Version bump.
 
 ----- version 0.7.0-1bl1 -----
 Version bump.

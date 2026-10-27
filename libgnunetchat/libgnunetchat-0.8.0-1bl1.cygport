@@ -10,6 +10,8 @@ LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	check
+	gnunet
 	libgnunet-devel
 "
 

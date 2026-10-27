@@ -1,0 +1,10 @@
+--- origsrc/libgnunetchat-0.8.0/meson.build	2026-07-18 15:08:33.000000000 +0000
++++ src/libgnunetchat-0.8.0/meson.build	2026-10-27 01:33:18.882757000 +0000
+@@ -59,6 +59,7 @@ gnunetchat_lib = library(
+     dependencies: gnunetchat_deps,
+     include_directories: src_include,
+     extra_files: gnunetchat_internal,
++    soversion: 0,
+ )
+ 
+ pkg.generate(

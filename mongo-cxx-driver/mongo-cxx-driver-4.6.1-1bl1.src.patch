@@ -1,0 +1,35 @@
+--- origsrc/mongo-cxx-driver-r4.6.1/cmake/FetchCatch2.cmake	2026-10-08 13:29:49.000000000 +0000
++++ src/mongo-cxx-driver-r4.6.1/cmake/FetchCatch2.cmake	2026-10-28 03:13:39.149640900 +0000
+@@ -46,4 +46,7 @@ function(fetch_catch2)
+     endif()
+ endfunction()
+ 
+-fetch_catch2()
++find_package(Catch2 3 QUIET)
++if(NOT Catch2_FOUND)
++    fetch_catch2()
++endif()
+--- origsrc/mongo-cxx-driver-r4.6.1/src/bsoncxx/include/bsoncxx/v1/detail/macros.hpp	2026-10-08 13:29:49.000000000 +0000
++++ src/mongo-cxx-driver-r4.6.1/src/bsoncxx/include/bsoncxx/v1/detail/macros.hpp	2026-10-28 03:13:39.151668600 +0000
+@@ -127,7 +127,7 @@
+     (__cplusplus >= 201703L || (defined(__cpp_inline_variables) && __cpp_inline_variables >= 201606L))) || \
+     (defined(_MSC_VER) && _MSC_VER >= 1920 && defined(_MSVC_LANG) && _MSVC_LANG >= 201703L)
+ #define BSONCXX_PRIVATE_INLINE_CXX17 inline
+-#elif defined(__MINGW32__)
++#elif defined(__MINGW32__) || defined(__CYGWIN__)
+ #define BSONCXX_PRIVATE_INLINE_CXX17 [[gnu::selectany]]
+ #else
+ #define BSONCXX_PRIVATE_INLINE_CXX17                                                                   \
+--- origsrc/mongo-cxx-driver-r4.6.1/src/mongocxx/test/subprocess.cpp	2026-10-08 13:29:49.000000000 +0000
++++ src/mongo-cxx-driver-r4.6.1/src/mongocxx/test/subprocess.cpp	2026-10-28 03:13:39.153687100 +0000
+@@ -12,6 +12,10 @@
+ // See the License for the specific language governing permissions and
+ // limitations under the License.
+ 
++#if defined(__CYGWIN__) && !defined(_GNU_SOURCE)
++#define _GNU_SOURCE // strsignal() under -std=c++14
++#endif
++
+ #include <mongocxx/test/subprocess.hh>
+ 
+ //

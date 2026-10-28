@@ -11,19 +11,24 @@ LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	libCatch2-devel
 	libbson2-devel
 	libmongoc2-devel
 "
 
-export CPPFLAGS="${CPPFLAGS} -DBSONCXX_EXPORT"
-
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DBUILD_TESTING:BOOL=ON
 	-DBUILD_VERSION:STRING=${PV}
 	-DENABLE_TESTS:BOOL=ON
-	-DSOVERSION:STRING=${PV[1]}
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/src/bsoncxx/test:${B}/src/mongocxx/test:${PATH} ninja_test
+}
 
 src_install()
 {
@@ -44,34 +49,36 @@ DOCS="
 
 PKG_NAMES="
 	mongo-cxx-driver
-	libmongocxx4
-	libmongocxx-devel
-	libbsoncxx4
-	libbsoncxx-devel
+	libmongocxx1_1
+	libmongocxx1-devel
+	libbsoncxx1_1
+	libbsoncxx1-devel
 "
 mongo_cxx_driver_CONTENTS="
 	usr/share
 "
-libmongocxx4_CONTENTS="
-	usr/bin/cygmongocxx-4.dll
+libmongocxx1_1_CONTENTS="
+	usr/bin/cygmongocxx1-1.dll
 "
-libmongocxx_devel_CONTENTS="
+libmongocxx1_devel_CONTENTS="
 	usr/include/mongocxx
 	usr/lib/cmake/mongocxx-${PV}
-	usr/lib/libmongocxx.dll.a
-	usr/lib/pkgconfig/libmongocxx.pc
+	usr/lib/libmongocxx1.dll.a
+	usr/lib/pkgconfig/libmongocxx1.pc
 "
-libbsoncxx4_CONTENTS="
-	usr/bin/cygbsoncxx-4.dll
+libbsoncxx1_1_CONTENTS="
+	usr/bin/cygbsoncxx1-1.dll
 "
-libbsoncxx_devel_CONTENTS="
+libbsoncxx1_devel_CONTENTS="
 	usr/include/bsoncxx
 	usr/lib/cmake/bsoncxx-${PV}
-	usr/lib/libbsoncxx.dll.a
-	usr/lib/pkgconfig/libbsoncxx.pc
+	usr/lib/libbsoncxx1.dll.a
+	usr/lib/pkgconfig/libbsoncxx1.pc
 "
 mongo_cxx_driver_SUMMARY="${SUMMARY} (licensing and readmes)"
-libmongocxx4_SUMMARY="${SUMMARY} (runtime)"
-libmongocxx_devel_SUMMARY="${SUMMARY} (development)"
-libbsoncxx4_SUMMARY="MongoDB C++11 BSON Library (runtime)"
-libbsoncxx_devel_SUMMARY="MongoDB C++11 BSON Library (development)"
+libmongocxx1_1_SUMMARY="${SUMMARY} (runtime)"
+libmongocxx1_devel_SUMMARY="${SUMMARY} (development)"
+libbsoncxx1_1_SUMMARY="MongoDB C++11 BSON Library (runtime)"
+libbsoncxx1_devel_SUMMARY="MongoDB C++11 BSON Library (development)"
+libmongocxx1_devel_REQUIRES="libmongoc2-devel"
+libbsoncxx1_devel_REQUIRES="libbson2-devel"

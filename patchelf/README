@@ -4,38 +4,37 @@ PatchELF is a small utility to modify the dynamic linker and RPATH of ELF
 executables.
 
 Runtime requirements:
-  cygwin-3.5.0-0.394.g90d3b16d2b93
-  libgcc1-11.4.0-1
-  libstdc++6-11.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/NixOS/patchelf
 
 Canonical download:
-  https://github.com/NixOS/patchelf/archive/refs/tags/0.18.0.tar.gz
+  https://github.com/NixOS/patchelf/archive/refs/tags/0.19.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack patchelf-0.18.0-X-src.tar.xz
+  1. unpack patchelf-0.19.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./patchelf-0.18.0-X.cygport all
+        % cygport ./patchelf-0.19.2-X.cygport all
 
 This will create:
-  /usr/src/patchelf-0.18.0-X-src.tar.xz
-  /usr/src/patchelf-0.18.0-X.tar.xz
+  /usr/src/patchelf-0.19.2-X-src.tar.xz
+  /usr/src/patchelf-0.19.2-X.tar.xz
 
 -------------------------------------------
 
@@ -44,8 +43,8 @@ Files included in the binary package:
 (patchelf)
   /usr/bin/patchelf.exe
   /usr/share/doc/Cygwin/patchelf.README
-  /usr/share/doc/patchelf/BUGS
   /usr/share/doc/patchelf/COPYING
+  /usr/share/doc/patchelf/ChangeLog.md
   /usr/share/doc/patchelf/README.md
   /usr/share/man/man1/patchelf.1.gz
   /usr/share/zsh/site-functions/_patchelf
@@ -53,6 +52,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.19.2-1bl1 -----
+Version bump.
 
 ----- version 0.18.0-1bl1 -----
 Version bump.

@@ -15,6 +15,7 @@ LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	libmaxminddb-devel
+	libdnswire-devel
 	zlib-devel
 "
 

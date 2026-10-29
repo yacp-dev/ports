@@ -13,13 +13,13 @@ src_compile()
 {
 	cd ${B}
 	lndirs
-	${CC} ${CPPFLAGS} ${CFLAGS} ${LDFLAGS} src/packcc.c -o ${PN}.exe
+	verbose ${CC} ${CPPFLAGS} ${CFLAGS} ${LDFLAGS} src/packcc.c -o ${PN}.exe
 }
 
 src_test()
 {
 	cd ${B}
-	./${PN}.exe -v
+	verbose ./${PN}.exe -v
 }
 
 src_install()

@@ -10,7 +10,11 @@ LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	libnss-devel
+	libp11-kit-devel
 	libssl-devel
+	nss
+	opensc
 "
 
 inherit meson
@@ -20,10 +24,13 @@ DOCS="
 	LICENSES/*
 "
 
-PKG_IGNORE="
-	usr/lib/ossl-modules/pkcs11.dll.a
-"
 PKG_CONTENTS="
 	usr/lib/ossl-modules/pkcs11.dll
 	usr/share
 "
+
+src_install() {
+	cd ${S}
+	meson_install
+	rm -f ${D}/usr/lib/ossl-modules/pkcs11.dll.a
+}

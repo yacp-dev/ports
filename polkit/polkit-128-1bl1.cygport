@@ -19,6 +19,7 @@ BUILD_REQUIRES="
 	docbook-xsl
 	gettext-devel
 	gobject-introspection
+	libdbus1-devel
 	libduktape-devel
 	libexpat-devel
 	libglib2.0-devel

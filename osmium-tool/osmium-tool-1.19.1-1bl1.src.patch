@@ -1,0 +1,11 @@
+--- origsrc/osmium-tool-1.19.1/CMakeLists.txt	2026-04-07 07:49:47.000000000 +0000
++++ src/osmium-tool-1.19.1/CMakeLists.txt	2026-10-29 23:12:55.046329600 +0000
+@@ -61,7 +61,7 @@ option(RUN_TESTS_WITH_BINARY_COMPARE "Ru
+ #
+ #-----------------------------------------------------------------------------
+ 
+-find_package(Boost CONFIG 1.55.0 REQUIRED COMPONENTS program_options)
++find_package(Boost 1.55.0 REQUIRED COMPONENTS program_options)
+ include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
+ 
+ find_package(Osmium 2.23.1 REQUIRED COMPONENTS io)

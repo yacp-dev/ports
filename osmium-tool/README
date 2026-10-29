@@ -4,49 +4,50 @@ A multipurpose command line tool for working with OpenStreetMap data based on
 the Osmium library.
 
 Runtime requirements:
-  cygwin-3.6.0-1
+  cygwin-3.6.12-1
   libboost_program_options1.66-1.66.0-1
-  libbz2_1-1.0.8-1
-  libexpat1-2.6.4-1
-  libgcc1-12.4.0-3
+  libbz2_1-1.0.8-2
+  libexpat1-2.9.0-1
+  libgcc1-14.4.0-1
   liblz4_1-1.9.4-1
-  libstdc++6-12.4.0-3
-  zlib0-1.3.1-1
+  libstdc++6-14.4.0-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  libbz2-devel-1.0.8-1
-  libexpat-devel-2.6.4-1
+  libbz2-devel-1.0.8-2
+  libexpat-devel-2.9.0-1
   liblz4-devel-1.9.4-1
-  libosmium-2.21.0-1bl1
+  libosmium-2.23.1-1bl1
   make-4.4.1-2
-  ninja-1.12.1-1
-  zlib-devel-1.3.1-1
+  ninja-1.13.2-1
+  nlohmann_json-3.12.0-1bl3
+  protozero-1.8.2-1bl1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://github.com/osmcode/osmium-tool
 
 Canonical download:
-  https://github.com/osmcode/osmium-tool/archive/refs/tags/v1.18.0.tar.gz
+  https://github.com/osmcode/osmium-tool/archive/refs/tags/v1.19.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack osmium-tool-1.18.0-X-src.tar.xz
+  1. unpack osmium-tool-1.19.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./osmium-tool-1.18.0-X.cygport all
+        % cygport ./osmium-tool-1.19.1-X.cygport all
 
 This will create:
-  /usr/src/osmium-tool-1.18.0-X-src.tar.xz
-  /usr/src/osmium-tool-1.18.0-X.tar.xz
+  /usr/src/osmium-tool-1.19.1-X-src.tar.xz
+  /usr/src/osmium-tool-1.19.1-X.tar.xz
 
 -------------------------------------------
 
@@ -61,6 +62,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.19.1-1bl1 -----
+Version bump.
 
 ----- version 1.18.0-1bl1 -----
 Version bump.

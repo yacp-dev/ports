@@ -10,7 +10,16 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="libboost-devel libbz2-devel libexpat-devel liblz4-devel libosmium zlib-devel"
+BUILD_REQUIRES="
+	libboost-devel
+	libbz2-devel
+	libexpat-devel
+	liblz4-devel
+	libosmium
+	nlohmann_json
+	protozero
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

@@ -6,23 +6,23 @@ be compiled directly to a desired reader driver or can be used to dynamically
 allocate/deallocate reader drivers at runtime (default).
 
 Runtime requirements:
-  cygwin-3.6.11-1
+  cygwin-3.6.12-1
   libgcc1-14.4.0-1
-  libglib2.0_0-2.90.0-1
-  libpcsclite-devel-2.5.2-1bl1
-  libpcsclite1-2.5.2-1bl1
+  libglib2.0_0-2.90.1-1
+  libpcsclite-devel-2.5.3-1bl1
+  libpcsclite1-2.5.3-1bl1
   libpolkit-gobject1_0-127-1bl2
-  pkg-config-3.0.8-1
+  pkg-config-3.0.9-1
   python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.10-1
+  cygport-0.37.12-1
   flex-2.6.4-2
   gcc-core-14.4.0-1
   libpolkit-gobject1-devel-127-1bl2
-  meson-1.9.2-1
+  meson-1.10.2-1
   ninja-1.13.2-1
   perl-5.44.0-1
 
@@ -30,22 +30,22 @@ Canonical website:
   https://pcsclite.apdu.fr/
 
 Canonical download:
-  https://pcsclite.apdu.fr/files/pcsc-lite-2.5.2.tar.xz
+  https://pcsclite.apdu.fr/files/pcsc-lite-2.5.3.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack pcsc-lite-2.5.2-X-src.tar.xz
+  1. unpack pcsc-lite-2.5.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./pcsc-lite-2.5.2-X.cygport all
+        % cygport ./pcsc-lite-2.5.3-X.cygport all
 
 This will create:
-  /usr/src/pcsc-lite-2.5.2-X-src.tar.xz
-  /usr/src/pcsc-lite-2.5.2-X.tar.xz
-  /usr/src/libpcsclite1-2.5.2-X.tar.xz
-  /usr/src/libpcsclite-devel-2.5.2-X.tar.xz
+  /usr/src/pcsc-lite-2.5.3-X-src.tar.xz
+  /usr/src/pcsc-lite-2.5.3-X.tar.xz
+  /usr/src/libpcsclite1-2.5.3-X.tar.xz
+  /usr/src/libpcsclite-devel-2.5.3-X.tar.xz
 
 -------------------------------------------
 
@@ -89,6 +89,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.5.3-1bl1 -----
+Version bump.
 
 ----- version 2.5.2-1bl1 -----
 Version bump.

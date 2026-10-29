@@ -8,9 +8,10 @@ small form factor for communicating to smart cards and readers. PCSC Lite can
 be compiled directly to a desired reader driver or can be used to dynamically
 allocate/deallocate reader drivers at runtime (default)."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND BSD-2-Clause AND GPL-3.0-or-later AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause AND GPL-3.0-or-later AND ISC"
 LICENSE_URI="COPYING"
+# src/spy (shipped) is GPL-3.0-or-later per COPYING.
 
 # perl: pod2man
 BUILD_REQUIRES="

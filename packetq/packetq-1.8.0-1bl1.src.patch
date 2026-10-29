@@ -1,0 +1,10 @@
+--- origsrc/packetq-1.8.0/src/server.cpp	2026-10-07 14:06:22.000000000 +0000
++++ src/packetq-1.8.0/src/server.cpp	2026-10-29 22:50:45.954036300 +0000
+@@ -45,6 +45,7 @@
+ #include <syslog.h>
+ #include <time.h>
+ #include <unistd.h>
++#include <sys/select.h>
+ 
+ #define MAXHOSTNAME 256
+ 

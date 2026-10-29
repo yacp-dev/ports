@@ -2,67 +2,68 @@ polkit
 ------------------------------------------
 PolicyKit is an application-level toolkit for defining and handling the policy
 that allows unprivileged processes to speak to privileged processes: It is a
-framework for centralizing the decision making process with respect to
-granting access to privileged operations for unprivileged applications.
-PolicyKit is specifically targeting applications in rich desktop environments
-on multi-user UNIX-like operating systems. It does not imply or rely on any
-exotic kernel features.
+framework for centralizing the decision making process with respect to granting
+access to privileged operations for unprivileged applications. PolicyKit is
+specifically targeting applications in rich desktop environments on multi-user
+UNIX-like operating systems. It does not imply or rely on any exotic kernel
+features.
 
 Runtime requirements:
-  cygwin-3.6.11-1
+  cygwin-3.6.12-1
   girepository-GLib2.0-1.86.0-2
-  girepository-Polkit1.0-127-1bl2
+  girepository-Polkit1.0-128-1bl1
   libduktape207-2.7.0-1bl2
   libexpat1-2.9.0-1
-  libglib2.0-devel-2.90.0-1
-  libglib2.0_0-2.90.0-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
   libintl8-0.22.5-1
-  libpolkit-agent1-devel-127-1bl2
-  libpolkit-agent1_0-127-1bl2
-  libpolkit-gobject1-devel-127-1bl2
-  libpolkit-gobject1_0-127-1bl2
-  pkg-config-3.0.8-1
+  libpolkit-agent1-devel-128-1bl1
+  libpolkit-agent1_0-128-1bl1
+  libpolkit-gobject1-devel-128-1bl1
+  libpolkit-gobject1_0-128-1bl1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.10-1
+  cygport-0.37.12-1
   docbook-xsl-1.77.1-1
   gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
   gobject-introspection-1.86.0-2
+  libdbus1-devel-1.16.2-1
   libduktape-devel-2.7.0-1bl2
   libexpat-devel-2.9.0-1
-  libglib2.0-devel-2.90.0-1
+  libglib2.0-devel-2.90.1-1
   libintl-devel-0.22.5-1
   libxslt-1.1.43-1
-  meson-1.9.2-1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/polkit-org/polkit
 
 Canonical download:
-  https://github.com/polkit-org/polkit/archive/refs/tags/127.tar.gz
+  https://github.com/polkit-org/polkit/archive/refs/tags/128.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack polkit-127-X-src.tar.xz
+  1. unpack polkit-128-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./polkit-127-X.cygport all
+        % cygport ./polkit-128-X.cygport all
 
 This will create:
-  /usr/src/polkit-127-X-src.tar.xz
-  /usr/src/polkit-127-X.tar.xz
-  /usr/src/libpolkit-agent1_0-127-X.tar.xz
-  /usr/src/libpolkit-agent1-devel-127-X.tar.xz
-  /usr/src/libpolkit-gobject1_0-127-X.tar.xz
-  /usr/src/libpolkit-gobject1-devel-127-X.tar.xz
-  /usr/src/girepository-Polkit1.0-127-X.tar.xz
-  /usr/src/girepository-PolkitAgent1.0-127-X.tar.xz
+  /usr/src/polkit-128-X-src.tar.xz
+  /usr/src/polkit-128-X.tar.xz
+  /usr/src/libpolkit-agent1_0-128-X.tar.xz
+  /usr/src/libpolkit-agent1-devel-128-X.tar.xz
+  /usr/src/libpolkit-gobject1_0-128-X.tar.xz
+  /usr/src/libpolkit-gobject1-devel-128-X.tar.xz
+  /usr/src/girepository-Polkit1.0-128-X.tar.xz
+  /usr/src/girepository-PolkitAgent1.0-128-X.tar.xz
 
 -------------------------------------------
 
@@ -85,7 +86,6 @@ Files included in the binary package:
   /usr/share/dbus-1/system.d/org.freedesktop.PolicyKit1.conf
   /usr/share/doc/Cygwin/polkit.README
   /usr/share/doc/polkit/COPYING
-  /usr/share/doc/polkit/HACKING.md
   /usr/share/doc/polkit/NEWS.md
   /usr/share/doc/polkit/README.md
   /usr/share/gettext/its/polkit.its
@@ -100,6 +100,7 @@ Files included in the binary package:
   /usr/share/locale/id/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/it/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/ka/LC_MESSAGES/polkit-1.mo
+  /usr/share/locale/kk/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/nl/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/nn/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/oc/LC_MESSAGES/polkit-1.mo
@@ -110,6 +111,8 @@ Files included in the binary package:
   /usr/share/locale/ru/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/sk/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/sl/LC_MESSAGES/polkit-1.mo
+  /usr/share/locale/sr/LC_MESSAGES/polkit-1.mo
+  /usr/share/locale/sr@latin/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/sv/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/tr/LC_MESSAGES/polkit-1.mo
   /usr/share/locale/uk/LC_MESSAGES/polkit-1.mo
@@ -120,6 +123,7 @@ Files included in the binary package:
   /usr/share/man/man1/pkexec.1.gz
   /usr/share/man/man1/pkttyagent.1.gz
   /usr/share/man/man5/polkitd.conf.5.gz
+  /usr/share/man/man8/polkit-agent-helper.8.gz
   /usr/share/man/man8/polkit.8.gz
   /usr/share/man/man8/polkitd.8.gz
   /usr/share/polkit-1/actions/org.freedesktop.policykit.examples.pkexec.policy
@@ -181,6 +185,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 128-1bl1 -----
+Version bump.
 
 ----- version 127-1bl2 -----
 Rebuild with gcc-14.4.0

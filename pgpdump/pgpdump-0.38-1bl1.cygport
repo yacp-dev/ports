@@ -10,7 +10,10 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYRIGHT"
 
-BUILD_REQUIRES="libbz2-devel zlib-devel"
+BUILD_REQUIRES="
+	libbz2-devel
+	zlib-devel
+"
 
 src_compile()
 {

@@ -1,0 +1,53 @@
+--- origsrc/pkgfile-27/meson.build	2026-10-18 17:24:54.000000000 +0000
++++ src/pkgfile-27/meson.build	2026-10-29 10:55:09.481864100 +0000
+@@ -27,7 +27,7 @@ add_project_arguments(
+ libpcre = dependency('libpcre', version: '>= 8.30')
+ libarchive = dependency('libarchive', version: '>= 3.2.0')
+ libcurl = dependency('libcurl')
+-libsystemd = dependency('libsystemd')
++libsystemd = dependency('libsystemd', required: false)
+ pthreads = dependency('threads')
+ stdcppfs = cpp.find_library('stdc++fs')
+ gtest = declare_dependency(
+@@ -91,6 +91,7 @@ executable(
+     install: true,
+ )
+ 
++if libsystemd.found()
+ executable(
+     'pkgfiled',
+     'src/pkgfiled.cc',
+@@ -98,6 +99,7 @@ executable(
+     dependencies: [libsystemd, stdcppfs],
+     install: true,
+ )
++endif
+ 
+ # Debugging aid for inspecting the PFDB repo database format; not part of
+ # the supported user-facing tooling, so it's never installed.
+@@ -126,6 +128,7 @@ custom_target(
+     install_dir: join_paths(get_option('mandir'), 'man1'),
+ )
+ 
++if libsystemd.found()
+ custom_target(
+     'pkgfiled.1',
+     output: 'pkgfiled.1',
+@@ -142,6 +145,7 @@ custom_target(
+     install: true,
+     install_dir: join_paths(get_option('mandir'), 'man1'),
+ )
++endif
+ 
+ if get_option('systemd_units')
+     systemd = dependency(
+--- origsrc/pkgfile-27/src/db_test.cc	2026-10-18 17:24:54.000000000 +0000
++++ src/pkgfile-27/src/db_test.cc	2026-10-29 10:55:09.483878800 +0000
+@@ -407,6 +407,7 @@ TEST_F(MappedRepoCorruptionTest, Package
+ 
+   // A files_start beyond the pool entirely must clamp to an empty span
+   // rather than being treated as in-bounds.
++  repo.reset();
+   bytes = ReadWholeFile(path_);
+   PokeAt(&bytes, pkg_offset,
+          Package{original.name, original.version, /*files_start=*/1'000'000,

@@ -1,51 +1,52 @@
 pkgfile
 ------------------------------------------
 pkgfile searches the .files metadata created by repo-add(8) to retrieve file
-information about packages. By default, the provided target is considered to
-be a filename and pkgfile will return the package(s) which contain this file.
-The repos which pkgfile searches is determined by those enabled in
+information about packages. By default, the provided target is considered to be
+a filename and pkgfile will return the package(s) which contain this file. The
+repos which pkgfile searches is determined by those enabled in
 /etc/pacman.conf.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libarchive13-3.8.1-1
-  libcurl4-8.16.0-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libarchive13-3.8.10-1
+  libcurl4-8.23.0-1
+  libgcc1-14.4.0-1
   libintl8-0.22.5-1
   libpcre1-8.45-1
-  libstdc++6-13.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libarchive-devel-3.8.1-1
-  libcurl-devel-8.16.0-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libarchive-devel-3.8.10-1
+  libcurl-devel-8.23.0-1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
   libintl-devel-0.22.5-1
   libpcre-devel-8.45-1
-  meson-1.4.2-1
-  ninja-1.13.1-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/falconindy/pkgfile
 
 Canonical download:
-  https://github.com/falconindy/pkgfile/archive/refs/tags/v25.tar.gz
+  https://github.com/falconindy/pkgfile/archive/refs/tags/v27.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack pkgfile-25-X-src.tar.xz
+  1. unpack pkgfile-27-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./pkgfile-25-X.cygport all
+        % cygport ./pkgfile-27-X.cygport all
 
 This will create:
-  /usr/src/pkgfile-25-X-src.tar.xz
-  /usr/src/pkgfile-25-X.tar.xz
+  /usr/src/pkgfile-27-X-src.tar.xz
+  /usr/src/pkgfile-27-X.tar.xz
 
 -------------------------------------------
 
@@ -66,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 27-1bl1 -----
+Version bump.
 
 ----- version 25-1bl1 -----
 Version bump.

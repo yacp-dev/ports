@@ -16,6 +16,8 @@ LICENSE_URI="LICENSE"
 BUILD_REQUIRES="
 	libarchive-devel
 	libcurl-devel
+	libgmock-devel
+	libgtest-devel
 	libintl-devel
 	libpcre-devel
 "
@@ -32,6 +34,7 @@ src_test()
 {
 	cd ${S}/_build.${CHOST}
 	verbose ./${PN}.exe --version
+	./unit_tests.exe
 }
 
 src_install()

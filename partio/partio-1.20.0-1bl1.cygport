@@ -8,11 +8,19 @@ reading/writing. It started out as an abstraction for the commonalities in
 particle models (i.e. accessing many attributes associated with an index or
 entity)."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libGL-devel libGLU-devel libglut-devel libgtest-devel python39-devel swig zlib-devel"
+BUILD_REQUIRES="
+	libGL-devel
+	libGLU-devel
+	libglut-devel
+	libgtest-devel
+	python3-devel
+	swig
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -21,7 +29,6 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DCMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT:BOOL=OFF
 	-DCMAKE_CXX_EXTENSIONS:BOOL=ON
-	-DPARTIO_GTEST_ENABLED:BOOL=ON
 	-DVERSION:STRING=${PV}
 	-DWDAS_CXX_STANDARD:STRING=17
 "
@@ -29,7 +36,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	PATH=${B}/src/lib:${PATH} ninja_test
+	PYTHONPATH=${S}/src/tools:${B}/src/py:${PYTHONPATH} PATH=${B}/src/lib:${PATH} ninja_test
 }
 
 DIFF_EXCLUDES="
@@ -40,7 +47,7 @@ PKG_NAMES="
 	partio
 	libpartio1
 	libpartio-devel
-	python39-partio
+	python312-partio
 "
 partio_CONTENTS="
 	usr/bin/part*
@@ -56,10 +63,10 @@ libpartio_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/swig
 "
-python39_partio_CONTENTS="
-	usr/lib/python3.9
+python312_partio_CONTENTS="
+	usr/lib/python3.12
 "
 partio_SUMMARY="${SUMMARY} (utilities)"
 libpartio1_SUMMARY="${SUMMARY} (runtime)"
 libpartio_devel_SUMMARY="${SUMMARY} (development)"
-python39_partio_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_partio_SUMMARY="${SUMMARY} (python312 bindings)"

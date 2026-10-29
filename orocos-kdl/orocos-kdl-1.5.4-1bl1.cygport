@@ -13,6 +13,8 @@ LICENSE_URI="orocos_kdl/COPYING"
 
 BUILD_REQUIRES="
 	cppunit
+	libboost-devel
+	eigen3
 "
 
 inherit cmake
@@ -62,3 +64,4 @@ liborocos_kdl_devel_CONTENTS="
 orocos_kdl_SUMMARY="${SUMMARY} (licensing & readmes)"
 liborocos_kdl1_5_SUMMARY="${SUMMARY} (runtime)"
 liborocos_kdl_devel_SUMMARY="${SUMMARY} (development)"
+liborocos_kdl_devel_REQUIRES="eigen3"

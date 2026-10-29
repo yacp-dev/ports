@@ -1,6 +1,6 @@
---- origsrc/orocos_kinematics_dynamics-1.5.3/orocos_kdl/CMakeLists.txt	2025-10-17 15:26:37.000000000 +0900
-+++ src/orocos_kinematics_dynamics-1.5.3/orocos_kdl/CMakeLists.txt	2026-01-30 15:19:25.274378400 +0900
-@@ -118,10 +118,18 @@ CONFIGURE_FILE(orocos_kdl-config.cmake.i
+--- origsrc/orocos_kinematics_dynamics-1.5.4/orocos_kdl/CMakeLists.txt	2026-09-01 06:55:26.000000000 +0000
++++ src/orocos_kinematics_dynamics-1.5.4/orocos_kdl/CMakeLists.txt	2026-10-29 23:47:05.311813800 +0000
+@@ -120,10 +120,18 @@ CONFIGURE_FILE(orocos_kdl-config.cmake.i
  CONFIGURE_FILE(orocos_kdl-config-version.cmake.in
    ${PROJECT_BINARY_DIR}/orocos_kdl-config-version.cmake @ONLY)
  
@@ -23,8 +23,8 @@
  
  # Generate pkg-config package configuration
  CONFIGURE_FILE(orocos_kdl.pc.in ${CMAKE_CURRENT_BINARY_DIR}/orocos-kdl.pc @ONLY)
---- origsrc/orocos_kinematics_dynamics-1.5.3/orocos_kdl/examples/chainiksolverpos_lma_demo.cpp	2025-10-17 15:26:37.000000000 +0900
-+++ src/orocos_kinematics_dynamics-1.5.3/orocos_kdl/examples/chainiksolverpos_lma_demo.cpp	2026-01-30 15:19:25.279830300 +0900
+--- origsrc/orocos_kinematics_dynamics-1.5.4/orocos_kdl/examples/chainiksolverpos_lma_demo.cpp	2026-09-01 06:55:26.000000000 +0000
++++ src/orocos_kinematics_dynamics-1.5.4/orocos_kdl/examples/chainiksolverpos_lma_demo.cpp	2026-10-29 23:47:05.311813800 +0000
 @@ -63,6 +63,8 @@ estimate of shortest time per invposkin
  #include <boost/timer/timer.hpp>
  #endif
@@ -34,8 +34,8 @@
  /**
   * tests the inverse kinematics on the given kinematic chain for a
   * large number of times and provides statistics  on the result.
---- origsrc/orocos_kinematics_dynamics-1.5.3/orocos_kdl/models/CMakeLists.txt	2025-10-17 15:26:37.000000000 +0900
-+++ src/orocos_kinematics_dynamics-1.5.3/orocos_kdl/models/CMakeLists.txt	2026-01-30 15:19:25.281842400 +0900
+--- origsrc/orocos_kinematics_dynamics-1.5.4/orocos_kdl/models/CMakeLists.txt	2026-09-01 06:55:26.000000000 +0000
++++ src/orocos_kinematics_dynamics-1.5.4/orocos_kdl/models/CMakeLists.txt	2026-10-29 23:47:05.313187800 +0000
 @@ -17,6 +17,7 @@ IF(BUILD_MODELS)
  
    INSTALL( TARGETS orocos-kdl-models
@@ -44,8 +44,8 @@
        ARCHIVE DESTINATION lib${LIB_SUFFIX}
        LIBRARY DESTINATION lib${LIB_SUFFIX}
        PUBLIC_HEADER DESTINATION include/kdl
---- origsrc/orocos_kinematics_dynamics-1.5.3/orocos_kdl/models/kukaLWRtestDHnew.cpp	2025-10-17 15:26:37.000000000 +0900
-+++ src/orocos_kinematics_dynamics-1.5.3/orocos_kdl/models/kukaLWRtestDHnew.cpp	2026-01-30 15:19:25.283865000 +0900
+--- origsrc/orocos_kinematics_dynamics-1.5.4/orocos_kdl/models/kukaLWRtestDHnew.cpp	2026-09-01 06:55:26.000000000 +0000
++++ src/orocos_kinematics_dynamics-1.5.4/orocos_kdl/models/kukaLWRtestDHnew.cpp	2026-10-29 23:47:05.313834500 +0000
 @@ -6,6 +6,7 @@
  #include <chainfksolverpos_recursive.hpp>
  #include <chainidsolver_recursive_newton_euler.hpp>
@@ -54,16 +54,16 @@
  using namespace KDL;
  
  using std::setw;
---- origsrc/orocos_kinematics_dynamics-1.5.3/orocos_kdl/orocos_kdl.pc.in	2025-10-17 15:26:37.000000000 +0900
-+++ src/orocos_kinematics_dynamics-1.5.3/orocos_kdl/orocos_kdl.pc.in	2026-01-30 15:30:57.392117200 +0900
+--- origsrc/orocos_kinematics_dynamics-1.5.4/orocos_kdl/orocos_kdl.pc.in	2026-09-01 06:55:26.000000000 +0000
++++ src/orocos_kinematics_dynamics-1.5.4/orocos_kdl/orocos_kdl.pc.in	2026-10-29 23:47:05.313834500 +0000
 @@ -1,4 +1,4 @@
 -prefix=${pcfiledir}/../..
 +prefix=@CMAKE_INSTALL_PREFIX@
  libdir=${prefix}/lib@LIB_SUFFIX@
  includedir=${prefix}/include
  
---- origsrc/orocos_kinematics_dynamics-1.5.3/orocos_kdl/src/CMakeLists.txt	2025-10-17 15:26:37.000000000 +0900
-+++ src/orocos_kinematics_dynamics-1.5.3/orocos_kdl/src/CMakeLists.txt	2026-01-30 15:19:25.293433400 +0900
+--- origsrc/orocos_kinematics_dynamics-1.5.4/orocos_kdl/src/CMakeLists.txt	2026-09-01 06:55:26.000000000 +0000
++++ src/orocos_kinematics_dynamics-1.5.4/orocos_kdl/src/CMakeLists.txt	2026-10-29 23:47:05.315208300 +0000
 @@ -76,6 +76,7 @@ TARGET_LINK_LIBRARIES(orocos-kdl ${Boost
  
  INSTALL(TARGETS orocos-kdl
@@ -72,8 +72,8 @@
    ARCHIVE DESTINATION lib${LIB_SUFFIX}
    LIBRARY DESTINATION lib${LIB_SUFFIX}
    RUNTIME DESTINATION bin
---- origsrc/orocos_kinematics_dynamics-1.5.3/orocos_kdl/src/chainiksolverpos_lma.hpp	2025-10-17 15:26:37.000000000 +0900
-+++ src/orocos_kinematics_dynamics-1.5.3/orocos_kdl/src/chainiksolverpos_lma.hpp	2026-01-30 15:19:25.295445000 +0900
+--- origsrc/orocos_kinematics_dynamics-1.5.4/orocos_kdl/src/chainiksolverpos_lma.hpp	2026-09-01 06:55:26.000000000 +0000
++++ src/orocos_kinematics_dynamics-1.5.4/orocos_kdl/src/chainiksolverpos_lma.hpp	2026-10-29 23:47:05.315208300 +0000
 @@ -35,6 +35,10 @@
  #include "chain.hpp"
  #include <Eigen/Dense>

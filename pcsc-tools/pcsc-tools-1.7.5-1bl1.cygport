@@ -11,9 +11,13 @@ that from a GTK user interface."
 
 LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
-LICENSE_URI="COPYING"
+LICENSE_URI="LICENCE"
 
-BUILD_REQUIRES="libpcsclite-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	gettext-devel
+	libpcsclite-devel
+"
 
 src_test()
 {

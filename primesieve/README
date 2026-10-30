@@ -6,42 +6,41 @@ optimized sieve of Eratosthenes implementation. It counts the primes below
 primesieve can generate primes and prime k-tuplets up to 2^64.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libprimesieve-devel-12.12-1bl1
-  libprimesieve12-12.12-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libprimesieve-devel-12.16-1bl1
+  libprimesieve12-12.16-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/kimwalisch/primesieve
 
 Canonical download:
-  https://github.com/kimwalisch/primesieve/archive/refs/tags/v12.12.tar.gz
+  https://github.com/kimwalisch/primesieve/archive/refs/tags/v12.16.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack primesieve-12.12-X-src.tar.xz
+  1. unpack primesieve-12.16-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./primesieve-12.12-X.cygport all
+        % cygport ./primesieve-12.16-X.cygport all
 
 This will create:
-  /usr/src/primesieve-12.12-X-src.tar.xz
-  /usr/src/primesieve-12.12-X.tar.xz
-  /usr/src/libprimesieve12-12.12-X.tar.xz
-  /usr/src/libprimesieve-devel-12.12-X.tar.xz
+  /usr/src/primesieve-12.16-X-src.tar.xz
+  /usr/src/primesieve-12.16-X.tar.xz
+  /usr/src/libprimesieve12-12.16-X.tar.xz
+  /usr/src/libprimesieve-devel-12.16-X.tar.xz
 
 -------------------------------------------
 
@@ -67,7 +66,7 @@ Files included in the binary package:
   /usr/include/primesieve/primesieve_error.hpp
   /usr/lib/cmake/primesieve/primesieveConfig.cmake
   /usr/lib/cmake/primesieve/primesieveConfigVersion.cmake
-  /usr/lib/cmake/primesieve/primesieveShared-release.cmake
+  /usr/lib/cmake/primesieve/primesieveShared-relwithdebinfo.cmake
   /usr/lib/cmake/primesieve/primesieveShared.cmake
   /usr/lib/libprimesieve.dll.a
   /usr/lib/pkgconfig/primesieve.pc
@@ -75,6 +74,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 12.16-1bl1 -----
+Version bump.
 
 ----- version 12.12-1bl1 -----
 Version bump.

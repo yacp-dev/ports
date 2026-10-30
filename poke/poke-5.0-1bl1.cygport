@@ -8,15 +8,22 @@ limited to editing basic entities such as bits and bytes, it provides
 a full-fledged procedural, interactive programming language designed
 to describe data structures and to operate on them."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="dejagnu libgc-devel libintl-devel libncurses-devel libreadline-devel"
+BUILD_REQUIRES="
+	dejagnu
+	gettext-devel
+	libgc-devel
+	libintl-devel
+	libncurses-devel
+	libreadline-devel
+"
 
 PKG_NAMES="
 	poke
-	libpoke1
+	libpoke2
 	libpoke-devel
 "
 poke_CONTENTS="
@@ -27,8 +34,8 @@ poke_CONTENTS="
 	usr/share/${PN}
 	usr/share/vim
 "
-libpoke1_CONTENTS="
-	usr/bin/cyg*-1.dll
+libpoke2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libpoke_devel_CONTENTS="
 	usr/include
@@ -37,5 +44,5 @@ libpoke_devel_CONTENTS="
 	usr/share/info
 "
 poke_SUMMARY="${SUMMARY} (utilities)"
-libpoke1_SUMMARY="${SUMMARY} (runtime)"
+libpoke2_SUMMARY="${SUMMARY} (runtime)"
 libpoke_devel_SUMMARY="${SUMMARY} (development)"

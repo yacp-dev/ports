@@ -6,54 +6,52 @@ procedural, interactive programming language designed to describe data
 structures and to operate on them.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libgc1-8.2.8-1
+  cygwin-3.6.12-1
+  libgc1-8.2.12-1
+  libgcc1-14.4.0-1
   libintl8-0.22.5-1
   libncursesw10-6.5+20240427-1
-  libpoke-devel-4.3-1bl1
-  libpoke1-4.3-1bl1
-  libreadline7-8.2-2
-  pkg-config-2.3.0-1
+  libpoke-devel-5.0-1bl1
+  libpoke2-5.0-1bl1
+  libreadline8-8.3-1
+  pkg-config-3.0.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  bison-3.8.2-1
-  cygport-0.36.9-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
   dejagnu-1.6.3-1
-  flex-2.6.4-2
-  gcc-core-12.4.0-3
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libgc-devel-8.2.8-1
+  libgc-devel-8.2.12-1
   libintl-devel-0.22.5-1
   libncurses-devel-6.5+20240427-1
-  libreadline-devel-8.2-2
-  libtool-2.5.4-1
+  libreadline-devel-8.3-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://www.jemarch.net/poke
 
 Canonical download:
-  mirror://gnu/poke/poke-4.3.tar.gz
+  mirror://gnu/poke/poke-5.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack poke-4.3-X-src.tar.xz
+  1. unpack poke-5.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./poke-4.3-X.cygport all
+        % cygport ./poke-5.0-X.cygport all
 
 This will create:
-  /usr/src/poke-4.3-X-src.tar.xz
-  /usr/src/poke-4.3-X.tar.xz
-  /usr/src/libpoke1-4.3-X.tar.xz
-  /usr/src/libpoke-devel-4.3-X.tar.xz
+  /usr/src/poke-5.0-X-src.tar.xz
+  /usr/src/poke-5.0-X.tar.xz
+  /usr/src/libpoke2-5.0-X.tar.xz
+  /usr/src/libpoke-devel-5.0-X.tar.xz
 
 -------------------------------------------
 
@@ -61,6 +59,7 @@ Files included in the binary package:
 
 (poke)
   /usr/bin/pk-bin2poke
+  /usr/bin/pk-bpfcoredump
   /usr/bin/pk-jojopatch
   /usr/bin/pk-strings
   /usr/bin/poke.exe
@@ -70,22 +69,20 @@ Files included in the binary package:
   /usr/share/doc/poke/AUTHORS
   /usr/share/doc/poke/COPYING
   /usr/share/doc/poke/ChangeLog
+  /usr/share/doc/poke/MAINTAINERS
   /usr/share/doc/poke/NEWS
   /usr/share/doc/poke/README
   /usr/share/doc/poke/TODO
-  /usr/share/emacs/site-lisp/poke-map-mode.el
   /usr/share/emacs/site-lisp/poke-ras-mode.el
   /usr/share/man/man1/poke.1.gz
   /usr/share/man/man1/poked.1.gz
   /usr/share/man/man1/pokefmt.1.gz
-  /usr/share/poke/maps/dwarf.map
-  /usr/share/poke/maps/elf.map
-  /usr/share/poke/maps/mp3.map
   /usr/share/poke/pickles/argp.pk
   /usr/share/poke/pickles/asn1-ber.pk
   /usr/share/poke/pickles/base64.pk
   /usr/share/poke/pickles/bmp.pk
   /usr/share/poke/pickles/bpf.pk
+  /usr/share/poke/pickles/bpfcore.pk
   /usr/share/poke/pickles/btf-dump.pk
   /usr/share/poke/pickles/btf-ext.pk
   /usr/share/poke/pickles/btf.pk
@@ -93,6 +90,7 @@ Files included in the binary package:
   /usr/share/poke/pickles/coff-i386.pk
   /usr/share/poke/pickles/coff.pk
   /usr/share/poke/pickles/color.pk
+  /usr/share/poke/pickles/crc16.pk
   /usr/share/poke/pickles/ctf-dump.pk
   /usr/share/poke/pickles/ctf.pk
   /usr/share/poke/pickles/diff.pk
@@ -145,18 +143,19 @@ Files included in the binary package:
   /usr/share/poke/pkl-config.pk
   /usr/share/poke/pkl-rt.pk
   /usr/share/poke/poke/nodelist
+  /usr/share/poke/poke/pk-cmd-copy.pk
+  /usr/share/poke/poke/pk-cmd-diff.pk
+  /usr/share/poke/poke/pk-cmd-dump.pk
+  /usr/share/poke/poke/pk-cmd-extract.pk
+  /usr/share/poke/poke/pk-cmd-help.pk
+  /usr/share/poke/poke/pk-cmd-info.pk
+  /usr/share/poke/poke/pk-cmd-ios.pk
+  /usr/share/poke/poke/pk-cmd-misc.pk
+  /usr/share/poke/poke/pk-cmd-save.pk
+  /usr/share/poke/poke/pk-cmd-scrabble.pk
+  /usr/share/poke/poke/pk-cmd-set.pk
   /usr/share/poke/poke/pk-cmd.pk
-  /usr/share/poke/poke/pk-copy.pk
-  /usr/share/poke/poke/pk-diff.pk
-  /usr/share/poke/poke/pk-dump.pk
-  /usr/share/poke/poke/pk-extract.pk
-  /usr/share/poke/poke/pk-help.pk
   /usr/share/poke/poke/pk-hserver.pk
-  /usr/share/poke/poke/pk-info.pk
-  /usr/share/poke/poke/pk-map.pk
-  /usr/share/poke/poke/pk-save.pk
-  /usr/share/poke/poke/pk-scrabble.pk
-  /usr/share/poke/poke/pk-settings.pk
   /usr/share/poke/poke/pk-tracer.pk
   /usr/share/poke/poke/poke-bright.css
   /usr/share/poke/poke/poke-dark.css
@@ -170,22 +169,23 @@ Files included in the binary package:
   /usr/share/vim/vimfiles/ftdetect/poke.vim
   /usr/share/vim/vimfiles/syntax/poke.vim
 
-(libpoke1)
-  /usr/bin/cygpoke-1.dll
+(libpoke2)
+  /usr/bin/cygpoke-2.dll
 
 (libpoke-devel)
   /usr/include/libpoke.h
   /usr/lib/libpoke.dll.a
   /usr/lib/pkgconfig/poke.pc
   /usr/share/aclocal/poke.m4
-  /usr/share/info/poke.info-1.gz
-  /usr/share/info/poke.info-2.gz
-  /usr/share/info/poke.info-3.gz
   /usr/share/info/poke.info.gz
+  /usr/share/info/pokeint.info.gz
 
 ------------------
 
 Port Notes:
+
+----- version 5.0-1bl1 -----
+Version bump.
 
 ----- version 4.3-1bl1 -----
 Version bump.

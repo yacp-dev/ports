@@ -1,5 +1,6 @@
 HOMEPAGE="https://parallel-netcdf.github.io/"
 SRC_URI="https://parallel-netcdf.github.io/Release/${P}.tar.gz"
+PATCH_URI="${PN}-${PV}-cygwin-dll-export.patch"
 
 CATEGORY="Libs"
 SUMMARY="Parallel netCDF"
@@ -9,11 +10,17 @@ files in CDF-1, 2, and 5 formats. The CDF-5 file format, an extension of
 CDF-2, supports more data types and allows users to use 64-bit integers to
 define large dimensions, attributes, variables (> 2B array elements)."
 
-LICENSE="NetCDF"
-LICENSE_SPDX="SPDX-License-Identifier: NetCDF"
+LICENSE="NetCDF AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: NetCDF AND BSD-3-Clause"
 LICENSE_URI="COPYRIGHT"
 
-BUILD_REQUIRES="gcc-fortran libopenmpi-devel"
+BUILD_REQUIRES="
+	gcc-fortran
+	libevent-devel
+	libhwloc-devel
+	libopenmpi-devel
+	zlib-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode
@@ -29,9 +36,16 @@ src_compile()
 	cygmake
 }
 
+src_install()
+{
+	cd ${B}
+	cyginstall
+	dodoc ${S}/RELEASE_NOTES
+}
+
 PKG_NAMES="
 	${PN}
-	libpnetcdf6
+	libpnetcdf8
 	libpnetcdf-devel
 "
 pnetcdf_CONTENTS="
@@ -39,8 +53,8 @@ pnetcdf_CONTENTS="
 	usr/share/doc
 	usr/share/man/man1
 "
-libpnetcdf6_CONTENTS="
-	usr/bin/cyg*-6.dll
+libpnetcdf8_CONTENTS="
+	usr/bin/cyg*-8.dll
 "
 libpnetcdf_devel_CONTENTS="
 	usr/bin/*-config
@@ -49,5 +63,5 @@ libpnetcdf_devel_CONTENTS="
 	usr/share/man/man3
 "
 pnetcdf_SUMMARY="${SUMMARY} (utilities)"
-libpnetcdf6_SUMMARY="${SUMMARY} (runtime)"
+libpnetcdf8_SUMMARY="${SUMMARY} (runtime)"
 libpnetcdf_devel_SUMMARY="${SUMMARY} (development)"

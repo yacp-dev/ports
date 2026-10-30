@@ -1,0 +1,74 @@
+--- origsrc/pnetcdf-1.15.1/configure.ac	2026-09-12 23:32:56.000000000 +0000
++++ src/pnetcdf-1.15.1/configure.ac	2026-10-29 23:16:39.418702700 +0000
+@@ -895,9 +895,15 @@ if test "x${has_fortran}" = xyes ; then
+    AC_LANG_PUSH([Fortran])
+    F77_VISIBILITY_FLAGS=
+    F90_VISIBILITY_FLAGS=
+-   AX_CHECK_COMPILE_FLAG([-fvisibility=hidden],
+-                         [F77_VISIBILITY_FLAGS="-fvisibility=hidden"
+-                          F90_VISIBILITY_FLAGS="-fvisibility=hidden"])
++   case "${host_os}" in
++      cygwin*)
++         ;;
++      *)
++         AX_CHECK_COMPILE_FLAG([-fvisibility=hidden],
++                               [F77_VISIBILITY_FLAGS="-fvisibility=hidden"
++                                F90_VISIBILITY_FLAGS="-fvisibility=hidden"])
++         ;;
++   esac
+    AC_SUBST(F77_VISIBILITY_FLAGS)
+    AC_SUBST(F90_VISIBILITY_FLAGS)
+    AC_LANG_POP([Fortran])
+--- origsrc/pnetcdf-1.15.1/gio/m4/check_mpi.m4	2026-07-29 19:10:32.000000000 +0000
++++ src/pnetcdf-1.15.1/gio/m4/check_mpi.m4	2026-10-29 23:16:39.418702700 +0000
+@@ -208,7 +208,7 @@ AC_DEFUN([LT_MPI_CHECK_SHLIB],[
+    fi
+    # must add '--tag=CC', otherwise autotool 2.73 failed.
+    ac_ltcompile='./libtool --tag=CC --mode=compile $MPICC -c $CFLAGS $CPPFLAGS conftest.$ac_ext -o conftest.lo >&AS_MESSAGE_LOG_FD'
+-   ac_ltlink_la='./libtool --tag=CC --mode=link $MPICC -rpath `pwd` $CFLAGS $LDFLAGS -o libconftest.la conftest.lo $LIBS >&AS_MESSAGE_LOG_FD'
++   ac_ltlink_la='./libtool --tag=CC --mode=link $MPICC -rpath `pwd` $CFLAGS $LDFLAGS -no-undefined -o libconftest.la conftest.lo $LIBS >&AS_MESSAGE_LOG_FD'
+    AS_IF([AC_TRY_EVAL([ac_ltcompile]) &&
+        AC_TRY_EVAL([ac_ltlink_la]) &&
+        AC_TRY_COMMAND([test -s libconftest.la])],
+--- origsrc/pnetcdf-1.15.1/m4/check_mpi.m4	2026-07-29 18:51:26.000000000 +0000
++++ src/pnetcdf-1.15.1/m4/check_mpi.m4	2026-10-29 23:16:39.418702700 +0000
+@@ -208,7 +208,7 @@ AC_DEFUN([LT_MPI_CHECK_SHLIB],[
+    fi
+    # must add '--tag=CC', otherwise autotool 2.73 failed.
+    ac_ltcompile='./libtool --tag=CC --mode=compile $MPICC -c $CFLAGS $CPPFLAGS conftest.$ac_ext -o conftest.lo >&AS_MESSAGE_LOG_FD'
+-   ac_ltlink_la='./libtool --tag=CC --mode=link $MPICC -rpath `pwd` $CFLAGS $LDFLAGS -o libconftest.la conftest.lo $LIBS >&AS_MESSAGE_LOG_FD'
++   ac_ltlink_la='./libtool --tag=CC --mode=link $MPICC -rpath `pwd` $CFLAGS $LDFLAGS -no-undefined -o libconftest.la conftest.lo $LIBS >&AS_MESSAGE_LOG_FD'
+    AS_IF([AC_TRY_EVAL([ac_ltcompile]) &&
+        AC_TRY_EVAL([ac_ltlink_la]) &&
+        AC_TRY_COMMAND([test -s libconftest.la])],
+--- origsrc/pnetcdf-1.15.1/src/libs/Makefile.am	2026-06-29 18:35:09.000000000 +0000
++++ src/pnetcdf-1.15.1/src/libs/Makefile.am	2026-10-29 23:16:39.420713400 +0000
+@@ -16,7 +16,7 @@ lib_LTLIBRARIES = libpnetcdf.la
+ # Using libpnetcdf_la_LDFLAGS = $(ABIVERSIONFLAGS) does NOT seem to work,
+ # because libpnetcdf_la_LINK is explicitly set below to deal with cross
+ # language link.
+-AM_LDFLAGS = $(ABIVERSIONFLAGS)
++AM_LDFLAGS = -no-undefined -Wl,--export-all-symbols $(ABIVERSIONFLAGS)
+ 
+ # functions that should be compiled into the library to provide an
+ # implementation for functions that are missing or broken on the host system
+--- origsrc/pnetcdf-1.15.1/src/packaging/pnetcdf.pc.in	2026-06-05 20:03:27.000000000 +0000
++++ src/pnetcdf-1.15.1/src/packaging/pnetcdf.pc.in	2026-10-29 23:16:39.421490600 +0000
+@@ -47,5 +47,5 @@ Version: @PNETCDF_VERSION@
+ Cflags: -I${includedir}
+ Libs: -L${libdir} -lpnetcdf
+ Libs.private:
+-Requires: @GIO_PACKAGE@ @NETCDF4_PACKAGE@ @ADIOS_PACKAGE@
++Requires: @NETCDF4_PACKAGE@ @ADIOS_PACKAGE@
+ Requires.private:
+--- origsrc/pnetcdf-1.15.1/src/utils/pnetcdf-config.in	2026-09-18 20:26:19.000000000 +0000
++++ src/pnetcdf-1.15.1/src/utils/pnetcdf-config.in	2026-10-29 23:16:39.422722900 +0000
+@@ -52,7 +52,7 @@ FLDFLAGS="@FLDFLAGS@"
+ LDFLAGS="@LDFLAGS@"
+ LIBS="@LIBS@"
+ 
+-version="@PACKAGE_NAME@ @PNETCDF_VERSION@"
++version="@PNETCDF_VERSION@"
+ CC=${MPICC}
+ F77=${MPIF77}
+ F90=${MPIF90}

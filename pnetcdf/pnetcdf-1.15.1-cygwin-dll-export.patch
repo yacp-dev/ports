@@ -1,0 +1,24 @@
+diff --git a/src/include/pnetcdf.h.in b/src/include/pnetcdf.h.in
+--- a/src/include/pnetcdf.h.in
++++ b/src/include/pnetcdf.h.in
+@@ -717,7 +717,7 @@
+ #endif
+ 
+ #if defined _WIN32 || defined __CYGWIN__
+-  #ifdef BUILDING_DLL
++  #if defined(BUILDING_DLL) || defined(DLL_EXPORT)
+     #define PNETCDF_PUBLIC_API __declspec(dllexport)
+   #else
+     #define PNETCDF_PUBLIC_API __declspec(dllimport)
+diff --git a/gio/src/gio.h.in b/gio/src/gio.h.in
+--- a/gio/src/gio.h.in
++++ b/gio/src/gio.h.in
+@@ -60,7 +60,7 @@
+ #endif
+ 
+ #if defined _WIN32 || defined __CYGWIN__
+-  #ifdef BUILDING_DLL
++  #if defined(BUILDING_DLL) || defined(DLL_EXPORT)
+     #define GIO_PUBLIC_API __declspec(dllexport)
+   #else
+     #define GIO_PUBLIC_API __declspec(dllimport)

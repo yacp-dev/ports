@@ -9,51 +9,52 @@ managing secret key files, the Portable Symmetric Key Container (PSKC) format
 described in RFC6030 is supported.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  liboath-devel-2.6.12-1bl1
-  liboath0-2.6.12-1bl1
-  libpskc-devel-2.6.12-1bl1
-  libpskc0-2.6.12-1bl1
-  libxml2-2.10.4-2
+  cygwin-3.6.12-1
+  liboath-devel-2.6.15-1bl1
+  liboath0-2.6.15-1bl1
+  libpskc-devel-2.6.15-1bl1
+  libpskc0-2.6.15-1bl1
+  libxml2-2.13.9-2
   libxmlsec1_1-1.2.24-1
-  pkg-config-2.3.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
   bison-3.8.2-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gengetopt-2.23-1
-  libtool-2.5.3-1
-  libxml2-devel-2.10.4-2
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gengetopt-2.23.1-1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-2
   libxmlsec1-devel-1.2.24-1
+  libxmlsec1-openssl1-1.2.24-1
   make-4.4.1-2
 
 Canonical website:
   https://www.nongnu.org/oath-toolkit/
 
 Canonical download:
-  mirror://savannah/oath-toolkit/oath-toolkit-2.6.12.tar.gz
+  mirror://savannah/oath-toolkit/oath-toolkit-2.6.15.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack oath-toolkit-2.6.12-X-src.tar.xz
+  1. unpack oath-toolkit-2.6.15-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./oath-toolkit-2.6.12-X.cygport all
+        % cygport ./oath-toolkit-2.6.15-X.cygport all
 
 This will create:
-  /usr/src/oath-toolkit-2.6.12-X-src.tar.xz
-  /usr/src/oath-toolkit-2.6.12-X.tar.xz
-  /usr/src/liboath0-2.6.12-X.tar.xz
-  /usr/src/liboath-devel-2.6.12-X.tar.xz
-  /usr/src/libpskc0-2.6.12-X.tar.xz
-  /usr/src/libpskc-devel-2.6.12-X.tar.xz
+  /usr/src/oath-toolkit-2.6.15-X-src.tar.xz
+  /usr/src/oath-toolkit-2.6.15-X.tar.xz
+  /usr/src/liboath0-2.6.15-X.tar.xz
+  /usr/src/liboath-devel-2.6.15-X.tar.xz
+  /usr/src/libpskc0-2.6.15-X.tar.xz
+  /usr/src/libpskc-devel-2.6.15-X.tar.xz
 
 -------------------------------------------
 
@@ -232,6 +233,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.6.15-1bl1 -----
+Version bump.
 
 ----- version 2.6.12-1bl1 -----
 Version bump.

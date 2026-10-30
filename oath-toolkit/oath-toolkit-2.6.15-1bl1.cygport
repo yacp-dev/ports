@@ -11,11 +11,17 @@ AuTHentication, which is the organization that specify the algorithms. For
 managing secret key files, the Portable Symmetric Key Container (PSKC) format
 described in RFC6030 is supported."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="bison gengetopt libxml2-devel libxmlsec1-devel"
+BUILD_REQUIRES="
+	bison
+	gengetopt
+	libxml2-devel
+	libxmlsec1-devel
+	libxmlsec1-openssl1
+"
 
 CYGCONF_ARGS="
 	--disable-pam
@@ -71,3 +77,4 @@ liboath0_SUMMARY="${SUMMARY} (runtime)"
 liboath_devel_SUMMARY="${SUMMARY} (development)"
 libpskc0_SUMMARY=${liboath0_SUMMARY//OATH/PSKC/}
 libpskc_devel_SUMMARY=${liboath_devel_SUMMARY//OATH/PSKC/}
+libpskc0_REQUIRES="libxmlsec1-openssl1"

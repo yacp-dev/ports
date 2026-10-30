@@ -12,6 +12,7 @@ LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	zlib-devel
+	libdeflate-devel
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
@@ -54,3 +55,5 @@ libPtex_devel_CONTENTS="
 ptex_SUMMARY="${SUMMARY} (utilities)"
 libPtex2_5_SUMMARY="${SUMMARY} (runtime)"
 libPtex_devel_SUMMARY="${SUMMARY} (development)"
+
+libPtex_devel_REQUIRES="zlib-devel"

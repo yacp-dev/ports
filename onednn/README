@@ -4,48 +4,47 @@ oneAPI Deep Neural Network Library (oneDNN) is an open-source cross-platform
 performance library of basic building blocks for deep learning applications.
 The library is optimized for Intel Architecture Processors, Intel Processor
 Graphics and Xe architecture-based Graphics. Support for other architectures
-such as Arm* 64-bit Architecture (AArch64) and OpenPOWER* Power ISA (PPC64)
-is experimental.
+such as Arm* 64-bit Architecture (AArch64) and OpenPOWER* Power ISA (PPC64) is
+experimental.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libdnnl-devel-3.10.2-1bl1
-  libdnnl3-3.10.2-1bl1
-  libgcc1-13.4.0-1
-  libgomp1-13.4.0-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libdnnl-devel-3.14.1-1bl1
+  libdnnl3-3.14.1-1bl1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  lua-5.3.6-4
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/uxlfoundation/oneDNN
 
 Canonical download:
-  https://github.com/uxlfoundation/oneDNN/archive/refs/tags/v3.10.2.tar.gz
+  https://github.com/uxlfoundation/oneDNN/archive/refs/tags/v3.14.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack onednn-3.10.2-X-src.tar.xz
+  1. unpack onednn-3.14.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./onednn-3.10.2-X.cygport all
+        % cygport ./onednn-3.14.1-X.cygport all
 
 This will create:
-  /usr/src/onednn-3.10.2-X-src.tar.xz
-  /usr/src/onednn-3.10.2-X.tar.xz
-  /usr/src/libdnnl3-3.10.2-X.tar.xz
-  /usr/src/libdnnl-devel-3.10.2-X.tar.xz
+  /usr/src/onednn-3.14.1-X-src.tar.xz
+  /usr/src/onednn-3.14.1-X.tar.xz
+  /usr/src/libdnnl3-3.14.1-X.tar.xz
+  /usr/src/libdnnl-devel-3.14.1-X.tar.xz
 
 -------------------------------------------
 
@@ -105,9 +104,11 @@ Files included in the binary package:
   /usr/include/oneapi/dnnl/dnnl_ukernel_types.h
   /usr/include/oneapi/dnnl/dnnl_version.h
   /usr/include/oneapi/dnnl/dnnl_version_hash.h
+  /usr/include/oneapi/dnnl/dnnl_ze.h
+  /usr/include/oneapi/dnnl/dnnl_ze.hpp
   /usr/lib/cmake/dnnl/dnnl-config-version.cmake
   /usr/lib/cmake/dnnl/dnnl-config.cmake
-  /usr/lib/cmake/dnnl/dnnl-targets-release.cmake
+  /usr/lib/cmake/dnnl/dnnl-targets-relwithdebinfo.cmake
   /usr/lib/cmake/dnnl/dnnl-targets.cmake
   /usr/lib/libdnnl.dll.a
   /usr/lib/pkgconfig/onednn.pc
@@ -115,6 +116,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.14.1-1bl1 -----
+Version bump.
 
 ----- version 3.10.2-1bl1 -----
 Version bump.

@@ -1,10 +1,6 @@
 HOMEPAGE="https://github.com/uxlfoundation/oneDNN"
 SRC_URI="https://github.com/uxlfoundation/oneDNN/archive/refs/tags/v${PV}.tar.gz"
 SRC_DIR="oneDNN-${PV}"
-PATCH_URI="
-	https://sources.debian.org/data/main/o/onednn/3.9.1%2Bds-2/debian/patches/system-spdlog.patch
-	https://sources.debian.org/data/main/o/onednn/3.9.1%2Bds-2/debian/patches/system-gtest.patch
-"
 
 CATEGORY="Libs"
 SUMMARY="Deep Neural Network Library"
@@ -15,8 +11,8 @@ Graphics and Xe architecture-based Graphics. Support for other architectures
 such as Arm* 64-bit Architecture (AArch64) and OpenPOWER* Power ISA (PPC64)
 is experimental."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND (BSD-3-Clause OR GPL-2.0-only)"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND (BSD-3-Clause OR GPL-2.0-only)"
 LICENSE_URI="LICENSE"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
@@ -55,7 +51,7 @@ onednn_CONTENTS="
 	usr/share/doc/${PN}
 "
 libdnnl3_CONTENTS="
-	usr/bin
+	usr/bin/cygdnnl-3.dll
 "
 libdnnl_devel_CONTENTS="
 	usr/include

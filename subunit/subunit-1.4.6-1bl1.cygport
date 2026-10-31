@@ -1,0 +1,70 @@
+HOMEPAGE="https://github.com/testing-cabal/${PN}"
+SRC_URI="https://github.com/testing-cabal/${PN}/archive/refs/tags/${PV}.tar.gz"
+
+CATEGORY="Devel"
+SUMMARY="Streaming protocol for test results"
+DESCRIPTION="Subunit is a streaming protocol for test results. The protocol is a binary
+encoding that is easily generated and parsed. By design all the components of
+the protocol conceptually fit into the xUnit TestCase->TestResult interaction."
+
+LICENSE="Apache-2.0 OR BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 OR BSD-3-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	check
+	cppunit
+	python3-devel
+"
+
+export PYTHON=python3
+
+DOCS="
+	Apache-2.0
+	BSD
+"
+
+src_install()
+{
+	cd ${B}
+	cygmake install DESTDIR=${D}
+
+	# Since 1.4.6 upstream installs the commands only as pyproject entry
+	# points, so write the same wrappers the 1.4.2 Makefile installed.
+	awk -F'"' '/^\[project.scripts\]/{f=1;next} /^\[/{f=0} f&&NF>=4{print $2, $4}' \
+		${S}/pyproject.toml |
+	while read cmd entry; do
+		mod=${entry%:main}
+		printf '#!/bin/sh\nexec python3 -c "import sys; from %s import main; sys.exit(main())" "$@"\n' \
+			"${mod}" > ${D}/usr/bin/${cmd}
+		chmod 0755 ${D}/usr/bin/${cmd}
+	done
+}
+
+PKG_NAMES="
+	subunit
+	libsubunit0
+	libsubunit-devel
+	python312-subunit
+"
+subunit_CONTENTS="
+	usr/bin/[sjgt]*
+	usr/share
+"
+libsubunit0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libsubunit_devel_CONTENTS="
+	usr/include
+	usr/lib/*.dll.a
+	usr/lib/pkgconfig
+"
+python312_subunit_CONTENTS="
+	usr/lib/python3.12
+"
+subunit_SUMMARY="${SUMMARY} (utilities)"
+libsubunit0_SUMMARY="${SUMMARY} (runtime)"
+libsubunit_devel_SUMMARY="${SUMMARY} (development)"
+python312_subunit_SUMMARY="${SUMMARY} (python312 bindings)"
+
+subunit_REQUIRES="python312-subunit"

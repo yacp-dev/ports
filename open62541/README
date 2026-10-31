@@ -10,66 +10,71 @@ implemented via exchangeable plugins. Plugin implementations are provided for
 the major operating systems.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  cygwin-devel-3.6.6-1
-  libopen62541-devel-1.4.14-1bl1
-  libopen62541_1.4-1.4.14-1bl1
-  libssl-devel-3.0.18-1
-  libssl3-3.0.18-1
-  pkg-config-2.5.1-1
-  python39-3.9.16-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libgcc1-14.4.0-1
+  libopen62541-devel-1.5.10-1bl1
+  libopen62541_1.5-1.5.10-1bl1
+  libreadline8-8.3-1
+  libssl-devel-3.5.9-1
+  libssl3-3.5.9-1
+  pkg-config-3.0.10-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libssl-devel-3.0.18-1
-  libsubunit-devel-1.4.2-1bl2
+  binutils-2.47-1
+  check-0.15.2-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libreadline-devel-8.3-1
+  libssl-devel-3.5.9-1
+  libsubunit-devel-1.4.6-1bl1
   ninja-1.13.2-1
-  python39-3.9.16-1
+  python3-3.12.12-1
 
 Canonical website:
   https://github.com/open62541/open62541
 
 Canonical download:
-  https://github.com/open62541/open62541/archive/refs/tags/v1.4.14.tar.gz
+  https://github.com/open62541/open62541/archive/refs/tags/v1.5.10.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack open62541-1.4.14-X-src.tar.xz
+  1. unpack open62541-1.5.10-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./open62541-1.4.14-X.cygport all
+        % cygport ./open62541-1.5.10-X.cygport all
 
 This will create:
-  /usr/src/open62541-1.4.14-X-src.tar.xz
-  /usr/src/open62541-1.4.14-X.tar.xz
-  /usr/src/libopen62541_1.4-1.4.14-X.tar.xz
-  /usr/src/libopen62541-devel-1.4.14-X.tar.xz
+  /usr/src/open62541-1.5.10-X-src.tar.xz
+  /usr/src/open62541-1.5.10-X.tar.xz
+  /usr/src/libopen62541_1.5-1.5.10-X.tar.xz
+  /usr/src/libopen62541-devel-1.5.10-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (open62541)
-  /usr/bin/ua_client.exe
+  /usr/bin/ua.exe
+  /usr/bin/ua2json.exe
   /usr/share/doc/Cygwin/open62541.README
-  /usr/share/doc/open62541/AUTHORS
-  /usr/share/doc/open62541/CHANGELOG
+  /usr/share/doc/open62541/CHANGES.md
   /usr/share/doc/open62541/CODE_OF_CONDUCT.md
   /usr/share/doc/open62541/CONTRIBUTING.md
   /usr/share/doc/open62541/FEATURES.md
-  /usr/share/doc/open62541/ISSUE_TEMPLATE.md
   /usr/share/doc/open62541/LICENSE
   /usr/share/doc/open62541/LICENSE-CC0
   /usr/share/doc/open62541/README.md
+  /usr/share/doc/open62541/SECURITY.md
   /usr/share/open62541/certs/create_self-signed.py
   /usr/share/open62541/certs/localhost.cnf
+  /usr/share/open62541/certs/localhost_ecc.cnf
+  /usr/share/open62541/generate_bsd.py
   /usr/share/open62541/generate_datatypes.py
   /usr/share/open62541/generate_nodeid_header.py
   /usr/share/open62541/generate_statuscode_descriptions.py
@@ -78,14 +83,10 @@ Files included in the binary package:
   /usr/share/open62541/nodeset_compiler/__init__.py
   /usr/share/open62541/nodeset_compiler/backend_graphviz.py
   /usr/share/open62541/nodeset_compiler/backend_open62541.py
-  /usr/share/open62541/nodeset_compiler/backend_open62541_datatypes.py
-  /usr/share/open62541/nodeset_compiler/backend_open62541_nodes.py
-  /usr/share/open62541/nodeset_compiler/backend_open62541_typedefinitions.py
   /usr/share/open62541/nodeset_compiler/datatypes.py
   /usr/share/open62541/nodeset_compiler/nodes.py
   /usr/share/open62541/nodeset_compiler/nodeset.py
   /usr/share/open62541/nodeset_compiler/nodeset_compiler.py
-  /usr/share/open62541/nodeset_compiler/nodeset_testing.py
   /usr/share/open62541/nodeset_compiler/opaque_type_mapping.py
   /usr/share/open62541/nodeset_compiler/type_parser.py
   /usr/share/open62541/schema/NodeIds.csv
@@ -98,8 +99,8 @@ Files included in the binary package:
   /usr/share/open62541/schema/Opc.Ua.Types.bsd
   /usr/share/open62541/schema/StatusCode.csv
 
-(libopen62541_1.4)
-  /usr/bin/cygopen62541-1.4.dll
+(libopen62541_1.5)
+  /usr/bin/cygopen62541-1.5.dll
 
 (libopen62541-devel)
   /usr/include/open62541/client.h
@@ -112,6 +113,8 @@ Files included in the binary package:
   /usr/include/open62541/nodeids.h
   /usr/include/open62541/plugin/accesscontrol.h
   /usr/include/open62541/plugin/accesscontrol_default.h
+  /usr/include/open62541/plugin/certificategroup.h
+  /usr/include/open62541/plugin/certificategroup_default.h
   /usr/include/open62541/plugin/create_certificate.h
   /usr/include/open62541/plugin/eventloop.h
   /usr/include/open62541/plugin/historydata/history_data_backend.h
@@ -125,10 +128,9 @@ Files included in the binary package:
   /usr/include/open62541/plugin/log_syslog.h
   /usr/include/open62541/plugin/nodestore.h
   /usr/include/open62541/plugin/nodestore_default.h
-  /usr/include/open62541/plugin/pki.h
-  /usr/include/open62541/plugin/pki_default.h
   /usr/include/open62541/plugin/securitypolicy.h
   /usr/include/open62541/plugin/securitypolicy_default.h
+  /usr/include/open62541/pubsub.h
   /usr/include/open62541/server.h
   /usr/include/open62541/server_config_default.h
   /usr/include/open62541/server_config_file_based.h
@@ -136,12 +138,11 @@ Files included in the binary package:
   /usr/include/open62541/statuscodes.h
   /usr/include/open62541/types.h
   /usr/include/open62541/types_generated.h
-  /usr/include/open62541/types_generated_handling.h
   /usr/include/open62541/util.h
   /usr/lib/cmake/open62541/open62541Config.cmake
   /usr/lib/cmake/open62541/open62541ConfigVersion.cmake
   /usr/lib/cmake/open62541/open62541Macros.cmake
-  /usr/lib/cmake/open62541/open62541Targets-release.cmake
+  /usr/lib/cmake/open62541/open62541Targets-relwithdebinfo.cmake
   /usr/lib/cmake/open62541/open62541Targets.cmake
   /usr/lib/libopen62541.dll.a
   /usr/lib/pkgconfig/open62541.pc
@@ -149,6 +150,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.5.10-1bl1 -----
+Version bump.
 
 ----- version 1.4.14-1bl1 -----
 Version bump.

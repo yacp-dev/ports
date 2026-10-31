@@ -3,43 +3,38 @@ czmq
 CZMQ - High-level C Binding for ZeroMQ
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  libcurl-devel-7.77.0-1
-  libcurl4-7.77.0-1
-  libczmq-devel-4.2.1-1bl1
-  libczmq4-4.2.1-1bl1
-  liblz4-devel-1.7.5-1
-  liblz4_1-1.7.5-1
-  libmicrohttpd-devel-0.9.73-1bl1
-  libmicrohttpd12-0.9.73-1bl1
-  libuuid-devel-2.33.1-2
-  libuuid1-2.33.1-2
-  libzmq-devel-4.2.3-1
-  libzmq5-4.2.3-1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libczmq-devel-4.2.1-1bl2
+  libczmq4-4.2.1-1bl2
+  liblz4-devel-1.9.4-1
+  liblz4_1-1.9.4-1
+  libmicrohttpd-devel-1.0.10-1bl1
+  libmicrohttpd12-1.0.10-1bl1
+  libuuid-devel-2.40.2-2
+  libuuid1-2.40.2-2
+  libzmq-devel-4.3.5-1
+  libzmq5-4.3.5-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  asciidoc-9.0.5-1
-  autoconf-13-1
-  automake-11-1
-  binutils-2.36.1-2
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  gcc-g++-10.2.0-1
-  libcurl-devel-7.77.0-1
-  liblz4-devel-1.7.5-1
-  libmicrohttpd-devel-0.9.73-1bl1
-  libtool-2.4.6-7
-  libuuid-devel-2.33.1-2
-  libzmq-devel-4.2.3-1
-  lua-5.3.6-2
-  make-4.3-1
-  ruby-2.6.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcurl-devel-8.23.0-1
+  liblz4-devel-1.9.4-1
+  libmicrohttpd-devel-1.0.10-1bl1
+  libtool-2.6.2-1
+  libuuid-devel-2.40.2-2
+  libzmq-devel-4.3.5-1
+  make-4.4.1-2
 
 Canonical website:
-  http://czmq.zeromq.org/
+  https://czmq.zeromq.org/
 
 Canonical download:
   https://github.com/zeromq/czmq/archive/v4.2.1.tar.gz
@@ -70,7 +65,7 @@ Files included in the binary package:
   /usr/share/doc/czmq/LICENSE
   /usr/share/doc/czmq/NEWS
   /usr/share/doc/czmq/README.md
-  /usr/share/doc/czmq/readme.txt
+  /usr/share/doc/czmq/README.txt
 
 (libczmq4)
   /usr/bin/cygczmq-4.dll
@@ -162,6 +157,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.2.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 4.2.1-1bl1 -----
 Version bump.

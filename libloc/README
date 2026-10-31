@@ -4,14 +4,14 @@ Library to determine the location of someone on the Internet
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.11-1
-  libloc-devel-0.9.19-1bl1
-  libloc1-0.9.19-1bl1
+  cygwin-3.6.12-1
+  libloc-devel-0.9.20-1bl1
+  libloc1-0.9.20-1bl1
   liblua5.3-5.3.6-4
   libssl3-3.5.9-1
-  perl-libloc-0.9.19-1bl1
+  perl-libloc-0.9.20-1bl1
   perl_base-5.44.0-1
-  pkg-config-3.0.9-1
+  pkg-config-3.0.10-1
   python3-3.12.12-1
 
 Build requirements:
@@ -20,7 +20,7 @@ Build requirements:
   autoconf-20260320-3
   automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.11-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
   intltool-0.51.0-1
@@ -36,25 +36,25 @@ Canonical website:
   https://www.ipfire.org/location/
 
 Canonical download:
-  https://source.ipfire.org/releases/libloc/libloc-0.9.19.tar.gz
+  https://source.ipfire.org/releases/libloc/libloc-0.9.20.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libloc-0.9.19-X-src.tar.xz
+  1. unpack libloc-0.9.20-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libloc-0.9.19-X.cygport all
+        % cygport ./libloc-0.9.20-X.cygport all
 
 This will create:
-  /usr/src/libloc-0.9.19-X-src.tar.xz
-  /usr/src/libloc-0.9.19-X.tar.xz
-  /usr/src/libloc1-0.9.19-X.tar.xz
-  /usr/src/libloc-devel-0.9.19-X.tar.xz
-  /usr/src/lua-libloc-0.9.19-X.tar.xz
-  /usr/src/perl-libloc-0.9.19-X.tar.xz
-  /usr/src/python312-libloc-0.9.19-X.tar.xz
+  /usr/src/libloc-0.9.20-X-src.tar.xz
+  /usr/src/libloc-0.9.20-X.tar.xz
+  /usr/src/libloc1-0.9.20-X.tar.xz
+  /usr/src/libloc-devel-0.9.20-X.tar.xz
+  /usr/src/lua-libloc-0.9.20-X.tar.xz
+  /usr/src/perl-libloc-0.9.20-X.tar.xz
+  /usr/src/python312-libloc-0.9.20-X.tar.xz
 
 -------------------------------------------
 
@@ -70,6 +70,8 @@ Files included in the binary package:
   /usr/share/doc/libloc/README.md
   /usr/share/locale/de/LC_MESSAGES/libloc.mo
   /usr/share/locale/ka/LC_MESSAGES/libloc.mo
+  /usr/share/locale/lo/LC_MESSAGES/libloc.mo
+  /usr/share/man/man1/location-importer.1.gz
   /usr/share/man/man1/location.1.gz
   /var/lib/location/database.db
   /var/lib/location/signing-key.pem
@@ -78,34 +80,151 @@ Files included in the binary package:
   /usr/bin/cygloc-1.dll
 
 (libloc-devel)
-  /usr/include/libloc/address.h
   /usr/include/libloc/as-list.h
   /usr/include/libloc/as.h
-  /usr/include/libloc/compat.h
   /usr/include/libloc/country-list.h
   /usr/include/libloc/country.h
   /usr/include/libloc/database.h
   /usr/include/libloc/format.h
   /usr/include/libloc/libloc.h
   /usr/include/libloc/network-list.h
-  /usr/include/libloc/network-tree.h
   /usr/include/libloc/network.h
-  /usr/include/libloc/private.h
   /usr/include/libloc/resolv.h
-  /usr/include/libloc/stringpool.h
   /usr/include/libloc/writer.h
   /usr/lib/libloc.dll.a
   /usr/lib/pkgconfig/libloc.pc
   /usr/share/man/man3/libloc.3.gz
+  /usr/share/man/man3/loc_as_cmp.3.gz
+  /usr/share/man/man3/loc_as_get_name.3.gz
+  /usr/share/man/man3/loc_as_get_number.3.gz
+  /usr/share/man/man3/loc_as_list_append.3.gz
+  /usr/share/man/man3/loc_as_list_clear.3.gz
+  /usr/share/man/man3/loc_as_list_contains.3.gz
+  /usr/share/man/man3/loc_as_list_contains_number.3.gz
+  /usr/share/man/man3/loc_as_list_empty.3.gz
+  /usr/share/man/man3/loc_as_list_get.3.gz
+  /usr/share/man/man3/loc_as_list_new.3.gz
+  /usr/share/man/man3/loc_as_list_ref.3.gz
+  /usr/share/man/man3/loc_as_list_size.3.gz
+  /usr/share/man/man3/loc_as_list_sort.3.gz
+  /usr/share/man/man3/loc_as_list_unref.3.gz
+  /usr/share/man/man3/loc_as_new.3.gz
+  /usr/share/man/man3/loc_as_ref.3.gz
+  /usr/share/man/man3/loc_as_set_name.3.gz
+  /usr/share/man/man3/loc_as_unref.3.gz
+  /usr/share/man/man3/loc_country_cmp.3.gz
+  /usr/share/man/man3/loc_country_code_is_valid.3.gz
+  /usr/share/man/man3/loc_country_get_code.3.gz
+  /usr/share/man/man3/loc_country_get_continent_code.3.gz
+  /usr/share/man/man3/loc_country_get_name.3.gz
+  /usr/share/man/man3/loc_country_list_append.3.gz
+  /usr/share/man/man3/loc_country_list_clear.3.gz
+  /usr/share/man/man3/loc_country_list_contains.3.gz
+  /usr/share/man/man3/loc_country_list_contains_code.3.gz
+  /usr/share/man/man3/loc_country_list_empty.3.gz
+  /usr/share/man/man3/loc_country_list_get.3.gz
+  /usr/share/man/man3/loc_country_list_new.3.gz
+  /usr/share/man/man3/loc_country_list_ref.3.gz
+  /usr/share/man/man3/loc_country_list_size.3.gz
+  /usr/share/man/man3/loc_country_list_sort.3.gz
+  /usr/share/man/man3/loc_country_list_unref.3.gz
+  /usr/share/man/man3/loc_country_new.3.gz
+  /usr/share/man/man3/loc_country_ref.3.gz
+  /usr/share/man/man3/loc_country_set_continent_code.3.gz
+  /usr/share/man/man3/loc_country_set_name.3.gz
+  /usr/share/man/man3/loc_country_special_code_to_flag.3.gz
+  /usr/share/man/man3/loc_country_unref.3.gz
   /usr/share/man/man3/loc_database_count_as.3.gz
+  /usr/share/man/man3/loc_database_created_at.3.gz
+  /usr/share/man/man3/loc_database_enumerator_get_asns.3.gz
+  /usr/share/man/man3/loc_database_enumerator_get_countries.3.gz
+  /usr/share/man/man3/loc_database_enumerator_new.3.gz
+  /usr/share/man/man3/loc_database_enumerator_next_as.3.gz
+  /usr/share/man/man3/loc_database_enumerator_next_country.3.gz
+  /usr/share/man/man3/loc_database_enumerator_next_network.3.gz
+  /usr/share/man/man3/loc_database_enumerator_ref.3.gz
+  /usr/share/man/man3/loc_database_enumerator_set_asns.3.gz
+  /usr/share/man/man3/loc_database_enumerator_set_countries.3.gz
+  /usr/share/man/man3/loc_database_enumerator_set_family.3.gz
+  /usr/share/man/man3/loc_database_enumerator_set_flag.3.gz
+  /usr/share/man/man3/loc_database_enumerator_set_string.3.gz
+  /usr/share/man/man3/loc_database_enumerator_unref.3.gz
   /usr/share/man/man3/loc_database_get_as.3.gz
   /usr/share/man/man3/loc_database_get_country.3.gz
+  /usr/share/man/man3/loc_database_get_description.3.gz
+  /usr/share/man/man3/loc_database_get_license.3.gz
+  /usr/share/man/man3/loc_database_get_vendor.3.gz
   /usr/share/man/man3/loc_database_lookup.3.gz
+  /usr/share/man/man3/loc_database_lookup_from_string.3.gz
   /usr/share/man/man3/loc_database_new.3.gz
+  /usr/share/man/man3/loc_database_open.3.gz
+  /usr/share/man/man3/loc_database_ref.3.gz
+  /usr/share/man/man3/loc_database_reload.3.gz
+  /usr/share/man/man3/loc_database_set_reload_interval.3.gz
+  /usr/share/man/man3/loc_database_unref.3.gz
+  /usr/share/man/man3/loc_database_verify.3.gz
+  /usr/share/man/man3/loc_discover_latest_version.3.gz
   /usr/share/man/man3/loc_get_log_priority.3.gz
+  /usr/share/man/man3/loc_network_address_family.3.gz
+  /usr/share/man/man3/loc_network_cmp.3.gz
+  /usr/share/man/man3/loc_network_exclude.3.gz
+  /usr/share/man/man3/loc_network_exclude_list.3.gz
+  /usr/share/man/man3/loc_network_format_first_address.3.gz
+  /usr/share/man/man3/loc_network_format_last_address.3.gz
+  /usr/share/man/man3/loc_network_get_asn.3.gz
+  /usr/share/man/man3/loc_network_get_country_code.3.gz
+  /usr/share/man/man3/loc_network_get_first_address.3.gz
+  /usr/share/man/man3/loc_network_get_last_address.3.gz
+  /usr/share/man/man3/loc_network_has_flag.3.gz
+  /usr/share/man/man3/loc_network_is_subnet.3.gz
+  /usr/share/man/man3/loc_network_list_clear.3.gz
+  /usr/share/man/man3/loc_network_list_contains.3.gz
+  /usr/share/man/man3/loc_network_list_dump.3.gz
+  /usr/share/man/man3/loc_network_list_empty.3.gz
+  /usr/share/man/man3/loc_network_list_get.3.gz
+  /usr/share/man/man3/loc_network_list_merge.3.gz
+  /usr/share/man/man3/loc_network_list_new.3.gz
+  /usr/share/man/man3/loc_network_list_pop.3.gz
+  /usr/share/man/man3/loc_network_list_pop_first.3.gz
+  /usr/share/man/man3/loc_network_list_push.3.gz
+  /usr/share/man/man3/loc_network_list_ref.3.gz
+  /usr/share/man/man3/loc_network_list_size.3.gz
+  /usr/share/man/man3/loc_network_list_unref.3.gz
+  /usr/share/man/man3/loc_network_matches_address.3.gz
+  /usr/share/man/man3/loc_network_matches_country_code.3.gz
+  /usr/share/man/man3/loc_network_new.3.gz
+  /usr/share/man/man3/loc_network_new_from_string.3.gz
+  /usr/share/man/man3/loc_network_overlaps.3.gz
+  /usr/share/man/man3/loc_network_prefix.3.gz
+  /usr/share/man/man3/loc_network_ref.3.gz
+  /usr/share/man/man3/loc_network_reverse_pointer.3.gz
+  /usr/share/man/man3/loc_network_set_asn.3.gz
+  /usr/share/man/man3/loc_network_set_country_code.3.gz
+  /usr/share/man/man3/loc_network_set_flag.3.gz
+  /usr/share/man/man3/loc_network_str.3.gz
+  /usr/share/man/man3/loc_network_subnets.3.gz
+  /usr/share/man/man3/loc_network_unref.3.gz
   /usr/share/man/man3/loc_new.3.gz
+  /usr/share/man/man3/loc_ref.3.gz
+  /usr/share/man/man3/loc_set_log_callback.3.gz
   /usr/share/man/man3/loc_set_log_fn.3.gz
   /usr/share/man/man3/loc_set_log_priority.3.gz
+  /usr/share/man/man3/loc_unref.3.gz
+  /usr/share/man/man3/loc_writer_add_as.3.gz
+  /usr/share/man/man3/loc_writer_add_country.3.gz
+  /usr/share/man/man3/loc_writer_add_network.3.gz
+  /usr/share/man/man3/loc_writer_get_description.3.gz
+  /usr/share/man/man3/loc_writer_get_license.3.gz
+  /usr/share/man/man3/loc_writer_get_vendor.3.gz
+  /usr/share/man/man3/loc_writer_new.3.gz
+  /usr/share/man/man3/loc_writer_ref.3.gz
+  /usr/share/man/man3/loc_writer_set_description.3.gz
+  /usr/share/man/man3/loc_writer_set_license.3.gz
+  /usr/share/man/man3/loc_writer_set_vendor.3.gz
+  /usr/share/man/man3/loc_writer_unref.3.gz
+  /usr/share/man/man3/loc_writer_write.3.gz
+  /usr/share/man/man3/lua-location.3.gz
+  /usr/share/man/man3/python-location.3.gz
 
 (lua-libloc)
   /usr/lib/lua/5.3/location.dll
@@ -145,6 +264,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.9.20-1bl1 -----
+Version bump.
 
 ----- version 0.9.19-1bl1 -----
 Version bump.

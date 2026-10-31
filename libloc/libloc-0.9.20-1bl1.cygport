@@ -27,6 +27,16 @@ src_test()
 	PATH=${B}/src/.libs:${PATH} cygmake check
 }
 
+src_install()
+{
+	cd ${B}
+	cygmake install DESTDIR=${D}
+
+	# The Lua and Python modules are dlopen()ed, so their import libraries
+	# are of no use, and cygport dep can't resolve them
+	verbose rm -f ${D}/usr/lib/lua/5.3/*.dll.a ${D}/usr/lib/python3.12/site-packages/*.dll.a
+}
+
 PKG_NAMES="
 	libloc
 	libloc1

@@ -1,0 +1,206 @@
+--- origsrc/libmbim-1.34.0/src/libmbim-glib/mbim-helpers-netlink.c	2026-01-03 19:02:47.000000000 +0000
++++ src/libmbim-1.34.0/src/libmbim-glib/mbim-helpers-netlink.c	2026-10-31 22:27:42.171664500 +0000
+@@ -11,6 +11,8 @@
+  *   Copyright (C) 2021 Aleksander Morgado <aleksander@aleksander.es>
+  */
+ 
++#if defined(__linux__)
++
+ #include <linux/if_link.h>
+ #include <linux/netlink.h>
+ #include <linux/rtnetlink.h>
+@@ -326,3 +328,5 @@ mbim_helpers_netlink_set_callback (GSour
+                            NULL);
+     g_source_attach (*source, g_main_context_get_thread_default ());
+ }
++
++#endif /* __linux__ */
+--- origsrc/libmbim-1.34.0/src/libmbim-glib/mbim-helpers-netlink.h	2026-01-03 19:02:47.000000000 +0000
++++ src/libmbim-1.34.0/src/libmbim-glib/mbim-helpers-netlink.h	2026-10-31 22:27:42.171664500 +0000
+@@ -23,6 +23,8 @@
+ 
+ G_BEGIN_DECLS
+ 
++#if defined(__linux__)
++
+ typedef GByteArray NetlinkMessage;
+ 
+ typedef struct {
+@@ -98,6 +100,8 @@ void mbim_helpers_netlink_set_callback (
+                                         GSocket     *socket,
+                                         GHashTable  *transactions);
+ 
++#endif /* __linux__ */
++
+ G_END_DECLS
+ 
+ #endif /* _LIBMBIM_GLIB_MBIM_HELPERS_NETLINK_H_ */
+--- origsrc/libmbim-1.34.0/src/libmbim-glib/mbim-net-port-manager-wdm.c	2026-01-03 19:02:47.000000000 +0000
++++ src/libmbim-1.34.0/src/libmbim-glib/mbim-net-port-manager-wdm.c	2026-10-31 22:27:42.171664500 +0000
+@@ -11,6 +11,7 @@
+  *   Copyright (C) 2021 Aleksander Morgado <aleksander@aleksander.es>
+  */
+ 
++#if defined(__linux__)
+ #include <linux/if_link.h>
+ #include <linux/netlink.h>
+ #include <linux/rtnetlink.h>
+@@ -18,6 +19,7 @@
+ #include <net/if_arp.h>
+ #include <sys/socket.h>
+ #include <sys/types.h>
++#endif /* __linux__ */
+ #include <string.h>
+ 
+ #include "mbim-device.h"
+@@ -27,6 +29,8 @@
+ #include "mbim-net-port-manager-wdm.h"
+ #include "mbim-helpers-netlink.h"
+ 
++#if defined(__linux__)
++
+ G_DEFINE_TYPE (MbimNetPortManagerWdm, mbim_net_port_manager_wdm, MBIM_TYPE_NET_PORT_MANAGER)
+ 
+ /* alternative VLAN for IP session 0 if not untagged */
+@@ -260,3 +264,16 @@ mbim_net_port_manager_wdm_class_init (Mb
+     net_port_manager_class->add_link = mbim_net_port_manager_wdm_add_link;
+     net_port_manager_class->add_link_finish = mbim_net_port_manager_wdm_add_link_finish;
+ }
++
++#else /* !__linux__ */
++
++MbimNetPortManagerWdm *
++mbim_net_port_manager_wdm_new (const gchar  *iface,
++                               GError      **error)
++{
++    g_set_error (error, MBIM_CORE_ERROR, MBIM_CORE_ERROR_UNSUPPORTED,
++                 "Link management is only supported on Linux");
++    return NULL;
++}
++
++#endif /* __linux__ */
+--- origsrc/libmbim-1.34.0/src/libmbim-glib/mbim-net-port-manager-wwan.c	2026-01-03 19:02:47.000000000 +0000
++++ src/libmbim-1.34.0/src/libmbim-glib/mbim-net-port-manager-wwan.c	2026-10-31 22:27:42.173675100 +0000
+@@ -11,6 +11,7 @@
+  *   Copyright (C) 2021 Aleksander Morgado <aleksander@aleksander.es>
+  */
+ 
++#if defined(__linux__)
+ #include <linux/if_link.h>
+ #include <linux/netlink.h>
+ #include <linux/rtnetlink.h>
+@@ -24,6 +25,7 @@
+ #include <net/if_arp.h>
+ #include <sys/socket.h>
+ #include <sys/types.h>
++#endif /* __linux__ */
+ #include <string.h>
+ 
+ #include "mbim-device.h"
+@@ -33,6 +35,8 @@
+ #include "mbim-net-port-manager-wwan.h"
+ #include "mbim-helpers-netlink.h"
+ 
++#if defined(__linux__)
++
+ G_DEFINE_TYPE (MbimNetPortManagerWwan, mbim_net_port_manager_wwan, MBIM_TYPE_NET_PORT_MANAGER)
+ 
+ #define WWAN_DATA_TYPE "wwan"
+@@ -243,3 +247,15 @@ mbim_net_port_manager_wwan_class_init (M
+     net_port_manager_class->add_link = mbim_net_port_manager_wwan_add_link;
+     net_port_manager_class->add_link_finish = mbim_net_port_manager_wwan_add_link_finish;
+ }
++
++#else /* !__linux__ */
++
++MbimNetPortManagerWwan *
++mbim_net_port_manager_wwan_new (GError **error)
++{
++    g_set_error (error, MBIM_CORE_ERROR, MBIM_CORE_ERROR_UNSUPPORTED,
++                 "Link management is only supported on Linux");
++    return NULL;
++}
++
++#endif /* __linux__ */
+--- origsrc/libmbim-1.34.0/src/libmbim-glib/mbim-net-port-manager.c	2026-01-03 19:02:47.000000000 +0000
++++ src/libmbim-1.34.0/src/libmbim-glib/mbim-net-port-manager.c	2026-10-31 22:27:42.173675100 +0000
+@@ -10,10 +10,12 @@
+  *   Copyright (C) 2020-2021 Andrew Lassalle <andrewlassalle@chromium.org>
+  */
+ 
++#if defined(__linux__)
+ #include <linux/if_link.h>
+ #include <linux/netlink.h>
+ #include <linux/rtnetlink.h>
+ #include <net/if.h>
++#endif /* __linux__ */
+ 
+ #include "mbim-device.h"
+ #include "mbim-helpers.h"
+@@ -122,6 +124,8 @@ mbim_net_port_manager_list_links (MbimNe
+ }
+ 
+ /*****************************************************************************/
++#if defined(__linux__)
++
+ /* Default implementations */
+ 
+ static gboolean
+@@ -283,6 +287,8 @@ net_port_manager_del_all_links (MbimNetP
+ 
+ /*****************************************************************************/
+ 
++#endif /* __linux__ */
++
+ GHashTable *
+ mbim_net_port_manager_peek_transactions (MbimNetPortManager *self)
+ {
+@@ -307,6 +313,8 @@ mbim_net_port_manager_peek_socket (MbimN
+     return self->priv->socket;
+ }
+ 
++#if defined(__linux__)
++
+ void
+ mbim_net_port_manager_common_setup (MbimNetPortManager *self,
+                                     const gchar        *iface,
+@@ -325,6 +333,8 @@ mbim_net_port_manager_common_setup (Mbim
+                                        self->priv->transactions);
+ }
+ 
++#endif /* __linux__ */
++
+ gchar *
+ mbim_net_port_manager_util_session_id_to_ifname (const gchar *ifname_prefix,
+                                                  guint        session_id)
+@@ -337,6 +347,7 @@ gboolean
+ mbim_net_port_manager_util_get_first_free_session_id (const gchar *ifname_prefix,
+                                                       guint       *session_id)
+ {
++#if defined(__linux__)
+     guint i;
+ 
+     /* The minimum session id is really 0 (MBIM_DEVICE_SESSION_ID_MIN), but
+@@ -353,6 +364,11 @@ mbim_net_port_manager_util_get_first_fre
+     }
+ 
+     return FALSE;
++#else
++    /* Interface indexes are only looked up through netlink-based managers */
++    return FALSE;
++#endif /* __linux__ */
++
+ }
+ 
+ /*****************************************************************************/
+@@ -385,8 +401,10 @@ mbim_net_port_manager_class_init (MbimNe
+ 
+     object_class->finalize = finalize;
+ 
++#if defined(__linux__)
+     klass->del_link = net_port_manager_del_link;
+     klass->del_link_finish = net_port_manager_del_link_finish;
+     klass->del_all_links = net_port_manager_del_all_links;
+     klass->del_all_links_finish = net_port_manager_del_all_links_finish;
++#endif /* __linux__ */
+ }

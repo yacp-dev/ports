@@ -1,16 +1,24 @@
 HOMEPAGE="https://www.freedesktop.org/wiki/Software/${PN}/"
-SRC_URI="https://www.freedesktop.org/software/${PN}/${P}.tar.xz"
+SRC_URI="https://gitlab.freedesktop.org/mobile-broadband/${PN}/-/archive/${PV}/${P}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Glib-based library for talking to WWAN modems and devices"
 DESCRIPTION="libmbim is a glib-based library for talking to WWAN modems and devices which
 speak the Mobile Interface Broadband Model (MBIM) protocol."
 
+LICENSE="GPL-2.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.1-or-later"
+LICENSE_URI="LICENSES/GPL-2.0-or-later.txt"
+
 BUILD_REQUIRES="
+	bash-completion-devel
 	gobject-introspection
+	help2man
 	libgirepository1.0-devel
 	libglib2.0-devel
 "
+
+inherit meson
 
 export CPPFLAGS="${CPPFLAGS} -D__USE_LINUX_IOCTL_DEFS"
 
@@ -28,7 +36,7 @@ libmbim_CONTENTS="
 	usr/share/man
 "
 libmbim_glib4_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygmbim-glib-4.dll
 "
 libmbim_glib_devel_CONTENTS="
 	usr/include

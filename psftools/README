@@ -4,41 +4,41 @@ The PSF Tools are an attempt to do something similar to NetPBM, for simple
 fixed-width bitmap fonts.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libpsf-devel-1.1.2-1bl1
-  libpsf0-1.1.2-1bl1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libpsf-devel-1.1.3-1bl1
+  libpsf0-1.1.3-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://www.seasip.info/Unix/PSF/
 
 Canonical download:
-  https://www.seasip.info/Unix/PSF/psftools-1.1.2.tar.gz
+  https://www.seasip.info/Unix/PSF/psftools-1.1.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack psftools-1.1.2-X-src.tar.xz
+  1. unpack psftools-1.1.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./psftools-1.1.2-X.cygport all
+        % cygport ./psftools-1.1.3-X.cygport all
 
 This will create:
-  /usr/src/psftools-1.1.2-X-src.tar.xz
-  /usr/src/psftools-1.1.2-X.tar.xz
-  /usr/src/libpsf0-1.1.2-X.tar.xz
-  /usr/src/libpsf-devel-1.1.2-X.tar.xz
+  /usr/src/psftools-1.1.3-X-src.tar.xz
+  /usr/src/psftools-1.1.3-X.tar.xz
+  /usr/src/libpsf0-1.1.3-X.tar.xz
+  /usr/src/libpsf-devel-1.1.3-X.tar.xz
 
 -------------------------------------------
 
@@ -70,12 +70,14 @@ Files included in the binary package:
   /usr/bin/psf2wyse.exe
   /usr/bin/psf2xbm.exe
   /usr/bin/psf2zx.exe
+  /usr/bin/psfdiff.exe
   /usr/bin/psfjoin.exe
   /usr/bin/psfmerge.exe
   /usr/bin/psfpages.exe
   /usr/bin/psfs2cpi.exe
   /usr/bin/psfs2mda.exe
   /usr/bin/psfxform.exe
+  /usr/bin/psfxsaa.exe
   /usr/bin/raw2psf.exe
   /usr/bin/txt2psf.exe
   /usr/bin/txt2vfont.exe
@@ -85,6 +87,7 @@ Files included in the binary package:
   /usr/bin/vfont2psf.exe
   /usr/bin/vfont2txt.exe
   /usr/bin/vfontxform.exe
+  /usr/bin/vfontxsaa.exe
   /usr/bin/wof2psf.exe
   /usr/bin/wyse2psf.exe
   /usr/bin/zx2psf.exe
@@ -117,12 +120,14 @@ Files included in the binary package:
   /usr/share/man/man1/psf2wyse.1.gz
   /usr/share/man/man1/psf2xbm.1.gz
   /usr/share/man/man1/psf2zx.1.gz
+  /usr/share/man/man1/psfdiff.1.gz
   /usr/share/man/man1/psfjoin.1.gz
   /usr/share/man/man1/psfmerge.1.gz
   /usr/share/man/man1/psfpages.1.gz
   /usr/share/man/man1/psfs2cpi.1.gz
   /usr/share/man/man1/psfs2mda.1.gz
   /usr/share/man/man1/psfxform.1.gz
+  /usr/share/man/man1/psfxsaa.1.gz
   /usr/share/man/man1/raw2psf.1.gz
   /usr/share/man/man1/txt2psf.1.gz
   /usr/share/man/man1/txt2vfont.1.gz
@@ -132,6 +137,7 @@ Files included in the binary package:
   /usr/share/man/man1/vfont2psf.1.gz
   /usr/share/man/man1/vfont2txt.1.gz
   /usr/share/man/man1/vfontxform.1.gz
+  /usr/share/man/man1/vfontxsaa.1.gz
   /usr/share/man/man1/wof2psf.1.gz
   /usr/share/man/man1/wyse2psf.1.gz
   /usr/share/man/man1/zx2psf.1.gz
@@ -149,6 +155,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.3-1bl1 -----
+Version bump.
 
 ----- version 1.1.2-1bl1 -----
 Version bump.

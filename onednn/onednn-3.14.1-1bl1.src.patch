@@ -1,6 +1,6 @@
---- origsrc/oneDNN-3.10.2/CMakeLists.txt	2025-12-03 02:10:05.000000000 +0900
-+++ src/oneDNN-3.10.2/CMakeLists.txt	2026-01-29 16:14:43.076250200 +0900
-@@ -166,3 +166,10 @@ else()
+--- origsrc/oneDNN-3.14.1/CMakeLists.txt	2026-10-29 20:12:10.000000000 +0000
++++ src/oneDNN-3.14.1/CMakeLists.txt	2026-10-31 11:31:44.123215900 +0000
+@@ -176,3 +176,10 @@ else()
      install(FILES THIRD-PARTY-PROGRAMS DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/${LIB_PACKAGE_NAME})
      install(FILES ${PROJECT_BINARY_DIR}/README DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/${LIB_PACKAGE_NAME})
  endif()
@@ -11,9 +11,9 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/onednn.pc.in ${CMAKE_BINARY_DIR}/onednn.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/onednn.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/oneDNN-3.10.2/cmake/SDL.cmake	2025-12-03 02:10:05.000000000 +0900
-+++ src/oneDNN-3.10.2/cmake/SDL.cmake	2026-01-29 16:14:43.076250200 +0900
-@@ -77,7 +77,7 @@ if(UNIX)
+--- origsrc/oneDNN-3.14.1/cmake/SDL.cmake	2026-10-29 20:12:10.000000000 +0000
++++ src/oneDNN-3.14.1/cmake/SDL.cmake	2026-10-31 11:31:44.123531500 +0000
+@@ -78,7 +78,7 @@ if(UNIX)
      endif()
      if(APPLE)
          append(ONEDNN_SDL_LINKER_FLAGS "-Wl,-bind_at_load")
@@ -22,8 +22,8 @@
          # Only applies to executables.
          append(CMAKE_EXE_LINKER_FLAGS "-pie")
          append(ONEDNN_SDL_LINKER_FLAGS "-Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now")
---- origsrc/oneDNN-3.10.2/onednn.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/oneDNN-3.10.2/onednn.pc.in	2026-01-29 16:14:43.084184900 +0900
+--- origsrc/oneDNN-3.14.1/onednn.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/oneDNN-3.14.1/onednn.pc.in	2026-10-31 11:31:44.123531500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -35,8 +35,8 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -ldnnl
 +Cflags: -I${includedir}
---- origsrc/oneDNN-3.10.2/src/common/tag_traits.hpp	2025-12-03 02:10:05.000000000 +0900
-+++ src/oneDNN-3.10.2/src/common/tag_traits.hpp	2026-01-29 16:14:43.088207800 +0900
+--- origsrc/oneDNN-3.14.1/src/common/tag_traits.hpp	2026-10-29 20:12:10.000000000 +0000
++++ src/oneDNN-3.14.1/src/common/tag_traits.hpp	2026-10-31 11:31:44.125550000 +0000
 @@ -23,6 +23,13 @@
  #include "c_types_map.hpp"
  #include "utils.hpp"

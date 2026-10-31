@@ -1,0 +1,81 @@
+--- origsrc/open62541-1.5.10/arch/posix/eventloop_posix.c	2026-10-31 23:06:56.040777366 +0900
++++ src/open62541-1.5.10/arch/posix/eventloop_posix.c	2026-10-31 23:06:56.895583993 +0900
+@@ -703,8 +703,10 @@
+ #ifndef UA_ARCHITECTURE_WIN32
+     int res = UA_setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR,
+                             (const char*)&enableReuseVal, sizeof(enableReuseVal));
++#if defined(SO_REUSEPORT)
+     res |= UA_setsockopt(sockfd, SOL_SOCKET, SO_REUSEPORT,
+                             (const char*)&enableReuseVal, sizeof(enableReuseVal));
++#endif
+     return (res == 0) ? UA_STATUSCODE_GOOD : UA_STATUSCODE_BADINTERNALERROR;
+ #else
+     int res = UA_setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR,
+--- origsrc/open62541-1.5.10/CMakeLists.txt	2026-10-31 23:06:55.252579738 +0900
++++ src/open62541-1.5.10/CMakeLists.txt	2026-10-31 23:06:56.898218567 +0900
+@@ -535,7 +535,7 @@
+     # use the OpenSSL encryption library
+     # https://cmake.org/cmake/help/v3.13/module/FindOpenSSL.html
+     find_package(OpenSSL REQUIRED)
+-    list(APPEND open62541_LIBRARIES "${OPENSSL_LIBRARIES}")
++    list(APPEND open62541_LIBRARIES "${_OPENSSL_LIBRARIES}")
+     list(APPEND pkgcfg_requiresprivate "openssl")
+ endif()
+ 
+--- origsrc/open62541-1.5.10/examples/CMakeLists.txt	2026-10-31 23:06:55.999659270 +0900
++++ src/open62541-1.5.10/examples/CMakeLists.txt	2026-10-31 23:06:56.898876648 +0900
+@@ -133,7 +133,11 @@
+    UA_ENABLE_ENCRYPTION STREQUAL "MBEDTLS" OR
+    UA_ENABLE_ENCRYPTION STREQUAL "OPENSSL")
+     add_example(server_encryption encryption/server_encryption.c)
+-    add_example(server_encryption_filestore encryption/server_encryption_filestore.c)
++    # The filestore plugin is built only for Linux, Win32, Apple and OpenBSD
++    # (plugins/crypto/*_filestore.c, UA_ServerConfig_setDefaultWithFilestore)
++    if(CMAKE_SYSTEM_NAME MATCHES "^(Linux|Windows|Darwin|OpenBSD)$")
++        add_example(server_encryption_filestore encryption/server_encryption_filestore.c)
++    endif()
+     add_example(client_encryption encryption/client_encryption.c)
+     target_include_directories(server_encryption PRIVATE "${PROJECT_SOURCE_DIR}/examples")
+     target_include_directories(client_encryption PRIVATE "${PROJECT_SOURCE_DIR}/examples")
+@@ -181,7 +185,8 @@
+ 
+     ## Apple does not implement timer functions required by one of the examples
+     ## And apple does not implement librt posix extension
+-    if(UA_ARCHITECTURE_POSIX AND NOT APPLE)
++    ## The state machine examples use ip_mreqn, which Cygwin does not have
++    if(UA_ARCHITECTURE_POSIX AND NOT APPLE AND NOT CYGWIN)
+         add_example(server_pubsub_publish_rt_state_machine
+                     pubsub_realtime/server_pubsub_publish_rt_state_machine.c)
+         target_link_libraries(server_pubsub_publish_rt_state_machine "rt")
+--- origsrc/open62541-1.5.10/tests/CMakeLists.txt	2026-10-31 23:06:55.321484980 +0900
++++ src/open62541-1.5.10/tests/CMakeLists.txt	2026-10-31 23:06:56.899933310 +0900
+@@ -35,6 +35,8 @@
+ include_directories("${PROJECT_SOURCE_DIR}/src/pubsub")
+ include_directories("${PROJECT_SOURCE_DIR}/src/client")
+ include_directories("${PROJECT_SOURCE_DIR}/src/util")
++# Tests include the OpenSSL plugin header as "crypto/openssl/..."
++include_directories("${PROJECT_SOURCE_DIR}/plugins")
+ # testing_clock.h
+ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/testing-plugins")
+ # #include <src_generated/<...>.h>
+@@ -389,7 +391,8 @@
+     ua_add_test(pubsub/check_pubsub_publishspeed.c)
+ 
+     ua_add_test(pubsub/check_pubsub_offset.c)
+-    if(UA_ARCHITECTURE_POSIX)
++    ## Joins a multicast group with ip_mreqn, which Cygwin does not have
++    if(UA_ARCHITECTURE_POSIX AND NOT CYGWIN)
+         ua_add_test(pubsub/check_pubsub_custom_state_machine.c)
+     endif()
+ 
+--- origsrc/open62541-1.5.10/tools/ua-cli/ua.c	2026-10-31 23:06:55.251597408 +0900
++++ src/open62541-1.5.10/tools/ua-cli/ua.c	2026-10-31 23:06:57.075361069 +0900
+@@ -11,6 +11,8 @@
+ #include <open62541/client_config_default.h>
+ #include <open62541/plugin/certificategroup_default.h>
+ 
++/* readline's headers use FILE and need <stdio.h> first */
++#include <stdio.h>
+ #include <readline/readline.h>
+ #include <readline/history.h>
+ 

@@ -15,11 +15,13 @@ library is platform independent. All platform-specific functionality is
 implemented via exchangeable plugins. Plugin implementations are provided for
 the major operating systems."
 
-LICENSE="MPL-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0"
+LICENSE="MPL-2.0 AND CC0-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0 AND CC0-1.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	check
+	libreadline-devel
 	libssl-devel
 	libsubunit-devel
 "
@@ -58,7 +60,7 @@ open62541_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libopen62541_1_4_CONTENTS="
+libopen62541_1_5_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libopen62541_devel_CONTENTS="
@@ -66,5 +68,5 @@ libopen62541_devel_CONTENTS="
 	usr/lib
 "
 open62541_SUMMARY="${SUMMARY} (utilities)"
-libopen62541_1_4_SUMMARY="${SUMMARY} (runtime)"
+libopen62541_1_5_SUMMARY="${SUMMARY} (runtime)"
 libopen62541_devel_SUMMARY="${SUMMARY} (development)"

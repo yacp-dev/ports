@@ -1,5 +1,5 @@
---- origsrc/openvr-2.12.14/CMakeLists.txt	2026-01-30 14:10:29.791356400 +0900
-+++ src/openvr-2.12.14/CMakeLists.txt	2026-01-30 14:10:43.016457700 +0900
+--- origsrc/openvr-2.15.6/CMakeLists.txt	2026-10-31 13:54:37.183850400 +0000
++++ src/openvr-2.15.6/CMakeLists.txt	2026-10-31 13:54:39.169591200 +0000
 @@ -47,7 +47,7 @@ if(WIN32)
      add_definitions(-DOPENVR_BUILD_STATIC)
    endif()
@@ -9,8 +9,8 @@
      set(PLATFORM_NAME "linux")
      add_definitions(-DLINUX -DPOSIX)
      if (CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
---- origsrc/openvr-2.12.14/headers/openvr_capi.h	2025-08-16 07:58:05.000000000 +0900
-+++ src/openvr-2.12.14/headers/openvr_capi.h	2026-01-30 14:10:43.019584900 +0900
+--- origsrc/openvr-2.15.6/headers/openvr_capi.h	2026-03-27 21:47:25.000000000 +0000
++++ src/openvr-2.15.6/headers/openvr_capi.h	2026-10-31 13:54:39.169894600 +0000
 @@ -24,7 +24,7 @@
  #endif
  
@@ -20,8 +20,8 @@
  	#if defined( OPENVR_API_EXPORTS )
  	#define S_API EXTERN_C __declspec( dllexport )
  	#elif defined( OPENVR_API_NODLL )
---- origsrc/openvr-2.12.14/src/CMakeLists.txt	2026-01-30 14:10:30.968041800 +0900
-+++ src/openvr-2.12.14/src/CMakeLists.txt	2026-01-30 14:10:43.021595300 +0900
+--- origsrc/openvr-2.15.6/src/CMakeLists.txt	2026-10-31 13:54:37.337905500 +0000
++++ src/openvr-2.15.6/src/CMakeLists.txt	2026-10-31 13:54:39.169894600 +0000
 @@ -114,11 +114,11 @@ endif()
  target_link_libraries(${LIBNAME} ${EXTRA_LIBS} ${CMAKE_DL_LIBS})
  target_include_directories(${LIBNAME} PUBLIC ${OPENVR_HEADER_DIR})

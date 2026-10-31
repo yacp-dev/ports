@@ -4,46 +4,45 @@ The Polyhedral Library (PolyLib for short) operates on objects made up of
 unions of polyhedra of any dimension.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  cygwin-devel-3.6.4-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
   libgmp-devel-6.3.0-1
   libgmp10-6.3.0-1
-  libpolylibgmp-devel-5.22.8-1bl1
-  libpolylibgmp8-5.22.8-1bl1
-  pkg-config-2.5.1-1
+  libpolylibgmp-devel-6.01-1bl1
+  libpolylibgmp10-6.01-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   libgmp-devel-6.3.0-1
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://icps.u-strasbg.fr/polylib/
 
 Canonical download:
-  https://icps.u-strasbg.fr/polylib/polylib_src/polylib-5.22.8.tar.gz
+  https://icps.u-strasbg.fr/polylib/polylib_src/polylib-6.01.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack polylib-5.22.8-X-src.tar.xz
+  1. unpack polylib-6.01-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./polylib-5.22.8-X.cygport all
+        % cygport ./polylib-6.01-X.cygport all
 
 This will create:
-  /usr/src/polylib-5.22.8-X-src.tar.xz
-  /usr/src/polylib-5.22.8-X.tar.xz
-  /usr/src/libpolylibgmp8-5.22.8-X.tar.xz
-  /usr/src/libpolylibgmp-devel-5.22.8-X.tar.xz
+  /usr/src/polylib-6.01-X-src.tar.xz
+  /usr/src/polylib-6.01-X.tar.xz
+  /usr/src/libpolylibgmp10-6.01-X.tar.xz
+  /usr/src/libpolylibgmp-devel-6.01-X.tar.xz
 
 -------------------------------------------
 
@@ -65,16 +64,14 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/polylib.README
   /usr/share/doc/polylib/AUTHORS
   /usr/share/doc/polylib/COPYING
+  /usr/share/doc/polylib/ChangeLog
   /usr/share/doc/polylib/Changes
   /usr/share/doc/polylib/NEWS
   /usr/share/doc/polylib/PI-1330.ps.gz
-  /usr/share/doc/polylib/PI-785.ps.gz
   /usr/share/doc/polylib/README
-  /usr/share/doc/polylib/doc.pdf.tar.gz
-  /usr/share/doc/polylib/parampoly-doc.ps.gz
 
-(libpolylibgmp8)
-  /usr/bin/cygpolylibgmp-8.dll
+(libpolylibgmp10)
+  /usr/bin/cygpolylibgmp-10.dll
 
 (libpolylibgmp-devel)
   /usr/include/polylib/Lattice.h
@@ -110,6 +107,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 6.01-1bl1 -----
+Version bump.
 
 ----- version 5.22.8-1bl1 -----
 Version bump.

@@ -1,0 +1,43 @@
+--- origsrc/libosip2-5.3.2/src/osipparser2/osip_port.c	2021-05-03 19:43:11.000000000 +0000
++++ src/libosip2-5.3.2/src/osipparser2/osip_port.c	2026-10-31 13:57:32.919995200 +0000
+@@ -877,7 +877,7 @@ int __osip_port_gettimeofday(struct time
+   tp->tv_usec = timebuffer.millitm * 1000;
+   return OSIP_SUCCESS;
+ }
+-#elif defined(__linux)
++#elif defined(__linux) || defined(__CYGWIN__)
+ #include <sys/time.h>
+ #define __osip_port_gettimeofday gettimeofday
+ #elif defined(__APPLE__)
+--- origsrc/libosip2-5.3.2/src/test/Makefile.am	2020-07-25 16:00:35.000000000 +0000
++++ src/libosip2-5.3.2/src/test/Makefile.am	2026-10-31 13:57:32.922013000 +0000
+@@ -65,7 +65,7 @@ check:
+ 	@echo " *******************************"
+ 	@echo " ****** starting tests! ********"
+ 	@echo " *******************************"
+-	@./$(top_srcdir)/src/test/tst ./$(top_srcdir)/src/test/res -c
++	@$(top_srcdir)/src/test/tst $(top_srcdir)/src/test/res -c
+ 
+ 	@echo ""
+ 	@echo "In case you have a doubt, send the generated"
+--- origsrc/libosip2-5.3.2/src/test/torture.c	2026-07-14 14:57:26.000000000 +0000
++++ src/libosip2-5.3.2/src/test/torture.c	2026-10-31 13:57:32.922013000 +0000
+@@ -118,15 +118,15 @@ int main(int argc, char **argv) {
+ 
+   osip_free(msg);
+   fclose(torture_file);
+-#ifdef __linux
+-
++  /* The exit status is what src/test/tst counts. Without this, non-Linux
++     builds return success (e.g. -5 for a malformed message the test expects
++     to fail) and tst counts a passing test as failed. */
+   if (success != expected_error)
+     exit(EXIT_FAILURE);
+ 
+   else
+     exit(EXIT_SUCCESS);
+ 
+-#endif
+   return success;
+ }
+ 

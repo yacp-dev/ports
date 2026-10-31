@@ -7,8 +7,8 @@ DESCRIPTION="oSIP is an LGPL implementation of SIP. It's stable, portable, flexi
 compliant! -may be more-! It is used mostly with eXosip2 stack (GPL) which
 provides simpler API for User-Agent implementation."
 
-LICENSE="LGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE="LGPL-2.1-or-later AND RSA-MD"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND RSA-MD"
 LICENSE_URI="COPYING"
 
 CYGCONF_ARGS="

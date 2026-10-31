@@ -1,0 +1,11 @@
+--- origsrc/openslide-4.0.1/meson.build	2026-10-31 22:40:16.196528608 +0900
++++ src/openslide-4.0.1/meson.build	2026-10-31 22:40:16.267191330 +0900
+@@ -136,7 +136,7 @@
+ jpeg_dep = dependency('libjpeg')
+ png_dep = dependency(
+   'libpng',
+-  version : '>1.2',
++  version : '>=1.4',
+ )
+ openjpeg_dep = dependency(
+   'libopenjp2',

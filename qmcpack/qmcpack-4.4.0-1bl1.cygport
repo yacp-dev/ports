@@ -6,11 +6,17 @@ SUMMARY="Open-source production level many-body ab initio Quantum Monte Carlo co
 DESCRIPTION="Open-source production level many-body ab initio Quantum Monte Carlo code for
 computing the electronic structure of atoms, molecules, and solids."
 
-LICENSE="NCSA"
-LICENSE_SPDX="SPDX-License-Identifier: NCSA"
+LICENSE="NCSA AND BSL-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: NCSA AND BSL-1.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libfftw3-devel libhdf5-devel liblapack-devel libopenmpi-devel libxml2-devel"
+BUILD_REQUIRES="
+	libfftw3-devel
+	libhdf5-devel
+	liblapack-devel
+	libopenmpi-devel
+	libxml2-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

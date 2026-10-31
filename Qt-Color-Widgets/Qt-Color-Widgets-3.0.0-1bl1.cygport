@@ -1,15 +1,28 @@
 HOMEPAGE="https://gitlab.com/mattbas/${PN}"
-SRC_URI="https://gitlab.com/mattbas/${PN}/-/archive/v${PV}/${PN}-v${PV}.tar.bz2"
-SRC_DIR="${PN}-v${PV}"
+SRC_URI="https://gitlab.com/mattbas/${PN}/-/archive/${PV}/${PN}-${PV}.tar.bz2"
+SRC_DIR="${PN}-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="Qt (C++) widgets to manage color inputs"
 DESCRIPTION="Here is a color dialog that is more user-friendly than the default
 QColorDialog and several other color-related widgets."
 
-BUILD_REQUIRES="libQt5Core-devel libQt5Gui-devel"
+LICENSE="LGPL-3.0-or-later AND BSD-2-Clause AND CC-BY-SA-4.0"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later AND BSD-2-Clause AND CC-BY-SA-4.0"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libQt5Core-devel
+	libQt5Gui-devel
+"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCOLOR_WIDGETS_QT_SUFFIX:BOOL=ON
+	-DQT_VERSION:STRING=5
+"
 
 PKG_NAMES="
 	Qt-Color-Widgets
@@ -20,7 +33,7 @@ Qt_Color_Widgets_CONTENTS="
 	usr/share
 "
 libQtColorWidgets_Qt52_2_CONTENTS="
-	usr/bin
+	usr/bin/cygQtColorWidgets-Qt52-2.dll
 "
 libQtColorWidgets_Qt52_devel_CONTENTS="
 	usr/include

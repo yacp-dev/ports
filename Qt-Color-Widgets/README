@@ -4,46 +4,45 @@ Here is a color dialog that is more user-friendly than the default QColorDialog
 and several other color-related widgets.
 
 Runtime requirements:
-  cygwin-3.2.0-1
+  cygwin-3.6.12-1
   libQt5Core5-5.9.4-2
   libQt5Gui5-5.9.4-2
-  libQtColorWidgets-Qt52-devel-2.2.0-1bl1
-  libQtColorWidgets-Qt52_2-2.2.0-1bl1
-  libgcc1-11.2.0-1
-  libstdc++6-11.2.0-1
-  pkg-config-1.6.3-1
+  libQtColorWidgets-Qt52-devel-3.0.0-1bl1
+  libQtColorWidgets-Qt52_2-3.0.0-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-1
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
   libQt5Gui-devel-5.9.4-2
-  ninja-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://gitlab.com/mattbas/Qt-Color-Widgets
 
 Canonical download:
-  https://gitlab.com/mattbas/Qt-Color-Widgets/-/archive/v2.2.0/Qt-Color-Widgets-v2.2.0.tar.bz2
+  https://gitlab.com/mattbas/Qt-Color-Widgets/-/archive/3.0.0/Qt-Color-Widgets-3.0.0.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack Qt-Color-Widgets-2.2.0-X-src.tar.xz
+  1. unpack Qt-Color-Widgets-3.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./Qt-Color-Widgets-2.2.0-X.cygport all
+        % cygport ./Qt-Color-Widgets-3.0.0-X.cygport all
 
 This will create:
-  /usr/src/Qt-Color-Widgets-2.2.0-X-src.tar.xz
-  /usr/src/Qt-Color-Widgets-2.2.0-X.tar.xz
-  /usr/src/libQtColorWidgets-Qt52_2-2.2.0-X.tar.xz
-  /usr/src/libQtColorWidgets-Qt52-devel-2.2.0-X.tar.xz
+  /usr/src/Qt-Color-Widgets-3.0.0-X-src.tar.xz
+  /usr/src/Qt-Color-Widgets-3.0.0-X.tar.xz
+  /usr/src/libQtColorWidgets-Qt52_2-3.0.0-X.tar.xz
+  /usr/src/libQtColorWidgets-Qt52-devel-3.0.0-X.tar.xz
 
 -------------------------------------------
 
@@ -97,12 +96,13 @@ Files included in the binary package:
   /usr/include/QtColorWidgets/gradient_slider.hpp
   /usr/include/QtColorWidgets/harmony_color_wheel.hpp
   /usr/include/QtColorWidgets/hue_slider.hpp
+  /usr/include/QtColorWidgets/qt_compatibility.hpp
   /usr/include/QtColorWidgets/swatch.hpp
-  /usr/lib/cmake/QtColorWidgets-Qt52/QtColorWidgets-Qt52-release.cmake
+  /usr/lib/cmake/QtColorWidgets-Qt52/QtColorWidgets-Qt52-relwithdebinfo.cmake
   /usr/lib/cmake/QtColorWidgets-Qt52/QtColorWidgets-Qt52.cmake
   /usr/lib/cmake/QtColorWidgets-Qt52/qtcolorwidgets-qt52-config-version.cmake
   /usr/lib/cmake/QtColorWidgets-Qt52/qtcolorwidgets-qt52-config.cmake
-  /usr/lib/cmake/QtColorWidgets-Qt52/qtcolorwidgets-qt52-targets-release.cmake
+  /usr/lib/cmake/QtColorWidgets-Qt52/qtcolorwidgets-qt52-targets-relwithdebinfo.cmake
   /usr/lib/cmake/QtColorWidgets-Qt52/qtcolorwidgets-qt52-targets.cmake
   /usr/lib/libQtColorWidgets-Qt52.dll.a
   /usr/lib/pkgconfig/QtColorWidgets-Qt52.pc
@@ -110,6 +110,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0.0-1bl1 -----
+Version bump.
 
 ----- version 2.2.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

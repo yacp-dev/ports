@@ -6,12 +6,17 @@ SUMMARY="Novel data compression framework"
 DESCRIPTION="OpenZL delivers high compression ratios while preserving high speed, a level
 of performance that is out of reach for generic compressors."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND BSD-2-Clause AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause AND Zlib"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	libbenchmark-devel
+	libfmt-devel
+	libgtest-devel
+	liblz4-devel
 	libzstd-devel
+	git
 "
 
 export CPPFLAGS="${CPPFLAGS} -DZSTD_DISABLE_ASM"
@@ -22,6 +27,7 @@ CYGCMAKE_ARGS="
 	-DOPENZL_BUILD_ALL:BOOL=ON
 	-DOPENZL_BUILD_PYTHON_EXT:BOOL=OFF
 	-DOPENZL_BUILD_PYTHON_EXT_TESTS:BOOL=OFF
+	-DOPENZL_BUILD_PYTHON_DEMO:BOOL=OFF
 	-DSOVERSION:STRING=${PV[1]}
 "
 
@@ -45,6 +51,7 @@ DOCS="
 
 DIFF_EXCLUDES="
 	deps
+	mkdocs
 "
 
 PKG_NAMES="
@@ -80,3 +87,4 @@ libopenzl0_SUMMARY="${SUMMARY} (runtime)"
 libopenzl_devel_SUMMARY="${SUMMARY} (development)"
 libopenzl_cpp0_SUMMARY="${SUMMARY} (runtime / c++)"
 libopenzl_cpp_devel_SUMMARY="${SUMMARY} (development / c++)"
+libopenzl_devel_REQUIRES="libopenzl_cpp-devel"

@@ -1,0 +1,290 @@
+--- origsrc/openzl-0.3.0/CMakeLists.txt	2026-09-29 04:03:33.000000000 +0000
++++ src/openzl-0.3.0/CMakeLists.txt	2026-10-31 00:08:07.293341000 +0000
+@@ -173,7 +173,7 @@ list(APPEND openzl_files
+     ${headers}
+ )
+ 
+-add_library(openzl
++add_library(openzl SHARED
+     ${openzl_files}
+     "${CONFIG}")
+ 
+@@ -219,6 +219,9 @@ target_include_directories(openzl
+ )
+ 
+ set_property(TARGET openzl PROPERTY VERSION ${PACKAGE_VERSION})
++if (DEFINED SOVERSION)
++    set_target_properties(openzl PROPERTIES SOVERSION ${SOVERSION})
++endif()
+ apply_openzl_compile_options_to_target(openzl)
+ 
+ target_link_libraries(openzl PUBLIC openzl_deps)
+@@ -231,13 +234,16 @@ apply_openzl_compile_options_to_target(o
+ 
+ # order matters. dependencies first
+ if (OPENZL_BUILD_TESTS)
+-    set(INSTALL_GTEST OFF)
+-    FetchContent_Declare(
+-        googletest # v1.14.0
+-        URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+-        URL_HASH SHA256=1f357c27ca988c3f7c6b4bf68a9395005ac6761f034046e9dde0896e3aba00e4
+-    )
+-    FetchContent_MakeAvailable(googletest)
++    find_package(GTest QUIET)
++    if (NOT GTest_FOUND)
++        set(INSTALL_GTEST OFF)
++        FetchContent_Declare(
++            googletest # v1.14.0
++            URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
++            URL_HASH SHA256=1f357c27ca988c3f7c6b4bf68a9395005ac6761f034046e9dde0896e3aba00e4
++        )
++        FetchContent_MakeAvailable(googletest)
++    endif()
+     include(GoogleTest)
+     enable_testing()
+ 
+@@ -298,7 +304,8 @@ if (OPENZL_INSTALL)
+     install(
+         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/openzl
+         DESTINATION ${OPENZL_INSTALL_INCLUDEDIR}
+-        COMPONENT dev)
++        COMPONENT dev
++        PATTERN "*.md" EXCLUDE)
+     # Install C++ public headers
+     if (OPENZL_CPP_INSTALL)
+         install(
+--- origsrc/openzl-0.3.0/benchmark/CMakeLists.txt	2026-09-29 04:03:33.000000000 +0000
++++ src/openzl-0.3.0/benchmark/CMakeLists.txt	2026-10-31 00:08:07.294116400 +0000
+@@ -1,23 +1,42 @@
+ # Copyright (c) Meta Platforms, Inc. and affiliates.
+ 
++pkg_check_modules(BENCHMARK benchmark)
++pkg_check_modules(FMT fmt)
++
+ # Keep upstream benchmark self-tests out of our CTest runs.
+ set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "" FORCE)
+ set(BENCHMARK_ENABLE_GTEST_TESTS OFF CACHE BOOL "" FORCE)
++if (BENCHMARK_FOUND)
++    add_library(benchmark::benchmark INTERFACE IMPORTED)
++    target_link_libraries(benchmark::benchmark INTERFACE ${BENCHMARK_LIBRARIES})
++    target_include_directories(benchmark::benchmark INTERFACE ${BENCHMARK_INCLUDE_DIRS})
++    target_compile_options(benchmark::benchmark INTERFACE ${BENCHMARK_CFLAGS_OTHER})
++else()
+ FetchContent_Declare(
+     googlebenchmark # v1.6.1
+     URL https://github.com/google/benchmark/archive/refs/tags/v1.6.1.zip
+     URL_HASH SHA256=367e963b8620080aff8c831e24751852cffd1f74ea40f25d9cc1b667a9dd5e45
+     OVERRIDE_FIND_PACKAGE
+ )
++FetchContent_MakeAvailable(googlebenchmark)
++find_package(googlebenchmark REQUIRED)
++endif()
++
++if (FMT_FOUND)
++    add_library(fmt::fmt INTERFACE IMPORTED)
++    target_link_libraries(fmt::fmt INTERFACE ${FMT_LIBRARIES})
++    target_include_directories(fmt::fmt INTERFACE ${FMT_INCLUDE_DIRS})
++    target_compile_options(fmt::fmt INTERFACE ${FMT_CFLAGS_OTHER})
++else()
+ FetchContent_Declare(
+     fmt # v9.1.0
+     URL https://github.com/fmtlib/fmt/releases/download/9.1.0/fmt-9.1.0.zip
+     URL_HASH SHA256=cceb4cb9366e18a5742128cb3524ce5f50e88b476f1e54737a47ffdf4df4c996
+     OVERRIDE_FIND_PACKAGE
+ )
+-FetchContent_MakeAvailable(googlebenchmark fmt)
+-find_package(googlebenchmark REQUIRED)
++FetchContent_MakeAvailable(fmt)
+ find_package(fmt REQUIRED)
++endif()
+ 
+ file(
+     GLOB_RECURSE openzl_benchmark_sources
+--- origsrc/openzl-0.3.0/benchmark/benchmark_config.cpp	2026-09-29 04:03:33.000000000 +0000
++++ src/openzl-0.3.0/benchmark/benchmark_config.cpp	2026-10-31 00:08:07.294116400 +0000
+@@ -1,5 +1,6 @@
+ // Copyright (c) Meta Platforms, Inc. and affiliates.
+ 
++#include <algorithm>
+ #include "benchmark/benchmark_config.h"
+ 
+ namespace {
+--- origsrc/openzl-0.3.0/benchmark/benchmark_data_utils.h	2026-09-29 04:03:33.000000000 +0000
++++ src/openzl-0.3.0/benchmark/benchmark_data_utils.h	2026-10-31 00:08:07.295349300 +0000
+@@ -2,6 +2,7 @@
+ 
+ #pragma once
+ 
++#include <algorithm>
+ #include <filesystem>
+ #include <fstream>
+ #include <iostream>
+--- origsrc/openzl-0.3.0/build-scripts/cmake/openzl-deps.cmake	2026-09-29 04:03:33.000000000 +0000
++++ src/openzl-0.3.0/build-scripts/cmake/openzl-deps.cmake	2026-10-31 00:08:07.296129100 +0000
+@@ -28,6 +28,15 @@ set(ZSTD_TARBALL_SHA256 "eb33e51f49a15e0
+ set(ZSTD_EXPECTED_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/deps/zstd/lib/zstd.h")
+ set(ZSTD_EXPECTED_CMAKE "${CMAKE_CURRENT_SOURCE_DIR}/deps/zstd/build/cmake/CMakeLists.txt")
+ 
++find_package(PkgConfig REQUIRED)
++pkg_check_modules(ZSTD libzstd)
++if (ZSTD_FOUND)
++    message(STATUS "Using system-installed zstd")
++    set(ZSTD_AVAILABLE TRUE)
++    list(APPEND OPENZL_LINK_LIBRARIES ${ZSTD_LIBRARIES})
++    list(APPEND OPENZL_INCLUDE_DIRECTORIES ${ZSTD_INCLUDE_DIRS})
++else()
++
+ # Helper function to check if zstd is available and working
+ function(check_zstd_available RESULT_VAR)
+     if(EXISTS "${ZSTD_EXPECTED_HEADER}" AND EXISTS "${ZSTD_EXPECTED_CMAKE}")
+@@ -55,6 +64,7 @@ else()
+ 
+     check_zstd_available(ZSTD_AVAILABLE)
+ endif()
++endif()
+ 
+ # Tier 2: FetchContent + URL with Hash Verification
+ if(NOT ZSTD_AVAILABLE)
+@@ -103,15 +113,23 @@ set(ZSTD_BUILD_PROGRAMS OFF CACHE BOOL "
+ set(ZSTD_BUILD_CONTRIB OFF CACHE BOOL "")
+ set(ZSTD_BUILD_TESTS OFF CACHE BOOL "")
+ 
+-# Add zstd subdirectory directly instead of using FetchContent
+-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/deps/zstd/build/cmake" zstd_build)
+-# Note: find_package not needed when using add_subdirectory - targets are directly available
+-list(APPEND OPENZL_LINK_LIBRARIES libzstd)
++if (NOT ZSTD_FOUND)
++    # Add zstd subdirectory directly instead of using FetchContent
++    add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/deps/zstd/build/cmake" zstd_build)
++    # Note: find_package not needed when using add_subdirectory - targets are directly available
++    list(APPEND OPENZL_LINK_LIBRARIES libzstd)
++endif()
+ 
+ # Same two-tier lz4 dependency resolution with automated hash verification
+ set(LZ4_VERSION "1.10.0")
+ set(LZ4_DIRNAME "lz4-${LZ4_VERSION}")
+ set(LZ4_TARBALL_SHA256 "537512904744b35e232912055ccf8ec66d768639ff3abe5788d90d792ec5f48b")
++pkg_check_modules(LZ4 liblz4)
++if (LZ4_FOUND)
++    message(STATUS "Using system-installed lz4")
++    list(APPEND OPENZL_LINK_LIBRARIES ${LZ4_LIBRARIES})
++    list(APPEND OPENZL_INCLUDE_DIRECTORIES ${LZ4_INCLUDE_DIRS})
++else()
+ set(LZ4_EXPECTED_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/deps/lz4/lib/lz4.h")
+ set(LZ4_EXPECTED_CMAKE "${CMAKE_CURRENT_SOURCE_DIR}/deps/lz4/build/cmake/CMakeLists.txt")
+ 
+@@ -187,6 +205,7 @@ set(BUILD_STATIC_LIBS ${_OPENZL_SAVED_BU
+ list(APPEND OPENZL_LINK_LIBRARIES lz4)
+ list(APPEND OPENZL_INCLUDE_DIRECTORIES
+     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/deps/lz4/lib>")
++endif()
+ 
+ find_library(MATH_LIBRARY m)
+ if(MATH_LIBRARY)
+--- origsrc/openzl-0.3.0/cpp/CMakeLists.txt	2026-09-29 04:03:33.000000000 +0000
++++ src/openzl-0.3.0/cpp/CMakeLists.txt	2026-10-31 00:08:07.296129100 +0000
+@@ -6,7 +6,7 @@ file(GLOB_RECURSE cpp_private_headers CO
+ file(GLOB_RECURSE cpp_public_headers CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/cpp/include/*.hpp")
+ 
+ add_library(
+-    openzl_cpp
++    openzl_cpp SHARED
+     ${cpp_sources}
+ )
+ 
+@@ -14,6 +14,10 @@ add_library(
+ # Later we could build both PIC & non-PIC versions of the library.
+ set_property(TARGET openzl_cpp PROPERTY POSITION_INDEPENDENT_CODE ON)
+ 
++if (DEFINED SOVERSION)
++    set_target_properties(openzl_cpp PROPERTIES SOVERSION ${SOVERSION})
++endif()
++
+ apply_openzl_compile_options_to_target(openzl_cpp)
+ 
+ source_group(
+--- origsrc/openzl-0.3.0/src/openzl/shared/portability.h	2026-09-29 04:03:33.000000000 +0000
++++ src/openzl-0.3.0/src/openzl/shared/portability.h	2026-10-31 00:08:07.297357600 +0000
+@@ -352,7 +352,8 @@ typedef __m128i __m128i_u;
+ #if (defined(__STDC_IEC_559__) && __STDC_IEC_559__) \
+         || (defined(__STDC_IEC_60559_BFP__)         \
+             && __STDC_IEC_60559_BFP__ >= 202311L)   \
+-        || defined(__APPLE__) || defined(__MINGW32__) || defined(_MSC_VER)
++        || defined(__APPLE__) || defined(__MINGW32__) || defined(_MSC_VER) \
++        || defined(__CYGWIN__)
+ #    define ZL_HAS_IEEE_754 1
+ #else
+ #    define ZL_HAS_IEEE_754 0
+--- origsrc/openzl-0.3.0/tools/ml_selector/CMakeLists.txt	2026-09-29 04:03:33.000000000 +0000
++++ src/openzl-0.3.0/tools/ml_selector/CMakeLists.txt	2026-10-31 00:08:07.298147900 +0000
+@@ -31,11 +31,21 @@ if(OPENZL_BUILD_ML_SELECTOR)
+ 
+     # Add XGBoost as external project
+     # Disable DMLC stack trace to avoid execinfo.h
++    if(CYGWIN)
++        set(XGBOOST_PATCH_COMMAND
++            PATCH_COMMAND bash -c
++                "patch --forward --batch -R --dry-run -p1 -i '${CMAKE_CURRENT_SOURCE_DIR}/xgboost-cygwin-socket-domain.patch' >/dev/null 2>&1 && exit 0 || patch --forward --batch -p1 -i '${CMAKE_CURRENT_SOURCE_DIR}/xgboost-cygwin-socket-domain.patch'")
++        set(XGBOOST_INSTALL_COMMAND
++            INSTALL_COMMAND ${CMAKE_COMMAND} -E env --unset=DESTDIR
++                ${CMAKE_COMMAND} --build <BINARY_DIR> --target install)
++    endif()
+     ExternalProject_Add(xgboost_external
+         GIT_REPOSITORY https://github.com/dmlc/xgboost.git
+         GIT_TAG        ccb511768e13d1670c10be07dea89d0edca138f3 # v3.1.0
+         GIT_SUBMODULES "dmlc-core"
+         GIT_SHALLOW    TRUE
++        ${XGBOOST_PATCH_COMMAND}
++        ${XGBOOST_INSTALL_COMMAND}
+         CMAKE_ARGS
+             -DCMAKE_INSTALL_PREFIX=${XGBOOST_INSTALL_DIR}
+             -DCMAKE_INSTALL_LIBDIR=lib
+@@ -58,6 +68,7 @@ if(OPENZL_BUILD_ML_SELECTOR)
+         LOG_DOWNLOAD ON
+         LOG_CONFIGURE ON
+         LOG_BUILD ON
++        LOG_OUTPUT_ON_FAILURE ON
+         LOG_INSTALL ON
+     )
+ 
+--- origsrc/openzl-0.3.0/tools/ml_selector/xgboost-cygwin-socket-domain.patch	1970-01-01 00:00:00.000000000 +0000
++++ src/openzl-0.3.0/tools/ml_selector/xgboost-cygwin-socket-domain.patch	2026-10-31 00:08:07.298147900 +0000
+@@ -0,0 +1,38 @@
++--- a/include/xgboost/collective/socket.h
+++++ b/include/xgboost/collective/socket.h
++@@ -273,7 +273,7 @@
++   bool non_blocking_{false};
++   // There's reliable no way to extract domain from a socket without first binding that
++   // socket on macos.
++-#if defined(__APPLE__)
+++#if defined(__APPLE__) || defined(__CYGWIN__)
++   SockDomain domain_{SockDomain::kV4};
++ #endif
++ 
++@@ -307,7 +307,7 @@
++         getsockopt(handle_, SOL_SOCKET, SO_PROTOCOL_INFO, reinterpret_cast<char *>(&info), &len),
++         0);
++     return ret_iafamily(info.iAddressFamily);
++-#elif defined(__APPLE__)
+++#elif defined(__APPLE__) || defined(__CYGWIN__)
++     return domain_;
++ #elif defined(__unix__)
++ #ifndef __PASE__
++@@ -763,7 +763,7 @@
++     }
++ 
++     TCPSocket socket{fd};
++-#if defined(__APPLE__)
+++#if defined(__APPLE__) || defined(__CYGWIN__)
++     socket.domain_ = domain;
++ #endif  // defined(__APPLE__)
++     return socket;
++@@ -781,7 +781,7 @@
++     }
++     auto socket = new TCPSocket{fd};
++ 
++-#if defined(__APPLE__)
+++#if defined(__APPLE__) || defined(__CYGWIN__)
++     socket->domain_ = domain;
++ #endif  // defined(__APPLE__)
++     return socket;

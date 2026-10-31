@@ -1,11 +1,11 @@
---- origsrc/polylib-5.22.8/Makefile.am	2025-05-22 23:27:51.000000000 +0900
-+++ src/polylib-5.22.8/Makefile.am	2025-09-20 08:42:39.054159700 +0900
-@@ -50,7 +50,7 @@ libpolylib128_la_LDFLAGS = -rpath $(libd
- libpolylib128_la_SOURCES = $(sources)
+--- origsrc/polylib-6.01/Makefile.am	2026-05-21 15:56:40.000000000 +0000
++++ src/polylib-6.01/Makefile.am	2026-10-31 22:19:26.555052500 +0000
+@@ -54,7 +54,7 @@ libpolylib128_la_LDFLAGS = -rpath $(libd
+ libpolylib128_la_SOURCES = $(CFILES)
  libpolylib128_la_CPPFLAGS = -DPOLYLIB_BITS=128  $(EXTRA_CPPFLAGS)
  libpolylib128_la_LIBADD = @LTLIBOBJS@
 -libpolylibgmp_la_LDFLAGS = -rpath $(libdir) -version-info @versioninfo@
 +libpolylibgmp_la_LDFLAGS = -no-undefined -rpath $(libdir) -version-info @versioninfo@
- libpolylibgmp_la_SOURCES = $(sources)
+ libpolylibgmp_la_SOURCES = $(CFILES)
  libpolylibgmp_la_CPPFLAGS = -DGNUMP  $(EXTRA_CPPFLAGS)
  libpolylibgmp_la_LIBADD = @LTLIBOBJS@

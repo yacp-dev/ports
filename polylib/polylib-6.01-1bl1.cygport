@@ -1,13 +1,17 @@
 HOMEPAGE="https://icps.u-strasbg.fr/${PN}/"
 SRC_URI="https://icps.u-strasbg.fr/${PN}/${PN}_src/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/p/polylib/6.01+dfsg-2/debian/patches/eliminate-first-variables.patch
+	https://aur.archlinux.org/cgit/aur.git/plain/fix-tests.patch?h=polylib&id=0526c55ab3c17ca73878c03aa493a02ea11f8ffc
+"
 
 CATEGORY="Libs"
 SUMMARY="Library of polyhedral functions"
 DESCRIPTION="The Polyhedral Library (PolyLib for short) operates on objects made up of
 unions of polyhedra of any dimension."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
@@ -29,20 +33,20 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	${PN}
-	lib${PN}gmp8
+	lib${PN}gmp10
 	lib${PN}gmp-devel
 "
 polylib_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libpolylibgmp8_CONTENTS="
-	usr/bin/cyg*-8.dll
+libpolylibgmp10_CONTENTS="
+	usr/bin/cyg*-10.dll
 "
 libpolylibgmp_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 polylib_SUMMARY="${SUMMARY} (utilities)"
-libpolylibgmp8_SUMMARY="${SUMMARY} (runtime)"
+libpolylibgmp10_SUMMARY="${SUMMARY} (runtime)"
 libpolylibgmp_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,16 +1,36 @@
-HOMEPAGE="http://${PN}.zeromq.org/"
+HOMEPAGE="https://${PN}.zeromq.org/"
 SRC_URI="https://github.com/zeromq/${PN}/archive/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="High-level C Binding for ZeroMQ"
 DESCRIPTION="CZMQ - High-level C Binding for ZeroMQ"
 
-BUILD_REQUIRES="libcurl-devel liblz4-devel libmicrohttpd-devel libuuid-devel libzmq-devel"
+LICENSE="MPL-2.0 AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0 AND BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libcurl-devel
+	liblz4-devel
+	libmicrohttpd-devel
+	libuuid-devel
+	libzmq-devel
+"
 
 CYGCONF_ARGS="
 	--includedir=/usr/include/${PN}
 	--without-docs
+	--enable-drafts=yes
 "
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	cd ${S}
+	dodoc README.txt
+}
 
 PKG_NAMES="
 	${PN}
@@ -22,7 +42,7 @@ czmq_CONTENTS="
 	usr/share/doc
 "
 libczmq4_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygczmq-4.dll
 "
 libczmq_devel_CONTENTS="
 	usr/include

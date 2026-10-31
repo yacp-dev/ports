@@ -4,17 +4,18 @@ libdicom is a C library and a set of command-line tools for reading DICOM WSI
 files.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libdicom-devel-1.3.0-1bl1
-  libdicom1-1.3.0-1bl1
-  pkg-config-3.0.4-2
+  cygwin-3.6.12-1
+  libdicom-devel-1.3.0-1bl2
+  libdicom1-1.3.0-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.7-1
+  check-0.15.2-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
-  meson-1.8.5-1
+  meson-1.10.2-1
   ninja-1.13.2-1
   uthash-devel-2.3.0-1
 
@@ -64,6 +65,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.3.0-1bl2 -----
+Fix BUILD_REQUIRES
 
 ----- version 1.3.0-1bl1 -----
 Version bump.

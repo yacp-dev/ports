@@ -2,50 +2,50 @@ openjph
 ------------------------------------------
 Open source implementation of High-throughput JPEG2000 (HTJ2K), also known as
 JPH, JPEG2000 Part 15, ISO/IEC 15444-15, and ITU-T T.814. Here, we are
-interested in implementing the HTJ2K only, supporting features that are
-defined in JPEG2000 Part 1 (for example, for wavelet transform, only
-reversible 5/3 and irreversible 9/7 are supported).
+interested in implementing the HTJ2K only, supporting features that are defined
+in JPEG2000 Part 1 (for example, for wavelet transform, only reversible 5/3 and
+irreversible 9/7 are supported).
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libopenjph-devel-0.26.0-1bl1
-  libopenjph0.26-0.26.0-1bl1
-  libstdc++6-13.4.0-1
-  libtiff7-4.7.1-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libopenjph-devel-0.32.0-1bl1
+  libopenjph0.32-0.32.0-1bl1
+  libstdc++6-14.4.0-1
+  libtiff7-4.7.2-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libgtest-devel-1.17.0-1bl1
-  libtiff-devel-4.7.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  libtiff-devel-4.7.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/aous72/OpenJPH
 
 Canonical download:
-  https://github.com/aous72/OpenJPH/archive/refs/tags/0.26.0.tar.gz
+  https://github.com/aous72/OpenJPH/archive/refs/tags/0.32.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack openjph-0.26.0-X-src.tar.xz
+  1. unpack openjph-0.32.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./openjph-0.26.0-X.cygport all
+        % cygport ./openjph-0.32.0-X.cygport all
 
 This will create:
-  /usr/src/openjph-0.26.0-X-src.tar.xz
-  /usr/src/openjph-0.26.0-X.tar.xz
-  /usr/src/libopenjph0.26-0.26.0-X.tar.xz
-  /usr/src/libopenjph-devel-0.26.0-X.tar.xz
+  /usr/src/openjph-0.32.0-X-src.tar.xz
+  /usr/src/openjph-0.32.0-X.tar.xz
+  /usr/src/libopenjph0.32-0.32.0-X.tar.xz
+  /usr/src/libopenjph-devel-0.32.0-X.tar.xz
 
 -------------------------------------------
 
@@ -58,8 +58,8 @@ Files included in the binary package:
   /usr/share/doc/openjph/LICENSE
   /usr/share/doc/openjph/README.md
 
-(libopenjph0.26)
-  /usr/bin/cygopenjph-0.26.dll
+(libopenjph0.32)
+  /usr/bin/cygopenjph-0.32.dll
 
 (libopenjph-devel)
   /usr/include/openjph/ojph_arch.h
@@ -74,7 +74,7 @@ Files included in the binary package:
   /usr/include/openjph/ojph_version.h
   /usr/lib/cmake/openjph/openjph-config-version.cmake
   /usr/lib/cmake/openjph/openjph-config.cmake
-  /usr/lib/cmake/openjph/openjph-targets-release.cmake
+  /usr/lib/cmake/openjph/openjph-targets-relwithdebinfo.cmake
   /usr/lib/cmake/openjph/openjph-targets.cmake
   /usr/lib/libopenjph.dll.a
   /usr/lib/pkgconfig/openjph.pc
@@ -82,6 +82,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.32.0-1bl1 -----
+Version bump.
 
 ----- version 0.26.0-1bl1 -----
 Version bump.

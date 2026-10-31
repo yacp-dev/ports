@@ -6,46 +6,44 @@ hardware they are targeting. This repository is an SDK that contains the API
 and samples. The runtime is under SteamVR in Tools on Steam.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  cygwin-devel-3.6.6-1
-  libgcc1-13.4.0-1
-  libjsoncpp26-1.9.6-1
-  libopenvr_api-devel-2.12.14-1bl1
-  libopenvr_api2.0.0-2.12.14-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libgcc1-14.4.0-1
+  libjsoncpp27-1.9.8-1
+  libopenvr_api-devel-2.15.6-1bl1
+  libopenvr_api2-2.15.6-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libjsoncpp-devel-1.9.6-1
-  lua-5.3.6-4
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libjsoncpp-devel-1.9.8-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/ValveSoftware/openvr
 
 Canonical download:
-  https://github.com/ValveSoftware/openvr/archive/refs/tags/v2.12.14.tar.gz
+  https://github.com/ValveSoftware/openvr/archive/refs/tags/v2.15.6.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack openvr-2.12.14-X-src.tar.xz
+  1. unpack openvr-2.15.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./openvr-2.12.14-X.cygport all
+        % cygport ./openvr-2.15.6-X.cygport all
 
 This will create:
-  /usr/src/openvr-2.12.14-X-src.tar.xz
-  /usr/src/openvr-2.12.14-X.tar.xz
-  /usr/src/libopenvr_api2.0.0-2.12.14-X.tar.xz
-  /usr/src/libopenvr_api-devel-2.12.14-X.tar.xz
+  /usr/src/openvr-2.15.6-X-src.tar.xz
+  /usr/src/openvr-2.15.6-X.tar.xz
+  /usr/src/libopenvr_api2-2.15.6-X.tar.xz
+  /usr/src/libopenvr_api-devel-2.15.6-X.tar.xz
 
 -------------------------------------------
 
@@ -58,8 +56,8 @@ Files included in the binary package:
   /usr/share/doc/openvr/LICENSE
   /usr/share/doc/openvr/README.md
 
-(libopenvr_api2.0.0)
-  /usr/bin/cygopenvr_api-2.0.0.dll
+(libopenvr_api2)
+  /usr/bin/cygopenvr_api-2.dll
 
 (libopenvr_api-devel)
   /usr/include/openvr/openvr.h
@@ -71,6 +69,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.15.6-1bl1 -----
+Version bump.
 
 ----- version 2.12.14-1bl1 -----
 Version bump.

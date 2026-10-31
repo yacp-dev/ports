@@ -42,19 +42,19 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	openvr
-	libopenvr_api2.0.0
+	libopenvr_api2
 	libopenvr_api-devel
 "
 openvr_CONTENTS="
 	usr/share
 "
-libopenvr_api2_0_0_CONTENTS="
-	usr/bin/cyg*-2.0.0.dll
+libopenvr_api2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libopenvr_api_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 openvr_SUMMARY="${SUMMARY} (licensing & readmes)"
-libopenvr_api2_0_0_SUMMARY="${SUMMARY} (runtime)"
+libopenvr_api2_SUMMARY="${SUMMARY} (runtime)"
 libopenvr_api_devel_SUMMARY="${SUMMARY} (development)"

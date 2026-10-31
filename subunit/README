@@ -5,66 +5,81 @@ encoding that is easily generated and parsed. By design all the components of
 the protocol conceptually fit into the xUnit TestCase->TestResult interaction.
 
 Runtime requirements:
+  bash-5.2.21-1
   cppunit-1.13.2-1
-  cygwin-3.5.3-1
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  libsubunit-devel-1.4.2-1bl2
-  libsubunit0-1.4.2-1bl2
-  perl_base-5.36.3-1
-  pkg-config-2.3.0-1
-  python39-3.9.18-2
-  python39-subunit-1.4.2-1bl2
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libsubunit-devel-1.4.6-1bl1
+  libsubunit0-1.4.6-1bl1
+  pkg-config-3.0.10-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
   check-0.15.2-1
   cppunit-1.13.2-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libtool-2.4.7-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
-  python39-3.9.18-2
-  python39-devel-3.9.18-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
 
 Canonical website:
-  https://launchpad.net/subunit/
+  https://github.com/testing-cabal/subunit
 
 Canonical download:
-  https://launchpad.net/subunit/trunk/1.4.2/+download/subunit-1.4.2.tar.gz
+  https://github.com/testing-cabal/subunit/archive/refs/tags/1.4.6.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack subunit-1.4.2-X-src.tar.xz
+  1. unpack subunit-1.4.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./subunit-1.4.2-X.cygport all
+        % cygport ./subunit-1.4.6-X.cygport all
 
 This will create:
-  /usr/src/subunit-1.4.2-X-src.tar.xz
-  /usr/src/subunit-1.4.2-X.tar.xz
-  /usr/src/libsubunit0-1.4.2-X.tar.xz
-  /usr/src/libsubunit-devel-1.4.2-X.tar.xz
-  /usr/src/python39-subunit-1.4.2-X.tar.xz
+  /usr/src/subunit-1.4.6-X-src.tar.xz
+  /usr/src/subunit-1.4.6-X.tar.xz
+  /usr/src/libsubunit0-1.4.6-X.tar.xz
+  /usr/src/libsubunit-devel-1.4.6-X.tar.xz
+  /usr/src/python312-subunit-1.4.6-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (subunit)
-  /usr/bin/subunit-diff
+  /usr/bin/gojson2subunit
+  /usr/bin/junitxml2subunit
+  /usr/bin/subunit-1to2
+  /usr/bin/subunit-2to1
+  /usr/bin/subunit-combine
+  /usr/bin/subunit-filter
+  /usr/bin/subunit-ls
+  /usr/bin/subunit-notify
+  /usr/bin/subunit-output
+  /usr/bin/subunit-stats
+  /usr/bin/subunit-tags
+  /usr/bin/subunit2csv
+  /usr/bin/subunit2disk
+  /usr/bin/subunit2gtk
+  /usr/bin/subunit2junitxml
+  /usr/bin/subunit2pyunit
+  /usr/bin/tap2subunit
   /usr/share/doc/Cygwin/subunit.README
   /usr/share/doc/subunit/Apache-2.0
   /usr/share/doc/subunit/BSD
   /usr/share/doc/subunit/COPYING
   /usr/share/doc/subunit/NEWS
-  /usr/share/doc/subunit/README.rst
+  /usr/share/doc/subunit/README.md
 
 (libsubunit0)
   /usr/bin/cygcppunit_subunit-0.dll
@@ -78,55 +93,54 @@ Files included in the binary package:
   /usr/lib/pkgconfig/libcppunit_subunit.pc
   /usr/lib/pkgconfig/libsubunit.pc
 
-(python39-subunit)
-  /usr/lib/python3.9/site-packages/subunit/__init__.py
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/__init__.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/__init__.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/__init__.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/_output.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/_output.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/_output.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/_to_disk.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/_to_disk.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/_to_disk.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/chunked.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/chunked.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/chunked.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/details.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/details.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/details.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/filters.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/filters.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/filters.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/iso8601.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/iso8601.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/iso8601.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/progress_model.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/progress_model.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/progress_model.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/run.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/run.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/run.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/test_results.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/test_results.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/test_results.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/v2.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/v2.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/subunit/__pycache__/v2.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/subunit/_output.py
-  /usr/lib/python3.9/site-packages/subunit/_to_disk.py
-  /usr/lib/python3.9/site-packages/subunit/chunked.py
-  /usr/lib/python3.9/site-packages/subunit/details.py
-  /usr/lib/python3.9/site-packages/subunit/filters.py
-  /usr/lib/python3.9/site-packages/subunit/iso8601.py
-  /usr/lib/python3.9/site-packages/subunit/progress_model.py
-  /usr/lib/python3.9/site-packages/subunit/run.py
-  /usr/lib/python3.9/site-packages/subunit/test_results.py
-  /usr/lib/python3.9/site-packages/subunit/v2.py
+(python312-subunit)
+  /usr/lib/python3.12/site-packages/subunit/__init__.py
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/_output.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/_output.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/_output.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/_to_disk.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/_to_disk.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/_to_disk.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/chunked.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/chunked.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/chunked.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/details.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/details.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/details.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/filters.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/filters.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/filters.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/progress_model.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/progress_model.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/progress_model.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/run.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/run.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/run.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/test_results.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/test_results.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/test_results.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/v2.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/v2.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/subunit/__pycache__/v2.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/subunit/_output.py
+  /usr/lib/python3.12/site-packages/subunit/_to_disk.py
+  /usr/lib/python3.12/site-packages/subunit/chunked.py
+  /usr/lib/python3.12/site-packages/subunit/details.py
+  /usr/lib/python3.12/site-packages/subunit/filters.py
+  /usr/lib/python3.12/site-packages/subunit/progress_model.py
+  /usr/lib/python3.12/site-packages/subunit/run.py
+  /usr/lib/python3.12/site-packages/subunit/test_results.py
+  /usr/lib/python3.12/site-packages/subunit/v2.py
 
 ------------------
 
 Port Notes:
+
+----- version 1.4.6-1bl1 -----
+Version bump.
 
 ----- version 1.4.2-1bl2 -----
 Rebuild with gcc-12.4.0

@@ -1,6 +1,6 @@
---- origsrc/subunit-1.4.2/Makefile.am	2022-11-17 08:48:50.000000000 +0900
-+++ src/subunit-1.4.2/Makefile.am	2024-08-11 17:04:46.585109300 +0900
-@@ -99,10 +99,15 @@ libsubunit_la_SOURCES = \
+--- origsrc/subunit-1.4.6/Makefile.am	2026-05-04 10:33:06.000000000 +0000
++++ src/subunit-1.4.6/Makefile.am	2026-10-31 21:31:01.744275300 +0000
+@@ -89,10 +89,15 @@ libsubunit_la_SOURCES = \
  	c/lib/child.c \
  	c/include/subunit/child.h
  

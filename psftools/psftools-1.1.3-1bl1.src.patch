@@ -1,5 +1,5 @@
---- origsrc/psftools-1.1.2/Makefile.am	2010-11-14 20:16:14.000000000 +0900
-+++ src/psftools-1.1.2/Makefile.am	2024-09-06 17:11:10.301155700 +0900
+--- origsrc/psftools-1.1.3/Makefile.am	2010-11-14 11:16:14.000000000 +0000
++++ src/psftools-1.1.3/Makefile.am	2026-10-31 21:44:14.755421100 +0000
 @@ -14,3 +14,6 @@ ACLOCAL_AMFLAGS= -I m4
  
  install-man:
@@ -7,16 +7,16 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/psftools-1.1.2/configure.ac	2024-05-27 07:08:31.000000000 +0900
-+++ src/psftools-1.1.2/configure.ac	2024-09-06 17:11:10.301155700 +0900
+--- origsrc/psftools-1.1.3/configure.ac	2026-04-27 23:50:24.000000000 +0000
++++ src/psftools-1.1.3/configure.ac	2026-10-31 21:44:14.756219500 +0000
 @@ -38,4 +38,4 @@ AC_HEADER_MAJOR
  AC_FUNC_MEMCMP
  AC_CHECK_FUNCS(strerror)
  
 -AC_OUTPUT(Makefile include/Makefile lib/Makefile winfonts/Makefile tools/Makefile man/Makefile doc/Makefile Fonts/Makefile)
 +AC_OUTPUT(psftools.pc Makefile include/Makefile lib/Makefile winfonts/Makefile tools/Makefile man/Makefile doc/Makefile Fonts/Makefile)
---- origsrc/psftools-1.1.2/lib/Makefile.am	2021-01-21 04:25:55.000000000 +0900
-+++ src/psftools-1.1.2/lib/Makefile.am	2024-09-06 17:11:10.301155700 +0900
+--- origsrc/psftools-1.1.3/lib/Makefile.am	2021-01-20 19:25:55.000000000 +0000
++++ src/psftools-1.1.3/lib/Makefile.am	2026-10-31 21:44:14.756219500 +0000
 @@ -13,7 +13,7 @@ noinst_PROGRAMS=dumpcps
  # If interfaces have been removed set the right-hand number to 0.
  # 
@@ -26,8 +26,8 @@
  libpsf_la_SOURCES = psflib.c psfucs.c psfio.c psfpix.c psfver.c mappings.c \
                      psfio.h psferror.c psfutil1.c psfutil2.c psfutil3.c \
  		    psfucs2.c vfont.c \
---- origsrc/psftools-1.1.2/psftools.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/psftools-1.1.2/psftools.pc.in	2024-09-06 17:11:10.301155700 +0900
+--- origsrc/psftools-1.1.3/psftools.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/psftools-1.1.3/psftools.pc.in	2026-10-31 21:44:14.757431900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

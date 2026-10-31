@@ -1,5 +1,9 @@
 HOMEPAGE="https://github.com/aous72/OpenJPH"
 SRC_URI="https://github.com/aous72/OpenJPH/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/o/openjph/0.32.0-1/debian/patches/fix-typo-codestream-dir.patch
+	https://sources.debian.org/data/main/o/openjph/0.32.0-1/debian/patches/fix-typo-ojph_params.cpp.patch
+"
 SRC_DIR="OpenJPH-${PV}"
 
 CATEGORY="Libs"
@@ -28,7 +32,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	PATH=${B}/bin:${PATH} ninja_test
+	PATH=${B}/src/core:${B}/bin:${PATH} ninja_test
 }
 
 PKG_NAMES="
@@ -40,7 +44,7 @@ openjph_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libopenjph0_26_CONTENTS="
+libopenjph0_32_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libopenjph_devel_CONTENTS="
@@ -48,5 +52,5 @@ libopenjph_devel_CONTENTS="
 	usr/lib
 "
 openjph_SUMMARY="${SUMMARY} (utilities)"
-libopenjph0_26_SUMMARY="${SUMMARY} (runtime)"
+libopenjph0_32_SUMMARY="${SUMMARY} (runtime)"
 libopenjph_devel_SUMMARY="${SUMMARY} (development)"

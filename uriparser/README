@@ -5,41 +5,40 @@ written in C. uriparser is cross-platform, fast, supports Unicode and is
 licensed under the New BSD license.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  liburiparser-devel-1.0.2-1bl1
-  liburiparser1-1.0.2-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  liburiparser-devel-1.0.3-1bl1
+  liburiparser1-1.0.3-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libgtest-devel-1.17.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/uriparser/uriparser/
 
 Canonical download:
-  https://github.com/uriparser/uriparser/releases/download/uriparser-1.0.2/uriparser-1.0.2.tar.xz
+  https://github.com/uriparser/uriparser/releases/download/uriparser-1.0.3/uriparser-1.0.3.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack uriparser-1.0.2-X-src.tar.xz
+  1. unpack uriparser-1.0.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./uriparser-1.0.2-X.cygport all
+        % cygport ./uriparser-1.0.3-X.cygport all
 
 This will create:
-  /usr/src/uriparser-1.0.2-X-src.tar.xz
-  /usr/src/uriparser-1.0.2-X.tar.xz
-  /usr/src/liburiparser1-1.0.2-X.tar.xz
-  /usr/src/liburiparser-devel-1.0.2-X.tar.xz
+  /usr/src/uriparser-1.0.3-X-src.tar.xz
+  /usr/src/uriparser-1.0.3-X.tar.xz
+  /usr/src/liburiparser1-1.0.3-X.tar.xz
+  /usr/src/liburiparser-devel-1.0.3-X.tar.xz
 
 -------------------------------------------
 
@@ -70,7 +69,7 @@ Files included in the binary package:
   /usr/include/uriparser/UriIp4.h
   /usr/lib/cmake/uriparser/uriparser-config-version.cmake
   /usr/lib/cmake/uriparser/uriparser-config.cmake
-  /usr/lib/cmake/uriparser/uriparser-release.cmake
+  /usr/lib/cmake/uriparser/uriparser-relwithdebinfo.cmake
   /usr/lib/cmake/uriparser/uriparser.cmake
   /usr/lib/liburiparser.dll.a
   /usr/lib/pkgconfig/liburiparser.pc
@@ -78,6 +77,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.3-1bl1 -----
+Version bump.
 
 ----- version 1.0.2-1bl1 -----
 Version bump.

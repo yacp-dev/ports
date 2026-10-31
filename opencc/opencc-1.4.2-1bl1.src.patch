@@ -1,0 +1,43 @@
+--- origsrc/OpenCC-ver.1.4.2/data/CMakeLists.txt	2026-08-22 18:22:05.000000000 +0000
++++ src/OpenCC-ver.1.4.2/data/CMakeLists.txt	2026-10-31 07:20:06.703867700 +0000
+@@ -154,6 +154,7 @@ foreach(DICT ${DICTS_GENERATED})
+     COMMENT
+       "Generating ${DICT}.txt"
+     COMMAND
++      ${CMAKE_COMMAND} -E env PATH=${PROJECT_BINARY_DIR}/src:$ENV{PATH}
+       ${DICT_${DICT}_GENERATING_COMMAND}
+     DEPENDS
+       ${DICT_WIN32_DEPENDS}
+@@ -194,7 +195,8 @@ foreach(DICT ${DICTS})
+     COMMENT
+       "Building ${DICT}.ocd2"
+     COMMAND
+-      ${OPENCC_DICT_BIN}
++      ${CMAKE_COMMAND} -E env PATH=${PROJECT_BINARY_DIR}/src:${PROJECT_BINARY_DIR}/src/tools:$ENV{PATH}
++      $<TARGET_FILE:opencc_dict>
+         --input ${DICT_${DICT}_INPUT}
+         --output ${DICT}.ocd2
+         --from text
+--- origsrc/OpenCC-ver.1.4.2/plugins/jieba/CMakeLists.txt	2026-08-22 18:22:05.000000000 +0000
++++ src/OpenCC-ver.1.4.2/plugins/jieba/CMakeLists.txt	2026-10-31 07:20:06.705893800 +0000
+@@ -215,7 +215,8 @@ if (OPENCC_CAN_RUN_CPPJIEBA_DICT)
+   add_custom_command(
+     OUTPUT "${JIEBA_MERGED_DICT}"
+     COMMAND ${CMAKE_COMMAND} -E make_directory "${JIEBA_MERGED_DICT_DIR}"
+-    COMMAND ${OPENCC_DICT_COMMAND}
++    COMMAND ${CMAKE_COMMAND} -E env PATH=${PROJECT_BINARY_DIR}/src:$ENV{PATH}
++            $<TARGET_FILE:opencc_dict>
+             --from cppjieba_utf8
+             --to ocd2
+             --input "${CMAKE_CURRENT_SOURCE_DIR}/deps/cppjieba/dict/jieba.dict.utf8"
+--- origsrc/OpenCC-ver.1.4.2/src/PluginSegmentation.cpp	2026-08-22 18:22:05.000000000 +0000
++++ src/OpenCC-ver.1.4.2/src/PluginSegmentation.cpp	2026-10-31 07:20:06.707119700 +0000
+@@ -409,6 +409,8 @@ private:
+     };
+ #elif defined(__APPLE__)
+     return {"libopencc-" + type + ".dylib"};
++#elif defined(__CYGWIN__)
++    return {"cygopencc-" + type + ".dll"};
+ #else
+     return {"libopencc-" + type + ".so"};
+ #endif

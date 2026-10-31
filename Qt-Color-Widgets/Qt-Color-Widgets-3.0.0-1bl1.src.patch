@@ -1,0 +1,10 @@
+--- origsrc/Qt-Color-Widgets-3.0.0/QtColorWidgets.pc.in	2025-05-26 08:37:09.000000000 +0000
++++ src/Qt-Color-Widgets-3.0.0/QtColorWidgets.pc.in	2026-10-31 23:38:47.233338700 +0000
+@@ -1,6 +1,6 @@
+ prefix=@CMAKE_INSTALL_PREFIX@
+ exec_prefix=${prefix}
+-libdir=@CMAKE_INSTALL_LIBDIR@
++libdir=${prefix}/lib
+ includedir=${prefix}/include
+ 
+ Name: QtColorWidgets

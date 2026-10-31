@@ -11,7 +11,9 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcurl-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+"
 
 PKG_NAMES="
 	libnxml
@@ -22,7 +24,7 @@ libnxml_CONTENTS="
 	usr/share
 "
 libnxml0_CONTENTS="
-	usr/bin
+	usr/bin/cygnxml-0.dll
 "
 libnxml_devel_CONTENTS="
 	usr/include

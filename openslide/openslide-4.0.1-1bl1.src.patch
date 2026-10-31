@@ -1,0 +1,85 @@
+--- origsrc/openslide-4.0.1/meson.build	2026-06-08 03:30:03.000000000 +0000
++++ src/openslide-4.0.1/meson.build	2026-10-31 21:38:56.733262600 +0000
+@@ -136,7 +136,7 @@ zstd_dep = dependency('libzstd')
+ jpeg_dep = dependency('libjpeg')
+ png_dep = dependency(
+   'libpng',
+-  version : '>1.2',
++  version : '>=1.4',
+ )
+ openjpeg_dep = dependency(
+   'libopenjp2',
+--- origsrc/openslide-4.0.1/test/driver.py	2026-06-08 03:30:03.000000000 +0000
++++ src/openslide-4.0.1/test/driver.py	2026-10-31 21:38:56.735017300 +0000
+@@ -62,7 +62,6 @@ from typing import (
+ from urllib.parse import urljoin
+ from zipfile import ZipFile
+ 
+-import boto3
+ import requests
+ import yaml
+ 
+@@ -742,6 +741,8 @@ class TestCase:
+ 
+ class S3Uploader:
+     def __init__(self, bucket: str):
++        # only 'freeze' needs boto3, so don't require it for 'run'
++        import boto3
+         self._s3 = boto3.client('s3')
+         self._bucket = bucket
+         region = self._s3.head_bucket(Bucket=bucket)['BucketRegion']
+--- origsrc/openslide-4.0.1/test/env/mkenv.py	2026-06-08 03:30:03.000000000 +0000
++++ src/openslide-4.0.1/test/env/mkenv.py	2026-10-31 21:38:56.735017300 +0000
+@@ -32,19 +32,40 @@ env_dir = python.parent.parent
+ if env_dir.exists() and not python.exists():
+     # recreate env from scratch after "ninja clean"
+     shutil.rmtree(env_dir)
++# Cygwin's python3 ships without ensurepip wheels, so the venv can't get pip
++# from itself: install the requirements into it with the system pip
++# (python312-pip) instead
++cygwin = sys.platform == 'cygwin'
+ if not env_dir.exists():
+-    venv.create(env_dir, with_pip=True)
++    venv.create(env_dir, with_pip=not cygwin, system_site_packages=cygwin)
+ 
+-subprocess.run(
+-    [
+-        python.with_stem('pip'),
+-        'install',
+-        '--disable-pip-version-check',
+-        '-q',
+-        '-r',
+-        requirements,
+-    ],
+-    check=True,
+-)
++if cygwin:
++    subprocess.run(
++        [
++            sys.executable,
++            '-m',
++            'pip',
++            'install',
++            '--disable-pip-version-check',
++            '-q',
++            '--prefix',
++            str(env_dir),
++            '-r',
++            requirements,
++        ],
++        check=True,
++    )
++else:
++    subprocess.run(
++        [
++            python.with_stem('pip'),
++            'install',
++            '--disable-pip-version-check',
++            '-q',
++            '-r',
++            requirements,
++        ],
++        check=True,
++    )
+ 
+ os.utime(python)

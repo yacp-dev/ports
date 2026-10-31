@@ -11,9 +11,9 @@ LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING.LESSER"
 
 BUILD_REQUIRES="
+	jpeg
 	libcairo-devel
 	libdicom-devel
-	libgdk_pixbuf2.0-devel
 	libglib2.0-devel
 	libjpeg-devel
 	libopenjp2-devel
@@ -21,10 +21,18 @@ BUILD_REQUIRES="
 	libsqlite3-devel
 	libtiff-devel
 	libxml2-devel
+	libzstd-devel
+	python312-pip
+	python312-requests
+	xdelta3
 	zlib-devel
 "
 
 inherit meson
+
+CYGMESON_ARGS="
+	-Ddoc=disabled
+"
 
 PKG_NAMES="
 	${PN}

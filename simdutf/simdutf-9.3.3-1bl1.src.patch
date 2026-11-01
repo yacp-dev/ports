@@ -1,5 +1,5 @@
---- origsrc/simdutf-8.0.0/benchmarks/base64/CMakeLists.txt	2026-01-13 17:03:21.000000000 +0900
-+++ src/simdutf-8.0.0/benchmarks/base64/CMakeLists.txt	2026-02-02 09:28:00.012086300 +0900
+--- origsrc/simdutf-9.3.3/benchmarks/base64/CMakeLists.txt	2026-10-27 23:10:33.000000000 +0000
++++ src/simdutf-9.3.3/benchmarks/base64/CMakeLists.txt	2026-11-01 08:50:07.225976700 +0000
 @@ -1,10 +1,14 @@
 -include(../../cmake/CPM.cmake)
 -CPMAddPackage(

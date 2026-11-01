@@ -3,23 +3,23 @@ simdutf
 Unicode validation and transcoding at billions of characters per second
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libiconv2-1.17-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libiconv2-1.19-2
   libintl8-0.22.5-1
-  libsimdutf-devel-8.0.0-1bl1
-  libsimdutf31-8.0.0-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libsimdutf-devel-9.3.3-1bl1
+  libsimdutf37-9.3.3-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libiconv-devel-1.17-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libbase64-devel-0.5.2-1bl2
+  libiconv-devel-1.19-2
   libintl-devel-0.22.5-1
   ninja-1.13.2-1
 
@@ -27,28 +27,29 @@ Canonical website:
   https://github.com/simdutf/simdutf
 
 Canonical download:
-  https://github.com/simdutf/simdutf/archive/refs/tags/v8.0.0.tar.gz
+  https://github.com/simdutf/simdutf/archive/refs/tags/v9.3.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack simdutf-8.0.0-X-src.tar.xz
+  1. unpack simdutf-9.3.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./simdutf-8.0.0-X.cygport all
+        % cygport ./simdutf-9.3.3-X.cygport all
 
 This will create:
-  /usr/src/simdutf-8.0.0-X-src.tar.xz
-  /usr/src/simdutf-8.0.0-X.tar.xz
-  /usr/src/libsimdutf31-8.0.0-X.tar.xz
-  /usr/src/libsimdutf-devel-8.0.0-X.tar.xz
+  /usr/src/simdutf-9.3.3-X-src.tar.xz
+  /usr/src/simdutf-9.3.3-X.tar.xz
+  /usr/src/libsimdutf37-9.3.3-X.tar.xz
+  /usr/src/libsimdutf-devel-9.3.3-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (simdutf)
+  /usr/bin/fastbase64.coreutils
   /usr/bin/fastbase64.exe
   /usr/bin/sutf.exe
   /usr/share/doc/Cygwin/simdutf.README
@@ -57,9 +58,12 @@ Files included in the binary package:
   /usr/share/doc/simdutf/LICENSE-APACHE
   /usr/share/doc/simdutf/LICENSE-MIT
   /usr/share/doc/simdutf/README.md
+  /usr/share/man/man1/fastbase64.1.gz
+  /usr/share/man/man1/fastbase64.coreutils.1.gz
+  /usr/share/man/man1/sutf.1.gz
 
-(libsimdutf31)
-  /usr/bin/cygsimdutf-31.dll
+(libsimdutf37)
+  /usr/bin/cygsimdutf-37.dll
 
 (libsimdutf-devel)
   /usr/include/simdutf.h
@@ -100,6 +104,7 @@ Files included in the binary package:
   /usr/include/simdutf/scalar/utf8_to_latin1/utf8_to_latin1.h
   /usr/include/simdutf/scalar/utf8_to_latin1/valid_utf8_to_latin1.h
   /usr/include/simdutf/scalar/utf8_to_utf16/utf8_to_utf16.h
+  /usr/include/simdutf/scalar/utf8_to_utf16/utf8_to_utf16_with_replacement.h
   /usr/include/simdutf/scalar/utf8_to_utf16/valid_utf8_to_utf16.h
   /usr/include/simdutf/scalar/utf8_to_utf32/utf8_to_utf32.h
   /usr/include/simdutf/scalar/utf8_to_utf32/valid_utf8_to_utf32.h
@@ -107,7 +112,7 @@ Files included in the binary package:
   /usr/include/simdutf_c.h
   /usr/lib/cmake/simdutf/simdutf-config-version.cmake
   /usr/lib/cmake/simdutf/simdutf-config.cmake
-  /usr/lib/cmake/simdutf/simdutfTargets-release.cmake
+  /usr/lib/cmake/simdutf/simdutfTargets-relwithdebinfo.cmake
   /usr/lib/cmake/simdutf/simdutfTargets.cmake
   /usr/lib/libsimdutf.dll.a
   /usr/lib/pkgconfig/simdutf.pc
@@ -115,6 +120,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 9.3.3-1bl1 -----
+Version bump.
 
 ----- version 8.0.0-1bl1 -----
 Version bump.

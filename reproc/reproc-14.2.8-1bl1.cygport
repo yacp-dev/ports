@@ -1,5 +1,5 @@
 HOMEPAGE="https://github.com/DaanDeMeyer/${PN}"
-SRC_URI="https://github.com/DaanDeMeyer/${PN}/archive/refs/tags/v${PV}.tar.gz"
+SRC_URI="https://github.com/DaanDeMeyer/${PN}/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Cross-platform (C99/C++11) process library"
@@ -20,6 +20,13 @@ CYGCMAKE_ARGS="
 	-DREPROC_TEST:BOOL=ON
 	-DREPROC_EXAMPLES:BOOL=ON
 "
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "/^project(/,/^)/s/^  VERSION .*/  VERSION ${PV}/" CMakeLists.txt
+}
 
 src_test()
 {

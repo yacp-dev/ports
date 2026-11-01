@@ -1,0 +1,55 @@
+--- origsrc/qpid-proton-0.41.1/c/src/proactor/libuv.c	2026-10-09 16:22:28.000000000 +0000
++++ src/qpid-proton-0.41.1/c/src/proactor/libuv.c	2026-11-01 05:23:29.366722400 +0000
+@@ -136,6 +136,10 @@ static void work_init(work_t* w, pn_proa
+ 
+ /* ================ IO ================ */
+ 
++#if defined(__addr_t_defined)
++#define addr_t libuv_addr_t
++#endif
++
+ /* A resolvable address */
+ typedef struct addr_t {
+   char addr_buf[PN_MAX_ADDR];
+--- origsrc/qpid-proton-0.41.1/python/CMakeLists.txt	2026-10-09 16:22:28.000000000 +0000
++++ src/qpid-proton-0.41.1/python/CMakeLists.txt	2026-11-01 05:23:29.368744600 +0000
+@@ -267,7 +267,7 @@ if (BUILD_TESTING)
+ 
+   if (TARGET pytest_cffi)
+     # If we are on windows copy the qpid-proton-core dll to the test directory so we can find it easily
+-    if (WIN32)
++    if (WIN32 OR CYGWIN)
+       add_custom_command(
+         OUTPUT .timestamp.test_env
+         APPEND
+--- origsrc/qpid-proton-0.41.1/python/ext_build.py	2026-10-09 16:22:28.000000000 +0000
++++ src/qpid-proton-0.41.1/python/ext_build.py	2026-11-01 05:23:29.368744600 +0000
+@@ -18,6 +18,7 @@
+ #
+ 
+ import os
++import sys
+ 
+ import cffi.pkgconfig
+ 
+@@ -57,7 +58,9 @@ elif os.name == 'posix':
+     sources += [
+         os.path.join(proton_c_src, 'compiler', 'gcc', 'start.c')
+     ]
+-    extra += ['-std=c99']
++    # Cygwin's <stdlib.h> declares alloca(), which cffi's generated code
++    # calls, only without __STRICT_ANSI__
++    extra += ['-std=gnu99' if sys.platform == 'cygwin' else '-std=c99']
+ 
+ sources.append(os.path.join(proton_c_src, 'sasl', 'sasl.c'))
+ sources.append(os.path.join(proton_c_src, 'sasl', 'default_sasl.c'))
+--- origsrc/qpid-proton-0.41.1/tests/cpp/CMakeLists.txt	2026-10-09 16:22:28.000000000 +0000
++++ src/qpid-proton-0.41.1/tests/cpp/CMakeLists.txt	2026-11-01 05:23:29.368744600 +0000
+@@ -46,6 +46,7 @@ if (PYTHON_TEST_EXECUTABLE)
+     NAME cpp-tx-tests
+     PREPEND_ENVIRONMENT
+       "PATH=${test_path}"
++      "PYTHONPATH=${CMAKE_BINARY_DIR}/python"
+       "TX_TESTER=$<TARGET_FILE:tx_tester>"
+       "TX_TESTER_PYTHON=${PYTHON_TEST_EXECUTABLE}"
+       "TX_TESTER_BROKER=${PROJECT_SOURCE_DIR}/python/examples/broker.py"

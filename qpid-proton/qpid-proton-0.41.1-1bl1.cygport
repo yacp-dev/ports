@@ -9,20 +9,50 @@ libraries, routers, bridges, proxies, and more. Proton makes it trivial to
 integrate with the AMQP 1.0 ecosystem from any platform, environment, or
 language."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND BSL-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSL-1.0"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="libjsoncpp-devel libsasl2-devel libssl-devel libuv-devel python39-devel ruby-devel"
+BUILD_REQUIRES="
+	libjsoncpp-devel
+	libsasl2-devel
+	libssl-devel
+	libuv-devel
+	python3-devel
+	python312-build
+	python312-cffi
+	python312-pip
+	python312-setuptools
+	python312-wheel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DBUILD_RUBY:BOOL=OFF
+	-DENABLE_LINKTIME_OPTIMIZATION:BOOL=OFF
 	-DENABLE_WARNING_ERROR:BOOL=OFF
-	-DLIB_SUFFIX:STRING=''
+	-DENABLE_PYTHON_ISOLATED:BOOL=OFF
 "
+
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	# the tests run with the PATH seen here; without rpath on Cygwin it
+	# must hold the in-tree DLLs
+	PATH=${B}/c:${B}/cpp:${PATH} cygcmake
+	cygninja
+}
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+	pip3.12 --disable-pip-version-check install -I python/dist/*.whl --root ${D} --prefix /usr --no-compile --no-deps --no-warn-script-location
+}
 
 src_test()
 {
@@ -34,6 +64,7 @@ PKG_IGNORE="
 	usr/share/proton/CMakeLists.txt
 	usr/share/proton/LICENSE.txt
 	usr/share/proton/README.md
+	usr/share/proton/docs/api-py
 "
 
 PKG_NAMES="
@@ -46,8 +77,7 @@ PKG_NAMES="
 	libqpid-proton-cpp-devel
 	libqpid-proton-proactor1
 	libqpid-proton-proactor-devel
-	python39-qpid-proton
-	ruby-qpid-proton
+	python312-qpid-proton
 "
 qpid_proton_CONTENTS="
 	usr/share/doc
@@ -62,20 +92,22 @@ libqpid_proton_devel_CONTENTS="
 	usr/lib/pkgconfig/libqpid-proton.pc
 	usr/share/proton/examples/README.md
 	usr/share/proton/examples/c
+	usr/share/proton/tests/CMakeLists.txt
 	usr/share/proton/tests/examples/CMakeLists.txt
 	usr/share/proton/tests/*.cmake
 	usr/share/proton/tests/*.sh
 	usr/share/proton/tests/[iltuv]*
+	usr/share/proton/tests/ssl-certs
 "
 libqpid_proton_core10_CONTENTS="
-	usr/bin/cygqpid-proton-core-*.dll
+	usr/bin/cygqpid-proton-core-10.dll
 "
 libqpid_proton_core_devel_CONTENTS="
 	usr/lib/libqpid-proton-core.dll.a
 	usr/lib/pkgconfig/libqpid-proton-core.pc
 "
 libqpid_proton_cpp12_CONTENTS="
-	usr/bin/cygqpid-proton-cpp-*.dll
+	usr/bin/cygqpid-proton-cpp-12.dll
 "
 libqpid_proton_cpp_devel_CONTENTS="
 	usr/include/proton/*.hpp
@@ -84,22 +116,19 @@ libqpid_proton_cpp_devel_CONTENTS="
 	usr/lib/libqpid-proton-cpp.dll.a
 	usr/lib/pkgconfig/libqpid-proton-cpp.pc
 	usr/share/proton/examples/cpp
+	usr/share/proton/tests/cpp
 "
 libqpid_proton_proactor1_CONTENTS="
-	usr/bin/cygqpid-proton-proactor-*.dll
+	usr/bin/cygqpid-proton-proactor-1.dll
 "
 libqpid_proton_proactor_devel_CONTENTS="
 	usr/lib/libqpid-proton-proactor.dll.a
 	usr/lib/pkgconfig/libqpid-proton-proactor.pc
 "
-python39_qpid_proton_CONTENTS="
-	usr/lib/proton/bindings/python
+python312_qpid_proton_CONTENTS="
+	usr/lib/python3.12
 	usr/share/proton/examples/python
 	usr/share/proton/tests/py
-"
-ruby_qpid_proton_CONTENTS="
-	usr/lib/proton/bindings/ruby
-	usr/share/proton/examples/ruby
 "
 qpid_proton_SUMMARY="${SUMMARY} (licensing & readmes)"
 libqpid_proton11_SUMMARY="${SUMMARY} (runtime)"
@@ -110,5 +139,6 @@ libqpid_proton_cpp12_SUMMARY="${SUMMARY} (runtime / c++)"
 libqpid_proton_cpp_devel_SUMMARY="${SUMMARY} (development / c++)"
 libqpid_proton_proactor1_SUMMARY="${SUMMARY} (runtime / proactor)"
 libqpid_proton_proactor_devel_SUMMARY="${SUMMARY} (development / proactor)"
-python39_qpid_proton_SUMMARY="${SUMMARY} (python39 bindings)"
-ruby_qpid_proton_SUMMARY="${SUMMARY} (ruby bindings)"
+python312_qpid_proton_SUMMARY="${SUMMARY} (python312 bindings)"
+libqpid_proton_devel_REQUIRES="libqpid-proton-proactor-devel"
+python312_qpid_proton_REQUIRES="python312-cffi"

@@ -1,0 +1,241 @@
+--- origsrc/qthreads-1.23/CMakeLists.txt	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/CMakeLists.txt	2026-11-01 01:29:01.427885100 +0000
+@@ -29,3 +29,9 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_N
+   add_subdirectory(test)
+ endif()
+ 
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/qthread.pc.in ${CMAKE_BINARY_DIR}/qthread.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/qthread.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/qthreads-1.23/include/qt_atomic_wait.h	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/include/qt_atomic_wait.h	2026-11-01 01:29:01.427885100 +0000
+@@ -269,6 +269,25 @@ while (0)
+ #define qt_wake_one(a)                                                         \
+   do { WakeByAddressSingle(a); } while (0)
+ 
++#elif defined(QTHREADS_CYGWIN)
++// Cygwin has no futex; use the Win32 WaitOnAddress family
++// (libsynchronization). Unlike a futex, WaitOnAddress takes a pointer to
++// the expected value.
++#define WIN32_LEAN_AND_MEAN
++#define NOMINMAX
++#include <windows.h>
++#define qt_wait_on_address(a, expected)                                        \
++  do {                                                                         \
++    uint32_t qt_expected_ = (expected);                                        \
++    WaitOnAddress((volatile VOID *)(a), &qt_expected_, 4, INFINITE);           \
++  } while (0)
++
++#define qt_wake_all(a)                                                         \
++  do { WakeByAddressAll((PVOID)(a)); } while (0)
++
++#define qt_wake_one(a)                                                         \
++  do { WakeByAddressSingle((PVOID)(a)); } while (0)
++
+ #elif defined(__sun)
+ // Solaris supposedly provides something futex-like via "user-level adaptive
+ // spin mutexes".
+--- origsrc/qthreads-1.23/include/qt_os.h	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/include/qt_os.h	2026-11-01 01:29:01.429894800 +0000
+@@ -13,6 +13,11 @@
+ #define QTHREADS_APPLE
+ #endif
+ 
++#elif defined(__CYGWIN__) || defined(QTHREADS_CYGWIN)
++#ifndef QTHREADS_CYGWIN
++#define QTHREADS_CYGWIN
++#endif
++
+ #elif defined(_WIN32) || defined(QTHREADS_WINDOWS)
+ #ifndef QTHREADS_WINDOWS
+ #define QTHREADS_WINDOWS
+--- origsrc/qthreads-1.23/qthread.pc.in	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/qthread.pc.in	2026-11-01 01:29:01.429894800 +0000
+@@ -6,7 +6,7 @@ includedir=@includedir@
+ Name: qthreads
+ Description: Lightweight locality-aware user-level threading runtime.
+ URL: https://github.com/sandialabs/qthreads
+-Version: @VERSION@
++Version: @PROJECT_VERSION@
+ Cflags: -I${includedir}
+ Libs: -L${libdir} -lqthread
+ Libs.private: @LIBS@
+--- origsrc/qthreads-1.23/src/CMakeLists.txt	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/CMakeLists.txt	2026-11-01 01:29:01.429894800 +0000
+@@ -104,6 +104,11 @@ set_target_properties(
+ # Link pthreads.
+ target_link_libraries(qthread PUBLIC Threads::Threads)
+ 
++# WaitOnAddress and WakeByAddress* (qt_atomic_wait.h) on Cygwin.
++if (CYGWIN)
++  target_link_libraries(qthread PRIVATE synchronization)
++endif()
++
+ # The c11 threading library has to be linked
+ # via a separate library on BSD OSs.
+ if ("${CMAKE_SYSTEM_NAME}" STREQUAL "FreeBSD" OR
+--- origsrc/qthreads-1.23/src/io.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/io.c	2026-11-01 01:29:01.431906000 +0000
+@@ -4,8 +4,10 @@
+ #include <stdio.h>    /* for fprintf() */
+ #include <stdlib.h>   /* for abort() */
+ #include <sys/time.h> /* for gettimeofday() */
++#if defined(__linux__)
+ /* - syscall(2) */
+ #include <sys/syscall.h>
++#endif
+ #include <unistd.h>
+ /* - accept(2) */
+ #include <sys/socket.h>
+--- origsrc/qthreads-1.23/src/syscalls/accept.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/accept.c	2026-11-01 01:29:01.431906000 +0000
+@@ -1,7 +1,9 @@
+ #include <stdint.h>
+ 
+ /* System Headers */
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ #include <unistd.h>
+ 
+ /* Public Headers */
+--- origsrc/qthreads-1.23/src/syscalls/connect.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/connect.c	2026-11-01 01:29:01.433661500 +0000
+@@ -1,7 +1,9 @@
+ #include <stdint.h>
+ 
+ /* System Headers */
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ #include <unistd.h>
+ 
+ /* Public Headers */
+--- origsrc/qthreads-1.23/src/syscalls/poll.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/poll.c	2026-11-01 01:29:01.433661500 +0000
+@@ -1,6 +1,8 @@
+ #include <stdint.h>
+ 
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ #include <unistd.h>
+ 
+ /* Public Headers */
+--- origsrc/qthreads-1.23/src/syscalls/pread.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/pread.c	2026-11-01 01:29:01.433661500 +0000
+@@ -3,7 +3,9 @@
+ /* System Headers */
+ #include <sys/types.h>
+ 
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ #include <unistd.h>
+ 
+ /* Public Headers */
+--- origsrc/qthreads-1.23/src/syscalls/pwrite.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/pwrite.c	2026-11-01 01:29:01.435671700 +0000
+@@ -3,7 +3,9 @@
+ /* System Headers */
+ #include <sys/types.h>
+ 
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ #include <unistd.h>
+ 
+ /* Public Headers */
+--- origsrc/qthreads-1.23/src/syscalls/read.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/read.c	2026-11-01 01:29:01.435671700 +0000
+@@ -3,7 +3,9 @@
+ /* System Headers */
+ #include <sys/types.h>
+ 
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ #include <unistd.h>
+ 
+ /* Public Headers */
+--- origsrc/qthreads-1.23/src/syscalls/select.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/select.c	2026-11-01 01:29:01.435671700 +0000
+@@ -3,7 +3,9 @@
+ /* System Headers */
+ #include <sys/select.h>
+ 
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ #include <unistd.h>
+ 
+ /* Public Headers */
+--- origsrc/qthreads-1.23/src/syscalls/system.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/system.c	2026-11-01 01:29:01.437681500 +0000
+@@ -1,7 +1,9 @@
+ #include <stdint.h>
+ 
+ /* System Headers */
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ 
+ /* Public Headers */
+ #include "qthread/qt_syscalls.h"
+--- origsrc/qthreads-1.23/src/syscalls/user_defined.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/user_defined.c	2026-11-01 01:29:01.437681500 +0000
+@@ -5,7 +5,9 @@
+ #include <sys/uio.h>
+ #include <unistd.h>
+ 
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ 
+ /* Internal Headers */
+ #include "qt_asserts.h"
+--- origsrc/qthreads-1.23/src/syscalls/wait4.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/wait4.c	2026-11-01 01:29:01.437681500 +0000
+@@ -1,7 +1,9 @@
+ #include <stdint.h>
+ 
+ /* System Headers */
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ #include <unistd.h>
+ 
+ /* Public Headers */
+--- origsrc/qthreads-1.23/src/syscalls/write.c	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/src/syscalls/write.c	2026-11-01 01:29:01.439691800 +0000
+@@ -3,7 +3,9 @@
+ /* System Headers */
+ #include <sys/types.h>
+ 
++#if defined(__linux__)
+ #include <sys/syscall.h> /* for SYS_accept and others */
++#endif
+ #include <unistd.h>
+ 
+ /* Public Headers */
+--- origsrc/qthreads-1.23/test/argparsing.h	2026-02-11 22:02:05.000000000 +0000
++++ src/qthreads-1.23/test/argparsing.h	2026-11-01 01:29:01.439691800 +0000
+@@ -113,6 +113,7 @@ static ARGP_Atomic(int) verbose;
+ #warning Silencing iprintf() output.
+ #define iprintf(...)
+ #else
++#if !defined(__CYGWIN__)
+ inline static void iprintf(char const *restrict format, ...) {
+   if (atomic_load_explicit(&verbose, memory_order_relaxed)) {
+     va_list ap;
+@@ -123,6 +124,7 @@ inline static void iprintf(char const *r
+     va_end(ap);
+   }
+ }
++#endif
+ 
+ #endif // if defined(__CYGWIN32__)
+ 

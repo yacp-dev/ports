@@ -14,21 +14,23 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libhwloc-devel"
+BUILD_REQUIRES="
+	libhwloc-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -DBUILDING_DLL"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
-	-DSOVERSION:STRING=19
 	-DQTHREADS_TOPOLOGY:STRING=hwloc
+	-DQTHREADS_CONTEXT_SWAP_IMPL:STRING=system
 "
 
 src_test()
 {
 	cd ${B}
-	PATH=${B}/src:${PATH} ninja_test
+	PATH=${B}/src:${B}/test/utils/rng:${PATH} ninja_test
 }
 
 DOCS="
@@ -50,14 +52,14 @@ src_install()
 
 PKG_NAMES="
 	qthreads
-	libqthread19
+	libqthread1
 	libqthread-devel
 "
 qthreads_CONTENTS="
 	usr/share/doc
 "
-libqthread19_CONTENTS="
-	usr/bin/cyg*-19.dll
+libqthread1_CONTENTS="
+	usr/bin/cyg*-1.dll
 "
 libqthread_devel_CONTENTS="
 	usr/include
@@ -65,5 +67,8 @@ libqthread_devel_CONTENTS="
 	usr/share/man/man3
 "
 qthreads_SUMMARY="${SUMMARY} (licensing & readmes)"
-libqthread19_SUMMARY="${SUMMARY} (runtime)"
+libqthread1_SUMMARY="${SUMMARY} (runtime)"
 libqthread_devel_SUMMARY="${SUMMARY} (development)"
+libqthread_devel_REQUIRES="
+	libhwloc-devel
+"

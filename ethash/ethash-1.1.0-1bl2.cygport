@@ -9,6 +9,11 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libbenchmark-devel
+	libgtest-devel
+"
+
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
@@ -16,7 +21,16 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DSOVERSION:STRING=${PV[1]}
+	-DETHASH_TESTING:BOOL=ON
+	-DHUNTER_ENABLED:BOOL=OFF
+	-DCMAKE_GTEST_DISCOVER_TESTS_DISCOVERY_MODE:STRING=PRE_TEST
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/lib/ethash:${B}/lib/global_context:${B}/lib/keccak:${PATH} ninja_test
+}
 
 DOCS="
 	CHANGELOG.md

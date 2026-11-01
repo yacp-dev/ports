@@ -8,8 +8,8 @@ DESCRIPTION="HTSlib is an implementation of a unified C library for accessing co
 formats, such as SAM, CRAM and VCF, used for high-throughput sequencing data,
 and is the core library used by samtools and bcftools."
 
-LICENSE="MIT AND BSD-3-Clause-Modification"
-LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSD-3-Clause-Modification"
+LICENSE="MIT AND BSD-3-Clause AND LicenseRef-Public-Domain"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSD-3-Clause AND LicenseRef-Public-Domain"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

@@ -2,23 +2,23 @@ htscodecs
 ------------------------------------------
 This repository implements the custom CRAM codecs used for EXTERNAL block
 types. These consist of two variants of the rANS codec (8-bit and 16-bit
-renormalisation, with run-length encoding and bit-packing also supported in
-the latter), a dynamic arithmetic coder, and custom codecs for name/ID
-compression and quality score compression derived from fqzcomp.
+renormalisation, with run-length encoding and bit-packing also supported in the
+latter), a dynamic arithmetic coder, and custom codecs for name/ID compression
+and quality score compression derived from fqzcomp.
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.12-1
   libbz2_1-1.0.8-2
-  libhtscodecs-devel-1.6.7-1bl1
-  libhtscodecs2-1.6.7-1bl1
-  pkg-config-3.0.5-1
+  libhtscodecs-devel-1.6.7-1bl2
+  libhtscodecs2-1.6.7-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  automake-20250528-1
+  autoconf-20260320-3
+  automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
   libbz2-devel-1.0.8-2
   libtool-2.6.2-1
@@ -78,6 +78,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6.7-1bl2 -----
+Fix crash in AVX2/AVX512 rANS decoders
 
 ----- version 1.6.7-1bl1 -----
 Version bump.

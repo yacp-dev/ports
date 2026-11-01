@@ -18,6 +18,11 @@ BUILD_REQUIRES="
 	zlib-devel
 "
 
+# GCC can't realign the stack for 32/64-byte AVX2/AVX512 spills on x86_64
+# Windows (GCC PR 54412), so vmovdqa to the stack faults in the rANS
+# 32x16 decoders; have the assembler emit unaligned moves instead.
+CFLAGS+=" -Wa,-muse-unaligned-vector-move"
+
 CYGCONF_ARGS="
 	--enable-maintainer-mode
 "

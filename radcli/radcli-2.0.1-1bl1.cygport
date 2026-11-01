@@ -1,0 +1,79 @@
+HOMEPAGE="https://github.com/${PN}/${PN}"
+SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Simple RADIUS client library"
+DESCRIPTION="The radcli library is a library for writing RADIUS Clients. The library's
+approach is to allow writing RADIUS-aware application in less than 50 lines of
+C code. It was based originally on freeradius-client and radiusclient-ng and
+is source compatible with them."
+
+LICENSE="BSD-2-Clause AND UMich-Merit AND HPND-Fenneberg-Livingston AND BSD-MIT AND CC0-1.0 AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND UMich-Merit AND HPND-Fenneberg-Livingston AND BSD-MIT AND CC0-1.0 AND MIT"
+LICENSE_URI="COPYRIGHT"
+
+BUILD_REQUIRES="
+	libgnutls-devel
+	libnettle-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+inherit meson
+
+CYGMESON_ARGS="
+	-Ddocs=disabled
+"
+
+# Leftovers of close-notify-tests.sh in tests/ (not part of the source)
+DIFF_EXCLUDES="
+	conf-tls-cn-*
+	servers-cn-*
+	tmp-cn-*.out
+"
+
+# The shell tests run src/radiusclient.exe, which needs the in-tree DLLs on PATH
+# (meson only adds them for tests that are built executables)
+src_test()
+{
+	export PATH="${S}/_build.${CHOST}/lib:${PATH}"
+	meson test -C ${S}/_build.${CHOST} --no-rebuild --print-errorlogs
+}
+
+PKG_NAMES="
+	radcli
+	libradcli10
+	libradcli2_1
+	libradcli-devel
+	libradcli2-devel
+"
+radcli_CONTENTS="
+	etc
+	usr/share/doc
+	usr/share/${PN}
+"
+libradcli10_CONTENTS="
+	usr/bin/cygradcli-10.dll
+"
+libradcli2_1_CONTENTS="
+	usr/bin/cygradcli2-1.dll
+"
+libradcli_devel_CONTENTS="
+	usr/include/radcli/radcli.h
+	usr/lib/libradcli.dll.a
+	usr/lib/pkgconfig/radcli.pc
+	usr/share/man/man3
+"
+libradcli2_devel_CONTENTS="
+	usr/include/radcli/radcli-defs.h
+	usr/include/radcli/radcli2.h
+	usr/include/radcli/version.h
+	usr/lib/libradcli2.dll.a
+	usr/lib/pkgconfig/radcli2.pc
+"
+radcli_SUMMARY="${SUMMARY} (licensing & readmes)"
+libradcli10_SUMMARY="${SUMMARY} (runtime)"
+libradcli2_1_SUMMARY="${SUMMARY} (runtime, radcli2 API)"
+libradcli_devel_SUMMARY="${SUMMARY} (development)"
+libradcli2_devel_SUMMARY="${SUMMARY} (development, radcli2 API)"
+libradcli_devel_REQUIRES="libradcli2-devel"

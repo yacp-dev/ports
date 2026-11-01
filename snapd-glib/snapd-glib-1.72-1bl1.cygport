@@ -6,16 +6,18 @@ SUMMARY="Glib library for communicating with snapd"
 DESCRIPTION="snapd-glib is a library to allow GLib based applications access to snapd, the
 daemon that controls Snaps."
 
-LICENSE="LGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE="LGPL-2.0-only OR LGPL-3.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-only OR LGPL-3.0-only"
 LICENSE_URI="COPYING.LGPL3"
 
 BUILD_REQUIRES="
+	gobject-introspection
 	libQt5Core-devel
 	libQt5Quick-devel
 	libglib2.0-devel
 	libjson-glib1.0-devel
 	libsoup2.4-devel
+	vala
 "
 
 inherit meson
@@ -27,9 +29,13 @@ CYGMESON_ARGS="
 	-Dsoup2=true
 "
 
-PKG_IGNORE="
-	usr/lib/qt5/qml/Snapd/libSnapd.dll.a
-"
+src_install() {
+	cd ${S}
+	meson_install
+
+	cd ${D}
+	verbose rm -f usr/lib/qt5/qml/Snapd/libSnapd.dll.a
+}
 
 PKG_NAMES="
 	snapd-glib

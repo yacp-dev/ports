@@ -3,44 +3,44 @@ qtkeychain
 QtKeychain is a Qt API to store passwords and other secret data securely.
 
 Runtime requirements:
-  cygwin-3.6.0-1
+  cygwin-3.6.12-1
   libQt5Core5-5.9.4-2
-  libgcc1-12.4.0-3
-  libglib2.0_0-2.84.0-1
-  libqt5keychain1-0.15.0-1bl1
-  libstdc++6-12.4.0-3
+  libgcc1-14.4.0-1
+  libglib2.0_0-2.90.1-1
+  libqt5keychain1-0.17.0-1bl1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
-  libglib2.0-devel-2.84.0-1
-  ninja-1.12.1-1
+  libglib2.0-devel-2.90.1-1
+  libsecret1-devel-0.18.5-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/frankosterfeld/qtkeychain
 
 Canonical download:
-  https://github.com/frankosterfeld/qtkeychain/archive/refs/tags/0.15.0.tar.gz
+  https://github.com/frankosterfeld/qtkeychain/archive/refs/tags/0.17.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack qtkeychain-0.15.0-X-src.tar.xz
+  1. unpack qtkeychain-0.17.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./qtkeychain-0.15.0-X.cygport all
+        % cygport ./qtkeychain-0.17.0-X.cygport all
 
 This will create:
-  /usr/src/qtkeychain-0.15.0-X-src.tar.xz
-  /usr/src/qtkeychain-0.15.0-X.tar.xz
-  /usr/src/libqt5keychain1-0.15.0-X.tar.xz
-  /usr/src/libqt5keychain-devel-0.15.0-X.tar.xz
+  /usr/src/qtkeychain-0.17.0-X-src.tar.xz
+  /usr/src/qtkeychain-0.17.0-X.tar.xz
+  /usr/src/libqt5keychain1-0.17.0-X.tar.xz
+  /usr/src/libqt5keychain-devel-0.17.0-X.tar.xz
 
 -------------------------------------------
 
@@ -53,8 +53,10 @@ Files included in the binary package:
   /usr/share/doc/qtkeychain/ReadMe.md
   /usr/share/qt5keychain/translations/qtkeychain_de.qm
   /usr/share/qt5keychain/translations/qtkeychain_fr.qm
+  /usr/share/qt5keychain/translations/qtkeychain_ka.qm
   /usr/share/qt5keychain/translations/qtkeychain_ro.qm
   /usr/share/qt5keychain/translations/qtkeychain_ru.qm
+  /usr/share/qt5keychain/translations/qtkeychain_sv.qm
   /usr/share/qt5keychain/translations/qtkeychain_zh.qm
 
 (libqt5keychain1)
@@ -65,7 +67,7 @@ Files included in the binary package:
   /usr/include/qt5keychain/qkeychain_export.h
   /usr/lib/cmake/Qt5Keychain/Qt5KeychainConfig.cmake
   /usr/lib/cmake/Qt5Keychain/Qt5KeychainConfigVersion.cmake
-  /usr/lib/cmake/Qt5Keychain/Qt5KeychainLibraryDepends-release.cmake
+  /usr/lib/cmake/Qt5Keychain/Qt5KeychainLibraryDepends-relwithdebinfo.cmake
   /usr/lib/cmake/Qt5Keychain/Qt5KeychainLibraryDepends.cmake
   /usr/lib/libqt5keychain.dll.a
   /usr/lib/qt5/mkspecs/modules/qt_Qt5Keychain.pri
@@ -73,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.17.0-1bl1 -----
+Version bump.
 
 ----- version 0.15.0-1bl1 -----
 Version bump.

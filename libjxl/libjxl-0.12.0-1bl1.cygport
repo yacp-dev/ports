@@ -6,35 +6,50 @@ CATEGORY="Libs"
 SUMMARY="JPEG XL image format reference implementation"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="Apache-2.0 AND BSD-3-Clause AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-3-Clause AND Zlib"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	libavif-devel
 	libbrotli-devel
 	libgif-devel
+	libgtest-devel
 	libhwy-devel
 	libjpeg-devel
 	libopenexr-devel
 	libpng-devel
-	libtcmalloc-devel
 	libwebp-devel
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+# gcc keeps the stack only 16-byte aligned here, yet spills Highway's
+# AVX2/AVX-512 vectors with aligned moves (cjxl crashed in
+# N_AVX3_DL::HistogramDistance); have the assembler make them unaligned
+export CFLAGS="${CFLAGS} -Wa,-muse-unaligned-vector-move"
+export CXXFLAGS="${CXXFLAGS} -Wa,-muse-unaligned-vector-move"
 
 inherit cmake
 inherit git
 
 CYGCMAKE_ARGS="
-	-DBUILD_TESTING:BOOL=OFF
+	-DBUILD_TESTING:BOOL=ON
+	-DCMAKE_GTEST_DISCOVER_TESTS_DISCOVERY_MODE:STRING=PRE_TEST
 	-DJPEGXL_ENABLE_DOXYGEN:BOOL=OFF
 	-DJPEGXL_FORCE_SYSTEM_BROTLI:BOOL=ON
 	-DJPEGXL_FORCE_SYSTEM_GTEST:BOOL=ON
 	-DJPEGXL_FORCE_SYSTEM_LCMS2:BOOL=ON
 	-DJPEGXL_FORCE_SYSTEM_HWY:BOOL=ON
+	-DJPEGXL_ENABLE_TCMALLOC:BOOL=OFF
 "
+
+# the tests take about 21 minutes on the runner
+YACP_CHECK_TIMEOUT_MINUTES=30
+
+src_test() {
+	cd ${B}
+	PATH=${B}/lib:${PATH} ninja_test
+}
 
 DOCS="
 	CHANGELOG.md
@@ -50,7 +65,7 @@ libjxl_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libjxl0_11_CONTENTS="
+libjxl0_12_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libjxl_devel_CONTENTS="
@@ -58,5 +73,5 @@ libjxl_devel_CONTENTS="
 	usr/lib
 "
 libjxl_SUMMARY="${SUMMARY} (utilities)"
-libjxl0_11_SUMMARY="${SUMMARY} (runtime)"
+libjxl0_12_SUMMARY="${SUMMARY} (runtime)"
 libjxl_devel_SUMMARY="${SUMMARY} (development)"

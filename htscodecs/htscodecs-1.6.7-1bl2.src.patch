@@ -1,5 +1,5 @@
 --- origsrc/htscodecs-1.6.7/Makefile.am	2026-06-24 14:13:20.000000000 +0000
-+++ src/htscodecs-1.6.7/Makefile.am	2026-08-11 05:29:42.064991500 +0000
++++ src/htscodecs-1.6.7/Makefile.am	2026-11-01 09:07:37.156715900 +0000
 @@ -43,6 +43,10 @@ nobase_include_HEADERS = \
  	htscodecs/pack.h \
  	htscodecs/rle.h \
@@ -12,7 +12,7 @@
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
 --- origsrc/htscodecs-1.6.7/configure.ac	2026-06-24 14:13:20.000000000 +0000
-+++ src/htscodecs-1.6.7/configure.ac	2026-08-11 05:29:42.064991500 +0000
++++ src/htscodecs-1.6.7/configure.ac	2026-11-01 09:07:37.157717600 +0000
 @@ -212,4 +212,5 @@ dnl Checks for library functions.
  AX_SEARCH_LIBS_REV([pthread_join], [thr pthread])
  
@@ -20,7 +20,7 @@
 +AC_CONFIG_FILES([htscodecs.pc])
  AC_OUTPUT
 --- origsrc/htscodecs-1.6.7/htscodecs/Makefile.am	2026-06-24 14:13:20.000000000 +0000
-+++ src/htscodecs-1.6.7/htscodecs/Makefile.am	2026-08-11 05:29:42.067019100 +0000
++++ src/htscodecs-1.6.7/htscodecs/Makefile.am	2026-11-01 09:07:37.157717600 +0000
 @@ -58,6 +58,7 @@ libhtscodecs_base_src = \
  	c_range_coder.h \
  	c_simple_model.h \
@@ -39,7 +39,7 @@
  
  # Fuzz testing version of the library.  This is build using -fsanitize=fuzzer
 --- origsrc/htscodecs-1.6.7/htscodecs.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/htscodecs-1.6.7/htscodecs.pc.in	2026-08-11 05:29:42.067019100 +0000
++++ src/htscodecs-1.6.7/htscodecs.pc.in	2026-11-01 09:07:37.159733000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -52,7 +52,7 @@
 +Libs: -L${libdir} -lhtscodecs
 +Cflags: -I${includedir}
 --- origsrc/htscodecs-1.6.7/tests/arith_dynamic_test.c	2026-06-24 14:13:20.000000000 +0000
-+++ src/htscodecs-1.6.7/tests/arith_dynamic_test.c	2026-08-11 05:29:42.069035100 +0000
++++ src/htscodecs-1.6.7/tests/arith_dynamic_test.c	2026-11-01 09:07:37.159733000 +0000
 @@ -42,6 +42,7 @@
  #include <sys/time.h>
  #include <limits.h>
@@ -72,7 +72,7 @@
          switch (opt) {
          case 'o': {
 --- origsrc/htscodecs-1.6.7/tests/fqzcomp_qual_test.c	2026-06-24 14:13:20.000000000 +0000
-+++ src/htscodecs-1.6.7/tests/fqzcomp_qual_test.c	2026-08-11 05:29:42.069035100 +0000
++++ src/htscodecs-1.6.7/tests/fqzcomp_qual_test.c	2026-11-01 09:07:37.161747300 +0000
 @@ -42,6 +42,7 @@
  #include <fcntl.h>
  #include <ctype.h>
@@ -91,7 +91,7 @@
  
      while ((opt = getopt(argc, argv, "ds:s:b:rx:")) != -1) {
 --- origsrc/htscodecs-1.6.7/tests/rANS_static4x16pr_test.c	2026-06-24 14:13:20.000000000 +0000
-+++ src/htscodecs-1.6.7/tests/rANS_static4x16pr_test.c	2026-08-11 05:29:42.071050400 +0000
++++ src/htscodecs-1.6.7/tests/rANS_static4x16pr_test.c	2026-11-01 09:07:37.161747300 +0000
 @@ -41,6 +41,7 @@
  #include <string.h>
  #include <fcntl.h>
@@ -110,7 +110,7 @@
      extern void rans_disable_avx512(void);
      extern void rans_disable_avx2(void);
 --- origsrc/htscodecs-1.6.7/tests/rANS_static_test.c	2026-06-24 14:13:20.000000000 +0000
-+++ src/htscodecs-1.6.7/tests/rANS_static_test.c	2026-08-11 05:29:42.071050400 +0000
++++ src/htscodecs-1.6.7/tests/rANS_static_test.c	2026-11-01 09:07:37.163760500 +0000
 @@ -41,6 +41,7 @@
  #include <string.h>
  #include <fcntl.h>

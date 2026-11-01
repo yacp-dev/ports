@@ -6,11 +6,14 @@ SUMMARY="Flexible and efficient preprocessing, parsing, and manipulation of sequ
 DESCRIPTION="splitcode is a tool that enables flexible and efficient preprocessing, parsing,
 and manipulation of sequencing reads according to a user’s specifications."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libz-ng-devel"
+BUILD_REQUIRES="
+	libhts-devel
+	libz-ng-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

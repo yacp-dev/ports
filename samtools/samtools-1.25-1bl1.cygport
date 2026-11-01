@@ -10,6 +10,7 @@ LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	htslib
 	libhts-devel
 	liblz4-devel
 	libncurses-devel

@@ -1,0 +1,25 @@
+HOMEPAGE="https://github.com/rrthomas/${PN}"
+SRC_URI="https://github.com/rrthomas/${PN}/releases/download/v${PV}/${P}.tar.gz"
+
+CATEGORY="Text"
+SUMMARY="Intelligent recursive search/replace utility"
+DESCRIPTION="A search/replace utility. rpl replaces strings with new strings in multiple
+text files."
+
+LICENSE="GPL-3.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND LGPL-2.1-or-later"
+LICENSE_URI="https://www.gnu.org/licenses/gpl-3.0.txt"
+
+BUILD_REQUIRES="
+	gengetopt
+	help2man
+	libglib2.0-devel
+	libpcre2-devel
+	libuchardet-devel
+"
+
+# gnulib's stddef.h, taken as not idempotent under gcc 14, swallows the
+# __need_wint_t that Cygwin's <sys/_types.h> relies on for wint_t
+CYGCONF_ARGS="
+	gl_cv_stddef_idempotent=yes
+"

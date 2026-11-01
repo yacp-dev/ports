@@ -12,8 +12,11 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSING"
 
 BUILD_REQUIRES="
+	expect
 	libcrypt-devel
 	libwolfssl-devel
+	netcat
+	openssh
 "
 
 export CPPFLAGS="${CPPFLAGS} -DECHOPRT=0 -DEXTPROC=0 -DPENDIN=0"
@@ -21,6 +24,19 @@ export CPPFLAGS="${CPPFLAGS} -DECHOPRT=0 -DEXTPROC=0 -DPENDIN=0"
 CYGCONF_ARGS="
 	--enable-all
 "
+
+src_test()
+{
+	cd ${B}
+	# The tests read these from the current directory, and configure only
+	# links some of keys/ into ${B}
+	rm -rf keys
+	cp -R ${S}/keys keys
+	cp -p ${S}/README.md ${S}/configure.ac .
+	mkdir -p scripts
+	cp -p ${S}/scripts/scp.test scripts/
+	cygtest
+}
 
 DOCS="
 	LICENSING

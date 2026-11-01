@@ -1,0 +1,86 @@
+--- origsrc/wolfssh-1.6.0-stable/Makefile.am	2026-10-06 22:03:51.000000000 +0000
++++ src/wolfssh-1.6.0-stable/Makefile.am	2026-11-01 22:25:33.662276500 +0000
+@@ -98,3 +98,6 @@ SBOM_DEP_WOLFSSL  = yes
+ SBOM_LICENSE_OVERRIDE ?= GPL-3.0-or-later
+ 
+ include scripts/sbom.am
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/wolfssh-1.6.0-stable/apps/wolfsshd/auth.c	2026-10-06 22:03:51.000000000 +0000
++++ src/wolfssh-1.6.0-stable/apps/wolfsshd/auth.c	2026-11-01 22:25:33.664290000 +0000
+@@ -94,7 +94,11 @@
+ #endif
+ #endif
+ 
+-#if !defined(_WIN32) && !(defined(__OSX__) || defined(__APPLE__))
++#ifdef __CYGWIN__
++#include <crypt.h>
++#endif
++
++#if !defined(_WIN32) && !(defined(__OSX__) || defined(__APPLE__)) && !defined(__CYGWIN__)
+ #include <shadow.h>
+ #define HAVE_SHADOW
+ 
+--- origsrc/wolfssh-1.6.0-stable/apps/wolfsshd/auth.h	2026-10-06 22:03:51.000000000 +0000
++++ src/wolfssh-1.6.0-stable/apps/wolfsshd/auth.h	2026-11-01 22:25:33.666303100 +0000
+@@ -29,7 +29,7 @@
+ 
+ /* Mirrors the condition auth.c uses to define its (translation-unit-local)
+  * HAVE_SHADOW; kept as a single macro here so the two can't drift apart. */
+-#if !defined(_WIN32) && !(defined(__OSX__) || defined(__APPLE__))
++#if !defined(_WIN32) && !(defined(__OSX__) || defined(__APPLE__)) && !defined(__CYGWIN__)
+     #define WOLFSSHD_HAVE_SHADOW
+ #endif
+ 
+--- origsrc/wolfssh-1.6.0-stable/apps/wolfsshd/test/test_configuration.c	2026-10-06 22:03:51.000000000 +0000
++++ src/wolfssh-1.6.0-stable/apps/wolfsshd/test/test_configuration.c	2026-11-01 22:25:33.666303100 +0000
+@@ -14,14 +14,14 @@
+ #if defined(WOLFSSH_HAVE_LIBCRYPT) || defined(WOLFSSH_HAVE_LIBLOGIN)
+     #include <unistd.h>
+ #endif
+-#ifdef HAVE_CRYPT_H
++#if defined(HAVE_CRYPT_H) || defined(__CYGWIN__)
+     #include <crypt.h>
+ #endif
+ #ifndef _WIN32
+     #include <unistd.h>
+     #include <pwd.h>
+ #endif
+-#if !defined(_WIN32) && !(defined(__OSX__) || defined(__APPLE__))
++#if !defined(_WIN32) && !(defined(__OSX__) || defined(__APPLE__)) && !defined(__CYGWIN__)
+     #include <shadow.h>
+ #endif
+ 
+--- origsrc/wolfssh-1.6.0-stable/configure.ac	2026-10-06 22:03:51.000000000 +0000
++++ src/wolfssh-1.6.0-stable/configure.ac	2026-11-01 22:25:33.668056700 +0000
+@@ -16,6 +16,8 @@ AM_INIT_AUTOMAKE([1.14.1 -Wall -Werror -
+ 
+ AC_ARG_PROGRAM
+ AC_CONFIG_MACRO_DIR([m4])
++dnl Shell variable m4/ax_harden_compiler_flags.m4 sets
++m4_pattern_allow([^AX_HARDEN_LIB$])
+ AC_CONFIG_HEADERS([config.h])
+ 
+ WOLFSSH_LIBRARY_VERSION=21:0:3
+@@ -454,6 +456,7 @@ AC_CONFIG_FILES([Makefile wolfssh/versio
+ 
+ AX_CREATE_GENERIC_CONFIG
+ 
++AC_CONFIG_FILES([wolfssh.pc])
+ AC_OUTPUT
+ 
+ # force make clean
+--- origsrc/wolfssh-1.6.0-stable/wolfssh.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/wolfssh-1.6.0-stable/wolfssh.pc.in	2026-11-01 22:25:33.668056700 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: wolfssh
++Description: wolfSSL's Embeddable SSH Server
++Version: @VERSION@
++Libs: -L${libdir} -lwolfssh
++Cflags: -I${includedir}

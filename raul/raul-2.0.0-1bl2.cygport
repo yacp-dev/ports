@@ -13,5 +13,5 @@ LICENSE_URI="LICENSES/GPL-3.0-or-later.txt"
 inherit meson
 
 CYGMESON_ARGS="
-	-Dtests=disabled
+	-Dcpp_std=gnu++17
 "

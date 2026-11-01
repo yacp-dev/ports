@@ -1,8 +1,0 @@
-HOMEPAGE="http://www.laffeycomputer.com/${PN}.html"
-SRC_URI="http://downloads.laffeycomputer.com/current_builds/${P}.tar.gz"
-
-CATEGORY="Text"
-SUMMARY="UN*X text replacement utility"
-DESCRIPTION="rpl is a UN*X text replacement utility. It will replace strings with new
-strings in multiple text files. It can work recursively over directories and
-supports limiting the search to specific file suffixes."

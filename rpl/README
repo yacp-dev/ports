@@ -1,39 +1,46 @@
 rpl
 ------------------------------------------
-rpl is a UN*X text replacement utility. It will replace strings with new
-strings in multiple text files. It can work recursively over directories and
-supports limiting the search to specific file suffixes.
+A search/replace utility. rpl replaces strings with new strings in multiple
+text files.
 
 Runtime requirements:
-  cygwin-1.7.35-1
+  cygwin-3.6.12-1
+  libglib2.0_0-2.90.1-1
+  libpcre2_8_0-10.49-1
+  libuchardet0-0.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-1
-  cygport-0.18.1-1
-  gcc-core-4.9.2-3
-  make-4.1-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gengetopt-2.23.1-1
+  help2man-1.49.3-1
+  libglib2.0-devel-2.90.1-1
+  libpcre2-devel-10.49-1
+  libuchardet-devel-0.0.8-1
+  make-4.4.1-2
 
 Canonical website:
-  http://www.laffeycomputer.com/rpl.html
+  https://github.com/rrthomas/rpl
 
 Canonical download:
-  http://downloads.laffeycomputer.com/current_builds/rpl-1.4.1.tar.gz
+  https://github.com/rrthomas/rpl/releases/download/v2.1.2/rpl-2.1.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack rpl-1.4.1-X-src.tar.xz
+  1. unpack rpl-2.1.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./rpl-1.4.1-X.cygport all
+        % cygport ./rpl-2.1.2-X.cygport all
 
 This will create:
-  /usr/src/rpl-1.4.1-X-src.tar.xz
-  /usr/src/rpl-1.4.1-X.tar.xz
+  /usr/src/rpl-2.1.2-X-src.tar.xz
+  /usr/src/rpl-2.1.2-X.tar.xz
 
 -------------------------------------------
 
@@ -42,18 +49,18 @@ Files included in the binary package:
 (rpl)
   /usr/bin/rpl.exe
   /usr/share/doc/Cygwin/rpl.README
-  /usr/share/doc/rpl/AUTHORS
-  /usr/share/doc/rpl/COPYING
-  /usr/share/doc/rpl/ChangeLog
+  /usr/share/doc/rpl/README
   /usr/share/man/man1/rpl.1.gz
 
 ------------------
 
 Port Notes:
 
+----- version 2.1.2-1bl1 -----
+Version bump.
+
 ----- version 1.4.1-1bl2 -----
 Rebuild on x86_64
 
 ----- version 1.4.1-1bl1 -----
 Initial release for Cygwin-1.7 by fd0 <http://fd0.hatenablog.jp/>
-

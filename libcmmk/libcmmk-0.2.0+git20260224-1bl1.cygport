@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/chmod222/${PN}"
 GIT_URI="https://github.com/chmod222/${PN}.git"
+GIT_REV="7d33287d86da2457439defe77d3109b434782135"
 
 CATEGORY="Libs"
 SUMMARY="Unofficial LED control API for Coolermaster Masterkey keyboards"
@@ -9,12 +10,15 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUOLD_REQUIRES="libhidapi-devel"
+BUILD_REQUIRES="
+	libhidapi-devel
+"
 
 inherit cmake
 inherit git
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DSOVERSION:STRING=${PV[1]}
 "
 
@@ -42,3 +46,4 @@ libcmmk_devel_CONTENTS="
 libcmmk_SUMMARY="${SUMMARY} (utilities)"
 libcmmk0_SUMMARY="${SUMMARY} (runtime)"
 libcmmk_devel_SUMMARY="${SUMMARY} (development)"
+libcmmk_devel_REQUIRES="libhidapi-devel"

@@ -1,12 +1,12 @@
---- origsrc/libcmmk/CMakeLists.txt	2023-10-07 08:42:25.000000000 +0900
-+++ src/libcmmk/CMakeLists.txt	2023-10-07 08:55:07.387509600 +0900
+--- origsrc/libcmmk/CMakeLists.txt	2026-11-01 09:53:06.000000000 +0000
++++ src/libcmmk/CMakeLists.txt	2026-11-01 09:53:08.284673200 +0000
 @@ -10,7 +10,8 @@ add_library(cmmk_obj OBJECT
  
  configure_file(config.h.in include/libcmmk/libcmmk-config.h)
  
 -find_package(HIDAPI QUIET COMPONENTS libusb)
-+find_package(pkgconfig)
-+pkg_check_modules(HIDAPI hidapi)
++find_package(PkgConfig REQUIRED)
++pkg_check_modules(HIDAPI REQUIRED hidapi-libusb)
  
  target_include_directories(cmmk_obj
  	PUBLIC
@@ -44,7 +44,8 @@
  		ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
  		PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
  
- 	install(FILES ${CMAKE_BINARY_DIR}/include/libcmmk/libcmmk-config.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+-	install(FILES ${CMAKE_BINARY_DIR}/include/libcmmk/libcmmk-config.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
++	install(FILES include/libcmmk/libcmmk.h ${CMAKE_BINARY_DIR}/include/libcmmk/libcmmk-config.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libcmmk)
  
  ENDIF()
 +
@@ -54,9 +55,9 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libcmmk.pc.in ${CMAKE_BINARY_DIR}/libcmmk.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libcmmk.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libcmmk/libcmmk.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libcmmk/libcmmk.pc.in	2023-10-07 08:55:36.885558400 +0900
-@@ -0,0 +1,10 @@
+--- origsrc/libcmmk/libcmmk.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libcmmk/libcmmk.pc.in	2026-11-01 09:53:08.284673200 +0000
+@@ -0,0 +1,11 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
 +libdir=@libdir@
@@ -65,10 +66,11 @@
 +Name: libcmmk
 +Description: Unofficial LED control API for Coolermaster Masterkey keyboards
 +Version: @PROJECT_VERSION@
++Requires: hidapi-libusb
 +Libs: -L${libdir} -lcmmk
 +Cflags: -I${includedir}
---- origsrc/libcmmk/test/CMakeLists.txt	2023-10-07 08:42:25.000000000 +0900
-+++ src/libcmmk/test/CMakeLists.txt	2023-10-07 08:50:26.190177300 +0900
+--- origsrc/libcmmk/test/CMakeLists.txt	2026-11-01 09:53:06.000000000 +0000
++++ src/libcmmk/test/CMakeLists.txt	2026-11-01 09:53:08.286700700 +0000
 @@ -1,16 +1,10 @@
  add_executable(cmmk-test test.c)
  add_executable(cmmk-debug debug.c)
@@ -88,14 +90,14 @@
  
  target_include_directories(cmmk-test PRIVATE
  	${libcmmk_SOURCE_DIR}/include
-@@ -23,8 +17,8 @@ target_include_directories(cmmk-debug PR
+@@ -22,9 +16,5 @@ target_include_directories(cmmk-debug PR
+ 
  IF (NOT WIN32)
  	install(TARGETS cmmk-test cmmk-debug
- 		CONFIGURATIONS Debug
+-		CONFIGURATIONS Debug
 -		RUNTIME DESTINATION bin/debug)
-+		RUNTIME DESTINATION bin)
- 	install(TARGETS cmmk-test cmmk-debug
- 		CONFIGURATIONS Release
+-	install(TARGETS cmmk-test cmmk-debug
+-		CONFIGURATIONS Release
 -		RUNTIME DESTINATION bin/release)
 +		RUNTIME DESTINATION bin)
  ENDIF()

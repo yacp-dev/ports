@@ -1,5 +1,5 @@
---- origsrc/rsgain-3.7/CMakeLists.txt	2026-03-17 22:27:38.000000000 +0900
-+++ src/rsgain-3.7/CMakeLists.txt	2026-05-30 14:05:52.491364200 +0900
+--- origsrc/rsgain-3.8/CMakeLists.txt	2026-09-02 13:37:43.000000000 +0000
++++ src/rsgain-3.8/CMakeLists.txt	2026-11-01 06:20:46.889083700 +0000
 @@ -63,7 +63,7 @@ endif ()
  
  # Embed Git information

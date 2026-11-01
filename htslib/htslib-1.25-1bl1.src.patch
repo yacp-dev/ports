@@ -1,0 +1,71 @@
+--- origsrc/htslib/Makefile	2026-11-01 09:47:45.000000000 +0000
++++ src/htslib/Makefile	2026-11-01 09:47:53.107154900 +0000
+@@ -27,7 +27,7 @@ AR     = ar
+ RANLIB = ranlib
+ 
+ # Default libraries to link if configure is not used
+-htslib_default_libs = -lz -lm -lbz2 -llzma -lcurl
++htslib_default_libs = -lz -lm -lbz2 -llzma -lcurl -lhtscodecs
+ 
+ CPPFLAGS =
+ # TODO: make the 64-bit support for VCF optional via configure, for now add -DVCF_ALLOW_INT64
+@@ -149,7 +149,7 @@ HTS_BUILD_AVX512 =
+ HTS_BUILD_SSE4 =
+ 
+ include htslib_vars.mk
+-include htscodecs.mk
++# include htscodecs.mk
+ 
+ # If not using GNU make, you need to copy the version number from version.sh
+ # into here.
+@@ -567,17 +567,17 @@ htscodecs/htscodecs/rANS_static32x16pr_a
+ htscodecs/htscodecs/rANS_static32x16pr_avx512.o htscodecs/htscodecs/rANS_static32x16pr_avx512.pico: TARGET_CFLAGS = $(HTS_CFLAGS_AVX512)
+ htscodecs/htscodecs/rANS_static32x16pr_sse4.o htscodecs/htscodecs/rANS_static32x16pr_sse4.pico: TARGET_CFLAGS = $(HTS_CFLAGS_SSE4)
+ 
+-annot-tsv: annot-tsv.o libhts.a
+-	$(CC) $(LDFLAGS) -o $@ annot-tsv.o libhts.a $(LIBS) -lpthread
++annot-tsv: annot-tsv.o cyghts-$(LIBHTS_SOVERSION).dll
++	$(CC) $(LDFLAGS) -o $@ annot-tsv.o $(LIBS) -lpthread -L. -lhts
+ 
+-bgzip: bgzip.o libhts.a
+-	$(CC) $(LDFLAGS) -o $@ bgzip.o libhts.a $(LIBS) -lpthread
++bgzip: bgzip.o cyghts-$(LIBHTS_SOVERSION).dll
++	$(CC) $(LDFLAGS) -o $@ bgzip.o $(LIBS) -lpthread -L. -lhts
+ 
+-htsfile: htsfile.o libhts.a
+-	$(CC) $(LDFLAGS) -o $@ htsfile.o libhts.a $(LIBS) -lpthread
++htsfile: htsfile.o cyghts-$(LIBHTS_SOVERSION).dll
++	$(CC) $(LDFLAGS) -o $@ htsfile.o $(LIBS) -lpthread -L. -lhts
+ 
+-tabix: tabix.o libhts.a
+-	$(CC) $(LDFLAGS) -o $@ tabix.o libhts.a $(LIBS) -lpthread
++tabix: tabix.o cyghts-$(LIBHTS_SOVERSION).dll
++	$(CC) $(LDFLAGS) -o $@ tabix.o $(LIBS) -lpthread -L. -lhts
+ 
+ ref_cache/ref-cache: $(REF_CACHE_OBJS)
+ 	$(CC) $(LDFLAGS) $(REF_CACHE_EXTRA_LD_FLAGS) -o $@ $(REF_CACHE_OBJS) -lcurl
+--- origsrc/htslib/test/test.pl	2026-11-01 09:47:45.000000000 +0000
++++ src/htslib/test/test.pl	2026-11-01 09:47:53.109168800 +0000
+@@ -132,8 +132,8 @@ sub parse_params
+     if ( !$ret or $help ) { error(); }
+     $$opts{tmp} = $$opts{keep_files} ? $$opts{keep_files} : safe_tempdir();
+     if ( $$opts{keep_files} ) { cmd("mkdir -p $$opts{keep_files}"); }
+-    $$opts{path} = $FindBin::RealBin;
+-    $$opts{bin}  = $FindBin::RealBin;
++    $$opts{path} = $FindBin::Bin;
++    $$opts{bin}  = $FindBin::Bin;
+     $$opts{bin}  =~ s{/test/?$}{};
+     if ($^O =~ /^(cygwin|msys)/) {
+         $$opts{path} = cygpath($$opts{path});
+@@ -1080,7 +1080,10 @@ sub test_index
+     test_compare($opts,"$$opts{path}/test_index -b $$opts{tmp}/index.sam.gz", "$$opts{tmp}/index.sam.gz.bai", "$$opts{path}/index.sam.gz.bai");
+ 
+     # CRAM
+-    local $ENV{REF_PATH} = "$$opts{m5_dir}/\%2s/\%2s/\%s";
++    # REF_PATH separates entries with colons on Cygwin; escape the drive
++    # letter's ($$opts{tmp} comes from cygpath -m).
++    (my $m5_dir = $$opts{m5_dir}) =~ s/:/::/g;
++    local $ENV{REF_PATH} = "$m5_dir/\%2s/\%2s/\%s";
+     test_compare($opts,"$$opts{path}/test_view $nthreads -o seqs_per_slice=40 -l 0 -C -x $$opts{tmp}/index.cram.crai $$opts{path}/index.sam > $$opts{tmp}/index.cram", "$$opts{tmp}/index.cram.crai", "$$opts{path}/index.cram.crai", gz=>1);
+     unlink("$$opts{tmp}/index.cram.crai");
+     test_compare($opts,"$$opts{path}/test_index $$opts{tmp}/index.cram", "$$opts{tmp}/index.cram.crai", "$$opts{path}/index.cram.crai", gz=>1);

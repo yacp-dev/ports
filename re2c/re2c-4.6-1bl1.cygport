@@ -14,9 +14,14 @@ checks and buffers. Re2c is based on the lookahead TDFA algorithm that allows
 it to perform fast and lightweight submatch extraction. The tool is used in
 projects such as php, ninja, yasm, spamassassin, BRL-CAD, wake, etc."
 
-# LICENSE="public domain"
-# LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-re2c-public-domain"
-# LICENSE_URI="LICENSE"
+LICENSE="LicenseRef-re2c"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-re2c"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	clang
+	libbenchmark-devel
+"
 
 inherit cmake
 

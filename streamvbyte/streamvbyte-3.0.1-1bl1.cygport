@@ -1,0 +1,59 @@
+HOMEPAGE="https://github.com/fast-pack/${PN}"
+# tests/perf.c's dependencies, which CMakeLists.txt and cmake/CPM.cmake would
+# otherwise download at configure time: keep CPM_VERSION at cmake/CPM.cmake's
+# CPM_DOWNLOAD_VERSION, and SEA_COUNTERS_VERSION at the tag of the sea_counters
+# main branch as of the v${PV} tag
+CPM_VERSION="0.42.1"
+SEA_COUNTERS_VERSION="3.0.0"
+SRC_URI="
+	https://github.com/fast-pack/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/cpm-cmake/CPM.cmake/releases/download/v${CPM_VERSION}/CPM.cmake
+	https://github.com/lemire/sea_counters/archive/refs/tags/v${SEA_COUNTERS_VERSION}.tar.gz#/sea_counters-${SEA_COUNTERS_VERSION}.tar.gz
+"
+
+CATEGORY="Libs"
+SUMMARY="Fast integer compression in C using the StreamVByte codec"
+DESCRIPTION="StreamVByte is a new integer compression technique that applies SIMD
+instructions (vectorization) to Google's Group Varint approach. The net
+result is faster than other byte-oriented compression techniques."
+
+LICENSE="Apache-2.0 AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DSTREAMVBYTE_ENABLE_EXAMPLES:BOOL=ON
+	-DSTREAMVBYTE_ENABLE_TESTS:BOOL=ON
+"
+
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	mkdir -p cmake
+	cp ${S}/CPM.cmake cmake/CPM_${CPM_VERSION}.cmake
+	cygcmake -DCPM_sea_counters_SOURCE=${srcdir}/sea_counters-${SEA_COUNTERS_VERSION}
+	cygninja
+}
+
+PKG_NAMES="
+	streamvbyte
+	libstreamvbyte3
+	libstreamvbyte-devel
+"
+streamvbyte_CONTENTS="
+	usr/share
+"
+libstreamvbyte3_CONTENTS="
+	usr/bin/cyg*-3.dll
+"
+libstreamvbyte_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+streamvbyte_SUMMARY="${SUMMARY} (licensing & readmes)"
+libstreamvbyte3_SUMMARY="${SUMMARY} (runtime)"
+libstreamvbyte_devel_SUMMARY="${SUMMARY} (development)"

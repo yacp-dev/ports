@@ -5,39 +5,39 @@ instructions (vectorization) to Google's Group Varint approach. The net result
 is faster than other byte-oriented compression techniques.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libstreamvbyte-devel-2.0.0-1bl1
-  libstreamvbyte2-2.0.0-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libstreamvbyte-devel-3.0.1-1bl1
+  libstreamvbyte3-3.0.1-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/fast-pack/streamvbyte
 
 Canonical download:
-  https://github.com/fast-pack/streamvbyte/archive/refs/tags/v2.0.0.tar.gz
+  https://github.com/fast-pack/streamvbyte/archive/refs/tags/v3.0.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack streamvbyte-2.0.0-X-src.tar.xz
+  1. unpack streamvbyte-3.0.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./streamvbyte-2.0.0-X.cygport all
+        % cygport ./streamvbyte-3.0.1-X.cygport all
 
 This will create:
-  /usr/src/streamvbyte-2.0.0-X-src.tar.xz
-  /usr/src/streamvbyte-2.0.0-X.tar.xz
-  /usr/src/libstreamvbyte2-2.0.0-X.tar.xz
-  /usr/src/libstreamvbyte-devel-2.0.0-X.tar.xz
+  /usr/src/streamvbyte-3.0.1-X-src.tar.xz
+  /usr/src/streamvbyte-3.0.1-X.tar.xz
+  /usr/src/libstreamvbyte3-3.0.1-X.tar.xz
+  /usr/src/libstreamvbyte-devel-3.0.1-X.tar.xz
 
 -------------------------------------------
 
@@ -49,8 +49,8 @@ Files included in the binary package:
   /usr/share/doc/streamvbyte/LICENSE
   /usr/share/doc/streamvbyte/README.md
 
-(libstreamvbyte2)
-  /usr/bin/cygstreamvbyte-2.dll
+(libstreamvbyte3)
+  /usr/bin/cygstreamvbyte-3.dll
 
 (libstreamvbyte-devel)
   /usr/include/streamvbyte.h
@@ -62,6 +62,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0.1-1bl1 -----
+Version bump.
 
 ----- version 2.0.0-1bl1 -----
 Version bump.

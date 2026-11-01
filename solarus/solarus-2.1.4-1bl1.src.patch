@@ -1,5 +1,5 @@
---- origsrc/solarus-v2.0.3/CMakeLists.txt	2026-01-22 02:00:26.000000000 +0900
-+++ src/solarus-v2.0.3/CMakeLists.txt	2026-02-02 21:38:59.619851900 +0900
+--- origsrc/solarus-v2.1.4/CMakeLists.txt	2026-09-08 12:36:38.000000000 +0000
++++ src/solarus-v2.1.4/CMakeLists.txt	2026-11-01 14:00:27.023850400 +0000
 @@ -18,3 +18,10 @@ include(cmake/AddInstallTargets.cmake)
  include(cmake/AddUninstallTargets.cmake)
  include(cmake/AddUnitTests.cmake)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/solarus.pc.in ${CMAKE_BINARY_DIR}/solarus.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/solarus.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/solarus-v2.0.3/solarus.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/solarus-v2.0.3/solarus.pc.in	2026-02-02 21:39:14.251194100 +0900
+--- origsrc/solarus-v2.1.4/solarus.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/solarus-v2.1.4/solarus.pc.in	2026-11-01 14:00:27.024612000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,8 +24,8 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lsolarus
 +Cflags: -I${includedir}
---- origsrc/solarus-v2.0.3/src/core/QuestFiles.cpp	2026-01-22 02:00:26.000000000 +0900
-+++ src/solarus-v2.0.3/src/core/QuestFiles.cpp	2026-02-02 20:45:26.027874300 +0900
+--- origsrc/solarus-v2.1.4/src/core/QuestFiles.cpp	2026-09-08 12:36:38.000000000 +0000
++++ src/solarus-v2.1.4/src/core/QuestFiles.cpp	2026-11-01 14:00:27.024612000 +0000
 @@ -37,6 +37,8 @@
  #   include "solarus/core/AppleInterface.h"
  #endif

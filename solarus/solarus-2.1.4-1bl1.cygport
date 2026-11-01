@@ -8,11 +8,12 @@ DESCRIPTION="Solarus is a free and open-source Action-RPG game engine, licensed 
 and written in C++. It runs quests in Lua, and can work on a great number of
 platforms."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND LGPL-2.1-or-later AND MIT-Khronos-old AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND LGPL-2.1-or-later AND MIT-Khronos-old AND Zlib"
 LICENSE_URI="license"
 
 BUILD_REQUIRES="
+	glm-devel
 	libmodplug-devel
 	libopenal-devel
 	libphysfs-devel
@@ -32,11 +33,6 @@ src_test()
 	cd ${B}
 	PATH=${B}:${PATH} ninja_test
 }
-
-DOCS="
-	changelog.txt
-	license_gpl.txt
-"
 
 PKG_NAMES="
 	${PN}

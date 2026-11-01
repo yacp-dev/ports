@@ -5,35 +5,36 @@ and written in C++. It runs quests in Lua, and can work on a great number of
 platforms.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libSDL2_2.0_0-2.32.62-2
+  cygwin-3.6.12-1
+  libSDL2_2.0_0-2.32.74-1
   libSDL2_image2.0_0-2.0.2-1
   libSDL2_ttf2.0_0-2.0.14-1
-  libgcc1-13.4.0-1
+  libgcc1-14.4.0-1
   libmodplug1-0.8.9.0-2
-  libopenal1-1.25.1-1
-  libphysfs1-3.2.0-1bl2
-  libsolarus-devel-2.0.3-1bl1
-  libsolarus2-2.0.3-1bl1
-  libstdc++6-13.4.0-1
+  libopenal1-1.25.2-1
+  libphysfs1-3.2.0-1bl3
+  libsolarus-devel-2.1.4-1bl1
+  libsolarus2-2.1.4-1bl1
+  libstdc++6-14.4.0-1
   libvorbis0-1.3.7-1
   libvorbisfile3-1.3.7-1
   luajit-2.0.4-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libSDL2-devel-2.32.62-2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  glm-devel-1.0.3-1
+  libSDL2-devel-2.32.74-1
   libSDL2_image-devel-2.0.2-1
   libSDL2_ttf-devel-2.0.14-1
   libmodplug-devel-0.8.9.0-2
-  libopenal-devel-1.25.1-1
-  libphysfs-devel-3.2.0-1bl2
+  libopenal-devel-1.25.2-1
+  libphysfs-devel-3.2.0-1bl3
   libvorbis-devel-1.3.7-1
   luajit-devel-2.0.4-1
   ninja-1.13.2-1
@@ -42,22 +43,22 @@ Canonical website:
   https://solarus-games.org/
 
 Canonical download:
-  https://gitlab.com/solarus-games/solarus/-/archive/v2.0.3/solarus-v2.0.3.tar.bz2
+  https://gitlab.com/solarus-games/solarus/-/archive/v2.1.4/solarus-v2.1.4.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack solarus-2.0.3-X-src.tar.xz
+  1. unpack solarus-2.1.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./solarus-2.0.3-X.cygport all
+        % cygport ./solarus-2.1.4-X.cygport all
 
 This will create:
-  /usr/src/solarus-2.0.3-X-src.tar.xz
-  /usr/src/solarus-2.0.3-X.tar.xz
-  /usr/src/libsolarus2-2.0.3-X.tar.xz
-  /usr/src/libsolarus-devel-2.0.3-X.tar.xz
+  /usr/src/solarus-2.1.4-X-src.tar.xz
+  /usr/src/solarus-2.1.4-X.tar.xz
+  /usr/src/libsolarus2-2.1.4-X.tar.xz
+  /usr/src/libsolarus-devel-2.1.4-X.tar.xz
 
 -------------------------------------------
 
@@ -66,7 +67,7 @@ Files included in the binary package:
 (solarus)
   /usr/bin/solarus-run.exe
   /usr/share/doc/Cygwin/solarus.README
-  /usr/share/doc/solarus/readme.md
+  /usr/share/doc/solarus/README.md
   /usr/share/man/man6/solarus-run.6.gz
   /usr/share/solarus/gamecontrollerdb.txt
 
@@ -75,15 +76,24 @@ Files included in the binary package:
 
 (libsolarus-devel)
   /usr/include/solarus/audio/ALWrapper.h
-  /usr/include/solarus/audio/ItDecoder.h
+  /usr/include/solarus/audio/AudioContext.h
+  /usr/include/solarus/audio/AudioEffect.h
+  /usr/include/solarus/audio/AudioFilter.h
   /usr/include/solarus/audio/Music.h
   /usr/include/solarus/audio/MusicPtr.h
   /usr/include/solarus/audio/MusicSystem.h
-  /usr/include/solarus/audio/OggDecoder.h
   /usr/include/solarus/audio/Sound.h
   /usr/include/solarus/audio/SoundBuffer.h
   /usr/include/solarus/audio/SoundPtr.h
-  /usr/include/solarus/audio/SpcDecoder.h
+  /usr/include/solarus/audio/decoders/ItDecoder.h
+  /usr/include/solarus/audio/decoders/OggDecoder.h
+  /usr/include/solarus/audio/decoders/SpcDecoder.h
+  /usr/include/solarus/audio/effects/ChorusAudioEffect.h
+  /usr/include/solarus/audio/effects/EchoAudioEffect.h
+  /usr/include/solarus/audio/effects/FlangerAudioEffect.h
+  /usr/include/solarus/audio/effects/ReverbAudioEffect.h
+  /usr/include/solarus/audio/filters/HighPassAudioFilter.h
+  /usr/include/solarus/audio/filters/LowPassAudioFilter.h
   /usr/include/solarus/containers/FreeList.h
   /usr/include/solarus/containers/Grid.h
   /usr/include/solarus/containers/Quadtree.h
@@ -327,6 +337,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.1.4-1bl1 -----
+Version bump.
 
 ----- version 2.0.3-1bl1 -----
 Version bump.

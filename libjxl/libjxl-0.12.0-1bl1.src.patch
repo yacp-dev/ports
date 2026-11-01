@@ -1,6 +1,6 @@
---- origsrc/libjxl/CMakeLists.txt	2026-03-22 09:50:52.000000000 +0900
-+++ src/libjxl/CMakeLists.txt	2026-03-22 09:53:33.763407300 +0900
-@@ -496,7 +496,7 @@ if(JPEGXL_ENABLE_MANPAGES)
+--- origsrc/libjxl/CMakeLists.txt	2026-11-01 10:40:44.000000000 +0000
++++ src/libjxl/CMakeLists.txt	2026-11-01 10:42:05.509112100 +0000
+@@ -483,7 +483,7 @@ if(JPEGXL_ENABLE_MANPAGES)
          add_custom_command(
            OUTPUT "${PAGE}.1"
            COMMAND "${ASCIIDOC_PY}"

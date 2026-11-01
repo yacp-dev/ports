@@ -1,5 +1,5 @@
---- origsrc/base64-0.5.2/CMakeLists.txt	2024-01-10 23:45:58.000000000 +0900
-+++ src/base64-0.5.2/CMakeLists.txt	2025-09-15 09:43:27.474942100 +0900
+--- origsrc/base64-0.5.2/CMakeLists.txt	2024-01-10 14:45:58.000000000 +0000
++++ src/base64-0.5.2/CMakeLists.txt	2026-11-01 08:33:18.262710400 +0000
 @@ -288,3 +288,10 @@ install(EXPORT base64-targets
  
  ########################################################################
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/base64.pc.in ${CMAKE_BINARY_DIR}/base64.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/base64.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/base64-0.5.2/base64.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/base64-0.5.2/base64.pc.in	2025-09-15 09:43:41.241672800 +0900
+--- origsrc/base64-0.5.2/base64.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/base64-0.5.2/base64.pc.in	2026-11-01 08:33:18.262710400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

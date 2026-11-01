@@ -2,22 +2,22 @@ base64
 ------------------------------------------
 This is an implementation of a base64 stream encoding/decoding library in C99
 with SIMD (AVX2, AVX512, NEON, AArch64/NEON, SSSE3, SSE4.1, SSE4.2, AVX) and
-OpenMP acceleration. It also contains wrapper functions to encode/decode
-simple length-delimited strings.
+OpenMP acceleration. It also contains wrapper functions to encode/decode simple
+length-delimited strings.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libbase64-devel-0.5.2-1bl1
-  libbase64_0-0.5.2-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libbase64-devel-0.5.2-1bl2
+  libbase64_0-0.5.2-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/aklomp/base64
@@ -60,7 +60,7 @@ Files included in the binary package:
   /usr/include/libbase64.h
   /usr/lib/cmake/base64/base64-config-version.cmake
   /usr/lib/cmake/base64/base64-config.cmake
-  /usr/lib/cmake/base64/base64-targets-release.cmake
+  /usr/lib/cmake/base64/base64-targets-relwithdebinfo.cmake
   /usr/lib/cmake/base64/base64-targets.cmake
   /usr/lib/libbase64.dll.a
   /usr/lib/pkgconfig/base64.pc
@@ -68,6 +68,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.2-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.5.2-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

@@ -1,5 +1,5 @@
---- origsrc/ADOL-C-2.7.2/configure.ac	2025-05-31 21:58:34.291499900 +0900
-+++ src/ADOL-C-2.7.2/configure.ac	2025-05-31 23:09:57.636632200 +0900
+--- origsrc/ADOL-C-releases-2.7.2/configure.ac	2026-11-01 10:24:40.042357800 +0000
++++ src/ADOL-C-releases-2.7.2/configure.ac	2026-11-01 10:24:40.806542200 +0000
 @@ -91,11 +91,7 @@ fi
  MPI_CONF_PRE
  

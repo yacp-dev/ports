@@ -1,5 +1,9 @@
 HOMEPAGE="https://github.com/frankosterfeld/${PN}"
 SRC_URI="https://github.com/frankosterfeld/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	https://raw.githubusercontent.com/gentoo/gentoo/ee57749dc93396c25de1f3b17a93bb1dca37466b/dev-libs/qtkeychain/files/qtkeychain-0.17.0-handle-dbus-error-in-kwallet.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/ee57749dc93396c25de1f3b17a93bb1dca37466b/dev-libs/qtkeychain/files/qtkeychain-0.17.0-avoid-UB.patch
+"
 
 CATEGORY="Security"
 SUMMARY="Platform-independent Qt API for storing passwords securely"
@@ -9,15 +13,21 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libglib2.0-devel libQt5Core-devel"
+BUILD_REQUIRES="
+	libglib2.0-devel
+	libQt5Core-devel
+	libsecret1-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -Dqsizetype=size_t"
 
 inherit cmake
 
 # -DBUILD_TESTING:BOOL=OFF : ‘QRandomGenerator’ has not been declared / Since: Qt 5.10
+# -DBUILD_WITH_QT5:BOOL=ON : the default is Qt 6 since 0.17.0
 CYGCMAKE_ARGS="
 	-DBUILD_TESTING:BOOL=OFF
+	-DBUILD_WITH_QT5:BOOL=ON
 "
 
 DOCS="
@@ -46,3 +56,4 @@ libqt5keychain_devel_CONTENTS="
 qtkeychain_SUMMARY="${SUMMARY} (licensing & readmes)"
 libqt5keychain1_SUMMARY="${SUMMARY} (runtime)"
 libqt5keychain_devel_SUMMARY="${SUMMARY} (development)"
+libqt5keychain_devel_REQUIRES="libQt5Core-devel"

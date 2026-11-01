@@ -1,0 +1,14 @@
+--- origsrc/qtkeychain-0.17.0/qtkeychain/keychain_unix.cpp	2026-11-01 02:04:00.435821600 +0000
++++ src/qtkeychain-0.17.0/qtkeychain/keychain_unix.cpp	2026-11-01 02:04:00.822116400 +0000
+@@ -458,7 +458,11 @@ void ReadPasswordJobPrivate::kwalletFini
+                 QByteArray v = reply.value();
+                 QMap<QString, QString> map;
+                 QDataStream ds(&v, QIODevice::ReadOnly);
++#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+                 ds.setVersion(QDataStream::Qt_5_15);
++#else
++                ds.setVersion(QDataStream::Qt_DefaultCompiledVersion);
++#endif
+                 ds >> map;
+                 QJsonObject json;
+                 for (auto it = map.constBegin(); it != map.constEnd(); ++it) {

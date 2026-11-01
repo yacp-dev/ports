@@ -1,0 +1,19 @@
+--- origsrc/libgexecutor-0.1.1/gexecutor/Makefile.am	2003-05-28 17:43:30.000000000 +0000
++++ src/libgexecutor-0.1.1/gexecutor/Makefile.am	2026-11-01 09:44:58.436135000 +0000
+@@ -25,4 +25,4 @@ libgexecutor_la_SOURCES = gexecutor.c \
+ 			  do_fork.c do_fork.h \
+ 			  marshal.c marshal.h
+ 
+-libgexecutor_la_LDFLAGS  = -version-info $(LTVERSION)
++libgexecutor_la_LDFLAGS  = -no-undefined -version-info $(LTVERSION)
+--- origsrc/libgexecutor-0.1.1/gexecutor/support.c	2003-05-11 14:59:48.000000000 +0000
++++ src/libgexecutor-0.1.1/gexecutor/support.c	2026-11-01 09:44:58.436135000 +0000
+@@ -31,7 +31,7 @@ GIOStatus	g_io_channel_read_all		(GIOCha
+ 	GIOStatus status;
+ 	GError *_err;
+ 	gchar buf[100];
+-	gint bytes_read;
++	gsize bytes_read;
+ 	
+ 	g_return_val_if_fail(channel != NULL, G_IO_STATUS_ERROR);
+ 	g_return_val_if_fail((error == NULL) || (*error == NULL), G_IO_STATUS_ERROR);

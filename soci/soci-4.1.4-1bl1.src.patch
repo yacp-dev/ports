@@ -1,0 +1,21 @@
+--- origsrc/soci-4.1.4/cmake/soci_install_dirs.cmake	2026-06-19 22:14:36.000000000 +0000
++++ src/soci-4.1.4/cmake/soci_install_dirs.cmake	2026-11-01 14:36:38.380004100 +0000
+@@ -1,6 +1,6 @@
+ include(GNUInstallDirs)
+ 
+-set(SOCI_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/soci-${PROJECT_VERSION}"
++set(SOCI_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/soci"
+   CACHE FILEPATH "Directory into which cmake related files (e.g. SOCIConfig.cmake) are installed")
+ 
+ set(SOCI_INSTALL_BINDIR "${CMAKE_INSTALL_BINDIR}"
+--- origsrc/soci-4.1.4/src/core/backend-loader.cpp	2026-06-19 22:14:36.000000000 +0000
++++ src/soci-4.1.4/src/core/backend-loader.cpp	2026-11-01 14:36:38.380004100 +0000
+@@ -155,6 +155,8 @@ inline soci_dynlib_handle_t DLOPEN(std::
+ 
+ #ifdef __APPLE__
+ #define LIBNAME(x) (SOCI_LIB_PREFIX + x + "." SOCI_ABI_VERSION SOCI_LIB_SUFFIX)
++#elif defined(__CYGWIN__)
++#define LIBNAME(x) (SOCI_LIB_PREFIX + x + "-" SOCI_ABI_VERSION SOCI_LIB_SUFFIX)
+ #else
+ #define LIBNAME(x) (SOCI_LIB_PREFIX + x + SOCI_LIB_SUFFIX "." SOCI_ABI_VERSION)
+ #endif

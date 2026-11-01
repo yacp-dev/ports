@@ -11,7 +11,9 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libssl-devel"
+BUILD_REQUIRES="
+	libssl-devel
+"
 
 src_test()
 {

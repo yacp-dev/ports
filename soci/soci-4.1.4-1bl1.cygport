@@ -10,13 +10,23 @@ LICENSE="BSL-1.0"
 LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
 LICENSE_URI="LICENSE_1_0.txt"
 
-BUILD_REQUIRES="libiodbc-devel libmariadb-devel libpq-devel libsqlite3-devel"
+BUILD_REQUIRES="
+	libfmt-devel
+	libiodbc-devel
+	libmariadb-devel
+	libpq-devel
+	libpq5
+	libsqlite3-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
+# With LTO, ld fails on fmt's templates in cygsoci_postgresql-4.dll:
+# "cannot export ...: symbol wrong type (4 vs 3)"
 CYGCMAKE_ARGS="
+	-DSOCI_LTO:BOOL=OFF
 	-DSOCI_STATIC:BOOL=OFF
 "
 
@@ -105,3 +115,15 @@ libsoci_postgresql4_SUMMARY="${SUMMARY} (runtime / postgresql)"
 libsoci_postgresql_devel_SUMMARY="${SUMMARY} (development / postgresql)"
 libsoci_sqlite3_4_SUMMARY="${SUMMARY} (runtime / sqlite)"
 libsoci_sqlite3_devel_SUMMARY="${SUMMARY} (development / sqlite)"
+libsoci_core_devel_REQUIRES="
+	libfmt-devel
+	libiodbc-devel
+	libmariadb-devel
+	libpq-devel
+	libsoci_empty-devel
+	libsoci_mysql-devel
+	libsoci_odbc-devel
+	libsoci_postgresql-devel
+	libsoci_sqlite3-devel
+	libsqlite3-devel
+"

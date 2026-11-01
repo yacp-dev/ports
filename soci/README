@@ -4,63 +4,65 @@ SOCI is a database access library for C++ that makes the illusion of embedding
 SQL queries in the regular C++ code, staying entirely within the Standard C++.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libfmt12-12.2.0-1bl1
+  libgcc1-14.4.0-1
   libiodbc2-3.52.8-2
-  libmariadb3-3.0.9-1
-  libpq5-17.4-1
-  libsoci_core4-4.1.2-1bl1
-  libsoci_empty4-4.1.2-1bl1
-  libsoci_mysql4-4.1.2-1bl1
-  libsoci_odbc4-4.1.2-1bl1
-  libsoci_postgresql4-4.1.2-1bl1
-  libsoci_sqlite3_4-4.1.2-1bl1
+  libmariadb3-3.3.19-1
+  libpq5-18.6-1
+  libsoci_core4-4.1.4-1bl1
+  libsoci_empty4-4.1.4-1bl1
+  libsoci_mysql4-4.1.4-1bl1
+  libsoci_odbc4-4.1.4-1bl1
+  libsoci_postgresql4-4.1.4-1bl1
+  libsoci_sqlite3_4-4.1.4-1bl1
   libsqlite3_0-3.49.1-1
-  libstdc++6-13.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libfmt-devel-12.2.0-1bl1
   libiodbc-devel-3.52.8-2
-  libmariadb-devel-3.0.9-1
-  libpq-devel-17.4-1
+  libmariadb-devel-3.3.19-1
+  libpq-devel-18.6-1
+  libpq5-18.6-1
   libsqlite3-devel-3.49.1-1
-  ninja-1.13.1-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/SOCI/soci
 
 Canonical download:
-  https://github.com/SOCI/soci/archive/refs/tags/v4.1.2.tar.gz
+  https://github.com/SOCI/soci/archive/refs/tags/v4.1.4.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack soci-4.1.2-X-src.tar.xz
+  1. unpack soci-4.1.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./soci-4.1.2-X.cygport all
+        % cygport ./soci-4.1.4-X.cygport all
 
 This will create:
-  /usr/src/soci-4.1.2-X-src.tar.xz
-  /usr/src/soci-4.1.2-X.tar.xz
-  /usr/src/libsoci_core4-4.1.2-X.tar.xz
-  /usr/src/libsoci_core-devel-4.1.2-X.tar.xz
-  /usr/src/libsoci_empty4-4.1.2-X.tar.xz
-  /usr/src/libsoci_empty-devel-4.1.2-X.tar.xz
-  /usr/src/libsoci_mysql4-4.1.2-X.tar.xz
-  /usr/src/libsoci_mysql-devel-4.1.2-X.tar.xz
-  /usr/src/libsoci_odbc4-4.1.2-X.tar.xz
-  /usr/src/libsoci_odbc-devel-4.1.2-X.tar.xz
-  /usr/src/libsoci_postgresql4-4.1.2-X.tar.xz
-  /usr/src/libsoci_postgresql-devel-4.1.2-X.tar.xz
-  /usr/src/libsoci_sqlite3_4-4.1.2-X.tar.xz
-  /usr/src/libsoci_sqlite3-devel-4.1.2-X.tar.xz
+  /usr/src/soci-4.1.4-X-src.tar.xz
+  /usr/src/soci-4.1.4-X.tar.xz
+  /usr/src/libsoci_core4-4.1.4-X.tar.xz
+  /usr/src/libsoci_core-devel-4.1.4-X.tar.xz
+  /usr/src/libsoci_empty4-4.1.4-X.tar.xz
+  /usr/src/libsoci_empty-devel-4.1.4-X.tar.xz
+  /usr/src/libsoci_mysql4-4.1.4-X.tar.xz
+  /usr/src/libsoci_mysql-devel-4.1.4-X.tar.xz
+  /usr/src/libsoci_odbc4-4.1.4-X.tar.xz
+  /usr/src/libsoci_odbc-devel-4.1.4-X.tar.xz
+  /usr/src/libsoci_postgresql4-4.1.4-X.tar.xz
+  /usr/src/libsoci_postgresql-devel-4.1.4-X.tar.xz
+  /usr/src/libsoci_sqlite3_4-4.1.4-X.tar.xz
+  /usr/src/libsoci_sqlite3-devel-4.1.4-X.tar.xz
 
 -------------------------------------------
 
@@ -131,7 +133,7 @@ Files included in the binary package:
   /usr/include/soci/values-exchange.h
   /usr/include/soci/values.h
   /usr/include/soci/version.h
-  /usr/lib/cmake/soci/SOCICoreTargets-release.cmake
+  /usr/lib/cmake/soci/SOCICoreTargets-relwithdebinfo.cmake
   /usr/lib/cmake/soci/SOCICoreTargets.cmake
   /usr/lib/cmake/soci/soci-config-version.cmake
   /usr/lib/cmake/soci/soci-config.cmake
@@ -142,7 +144,7 @@ Files included in the binary package:
 
 (libsoci_empty-devel)
   /usr/include/soci/empty/soci-empty.h
-  /usr/lib/cmake/soci/SOCIEmptyTargets-release.cmake
+  /usr/lib/cmake/soci/SOCIEmptyTargets-relwithdebinfo.cmake
   /usr/lib/cmake/soci/SOCIEmptyTargets.cmake
   /usr/lib/libsoci_empty.dll.a
 
@@ -151,7 +153,7 @@ Files included in the binary package:
 
 (libsoci_mysql-devel)
   /usr/include/soci/mysql/soci-mysql.h
-  /usr/lib/cmake/soci/SOCIMySQLTargets-release.cmake
+  /usr/lib/cmake/soci/SOCIMySQLTargets-relwithdebinfo.cmake
   /usr/lib/cmake/soci/SOCIMySQLTargets.cmake
   /usr/lib/cmake/soci/find_package_files/FindMySQL.cmake
   /usr/lib/libsoci_mysql.dll.a
@@ -161,7 +163,7 @@ Files included in the binary package:
 
 (libsoci_odbc-devel)
   /usr/include/soci/odbc/soci-odbc.h
-  /usr/lib/cmake/soci/SOCIODBCTargets-release.cmake
+  /usr/lib/cmake/soci/SOCIODBCTargets-relwithdebinfo.cmake
   /usr/lib/cmake/soci/SOCIODBCTargets.cmake
   /usr/lib/libsoci_odbc.dll.a
 
@@ -170,7 +172,7 @@ Files included in the binary package:
 
 (libsoci_postgresql-devel)
   /usr/include/soci/postgresql/soci-postgresql.h
-  /usr/lib/cmake/soci/SOCIPostgreSQLTargets-release.cmake
+  /usr/lib/cmake/soci/SOCIPostgreSQLTargets-relwithdebinfo.cmake
   /usr/lib/cmake/soci/SOCIPostgreSQLTargets.cmake
   /usr/lib/libsoci_postgresql.dll.a
 
@@ -179,13 +181,16 @@ Files included in the binary package:
 
 (libsoci_sqlite3-devel)
   /usr/include/soci/sqlite3/soci-sqlite3.h
-  /usr/lib/cmake/soci/SOCISQLite3Targets-release.cmake
+  /usr/lib/cmake/soci/SOCISQLite3Targets-relwithdebinfo.cmake
   /usr/lib/cmake/soci/SOCISQLite3Targets.cmake
   /usr/lib/libsoci_sqlite3.dll.a
 
 ------------------
 
 Port Notes:
+
+----- version 4.1.4-1bl1 -----
+Version bump.
 
 ----- version 4.1.2-1bl1 -----
 Version bump.

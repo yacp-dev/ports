@@ -7,70 +7,71 @@ integrate with the AMQP 1.0 ecosystem from any platform, environment, or
 language.
 
 Runtime requirements:
-  cygwin-3.3.6-1
-  libgcc1-11.3.0-1
-  libjsoncpp25-1.9.5-1
-  libqpid-proton-core-devel-0.37.0-1bl1
-  libqpid-proton-core10-0.37.0-1bl1
-  libqpid-proton-cpp-devel-0.37.0-1bl1
-  libqpid-proton-cpp12-0.37.0-1bl1
-  libqpid-proton-devel-0.37.0-1bl1
-  libqpid-proton-proactor-devel-0.37.0-1bl1
-  libqpid-proton-proactor1-0.37.0-1bl1
-  libqpid-proton11-0.37.0-1bl1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libjsoncpp27-1.9.8-1
+  libqpid-proton-core-devel-0.41.1-1bl1
+  libqpid-proton-core10-0.41.1-1bl1
+  libqpid-proton-cpp-devel-0.41.1-1bl1
+  libqpid-proton-cpp12-0.41.1-1bl1
+  libqpid-proton-devel-0.41.1-1bl1
+  libqpid-proton-proactor-devel-0.41.1-1bl1
+  libqpid-proton-proactor1-0.41.1-1bl1
+  libqpid-proton11-0.41.1-1bl1
   libsasl2_3-2.1.27-1
-  libssl1.1-1.1.1q-1
-  libstdc++6-11.3.0-1
-  libuv1-1.44.2-1
-  pkg-config-1.9.3-1
-  python39-3.9.10-1
-  ruby-2.6.4-1
-  ruby-minitest-5.10.3-1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  libuv1-1.53.0-1
+  pkg-config-3.0.10-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.39-1
-  cmake-3.23.2-1
-  cygport-0.35.3-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libjsoncpp-devel-1.9.5-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libjsoncpp-devel-1.9.8-1
   libsasl2-devel-2.1.27-1
-  libssl-devel-1.1.1q-1
-  libuv-devel-1.44.2-1
-  ninja-1.11.0-1
-  python39-3.9.10-1
-  python39-devel-3.9.10-1
-  ruby-devel-2.6.4-1
+  libssl-devel-3.5.9-1
+  libuv-devel-1.53.0-1
+  ninja-1.13.2-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  python312-build-1.4.0-1
+  python312-cffi-2.1.1-1
+  python312-pip-26.2.2-1
+  python312-setuptools-80.9.0-1
+  python312-wheel-0.48.0-1
 
 Canonical website:
   https://github.com/apache/qpid-proton/
 
 Canonical download:
-  https://github.com/apache/qpid-proton/archive/refs/tags/0.37.0.tar.gz
+  https://github.com/apache/qpid-proton/archive/refs/tags/0.41.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack qpid-proton-0.37.0-X-src.tar.xz
+  1. unpack qpid-proton-0.41.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./qpid-proton-0.37.0-X.cygport all
+        % cygport ./qpid-proton-0.41.1-X.cygport all
 
 This will create:
-  /usr/src/qpid-proton-0.37.0-X-src.tar.xz
-  /usr/src/qpid-proton-0.37.0-X.tar.xz
-  /usr/src/libqpid-proton11-0.37.0-X.tar.xz
-  /usr/src/libqpid-proton-devel-0.37.0-X.tar.xz
-  /usr/src/libqpid-proton-core10-0.37.0-X.tar.xz
-  /usr/src/libqpid-proton-core-devel-0.37.0-X.tar.xz
-  /usr/src/libqpid-proton-cpp12-0.37.0-X.tar.xz
-  /usr/src/libqpid-proton-cpp-devel-0.37.0-X.tar.xz
-  /usr/src/libqpid-proton-proactor1-0.37.0-X.tar.xz
-  /usr/src/libqpid-proton-proactor-devel-0.37.0-X.tar.xz
-  /usr/src/python39-qpid-proton-0.37.0-X.tar.xz
-  /usr/src/ruby-qpid-proton-0.37.0-X.tar.xz
+  /usr/src/qpid-proton-0.41.1-X-src.tar.xz
+  /usr/src/qpid-proton-0.41.1-X.tar.xz
+  /usr/src/libqpid-proton11-0.41.1-X.tar.xz
+  /usr/src/libqpid-proton-devel-0.41.1-X.tar.xz
+  /usr/src/libqpid-proton-core10-0.41.1-X.tar.xz
+  /usr/src/libqpid-proton-core-devel-0.41.1-X.tar.xz
+  /usr/src/libqpid-proton-cpp12-0.41.1-X.tar.xz
+  /usr/src/libqpid-proton-cpp-devel-0.41.1-X.tar.xz
+  /usr/src/libqpid-proton-proactor1-0.41.1-X.tar.xz
+  /usr/src/libqpid-proton-proactor-devel-0.41.1-X.tar.xz
+  /usr/src/python312-qpid-proton-0.41.1-X.tar.xz
 
 -------------------------------------------
 
@@ -86,6 +87,7 @@ Files included in the binary package:
   /usr/bin/cygqpid-proton-11.dll
 
 (libqpid-proton-devel)
+  /usr/include/proton/annotations.h
   /usr/include/proton/cid.h
   /usr/include/proton/codec.h
   /usr/include/proton/condition.h
@@ -108,6 +110,7 @@ Files included in the binary package:
   /usr/include/proton/netaddr.h
   /usr/include/proton/object.h
   /usr/include/proton/proactor.h
+  /usr/include/proton/proactor_ext.h
   /usr/include/proton/raw_connection.h
   /usr/include/proton/reactor.h
   /usr/include/proton/sasl.h
@@ -123,11 +126,9 @@ Files included in the binary package:
   /usr/include/proton/url.h
   /usr/include/proton/version.h
   /usr/lib/cmake/Proton/FindCyrusSASL.cmake
-  /usr/lib/cmake/Proton/FindOpenSSL.cmake
-  /usr/lib/cmake/Proton/FindThreads.cmake
   /usr/lib/cmake/Proton/ProtonConfig.cmake
   /usr/lib/cmake/Proton/ProtonConfigVersion.cmake
-  /usr/lib/cmake/Proton/ProtonTargets-release.cmake
+  /usr/lib/cmake/Proton/ProtonTargets-relwithdebinfo.cmake
   /usr/lib/cmake/Proton/ProtonTargets.cmake
   /usr/lib/libqpid-proton.dll.a
   /usr/lib/pkgconfig/libqpid-proton.pc
@@ -136,23 +137,17 @@ Files included in the binary package:
   /usr/share/proton/examples/c/Makefile.pkgconfig
   /usr/share/proton/examples/c/README.dox
   /usr/share/proton/examples/c/broker.c
+  /usr/share/proton/examples/c/direct-fd.c
   /usr/share/proton/examples/c/direct.c
   /usr/share/proton/examples/c/raw_connect.c
   /usr/share/proton/examples/c/raw_echo.c
   /usr/share/proton/examples/c/receive.c
   /usr/share/proton/examples/c/send-abort.c
+  /usr/share/proton/examples/c/send-fd.c
   /usr/share/proton/examples/c/send-ssl.c
   /usr/share/proton/examples/c/send.c
-  /usr/share/proton/examples/c/ssl-certs/README.txt
-  /usr/share/proton/examples/c/ssl-certs/tclient-certificate.p12
-  /usr/share/proton/examples/c/ssl-certs/tclient-certificate.pem
-  /usr/share/proton/examples/c/ssl-certs/tclient-full.p12
-  /usr/share/proton/examples/c/ssl-certs/tclient-private-key.pem
-  /usr/share/proton/examples/c/ssl-certs/tserver-certificate.p12
-  /usr/share/proton/examples/c/ssl-certs/tserver-certificate.pem
-  /usr/share/proton/examples/c/ssl-certs/tserver-full.p12
-  /usr/share/proton/examples/c/ssl-certs/tserver-private-key.pem
   /usr/share/proton/examples/c/thread.h
+  /usr/share/proton/tests/CMakeLists.txt
   /usr/share/proton/tests/PNAddTest.cmake
   /usr/share/proton/tests/RuntimeCheck.cmake
   /usr/share/proton/tests/example-benchmark.sh
@@ -171,6 +166,15 @@ Files included in the binary package:
   /usr/share/proton/tests/lsan.supp
   /usr/share/proton/tests/preload_asan.sh
   /usr/share/proton/tests/preload_tsan.sh
+  /usr/share/proton/tests/ssl-certs/ca-certificate.pem
+  /usr/share/proton/tests/ssl-certs/tclient-certificate.p12
+  /usr/share/proton/tests/ssl-certs/tclient-certificate.pem
+  /usr/share/proton/tests/ssl-certs/tclient-full.p12
+  /usr/share/proton/tests/ssl-certs/tclient-private-key.pem
+  /usr/share/proton/tests/ssl-certs/tserver-certificate.p12
+  /usr/share/proton/tests/ssl-certs/tserver-certificate.pem
+  /usr/share/proton/tests/ssl-certs/tserver-full.p12
+  /usr/share/proton/tests/ssl-certs/tserver-private-key.pem
   /usr/share/proton/tests/tsan.supp
   /usr/share/proton/tests/ubsan.supp
   /usr/share/proton/tests/valgrind.supp
@@ -247,7 +251,9 @@ Files included in the binary package:
   /usr/include/proton/terminus.hpp
   /usr/include/proton/thread_safe.hpp
   /usr/include/proton/timestamp.hpp
+  /usr/include/proton/tracing.hpp
   /usr/include/proton/tracker.hpp
+  /usr/include/proton/transaction_options.hpp
   /usr/include/proton/transfer.hpp
   /usr/include/proton/transport.hpp
   /usr/include/proton/type_id.hpp
@@ -259,7 +265,7 @@ Files included in the binary package:
   /usr/include/proton/work_queue.hpp
   /usr/lib/cmake/ProtonCpp/ProtonCppConfig.cmake
   /usr/lib/cmake/ProtonCpp/ProtonCppConfigVersion.cmake
-  /usr/lib/cmake/ProtonCpp/ProtonCppTargets-release.cmake
+  /usr/lib/cmake/ProtonCpp/ProtonCppTargets-relwithdebinfo.cmake
   /usr/lib/cmake/ProtonCpp/ProtonCppTargets.cmake
   /usr/lib/libqpid-proton-cpp.dll.a
   /usr/lib/pkgconfig/libqpid-proton-cpp.pc
@@ -290,18 +296,33 @@ Files included in the binary package:
   /usr/share/proton/examples/cpp/simple_connect.cpp
   /usr/share/proton/examples/cpp/simple_recv.cpp
   /usr/share/proton/examples/cpp/simple_send.cpp
-  /usr/share/proton/examples/cpp/ssl-certs/README.txt
-  /usr/share/proton/examples/cpp/ssl-certs/tclient-certificate.p12
-  /usr/share/proton/examples/cpp/ssl-certs/tclient-certificate.pem
-  /usr/share/proton/examples/cpp/ssl-certs/tclient-full.p12
-  /usr/share/proton/examples/cpp/ssl-certs/tclient-private-key.pem
-  /usr/share/proton/examples/cpp/ssl-certs/tserver-certificate.p12
-  /usr/share/proton/examples/cpp/ssl-certs/tserver-certificate.pem
-  /usr/share/proton/examples/cpp/ssl-certs/tserver-full.p12
-  /usr/share/proton/examples/cpp/ssl-certs/tserver-private-key.pem
   /usr/share/proton/examples/cpp/ssl.cpp
   /usr/share/proton/examples/cpp/ssl_client_cert.cpp
+  /usr/share/proton/examples/cpp/tracing_client.cpp
+  /usr/share/proton/examples/cpp/tracing_server.cpp
   /usr/share/proton/examples/cpp/tutorial.dox
+  /usr/share/proton/examples/cpp/tx_recv.cpp
+  /usr/share/proton/examples/cpp/tx_send.cpp
+  /usr/share/proton/tests/cpp/CMakeLists.txt
+  /usr/share/proton/tests/cpp/__pycache__/tx_tester.cpython-312.pyc
+  /usr/share/proton/tests/cpp/tx_tester.cpp
+  /usr/share/proton/tests/cpp/tx_tester.py
+  /usr/share/proton/tests/cpp/tx_tests/00_setup_seed_messages.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/01_declare.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/02_commit_empty.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/03_explicit_abort.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/04_commit_timeout.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/05_incoming_accept_commit.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/06_incoming_accept_abort.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/07_incoming_reject_commit.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/08_incoming_release_commit.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/09_incoming_modify_commit.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/10_outgoing_send_commit.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/11_outgoing_send_abort.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/12_rdeclare_after_discharge.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/13_error_double_declare.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/14_error_commit_without_declare.tx_test
+  /usr/share/proton/tests/cpp/tx_tests/15_error_declare_unsettled_outgoing.tx_test
 
 (libqpid-proton-proactor1)
   /usr/bin/cygqpid-proton-proactor-1.dll
@@ -310,77 +331,112 @@ Files included in the binary package:
   /usr/lib/libqpid-proton-proactor.dll.a
   /usr/lib/pkgconfig/libqpid-proton-proactor.pc
 
-(python39-qpid-proton)
-  /usr/lib/proton/bindings/python/_cproton.dll
-  /usr/lib/proton/bindings/python/cproton.py
-  /usr/lib/proton/bindings/python/cproton.pyc
-  /usr/lib/proton/bindings/python/cproton.pyo
-  /usr/lib/proton/bindings/python/proton/__init__.py
-  /usr/lib/proton/bindings/python/proton/__init__.pyc
-  /usr/lib/proton/bindings/python/proton/__init__.pyo
-  /usr/lib/proton/bindings/python/proton/_common.py
-  /usr/lib/proton/bindings/python/proton/_common.pyc
-  /usr/lib/proton/bindings/python/proton/_common.pyo
-  /usr/lib/proton/bindings/python/proton/_condition.py
-  /usr/lib/proton/bindings/python/proton/_condition.pyc
-  /usr/lib/proton/bindings/python/proton/_condition.pyo
-  /usr/lib/proton/bindings/python/proton/_data.py
-  /usr/lib/proton/bindings/python/proton/_data.pyc
-  /usr/lib/proton/bindings/python/proton/_data.pyo
-  /usr/lib/proton/bindings/python/proton/_delivery.py
-  /usr/lib/proton/bindings/python/proton/_delivery.pyc
-  /usr/lib/proton/bindings/python/proton/_delivery.pyo
-  /usr/lib/proton/bindings/python/proton/_endpoints.py
-  /usr/lib/proton/bindings/python/proton/_endpoints.pyc
-  /usr/lib/proton/bindings/python/proton/_endpoints.pyo
-  /usr/lib/proton/bindings/python/proton/_events.py
-  /usr/lib/proton/bindings/python/proton/_events.pyc
-  /usr/lib/proton/bindings/python/proton/_events.pyo
-  /usr/lib/proton/bindings/python/proton/_exceptions.py
-  /usr/lib/proton/bindings/python/proton/_exceptions.pyc
-  /usr/lib/proton/bindings/python/proton/_exceptions.pyo
-  /usr/lib/proton/bindings/python/proton/_handlers.py
-  /usr/lib/proton/bindings/python/proton/_handlers.pyc
-  /usr/lib/proton/bindings/python/proton/_handlers.pyo
-  /usr/lib/proton/bindings/python/proton/_io.py
-  /usr/lib/proton/bindings/python/proton/_io.pyc
-  /usr/lib/proton/bindings/python/proton/_io.pyo
-  /usr/lib/proton/bindings/python/proton/_message.py
-  /usr/lib/proton/bindings/python/proton/_message.pyc
-  /usr/lib/proton/bindings/python/proton/_message.pyo
-  /usr/lib/proton/bindings/python/proton/_reactor.py
-  /usr/lib/proton/bindings/python/proton/_reactor.pyc
-  /usr/lib/proton/bindings/python/proton/_reactor.pyo
-  /usr/lib/proton/bindings/python/proton/_selectable.py
-  /usr/lib/proton/bindings/python/proton/_selectable.pyc
-  /usr/lib/proton/bindings/python/proton/_selectable.pyo
-  /usr/lib/proton/bindings/python/proton/_tracing.py
-  /usr/lib/proton/bindings/python/proton/_tracing.pyc
-  /usr/lib/proton/bindings/python/proton/_tracing.pyo
-  /usr/lib/proton/bindings/python/proton/_transport.py
-  /usr/lib/proton/bindings/python/proton/_transport.pyc
-  /usr/lib/proton/bindings/python/proton/_transport.pyo
-  /usr/lib/proton/bindings/python/proton/_url.py
-  /usr/lib/proton/bindings/python/proton/_url.pyc
-  /usr/lib/proton/bindings/python/proton/_url.pyo
-  /usr/lib/proton/bindings/python/proton/_utils.py
-  /usr/lib/proton/bindings/python/proton/_utils.pyc
-  /usr/lib/proton/bindings/python/proton/_utils.pyo
-  /usr/lib/proton/bindings/python/proton/_wrapper.py
-  /usr/lib/proton/bindings/python/proton/_wrapper.pyc
-  /usr/lib/proton/bindings/python/proton/_wrapper.pyo
-  /usr/lib/proton/bindings/python/proton/handlers.py
-  /usr/lib/proton/bindings/python/proton/handlers.pyc
-  /usr/lib/proton/bindings/python/proton/handlers.pyo
-  /usr/lib/proton/bindings/python/proton/reactor.py
-  /usr/lib/proton/bindings/python/proton/reactor.pyc
-  /usr/lib/proton/bindings/python/proton/reactor.pyo
-  /usr/lib/proton/bindings/python/proton/tracing.py
-  /usr/lib/proton/bindings/python/proton/tracing.pyc
-  /usr/lib/proton/bindings/python/proton/tracing.pyo
-  /usr/lib/proton/bindings/python/proton/utils.py
-  /usr/lib/proton/bindings/python/proton/utils.pyc
-  /usr/lib/proton/bindings/python/proton/utils.pyo
+(python312-qpid-proton)
+  /usr/lib/python3.12/site-packages/__pycache__/cproton.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/cproton.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/cproton.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/cproton.py
+  /usr/lib/python3.12/site-packages/cproton_ffi.abi3.dll
+  /usr/lib/python3.12/site-packages/proton/__init__.py
+  /usr/lib/python3.12/site-packages/proton/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_common.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_common.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_common.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_condition.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_condition.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_condition.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_data.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_data.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_data.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_delivery.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_delivery.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_delivery.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_endpoints.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_endpoints.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_endpoints.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_events.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_events.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_events.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_exceptions.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_exceptions.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_exceptions.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_handler.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_handler.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_handler.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_handlers.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_handlers.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_handlers.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_io.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_io.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_io.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_message.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_message.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_message.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_reactor.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_reactor.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_reactor.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_selectable.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_selectable.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_selectable.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_tracing.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_tracing.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_tracing.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_transport.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_transport.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_transport.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_url.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_url.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_url.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_utils.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_utils.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_utils.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_wrapper.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_wrapper.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/_wrapper.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/handlers.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/handlers.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/handlers.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/reactor.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/reactor.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/reactor.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/tracing.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/tracing.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/tracing.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/utils.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/utils.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/proton/__pycache__/utils.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/proton/_common.py
+  /usr/lib/python3.12/site-packages/proton/_condition.py
+  /usr/lib/python3.12/site-packages/proton/_data.py
+  /usr/lib/python3.12/site-packages/proton/_delivery.py
+  /usr/lib/python3.12/site-packages/proton/_endpoints.py
+  /usr/lib/python3.12/site-packages/proton/_events.py
+  /usr/lib/python3.12/site-packages/proton/_exceptions.py
+  /usr/lib/python3.12/site-packages/proton/_handler.py
+  /usr/lib/python3.12/site-packages/proton/_handlers.py
+  /usr/lib/python3.12/site-packages/proton/_io.py
+  /usr/lib/python3.12/site-packages/proton/_message.py
+  /usr/lib/python3.12/site-packages/proton/_reactor.py
+  /usr/lib/python3.12/site-packages/proton/_selectable.py
+  /usr/lib/python3.12/site-packages/proton/_tracing.py
+  /usr/lib/python3.12/site-packages/proton/_transport.py
+  /usr/lib/python3.12/site-packages/proton/_url.py
+  /usr/lib/python3.12/site-packages/proton/_utils.py
+  /usr/lib/python3.12/site-packages/proton/_wrapper.py
+  /usr/lib/python3.12/site-packages/proton/handlers.py
+  /usr/lib/python3.12/site-packages/proton/py.typed
+  /usr/lib/python3.12/site-packages/proton/reactor.py
+  /usr/lib/python3.12/site-packages/proton/tracing.py
+  /usr/lib/python3.12/site-packages/proton/utils.py
+  /usr/lib/python3.12/site-packages/python_qpid_proton-0.41.1.dist-info/INSTALLER
+  /usr/lib/python3.12/site-packages/python_qpid_proton-0.41.1.dist-info/METADATA
+  /usr/lib/python3.12/site-packages/python_qpid_proton-0.41.1.dist-info/RECORD
+  /usr/lib/python3.12/site-packages/python_qpid_proton-0.41.1.dist-info/REQUESTED
+  /usr/lib/python3.12/site-packages/python_qpid_proton-0.41.1.dist-info/WHEEL
+  /usr/lib/python3.12/site-packages/python_qpid_proton-0.41.1.dist-info/direct_url.json
+  /usr/lib/python3.12/site-packages/python_qpid_proton-0.41.1.dist-info/top_level.txt
   /usr/share/proton/examples/python/README.txt
   /usr/share/proton/examples/python/abstract_server.py
   /usr/share/proton/examples/python/broker.py
@@ -415,80 +471,15 @@ Files included in the binary package:
   /usr/share/proton/examples/python/tx_recv.py
   /usr/share/proton/examples/python/tx_recv_interactive.py
   /usr/share/proton/examples/python/tx_send.py
-  /usr/share/proton/tests/py/__pycache__/test_subprocess.cpython-39.pyc
+  /usr/share/proton/tests/py/__pycache__/test_subprocess.cpython-312.pyc
   /usr/share/proton/tests/py/test_subprocess.py
-
-(ruby-qpid-proton)
-  /usr/lib/proton/bindings/ruby/codec/data.rb
-  /usr/lib/proton/bindings/ruby/codec/mapping.rb
-  /usr/lib/proton/bindings/ruby/core/condition.rb
-  /usr/lib/proton/bindings/ruby/core/connection.rb
-  /usr/lib/proton/bindings/ruby/core/connection_driver.rb
-  /usr/lib/proton/bindings/ruby/core/container.rb
-  /usr/lib/proton/bindings/ruby/core/delivery.rb
-  /usr/lib/proton/bindings/ruby/core/disposition.rb
-  /usr/lib/proton/bindings/ruby/core/endpoint.rb
-  /usr/lib/proton/bindings/ruby/core/event.rb
-  /usr/lib/proton/bindings/ruby/core/exceptions.rb
-  /usr/lib/proton/bindings/ruby/core/link.rb
-  /usr/lib/proton/bindings/ruby/core/listener.rb
-  /usr/lib/proton/bindings/ruby/core/message.rb
-  /usr/lib/proton/bindings/ruby/core/messaging_handler.rb
-  /usr/lib/proton/bindings/ruby/core/receiver.rb
-  /usr/lib/proton/bindings/ruby/core/sasl.rb
-  /usr/lib/proton/bindings/ruby/core/sender.rb
-  /usr/lib/proton/bindings/ruby/core/session.rb
-  /usr/lib/proton/bindings/ruby/core/ssl.rb
-  /usr/lib/proton/bindings/ruby/core/ssl_details.rb
-  /usr/lib/proton/bindings/ruby/core/ssl_domain.rb
-  /usr/lib/proton/bindings/ruby/core/terminus.rb
-  /usr/lib/proton/bindings/ruby/core/tracker.rb
-  /usr/lib/proton/bindings/ruby/core/transfer.rb
-  /usr/lib/proton/bindings/ruby/core/transport.rb
-  /usr/lib/proton/bindings/ruby/core/uri.rb
-  /usr/lib/proton/bindings/ruby/core/url.rb
-  /usr/lib/proton/bindings/ruby/core/work_queue.rb
-  /usr/lib/proton/bindings/ruby/cproton.dll
-  /usr/lib/proton/bindings/ruby/handler/adapter.rb
-  /usr/lib/proton/bindings/ruby/handler/messaging_adapter.rb
-  /usr/lib/proton/bindings/ruby/handler/messaging_handler.rb
-  /usr/lib/proton/bindings/ruby/handler/reactor_messaging_adapter.rb
-  /usr/lib/proton/bindings/ruby/qpid_proton.rb
-  /usr/lib/proton/bindings/ruby/reactor/container.rb
-  /usr/lib/proton/bindings/ruby/types/array.rb
-  /usr/lib/proton/bindings/ruby/types/described.rb
-  /usr/lib/proton/bindings/ruby/types/hash.rb
-  /usr/lib/proton/bindings/ruby/types/strings.rb
-  /usr/lib/proton/bindings/ruby/types/type.rb
-  /usr/lib/proton/bindings/ruby/util/deprecation.rb
-  /usr/lib/proton/bindings/ruby/util/error_handler.rb
-  /usr/lib/proton/bindings/ruby/util/schedule.rb
-  /usr/lib/proton/bindings/ruby/util/version.rb
-  /usr/lib/proton/bindings/ruby/util/wrapper.rb
-  /usr/share/proton/examples/ruby/README.md
-  /usr/share/proton/examples/ruby/broker.rb
-  /usr/share/proton/examples/ruby/client.rb
-  /usr/share/proton/examples/ruby/direct_recv.rb
-  /usr/share/proton/examples/ruby/direct_send.rb
-  /usr/share/proton/examples/ruby/helloworld.rb
-  /usr/share/proton/examples/ruby/server.rb
-  /usr/share/proton/examples/ruby/simple_recv.rb
-  /usr/share/proton/examples/ruby/simple_send.rb
-  /usr/share/proton/examples/ruby/ssl-certs/README.txt
-  /usr/share/proton/examples/ruby/ssl-certs/tclient-certificate.p12
-  /usr/share/proton/examples/ruby/ssl-certs/tclient-certificate.pem
-  /usr/share/proton/examples/ruby/ssl-certs/tclient-full.p12
-  /usr/share/proton/examples/ruby/ssl-certs/tclient-private-key.pem
-  /usr/share/proton/examples/ruby/ssl-certs/tserver-certificate.p12
-  /usr/share/proton/examples/ruby/ssl-certs/tserver-certificate.pem
-  /usr/share/proton/examples/ruby/ssl-certs/tserver-full.p12
-  /usr/share/proton/examples/ruby/ssl-certs/tserver-private-key.pem
-  /usr/share/proton/examples/ruby/ssl_send.rb
-  /usr/share/proton/examples/ruby/testme
 
 ------------------
 
 Port Notes:
+
+----- version 0.41.1-1bl1 -----
+Version bump.
 
 ----- version 0.37.0-1bl1 -----
 Version bump.

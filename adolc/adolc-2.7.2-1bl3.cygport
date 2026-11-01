@@ -1,11 +1,11 @@
 HOMEPAGE="https://github.com/coin-or/ADOL-C/"
-SRC_URI="http://www.coin-or.org/download/source/ADOL-C/ADOL-C-${PV}.tgz"
-SRC_DIR="ADOL-C-${PV}"
+SRC_URI="https://github.com/coin-or/ADOL-C/archive/refs/tags/releases/${PV}.tar.gz"
 PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-7/debian/patches/0001-automake-options.patch
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-7/debian/patches/0002-typos.patch
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-7/debian/patches/0003-debash.patch
 "
+SRC_DIR="ADOL-C-releases-${PV}"
 
 CATEGORY="Science"
 SUMMARY="Automatic Differentiation by OverLoading in C++"
@@ -15,11 +15,13 @@ that are defined by computer programs written in C or C++. The resulting
 derivative evaluation routines may be called from C/C++, Fortran, or any other
 language that can be linked with C."
 
-LICENSE="EPL-1.0"
-LICENSE_SPDX="SPDX-License-Identifier: EPL-1.0"
+LICENSE="EPL-1.0 OR GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: EPL-1.0 OR GPL-2.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUOLD_REQUIRES="libboost-devel"
+BUILD_REQUIRES="
+	libboost-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode

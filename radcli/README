@@ -2,52 +2,53 @@ radcli
 ------------------------------------------
 The radcli library is a library for writing RADIUS Clients. The library's
 approach is to allow writing RADIUS-aware application in less than 50 lines of
-C code. It was based originally on freeradius-client and radiusclient-ng and
-is source compatible with them.
+C code. It was based originally on freeradius-client and radiusclient-ng and is
+source compatible with them.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libgnutls-devel-3.8.9-1
-  libgnutls30-3.8.9-1
-  libnettle-devel-3.9.1-1
-  libnettle8-3.9.1-1
-  libradcli-devel-1.4.0-1bl1
-  libradcli6-1.4.0-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgnutls-devel-3.8.13-1
+  libgnutls30-3.8.13-1
+  libnettle-devel-4.0-1
+  libnettle9-4.0-1
+  libradcli-devel-2.0.1-1bl1
+  libradcli10-2.0.1-1bl1
+  libradcli2-devel-2.0.1-1bl1
+  libradcli2_1-2.0.1-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gettext-devel-0.22.5-1
-  libgnutls-devel-3.8.9-1
-  libnettle-devel-3.9.1-1
-  libtool-2.5.4-1
-  make-4.4.1-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libgnutls-devel-3.8.13-1
+  libnettle-devel-4.0-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/radcli/radcli
 
 Canonical download:
-  https://github.com/radcli/radcli/archive/refs/tags/1.4.0.tar.gz
+  https://github.com/radcli/radcli/archive/refs/tags/2.0.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack radcli-1.4.0-X-src.tar.xz
+  1. unpack radcli-2.0.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./radcli-1.4.0-X.cygport all
+        % cygport ./radcli-2.0.1-X.cygport all
 
 This will create:
-  /usr/src/radcli-1.4.0-X-src.tar.xz
-  /usr/src/radcli-1.4.0-X.tar.xz
-  /usr/src/libradcli6-1.4.0-X.tar.xz
-  /usr/src/libradcli-devel-1.4.0-X.tar.xz
+  /usr/src/radcli-2.0.1-X-src.tar.xz
+  /usr/src/radcli-2.0.1-X.tar.xz
+  /usr/src/libradcli10-2.0.1-X.tar.xz
+  /usr/src/libradcli2_1-2.0.1-X.tar.xz
+  /usr/src/libradcli-devel-2.0.1-X.tar.xz
+  /usr/src/libradcli2-devel-2.0.1-X.tar.xz
 
 -------------------------------------------
 
@@ -61,23 +62,18 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/radcli.README
   /usr/share/doc/radcli/AUTHORS
   /usr/share/doc/radcli/COPYRIGHT
-  /usr/share/doc/radcli/ChangeLog
   /usr/share/doc/radcli/NEWS
   /usr/share/doc/radcli/README.md
   /usr/share/radcli/dictionary
-  /usr/share/radcli/dictionary.ascend
-  /usr/share/radcli/dictionary.compat
-  /usr/share/radcli/dictionary.merit
-  /usr/share/radcli/dictionary.microsoft
-  /usr/share/radcli/dictionary.roaringpenguin
-  /usr/share/radcli/dictionary.sip
 
-(libradcli6)
-  /usr/bin/cygradcli-6.dll
+(libradcli10)
+  /usr/bin/cygradcli-10.dll
+
+(libradcli2_1)
+  /usr/bin/cygradcli2-1.dll
 
 (libradcli-devel)
   /usr/include/radcli/radcli.h
-  /usr/include/radcli/version.h
   /usr/lib/libradcli.dll.a
   /usr/lib/pkgconfig/radcli.pc
   /usr/share/man/man3/radcli.h.3.gz
@@ -145,9 +141,19 @@ Files included in the binary package:
   /usr/share/man/man3/rc_test_config.3.gz
   /usr/share/man/man3/rc_tls_fd.3.gz
 
+(libradcli2-devel)
+  /usr/include/radcli/radcli-defs.h
+  /usr/include/radcli/radcli2.h
+  /usr/include/radcli/version.h
+  /usr/lib/libradcli2.dll.a
+  /usr/lib/pkgconfig/radcli2.pc
+
 ------------------
 
 Port Notes:
+
+----- version 2.0.1-1bl1 -----
+Version bump.
 
 ----- version 1.4.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

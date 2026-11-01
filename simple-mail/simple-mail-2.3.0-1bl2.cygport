@@ -7,6 +7,15 @@ DESCRIPTION="The SimpleMail is small library writen for Qt 5 (C++11) that allows
 applications to send complex emails (plain text, html, attachments, inline
 files, etc.) using the Simple Mail Transfer Protocol (SMTP)."
 
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libQt5Core-devel
+	libQt5Gui-devel
+"
+
 export CXXFLAGS="${CXXFLAGS} -fpermissive"
 
 inherit cmake
@@ -20,7 +29,7 @@ simple_mail_CONTENTS="
 	usr/share
 "
 libSimpleMail2Qt5_0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 libSimpleMail2Qt5_devel_CONTENTS="
 	usr/include

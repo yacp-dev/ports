@@ -6,42 +6,42 @@ together with several memory-hard techniques to minimize the efficiency
 advantage of specialized hardware.
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libgcc1-12.4.0-3
-  librandomx-devel-1.2.1-1bl2
-  librandomx1-1.2.1-1bl2
-  libstdc++6-12.4.0-3
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  librandomx-devel-1.2.3-1bl1
+  librandomx0-1.2.3-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/tevador/RandomX
 
 Canonical download:
-  https://github.com/tevador/RandomX/archive/refs/tags/v1.2.1.tar.gz
+  https://github.com/tevador/RandomX/archive/refs/tags/v1.2.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack randomx-1.2.1-X-src.tar.xz
+  1. unpack randomx-1.2.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./randomx-1.2.1-X.cygport all
+        % cygport ./randomx-1.2.3-X.cygport all
 
 This will create:
-  /usr/src/randomx-1.2.1-X-src.tar.xz
-  /usr/src/randomx-1.2.1-X.tar.xz
-  /usr/src/librandomx1-1.2.1-X.tar.xz
-  /usr/src/librandomx-devel-1.2.1-X.tar.xz
+  /usr/src/randomx-1.2.3-X-src.tar.xz
+  /usr/src/randomx-1.2.3-X.tar.xz
+  /usr/src/librandomx0-1.2.3-X.tar.xz
+  /usr/src/librandomx-devel-1.2.3-X.tar.xz
 
 -------------------------------------------
 
@@ -50,7 +50,6 @@ Files included in the binary package:
 (randomx)
   /usr/bin/randomx-benchmark.exe
   /usr/bin/randomx-codegen.exe
-  /usr/bin/randomx-tests.exe
   /usr/share/doc/Cygwin/randomx.README
   /usr/share/doc/randomx/LICENSE
   /usr/share/doc/randomx/README.md
@@ -58,8 +57,8 @@ Files included in the binary package:
   /usr/share/doc/randomx/design.md
   /usr/share/doc/randomx/specs.md
 
-(librandomx1)
-  /usr/bin/cygrandomx-1.dll
+(librandomx0)
+  /usr/bin/cygrandomx-0.dll
 
 (librandomx-devel)
   /usr/include/randomx.h
@@ -69,6 +68,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.3-1bl1 -----
+Version bump.
 
 ----- version 1.2.1-1bl2 -----
 Rebuild with gcc-12.4.0

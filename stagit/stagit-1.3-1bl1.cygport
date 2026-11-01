@@ -5,11 +5,13 @@ CATEGORY="Net"
 SUMMARY="Static page generator for git"
 DESCRIPTION="stagit is a static page generator for git."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND ISC"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libgit2-devel"
+BUILD_REQUIRES="
+	libgit2-devel
+"
 
 src_compile()
 {
@@ -29,6 +31,6 @@ DOCS="
 src_install()
 {
 	cd ${B}
-	dobin ${PN}.exe
-	doman ${PN}.1
+	dobin ${PN}.exe ${PN}-index.exe
+	doman ${PN}.1 ${PN}-index.1
 }

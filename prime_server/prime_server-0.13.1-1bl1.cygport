@@ -1,0 +1,66 @@
+HOMEPAGE="https://github.com/kevinkreiser/${PN}"
+SRC_URI="
+	https://github.com/kevinkreiser/${PN}/archive/${PV}.tar.gz
+	https://gist.githubusercontent.com/kevinkreiser/39f2e39273c625d96790/raw/bf5579771878d9513a4b6992f12677b2e140ba67/logging.hpp
+	https://gist.githubusercontent.com/kevinkreiser/ada902fb51a1ad1e5a27/raw/c1498b3dc459156d934bac775353c94dca897980/testing.hpp
+"
+
+BUILD_REQUIRES="
+	libcurl-devel
+	libczmq-devel
+	libzmq-devel
+"
+
+CATEGORY="Libs"
+SUMMARY="Non-blocking (web)server API for distributed computing and SOA based on zeromq"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="COPYING"
+
+# AX_CXX_COMPILE_STDCXX_17([noext]) picks -std=c++17, which hides sigwait() and uint from newlib's headers
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	pushd src/logging
+		cp ../../logging.hpp .
+	popd
+	pushd test/testing
+		cp ../../testing.hpp .
+	popd
+}
+
+DOCS="
+	README.md
+"
+
+# The release tarball ships a dangling symlink, lib -> .libs/ (the build
+# output directory, which the tarball doesn't have), so cygport diff fails
+# on it in origsrc. Leave it out of the source patch.
+DIFF_EXCLUDES="
+	lib
+"
+
+PKG_NAMES="
+	prime_server
+	libprime_server0
+	libprime_server-devel
+"
+prime_server_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libprime_server0_CONTENTS="
+	usr/bin/cygprime_server-0.dll
+"
+libprime_server_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+prime_server_SUMMARY="${SUMMARY} (utilities)"
+libprime_server0_SUMMARY="${SUMMARY} (runtime)"
+libprime_server_devel_SUMMARY="${SUMMARY} (development)"

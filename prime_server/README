@@ -3,51 +3,52 @@ prime_server
 Non-blocking (web)server API for distributed computing and SOA based on zeromq
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  libcurl4-7.76.1-1
-  libczmq4-4.2.0-1bl1
-  libgcc1-10.2.0-1
-  libprime_server-devel-0.7.0-1bl1
-  libprime_server0-0.7.0-1bl1
-  libstdc++6-10.2.0-1
-  libzmq5-4.2.3-1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libczmq-devel-4.2.1-1bl2
+  libczmq4-4.2.1-1bl2
+  libgcc1-14.4.0-1
+  libprime_server-devel-0.13.1-1bl1
+  libprime_server0-0.13.1-1bl1
+  libstdc++6-14.4.0-1
+  libzmq-devel-4.3.5-1
+  libzmq5-4.3.5-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-11-1
-  binutils-2.36.1-2
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  gcc-g++-10.2.0-1
-  libcurl-devel-7.76.1-1
-  libczmq-devel-4.2.0-1bl1
-  libtool-2.4.6-7
-  libzmq-devel-4.2.3-1
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libcurl-devel-8.23.0-1
+  libczmq-devel-4.2.1-1bl2
+  libtool-2.6.2-1
+  libzmq-devel-4.3.5-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/kevinkreiser/prime_server
 
 Canonical download:
-  https://github.com/kevinkreiser/prime_server/archive/0.7.0.tar.gz
+  https://github.com/kevinkreiser/prime_server/archive/0.13.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack prime_server-0.7.0-X-src.tar.xz
+  1. unpack prime_server-0.13.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./prime_server-0.7.0-X.cygport all
+        % cygport ./prime_server-0.13.1-X.cygport all
 
 This will create:
-  /usr/src/prime_server-0.7.0-X-src.tar.xz
-  /usr/src/prime_server-0.7.0-X.tar.xz
-  /usr/src/libprime_server0-0.7.0-X.tar.xz
-  /usr/src/libprime_server-devel-0.7.0-X.tar.xz
+  /usr/src/prime_server-0.13.1-X-src.tar.xz
+  /usr/src/prime_server-0.13.1-X.tar.xz
+  /usr/src/libprime_server0-0.13.1-X.tar.xz
+  /usr/src/libprime_server-devel-0.13.1-X.tar.xz
 
 -------------------------------------------
 
@@ -65,7 +66,7 @@ Files included in the binary package:
   /usr/share/doc/prime_server/COPYING
   /usr/share/doc/prime_server/LICENSE.md
   /usr/share/doc/prime_server/README
-  /usr/share/doc/prime_server/readme.md
+  /usr/share/doc/prime_server/README.md
 
 (libprime_server0)
   /usr/bin/cygprime_server-0.dll
@@ -82,6 +83,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.13.1-1bl1 -----
+Version bump.
 
 ----- version 0.7.0-1bl1 -----
 Version bump.

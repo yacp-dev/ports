@@ -3,36 +3,32 @@ quill
 Quill is a cross-platform low latency logging library based on C++14.
 
 Runtime requirements:
-  cygwin-devel-3.6.4-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  ninja-1.13.1-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/odygrd/quill
 
 Canonical download:
-  https://github.com/odygrd/quill/archive/refs/tags/v10.1.0.tar.gz
+  https://github.com/odygrd/quill/archive/refs/tags/v13.1.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack quill-10.1.0-X-src.tar.xz
+  1. unpack quill-13.1.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./quill-10.1.0-X.cygport all
+        % cygport ./quill-13.1.0-X.cygport all
 
 This will create:
-  /usr/src/quill-10.1.0-X-src.tar.xz
-  /usr/src/quill-10.1.0-X.tar.xz
+  /usr/src/quill-13.1.0-X-src.tar.xz
+  /usr/src/quill-13.1.0-X.tar.xz
 
 -------------------------------------------
 
@@ -50,11 +46,13 @@ Files included in the binary package:
   /usr/include/quill/LogFunctions.h
   /usr/include/quill/LogMacros.h
   /usr/include/quill/Logger.h
+  /usr/include/quill/SimpleSetup.h
   /usr/include/quill/StopWatch.h
   /usr/include/quill/StringRef.h
   /usr/include/quill/UserClockSource.h
   /usr/include/quill/Utility.h
   /usr/include/quill/backend/BackendManager.h
+  /usr/include/quill/backend/BackendMdcState.h
   /usr/include/quill/backend/BackendOptions.h
   /usr/include/quill/backend/BackendUtilities.h
   /usr/include/quill/backend/BackendWorker.h
@@ -97,6 +95,8 @@ Files included in the binary package:
   /usr/include/quill/core/LoggerManager.h
   /usr/include/quill/core/MacroMetadata.h
   /usr/include/quill/core/MathUtilities.h
+  /usr/include/quill/core/Metric.h
+  /usr/include/quill/core/MetricManager.h
   /usr/include/quill/core/PatternFormatterOptions.h
   /usr/include/quill/core/QuillError.h
   /usr/include/quill/core/Rdtsc.h
@@ -104,6 +104,7 @@ Files included in the binary package:
   /usr/include/quill/core/SourceLocation.h
   /usr/include/quill/core/Spinlock.h
   /usr/include/quill/core/ThreadContextManager.h
+  /usr/include/quill/core/ThreadPrimitives.h
   /usr/include/quill/core/TimeUtilities.h
   /usr/include/quill/core/UnboundedSPSCQueue.h
   /usr/include/quill/filters/Filter.h
@@ -119,8 +120,12 @@ Files included in the binary package:
   /usr/include/quill/sinks/StreamSink.h
   /usr/include/quill/sinks/SyslogSink.h
   /usr/include/quill/sinks/SystemdSink.h
+  /usr/include/quill/sinks/metrics/PrometheusSink.h
   /usr/include/quill/std/Array.h
+  /usr/include/quill/std/Atomic.h
+  /usr/include/quill/std/Bitset.h
   /usr/include/quill/std/Chrono.h
+  /usr/include/quill/std/Complex.h
   /usr/include/quill/std/Deque.h
   /usr/include/quill/std/FilesystemPath.h
   /usr/include/quill/std/ForwardList.h
@@ -129,9 +134,11 @@ Files included in the binary package:
   /usr/include/quill/std/Optional.h
   /usr/include/quill/std/Pair.h
   /usr/include/quill/std/Set.h
+  /usr/include/quill/std/SystemError.h
   /usr/include/quill/std/Tuple.h
   /usr/include/quill/std/UnorderedMap.h
   /usr/include/quill/std/UnorderedSet.h
+  /usr/include/quill/std/Variant.h
   /usr/include/quill/std/Vector.h
   /usr/include/quill/std/WideString.h
   /usr/lib/cmake/quill/quill-config-version.cmake
@@ -142,23 +149,15 @@ Files included in the binary package:
   /usr/share/doc/quill/CHANGELOG.md
   /usr/share/doc/quill/LICENSE
   /usr/share/doc/quill/README.md
-  /usr/share/doc/quill/docs/design.jpg
-  /usr/share/doc/quill/docs/example_output.png
-  /usr/share/doc/quill/docs/large_strings_1_thread_logging.webp
-  /usr/share/doc/quill/docs/large_strings_4_thread_logging.webp
-  /usr/share/doc/quill/docs/logo.png
-  /usr/share/doc/quill/docs/numbers_1_thread_logging.webp
-  /usr/share/doc/quill/docs/numbers_4_thread_logging.webp
   /usr/share/doc/quill/docs/quill_demo.gif
-  /usr/share/doc/quill/docs/quill_v10_0_compiler_bench.speedscope.png
-  /usr/share/doc/quill/docs/quill_v10_0_compiler_profile.speedscope.png
-  /usr/share/doc/quill/docs/throughput.webp
-  /usr/share/doc/quill/docs/vector_1_thread_logging.webp
-  /usr/share/doc/quill/docs/vector_4_thread_logging.webp
+  /usr/share/doc/quill/docs/quill_logo.png
 
 ------------------
 
 Port Notes:
+
+----- version 13.1.0-1bl1 -----
+Version bump.
 
 ----- version 10.1.0-1bl1 -----
 Version bump.

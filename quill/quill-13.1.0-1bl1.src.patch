@@ -1,5 +1,5 @@
---- origsrc/quill-10.1.0/cmake/QuillUtils.cmake	2025-09-07 09:41:02.000000000 +0900
-+++ src/quill-10.1.0/cmake/QuillUtils.cmake	2025-09-18 01:02:24.663209700 +0900
+--- origsrc/quill-13.1.0/cmake/QuillUtils.cmake	2026-10-06 22:23:08.000000000 +0000
++++ src/quill-13.1.0/cmake/QuillUtils.cmake	2026-11-01 01:45:53.854515600 +0000
 @@ -37,7 +37,7 @@ function(set_common_compile_options targ
      target_compile_options(${target_name} ${COMPILE_OPTIONS_VISIBILITY}
              # General warnings for Clang, AppleClang, and GNU, but NOT on Windows
@@ -9,9 +9,9 @@
              >
  
              # GCC-specific hardening and security flags
---- origsrc/quill-10.1.0/include/quill/backend/ThreadUtilities.h	2025-09-07 09:41:02.000000000 +0900
-+++ src/quill-10.1.0/include/quill/backend/ThreadUtilities.h	2025-09-18 01:02:47.348072500 +0900
-@@ -49,7 +49,9 @@
+--- origsrc/quill-13.1.0/include/quill/backend/ThreadUtilities.h	2026-10-06 22:23:08.000000000 +0000
++++ src/quill-13.1.0/include/quill/backend/ThreadUtilities.h	2026-11-01 01:45:53.854515600 +0000
+@@ -50,7 +50,9 @@
  #else
    // linux
    #include <pthread.h>

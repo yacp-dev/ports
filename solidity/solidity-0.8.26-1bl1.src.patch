@@ -1,0 +1,139 @@
+--- origsrc/solidity_0.8.26/cmake/fmtlib.cmake	2024-05-21 09:44:13.000000000 +0000
++++ src/solidity_0.8.26/cmake/fmtlib.cmake	2026-11-01 19:48:15.270077200 +0000
+@@ -1,20 +1,5 @@
+-include(FetchContent)
+-
+-FetchContent_Declare(
+-	fmtlib
+-	PREFIX "${PROJECT_BINARY_DIR}/deps"
+-	DOWNLOAD_DIR "${PROJECT_SOURCE_DIR}/deps/downloads"
+-	DOWNLOAD_NAME fmt-9.1.0.tar.gz
+-	URL https://github.com/fmtlib/fmt/archive/9.1.0.tar.gz
+-	URL_HASH SHA256=5dea48d1fcddc3ec571ce2058e13910a0d4a6bab4cc09a809d8b1dd1c88ae6f2
++# Unpacked from SRC_URI into deps/fmtlib.
++add_subdirectory(
++	${CMAKE_SOURCE_DIR}/deps/fmtlib
++	EXCLUDE_FROM_ALL
+ )
+-
+-if (CMAKE_VERSION VERSION_LESS "3.14.0")
+-	FetchContent_GetProperties(fmtlib)
+-	if (NOT fmtlib_POPULATED)
+-		FetchContent_Populate(fmtlib)
+-		add_subdirectory(${fmtlib_SOURCE_DIR} ${fmtlib_BINARY_DIR})
+-	endif()
+-else()
+-	FetchContent_MakeAvailable(fmtlib)
+-endif()
+--- origsrc/solidity_0.8.26/cmake/nlohmann-json.cmake	2024-05-21 09:44:13.000000000 +0000
++++ src/solidity_0.8.26/cmake/nlohmann-json.cmake	2026-11-01 19:48:15.270077200 +0000
+@@ -1,21 +1,6 @@
+-include(ExternalProject)
+-
+-ExternalProject_Add(nlohmann-json-project
+-        DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/deps/nlohmann/nlohmann"
+-        DOWNLOAD_NAME json.hpp
+-        DOWNLOAD_NO_EXTRACT 1
+-        URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.hpp
+-        URL_HASH SHA256=9bea4c8066ef4a1c206b2be5a36302f8926f7fdc6087af5d20b417d0cf103ea6
+-        CMAKE_COMMAND true
+-        BUILD_COMMAND true
+-        INSTALL_COMMAND true
+-)
+-
+-# Create nlohmann-json imported library
++# json.hpp is unpacked from SRC_URI into deps/nlohmann/nlohmann.
+ add_library(nlohmann-json INTERFACE IMPORTED)
+-file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/deps/nlohmann)  # Must exist.
+ set_target_properties(nlohmann-json PROPERTIES
+         INTERFACE_COMPILE_OPTIONS "\$<\$<CXX_COMPILER_ID:MSVC>:/permissive->"
+         INTERFACE_SYSTEM_INCLUDE_DIRECTORIES  ${CMAKE_SOURCE_DIR}/deps/nlohmann
+         INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/deps/nlohmann)
+-add_dependencies(nlohmann-json nlohmann-json-project)
+\ No newline at end of file
+--- origsrc/solidity_0.8.26/cmake/range-v3.cmake	2024-05-21 09:44:13.000000000 +0000
++++ src/solidity_0.8.26/cmake/range-v3.cmake	2026-11-01 19:48:15.272111700 +0000
+@@ -1,38 +1,6 @@
+-include(ExternalProject)
+-
+-if (${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
+-    set(RANGE_V3_CMAKE_COMMAND emcmake cmake)
+-else()
+-    set(RANGE_V3_CMAKE_COMMAND ${CMAKE_COMMAND})
+-endif()
+-
+-set(prefix "${PROJECT_BINARY_DIR}/deps")
+-set(RANGE_V3_INCLUDE_DIR "${prefix}/include")
+-
+-ExternalProject_Add(range-v3-project
+-    PREFIX "${prefix}"
+-    DOWNLOAD_DIR "${PROJECT_SOURCE_DIR}/deps/downloads"
+-    DOWNLOAD_NAME range-v3-0.12.0.tar.gz
+-    URL https://github.com/ericniebler/range-v3/archive/0.12.0.tar.gz
+-    URL_HASH SHA256=015adb2300a98edfceaf0725beec3337f542af4915cec4d0b89fa0886f4ba9cb
+-    CMAKE_COMMAND ${RANGE_V3_CMAKE_COMMAND}
+-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
+-               -DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}
+-               -DBUILD_TESTING=OFF
+-               -DRANGES_CXX_STD=${CMAKE_CXX_STANDARD}
+-               -DRANGE_V3_DOCS=OFF
+-               -DRANGE_V3_EXAMPLES=OFF
+-               -DRANGE_V3_TESTS=OFF
+-               -DRANGES_BUILD_CALENDAR_EXAMPLE=OFF
+-               -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+-    BUILD_BYPRODUCTS "${RANGE_V3_INCLUDE_DIR}/range/v3/all.hpp"
+-)
+-
+-# Create range-v3 imported library
++# Unpacked from SRC_URI into deps/range-v3.
+ add_library(range-v3 INTERFACE IMPORTED)
+-file(MAKE_DIRECTORY ${RANGE_V3_INCLUDE_DIR})  # Must exist.
+ set_target_properties(range-v3 PROPERTIES
+     INTERFACE_COMPILE_OPTIONS "\$<\$<CXX_COMPILER_ID:MSVC>:/permissive->"
+-    INTERFACE_SYSTEM_INCLUDE_DIRECTORIES ${RANGE_V3_INCLUDE_DIR}
+-    INTERFACE_INCLUDE_DIRECTORIES ${RANGE_V3_INCLUDE_DIR})
+-add_dependencies(range-v3 range-v3-project)
++    INTERFACE_SYSTEM_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/deps/range-v3/include
++    INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/deps/range-v3/include)
+--- origsrc/solidity_0.8.26/libevmasm/ExpressionClasses.cpp	2024-05-21 09:44:13.000000000 +0000
++++ src/solidity_0.8.26/libevmasm/ExpressionClasses.cpp	2026-11-01 19:48:15.272111700 +0000
+@@ -28,7 +28,7 @@
+ #include <libevmasm/CommonSubexpressionEliminator.h>
+ #include <libevmasm/SimplificationRules.h>
+ 
+-#include <boost/container_hash/hash.hpp>
++#include <boost/functional/hash.hpp>
+ 
+ #include <functional>
+ #include <limits>
+--- origsrc/solidity_0.8.26/libsolidity/analysis/DeclarationContainer.cpp	2024-05-21 09:44:13.000000000 +0000
++++ src/solidity_0.8.26/libsolidity/analysis/DeclarationContainer.cpp	2026-11-01 19:48:15.274141500 +0000
+@@ -152,7 +152,7 @@ std::vector<Declaration const*> Declarat
+ 	if (m_declarations.count(_name))
+ 	{
+ 		if (_settings.onlyVisibleAsUnqualifiedNames)
+-			result += m_declarations.at(_name) | ranges::views::filter(&Declaration::isVisibleAsUnqualifiedName) | ranges::to_vector;
++			result += m_declarations.at(_name) | ranges::views::filter([](Declaration const* _declaration) { return _declaration->isVisibleAsUnqualifiedName(); }) | ranges::to_vector;
+ 		else
+ 			result += m_declarations.at(_name);
+ 	}
+@@ -160,7 +160,7 @@ std::vector<Declaration const*> Declarat
+ 	if (_settings.alsoInvisible && m_invisibleDeclarations.count(_name))
+ 	{
+ 		if (_settings.onlyVisibleAsUnqualifiedNames)
+-			result += m_invisibleDeclarations.at(_name) | ranges::views::filter(&Declaration::isVisibleAsUnqualifiedName) | ranges::to_vector;
++			result += m_invisibleDeclarations.at(_name) | ranges::views::filter([](Declaration const* _declaration) { return _declaration->isVisibleAsUnqualifiedName(); }) | ranges::to_vector;
+ 		else
+ 			result += m_invisibleDeclarations.at(_name);
+ 	}
+--- origsrc/solidity_0.8.26/libyul/optimiser/BlockHasher.cpp	2024-05-21 09:44:13.000000000 +0000
++++ src/solidity_0.8.26/libyul/optimiser/BlockHasher.cpp	2026-11-01 19:48:15.274141500 +0000
+@@ -23,6 +23,8 @@
+ #include <libyul/AST.h>
+ #include <libyul/Utilities.h>
+ 
++#include <boost/functional/hash.hpp>
++
+ using namespace solidity;
+ using namespace solidity::yul;
+ using namespace solidity::util;

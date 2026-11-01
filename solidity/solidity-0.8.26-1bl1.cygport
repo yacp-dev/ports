@@ -1,0 +1,60 @@
+HOMEPAGE="https://github.com/argotorg/${PN}"
+# Versions are those cmake/{fmtlib,nlohmann-json,range-v3}.cmake download at build time
+FMT_VERSION="9.1.0"
+JSON_VERSION="3.11.3"
+RANGE_V3_VERSION="0.12.0"
+SRC_URI="
+	https://github.com/argotorg/${PN}/releases/download/v${PV}/${PN}_${PV}.tar.gz
+	https://github.com/fmtlib/fmt/archive/${FMT_VERSION}.tar.gz#/fmt-${FMT_VERSION}.tar.gz
+	https://github.com/nlohmann/json/archive/v${JSON_VERSION}.tar.gz#/json-${JSON_VERSION}.tar.gz
+	https://github.com/ericniebler/range-v3/archive/${RANGE_V3_VERSION}.tar.gz#/range-v3-${RANGE_V3_VERSION}.tar.gz
+"
+SRC_DIR="${PN}_${PV}"
+
+CATEGORY="Net"
+SUMMARY="Contract-Oriented Programming Language"
+DESCRIPTION="Solidity is a statically-typed curly-braces programming language designed for
+developing smart contracts that run on the Ethereum Virtual Machine. Smart
+contracts are programs that are executed inside a peer-to-peer network where
+nobody has special authority over the execution and thus they allow to
+implement tokens of value, ownership, voting and other kinds of logics."
+
+LICENSE="GPL-3.0-only AND BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND MIT AND (MIT OR NCSA)"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only AND BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND MIT AND (MIT OR NCSA)"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	libboost-devel
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose mkdir -p deps/nlohmann/nlohmann
+	verbose mv ${origsrcdir}/fmt-${FMT_VERSION} deps/fmtlib
+	verbose mv ${origsrcdir}/json-${JSON_VERSION}/single_include/nlohmann/json.hpp deps/nlohmann/nlohmann/
+	verbose rm -rf ${origsrcdir}/json-${JSON_VERSION}
+	verbose mv ${origsrcdir}/range-v3-${RANGE_V3_VERSION} deps/range-v3
+}
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBoost_USE_STATIC_LIBS:BOOL=OFF
+	-DPEDANTIC:BOOL=OFF
+	-DTESTS:BOOL=ON
+"
+
+src_test()
+{
+	cd ${B}
+	# evmone, which the semantic tests run on, isn't in Cygwin
+	./test/soltest.exe -- --testpath ${S}/test --no-semantic-tests
+}
+
+DOCS="
+	*.md
+"

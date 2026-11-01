@@ -1,0 +1,20 @@
+--- origsrc/sqlsmith-1.5/Makefile.am	2026-05-15 14:07:42.000000000 +0000
++++ src/sqlsmith-1.5/Makefile.am	2026-11-01 21:21:29.715798300 +0000
+@@ -36,6 +36,7 @@ gitrev.h: $(HEADERS) $(SOURCES)
+ 	else \
+ 	echo "#define GITREV \"unreleased\"" > $@ ;\
+ 	fi
++	[ -x $@ ] || echo "#define GITREV \"${VERSION}\"" > $@
+ 
+ filterdump:
+ 	psql -Xc 'copy (select error from known) to stdout' |sort -u > known.txt
+--- origsrc/sqlsmith-1.5/configure.ac	2026-05-15 14:07:42.000000000 +0000
++++ src/sqlsmith-1.5/configure.ac	2026-11-01 21:21:29.713788100 +0000
+@@ -1,5 +1,7 @@
+ AC_INIT(SQLsmith, 1.5, seltenreich@gmx.de, sqlsmith, https://github.com/anse1/sqlsmith/)
+ AC_LANG(C++)
++m4_pattern_allow([^_AX_LIB_POSTGRESQL_OLD_(CPPFLAGS|LDFLAGS|LIBS)$])
++m4_pattern_allow([^_AX_BOOST_BASE_TONUMERICVERSION_RET$])
+ 
+ AM_INIT_AUTOMAKE(-Wall -Werror foreign)
+ AC_PROG_CXX

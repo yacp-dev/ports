@@ -6,18 +6,15 @@ SUMMARY="Debian package repository manager"
 DESCRIPTION="This project is a leightweight feature complete manager of a debian
 package (i.e. binary .deb and source .dsc+.tar.gz+.diff.gz) repository."
 
-LICENSE="GPL-2.0-only AND GPL-2.0-or-later AND MIT"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-only AND GPL-2.0-or-later AND MIT"
+LICENSE="GPL-2.0-only AND GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-only AND GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	libarchive-devel
-	libbz2-devel
 	libdb-devel
 	libgpg-error-devel
 	libgpgme-devel
-	liblzma-devel
-	zlib-devel
 "
 
 src_test()

@@ -1,0 +1,59 @@
+--- origsrc/reprepro-5.5.1/database.c	2026-06-25 22:27:11.000000000 +0000
++++ src/reprepro-5.5.1/database.c	2026-11-01 05:52:27.030216100 +0000
+@@ -264,7 +264,11 @@ static const uint32_t types[dbt_COUNT] =
+ 	DB_HASH
+ };
+ 
++#if DB_VERSION_MAJOR >= 6
++static int debianversioncompare(UNUSED(DB *db), const DBT *a, const DBT *b, size_t *locp);
++#else
+ static int debianversioncompare(UNUSED(DB *db), const DBT *a, const DBT *b);
++#endif
+ #if DB_VERSION_MAJOR >= 6
+ static int paireddatacompare(UNUSED(DB *db), const DBT *a, const DBT *b, size_t *locp);
+ #else
+@@ -312,11 +316,7 @@ static retvalue database_opentable(const
+ 		}
+ 	}
+ 
+-#if DB_VERSION_MAJOR == 5 || DB_VERSION_MAJOR == 6
+-#define DB_OPEN(database, filename, name, type, flags) \
+-	database->open(database, NULL, filename, name, type, flags, 0664)
+-#else
+-#if DB_VERSION_MAJOR == 4
++#if DB_VERSION_MAJOR > 4
+ #define DB_OPEN(database, filename, name, type, flags) \
+ 	database->open(database, NULL, filename, name, type, flags, 0664)
+ #else
+@@ -327,7 +327,6 @@ static retvalue database_opentable(const
+ #error Unexpected DB_VERSION_MAJOR!
+ #endif
+ #endif
+-#endif
+ 	dbret = DB_OPEN(table, filename, subtable, types[type], flags);
+ 	if (dbret == ENOENT && !ISSET(flags, DB_CREATE)) {
+ 		(void)table->close(table, 0);
+@@ -1975,7 +1974,11 @@ retvalue database_openreferences(void) {
+ 	return RET_OK;
+ }
+ 
+-static int debianversioncompare(UNUSED(DB *db), const DBT *a, const DBT *b) {
++static int debianversioncompare(UNUSED(DB *db), const DBT *a, const DBT *b
++#if DB_VERSION_MAJOR >= 6
++	, UNUSED(size_t *locp)
++#endif
++) {
+ 	const char *a_version;
+ 	const char *b_version;
+ 	int versioncmp;
+--- origsrc/reprepro-5.5.1/uncompression.h	2026-06-25 22:27:11.000000000 +0000
++++ src/reprepro-5.5.1/uncompression.h	2026-11-01 05:52:27.030216100 +0000
+@@ -1,6 +1,8 @@
+ #ifndef REPREPRO_UNCOMPRESS_H
+ #define REPREPRO_UNCOMPRESS_H
+ 
++#include <unistd.h>
++
+ /* "", ".gz", ... */
+ extern const char * const uncompression_suffix[c_COUNT];
+ /* so help messages know which option to cite: */

@@ -1,0 +1,91 @@
+--- origsrc/snapd-glib-1.72/snapd-glib/snapd-client.c	2026-03-17 19:16:49.000000000 +0000
++++ src/snapd-glib-1.72/snapd-glib/snapd-client.c	2026-11-01 14:44:10.424345500 +0000
+@@ -751,7 +751,6 @@ static GSocket *open_snapd_socket(const
+                 "Unable to create snapd socket: %s", error_local->message);
+     return NULL;
+   }
+-  g_socket_set_blocking(socket, FALSE);
+   g_autoptr(GSocketAddress) address = create_socket_address(socket_path);
+ 
+   if (!g_socket_connect(socket, address, cancellable, &error_local)) {
+@@ -759,6 +758,7 @@ static GSocket *open_snapd_socket(const
+                 "Unable to connect snapd socket: %s", error_local->message);
+     return NULL;
+   }
++  g_socket_set_blocking(socket, FALSE);
+ 
+   return g_steal_pointer(&socket);
+ }
+--- origsrc/snapd-glib-1.72/snapd-qt/Snapd/client.h	2026-03-17 19:16:49.000000000 +0000
++++ src/snapd-glib-1.72/snapd-qt/Snapd/client.h	2026-11-01 14:44:10.419525800 +0000
+@@ -29,6 +29,14 @@
+ #include <Snapd/SystemInformation>
+ #include <Snapd/UserInformation>
+ 
++#if defined(stdout)
++#undef stdout
++#endif
++
++#if defined(stderr)
++#undef stderr
++#endif
++
+ class QSnapdConnectRequestPrivate;
+ #include "snapdqt_global.h"
+ 
+--- origsrc/snapd-glib-1.72/snapd-qt/meson.build	2026-03-17 19:16:49.000000000 +0000
++++ src/snapd-glib-1.72/snapd-qt/meson.build	2026-11-01 14:44:10.420319400 +0000
+@@ -3,7 +3,7 @@ if get_option('qt5') and get_option('qt6
+ endif
+ 
+ if get_option('qt5')
+-    qt_min_version = '5.9.5'
++    qt_min_version = '5.9.4'
+     qt_version = 'qt5'
+     qt_core_camel = 'Qt5Core'
+     description = 'Snapd Qt'
+--- origsrc/snapd-glib-1.72/tests/meson.build	2026-03-17 19:16:49.000000000 +0000
++++ src/snapd-glib-1.72/tests/meson.build	2026-11-01 14:44:10.421547900 +0000
+@@ -15,7 +15,7 @@ mock_snapd_lib = static_library ('mock-s
+ 
+ test_executable = executable ('test-glib',
+                               'test-glib.c',
+-                              dependencies: [ glib_dep, snapd_glib_dep, json_glib_dep ],
++                              dependencies: [ glib_dep, gio_unix_dep, snapd_glib_dep, json_glib_dep ],
+                               link_with: [ mock_snapd_lib ],
+                               c_args: [ '-DVERSION="@0@"'.format (meson.project_version ()) ],
+                               install_dir: installed_tests_exec_dir,
+--- origsrc/snapd-glib-1.72/tests/test-glib.c	2026-03-17 19:16:49.000000000 +0000
++++ src/snapd-glib-1.72/tests/test-glib.c	2026-11-01 14:44:10.423566300 +0000
+@@ -7,6 +7,7 @@
+  * See http://www.gnu.org/copyleft/lgpl.html the full text of the license.
+  */
+ 
++#include <gio/gunixsocketaddress.h>
+ #include <json-glib/json-glib.h>
+ #include <snapd-glib/snapd-glib.h>
+ #include <string.h>
+@@ -9465,6 +9466,11 @@ static void test_ask_interface_request_a
+ }
+ 
+ static void test_abstract_socket(void) {
++  if (!g_unix_socket_address_abstract_names_supported()) {
++    g_test_skip("abstract sockets are not supported on this platform");
++    return;
++  }
++
+   g_autoptr(GMainLoop) loop = g_main_loop_new(NULL, FALSE);
+ 
+   g_autoptr(MockSnapd) snapd = mock_snapd_new();
+@@ -9489,6 +9495,11 @@ static void test_abstract_socket(void) {
+ }
+ 
+ static void test_non_existent_abstract_socket(void) {
++  if (!g_unix_socket_address_abstract_names_supported()) {
++    g_test_skip("abstract sockets are not supported on this platform");
++    return;
++  }
++
+   g_autoptr(SnapdClient) client = snapd_client_new();
+   snapd_client_set_socket_path(client, "@/snapd/this-socket-doesn-t-exist");
+   g_autoptr(GError) error = NULL;

@@ -4,39 +4,38 @@ snapd-glib is a library to allow GLib based applications access to snapd, the
 daemon that controls Snaps.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  girepository-GLib2.0-1.86.0-1
+  cygwin-3.6.12-1
+  girepository-GLib2.0-1.86.0-2
   libQt5Core-devel-5.9.4-2
   libQt5Core5-5.9.4-2
   libQt5Quick5-5.9.4-1
-  libgcc1-13.4.0-1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
+  libgcc1-14.4.0-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
   libjson-glib1.0-devel-1.4.2-1
   libjson-glib1.0_0-1.4.2-1
-  libsnapd-glib-devel-1.70-1bl1
-  libsnapd-glib1-1.70-1bl1
-  libsnapd-qt-devel-1.70-1bl1
-  libsnapd-qt1-1.70-1bl1
+  libsnapd-glib-devel-1.72-1bl1
+  libsnapd-glib1-1.72-1bl1
+  libsnapd-qt-devel-1.72-1bl1
+  libsnapd-qt1-1.72-1bl1
   libsoup2.4-devel-2.60.3-1
   libsoup2.4_1-2.60.3-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
-  snapd-qml-1.70-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.4-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  gobject-introspection-1.86.0-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  gobject-introspection-1.86.0-2
   libQt5Core-devel-5.9.4-2
   libQt5Quick-devel-5.9.4-1
-  libglib2.0-devel-2.87.0-1
+  libglib2.0-devel-2.90.1-1
   libjson-glib1.0-devel-1.4.2-1
   libsoup2.4-devel-2.60.3-1
-  meson-1.4.2-1
+  meson-1.10.2-1
   ninja-1.13.2-1
   vala-0.56.18-1
 
@@ -44,27 +43,27 @@ Canonical website:
   https://github.com/canonical/snapd-glib
 
 Canonical download:
-  https://github.com/canonical/snapd-glib/archive/refs/tags/1.70.tar.gz
+  https://github.com/canonical/snapd-glib/archive/refs/tags/1.72.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack snapd-glib-1.70-X-src.tar.xz
+  1. unpack snapd-glib-1.72-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./snapd-glib-1.70-X.cygport all
+        % cygport ./snapd-glib-1.72-X.cygport all
 
 This will create:
-  /usr/src/snapd-glib-1.70-X-src.tar.xz
-  /usr/src/snapd-glib-1.70-X.tar.xz
-  /usr/src/libsnapd-glib1-1.70-X.tar.xz
-  /usr/src/libsnapd-glib-devel-1.70-X.tar.xz
-  /usr/src/libsnapd-qt1-1.70-X.tar.xz
-  /usr/src/libsnapd-qt-devel-1.70-X.tar.xz
-  /usr/src/snapd-qml-1.70-X.tar.xz
-  /usr/src/girepository-Snapd1-1.70-X.tar.xz
-  /usr/src/vala-snapd-glib-1.70-X.tar.xz
+  /usr/src/snapd-glib-1.72-X-src.tar.xz
+  /usr/src/snapd-glib-1.72-X.tar.xz
+  /usr/src/libsnapd-glib1-1.72-X.tar.xz
+  /usr/src/libsnapd-glib-devel-1.72-X.tar.xz
+  /usr/src/libsnapd-qt1-1.72-X.tar.xz
+  /usr/src/libsnapd-qt-devel-1.72-X.tar.xz
+  /usr/src/snapd-qml-1.72-X.tar.xz
+  /usr/src/girepository-Snapd1-1.72-X.tar.xz
+  /usr/src/vala-snapd-glib-1.72-X.tar.xz
 
 -------------------------------------------
 
@@ -221,6 +220,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.72-1bl1 -----
+Version bump.
 
 ----- version 1.70-1bl1 -----
 Version bump.

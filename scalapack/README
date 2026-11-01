@@ -4,48 +4,51 @@ ScaLAPACK, or Scalable LAPACK, is a library of high performance linear algebra
 routines for distributed memory computers supporting MPI.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libgcc1-12.4.0-3
-  libgfortran5-12.4.0-3
-  liblapack-devel-3.12.1-2
-  liblapack0-3.12.1-2
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  liblapack-devel-3.12.0-1
+  liblapack0-3.12.0-1
   libopenmpi-devel-4.1.6-1
   libopenmpi40-4.1.6-1
-  libscalapack-devel-2.2.2-1bl1
-  libscalapack2.2-2.2.2-1bl1
-  pkg-config-2.4.3-1
+  libscalapack-devel-2.2.3-1bl1
+  libscalapack2.2-2.2.3-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-fortran-12.4.0-3
-  liblapack-devel-3.12.1-2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libevent-devel-2.1.13-1
+  libhwloc-devel-2.13.0-1
+  liblapack-devel-3.12.0-1
   libopenmpi-devel-4.1.6-1
-  ninja-1.12.1-1
+  ninja-1.13.2-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://github.com/Reference-ScaLAPACK/scalapack
 
 Canonical download:
-  https://github.com/Reference-ScaLAPACK/scalapack/archive/refs/tags/v2.2.2.tar.gz
+  https://github.com/Reference-ScaLAPACK/scalapack/archive/refs/tags/v2.2.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack scalapack-2.2.2-X-src.tar.xz
+  1. unpack scalapack-2.2.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./scalapack-2.2.2-X.cygport all
+        % cygport ./scalapack-2.2.3-X.cygport all
 
 This will create:
-  /usr/src/scalapack-2.2.2-X-src.tar.xz
-  /usr/src/scalapack-2.2.2-X.tar.xz
-  /usr/src/libscalapack2.2-2.2.2-X.tar.xz
-  /usr/src/libscalapack-devel-2.2.2-X.tar.xz
+  /usr/src/scalapack-2.2.3-X-src.tar.xz
+  /usr/src/scalapack-2.2.3-X.tar.xz
+  /usr/src/libscalapack2.2-2.2.3-X.tar.xz
+  /usr/src/libscalapack-devel-2.2.3-X.tar.xz
 
 -------------------------------------------
 
@@ -69,7 +72,7 @@ Files included in the binary package:
   /usr/include/pblas/pblas.h
   /usr/lib/cmake/scalapack/scalapack-config-version.cmake
   /usr/lib/cmake/scalapack/scalapack-config.cmake
-  /usr/lib/cmake/scalapack/scalapack-targets-release.cmake
+  /usr/lib/cmake/scalapack/scalapack-targets-relwithdebinfo.cmake
   /usr/lib/cmake/scalapack/scalapack-targets.cmake
   /usr/lib/libscalapack.dll.a
   /usr/lib/pkgconfig/scalapack.pc
@@ -77,6 +80,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.2.3-1bl1 -----
+Version bump.
 
 ----- version 2.2.2-1bl1 -----
 Version bump.

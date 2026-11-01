@@ -1,5 +1,9 @@
 HOMEPAGE="https://github.com/Reference-ScaLAPACK/${PN}"
 SRC_URI="https://github.com/Reference-ScaLAPACK/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/s/scalapack/2.2.3-5/debian/patches/blacs_testing.patch
+	https://src.fedoraproject.org/rpms/scalapack/raw/8343fb072e6c35440eba9089cb712ee622020083/f/scalapack-2.2.3-fix-pkgconfig.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Scalable LAPACK"
@@ -10,7 +14,14 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="liblapack-devel libopenmpi-devel"
+BUILD_REQUIRES="
+	gcc-fortran
+	libevent-devel
+	libhwloc-devel
+	liblapack-devel
+	libopenmpi-devel
+	zlib-devel
+"
 
 export FCFLAGS="${FCFLAGS} -fallow-argument-mismatch"
 
@@ -20,6 +31,12 @@ CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DBUILD_STATIC_LIBS:BOOL=OFF
 "
+
+src_test()
+{
+	cd ${B}
+	OMPI_MCA_rmaps_base_oversubscribe=1 ninja_test
+}
 
 src_install()
 {
@@ -47,7 +64,7 @@ scalapack_CONTENTS="
 	usr/share
 "
 libscalapack2_2_CONTENTS="
-	usr/bin
+	usr/bin/cygscalapack-2.2.dll
 "
 libscalapack_devel_CONTENTS="
 	usr/include

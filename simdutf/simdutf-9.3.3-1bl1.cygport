@@ -5,11 +5,12 @@ CATEGORY="Libs"
 SUMMARY="Unicode validation and transcoding at billions of characters per second"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="Apache-2.0 OR MIT"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 OR MIT"
+LICENSE="(Apache-2.0 OR MIT) AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: (Apache-2.0 OR MIT) AND BSD-3-Clause"
 LICENSE_URI="LICENSE-APACHE"
 
 BUILD_REQUIRES="
+	libbase64-devel
 	libiconv-devel
 	libintl-devel
 "
@@ -33,20 +34,21 @@ DOCS="
 
 PKG_NAMES="
 	simdutf
-	libsimdutf31
+	libsimdutf37
 	libsimdutf-devel
 "
 simdutf_CONTENTS="
 	usr/bin/*.exe
+	usr/bin/fastbase64.coreutils
 	usr/share
 "
-libsimdutf31_CONTENTS="
-	usr/bin/cygsimdutf-31.dll
+libsimdutf37_CONTENTS="
+	usr/bin/cygsimdutf-37.dll
 "
 libsimdutf_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 simdutf_SUMMARY="${SUMMARY} (utilities)"
-libsimdutf31_SUMMARY="${SUMMARY} (runtime)"
+libsimdutf37_SUMMARY="${SUMMARY} (runtime)"
 libsimdutf_devel_SUMMARY="${SUMMARY} (development)"

@@ -10,12 +10,13 @@ the issuer to determine if the token is valid). This is convenient for a
 federated environment where several otherwise-independent storage endpoints
 want to delegate trust for an issuer for managing a storage allocation."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND MIT AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND MIT AND BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	libcurl-devel
+	libgtest-devel
 	libsqlite3-devel
 	libssl-devel
 	libuuid-devel

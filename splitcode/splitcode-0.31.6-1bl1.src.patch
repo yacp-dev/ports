@@ -1,0 +1,142 @@
+--- origsrc/splitcode-0.31.6/CMakeLists.txt	2025-12-07 12:30:36.000000000 +0000
++++ src/splitcode-0.31.6/CMakeLists.txt	2026-11-01 14:58:40.398167900 +0000
+@@ -56,34 +56,8 @@ if (BUILD_FUNCTESTING)
+     )
+ endif(BUILD_FUNCTESTING)
+ 
+-include(ExternalProject)
+-
+-
+-
+-if (NOT ZLIBNG_DISABLE)
+-    message("zlib-ng enabled.")
+-    set(ZLIBNG "ON")
+-    ExternalProject_Add(zlib-ng
+-    PREFIX ${PROJECT_SOURCE_DIR}/ext/zlib-ng
+-    SOURCE_DIR ${PROJECT_SOURCE_DIR}/ext/zlib-ng
+-    BUILD_IN_SOURCE 1
+-    CONFIGURE_COMMAND mkdir -p zlib-ng && cd zlib-ng && cmake .. -DZLIB_COMPAT=ON -DZLIB_ENABLE_TESTS=OFF -DCMAKE_INSTALL_PREFIX=${PREFIX}
+-    BUILD_COMMAND cd zlib-ng && make
+-    INSTALL_COMMAND ""
+-    )
+-endif(ZLIBNG_DISABLE)
+-
+-
+ if (USE_HTSLIB)
+     message("using htslib")
+-    ExternalProject_Add(htslib
+-    PREFIX ${PROJECT_SOURCE_DIR}/ext/htslib
+-    SOURCE_DIR ${PROJECT_SOURCE_DIR}/ext/htslib
+-    BUILD_IN_SOURCE 1
+-    CONFIGURE_COMMAND ""
+-    BUILD_COMMAND make lib-static
+-    INSTALL_COMMAND ""
+-    )
+ else()
+     set(NO_HTSLIB "ON")
+     add_compile_definitions("NO_HTSLIB=ON")
+--- origsrc/splitcode-0.31.6/src/CMakeLists.txt	2025-12-07 12:30:36.000000000 +0000
++++ src/splitcode-0.31.6/src/CMakeLists.txt	2026-11-01 14:58:40.400178300 +0000
+@@ -23,39 +23,25 @@ if(LINK MATCHES static)
+     SET_TARGET_PROPERTIES(splitcode splitcode_core PROPERTIES LINK_SEARCH_END_STATIC 1)
+ endif(LINK MATCHES static)
+ 
+-if (NOT ZLIBNG)
+-find_package( ZLIB REQUIRED )
+-
++find_package(PkgConfig)
++pkg_check_modules(ZLIB zlib-ng)
++if (ZLIB_FOUND)
++    add_definitions(-DSPLITCODE_USE_ZLIB_NG)
++endif()
++if (NOT ZLIB_FOUND)
++    find_package( ZLIB REQUIRED )
++endif()
+ if ( ZLIB_FOUND )
+     include_directories( ${ZLIB_INCLUDE_DIRS} )
+     target_link_libraries(splitcode splitcode_core ${ZLIB_LIBRARIES})
+ else()
+     message(FATAL_ERROR "zlib not found. Required for reading FASTQ files" )
+ endif( ZLIB_FOUND )
+-endif(NOT ZLIBNG)
+-
+-if (ZLIBNG)
+-    add_definitions(-DSPLITCODE_USE_ZLIB_NG)
+-    include_directories(../ext/zlib-ng/zlib-ng)
+-    include_directories(../ext/zlib-ng)
+-    if(WIN32)
+-    target_link_libraries(splitcode ${CMAKE_CURRENT_SOURCE_DIR}/../ext/zlib-ng/zlib-ng/libz.lib)
+-    else()
+-    target_link_libraries(splitcode ${CMAKE_CURRENT_SOURCE_DIR}/../ext/zlib-ng/zlib-ng/libz.a)
+-    endif(WIN32)
+-endif(ZLIBNG)
+ 
+ if (USE_HTSLIB)
+-    include_directories(../ext/htslib)
+-    if(WIN32)
+-    target_link_libraries(splitcode ${CMAKE_CURRENT_SOURCE_DIR}/../ext/htslib/libhts.lib)
+-    else()
+-if(ZLIBNG)
+-    target_link_libraries(splitcode ${CMAKE_CURRENT_SOURCE_DIR}/../ext/htslib/libhts.a ${CMAKE_CURRENT_SOURCE_DIR}/../ext/zlib-ng/zlib-ng/libz.a)
+-else()
+-    target_link_libraries(splitcode ${CMAKE_CURRENT_SOURCE_DIR}/../ext/htslib/libhts.a)
+-endif(ZLIBNG)
+-    endif(WIN32)
++    pkg_check_modules(HTSLIB REQUIRED htslib)
++    include_directories( ${HTSLIB_INCLUDE_DIRS} )
++    target_link_libraries(splitcode ${HTSLIB_LIBRARIES})
+ else()
+     add_definitions(-DNO_HTSLIB)
+ endif()
+--- origsrc/splitcode-0.31.6/src/LiftWorkflow.h	2025-12-07 12:30:36.000000000 +0000
++++ src/splitcode-0.31.6/src/LiftWorkflow.h	2026-11-01 14:58:40.400178300 +0000
+@@ -22,7 +22,12 @@
+ #ifndef WITH_GZFILEOP
+ #define WITH_GZFILEOP
+ #endif
+-#include "zlib-ng/zlib.h"
++#include "zlib-ng.h"
++#define gzopen zng_gzopen
++#define gzclose zng_gzclose
++#define gzread zng_gzread
++#define gzwrite zng_gzwrite
++#define gzdopen zng_gzdopen
+ #else
+ #include <zlib.h>
+ #endif
+@@ -251,7 +256,7 @@ public:
+       std::remove(faiFilePath_1.c_str());
+     }
+     //fai = fai_load3(fname.c_str(), faiFilePath_1.c_str(), faiFilePath_2.c_str(), FAI_CREATE|FAI_CACHE);
+-    fai = fai_load(fname.c_str(), faiFilePath_1.c_str());
++    fai = fai_load3(fname.c_str(), faiFilePath_1.c_str(), NULL, FAI_CREATE);
+     
+     // Initialize input/output variables
+     auto& out_fasta = std::cout;
+--- origsrc/splitcode-0.31.6/src/ProcessReads.h	2025-12-07 12:30:36.000000000 +0000
++++ src/splitcode-0.31.6/src/ProcessReads.h	2026-11-01 14:58:40.402187700 +0000
+@@ -22,7 +22,12 @@
+ #ifndef WITH_GZFILEOP
+ #define WITH_GZFILEOP
+ #endif
+-#include "zlib-ng/zlib.h"
++#include "zlib-ng.h"
++#define gzopen zng_gzopen
++#define gzclose zng_gzclose
++#define gzread zng_gzread
++#define gzwrite zng_gzwrite
++#define gzdopen zng_gzdopen
+ #else
+ #include <zlib.h>
+ #endif
+--- origsrc/splitcode-0.31.6/src/kseq.h	2025-12-07 12:30:36.000000000 +0000
++++ src/splitcode-0.31.6/src/kseq.h	2026-11-01 14:58:40.400178300 +0000
+@@ -76,7 +76,7 @@ static inline int ks_getc(kstream_t *ks)
+ 
+ #ifndef KSTRING_T
+ #define KSTRING_T kstring_t
+-typedef struct __kstring_t {
++typedef struct kstring_t {
+   size_t l, m;
+   char *s;
+ } kstring_t;

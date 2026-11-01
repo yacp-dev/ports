@@ -11,12 +11,23 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="liblapack-devel libopenmpi-devel"
+BUILD_REQUIRES="
+	cli11
+	gcc-fortran
+	libevent-devel
+	libgtest-devel
+	libhwloc-devel
+	liblapack-devel
+	libopenmpi-devel
+	libscalapack-devel
+	zlib-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DSPLA_BUILD_TESTS:BOOL=ON
+	-DSPLA_BUNDLED_TEST_LIBS:BOOL=OFF
 	-DSPLA_FORTRAN:BOOL=ON
 "
 
@@ -24,8 +35,8 @@ src_test()
 {
 	cd ${B}
 	PATH=${B}/src:${PATH} ./tests/run_tests.exe
-	PATH=${B}/src:${PATH} ./tests/benchmark.exe -n 1 -m 1 -k 1 -t 1 -b 1 -p cpu
-	PATH=${B}/src:${PATH} ./tests/benchmark_scalapack.exe -n 1 -m 1 -k 1 -t 1 -b 1 -p cpu
+	PATH=${B}/src:${PATH} ./tests/benchmark.exe -n 1 -m 1 -k 1 -b 1 -p cpu
+	PATH=${B}/src:${PATH} ./tests/benchmark_scalapack.exe -n 1 -m 1 -k 1 -b 1 -p cpu
 }
 
 PKG_NAMES="
@@ -37,7 +48,7 @@ spla_CONTENTS="
 	usr/share
 "
 libspla1_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-1.dll
 "
 libspla_devel_CONTENTS="
 	usr/include
@@ -46,3 +57,9 @@ libspla_devel_CONTENTS="
 spla_SUMMARY="${SUMMARY} (licensing & readmes)"
 libspla1_SUMMARY="${SUMMARY} (runtime)"
 libspla_devel_SUMMARY="${SUMMARY} (development)"
+libspla_devel_REQUIRES="
+	libevent-devel
+	libhwloc-devel
+	libopenmpi-devel
+	zlib-devel
+"

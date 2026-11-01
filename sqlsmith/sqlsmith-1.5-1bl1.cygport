@@ -6,7 +6,18 @@ SUMMARY="Random SQL query generator"
 DESCRIPTION="SQLsmith is a random SQL query generator. Its paragon is Csmith, which proved
 valuable for quality assurance in C compilers."
 
-BUILD_REQUIRES="libboost-devel libpq-devel libpqxx-devel libsqlite3-devel"
+LICENSE="GPL-3.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	autoconf-archive
+	libboost-devel
+	libpq-devel
+	libpq5
+	libpqxx-devel
+	libsqlite3-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

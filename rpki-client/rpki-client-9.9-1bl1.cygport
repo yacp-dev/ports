@@ -5,8 +5,8 @@ CATEGORY="Net"
 SUMMARY="OpenBSD portable rpki-client"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="ISC"
-LICENSE_SPDX="SPDX-License-Identifier: ISC"
+LICENSE="ISC AND BSD-2-Clause AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: ISC AND BSD-2-Clause AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

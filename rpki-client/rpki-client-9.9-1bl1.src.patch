@@ -1,0 +1,10 @@
+--- origsrc/rpki-client-9.9/configure.ac	2026-08-22 12:08:25.000000000 +0000
++++ src/rpki-client-9.9/configure.ac	2026-11-01 06:21:35.005659700 +0000
+@@ -18,6 +18,7 @@ AC_INIT([rpki-client], m4_esyscmd([tr -d
+ AC_CANONICAL_HOST
+ AM_INIT_AUTOMAKE([subdir-objects foreign])
+ AC_CONFIG_MACRO_DIR([m4])
++m4_pattern_allow([^PKG_NAME$])
+ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+ AC_PROG_CC([cc gcc])
+ 

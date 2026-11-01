@@ -1,0 +1,24 @@
+--- origsrc/reproc-14.2.8/reproc/test/env.c	2026-08-28 12:05:59.000000000 +0000
++++ src/reproc-14.2.8/reproc/test/env.c	2026-11-01 06:13:39.342923400 +0000
+@@ -30,6 +30,21 @@ int main(void)
+     current += *current == '\n';
+   }
+ 
++#if defined(__CYGWIN__)
++  // Cygwin always adds SYSTEMROOT and WINDIR to a child's environment.
++  const char *forced[] = { "SYSTEMROOT=", "WINDIR=" };
++
++  for (size_t i = 0; i < 2; i++) {
++    size_t size = strlen(forced[i]);
++
++    if (strncmp(current, forced[i], size) == 0) {
++      current += strcspn(current, "\r\n");
++      current += *current == '\r';
++      current += *current == '\n';
++    }
++  }
++#endif
++
+   ASSERT_EQ_SIZE(strlen(current), (size_t) 0);
+ 
+   reproc_free(output);

@@ -7,11 +7,13 @@ DESCRIPTION="Granite is a companion library for GTK and GLib. Among other things
 provides complex widgets and convenience functions designed for use in apps
 built for elementary OS."
 
-LICENSE="LGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE="LGPL-3.0-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gettext-devel
+	gobject-introspection
 	libcairo-devel
 	libgdk_pixbuf2.0-devel
 	libgee0.8-devel
@@ -19,6 +21,7 @@ BUILD_REQUIRES="
 	libgtk3-devel
 	libintl-devel
 	libpango1.0-devel
+	vala
 "
 
 inherit meson

@@ -1,5 +1,5 @@
---- origsrc/roswell-24.10.115/configure.ac	2024-10-16 15:20:32.000000000 +0900
-+++ src/roswell-24.10.115/configure.ac	2025-03-31 18:07:16.233249200 +0900
+--- origsrc/roswell-26.10.119/configure.ac	2026-10-25 15:49:38.000000000 +0000
++++ src/roswell-26.10.119/configure.ac	2026-11-01 06:07:20.669726900 +0000
 @@ -12,6 +12,8 @@ AC_CONFIG_SRCDIR([Makefile.am])
  AM_INIT_AUTOMAKE([foreign])
  AM_MAINTAINER_MODE([enable])
@@ -31,13 +31,13 @@
  AM_CONDITIONAL([WITH_WINDOWS], [test "$with_windows" != ""])
  AC_CHECK_TOOL([WINDRES], [windres], [])
  AM_CONDITIONAL([WITH_WIN_ICON], [test "$WINDRES" != "" -a "$with_windows" != ""])
---- origsrc/roswell-24.10.115/src/download.c	2024-10-16 15:20:32.000000000 +0900
-+++ src/roswell-24.10.115/src/download.c	2025-03-31 18:07:16.233249200 +0900
+--- origsrc/roswell-26.10.119/src/download.c	2026-10-25 15:49:38.000000000 +0000
++++ src/roswell-26.10.119/src/download.c	2026-11-01 06:07:20.669726900 +0000
 @@ -72,6 +72,7 @@ static size_t header_callback(char *buff
   * 7 rename failure
   */
  #ifndef HAVE_WINDOWS_H
 +#include <curl/curl.h>
- int download_simple (char* uri,char* path,int opt) {
-   FILE *bodyfile;
-   char* path_partial=cat(path,".partial",NULL);
+ static void set_cainfo (CURL *curl) {
+ #ifdef __linux__
+   char* files[]={"/etc/ssl/certs/ca-certificates.crt",

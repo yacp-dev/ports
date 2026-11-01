@@ -9,7 +9,9 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcurl-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+"
 
 src_test()
 {

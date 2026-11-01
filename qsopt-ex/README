@@ -7,32 +7,32 @@ research purposes but this license does not extend to the changes introduced by
 this project.
 
 Runtime requirements:
-  cygwin-3.4.5-1
-  libbz2_1-1.0.8-1
-  libgmp10-6.2.1-2
-  libqsopt_ex-devel-2.5.10.3-1bl2
-  libqsopt_ex2-2.5.10.3-1bl2
-  pkg-config-1.9.4-1
-  zlib0-1.2.13-1
+  cygwin-3.6.12-1
+  libbz2_1-1.0.8-2
+  libgmp10-6.3.0-1
+  libqsopt_ex-devel-2.5.10.3-1bl3
+  libqsopt_ex2-2.5.10.3-1bl3
+  pkg-config-3.0.10-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.40-1
-  cygport-0.36.0-1
-  gcc-core-11.3.0-1
-  libbz2-devel-1.0.8-1
-  libgmp-devel-6.2.1-2
-  libtool-2.4.7-1
-  make-4.4-1
-  zlib-devel-1.2.13-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libbz2-devel-1.0.8-2
+  libgmp-devel-6.3.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
+  zlib-devel-1.3.2-1
 
 Canonical website:
-  https://github.com/jonls/qsopt-ex
+  https://github.com/sharpbracket/qsopt-ex
 
 Canonical download:
-  https://github.com/jonls/qsopt-ex/archive/refs/tags/v2.5.10.3.tar.gz
+  https://github.com/sharpbracket/qsopt-ex/archive/refs/tags/v2.5.10.3.tar.gz
 
 -------------------------------------------
 
@@ -56,7 +56,7 @@ Files included in the binary package:
 (qsopt-ex)
   /usr/bin/esolver.exe
   /usr/share/doc/Cygwin/qsopt-ex.README
-  /usr/share/doc/qsopt-ex/LICENSE.txt
+  /usr/share/doc/qsopt-ex/License.txt
   /usr/share/doc/qsopt-ex/NEWS.md
   /usr/share/doc/qsopt-ex/README.md
 
@@ -167,6 +167,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.5.10.3-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.5.10.3-1bl2 -----
 Rebuild with gcc-11.3.0

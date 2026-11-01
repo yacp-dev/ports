@@ -1,5 +1,5 @@
-HOMEPAGE="https://github.com/jonls/${PN}"
-SRC_URI="https://github.com/jonls/${PN}/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/sharpbracket/${PN}"
+SRC_URI="https://github.com/sharpbracket/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Exact linear programming solver"
@@ -11,12 +11,22 @@ by this project."
 
 LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
-LICENSE_URI="COPYING"
+LICENSE_URI="License.txt"
 
-BUILD_REQUIRES="libbz2-devel libgmp-devel zlib-devel"
+BUILD_REQUIRES="
+	libbz2-devel
+	libgmp-devel
+	zlib-devel
+"
 
 DIFF_EXCLUDES="
 	tap-driver.sh
+"
+
+DOCS="
+	License.txt
+	NEWS.md
+	README.md
 "
 
 PKG_NAMES="
@@ -29,7 +39,7 @@ qsopt_ex_CONTENTS="
 	usr/share
 "
 libqsopt_ex2_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygqsopt_ex-2.dll
 "
 libqsopt_ex_devel_CONTENTS="
 	usr/include

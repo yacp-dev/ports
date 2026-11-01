@@ -1,45 +1,43 @@
 sobjectizer
 ------------------------------------------
-SObjectizer is a framework for building solid multithreaded applications. It
-is based on async message exchange and uses a mixture high-level
-abstractions: Actor-Model, Publish-Subscribe and Communicating Sequential
-Processes.
+SObjectizer is a framework for building solid multithreaded applications. It is
+based on async message exchange and uses a mixture high-level abstractions:
+Actor-Model, Publish-Subscribe and Communicating Sequential Processes.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libso5-5.8.5-1bl1
-  libstdc++6-13.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libso5-5.8.6.2-1bl1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/Stiffstream/sobjectizer
 
 Canonical download:
-  https://github.com/Stiffstream/sobjectizer/archive/refs/tags/v5.8.5.tar.gz
+  https://github.com/Stiffstream/sobjectizer/archive/refs/tags/v5.8.6.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack sobjectizer-5.8.5-X-src.tar.xz
+  1. unpack sobjectizer-5.8.6.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./sobjectizer-5.8.5-X.cygport all
+        % cygport ./sobjectizer-5.8.6.2-X.cygport all
 
 This will create:
-  /usr/src/sobjectizer-5.8.5-X-src.tar.xz
-  /usr/src/sobjectizer-5.8.5-X.tar.xz
-  /usr/src/libso5-5.8.5-X.tar.xz
-  /usr/src/libso-devel-5.8.5-X.tar.xz
+  /usr/src/sobjectizer-5.8.6.2-X-src.tar.xz
+  /usr/src/sobjectizer-5.8.6.2-X.tar.xz
+  /usr/src/libso5-5.8.6.2-X.tar.xz
+  /usr/src/libso-devel-5.8.6.2-X.tar.xz
 
 -------------------------------------------
 
@@ -215,6 +213,7 @@ Files included in the binary package:
   /usr/include/so_5/details/abort_on_fatal_error.hpp
   /usr/include/so_5/details/always_false.hpp
   /usr/include/so_5/details/at_scope_exit.hpp
+  /usr/include/so_5/details/has_thread_sanitizer.hpp
   /usr/include/so_5/details/invoke_noexcept_code.hpp
   /usr/include/so_5/details/ios_helpers.hpp
   /usr/include/so_5/details/lambda_traits.hpp
@@ -223,6 +222,7 @@ Files included in the binary package:
   /usr/include/so_5/details/safe_cv_wait_for.hpp
   /usr/include/so_5/details/suppress_exceptions.hpp
   /usr/include/so_5/details/sync_helpers.hpp
+  /usr/include/so_5/details/tsan_friendly_lock_guard.hpp
   /usr/include/so_5/detect_os.hpp
   /usr/include/so_5/disp/abstract_work_thread.hpp
   /usr/include/so_5/disp/active_group/pub.hpp
@@ -357,13 +357,16 @@ Files included in the binary package:
   /usr/include/so_5/wrapped_env.hpp
   /usr/lib/cmake/sobjectizer/sobjectizer-config-version.cmake
   /usr/lib/cmake/sobjectizer/sobjectizer-config.cmake
-  /usr/lib/cmake/sobjectizer/sobjectizer-targets-release.cmake
+  /usr/lib/cmake/sobjectizer/sobjectizer-targets-relwithdebinfo.cmake
   /usr/lib/cmake/sobjectizer/sobjectizer-targets.cmake
   /usr/lib/libso.dll.a
 
 ------------------
 
 Port Notes:
+
+----- version 5.8.6.2-1bl1 -----
+Version bump.
 
 ----- version 5.8.5-1bl1 -----
 Version bump.

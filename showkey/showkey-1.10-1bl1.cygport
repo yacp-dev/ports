@@ -13,7 +13,9 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="xmlto"
+BUILD_REQUIRES="
+	asciidoctor
+"
 
 src_compile()
 {
@@ -28,3 +30,7 @@ src_install()
 	dobin ${PN}.exe
 	doman ${PN}.1
 }
+
+DOCS="
+	README.adoc
+"

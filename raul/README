@@ -4,16 +4,13 @@ Raul (Realtime Audio Utility Library) is a C++ utility library primarily aimed
 at audio/musical applications.
 
 Runtime requirements:
-  pkg-config-1.9.4-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.40-1
-  cygport-0.36.0-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  meson-0.63.3-1
-  ninja-1.11.1-1
+  cygport-0.37.12-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/drobilla/raul
@@ -60,6 +57,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.0.0-1bl1 -----
 Version bump.

@@ -1,0 +1,11 @@
+--- origsrc/raul-2.0.0/test/meson.build	2022-08-13 22:41:50.000000000 +0000
++++ src/raul-2.0.0/test/meson.build	2026-11-01 03:06:44.794827200 +0000
+@@ -3,7 +3,7 @@
+ 
+ if not get_option('tests').disabled() and not meson.is_subproject()
+   # Check release metadata
+-  autoship = find_program('autoship', required: get_option('tests'))
++  autoship = find_program('autoship', required: false)
+   if autoship.found()
+     test(
+       'autoship', autoship,

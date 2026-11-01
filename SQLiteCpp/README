@@ -4,45 +4,45 @@ SQLiteC++ offers an encapsulation arround the native C APIs of SQLite, with a
 few intuitive and well documented C++ class.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libSQLiteCpp-devel-3.3.3-1bl1
-  libSQLiteCpp0-3.3.3-1bl1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libSQLiteCpp-devel-3.4.0-1bl1
+  libSQLiteCpp0-3.4.0-1bl1
+  libgcc1-14.4.0-1
+  libsqlite3-devel-3.49.1-1
   libsqlite3_0-3.49.1-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libgtest-devel-1.17.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
   libsqlite3-devel-3.49.1-1
-  ninja-1.13.1-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/SRombauts/SQLiteCpp
 
 Canonical download:
-  https://github.com/SRombauts/SQLiteCpp/archive/refs/tags/3.3.3.tar.gz
+  https://github.com/SRombauts/SQLiteCpp/archive/refs/tags/3.4.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack SQLiteCpp-3.3.3-X-src.tar.xz
+  1. unpack SQLiteCpp-3.4.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./SQLiteCpp-3.3.3-X.cygport all
+        % cygport ./SQLiteCpp-3.4.0-X.cygport all
 
 This will create:
-  /usr/src/SQLiteCpp-3.3.3-X-src.tar.xz
-  /usr/src/SQLiteCpp-3.3.3-X.tar.xz
-  /usr/src/libSQLiteCpp0-3.3.3-X.tar.xz
-  /usr/src/libSQLiteCpp-devel-3.3.3-X.tar.xz
+  /usr/src/SQLiteCpp-3.4.0-X-src.tar.xz
+  /usr/src/SQLiteCpp-3.4.0-X.tar.xz
+  /usr/src/libSQLiteCpp0-3.4.0-X.tar.xz
+  /usr/src/libSQLiteCpp-devel-3.4.0-X.tar.xz
 
 -------------------------------------------
 
@@ -75,7 +75,7 @@ Files included in the binary package:
   /usr/include/SQLiteCpp/VariadicBind.h
   /usr/lib/cmake/SQLiteCpp/SQLiteCppConfig.cmake
   /usr/lib/cmake/SQLiteCpp/SQLiteCppConfigVersion.cmake
-  /usr/lib/cmake/SQLiteCpp/SQLiteCppTargets-release.cmake
+  /usr/lib/cmake/SQLiteCpp/SQLiteCppTargets-relwithdebinfo.cmake
   /usr/lib/cmake/SQLiteCpp/SQLiteCppTargets.cmake
   /usr/lib/libSQLiteCpp.dll.a
   /usr/lib/pkgconfig/SQLiteCpp.pc
@@ -83,6 +83,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.4.0-1bl1 -----
+Version bump.
 
 ----- version 3.3.3-1bl1 -----
 Version bump.

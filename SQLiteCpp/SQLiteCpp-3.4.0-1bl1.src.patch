@@ -1,0 +1,98 @@
+--- origsrc/SQLiteCpp-3.4.0/CMakeLists.txt	2026-09-21 20:57:21.000000000 +0000
++++ src/SQLiteCpp-3.4.0/CMakeLists.txt	2026-11-01 21:44:09.141663500 +0000
+@@ -392,6 +392,7 @@ if (SQLITECPP_INSTALL)
+     include(GNUInstallDirs)
+     install(TARGETS SQLiteCpp
+         EXPORT ${PROJECT_NAME}Targets
++        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+         COMPONENT libraries)
+@@ -486,6 +487,10 @@ if (SQLITECPP_BUILD_EXAMPLES)
+ 
+     # add the basic example executable
+     add_executable(SQLiteCpp_example1 ${SQLITECPP_EXAMPLES})
++    if (CYGWIN)
++        # cygport's -ffile-prefix-map rewrites __FILE__, which the example uses to find example.db3
++        target_compile_definitions(SQLiteCpp_example1 PRIVATE SQLITECPP_EXAMPLE_FILE="${PROJECT_SOURCE_DIR}/examples/example1/main.cpp")
++    endif (CYGWIN)
+     
+     target_link_libraries(SQLiteCpp_example1 SQLiteCpp)
+     if (MSYS OR MINGW)
+@@ -553,3 +558,10 @@ endif (SQLITECPP_BUILD_TESTS)
+ 
+ # API version for SQLiteCpp shared library.
+ set_property(TARGET SQLiteCpp PROPERTY SOVERSION 0)
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/SQLiteCpp.pc.in ${CMAKE_BINARY_DIR}/SQLiteCpp.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/SQLiteCpp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/SQLiteCpp-3.4.0/SQLiteCpp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/SQLiteCpp-3.4.0/SQLiteCpp.pc.in	2026-11-01 21:44:09.141663500 +0000
+@@ -0,0 +1,11 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: SQLiteCpp
++Description: Smart and easy to use C++ SQLite3 wrapper
++Version: @PROJECT_VERSION@
++Requires.private: sqlite3
++Libs: -L${libdir} -lSQLiteCpp
++Cflags: -I${includedir}
+--- origsrc/SQLiteCpp-3.4.0/examples/example1/main.cpp	2026-09-21 20:57:21.000000000 +0000
++++ src/SQLiteCpp-3.4.0/examples/example1/main.cpp	2026-11-01 21:44:09.143459700 +0000
+@@ -35,7 +35,11 @@ void assertion_failed(const char* apFile
+ /// Get path to this example's directory (including the final separator '/' or '\')
+ static inline std::string getExamplePath()
+ {
++#ifdef SQLITECPP_EXAMPLE_FILE
++    std::string filePath(SQLITECPP_EXAMPLE_FILE);
++#else
+     std::string filePath(__FILE__);
++#endif
+     return filePath.substr( 0, filePath.length() - std::string("main.cpp").length());
+ }
+ 
+--- origsrc/SQLiteCpp-3.4.0/src/Statement.cpp	2026-09-21 20:57:21.000000000 +0000
++++ src/SQLiteCpp-3.4.0/src/Statement.cpp	2026-11-01 21:44:09.144003700 +0000
+@@ -15,6 +15,7 @@
+ #include <SQLiteCpp/Assertion.h>
+ #include <SQLiteCpp/Exception.h>
+ 
++#include <climits>
+ #include <sqlite3.h>
+ 
+ // check for if SQLite3 version >= 3.14.0
+@@ -133,6 +134,13 @@ void Statement::bind(const int aIndex, c
+ // Bind a binary blob using a 64-bit size and SQLITE_TRANSIENT
+ void Statement::bind64(const int aIndex, const void* apValue, const uint64_t aSize)
+ {
++#ifdef __CYGWIN__
++    // Cygwin's sqlite3 passes a NULL context to sqlite3_result_error_toobig() for an oversized length
++    if (aSize > static_cast<uint64_t>(INT_MAX))
++    {
++        check(SQLITE_TOOBIG);
++    }
++#endif
+     const int ret = sqlite3_bind_blob64(getPreparedStatement(), aIndex, apValue,
+                                         static_cast<sqlite3_uint64>(aSize), SQLITE_TRANSIENT);
+     check(ret);
+@@ -163,6 +171,13 @@ void Statement::bindNoCopy(const int aIn
+ // Bind a binary blob using a 64-bit size and SQLITE_STATIC
+ void Statement::bindNoCopy64(const int aIndex, const void* apValue, const uint64_t aSize)
+ {
++#ifdef __CYGWIN__
++    // Cygwin's sqlite3 passes a NULL context to sqlite3_result_error_toobig() for an oversized length
++    if (aSize > static_cast<uint64_t>(INT_MAX))
++    {
++        check(SQLITE_TOOBIG);
++    }
++#endif
+     const int ret = sqlite3_bind_blob64(getPreparedStatement(), aIndex, apValue,
+                                         static_cast<sqlite3_uint64>(aSize), SQLITE_STATIC);
+     check(ret);

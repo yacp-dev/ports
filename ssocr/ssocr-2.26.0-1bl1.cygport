@@ -1,5 +1,6 @@
 HOMEPAGE="https://www.unix-ag.uni-kl.de/~auerswal/${PN}/"
 SRC_URI="https://www.unix-ag.uni-kl.de/~auerswal/${PN}/${P}.tar.bz2"
+PATCH_URI="https://sources.debian.org/data/main/s/ssocr/2.25.1-2/debian/patches/cross.patch"
 
 CATEGORY="Utils"
 SUMMARY="Seven Segment Optical Character Recognition"
@@ -24,7 +25,8 @@ src_compile()
 src_test()
 {
 	cd ${B}
-	verbose ./${PN}.exe --version
+	# --version exits with 42 (ssocr.c), not 0
+	verbose ./${PN}.exe --version || [ $? -eq 42 ]
 }
 
 src_install()

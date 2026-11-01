@@ -1,0 +1,20 @@
+--- origsrc/libavif-1.4.2/tests/gtest/avifrgbtoyuvthreadingtest.cc	2026-05-26 22:29:56.000000000 +0000
++++ src/libavif-1.4.2/tests/gtest/avifrgbtoyuvthreadingtest.cc	2026-11-01 04:15:53.871046900 +0000
+@@ -104,6 +104,9 @@ INSTANTIATE_TEST_SUITE_P(
+ 
+ // This will generate a large number of test instances and hence it is disabled
+ // by default. It can be run manually if necessary.
++// Not on Cygwin: tearing down its 1105920 registered instances at exit takes
++// longer than any test timeout there, though none of them runs.
++#if !defined(__CYGWIN__)
+ INSTANTIATE_TEST_SUITE_P(
+     DISABLED_ExhaustiveYUVToRGBThreadingTestInstance, YUVToRGBThreadingTest,
+     Combine(/*rgb_depth=*/Values(8, 10, 12, 16),
+@@ -119,6 +122,7 @@ INSTANTIATE_TEST_SUITE_P(
+                    AVIF_CHROMA_UPSAMPLING_NEAREST,
+                    AVIF_CHROMA_UPSAMPLING_BILINEAR),
+             /*has_alpha=*/Bool()));
++#endif
+ 
+ }  // namespace
+ }  // namespace avif

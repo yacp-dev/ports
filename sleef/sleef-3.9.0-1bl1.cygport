@@ -1,5 +1,11 @@
 HOMEPAGE="https://github.com/shibatch/${PN}"
-SRC_URI="https://github.com/shibatch/${PN}/archive/refs/tags/${PV}.tar.gz"
+# TLFloat for the tester4 tests, which Configure.cmake would otherwise
+# git clone at configure time; keep it at that file's TLFLOAT_GIT_TAG
+TLFLOAT_REV="fb0390157d5c8811fc2a5a6d7d8eac27261f06fb"
+SRC_URI="
+	https://github.com/shibatch/${PN}/archive/refs/tags/${PV}.tar.gz
+	https://github.com/shibatch/tlfloat/archive/${TLFLOAT_REV}.tar.gz#/tlfloat-${TLFLOAT_REV}.tar.gz
+"
 
 CATEGORY="Libs"
 SUMMARY="SIMD Library for Evaluating Elementary Functions, vectorized libm and DFT"
@@ -9,6 +15,20 @@ implemented. The library also includes DFT subroutines."
 LICENSE="BSL-1.0"
 LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
 LICENSE_URI="LICENSE.txt"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	mkdir -p submodules
+	verbose mv ${origsrcdir}/tlfloat-${TLFLOAT_REV} submodules/tlfloat
+}
+
+# GCC can't realign the stack for 32-byte AVX spills on x86_64 Windows
+# (GCC PR 54412), so vmovapd/vmovdqa to the stack faults; have the
+# assembler emit unaligned moves instead.
+CFLAGS+=" -Wa,-muse-unaligned-vector-move"
+CXXFLAGS+=" -Wa,-muse-unaligned-vector-move"
 
 inherit cmake
 
@@ -21,6 +41,7 @@ CYGCMAKE_ARGS="
 
 DOCS="
 	CHANGELOG.md
+	README.adoc
 "
 
 PKG_NAMES="
@@ -41,3 +62,4 @@ libsleef_devel_CONTENTS="
 sleef_SUMMARY="${SUMMARY} (licensing & readmes)"
 libsleef3_SUMMARY="${SUMMARY} (runtime)"
 libsleef_devel_SUMMARY="${SUMMARY} (development)"
+libsleef_devel_REQUIRES="cygwin-devel"

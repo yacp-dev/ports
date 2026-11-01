@@ -12,4 +12,14 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
 inherit cmake
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	verbose rm -fr ${D}/usr/share/semver
+}

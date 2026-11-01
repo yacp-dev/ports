@@ -1,0 +1,11 @@
+--- origsrc/shmcat-1.10/configure.ac	2026-07-24 21:04:41.000000000 +0000
++++ src/shmcat-1.10/configure.ac	2026-11-01 07:54:09.523486300 +0000
+@@ -106,7 +106,7 @@ AS_IF([test "x$enable_posix_shm" != "xno
+      )
+ 
+ AM_GNU_GETTEXT([external])
+-AM_GNU_GETTEXT_VERSION(0.23.2)
++dnl AM_GNU_GETTEXT_VERSION(0.23.2)
+ 
+ dnl Define USE_NLS conditional to determine if we have to install translated man pages.
+ AM_CONDITIONAL(USE_NLS, [test "x$USE_NLS" = "xyes"])

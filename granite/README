@@ -5,42 +5,43 @@ provides complex widgets and convenience functions designed for use in apps
 built for elementary OS.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  girepository-GLib2.0-1.86.0-1
+  cygwin-3.6.12-1
+  girepository-GLib2.0-1.86.0-2
   girepository-GdkPixbuf2.0-2.36.11-1
   girepository-Gee0.8-0.20.1-1
-  girepository-Gtk3.0-3.24.51-1
-  girepository-Pango1.0-1.57.0-1
-  girepository-cairo1.0-1.86.0-1
-  libcairo2-1.18.4-1
+  girepository-Gtk3.0-3.24.52-1
+  girepository-Pango1.0-1.58.2-1
+  girepository-cairo1.0-1.86.0-2
+  libcairo2-1.18.6-1
   libgdk_pixbuf2.0_0-2.36.11-1
   libgee0.8-devel-0.20.1-1
   libgee0.8_2-0.20.1-1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
-  libgranite-devel-6.2.0-1bl1
-  libgranite6-6.2.0-1bl1
-  libgtk3-devel-3.24.51-1
-  libgtk3_0-3.24.51-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libgranite-devel-6.2.0-1bl2
+  libgranite6-6.2.0-1bl2
+  libgtk3-devel-3.24.52-1
+  libgtk3_0-3.24.52-1
   libintl8-0.22.5-1
-  libpango1.0_0-1.57.0-1
-  pkg-config-2.5.1-1
+  libpango1.0_0-1.58.2-1
+  pkg-config-3.0.10-1
   vala-gee0.8-0.20.1-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.4-1
-  gcc-core-13.4.0-1
-  gobject-introspection-1.86.0-1
-  libcairo-devel-1.18.4-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.22.5-1
+  gobject-introspection-1.86.0-2
+  libcairo-devel-1.18.6-1
   libgdk_pixbuf2.0-devel-2.36.11-1
   libgee0.8-devel-0.20.1-1
-  libglib2.0-devel-2.87.0-1
-  libgtk3-devel-3.24.51-1
+  libglib2.0-devel-2.90.1-1
+  libgtk3-devel-3.24.52-1
   libintl-devel-0.22.5-1
-  libpango1.0-devel-1.57.0-1
-  meson-1.4.2-1
+  libpango1.0-devel-1.58.2-1
+  meson-1.10.2-1
   ninja-1.13.2-1
   vala-0.56.18-1
 
@@ -307,6 +308,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 6.2.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 6.2.0-1bl1 -----
 Version bump.

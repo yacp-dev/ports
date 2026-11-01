@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/tevador/RandomX"
 SRC_URI="https://github.com/tevador/RandomX/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="https://src.fedoraproject.org/rpms/randomx/raw/d4576e6d16640c39e8ad399e440fe624228639c0/f/randomx-sharedlib.patch"
 SRC_DIR="RandomX-${PV}"
 
 CATEGORY="Security"
@@ -16,17 +17,31 @@ LICENSE_URI="LICENSE"
 inherit cmake
 
 CYGCMAKE_ARGS="
-	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DSOVERSION:STRING=${PV[1]}
 	-DVERSION:STRING=${PV}
 "
+
+src_test()
+{
+	# randomx-codegen needs a larger stack (see .src.patch)
+	${B}/randomx-codegen.exe --genNative > /dev/null
+	${B}/randomx-codegen.exe --genAsm > /dev/null
+	# randomx-tests uses library internals (randomx::*), which the DLL
+	# exposes only through auto-import data relocations that overflow
+	# 32 bits; test a static build instead.
+	cp -a ${S} ${B}/static-src
+	sed -i 's/add_library(randomx SHARED/add_library(randomx STATIC/' ${B}/static-src/CMakeLists.txt
+	cmake -S ${B}/static-src -B ${B}/static -G Ninja \
+		-DCMAKE_BUILD_TYPE=Release
+	cmake --build ${B}/static --target randomx-tests
+	${B}/static/randomx-tests.exe
+}
 
 src_install()
 {
 	cd ${B}
 	ninja_install
 
-	dobin *.exe
+	dobin randomx-benchmark.exe randomx-codegen.exe
 }
 
 DOCS="
@@ -35,20 +50,20 @@ DOCS="
 
 PKG_NAMES="
 	randomx
-	librandomx1
+	librandomx0
 	librandomx-devel
 "
 randomx_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-librandomx1_CONTENTS="
-	usr/bin/cyg*-1.dll
+librandomx0_CONTENTS="
+	usr/bin/cyg*-0.dll
 "
 librandomx_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 randomx_SUMMARY="${SUMMARY} (utilities)"
-librandomx1_SUMMARY="${SUMMARY} (runtime)"
+librandomx0_SUMMARY="${SUMMARY} (runtime)"
 librandomx_devel_SUMMARY="${SUMMARY} (development)"

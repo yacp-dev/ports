@@ -1,13 +1,7 @@
---- origsrc/RandomX-1.2.1/CMakeLists.txt	2023-10-21 03:42:55.000000000 +0900
-+++ src/RandomX-1.2.1/CMakeLists.txt	2025-06-10 18:25:11.201661400 +0900
-@@ -222,9 +222,13 @@ set_property(TARGET randomx PROPERTY CXX
- set_property(TARGET randomx PROPERTY CXX_STANDARD_REQUIRED ON)
- set_property(TARGET randomx PROPERTY PUBLIC_HEADER src/randomx.h)
+--- origsrc/RandomX-1.2.3/CMakeLists.txt	2026-11-01 04:55:40.560229400 +0000
++++ src/RandomX-1.2.3/CMakeLists.txt	2026-11-01 04:55:40.802756600 +0000
+@@ -226,7 +226,7 @@ set_property(TARGET randomx PROPERTY SOV
  
-+if (DEFINED SOVERSION)
-+  set_target_properties(randomx PROPERTIES SOVERSION "${SOVERSION}")
-+endif()
-+
  include(GNUInstallDirs)
  install(TARGETS randomx
 -  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -15,7 +9,20 @@
    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
  
-@@ -270,3 +274,10 @@ if(NOT HAVE_CXX_ATOMICS)
+@@ -245,6 +245,12 @@ target_link_libraries(randomx-codegen
+ set_property(TARGET randomx-codegen PROPERTY POSITION_INDEPENDENT_CODE ON)
+ set_property(TARGET randomx-codegen PROPERTY CXX_STANDARD 11)
+ 
++if(CYGWIN)
++  # code-generator.cpp keeps a 2 MiB scratchpad on the stack, which
++  # overflows Cygwin's default 2 MiB main thread stack.
++  target_link_options(randomx-codegen PRIVATE -Wl,--stack,8388608)
++endif()
++
+ if(NOT Threads_FOUND AND UNIX AND NOT APPLE)
+   set(THREADS_PREFER_PTHREAD_FLAG ON)
+   find_package(Threads)
+@@ -272,3 +278,10 @@ if(NOT HAVE_CXX_ATOMICS)
  endif()
  set_property(TARGET randomx-benchmark PROPERTY POSITION_INDEPENDENT_CODE ON)
  set_property(TARGET randomx-benchmark PROPERTY CXX_STANDARD 11)
@@ -26,8 +33,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/randomx.pc.in ${CMAKE_BINARY_DIR}/randomx.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/randomx.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/RandomX-1.2.1/randomx.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/RandomX-1.2.1/randomx.pc.in	2025-06-10 18:24:30.462439600 +0900
+--- origsrc/RandomX-1.2.3/randomx.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/RandomX-1.2.3/randomx.pc.in	2026-11-01 04:55:40.802756600 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

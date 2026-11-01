@@ -5,6 +5,14 @@ CATEGORY="Science"
 SUMMARY="Pairwise SNP distance matrix from a FASTA sequence alignment"
 DESCRIPTION="${SUMMARY}"
 
+LICENSE="GPL-3.0-only AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only AND MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	zlib-devel
+"
+
 src_compile()
 {
 	cd ${B}
@@ -20,4 +28,5 @@ src_install()
 	cd ${S}
 	mkdir -p ${D}/usr/share/${PN}
 	cp -R test ${D}/usr/share/${PN}
+	rm -f ${D}/usr/share/${PN}/test/huge.afa.gz
 }

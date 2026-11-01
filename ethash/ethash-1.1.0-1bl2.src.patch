@@ -1,5 +1,5 @@
---- origsrc/ethash-1.1.0/lib/ethash/CMakeLists.txt	2025-02-14 01:17:04.000000000 +0900
-+++ src/ethash-1.1.0/lib/ethash/CMakeLists.txt	2025-04-11 04:57:16.976172000 +0900
+--- origsrc/ethash-1.1.0/lib/ethash/CMakeLists.txt	2025-02-13 16:17:04.000000000 +0000
++++ src/ethash-1.1.0/lib/ethash/CMakeLists.txt	2026-11-01 22:25:18.445320800 +0000
 @@ -21,6 +21,9 @@ target_sources(ethash PRIVATE
      primes.c
  )
@@ -17,8 +17,8 @@
 -    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 +    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
  )
---- origsrc/ethash-1.1.0/lib/global_context/CMakeLists.txt	2025-02-14 01:17:04.000000000 +0900
-+++ src/ethash-1.1.0/lib/global_context/CMakeLists.txt	2025-04-11 04:57:16.976172000 +0900
+--- origsrc/ethash-1.1.0/lib/global_context/CMakeLists.txt	2025-02-13 16:17:04.000000000 +0000
++++ src/ethash-1.1.0/lib/global_context/CMakeLists.txt	2026-11-01 22:25:18.447334900 +0000
 @@ -4,7 +4,7 @@
  
  include(GNUInstallDirs)
@@ -46,8 +46,8 @@
 -    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 +    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
  )
---- origsrc/ethash-1.1.0/lib/keccak/CMakeLists.txt	2025-02-14 01:17:04.000000000 +0900
-+++ src/ethash-1.1.0/lib/keccak/CMakeLists.txt	2025-04-11 04:57:16.976172000 +0900
+--- origsrc/ethash-1.1.0/lib/keccak/CMakeLists.txt	2025-02-13 16:17:04.000000000 +0000
++++ src/ethash-1.1.0/lib/keccak/CMakeLists.txt	2026-11-01 22:25:18.447334900 +0000
 @@ -15,6 +15,13 @@ target_sources(keccak PRIVATE
      keccak.c
  )
@@ -62,8 +62,8 @@
  install(
      TARGETS keccak
      EXPORT ethashTargets
---- origsrc/ethash-1.1.0/test/benchmarks/CMakeLists.txt	2025-02-14 01:17:04.000000000 +0900
-+++ src/ethash-1.1.0/test/benchmarks/CMakeLists.txt	2025-04-11 04:57:16.976172000 +0900
+--- origsrc/ethash-1.1.0/test/benchmarks/CMakeLists.txt	2025-02-13 16:17:04.000000000 +0000
++++ src/ethash-1.1.0/test/benchmarks/CMakeLists.txt	2026-11-01 22:25:18.449350200 +0000
 @@ -14,6 +14,6 @@ add_executable(ethash-bench
      threadsync_benchmarks.cpp
      threadsync_utils.hpp
@@ -72,8 +72,8 @@
 +target_link_libraries(ethash-bench PRIVATE ethash::global-context ethash::keccak benchmark::benchmark)
  target_include_directories(ethash-bench PRIVATE ${ETHASH_PRIVATE_INCLUDE_DIR})
  set_target_properties(ethash-bench PROPERTIES RUNTIME_OUTPUT_DIRECTORY ..)
---- origsrc/ethash-1.1.0/test/unittests/CMakeLists.txt	2025-02-14 01:17:04.000000000 +0900
-+++ src/ethash-1.1.0/test/unittests/CMakeLists.txt	2025-04-11 04:57:16.976172000 +0900
+--- origsrc/ethash-1.1.0/test/unittests/CMakeLists.txt	2025-02-13 16:17:04.000000000 +0000
++++ src/ethash-1.1.0/test/unittests/CMakeLists.txt	2026-11-01 22:25:18.451379900 +0000
 @@ -21,7 +21,7 @@ add_executable(
  
  set_source_files_properties(test_version.cpp PROPERTIES COMPILE_DEFINITIONS TEST_PROJECT_VERSION="${PROJECT_VERSION}")

@@ -4,15 +4,19 @@ This module contains useful functions for general use in the TiCC software
 stack and beyond.
 
 Runtime requirements:
-  cygwin-3.6.11-1
+  cygwin-3.6.12-1
+  libbz2-devel-1.0.8-2
   libbz2_1-1.0.8-2
   libgcc1-14.4.0-1
+  libicu-devel-76.1-2
   libicu76-76.1-2
   libstdc++6-14.4.0-1
-  libticcutils-devel-0.38-1bl1
-  libticcutils10-0.38-1bl1
+  libticcutils-devel-0.38-1bl2
+  libticcutils10-0.38-1bl2
   libxml2-2.13.9-2
-  pkg-config-3.0.7-1
+  libxml2-devel-2.13.9-2
+  pkg-config-3.0.10-1
+  zlib-devel-1.3.2-1
   zlib0-1.3.2-1
 
 Build requirements:
@@ -21,8 +25,7 @@ Build requirements:
   autoconf-archive-2024.10.16-1
   automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.10-1
-  gcc-core-14.4.0-1
+  cygport-0.37.12-1
   gcc-g++-14.4.0-1
   libbz2-devel-1.0.8-2
   libicu-devel-76.1-2
@@ -107,6 +110,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.38-1bl2 -----
+Fix ticcutils.pc
 
 ----- version 0.38-1bl1 -----
 Version bump.

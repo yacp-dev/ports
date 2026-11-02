@@ -3,13 +3,13 @@ t3
 Next generation tee with colorized output streams and precise time stamping
 
 Runtime requirements:
-  cygwin-3.6.4-1
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   help2man-1.49.3-1
   make-4.4.1-2
 
@@ -17,20 +17,20 @@ Canonical website:
   https://github.com/flox/t3
 
 Canonical download:
-  https://github.com/flox/t3/archive/refs/tags/v1.0.9.tar.gz
+  https://github.com/flox/t3/archive/refs/tags/v1.1.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack t3-1.0.9-X-src.tar.xz
+  1. unpack t3-1.1.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./t3-1.0.9-X.cygport all
+        % cygport ./t3-1.1.0-X.cygport all
 
 This will create:
-  /usr/src/t3-1.0.9-X-src.tar.xz
-  /usr/src/t3-1.0.9-X.tar.xz
+  /usr/src/t3-1.1.0-X-src.tar.xz
+  /usr/src/t3-1.1.0-X.tar.xz
 
 -------------------------------------------
 
@@ -46,6 +46,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.0-1bl1 -----
+Version bump.
 
 ----- version 1.0.9-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

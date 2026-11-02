@@ -1,5 +1,11 @@
-HOMEPAGE="http://${PN}.gforge.inria.fr/"
-SRC_URI="http://gforge.inria.fr/frs/download.php/37055/${P}.tar.gz"
+HOMEPAGE="https://${PN}.gitlabpages.inria.fr/"
+SRC_URI="https://gitlab.inria.fr/${PN}/${PN}/-/archive/version-${PV}/${PN}-version-${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/t/taktuk/3.7.8-1/debian/patches/0002-Fix-some-typos-in-docs.patch
+	https://sources.debian.org/data/main/t/taktuk/3.7.8-1/debian/patches/0003-Remove-ISO-8859-text-in-AUTHORS.patch
+	taktuk-ping-pong-srcdir.patch
+"
+SRC_DIR="${PN}-version-${PV}"
 
 CATEGORY="Net"
 SUMMARY="Adaptive large scale remote executions deployment"
@@ -11,10 +17,35 @@ adapt to environment (machine performance and current load, network
 contention) by using a reactive work-stealing algorithm that mixes local
 parallelization and work distribution."
 
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
 DIFF_EXCLUDES="
 	${PN}
 	*.pl
 "
+
+DOCS="
+	Bugs
+"
+
+# The tests connect to localhost with the default connector, ssh, which the
+# build environment can't log in to. Run what it would run on localhost directly.
+src_test()
+{
+	mkdir -p ${T}/ssh-bin
+	cat > ${T}/ssh-bin/ssh <<'EOF2'
+#!/bin/sh
+while [ "$1" = -o ]; do shift 2; done
+shift
+exec sh -c "$*"
+EOF2
+	chmod +x ${T}/ssh-bin/ssh
+
+	cd ${B}
+	PATH=${T}/ssh-bin:${PATH} cygtest
+}
 
 PKG_NAMES="
 	${PN}
@@ -28,7 +59,7 @@ taktuk_CONTENTS="
 	usr/share/man/man1
 "
 libtaktuk3_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-3.dll
 "
 libtaktuk_devel_CONTENTS="
 	usr/include

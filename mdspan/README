@@ -6,12 +6,11 @@ Runtime requirements:
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.0-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/kokkos/mdspan
@@ -68,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.6.0-1bl2 -----
+Fix conflict with ctype.h macros
 
 ----- version 0.6.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

@@ -14,7 +14,11 @@ LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	emacs
+	gcc-fortran
+	hdf5
+	libaec-devel
 	libhdf5-devel
+	zlib-devel
 "
 
 inherit cmake
@@ -28,6 +32,10 @@ src_test()
 	cd ${B}
 	PATH=${B}/src:${PATH} ninja_test
 }
+
+DOCS="
+	README.md
+"
 
 DIFF_EXCLUDES="
 	include

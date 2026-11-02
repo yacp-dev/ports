@@ -1,8 +1,8 @@
---- origsrc/trexio-2.6.0/src/CMakeLists.txt	2025-08-02 21:28:27.000000000 +0900
-+++ src/trexio-2.6.0/src/CMakeLists.txt	2025-12-22 18:45:03.960823900 +0900
-@@ -58,6 +58,10 @@ set_target_properties(trexio PROPERTIES
- 	PUBLIC_HEADER ${TREXIO_PUBLIC_HEADERS}
- 	)
+--- origsrc/trexio-2.6.1/src/CMakeLists.txt	2026-02-04 19:08:05.000000000 +0000
++++ src/trexio-2.6.1/src/CMakeLists.txt	2026-11-02 23:13:14.613391700 +0000
+@@ -61,6 +61,10 @@ set_target_properties(trexio PROPERTIES
+ include(standard_math_lib)
+ target_link_std_math(trexio PRIVATE)
  
 +if (DEFINED SOVERSION)
 +    set_target_properties(trexio PROPERTIES SOVERSION ${SOVERSION})
@@ -11,7 +11,7 @@
  # ============= CONFIGURE HDF5 ==============
  
  # By defaulti, TREXIO is configured with the HDF5 support.
-@@ -118,6 +122,10 @@ add_library(trexio_f SHARED)
+@@ -121,6 +125,10 @@ add_library(trexio_f SHARED)
  target_sources(trexio_f PUBLIC ${TREXIO_MOD_FILE})
  target_link_libraries(trexio_f PUBLIC trexio)
  
@@ -22,7 +22,7 @@
  # ====== CODE GENERATION FOR DEVEL MODE =====
  
  add_custom_command(
-@@ -163,7 +171,7 @@ endif()
+@@ -166,7 +174,7 @@ endif()
  include(GNUInstallDirs)
  # Use standard GNU directories for installation of TREXIO (e.g. /usr/local/lib|include).
  # The installation prefix can be modified using -DCMAKE_INSTALL_PREFIX=<custom/path> option of cmake.

@@ -2,17 +2,19 @@ HOMEPAGE="https://gitlab.com/mcfrith/${PN}"
 SRC_URI="https://gitlab.com/mcfrith/${PN}/-/archive/${PV}/${P}.tar.gz"
 
 CATEGORY="Science"
-SUMMARY="Correct misassemblies using linked or long reads"
+SUMMARY="Low complexity and tandem repeat masker for biosequences"
 DESCRIPTION="tantan identifies simple regions / low complexity / tandem repeats in
 DNA or protein sequences.  Its main aim is to prevent false homology
 predictions between sequences.  Simple repeats often align strongly to
 each other, causing false homology predictions."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND MPL-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MPL-2.0"
 LICENSE_URI="COPYING.txt"
 
-BUILD_REQUIRES="zlib-devel"
+BUILD_REQUIRES="
+	zlib-devel
+"
 
 src_compile()
 {
@@ -28,7 +30,10 @@ src_compile()
 src_test()
 {
 	cd ${B}/test
-	bash -x ./tantan_test.sh
+	# Not bash -x: the script compares its own stderr with tantan_test.out,
+	# and it prints nothing when the outputs match.
+	bash ./tantan_test.sh || error "tantan_test.sh failed"
+	inform "tantan_test.sh passed"
 }
 
 src_install()

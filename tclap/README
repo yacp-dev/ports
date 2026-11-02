@@ -5,36 +5,33 @@ The library provides a simple, flexible object-oriented interface to the
 command line that automates argument parsing, USAGE creation and type casting.
 
 Runtime requirements:
-  pkg-config-1.6.3-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-11-1
-  binutils-2.37-2
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
-  make-4.3-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  ninja-1.13.2-1
+  python3-3.12.12-1
 
 Canonical website:
   https://sourceforge.net/projects/tclap/
 
 Canonical download:
-  mirror://sourceforge/tclap/tclap-1.2.5.tar.gz
+  mirror://sourceforge/tclap/tclap-1.6.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack tclap-1.2.5-X-src.tar.xz
+  1. unpack tclap-1.6.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./tclap-1.2.5-X.cygport all
+        % cygport ./tclap-1.6.0-X.cygport all
 
 This will create:
-  /usr/src/tclap-1.2.5-X-src.tar.xz
-  /usr/src/tclap-1.2.5-X.tar.xz
+  /usr/src/tclap-1.6.0-X-src.tar.xz
+  /usr/src/tclap-1.6.0-X.tar.xz
 
 -------------------------------------------
 
@@ -42,43 +39,55 @@ Files included in the binary package:
 
 (tclap)
   /usr/include/tclap/Arg.h
+  /usr/include/tclap/ArgContainer.h
   /usr/include/tclap/ArgException.h
+  /usr/include/tclap/ArgGroup.h
   /usr/include/tclap/ArgTraits.h
   /usr/include/tclap/CmdLine.h
   /usr/include/tclap/CmdLineInterface.h
   /usr/include/tclap/CmdLineOutput.h
+  /usr/include/tclap/ComparisonConstraint.h
   /usr/include/tclap/Constraint.h
+  /usr/include/tclap/DeferDelete.h
   /usr/include/tclap/DocBookOutput.h
   /usr/include/tclap/HelpVisitor.h
   /usr/include/tclap/IgnoreRestVisitor.h
   /usr/include/tclap/MultiArg.h
   /usr/include/tclap/MultiSwitchArg.h
   /usr/include/tclap/OptionalUnlabeledTracker.h
+  /usr/include/tclap/PredicateConstraint.h
+  /usr/include/tclap/RangeConstraint.h
   /usr/include/tclap/StandardTraits.h
   /usr/include/tclap/StdOutput.h
   /usr/include/tclap/SwitchArg.h
+  /usr/include/tclap/TCLAPConfig.h
   /usr/include/tclap/UnlabeledMultiArg.h
   /usr/include/tclap/UnlabeledValueArg.h
   /usr/include/tclap/ValueArg.h
   /usr/include/tclap/ValuesConstraint.h
   /usr/include/tclap/VersionVisitor.h
   /usr/include/tclap/Visitor.h
-  /usr/include/tclap/XorHandler.h
-  /usr/include/tclap/ZshCompletionOutput.h
   /usr/include/tclap/sstream.h
+  /usr/lib/cmake/TCLAP/TCLAPConfig-version.cmake
+  /usr/lib/cmake/TCLAP/TCLAPConfig.cmake
   /usr/lib/pkgconfig/tclap.pc
   /usr/share/doc/Cygwin/tclap.README
   /usr/share/doc/tclap/AUTHORS
   /usr/share/doc/tclap/COPYING
   /usr/share/doc/tclap/ChangeLog
+  /usr/share/doc/tclap/NEWS
   /usr/share/doc/tclap/README
   /usr/share/doc/tclap/index.html
   /usr/share/doc/tclap/manual.html
   /usr/share/doc/tclap/style.css
+  /usr/share/doc/tclap/test1.cpp
 
 ------------------
 
 Port Notes:
+
+----- version 1.6.0-1bl1 -----
+Version bump.
 
 ----- version 1.2.5-1bl1 -----
 Version bump.

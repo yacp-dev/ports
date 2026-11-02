@@ -1,5 +1,5 @@
---- origsrc/tinydns-0.3.1/common.h	2018-06-29 02:07:44.000000000 +0900
-+++ src/tinydns-0.3.1/common.h	2026-06-26 05:58:43.792427900 +0900
+--- origsrc/tinydns-0.3.1/common.h	2018-06-28 17:07:44.000000000 +0000
++++ src/tinydns-0.3.1/common.h	2026-11-02 13:40:56.855529600 +0000
 @@ -3,6 +3,7 @@
  #include <arpa/inet.h> // for inet_aton
  #include <unistd.h> // for usleep, fork

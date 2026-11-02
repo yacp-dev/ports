@@ -1,0 +1,40 @@
+--- origsrc/timelimit-1.9.5/timelimit.c	2026-08-02 21:45:41.000000000 +0000
++++ src/timelimit-1.9.5/timelimit.c	2026-11-02 13:02:27.167229800 +0000
+@@ -5,6 +5,8 @@
+ 
+ #include "config.h"
+ 
++#include <getopt.h>
++
+ unsigned long	warntime, warnmsec, killtime, killmsec;
+ unsigned long	warnsig, killsig;
+ volatile bool	fdone, falarm, fsig;
+@@ -230,9 +232,13 @@ init(const int argc, char * const argv[]
+ 		}
+ 	}
+ 
++	static const struct option longopts[] = {
++		{"features", no_argument, NULL, 'F'},
++		{NULL, 0, NULL, 0}
++	};
+ 	bool listfeatures = false, listsigs = false;
+ 	int ch;
+-	while ((ch = getopt(argc, argv, "+lqpS:s:T:t:-:")) != -1) {
++	while ((ch = getopt_long(argc, argv, "+lqpS:s:T:t:", longopts, NULL)) != -1) {
+ 		switch (ch) {
+ 			case 'l':
+ 				listsigs = true;
+@@ -243,11 +249,8 @@ init(const int argc, char * const argv[]
+ 			case 'q':
+ 				quiet = true;
+ 				break;
+-			case '-':
+-				if (strcmp(optarg, "features") == 0)
+-					listfeatures = true;
+-				else
+-					usage();
++			case 'F':
++				listfeatures = true;
+ 				break;
+ 			default:
+ 				{

@@ -1,0 +1,110 @@
+--- origsrc/cmp-20/CMakeLists.txt	2022-03-29 16:59:14.000000000 +0000
++++ src/cmp-20/CMakeLists.txt	2026-11-02 14:32:11.162668600 +0000
+@@ -1,4 +1,36 @@
+-# Edit following two lines to set component requirements (see docs)
+-set(COMPONENT_SRCS "cmp.c" )
+-set(COMPONENT_ADD_INCLUDEDIRS ".")
+-register_component()
++cmake_minimum_required(VERSION 3.10)
++project(cmp)
++
++add_library(cmp SHARED cmp.c)
++target_include_directories(cmp PRIVATE ${CMAKE_SOURCE_DIR})
++if (DEFINED SOVERSION)
++    set_target_properties(cmp PROPERTIES SOVERSION ${SOVERSION})
++endif()
++
++add_executable(example1 examples/example1.c)
++target_include_directories(example1 PRIVATE ${CMAKE_SOURCE_DIR})
++target_link_libraries(example1 cmp)
++
++add_executable(example2 examples/example2.c)
++target_include_directories(example2 PRIVATE ${CMAKE_SOURCE_DIR})
++target_link_libraries(example2 cmp)
++
++enable_testing()
++find_package(pkgconfig)
++pkg_check_modules(CMOCKA cmocka)
++add_executable(cmpunittest test/test.c test/tests.c test/buf.c test/utils.c)
++target_include_directories(cmpunittest PRIVATE ${CMAKE_SOURCE_DIR})
++target_link_libraries(cmpunittest cmp ${CMOCKA_LIBRARIES})
++add_test(NAME cmpunitest COMMAND cmpunittest)
++
++install(FILES cmp.h DESTINATION include)
++install(TARGETS cmp RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
++
++if (DEFINED VERSION)
++    set(prefix ${CMAKE_INSTALL_PREFIX})
++    set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++    set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++    set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++    configure_file(${CMAKE_SOURCE_DIR}/cmp.pc.in ${CMAKE_BINARY_DIR}/cmp.pc @ONLY)
++    install(FILES ${CMAKE_BINARY_DIR}/cmp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
++endif()
+--- origsrc/cmp-20/cmp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/cmp-20/cmp.pc.in	2026-11-02 14:32:11.162668600 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: cmp
++Description: C implementation of the MessagePack serialization format
++Version: @VERSION@
++Libs: -L${libdir} -lcmp
++Cflags: -I${includedir}
+--- origsrc/cmp-20/test/test.c	2022-03-29 16:59:14.000000000 +0000
++++ src/cmp-20/test/test.c	2026-11-02 14:32:11.164681100 +0000
+@@ -32,32 +32,31 @@ THE SOFTWARE.
+ #include "tests.h"
+ 
+ int main(void) {
+-  /* Use the old CMocka API because Travis' latest Ubuntu is Trusty */
+-  const UnitTest tests[17] = {
+-    unit_test(test_msgpack),
+-    unit_test(test_fixedint),
+-    unit_test(test_numbers),
+-    unit_test(test_nil),
+-    unit_test(test_boolean),
+-    unit_test(test_bin),
+-    unit_test(test_string),
+-    unit_test(test_array),
+-    unit_test(test_map),
+-    unit_test(test_ext),
+-    unit_test(test_obj),
++  const struct CMUnitTest tests[17] = {
++    cmocka_unit_test(test_msgpack),
++    cmocka_unit_test(test_fixedint),
++    cmocka_unit_test(test_numbers),
++    cmocka_unit_test(test_nil),
++    cmocka_unit_test(test_boolean),
++    cmocka_unit_test(test_bin),
++    cmocka_unit_test(test_string),
++    cmocka_unit_test(test_array),
++    cmocka_unit_test(test_map),
++    cmocka_unit_test(test_ext),
++    cmocka_unit_test(test_obj),
+ 
+ #ifndef CMP_NO_FLOAT
+-    unit_test(test_float_flip),
++    cmocka_unit_test(test_float_flip),
+ #endif
+ 
+-    unit_test(test_skipping),
+-    unit_test(test_deprecated_limited_skipping),
+-    unit_test(test_errors),
+-    unit_test(test_version),
+-    unit_test(test_conversions),
++    cmocka_unit_test(test_skipping),
++    cmocka_unit_test(test_deprecated_limited_skipping),
++    cmocka_unit_test(test_errors),
++    cmocka_unit_test(test_version),
++    cmocka_unit_test(test_conversions),
+   };
+ 
+-  if (run_tests(tests)) {
++  if (cmocka_run_group_tests(tests, NULL, NULL)) {
+     return EXIT_FAILURE;
+   }
+ 

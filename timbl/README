@@ -9,17 +9,18 @@ set explicitly in memory. During testing, new cases are classified by
 extrapolation from the most similar stored cases.
 
 Runtime requirements:
-  cygwin-3.6.11-1
+  cygwin-3.6.12-1
   libgcc1-14.4.0-1
   libgomp1-14.4.0-1
   libicu76-76.1-2
   libstdc++6-14.4.0-1
-  libticcutils10-0.38-1bl1
-  libtimbl-devel-7.0-1bl1
-  libtimbl8-7.0-1bl1
+  libticcutils-devel-0.38-1bl2
+  libticcutils10-0.38-1bl2
+  libtimbl-devel-7.0-1bl2
+  libtimbl8-7.0-1bl2
   libxml2-2.13.9-2
   libxml2-devel-2.13.9-2
-  pkg-config-3.0.9-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
@@ -27,11 +28,10 @@ Build requirements:
   autoconf-archive-2024.10.16-1
   automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.10-1
-  gcc-core-14.4.0-1
+  cygport-0.37.12-1
   gcc-g++-14.4.0-1
   libicu-devel-76.1-2
-  libticcutils-devel-0.38-1bl1
+  libticcutils-devel-0.38-1bl2
   libtool-2.6.2-1
   libxml2-devel-2.13.9-2
   make-4.4.1-2
@@ -69,6 +69,7 @@ Files included in the binary package:
   /usr/share/doc/timbl/MAINTAINERS
   /usr/share/doc/timbl/NEWS
   /usr/share/doc/timbl/README
+  /usr/share/doc/timbl/README.md
   /usr/share/doc/timbl/TODO
   /usr/share/doc/timbl/Timbl_7.0_API.pdf
   /usr/share/doc/timbl/Timbl_7.0_Manual.pdf
@@ -113,6 +114,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 7.0-1bl2 -----
+Fix timbl.pc
 
 ----- version 7.0-1bl1 -----
 Version bump.

@@ -1,0 +1,245 @@
+--- origsrc/simgrid-4.1/CMakeLists.txt	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/CMakeLists.txt	2026-11-02 04:10:35.425632700 +0000
+@@ -29,10 +29,6 @@ cmake_minimum_required(VERSION 3.12)
+ message(STATUS "Cmake version ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION}")
+ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_HOME_DIRECTORY}/tools/cmake/Modules)
+ 
+-if(POLICY CMP0167)
+-  cmake_policy(SET CMP0167 NEW)
+-endif()
+-
+ project(simgrid C CXX)
+ 
+ # customizable installation directories
+@@ -168,7 +164,9 @@ IF(CMAKE_SYSTEM_PROCESSOR MATCHES ".86|A
+   if(CMAKE_SIZEOF_VOID_P EQUAL 4 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
+     message(STATUS "Disable fast raw contexts on x32 ABI.")
+   else()
+-    set(HAVE_RAW_CONTEXTS 1)
++    if (NOT CYGWIN)
++      set(HAVE_RAW_CONTEXTS 1)
++    endif()
+   endif()
+ ELSEIF(CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
+   message(STATUS "System processor: arm64 (${CMAKE_SYSTEM_PROCESSOR}, 64 bits)")
+@@ -289,7 +287,10 @@ if(enable_smpi_papi)
+ endif()
+ mark_as_advanced(PAPI_PREFIX)
+ 
+-if(CMAKE_VERSION VERSION_LESS 3.20)
++if(CYGWIN)
++  # Boost 1.66 needs std::allocator members that C++20 removed
++  set(HAVE_STD_STACKTRACE 0)
++elseif(CMAKE_VERSION VERSION_LESS 3.20)
+   message(STATUS "cmake is too old to test for C++23 stacks (v${CMAKE_VERSION})")
+   set(HAVE_STD_STACKTRACE 0) # CMake does not know about C++23, we cannot test it on the compiler
+ else()
+@@ -344,7 +345,7 @@ set(_Boost_STACKTRACE_ADDR2LINE_HEADERS
+         endif()
+       endif()
+ 
+-      if(Boost_CONTEXT_FOUND)
++      if(Boost_CONTEXT_FOUND AND NOT CYGWIN) # actors crash on their first switch
+         message (STATUS "  context: found. Activating Boost contexts.")
+         set(HAVE_BOOST_CONTEXTS ON)
+       else()
+--- origsrc/simgrid-4.1/include/simgrid/s4u/Task.hpp	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/include/simgrid/s4u/Task.hpp	2026-11-02 04:10:35.427644800 +0000
+@@ -48,11 +48,11 @@ class XBT_PUBLIC Task {
+   std::map<std::string, std::deque<ActivityPtr>> current_activities_ = {
+       {"instance_0", {}}, {"dispatcher", {}}, {"collector", {}}};
+ 
+-  inline static xbt::signal<void(Task*)> on_start;
++  static xbt::signal<void(Task*)> on_start;
+   xbt::signal<void(Task*)> on_this_start;
+-  inline static xbt::signal<void(Task*)> on_completion;
++  static xbt::signal<void(Task*)> on_completion;
+   xbt::signal<void(Task*)> on_this_completion;
+-  inline static xbt::signal<void(Task*, const std::string&)> on_instance_completion;
++  static xbt::signal<void(Task*, const std::string&)> on_instance_completion;
+   xbt::signal<void(Task*, const std::string&)> on_this_instance_completion;
+ 
+ protected:
+--- origsrc/simgrid-4.1/src/kernel/lmm/bmf.cpp	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/kernel/lmm/bmf.cpp	2026-11-02 04:10:35.427644800 +0000
+@@ -15,6 +15,12 @@ XBT_LOG_NEW_DEFAULT_SUBCATEGORY(ker_bmf,
+ 
+ namespace simgrid::kernel::lmm {
+ 
++simgrid::config::Flag<int> BmfSolver::cfg_bmf_max_iteration{
++    "bmf/max-iterations", "Maximum number of steps to be performed while searching for a BMF allocation", 1000};
++
++simgrid::config::Flag<double> BmfSolver::cfg_bmf_precision{
++    "bmf/precision", {"precision/bmf"}, "Numerical precision used when computing resource sharing", 1E-12};
++
+ AllocationGenerator::AllocationGenerator(Eigen::MatrixXd A) : A_(std::move(A)), alloc_(A_.cols(), 0)
+ {
+   // got a first valid allocation
+--- origsrc/simgrid-4.1/src/kernel/lmm/bmf.hpp	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/kernel/lmm/bmf.hpp	2026-11-02 04:10:35.427644800 +0000
+@@ -76,11 +76,9 @@ private:
+  * @endrst
+  */
+ class XBT_PUBLIC BmfSolver {
+-  inline static simgrid::config::Flag<int> cfg_bmf_max_iteration{
+-      "bmf/max-iterations", "Maximum number of steps to be performed while searching for a BMF allocation", 1000};
++  static simgrid::config::Flag<int> cfg_bmf_max_iteration;
+ 
+-  inline static simgrid::config::Flag<double> cfg_bmf_precision{
+-      "bmf/precision", {"precision/bmf"}, "Numerical precision used when computing resource sharing", 1E-12};
++  static simgrid::config::Flag<double> cfg_bmf_precision;
+ 
+ public:
+   /**
+--- origsrc/simgrid-4.1/src/mc/api/RemoteApp.cpp	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/mc/api/RemoteApp.cpp	2026-11-02 04:10:35.429653500 +0000
+@@ -30,7 +30,9 @@
+ #include <optional>
+ #include <signal.h>
+ #include <string>
++#if !defined(__CYGWIN__)
+ #include <sys/ptrace.h>
++#endif
+ #include <sys/socket.h>
+ #include <sys/un.h>
+ #include <sys/wait.h>
+--- origsrc/simgrid-4.1/src/mc/remote/AppSide.cpp	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/mc/remote/AppSide.cpp	2026-11-02 04:10:35.429653500 +0000
+@@ -35,7 +35,9 @@
+ #include <cstdlib>
+ #include <memory>
+ #include <numeric>
++#if !defined(__CYGWIN__)
+ #include <sys/ptrace.h>
++#endif
+ #include <sys/socket.h>
+ #include <sys/types.h>
+ #include <sys/un.h>
+--- origsrc/simgrid-4.1/src/mc/remote/CheckerSide.cpp	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/mc/remote/CheckerSide.cpp	2026-11-02 04:10:35.431662800 +0000
+@@ -27,7 +27,9 @@
+ #include <boost/tokenizer.hpp>
+ #include <csignal>
+ #include <fcntl.h>
++#if !defined(__CYGWIN__)
+ #include <sys/ptrace.h>
++#endif
+ #include <sys/socket.h>
+ #include <sys/un.h>
+ #include <sys/wait.h>
+--- origsrc/simgrid-4.1/src/s4u/s4u_Task.cpp	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/s4u/s4u_Task.cpp	2026-11-02 04:10:35.432449700 +0000
+@@ -23,6 +23,10 @@ XBT_LOG_NEW_DEFAULT_SUBCATEGORY(Task, ke
+ 
+ namespace simgrid::s4u {
+ 
++xbt::signal<void(Task*)> Task::on_start;
++xbt::signal<void(Task*)> Task::on_completion;
++xbt::signal<void(Task*, const std::string&)> Task::on_instance_completion;
++
+ Task::Task(const std::string& name) : name_(name) {}
+ 
+ /** @param instance The Task instance to check.
+--- origsrc/simgrid-4.1/src/smpi/internals/smpi_global.cpp	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/smpi/internals/smpi_global.cpp	2026-11-02 04:10:35.433672100 +0000
+@@ -41,7 +41,7 @@
+ #include <papi.h>
+ #endif
+ 
+-#if not defined(__APPLE__) && not defined(__HAIKU__)
++#if not defined(__APPLE__) && not defined(__HAIKU__) && !defined(__CYGWIN__)
+ #include <link.h>
+ #endif
+ 
+@@ -373,7 +373,7 @@ static void smpi_copy_file(const std::st
+   close(fdout);
+ }
+ 
+-#if not defined(__APPLE__) && not defined(__HAIKU__)
++#if not defined(__APPLE__) && not defined(__HAIKU__) && !defined(__CYGWIN__)
+ static int visit_libs(struct dl_phdr_info* info, size_t, void* data)
+ {
+   auto* libname    = static_cast<std::string*>(data);
+@@ -405,7 +405,7 @@ static void smpi_init_privatization_dlop
+                  libname.c_str());
+       // get library name from path
+       std::string fullpath = libname;
+-#if not defined(__APPLE__) && not defined(__HAIKU__)
++#if not defined(__APPLE__) && not defined(__HAIKU__) && !defined(__CYGWIN__)
+       xbt_assert(dl_iterate_phdr(visit_libs, &fullpath) != 0,
+                  "Can't find a linked %s - check your settings in smpi/privatize-libs", fullpath.c_str());
+       XBT_DEBUG("Extra lib to privatize '%s' found", fullpath.c_str());
+--- origsrc/simgrid-4.1/src/smpi/smpicc.in	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/smpi/smpicc.in	2026-11-02 04:10:35.434482100 +0000
+@@ -22,6 +22,11 @@ else
+     LINKER_UNDEFINED_ERROR="1"
+ fi
+ 
++# Don't use -Wl,-z-defs on cygwin
++if [ -n "@CYGWIN@" ]; then
++    LINKER_UNDEFINED_ERROR=""
++fi
++
+ list_set CFLAGS @SMPI_C_FLAGS@
+ list_add LINKARGS
+ if [ "x@APPLE@" = "x1" ]; then
+--- origsrc/simgrid-4.1/src/smpi/smpicxx.in	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/smpi/smpicxx.in	2026-11-02 04:10:35.435426900 +0000
+@@ -24,6 +24,11 @@ else
+     LINKER_UNDEFINED_ERROR="1"
+ fi
+ 
++# Don't use -Wl,-z-defs on cygwin
++if [ -n "@CYGWIN@" ]; then
++    LINKER_UNDEFINED_ERROR=""
++fi
++
+ if [ "x@APPLE@" = "x1" ]; then
+     if [ "x${SMPI_PRETEND_CC}" = "x" ]; then
+        list_add CXXFLAGS "-include" "@includedir@/smpi/smpi_helpers.h"
+--- origsrc/simgrid-4.1/src/smpi/smpif90.in	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/smpi/smpif90.in	2026-11-02 04:10:35.435426900 +0000
+@@ -19,7 +19,7 @@ list_set FFLAGS @SMPI_Fortran_FLAGS@
+ list_set LINKARGS "-lsimgrid" @SMPI_Fortran_LIBS@ "-lm"
+ if [ "x${SMPI_PRETEND_CC}" = "x" ]; then
+    list_add LINKARGS "-shared"
+-   if [ "x${SMPI_NO_UNDEFINED_CHECK}" = "x" ]; then
++   if [ "x${SMPI_NO_UNDEFINED_CHECK}" = "x" ] && [ -z "@CYGWIN@" ]; then
+       if [ "x@APPLE@" != "x1" ]; then
+           list_add LINKARGS "-Wl,-z,defs"
+       else
+--- origsrc/simgrid-4.1/src/smpi/smpiff.in	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/src/smpi/smpiff.in	2026-11-02 04:10:35.437437000 +0000
+@@ -19,7 +19,7 @@ list_set FFLAGS @SMPI_Fortran_FLAGS@
+ list_set LINKARGS "-lsimgrid" @SMPI_Fortran_LIBS@ "-lm"
+ if [ "x${SMPI_PRETEND_CC}" = "x" ]; then
+    list_add LINKARGS "-shared"
+-   if [ "x${SMPI_NO_UNDEFINED_CHECK}" = "x" ]; then
++   if [ "x${SMPI_NO_UNDEFINED_CHECK}" = "x" ] && [ -z "@CYGWIN@" ]; then
+      if [ "x@APPLE@" != "x1" ]; then
+        list_add LINKARGS "-Wl,-z,defs"
+      else
+--- origsrc/simgrid-4.1/tools/cmake/Distrib.cmake	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/tools/cmake/Distrib.cmake	2026-11-02 04:10:35.437437000 +0000
+@@ -42,7 +42,7 @@ add_custom_target(simgrid_convert_TI_tra
+     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_HOME_DIRECTORY}/tools/simgrid_convert_TI_traces.py ${CMAKE_BINARY_DIR}/bin/simgrid_convert_TI_traces)
+ 
+ # libraries
+-install(TARGETS simgrid DESTINATION ${CMAKE_INSTALL_LIBDIR}/)
++install(TARGETS simgrid RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/)
+ if(${enable_sthread})
+   install(TARGETS sthread DESTINATION ${CMAKE_INSTALL_LIBDIR}/)
+ endif()
+--- origsrc/simgrid-4.1/tools/cmake/MakeLib.cmake	2025-11-11 19:49:11.000000000 +0000
++++ src/simgrid-4.1/tools/cmake/MakeLib.cmake	2026-11-02 04:10:35.439447400 +0000
+@@ -24,6 +24,10 @@ endif()
+ # Declare the simgrid library
+ add_library(simgrid SHARED ${simgrid_sources})
+ set_target_properties(simgrid PROPERTIES VERSION ${libsimgrid_version})
++if(CYGWIN)
++  # The DLL name only takes SOVERSION: without it, it has no version at all
++  set_target_properties(simgrid PROPERTIES SOVERSION ${libsimgrid_version})
++endif()
+ # The library can obviously use the internal headers
+ set_property(TARGET simgrid
+              APPEND PROPERTY INCLUDE_DIRECTORIES "${INTERNAL_INCLUDES}")

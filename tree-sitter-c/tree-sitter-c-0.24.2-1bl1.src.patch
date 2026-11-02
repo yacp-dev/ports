@@ -1,13 +1,14 @@
---- origsrc/tree-sitter-c-0.24.1/CMakeLists.txt	2025-05-25 02:29:12.000000000 +0900
-+++ src/tree-sitter-c-0.24.1/CMakeLists.txt	2025-06-22 23:38:23.776933400 +0900
-@@ -17,12 +17,14 @@ endif()
+--- origsrc/tree-sitter-c-0.24.2/CMakeLists.txt	2026-04-22 08:03:16.000000000 +0000
++++ src/tree-sitter-c-0.24.2/CMakeLists.txt	2026-11-02 15:22:46.338432100 +0000
+@@ -17,6 +17,7 @@ endif()
  
  find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")
  
 +if (NOT TREE_SITTER_CLI STREQUAL "TREE_SITTER_CLI-NOTFOUND")
- add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/parser.c"
-                    DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar.json"
-                    COMMAND "${TREE_SITTER_CLI}" generate src/grammar.json
+ add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar.json"
+                           "${CMAKE_CURRENT_SOURCE_DIR}/src/node-types.json"
+                    DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/grammar.js"
+@@ -33,6 +34,7 @@ add_custom_command(OUTPUT "${CMAKE_CURRE
                              --abi=${TREE_SITTER_ABI_VERSION}
                     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
                     COMMENT "Generating parser.c")
@@ -15,7 +16,7 @@
  
  add_library(tree-sitter-c src/parser.c)
  if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.c)
-@@ -45,16 +47,16 @@ set_target_properties(tree-sitter-c
+@@ -55,16 +57,16 @@ set_target_properties(tree-sitter-c
                        SOVERSION "${TREE_SITTER_ABI_VERSION}.${PROJECT_VERSION_MAJOR}"
                        DEFINE_SYMBOL "")
  

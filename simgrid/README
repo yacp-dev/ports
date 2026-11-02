@@ -7,50 +7,50 @@ applications.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.0-1
-  libboost_context1.66-1.66.0-1
-  libcgraph6-8.0.5-1
-  libgcc1-12.4.0-3
-  libgfortran5-12.4.0-3
-  libsimgrid-devel-4.0-1bl1
-  libsimgrid4-4.0-1bl1
-  libstdc++6-12.4.0-3
-  perl_base-5.36.3-1
-  pkg-config-2.4.3-1
-  python39-3.9.18-2
+  cygwin-3.6.12-1
+  libcgraph8-15.1.0-1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libsimgrid-devel-4.1-1bl1
+  libsimgrid4.1-4.1-1bl1
+  libstdc++6-14.4.0-1
+  perl_base-5.44.0-1
+  pkg-config-3.0.10-1
+  python3-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-fortran-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  eigen3-3.4.0-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  libgvc-devel-8.0.5-1
-  ninja-1.12.1-1
+  libgvc-devel-15.1.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/simgrid/simgrid
 
 Canonical download:
-  https://github.com/simgrid/simgrid/archive/refs/tags/v4.0.tar.gz
+  https://github.com/simgrid/simgrid/archive/refs/tags/v4.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack simgrid-4.0-X-src.tar.xz
+  1. unpack simgrid-4.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./simgrid-4.0-X.cygport all
+        % cygport ./simgrid-4.1-X.cygport all
 
 This will create:
-  /usr/src/simgrid-4.0-X-src.tar.xz
-  /usr/src/simgrid-4.0-X.tar.xz
-  /usr/src/libsimgrid4-4.0-X.tar.xz
-  /usr/src/libsimgrid-devel-4.0-X.tar.xz
+  /usr/src/simgrid-4.1-X-src.tar.xz
+  /usr/src/simgrid-4.1-X.tar.xz
+  /usr/src/libsimgrid4.1-4.1-X.tar.xz
+  /usr/src/libsimgrid-devel-4.1-X.tar.xz
 
 -------------------------------------------
 
@@ -76,8 +76,8 @@ Files included in the binary package:
   /usr/share/doc/simgrid/NEWS
   /usr/share/doc/simgrid/README.md
 
-(libsimgrid4)
-  /usr/bin/cygsimgrid-4.dll
+(libsimgrid4.1)
+  /usr/bin/cygsimgrid-4.1.dll
 
 (libsimgrid-devel)
   /usr/include/simgrid/Exception.hpp
@@ -194,6 +194,7 @@ Files included in the binary package:
   /usr/include/xbt/string.hpp
   /usr/include/xbt/sysdep.h
   /usr/include/xbt/system_error.hpp
+  /usr/include/xbt/thread.hpp
   /usr/include/xbt/utility.hpp
   /usr/include/xbt/virtu.h
   /usr/include/xbt/xbt_os_time.h
@@ -203,6 +204,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.1-1bl1 -----
+Version bump.
 
 ----- version 4.0-1bl1 -----
 Version bump.

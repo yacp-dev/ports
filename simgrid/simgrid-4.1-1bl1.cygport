@@ -8,23 +8,39 @@ distributed systems such as Grids, Clouds, HPC or P2P systems. It can be used
 to evaluate heuristics, prototype applications or even assess legacy MPI
 applications."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
-LICENSE_URI="LICENSE-LGPL-2.1"
+LICENSE="LGPL-2.1-only AND BSD-3-Clause AND LicenseRef-simgrid"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-only AND BSD-3-Clause AND LicenseRef-simgrid"
+LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libboost-devel libgvc-devel"
+BUILD_REQUIRES="
+	eigen3
+	gcc-fortran
+	libboost-devel
+	libgvc-devel
+"
 
 export CXXFLAGS="${CXXFLAGS} -fpermissive"
 
 inherit cmake
 
+# with LTO, ld fails: "cannot export ...: symbol wrong type (4 vs 3)"
 CYGCMAKE_ARGS="
-	-DSOVERSION:STRING=${PV[1]}
+	-Denable_lto=OFF
 "
+
+# building the tests and running them takes 31 minutes
+YACP_CHECK_TIMEOUT_MINUTES=45
+
+src_test()
+{
+	cd ${B}
+	cygninja tests
+	PATH=${B}/lib:${PATH} cygninja test
+}
 
 PKG_NAMES="
 	simgrid
-	libsimgrid4
+	libsimgrid4.1
 	libsimgrid-devel
 "
 simgrid_CONTENTS="
@@ -32,8 +48,8 @@ simgrid_CONTENTS="
 	usr/lib/${PN}/*.exe
 	usr/share
 "
-libsimgrid4_CONTENTS="
-	usr/bin/cyg*-4.dll
+libsimgrid4_1_CONTENTS="
+	usr/bin/cyg*-4.1.dll
 "
 libsimgrid_devel_CONTENTS="
 	usr/include
@@ -41,5 +57,5 @@ libsimgrid_devel_CONTENTS="
 	usr/lib/pkgconfig
 "
 simgrid_SUMMARY="${SUMMARY} (utilities)"
-libsimgrid4_SUMMARY="${SUMMARY} (runtime)"
+libsimgrid4_1_SUMMARY="${SUMMARY} (runtime)"
 libsimgrid_devel_SUMMARY="${SUMMARY} (development)"

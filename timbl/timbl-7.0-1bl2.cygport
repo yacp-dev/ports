@@ -23,6 +23,7 @@ BUILD_REQUIRES="
 "
 
 DOCS="
+	README.md
 	docs/*.pdf
 "
 

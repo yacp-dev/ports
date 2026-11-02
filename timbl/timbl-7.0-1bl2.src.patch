@@ -1,0 +1,18 @@
+--- origsrc/timbl-7.0/src/Makefile.am	2026-07-06 08:17:55.000000000 +0000
++++ src/timbl-7.0/src/Makefile.am	2026-11-02 15:08:14.957247800 +0000
+@@ -23,3 +23,5 @@ libtimbl_la_SOURCES = Common.cxx \
+ 	TimblExperiment.cxx IGExperiment.cxx Metrics.cxx Testers.cxx \
+ 	TRIBLExperiments.cxx LOOExperiment.cxx CVExperiment.cxx \
+ 	Types.cxx neighborSet.cxx Statistics.cxx BestArray.cxx
++
++libtimbl_la_LDFLAGS += -no-undefined
+--- origsrc/timbl-7.0/timbl.pc.in	2026-07-06 08:17:55.000000000 +0000
++++ src/timbl-7.0/timbl.pc.in	2026-11-02 15:08:14.959259300 +0000
+@@ -7,6 +7,7 @@ openmpflags=@OPENMP_CXXFLAGS@
+ Name: timbl
+ Version: @VERSION@
+ Description: timbl library.
++Requires: ticcutils
+ Requires.private: libxml-2.0
+ Libs: -L${libdir} -ltimbl
+ Libs.private: @LIBS@ ${openmpflags}

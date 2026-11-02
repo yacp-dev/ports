@@ -4,49 +4,52 @@ Sysrepo is a YANG-based configuration and operational state data store for
 Unix/Linux applications.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libsysrepo-devel-2.11.7-1bl1
-  libsysrepo7-2.11.7-1bl1
-  libyang-devel-3.4.2-1bl1
-  libyang3-3.4.2-1bl1
-  pkg-config-2.3.0-1
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libsysrepo-devel-5.2.27-1bl1
+  libsysrepo8-5.2.27-1bl1
+  libyang-devel-6.4.13-1bl2
+  libyang5-6.4.13-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libyang-devel-3.4.2-1bl1
-  lua-5.3.6-4
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcmocka-devel-2.0.2-1
+  libyang-devel-6.4.13-1bl2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/sysrepo/sysrepo
 
 Canonical download:
-  https://github.com/sysrepo/sysrepo/archive/refs/tags/v2.11.7.tar.gz
+  https://github.com/sysrepo/sysrepo/archive/refs/tags/v5.2.27.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack sysrepo-2.11.7-X-src.tar.xz
+  1. unpack sysrepo-5.2.27-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./sysrepo-2.11.7-X.cygport all
+        % cygport ./sysrepo-5.2.27-X.cygport all
 
 This will create:
-  /usr/src/sysrepo-2.11.7-X-src.tar.xz
-  /usr/src/sysrepo-2.11.7-X.tar.xz
-  /usr/src/libsysrepo7-2.11.7-X.tar.xz
-  /usr/src/libsysrepo-devel-2.11.7-X.tar.xz
+  /usr/src/sysrepo-5.2.27-X-src.tar.xz
+  /usr/src/sysrepo-5.2.27-X.tar.xz
+  /usr/src/libsysrepo8-5.2.27-X.tar.xz
+  /usr/src/libsysrepo-devel-5.2.27-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (sysrepo)
+  /usr/bin/sysrepo-notifd.exe
   /usr/bin/sysrepo-plugind.exe
   /usr/bin/sysrepocfg.exe
   /usr/bin/sysrepoctl.exe
@@ -55,12 +58,21 @@ Files included in the binary package:
   /usr/share/doc/sysrepo/README.md
   /usr/share/man/man1/sysrepocfg.1.gz
   /usr/share/man/man1/sysrepoctl.1.gz
+  /usr/share/man/man8/sysrepo-notifd.8.gz
   /usr/share/man/man8/sysrepo-plugind.8.gz
+  /usr/share/sysrepo/scripts/db_plg_perf.Dockerfile
+  /usr/share/sysrepo/scripts/deleteAllSysrepoDataInRedis.lua
+  /usr/share/sysrepo/scripts/remove_notifd.sh
+  /usr/share/sysrepo/scripts/setup_notifd.sh
+  /usr/share/sysrepo/scripts/setup_repo_shm.sh
   /usr/share/yang/modules/sysrepo/iana-if-type@2014-05-08.yang
+  /usr/share/yang/modules/sysrepo/iana-tls-cipher-suite-algs@2024-03-16.yang
+  /usr/share/yang/modules/sysrepo/ietf-crypto-types@2024-10-10.yang
   /usr/share/yang/modules/sysrepo/ietf-datastores@2018-02-14.yang
   /usr/share/yang/modules/sysrepo/ietf-factory-default@2020-08-31.yang
   /usr/share/yang/modules/sysrepo/ietf-interfaces@2018-02-20.yang
   /usr/share/yang/modules/sysrepo/ietf-ip@2018-02-22.yang
+  /usr/share/yang/modules/sysrepo/ietf-keystore@2024-10-10.yang
   /usr/share/yang/modules/sysrepo/ietf-netconf-acm@2018-02-14.yang
   /usr/share/yang/modules/sysrepo/ietf-netconf-notifications@2012-02-06.yang
   /usr/share/yang/modules/sysrepo/ietf-netconf-with-defaults@2011-06-01.yang
@@ -68,18 +80,25 @@ Files included in the binary package:
   /usr/share/yang/modules/sysrepo/ietf-network-instance@2019-01-21.yang
   /usr/share/yang/modules/sysrepo/ietf-origin@2018-02-14.yang
   /usr/share/yang/modules/sysrepo/ietf-restconf@2017-01-26.yang
+  /usr/share/yang/modules/sysrepo/ietf-subscribed-notif-receivers@2024-02-01.yang
   /usr/share/yang/modules/sysrepo/ietf-subscribed-notifications@2019-09-09.yang
+  /usr/share/yang/modules/sysrepo/ietf-tls-client@2024-03-16.yang
+  /usr/share/yang/modules/sysrepo/ietf-tls-common@2024-10-10.yang
+  /usr/share/yang/modules/sysrepo/ietf-truststore@2024-10-10.yang
+  /usr/share/yang/modules/sysrepo/ietf-udp-client@2025-05-14.yang
+  /usr/share/yang/modules/sysrepo/ietf-udp-notif-transport@2025-06-04.yang
   /usr/share/yang/modules/sysrepo/ietf-yang-library@2016-06-21.yang
   /usr/share/yang/modules/sysrepo/ietf-yang-library@2019-01-04.yang
   /usr/share/yang/modules/sysrepo/ietf-yang-patch@2017-02-22.yang
   /usr/share/yang/modules/sysrepo/ietf-yang-push@2019-09-09.yang
-  /usr/share/yang/modules/sysrepo/sysrepo-factory-default@2024-05-02.yang
+  /usr/share/yang/modules/sysrepo/sysrepo-factory-default@2025-03-18.yang
   /usr/share/yang/modules/sysrepo/sysrepo-monitoring@2023-08-11.yang
+  /usr/share/yang/modules/sysrepo/sysrepo-notifications@2025-01-10.yang
   /usr/share/yang/modules/sysrepo/sysrepo-plugind@2022-08-26.yang
-  /usr/share/yang/modules/sysrepo/sysrepo@2023-06-16.yang
+  /usr/share/yang/modules/sysrepo/sysrepo@2025-04-04.yang
 
-(libsysrepo7)
-  /usr/bin/cygsysrepo-7.dll
+(libsysrepo8)
+  /usr/bin/cygsysrepo-8.dll
 
 (libsysrepo-devel)
   /usr/include/sysrepo.h
@@ -87,6 +106,7 @@ Files included in the binary package:
   /usr/include/sysrepo/netconf_acm.h
   /usr/include/sysrepo/plugins_datastore.h
   /usr/include/sysrepo/plugins_notification.h
+  /usr/include/sysrepo/private_candidate.h
   /usr/include/sysrepo/subscribed_notifications.h
   /usr/include/sysrepo/values.h
   /usr/include/sysrepo/version.h
@@ -98,6 +118,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.2.27-1bl1 -----
+Version bump.
 
 ----- version 2.11.7-1bl1 -----
 Version bump.

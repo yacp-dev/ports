@@ -10,12 +10,17 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libyang-devel"
+BUILD_REQUIRES="
+	libcmocka-devel
+	libyang-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DENABLE_TESTS:BOOL=ON
+	-DREPO_SHM_SETUP:BOOL=OFF
+	-DNOTIFD_SETUP:BOOL=OFF
 "
 
 src_test()
@@ -26,20 +31,20 @@ src_test()
 
 PKG_NAMES="
 	sysrepo
-	libsysrepo7
+	libsysrepo8
 	libsysrepo-devel
 "
 sysrepo_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libsysrepo7_CONTENTS="
-	usr/bin/cyg*-7.dll
+libsysrepo8_CONTENTS="
+	usr/bin/cyg*-8.dll
 "
 libsysrepo_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 sysrepo_SUMMARY="${SUMMARY} (utilities)"
-libsysrepo7_SUMMARY="${SUMMARY} (runtime)"
+libsysrepo8_SUMMARY="${SUMMARY} (runtime)"
 libsysrepo_devel_SUMMARY="${SUMMARY} (development)"

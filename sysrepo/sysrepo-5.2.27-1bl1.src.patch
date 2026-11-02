@@ -1,31 +1,31 @@
---- origsrc/sysrepo-2.11.7/CMakeLists.txt	2024-09-09 22:28:04.000000000 +0900
-+++ src/sysrepo-2.11.7/CMakeLists.txt	2024-09-20 17:40:56.651070900 +0900
-@@ -570,7 +570,7 @@ install(FILES ${yangs} DESTINATION ${YAN
- file(GLOB sn_yangs "${PROJECT_SOURCE_DIR}/modules/subscribed_notifications/*.yang")
+--- origsrc/sysrepo-5.2.27/CMakeLists.txt	2026-10-14 10:13:50.000000000 +0000
++++ src/sysrepo-5.2.27/CMakeLists.txt	2026-11-02 04:35:14.821337400 +0000
+@@ -673,7 +673,7 @@ file(GLOB sn_yangs "${PROJECT_SOURCE_DIR
  install(FILES ${sn_yangs} DESTINATION ${YANG_MODULE_DIR})
+ install(DIRECTORY "${PROJECT_SOURCE_DIR}/scripts/" DESTINATION ${DATA_DIR}/scripts USE_SOURCE_PERMISSIONS)
  
 -install(TARGETS sysrepo DESTINATION ${CMAKE_INSTALL_LIBDIR})
 +install(TARGETS sysrepo RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
  install(FILES ${PROJECT_BINARY_DIR}/include/sysrepo.h ${PROJECT_BINARY_DIR}/include/sysrepo_types.h
          DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
  install(DIRECTORY ${PROJECT_BINARY_DIR}/include/sysrepo DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
---- origsrc/sysrepo-2.11.7/src/common.c	2024-09-09 22:28:04.000000000 +0900
-+++ src/sysrepo-2.11.7/src/common.c	2024-09-20 17:35:40.163353500 +0900
-@@ -2121,11 +2121,13 @@ _sr_mutex_init(pthread_mutex_t *lock, in
+--- origsrc/sysrepo-5.2.27/src/common.c	2026-10-14 10:13:50.000000000 +0000
++++ src/sysrepo-5.2.27/src/common.c	2026-11-02 04:35:14.823360600 +0000
+@@ -2152,11 +2152,13 @@ _sr_mutex_init(pthread_mutex_t *lock, in
              return err_info;
          }
  
 +#if defined(PTHREAD_MUTEX_ROBUST)
          if (robust && (ret = pthread_mutexattr_setrobust(&attr, PTHREAD_MUTEX_ROBUST))) {
              pthread_mutexattr_destroy(&attr);
-             sr_errinfo_new(&err_info, SR_ERR_SYS, "Changing pthread attr failed (%s).", strerror(ret));
+             sr_errinfo_new(&err_info, SR_ERR_SYS, "Setting mutex robust failed (%s).", strerror(ret));
              return err_info;
          }
 +#endif
  
-         if ((ret = pthread_mutex_init(lock, &attr))) {
-             pthread_mutexattr_destroy(&attr);
-@@ -2165,6 +2167,10 @@ sr_mlock(pthread_mutex_t *lock, int time
+ #ifndef NDEBUG
+         if ((ret = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_ERRORCHECK))) {
+@@ -2204,6 +2206,10 @@ sr_mlock(pthread_mutex_t *lock, int time
          ret = pthread_mutex_clocklock(lock, COMPAT_CLOCK_ID, &abs_ts);
      }
  

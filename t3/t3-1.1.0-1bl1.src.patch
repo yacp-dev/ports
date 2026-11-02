@@ -1,0 +1,43 @@
+--- origsrc/t3-1.1.0/Makefile	2026-06-17 00:39:08.000000000 +0900
++++ src/t3-1.1.0/Makefile	2026-11-02 14:23:32.171103031 +0900
+@@ -3,8 +3,8 @@
+ NAME = t3
+ VERSION ?= unknown
+ PREFIX ?= /usr/local
+-OPTFLAGS ?= -g
+-CFLAGS = -Wall $(OPTFLAGS) -DVERSION='"$(VERSION)"'
++CFLAGS ?=
++CFLAGS += -DVERSION='"$(VERSION)"'
+ 
+ BINDIR = $(PREFIX)/bin
+ BIN = $(NAME)
+--- origsrc/t3-1.1.0/t3.c	2026-06-17 00:39:08.000000000 +0900
++++ src/t3-1.1.0/t3.c	2026-11-02 14:40:35.524828643 +0900
+@@ -1079,7 +1079,12 @@
+             }
+             pfds[0].events = POLLHUP;
+           }
+-        } else if (pfds[0].revents & POLLHUP) {
++        }
++        // Cygwin's poll() never reports POLLHUP on a pipe: EOF only shows up as
++        // POLLIN and a read() of 0, so close as soon as a read has seen EOF.
++        if (pfds[0].fd != -1 &&
++            (pfds[0].events == POLLHUP ||
++             (!(pfds[0].revents & POLLIN) && (pfds[0].revents & POLLHUP)))) {
+           _debug(2, "closing stdout_msg_pipe[0]");
+           // Leftover unconsumed bytes mean the worker died mid-frame. EOF can
+           // surface as POLLHUP with no final POLLIN, so check here - the one
+@@ -1114,7 +1119,12 @@
+             }
+             pfds[1].events = POLLHUP;
+           }
+-        } else if (pfds[1].revents & POLLHUP) {
++        }
++        // Cygwin's poll() never reports POLLHUP on a pipe: EOF only shows up as
++        // POLLIN and a read() of 0, so close as soon as a read has seen EOF.
++        if (pfds[1].fd != -1 &&
++            (pfds[1].events == POLLHUP ||
++             (!(pfds[1].revents & POLLIN) && (pfds[1].revents & POLLHUP)))) {
+           _debug(2, "closing stderr_msg_pipe[0]");
+           // Leftover unconsumed bytes mean the worker died mid-frame. EOF can
+           // surface as POLLHUP with no final POLLIN, so check here - the one

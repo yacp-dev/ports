@@ -1,0 +1,84 @@
+HOMEPAGE="https://github.com/ipsilon/${PN}"
+# blst, which cmake/blst.cmake would otherwise download at build time;
+# keep it at the version that file names
+BLST_VERSION="0.3.17"
+# evm-benchmarks, the git submodule test/evm-benchmarks the tag's tarball leaves
+# empty; the bench tests read it. Keep it at the commit the tag points to
+EVM_BENCHMARKS_REV="d8b88f4046a87d6b902378cef752591f95427b43"
+SRC_URI="
+	https://github.com/ipsilon/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/supranational/blst/archive/refs/tags/v${BLST_VERSION}.tar.gz#/blst-${BLST_VERSION}.tar.gz
+	https://github.com/ipsilon/evm-benchmarks/archive/${EVM_BENCHMARKS_REV}.tar.gz#/evm-benchmarks-${EVM_BENCHMARKS_REV}.tar.gz
+"
+
+CATEGORY="Libs"
+SUMMARY="Fast Ethereum Virtual Machine implementation"
+DESCRIPTION="evmone is a C++ implementation of the Ethereum Virtual Machine (EVM). Created
+by members of the Ewasm team, the project aims for clean, standalone EVM
+implementation that can be imported as an execution module by Ethereum Client
+projects. The codebase of evmone is optimized to provide fast and efficient
+execution of EVM smart contracts."
+
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	cli11
+	intx
+	libbenchmark-devel
+	libgmock-devel
+	libgtest-devel
+	nlohmann_json
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+# blst's build.sh otherwise uses ADX instructions unconditionally when the build
+# machine has them
+CFLAGS+=" -D__BLST_PORTABLE__"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose mv ${origsrcdir}/blst-${BLST_VERSION} blst
+	verbose rmdir test/evm-benchmarks
+	verbose mv ${origsrcdir}/evm-benchmarks-${EVM_BENCHMARKS_REV} test/evm-benchmarks
+}
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DEVMONE_TESTING:BOOL=ON
+	-DHUNTER_ENABLED:BOOL=OFF
+"
+
+src_test()
+{
+	cd ${B}
+	ninja_test
+}
+
+DOCS="
+	CHANGELOG.md
+"
+
+PKG_NAMES="
+	evmone
+	libevmone${PV[1]}.${PV[2]}
+	libevmone-devel
+"
+evmone_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libevmone0_25_CONTENTS="
+	usr/bin/cyg*-0.25.dll
+"
+libevmone_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+evmone_SUMMARY="${SUMMARY} (utilities)"
+libevmone0_25_SUMMARY="${SUMMARY} (runtime)"
+libevmone_devel_SUMMARY="${SUMMARY} (development)"

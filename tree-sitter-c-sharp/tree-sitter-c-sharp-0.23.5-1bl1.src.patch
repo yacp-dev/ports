@@ -1,5 +1,5 @@
---- origsrc/tree-sitter-c-sharp-0.23.1/CMakeLists.txt	2024-11-11 14:21:27.000000000 +0900
-+++ src/tree-sitter-c-sharp-0.23.1/CMakeLists.txt	2024-11-12 18:37:16.318563100 +0900
+--- origsrc/tree-sitter-c-sharp-0.23.5/CMakeLists.txt	2026-04-14 16:05:24.000000000 +0000
++++ src/tree-sitter-c-sharp-0.23.5/CMakeLists.txt	2026-11-02 15:48:49.521295800 +0000
 @@ -17,12 +17,14 @@ endif()
  
  find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")

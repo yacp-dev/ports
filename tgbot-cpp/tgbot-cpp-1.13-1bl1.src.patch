@@ -1,0 +1,73 @@
+--- origsrc/tgbot-cpp-1.13/CMakeLists.txt	2026-09-14 20:35:18.000000000 +0000
++++ src/tgbot-cpp-1.13/CMakeLists.txt	2026-11-02 13:28:58.488194800 +0000
+@@ -10,7 +10,7 @@ option(BUILD_DOCUMENTATION "Build API do
+ include(GNUInstallDirs)
+ include(CMakePackageConfigHelpers)
+ 
+-find_package(Boost 1.65.1 REQUIRED)
++find_package(Boost 1.65.1 REQUIRED COMPONENTS system)
+ find_package(CURL 7.58.0 REQUIRED)
+ find_package(nlohmann_json 3.7.3 REQUIRED)
+ find_package(Threads REQUIRED)
+@@ -61,12 +61,14 @@ target_include_directories(TgBot PUBLIC
+ )
+ target_link_libraries(TgBot PUBLIC
+     Boost::headers
++    Boost::system
+     CURL::libcurl
+     nlohmann_json::nlohmann_json
+     Threads::Threads
+ )
+ set_target_properties(TgBot PROPERTIES
+     CXX_EXTENSIONS OFF
++    SOVERSION ${VERSION}
+ )
+ 
+ if(BUILD_SHARED_LIBS)
+@@ -124,3 +126,10 @@ if(BUILD_DOCUMENTATION)
+         DESTINATION ${CMAKE_INSTALL_DOCDIR}
+     )
+ endif()
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/tgbot-cpp.pc.in ${CMAKE_BINARY_DIR}/tgbot-cpp.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/tgbot-cpp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/tgbot-cpp-1.13/cmake/TgBotConfig.cmake.in	2026-09-14 20:35:18.000000000 +0000
++++ src/tgbot-cpp-1.13/cmake/TgBotConfig.cmake.in	2026-11-02 13:28:58.487387600 +0000
+@@ -2,7 +2,7 @@
+ 
+ include(CMakeFindDependencyMacro)
+ 
+-find_dependency(Boost 1.65.1)
++find_dependency(Boost 1.65.1 COMPONENTS system)
+ find_dependency(CURL 7.58.0)
+ find_dependency(nlohmann_json 3.7.3)
+ find_dependency(Threads)
+--- origsrc/tgbot-cpp-1.13/tests/tgbot/TgWebhookServer.cpp	2026-09-14 20:35:18.000000000 +0000
++++ src/tgbot-cpp-1.13/tests/tgbot/TgWebhookServer.cpp	2026-11-02 13:28:58.490213500 +0000
+@@ -50,7 +50,7 @@ void sendUpdate(boost::asio::basic_strea
+                 std::string_view body = defaultUpdateBody) {
+     namespace http = boost::beast::http;
+ 
+-    http::request<http::string_body> request(http::verb::post, path, 11);
++    http::request<http::string_body> request(http::verb::post, std::string(path), 11);
+     request.set(http::field::host, "localhost");
+     request.body() = body;
+     request.prepare_payload();
+--- origsrc/tgbot-cpp-1.13/tgbot-cpp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/tgbot-cpp-1.13/tgbot-cpp.pc.in	2026-11-02 13:28:58.490213500 +0000
+@@ -0,0 +1,11 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: tgbot-cpp
++Description: C++ library for Telegram bot API
++Version: @VERSION@
++Requires: libcurl nlohmann_json
++Libs: -L${libdir} -lTgBot -lboost_system
++Cflags: -DTGBOT_DLL -I${includedir}

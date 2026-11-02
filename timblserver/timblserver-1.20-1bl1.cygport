@@ -9,7 +9,17 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libticcutils-devel libtimbl-devel libxml2-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	libicu-devel
+	libticcutils-devel
+	libtimbl-devel
+	libxml2-devel
+"
+
+DOCS="
+	README.md
+"
 
 DIFF_EXCLUDES="
 	*.m4

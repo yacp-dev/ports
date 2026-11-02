@@ -5,33 +5,33 @@ time with a given signal. A 'warning' signal is sent first, then, after a
 timeout, a 'kill' signal, similar to the way init(8) operates on shutdown.
 
 Runtime requirements:
-  cygwin-3.2.0-1
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.36.1-2
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  make-4.3-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  make-4.4.1-2
 
 Canonical website:
   https://devel.ringlet.net/sysutils/timelimit/
 
 Canonical download:
-  https://devel.ringlet.net/files/sys/timelimit/timelimit-1.9.2.tar.xz
+  https://devel.ringlet.net/files/sys/timelimit/timelimit-1.9.5.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack timelimit-1.9.2-X-src.tar.xz
+  1. unpack timelimit-1.9.5-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./timelimit-1.9.2-X.cygport all
+        % cygport ./timelimit-1.9.5-X.cygport all
 
 This will create:
-  /usr/src/timelimit-1.9.2-X-src.tar.xz
-  /usr/src/timelimit-1.9.2-X.tar.xz
+  /usr/src/timelimit-1.9.5-X-src.tar.xz
+  /usr/src/timelimit-1.9.5-X.tar.xz
 
 -------------------------------------------
 
@@ -40,12 +40,14 @@ Files included in the binary package:
 (timelimit)
   /usr/bin/timelimit.exe
   /usr/share/doc/Cygwin/timelimit.README
-  /usr/share/doc/timelimit/NEWS
   /usr/share/man/man1/timelimit.1.gz
 
 ------------------
 
 Port Notes:
+
+----- version 1.9.5-1bl1 -----
+Version bump.
 
 ----- version 1.9.2-1bl1 -----
 Version bump.

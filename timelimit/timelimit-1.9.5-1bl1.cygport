@@ -7,6 +7,10 @@ DESCRIPTION="timelimit executes a command and terminates the spawned process aft
 time with a given signal. A 'warning' signal is sent first, then, after a
 timeout, a 'kill' signal, similar to the way init(8) operates on shutdown."
 
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="LICENSES/BSD-2-Clause.txt"
+
 src_compile()
 {
 	cd ${B}

@@ -1,0 +1,11 @@
+--- origsrc/subnetcalc-2.7.6/CMakeLists.txt	2026-10-02 15:35:44.000000000 +0000
++++ src/subnetcalc-2.7.6/CMakeLists.txt	2026-11-02 04:34:13.804456200 +0000
+@@ -93,7 +93,7 @@ ENDIF()
+ #### OS-DEPENDENT                                                        ####
+ #############################################################################
+ 
+-IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
++IF (CMAKE_SYSTEM_NAME MATCHES "Linux" OR CYGWIN)
+    MESSAGE(STATUS "${CMAKE_SYSTEM_NAME} supported")
+ ELSEIF (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+    MESSAGE(STATUS "${CMAKE_SYSTEM_NAME} supported")

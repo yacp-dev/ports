@@ -15,14 +15,19 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
-	libGeoIP-devel
+	gettext-devel
 	libintl-devel
+	libmaxminddb-devel
 "
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
 src_test()
 {
 	cd ${B}/src
-	verbose ./${PN}.exe ::1
+	# cygport has already built it, with ninja: there is no Makefile for run-tests' make
+	sed -e '/^make /d' ${S}/src/run-tests > run-tests
+	verbose bash run-tests
 }

@@ -4,40 +4,46 @@ Treelite is a model compiler for efficient deployment of decision tree
 ensembles.
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  libgcc1-11.2.0-1
-  libstdc++6-11.2.0-1
-  libtreelite2-2.1.0-1bl1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libtreelite4-4.8.1-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-2
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
-  ninja-1.10.2-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libfmt-devel-12.2.0-1bl1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  mdspan-0.6.0-1bl2
+  ninja-1.13.2-1
+  nlohmann_json-3.12.0-1bl3
+  rapidjson-devel-1.1.0p577-1
 
 Canonical website:
   https://github.com/dmlc/treelite
 
 Canonical download:
-  https://github.com/dmlc/treelite/archive/refs/tags/2.1.0.tar.gz
+  https://github.com/dmlc/treelite/archive/refs/tags/4.8.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack treelite-2.1.0-X-src.tar.xz
+  1. unpack treelite-4.8.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./treelite-2.1.0-X.cygport all
+        % cygport ./treelite-4.8.1-X.cygport all
 
 This will create:
-  /usr/src/treelite-2.1.0-X-src.tar.xz
-  /usr/src/treelite-2.1.0-X.tar.xz
-  /usr/src/libtreelite2-2.1.0-X.tar.xz
-  /usr/src/libtreelite-devel-2.1.0-X.tar.xz
+  /usr/src/treelite-4.8.1-X-src.tar.xz
+  /usr/src/treelite-4.8.1-X.tar.xz
+  /usr/src/libtreelite4-4.8.1-X.tar.xz
+  /usr/src/libtreelite-devel-4.8.1-X.tar.xz
 
 -------------------------------------------
 
@@ -46,47 +52,47 @@ Files included in the binary package:
 (treelite)
   /usr/share/doc/Cygwin/treelite.README
   /usr/share/doc/treelite/LICENSE
-  /usr/share/doc/treelite/NEWS.md
   /usr/share/doc/treelite/README.md
 
-(libtreelite2)
-  /usr/bin/cygtreelite-2.dll
-  /usr/bin/cygtreelite_runtime-2.dll
+(libtreelite4)
+  /usr/bin/cygtreelite-4.dll
 
 (libtreelite-devel)
-  /usr/include/treelite/annotator.h
-  /usr/include/treelite/base.h
   /usr/include/treelite/c_api.h
-  /usr/include/treelite/c_api_common.h
   /usr/include/treelite/c_api_error.h
-  /usr/include/treelite/c_api_runtime.h
-  /usr/include/treelite/compiler.h
-  /usr/include/treelite/compiler_param.h
-  /usr/include/treelite/data.h
-  /usr/include/treelite/filesystem.h
-  /usr/include/treelite/frontend.h
-  /usr/include/treelite/frontend_impl.h
+  /usr/include/treelite/contiguous_array.h
+  /usr/include/treelite/detail/contiguous_array.h
+  /usr/include/treelite/detail/file_utils.h
+  /usr/include/treelite/detail/omp_exception.h
+  /usr/include/treelite/detail/serializer.h
+  /usr/include/treelite/detail/serializer_mixins.h
+  /usr/include/treelite/detail/threading_utils.h
+  /usr/include/treelite/detail/tree.h
+  /usr/include/treelite/enum/operator.h
+  /usr/include/treelite/enum/task_type.h
+  /usr/include/treelite/enum/tree_node_type.h
+  /usr/include/treelite/enum/typeinfo.h
+  /usr/include/treelite/error.h
   /usr/include/treelite/gtil.h
   /usr/include/treelite/logging.h
-  /usr/include/treelite/math.h
-  /usr/include/treelite/omp.h
-  /usr/include/treelite/optional.h
-  /usr/include/treelite/predictor.h
+  /usr/include/treelite/model_builder.h
+  /usr/include/treelite/model_loader.h
+  /usr/include/treelite/pybuffer_frame.h
   /usr/include/treelite/thread_local.h
   /usr/include/treelite/tree.h
-  /usr/include/treelite/tree_impl.h
-  /usr/include/treelite/typeinfo.h
   /usr/include/treelite/version.h
   /usr/lib/cmake/treelite/TreeliteConfig.cmake
   /usr/lib/cmake/treelite/TreeliteConfigVersion.cmake
-  /usr/lib/cmake/treelite/TreeliteTargets-release.cmake
+  /usr/lib/cmake/treelite/TreeliteTargets-relwithdebinfo.cmake
   /usr/lib/cmake/treelite/TreeliteTargets.cmake
   /usr/lib/libtreelite.dll.a
-  /usr/lib/libtreelite_runtime.dll.a
 
 ------------------
 
 Port Notes:
+
+----- version 4.8.1-1bl1 -----
+Version bump.
 
 ----- version 2.1.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

@@ -1,0 +1,12 @@
+--- origsrc/treelite-4.8.1/CMakeLists.txt	2026-10-27 18:21:43.000000000 +0000
++++ src/treelite-4.8.1/CMakeLists.txt	2026-11-02 23:13:46.607574000 +0000
+@@ -124,6 +124,9 @@ endif()
+ 
+ foreach(lib ${TREELITE_TARGETS})
+   set_output_directory(${lib} ${PROJECT_BINARY_DIR})
++  if(CYGWIN)
++    set_target_properties(${lib} PROPERTIES SOVERSION ${SOVERSION})
++  endif()
+   if(MSVC)
+     set_target_properties(${lib} PROPERTIES
+       MSVC_RUNTIME_LIBRARY "${Treelite_MSVC_RUNTIME_LIBRARY}")

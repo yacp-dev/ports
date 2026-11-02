@@ -6,12 +6,26 @@ SUMMARY="Model compiler for decision tree ensembles"
 DESCRIPTION="Treelite is a model compiler for efficient deployment of decision tree
 ensembles."
 
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libfmt-devel
+	libgmock-devel
+	libgtest-devel
+	mdspan
+	nlohmann_json
+	rapidjson-devel
+"
+
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_CPP_TEST:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DSOVERSION:STRING=${PV[1]}
 "
 
@@ -23,19 +37,19 @@ src_test()
 
 PKG_NAMES="
 	treelite
-	libtreelite2
+	libtreelite4
 	libtreelite-devel
 "
 treelite_CONTENTS="
 	usr/share
 "
-libtreelite2_CONTENTS="
-	usr/bin
+libtreelite4_CONTENTS="
+	usr/bin/cyg*-4.dll
 "
 libtreelite_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 treelite_SUMMARY="${SUMMARY} (licensing & readmes)"
-libtreelite2_SUMMARY="${SUMMARY} (runtime)"
+libtreelite4_SUMMARY="${SUMMARY} (runtime)"
 libtreelite_devel_SUMMARY="${SUMMARY} (development)"

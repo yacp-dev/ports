@@ -3,48 +3,50 @@ tgbot-cpp
 C++ library for Telegram bot API
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libTgBot-devel-1.8-1bl1
-  libTgBot1-1.8-1bl1
+  cygwin-3.6.12-1
+  libTgBot-devel-1.13-1bl1
+  libTgBot1.13-1.13-1bl1
+  libboost-devel-1.66.0-1
   libboost_system1.66-1.66.0-1
-  libcurl4-8.8.0-1
-  libgcc1-11.4.0-1
-  libssl3-3.0.14-1
-  libstdc++6-11.4.0-1
-  pkg-config-2.2.0-1
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  nlohmann_json-3.12.0-1bl3
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.42-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  libcurl-devel-8.8.0-1
-  libssl-devel-3.0.14-1
-  ninja-1.12.0-1
+  libcurl-devel-8.23.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
+  nlohmann_json-3.12.0-1bl3
 
 Canonical website:
   https://github.com/reo7sp/tgbot-cpp
 
 Canonical download:
-  https://github.com/reo7sp/tgbot-cpp/archive/refs/tags/v1.8.tar.gz
+  https://github.com/reo7sp/tgbot-cpp/archive/refs/tags/v1.13.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack tgbot-cpp-1.8-X-src.tar.xz
+  1. unpack tgbot-cpp-1.13-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./tgbot-cpp-1.8-X.cygport all
+        % cygport ./tgbot-cpp-1.13-X.cygport all
 
 This will create:
-  /usr/src/tgbot-cpp-1.8-X-src.tar.xz
-  /usr/src/tgbot-cpp-1.8-X.tar.xz
-  /usr/src/libTgBot1-1.8-X.tar.xz
-  /usr/src/libTgBot-devel-1.8-X.tar.xz
+  /usr/src/tgbot-cpp-1.13-X-src.tar.xz
+  /usr/src/tgbot-cpp-1.13-X.tar.xz
+  /usr/src/libTgBot1.13-1.13-X.tar.xz
+  /usr/src/libTgBot-devel-1.13-X.tar.xz
 
 -------------------------------------------
 
@@ -55,229 +57,42 @@ Files included in the binary package:
   /usr/share/doc/tgbot-cpp/LICENSE
   /usr/share/doc/tgbot-cpp/README.md
 
-(libTgBot1)
-  /usr/bin/cygTgBot-1.dll
+(libTgBot1.13)
+  /usr/bin/cygTgBot-1.13.dll
 
 (libTgBot-devel)
   /usr/include/tgbot/Api.h
+  /usr/include/tgbot/ApiCodec.h
+  /usr/include/tgbot/ApiMethods.inc.h
   /usr/include/tgbot/Bot.h
+  /usr/include/tgbot/CurlHttpClient.h
   /usr/include/tgbot/EventBroadcaster.h
   /usr/include/tgbot/EventHandler.h
+  /usr/include/tgbot/HttpClient.h
+  /usr/include/tgbot/HttpFormField.h
+  /usr/include/tgbot/HttpServer.h
+  /usr/include/tgbot/InputFile.h
+  /usr/include/tgbot/Json.h
   /usr/include/tgbot/TgException.h
-  /usr/include/tgbot/TgTypeParser.h
+  /usr/include/tgbot/TgLongPoll.h
+  /usr/include/tgbot/TgWebhookLocalServer.h
+  /usr/include/tgbot/TgWebhookServer.h
+  /usr/include/tgbot/TgWebhookTcpServer.h
+  /usr/include/tgbot/Types.h
   /usr/include/tgbot/export.h
-  /usr/include/tgbot/net/BoostHttpOnlySslClient.h
-  /usr/include/tgbot/net/CurlHttpClient.h
-  /usr/include/tgbot/net/HttpClient.h
-  /usr/include/tgbot/net/HttpParser.h
-  /usr/include/tgbot/net/HttpReqArg.h
-  /usr/include/tgbot/net/HttpServer.h
-  /usr/include/tgbot/net/TgLongPoll.h
-  /usr/include/tgbot/net/TgWebhookLocalServer.h
-  /usr/include/tgbot/net/TgWebhookServer.h
-  /usr/include/tgbot/net/TgWebhookTcpServer.h
-  /usr/include/tgbot/net/Url.h
   /usr/include/tgbot/tgbot.h
-  /usr/include/tgbot/tools/FileTools.h
-  /usr/include/tgbot/tools/StringTools.h
-  /usr/include/tgbot/types/Animation.h
-  /usr/include/tgbot/types/Audio.h
-  /usr/include/tgbot/types/Birthdate.h
-  /usr/include/tgbot/types/BotCommand.h
-  /usr/include/tgbot/types/BotCommandScope.h
-  /usr/include/tgbot/types/BotCommandScopeAllChatAdministrators.h
-  /usr/include/tgbot/types/BotCommandScopeAllGroupChats.h
-  /usr/include/tgbot/types/BotCommandScopeAllPrivateChats.h
-  /usr/include/tgbot/types/BotCommandScopeChat.h
-  /usr/include/tgbot/types/BotCommandScopeChatAdministrators.h
-  /usr/include/tgbot/types/BotCommandScopeChatMember.h
-  /usr/include/tgbot/types/BotCommandScopeDefault.h
-  /usr/include/tgbot/types/BotDescription.h
-  /usr/include/tgbot/types/BotName.h
-  /usr/include/tgbot/types/BotShortDescription.h
-  /usr/include/tgbot/types/BusinessConnection.h
-  /usr/include/tgbot/types/BusinessIntro.h
-  /usr/include/tgbot/types/BusinessLocation.h
-  /usr/include/tgbot/types/BusinessMessagesDeleted.h
-  /usr/include/tgbot/types/BusinessOpeningHours.h
-  /usr/include/tgbot/types/BusinessOpeningHoursInterval.h
-  /usr/include/tgbot/types/CallbackGame.h
-  /usr/include/tgbot/types/CallbackQuery.h
-  /usr/include/tgbot/types/Chat.h
-  /usr/include/tgbot/types/ChatAdministratorRights.h
-  /usr/include/tgbot/types/ChatBoost.h
-  /usr/include/tgbot/types/ChatBoostAdded.h
-  /usr/include/tgbot/types/ChatBoostRemoved.h
-  /usr/include/tgbot/types/ChatBoostSource.h
-  /usr/include/tgbot/types/ChatBoostSourceGiftCode.h
-  /usr/include/tgbot/types/ChatBoostSourceGiveaway.h
-  /usr/include/tgbot/types/ChatBoostSourcePremium.h
-  /usr/include/tgbot/types/ChatBoostUpdated.h
-  /usr/include/tgbot/types/ChatInviteLink.h
-  /usr/include/tgbot/types/ChatJoinRequest.h
-  /usr/include/tgbot/types/ChatLocation.h
-  /usr/include/tgbot/types/ChatMember.h
-  /usr/include/tgbot/types/ChatMemberAdministrator.h
-  /usr/include/tgbot/types/ChatMemberBanned.h
-  /usr/include/tgbot/types/ChatMemberLeft.h
-  /usr/include/tgbot/types/ChatMemberMember.h
-  /usr/include/tgbot/types/ChatMemberOwner.h
-  /usr/include/tgbot/types/ChatMemberRestricted.h
-  /usr/include/tgbot/types/ChatMemberUpdated.h
-  /usr/include/tgbot/types/ChatPermissions.h
-  /usr/include/tgbot/types/ChatPhoto.h
-  /usr/include/tgbot/types/ChatShared.h
-  /usr/include/tgbot/types/ChosenInlineResult.h
-  /usr/include/tgbot/types/Contact.h
-  /usr/include/tgbot/types/Dice.h
-  /usr/include/tgbot/types/Document.h
-  /usr/include/tgbot/types/EncryptedCredentials.h
-  /usr/include/tgbot/types/EncryptedPassportElement.h
-  /usr/include/tgbot/types/ExternalReplyInfo.h
-  /usr/include/tgbot/types/File.h
-  /usr/include/tgbot/types/ForceReply.h
-  /usr/include/tgbot/types/ForumTopic.h
-  /usr/include/tgbot/types/ForumTopicClosed.h
-  /usr/include/tgbot/types/ForumTopicCreated.h
-  /usr/include/tgbot/types/ForumTopicEdited.h
-  /usr/include/tgbot/types/ForumTopicReopened.h
-  /usr/include/tgbot/types/Game.h
-  /usr/include/tgbot/types/GameHighScore.h
-  /usr/include/tgbot/types/GeneralForumTopicHidden.h
-  /usr/include/tgbot/types/GeneralForumTopicUnhidden.h
-  /usr/include/tgbot/types/GenericReply.h
-  /usr/include/tgbot/types/Giveaway.h
-  /usr/include/tgbot/types/GiveawayCompleted.h
-  /usr/include/tgbot/types/GiveawayCreated.h
-  /usr/include/tgbot/types/GiveawayWinners.h
-  /usr/include/tgbot/types/InaccessibleMessage.h
-  /usr/include/tgbot/types/InlineKeyboardButton.h
-  /usr/include/tgbot/types/InlineKeyboardMarkup.h
-  /usr/include/tgbot/types/InlineQuery.h
-  /usr/include/tgbot/types/InlineQueryResult.h
-  /usr/include/tgbot/types/InlineQueryResultArticle.h
-  /usr/include/tgbot/types/InlineQueryResultAudio.h
-  /usr/include/tgbot/types/InlineQueryResultCachedAudio.h
-  /usr/include/tgbot/types/InlineQueryResultCachedDocument.h
-  /usr/include/tgbot/types/InlineQueryResultCachedGif.h
-  /usr/include/tgbot/types/InlineQueryResultCachedMpeg4Gif.h
-  /usr/include/tgbot/types/InlineQueryResultCachedPhoto.h
-  /usr/include/tgbot/types/InlineQueryResultCachedSticker.h
-  /usr/include/tgbot/types/InlineQueryResultCachedVideo.h
-  /usr/include/tgbot/types/InlineQueryResultCachedVoice.h
-  /usr/include/tgbot/types/InlineQueryResultContact.h
-  /usr/include/tgbot/types/InlineQueryResultDocument.h
-  /usr/include/tgbot/types/InlineQueryResultGame.h
-  /usr/include/tgbot/types/InlineQueryResultGif.h
-  /usr/include/tgbot/types/InlineQueryResultLocation.h
-  /usr/include/tgbot/types/InlineQueryResultMpeg4Gif.h
-  /usr/include/tgbot/types/InlineQueryResultPhoto.h
-  /usr/include/tgbot/types/InlineQueryResultVenue.h
-  /usr/include/tgbot/types/InlineQueryResultVideo.h
-  /usr/include/tgbot/types/InlineQueryResultVoice.h
-  /usr/include/tgbot/types/InlineQueryResultsButton.h
-  /usr/include/tgbot/types/InputContactMessageContent.h
-  /usr/include/tgbot/types/InputFile.h
-  /usr/include/tgbot/types/InputInvoiceMessageContent.h
-  /usr/include/tgbot/types/InputLocationMessageContent.h
-  /usr/include/tgbot/types/InputMedia.h
-  /usr/include/tgbot/types/InputMediaAnimation.h
-  /usr/include/tgbot/types/InputMediaAudio.h
-  /usr/include/tgbot/types/InputMediaDocument.h
-  /usr/include/tgbot/types/InputMediaPhoto.h
-  /usr/include/tgbot/types/InputMediaVideo.h
-  /usr/include/tgbot/types/InputMessageContent.h
-  /usr/include/tgbot/types/InputSticker.h
-  /usr/include/tgbot/types/InputTextMessageContent.h
-  /usr/include/tgbot/types/InputVenueMessageContent.h
-  /usr/include/tgbot/types/Invoice.h
-  /usr/include/tgbot/types/KeyboardButton.h
-  /usr/include/tgbot/types/KeyboardButtonPollType.h
-  /usr/include/tgbot/types/KeyboardButtonRequestChat.h
-  /usr/include/tgbot/types/KeyboardButtonRequestUsers.h
-  /usr/include/tgbot/types/LabeledPrice.h
-  /usr/include/tgbot/types/LinkPreviewOptions.h
-  /usr/include/tgbot/types/Location.h
-  /usr/include/tgbot/types/LoginUrl.h
-  /usr/include/tgbot/types/MaskPosition.h
-  /usr/include/tgbot/types/MenuButton.h
-  /usr/include/tgbot/types/MenuButtonCommands.h
-  /usr/include/tgbot/types/MenuButtonDefault.h
-  /usr/include/tgbot/types/MenuButtonWebApp.h
-  /usr/include/tgbot/types/Message.h
-  /usr/include/tgbot/types/MessageAutoDeleteTimerChanged.h
-  /usr/include/tgbot/types/MessageEntity.h
-  /usr/include/tgbot/types/MessageId.h
-  /usr/include/tgbot/types/MessageOrigin.h
-  /usr/include/tgbot/types/MessageOriginChannel.h
-  /usr/include/tgbot/types/MessageOriginChat.h
-  /usr/include/tgbot/types/MessageOriginHiddenUser.h
-  /usr/include/tgbot/types/MessageOriginUser.h
-  /usr/include/tgbot/types/MessageReactionCountUpdated.h
-  /usr/include/tgbot/types/MessageReactionUpdated.h
-  /usr/include/tgbot/types/OrderInfo.h
-  /usr/include/tgbot/types/PassportData.h
-  /usr/include/tgbot/types/PassportElementError.h
-  /usr/include/tgbot/types/PassportElementErrorDataField.h
-  /usr/include/tgbot/types/PassportElementErrorFile.h
-  /usr/include/tgbot/types/PassportElementErrorFiles.h
-  /usr/include/tgbot/types/PassportElementErrorFrontSide.h
-  /usr/include/tgbot/types/PassportElementErrorReverseSide.h
-  /usr/include/tgbot/types/PassportElementErrorSelfie.h
-  /usr/include/tgbot/types/PassportElementErrorTranslationFile.h
-  /usr/include/tgbot/types/PassportElementErrorTranslationFiles.h
-  /usr/include/tgbot/types/PassportElementErrorUnspecified.h
-  /usr/include/tgbot/types/PassportFile.h
-  /usr/include/tgbot/types/PhotoSize.h
-  /usr/include/tgbot/types/Poll.h
-  /usr/include/tgbot/types/PollAnswer.h
-  /usr/include/tgbot/types/PollOption.h
-  /usr/include/tgbot/types/PreCheckoutQuery.h
-  /usr/include/tgbot/types/ProximityAlertTriggered.h
-  /usr/include/tgbot/types/ReactionCount.h
-  /usr/include/tgbot/types/ReactionType.h
-  /usr/include/tgbot/types/ReactionTypeCustomEmoji.h
-  /usr/include/tgbot/types/ReactionTypeEmoji.h
-  /usr/include/tgbot/types/ReplyKeyboardMarkup.h
-  /usr/include/tgbot/types/ReplyKeyboardRemove.h
-  /usr/include/tgbot/types/ReplyParameters.h
-  /usr/include/tgbot/types/ResponseParameters.h
-  /usr/include/tgbot/types/SentWebAppMessage.h
-  /usr/include/tgbot/types/SharedUser.h
-  /usr/include/tgbot/types/ShippingAddress.h
-  /usr/include/tgbot/types/ShippingOption.h
-  /usr/include/tgbot/types/ShippingQuery.h
-  /usr/include/tgbot/types/Sticker.h
-  /usr/include/tgbot/types/StickerSet.h
-  /usr/include/tgbot/types/Story.h
-  /usr/include/tgbot/types/SuccessfulPayment.h
-  /usr/include/tgbot/types/SwitchInlineQueryChosenChat.h
-  /usr/include/tgbot/types/TextQuote.h
-  /usr/include/tgbot/types/Update.h
-  /usr/include/tgbot/types/User.h
-  /usr/include/tgbot/types/UserChatBoosts.h
-  /usr/include/tgbot/types/UserProfilePhotos.h
-  /usr/include/tgbot/types/UsersShared.h
-  /usr/include/tgbot/types/Venue.h
-  /usr/include/tgbot/types/Video.h
-  /usr/include/tgbot/types/VideoChatEnded.h
-  /usr/include/tgbot/types/VideoChatParticipantsInvited.h
-  /usr/include/tgbot/types/VideoChatScheduled.h
-  /usr/include/tgbot/types/VideoChatStarted.h
-  /usr/include/tgbot/types/VideoNote.h
-  /usr/include/tgbot/types/Voice.h
-  /usr/include/tgbot/types/WebAppData.h
-  /usr/include/tgbot/types/WebAppInfo.h
-  /usr/include/tgbot/types/WebhookInfo.h
-  /usr/include/tgbot/types/WriteAccessAllowed.h
-  /usr/lib/cmake/TgBot/TgBotConfig-release.cmake
   /usr/lib/cmake/TgBot/TgBotConfig.cmake
+  /usr/lib/cmake/TgBot/TgBotTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/TgBot/TgBotTargets.cmake
   /usr/lib/libTgBot.dll.a
   /usr/lib/pkgconfig/tgbot-cpp.pc
 
 ------------------
 
 Port Notes:
+
+----- version 1.13-1bl1 -----
+Version bump.
 
 ----- version 1.8-1bl1 -----
 Version bump.

@@ -9,7 +9,12 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libboost-devel libcurl-devel libssl-devel"
+BUILD_REQUIRES="
+	libboost-devel
+	libcurl-devel
+	libgtest-devel
+	nlohmann_json
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -23,25 +28,26 @@ src_test()
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_GTEST_DISCOVER_TESTS_DISCOVERY_MODE:STRING=PRE_TEST
 	-DENABLE_TESTS:BOOL=ON
 	-DVERSION:STRING=${PV}
 "
 
 PKG_NAMES="
 	tgbot-cpp
-	libTgBot1
+	libTgBot${PV}
 	libTgBot-devel
 "
 tgbot_cpp_CONTENTS="
 	usr/share
 "
-libTgBot1_CONTENTS="
-	usr/bin/cyg*-1.dll
+libTgBot1_13_CONTENTS="
+	usr/bin/cygTgBot-${PV}.dll
 "
 libTgBot_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 tgbot_cpp_SUMMARY="${SUMMARY} (licensing & readmes)"
-libTgBot1_SUMMARY="${SUMMARY} (runtime)"
+libTgBot1_13_SUMMARY="${SUMMARY} (runtime)"
 libTgBot_devel_SUMMARY="${SUMMARY} (development)"

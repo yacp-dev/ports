@@ -1,0 +1,48 @@
+--- origsrc/ta-lib-0.8.3/src/Makefile.am	2026-10-25 13:31:27.000000000 +0000
++++ src/ta-lib-0.8.3/src/Makefile.am	2026-11-02 06:29:27.199591700 +0000
+@@ -11,7 +11,7 @@ libta_lib_la_LIBADD = \
+   ta_common/libta_common.la \
+   $(LIBM)
+ 
+-libta_lib_la_LDFLAGS = -version-info $(TALIB_LIBRARY_VERSION) $(TA_VERSION_SCRIPT_FLAGS)
++libta_lib_la_LDFLAGS = -version-info $(TALIB_LIBRARY_VERSION) $(TA_VERSION_SCRIPT_FLAGS) -no-undefined
+ 
+ talibincludedir = $(includedir)/ta-lib
+ talibinclude_HEADERS = ../include/ta_abstract.h \
+--- origsrc/ta-lib-0.8.3/src/ta_func/ta_utility.h	2026-10-25 13:31:27.000000000 +0000
++++ src/ta-lib-0.8.3/src/ta_func/ta_utility.h	2026-11-02 06:29:27.200371600 +0000
+@@ -15,6 +15,13 @@
+    #include "ta_global.h"
+ #endif
+ 
++/* newlib's fma() is (x * y) + z, with two roundings. The 113-bit product is
++ * exact, so this one has the single rounding the results here are defined by. */
++#ifdef __CYGWIN__
++   #include <math.h>
++   #define fma(x,y,z) ((double)( (__float128)(x) * (y) + (z) ))
++#endif
++
+ /* FMA runtime CPU dispatch (PR #96): mark fused indicators with target_clones so
+  * a portable baseline build (e.g. a manylinux wheel) dispatches to a hardware-fma
+  * clone at load — no -mfma, no SIGILL on pre-2013 CPUs. glibc-only: target_clones
+--- origsrc/ta-lib-0.8.3/src/tools/ta_regtest/Makefile.am	2026-10-25 13:31:27.000000000 +0000
++++ src/ta-lib-0.8.3/src/tools/ta_regtest/Makefile.am	2026-11-02 06:29:27.201603200 +0000
+@@ -123,7 +123,7 @@ ta_regtest_LDFLAGS = -no-undefined
+ # .libs/ta_regtest, which libtool creates only for a libtool-linked binary.
+ ta_regtest_LDADD = ../../libta-lib.la $(LIBM)
+ 
+-all-local: ta_regtest
++all-local: ta_regtest$(EXEEXT)
+ 	$(LIBTOOL) --mode=execute $(srcdir)/../post-build-bin.sh ta_regtest
+ 
+ clean-local:
+--- origsrc/ta-lib-0.8.3/src/tools/ta_regtest/ta_test_reference.c	2026-10-25 13:31:27.000000000 +0000
++++ src/ta-lib-0.8.3/src/tools/ta_regtest/ta_test_reference.c	2026-11-02 06:29:27.202399200 +0000
+@@ -66,6 +66,7 @@
+ #include <stddef.h>
+ 
+ #include "ta_test_reference.h"
++#include "ta_utility.h"
+ 
+ /**** External functions declarations. ****/
+ /* None */

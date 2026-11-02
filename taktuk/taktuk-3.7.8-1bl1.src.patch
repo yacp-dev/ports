@@ -1,5 +1,5 @@
---- origsrc/taktuk-3.7.7/C-Module/Makefile.am	2017-07-28 17:04:49.000000000 +0900
-+++ src/taktuk-3.7.7/C-Module/Makefile.am	2017-12-20 23:37:57.765000200 +0900
+--- origsrc/taktuk-version-3.7.8/C-Module/Makefile.am	2025-09-22 10:36:16.000000000 +0000
++++ src/taktuk-version-3.7.8/C-Module/Makefile.am	2026-11-02 12:03:21.542416900 +0000
 @@ -47,4 +47,4 @@ libtaktuk_la_SOURCES = taktuk.c taktuk.h
  #   6. If any interfaces have been removed since the last public release, then
  #      set age to 0. 

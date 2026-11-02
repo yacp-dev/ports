@@ -4,50 +4,49 @@ TakTuk is a tool for deploying parallel remote executions of commands to a
 potentially large set of remote nodes. It spreads itself using an adaptive
 algorithm and sets up an interconnection network to transport commands and
 perform I/Os multiplexing/demultiplexing. The TakTuk mechanics dynamically
-adapt to environment (machine performance and current load, network
-contention) by using a reactive work-stealing algorithm that mixes local
-parallelization and work distribution.
+adapt to environment (machine performance and current load, network contention)
+by using a reactive work-stealing algorithm that mixes local parallelization
+and work distribution.
 
 Runtime requirements:
-  cygwin-2.9.0-3
-  libtaktuk-devel-3.7.7-1bl1
-  libtaktuk3-3.7.7-1bl1
-  perl-5.26.1-1
-  perl-Socket-2.024-3
-  perl_base-5.26.1-1
-  pkg-config-0.29.1-1
+  cygwin-3.6.12-1
+  libtaktuk-devel-3.7.8-1bl1
+  libtaktuk3-3.7.8-1bl1
+  perl-5.44.0-1
+  perl_base-5.44.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-10-1
-  binutils-2.29-1
-  cygport-0.25.0-1
-  gcc-core-6.4.0-4
-  libtool-2.4.6-5
-  make-4.2.1-2
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
-  http://taktuk.gforge.inria.fr/
+  https://taktuk.gitlabpages.inria.fr/
 
 Canonical download:
-  http://gforge.inria.fr/frs/download.php/37055/taktuk-3.7.7.tar.gz
+  https://gitlab.inria.fr/taktuk/taktuk/-/archive/version-3.7.8/taktuk-version-3.7.8.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack taktuk-3.7.7-X-src.tar.xz
+  1. unpack taktuk-3.7.8-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./taktuk-3.7.7-X.cygport all
+        % cygport ./taktuk-3.7.8-X.cygport all
 
 This will create:
-  /usr/src/taktuk-3.7.7-X-src.tar.xz
-  /usr/src/taktuk-3.7.7-X.tar.xz
-  /usr/src/libtaktuk3-3.7.7-X.tar.xz
-  /usr/src/libtaktuk-devel-3.7.7-X.tar.xz
-  /usr/src/perl-taktuk-3.7.7-X.tar.xz
+  /usr/src/taktuk-3.7.8-X-src.tar.xz
+  /usr/src/taktuk-3.7.8-X.tar.xz
+  /usr/src/libtaktuk3-3.7.8-X.tar.xz
+  /usr/src/libtaktuk-devel-3.7.8-X.tar.xz
+  /usr/src/perl-taktuk-3.7.8-X.tar.xz
 
 -------------------------------------------
 
@@ -57,7 +56,7 @@ Files included in the binary package:
   /usr/bin/taktuk
   /usr/share/doc/Cygwin/taktuk.README
   /usr/share/doc/taktuk/AUTHORS
-  /usr/share/doc/taktuk/BUGS
+  /usr/share/doc/taktuk/Bugs
   /usr/share/doc/taktuk/COPYING
   /usr/share/doc/taktuk/ChangeLog
   /usr/share/doc/taktuk/NEWS
@@ -81,13 +80,16 @@ Files included in the binary package:
 (perl-taktuk)
   /usr/share/man/man3/TakTuk.3pm.gz
   /usr/share/man/man3/TakTuk.Pilot.3pm.gz
-  /usr/share/perl5/site_perl/5.26/TakTuk.pm
-  /usr/share/perl5/site_perl/5.26/TakTuk/Pilot.pm
-  /usr/share/perl5/site_perl/5.26/TakTuk/Select.pm
+  /usr/share/perl5/site_perl/5.44/TakTuk.pm
+  /usr/share/perl5/site_perl/5.44/TakTuk/Pilot.pm
+  /usr/share/perl5/site_perl/5.44/TakTuk/Select.pm
 
 ------------------
 
 Port Notes:
+
+----- version 3.7.8-1bl1 -----
+Version bump.
 
 ----- version 3.7.7-1bl1 -----
 Version bump.

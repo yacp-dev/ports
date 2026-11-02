@@ -1,0 +1,150 @@
+--- origsrc/mdspan-mdspan-0.6.0/include/experimental/__p0009_bits/compressed_pair.hpp	2023-04-05 00:06:31.000000000 +0000
++++ src/mdspan-mdspan-0.6.0/include/experimental/__p0009_bits/compressed_pair.hpp	2026-11-02 14:42:33.078185100 +0000
+@@ -28,15 +28,15 @@ namespace detail {
+ 
+ // For no unique address emulation, this is the case taken when neither are empty.
+ // For real `[[no_unique_address]]`, this case is always taken.
+-template <class _T, class _U, class _Enable = void> struct __compressed_pair {
++template <class _T, class _Up, class _Enable = void> struct __compressed_pair {
+   _MDSPAN_NO_UNIQUE_ADDRESS _T __t_val;
+-  _MDSPAN_NO_UNIQUE_ADDRESS _U __u_val;
++  _MDSPAN_NO_UNIQUE_ADDRESS _Up __u_val;
+   MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _T &__first() noexcept { return __t_val; }
+   MDSPAN_FORCE_INLINE_FUNCTION constexpr _T const &__first() const noexcept {
+     return __t_val;
+   }
+-  MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _U &__second() noexcept { return __u_val; }
+-  MDSPAN_FORCE_INLINE_FUNCTION constexpr _U const &__second() const noexcept {
++  MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _Up &__second() noexcept { return __u_val; }
++  MDSPAN_FORCE_INLINE_FUNCTION constexpr _Up const &__second() const noexcept {
+     return __u_val;
+   }
+ 
+@@ -62,20 +62,20 @@ template <class _T, class _U, class _Ena
+ #if !defined(_MDSPAN_USE_ATTRIBUTE_NO_UNIQUE_ADDRESS)
+ 
+ // First empty.
+-template <class _T, class _U>
++template <class _T, class _Up>
+ struct __compressed_pair<
+-    _T, _U,
+-    enable_if_t<_MDSPAN_TRAIT(is_empty, _T) && !_MDSPAN_TRAIT(is_empty, _U)>>
++    _T, _Up,
++    enable_if_t<_MDSPAN_TRAIT(is_empty, _T) && !_MDSPAN_TRAIT(is_empty, _Up)>>
+     : private _T {
+-  _U __u_val;
++  _Up __u_val;
+   MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _T &__first() noexcept {
+     return *static_cast<_T *>(this);
+   }
+   MDSPAN_FORCE_INLINE_FUNCTION constexpr _T const &__first() const noexcept {
+     return *static_cast<_T const *>(this);
+   }
+-  MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _U &__second() noexcept { return __u_val; }
+-  MDSPAN_FORCE_INLINE_FUNCTION constexpr _U const &__second() const noexcept {
++  MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _Up &__second() noexcept { return __u_val; }
++  MDSPAN_FORCE_INLINE_FUNCTION constexpr _Up const &__second() const noexcept {
+     return __u_val;
+   }
+ 
+@@ -99,21 +99,21 @@ struct __compressed_pair<
+ };
+ 
+ // Second empty.
+-template <class _T, class _U>
++template <class _T, class _Up>
+ struct __compressed_pair<
+-    _T, _U,
+-    enable_if_t<!_MDSPAN_TRAIT(is_empty, _T) && _MDSPAN_TRAIT(is_empty, _U)>>
+-    : private _U {
++    _T, _Up,
++    enable_if_t<!_MDSPAN_TRAIT(is_empty, _T) && _MDSPAN_TRAIT(is_empty, _Up)>>
++    : private _Up {
+   _T __t_val;
+   MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _T &__first() noexcept { return __t_val; }
+   MDSPAN_FORCE_INLINE_FUNCTION constexpr _T const &__first() const noexcept {
+     return __t_val;
+   }
+-  MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _U &__second() noexcept {
+-    return *static_cast<_U *>(this);
++  MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _Up &__second() noexcept {
++    return *static_cast<_Up *>(this);
+   }
+-  MDSPAN_FORCE_INLINE_FUNCTION constexpr _U const &__second() const noexcept {
+-    return *static_cast<_U const *>(this);
++  MDSPAN_FORCE_INLINE_FUNCTION constexpr _Up const &__second() const noexcept {
++    return *static_cast<_Up const *>(this);
+   }
+ 
+   MDSPAN_INLINE_FUNCTION_DEFAULTED
+@@ -133,28 +133,28 @@ struct __compressed_pair<
+ 
+   template <class _TLike, class _ULike>
+   MDSPAN_INLINE_FUNCTION constexpr __compressed_pair(_TLike &&__t, _ULike &&__u)
+-      : _U((_ULike &&) __u), __t_val((_TLike &&) __t) {}
++      : _Up((_ULike &&) __u), __t_val((_TLike &&) __t) {}
+ };
+ 
+ // Both empty.
+-template <class _T, class _U>
++template <class _T, class _Up>
+ struct __compressed_pair<
+-    _T, _U,
+-    enable_if_t<_MDSPAN_TRAIT(is_empty, _T) && _MDSPAN_TRAIT(is_empty, _U)>>
++    _T, _Up,
++    enable_if_t<_MDSPAN_TRAIT(is_empty, _T) && _MDSPAN_TRAIT(is_empty, _Up)>>
+     // We need to use the __no_unique_address_emulation wrapper here to avoid
+     // base class ambiguities.
+ #ifdef _MDSPAN_COMPILER_MSVC
+ // MSVC doesn't allow you to access public static member functions of a type
+ // when you *happen* to privately inherit from that type.
+     : protected __no_unique_address_emulation<_T, 0>,
+-      protected __no_unique_address_emulation<_U, 1>
++      protected __no_unique_address_emulation<_Up, 1>
+ #else
+     : private __no_unique_address_emulation<_T, 0>,
+-      private __no_unique_address_emulation<_U, 1>
++      private __no_unique_address_emulation<_Up, 1>
+ #endif
+ {
+   using __first_base_t = __no_unique_address_emulation<_T, 0>;
+-  using __second_base_t = __no_unique_address_emulation<_U, 1>;
++  using __second_base_t = __no_unique_address_emulation<_Up, 1>;
+ 
+   MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _T &__first() noexcept {
+     return this->__first_base_t::__ref();
+@@ -162,10 +162,10 @@ struct __compressed_pair<
+   MDSPAN_FORCE_INLINE_FUNCTION constexpr _T const &__first() const noexcept {
+     return this->__first_base_t::__ref();
+   }
+-  MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _U &__second() noexcept {
++  MDSPAN_FORCE_INLINE_FUNCTION _MDSPAN_CONSTEXPR_14 _Up &__second() noexcept {
+     return this->__second_base_t::__ref();
+   }
+-  MDSPAN_FORCE_INLINE_FUNCTION constexpr _U const &__second() const noexcept {
++  MDSPAN_FORCE_INLINE_FUNCTION constexpr _Up const &__second() const noexcept {
+     return this->__second_base_t::__ref();
+   }
+ 
+@@ -186,7 +186,7 @@ struct __compressed_pair<
+   template <class _TLike, class _ULike>
+   MDSPAN_INLINE_FUNCTION constexpr __compressed_pair(_TLike &&__t, _ULike &&__u) noexcept
+     : __first_base_t(_T((_TLike &&) __t)),
+-      __second_base_t(_U((_ULike &&) __u))
++      __second_base_t(_Up((_ULike &&) __u))
+   { }
+ };
+ 
+--- origsrc/mdspan-mdspan-0.6.0/include/experimental/__p0009_bits/trait_backports.hpp	2023-04-05 00:06:31.000000000 +0000
++++ src/mdspan-mdspan-0.6.0/include/experimental/__p0009_bits/trait_backports.hpp	2026-11-02 14:42:33.078949400 +0000
+@@ -117,8 +117,8 @@ namespace std {
+ _MDSPAN_BACKPORT_TRAIT_ALIAS(remove_cv)
+ _MDSPAN_BACKPORT_TRAIT_ALIAS(remove_reference)
+ 
+-template <bool _B, class _T=void>
+-using enable_if_t = typename enable_if<_B, _T>::type;
++template <bool _Bp, class _T=void>
++using enable_if_t = typename enable_if<_Bp, _T>::type;
+ 
+ #undef _MDSPAN_BACKPORT_TRAIT_ALIAS
+ 

@@ -6,28 +6,28 @@ Client-side it defines the interface for EVM implementations to access Ethereum
 environment and state.
 
 Runtime requirements:
-  cygwin-3.5.7-1
-  libevmc12-12.1.0-1bl1
-  libgcc1-12.4.0-3
-  libgtest0-1.15.2-1bl1
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libevmc12-12.1.0-1bl2
+  libgcc1-14.4.0-1
+  libgtest0-1.18.0-1bl1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  CLI11-2.4.2-1bl1
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libgtest-devel-1.15.2-1bl1
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cli11-2.7.2-1bl1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/ethereum/evmc
+  https://github.com/ipsilon/evmc
 
 Canonical download:
-  https://github.com/ethereum/evmc/archive/refs/tags/v12.1.0.tar.gz
+  https://github.com/ipsilon/evmc/archive/refs/tags/v12.1.0.tar.gz
 
 -------------------------------------------
 
@@ -82,7 +82,7 @@ Files included in the binary package:
   /usr/lib/cmake/evmc/EVMC.cmake
   /usr/lib/cmake/evmc/evmcConfig.cmake
   /usr/lib/cmake/evmc/evmcConfigVersion.cmake
-  /usr/lib/cmake/evmc/evmcTargets-release.cmake
+  /usr/lib/cmake/evmc/evmcTargets-relwithdebinfo.cmake
   /usr/lib/cmake/evmc/evmcTargets.cmake
   /usr/lib/libevmc-instructions.dll.a
   /usr/lib/libevmc-loader.dll.a
@@ -91,6 +91,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 12.1.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 12.1.0-1bl1 -----
 Version bump.

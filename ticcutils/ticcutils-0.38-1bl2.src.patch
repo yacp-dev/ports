@@ -1,5 +1,5 @@
 --- origsrc/ticcutils-0.38/configure.ac	2026-08-15 10:13:44.000000000 +0000
-+++ src/ticcutils-0.38/configure.ac	2026-10-03 02:47:18.431451000 +0000
++++ src/ticcutils-0.38/configure.ac	2026-11-02 14:26:07.431097800 +0000
 @@ -103,7 +103,7 @@ PKG_CHECK_MODULES([XML2], [libxml-2.0 >=
  CXXFLAGS="$CXXFLAGS $XML2_CFLAGS"
  LIBS="$LIBS $XML2_LIBS"
@@ -10,7 +10,7 @@
  LIBS="$ICU_LIBS $LIBS"
  
 --- origsrc/ticcutils-0.38/src/Makefile.am	2026-08-15 10:13:44.000000000 +0000
-+++ src/ticcutils-0.38/src/Makefile.am	2026-10-03 02:47:18.431451000 +0000
++++ src/ticcutils-0.38/src/Makefile.am	2026-11-02 14:26:07.431097800 +0000
 @@ -11,6 +11,7 @@ libticcutils_la_SOURCES = LogStream.cxx
  	FileUtils.cxx CommandLine.cxx SocketBasics.cxx ServerBase.cxx \
  	FdStream.cxx Unicode.cxx UniHash.cxx
@@ -19,3 +19,14 @@
  
  check_PROGRAMS = runtest testlogstream
  runtest_SOURCES = runtest.cxx
+--- origsrc/ticcutils-0.38/ticcutils.pc.in	2026-08-15 10:13:44.000000000 +0000
++++ src/ticcutils-0.38/ticcutils.pc.in	2026-11-02 14:26:07.433124000 +0000
+@@ -7,7 +7,7 @@ openmp=@OPENMP_CXXFLAGS@
+ Name: ticcutils
+ Version: @VERSION@
+ Description: TiCC Utils Library.
+-Requires.private:
++Requires: icu-uc icu-io icu-i18n libxml-2.0 zlib bzip2
+ Libs: -L${libdir} -lticcutils
+ Libs.private: @LIBS@
+ Cflags: ${openmp} -I${includedir} 

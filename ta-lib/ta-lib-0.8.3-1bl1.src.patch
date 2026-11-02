@@ -9,3 +9,14 @@
  
  talibincludedir = $(includedir)/ta-lib
  talibinclude_HEADERS = ../include/ta_abstract.h \
+--- origsrc/ta-lib-0.8.3/src/tools/ta_regtest/Makefile.am	2026-11-02 14:24:43.571539042 +0900
++++ src/ta-lib-0.8.3/src/tools/ta_regtest/Makefile.am	2026-11-02 14:36:23.014057777 +0900
+@@ -123,7 +123,7 @@
+ # .libs/ta_regtest, which libtool creates only for a libtool-linked binary.
+ ta_regtest_LDADD = ../../libta-lib.la $(LIBM)
+ 
+-all-local: ta_regtest
++all-local: ta_regtest$(EXEEXT)
+ 	$(LIBTOOL) --mode=execute $(srcdir)/../post-build-bin.sh ta_regtest
+ 
+ clean-local:

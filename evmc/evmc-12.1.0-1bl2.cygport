@@ -1,5 +1,5 @@
-HOMEPAGE="https://github.com/ethereum/${PN}"
-SRC_URI="https://github.com/ethereum/${PN}/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/ipsilon/${PN}"
+SRC_URI="https://github.com/ipsilon/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Devel"
 SUMMARY="Ethereum Client-VM Connector API"
@@ -12,7 +12,10 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="CLI11 libgtest-devel"
+BUILD_REQUIRES="
+	cli11
+	libgtest-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -57,3 +60,4 @@ libevmc_devel_CONTENTS="
 evmc_SUMMARY="${SUMMARY} (utilities)"
 libevmc12_SUMMARY="${SUMMARY} (runtime)"
 libevmc_devel_SUMMARY="${SUMMARY} (development)"
+libevmc_devel_REQUIRES="evmc"

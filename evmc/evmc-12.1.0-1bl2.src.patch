@@ -1,5 +1,5 @@
---- origsrc/evmc-12.1.0/lib/instructions/CMakeLists.txt	2025-02-07 20:57:01.000000000 +0900
-+++ src/evmc-12.1.0/lib/instructions/CMakeLists.txt	2025-02-10 16:52:45.531885100 +0900
+--- origsrc/evmc-12.1.0/lib/instructions/CMakeLists.txt	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/lib/instructions/CMakeLists.txt	2026-11-02 00:41:28.200560300 +0000
 @@ -3,7 +3,7 @@
  # Licensed under the Apache License, Version 2.0.
  
@@ -21,8 +21,8 @@
 -    install(TARGETS instructions EXPORT evmcTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})
 +    install(TARGETS instructions EXPORT evmcTargets RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
  endif()
---- origsrc/evmc-12.1.0/lib/loader/CMakeLists.txt	2025-02-07 20:57:01.000000000 +0900
-+++ src/evmc-12.1.0/lib/loader/CMakeLists.txt	2025-02-10 16:52:45.531885100 +0900
+--- origsrc/evmc-12.1.0/lib/loader/CMakeLists.txt	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/lib/loader/CMakeLists.txt	2026-11-02 00:41:28.202266600 +0000
 @@ -3,7 +3,7 @@
  # Licensed under the Apache License, Version 2.0.
  
@@ -44,8 +44,25 @@
 -    install(TARGETS loader EXPORT evmcTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})
 +    install(TARGETS loader EXPORT evmcTargets RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
  endif()
---- origsrc/evmc-12.1.0/lib/tooling/CMakeLists.txt	2025-02-07 20:57:01.000000000 +0900
-+++ src/evmc-12.1.0/lib/tooling/CMakeLists.txt	2025-02-10 16:52:45.547510900 +0900
+--- origsrc/evmc-12.1.0/lib/loader/loader.c	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/lib/loader/loader.c	2026-11-02 00:41:28.202578500 +0000
+@@ -153,6 +153,14 @@ evmc_create_fn evmc_load(const char* fil
+     if (strncmp(name_pos, lib_prefix, lib_prefix_length) == 0)
+         name_pos += lib_prefix_length;
+ 
++#ifdef __CYGWIN__
++    // Skip "cyg" prefix if present: a DLL on Cygwin is named cyg<name>.dll.
++    const char cyg_prefix[] = "cyg";
++    const size_t cyg_prefix_length = strlen(cyg_prefix);
++    if (strncmp(name_pos, cyg_prefix, cyg_prefix_length) == 0)
++        name_pos += cyg_prefix_length;
++#endif
++
+     char* base_name = prefixed_name + prefix_length;
+     strcpy_sx(base_name, PATH_MAX_LENGTH, name_pos);
+ 
+--- origsrc/evmc-12.1.0/lib/tooling/CMakeLists.txt	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/lib/tooling/CMakeLists.txt	2026-11-02 00:41:28.204294400 +0000
 @@ -2,7 +2,7 @@
  # Copyright 2021 The EVMC Authors.
  # Licensed under the Apache License, Version 2.0.
@@ -71,8 +88,40 @@
 -    install(TARGETS tooling EXPORT evmcTargets ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 +    install(TARGETS tooling EXPORT evmcTargets RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
  endif()
---- origsrc/evmc-12.1.0/test/unittests/CMakeLists.txt	2025-02-07 20:57:01.000000000 +0900
-+++ src/evmc-12.1.0/test/unittests/CMakeLists.txt	2025-02-10 17:07:19.421692700 +0900
+--- origsrc/evmc-12.1.0/test/tools/CMakeLists.txt	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/test/tools/CMakeLists.txt	2026-11-02 00:41:28.204596700 +0000
+@@ -8,6 +8,13 @@ function(add_evmc_tool_test NAME ARGUMEN
+     set_tests_properties(${PROJECT_NAME}/evmc-tool/${NAME} PROPERTIES PASS_REGULAR_EXPRESSION ${EXPECTED_OUTPUT})
+ endfunction()
+ 
++if(CYGWIN)
++    # argv[0] has no .exe on Cygwin.
++    set(evmc_tool_argv0 "$<TARGET_FILE_DIR:evmc::tool>/$<TARGET_FILE_BASE_NAME:evmc::tool>")
++else()
++    set(evmc_tool_argv0 "$<TARGET_FILE:evmc::tool>")
++endif()
++
+ 
+ add_evmc_tool_test(
+     example1
+@@ -18,13 +25,13 @@ add_evmc_tool_test(
+ add_evmc_tool_test(
+     version
+     "--version"
+-    "EVMC ${PROJECT_VERSION} \\($<TARGET_FILE:evmc::tool>\\)"
++    "EVMC ${PROJECT_VERSION} \\(${evmc_tool_argv0}\\)"
+ )
+ 
+ add_evmc_tool_test(
+     version_vm
+     "--vm $<TARGET_FILE:evmc::example-vm> --version"
+-    "example_vm ${PROJECT_VERSION} \\($<TARGET_FILE:evmc::example-vm>\\)[\r\n]EVMC ${PROJECT_VERSION} \\($<TARGET_FILE:evmc::tool>\\)"
++    "example_vm ${PROJECT_VERSION} \\($<TARGET_FILE:evmc::example-vm>\\)[\r\n]EVMC ${PROJECT_VERSION} \\(${evmc_tool_argv0}\\)"
+ )
+ 
+ add_evmc_tool_test(
+--- origsrc/evmc-12.1.0/test/unittests/CMakeLists.txt	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/test/unittests/CMakeLists.txt	2026-11-02 00:41:28.206321800 +0000
 @@ -4,8 +4,11 @@
  
  include(GoogleTest)
@@ -87,8 +136,8 @@
  
  add_library(loader-mocked STATIC ${PROJECT_SOURCE_DIR}/lib/loader/loader.c)
  target_link_libraries(loader-mocked PRIVATE evmc::evmc)
---- origsrc/evmc-12.1.0/test/unittests/cpp_test.cpp	2025-02-07 20:57:01.000000000 +0900
-+++ src/evmc-12.1.0/test/unittests/cpp_test.cpp	2025-02-10 17:13:34.307877700 +0900
+--- origsrc/evmc-12.1.0/test/unittests/cpp_test.cpp	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/test/unittests/cpp_test.cpp	2026-11-02 00:41:28.206321800 +0000
 @@ -953,13 +953,13 @@ TEST(cpp, revision_to_string)
  }
  
@@ -105,8 +154,24 @@
      return (__ubsan_handle_builtin_unreachable != nullptr);
  #else
      return false;
---- origsrc/evmc-12.1.0/tools/evmc/CMakeLists.txt	2025-02-07 20:57:01.000000000 +0900
-+++ src/evmc-12.1.0/tools/evmc/CMakeLists.txt	2025-02-10 17:05:14.567915400 +0900
+--- origsrc/evmc-12.1.0/test/vmtester/CMakeLists.txt	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/test/vmtester/CMakeLists.txt	2026-11-02 00:41:28.208348900 +0000
+@@ -13,7 +13,12 @@ add_test(NAME ${prefix}/help COMMAND evm
+ set_tests_properties(${prefix}/help PROPERTIES PASS_REGULAR_EXPRESSION "Usage:")
+ 
+ add_test(NAME ${prefix}/nonexistingvm COMMAND evmc::evmc-vmtester nonexistingvm)
+-set_tests_properties(${prefix}/nonexistingvm PROPERTIES PASS_REGULAR_EXPRESSION "[Cc]annot open|no such file")
++if(CYGWIN)
++    # dlerror() on Cygwin says "No such file or directory".
++    set_tests_properties(${prefix}/nonexistingvm PROPERTIES PASS_REGULAR_EXPRESSION "No such file")
++else()
++    set_tests_properties(${prefix}/nonexistingvm PROPERTIES PASS_REGULAR_EXPRESSION "[Cc]annot open|no such file")
++endif()
+ 
+ add_test(NAME ${prefix}/noarg COMMAND evmc::evmc-vmtester)
+ set_tests_properties(${prefix}/noarg PROPERTIES PASS_REGULAR_EXPRESSION "is required")
+--- origsrc/evmc-12.1.0/tools/evmc/CMakeLists.txt	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/tools/evmc/CMakeLists.txt	2026-11-02 00:41:28.209132500 +0000
 @@ -2,7 +2,11 @@
  # Copyright 2019-2020 The EVMC Authors.
  # Licensed under the Apache License, Version 2.0.
@@ -127,8 +192,8 @@
 +if (EVMC_INSTALL)
 +    install(TARGETS evmc-tool EXPORT evmcTargets RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 +endif()
---- origsrc/evmc-12.1.0/tools/vmtester/CMakeLists.txt	2025-02-07 20:57:01.000000000 +0900
-+++ src/evmc-12.1.0/tools/vmtester/CMakeLists.txt	2025-02-10 17:07:08.938908500 +0900
+--- origsrc/evmc-12.1.0/tools/vmtester/CMakeLists.txt	2025-02-07 11:57:01.000000000 +0000
++++ src/evmc-12.1.0/tools/vmtester/CMakeLists.txt	2026-11-02 00:41:28.210371000 +0000
 @@ -4,8 +4,11 @@
  
  include(GNUInstallDirs)

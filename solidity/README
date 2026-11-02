@@ -7,44 +7,40 @@ nobody has special authority over the execution and thus they allow to
 implement tokens of value, ownership, voting and other kinds of logics.
 
 Runtime requirements:
-  cygwin-3.2.0-1
+  cygwin-3.6.12-1
   libboost_filesystem1.66-1.66.0-1
   libboost_program_options1.66-1.66.0-1
   libboost_system1.66-1.66.0-1
-  libgcc1-10.2.0-1
-  libjsoncpp24-1.9.4-1
-  libstdc++6-10.2.0-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.36.1-2
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  gcc-g++-10.2.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  libjsoncpp-devel-1.9.4-1
-  libprotobuf-devel-3.12.4-1
-  ninja-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/ethereum/solidity
+  https://github.com/argotorg/solidity
 
 Canonical download:
-  https://github.com/ethereum/solidity/archive/v0.8.4.tar.gz
+  https://github.com/argotorg/solidity/releases/download/v0.8.26/solidity_0.8.26.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack solidity-0.8.4-X-src.tar.xz
+  1. unpack solidity-0.8.26-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./solidity-0.8.4-X.cygport all
+        % cygport ./solidity-0.8.26-X.cygport all
 
 This will create:
-  /usr/src/solidity-0.8.4-X-src.tar.xz
-  /usr/src/solidity-0.8.4-X.tar.xz
+  /usr/src/solidity-0.8.26-X-src.tar.xz
+  /usr/src/solidity-0.8.26-X.tar.xz
 
 -------------------------------------------
 
@@ -52,7 +48,6 @@ Files included in the binary package:
 
 (solidity)
   /usr/bin/solc.exe
-  /usr/bin/solidity-upgrade.exe
   /usr/bin/yul-phaser.exe
   /usr/share/doc/Cygwin/solidity.README
   /usr/share/doc/solidity/CODE_OF_CONDUCT.md
@@ -62,11 +57,15 @@ Files included in the binary package:
   /usr/share/doc/solidity/LICENSE.txt
   /usr/share/doc/solidity/README.md
   /usr/share/doc/solidity/ReleaseChecklist.md
+  /usr/share/doc/solidity/ReviewChecklist.md
   /usr/share/doc/solidity/SECURITY.md
 
 ------------------
 
 Port Notes:
+
+----- version 0.8.26-1bl1 -----
+Version bump.
 
 ----- version 0.8.4-1bl1 -----
 Version bump.

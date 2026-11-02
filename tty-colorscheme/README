@@ -7,65 +7,135 @@ Runtime requirements:
 
 Build requirements:
 (besides corresponding -devel packages)
-  cygport-0.37.6-1
+  cygport-0.37.12-1
 
 Canonical website:
   https://github.com/red-magic/tty-colorscheme
 
 Canonical download:
-  https://github.com/red-magic/tty-colorscheme/archive/refs/tags/1.11.tar.gz
+  https://github.com/red-magic/tty-colorscheme/archive/refs/tags/1.21.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack tty-colorscheme-1.11-X-src.tar.xz
+  1. unpack tty-colorscheme-1.21-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./tty-colorscheme-1.11-X.cygport all
+        % cygport ./tty-colorscheme-1.21-X.cygport all
 
 This will create:
-  /usr/src/tty-colorscheme-1.11-X-src.tar.xz
-  /usr/src/tty-colorscheme-1.11-X.tar.xz
+  /usr/src/tty-colorscheme-1.21-X-src.tar.xz
+  /usr/src/tty-colorscheme-1.21-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (tty-colorscheme)
+  /etc/tty-colorscheme/colorschemes/0x96f
+  /etc/tty-colorscheme/colorschemes/12-bit-rainbow
+  /etc/tty-colorscheme/colorschemes/1984-dark
+  /etc/tty-colorscheme/colorschemes/1984-light
+  /etc/tty-colorscheme/colorschemes/1984-orwellian
+  /etc/tty-colorscheme/colorschemes/3024
   /etc/tty-colorscheme/colorschemes/3024-day
   /etc/tty-colorscheme/colorschemes/3024-night
+  /etc/tty-colorscheme/colorschemes/aardvark-blue
+  /etc/tty-colorscheme/colorschemes/aardvark-ink
+  /etc/tty-colorscheme/colorschemes/abernathy
   /etc/tty-colorscheme/colorschemes/aci
-  /etc/tty-colorscheme/colorschemes/acme
+  /etc/tty-colorscheme/colorschemes/acid-lime
   /etc/tty-colorscheme/colorschemes/aco
+  /etc/tty-colorscheme/colorschemes/adapta-nokto-maia
+  /etc/tty-colorscheme/colorschemes/adventure
   /etc/tty-colorscheme/colorschemes/adventure-time
+  /etc/tty-colorscheme/colorschemes/adwaita
+  /etc/tty-colorscheme/colorschemes/adwaita-dark
+  /etc/tty-colorscheme/colorschemes/adwaita-darker
+  /etc/tty-colorscheme/colorschemes/adwaita-light
   /etc/tty-colorscheme/colorschemes/afterglow
+  /etc/tty-colorscheme/colorschemes/agave
+  /etc/tty-colorscheme/colorschemes/aizen-dark
+  /etc/tty-colorscheme/colorschemes/aizen-light
+  /etc/tty-colorscheme/colorschemes/alabaster
+  /etc/tty-colorscheme/colorschemes/alabaster-dark
+  /etc/tty-colorscheme/colorschemes/alacritty-0-12
   /etc/tty-colorscheme/colorschemes/alien-blood
+  /etc/tty-colorscheme/colorschemes/alucard
+  /etc/tty-colorscheme/colorschemes/amber-crt-retro
+  /etc/tty-colorscheme/colorschemes/andromeda
+  /etc/tty-colorscheme/colorschemes/apathy
+  /etc/tty-colorscheme/colorschemes/aperture-science
+  /etc/tty-colorscheme/colorschemes/apple-classic
+  /etc/tty-colorscheme/colorschemes/apple-system-colors
+  /etc/tty-colorscheme/colorschemes/apple-system-colors-light
   /etc/tty-colorscheme/colorschemes/apprentice
+  /etc/tty-colorscheme/colorschemes/aquarium-dark
+  /etc/tty-colorscheme/colorschemes/aquarium-light
   /etc/tty-colorscheme/colorschemes/arc-dark
   /etc/tty-colorscheme/colorschemes/arc-light
+  /etc/tty-colorscheme/colorschemes/arcoiris
+  /etc/tty-colorscheme/colorschemes/ardoise
   /etc/tty-colorscheme/colorschemes/argonaut
+  /etc/tty-colorscheme/colorschemes/arroz-con-dulce
+  /etc/tty-colorscheme/colorschemes/arroz-con-dulce-dark
   /etc/tty-colorscheme/colorschemes/arthur
+  /etc/tty-colorscheme/colorschemes/ascendancy
+  /etc/tty-colorscheme/colorschemes/ashes
+  /etc/tty-colorscheme/colorschemes/ashes-light
   /etc/tty-colorscheme/colorschemes/astrodark
   /etc/tty-colorscheme/colorschemes/atelier-cave
+  /etc/tty-colorscheme/colorschemes/atelier-cave-dark
+  /etc/tty-colorscheme/colorschemes/atelier-cave-light
   /etc/tty-colorscheme/colorschemes/atelier-dune
+  /etc/tty-colorscheme/colorschemes/atelier-dune-dark
+  /etc/tty-colorscheme/colorschemes/atelier-dune-light
   /etc/tty-colorscheme/colorschemes/atelier-estuary
+  /etc/tty-colorscheme/colorschemes/atelier-estuary-dark
+  /etc/tty-colorscheme/colorschemes/atelier-estuary-light
   /etc/tty-colorscheme/colorschemes/atelier-forest
+  /etc/tty-colorscheme/colorschemes/atelier-forest-dark
+  /etc/tty-colorscheme/colorschemes/atelier-forest-light
   /etc/tty-colorscheme/colorschemes/atelier-heath
+  /etc/tty-colorscheme/colorschemes/atelier-heath-dark
+  /etc/tty-colorscheme/colorschemes/atelier-heath-light
   /etc/tty-colorscheme/colorschemes/atelier-lakeside
+  /etc/tty-colorscheme/colorschemes/atelier-lakeside-dark
+  /etc/tty-colorscheme/colorschemes/atelier-lakeside-light
   /etc/tty-colorscheme/colorschemes/atelier-plateau
+  /etc/tty-colorscheme/colorschemes/atelier-plateau-dark
+  /etc/tty-colorscheme/colorschemes/atelier-plateau-light
   /etc/tty-colorscheme/colorschemes/atelier-savanna
+  /etc/tty-colorscheme/colorschemes/atelier-savanna-dark
+  /etc/tty-colorscheme/colorschemes/atelier-savanna-light
   /etc/tty-colorscheme/colorschemes/atelier-seaside
+  /etc/tty-colorscheme/colorschemes/atelier-seaside-dark
+  /etc/tty-colorscheme/colorschemes/atelier-seaside-light
   /etc/tty-colorscheme/colorschemes/atelier-sulphurpool
+  /etc/tty-colorscheme/colorschemes/atelier-sulphurpool-light
+  /etc/tty-colorscheme/colorschemes/atlas
+  /etc/tty-colorscheme/colorschemes/atlas-ragnarok
   /etc/tty-colorscheme/colorschemes/atom
+  /etc/tty-colorscheme/colorschemes/atom-one-dark
+  /etc/tty-colorscheme/colorschemes/atom-one-light
+  /etc/tty-colorscheme/colorschemes/aubade
   /etc/tty-colorscheme/colorschemes/aura
-  /etc/tty-colorscheme/colorschemes/aurelia
+  /etc/tty-colorscheme/colorschemes/aura-dark
   /etc/tty-colorscheme/colorschemes/aurora
+  /etc/tty-colorscheme/colorschemes/autumn
   /etc/tty-colorscheme/colorschemes/ayaka
+  /etc/tty-colorscheme/colorschemes/ayu
   /etc/tty-colorscheme/colorschemes/ayu-dark
   /etc/tty-colorscheme/colorschemes/ayu-light
+  /etc/tty-colorscheme/colorschemes/ayu-light-lost
   /etc/tty-colorscheme/colorschemes/ayu-mirage
+  /etc/tty-colorscheme/colorschemes/ayu-mirage-lost
+  /etc/tty-colorscheme/colorschemes/aztec
   /etc/tty-colorscheme/colorschemes/azu
+  /etc/tty-colorscheme/colorschemes/baitong
+  /etc/tty-colorscheme/colorschemes/banana-blueberry
+  /etc/tty-colorscheme/colorschemes/base16-icy
   /etc/tty-colorscheme/colorschemes/base2tone-cave
   /etc/tty-colorscheme/colorschemes/base2tone-desert
   /etc/tty-colorscheme/colorschemes/base2tone-drawbridge
@@ -105,167 +175,588 @@ Files included in the binary package:
   /etc/tty-colorscheme/colorschemes/base4tone-modern-c
   /etc/tty-colorscheme/colorschemes/base4tone-modern-n
   /etc/tty-colorscheme/colorschemes/base4tone-modern-w
-  /etc/tty-colorscheme/colorschemes/bash
+  /etc/tty-colorscheme/colorschemes/batman
   /etc/tty-colorscheme/colorschemes/belafonte-day
   /etc/tty-colorscheme/colorschemes/belafonte-night
+  /etc/tty-colorscheme/colorschemes/berlin
+  /etc/tty-colorscheme/colorschemes/bespin
   /etc/tty-colorscheme/colorschemes/bim
   /etc/tty-colorscheme/colorschemes/birds-of-paradise
+  /etc/tty-colorscheme/colorschemes/bl1nk
+  /etc/tty-colorscheme/colorschemes/black-metal
+  /etc/tty-colorscheme/colorschemes/black-metal-bathory
+  /etc/tty-colorscheme/colorschemes/black-metal-burzum
+  /etc/tty-colorscheme/colorschemes/black-metal-dark-funeral
+  /etc/tty-colorscheme/colorschemes/black-metal-gorgoroth
+  /etc/tty-colorscheme/colorschemes/black-metal-immortal
+  /etc/tty-colorscheme/colorschemes/black-metal-khold
+  /etc/tty-colorscheme/colorschemes/black-metal-marduk
+  /etc/tty-colorscheme/colorschemes/black-metal-mayhem
+  /etc/tty-colorscheme/colorschemes/black-metal-nile
+  /etc/tty-colorscheme/colorschemes/black-metal-venom
   /etc/tty-colorscheme/colorschemes/blazer
+  /etc/tty-colorscheme/colorschemes/bliss
+  /etc/tty-colorscheme/colorschemes/blitz
   /etc/tty-colorscheme/colorschemes/blood-dragon
+  /etc/tty-colorscheme/colorschemes/blood-moon
+  /etc/tty-colorscheme/colorschemes/bloody
+  /etc/tty-colorscheme/colorschemes/blue-berry-pie
   /etc/tty-colorscheme/colorschemes/blue-dolphin
+  /etc/tty-colorscheme/colorschemes/blue-matrix
   /etc/tty-colorscheme/colorschemes/blue-moon
   /etc/tty-colorscheme/colorschemes/blue-moon-light
+  /etc/tty-colorscheme/colorschemes/blueberry-mango
+  /etc/tty-colorscheme/colorschemes/blueforest
+  /etc/tty-colorscheme/colorschemes/blueish
+  /etc/tty-colorscheme/colorschemes/bluish
+  /etc/tty-colorscheme/colorschemes/bluloco-dark
   /etc/tty-colorscheme/colorschemes/bluloco-light
+  /etc/tty-colorscheme/colorschemes/bluloco-zsh-light
+  /etc/tty-colorscheme/colorschemes/bogota
+  /etc/tty-colorscheme/colorschemes/bogster-dark
+  /etc/tty-colorscheme/colorschemes/boo-shnickle
+  /etc/tty-colorscheme/colorschemes/boo-shnickle-light
+  /etc/tty-colorscheme/colorschemes/booshnickle-dark
   /etc/tty-colorscheme/colorschemes/borland
+  /etc/tty-colorscheme/colorschemes/bosque
+  /etc/tty-colorscheme/colorschemes/box
+  /etc/tty-colorscheme/colorschemes/branch
+  /etc/tty-colorscheme/colorschemes/brasa
   /etc/tty-colorscheme/colorschemes/breadog
   /etc/tty-colorscheme/colorschemes/breath
   /etc/tty-colorscheme/colorschemes/breath-darker
   /etc/tty-colorscheme/colorschemes/breath-light
   /etc/tty-colorscheme/colorschemes/breath-silverfox
+  /etc/tty-colorscheme/colorschemes/breath2
   /etc/tty-colorscheme/colorschemes/breeze
+  /etc/tty-colorscheme/colorschemes/brewer
+  /etc/tty-colorscheme/colorschemes/bright
+  /etc/tty-colorscheme/colorschemes/bright-lights
   /etc/tty-colorscheme/colorschemes/broadcast
   /etc/tty-colorscheme/colorschemes/brogrammer
+  /etc/tty-colorscheme/colorschemes/brushtrees
+  /etc/tty-colorscheme/colorschemes/brushtrees-dark
+  /etc/tty-colorscheme/colorschemes/builtin-dark
+  /etc/tty-colorscheme/colorschemes/builtin-light
+  /etc/tty-colorscheme/colorschemes/builtin-pastel-dark
+  /etc/tty-colorscheme/colorschemes/builtin-solarized-dark
+  /etc/tty-colorscheme/colorschemes/builtin-solarized-light
+  /etc/tty-colorscheme/colorschemes/builtin-tango-dark
+  /etc/tty-colorscheme/colorschemes/builtin-tango-light
   /etc/tty-colorscheme/colorschemes/butrin
   /etc/tty-colorscheme/colorschemes/c64
+  /etc/tty-colorscheme/colorschemes/cacao
   /etc/tty-colorscheme/colorschemes/cai
+  /etc/tty-colorscheme/colorschemes/calamity
   /etc/tty-colorscheme/colorschemes/campbell
+  /etc/tty-colorscheme/colorschemes/candy
+  /etc/tty-colorscheme/colorschemes/carbonfox
+  /etc/tty-colorscheme/colorschemes/caroline
+  /etc/tty-colorscheme/colorschemes/cassette-tape
   /etc/tty-colorscheme/colorschemes/catppuccin-frappe
   /etc/tty-colorscheme/colorschemes/catppuccin-latte
   /etc/tty-colorscheme/colorschemes/catppuccin-macchiato
   /etc/tty-colorscheme/colorschemes/catppuccin-mocha
+  /etc/tty-colorscheme/colorschemes/cerulean-signal-dark
+  /etc/tty-colorscheme/colorschemes/cerulean-signal-light
   /etc/tty-colorscheme/colorschemes/cga
   /etc/tty-colorscheme/colorschemes/chalk
+  /etc/tty-colorscheme/colorschemes/chalk-lost
   /etc/tty-colorscheme/colorschemes/chalkboard
+  /etc/tty-colorscheme/colorschemes/chalkby
+  /etc/tty-colorscheme/colorschemes/challenger-deep
   /etc/tty-colorscheme/colorschemes/chameleon
+  /etc/tty-colorscheme/colorschemes/charcoal-dark
+  /etc/tty-colorscheme/colorschemes/charcoal-light
+  /etc/tty-colorscheme/colorschemes/cherry
+  /etc/tty-colorscheme/colorschemes/cherry-midnight
+  /etc/tty-colorscheme/colorschemes/chester
+  /etc/tty-colorscheme/colorschemes/chesterish
+  /etc/tty-colorscheme/colorschemes/chicago-day
+  /etc/tty-colorscheme/colorschemes/chicago-night
+  /etc/tty-colorscheme/colorschemes/chinoiserie
+  /etc/tty-colorscheme/colorschemes/chinoiserie-midnight
+  /etc/tty-colorscheme/colorschemes/chinoiserie-morandi
+  /etc/tty-colorscheme/colorschemes/chinoiserie-night
   /etc/tty-colorscheme/colorschemes/ciapre
+  /etc/tty-colorscheme/colorschemes/circus
+  /etc/tty-colorscheme/colorschemes/citrus-ink
+  /etc/tty-colorscheme/colorschemes/citruszest
   /etc/tty-colorscheme/colorschemes/city-lights
+  /etc/tty-colorscheme/colorschemes/classic-dark
+  /etc/tty-colorscheme/colorschemes/classic-light
+  /etc/tty-colorscheme/colorschemes/claude
+  /etc/tty-colorscheme/colorschemes/claude-dark
+  /etc/tty-colorscheme/colorschemes/claude-light
+  /etc/tty-colorscheme/colorschemes/clear-dark
+  /etc/tty-colorscheme/colorschemes/clear-light
   /etc/tty-colorscheme/colorschemes/clone-of-ubuntu
   /etc/tty-colorscheme/colorschemes/clrs
-  /etc/tty-colorscheme/colorschemes/cobalt-2
   /etc/tty-colorscheme/colorschemes/cobalt-neon
+  /etc/tty-colorscheme/colorschemes/cobalt-next
+  /etc/tty-colorscheme/colorschemes/cobalt-next-dark
+  /etc/tty-colorscheme/colorschemes/cobalt-next-minimal
+  /etc/tty-colorscheme/colorschemes/cobalt2
+  /etc/tty-colorscheme/colorschemes/codeschool
+  /etc/tty-colorscheme/colorschemes/coffee-theme
   /etc/tty-colorscheme/colorschemes/coldsnow
   /etc/tty-colorscheme/colorschemes/colorcli
+  /etc/tty-colorscheme/colorschemes/colors
+  /etc/tty-colorscheme/colorschemes/constant-perceptual-luminosity-dark
+  /etc/tty-colorscheme/colorschemes/cool-night
+  /etc/tty-colorscheme/colorschemes/copland-os
+  /etc/tty-colorscheme/colorschemes/corvine
   /etc/tty-colorscheme/colorschemes/crayon-pony-fish
+  /etc/tty-colorscheme/colorschemes/crt-amber
+  /etc/tty-colorscheme/colorschemes/cupcake
+  /etc/tty-colorscheme/colorschemes/cupertino
+  /etc/tty-colorscheme/colorschemes/cursor-dark
+  /etc/tty-colorscheme/colorschemes/cursor-light
+  /etc/tty-colorscheme/colorschemes/cutie-pro
+  /etc/tty-colorscheme/colorschemes/cyan-day
+  /etc/tty-colorscheme/colorschemes/cyan-night
+  /etc/tty-colorscheme/colorschemes/cyberdyne
   /etc/tty-colorscheme/colorschemes/cyberpunk
+  /etc/tty-colorscheme/colorschemes/cyberpunk-icy
   /etc/tty-colorscheme/colorschemes/cyberpunk-neon
-  /etc/tty-colorscheme/colorschemes/dark-matrix
+  /etc/tty-colorscheme/colorschemes/cyberpunk-scarlet-protocol
+  /etc/tty-colorscheme/colorschemes/da-one-black
+  /etc/tty-colorscheme/colorschemes/da-one-gray
+  /etc/tty-colorscheme/colorschemes/da-one-ocean
+  /etc/tty-colorscheme/colorschemes/da-one-paper
+  /etc/tty-colorscheme/colorschemes/da-one-sea
+  /etc/tty-colorscheme/colorschemes/da-one-white
+  /etc/tty-colorscheme/colorschemes/dainty-dark
+  /etc/tty-colorscheme/colorschemes/dalton-dark
+  /etc/tty-colorscheme/colorschemes/danqing
+  /etc/tty-colorscheme/colorschemes/danqing-light
+  /etc/tty-colorscheme/colorschemes/darcula
+  /etc/tty-colorscheme/colorschemes/dark
+  /etc/tty-colorscheme/colorschemes/dark-modern
+  /etc/tty-colorscheme/colorschemes/dark-one-nuanced
   /etc/tty-colorscheme/colorschemes/dark-pastel
+  /etc/tty-colorscheme/colorschemes/dark-pastels
+  /etc/tty-colorscheme/colorschemes/dark-plus
+  /etc/tty-colorscheme/colorschemes/dark-pride
+  /etc/tty-colorscheme/colorschemes/darkermatrix
+  /etc/tty-colorscheme/colorschemes/darkmatrix
+  /etc/tty-colorscheme/colorschemes/darkmoss
   /etc/tty-colorscheme/colorschemes/darkside
+  /etc/tty-colorscheme/colorschemes/darktooth
+  /etc/tty-colorscheme/colorschemes/darkviolet
+  /etc/tty-colorscheme/colorschemes/datum-dark
+  /etc/tty-colorscheme/colorschemes/datum-light
+  /etc/tty-colorscheme/colorschemes/dawnfox
+  /etc/tty-colorscheme/colorschemes/daybreak
+  /etc/tty-colorscheme/colorschemes/dayfox
+  /etc/tty-colorscheme/colorschemes/decaf
+  /etc/tty-colorscheme/colorschemes/deep
+  /etc/tty-colorscheme/colorschemes/deep-oceanic-next
+  /etc/tty-colorscheme/colorschemes/deep-space
+  /etc/tty-colorscheme/colorschemes/default-dark
+  /etc/tty-colorscheme/colorschemes/default-light
   /etc/tty-colorscheme/colorschemes/dehydration
   /etc/tty-colorscheme/colorschemes/desert
+  /etc/tty-colorscheme/colorschemes/desert-night
+  /etc/tty-colorscheme/colorschemes/detroit-become-human
+  /etc/tty-colorscheme/colorschemes/detuned
+  /etc/tty-colorscheme/colorschemes/digital-rain
+  /etc/tty-colorscheme/colorschemes/dimidium
   /etc/tty-colorscheme/colorschemes/dimmed-monokai
+  /etc/tty-colorscheme/colorschemes/dirtysea
   /etc/tty-colorscheme/colorschemes/dissonance
+  /etc/tty-colorscheme/colorschemes/django
+  /etc/tty-colorscheme/colorschemes/django-reborn-again
+  /etc/tty-colorscheme/colorschemes/django-smooth
+  /etc/tty-colorscheme/colorschemes/dogxi-misty
   /etc/tty-colorscheme/colorschemes/doom-one
-  /etc/tty-colorscheme/colorschemes/dotgov
+  /etc/tty-colorscheme/colorschemes/doom-one-light
+  /etc/tty-colorscheme/colorschemes/doom-one-lost
+  /etc/tty-colorscheme/colorschemes/doom-peacock
+  /etc/tty-colorscheme/colorschemes/doom-vibrant
+  /etc/tty-colorscheme/colorschemes/dot-gov
   /etc/tty-colorscheme/colorschemes/dracula
+  /etc/tty-colorscheme/colorschemes/dracula-lost
+  /etc/tty-colorscheme/colorschemes/draculaplus
+  /etc/tty-colorscheme/colorschemes/driftwood
+  /etc/tty-colorscheme/colorschemes/duckbones
+  /etc/tty-colorscheme/colorschemes/dumbledore
+  /etc/tty-colorscheme/colorschemes/duotone-dark
+  /etc/tty-colorscheme/colorschemes/duskfox
+  /etc/tty-colorscheme/colorschemes/e-ink
+  /etc/tty-colorscheme/colorschemes/e-ink-dark
   /etc/tty-colorscheme/colorschemes/earthsong
+  /etc/tty-colorscheme/colorschemes/eclipse
+  /etc/tty-colorscheme/colorschemes/edge-dark
+  /etc/tty-colorscheme/colorschemes/edge-light
+  /etc/tty-colorscheme/colorschemes/eighties
+  /etc/tty-colorscheme/colorschemes/eldritch
+  /etc/tty-colorscheme/colorschemes/eldritch-dark
+  /etc/tty-colorscheme/colorschemes/electron-highlighter
+  /etc/tty-colorscheme/colorschemes/electron-highlighter-day
+  /etc/tty-colorscheme/colorschemes/elegant
   /etc/tty-colorscheme/colorschemes/elemental
   /etc/tty-colorscheme/colorschemes/elementary
+  /etc/tty-colorscheme/colorschemes/elementary-lost
   /etc/tty-colorscheme/colorschemes/elic
   /etc/tty-colorscheme/colorschemes/elio
+  /etc/tty-colorscheme/colorschemes/embarcadero
+  /etc/tty-colorscheme/colorschemes/embark
+  /etc/tty-colorscheme/colorschemes/embers
+  /etc/tty-colorscheme/colorschemes/embers-dark
+  /etc/tty-colorscheme/colorschemes/embers-light
+  /etc/tty-colorscheme/colorschemes/emerald-synth
+  /etc/tty-colorscheme/colorschemes/emil
+  /etc/tty-colorscheme/colorschemes/encom
+  /etc/tty-colorscheme/colorschemes/enfocado-light
+  /etc/tty-colorscheme/colorschemes/equilibrium-dark
+  /etc/tty-colorscheme/colorschemes/equilibrium-gray-dark
+  /etc/tty-colorscheme/colorschemes/equilibrium-gray-light
+  /etc/tty-colorscheme/colorschemes/equilibrium-light
+  /etc/tty-colorscheme/colorschemes/eris
   /etc/tty-colorscheme/colorschemes/espresso
   /etc/tty-colorscheme/colorschemes/espresso-libre
+  /etc/tty-colorscheme/colorschemes/eva
+  /etc/tty-colorscheme/colorschemes/eva-dim
+  /etc/tty-colorscheme/colorschemes/evenok-dark
   /etc/tty-colorscheme/colorschemes/everblush
+  /etc/tty-colorscheme/colorschemes/everforest
   /etc/tty-colorscheme/colorschemes/everforest-dark-hard
+  /etc/tty-colorscheme/colorschemes/everforest-dark-med
   /etc/tty-colorscheme/colorschemes/everforest-dark-medium
   /etc/tty-colorscheme/colorschemes/everforest-dark-soft
+  /etc/tty-colorscheme/colorschemes/everforest-light
   /etc/tty-colorscheme/colorschemes/everforest-light-hard
+  /etc/tty-colorscheme/colorschemes/everforest-light-hard-lost
+  /etc/tty-colorscheme/colorschemes/everforest-light-med
   /etc/tty-colorscheme/colorschemes/everforest-light-medium
   /etc/tty-colorscheme/colorschemes/everforest-light-soft
+  /etc/tty-colorscheme/colorschemes/everforest-light-soft-lost
   /etc/tty-colorscheme/colorschemes/eversong
-  /etc/tty-colorscheme/colorschemes/fairy-floss
+  /etc/tty-colorscheme/colorschemes/fahrenheit
   /etc/tty-colorscheme/colorschemes/fairy-floss-dark
-  /etc/tty-colorscheme/colorschemes/fishtank
+  /etc/tty-colorscheme/colorschemes/fairyfloss
+  /etc/tty-colorscheme/colorschemes/fairyfloss-lost
+  /etc/tty-colorscheme/colorschemes/falcon
+  /etc/tty-colorscheme/colorschemes/fallout-pip-boy
+  /etc/tty-colorscheme/colorschemes/farin
+  /etc/tty-colorscheme/colorschemes/farmhouse-dark
+  /etc/tty-colorscheme/colorschemes/farmhouse-light
+  /etc/tty-colorscheme/colorschemes/ferra
+  /etc/tty-colorscheme/colorschemes/fideloper
+  /etc/tty-colorscheme/colorschemes/firefly-traditional
+  /etc/tty-colorscheme/colorschemes/firefox-dev
+  /etc/tty-colorscheme/colorschemes/firewatch
+  /etc/tty-colorscheme/colorschemes/fish-tank
   /etc/tty-colorscheme/colorschemes/flat
+  /etc/tty-colorscheme/colorschemes/flat-lost
   /etc/tty-colorscheme/colorschemes/flat-remix
   /etc/tty-colorscheme/colorschemes/flatland
+  /etc/tty-colorscheme/colorschemes/flexoki
   /etc/tty-colorscheme/colorschemes/flexoki-dark
+  /etc/tty-colorscheme/colorschemes/flexoki-dark-lost
   /etc/tty-colorscheme/colorschemes/flexoki-light
   /etc/tty-colorscheme/colorschemes/floraverse
+  /etc/tty-colorscheme/colorschemes/forest-blue
+  /etc/tty-colorscheme/colorschemes/forest-night
+  /etc/tty-colorscheme/colorschemes/forge-ember
   /etc/tty-colorscheme/colorschemes/foxnightly
+  /etc/tty-colorscheme/colorschemes/framer
   /etc/tty-colorscheme/colorschemes/freya
-  /etc/tty-colorscheme/colorschemes/frontend-delight
-  /etc/tty-colorscheme/colorschemes/frontend-fun-forrest
-  /etc/tty-colorscheme/colorschemes/frontend-galaxy
+  /etc/tty-colorscheme/colorschemes/front-end-delight
+  /etc/tty-colorscheme/colorschemes/frostbyte
+  /etc/tty-colorscheme/colorschemes/fruit-soda
+  /etc/tty-colorscheme/colorschemes/fun-forrest
+  /etc/tty-colorscheme/colorschemes/galaxy
+  /etc/tty-colorscheme/colorschemes/galizur
+  /etc/tty-colorscheme/colorschemes/ganbaru
+  /etc/tty-colorscheme/colorschemes/ganbaru-matcha
   /etc/tty-colorscheme/colorschemes/geohot
+  /etc/tty-colorscheme/colorschemes/ghostty-default-style-dark
+  /etc/tty-colorscheme/colorschemes/gigavolt
+  /etc/tty-colorscheme/colorschemes/github
   /etc/tty-colorscheme/colorschemes/github-dark
+  /etc/tty-colorscheme/colorschemes/github-dark-colorblind
+  /etc/tty-colorscheme/colorschemes/github-dark-default
+  /etc/tty-colorscheme/colorschemes/github-dark-dimmed
+  /etc/tty-colorscheme/colorschemes/github-dark-high-contrast
+  /etc/tty-colorscheme/colorschemes/github-dark-tritanopia
   /etc/tty-colorscheme/colorschemes/github-light
+  /etc/tty-colorscheme/colorschemes/github-light-colorblind
+  /etc/tty-colorscheme/colorschemes/github-light-default
+  /etc/tty-colorscheme/colorschemes/github-light-high-contrast
+  /etc/tty-colorscheme/colorschemes/github-light-tritanopia
+  /etc/tty-colorscheme/colorschemes/gitlab-dark
+  /etc/tty-colorscheme/colorschemes/gitlab-dark-grey
+  /etc/tty-colorscheme/colorschemes/gitlab-light
+  /etc/tty-colorscheme/colorschemes/glacier
+  /etc/tty-colorscheme/colorschemes/gleam
+  /etc/tty-colorscheme/colorschemes/gleam-classic
+  /etc/tty-colorscheme/colorschemes/gnome-ish-gray-on-black
+  /etc/tty-colorscheme/colorschemes/gnome-terminal
+  /etc/tty-colorscheme/colorschemes/goa-base
   /etc/tty-colorscheme/colorschemes/gogh
+  /etc/tty-colorscheme/colorschemes/gogh-lost
   /etc/tty-colorscheme/colorschemes/gooey
+  /etc/tty-colorscheme/colorschemes/google
   /etc/tty-colorscheme/colorschemes/google-dark
   /etc/tty-colorscheme/colorschemes/google-light
   /etc/tty-colorscheme/colorschemes/gotham
   /etc/tty-colorscheme/colorschemes/grape
+  /etc/tty-colorscheme/colorschemes/graphite
   /etc/tty-colorscheme/colorschemes/grass
-  /etc/tty-colorscheme/colorschemes/gruvbox
+  /etc/tty-colorscheme/colorschemes/grayscale-dark
+  /etc/tty-colorscheme/colorschemes/grayscale-light
+  /etc/tty-colorscheme/colorschemes/green-phosphor-crt
+  /etc/tty-colorscheme/colorschemes/greenscreen
+  /etc/tty-colorscheme/colorschemes/grey-green
+  /etc/tty-colorscheme/colorschemes/grok-day
+  /etc/tty-colorscheme/colorschemes/grok-night
+  /etc/tty-colorscheme/colorschemes/gruber-darker
   /etc/tty-colorscheme/colorschemes/gruvbox-dark
+  /etc/tty-colorscheme/colorschemes/gruvbox-dark-hard
+  /etc/tty-colorscheme/colorschemes/gruvbox-dark-medium
+  /etc/tty-colorscheme/colorschemes/gruvbox-dark-medium-forest
+  /etc/tty-colorscheme/colorschemes/gruvbox-dark-pale
+  /etc/tty-colorscheme/colorschemes/gruvbox-dark-soft
+  /etc/tty-colorscheme/colorschemes/gruvbox-light
+  /etc/tty-colorscheme/colorschemes/gruvbox-light-hard
+  /etc/tty-colorscheme/colorschemes/gruvbox-light-medium
+  /etc/tty-colorscheme/colorschemes/gruvbox-light-soft
+  /etc/tty-colorscheme/colorschemes/gruvbox-material
   /etc/tty-colorscheme/colorschemes/gruvbox-material-dark
+  /etc/tty-colorscheme/colorschemes/gruvbox-material-dark-hard
+  /etc/tty-colorscheme/colorschemes/gruvbox-material-dark-medium
+  /etc/tty-colorscheme/colorschemes/gruvbox-material-dark-soft
   /etc/tty-colorscheme/colorschemes/gruvbox-material-light
+  /etc/tty-colorscheme/colorschemes/gruvbox-material-light-hard
+  /etc/tty-colorscheme/colorschemes/gruvbox-material-light-soft
   /etc/tty-colorscheme/colorschemes/guezwhoz
+  /etc/tty-colorscheme/colorschemes/h-pux
+  /etc/tty-colorscheme/colorschemes/hachiko-red
+  /etc/tty-colorscheme/colorschemes/hacktober
+  /etc/tty-colorscheme/colorschemes/halcyon
   /etc/tty-colorscheme/colorschemes/hardcore
+  /etc/tty-colorscheme/colorschemes/hardhacker
+  /etc/tty-colorscheme/colorschemes/harmonic16-dark
+  /etc/tty-colorscheme/colorschemes/harmonic16-light
   /etc/tty-colorscheme/colorschemes/harper
+  /etc/tty-colorscheme/colorschemes/hatsunemiku
+  /etc/tty-colorscheme/colorschemes/havn-daggry
+  /etc/tty-colorscheme/colorschemes/havn-skumring
   /etc/tty-colorscheme/colorschemes/hax0r-blue
   /etc/tty-colorscheme/colorschemes/hax0r-gr33n
   /etc/tty-colorscheme/colorschemes/hax0r-r3d
+  /etc/tty-colorscheme/colorschemes/heeler
+  /etc/tty-colorscheme/colorschemes/heetch
+  /etc/tty-colorscheme/colorschemes/heetch-light
+  /etc/tty-colorscheme/colorschemes/helios
+  /etc/tty-colorscheme/colorschemes/helsinki
   /etc/tty-colorscheme/colorschemes/hemisu-dark
   /etc/tty-colorscheme/colorschemes/hemisu-light
+  /etc/tty-colorscheme/colorschemes/high-contrast
   /etc/tty-colorscheme/colorschemes/highway
   /etc/tty-colorscheme/colorschemes/hipster-green
   /etc/tty-colorscheme/colorschemes/hivacruz
   /etc/tty-colorscheme/colorschemes/homebrew
-  /etc/tty-colorscheme/colorschemes/homebrew-light
-  /etc/tty-colorscheme/colorschemes/homebrew-ocean
   /etc/tty-colorscheme/colorschemes/hopscotch
+  /etc/tty-colorscheme/colorschemes/hopscotch-256
+  /etc/tty-colorscheme/colorschemes/horizon
   /etc/tty-colorscheme/colorschemes/horizon-bright
+  /etc/tty-colorscheme/colorschemes/horizon-bright-lost
   /etc/tty-colorscheme/colorschemes/horizon-dark
+  /etc/tty-colorscheme/colorschemes/horizon-light
+  /etc/tty-colorscheme/colorschemes/horizon-terminal-dark
+  /etc/tty-colorscheme/colorschemes/horizon-terminal-light
+  /etc/tty-colorscheme/colorschemes/hot-dog-stand
+  /etc/tty-colorscheme/colorschemes/hot-dog-stand-mustard
+  /etc/tty-colorscheme/colorschemes/humanoid-dark
+  /etc/tty-colorscheme/colorschemes/humanoid-light
   /etc/tty-colorscheme/colorschemes/hurtado
   /etc/tty-colorscheme/colorschemes/hybrid
+  /etc/tty-colorscheme/colorschemes/hybrid-lost
+  /etc/tty-colorscheme/colorschemes/hyper
+  /etc/tty-colorscheme/colorschemes/ia-dark
+  /etc/tty-colorscheme/colorschemes/ia-light
   /etc/tty-colorscheme/colorschemes/ibm-3270-high-contrast
+  /etc/tty-colorscheme/colorschemes/ibm-5153-cga
+  /etc/tty-colorscheme/colorschemes/ibm-5153-cga-black
   /etc/tty-colorscheme/colorschemes/ibm3270
   /etc/tty-colorscheme/colorschemes/ic-green-ppl
+  /etc/tty-colorscheme/colorschemes/ic-green-ppl-lost
   /etc/tty-colorscheme/colorschemes/ic-orange-ppl
   /etc/tty-colorscheme/colorschemes/iceberg
-  /etc/tty-colorscheme/colorschemes/iceberg-alt
+  /etc/tty-colorscheme/colorschemes/iceberg-light
+  /etc/tty-colorscheme/colorschemes/icy
+  /etc/tty-colorscheme/colorschemes/idea
   /etc/tty-colorscheme/colorschemes/idle-toes
+  /etc/tty-colorscheme/colorschemes/inferno
   /etc/tty-colorscheme/colorschemes/ir-black
+  /etc/tty-colorscheme/colorschemes/ir-black-lost
+  /etc/tty-colorscheme/colorschemes/iris
+  /etc/tty-colorscheme/colorschemes/irix-console
+  /etc/tty-colorscheme/colorschemes/irix-terminal
+  /etc/tty-colorscheme/colorschemes/isotope
+  /etc/tty-colorscheme/colorschemes/iterm
+  /etc/tty-colorscheme/colorschemes/iterm-solardark
+  /etc/tty-colorscheme/colorschemes/iterm2-dark-background
+  /etc/tty-colorscheme/colorschemes/iterm2-default
+  /etc/tty-colorscheme/colorschemes/iterm2-light-background
+  /etc/tty-colorscheme/colorschemes/iterm2-pastel-dark-background
+  /etc/tty-colorscheme/colorschemes/iterm2-smoooooth
+  /etc/tty-colorscheme/colorschemes/iterm2-solarized-dark
+  /etc/tty-colorscheme/colorschemes/iterm2-solarized-light
+  /etc/tty-colorscheme/colorschemes/iterm2-tango-dark
+  /etc/tty-colorscheme/colorschemes/iterm2-tango-light
+  /etc/tty-colorscheme/colorschemes/jabuti
   /etc/tty-colorscheme/colorschemes/jackie-brown
   /etc/tty-colorscheme/colorschemes/japanesque
   /etc/tty-colorscheme/colorschemes/jellybeans
+  /etc/tty-colorscheme/colorschemes/jetbrains-darcula
+  /etc/tty-colorscheme/colorschemes/jetbrains-islands-dark
+  /etc/tty-colorscheme/colorschemes/jetcalm-light
   /etc/tty-colorscheme/colorschemes/jubi
+  /etc/tty-colorscheme/colorschemes/juicy
   /etc/tty-colorscheme/colorschemes/jup
+  /etc/tty-colorscheme/colorschemes/kanagawa
   /etc/tty-colorscheme/colorschemes/kanagawa-dragon
   /etc/tty-colorscheme/colorschemes/kanagawa-lotus
   /etc/tty-colorscheme/colorschemes/kanagawa-wave
+  /etc/tty-colorscheme/colorschemes/kanagawabones
+  /etc/tty-colorscheme/colorschemes/kanso-ink
+  /etc/tty-colorscheme/colorschemes/kanso-mist
+  /etc/tty-colorscheme/colorschemes/kanso-pearl
+  /etc/tty-colorscheme/colorschemes/kanso-zen
+  /etc/tty-colorscheme/colorschemes/kaolin-aurora
+  /etc/tty-colorscheme/colorschemes/kaolin-breeze
+  /etc/tty-colorscheme/colorschemes/kaolin-dark
+  /etc/tty-colorscheme/colorschemes/kaolin-galaxy
+  /etc/tty-colorscheme/colorschemes/kaolin-light
+  /etc/tty-colorscheme/colorschemes/kaolin-ocean
+  /etc/tty-colorscheme/colorschemes/kaolin-temple
+  /etc/tty-colorscheme/colorschemes/karasu-night
+  /etc/tty-colorscheme/colorschemes/karasu-snow
+  /etc/tty-colorscheme/colorschemes/karma-dark
+  /etc/tty-colorscheme/colorschemes/karma-dark-dimmed
+  /etc/tty-colorscheme/colorschemes/karma-dark-hc
+  /etc/tty-colorscheme/colorschemes/karma-light
+  /etc/tty-colorscheme/colorschemes/karma-light-dimmed
+  /etc/tty-colorscheme/colorschemes/karma-light-hc
+  /etc/tty-colorscheme/colorschemes/katy
+  /etc/tty-colorscheme/colorschemes/kayla-cinnamon-on-msbuild
+  /etc/tty-colorscheme/colorschemes/keys-ocean-sunset
+  /etc/tty-colorscheme/colorschemes/keys-ocean-sunset-hc
   /etc/tty-colorscheme/colorschemes/kibble
+  /etc/tty-colorscheme/colorschemes/kimber
+  /etc/tty-colorscheme/colorschemes/kimbie-dark
+  /etc/tty-colorscheme/colorschemes/kimbie-light
+  /etc/tty-colorscheme/colorschemes/kissa-latte
+  /etc/tty-colorscheme/colorschemes/kissa-macchiato
+  /etc/tty-colorscheme/colorschemes/kitty-default
+  /etc/tty-colorscheme/colorschemes/kitty-low-contrast
+  /etc/tty-colorscheme/colorschemes/klein-void
+  /etc/tty-colorscheme/colorschemes/kokiri
   /etc/tty-colorscheme/colorschemes/kokuban
+  /etc/tty-colorscheme/colorschemes/kolorit
+  /etc/tty-colorscheme/colorschemes/konsolas
+  /etc/tty-colorscheme/colorschemes/konsole-linux
+  /etc/tty-colorscheme/colorschemes/kurayami
+  /etc/tty-colorscheme/colorschemes/kurokula
+  /etc/tty-colorscheme/colorschemes/lab-fox
+  /etc/tty-colorscheme/colorschemes/lahabana
+  /etc/tty-colorscheme/colorschemes/laser
   /etc/tty-colorscheme/colorschemes/laserwave
   /etc/tty-colorscheme/colorschemes/later-this-evening
   /etc/tty-colorscheme/colorschemes/lavandula
+  /etc/tty-colorscheme/colorschemes/leaf-dark
+  /etc/tty-colorscheme/colorschemes/leaf-light
+  /etc/tty-colorscheme/colorschemes/letterpress
+  /etc/tty-colorscheme/colorschemes/lichen-chartreuse-dark
+  /etc/tty-colorscheme/colorschemes/lichen-chartreuse-light
+  /etc/tty-colorscheme/colorschemes/light-owl
+  /etc/tty-colorscheme/colorschemes/lime
+  /etc/tty-colorscheme/colorschemes/linh
+  /etc/tty-colorscheme/colorschemes/linux-vt
   /etc/tty-colorscheme/colorschemes/liquid-carbon
   /etc/tty-colorscheme/colorschemes/liquid-carbon-transparent
+  /etc/tty-colorscheme/colorschemes/london
+  /etc/tty-colorscheme/colorschemes/london-bonfire-night
+  /etc/tty-colorscheme/colorschemes/london-columbia-road
+  /etc/tty-colorscheme/colorschemes/london-embankment-dusk
+  /etc/tty-colorscheme/colorschemes/london-soho-night
+  /etc/tty-colorscheme/colorschemes/love-ghost
+  /etc/tty-colorscheme/colorschemes/lovelace
+  /etc/tty-colorscheme/colorschemes/low-contrast
+  /etc/tty-colorscheme/colorschemes/lucy
   /etc/tty-colorscheme/colorschemes/lunaria-dark
   /etc/tty-colorscheme/colorschemes/lunaria-eclipse
   /etc/tty-colorscheme/colorschemes/lunaria-light
+  /etc/tty-colorscheme/colorschemes/macintosh
+  /etc/tty-colorscheme/colorschemes/madrid
   /etc/tty-colorscheme/colorschemes/maia
   /etc/tty-colorscheme/colorschemes/man-page
   /etc/tty-colorscheme/colorschemes/mar
+  /etc/tty-colorscheme/colorschemes/mariana
+  /etc/tty-colorscheme/colorschemes/marine-dark
+  /etc/tty-colorscheme/colorschemes/marrakesh
+  /etc/tty-colorscheme/colorschemes/matcha-zen
+  /etc/tty-colorscheme/colorschemes/materia
   /etc/tty-colorscheme/colorschemes/material
   /etc/tty-colorscheme/colorschemes/material-dark
-  /etc/tty-colorscheme/colorschemes/material-dark-alt
+  /etc/tty-colorscheme/colorschemes/material-darker
+  /etc/tty-colorscheme/colorschemes/material-design-colors
   /etc/tty-colorscheme/colorschemes/material-light
   /etc/tty-colorscheme/colorschemes/material-light-alt
+  /etc/tty-colorscheme/colorschemes/material-lighter
+  /etc/tty-colorscheme/colorschemes/material-lost
+  /etc/tty-colorscheme/colorschemes/material-night
+  /etc/tty-colorscheme/colorschemes/material-night-alt
+  /etc/tty-colorscheme/colorschemes/material-ocean
+  /etc/tty-colorscheme/colorschemes/material-palenight
+  /etc/tty-colorscheme/colorschemes/material-theme
+  /etc/tty-colorscheme/colorschemes/material-vivid
   /etc/tty-colorscheme/colorschemes/mathias
+  /etc/tty-colorscheme/colorschemes/matrix
+  /etc/tty-colorscheme/colorschemes/matte-black
+  /etc/tty-colorscheme/colorschemes/mayukai
+  /etc/tty-colorscheme/colorschemes/measured-dark
+  /etc/tty-colorscheme/colorschemes/measured-light
+  /etc/tty-colorscheme/colorschemes/medailion
   /etc/tty-colorscheme/colorschemes/medallion
+  /etc/tty-colorscheme/colorschemes/melange-dark
+  /etc/tty-colorscheme/colorschemes/melange-light
+  /etc/tty-colorscheme/colorschemes/meliora
+  /etc/tty-colorscheme/colorschemes/mellifluous
+  /etc/tty-colorscheme/colorschemes/mellow
+  /etc/tty-colorscheme/colorschemes/mellow-purple
+  /etc/tty-colorscheme/colorschemes/mesila-one
+  /etc/tty-colorscheme/colorschemes/mexico-light
+  /etc/tty-colorscheme/colorschemes/mezcal
+  /etc/tty-colorscheme/colorschemes/miami
+  /etc/tty-colorscheme/colorschemes/miami-heat
+  /etc/tty-colorscheme/colorschemes/miasma
+  /etc/tty-colorscheme/colorschemes/midnight-arcade
+  /etc/tty-colorscheme/colorschemes/midnight-haze
+  /etc/tty-colorscheme/colorschemes/midnight-in-mojave
+  /etc/tty-colorscheme/colorschemes/midsummer-night
+  /etc/tty-colorscheme/colorschemes/min-dark
+  /etc/tty-colorscheme/colorschemes/minimal-kiwi-theme
   /etc/tty-colorscheme/colorschemes/minimalist-dark
   /etc/tty-colorscheme/colorschemes/mirage
   /etc/tty-colorscheme/colorschemes/miramare
+  /etc/tty-colorscheme/colorschemes/mission-brogue
   /etc/tty-colorscheme/colorschemes/misterioso
-  /etc/tty-colorscheme/colorschemes/miu
+  /etc/tty-colorscheme/colorschemes/mocha
   /etc/tty-colorscheme/colorschemes/modus-operandi
+  /etc/tty-colorscheme/colorschemes/modus-operandi-deuteranopia
   /etc/tty-colorscheme/colorschemes/modus-operandi-tinted
+  /etc/tty-colorscheme/colorschemes/modus-operandi-tritanopia
   /etc/tty-colorscheme/colorschemes/modus-vivendi
+  /etc/tty-colorscheme/colorschemes/modus-vivendi-deuteranopia
   /etc/tty-colorscheme/colorschemes/modus-vivendi-tinted
+  /etc/tty-colorscheme/colorschemes/modus-vivendi-tritanopia
   /etc/tty-colorscheme/colorschemes/molokai
+  /etc/tty-colorscheme/colorschemes/molokai-lost
   /etc/tty-colorscheme/colorschemes/mona-lisa
   /etc/tty-colorscheme/colorschemes/mono-amber
   /etc/tty-colorscheme/colorschemes/mono-bow
@@ -276,120 +767,377 @@ Files included in the binary package:
   /etc/tty-colorscheme/colorschemes/mono-desert-light
   /etc/tty-colorscheme/colorschemes/mono-green
   /etc/tty-colorscheme/colorschemes/mono-light
-  /etc/tty-colorscheme/colorschemes/mono-light-alt
+  /etc/tty-colorscheme/colorschemes/mono-light-hard
+  /etc/tty-colorscheme/colorschemes/mono-light-soft
   /etc/tty-colorscheme/colorschemes/mono-matrix
   /etc/tty-colorscheme/colorschemes/mono-red
   /etc/tty-colorscheme/colorschemes/mono-red-dark
-  /etc/tty-colorscheme/colorschemes/mono-retro
   /etc/tty-colorscheme/colorschemes/mono-white
   /etc/tty-colorscheme/colorschemes/mono-wob
   /etc/tty-colorscheme/colorschemes/mono-yantar
   /etc/tty-colorscheme/colorschemes/mono-yellow
+  /etc/tty-colorscheme/colorschemes/monoindustrial
+  /etc/tty-colorscheme/colorschemes/monokai
   /etc/tty-colorscheme/colorschemes/monokai-dark
   /etc/tty-colorscheme/colorschemes/monokai-pro
   /etc/tty-colorscheme/colorschemes/monokai-pro-light
   /etc/tty-colorscheme/colorschemes/monokai-pro-light-sun
   /etc/tty-colorscheme/colorschemes/monokai-pro-machine
-  /etc/tty-colorscheme/colorschemes/monokai-pro-ocatagon
+  /etc/tty-colorscheme/colorschemes/monokai-pro-octagon
   /etc/tty-colorscheme/colorschemes/monokai-pro-ristretto
+  /etc/tty-colorscheme/colorschemes/monokai-pro-ristretto-lost
   /etc/tty-colorscheme/colorschemes/monokai-pro-spectrum
+  /etc/tty-colorscheme/colorschemes/monokai-remastered
   /etc/tty-colorscheme/colorschemes/monokai-soda
+  /etc/tty-colorscheme/colorschemes/monokai-sublimetext
+  /etc/tty-colorscheme/colorschemes/monokai-vivid
+  /etc/tty-colorscheme/colorschemes/monospace-dark
+  /etc/tty-colorscheme/colorschemes/monospace-light
   /etc/tty-colorscheme/colorschemes/moonfly
+  /etc/tty-colorscheme/colorschemes/moonlight
+  /etc/tty-colorscheme/colorschemes/moonlight-ii-vscode
+  /etc/tty-colorscheme/colorschemes/moonwalk
   /etc/tty-colorscheme/colorschemes/morada
+  /etc/tty-colorscheme/colorschemes/mountain
+  /etc/tty-colorscheme/colorschemes/msx
   /etc/tty-colorscheme/colorschemes/n0tch2k
+  /etc/tty-colorscheme/colorschemes/nachtschicht
+  /etc/tty-colorscheme/colorschemes/nandos
   /etc/tty-colorscheme/colorschemes/nanosecond
+  /etc/tty-colorscheme/colorschemes/nebula
+  /etc/tty-colorscheme/colorschemes/nebula-drift
+  /etc/tty-colorscheme/colorschemes/neobones-dark
+  /etc/tty-colorscheme/colorschemes/neobones-light
+  /etc/tty-colorscheme/colorschemes/neon
   /etc/tty-colorscheme/colorschemes/neon-night
+  /etc/tty-colorscheme/colorschemes/neon-purple
   /etc/tty-colorscheme/colorschemes/neopolitan
+  /etc/tty-colorscheme/colorschemes/neovim-dark
+  /etc/tty-colorscheme/colorschemes/neovim-light
+  /etc/tty-colorscheme/colorschemes/neowave
   /etc/tty-colorscheme/colorschemes/nep
   /etc/tty-colorscheme/colorschemes/neutron
+  /etc/tty-colorscheme/colorschemes/night-lion-v1
+  /etc/tty-colorscheme/colorschemes/night-lion-v2
   /etc/tty-colorscheme/colorschemes/night-owl
+  /etc/tty-colorscheme/colorschemes/night-owlish-light
   /etc/tty-colorscheme/colorschemes/nightfly
-  /etc/tty-colorscheme/colorschemes/nightlion-v1
-  /etc/tty-colorscheme/colorschemes/nightlion-v2
-  /etc/tty-colorscheme/colorschemes/nightowlish-light
+  /etc/tty-colorscheme/colorschemes/nightfox
   /etc/tty-colorscheme/colorschemes/nighty
+  /etc/tty-colorscheme/colorschemes/niji
+  /etc/tty-colorscheme/colorschemes/no-clown-fiesta
+  /etc/tty-colorscheme/colorschemes/no-clown-fiesta-light
+  /etc/tty-colorscheme/colorschemes/noche
+  /etc/tty-colorscheme/colorschemes/noctis
+  /etc/tty-colorscheme/colorschemes/noctis-azureus
+  /etc/tty-colorscheme/colorschemes/noctis-bordo
+  /etc/tty-colorscheme/colorschemes/noctis-hibernus
+  /etc/tty-colorscheme/colorschemes/noctis-lilac
+  /etc/tty-colorscheme/colorschemes/noctis-lux
+  /etc/tty-colorscheme/colorschemes/noctis-minimus
+  /etc/tty-colorscheme/colorschemes/noctis-obscuro
+  /etc/tty-colorscheme/colorschemes/noctis-sereno
+  /etc/tty-colorscheme/colorschemes/noctis-uva
+  /etc/tty-colorscheme/colorschemes/noctis-viola
+  /etc/tty-colorscheme/colorschemes/nocturnal-winter
+  /etc/tty-colorscheme/colorschemes/noirblaze
+  /etc/tty-colorscheme/colorschemes/noirbuddy-oxide
   /etc/tty-colorscheme/colorschemes/nord
   /etc/tty-colorscheme/colorschemes/nord-light
+  /etc/tty-colorscheme/colorschemes/nord-light-lost
+  /etc/tty-colorscheme/colorschemes/nord-wave
+  /etc/tty-colorscheme/colorschemes/nordfox
+  /etc/tty-colorscheme/colorschemes/nordic
+  /etc/tty-colorscheme/colorschemes/nova
   /etc/tty-colorscheme/colorschemes/novel
+  /etc/tty-colorscheme/colorschemes/novmbr
   /etc/tty-colorscheme/colorschemes/obsidian
+  /etc/tty-colorscheme/colorschemes/ocean
   /etc/tty-colorscheme/colorschemes/ocean-dark
+  /etc/tty-colorscheme/colorschemes/oceanic-material
   /etc/tty-colorscheme/colorschemes/oceanic-next
+  /etc/tty-colorscheme/colorschemes/oceanic-next-lost
+  /etc/tty-colorscheme/colorschemes/ocote
   /etc/tty-colorscheme/colorschemes/oldsteam
   /etc/tty-colorscheme/colorschemes/ollie
   /etc/tty-colorscheme/colorschemes/omni
+  /etc/tty-colorscheme/colorschemes/one-black
   /etc/tty-colorscheme/colorschemes/one-dark
+  /etc/tty-colorscheme/colorschemes/one-dark-pro
+  /etc/tty-colorscheme/colorschemes/one-dark-two
+  /etc/tty-colorscheme/colorschemes/one-double-dark
+  /etc/tty-colorscheme/colorschemes/one-double-light
   /etc/tty-colorscheme/colorschemes/one-half-black
+  /etc/tty-colorscheme/colorschemes/one-half-dark
+  /etc/tty-colorscheme/colorschemes/one-half-light
   /etc/tty-colorscheme/colorschemes/one-light
+  /etc/tty-colorscheme/colorschemes/onedark-dark
+  /etc/tty-colorscheme/colorschemes/onenord
+  /etc/tty-colorscheme/colorschemes/onenord-light
+  /etc/tty-colorscheme/colorschemes/opaline
+  /etc/tty-colorscheme/colorschemes/operator-mono-dark
+  /etc/tty-colorscheme/colorschemes/osaka-jade
+  /etc/tty-colorscheme/colorschemes/oslo
+  /etc/tty-colorscheme/colorschemes/outrun-dark
+  /etc/tty-colorscheme/colorschemes/outrun-electric
+  /etc/tty-colorscheme/colorschemes/overnight-slumber
+  /etc/tty-colorscheme/colorschemes/owl
+  /etc/tty-colorscheme/colorschemes/oxblood
+  /etc/tty-colorscheme/colorschemes/oxide
+  /etc/tty-colorscheme/colorschemes/oxocarbon
   /etc/tty-colorscheme/colorschemes/oxocarbon-dark
+  /etc/tty-colorscheme/colorschemes/oxocarbon-light
+  /etc/tty-colorscheme/colorschemes/pale-night-hc
   /etc/tty-colorscheme/colorschemes/palenight
   /etc/tty-colorscheme/colorschemes/pali
   /etc/tty-colorscheme/colorschemes/panda
   /etc/tty-colorscheme/colorschemes/pandora
+  /etc/tty-colorscheme/colorschemes/papel
   /etc/tty-colorscheme/colorschemes/paper
   /etc/tty-colorscheme/colorschemes/papercolor-dark
   /etc/tty-colorscheme/colorschemes/papercolor-light
+  /etc/tty-colorscheme/colorschemes/paradiso-dark
   /etc/tty-colorscheme/colorschemes/paraiso-dark
+  /etc/tty-colorscheme/colorschemes/paris
+  /etc/tty-colorscheme/colorschemes/pasque
+  /etc/tty-colorscheme/colorschemes/pastel-cyberpunk
+  /etc/tty-colorscheme/colorschemes/pastel-ega
+  /etc/tty-colorscheme/colorschemes/pastelon-de-amarillos
+  /etc/tty-colorscheme/colorschemes/pastelon-de-amarillos-dark
+  /etc/tty-colorscheme/colorschemes/patina
+  /etc/tty-colorscheme/colorschemes/patina-dark
+  /etc/tty-colorscheme/colorschemes/patina-dark-soft
+  /etc/tty-colorscheme/colorschemes/patina-lichen
+  /etc/tty-colorscheme/colorschemes/patina-light
+  /etc/tty-colorscheme/colorschemes/patina-moss
+  /etc/tty-colorscheme/colorschemes/patina-stellar
   /etc/tty-colorscheme/colorschemes/paul-millr
   /etc/tty-colorscheme/colorschemes/pencil-dark
   /etc/tty-colorscheme/colorschemes/pencil-light
+  /etc/tty-colorscheme/colorschemes/penumbra-dark
+  /etc/tty-colorscheme/colorschemes/penumbra-dark-contrast-plus
+  /etc/tty-colorscheme/colorschemes/penumbra-dark-contrast-plus-plus
+  /etc/tty-colorscheme/colorschemes/penumbra-light
+  /etc/tty-colorscheme/colorschemes/penumbra-light-contrast-plus
+  /etc/tty-colorscheme/colorschemes/penumbra-light-contrast-plus-plus
   /etc/tty-colorscheme/colorschemes/peppermint
+  /etc/tty-colorscheme/colorschemes/peppermint-lost
+  /etc/tty-colorscheme/colorschemes/phala-green-dark
+  /etc/tty-colorscheme/colorschemes/phanes
+  /etc/tty-colorscheme/colorschemes/phd
+  /etc/tty-colorscheme/colorschemes/piatto-light
+  /etc/tty-colorscheme/colorschemes/pico
+  /etc/tty-colorscheme/colorschemes/pierre-dark
+  /etc/tty-colorscheme/colorschemes/pierre-light
+  /etc/tty-colorscheme/colorschemes/pink-lavender
+  /etc/tty-colorscheme/colorschemes/pinky
   /etc/tty-colorscheme/colorschemes/pixiefloss
   /etc/tty-colorscheme/colorschemes/pnevma
+  /etc/tty-colorscheme/colorschemes/poimandres
+  /etc/tty-colorscheme/colorschemes/poimandres-darker
+  /etc/tty-colorscheme/colorschemes/poimandres-storm
+  /etc/tty-colorscheme/colorschemes/poimandres-white
+  /etc/tty-colorscheme/colorschemes/pop
+  /etc/tty-colorscheme/colorschemes/popping-and-locking
+  /etc/tty-colorscheme/colorschemes/porcelain
+  /etc/tty-colorscheme/colorschemes/porple
   /etc/tty-colorscheme/colorschemes/powershell
+  /etc/tty-colorscheme/colorschemes/praha
+  /etc/tty-colorscheme/colorschemes/precious-dark-eleven
+  /etc/tty-colorscheme/colorschemes/precious-dark-fifteen
+  /etc/tty-colorscheme/colorschemes/precious-light-warm
+  /etc/tty-colorscheme/colorschemes/precious-light-white
   /etc/tty-colorscheme/colorschemes/predawn
+  /etc/tty-colorscheme/colorschemes/primary
+  /etc/tty-colorscheme/colorschemes/primer-dark
+  /etc/tty-colorscheme/colorschemes/primer-dark-dimmed
+  /etc/tty-colorscheme/colorschemes/primer-light
+  /etc/tty-colorscheme/colorschemes/prism
   /etc/tty-colorscheme/colorschemes/pro
+  /etc/tty-colorscheme/colorschemes/pro-light
+  /etc/tty-colorscheme/colorschemes/punk
+  /etc/tty-colorscheme/colorschemes/punk-bg
+  /etc/tty-colorscheme/colorschemes/pure
   /etc/tty-colorscheme/colorschemes/purple-people-eater
+  /etc/tty-colorscheme/colorschemes/purple-portal
+  /etc/tty-colorscheme/colorschemes/purple-rain
+  /etc/tty-colorscheme/colorschemes/purpledream
+  /etc/tty-colorscheme/colorschemes/purplepeter
+  /etc/tty-colorscheme/colorschemes/purpurite
+  /etc/tty-colorscheme/colorschemes/pyrokai
+  /etc/tty-colorscheme/colorschemes/pyrokai-light
+  /etc/tty-colorscheme/colorschemes/qualia
   /etc/tty-colorscheme/colorschemes/quiet
+  /etc/tty-colorscheme/colorschemes/railscasts
+  /etc/tty-colorscheme/colorschemes/rainbow
   /etc/tty-colorscheme/colorschemes/rapture
+  /etc/tty-colorscheme/colorschemes/raycast-dark
+  /etc/tty-colorscheme/colorschemes/raycast-light
+  /etc/tty-colorscheme/colorschemes/rebecca
   /etc/tty-colorscheme/colorschemes/red-alert
+  /etc/tty-colorscheme/colorschemes/red-planet
   /etc/tty-colorscheme/colorschemes/red-sands
-  /etc/tty-colorscheme/colorschemes/redplanet
   /etc/tty-colorscheme/colorschemes/relaxed
+  /etc/tty-colorscheme/colorschemes/remedy-dark
+  /etc/tty-colorscheme/colorschemes/renault-style
+  /etc/tty-colorscheme/colorschemes/renault-style-light
+  /etc/tty-colorscheme/colorschemes/retro
+  /etc/tty-colorscheme/colorschemes/retro-legends
+  /etc/tty-colorscheme/colorschemes/retrowave
+  /etc/tty-colorscheme/colorschemes/retrowave-dark
+  /etc/tty-colorscheme/colorschemes/retrowave-light
+  /etc/tty-colorscheme/colorschemes/rigel
   /etc/tty-colorscheme/colorschemes/rippedcasts
   /etc/tty-colorscheme/colorschemes/rose-pine
   /etc/tty-colorscheme/colorschemes/rose-pine-dawn
   /etc/tty-colorscheme/colorschemes/rose-pine-moon
+  /etc/tty-colorscheme/colorschemes/rouge-2
   /etc/tty-colorscheme/colorschemes/royal
+  /etc/tty-colorscheme/colorschemes/ryoccino
   /etc/tty-colorscheme/colorschemes/ryuuko
+  /etc/tty-colorscheme/colorschemes/saga
+  /etc/tty-colorscheme/colorschemes/sagelight
   /etc/tty-colorscheme/colorschemes/sakura
+  /etc/tty-colorscheme/colorschemes/sakura-night
+  /etc/tty-colorscheme/colorschemes/sandcastle
+  /etc/tty-colorscheme/colorschemes/sandstone-classic
+  /etc/tty-colorscheme/colorschemes/sandstone-ink
+  /etc/tty-colorscheme/colorschemes/sandstone-warm
+  /etc/tty-colorscheme/colorschemes/sangdoist
   /etc/tty-colorscheme/colorschemes/sat
+  /etc/tty-colorscheme/colorschemes/sauber
+  /etc/tty-colorscheme/colorschemes/scarlet-protocol
+  /etc/tty-colorscheme/colorschemes/school-boy-colored
+  /etc/tty-colorscheme/colorschemes/school-boy-mono
   /etc/tty-colorscheme/colorschemes/sea-shells
   /etc/tty-colorscheme/colorschemes/seafoam-pastel
+  /etc/tty-colorscheme/colorschemes/seedflip-abyss
+  /etc/tty-colorscheme/colorschemes/seedflip-amethyst
+  /etc/tty-colorscheme/colorschemes/seedflip-canopy
+  /etc/tty-colorscheme/colorschemes/seedflip-carbon
+  /etc/tty-colorscheme/colorschemes/seedflip-coral
+  /etc/tty-colorscheme/colorschemes/seedflip-ember
+  /etc/tty-colorscheme/colorschemes/seedflip-glacier
+  /etc/tty-colorscheme/colorschemes/seedflip-inkwell
+  /etc/tty-colorscheme/colorschemes/seedflip-ivory
+  /etc/tty-colorscheme/colorschemes/seedflip-nightfall
+  /etc/tty-colorscheme/colorschemes/seedflip-phosphor
+  /etc/tty-colorscheme/colorschemes/seedflip-pulse
+  /etc/tty-colorscheme/colorschemes/seedflip-ultraviolet
+  /etc/tty-colorscheme/colorschemes/seedflip-voltage
+  /etc/tty-colorscheme/colorschemes/seedflip-wavelength
   /etc/tty-colorscheme/colorschemes/selenized-black
   /etc/tty-colorscheme/colorschemes/selenized-dark
   /etc/tty-colorscheme/colorschemes/selenized-light
   /etc/tty-colorscheme/colorschemes/selenized-white
   /etc/tty-colorscheme/colorschemes/seoul256
   /etc/tty-colorscheme/colorschemes/seoul256-light
+  /etc/tty-colorscheme/colorschemes/seoulbones-dark
+  /etc/tty-colorscheme/colorschemes/seoulbones-light
+  /etc/tty-colorscheme/colorschemes/seoulism
+  /etc/tty-colorscheme/colorschemes/sequoia-monochrome-dark
+  /etc/tty-colorscheme/colorschemes/sequoia-monochrome-light
+  /etc/tty-colorscheme/colorschemes/sequoia-moonlight-dark
+  /etc/tty-colorscheme/colorschemes/sequoia-moonlight-light
+  /etc/tty-colorscheme/colorschemes/sequoia-retro-dark
+  /etc/tty-colorscheme/colorschemes/sequoia-retro-light
+  /etc/tty-colorscheme/colorschemes/serendipity-midnight
+  /etc/tty-colorscheme/colorschemes/serendipity-morning
+  /etc/tty-colorscheme/colorschemes/serendipity-sunset
   /etc/tty-colorscheme/colorschemes/seti
+  /etc/tty-colorscheme/colorschemes/shades-of-purple
+  /etc/tty-colorscheme/colorschemes/shadesmear-dark
+  /etc/tty-colorscheme/colorschemes/shadesmear-light
+  /etc/tty-colorscheme/colorschemes/shadotheme
   /etc/tty-colorscheme/colorschemes/shaman
+  /etc/tty-colorscheme/colorschemes/shapeshifter
   /etc/tty-colorscheme/colorschemes/shel
+  /etc/tty-colorscheme/colorschemes/shokunin
+  /etc/tty-colorscheme/colorschemes/shrek
+  /etc/tty-colorscheme/colorschemes/sick
+  /etc/tty-colorscheme/colorschemes/sierra
+  /etc/tty-colorscheme/colorschemes/silk-dark
+  /etc/tty-colorscheme/colorschemes/silk-light
+  /etc/tty-colorscheme/colorschemes/silkcircuit-dawn
+  /etc/tty-colorscheme/colorschemes/silkcircuit-glow
+  /etc/tty-colorscheme/colorschemes/silkcircuit-neon
+  /etc/tty-colorscheme/colorschemes/silkcircuit-soft
+  /etc/tty-colorscheme/colorschemes/silkcircuit-vibrant
   /etc/tty-colorscheme/colorschemes/slate
+  /etc/tty-colorscheme/colorschemes/sleepy-hollow
   /etc/tty-colorscheme/colorschemes/smyck
+  /etc/tty-colorscheme/colorschemes/smyck-lost
   /etc/tty-colorscheme/colorschemes/snazzy
+  /etc/tty-colorscheme/colorschemes/snazzy-lost
+  /etc/tty-colorscheme/colorschemes/snow-dark
+  /etc/tty-colorscheme/colorschemes/snow-light
   /etc/tty-colorscheme/colorschemes/soft-server
+  /etc/tty-colorscheme/colorschemes/solarflare
+  /etc/tty-colorscheme/colorschemes/solarflare-light
   /etc/tty-colorscheme/colorschemes/solarized-darcula
   /etc/tty-colorscheme/colorschemes/solarized-dark
   /etc/tty-colorscheme/colorschemes/solarized-dark-higher-contrast
   /etc/tty-colorscheme/colorschemes/solarized-light
+  /etc/tty-colorscheme/colorschemes/solarized-osaka
+  /etc/tty-colorscheme/colorschemes/solarized-osaka-dark
+  /etc/tty-colorscheme/colorschemes/solarized-osaka-day
+  /etc/tty-colorscheme/colorschemes/solarized-osaka-light
+  /etc/tty-colorscheme/colorschemes/solarized-osaka-night
   /etc/tty-colorscheme/colorschemes/sonokai
-  /etc/tty-colorscheme/colorschemes/sonoran-sunrise
+  /etc/tty-colorscheme/colorschemes/source-code-x
+  /etc/tty-colorscheme/colorschemes/sourcerer
+  /etc/tty-colorscheme/colorschemes/space-grey-eighties
+  /etc/tty-colorscheme/colorschemes/space-grey-eighties-dull
+  /etc/tty-colorscheme/colorschemes/spaceduck
   /etc/tty-colorscheme/colorschemes/spacedust
   /etc/tty-colorscheme/colorschemes/spacegray
+  /etc/tty-colorscheme/colorschemes/spacegray-bright
   /etc/tty-colorscheme/colorschemes/spacegray-eighties
   /etc/tty-colorscheme/colorschemes/spacegray-eighties-dull
+  /etc/tty-colorscheme/colorschemes/spacemacs
   /etc/tty-colorscheme/colorschemes/sparky
+  /etc/tty-colorscheme/colorschemes/spiderman
   /etc/tty-colorscheme/colorschemes/spring
   /etc/tty-colorscheme/colorschemes/square
+  /etc/tty-colorscheme/colorschemes/squintless
+  /etc/tty-colorscheme/colorschemes/squirrelsong-dark
   /etc/tty-colorscheme/colorschemes/srcery
+  /etc/tty-colorscheme/colorschemes/standardized-dark
+  /etc/tty-colorscheme/colorschemes/standardized-light
+  /etc/tty-colorscheme/colorschemes/starlight
+  /etc/tty-colorscheme/colorschemes/stella
+  /etc/tty-colorscheme/colorschemes/still-alive
   /etc/tty-colorscheme/colorschemes/sublette
-  /etc/tty-colorscheme/colorschemes/sublette-alt
+  /etc/tty-colorscheme/colorschemes/subliminal
+  /etc/tty-colorscheme/colorschemes/substrata
+  /etc/tty-colorscheme/colorschemes/sugarplum
+  /etc/tty-colorscheme/colorschemes/sumi-linen
+  /etc/tty-colorscheme/colorschemes/sumi-phosphor
   /etc/tty-colorscheme/colorschemes/summer-pop
+  /etc/tty-colorscheme/colorschemes/summercamp
+  /etc/tty-colorscheme/colorschemes/summerfruit-dark
+  /etc/tty-colorscheme/colorschemes/summerfruit-light
   /etc/tty-colorscheme/colorschemes/sundried
+  /etc/tty-colorscheme/colorschemes/sunset-drive
+  /etc/tty-colorscheme/colorschemes/swamp-dark
+  /etc/tty-colorscheme/colorschemes/swamp-light
   /etc/tty-colorscheme/colorschemes/sweet-eliverlara
+  /etc/tty-colorscheme/colorschemes/sweet-mars
   /etc/tty-colorscheme/colorschemes/sweet-terminal
+  /etc/tty-colorscheme/colorschemes/synth-midnight-dark
+  /etc/tty-colorscheme/colorschemes/synth-midnight-light
+  /etc/tty-colorscheme/colorschemes/synth-wave84-python
   /etc/tty-colorscheme/colorschemes/synthwave
+  /etc/tty-colorscheme/colorschemes/synthwave-84
   /etc/tty-colorscheme/colorschemes/synthwave-alpha
+  /etc/tty-colorscheme/colorschemes/synthwave-everything
+  /etc/tty-colorscheme/colorschemes/synthwave-lost
+  /etc/tty-colorscheme/colorschemes/taerminal
+  /etc/tty-colorscheme/colorschemes/tango
+  /etc/tty-colorscheme/colorschemes/tango-adapted
+  /etc/tty-colorscheme/colorschemes/tango-half-adapted
+  /etc/tty-colorscheme/colorschemes/tarot
+  /etc/tty-colorscheme/colorschemes/tearout
   /etc/tty-colorscheme/colorschemes/teerb
   /etc/tty-colorscheme/colorschemes/temple-os
   /etc/tty-colorscheme/colorschemes/temple-os-alt
@@ -410,38 +1158,141 @@ Files included in the binary package:
   /etc/tty-colorscheme/colorschemes/tempus-warp
   /etc/tty-colorscheme/colorschemes/tempus-winter
   /etc/tty-colorscheme/colorschemes/tender
+  /etc/tty-colorscheme/colorschemes/terafox
+  /etc/tty-colorscheme/colorschemes/terminal-app
+  /etc/tty-colorscheme/colorschemes/terminal-basic
+  /etc/tty-colorscheme/colorschemes/terminal-basic-dark
+  /etc/tty-colorscheme/colorschemes/terminal-green-1999
   /etc/tty-colorscheme/colorschemes/terminix-dark
+  /etc/tty-colorscheme/colorschemes/terracotta
+  /etc/tty-colorscheme/colorschemes/terracotta-dark
   /etc/tty-colorscheme/colorschemes/thayer-bright
+  /etc/tty-colorscheme/colorschemes/thayler-bright
+  /etc/tty-colorscheme/colorschemes/the-hulk
+  /etc/tty-colorscheme/colorschemes/thelovelace
   /etc/tty-colorscheme/colorschemes/tin
+  /etc/tty-colorscheme/colorschemes/tinacious-design-dark
+  /etc/tty-colorscheme/colorschemes/tinacious-design-light
+  /etc/tty-colorscheme/colorschemes/tinta
+  /etc/tty-colorscheme/colorschemes/tinted8-catppuccin-latte
+  /etc/tty-colorscheme/colorschemes/tinted8-catppuccin-mocha
+  /etc/tty-colorscheme/colorschemes/tinted8-nord
   /etc/tty-colorscheme/colorschemes/tiwahu-dark
-  /etc/tty-colorscheme/colorschemes/tokyo-night
+  /etc/tty-colorscheme/colorschemes/tiwahu-light
+  /etc/tty-colorscheme/colorschemes/token-dark
+  /etc/tty-colorscheme/colorschemes/token-light
+  /etc/tty-colorscheme/colorschemes/tokio
+  /etc/tty-colorscheme/colorschemes/tokyo-city-dark
+  /etc/tty-colorscheme/colorschemes/tokyo-city-light
+  /etc/tty-colorscheme/colorschemes/tokyo-city-terminal-dark
+  /etc/tty-colorscheme/colorschemes/tokyo-city-terminal-light
+  /etc/tty-colorscheme/colorschemes/tokyo-night-dark
+  /etc/tty-colorscheme/colorschemes/tokyo-night-enhanced
   /etc/tty-colorscheme/colorschemes/tokyo-night-light
-  /etc/tty-colorscheme/colorschemes/tokyo-night-storm
+  /etc/tty-colorscheme/colorschemes/tokyo-night-terminal-dark
+  /etc/tty-colorscheme/colorschemes/tokyo-night-terminal-light
+  /etc/tty-colorscheme/colorschemes/tokyo-night-terminal-storm
+  /etc/tty-colorscheme/colorschemes/tokyodark
+  /etc/tty-colorscheme/colorschemes/tokyodark-terminal
+  /etc/tty-colorscheme/colorschemes/tokyonight
+  /etc/tty-colorscheme/colorschemes/tokyonight-day
+  /etc/tty-colorscheme/colorschemes/tokyonight-moon
+  /etc/tty-colorscheme/colorschemes/tokyonight-storm
   /etc/tty-colorscheme/colorschemes/tomorrow
   /etc/tty-colorscheme/colorschemes/tomorrow-night
   /etc/tty-colorscheme/colorschemes/tomorrow-night-blue
   /etc/tty-colorscheme/colorschemes/tomorrow-night-bright
+  /etc/tty-colorscheme/colorschemes/tomorrow-night-burns
   /etc/tty-colorscheme/colorschemes/tomorrow-night-eighties
   /etc/tty-colorscheme/colorschemes/toy-chest
+  /etc/tty-colorscheme/colorschemes/traffic
+  /etc/tty-colorscheme/colorschemes/trapped-in-amber
   /etc/tty-colorscheme/colorschemes/treehouse
+  /etc/tty-colorscheme/colorschemes/tube
   /etc/tty-colorscheme/colorschemes/twilight
+  /etc/tty-colorscheme/colorschemes/ubuntu
+  /etc/tty-colorscheme/colorschemes/ultra-dark
+  /etc/tty-colorscheme/colorschemes/ultra-violent
+  /etc/tty-colorscheme/colorschemes/ultra-violet
+  /etc/tty-colorscheme/colorschemes/under-the-sea
+  /etc/tty-colorscheme/colorschemes/unikitty
+  /etc/tty-colorscheme/colorschemes/unikitty-dark
+  /etc/tty-colorscheme/colorschemes/unikitty-light
+  /etc/tty-colorscheme/colorschemes/unikitty-reversible
   /etc/tty-colorscheme/colorschemes/ura
+  /etc/tty-colorscheme/colorschemes/urban
   /etc/tty-colorscheme/colorschemes/urple
+  /etc/tty-colorscheme/colorschemes/uwunicorn
   /etc/tty-colorscheme/colorschemes/vacme
   /etc/tty-colorscheme/colorschemes/vag
+  /etc/tty-colorscheme/colorschemes/vague
+  /etc/tty-colorscheme/colorschemes/valua
   /etc/tty-colorscheme/colorschemes/vaombe
+  /etc/tty-colorscheme/colorschemes/vaporwave-control-room
+  /etc/tty-colorscheme/colorschemes/vaporwave-sunset
   /etc/tty-colorscheme/colorschemes/vaughn
+  /etc/tty-colorscheme/colorschemes/velvet-court
+  /etc/tty-colorscheme/colorschemes/venom
+  /etc/tty-colorscheme/colorschemes/vercel
+  /etc/tty-colorscheme/colorschemes/verdigris
+  /etc/tty-colorscheme/colorschemes/vesper
   /etc/tty-colorscheme/colorschemes/vibrant-ink
+  /etc/tty-colorscheme/colorschemes/vice
+  /etc/tty-colorscheme/colorschemes/vimbones
+  /etc/tty-colorscheme/colorschemes/violet-dark
+  /etc/tty-colorscheme/colorschemes/violet-light
+  /etc/tty-colorscheme/colorschemes/violite
+  /etc/tty-colorscheme/colorschemes/vivid-punk
   /etc/tty-colorscheme/colorschemes/vs-code-dark
   /etc/tty-colorscheme/colorschemes/vs-code-light
+  /etc/tty-colorscheme/colorschemes/vulcan
+  /etc/tty-colorscheme/colorschemes/warm-burnout-dark
+  /etc/tty-colorscheme/colorschemes/warm-burnout-light
   /etc/tty-colorscheme/colorschemes/warm-neon
   /etc/tty-colorscheme/colorschemes/website
   /etc/tty-colorscheme/colorschemes/wez
+  /etc/tty-colorscheme/colorschemes/whimsy
   /etc/tty-colorscheme/colorschemes/wild-cherry
+  /etc/tty-colorscheme/colorschemes/wilmersdorf
+  /etc/tty-colorscheme/colorschemes/windows-10
+  /etc/tty-colorscheme/colorschemes/windows-10-light
+  /etc/tty-colorscheme/colorschemes/windows-95
+  /etc/tty-colorscheme/colorschemes/windows-95-light
+  /etc/tty-colorscheme/colorschemes/windows-highcontrast
+  /etc/tty-colorscheme/colorschemes/windows-highcontrast-light
+  /etc/tty-colorscheme/colorschemes/windows-nt
+  /etc/tty-colorscheme/colorschemes/windows-nt-light
+  /etc/tty-colorscheme/colorschemes/wizzy-bright
+  /etc/tty-colorscheme/colorschemes/wizzy-muted
   /etc/tty-colorscheme/colorschemes/wombat
+  /etc/tty-colorscheme/colorschemes/wood
+  /etc/tty-colorscheme/colorschemes/woodland
   /etc/tty-colorscheme/colorschemes/wryan
   /etc/tty-colorscheme/colorschemes/wzoreck
+  /etc/tty-colorscheme/colorschemes/x
+  /etc/tty-colorscheme/colorschemes/xcode-dark
+  /etc/tty-colorscheme/colorschemes/xcode-dark-hc
+  /etc/tty-colorscheme/colorschemes/xcode-dusk
+  /etc/tty-colorscheme/colorschemes/xcode-light
+  /etc/tty-colorscheme/colorschemes/xcode-light-hc
+  /etc/tty-colorscheme/colorschemes/xcode-wwdc
+  /etc/tty-colorscheme/colorschemes/xterm
+  /etc/tty-colorscheme/colorschemes/y2k-chrome
+  /etc/tty-colorscheme/colorschemes/yesterday
+  /etc/tty-colorscheme/colorschemes/yesterday-bright
+  /etc/tty-colorscheme/colorschemes/yesterday-night
+  /etc/tty-colorscheme/colorschemes/yorumi-abyss
+  /etc/tty-colorscheme/colorschemes/yorumi-kraken
+  /etc/tty-colorscheme/colorschemes/yorumi-mist
+  /etc/tty-colorscheme/colorschemes/yorumi-shade
+  /etc/tty-colorscheme/colorschemes/ys-dark
+  /etc/tty-colorscheme/colorschemes/zenbones
+  /etc/tty-colorscheme/colorschemes/zenbones-dark
   /etc/tty-colorscheme/colorschemes/zenburn
+  /etc/tty-colorscheme/colorschemes/zenburn-lost
+  /etc/tty-colorscheme/colorschemes/zenburned
+  /etc/tty-colorscheme/colorschemes/zenwritten-dark
+  /etc/tty-colorscheme/colorschemes/zenwritten-light
   /etc/tty-colorscheme/tty-colorscheme.conf
   /usr/bin/tty-colorscheme
   /usr/lib/systemd/system/tty-colorscheme.service
@@ -452,6 +1303,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.21-1bl1 -----
+Version bump.
 
 ----- version 1.11-1bl1 -----
 Version bump.

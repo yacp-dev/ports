@@ -24,20 +24,20 @@ DOCS="
 
 PKG_NAMES="
 	${PN}
-	libta-lib0
+	libta-lib1
 	libta-lib-devel
 "
 ta_lib_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libta_lib0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libta_lib1_CONTENTS="
+	usr/bin/cyg*-1.dll
 "
 libta_lib_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 ta_lib_SUMMARY="${SUMMARY} (utilities)"
-libta_lib0_SUMMARY="${SUMMARY} (runtime)"
+libta_lib1_SUMMARY="${SUMMARY} (runtime)"
 libta_lib_devel_SUMMARY="${SUMMARY} (development)"

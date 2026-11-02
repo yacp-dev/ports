@@ -7,6 +7,16 @@ DESCRIPTION="This is a simple templatized C++ library for parsing command line a
 The library provides a simple, flexible object-oriented interface to the
 command line that automates argument parsing, USAGE creation and type casting."
 
-CYGCONF_ARGS="
-    --disable-doxygen
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	python3
+"
+
+inherit cmake
+
+DOCS="
+	docs/manual.html
 "

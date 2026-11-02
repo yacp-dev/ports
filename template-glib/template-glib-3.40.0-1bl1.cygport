@@ -1,4 +1,4 @@
-inherit gnome2
+inherit gnome.org
 inherit meson
 
 CATEGORY="Gnome"
@@ -12,9 +12,14 @@ LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	bison
+	flex
+	gettext-devel
+	gobject-introspection
 	libgirepository1.0-devel
 	libglib2.0-devel
 	libintl-devel
+	vala
 "
 
 PKG_NAMES="

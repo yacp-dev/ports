@@ -5,27 +5,28 @@ user defined state. Template-GLib does not use a language runtime, so it is
 safe to use from any GObject-Introspectable language.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  girepository-GLib2.0-1.86.0-1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
+  cygwin-3.6.12-1
+  girepository-GLib2.0-1.86.0-2
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
   libintl8-0.22.5-1
-  libtemplate_glib1.0-devel-3.38.0-1bl1
-  libtemplate_glib1.0_0-3.38.0-1bl1
-  pkg-config-2.5.1-1
+  libtemplate_glib1.0-devel-3.40.0-1bl1
+  libtemplate_glib1.0_0-3.40.0-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
+  binutils-2.47-1
   bison-3.8.2-1
-  cygport-0.37.4-1
+  cygport-0.37.12-1
   flex-2.6.4-2
-  gcc-core-13.4.0-1
-  gobject-introspection-1.86.0-1
-  libgirepository1.0-devel-1.86.0-1
-  libglib2.0-devel-2.87.0-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.22.5-1
+  gobject-introspection-1.86.0-2
+  libgirepository1.0-devel-1.86.0-2
+  libglib2.0-devel-2.90.1-1
   libintl-devel-0.22.5-1
-  meson-1.4.2-1
+  meson-1.10.2-1
   ninja-1.13.2-1
   vala-0.56.18-1
 
@@ -33,24 +34,24 @@ Canonical website:
   https://www.gnome.org/
 
 Canonical download:
-  mirror://gnome/sources/template-glib/3.38/template-glib-3.38.0.tar.xz
+  mirror://gnome/sources/template-glib/3.40/template-glib-3.40.0.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack template-glib-3.38.0-X-src.tar.xz
+  1. unpack template-glib-3.40.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./template-glib-3.38.0-X.cygport all
+        % cygport ./template-glib-3.40.0-X.cygport all
 
 This will create:
-  /usr/src/template-glib-3.38.0-X-src.tar.xz
-  /usr/src/template-glib-3.38.0-X.tar.xz
-  /usr/src/libtemplate_glib1.0_0-3.38.0-X.tar.xz
-  /usr/src/libtemplate_glib1.0-devel-3.38.0-X.tar.xz
-  /usr/src/girepository-Template1.0-3.38.0-X.tar.xz
-  /usr/src/vala-template-glib-3.38.0-X.tar.xz
+  /usr/src/template-glib-3.40.0-X-src.tar.xz
+  /usr/src/template-glib-3.40.0-X.tar.xz
+  /usr/src/libtemplate_glib1.0_0-3.40.0-X.tar.xz
+  /usr/src/libtemplate_glib1.0-devel-3.40.0-X.tar.xz
+  /usr/src/girepository-Template1.0-3.40.0-X.tar.xz
+  /usr/src/vala-template-glib-3.40.0-X.tar.xz
 
 -------------------------------------------
 
@@ -65,6 +66,7 @@ Files included in the binary package:
 (libtemplate_glib1.0_0)
   /usr/bin/cygtemplate_glib-1.0-0.dll
   /usr/share/locale/ar/LC_MESSAGES/template-glib.mo
+  /usr/share/locale/bg/LC_MESSAGES/template-glib.mo
   /usr/share/locale/ca/LC_MESSAGES/template-glib.mo
   /usr/share/locale/cs/LC_MESSAGES/template-glib.mo
   /usr/share/locale/da/LC_MESSAGES/template-glib.mo
@@ -82,6 +84,8 @@ Files included in the binary package:
   /usr/share/locale/it/LC_MESSAGES/template-glib.mo
   /usr/share/locale/ka/LC_MESSAGES/template-glib.mo
   /usr/share/locale/kab/LC_MESSAGES/template-glib.mo
+  /usr/share/locale/kk/LC_MESSAGES/template-glib.mo
+  /usr/share/locale/kw/LC_MESSAGES/template-glib.mo
   /usr/share/locale/lt/LC_MESSAGES/template-glib.mo
   /usr/share/locale/nl/LC_MESSAGES/template-glib.mo
   /usr/share/locale/pl/LC_MESSAGES/template-glib.mo
@@ -123,6 +127,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.40.0-1bl1 -----
+Version bump.
 
 ----- version 3.38.0-1bl1 -----
 Version bump.

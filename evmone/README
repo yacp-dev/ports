@@ -7,49 +7,49 @@ projects. The codebase of evmone is optimized to provide fast and efficient
 execution of EVM smart contracts.
 
 Runtime requirements:
-  cygwin-3.4.3-1
-  libbenchmark1-1.7.1-1bl1
-  libethash1-1.0.0-1bl1
-  libevmc10-10.0.0-1bl1
-  libevmone-devel-0.9.1-1bl1
-  libevmone0.9-0.9.1-1bl1
-  libgcc1-11.3.0-1
-  libstdc++6-11.3.0-1
-  pkg-config-1.9.3-1
+  cygwin-3.6.12-1
+  libbenchmark1-1.10.0-1bl1
+  libevmone-devel-0.25.0-1bl1
+  libevmone0.25-0.25.0-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.39-1
-  cmake-3.23.2-1
-  cygport-0.35.5-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libbenchmark-devel-1.7.1-1bl1
-  libethash-devel-1.0.0-1bl1
-  libevmc-devel-10.0.0-1bl1
-  libgtest-devel-1.12.1-1bl1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cli11-2.7.2-1bl1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  intx-0.15.0-1bl1
+  libbenchmark-devel-1.10.0-1bl1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
+  nlohmann_json-3.12.0-1bl3
 
 Canonical website:
-  https://github.com/ethereum/evmone
+  https://github.com/ipsilon/evmone
 
 Canonical download:
-  https://github.com/ethereum/evmone/archive/refs/tags/v0.9.1.tar.gz
+  https://github.com/ipsilon/evmone/archive/refs/tags/v0.25.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack evmone-0.9.1-X-src.tar.xz
+  1. unpack evmone-0.25.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./evmone-0.9.1-X.cygport all
+        % cygport ./evmone-0.25.0-X.cygport all
 
 This will create:
-  /usr/src/evmone-0.9.1-X-src.tar.xz
-  /usr/src/evmone-0.9.1-X.tar.xz
-  /usr/src/libevmone0.9-0.9.1-X.tar.xz
-  /usr/src/libevmone-devel-0.9.1-X.tar.xz
+  /usr/src/evmone-0.25.0-X-src.tar.xz
+  /usr/src/evmone-0.25.0-X.tar.xz
+  /usr/src/libevmone0.25-0.25.0-X.tar.xz
+  /usr/src/libevmone-devel-0.25.0-X.tar.xz
 
 -------------------------------------------
 
@@ -57,14 +57,15 @@ Files included in the binary package:
 
 (evmone)
   /usr/bin/evmone-bench.exe
+  /usr/bin/evmone.exe
   /usr/share/doc/Cygwin/evmone.README
   /usr/share/doc/evmone/AUTHORS
   /usr/share/doc/evmone/CHANGELOG.md
   /usr/share/doc/evmone/LICENSE
   /usr/share/doc/evmone/README.md
 
-(libevmone0.9)
-  /usr/bin/cygevmone-0.9.dll
+(libevmone0.25)
+  /usr/bin/cygevmone-0.25.dll
 
 (libevmone-devel)
   /usr/include/evmone/evmone.h
@@ -74,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.25.0-1bl1 -----
+Version bump.
 
 ----- version 0.9.1-1bl1 -----
 Version bump.

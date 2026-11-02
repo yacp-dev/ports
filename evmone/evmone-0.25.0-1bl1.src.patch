@@ -1,0 +1,94 @@
+--- origsrc/evmone-0.25.0/CMakeLists.txt	2026-10-14 09:45:21.000000000 +0000
++++ src/evmone-0.25.0/CMakeLists.txt	2026-11-02 05:25:21.249336400 +0000
+@@ -196,3 +196,9 @@ install(DIRECTORY ${include_dir}/
+     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+ 
+ cable_add_archive_package()
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/evmone.pc.in ${CMAKE_BINARY_DIR}/evmone.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/evmone.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/evmone-0.25.0/cmake/blst.cmake	2026-10-14 09:45:21.000000000 +0000
++++ src/evmone-0.25.0/cmake/blst.cmake	2026-11-02 05:25:21.250352200 +0000
+@@ -24,8 +24,7 @@ ExternalProject_Add(
+     blst
+     EXCLUDE_FROM_ALL TRUE
+     PREFIX ${PROJECT_BINARY_DIR}/deps
+-    URL https://github.com/supranational/blst/archive/refs/tags/v0.3.17.tar.gz
+-    URL_HASH SHA256=c3fef37b566b67419703b2bbb648e15176276af9a880c22aa8f5f2e8cecc2e4d
++    URL ${PROJECT_SOURCE_DIR}/blst
+     DOWNLOAD_NO_PROGRESS TRUE
+     CONFIGURE_COMMAND ""
+     BUILD_COMMAND ${BLST_BUILD_SCRIPT}
+--- origsrc/evmone-0.25.0/evmone.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/evmone-0.25.0/evmone.pc.in	2026-11-02 05:25:21.250352200 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: evmone
++Description: Fast Ethereum Virtual Machine implementation
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -levmone
++Cflags: -I${includedir}
+--- origsrc/evmone-0.25.0/test/CMakeLists.txt	2026-10-14 09:45:21.000000000 +0000
++++ src/evmone-0.25.0/test/CMakeLists.txt	2026-11-02 05:25:21.250352200 +0000
+@@ -13,43 +13,7 @@ find_package(CLI11 CONFIG REQUIRED)
+ hunter_add_package(GTest)
+ find_package(GTest CONFIG REQUIRED)
+ 
+-block(PROPAGATE benchmark_libs)
+-    set(BUILD_SHARED_LIBS OFF)
+-    set(BENCHMARK_ENABLE_TESTING OFF)
+-    set(BENCHMARK_ENABLE_INSTALL OFF)
+-    set(benchmark_libs benchmark benchmark_main)
+-    if(NOT CODSPEED_MODE)
+-        FetchContent_Declare(
+-            benchmark
+-            URL https://github.com/google/benchmark/archive/refs/tags/v1.9.5.tar.gz
+-            URL_HASH SHA256=9631341c82bac4a288bef951f8b26b41f69021794184ece969f8473977eaa340
+-        )
+-    else()
+-        # Replace google/benchmark with CodSpeed's fork of it to report the benchmark results
+-        # to https://codspeed.io. It provides the same benchmark::benchmark target,
+-        # so the benchmark targets need no changes.
+-        FetchContent_Declare(
+-            benchmark
+-            # Fork of v2.4.0 with fixes not yet available upstream.
+-            GIT_REPOSITORY https://github.com/chfast/codspeed-cpp
+-            GIT_TAG 0ecdd6e7d8f9e858e8e0b2fbe54ff7f427bec528
+-            GIT_SHALLOW FALSE
+-            SOURCE_SUBDIR google_benchmark
+-        )
+-        list(APPEND benchmark_libs codspeed instrument_hooks)
+-        # Also reports the tests `evmone test` runs as benchmarks (utils/test_driver.cpp).
+-        target_link_libraries(evmone.testutils PRIVATE codspeed)
+-    endif()
+-    FetchContent_MakeAvailable(benchmark)
+-endblock()
+-
+-set_target_properties(
+-    ${benchmark_libs} PROPERTIES
+-    COMPILE_OPTIONS "$<$<COMPILE_LANG_AND_ID:C,GNU,Clang,AppleClang>:-w>;$<$<COMPILE_LANG_AND_ID:CXX,GNU,Clang,AppleClang>:-w>"
+-    C_CLANG_TIDY ""
+-    CXX_CLANG_TIDY ""
+-    SYSTEM TRUE  # TODO(cmake-3.26): Use the SYSTEM option of FetchContent_Declare().
+-)
++find_package(benchmark CONFIG REQUIRED)
+ 
+ include(CableBuildInfo)
+ cable_add_buildinfo_library(PROJECT_NAME evmone)
+--- origsrc/evmone-0.25.0/test/internal_benchmarks/find_jumpdest_bench.cpp	2026-10-14 09:45:21.000000000 +0000
++++ src/evmone-0.25.0/test/internal_benchmarks/find_jumpdest_bench.cpp	2026-11-02 05:25:21.252368500 +0000
+@@ -3,6 +3,7 @@
+ // SPDX-License-Identifier: Apache-2.0
+ 
+ #include <benchmark/benchmark.h>
++#include <algorithm>
+ #include <array>
+ #include <random>
+ #include <unordered_map>

@@ -1,0 +1,13 @@
+--- origsrc/t3-1.1.0/Makefile	2026-06-16 15:39:08.000000000 +0000
++++ src/t3-1.1.0/Makefile	2026-11-02 05:26:30.940352600 +0000
+@@ -3,8 +3,8 @@
+ NAME = t3
+ VERSION ?= unknown
+ PREFIX ?= /usr/local
+-OPTFLAGS ?= -g
+-CFLAGS = -Wall $(OPTFLAGS) -DVERSION='"$(VERSION)"'
++CFLAGS ?=
++CFLAGS += -DVERSION='"$(VERSION)"'
+ 
+ BINDIR = $(PREFIX)/bin
+ BIN = $(NAME)

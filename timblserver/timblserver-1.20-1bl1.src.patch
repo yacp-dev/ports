@@ -1,9 +1,6 @@
---- origsrc/timblserver-1.19/demos/Makefile.am	2024-12-16 22:00:39.000000000 +0900
-+++ src/timblserver-1.19/demos/Makefile.am	2025-01-19 16:35:17.029353300 +0900
-@@ -1,8 +1,8 @@
- # $Id: Makefile.am 2927 2009-09-08 15:26:45Z sloot $
- # $URL: $
- 
+--- origsrc/timblserver-1.20/demos/Makefile.am	2026-07-06 08:41:10.000000000 +0000
++++ src/timblserver-1.20/demos/Makefile.am	2026-11-02 15:37:29.206154900 +0000
+@@ -1,5 +1,5 @@
 -AM_CPPFLAGS = -I@top_srcdir@/include
 -AM_CXXFLAGS = -std=c++0x
 +AM_CPPFLAGS = -I$(top_srcdir)/include
@@ -11,8 +8,8 @@
  
  if WANT_OMP
  noinst_PROGRAMS = sockettestServer sockettestClient
---- origsrc/timblserver-1.19/src/Makefile.am	2024-12-16 22:00:39.000000000 +0900
-+++ src/timblserver-1.19/src/Makefile.am	2025-01-19 16:34:48.031461200 +0900
+--- origsrc/timblserver-1.20/src/Makefile.am	2026-07-06 08:41:10.000000000 +0000
++++ src/timblserver-1.20/src/Makefile.am	2026-11-02 15:37:29.206154900 +0000
 @@ -1,5 +1,5 @@
 -AM_CPPFLAGS = -I@top_srcdir@/include
 -AM_CXXFLAGS = -std=c++17 -W -Wall -O3 -g

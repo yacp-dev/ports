@@ -10,7 +10,9 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libncurses-devel"
+BUILD_REQUIRES="
+	libncurses-devel
+"
 
 src_compile()
 {

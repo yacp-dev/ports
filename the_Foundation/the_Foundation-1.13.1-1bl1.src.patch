@@ -1,6 +1,6 @@
---- origsrc/the_foundation/CMakeLists.txt	2025-11-27 13:59:44.000000000 +0900
-+++ src/the_foundation/CMakeLists.txt	2026-02-05 08:19:25.506424500 +0900
-@@ -277,7 +277,7 @@ elseif (CMAKE_SYSTEM MATCHES "^MSYS.*")
+--- origsrc/the_foundation/CMakeLists.txt	2026-08-20 16:05:47.000000000 +0000
++++ src/the_foundation/CMakeLists.txt	2026-11-02 12:12:52.755823200 +0000
+@@ -291,7 +291,7 @@ elseif (CMAKE_SYSTEM MATCHES "^MSYS.*")
      set (SOURCES ${SOURCES} src/platform/windows.c)
  elseif (CMAKE_SYSTEM MATCHES "^CYGWIN.*")
      set (iPlatformCygwin YES)
@@ -9,7 +9,7 @@
  elseif (CMAKE_SYSTEM_NAME STREQUAL "Haiku")
      set (iPlatformHaiku YES)
      set (SOURCES ${SOURCES} src/platform/generic.c)
-@@ -452,7 +452,8 @@ tfdn_link_depends (${TFDN_LIB} ${TFDN_DE
+@@ -472,7 +472,8 @@ tfdn_link_depends (${TFDN_LIB} ${TFDN_DE
  if (TFDN_ENABLE_INSTALL)
      install (TARGETS ${TFDN_LIB}
          EXPORT ${TFDN_LIB}
@@ -19,8 +19,19 @@
      )
      install (EXPORT ${TFDN_LIB}
          DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${TFDN_LIB}
---- origsrc/the_foundation/the_Foundation.pc.in	2025-11-27 13:59:44.000000000 +0900
-+++ src/the_foundation/the_Foundation.pc.in	2026-02-05 08:19:25.509187900 +0900
+--- origsrc/the_foundation/tests/t_process.c	2026-08-20 16:05:47.000000000 +0000
++++ src/the_foundation/tests/t_process.c	2026-11-02 12:12:52.755823200 +0000
+@@ -81,6 +81,8 @@ int main(int argc, char *argv[]) {
+             "/System/Applications/TextEdit.app/Contents/MacOS/TextEdit",
+ #elif defined (iPlatformLinux)
+             "/usr/bin/x-terminal-emulator",
++#elif defined (iPlatformCygwin)
++            "/usr/bin/true",
+ #endif
+             NULL)));
+         start_Process(proc);
+--- origsrc/the_foundation/the_Foundation.pc.in	2026-08-20 16:05:47.000000000 +0000
++++ src/the_foundation/the_Foundation.pc.in	2026-11-02 12:12:52.757846500 +0000
 @@ -1,7 +1,7 @@
 -prefix="@CMAKE_INSTALL_PREFIX@"
 -exec_prefix="${prefix}"

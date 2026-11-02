@@ -4,49 +4,49 @@ An object-oriented C library whose API is designed for a particular coding
 style, taking cues from C++ STL and Qt.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  lib_Foundation-devel-1.11.0-1bl1
-  lib_Foundation1-1.11.0-1bl1
-  libcurl4-8.18.0-1
-  libpcre2_8_0-10.47-1
-  libssl3-3.0.19-1
+  cygwin-3.6.12-1
+  lib_Foundation-devel-1.13.1-1bl1
+  lib_Foundation1-1.13.1-1bl1
+  libcurl4-8.23.0-1
+  libpcre2_8_0-10.49-1
+  libssl3-3.5.9-1
   libunistring5-1.4.1-1
-  pkg-config-2.5.1-1
-  zlib0-1.3.1-1
+  pkg-config-3.0.10-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libcurl-devel-8.18.0-1
-  libpcre2-devel-10.47-1
-  libssl-devel-3.0.19-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcurl-devel-8.23.0-1
+  libpcre2-devel-10.49-1
+  libssl-devel-3.5.9-1
   libunistring-devel-1.4.1-1
   ninja-1.13.2-1
-  zlib-devel-1.3.1-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
-  https://git.skyjake.fi/skyjake/the_Foundation
+  https://codeberg.org/skyjake/the_Foundation
 
 Canonical download:
-  https://git.skyjake.fi/skyjake/the_Foundation/archive/v1.11.0.tar.gz
+  https://codeberg.org/skyjake/the_Foundation/archive/v1.13.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack the_Foundation-1.11.0-X-src.tar.xz
+  1. unpack the_Foundation-1.13.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./the_Foundation-1.11.0-X.cygport all
+        % cygport ./the_Foundation-1.13.1-X.cygport all
 
 This will create:
-  /usr/src/the_Foundation-1.11.0-X-src.tar.xz
-  /usr/src/the_Foundation-1.11.0-X.tar.xz
-  /usr/src/lib_Foundation1-1.11.0-X.tar.xz
-  /usr/src/lib_Foundation-devel-1.11.0-X.tar.xz
+  /usr/src/the_Foundation-1.13.1-X-src.tar.xz
+  /usr/src/the_Foundation-1.13.1-X.tar.xz
+  /usr/src/lib_Foundation1-1.13.1-X.tar.xz
+  /usr/src/lib_Foundation-devel-1.13.1-X.tar.xz
 
 -------------------------------------------
 
@@ -93,6 +93,7 @@ Files included in the binary package:
   /usr/include/the_Foundation/math_generic.h
   /usr/include/the_Foundation/math_sse.h
   /usr/include/the_Foundation/mutex.h
+  /usr/include/the_Foundation/networkproxy.h
   /usr/include/the_Foundation/noise.h
   /usr/include/the_Foundation/object.h
   /usr/include/the_Foundation/objectlist.h
@@ -124,7 +125,7 @@ Files included in the binary package:
   /usr/include/the_Foundation/version.h
   /usr/include/the_Foundation/webrequest.h
   /usr/include/the_Foundation/xml.h
-  /usr/lib/cmake/the_Foundation/the_FoundationConfig-release.cmake
+  /usr/lib/cmake/the_Foundation/the_FoundationConfig-relwithdebinfo.cmake
   /usr/lib/cmake/the_Foundation/the_FoundationConfig.cmake
   /usr/lib/cmake/the_Foundation/the_FoundationConfigVersion.cmake
   /usr/lib/lib_Foundation.dll.a
@@ -133,6 +134,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.13.1-1bl1 -----
+Version bump.
 
 ----- version 1.11.0-1bl1 -----
 Version bump.

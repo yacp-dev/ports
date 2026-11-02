@@ -1,5 +1,5 @@
-HOMEPAGE="https://git.skyjake.fi/skyjake/${PN}"
-SRC_URI="https://git.skyjake.fi/skyjake/${PN}/archive/v${PV}.tar.gz"
+HOMEPAGE="https://codeberg.org/skyjake/${PN}"
+SRC_URI="https://codeberg.org/skyjake/${PN}/archive/v${PV}.tar.gz"
 SRC_DIR="the_foundation"
 
 CATEGORY="Libs"
@@ -27,11 +27,13 @@ CYGCMAKE_ARGS="
 
 src_test()
 {
+	local rc=0
 	cd ${B}
 	for exe in *_Foundation.exe
 	do
-		verbose ./${exe} || :
+		verbose ./${exe} || rc=1
 	done
+	return ${rc}
 }
 
 PKG_NAMES="

@@ -5,8 +5,8 @@ CATEGORY="Utils"
 SUMMARY="Simple script to change colors in the linux TTY with 300 colorschemes"
 DESCRIPTION="${SUMMARY}"
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
+LICENSE="LicenseRef-Unknown"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-Unknown"
 # LICENSE_URI=""
 
 src_compile()

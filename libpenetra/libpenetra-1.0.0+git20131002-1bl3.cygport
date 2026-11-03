@@ -8,11 +8,15 @@ DESCRIPTION="The libpenetra was created with the goal of studying the windows bi
 known as Portable Executable (PE). With libpenetra you can access all info
 about PE binaries."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
-LICENSE_URI="COPYING"
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE_URI="https://www.apache.org/licenses/LICENSE-2.0"
 
-BUILD_REQUIRES="CUnit"
+BUILD_REQUIRES="
+	CUnit
+	libxml2-devel
+	udis86-devel
+"
 
 inherit git
 
@@ -21,6 +25,16 @@ CYGCONF_ARGS="
 	--with-cunit-prefix=/usr
 	--with-libudis-prefix=/usr
 "
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	# COPYING is a symlink upstream to automake's own file, replaced at build
+	# time by automake's GPL-3.0 text. It isn't this project's license.
+	# cygport installs the docs from ${S} after src_install.
+	rm -f ${S}/COPYING
+}
 
 PKG_NAMES="
 	libpenetra

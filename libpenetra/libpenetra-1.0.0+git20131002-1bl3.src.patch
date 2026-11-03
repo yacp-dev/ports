@@ -1,13 +1,13 @@
---- origsrc/libpenetra/Makefile.am	2025-05-01 16:00:31.000000000 +0900
-+++ src/libpenetra/Makefile.am	2025-05-01 16:24:57.973768000 +0900
+--- origsrc/libpenetra/Makefile.am	2026-11-03 15:20:49.000000000 +0000
++++ src/libpenetra/Makefile.am	2026-11-03 15:20:50.340202800 +0000
 @@ -1,2 +1,5 @@
  ACLOCAL_AMFLAGS=-I m4
  SUBDIRS = src examples $(INCLUDE_TESTS)
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libpenetra/configure.ac	2025-05-01 16:00:31.000000000 +0900
-+++ src/libpenetra/configure.ac	2025-05-01 16:24:57.973768000 +0900
+--- origsrc/libpenetra/configure.ac	2026-11-03 15:20:49.000000000 +0000
++++ src/libpenetra/configure.ac	2026-11-03 15:20:50.340202800 +0000
 @@ -173,6 +173,7 @@ AC_CONFIG_FILES([     Makefile \
  		      examples/Makefile])
  
@@ -16,8 +16,8 @@
  AC_OUTPUT
  
  AC_MSG_RESULT([
---- origsrc/libpenetra/examples/Makefile.am	2025-05-01 16:00:31.000000000 +0900
-+++ src/libpenetra/examples/Makefile.am	2025-05-01 16:19:28.715188700 +0900
+--- origsrc/libpenetra/examples/Makefile.am	2026-11-03 15:20:49.000000000 +0000
++++ src/libpenetra/examples/Makefile.am	2026-11-03 15:20:50.340202800 +0000
 @@ -13,9 +13,7 @@ bin_PROGRAMS = 	is_pe_file \
  		show_coff_header2 \
  		show_dos_header \
@@ -37,8 +37,8 @@
 -LDADD = -L../src/.libs -lpenetra
 +AM_CFLAGS = -Wall -Wextra -I$(top_srcdir)/src/include
 +LDADD = $(top_builddir)/src/libpenetra.la
---- origsrc/libpenetra/libpenetra.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libpenetra/libpenetra.pc.in	2025-05-01 16:24:57.941120200 +0900
+--- origsrc/libpenetra/libpenetra.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libpenetra/libpenetra.pc.in	2026-11-03 15:20:50.342212300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -50,8 +50,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lpenetra
 +Cflags: -I${includedir}
---- origsrc/libpenetra/src/Makefile.am	2025-05-01 16:00:31.000000000 +0900
-+++ src/libpenetra/src/Makefile.am	2025-05-01 16:04:44.818165400 +0900
+--- origsrc/libpenetra/src/Makefile.am	2026-11-03 15:20:49.000000000 +0000
++++ src/libpenetra/src/Makefile.am	2026-11-03 15:20:50.342212300 +0000
 @@ -1,7 +1,7 @@
  CFLAGS_LANGUAGE=-std=c99 -pedantic -D_POSIX_C_SOURCE \
  		-D_SVID_SOURCE
@@ -77,8 +77,8 @@
  				include/penetra/load_config.h \
 -				include/penetra/resource.h \
  				include/penetra/coff.h
---- origsrc/libpenetra/test/Makefile.am	2025-05-01 16:00:31.000000000 +0900
-+++ src/libpenetra/test/Makefile.am	2025-05-01 16:20:47.748371100 +0900
+--- origsrc/libpenetra/test/Makefile.am	2026-11-03 15:20:49.000000000 +0000
++++ src/libpenetra/test/Makefile.am	2026-11-03 15:20:50.343967700 +0000
 @@ -1,4 +1,4 @@
 -SUBDIRS = hosts
 +# SUBDIRS = hosts

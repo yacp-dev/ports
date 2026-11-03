@@ -4,6 +4,7 @@ PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.13.1-2/debian/patches/Increase-FP_MAX_SIZE-to-8192.patch
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.13.1-2/debian/patches/fix-fp_iseven.patch
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.13.1-2/debian/patches/fix-fp_iseven-.-this-time-for-real.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/0ad96e879b651cc7e8214159d5841d6b633bef8a/dev-libs/tomsfastmath/files/tomsfastmath-0.13.1-export-fp_isprime_ex.patch
 "
 
 CATEGORY="Libs"
@@ -11,8 +12,8 @@ SUMMARY="Large integer arithmetic library"
 DESCRIPTION="TomsFastMath is a fast public domain, open source, large integer arithmetic
 library written in portable ISO C."
 
-LICENSE="WTFPL"
-LICENSE_SPDX="SPDX-License-Identifier: WTFPL"
+LICENSE="LicenseRef-Public-Domain OR WTFPL"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-Public-Domain OR WTFPL"
 LICENSE_URI="LICENSE"
 
 src_compile()
@@ -25,7 +26,7 @@ src_compile()
 src_test()
 {
 	cd ${B}
-	cygmake -f makefile.shared test
+	cygmake -f makefile.shared test_standalone
 	./test.exe
 }
 

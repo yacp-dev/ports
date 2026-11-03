@@ -1,5 +1,5 @@
---- origsrc/libmalelf/Makefile.am	2025-05-01 16:45:58.000000000 +0900
-+++ src/libmalelf/Makefile.am	2025-05-01 23:03:42.872768200 +0900
+--- origsrc/libmalelf/Makefile.am	2026-11-03 14:17:13.000000000 +0000
++++ src/libmalelf/Makefile.am	2026-11-03 14:17:14.831610200 +0000
 @@ -1,3 +1,6 @@
  ACLOCAL_AMFLAGS=-I m4
  
@@ -9,8 +9,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libmalelf/configure.ac	2025-05-01 16:45:58.000000000 +0900
-+++ src/libmalelf/configure.ac	2025-05-01 23:03:56.781716800 +0900
+--- origsrc/libmalelf/configure.ac	2026-11-03 14:17:13.000000000 +0000
++++ src/libmalelf/configure.ac	2026-11-03 14:17:14.833634700 +0000
 @@ -187,7 +187,7 @@ AC_CONFIG_FILES([     Makefile \
                        test/malwares/Makefile \
  		      examples/Makefile])
@@ -20,8 +20,8 @@
  AC_OUTPUT
  
  AC_MSG_RESULT([
---- origsrc/libmalelf/examples/Makefile.am	2025-05-01 16:45:58.000000000 +0900
-+++ src/libmalelf/examples/Makefile.am	2025-05-01 17:01:53.588050800 +0900
+--- origsrc/libmalelf/examples/Makefile.am	2026-11-03 14:17:13.000000000 +0000
++++ src/libmalelf/examples/Makefile.am	2026-11-03 14:17:14.833634700 +0000
 @@ -27,5 +27,5 @@ show_ehdr_members_SOURCES = show_ehdr_me
  text_section_SOURCES = text_section.asm
  infect_SOURCES = infect.c
@@ -30,8 +30,8 @@
 -LDADD = -L../src/.libs -lmalelf
 +AM_CFLAGS = -Wall -Wextra -I$(top_srcdir)/src/include
 +LDADD = $(top_builddir)/src/libmalelf.la
---- origsrc/libmalelf/libmalelf.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libmalelf/libmalelf.pc.in	2025-05-01 17:06:39.231757300 +0900
+--- origsrc/libmalelf/libmalelf.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libmalelf/libmalelf.pc.in	2026-11-03 14:17:14.835126600 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -43,8 +43,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lmalelf
 +Cflags: -I${includedir}
---- origsrc/libmalelf/src/Makefile.am	2025-05-01 16:45:58.000000000 +0900
-+++ src/libmalelf/src/Makefile.am	2025-05-01 16:49:52.637370100 +0900
+--- origsrc/libmalelf/src/Makefile.am	2026-11-03 14:17:13.000000000 +0000
++++ src/libmalelf/src/Makefile.am	2026-11-03 14:17:14.835656100 +0000
 @@ -1,9 +1,9 @@
  CFLAGS_LANGUAGE=-std=c99 -pedantic -D_POSIX_C_SOURCE \
  		-D_DEFAULT_SOURCE
@@ -67,19 +67,40 @@
  libmalelf_la_LIBADD=-L$(LIBXML_LIBPATH) -L$(LIBUDIS_LIBPATH) -lxml2 -ludis86
  
  library_includedir=$(includedir)/malelf
---- origsrc/libmalelf/test/Makefile.am	2025-05-01 16:45:58.000000000 +0900
-+++ src/libmalelf/test/Makefile.am	2025-05-01 16:50:36.746068800 +0900
-@@ -6,10 +6,10 @@ check_PROGRAMS = main_test
+--- origsrc/libmalelf/test/Makefile.am	2026-11-03 14:17:13.000000000 +0000
++++ src/libmalelf/test/Makefile.am	2026-11-03 14:17:14.835656100 +0000
+@@ -4,12 +4,10 @@ TESTS = main_test
  
- bin_PROGRAMS = main_test
+ check_PROGRAMS = main_test
  
--AM_CFLAGS = 	-Wall -Werror -ggdb \
--		-I../src/include
+-bin_PROGRAMS = main_test
 +AM_CFLAGS = 	-Wall \
 +		-I$(top_srcdir)/src/include
  
+-AM_CFLAGS = 	-Wall -Werror -ggdb \
+-		-I../src/include
+-
 -LDADD=-L../src/.libs -lmalelf -lcunit
 +LDADD=$(top_builddir)/src/libmalelf.la -lcunit
  
  main_test_SOURCES = 	ehdr_test.c \
  			binary_test.c \
+--- origsrc/libmalelf/test/hosts/Makefile.am	2026-11-03 14:17:13.000000000 +0000
++++ src/libmalelf/test/hosts/Makefile.am	2026-11-03 14:17:14.837144800 +0000
+@@ -7,7 +7,7 @@ SUFFIXES = .asm
+ 	nasm -f $(ELF_FORMAT) $< -o $@
+ ###########################################################################
+ 
+-bin_PROGRAMS = uninfected uninfected_asm
++check_PROGRAMS = uninfected uninfected_asm
+ 
+ uninfected_SOURCES = uninfected.c
+ uninfected_asm_SOURCES = uninfected_asm.asm
+--- origsrc/libmalelf/test/malwares/Makefile.am	2026-11-03 14:17:13.000000000 +0000
++++ src/libmalelf/test/malwares/Makefile.am	2026-11-03 14:17:14.837676800 +0000
+@@ -1,4 +1,4 @@
+-bin_PROGRAMS = write_message32 write_message64
++check_PROGRAMS = write_message32 write_message64
+ write_message32_SOURCES = write_message32.asm
+ write_message64_SOURCES = write_message64.asm
+ 

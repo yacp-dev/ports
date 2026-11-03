@@ -3,19 +3,19 @@ cmockery2
 Reviving cmockery unit test framework from Google
 
 Runtime requirements:
-  cygwin-3.5.0-0.505.g0737bda6ff5a
-  libcmockery-devel-1.3.9-1bl1
-  libcmockery0-1.3.9-1bl1
-  pkg-config-2.1.0-1
+  cygwin-3.6.12-1
+  libcmockery-devel-1.3.9-1bl2
+  libcmockery0-1.3.9-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.7-1
-  gcc-core-11.4.0-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -67,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.3.9-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.3.9-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

@@ -24,7 +24,11 @@ src_compile()
 {
 	cd ${B}
 	lndirs
-	cygmake -f Makefile.gcc
+	for f in main mpegparse out report crossapi crc
+	do
+		${CXX:-g++} ${CPPFLAGS} ${CXXFLAGS} -c ${f}.cpp
+	done
+	${CXX:-g++} ${LDFLAGS} main.o mpegparse.o out.o report.o crossapi.o crc.o -o ${PN}.exe
 }
 
 src_test()

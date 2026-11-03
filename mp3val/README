@@ -7,17 +7,15 @@ fix most of the problems. Being a multiplatform application, MP3val can be
 runned both under Windows and under Linux (or BSD).
 
 Runtime requirements:
-  cygwin-3.6.0-0.225.g8ee8b0c974d7
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  make-4.4.1-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
 
 Canonical website:
   https://sourceforge.net/projects/mp3val/
@@ -53,6 +51,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1.8-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1.8-1bl3 -----
 Rebuild with gcc-12.4.0

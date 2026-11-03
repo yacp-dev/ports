@@ -2,6 +2,7 @@ HOMEPAGE="https://github.com/Old-Man-Programmer/${PN}"
 SRC_URI="https://github.com/Old-Man-Programmer/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/manpage
+	https://src.fedoraproject.org/rpms/tree-pkg/raw/39646acf042e43f80d789cc6a6285db64c99e3f6/f/tree-static-analysis.patch
 "
 
 CATEGORY="Utils"

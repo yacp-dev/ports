@@ -1,5 +1,3 @@
-# CONFLICT="cmockery"
-
 HOMEPAGE="https://github.com/lpabon/${PN}"
 SRC_URI="https://github.com/lpabon/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
@@ -11,6 +9,9 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="COPYING"
 
+DOCS="
+	README.md
+"
 
 PKG_NAMES="
 	cmockery2

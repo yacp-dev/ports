@@ -4,33 +4,33 @@ node-build is a command-line utility that makes it easy to install virtually
 any version of Node, from source or precompiled binary.
 
 Runtime requirements:
-  autoconf-15-2
+  autoconf-20260320-3
   bash-5.2.21-1
-  openssl-3.0.18-1
-  pkg-config-2.5.1-1
+  openssl-3.5.9-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  cygport-0.37.6-1
+  cygport-0.37.12-1
 
 Canonical website:
   https://github.com/nodenv/node-build
 
 Canonical download:
-  https://github.com/nodenv/node-build/archive/refs/tags/v5.4.24.tar.gz
+  https://github.com/nodenv/node-build/archive/refs/tags/v5.4.62.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack node-build-5.4.24-X-src.tar.xz
+  1. unpack node-build-5.4.62-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./node-build-5.4.24-X.cygport all
+        % cygport ./node-build-5.4.62-X.cygport all
 
 This will create:
-  /usr/src/node-build-5.4.24-X-src.tar.xz
-  /usr/src/node-build-5.4.24-X.tar.xz
+  /usr/src/node-build-5.4.62-X-src.tar.xz
+  /usr/src/node-build-5.4.62-X.tar.xz
 
 -------------------------------------------
 
@@ -619,6 +619,8 @@ Files included in the binary package:
   /usr/share/node-build/20.19.6
   /usr/share/node-build/20.2.0
   /usr/share/node-build/20.20.0
+  /usr/share/node-build/20.20.1
+  /usr/share/node-build/20.20.2
   /usr/share/node-build/20.3.0
   /usr/share/node-build/20.3.1
   /usr/share/node-build/20.4.0
@@ -667,6 +669,14 @@ Files included in the binary package:
   /usr/share/node-build/22.21.0
   /usr/share/node-build/22.21.1
   /usr/share/node-build/22.22.0
+  /usr/share/node-build/22.22.1
+  /usr/share/node-build/22.22.2
+  /usr/share/node-build/22.22.3
+  /usr/share/node-build/22.23.0
+  /usr/share/node-build/22.23.1
+  /usr/share/node-build/22.23.2
+  /usr/share/node-build/22.23.3
+  /usr/share/node-build/22.23.4
   /usr/share/node-build/22.3.0
   /usr/share/node-build/22.4.0
   /usr/share/node-build/22.4.1
@@ -701,7 +711,21 @@ Files included in the binary package:
   /usr/share/node-build/24.11.1
   /usr/share/node-build/24.12.0
   /usr/share/node-build/24.13.0
+  /usr/share/node-build/24.13.1
+  /usr/share/node-build/24.14.0
+  /usr/share/node-build/24.14.1
+  /usr/share/node-build/24.15.0
+  /usr/share/node-build/24.16.0
+  /usr/share/node-build/24.17.0
+  /usr/share/node-build/24.18.0
+  /usr/share/node-build/24.18.1
+  /usr/share/node-build/24.19.0
   /usr/share/node-build/24.2.0
+  /usr/share/node-build/24.20.0
+  /usr/share/node-build/24.21.0
+  /usr/share/node-build/24.22.0
+  /usr/share/node-build/24.22.1
+  /usr/share/node-build/24.22.2
   /usr/share/node-build/24.3.0
   /usr/share/node-build/24.4.0
   /usr/share/node-build/24.4.1
@@ -716,6 +740,34 @@ Files included in the binary package:
   /usr/share/node-build/25.2.1
   /usr/share/node-build/25.3.0
   /usr/share/node-build/25.4.0
+  /usr/share/node-build/25.5.0
+  /usr/share/node-build/25.6.0
+  /usr/share/node-build/25.6.1
+  /usr/share/node-build/25.7.0
+  /usr/share/node-build/25.8.0
+  /usr/share/node-build/25.8.1
+  /usr/share/node-build/25.8.2
+  /usr/share/node-build/25.9.0
+  /usr/share/node-build/26.0.0
+  /usr/share/node-build/26.1.0
+  /usr/share/node-build/26.10.0
+  /usr/share/node-build/26.11.0
+  /usr/share/node-build/26.11.1
+  /usr/share/node-build/26.12.0
+  /usr/share/node-build/26.12.1
+  /usr/share/node-build/26.13.0
+  /usr/share/node-build/26.2.0
+  /usr/share/node-build/26.3.0
+  /usr/share/node-build/26.3.1
+  /usr/share/node-build/26.4.0
+  /usr/share/node-build/26.5.0
+  /usr/share/node-build/26.5.1
+  /usr/share/node-build/26.6.0
+  /usr/share/node-build/26.7.0
+  /usr/share/node-build/26.8.0
+  /usr/share/node-build/26.8.1
+  /usr/share/node-build/26.8.2
+  /usr/share/node-build/26.9.0
   /usr/share/node-build/3.x-next
   /usr/share/node-build/4.0.0
   /usr/share/node-build/4.1.0
@@ -996,6 +1048,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.4.62-1bl1 -----
+Version bump.
 
 ----- version 5.4.24-1bl1 -----
 Version bump.

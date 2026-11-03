@@ -7,15 +7,16 @@ very few emulators that make it possible to play games in 2-players mode over
 LAN, emulating a link between two consoles.
 
 Runtime requirements:
-  cygwin-3.1.7-1
-  libSDL2_2.0_0-2.0.7-1
+  cygwin-3.6.12-1
+  libSDL2_2.0_0-2.32.74-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.34+1git.de9c1b7cfe-1
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  make-4.3-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libSDL2-devel-2.32.74-1
+  make-4.4.1-2
 
 Canonical website:
   https://sourceforge.net/projects/zboy/
@@ -43,13 +44,17 @@ Files included in the binary package:
 (zboy)
   /usr/bin/zboy.exe
   /usr/share/doc/Cygwin/zboy.README
-  /usr/share/doc/zboy/HISTORY.txt
-  /usr/share/doc/zboy/LICENSE.txt
-  /usr/share/doc/zboy/TODO.txt
+  /usr/share/doc/zboy/history.txt
+  /usr/share/doc/zboy/license.txt
+  /usr/share/doc/zboy/todo.txt
+  /usr/share/doc/zboy/zboy.txt
 
 ------------------
 
 Port Notes:
+
+----- version 0.71-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.71-1bl1 -----
 Version bump.

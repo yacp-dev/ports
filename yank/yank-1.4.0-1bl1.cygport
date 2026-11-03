@@ -8,6 +8,10 @@ that allows a field to be selected and copied to the clipboard. Fields are
 either recognized by a regular expression using the -g option or by splitting
 the input on a delimiter sequence using the -d option."
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
 yank_REQUIRES="xsel"
 
 src_compile()

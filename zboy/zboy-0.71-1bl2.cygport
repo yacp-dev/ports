@@ -1,13 +1,28 @@
 HOMEPAGE="https://sourceforge.net/projects/${PN}/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 
-CATEGORY="Emulators"
+CATEGORY="Games"
 SUMMARY="GameBoy emulator"
 DESCRIPTION="zBoy is a multi-platform, open-source GameBoy Classic (DMG) emulator that
 provides a load/save feature, can perform PCX screenshots and emulates an
 internal battery for ROMs that were designed to use one. It is also one of the
 very few emulators that make it possible to play games in 2-players mode over
 LAN, emulating a link between two consoles."
+
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="license.txt"
+
+BUILD_REQUIRES="
+	libSDL2-devel
+"
+
+DOCS="
+	history.txt
+	license.txt
+	todo.txt
+	zboy.txt
+"
 
 src_compile()
 {

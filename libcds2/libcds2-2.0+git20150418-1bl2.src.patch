@@ -1,5 +1,5 @@
---- origsrc/libcds2/Makefile.am	2016-12-31 00:47:48.000000000 +0900
-+++ src/libcds2/Makefile.am	2016-12-31 00:48:15.377742900 +0900
+--- origsrc/libcds2/Makefile.am	2026-11-04 01:31:36.000000000 +0000
++++ src/libcds2/Makefile.am	2026-11-04 01:31:39.626055000 +0000
 @@ -3,7 +3,7 @@
  
  ACLOCAL_AMFLAGS = -I m4
@@ -9,16 +9,16 @@
  
  pkgconfigdir = $(libdir)/pkgconfig
  pkgconfig_DATA = cds$(CDS_API_VERSION).pc
---- origsrc/libcds2/configure.ac	2016-12-31 00:47:49.000000000 +0900
-+++ src/libcds2/configure.ac	2016-12-31 00:48:29.793623300 +0900
+--- origsrc/libcds2/configure.ac	2026-11-04 01:31:36.000000000 +0000
++++ src/libcds2/configure.ac	2026-11-04 01:31:39.628071500 +0000
 @@ -50,5 +50,4 @@ AC_CONFIG_FILES([Makefile
                   tests/Makefile
                   include/Makefile
                   cds${CDS_API_VERSION}.pc:cds.pc.in])
 -AC_CONFIG_SUBDIRS([dep/gtest-1.6.0])
  AC_OUTPUT
---- origsrc/libcds2/lib/Makefile.am	2016-12-31 00:47:50.000000000 +0900
-+++ src/libcds2/lib/Makefile.am	2016-12-31 00:48:58.872131700 +0900
+--- origsrc/libcds2/lib/Makefile.am	2026-11-04 01:31:36.000000000 +0000
++++ src/libcds2/lib/Makefile.am	2026-11-04 01:31:39.628071500 +0000
 @@ -1,9 +1,9 @@
  # This Makefile builds the libcds library.
  
@@ -31,8 +31,8 @@
  libcds@CDS_API_VERSION@_la_SOURCES = \
      ../src/basic/array.cpp \
      ../src/basic/io.cpp \
---- origsrc/libcds2/tests/Makefile.am	2016-12-31 00:47:51.000000000 +0900
-+++ src/libcds2/tests/Makefile.am	2016-12-31 00:49:28.184240600 +0900
+--- origsrc/libcds2/tests/Makefile.am	2026-11-04 01:31:36.000000000 +0000
++++ src/libcds2/tests/Makefile.am	2026-11-04 01:31:39.630095600 +0000
 @@ -1,12 +1,12 @@
  # This Makefile is used to build and execute the tests when "make check"
  # is run.

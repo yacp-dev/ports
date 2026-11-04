@@ -1,0 +1,22 @@
+Take the reference on the array that the test releases with a->Unuse(),
+as test_bitsequenceonelevelrank.cpp does. Without it a is freed while
+seq_bitseq still holds it, and ~BitSequenceSeq() then calls Unuse() on freed memory.
+
+--- a/tests/test_bitsequence.cpp	2026-11-04 10:18:07.613623098 +0900
++++ b/tests/test_bitsequence.cpp	2026-11-04 10:18:07.783722726 +0900
+@@ -96,6 +96,7 @@
+   const cds_word kOnes = kBitmapLength / 4;
+   unsigned int seed = 101;
+   Array *a = CreateRandomBitmap(kBitmapLength, kOnes, seed);
++  a->Use();
+   BitSequenceSeq *seq_bitseq = new BitSequenceSeq(a);
+   seq_bitseq->Use();
+   BitSequenceRank0 *bs = new BitSequenceRank0(a);
+@@ -159,6 +160,7 @@
+   const cds_word kOnes = kBitmapLength / 4;
+   unsigned int seed = 101;
+   Array *a = CreateRandomBitmap(kBitmapLength, kOnes, seed);
++  a->Use();
+   BitSequenceSeq *seq_bitseq = new BitSequenceSeq(a);
+   seq_bitseq->Use();
+   BitSequenceRank1 *bs = new BitSequenceRank1(a);

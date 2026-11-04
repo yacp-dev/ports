@@ -1,5 +1,5 @@
---- origsrc/apt-cacher-ng-3.7.5/src/dlcon.cc	2024-07-23 00:32:18.000000000 +0900
-+++ src/apt-cacher-ng-3.7.5/src/dlcon.cc	2025-08-17 08:49:19.294732500 +0900
+--- origsrc/apt-cacher-ng-3.7.5/src/dlcon.cc	2024-07-22 15:32:18.000000000 +0000
++++ src/apt-cacher-ng-3.7.5/src/dlcon.cc	2026-11-04 14:20:43.274698000 +0000
 @@ -956,6 +956,7 @@ class CDlConn : public dlcon
  
  	void wake();

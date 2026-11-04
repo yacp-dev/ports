@@ -1,40 +1,38 @@
 apt-cacher-ng
 ------------------------------------------
 A caching proxy. Specialized for package files from Linux distributors,
-primarily for Debian (and Debian based) distributions but not limited to
-those. See documentation of Apt-Cacher to learn what it's good for.
+primarily for Debian (and Debian based) distributions but not limited to those.
+See documentation of Apt-Cacher to learn what it's good for.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libbz2_1-1.0.8-1
-  libcares2-1.34.5-0
-  libevent2.1_7-2.1.12-1
-  libgcc1-13.4.0-1
-  liblzma5-5.8.1-1
-  libssl3-3.0.17-1
-  libstdc++6-13.4.0-1
+  cygwin-3.6.12-1
+  libbz2_1-1.0.8-2
+  libcares2-1.34.9-1
+  libevent2.1_7-2.1.13-1
+  libgcc1-14.4.0-1
+  liblzma5-5.8.4-1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
   libwrap0-7.6-26
-  zlib0-1.3.1-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  halibut-1.3-1bl2
-  libbz2-devel-1.0.8-1
-  libcares-devel-1.34.5-0
-  libevent-devel-2.1.12-1
-  liblzma-devel-5.8.1-1
-  libssl-devel-3.0.17-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libbz2-devel-1.0.8-2
+  libcares-devel-1.34.9-1
+  libevent-devel-2.1.13-1
+  liblzma-devel-5.8.4-1
+  libssl-devel-3.5.9-1
   libwrap-devel-7.6-26
-  ninja-1.13.1-1
-  zlib-devel-1.3.1-1
+  ninja-1.13.2-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
-  https://www.unix-ag.uni-kl.de/~bloch/acng/
+  https://tracker.debian.org/pkg/apt-cacher-ng
 
 Canonical download:
   mirror://debian/pool/main/a/apt-cacher-ng/apt-cacher-ng_3.7.5.orig.tar.xz
@@ -106,6 +104,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.7.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.7.5-1bl1 -----
 Version bump.

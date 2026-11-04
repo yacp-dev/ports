@@ -1,6 +1,6 @@
 HOMEPAGE="https://www.chiark.greenend.org.uk/~sgtatham/${PN}/"
-SRC_URI="https://www.chiark.greenend.org.uk/~sgtatham/${PN}/${P}.f158e08.tar.gz"
-SRC_DIR="${P}.f158e08"
+SRC_URI="https://www.chiark.greenend.org.uk/~sgtatham/${PN}/${P}.b2c2295.tar.gz"
+SRC_DIR="${P}.b2c2295"
 
 CATEGORY="Utils"
 SUMMARY="Command-line exact real calculator"
@@ -10,6 +10,10 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENCE"
 
-BUILD_REQUIRES="halibut libgmp-devel libncurses-devel"
+BUILD_REQUIRES="
+	halibut
+	libgmp-devel
+	libncurses-devel
+"
 
 inherit cmake

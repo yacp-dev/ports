@@ -3,42 +3,41 @@ spigot
 Spigot is a command-line streaming exact real calculator.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libgcc1-12.4.0-3
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
   libgmp10-6.3.0-1
   libncursesw10-6.5+20240427-1
-  libstdc++6-12.4.0-3
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  halibut-1.3-1bl2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  halibut-1.3-1bl3
   libgmp-devel-6.3.0-1
   libncurses-devel-6.5+20240427-1
-  ninja-1.12.1-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://www.chiark.greenend.org.uk/~sgtatham/spigot/
 
 Canonical download:
-  https://www.chiark.greenend.org.uk/~sgtatham/spigot/spigot-20240909.f158e08.tar.gz
+  https://www.chiark.greenend.org.uk/~sgtatham/spigot/spigot-20261009.b2c2295.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack spigot-20240909-X-src.tar.xz
+  1. unpack spigot-20261009-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./spigot-20240909-X.cygport all
+        % cygport ./spigot-20261009-X.cygport all
 
 This will create:
-  /usr/src/spigot-20240909-X-src.tar.xz
-  /usr/src/spigot-20240909-X.tar.xz
+  /usr/src/spigot-20261009-X-src.tar.xz
+  /usr/src/spigot-20261009-X.tar.xz
 
 -------------------------------------------
 
@@ -55,6 +54,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20261009-1bl1 -----
+Version bump.
 
 ----- version 20240909-1bl1 -----
 Version bump.

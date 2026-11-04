@@ -1,5 +1,8 @@
-HOMEPAGE="https://www.unix-ag.uni-kl.de/~bloch/acng/"
+HOMEPAGE="https://tracker.debian.org/pkg/apt-cacher-ng"
 SRC_URI="mirror://debian/pool/main/a/${PN}/${PN}_${PV}.orig.tar.xz"
+PATCH_URI="
+	https://sources.debian.org/data/main/a/apt-cacher-ng/3.7.5-1.3/debian/patches/0001-Add-missing-cstdint-includes-for-GCC-16.patch
+"
 
 CATEGORY="Net"
 SUMMARY="Yet another implementation of an HTTP proxy for Debian/Ubuntu software packages written in C++"
@@ -11,7 +14,15 @@ LICENSE="BSD-4-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-4-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libbz2-devel libcares-devel libevent-devel liblzma-devel libssl-devel libwrap-devel zlib-devel"
+BUILD_REQUIRES="
+	libbz2-devel
+	libcares-devel
+	libevent-devel
+	liblzma-devel
+	libssl-devel
+	libwrap-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

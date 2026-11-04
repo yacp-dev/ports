@@ -1,40 +1,25 @@
 libcds2
 ------------------------------------------
-LIBCDS 2 is the re-coding of LIBCDS with these goals:
-
- * 64-Bit support to allow for larger, single structures.
- * Speedups
- * Improve code readability
- * Include unit tests (googletest)
- * Improve documentation
-
-Further long-term goals include:
-
- * Introduce missing types to the library.
- * Provide packages for common GNU/Linux distributions, and other OSs.
- * Provide the option of installing it as a shared library (easing compilation
-   and updates).
- * Wrappers for popular programming languages.
+Compressed Data Structure Library
 
 Runtime requirements:
-  cygwin-2.6.1-1
-  libcds2-devel-2.0+git20150418-1bl1
-  libcds2_2-2.0+git20150418-1bl1
-  libgcc1-5.4.0-1
-  libstdc++6-5.4.0-1
-  pkg-config-0.29.1-1
+  cygwin-3.6.12-1
+  libcds2-devel-2.0+git20150418-1bl2
+  libcds2_2-2.0+git20150418-1bl2
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-4
-  cmake-3.6.2-1
-  cygport-0.23.0-1
-  gcc-core-5.4.0-1
-  gcc-g++-5.4.0-1
-  libtool-2.4.6-4
-  make-4.2.1-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/fclaude/libcds2
@@ -53,7 +38,7 @@ Build instructions:
 
 This will create:
   /usr/src/libcds2-2.0+git20150418-X-src.tar.xz
-  /usr/src/libcds2-2.0+git20150418-X.tar.xz
+  /usr/src/libcds2-fclaude-2.0+git20150418-X.tar.xz
   /usr/src/libcds2_2-2.0+git20150418-X.tar.xz
   /usr/src/libcds2-devel-2.0+git20150418-X.tar.xz
 
@@ -61,7 +46,7 @@ This will create:
 
 Files included in the binary package:
 
-(libcds2)
+(libcds2-fclaude)
   /usr/share/doc/Cygwin/libcds2.README
   /usr/share/doc/libcds2/COPYING
   /usr/share/doc/libcds2/ChangeLog
@@ -98,6 +83,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0+git20150418-1bl2 -----
+Fix doc package name
 
 ----- version 2.0+git20150418-1bl1 -----
 Version bump.

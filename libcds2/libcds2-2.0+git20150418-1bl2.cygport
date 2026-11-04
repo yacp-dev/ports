@@ -1,0 +1,48 @@
+HOMEPAGE="https://github.com/fclaude/${PN}"
+GIT_URI="https://github.com/fclaude/${PN}.git"
+GIT_REV="441c126fb06888840761e60087193dbdae646921"
+PATCH_URI="libcds2-test-bitsequence-use.patch"
+
+CATEGORY="Libs"
+SUMMARY="Compressed Data Structure Library"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="https://opensource.org/license/bsd-3-clause"
+
+BUILD_REQUIRES="
+	libgtest-devel
+"
+
+inherit git
+
+PKG_NAMES="
+	${PN}-fclaude
+	${PN}_2
+	${PN}-devel
+"
+libcds2_fclaude_CONTENTS="
+	usr/share
+"
+libcds2_2_CONTENTS="
+	usr/bin/cygcds2-2.dll
+"
+libcds2_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+
+libcds2_fclaude_SUMMARY="${SUMMARY} (licensing & readmes)"
+libcds2_2_SUMMARY="${SUMMARY} (runtime)"
+libcds2_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test() {
+	cd ${B}/tests
+	# the tests open inputs/ relative to the working directory
+	cp -r ${S}/tests/inputs .
+	# the tests keep arrays of up to ~7 MiB on the stack, more than Cygwin's
+	# default main thread stack; GetPtr() in memorymanager.h reads a pointer
+	# through a cds_word*, which breaks under strict aliasing
+	make check CXXFLAGS="${CXXFLAGS} -fno-strict-aliasing" LDFLAGS="${LDFLAGS} -Wl,--stack,268435456"
+}

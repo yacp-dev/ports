@@ -1,5 +1,6 @@
 HOMEPAGE="https://www.chiark.greenend.org.uk/~sgtatham/${PN}/"
 SRC_URI="https://www.chiark.greenend.org.uk/~sgtatham/${PN}/${P}/${P}.tar.gz"
+PATCH_URI="https://sources.debian.org/data/main/h/halibut/1.3-5/debian/patches/charset-cmake-4.patch"
 
 CATEGORY="Text"
 SUMMARY="Yet another free document preparation system"

@@ -5,6 +5,10 @@ CATEGORY="Utils"
 SUMMARY="Unix utility for tracking down wasted disk space"
 DESCRIPTION="${SUMMARY}"
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENCE"
+
 export CPPFLAGS="${CPPFLAGS} -DO_LARGEFILE=0"
 
 inherit cmake

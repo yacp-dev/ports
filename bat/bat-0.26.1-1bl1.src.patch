@@ -1,0 +1,111 @@
+--- origsrc/bat-0.26.1/Cargo.lock	2025-12-02 20:44:14.000000000 +0000
++++ src/bat-0.26.1/Cargo.lock	2026-11-05 11:51:26.470107900 +0000
+@@ -190,9 +190,9 @@ checksum = "5e764a1d40d510daf35e07be9eb0
+ 
+ [[package]]
+ name = "bitflags"
+-version = "2.6.0"
++version = "2.13.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "b048fb63fd8b5923fc5aa7b340d8e156aec7ec02f0c78fa8a6ddc2613f6f71de"
++checksum = "3ded4057c258ba199e2d26386d3af3780957ecaee6c4ef4041c6b4b8b97c0b06"
+ 
+ [[package]]
+ name = "bstr"
+@@ -511,7 +511,7 @@ source = "registry+https://github.com/ru
+ checksum = "33d852cb9b869c2a9b3df2f71a3074817f01e1844f839a144f5fcef059a4eb5d"
+ dependencies = [
+  "libc",
+- "windows-sys 0.59.0",
++ "windows-sys 0.52.0",
+ ]
+ 
+ [[package]]
+@@ -915,9 +915,9 @@ checksum = "bbd2bcb4c963f2ddae06a2efc7e9
+ 
+ [[package]]
+ name = "libc"
+-version = "0.2.175"
++version = "0.2.191"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "6a82ae493e598baaea5209805c49bbf2ea7de956d50d7da0da1164f9c6d28543"
++checksum = "65cd87c9a6d60536580b316ad985726104730a5151c99845f2490428ef91240a"
+ 
+ [[package]]
+ name = "libgit2-sys"
+@@ -956,6 +956,12 @@ source = "registry+https://github.com/ru
+ checksum = "d26c52dbd32dccf2d10cac7725f8eae5296885fb5703b261f7d0a0739ec807ab"
+ 
+ [[package]]
++name = "linux-raw-sys"
++version = "0.12.1"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "32a66949e030da00e8c7d4434b251670a91556f4144941d37452769c25d58a53"
++
++[[package]]
+ name = "litemap"
+ version = "0.7.4"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+@@ -1318,8 +1324,21 @@ dependencies = [
+  "bitflags",
+  "errno",
+  "libc",
+- "linux-raw-sys",
+- "windows-sys 0.59.0",
++ "linux-raw-sys 0.4.15",
++ "windows-sys 0.52.0",
++]
++
++[[package]]
++name = "rustix"
++version = "1.1.6"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "e5e76742e5294153d4dde1207dbec5bdd81eef6fabdc0d2118babadabfd858aa"
++dependencies = [
++ "bitflags",
++ "errno",
++ "libc",
++ "linux-raw-sys 0.12.1",
++ "windows-sys 0.52.0",
+ ]
+ 
+ [[package]]
+@@ -1590,16 +1609,15 @@ dependencies = [
+ 
+ [[package]]
+ name = "tempfile"
+-version = "3.16.0"
++version = "3.27.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "38c246215d7d24f48ae091a2902398798e05d978b24315d6efbc00ede9a8bb91"
++checksum = "32497e9a4c7b38532efcdebeef879707aa9f794296a4f0244f6f69e9bc8574bd"
+ dependencies = [
+- "cfg-if",
+  "fastrand",
+  "getrandom",
+  "once_cell",
+- "rustix",
+- "windows-sys 0.59.0",
++ "rustix 1.1.6",
++ "windows-sys 0.52.0",
+ ]
+ 
+ [[package]]
+@@ -1643,7 +1661,7 @@ version = "0.4.1"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "5352447f921fda68cf61b4101566c0bdb5104eff6804d0678e5227580ab6a4e9"
+ dependencies = [
+- "rustix",
++ "rustix 0.38.43",
+  "windows-sys 0.59.0",
+ ]
+ 
+@@ -1912,7 +1930,7 @@ version = "0.1.9"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "cf221c93e13a30d793f7645a0e7762c55d169dbb0a49671918a2319d289b10bb"
+ dependencies = [
+- "windows-sys 0.59.0",
++ "windows-sys 0.48.0",
+ ]
+ 
+ [[package]]

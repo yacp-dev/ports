@@ -1,0 +1,51 @@
+bat
+------------------------------------------
+A cat(1) clone with syntax highlighting and Git integration.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cargo-1.91.0-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  make-4.4.1-2
+
+Canonical website:
+  https://github.com/sharkdp/bat
+
+Canonical download:
+  https://github.com/sharkdp/bat/archive/refs/tags/v0.26.1.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack bat-0.26.1-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./bat-0.26.1-X.cygport all
+
+This will create:
+  /usr/src/bat-0.26.1-X-src.tar.xz
+  /usr/src/bat-0.26.1-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(bat)
+  /usr/bin/bat.exe
+  /usr/share/doc/Cygwin/bat.README
+  /usr/share/doc/bat/NOTICE
+  /usr/share/doc/bat/README.md
+
+------------------
+
+Port Notes:
+
+----- version 0.26.1-1bl1 -----
+Initial release by fd0 <https://github.com/fd00/>

@@ -5,27 +5,27 @@ Database independent connectivity API similarly to what JDBC, ODBC and other
 connectivity libraries do.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libcppdb0-0.3.1-1bl2
-  libgcc1-12.4.0-3
+  cygwin-3.6.12-1
+  libcppdb0-0.3.1-1bl3
+  libgcc1-14.4.0-1
   libiodbc2-3.52.8-2
-  libmariadb3-3.0.9-1
-  libpq5-17.2-1
-  libsqlite3_0-3.34.0-1
-  libstdc++6-12.4.0-3
+  libmariadb3-3.3.19-1
+  libpq5-18.6-1
+  libsqlite3_0-3.49.1-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libiodbc-devel-3.52.8-2
-  libmariadb-devel-3.0.9-1
-  libpq-devel-17.2-1
-  libsqlite3-devel-3.34.0-1
-  ninja-1.12.0-1
+  libmariadb-devel-3.3.19-1
+  libpq-devel-18.6-1
+  libpq5-18.6-1
+  libsqlite3-devel-3.49.1-1
+  ninja-1.13.2-1
 
 Canonical website:
   http://cppcms.com/sql/cppdb/
@@ -87,6 +87,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.3.1-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.3.1-1bl2 -----
 Rebuild with gcc-12.4.0

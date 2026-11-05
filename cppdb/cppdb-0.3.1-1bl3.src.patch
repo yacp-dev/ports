@@ -1,5 +1,5 @@
---- origsrc/cppdb-0.3.1/CMakeLists.txt	2012-06-23 18:06:14.000000000 +0900
-+++ src/cppdb-0.3.1/CMakeLists.txt	2025-01-16 00:23:53.961267400 +0900
+--- origsrc/cppdb-0.3.1/CMakeLists.txt	2012-06-23 09:06:14.000000000 +0000
++++ src/cppdb-0.3.1/CMakeLists.txt	2026-11-05 22:55:18.860323100 +0000
 @@ -147,7 +147,6 @@ if(NOT DISABLE_ODBC)
  		else()
  			add_library(cppdb_odbc SHARED drivers/odbc_backend.cpp)
@@ -59,8 +59,8 @@
  
   endforeach()
  
---- origsrc/cppdb-0.3.1/drivers/odbc_backend.cpp	2012-04-01 16:36:50.000000000 +0900
-+++ src/cppdb-0.3.1/drivers/odbc_backend.cpp	2025-01-16 00:24:44.469395400 +0900
+--- origsrc/cppdb-0.3.1/drivers/odbc_backend.cpp	2012-04-01 07:36:50.000000000 +0000
++++ src/cppdb-0.3.1/drivers/odbc_backend.cpp	2026-11-05 22:55:18.860323100 +0000
 @@ -30,7 +30,7 @@
  #include <iomanip>
  #include <string.h>
@@ -70,8 +70,8 @@
  #include <windows.h>
  #endif
  #include <sqlext.h>
---- origsrc/cppdb-0.3.1/src/atomic_counter.cpp	2011-01-08 06:09:13.000000000 +0900
-+++ src/cppdb-0.3.1/src/atomic_counter.cpp	2025-01-16 00:25:04.595283000 +0900
+--- origsrc/cppdb-0.3.1/src/atomic_counter.cpp	2011-01-07 21:09:13.000000000 +0000
++++ src/cppdb-0.3.1/src/atomic_counter.cpp	2026-11-05 22:55:18.862332700 +0000
 @@ -19,7 +19,7 @@
  #include <cppdb/atomic_counter.h>
  #include <string.h>
@@ -81,8 +81,8 @@
  
  #   include <windows.h>
  #   define cppdb_atomic_set(p,v) ((p)->l=v)
---- origsrc/cppdb-0.3.1/test/test_perf.cpp	2011-06-06 20:31:25.000000000 +0900
-+++ src/cppdb-0.3.1/test/test_perf.cpp	2025-01-16 00:25:16.382066200 +0900
+--- origsrc/cppdb-0.3.1/test/test_perf.cpp	2011-06-06 11:31:25.000000000 +0000
++++ src/cppdb-0.3.1/test/test_perf.cpp	2026-11-05 22:55:18.862332700 +0000
 @@ -19,7 +19,7 @@
  #include <iostream>
  #include <stdlib.h>

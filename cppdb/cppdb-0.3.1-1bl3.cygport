@@ -14,9 +14,19 @@ LICENSE="BSL-1.0"
 LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
 LICENSE_URI="LICENSE_1_0.txt"
 
-BUILD_REQUIRES="libiodbc-devel libmariadb-devel libpq-devel libsqlite3-devel"
+BUILD_REQUIRES="
+	libiodbc-devel
+	libmariadb-devel
+	libpq-devel
+	libpq5
+	libsqlite3-devel
+"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
 
 DOCS="
 	LICENSE_1_0.txt

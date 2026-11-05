@@ -1,9 +1,9 @@
 HOMEPAGE="https://sourceforge.net/projects/${PN}/"
 SRC_URI="https://www.arrl.org/tqsl/tqsl-${PV}.tar.gz"
-SRC_DIR="tqsl-${PV}"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/tqsl-tqsllib.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/035682b3886d58a64e3271dba345243abf2fbd3e/f/tqsl-tqsllib.patch
 "
+SRC_DIR="tqsl-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="Tool for digitally signing Amateur Radio QSO records"
@@ -11,8 +11,8 @@ DESCRIPTION="The TrustedQSL library is used for generating digitally signed QSO 
 (records of Amateur Radio contacts). This package contains the library and
 configuration files needed to run TrustedQSL applications."
 
-LICENSE="LicenseRef-ARRL"
-LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-ARRL"
+LICENSE="LicenseRef-ARRL AND BSD-4-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-ARRL AND BSD-4-Clause"
 LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="
@@ -25,8 +25,6 @@ BUILD_REQUIRES="
 	zlib-devel
 "
 
-export CPPFLAGS="${CPPFLAGS} -DwxRE_ADVANCED=wxRE_DEFAULT"
-
 inherit cmake
 
 CYGCMAKE_ARGS="
@@ -35,7 +33,7 @@ CYGCMAKE_ARGS="
 
 PKG_NAMES="
 	${PN}
-	libtqsllib2.6
+	libtqsllib2.8.6
 	libtqsllib-devel
 "
 trustedqsl_CONTENTS="
@@ -43,13 +41,13 @@ trustedqsl_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libtqsllib2_6_CONTENTS="
-	usr/bin/cyg*-2.6.dll
+libtqsllib2_8_6_CONTENTS="
+	usr/bin/cyg*-2.8.6.dll
 "
 libtqsllib_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 trustedqsl_SUMMARY="${SUMMARY} (utilities)"
-libtqsllib2_6_SUMMARY="${SUMMARY} (runtime)"
+libtqsllib2_8_6_SUMMARY="${SUMMARY} (runtime)"
 libtqsllib_devel_SUMMARY="${SUMMARY} (development)"

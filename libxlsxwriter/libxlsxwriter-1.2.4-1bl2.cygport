@@ -6,12 +6,13 @@ SUMMARY="C library for creating Excel XLSX files"
 DESCRIPTION="Libxlsxwriter is a C library that can be used to write text, numbers, formulas
 and hyperlinks to multiple worksheets in an Excel 2007+ XLSX file."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND BSD-3-Clause AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause AND Zlib"
 LICENSE_URI="License.txt"
 
 BUILD_REQUIRES="
 	libssl-devel
+	python3-pytest
 	zlib-devel
 "
 
@@ -25,6 +26,15 @@ CYGCMAKE_ARGS="
 	-DUSE_OPENSSL_MD5:BOOL=ON
 	-DUSE_STANDARD_TMPFILE:BOOL=ON
 "
+
+src_test()
+{
+	cd ${B}
+	# ctest runs plain "pytest", but python312-pytest installs only pytest-3.12
+	mkdir -p ${T}/bin
+	ln -sf /usr/bin/pytest-3.12 ${T}/bin/pytest
+	PATH=${B}:${T}/bin:${PATH} ctest --output-on-failure
+}
 
 DOCS="
 	License.txt

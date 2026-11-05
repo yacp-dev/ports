@@ -1,5 +1,5 @@
---- origsrc/tqsl-2.8.4/CMakeLists.txt	2026-01-27 22:49:12.000000000 +0900
-+++ src/tqsl-2.8.4/CMakeLists.txt	2026-02-05 23:48:05.655486800 +0900
+--- origsrc/tqsl-2.8.6/CMakeLists.txt	2026-06-03 13:03:31.000000000 +0000
++++ src/tqsl-2.8.6/CMakeLists.txt	2026-11-05 10:13:25.524620100 +0000
 @@ -38,7 +38,7 @@ ENDIF ()
  #    ENDIF (CMAKE_SIZEOF_VOID_P EQUAL 4)
  #ENDIF (LINUX AND NOT CMAKE_SHARED_LIBRARY_PREFIX AND NOT LIB_SUFFIX) 
@@ -20,9 +20,9 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/tqsllib.pc.in ${CMAKE_BINARY_DIR}/tqsllib.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/tqsllib.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/tqsl-2.8.4/src/CMakeLists.txt	2026-02-05 23:47:58.046729300 +0900
-+++ src/tqsl-2.8.4/src/CMakeLists.txt	2026-02-05 23:48:05.657500500 +0900
-@@ -60,7 +60,7 @@ include_directories(${OPENSSL_INCLUDE_DI
+--- origsrc/tqsl-2.8.6/src/CMakeLists.txt	2026-11-05 10:13:24.835147500 +0000
++++ src/tqsl-2.8.6/src/CMakeLists.txt	2026-11-05 10:13:25.524620100 +0000
+@@ -63,7 +63,7 @@ include_directories(${OPENSSL_INCLUDE_DI
  
  if(NOT APPLE AND NOT WIN32)
  set(HEADERS_TO_INSTALL tqsllib.h tqslerrno.h cabrillo.h adif.h tqslconvert.h)
@@ -31,9 +31,9 @@
  install(FILES config.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/TrustedQSL)
  install(FILES ${HEADERS_TO_INSTALL} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
  endif()
---- origsrc/tqsl-2.8.4/tqsllib.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/tqsl-2.8.4/tqsllib.pc.in	2026-02-05 23:48:05.659511700 +0900
-@@ -0,0 +1,10 @@
+--- origsrc/tqsl-2.8.6/tqsllib.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/tqsl-2.8.6/tqsllib.pc.in	2026-11-05 10:13:25.524620100 +0000
+@@ -0,0 +1,11 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
 +libdir=@libdir@
@@ -42,5 +42,6 @@
 +Name: tqsllib
 +Description: Library for digitally signing Amateur Radio QSO records
 +Version: @TQSLVERSION@
++Requires.private: openssl expat zlib sqlite3
 +Libs: -L${libdir} -ltqsllib
 +Cflags: -I${includedir}

@@ -1,0 +1,89 @@
+HOMEPAGE="https://github.com/eza-community/${PN}"
+SRC_URI="
+	https://github.com/eza-community/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/rustadopt/uzers-rs/archive/refs/tags/v0.12.2.tar.gz
+"
+
+CATEGORY="Utils"
+SUMMARY="A modern alternative to ls"
+DESCRIPTION="eza is a modern alternative for the venerable file-listing command-line
+program ls that ships with Unix and Linux operating systems, giving it more
+features and better defaults. It uses colours to distinguish file types and
+metadata. It knows about symlinks, extended attributes, and Git. And it's
+small, fast, and just one single binary."
+
+LICENSE="EUPL-1.2 AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: EUPL-1.2 AND MIT"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	cargo
+"
+
+# The tests ship dangling symlinks, which "diff -N" can't read.
+DIFF_EXCLUDES="
+	file.c
+	symlink-broken
+"
+
+# uzers 0.12.2 doesn't know Cygwin. Move its source into ${S}, where
+# eza-0.23.5-1bl1.src.patch (applied inside ${S}) can reach it.
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	mv ../uzers-rs-0.12.2 uzers
+}
+
+src_compile()
+{
+	:
+}
+
+# rustc forks to run the linker, which fails on CI when the proc-macro
+# DLLs it has loaded share an address ("address space needed by ...
+# is already occupied"). Give the DLLs the first pass built distinct
+# bases and run cargo again; the second pass reuses what was built.
+cargo_retry()
+{
+	"$@" || {
+		find "${CARGO_TARGET_DIR}" -name '*.dll' > "${B}/dlls.txt"
+		rebase -b 0x400000000 -T "${B}/dlls.txt"
+		"$@"
+	}
+}
+
+# cargo takes the patched copy instead of uzers from crates.io.
+# "cargo install" ignores Cargo.lock unless --locked, and eza pins
+# palette =0.7.5 (0.7.6 is broken), which fails to build against the
+# newer palette_derive 0.7.7 it would otherwise pick. Bring Cargo.lock
+# up to date with the uzers patch without changing any version, then
+# install with --locked.
+src_install()
+{
+	export CARGO_HOME="${B}/cargo-home"
+	export CARGO_TARGET_DIR="${B}/cargo-target"
+
+	local uzers_patch="patch.crates-io.uzers.path=\"${S}/uzers\""
+
+	cd "${S}"
+	cargo update --workspace --config "${uzers_patch}"
+
+	cargo_retry cargo install \
+		--path "${S}" \
+		--root "${D}/usr" \
+		--force \
+		--locked \
+		--config "${uzers_patch}" \
+		--no-track
+}
+
+src_test()
+{
+	export CARGO_HOME="${B}/cargo-home"
+	export CARGO_TARGET_DIR="${B}/cargo-target"
+
+	cd "${S}"
+	cargo_retry cargo test \
+		--locked \
+		--config "patch.crates-io.uzers.path=\"${S}/uzers\""
+}

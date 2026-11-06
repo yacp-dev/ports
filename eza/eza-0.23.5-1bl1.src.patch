@@ -1,0 +1,74 @@
+--- origsrc/eza-0.23.5/Cargo.lock	2026-07-09 09:30:38.000000000 +0000
++++ src/eza-0.23.5/Cargo.lock	2026-11-06 23:49:50.835639800 +0000
+@@ -1544,8 +1544,6 @@ dependencies = [
+ [[package]]
+ name = "uzers"
+ version = "0.12.2"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "0b8275fb1afee25b4111d2dc8b5c505dbbc4afd0b990cb96deb2d88bff8be18d"
+ dependencies = [
+  "libc",
+  "log",
+--- origsrc/eza-0.23.5/uzers/src/base.rs	2025-12-16 12:50:45.000000000 +0000
++++ src/eza-0.23.5/uzers/src/base.rs	2026-11-06 23:49:50.837654900 +0000
+@@ -960,18 +960,18 @@ pub unsafe fn all_groups() -> impl Itera
+     #[cfg(feature = "logging")]
+     trace!("Running setgrent");
+ 
+-    #[cfg(not(target_os = "android"))]
++    #[cfg(not(any(target_os = "android", target_os = "cygwin")))]
+     libc::setgrent();
+     AllGroups
+ }
+ 
+ impl Drop for AllGroups {
+-    #[cfg(target_os = "android")]
++    #[cfg(any(target_os = "android", target_os = "cygwin"))]
+     fn drop(&mut self) {
+         // nothing to do here
+     }
+ 
+-    #[cfg(not(target_os = "android"))]
++    #[cfg(not(any(target_os = "android", target_os = "cygwin")))]
+     fn drop(&mut self) {
+         #[cfg(feature = "logging")]
+         trace!("Running endgrent");
+@@ -983,12 +983,12 @@ impl Drop for AllGroups {
+ impl Iterator for AllGroups {
+     type Item = Group;
+ 
+-    #[cfg(target_os = "android")]
++    #[cfg(any(target_os = "android", target_os = "cygwin"))]
+     fn next(&mut self) -> Option<Group> {
+         None
+     }
+ 
+-    #[cfg(not(target_os = "android"))]
++    #[cfg(not(any(target_os = "android", target_os = "cygwin")))]
+     fn next(&mut self) -> Option<Group> {
+         #[cfg(feature = "logging")]
+         trace!("Running getgrent");
+@@ -1029,6 +1029,7 @@ pub mod os {
+     #[cfg(any(
+         target_os = "linux",
+         target_os = "android",
++        target_os = "cygwin",
+         target_os = "macos",
+         target_os = "freebsd",
+         target_os = "dragonfly",
+@@ -1355,6 +1356,7 @@ pub mod os {
+     #[cfg(any(
+         target_os = "linux",
+         target_os = "android",
++        target_os = "cygwin",
+         target_os = "redox",
+         target_os = "solaris",
+         target_os = "illumos",
+@@ -1367,6 +1369,7 @@ pub mod os {
+     #[cfg(any(
+         target_os = "linux",
+         target_os = "android",
++        target_os = "cygwin",
+         target_os = "macos",
+         target_os = "freebsd",
+         target_os = "dragonfly",

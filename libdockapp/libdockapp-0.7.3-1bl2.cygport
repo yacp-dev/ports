@@ -9,7 +9,14 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="font-util fontconfig libX11-devel libXext-devel libXpm-devel mkfontscale"
+BUILD_REQUIRES="
+	font-util
+	fontconfig
+	libX11-devel
+	libXext-devel
+	libXpm-devel
+	mkfontscale
+"
 
 CYGCONF_ARGS="
 	--without-font

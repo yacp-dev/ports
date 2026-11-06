@@ -10,7 +10,9 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="docbook-utils libexpat-devel"
+BUILD_REQUIRES="
+	libexpat-devel
+"
 
 src_install()
 {

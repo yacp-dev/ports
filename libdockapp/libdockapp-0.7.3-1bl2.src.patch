@@ -1,5 +1,5 @@
---- origsrc/libdockapp-0.7.3/src/Makefile.am	2020-05-03 21:16:29.000000000 +0900
-+++ src/libdockapp-0.7.3/src/Makefile.am	2024-02-26 16:06:04.328940400 +0900
+--- origsrc/libdockapp-0.7.3/src/Makefile.am	2020-05-03 12:16:29.000000000 +0000
++++ src/libdockapp-0.7.3/src/Makefile.am	2026-11-06 13:11:11.627647900 +0000
 @@ -3,7 +3,7 @@ AUTOMAKE_OPTIONS = no-dependencies
  
  lib_LTLIBRARIES = libdockapp.la

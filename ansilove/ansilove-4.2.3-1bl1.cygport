@@ -6,8 +6,8 @@ SUMMARY="ANSI and ASCII art to PNG converter in C"
 DESCRIPTION="This is a complete rewrite of AnsiLove/PHP in the C programming language. It
 converts ANSi and artscene related file formats into PNG images."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND ISC"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

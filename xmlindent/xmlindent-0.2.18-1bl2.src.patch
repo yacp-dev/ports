@@ -1,5 +1,5 @@
---- origsrc/xmlindent-0.2.18/Makefile	2020-03-13 20:13:48.000000000 +0900
-+++ src/xmlindent-0.2.18/Makefile	2025-09-07 14:08:31.528145900 +0900
+--- origsrc/xmlindent-0.2.18/Makefile	2020-03-13 11:13:48.000000000 +0000
++++ src/xmlindent-0.2.18/Makefile	2026-11-06 12:55:17.783361800 +0000
 @@ -4,8 +4,8 @@ PREFIX=/usr/local
  DESTDIR=
  BIN_INSTALL_DIR=$(PREFIX)/bin

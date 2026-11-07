@@ -1,5 +1,5 @@
---- origsrc/zvbi-0.2.44/src/Makefile.am	2025-03-11 03:41:14.000000000 +0900
-+++ src/zvbi-0.2.44/src/Makefile.am	2026-02-10 16:09:14.886272900 +0900
+--- origsrc/zvbi-0.2.46/src/Makefile.am	2026-10-22 16:52:14.000000000 +0000
++++ src/zvbi-0.2.46/src/Makefile.am	2026-11-07 08:06:54.485866100 +0000
 @@ -124,7 +124,7 @@ libzvbi_la_LIBADD = \
  	$(LIBS) \
  	$(UNICODE_LIBS)

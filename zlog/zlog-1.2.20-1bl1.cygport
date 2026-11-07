@@ -14,24 +14,25 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DUNIT_TEST:BOOL=ON
+	-DZLOG_WERROR:BOOL=OFF
 "
 
 PKG_NAMES="
 	${PN}
-	lib${PN}1
+	lib${PN}1.2
 	lib${PN}-devel
 "
 zlog_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libzlog1_CONTENTS="
-	usr/bin/cyg*-1.dll
+libzlog1_2_CONTENTS="
+	usr/bin/cyg*-1.2.dll
 "
 libzlog_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 zlog_SUMMARY="${SUMMARY} (utilities)"
-libzlog1_SUMMARY="${SUMMARY} (runtime)"
+libzlog1_2_SUMMARY="${SUMMARY} (runtime)"
 libzlog_devel_SUMMARY="${SUMMARY} (development)"

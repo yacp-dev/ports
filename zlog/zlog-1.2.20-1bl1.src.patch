@@ -1,0 +1,69 @@
+--- origsrc/zlog-1.2.20/CMakeLists.txt	2026-10-08 07:27:42.000000000 +0000
++++ src/zlog-1.2.20/CMakeLists.txt	2026-11-07 08:43:03.142911500 +0000
+@@ -85,7 +85,9 @@ if (ZLOG_HAVE_PTHREAD_FLAG)
+     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pthread")
+ endif ()
+ 
+-include(CheckMemfdCreate)
++if (NOT CYGWIN)
++    include(CheckMemfdCreate)
++endif ()
+ 
+ # the makefile build is -Werror everywhere except mingw; keep that, but let
+ # packagers building with a compiler we have not seen turn it off
+--- origsrc/zlog-1.2.20/src/CMakeLists.txt	2026-10-08 07:27:42.000000000 +0000
++++ src/zlog-1.2.20/src/CMakeLists.txt	2026-11-07 08:43:03.144924700 +0000
+@@ -59,11 +59,12 @@ add_executable(zlog-chk-conf zlog-chk-co
+ target_link_libraries(zlog-chk-conf zlog)
+ 
+ install(TARGETS
+-        zlog zlog_s
++        zlog
+         EXPORT zlogTargets
+         COMPONENT zlog
+         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+         INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+ )
+ 
+--- origsrc/zlog-1.2.20/src/event.c	2026-10-08 07:27:42.000000000 +0000
++++ src/zlog-1.2.20/src/event.c	2026-11-07 08:43:03.144924700 +0000
+@@ -28,7 +28,9 @@
+ #include <sys/time.h>
+ 
+ #include <sys/types.h>
++#if !defined(__CYGWIN__)
+ #include <sys/syscall.h>
++#endif
+ 
+ #include "zc_defs.h"
+ #include "event.h"
+--- origsrc/zlog-1.2.20/src/fifo.c	2026-10-08 07:27:42.000000000 +0000
++++ src/zlog-1.2.20/src/fifo.c	2026-11-07 08:43:03.146683500 +0000
+@@ -69,7 +69,7 @@ struct fifo *fifo_create(unsigned int si
+      */
+ #if defined(__linux__)
+     int fd = memfd_create("x", 0);
+-#elif defined(__APPLE__)
++#elif defined(__APPLE__) || defined(__CYGWIN__)
+     char tmp_path[] = "/tmp/zlog_fifo_XXXXXX";
+     int fd = mkstemp(tmp_path);
+     if (fd >= 0) {
+--- origsrc/zlog-1.2.20/src/spec.c	2026-10-08 07:27:42.000000000 +0000
++++ src/zlog-1.2.20/src/spec.c	2026-11-07 08:43:03.146683500 +0000
+@@ -325,10 +325,13 @@ static int zlog_spec_write_tid_long(zlog
+ 
+ static int zlog_spec_write_ktid(zlog_spec_t * a_spec, zlog_thread_t * a_thread, zlog_buf_t * a_buf, struct zlog_output_data *data)
+ {
+-
++#if defined(__linux__) || defined(__APPLE__)
+ 	/* don't need to get ktid again, as tmap_new_thread fetched it already */
+ 	/* and fork not change tid */
+ 	return zlog_buf_append(a_buf, a_thread->event->ktid_str, a_thread->event->ktid_str_len);
++#else
++	return 0;
++#endif
+ }
+ 
+ static int zlog_spec_write_level_lowercase(zlog_spec_t * a_spec, zlog_thread_t * a_thread, zlog_buf_t * a_buf, struct zlog_output_data *data)

@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/dvorka/${PN}"
-SRC_URI="https://github.com/dvorka/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_URI="https://github.com/dvorka/${PN}/archive/refs/tags/v.${PV}.tar.gz"
+SRC_DIR="${PN}-v.${PV}"
 
 CATEGORY="Utils"
 SUMMARY="Shell history suggest box"
@@ -12,7 +13,10 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libncurses-devel libreadline-devel"
+BUILD_REQUIRES="
+	libncurses-devel
+	libreadline-devel
+"
 
 DOCS="
 	CONFIGURATION.md

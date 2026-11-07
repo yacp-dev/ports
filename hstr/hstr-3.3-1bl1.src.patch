@@ -1,6 +1,6 @@
---- origsrc/hstr-3.1/src/hstr_utils.c	2023-04-19 06:26:18.000000000 +0900
-+++ src/hstr-3.1/src/hstr_utils.c	2023-09-29 08:34:26.373013600 +0900
-@@ -161,6 +161,7 @@ void fill_terminal_input(char* cmd, bool
+--- origsrc/hstr-v.3.3/src/hstr_utils.c	2026-11-04 15:40:02.000000000 +0000
++++ src/hstr-v.3.3/src/hstr_utils.c	2026-11-07 03:35:16.269522600 +0000
+@@ -300,6 +300,7 @@ void fill_terminal_input(char* cmd, bool
  {
      if(cmd && strlen(cmd)>0) {
              if(is_tiocsti) {
@@ -8,7 +8,7 @@
              size_t size = strlen(cmd);
              unsigned i;
              char *c;
-@@ -169,6 +170,7 @@ void fill_terminal_input(char* cmd, bool
+@@ -308,6 +309,7 @@ void fill_terminal_input(char* cmd, bool
                  c=(cmd+i);
                  ioctl(0, TIOCSTI, c);
              }

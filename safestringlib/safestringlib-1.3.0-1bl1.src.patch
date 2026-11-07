@@ -1,0 +1,50 @@
+--- origsrc/safestringlib-1.3.0/CMakeLists.txt	2026-06-01 11:05:46.000000000 +0000
++++ src/safestringlib-1.3.0/CMakeLists.txt	2026-11-07 07:10:45.741305400 +0000
+@@ -181,7 +181,7 @@ endif()
+ 
+ if(CMAKE_C_COMPILER_ID MATCHES "AppleClang")
+   # Left empty since macOS will handle linking appropriately with defaults.
+-else()
++elseif(NOT CYGWIN)
+   set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -z noexecstack -z relro -z now")
+ endif()
+ 
+@@ -203,6 +203,11 @@ target_include_directories(${PROJECT_NAM
+ target_include_directories(${PROJECT_NAME}_static PUBLIC include)
+ 
+ set_target_properties(${PROJECT_NAME}_shared PROPERTIES VERSION ${SAFEC_VERSION_STRING})
++set_target_properties(${PROJECT_NAME}_shared PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
++
++if (DEFINED SOVERSION)
++  set_target_properties(${PROJECT_NAME}_shared PROPERTIES SOVERSION "${SOVERSION}")
++endif()
+ set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${SAFEC_VERSION_STRING})
+ 
+ if(BUILD_UNITTESTS)
+@@ -232,6 +237,13 @@ install(EXPORT ${PROJECT_NAME}Config DES
+ 
+ export(TARGETS ${PROJECT_NAME}_shared FILE ${PROJECT_NAME}Config.cmake)
+ 
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/safestringlib.pc.in ${CMAKE_BINARY_DIR}/safestringlib.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/safestringlib.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
++
+ # Debian package information for CPack
+ set(CPACK_GENERATOR "DEB")
+ set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Intel")
+--- origsrc/safestringlib-1.3.0/safestringlib.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/safestringlib-1.3.0/safestringlib.pc.in	2026-11-07 07:10:45.741305400 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: safestringlib
++Description: Safe string library
++Version: @SAFEC_VERSION_STRING@
++Libs: -L${libdir} -lsafestring
++Cflags: -I${includedir}

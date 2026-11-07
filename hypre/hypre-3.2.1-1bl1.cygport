@@ -7,15 +7,21 @@ DESCRIPTION="HYPRE is a library of high performance preconditioners and solvers 
 multigrid methods for the solution of large, sparse linear systems of
 equations on massively parallel computers."
 
-LICENSE="Apache-2.0 OR MIT"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 OR MIT"
+LICENSE="(Apache-2.0 OR MIT) AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: (Apache-2.0 OR MIT) AND BSD-3-Clause"
 LICENSE_URI="COPYRIGHT"
 
 BUILD_REQUIRES="
+	libevent-devel
+	libhwloc-devel
 	libopenmpi-devel
+	zlib-devel
 "
 
 inherit cmake
+
+# The CI runner has fewer cores than the tests request MPI ranks
+export OMPI_MCA_rmaps_base_oversubscribe=1
 
 src_compile()
 {
@@ -26,18 +32,18 @@ src_compile()
 	cygninja
 }
 
+src_test()
+{
+	cd ${B}
+	PATH=${B}/bin:${PATH} ctest
+}
+
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DCMAKE_INSTALL_INCLUDEDIR:STRING=/usr/include/${PN}
-	-DHYPRE_ENABLE_SHARED:BOOL=ON
 	-DHYPRE_ENABLE_BIGINT:BOOL=ON
 	-DHYPRE_ENABLE_MIXEDINT:BOOL=ON
-	-DHYPRE_ENABLE_LONG_DOUBLE:BOOL=ON
-	-DHYPRE_ENABLE_COMPLEX:BOOL=ON
 	-DHYPRE_ENABLE_PERSISTENT_COMM:BOOL=ON
-	-DHYPRE_WITH_OPENMP:BOOL=ON
-	-DHYPRE_WITH_HOPSCOTCH:BOOL=ON
-	-DHYPRE_BUILD_EXAMPLES:BOOL=ON
 	-DHYPRE_BUILD_TESTS:BOOL=ON
 "
 
@@ -69,20 +75,26 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	hypre
-	libHYPRE301
+	libHYPRE302
 	libHYPRE-devel
 "
 hypre_CONTENTS="
 	usr/bin/hypre-*.exe
 	usr/share
 "
-libHYPRE301_CONTENTS="
-	usr/bin/cyg*-301.dll
+libHYPRE302_CONTENTS="
+	usr/bin/cyg*-302.dll
 "
 libHYPRE_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 hypre_SUMMARY="${SUMMARY} (utilities)"
-libHYPRE301_SUMMARY="${SUMMARY} (runtime)"
+libHYPRE302_SUMMARY="${SUMMARY} (runtime)"
 libHYPRE_devel_SUMMARY="${SUMMARY} (development)"
+libHYPRE_devel_REQUIRES="
+	libevent-devel
+	libhwloc-devel
+	libopenmpi-devel
+	zlib-devel
+"

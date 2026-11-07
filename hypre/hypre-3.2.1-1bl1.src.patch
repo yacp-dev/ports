@@ -1,6 +1,6 @@
---- origsrc/hypre-3.1.0/src/CMakeLists.txt	2026-01-24 04:24:11.000000000 +0900
-+++ src/hypre-3.1.0/src/CMakeLists.txt	2026-03-20 11:54:10.585566800 +0900
-@@ -634,3 +634,10 @@ export(PACKAGE ${PROJECT_NAME})
+--- origsrc/hypre-3.2.1/src/CMakeLists.txt	2026-11-03 17:55:50.000000000 +0000
++++ src/hypre-3.2.1/src/CMakeLists.txt	2026-11-07 06:05:41.509556900 +0000
+@@ -654,3 +654,10 @@ export(PACKAGE ${PROJECT_NAME})
  
  # Print status of the build options
  print_option_status(${BASE_OPTIONS} ${GPU_OPTIONS} ${TPL_OPTIONS})
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/hypre.pc.in ${CMAKE_BINARY_DIR}/hypre.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/hypre.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/hypre-3.1.0/src/hypre.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/hypre-3.1.0/src/hypre.pc.in	2026-03-20 11:54:10.587576400 +0900
+--- origsrc/hypre-3.2.1/src/hypre.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/hypre-3.2.1/src/hypre.pc.in	2026-11-07 06:05:41.512344400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

@@ -1,5 +1,5 @@
---- origsrc/cityhash-1.1.1/Makefile.am	2011-04-20 04:06:34.000000000 +0900
-+++ src/cityhash-1.1.1/Makefile.am	2023-11-13 13:24:04.159713700 +0900
+--- origsrc/cityhash-1.1.1/Makefile.am	2011-04-19 19:06:34.000000000 +0000
++++ src/cityhash-1.1.1/Makefile.am	2026-11-07 21:23:56.674923900 +0000
 @@ -2,3 +2,6 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = src
  
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/cityhash-1.1.1/cityhash.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/cityhash-1.1.1/cityhash.pc.in	2023-11-13 13:24:04.112840600 +0900
+--- origsrc/cityhash-1.1.1/cityhash.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/cityhash-1.1.1/cityhash.pc.in	2026-11-07 21:23:56.675688800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -20,8 +20,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lcityhash
 +Cflags: -I${includedir}
---- origsrc/cityhash-1.1.1/configure.ac	2013-06-18 04:22:19.000000000 +0900
-+++ src/cityhash-1.1.1/configure.ac	2023-11-13 13:24:04.175340100 +0900
+--- origsrc/cityhash-1.1.1/configure.ac	2013-06-17 19:22:19.000000000 +0000
++++ src/cityhash-1.1.1/configure.ac	2026-11-07 21:23:56.675688800 +0000
 @@ -58,6 +58,7 @@ if test x$cityhash_have_builtin_expect =
      AC_DEFINE([HAVE_BUILTIN_EXPECT], [1], [Define to 1 if the compiler supports __builtin_expect.])
  fi
@@ -30,8 +30,8 @@
  AC_OUTPUT
  
  echo \
---- origsrc/cityhash-1.1.1/src/Makefile.am	2011-04-23 07:37:08.000000000 +0900
-+++ src/cityhash-1.1.1/src/Makefile.am	2023-11-13 13:20:18.306857500 +0900
+--- origsrc/cityhash-1.1.1/src/Makefile.am	2011-04-22 22:37:08.000000000 +0000
++++ src/cityhash-1.1.1/src/Makefile.am	2026-11-07 21:23:56.677703100 +0000
 @@ -1,6 +1,7 @@
  # library
  lib_LTLIBRARIES = libcityhash.la

@@ -1,0 +1,55 @@
+HOMEPAGE="https://github.com/herumi/${PN}"
+SRC_URI="https://github.com/herumi/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Devel"
+SUMMARY="JIT assembler for x86(IA32), x64(AMD64, x86-64) by C++"
+DESCRIPTION="This is a header file which enables dynamically to assemble x86(IA32),
+x64(AMD64, x86-64) mnemonic."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="COPYRIGHT"
+
+BUILD_REQUIRES="
+	cmake
+	nasm
+	yasm
+"
+
+inherit meson
+
+CYGMESON_ARGS="
+	-Ddatadir=lib
+"
+
+DOCS="
+	doc/*.md
+	readme.txt
+"
+
+# The tests take about 17 minutes on the runner.
+YACP_CHECK_TIMEOUT_MINUTES=25
+
+# test/Makefile also builds -m32 targets, which Cygwin's gcc can't link, and
+# regenerates the headers (../gen), so run the 64-bit tests from a copy.
+src_test() {
+	rm -rf ${B}/xbyak-test
+	mkdir -p ${B}/xbyak-test
+	cp -a ${S}/xbyak ${S}/test ${B}/xbyak-test/
+	cd ${B}/xbyak-test/test
+	make detect_x32.exe normalize_prefix.exe bad_address.exe misc.exe \
+		k0_mask.exe cvt_test.exe noexception.exe apx.exe avx10_test.exe \
+		mmap_allocator.exe ace_1.exe jmp64.exe address64.exe || exit 1
+	local t failed=0
+	for t in bad_address misc k0_mask cvt_test noexception apx avx10_test \
+		mmap_allocator ace_1 jmp64
+	do
+		./${t}.exe || { echo "FAILED: ${t}.exe"; failed=1; }
+	done
+	for t in "test_address.sh 64" "test_nm.sh 64" "test_nm.sh Y64" \
+		"test_avx.sh 64" "test_avx.sh Y64"
+	do
+		sh ./${t} || { echo "FAILED: ${t}"; failed=1; }
+	done
+	return ${failed}
+}

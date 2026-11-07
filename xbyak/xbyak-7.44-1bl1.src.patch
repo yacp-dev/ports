@@ -1,0 +1,32 @@
+--- origsrc/xbyak-7.44/test/jmp.cpp	2026-10-22 01:38:18.000000000 +0000
++++ src/xbyak-7.44/test/jmp.cpp	2026-11-07 13:54:08.426279600 +0000
+@@ -68,7 +68,12 @@ void free32bitAddress(void *p, uint32_t)
+ #include <sys/mman.h>
+ void *get32bitAddress(uint32_t size)
+ {
++#ifdef MAP_32BIT
+ 	return mmap(NULL, size, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS|MAP_32BIT, -1, 0);
++#else
++	// no MAP_32BIT (Cygwin): hint an address below 4GB
++	return mmap((void*)0x10000000, size, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
++#endif
+ }
+ 
+ void free32bitAddress(void *p, uint32_t size)
+@@ -1750,8 +1755,16 @@ CYBOZU_TEST_AUTO(rip_addr)
+ #ifndef __APPLE__
+ CYBOZU_TEST_AUTO(rip_addr_with_fixed_buf)
+ {
++#ifdef __CYGWIN__
++	// Cygwin can't make .bss executable (mprotect fails with EINVAL), and
++	// mprotect on one page of an mmap region leaves its other pages unwritable:
++	// use a separate mmap for the data and the code
++	static char *buf = (char*)mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
++	static char *p = (char*)mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);
++#else
+ 	MIE_ALIGN(4096) static char buf[8192];
+ 	static char *p = buf + 4096;
++#endif
+ 	static int *x0 = (int*)buf;
+ 	static int *x1 = x0 + 1;
+ 	struct Code : Xbyak::CodeGenerator {

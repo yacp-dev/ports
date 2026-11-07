@@ -1,5 +1,5 @@
---- origsrc/fastjet-3.5.1/configure.ac	2026-10-24 10:42:42.419198100 +0000
-+++ src/fastjet-3.5.1/configure.ac	2026-10-24 10:42:43.484067800 +0000
+--- origsrc/fastjet-3.5.3/configure.ac	2026-11-07 05:27:52.382730400 +0000
++++ src/fastjet-3.5.3/configure.ac	2026-11-07 05:27:52.925439300 +0000
 @@ -53,7 +53,7 @@ dnl  - the libtoolize manpage says that
  dnl    portable to keep using ACLOCAL_AMFLAGS.
  dnl  - the autoconf manual mentions that since we use 'aclocal -I m4'
@@ -40,8 +40,8 @@
  
      # at a deeper level, one may want to be able to run swig dynamically
      #
---- origsrc/fastjet-3.5.1/example/Makefile.am	2026-10-24 10:42:42.419198100 +0000
-+++ src/fastjet-3.5.1/example/Makefile.am	2026-10-24 10:42:43.485839200 +0000
+--- origsrc/fastjet-3.5.3/example/Makefile.am	2026-11-07 05:27:52.382730400 +0000
++++ src/fastjet-3.5.3/example/Makefile.am	2026-11-07 05:27:52.927447500 +0000
 @@ -40,9 +40,9 @@ noinst_PROGRAMS += 03-plugin
  03_plugin_SOURCES = 03-plugin.cc
  #03_plugin_SHORTNAME = 03
@@ -54,8 +54,8 @@
  else
  EXTRA_DIST += 03-plugin.cc
  endif
---- origsrc/fastjet-3.5.1/plugins/Makefile.am	2025-07-01 12:31:45.000000000 +0000
-+++ src/fastjet-3.5.1/plugins/Makefile.am	2026-10-24 10:42:43.485839200 +0000
+--- origsrc/fastjet-3.5.3/plugins/Makefile.am	2026-10-17 15:04:44.000000000 +0000
++++ src/fastjet-3.5.3/plugins/Makefile.am	2026-11-07 05:27:52.928226800 +0000
 @@ -83,6 +83,7 @@ libfastjetplugins_la_LIBADD += GridJet/l
  endif
  # end monolithic plugin section -- do not modify this line
@@ -64,8 +64,8 @@
  
  DIST_SUBDIRS = GridJet D0RunICone CMSIterativeCone Jade EECambridge ATLASCone TrackJet SISCone CDFCones PxCone D0RunIICone NestedDefs
  
---- origsrc/fastjet-3.5.1/pyinterface/Makefile.am	2025-07-01 12:31:45.000000000 +0000
-+++ src/fastjet-3.5.1/pyinterface/Makefile.am	2026-10-24 10:42:43.487858000 +0000
+--- origsrc/fastjet-3.5.3/pyinterface/Makefile.am	2026-10-17 15:04:44.000000000 +0000
++++ src/fastjet-3.5.3/pyinterface/Makefile.am	2026-11-07 05:27:52.928226800 +0000
 @@ -69,8 +69,8 @@ pyexec_LTLIBRARIES = _fastjet_swig.la
  _fastjet_swig_la_LIBTOOLFLAGS = --silent
  _fastjet_swig_la_SOURCES = swig_wrap.cpp
@@ -77,8 +77,8 @@
  
  # include the interface file for completeness
  pyinterfacedir=$(datadir)/fastjet/pyinterface
---- origsrc/fastjet-3.5.1/src/Makefile.am	2025-07-01 12:31:45.000000000 +0000
-+++ src/fastjet-3.5.1/src/Makefile.am	2026-10-24 10:42:43.487858000 +0000
+--- origsrc/fastjet-3.5.3/src/Makefile.am	2026-10-17 15:04:44.000000000 +0000
++++ src/fastjet-3.5.3/src/Makefile.am	2026-11-07 05:27:52.929454000 +0000
 @@ -23,6 +23,7 @@ libfastjet_la_SOURCES = DnnPlane.cc\
          LazyTiling25.cc \
          LazyTiling9SeparateGhosts.cc \
@@ -87,8 +87,8 @@
  
  EXTRA_DIST = makefile.static genconfig.sh
  EXTRA_DIST += CMakeLists.txt
---- origsrc/fastjet-3.5.1/tools/Makefile.am	2025-07-01 12:31:45.000000000 +0000
-+++ src/fastjet-3.5.1/tools/Makefile.am	2026-10-24 10:42:43.489878100 +0000
+--- origsrc/fastjet-3.5.3/tools/Makefile.am	2026-10-17 15:04:44.000000000 +0000
++++ src/fastjet-3.5.3/tools/Makefile.am	2026-11-07 05:27:52.930232200 +0000
 @@ -3,7 +3,7 @@
  SUBDIRS=fastjet
  lib_LTLIBRARIES = libfastjettools.la

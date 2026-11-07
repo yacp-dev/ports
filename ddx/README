@@ -1,0 +1,91 @@
+ddx
+------------------------------------------
+Domain decomposition continuum solvation library
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libddx-devel-1.0.2-1bl1
+  libddx1-1.0.2-1bl1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libgomp1-14.4.0-1
+  liblapack-devel-3.12.0-1
+  liblapack0-3.12.0-1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  liblapack-devel-3.12.0-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/ddsolvation/ddX
+
+Canonical download:
+  https://github.com/ddsolvation/ddX/archive/refs/tags/v1.0.2.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack ddx-1.0.2-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./ddx-1.0.2-X.cygport all
+
+This will create:
+  /usr/src/ddx-1.0.2-X-src.tar.xz
+  /usr/src/ddx-1.0.2-X.tar.xz
+  /usr/src/libddx1-1.0.2-X.tar.xz
+  /usr/src/libddx-devel-1.0.2-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(ddx)
+  /usr/bin/ddX_exec.exe
+  /usr/share/doc/Cygwin/ddx.README
+  /usr/share/doc/ddx/LICENSE.txt
+  /usr/share/doc/ddx/README.md
+
+(libddx1)
+  /usr/bin/cygddx-1.dll
+
+(libddx-devel)
+  /usr/include/ddX/modules/complex_bessel.mod
+  /usr/include/ddX/modules/ddx.mod
+  /usr/include/ddX/modules/ddx_cinterface.mod
+  /usr/include/ddX/modules/ddx_constants.mod
+  /usr/include/ddX/modules/ddx_core.mod
+  /usr/include/ddX/modules/ddx_cosmo.mod
+  /usr/include/ddX/modules/ddx_defaults.mod
+  /usr/include/ddX/modules/ddx_definitions.mod
+  /usr/include/ddX/modules/ddx_errors.mod
+  /usr/include/ddX/modules/ddx_gradients.mod
+  /usr/include/ddX/modules/ddx_harmonics.mod
+  /usr/include/ddX/modules/ddx_input.mod
+  /usr/include/ddX/modules/ddx_legacy.mod
+  /usr/include/ddX/modules/ddx_lpb.mod
+  /usr/include/ddX/modules/ddx_lpb_core.mod
+  /usr/include/ddX/modules/ddx_multipolar_solutes.mod
+  /usr/include/ddX/modules/ddx_operators.mod
+  /usr/include/ddX/modules/ddx_parameters.mod
+  /usr/include/ddX/modules/ddx_pcm.mod
+  /usr/include/ddX/modules/ddx_solvers.mod
+  /usr/include/ddX/modules/ddx_workspace.mod
+  /usr/include/ddx.h
+  /usr/lib/libddx.dll.a
+  /usr/lib/pkgconfig/ddX.pc
+
+------------------
+
+Port Notes:
+
+----- version 1.0.2-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

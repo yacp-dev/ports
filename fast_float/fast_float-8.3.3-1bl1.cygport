@@ -1,5 +1,10 @@
 HOMEPAGE="https://github.com/fastfloat/${PN}"
-SRC_URI="https://github.com/fastfloat/${PN}/archive/refs/tags/v${PV}.tar.gz"
+# supplemental_test_files' main branch (tests/CMakeLists.txt fetches it with git)
+SUPPLEMENTAL_TEST_FILES_REV="088643e8d5010bd3d1540fe48685601b43b9a3e5"
+SRC_URI="
+	https://github.com/fastfloat/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/fastfloat/supplemental_test_files/archive/${SUPPLEMENTAL_TEST_FILES_REV}.tar.gz#/supplemental_test_files-${SUPPLEMENTAL_TEST_FILES_REV}.tar.gz
+"
 
 CATEGORY="Devel"
 SUMMARY="Fast & exact implementation of C++ from_chars for number types"
@@ -16,7 +21,6 @@ LICENSE_URI="LICENSE-APACHE"
 
 BUILD_REQUIRES="
 	doctest
-	git
 "
 
 inherit cmake
@@ -26,6 +30,13 @@ CYGCMAKE_ARGS="
 	-DFASTFLOAT_TEST:BOOL=ON
 	-DSYSTEM_DOCTEST:BOOL=ON
 "
+
+src_compile()
+{
+	cd ${B}
+	cygcmake -DFETCHCONTENT_SOURCE_DIR_SUPPLEMENTAL_TEST_FILES:PATH=${srcdir}/supplemental_test_files-${SUPPLEMENTAL_TEST_FILES_REV}
+	cygmake
+}
 
 DOCS="
 	LICENSE*

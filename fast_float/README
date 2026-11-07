@@ -11,30 +11,29 @@ Runtime requirements:
 
 Build requirements:
 (besides corresponding -devel packages)
-  cmake-4.4.4-1
-  cygport-0.37.10-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   doctest-2.5.3-1bl1
-  git-2.51.0-1
-  ninja-1.13.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/fastfloat/fast_float
 
 Canonical download:
-  https://github.com/fastfloat/fast_float/archive/refs/tags/v8.3.2.tar.gz
+  https://github.com/fastfloat/fast_float/archive/refs/tags/v8.3.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack fast_float-8.3.2-X-src.tar.xz
+  1. unpack fast_float-8.3.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./fast_float-8.3.2-X.cygport all
+        % cygport ./fast_float-8.3.3-X.cygport all
 
 This will create:
-  /usr/src/fast_float-8.3.2-X-src.tar.xz
-  /usr/src/fast_float-8.3.2-X.tar.xz
+  /usr/src/fast_float-8.3.3-X-src.tar.xz
+  /usr/src/fast_float-8.3.3-X.tar.xz
 
 -------------------------------------------
 
@@ -64,6 +63,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 8.3.3-1bl1 -----
+Version bump.
 
 ----- version 8.3.2-1bl1 -----
 Version bump.

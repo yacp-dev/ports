@@ -1,5 +1,5 @@
---- origsrc/docopt.cpp-0.6.3/CMakeLists.txt	2025-01-30 21:05:21.761506600 +0900
-+++ src/docopt.cpp-0.6.3/CMakeLists.txt	2025-01-30 21:07:16.925753900 +0900
+--- origsrc/docopt.cpp-0.6.3/CMakeLists.txt	2026-11-07 07:46:43.926260900 +0000
++++ src/docopt.cpp-0.6.3/CMakeLists.txt	2026-11-07 07:46:44.141521600 +0000
 @@ -42,7 +42,6 @@ if(MSVC OR XCODE)
      # Xcode does not support libraries with only object files as sources.
      # See https://cmake.org/cmake/help/v3.0/command/add_library.html?highlight=add_library

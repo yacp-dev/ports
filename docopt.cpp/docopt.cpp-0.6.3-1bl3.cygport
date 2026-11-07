@@ -3,7 +3,7 @@ SRC_URI="https://github.com/docopt/${PN}/archive/refs/tags/v${PV}.tar.gz"
 PATCH_URI="
 	https://sources.debian.org/data/main/d/docopt.cpp/0.6.3-5/debian/patches/version-bump.patch
 	https://sources.debian.org/data/main/d/docopt.cpp/0.6.3-5/debian/patches/increase_cmake_minimum_required.patch
-	https://src.fedoraproject.org/rpms/docopt-cpp/raw/rawhide/f/docopt-0.6.3-run-tests.patch
+	https://src.fedoraproject.org/rpms/docopt-cpp/raw/439b87e454bea23be5cbfa53863b0aa645c45b02/f/docopt-0.6.3-run-tests.patch
 "
 
 CATEGORY="Libs"
@@ -12,9 +12,11 @@ DESCRIPTION="docopt creates beautiful command-line interfaces"
 
 LICENSE="BSL-1.0 AND MIT"
 LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0 AND MIT"
-# LICENSE_URI=""
+LICENSE_URI="LICENSE-Boost-1.0"
 
-BUILD_REQUIRES="libboost-devel"
+BUILD_REQUIRES="
+	libboost-devel
+"
 
 inherit cmake
 
@@ -53,3 +55,5 @@ libdocopt_devel_CONTENTS="
 docopt_cpp_SUMMARY="${SUMMARY} (licensing & readmes)"
 libdocopt0_SUMMARY="${SUMMARY} (runtime)"
 libdocopt_devel_SUMMARY="${SUMMARY} (development)"
+
+libdocopt_devel_REQUIRES="libboost-devel"

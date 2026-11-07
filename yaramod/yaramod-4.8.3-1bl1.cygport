@@ -7,6 +7,18 @@ DESCRIPTION="yaramod is a library that provides parsing of YARA rules into AST a
 programming interface to build new YARA rulesets. This project is not
 associated with the YARA project."
 
+LICENSE="MIT AND CC0-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND CC0-1.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libfmt-devel
+	libgtest-devel
+	libre2-devel
+	pog
+	python3-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
@@ -25,7 +37,10 @@ src_test()
 
 DOCS="
 	CHANGELOG.md
-	LICENSE-THIRD-PARTY
+"
+
+DIFF_EXCLUDES="
+	generated
 "
 
 PKG_NAMES="
@@ -37,7 +52,7 @@ yaramod_CONTENTS="
 	usr/share
 "
 libyaramod0_CONTENTS="
-	usr/bin
+	usr/bin/cygyaramod-0.dll
 "
 libyaramod_devel_CONTENTS="
 	usr/include

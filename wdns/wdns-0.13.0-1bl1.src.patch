@@ -1,6 +1,6 @@
---- origsrc/wdns-tags-v0.12.0/Makefile.am	2023-09-07 00:36:31.000000000 +0900
-+++ src/wdns-tags-v0.12.0/Makefile.am	2023-11-14 17:23:34.080669500 +0900
-@@ -16,7 +16,7 @@ AM_CPPFLAGS = \
+--- origsrc/wdns-tags-v0.13.0/Makefile.am	2026-09-01 19:31:14.000000000 +0000
++++ src/wdns-tags-v0.13.0/Makefile.am	2026-11-07 14:18:16.433196500 +0000
+@@ -18,7 +18,7 @@ AM_CPPFLAGS = \
  	-I$(top_srcdir)/wdns
  AM_CFLAGS = $(my_CFLAGS) \
  	-I$(top_builddir)/wdns
@@ -9,7 +9,7 @@
  
  USE_LCOV=@USE_LCOV@
  LCOV=@LCOV@
-@@ -160,48 +160,48 @@ pkgconfig_DATA = wdns/libwdns.pc
+@@ -163,48 +163,48 @@ pkgconfig_DATA = wdns/libwdns.pc
  EXTRA_DIST += wdns/libwdns.pc.in
  CLEANFILES += wdns/libwdns.pc
  

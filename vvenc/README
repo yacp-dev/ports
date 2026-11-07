@@ -4,42 +4,41 @@ The Fraunhofer Versatile Video Encoder (VVenC) is a fast and efficient
 real-world VVC encoder implementation.
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  libvvenc-devel-1.13.1-1bl1
-  libvvenc1.13-1.13.1-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libvvenc-devel-1.14.0-1bl1
+  libvvenc1.14-1.14.0-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/fraunhoferhhi/vvenc
 
 Canonical download:
-  https://github.com/fraunhoferhhi/vvenc/archive/refs/tags/v1.13.1.tar.gz
+  https://github.com/fraunhoferhhi/vvenc/archive/refs/tags/v1.14.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack vvenc-1.13.1-X-src.tar.xz
+  1. unpack vvenc-1.14.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./vvenc-1.13.1-X.cygport all
+        % cygport ./vvenc-1.14.0-X.cygport all
 
 This will create:
-  /usr/src/vvenc-1.13.1-X-src.tar.xz
-  /usr/src/vvenc-1.13.1-X.tar.xz
-  /usr/src/libvvenc1.13-1.13.1-X.tar.xz
-  /usr/src/libvvenc-devel-1.13.1-X.tar.xz
+  /usr/src/vvenc-1.14.0-X-src.tar.xz
+  /usr/src/vvenc-1.14.0-X.tar.xz
+  /usr/src/libvvenc1.14-1.14.0-X.tar.xz
+  /usr/src/libvvenc-devel-1.14.0-X.tar.xz
 
 -------------------------------------------
 
@@ -54,8 +53,8 @@ Files included in the binary package:
   /usr/share/doc/vvenc/README.md
   /usr/share/doc/vvenc/changelog.txt
 
-(libvvenc1.13)
-  /usr/bin/cygvvenc-1.13.dll
+(libvvenc1.14)
+  /usr/bin/cygvvenc-1.14.dll
 
 (libvvenc-devel)
   /usr/include/vvenc/version.h
@@ -64,7 +63,7 @@ Files included in the binary package:
   /usr/include/vvenc/vvencDecl.h
   /usr/lib/cmake/vvenc/vvencConfig.cmake
   /usr/lib/cmake/vvenc/vvencConfigVersion.cmake
-  /usr/lib/cmake/vvenc/vvencTargets-shared-release.cmake
+  /usr/lib/cmake/vvenc/vvencTargets-shared-relwithdebinfo.cmake
   /usr/lib/cmake/vvenc/vvencTargets-shared.cmake
   /usr/lib/libvvenc.dll.a
   /usr/lib/pkgconfig/libvvenc.pc
@@ -72,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.14.0-1bl1 -----
+Version bump.
 
 ----- version 1.13.1-1bl1 -----
 Version bump.

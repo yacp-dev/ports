@@ -1,9 +1,21 @@
 HOMEPAGE="https://github.com/metthal/${PN}"
 SRC_URI="https://github.com/metthal/${PN}/archive/v${PV}.tar.gz"
+PATCH_URI="pog-yaramod-headers.patch"
 
 CATEGORY="Libs"
 SUMMARY="C++ library for generating LALR(1) parsers"
 DESCRIPTION="Pog is C++17 library for generating LALR(1) parsers."
+
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libfmt-devel
+	libgmock-devel
+	libgtest-devel
+	libre2-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 export CXXFLAGS="${CXXFLAGS} -fpermissive"

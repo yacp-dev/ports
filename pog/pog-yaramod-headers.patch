@@ -1,0 +1,209 @@
+Sync the headers with the pog copy bundled in yaramod 4.8.3 (deps/pog),
+which is what yaramod's own headers are written against:
+- include <fmt/ranges.h> where fmt::join is used (needed with fmt >= 11)
+- include <cassert> where assert() is used
+- constrain Error's converting constructor
+- Tokenizer: compare global token indices on equal matches, and stop on a
+  zero-length match in the middle of the input instead of looping forever
+Also make project VERSION match the release (it still said 0.5.2), so that
+pog.pc and pog-config-version.cmake report 0.5.3.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,7 +1,7 @@
+ cmake_minimum_required(VERSION 3.8)
+ project(pog
+ 	LANGUAGES CXX
+-	VERSION 0.5.2
++	VERSION 0.5.3
+ )
+ 
+ ## Module path for custom finders.
+--- a/include/pog/automaton.h
++++ b/include/pog/automaton.h
+@@ -1,9 +1,13 @@
+ #pragma once
+ 
++#include <cassert>
+ #include <deque>
+ #include <memory>
+ #include <vector>
+ 
++#include <fmt/format.h>
++#include <fmt/ranges.h>
++
+ #include <pog/grammar.h>
+ #include <pog/state.h>
+ #include <pog/types/state_and_symbol.h>
+--- a/include/pog/errors.h
++++ b/include/pog/errors.h
+@@ -4,7 +4,7 @@
+ #include <string>
+ #include <vector>
+ 
+-#include <fmt/format.h>
++#include <fmt/ranges.h>
+ 
+ #include <pog/rule.h>
+ #include <pog/symbol.h>
+@@ -15,7 +15,7 @@
+ {
+ public:
+ 	Error() : _msg() {}
+-	template <typename T>
++	template <typename T, typename = std::enable_if_t<std::is_constructible_v<std::string, T>>, T>
+ 	Error(T&& msg) noexcept : _msg(std::forward<T>(msg)) {}
+ 	Error(const Error& o) noexcept : _msg(o._msg) {}
+ 	virtual ~Error() noexcept {}
+--- a/include/pog/html_report.h
++++ b/include/pog/html_report.h
+@@ -2,6 +2,8 @@
+ 
+ #include <fstream>
+ 
++#include <fmt/ranges.h>
++
+ #include <pog/parser.h>
+ 
+ namespace pog {
+--- a/include/pog/item.h
++++ b/include/pog/item.h
+@@ -1,7 +1,8 @@
+ #pragma once
+ 
+-#include <functional>
+-#include <unordered_set>
++#include <cassert>
++
++#include <fmt/ranges.h>
+ 
+ #include <pog/rule.h>
+ #include <pog/utils.h>
+--- a/include/pog/operations/lookahead.h
++++ b/include/pog/operations/lookahead.h
+@@ -58,7 +58,7 @@
+ 				for (const auto& ss : *lookback_with)
+ 				{
+ 					if (auto itr = Parent::_operation.find(sr); itr == Parent::_operation.end())
+-						Parent::_operation.emplace(std::move(sr), _follow_op[ss]);
++						Parent::_operation.emplace(sr, _follow_op[ss]);
+ 					else if (auto follow_res = _follow_op.find(ss); follow_res)
+ 						std::copy(follow_res->begin(), follow_res->end(), std::inserter(itr->second, itr->second.begin()));
+ 				}
+--- a/include/pog/parser_report.h
++++ b/include/pog/parser_report.h
+@@ -3,6 +3,9 @@
+ #include <variant>
+ #include <vector>
+ 
++#include <fmt/format.h>
++#include <fmt/ranges.h>
++
+ #include <pog/rule.h>
+ #include <pog/state.h>
+ 
+--- a/include/pog/parser.h
++++ b/include/pog/parser.h
+@@ -1,7 +1,7 @@
+ #pragma once
+ 
++#include <cassert>
+ #include <deque>
+-#include <unordered_map>
+ 
+ #include <fmt/format.h>
+ 
+--- a/include/pog/parsing_table.h
++++ b/include/pog/parsing_table.h
+@@ -1,5 +1,6 @@
+ #pragma once
+ 
++#include <cassert>
+ #include <unordered_map>
+ 
+ #include <pog/action.h>
+--- a/include/pog/relations/includes.h
++++ b/include/pog/relations/includes.h
+@@ -1,5 +1,9 @@
+ #pragma once
+ 
++#include <cassert>
++
++#include <fmt/ranges.h>
++
+ #include <pog/relations/relation.h>
+ #include <pog/types/state_and_symbol.h>
+ 
+--- a/include/pog/relations/lookback.h
++++ b/include/pog/relations/lookback.h
+@@ -1,5 +1,7 @@
+ #pragma once
+ 
++#include <cassert>
++
+ #include <pog/relations/relation.h>
+ #include <pog/types/state_and_rule.h>
+ #include <pog/types/state_and_symbol.h>
+--- a/include/pog/rule_builder.h
++++ b/include/pog/rule_builder.h
+@@ -1,5 +1,7 @@
+ #pragma once
+ 
++#include <cassert>
++
+ #include <pog/grammar.h>
+ #include <pog/rule.h>
+ 
+--- a/include/pog/rule.h
++++ b/include/pog/rule.h
+@@ -7,6 +7,7 @@
+ 
+ #include <fmt/format.h>
+ #include <fmt/ostream.h>
++#include <fmt/ranges.h>
+ 
+ #include <pog/symbol.h>
+ #include <pog/token.h>
+--- a/include/pog/state.h
++++ b/include/pog/state.h
+@@ -1,7 +1,6 @@
+ #pragma once
+ 
+-#include <numeric>
+-#include <unordered_set>
++#include <fmt/ranges.h>
+ 
+ #include <pog/filter_view.h>
+ #include <pog/item.h>
+--- a/include/pog/tokenizer.h
++++ b/include/pog/tokenizer.h
+@@ -1,5 +1,6 @@
+ #pragma once
+ 
++#include <cassert>
+ #include <memory>
+ #include <vector>
+ 
+@@ -178,11 +179,20 @@
+ 					// In case of equal matches, index of tokens chooses which one is it (lower index has higher priority)
+ 					else if (longest_match == static_cast<int>(submatch.size()))
+ 					{
+-						if (!best_match || best_match->get_index() > pattern_index)
+-							best_match = _current_state->tokens[pattern_index];
++						// pattern_index is local to the current state, so compare the global token indices
++						const auto* candidate = _current_state->tokens[pattern_index];
++						if (!best_match || best_match->get_index() > candidate->get_index())
++							best_match = candidate;
+ 					}
+ 				}
+ 
++				if (!best_match || (longest_match <= 0 && current_input.stream.size() != 0))
++				{
++					// Zero-length match would not advance the input, we would get into endless loop
++					debug_tokenizer("No match or zero-length match in the middle of the input");
++					return std::nullopt;
++				}
++
+ 				if (current_input.stream.size() == 0)
+ 				{
+ 					debug_tokenizer("Reached end of input");

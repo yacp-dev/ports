@@ -3,18 +3,19 @@ pog
 Pog is C++17 library for generating LALR(1) parsers.
 
 Runtime requirements:
-  libfmt-devel-7.0.0-1bl1
-  libre2-devel-20200601-1bl1
-  pkg-config-1.6.3-1
+  libfmt-devel-12.2.0-1bl1
+  libre2-devel-20251105-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.34+1git.de9c1b7cfe-1
-  cmake-3.14.5-1
-  cygport-0.34.0-1
-  gcc-core-9.3.0-2
-  gcc-g++-9.3.0-2
-  ninja-1.10.0-2
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  libfmt-devel-12.2.0-1bl1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  libre2-devel-20251105-1bl2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/metthal/pog
@@ -82,6 +83,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.3-1bl2 -----
+Fix headers for fmt 12 and yaramod
 
 ----- version 0.5.3-1bl1 -----
 Version bump.

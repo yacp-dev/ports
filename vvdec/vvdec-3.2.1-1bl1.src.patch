@@ -1,0 +1,22 @@
+--- origsrc/vvdec-3.2.1/source/Lib/CommonLib/InterpolationFilter.cpp	2026-10-07 09:05:32.000000000 +0000
++++ src/vvdec-3.2.1/source/Lib/CommonLib/InterpolationFilter.cpp	2026-11-07 15:03:51.579822600 +0000
+@@ -56,6 +56,8 @@ POSSIBILITY OF SUCH DAMAGE.
+ 
+ #include "ChromaFormat.h"
+ 
++#include <alloca.h>
++
+ namespace vvdec
+ {
+ 
+--- origsrc/vvdec-3.2.1/source/Lib/CommonLib/x86/InterpolationFilterX86.h	2026-10-07 09:05:32.000000000 +0000
++++ src/vvdec-3.2.1/source/Lib/CommonLib/x86/InterpolationFilterX86.h	2026-11-07 15:03:51.581836200 +0000
+@@ -55,6 +55,8 @@ POSSIBILITY OF SUCH DAMAGE.
+ 
+ #include "../Unit.h"
+ 
++#include <alloca.h>
++
+ #if defined(TARGET_SIMD_X86)  && ENABLE_SIMD_OPT_MCIF
+ 
+ namespace vvdec

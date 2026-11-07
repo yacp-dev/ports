@@ -19,16 +19,20 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DVVDEC_INSTALL_VVDECAPP:BOOL=ON
+	-DVVDEC_ENABLE_LINK_TIME_OPT:BOOL=OFF
+	-DVVDEC_ENABLE_BITSTREAM_DOWNLOAD:BOOL=ON
+	-DVVDEC_TESTS_DEBUGGER_COMMAND:STRING=
 "
 
 src_test()
 {
 	cd ${B}
-	PATH=${S}/bin/release-shared:${PATH} ninja_test
+	PATH=${S}/bin/relwithdebinfo-shared:${PATH} ninja_test
 }
 
 DIFF_EXCLUDES="
 	*.dll.a
+	bitstreams
 "
 
 PKG_NAMES="
@@ -41,7 +45,7 @@ vvdec_CONTENTS="
 	usr/share
 "
 libvvdec3_CONTENTS="
-	usr/bin/cyg*-${PV[1]}.dll
+	usr/bin/cyg*-3.dll
 "
 libvvdec_devel_CONTENTS="
 	usr/include

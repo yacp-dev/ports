@@ -3,21 +3,21 @@ z3
 Z3 is a theorem prover from Microsoft Research.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libgmp-devel-6.3.0-1
   libgmp10-6.3.0-1
-  libstdc++6-13.4.0-1
-  libz3-devel-4.15.7-1bl1
-  libz3_4-4.15.7-1bl1
-  pkg-config-2.5.1-1
+  libstdc++6-14.4.0-1
+  libz3-devel-5.3.3-1bl1
+  libz3_5.3-5.3.3-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libgmp-devel-6.3.0-1
   ninja-1.13.2-1
 
@@ -25,22 +25,22 @@ Canonical website:
   https://github.com/Z3Prover/z3
 
 Canonical download:
-  https://github.com/Z3Prover/z3/archive/refs/tags/z3-4.15.7.tar.gz
+  https://github.com/Z3Prover/z3/archive/refs/tags/z3-5.3.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack z3-4.15.7-X-src.tar.xz
+  1. unpack z3-5.3.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./z3-4.15.7-X.cygport all
+        % cygport ./z3-5.3.3-X.cygport all
 
 This will create:
-  /usr/src/z3-4.15.7-X-src.tar.xz
-  /usr/src/z3-4.15.7-X.tar.xz
-  /usr/src/libz3_4-4.15.7-X.tar.xz
-  /usr/src/libz3-devel-4.15.7-X.tar.xz
+  /usr/src/z3-5.3.3-X-src.tar.xz
+  /usr/src/z3-5.3.3-X.tar.xz
+  /usr/src/libz3_5.3-5.3.3-X.tar.xz
+  /usr/src/libz3-devel-5.3.3-X.tar.xz
 
 -------------------------------------------
 
@@ -54,8 +54,8 @@ Files included in the binary package:
   /usr/share/doc/z3/RELEASE_NOTES.md
   /usr/share/doc/z3/z3guide.jpeg
 
-(libz3_4)
-  /usr/bin/cygz3-4.dll
+(libz3_5.3)
+  /usr/bin/cygz3-5.3.dll
 
 (libz3-devel)
   /usr/include/z3++.h
@@ -72,16 +72,19 @@ Files included in the binary package:
   /usr/include/z3_spacer.h
   /usr/include/z3_v1.h
   /usr/include/z3_version.h
+  /usr/lib/cmake/z3/Z3-shared-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/z3/Z3-shared-targets.cmake
   /usr/lib/cmake/z3/Z3Config.cmake
   /usr/lib/cmake/z3/Z3ConfigVersion.cmake
-  /usr/lib/cmake/z3/Z3Targets-release.cmake
-  /usr/lib/cmake/z3/Z3Targets.cmake
   /usr/lib/libz3.dll.a
   /usr/lib/pkgconfig/z3.pc
 
 ------------------
 
 Port Notes:
+
+----- version 5.3.3-1bl1 -----
+Version bump.
 
 ----- version 4.15.7-1bl1 -----
 Version bump.

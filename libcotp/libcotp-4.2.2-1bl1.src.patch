@@ -1,0 +1,19 @@
+--- origsrc/libcotp-4.2.2/CMakeLists.txt	2026-09-24 08:09:18.000000000 +0000
++++ src/libcotp-4.2.2/CMakeLists.txt	2026-11-07 06:28:50.361891100 +0000
+@@ -113,7 +113,7 @@ if(NOT MSVC)
+             $<$<CONFIG:Release>:-O3>)
+ endif()
+ 
+-if(NOT APPLE AND NOT MSVC)
++if(NOT APPLE AND NOT MSVC AND NOT CYGWIN)
+     target_link_options(cotp PRIVATE
+             "LINKER:-z,relro,-z,now"
+             "LINKER:-z,noexecstack")
+@@ -139,6 +139,7 @@ install(
+   EXPORT cotpTargets
+   ARCHIVE DESTINATION ${COTP_LIB_DIR}
+   LIBRARY DESTINATION ${COTP_LIB_DIR}
++  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+   COMPONENT library
+ )
+ 

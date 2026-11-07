@@ -23,19 +23,19 @@ DOCS="
 
 PKG_NAMES="
 	${PN}
-	${PN}3
+	${PN}4
 	${PN}-devel
 "
 libcotp_CONTENTS="
 	usr/share
 "
-libcotp3_CONTENTS="
-	usr/bin/cyg*-3.dll
+libcotp4_CONTENTS="
+	usr/bin/cyg*-4.dll
 "
 libcotp_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libcotp_SUMMARY="${SUMMARY} (licensing & readmes)"
-libcotp3_SUMMARY="${SUMMARY} (runtime)"
+libcotp4_SUMMARY="${SUMMARY} (runtime)"
 libcotp_devel_SUMMARY="${SUMMARY} (development)"

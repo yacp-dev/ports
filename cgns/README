@@ -2,28 +2,28 @@ cgns
 ------------------------------------------
 The Computational Fluid Dynamics General Notation System (CGNS) provides a
 general, portable, and extensible standard for the storage and retrieval of
-computational fluid dynamics (CFD) analysisdata. It consists of a collection
-of conventions, and free and open software implementing those conventions. It
-is self-descriptive, machine-independent, well-documented, and administered by
-an international steering committee.
+computational fluid dynamics (CFD) analysisdata. It consists of a collection of
+conventions, and free and open software implementing those conventions. It is
+self-descriptive, machine-independent, well-documented, and administered by an
+international steering committee.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.9-1
-  libcgns-devel-4.5.2-1bl1
-  libcgns4.5-4.5.2-1bl1
-  libgfortran5-13.4.0-1
-  libhdf5_320-2.0.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libcgns-devel-4.5.2-1bl2
+  libcgns4.5-4.5.2-1bl2
+  libgfortran5-14.4.0-1
+  libhdf5_320-2.2.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-fortran-13.4.0-1
-  libhdf5-devel-2.0.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libhdf5-devel-2.2.0-1
   make-4.4.1-2
   ninja-1.13.2-1
 
@@ -81,7 +81,7 @@ Files included in the binary package:
   /usr/include/cgnswin_f.h
   /usr/lib/cmake/cgns/cgns-config-version.cmake
   /usr/lib/cmake/cgns/cgns-config.cmake
-  /usr/lib/cmake/cgns/cgns-targets-release.cmake
+  /usr/lib/cmake/cgns/cgns-targets-relwithdebinfo.cmake
   /usr/lib/cmake/cgns/cgns-targets.cmake
   /usr/lib/libcgns.dll.a
   /usr/lib/pkgconfig/cgns.pc
@@ -89,6 +89,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.5.2-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 4.5.2-1bl1 -----
 Version bump.

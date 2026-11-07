@@ -16,6 +16,7 @@ LICENSE_SPDX="SPDX-License-Identifier: Zlib"
 LICENSE_URI="license.txt"
 
 BUILD_REQUIRES="
+	gcc-fortran
 	libhdf5-devel
 "
 

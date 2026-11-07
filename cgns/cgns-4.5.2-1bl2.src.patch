@@ -1,5 +1,5 @@
---- origsrc/CGNS-4.5.2/CMakeLists.txt	2026-05-01 07:16:53.000000000 +0900
-+++ src/CGNS-4.5.2/CMakeLists.txt	2026-05-13 06:14:15.943912800 +0900
+--- origsrc/CGNS-4.5.2/CMakeLists.txt	2026-04-30 22:16:53.000000000 +0000
++++ src/CGNS-4.5.2/CMakeLists.txt	2026-11-07 15:07:11.488086500 +0000
 @@ -479,3 +479,10 @@ endif ()
  
  # Include the src directory
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/cgns.pc.in ${CMAKE_BINARY_DIR}/cgns.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/cgns.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/CGNS-4.5.2/cgns.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/CGNS-4.5.2/cgns.pc.in	2026-05-13 06:14:15.945925100 +0900
+--- origsrc/CGNS-4.5.2/cgns.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/CGNS-4.5.2/cgns.pc.in	2026-11-07 15:07:11.488086500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,8 +24,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lcgns
 +Cflags: -I${includedir}
---- origsrc/CGNS-4.5.2/src/CMakeLists.txt	2026-05-01 07:16:53.000000000 +0900
-+++ src/CGNS-4.5.2/src/CMakeLists.txt	2026-05-13 06:14:15.951964800 +0900
+--- origsrc/CGNS-4.5.2/src/CMakeLists.txt	2026-04-30 22:16:53.000000000 +0000
++++ src/CGNS-4.5.2/src/CMakeLists.txt	2026-11-07 15:07:11.489249400 +0000
 @@ -592,13 +592,6 @@ endif ()
  
  option(CGNS_USE_SHARED "Link programs to the CGNS shared library" "ON")

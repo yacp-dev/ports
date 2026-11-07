@@ -1,0 +1,60 @@
+HOMEPAGE="https://github.com/tblite/tblite"
+SRC_URI="https://github.com/tblite/tblite/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Light-weight tight-binding framework"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE_URI="COPYING.LESSER"
+
+BUILD_REQUIRES="
+	gcc-fortran
+	libddx-devel
+	libdftd4-devel
+	liblapack-devel
+	libmctc-lib-devel
+	libmstore-devel
+	libmulticharge-devel
+	libs-dftd3-devel
+	libtoml-f-devel
+	libtrexio-devel
+"
+
+inherit meson
+
+CYGMESON_ARGS="
+	-Ddefault_library=shared
+	-Dhdf5=disabled
+"
+
+src_install()
+{
+	cd ${S}
+	meson_install
+
+	cd ${D}
+	mkdir -p usr/share/doc/${PN}/
+	mv usr/share/licenses/${PN}/* usr/share/doc/${PN}/
+}
+
+PKG_NAMES="
+	tblite
+	libtblite0
+	libtblite-devel
+"
+tblite_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libtblite0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libtblite_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+tblite_SUMMARY="${SUMMARY} (utilities)"
+libtblite0_SUMMARY="${SUMMARY} (runtime)"
+libtblite_devel_SUMMARY="${SUMMARY} (development)"

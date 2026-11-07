@@ -1,0 +1,11 @@
+--- origsrc/tblite-0.8.0/meson.build	2026-10-29 12:56:57.000000000 +0000
++++ src/tblite-0.8.0/meson.build	2026-11-07 12:03:33.804179600 +0000
+@@ -88,7 +88,7 @@ if install
+     install_dir: get_option('includedir'),
+   )
+ 
+-  module_id = meson.project_name() / fc_id + '-' + fc.version()
++  module_id = meson.project_name() / 'modules'
+   meson.add_install_script(
+     find_program(files('config'/'install-mod.py')),
+     get_option('includedir') / module_id,

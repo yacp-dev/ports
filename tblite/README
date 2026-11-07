@@ -1,0 +1,295 @@
+tblite
+------------------------------------------
+Light-weight tight-binding framework
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libddx-devel-1.0.2-1bl1
+  libddx1-1.0.2-1bl1
+  libdftd4-devel-4.3.0-1bl1
+  libdftd4_4-4.3.0-1bl1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libgomp1-14.4.0-1
+  liblapack-devel-3.12.0-1
+  liblapack0-3.12.0-1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmctc-lib0-0.7.0-1bl1
+  libmulticharge-devel-0.5.0-1bl2
+  libmulticharge0-0.5.0-1bl2
+  libs-dftd3-devel-1.7.0-1bl1
+  libs-dftd3_1-1.7.0-1bl1
+  libtblite-devel-0.8.0-1bl1
+  libtblite0-0.8.0-1bl1
+  libtoml-f-devel-0.5.2-1bl1
+  libtoml-f0-0.5.2-1bl1
+  libtrexio2-2.6.1-1bl1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libddx-devel-1.0.2-1bl1
+  libdftd4-devel-4.3.0-1bl1
+  liblapack-devel-3.12.0-1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmstore-devel-0.4.0-1bl1
+  libmulticharge-devel-0.5.0-1bl2
+  libs-dftd3-devel-1.7.0-1bl1
+  libtoml-f-devel-0.5.2-1bl1
+  libtrexio-devel-2.6.1-1bl1
+  meson-1.10.2-1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/tblite/tblite
+
+Canonical download:
+  https://github.com/tblite/tblite/archive/refs/tags/v0.8.0.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack tblite-0.8.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./tblite-0.8.0-X.cygport all
+
+This will create:
+  /usr/src/tblite-0.8.0-X-src.tar.xz
+  /usr/src/tblite-0.8.0-X.tar.xz
+  /usr/src/libtblite0-0.8.0-X.tar.xz
+  /usr/src/libtblite-devel-0.8.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(tblite)
+  /usr/bin/tblite.exe
+  /usr/share/doc/Cygwin/tblite.README
+  /usr/share/doc/tblite/COPYING
+  /usr/share/doc/tblite/COPYING.LESSER
+  /usr/share/doc/tblite/README.md
+
+(libtblite0)
+  /usr/bin/cygtblite-0.dll
+
+(libtblite-devel)
+  /usr/include/tblite.h
+  /usr/include/tblite/calculator.h
+  /usr/include/tblite/container.h
+  /usr/include/tblite/context.h
+  /usr/include/tblite/double_dictionary.h
+  /usr/include/tblite/error.h
+  /usr/include/tblite/features.h
+  /usr/include/tblite/macros.h
+  /usr/include/tblite/modules/tblite_adjlist.mod
+  /usr/include/tblite/modules/tblite_api_calculator.mod
+  /usr/include/tblite/modules/tblite_api_container.mod
+  /usr/include/tblite/modules/tblite_api_context.mod
+  /usr/include/tblite/modules/tblite_api_double_dictionary.mod
+  /usr/include/tblite/modules/tblite_api_error.mod
+  /usr/include/tblite/modules/tblite_api_features.mod
+  /usr/include/tblite/modules/tblite_api_param.mod
+  /usr/include/tblite/modules/tblite_api_result.mod
+  /usr/include/tblite/modules/tblite_api_solvation.mod
+  /usr/include/tblite/modules/tblite_api_structure.mod
+  /usr/include/tblite/modules/tblite_api_table.mod
+  /usr/include/tblite/modules/tblite_api_utils.mod
+  /usr/include/tblite/modules/tblite_api_version.mod
+  /usr/include/tblite/modules/tblite_basis.mod
+  /usr/include/tblite/modules/tblite_basis_ortho.mod
+  /usr/include/tblite/modules/tblite_basis_slater.mod
+  /usr/include/tblite/modules/tblite_basis_type.mod
+  /usr/include/tblite/modules/tblite_blas.mod
+  /usr/include/tblite/modules/tblite_blas_level1.mod
+  /usr/include/tblite/modules/tblite_blas_level2.mod
+  /usr/include/tblite/modules/tblite_blas_level3.mod
+  /usr/include/tblite/modules/tblite_ceh_ceh.mod
+  /usr/include/tblite/modules/tblite_ceh_singlepoint.mod
+  /usr/include/tblite/modules/tblite_classical_halogen.mod
+  /usr/include/tblite/modules/tblite_container.mod
+  /usr/include/tblite/modules/tblite_container_cache.mod
+  /usr/include/tblite/modules/tblite_container_list.mod
+  /usr/include/tblite/modules/tblite_container_type.mod
+  /usr/include/tblite/modules/tblite_context.mod
+  /usr/include/tblite/modules/tblite_context_logger.mod
+  /usr/include/tblite/modules/tblite_context_solver.mod
+  /usr/include/tblite/modules/tblite_context_terminal.mod
+  /usr/include/tblite/modules/tblite_context_type.mod
+  /usr/include/tblite/modules/tblite_coulomb.mod
+  /usr/include/tblite/modules/tblite_coulomb_cache.mod
+  /usr/include/tblite/modules/tblite_coulomb_charge.mod
+  /usr/include/tblite/modules/tblite_coulomb_charge_effective.mod
+  /usr/include/tblite/modules/tblite_coulomb_charge_gamma.mod
+  /usr/include/tblite/modules/tblite_coulomb_charge_type.mod
+  /usr/include/tblite/modules/tblite_coulomb_ewald.mod
+  /usr/include/tblite/modules/tblite_coulomb_multipole.mod
+  /usr/include/tblite/modules/tblite_coulomb_thirdorder.mod
+  /usr/include/tblite/modules/tblite_coulomb_type.mod
+  /usr/include/tblite/modules/tblite_cutoff.mod
+  /usr/include/tblite/modules/tblite_data.mod
+  /usr/include/tblite/modules/tblite_data_spin.mod
+  /usr/include/tblite/modules/tblite_disp.mod
+  /usr/include/tblite/modules/tblite_disp_cache.mod
+  /usr/include/tblite/modules/tblite_disp_d3.mod
+  /usr/include/tblite/modules/tblite_disp_d4.mod
+  /usr/include/tblite/modules/tblite_disp_type.mod
+  /usr/include/tblite/modules/tblite_double_dictionary.mod
+  /usr/include/tblite/modules/tblite_ext_trexio.mod
+  /usr/include/tblite/modules/tblite_external_field.mod
+  /usr/include/tblite/modules/tblite_features.mod
+  /usr/include/tblite/modules/tblite_fit_newuoa.mod
+  /usr/include/tblite/modules/tblite_fit_settings.mod
+  /usr/include/tblite/modules/tblite_integral_diat_trafo.mod
+  /usr/include/tblite/modules/tblite_integral_native_integrals.mod
+  /usr/include/tblite/modules/tblite_integral_trafo.mod
+  /usr/include/tblite/modules/tblite_integral_type.mod
+  /usr/include/tblite/modules/tblite_io_data.mod
+  /usr/include/tblite/modules/tblite_io_data_hdf5.mod
+  /usr/include/tblite/modules/tblite_io_data_npz.mod
+  /usr/include/tblite/modules/tblite_io_data_type.mod
+  /usr/include/tblite/modules/tblite_io_hdf5.mod
+  /usr/include/tblite/modules/tblite_io_molden.mod
+  /usr/include/tblite/modules/tblite_io_numpy.mod
+  /usr/include/tblite/modules/tblite_io_numpy_constants.mod
+  /usr/include/tblite/modules/tblite_io_numpy_crc32.mod
+  /usr/include/tblite/modules/tblite_io_numpy_load.mod
+  /usr/include/tblite/modules/tblite_io_numpy_loadz.mod
+  /usr/include/tblite/modules/tblite_io_numpy_save.mod
+  /usr/include/tblite/modules/tblite_io_numpy_savez.mod
+  /usr/include/tblite/modules/tblite_io_numpy_utils.mod
+  /usr/include/tblite/modules/tblite_io_numpy_zip.mod
+  /usr/include/tblite/modules/tblite_io_tag.mod
+  /usr/include/tblite/modules/tblite_io_trexio.mod
+  /usr/include/tblite/modules/tblite_lapack.mod
+  /usr/include/tblite/modules/tblite_lapack_geqp3.mod
+  /usr/include/tblite/modules/tblite_lapack_getrf.mod
+  /usr/include/tblite/modules/tblite_lapack_getri.mod
+  /usr/include/tblite/modules/tblite_lapack_getrs.mod
+  /usr/include/tblite/modules/tblite_lapack_potrf.mod
+  /usr/include/tblite/modules/tblite_lapack_scalapack.mod
+  /usr/include/tblite/modules/tblite_lapack_solver.mod
+  /usr/include/tblite/modules/tblite_lapack_sygst.mod
+  /usr/include/tblite/modules/tblite_lapack_sygvd.mod
+  /usr/include/tblite/modules/tblite_lapack_sygvr.mod
+  /usr/include/tblite/modules/tblite_mesh_lebedev.mod
+  /usr/include/tblite/modules/tblite_mpi_utils.mod
+  /usr/include/tblite/modules/tblite_os.mod
+  /usr/include/tblite/modules/tblite_output_ascii.mod
+  /usr/include/tblite/modules/tblite_output_format.mod
+  /usr/include/tblite/modules/tblite_output_property.mod
+  /usr/include/tblite/modules/tblite_param.mod
+  /usr/include/tblite/modules/tblite_param_charge.mod
+  /usr/include/tblite/modules/tblite_param_dispersion.mod
+  /usr/include/tblite/modules/tblite_param_element.mod
+  /usr/include/tblite/modules/tblite_param_halogen.mod
+  /usr/include/tblite/modules/tblite_param_hamiltonian.mod
+  /usr/include/tblite/modules/tblite_param_mask.mod
+  /usr/include/tblite/modules/tblite_param_multipole.mod
+  /usr/include/tblite/modules/tblite_param_post_processing.mod
+  /usr/include/tblite/modules/tblite_param_post_processing_localization.mod
+  /usr/include/tblite/modules/tblite_param_post_processing_molmom.mod
+  /usr/include/tblite/modules/tblite_param_post_processing_type.mod
+  /usr/include/tblite/modules/tblite_param_post_processing_xtbml.mod
+  /usr/include/tblite/modules/tblite_param_repulsion.mod
+  /usr/include/tblite/modules/tblite_param_serde.mod
+  /usr/include/tblite/modules/tblite_param_thirdorder.mod
+  /usr/include/tblite/modules/tblite_partition.mod
+  /usr/include/tblite/modules/tblite_post_processing_list.mod
+  /usr/include/tblite/modules/tblite_post_processing_localization.mod
+  /usr/include/tblite/modules/tblite_post_processing_molmom.mod
+  /usr/include/tblite/modules/tblite_post_processing_type.mod
+  /usr/include/tblite/modules/tblite_post_processing_wbo.mod
+  /usr/include/tblite/modules/tblite_post_processing_xtbml.mod
+  /usr/include/tblite/modules/tblite_post_processing_xtbml_cache.mod
+  /usr/include/tblite/modules/tblite_post_processing_xtbml_convolution.mod
+  /usr/include/tblite/modules/tblite_post_processing_xtbml_density.mod
+  /usr/include/tblite/modules/tblite_post_processing_xtbml_energy.mod
+  /usr/include/tblite/modules/tblite_post_processing_xtbml_features.mod
+  /usr/include/tblite/modules/tblite_post_processing_xtbml_geometry.mod
+  /usr/include/tblite/modules/tblite_post_processing_xtbml_orbital.mod
+  /usr/include/tblite/modules/tblite_repulsion.mod
+  /usr/include/tblite/modules/tblite_repulsion_effective.mod
+  /usr/include/tblite/modules/tblite_repulsion_type.mod
+  /usr/include/tblite/modules/tblite_results.mod
+  /usr/include/tblite/modules/tblite_scf.mod
+  /usr/include/tblite/modules/tblite_scf_diag.mod
+  /usr/include/tblite/modules/tblite_scf_info.mod
+  /usr/include/tblite/modules/tblite_scf_iterator.mod
+  /usr/include/tblite/modules/tblite_scf_mixer.mod
+  /usr/include/tblite/modules/tblite_scf_mixer_broyden.mod
+  /usr/include/tblite/modules/tblite_scf_mixer_input.mod
+  /usr/include/tblite/modules/tblite_scf_mixer_type.mod
+  /usr/include/tblite/modules/tblite_scf_potential.mod
+  /usr/include/tblite/modules/tblite_scf_solver.mod
+  /usr/include/tblite/modules/tblite_solvation.mod
+  /usr/include/tblite/modules/tblite_solvation_alpb.mod
+  /usr/include/tblite/modules/tblite_solvation_born.mod
+  /usr/include/tblite/modules/tblite_solvation_cds.mod
+  /usr/include/tblite/modules/tblite_solvation_cm5.mod
+  /usr/include/tblite/modules/tblite_solvation_data.mod
+  /usr/include/tblite/modules/tblite_solvation_data_alpb.mod
+  /usr/include/tblite/modules/tblite_solvation_data_cds.mod
+  /usr/include/tblite/modules/tblite_solvation_data_shift.mod
+  /usr/include/tblite/modules/tblite_solvation_ddx.mod
+  /usr/include/tblite/modules/tblite_solvation_input.mod
+  /usr/include/tblite/modules/tblite_solvation_shift.mod
+  /usr/include/tblite/modules/tblite_solvation_surface.mod
+  /usr/include/tblite/modules/tblite_solvation_type.mod
+  /usr/include/tblite/modules/tblite_spin.mod
+  /usr/include/tblite/modules/tblite_timer.mod
+  /usr/include/tblite/modules/tblite_toml.mod
+  /usr/include/tblite/modules/tblite_version.mod
+  /usr/include/tblite/modules/tblite_wavefunction.mod
+  /usr/include/tblite/modules/tblite_wavefunction_fermi.mod
+  /usr/include/tblite/modules/tblite_wavefunction_guess.mod
+  /usr/include/tblite/modules/tblite_wavefunction_localization.mod
+  /usr/include/tblite/modules/tblite_wavefunction_localization_fosterboys.mod
+  /usr/include/tblite/modules/tblite_wavefunction_localization_jacobi.mod
+  /usr/include/tblite/modules/tblite_wavefunction_localization_type.mod
+  /usr/include/tblite/modules/tblite_wavefunction_mulliken.mod
+  /usr/include/tblite/modules/tblite_wavefunction_restart.mod
+  /usr/include/tblite/modules/tblite_wavefunction_spin.mod
+  /usr/include/tblite/modules/tblite_wavefunction_type.mod
+  /usr/include/tblite/modules/tblite_wignerseitz.mod
+  /usr/include/tblite/modules/tblite_xtb.mod
+  /usr/include/tblite/modules/tblite_xtb_calculator.mod
+  /usr/include/tblite/modules/tblite_xtb_coulomb.mod
+  /usr/include/tblite/modules/tblite_xtb_gfn1.mod
+  /usr/include/tblite/modules/tblite_xtb_gfn2.mod
+  /usr/include/tblite/modules/tblite_xtb_h0.mod
+  /usr/include/tblite/modules/tblite_xtb_ipea1.mod
+  /usr/include/tblite/modules/tblite_xtb_singlepoint.mod
+  /usr/include/tblite/modules/tblite_xtb_spec.mod
+  /usr/include/tblite/param.h
+  /usr/include/tblite/result.h
+  /usr/include/tblite/solvation.h
+  /usr/include/tblite/structure.h
+  /usr/include/tblite/table.h
+  /usr/include/tblite/version.h
+  /usr/lib/cmake/tblite/FindScalapack.cmake
+  /usr/lib/cmake/tblite/FindddX.cmake
+  /usr/lib/cmake/tblite/Finddftd4.cmake
+  /usr/lib/cmake/tblite/Findmctc-lib.cmake
+  /usr/lib/cmake/tblite/Findmstore.cmake
+  /usr/lib/cmake/tblite/Findmulticharge.cmake
+  /usr/lib/cmake/tblite/Finds-dftd3.cmake
+  /usr/lib/cmake/tblite/Findtoml-f.cmake
+  /usr/lib/cmake/tblite/tblite-config.cmake
+  /usr/lib/cmake/tblite/tblite-targets.cmake
+  /usr/lib/cmake/tblite/tblite-utils.cmake
+  /usr/lib/libtblite.dll.a
+  /usr/lib/pkgconfig/tblite.pc
+
+------------------
+
+Port Notes:
+
+----- version 0.8.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

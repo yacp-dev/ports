@@ -5,18 +5,19 @@ CATEGORY="Utils"
 SUMMARY="Various ZIM command line tools"
 DESCRIPTION="Various ZIM command line tools."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
-    libdocopt-devel
-    libgumbo-devel
-    libgtest-devel
-    libicu-devel
-    libzim-devel
-    Mustache
-    zlib-devel
+	file-devel
+	libdocopt-devel
+	libgumbo-devel
+	libgtest-devel
+	libicu-devel
+	libzim-devel
+	Mustache
+	zlib-devel
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"

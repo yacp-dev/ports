@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="LLM inference in C/C++"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND BSD-2-Clause AND Unlicense"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSD-2-Clause AND Unlicense"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

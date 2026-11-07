@@ -1,0 +1,11 @@
+--- origsrc/ddX-1.0.2/meson.build	2026-11-02 10:21:35.000000000 +0000
++++ src/ddX-1.0.2/meson.build	2026-11-07 11:34:45.589936900 +0000
+@@ -137,7 +137,7 @@ executable_target = executable(
+ if install
+   install_headers('src/ddx.h')
+ 
+-  module_id = meson.project_name() / fc_id + '-' + fc.version()
++  module_id = meson.project_name() / 'modules'
+   meson.add_install_script(
+     find_program(files('config'/'install-mod.py')),
+     get_option('includedir') / module_id,

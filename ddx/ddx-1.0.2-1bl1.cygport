@@ -1,0 +1,47 @@
+HOMEPAGE="https://github.com/ddsolvation/ddX"
+SRC_URI="https://github.com/ddsolvation/ddX/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="ddX-${PV}"
+
+CATEGORY="Libs"
+SUMMARY="Domain decomposition continuum solvation library"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	gcc-fortran
+	liblapack-devel
+"
+
+inherit meson
+
+CYGMESON_ARGS="
+	-Ddefault_library=shared
+"
+
+# tests/m2l.f90 keeps about 6.4 MB of arrays in its main program, which
+# -fopenmp (-frecursive) puts on the stack; with Cygwin's default stack
+# ddX:m2l dies with SIGSEGV, and with a 32 MiB stack it passes.
+LDFLAGS+=" -Wl,--stack,33554432"
+
+PKG_NAMES="
+	ddx
+	libddx1
+	libddx-devel
+"
+ddx_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libddx1_CONTENTS="
+	usr/bin/cyg*-1.dll
+"
+libddx_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+ddx_SUMMARY="${SUMMARY} (utilities)"
+libddx1_SUMMARY="${SUMMARY} (runtime)"
+libddx_devel_SUMMARY="${SUMMARY} (development)"

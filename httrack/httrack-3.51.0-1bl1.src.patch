@@ -1,0 +1,78 @@
+--- origsrc/httrack-3.51.0/libtest/Makefile.am	2026-10-28 19:07:52.000000000 +0000
++++ src/httrack-3.51.0/libtest/Makefile.am	2026-11-07 04:34:37.210387600 +0000
+@@ -22,7 +22,7 @@ AM_CPPFLAGS += -I$(top_srcdir)/src
+ # libc edge gets dropped from DT_NEEDED (library-not-linked-against-libc).
+ # Force libc back; configure gates the flag since only a GNU-style linker
+ # accepts it (LIBC_FORCE_LINK is empty on e.g. macOS).
+-AM_LDFLAGS = \
++AM_LDFLAGS = -module -no-undefined \
+ 	@DEFAULT_LDFLAGS@ \
+ 	-L../src \
+ 	@LIBC_FORCE_LINK@
+--- origsrc/httrack-3.51.0/src/Makefile.am	2026-10-28 19:07:52.000000000 +0000
++++ src/httrack-3.51.0/src/Makefile.am	2026-11-07 04:34:37.210387600 +0000
+@@ -108,7 +108,7 @@ libhttrack_la_SOURCES =  htscore.c htspa
+ 	minizip/crypt.h minizip/ioapi.h minizip/mztools.h minizip/unzip.h minizip/zip.h
+ libhttrack_la_LIBADD = $(THREADS_LIBS) $(ZLIB_LIBS) $(BROTLI_LIBS) $(ZSTD_LIBS) $(OPENSSL_LIBS) $(DL_LIBS) $(SOCKET_LIBS) $(ICONV_LIBS)
+ libhttrack_la_CFLAGS = $(AM_CFLAGS) -DLIBHTTRACK_EXPORTS -DZLIB_CONST
+-libhttrack_la_LDFLAGS = $(AM_LDFLAGS) -version-info $(VERSION_INFO)
++libhttrack_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined -version-info $(VERSION_INFO)
+ 
+ # --disable-selftests leaves these out and defines HTS_NO_SELFTEST.
+ if SELFTESTS
+--- origsrc/httrack-3.51.0/src/htsglobal.h	2026-10-28 19:07:52.000000000 +0000
++++ src/httrack-3.51.0/src/htsglobal.h	2026-11-07 04:34:37.212395600 +0000
+@@ -204,8 +204,10 @@ Please visit our Website: http://www.htt
+    carry. Defined away elsewhere, so they compile everywhere. */
+ #ifdef _WIN32
+ #else
++#if !defined(__cdecl)
+ #define __cdecl
+ #endif
++#endif
+ 
+ /* Install paths and config-file names, all string literals with no trailing
+    slash except HTS_HTTRACKDIR, which has one. configure passes the directories
+@@ -476,8 +478,10 @@ typedef int T_SOC;
+ /* See __cdecl above. */
+ #ifdef _WIN32
+ #else
++#if !defined(__cdecl)
+ #define __cdecl
+ #endif
++#endif
+ 
+ /* POSIX permission bits for created folders and files (mkdir and chmod).
+    PROTECT_FOLDER/FILE are owner-only. With HTS_ACCESS set (the default) the
+--- origsrc/httrack-3.51.0/src/htsmodules.c	2026-10-28 19:07:52.000000000 +0000
++++ src/httrack-3.51.0/src/htsmodules.c	2026-11-07 04:34:37.212395600 +0000
+@@ -155,7 +155,11 @@ void *openFunctionLib(const char *file_)
+ #else
+   handle = dlopen(file, RTLD_LAZY);
+   if (handle == NULL) {
++#if defined(__CYGWIN__)
++    sprintf(file, "cyg%s-1.dll", file_);
++#else
+     sprintf(file, "lib%s.so", file_);
++#endif
+     handle = dlopen(file, RTLD_LAZY);
+   }
+ #endif
+--- origsrc/httrack-3.51.0/src/httrack-library.h	2026-10-28 19:07:52.000000000 +0000
++++ src/httrack-3.51.0/src/httrack-library.h	2026-11-07 04:34:37.212395600 +0000
+@@ -1131,6 +1131,15 @@ HTSEXT_API hts_boolean hts_bundle_from_p
+     const char *paste, const char *folder, const char *agent, const char *url,
+     unsigned int flags, hts_paste_result *result);
+ 
++#if defined(__CYGWIN__)
++/* newlib's <fcntl.h> defines FOPEN as _FOPEN; read it first so that the
++   definition below is the last one, whatever the include order. */
++#include <fcntl.h>
++#endif
++#if defined(FOPEN)
++#undef FOPEN
++#endif
++
+ /* UTF-8 aware FILE API */
+ /* On non-Windows these macros resolve directly to the POSIX calls. On Windows
+    they map to the hts_*_utf8 wrappers below, which convert the UTF-8 path to

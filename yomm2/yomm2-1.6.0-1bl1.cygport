@@ -5,11 +5,20 @@ CATEGORY="Libs"
 SUMMARY="Fast, orthogonal, open multi-methods"
 DESCRIPTION="${SUMMARY}"
 
+LICENSE="BSL-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libboost-devel
+"
+
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DYOMM2_SHARED:BOOL=ON
 	-DYOMM2_ENABLE_TESTS:BOOL=ON
 "
 

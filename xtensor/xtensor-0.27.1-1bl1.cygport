@@ -10,6 +10,8 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	doctest
+	libbenchmark-devel
 	nlohmann_json
 	xsimd
 	xtl
@@ -19,6 +21,11 @@ export CPPFLAGS="${CPPLFAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
+# GCC can't realign the stack for 32/64-byte AVX2/AVX512 spills on x86_64
+# Windows (GCC PR 54412), so vmovdqa to the stack faults in the tests built
+# with -march=native; have the assembler emit unaligned moves instead.
+CXXFLAGS+=" -Wa,-muse-unaligned-vector-move"
+
 CYGCMAKE_ARGS="
 	-DBUILD_BENCHMARK:BOOL=ON
 	-DBUILD_TESTS:BOOL=ON
@@ -26,3 +33,5 @@ CYGCMAKE_ARGS="
 	-DXTENSOR_USE_OPENMP:BOOL=ON
 	-DXTENSOR_USE_XSIMD:BOOL=ON
 "
+
+xtensor_REQUIRES="xsimd"

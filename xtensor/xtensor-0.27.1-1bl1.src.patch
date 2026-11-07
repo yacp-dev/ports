@@ -1,0 +1,36 @@
+--- origsrc/xtensor-0.27.1/CMakeLists.txt	2025-09-19 15:11:56.000000000 +0000
++++ src/xtensor-0.27.1/CMakeLists.txt	2026-11-07 13:26:38.211939200 +0000
+@@ -70,7 +70,7 @@ if(XTENSOR_USE_TBB AND XTENSOR_USE_OPENM
+ endif()
+ 
+ if(XTENSOR_USE_XSIMD)
+-    set(xsimd_REQUIRED_VERSION 13.2.0)
++    set(xsimd_REQUIRED_VERSION 14.2.0)
+     if(TARGET xsimd)
+         set(xsimd_VERSION ${XSIMD_VERSION_MAJOR}.${XSIMD_VERSION_MINOR}.${XSIMD_VERSION_PATCH})
+         # Note: This is not SEMVER compatible comparison
+@@ -272,7 +272,7 @@ export(EXPORT ${PROJECT_NAME}-targets
+ install(DIRECTORY ${XTENSOR_INCLUDE_DIR}/xtensor
+         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+ 
+-set(XTENSOR_CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}" CACHE
++set(XTENSOR_CMAKECONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE
+     STRING "install path for xtensorConfig.cmake")
+ 
+ configure_package_config_file(${PROJECT_NAME}Config.cmake.in
+@@ -299,13 +299,13 @@ configure_file(${PROJECT_NAME}.pc.in
+                "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc"
+                 @ONLY)
+ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc"
+-        DESTINATION "${CMAKE_INSTALL_DATADIR}/pkgconfig/")
++        DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
+ 
+ install(DIRECTORY ${XTENSOR_TAGFILES_DIR}
+         DESTINATION ${XTENSOR_DATA_DIR})
+ 
+ install(DIRECTORY ${XTENSOR_TAGCONFS_DIR}
+-        DESTINATION ${XTENSOR_CONF_DIR})
++        DESTINATION ${CMAKE_INSTALL_FULL_SYSCONFDIR}/xeus-cpp)
+ 
+ # Write single include
+ # ====================

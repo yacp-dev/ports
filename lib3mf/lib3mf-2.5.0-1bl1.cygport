@@ -1,16 +1,26 @@
 HOMEPAGE="https://github.com/3MFConsortium/${PN}"
 SRC_URI="https://github.com/3MFConsortium/${PN}/archive/v${PV}.tar.gz"
+PATCH_URI="lib3mf-${PV}-libzip-config.patch"
 
 CATEGORY="Libs"
 SUMMARY="Implementation of the 3D Manufacturing Format file standard"
 DESCRIPTION="Lib3MF is a C++ implementation of the 3D Manufacturing Format file standard."
 
-BUILD_REQUIRES="libzip-devel zlib-devel"
+LICENSE="BSD-2-Clause AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND Zlib"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	fast_float
+	libssl-devel
+	libzip-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 CYGCMAKE_ARGS="
-	-DUSE_INCLUDED_GTEST:BOOL=OFF
+	-DUSE_INCLUDED_FASTFLOAT:BOOL=OFF
 	-DUSE_INCLUDED_LIBZIP:BOOL=OFF
 	-DUSE_INCLUDED_SSL:BOOL=OFF
 	-DUSE_INCLUDED_ZLIB:BOOL=OFF
@@ -38,7 +48,7 @@ lib3mf_CONTENTS="
 	usr/share
 "
 lib3mf2_CONTENTS="
-	usr/bin
+	usr/bin/cyg3mf-2.dll
 "
 lib3mf_devel_CONTENTS="
 	usr/include
@@ -47,3 +57,4 @@ lib3mf_devel_CONTENTS="
 lib3mf_SUMMARY="${SUMMARY} (licensing & readmes)"
 lib3mf2_SUMMARY="${SUMMARY} (runtime)"
 lib3mf_devel_SUMMARY="${SUMMARY} (development)"
+lib3mf_devel_REQUIRES="fast_float"

@@ -1,5 +1,5 @@
---- origsrc/simple-dftd3-1.2.1/meson.build	2024-11-15 16:50:33.000000000 +0900
-+++ src/simple-dftd3-1.2.1/meson.build	2025-09-11 07:25:49.838052800 +0900
+--- origsrc/simple-dftd3-1.7.0/meson.build	2026-10-28 12:36:06.000000000 +0000
++++ src/simple-dftd3-1.7.0/meson.build	2026-11-07 09:55:29.476368800 +0000
 @@ -89,7 +89,7 @@ if install
      )
    endif

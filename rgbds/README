@@ -4,40 +4,38 @@ RGBDS (Rednex Game Boy Development System) is a free assembler/linker package
 for the Game Boy and Game Boy Color.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libgcc1-13.4.0-1
-  libpng16-1.6.47-2
-  libstdc++6-13.4.0-1
+  cygwin-3.6.12-1
+  libpng16-1.6.59-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
+  binutils-2.47-1
   bison-3.8.2-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libpng-devel-1.6.47-2
-  ninja-1.13.1-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libpng-devel-1.6.59-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/gbdev/rgbds
 
 Canonical download:
-  https://github.com/gbdev/rgbds/archive/refs/tags/v0.9.4.tar.gz
+  https://github.com/gbdev/rgbds/archive/refs/tags/v1.0.4.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack rgbds-0.9.4-X-src.tar.xz
+  1. unpack rgbds-1.0.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./rgbds-0.9.4-X.cygport all
+        % cygport ./rgbds-1.0.4-X.cygport all
 
 This will create:
-  /usr/src/rgbds-0.9.4-X-src.tar.xz
-  /usr/src/rgbds-0.9.4-X.tar.xz
+  /usr/src/rgbds-1.0.4-X-src.tar.xz
+  /usr/src/rgbds-1.0.4-X.tar.xz
 
 -------------------------------------------
 
@@ -53,7 +51,6 @@ Files included in the binary package:
   /usr/share/bash-completion/bash_completion/_rgbgfx
   /usr/share/bash-completion/bash_completion/_rgblink
   /usr/share/doc/Cygwin/rgbds.README
-  /usr/share/doc/rgbds/CONTRIBUTORS.md
   /usr/share/doc/rgbds/LICENSE
   /usr/share/doc/rgbds/README.md
   /usr/share/man/man1/rgbasm.1.gz
@@ -74,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.4-1bl1 -----
+Version bump.
 
 ----- version 0.9.4-1bl1 -----
 Version bump.

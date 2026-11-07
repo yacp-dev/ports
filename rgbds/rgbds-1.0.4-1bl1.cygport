@@ -17,10 +17,6 @@ BUILD_REQUIRES="
 
 inherit cmake
 
-CYGCMAKE_ARGS="
-	-DGIT_REV:STRING=${PV}
-"
-
 src_test()
 {
 	cd ${S}

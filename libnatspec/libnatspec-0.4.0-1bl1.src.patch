@@ -1,0 +1,156 @@
+--- origsrc/libnatspec-0.4.0/lib/Makefile.am	2026-10-17 05:56:46.000000000 +0000
++++ src/libnatspec-0.4.0/lib/Makefile.am	2026-11-07 07:22:32.713836700 +0000
+@@ -3,6 +3,8 @@ libnatspec_la_SOURCES	= get_charset.c ge
+ 	filesystem.c detect.c \
+ 	natspec.h natspec_internal.h data/get_charset_data.h data/charset_names.h \
+ 	unicode/uni_7b.h
++libnatspec_la_LDFLAGS	= -no-undefined
++libnatspec_la_LIBADD	= -liconv
+ #libdir 					= /lib
+ #-version-info 0:0:1
+ #-release 1
+--- origsrc/libnatspec-0.4.0/lib/convert.c	2026-10-17 05:56:46.000000000 +0000
++++ src/libnatspec-0.4.0/lib/convert.c	2026-11-07 07:22:32.714355100 +0000
+@@ -32,6 +32,8 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
++#include <strings.h>
++#include <ctype.h>
+ #include <assert.h>
+ 
+ #include "natspec_internal.h"
+@@ -64,6 +66,47 @@ static iconv_t find_ucs2(iconv_t cd)
+ 	return ucs2;
+ }
+ 
++/*! Internal: libiconv does not know some of the names used in the tables
++   (glibc spellings): ISO88595, KOI8R, IBM866, IBM874, MAC-CYRILLIC, MACUKRAINIAN.
++   Writes the name libiconv uses to buf, or returns NULL if there is none */
++static const char *libiconv_name(const char *name, char *buf, size_t size)
++{
++	size_t len;
++	if (!name)
++		return NULL;
++	len = strlen(name);
++	if (len + 3 > size)
++		return NULL;
++	if (!strncasecmp(name, "ISO8859", 7) && isdigit((unsigned char)name[7]))
++		snprintf(buf, size, "ISO-8859-%s", name + 7);
++	else if (!strncasecmp(name, "KOI8", 4) && isalpha((unsigned char)name[4]) && !name[5])
++		snprintf(buf, size, "KOI8-%c", name[4]);
++	else if (!strncasecmp(name, "IBM", 3) && isdigit((unsigned char)name[3]))
++		snprintf(buf, size, "CP%s", name + 3);
++	else if (!strcasecmp(name, "MAC-CYRILLIC"))
++		snprintf(buf, size, "MACCYRILLIC");
++	else if (!strcasecmp(name, "MACUKRAINIAN"))
++		snprintf(buf, size, "MACUKRAINE");
++	else
++		return NULL;
++	return buf;
++}
++
++/*! Internal: iconv_open(), then again with the names libiconv knows */
++static iconv_t open_iconv(const char *tocode, const char *fromcode)
++{
++	char tobuf[64], frombuf[64];
++	const char *to, *from;
++	iconv_t cd = iconv_open(tocode, fromcode);
++	if (cd != (iconv_t)-1)
++		return cd;
++	to = libiconv_name(tocode, tobuf, sizeof(tobuf));
++	from = libiconv_name(fromcode, frombuf, sizeof(frombuf));
++	if (!to && !from)
++		return cd;
++	return iconv_open(to ? to : tocode, from ? from : fromcode);
++}
++
+ /*! Opens iconv table or returns -1 */
+ iconv_t natspec_iconv_open(const char *tocode, const char *fromcode)
+ {
+@@ -75,12 +118,12 @@ iconv_t natspec_iconv_open(const char *t
+ 	e = malloc(sizeof(*e));
+ 	if (!e)
+ 		return (iconv_t)-1;
+-	e->it = iconv_open(tocode, fromcode);
++	e->it = open_iconv(tocode, fromcode);
+ 	if (e->it == (iconv_t)-1) {
+ 		free(e);
+ 		return (iconv_t)-1;
+ 	}
+-	e->ucs2 = iconv_open("UCS-4BE", fromcode);
++	e->ucs2 = open_iconv("UCS-4BE", fromcode);
+ 	if (e->ucs2 == (iconv_t)-1) {
+ 		iconv_close(e->it);
+ 		free(e);
+--- origsrc/libnatspec-0.4.0/libhi/Makefile.am	2026-10-17 05:56:46.000000000 +0000
++++ src/libnatspec-0.4.0/libhi/Makefile.am	2026-11-07 07:22:32.714355100 +0000
+@@ -1,6 +1,7 @@
+ lib_LTLIBRARIES 		= libnatspechi.la
+ libnatspechi_la_SOURCES	= language.c natspechi.h natspechi_internal.h data/language_data.h
+ libnatspechi_la_LIBADD 		= $(top_builddir)/lib/libnatspec.la
++libnatspechi_la_LDFLAGS		= -no-undefined
+ libnatspechi_la_CFLAGS		= -I$(top_srcdir)/lib
+ #libdir 					= /lib
+ #-version-info 0:0:1
+--- origsrc/libnatspec-0.4.0/src/python/Makefile.am	2026-10-17 05:56:46.000000000 +0000
++++ src/libnatspec-0.4.0/src/python/Makefile.am	2026-11-07 07:22:32.716371200 +0000
+@@ -7,7 +7,7 @@ endif
+ 
+ _natspec_la_SOURCES = natspec_wrap.c
+ _natspec_la_CFLAGS = $(LIBNATSPEC_CFLAGS) $(PYTHON_INCLUDES) $(PYTHON_QUIET) -Wno-error=pedantic -Wno-pedantic
+-_natspec_la_LDFLAGS = -module -avoid-version
++_natspec_la_LDFLAGS = -no-undefined -module -avoid-version
+ _natspec_la_LIBADD = $(top_builddir)/lib/libnatspec.la
+ 
+ pyexec_SCRIPTS = natspec.py
+--- origsrc/libnatspec-0.4.0/tests/test_convert.c	2026-10-17 05:56:46.000000000 +0000
++++ src/libnatspec-0.4.0/tests/test_convert.c	2026-11-07 07:22:32.716371200 +0000
+@@ -132,7 +132,12 @@ static void test_convert_output_state(vo
+ {
+ 	char *out;
+ 	out = natspec_convert("a", "UTF-16", "ASCII", 0);
++#ifdef __CYGWIN__
++	/* libiconv writes UTF-16 big endian with BOM */
++	CHECK(out && !memcmp(out, "\xFE\xFF" "\0a", 4));
++#else
+ 	CHECK(out && !memcmp(out, "\xFF\xFE" "a\0", 4));
++#endif
+ 	free(out);
+ 	/* final ESC ( B returns to ASCII */
+ 	CHECK_STR_FREE(natspec_convert("\xD0\x96", "ISO-2022-JP", "UTF-8", 0), "\x1B$B'(\x1B(B");
+--- origsrc/libnatspec-0.4.0/tests/test_get_charset.c	2026-10-17 05:56:46.000000000 +0000
++++ src/libnatspec-0.4.0/tests/test_get_charset.c	2026-11-07 07:22:32.717881600 +0000
+@@ -70,13 +70,13 @@ void test_for_iconv()
+ 	for (i = 0; i < sizeof (charset_names) / sizeof (charset_names[0]); i++) {
+ 		const char *cs = charset_names[i].charset_name;
+ 		iconv_t it;
+-		it = iconv_open(cs,"UTF-8");
++		it = natspec_iconv_open(cs,"UTF-8");
+ 		if ( it == (iconv_t)(-1)) {
+ 			printf("TEST_ICONV: does not know '%s'\n",cs);
+ 			exit (1);
+ 		}
+ 		else
+-			iconv_close(it);
++			natspec_iconv_close(it);
+ 	}
+ 	printf("TEST_ICONV: comformance test is completed: %d charsets\n",i);
+ }
+@@ -131,14 +131,14 @@ void test_nls()
+ 		const char *locale = charset_relation[i].locale;
+ 		t = natspec_get_filename_encoding(locale);
+ 		assert (t);
+-		it = iconv_open(t,"UTF-8");
++		it = natspec_iconv_open(t,"UTF-8");
+ 		if ( it == (iconv_t)(-1))
+ 		{
+ 		  	printf("TEST_ICONV for nls: does not know '%s'\n",t);
+ 			exit (1);
+ 		}
+ 		else
+-			iconv_close(it);
++			natspec_iconv_close(it);
+ 		t = natspec_get_charset_by_locale(NATSPEC_UNIXCS, locale);
+ 		setlocale(LC_ALL,locale);
+ 		if(natspec_get_charset() != t)

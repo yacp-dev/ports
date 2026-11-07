@@ -1,8 +1,8 @@
 HOMEPAGE="https://github.com/${PN}/${PN}"
 SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.5.1%2Bds1-1/debian/patches/typos.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.5.1%2Bds1-1/debian/patches/cppcheck.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.5.3%2Bds1-2/debian/patches/typos.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.5.3%2Bds1-2/debian/patches/cppcheck.patch
 "
 
 CATEGORY="Libs"
@@ -11,8 +11,8 @@ DESCRIPTION="zchunk is a compressed file format that splits the file into indepe
 chunks. This allows you to only download changed chunks when downloading a new
 version of the file, and also makes zchunk files efficient over rsync."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

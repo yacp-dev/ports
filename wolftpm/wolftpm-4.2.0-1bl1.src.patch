@@ -1,0 +1,60 @@
+--- origsrc/wolfTPM-4.2.0/Makefile.am	2026-09-14 22:19:20.000000000 +0000
++++ src/wolfTPM-4.2.0/Makefile.am	2026-11-07 13:06:11.932831900 +0000
+@@ -156,3 +156,6 @@ SBOM_LICENSE_OVERRIDE ?= GPL-3.0-or-late
+ EXTRA_DIST += scripts/sbom.am
+ 
+ include scripts/sbom.am
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/wolfTPM-4.2.0/configure.ac	2026-09-14 22:19:20.000000000 +0000
++++ src/wolfTPM-4.2.0/configure.ac	2026-11-07 13:06:11.930822500 +0000
+@@ -6,7 +6,6 @@ AC_COPYRIGHT([Copyright (C) 2014-2026 wo
+ AC_INIT([wolftpm],[4.2.0],[https://github.com/wolfssl/wolfTPM/issues],[wolftpm],[https://www.wolfssl.com])
+ 
+ AC_PREREQ([2.63])
+-AC_CONFIG_AUX_DIR([build-aux])
+ 
+ # The following sets CFLAGS to empty if unset on command line.
+ : ${CFLAGS=""}
+@@ -63,6 +62,8 @@ AC_CHECK_SIZEOF([long], 4)
+ AC_CHECK_HEADERS([netdb.h])
+ AC_CHECK_FUNCS([gethostbyname getaddrinfo gettimeofday inet_ntoa memset socket getpid])
+ AC_CHECK_LIB([network],[socket])
++AM_ICONV
++m4_pattern_allow([^AX_HARDEN_LIB$])
+ 
+ # Thread local storage
+ AX_TLS([thread_ls_on=yes],[thread_ls_on=no])
+@@ -1111,6 +1112,7 @@ AC_CONFIG_FILES([wolftpm/options.h])
+ AX_CREATE_GENERIC_CONFIG
+ AX_AM_JOBSERVER([yes])
+ 
++AC_CONFIG_FILES([wolftpm.pc])
+ AC_OUTPUT
+ 
+ # force make clean
+--- origsrc/wolfTPM-4.2.0/docs/include.am	2026-09-14 22:19:20.000000000 +0000
++++ src/wolfTPM-4.2.0/docs/include.am	2026-11-07 13:06:11.932831900 +0000
+@@ -7,7 +7,7 @@ dist_doc_DATA+= docs/SWTPM.md
+ dist_doc_DATA+= docs/DEVTPM.md
+ dist_doc_DATA+= docs/FWTPM.md
+ dist_doc_DATA+= docs/WindowTBS.md
+-dist_doc_DATA+= docs/Doxyfile
++# dist_doc_DATA+= docs/Doxyfile
+ 
+ 
+ dox:
+--- origsrc/wolfTPM-4.2.0/wolftpm.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/wolfTPM-4.2.0/wolftpm.pc.in	2026-11-07 13:06:11.932831900 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: wolftpm
++Description: Portable TPM 2.0 project designed for embedded use
++Version: @VERSION@
++Libs: -L${libdir} -lwolftpm
++Cflags: -I${includedir}

@@ -11,6 +11,7 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	gettext-devel
 	libwolfssl-devel
 "
 
@@ -19,15 +20,15 @@ export CPPFLAGS="${CPPFLAGS} -DWOLF_CRYPTO_CB -DXREWIND=rewind"
 
 PKG_NAMES="
 	wolftpm
-	libwolftpm16
+	libwolftpm18
 	libwolftpm-devel
 "
 wolftpm_CONTENTS="
 	usr/share/doc/Cygwin
-	usr/share/doc/${PN}/[CLRSW]*
+	usr/share/doc/${PN}/[CDFLRSW]*
 "
-libwolftpm16_CONTENTS="
-	usr/bin/cyg*-16.dll
+libwolftpm18_CONTENTS="
+	usr/bin/cyg*-18.dll
 "
 libwolftpm_devel_CONTENTS="
 	usr/bin/*-config
@@ -37,5 +38,5 @@ libwolftpm_devel_CONTENTS="
 	usr/share/doc/${PN}/wrapper
 "
 wolftpm_SUMMARY="${SUMMARY} (licensing & readmes)"
-libwolftpm16_SUMMARY="${SUMMARY} (runtime)"
+libwolftpm18_SUMMARY="${SUMMARY} (runtime)"
 libwolftpm_devel_SUMMARY="${SUMMARY} (development)"

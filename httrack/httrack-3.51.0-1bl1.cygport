@@ -1,5 +1,5 @@
 HOMEPAGE="https://www.${PN}.com/"
-SRC_URI="mirror://debian/pool/main/${PN:0:1}/${PN}/${PN}_${PV}.orig.tar.gz"
+SRC_URI="https://github.com/xroche/${PN}/releases/download/${PV}/${PN}-${PV}.tar.gz"
 
 CATEGORY="Net"
 SUMMARY="HTTrack Website Copier, copy websites to your computer"
@@ -8,13 +8,16 @@ website from the Internet to a local directory, building recursively all
 directories, getting html, images, and other files from the server to your
 computer."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND MPL-2.0 AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MPL-2.0 AND BSD-3-Clause"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	autoconf-archive
+	libbrotli-devel
 	libiconv-devel
 	libssl-devel
+	libzstd-devel
 	zlib-devel
 "
 
@@ -26,7 +29,7 @@ CYGCONF_ARGS="
 
 PKG_NAMES="
 	httrack
-	libhttrack2
+	libhttrack3
 	libhttrack-devel
 "
 httrack_CONTENTS="
@@ -35,13 +38,13 @@ httrack_CONTENTS="
 	usr/bin/w*
 	usr/share
 "
-libhttrack2_CONTENTS="
-	usr/bin/cyg*-2.dll
+libhttrack3_CONTENTS="
+	usr/bin/cyg*-3.dll
 "
 libhttrack_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 httrack_SUMMARY="${SUMMARY} (utilities)"
-libhttrack2_SUMMARY="${SUMMARY} (runtime)"
+libhttrack3_SUMMARY="${SUMMARY} (runtime)"
 libhttrack_devel_SUMMARY="${SUMMARY} (development)"

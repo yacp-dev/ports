@@ -7,46 +7,55 @@ computer.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.6-1
-  libhttrack2-3.49.6-1bl1
-  libiconv2-1.17-1
-  libssl3-3.0.18-1
-  zlib0-1.3.1-1
+  cygwin-3.6.12-1
+  libbrotli-devel-1.2.1-1
+  libbrotlidec1-1.2.1-1
+  libhttrack-devel-3.51.0-1bl1
+  libhttrack3-3.51.0-1bl1
+  libiconv2-1.19-2
+  libssl-devel-3.5.9-1
+  libssl3-3.5.9-1
+  libzstd-devel-1.5.7-1
+  libzstd1-1.5.7-1
+  pkg-config-3.0.10-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
+  autoconf-20260320-3
   autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libiconv-devel-1.17-1
-  libssl-devel-3.0.18-1
-  libtool-2.5.4-1
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libbrotli-devel-1.2.1-1
+  libiconv-devel-1.19-2
+  libssl-devel-3.5.9-1
+  libtool-2.6.2-1
+  libzstd-devel-1.5.7-1
   make-4.4.1-2
-  zlib-devel-1.3.1-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://www.httrack.com/
 
 Canonical download:
-  mirror://debian/pool/main/h/httrack/httrack_3.49.6.orig.tar.gz
+  https://github.com/xroche/httrack/releases/download/3.51.0/httrack-3.51.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack httrack-3.49.6-X-src.tar.xz
+  1. unpack httrack-3.51.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./httrack-3.49.6-X.cygport all
+        % cygport ./httrack-3.51.0-X.cygport all
 
 This will create:
-  /usr/src/httrack-3.49.6-X-src.tar.xz
-  /usr/src/httrack-3.49.6-X.tar.xz
-  /usr/src/libhttrack2-3.49.6-X.tar.xz
-  /usr/src/libhttrack-devel-3.49.6-X.tar.xz
+  /usr/src/httrack-3.51.0-X-src.tar.xz
+  /usr/src/httrack-3.51.0-X.tar.xz
+  /usr/src/libhttrack3-3.51.0-X.tar.xz
+  /usr/src/libhttrack-devel-3.51.0-X.tar.xz
 
 -------------------------------------------
 
@@ -63,100 +72,107 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/httrack.README
   /usr/share/doc/httrack/AUTHORS
   /usr/share/doc/httrack/COPYING
+  /usr/share/doc/httrack/ChangeLog
+  /usr/share/doc/httrack/NEWS
   /usr/share/doc/httrack/README
-  /usr/share/doc/httrack/README.md
+  /usr/share/doc/httrack/greetings.txt
   /usr/share/doc/httrack/history.txt
   /usr/share/doc/httrack/html/abuse.html
   /usr/share/doc/httrack/html/addurl.html
+  /usr/share/doc/httrack/html/android.html
   /usr/share/doc/httrack/html/cache.html
+  /usr/share/doc/httrack/html/changes.html
   /usr/share/doc/httrack/html/cmddoc.html
+  /usr/share/doc/httrack/html/cmdguide.html
   /usr/share/doc/httrack/html/contact.html
   /usr/share/doc/httrack/html/dev.html
   /usr/share/doc/httrack/html/div/search.sh
+  /usr/share/doc/httrack/html/doc.css
+  /usr/share/doc/httrack/html/doc.js
   /usr/share/doc/httrack/html/faq.html
   /usr/share/doc/httrack/html/fcguide.html
   /usr/share/doc/httrack/html/filters.html
-  /usr/share/doc/httrack/html/greetings.txt
-  /usr/share/doc/httrack/html/history.txt
+  /usr/share/doc/httrack/html/fonts/OFL.txt
+  /usr/share/doc/httrack/html/fonts/league-spartan-700-latin.woff2
+  /usr/share/doc/httrack/html/guide.css
+  /usr/share/doc/httrack/html/guide.html
+  /usr/share/doc/httrack/html/guide.js
+  /usr/share/doc/httrack/html/httrack.css
   /usr/share/doc/httrack/html/httrack.man.html
-  /usr/share/doc/httrack/html/images/bg_rings.gif
-  /usr/share/doc/httrack/html/images/header_title_4.gif
+  /usr/share/doc/httrack/html/images/bg_rings.svg
+  /usr/share/doc/httrack/html/images/esp_chicklet.png
   /usr/share/doc/httrack/html/images/screenshot_01.jpg
   /usr/share/doc/httrack/html/images/screenshot_01b.jpg
-  /usr/share/doc/httrack/html/img/addurl1.gif
-  /usr/share/doc/httrack/html/img/addurl2.gif
-  /usr/share/doc/httrack/html/img/addurl3.gif
-  /usr/share/doc/httrack/html/img/addurl4.gif
-  /usr/share/doc/httrack/html/img/addurl5.gif
+  /usr/share/doc/httrack/html/images/wordmark.svg
   /usr/share/doc/httrack/html/img/backblue.gif
   /usr/share/doc/httrack/html/img/fade.gif
+  /usr/share/doc/httrack/html/img/guide-droid-finished.png
+  /usr/share/doc/httrack/html/img/guide-droid-legacy-import.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-browser-id.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-build.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-experts-only.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-flow-control.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-limits.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-links.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-log-index-cache.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-mime-types.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-proxy.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-scan-rules.png
+  /usr/share/doc/httrack/html/img/guide-droid-opt-spider.png
+  /usr/share/doc/httrack/html/img/guide-droid-options-menu.png
+  /usr/share/doc/httrack/html/img/guide-droid-permission.png
+  /usr/share/doc/httrack/html/img/guide-droid-progress.png
+  /usr/share/doc/httrack/html/img/guide-droid-project-name.png
+  /usr/share/doc/httrack/html/img/guide-droid-project-setup.png
+  /usr/share/doc/httrack/html/img/guide-droid-start.png
+  /usr/share/doc/httrack/html/img/guide-web-add-url.png
+  /usr/share/doc/httrack/html/img/guide-web-finished.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-browser-id.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-build.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-experts-only.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-flow-control.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-limits.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-links.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-log-index-cache.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-mime-types.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-proxy.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-scan-rules.png
+  /usr/share/doc/httrack/html/img/guide-web-opt-spider.png
+  /usr/share/doc/httrack/html/img/guide-web-progress.png
+  /usr/share/doc/httrack/html/img/guide-web-project-name.png
+  /usr/share/doc/httrack/html/img/guide-web-project-setup.png
+  /usr/share/doc/httrack/html/img/guide-web-ready.png
+  /usr/share/doc/httrack/html/img/guide-web-start.png
+  /usr/share/doc/httrack/html/img/guide-win-finished.png
+  /usr/share/doc/httrack/html/img/guide-win-language.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-accept-headers.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-browser-id.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-build.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-experts-only.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-flow-control.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-limits.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-links.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-log-index-cache.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-mime-types.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-proxy.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-scan-rules.png
+  /usr/share/doc/httrack/html/img/guide-win-opt-spider.png
+  /usr/share/doc/httrack/html/img/guide-win-progress.png
+  /usr/share/doc/httrack/html/img/guide-win-project-name.png
+  /usr/share/doc/httrack/html/img/guide-win-project-setup.png
+  /usr/share/doc/httrack/html/img/guide-win-ready.png
+  /usr/share/doc/httrack/html/img/guide-win-start.png
   /usr/share/doc/httrack/html/img/httrack.gif
-  /usr/share/doc/httrack/html/img/snap1_a.gif
-  /usr/share/doc/httrack/html/img/snap1_b.gif
-  /usr/share/doc/httrack/html/img/snap1_c.gif
-  /usr/share/doc/httrack/html/img/snap2_a.gif
-  /usr/share/doc/httrack/html/img/snap2_b.gif
-  /usr/share/doc/httrack/html/img/snap3_a.gif
   /usr/share/doc/httrack/html/img/snap4_a.gif
-  /usr/share/doc/httrack/html/img/snap5_a.gif
-  /usr/share/doc/httrack/html/img/snap9.gif
-  /usr/share/doc/httrack/html/img/snap9_a.gif
-  /usr/share/doc/httrack/html/img/snap9_b.gif
-  /usr/share/doc/httrack/html/img/snap9_c.gif
-  /usr/share/doc/httrack/html/img/snap9_d.gif
-  /usr/share/doc/httrack/html/img/snap9_d2.gif
-  /usr/share/doc/httrack/html/img/snap9_d3.gif
-  /usr/share/doc/httrack/html/img/snap9_d4.gif
-  /usr/share/doc/httrack/html/img/snap9_d5.gif
-  /usr/share/doc/httrack/html/img/snap9_d6.gif
-  /usr/share/doc/httrack/html/img/snap9_d7.gif
-  /usr/share/doc/httrack/html/img/snap9_d8.gif
-  /usr/share/doc/httrack/html/img/snap9_e.gif
-  /usr/share/doc/httrack/html/img/snap9_f.gif
-  /usr/share/doc/httrack/html/img/snap9_g.gif
-  /usr/share/doc/httrack/html/img/snap9_g2.gif
-  /usr/share/doc/httrack/html/img/snap9_g3.gif
-  /usr/share/doc/httrack/html/img/snap9_h.gif
-  /usr/share/doc/httrack/html/img/snap9_i.gif
-  /usr/share/doc/httrack/html/img/snap9_j.gif
-  /usr/share/doc/httrack/html/img/snap9_k.gif
   /usr/share/doc/httrack/html/index.html
   /usr/share/doc/httrack/html/library.html
-  /usr/share/doc/httrack/html/license.txt
+  /usr/share/doc/httrack/html/login.html
   /usr/share/doc/httrack/html/options.html
   /usr/share/doc/httrack/html/overview.html
+  /usr/share/doc/httrack/html/palette.css
   /usr/share/doc/httrack/html/plug.html
   /usr/share/doc/httrack/html/plug_330.html
   /usr/share/doc/httrack/html/scripting.html
-  /usr/share/doc/httrack/html/server/about.html
-  /usr/share/doc/httrack/html/server/addurl.html
-  /usr/share/doc/httrack/html/server/error.html
-  /usr/share/doc/httrack/html/server/exit.html
-  /usr/share/doc/httrack/html/server/file.html
-  /usr/share/doc/httrack/html/server/finished.html
-  /usr/share/doc/httrack/html/server/help.html
-  /usr/share/doc/httrack/html/server/images/bg_rings.gif
-  /usr/share/doc/httrack/html/server/images/fade.gif
-  /usr/share/doc/httrack/html/server/images/header_title_4.gif
-  /usr/share/doc/httrack/html/server/index.html
-  /usr/share/doc/httrack/html/server/option1.html
-  /usr/share/doc/httrack/html/server/option10.html
-  /usr/share/doc/httrack/html/server/option11.html
-  /usr/share/doc/httrack/html/server/option2.html
-  /usr/share/doc/httrack/html/server/option2b.html
-  /usr/share/doc/httrack/html/server/option3.html
-  /usr/share/doc/httrack/html/server/option4.html
-  /usr/share/doc/httrack/html/server/option5.html
-  /usr/share/doc/httrack/html/server/option6.html
-  /usr/share/doc/httrack/html/server/option7.html
-  /usr/share/doc/httrack/html/server/option8.html
-  /usr/share/doc/httrack/html/server/option9.html
-  /usr/share/doc/httrack/html/server/ping.js
-  /usr/share/doc/httrack/html/server/refresh.html
-  /usr/share/doc/httrack/html/server/step2.html
-  /usr/share/doc/httrack/html/server/step3.html
-  /usr/share/doc/httrack/html/server/step4.html
-  /usr/share/doc/httrack/html/server/style.css
   /usr/share/doc/httrack/html/shelldoc.html
   /usr/share/doc/httrack/html/start.html
   /usr/share/doc/httrack/html/step.html
@@ -178,7 +194,40 @@ Files included in the binary package:
   /usr/share/doc/httrack/html/step9_opt8.html
   /usr/share/doc/httrack/html/step9_opt9.html
   /usr/share/doc/httrack/httrack-doc.html
-  /usr/share/httrack/html
+  /usr/share/doc/httrack/license-psl.txt
+  /usr/share/doc/httrack/license.txt
+  /usr/share/httrack/html/doc
+  /usr/share/httrack/html/palette.css
+  /usr/share/httrack/html/server/about.html
+  /usr/share/httrack/html/server/addurl.html
+  /usr/share/httrack/html/server/browserlogin.html
+  /usr/share/httrack/html/server/error.html
+  /usr/share/httrack/html/server/exit.html
+  /usr/share/httrack/html/server/finished.html
+  /usr/share/httrack/html/server/images/bg_rings.svg
+  /usr/share/httrack/html/server/images/fade.gif
+  /usr/share/httrack/html/server/images/wordmark.svg
+  /usr/share/httrack/html/server/index.html
+  /usr/share/httrack/html/server/option1.html
+  /usr/share/httrack/html/server/option10.html
+  /usr/share/httrack/html/server/option11.html
+  /usr/share/httrack/html/server/option2.html
+  /usr/share/httrack/html/server/option2b.html
+  /usr/share/httrack/html/server/option3.html
+  /usr/share/httrack/html/server/option4.html
+  /usr/share/httrack/html/server/option5.html
+  /usr/share/httrack/html/server/option6.html
+  /usr/share/httrack/html/server/option7.html
+  /usr/share/httrack/html/server/option8.html
+  /usr/share/httrack/html/server/option9.html
+  /usr/share/httrack/html/server/ping.js
+  /usr/share/httrack/html/server/refresh.html
+  /usr/share/httrack/html/server/step2.html
+  /usr/share/httrack/html/server/step3.html
+  /usr/share/httrack/html/server/step4.html
+  /usr/share/httrack/html/server/style.css
+  /usr/share/httrack/html/server/themes/modern/theme.css
+  /usr/share/httrack/html/server/user.css
   /usr/share/httrack/lang.def
   /usr/share/httrack/lang.indexes
   /usr/share/httrack/lang/Bulgarian.txt
@@ -231,28 +280,33 @@ Files included in the binary package:
   /usr/share/httrack/templates/topindex-bodycat.html
   /usr/share/httrack/templates/topindex-footer.html
   /usr/share/httrack/templates/topindex-header.html
+  /usr/share/icons/hicolor/128x128/apps/httrack.png
   /usr/share/icons/hicolor/16x16/apps/httrack.png
+  /usr/share/icons/hicolor/256x256/apps/httrack.png
   /usr/share/icons/hicolor/32x32/apps/httrack.png
   /usr/share/icons/hicolor/48x48/apps/httrack.png
+  /usr/share/icons/hicolor/64x64/apps/httrack.png
+  /usr/share/icons/hicolor/scalable/apps/httrack.svg
   /usr/share/man/man1/htsserver.1.gz
   /usr/share/man/man1/httrack.1.gz
   /usr/share/man/man1/proxytrack.1.gz
   /usr/share/man/man1/webhttrack.1.gz
+  /usr/share/metainfo/com.httrack.WebHTTrack.metainfo.xml
+  /usr/share/pixmaps/httrack.xpm
   /usr/share/pixmaps/httrack16x16.xpm
   /usr/share/pixmaps/httrack32x32.xpm
   /usr/share/pixmaps/httrack48x48.xpm
 
-(libhttrack2)
-  /usr/bin/cyghtsjava-2.dll
-  /usr/bin/cyghttrack-2.dll
+(libhttrack3)
+  /usr/bin/cyghttrack-3.dll
 
 (libhttrack-devel)
-  /usr/include/httrack/config.h
   /usr/include/httrack/htsarrays.h
   /usr/include/httrack/htsbasenet.h
   /usr/include/httrack/htsbauth.h
   /usr/include/httrack/htsconfig.h
   /usr/include/httrack/htsdefines.h
+  /usr/include/httrack/htsfeatures.h
   /usr/include/httrack/htsglobal.h
   /usr/include/httrack/htsmodules.h
   /usr/include/httrack/htsnet.h
@@ -271,12 +325,15 @@ Files included in the binary package:
   /usr/lib/httrack/cyglistlinks-1.dll
   /usr/lib/httrack/cyglog-1.dll
   /usr/lib/httrack/cygsimple-1.dll
-  /usr/lib/libhtsjava.dll.a
   /usr/lib/libhttrack.dll.a
+  /usr/lib/pkgconfig/libhttrack.pc
 
 ------------------
 
 Port Notes:
+
+----- version 3.51.0-1bl1 -----
+Version bump.
 
 ----- version 3.49.6-1bl1 -----
 Version bump.

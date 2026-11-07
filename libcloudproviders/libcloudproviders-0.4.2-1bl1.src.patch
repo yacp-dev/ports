@@ -1,5 +1,5 @@
---- origsrc/libcloudproviders-0.4.1/docs/meson.build	2026-08-28 15:06:57.000000000 +0000
-+++ src/libcloudproviders-0.4.1/docs/meson.build	2026-10-19 12:30:00.214767200 +0000
+--- origsrc/libcloudproviders-0.4.2/docs/meson.build	2026-11-04 14:49:46.000000000 +0000
++++ src/libcloudproviders-0.4.2/docs/meson.build	2026-11-07 05:55:32.284335900 +0000
 @@ -26,7 +26,7 @@ gidocgen = find_program('gi-docgen')
  docs_dir = datadir / 'doc'
  
@@ -9,8 +9,8 @@
    output: 'libcloudproviders-@0@'.format(libcloudproviders_api_version),
    command: [
      gidocgen,
---- origsrc/libcloudproviders-0.4.1/meson.build	2026-08-28 15:06:57.000000000 +0000
-+++ src/libcloudproviders-0.4.1/meson.build	2026-10-19 12:30:00.216781300 +0000
+--- origsrc/libcloudproviders-0.4.2/meson.build	2026-11-04 14:49:46.000000000 +0000
++++ src/libcloudproviders-0.4.2/meson.build	2026-11-07 05:55:32.284335900 +0000
 @@ -42,7 +42,7 @@ glib = dependency ('glib-2.0', version:
  gio = dependency ('gio-2.0', version: glib_ver)
  
@@ -20,11 +20,11 @@
      gio_platform = dependency ('gio-windows-2.0', version: glib_ver)
  else
      gio_platform = dependency ('gio-unix-2.0', version: glib_ver)
---- origsrc/libcloudproviders-0.4.1/src/meson.build	2026-08-28 15:06:57.000000000 +0000
-+++ src/libcloudproviders-0.4.1/src/meson.build	2026-10-19 12:30:00.216781300 +0000
+--- origsrc/libcloudproviders-0.4.2/src/meson.build	2026-11-04 14:49:46.000000000 +0000
++++ src/libcloudproviders-0.4.2/src/meson.build	2026-11-07 05:55:32.285854400 +0000
 @@ -27,12 +27,11 @@ gdbus_generated_sources = gnome.gdbus_co
    extra_args: '--glib-min-required=@0@'.format(glib_req_version),
-   interface_prefix: 'org.freedesktop.CloudProviders',
+   interface_prefix: 'org.freedesktop.CloudProviders.',
    namespace: 'CloudProvidersDbus',
 -  markdown: 'dbus',
    object_manager: true

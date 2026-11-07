@@ -1,47 +1,48 @@
 hypre
 ------------------------------------------
 HYPRE is a library of high performance preconditioners and solvers featuring
-multigrid methods for the solution of large, sparse linear systems of
-equations on massively parallel computers.
+multigrid methods for the solution of large, sparse linear systems of equations
+on massively parallel computers.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libHYPRE-devel-3.1.0-1bl1
-  libHYPRE301-3.1.0-1bl1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libHYPRE-devel-3.2.1-1bl1
+  libHYPRE302-3.2.1-1bl1
   libopenmpi40-4.1.6-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libevent-devel-2.1.13-1
+  libhwloc-devel-2.13.0-1
   libopenmpi-devel-4.1.6-1
   ninja-1.13.2-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://github.com/hypre-space/hypre
 
 Canonical download:
-  https://github.com/hypre-space/hypre/archive/refs/tags/v3.1.0.tar.gz
+  https://github.com/hypre-space/hypre/archive/refs/tags/v3.2.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack hypre-3.1.0-X-src.tar.xz
+  1. unpack hypre-3.2.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./hypre-3.1.0-X.cygport all
+        % cygport ./hypre-3.2.1-X.cygport all
 
 This will create:
-  /usr/src/hypre-3.1.0-X-src.tar.xz
-  /usr/src/hypre-3.1.0-X.tar.xz
-  /usr/src/libHYPRE301-3.1.0-X.tar.xz
-  /usr/src/libHYPRE-devel-3.1.0-X.tar.xz
+  /usr/src/hypre-3.2.1-X-src.tar.xz
+  /usr/src/hypre-3.2.1-X.tar.xz
+  /usr/src/libHYPRE302-3.2.1-X.tar.xz
+  /usr/src/libHYPRE-devel-3.2.1-X.tar.xz
 
 -------------------------------------------
 
@@ -51,11 +52,14 @@ Files included in the binary package:
   /usr/bin/hypre-ams_driver.exe
   /usr/bin/hypre-ij.exe
   /usr/bin/hypre-ij_assembly.exe
+  /usr/bin/hypre-ij_mm.exe
   /usr/bin/hypre-sstruct.exe
   /usr/bin/hypre-sstructmat.exe
   /usr/bin/hypre-struct.exe
   /usr/bin/hypre-struct_migrate.exe
   /usr/bin/hypre-structmat.exe
+  /usr/bin/hypre-test_csr_overlap.exe
+  /usr/bin/hypre-test_matrix_stats.exe
   /usr/share/doc/Cygwin/hypre.README
   /usr/share/doc/hypre/CHANGELOG
   /usr/share/doc/hypre/COPYRIGHT
@@ -65,8 +69,8 @@ Files included in the binary package:
   /usr/share/doc/hypre/README.md
   /usr/share/doc/hypre/SUPPORT.md
 
-(libHYPRE301)
-  /usr/bin/cygHYPRE-301.dll
+(libHYPRE302)
+  /usr/bin/cygHYPRE-302.dll
 
 (libHYPRE-devel)
   /usr/include/hypre/HYPRE.h
@@ -111,7 +115,7 @@ Files included in the binary package:
   /usr/include/hypre/_hypre_utilities.hpp
   /usr/lib/cmake/HYPRE/HYPREConfig.cmake
   /usr/lib/cmake/HYPRE/HYPREConfigVersion.cmake
-  /usr/lib/cmake/HYPRE/HYPRETargets-release.cmake
+  /usr/lib/cmake/HYPRE/HYPRETargets-relwithdebinfo.cmake
   /usr/lib/cmake/HYPRE/HYPRETargets.cmake
   /usr/lib/libHYPRE.dll.a
   /usr/lib/pkgconfig/hypre.pc
@@ -119,6 +123,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.2.1-1bl1 -----
+Version bump.
 
 ----- version 3.1.0-1bl1 -----
 Version bump.

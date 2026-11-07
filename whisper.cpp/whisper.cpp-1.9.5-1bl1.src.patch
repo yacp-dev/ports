@@ -1,0 +1,45 @@
+--- origsrc/whisper.cpp-1.9.5/cmake/build-info.cmake	2026-01-15 18:54:31.000000000 +0900
++++ src/whisper.cpp-1.9.5/cmake/build-info.cmake	2026-02-07 11:00:31.299035300 +0900
+@@ -16,7 +16,7 @@ if(NOT Git_FOUND)
+ endif()
+ 
+ # Get the commit count and hash
+-if(Git_FOUND)
++if(Git_FOUND AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git")
+     execute_process(
+         COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+--- origsrc/whisper.cpp-1.9.5/cmake/git-vars.cmake	2026-01-15 18:54:31.000000000 +0900
++++ src/whisper.cpp-1.9.5/cmake/git-vars.cmake	2026-02-07 11:00:31.306843100 +0900
+@@ -1,5 +1,6 @@
+ find_package(Git)
+ 
++if (GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
+ # the commit's SHA1
+ execute_process(COMMAND
+     "${GIT_EXECUTABLE}" describe --match=NeVeRmAtCh --always --abbrev=8
+@@ -20,3 +21,4 @@ execute_process(COMMAND
+     WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+     OUTPUT_VARIABLE GIT_COMMIT_SUBJECT
+     ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
++endif()
+--- origsrc/whisper.cpp-1.9.5/examples/common-sdl.cpp	2026-01-15 18:54:31.000000000 +0900
++++ src/whisper.cpp-1.9.5/examples/common-sdl.cpp	2026-02-07 11:00:31.306843100 +0900
+@@ -1,6 +1,7 @@
+ #include "common-sdl.h"
+ 
+ #include <cstdio>
++#include <cstring>
+ 
+ audio_async::audio_async(int len_ms) {
+     m_len_ms = len_ms;
+--- origsrc/whisper.cpp-1.9.5/examples/stream/stream.cpp	2026-01-15 18:54:31.000000000 +0900
++++ src/whisper.cpp-1.9.5/examples/stream/stream.cpp	2026-02-07 11:00:31.306843100 +0900
+@@ -9,6 +9,7 @@
+ 
+ #include <chrono>
+ #include <cstdio>
++#include <cstring>
+ #include <fstream>
+ #include <string>
+ #include <thread>

@@ -1,5 +1,5 @@
---- origsrc/JAGS-5.0.0/configure.ac	2026-06-29 20:39:01.000000000 +0000
-+++ src/JAGS-5.0.0/configure.ac	2026-10-17 03:06:54.071597100 +0000
+--- origsrc/JAGS-5.0.1/configure.ac	2026-10-23 07:23:34.000000000 +0000
++++ src/JAGS-5.0.1/configure.ac	2026-11-07 00:46:21.909707300 +0000
 @@ -69,12 +69,19 @@ R_FUNC_ISFINITE
  fi
  
@@ -21,8 +21,8 @@
  
  ## Testing for OpenMP flags
  AC_LANG_PUSH([C++])
---- origsrc/JAGS-5.0.0/src/include/model/CovMonitor.h	2025-09-27 11:00:21.000000000 +0000
-+++ src/JAGS-5.0.0/src/include/model/CovMonitor.h	2026-10-17 03:06:54.072002400 +0000
+--- origsrc/JAGS-5.0.1/src/include/model/CovMonitor.h	2026-08-01 07:45:27.000000000 +0000
++++ src/JAGS-5.0.1/src/include/model/CovMonitor.h	2026-11-07 00:46:21.909707300 +0000
 @@ -3,6 +3,10 @@
  
  #include <model/Monitor.h>
@@ -34,8 +34,8 @@
  namespace jags {
  
      class MonitorStat;
---- origsrc/JAGS-5.0.0/src/include/model/MeanMonitor.h	2025-09-27 09:19:39.000000000 +0000
-+++ src/JAGS-5.0.0/src/include/model/MeanMonitor.h	2026-10-17 03:06:54.072998500 +0000
+--- origsrc/JAGS-5.0.1/src/include/model/MeanMonitor.h	2026-08-01 07:45:27.000000000 +0000
++++ src/JAGS-5.0.1/src/include/model/MeanMonitor.h	2026-11-07 00:46:21.909707300 +0000
 @@ -3,6 +3,10 @@
  
  #include <model/Monitor.h>
@@ -47,8 +47,8 @@
  namespace jags {
  
      /**
---- origsrc/JAGS-5.0.0/src/include/model/VarMonitor.h	2025-09-27 09:19:39.000000000 +0000
-+++ src/JAGS-5.0.0/src/include/model/VarMonitor.h	2026-10-17 03:06:54.072998500 +0000
+--- origsrc/JAGS-5.0.1/src/include/model/VarMonitor.h	2026-08-01 07:45:27.000000000 +0000
++++ src/JAGS-5.0.1/src/include/model/VarMonitor.h	2026-11-07 00:46:21.911726300 +0000
 @@ -5,6 +5,10 @@
  
  #include <vector>
@@ -60,8 +60,8 @@
  namespace jags {
  
      /**
---- origsrc/JAGS-5.0.0/src/terminal/Makefile.am	2025-12-11 19:25:10.000000000 +0000
-+++ src/JAGS-5.0.0/src/terminal/Makefile.am	2026-10-17 03:06:54.072998500 +0000
+--- origsrc/JAGS-5.0.1/src/terminal/Makefile.am	2026-08-01 07:45:27.000000000 +0000
++++ src/JAGS-5.0.1/src/terminal/Makefile.am	2026-11-07 00:46:21.911726300 +0000
 @@ -4,7 +4,7 @@ AM_YFLAGS = -d
  libexec_PROGRAMS = jags-terminal
  

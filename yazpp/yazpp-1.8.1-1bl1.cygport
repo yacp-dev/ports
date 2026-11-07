@@ -1,0 +1,70 @@
+# the git submodules m4 and doc/common, which the tag's tarball leaves empty.
+# Keep them at the commits the tag points to
+M4_REV="b7c7676b3056f0e38b593ef494e2202db3936b13"
+DOC_COMMON_REV="52cd6148932da88a1d0d44a2b37aa99e19b50fb5"
+HOMEPAGE="https://github.com/indexdata/${PN}"
+SRC_URI="
+	https://github.com/indexdata/${PN}/archive/refs/tags/v${PV}.tar.gz#/${P}.tar.gz
+	https://github.com/indexdata/m4/archive/${M4_REV}.tar.gz#/m4-${M4_REV}.tar.gz
+	https://github.com/indexdata/id-docbook-common/archive/${DOC_COMMON_REV}.tar.gz#/id-docbook-common-${DOC_COMMON_REV}.tar.gz
+"
+
+CATEGORY="Libs"
+SUMMARY="C++ API to YAZ"
+DESCRIPTION="YAZ++ is an application programming interface (API) to YAZ which supports the
+development of Z39.50/SRU/Solr client and server applications using C++. Like
+YAZ, it supports Z39.50-2003 (version 3) as well as SRU version 1.1 thru 2.0
+in both the client and server roles. YAZ++ includes an implementation of the
+ZOOM C++ binding and a generic client/server API based on the
+Observer/Observable design pattern."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	autoconf
+	automake
+	docbook-xml45
+	docbook-xsl
+	libgcrypt-devel
+	libgpg-error-devel
+	libtool
+	libxslt
+	libyaz-devel
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose rmdir m4 doc/common
+	verbose mv ${origsrcdir}/m4-${M4_REV} m4
+	verbose mv ${origsrcdir}/id-docbook-common-${DOC_COMMON_REV} doc/common
+}
+
+PKG_NAMES="
+	${PN}
+	lib${PN}6
+	lib${PN}-devel
+"
+yazpp_CONTENTS="
+	usr/share/doc/Cygwin
+	usr/share/doc/${PN}/[CLNRT]*
+"
+libyazpp6_CONTENTS="
+	usr/bin/cygyazpp-6.dll
+	usr/bin/cygzoompp-6.dll
+"
+libyazpp_devel_CONTENTS="
+	usr/bin/${PN}-config
+	usr/include
+	usr/lib
+	usr/share/aclocal
+	usr/share/doc/${PN}/*.html
+	usr/share/doc/${PN}/common
+	usr/share/man
+"
+yazpp_SUMMARY="${SUMMARY} (licensing & readmes)"
+libyazpp6_SUMMARY="${SUMMARY} (runtime)"
+libyazpp_devel_SUMMARY="${SUMMARY} (development)"

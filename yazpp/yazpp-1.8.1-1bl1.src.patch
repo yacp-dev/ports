@@ -1,0 +1,34 @@
+--- origsrc/yazpp-1.8.1/src/Makefile.am	2022-12-14 12:43:04.000000000 +0000
++++ src/yazpp-1.8.1/src/Makefile.am	2026-11-07 09:21:55.374385000 +0000
+@@ -8,7 +8,7 @@ TESTS = $(check_PROGRAMS)
+ AM_CXXFLAGS = -I$(srcdir)/../include $(YAZINC)
+ 
+ lib_LTLIBRARIES = libyazpp.la
+-libyazpp_la_LDFLAGS=-version-info 6:0:0
++libyazpp_la_LDFLAGS = -no-undefined -version-info 6:0:0
+ 
+ DISTCLEANFILES = yazpp-config
+ 
+--- origsrc/yazpp-1.8.1/zoom/Makefile.am	2022-12-14 12:43:04.000000000 +0000
++++ src/yazpp-1.8.1/zoom/Makefile.am	2026-11-07 09:21:55.374385000 +0000
+@@ -7,7 +7,7 @@ lib_LTLIBRARIES = libzoompp.la
+ noinst_PROGRAMS = zclient
+ endif
+ 
+-libzoompp_la_LDFLAGS=-version-info 6:0:0
++libzoompp_la_LDFLAGS = -no-undefined -version-info 6:0:0
+ LDADD=libzoompp.la $(YAZLALIB)
+ 
+ libzoompp_la_LIBADD = $(YAZLALIB)
+@@ -28,9 +28,9 @@ test: zclient
+ zoom.h: master-header
+ 	rm -f $@
+ 	sed 's/^*	/	/; s/^*/ /' $< > $@
+-	chmod -w $@
++	chmod -w $@ || :
+ 
+ interface.h: master-header
+ 	rm -f $@
+ 	grep -v '^*' $< | sed 's/YAZ_EXPORT //g' > $@
+-	chmod -w $@
++	chmod -w $@ || :

@@ -6,8 +6,8 @@ SUMMARY="Library for converting ANSI, ASCII, and other formats to PNG"
 DESCRIPTION="libansilove is a library to convert ANSi and artscene related file format
 into PNG images."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND ISC"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

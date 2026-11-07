@@ -3,49 +3,54 @@ xtb
 Semiempirical Extended Tight-Binding Program Package
 
 Runtime requirements:
-  cygwin-3.3.6-1
-  libgcc1-11.3.0-1
-  libgfortran5-11.3.0-1
-  libgomp1-11.3.0-1
-  liblapack0-3.10.1-1
-  libmctc-lib-devel-0.3.0-1bl1
-  libmctc-lib0-0.3.0-1bl1
-  libopenblas-0.3.20-1
-  libxtb-devel-6.5.1-1bl1
-  libxtb6-6.5.1-1bl1
-  pkg-config-1.9.3-1
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libcpx1-1.1.0-1bl2
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libgomp1-14.4.0-1
+  liblapack0-3.12.0-1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmctc-lib0-0.7.0-1bl1
+  libxtb-devel-6.7.1-1bl1
+  libxtb6-6.7.1-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.39-1
-  cmake-3.23.2-1
-  cygport-0.35.4-1
-  gcc-core-11.3.0-1
-  gcc-fortran-11.3.0-1
-  liblapack-devel-3.10.1-1
-  libmctc-lib-devel-0.3.0-1bl1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libcpx-devel-1.1.0-1bl2
+  libdftd4-devel-4.3.0-1bl1
+  liblapack-devel-3.12.0-1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmulticharge-devel-0.5.0-1bl2
+  libtest-drive-devel-0.6.1-1bl1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/grimme-lab/xtb
 
 Canonical download:
-  https://github.com/grimme-lab/xtb/archive/v6.5.1.tar.gz
+  https://github.com/grimme-lab/xtb/archive/v6.7.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack xtb-6.5.1-X-src.tar.xz
+  1. unpack xtb-6.7.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./xtb-6.5.1-X.cygport all
+        % cygport ./xtb-6.7.1-X.cygport all
 
 This will create:
-  /usr/src/xtb-6.5.1-X-src.tar.xz
-  /usr/src/xtb-6.5.1-X.tar.xz
-  /usr/src/libxtb6-6.5.1-X.tar.xz
-  /usr/src/libxtb-devel-6.5.1-X.tar.xz
+  /usr/src/xtb-6.7.1-X-src.tar.xz
+  /usr/src/xtb-6.7.1-X.tar.xz
+  /usr/src/libxtb6-6.7.1-X.tar.xz
+  /usr/src/libxtb-devel-6.7.1-X.tar.xz
 
 -------------------------------------------
 
@@ -57,7 +62,10 @@ Files included in the binary package:
   /usr/share/doc/xtb/CONTRIBUTING.md
   /usr/share/doc/xtb/COPYING
   /usr/share/doc/xtb/README.md
+  /usr/share/modules/modulefiles/xtb/6.7.1
   /usr/share/xtb/.param_gfnff.xtb
+  /usr/share/xtb/config_env.bash
+  /usr/share/xtb/config_env.csh
   /usr/share/xtb/param_gfn0-xtb.txt
   /usr/share/xtb/param_gfn1-si-xtb.txt
   /usr/share/xtb/param_gfn1-xtb.txt
@@ -107,6 +115,12 @@ Files included in the binary package:
   /usr/include/xtb/xtb_david2.mod
   /usr/include/xtb/xtb_detrotra.mod
   /usr/include/xtb/xtb_dipole.mod
+  /usr/include/xtb/xtb_dipro.mod
+  /usr/include/xtb/xtb_dipro_bondorder.mod
+  /usr/include/xtb/xtb_dipro_fragment.mod
+  /usr/include/xtb/xtb_dipro_output.mod
+  /usr/include/xtb/xtb_dipro_version.mod
+  /usr/include/xtb/xtb_dipro_xtb.mod
   /usr/include/xtb/xtb_disp_coordinationnumber.mod
   /usr/include/xtb/xtb_disp_dftd3.mod
   /usr/include/xtb/xtb_disp_dftd3param.mod
@@ -114,6 +128,9 @@ Files included in the binary package:
   /usr/include/xtb/xtb_disp_dftd4param.mod
   /usr/include/xtb/xtb_disp_encharges.mod
   /usr/include/xtb/xtb_disp_ncoord.mod
+  /usr/include/xtb/xtb_docking_param.mod
+  /usr/include/xtb/xtb_docking_search_nci.mod
+  /usr/include/xtb/xtb_docking_set_module.mod
   /usr/include/xtb/xtb_dtrafo.mod
   /usr/include/xtb/xtb_dynamic.mod
   /usr/include/xtb/xtb_eeq.mod
@@ -122,6 +139,7 @@ Files included in the binary package:
   /usr/include/xtb/xtb_extern_mopac.mod
   /usr/include/xtb/xtb_extern_orca.mod
   /usr/include/xtb/xtb_extern_turbomole.mod
+  /usr/include/xtb/xtb_features.mod
   /usr/include/xtb/xtb_fixparam.mod
   /usr/include/xtb/xtb_freq_io.mod
   /usr/include/xtb/xtb_freq_project.mod
@@ -138,6 +156,7 @@ Files included in the binary package:
   /usr/include/xtb/xtb_gfnff_ini.mod
   /usr/include/xtb/xtb_gfnff_ini2.mod
   /usr/include/xtb/xtb_gfnff_mrec.mod
+  /usr/include/xtb/xtb_gfnff_neighbor.mod
   /usr/include/xtb/xtb_gfnff_neighbourlist.mod
   /usr/include/xtb/xtb_gfnff_param.mod
   /usr/include/xtb/xtb_gfnff_setup.mod
@@ -146,6 +165,12 @@ Files included in the binary package:
   /usr/include/xtb/xtb_grad_core.mod
   /usr/include/xtb/xtb_hessian.mod
   /usr/include/xtb/xtb_hlex.mod
+  /usr/include/xtb/xtb_iff_calculator.mod
+  /usr/include/xtb/xtb_iff_data.mod
+  /usr/include/xtb/xtb_iff_iffenergy.mod
+  /usr/include/xtb/xtb_iff_iffini.mod
+  /usr/include/xtb/xtb_iff_ifflmo.mod
+  /usr/include/xtb/xtb_iff_iffprepare.mod
   /usr/include/xtb/xtb_iniq.mod
   /usr/include/xtb/xtb_intgrad.mod
   /usr/include/xtb/xtb_intmodes.mod
@@ -217,19 +242,37 @@ Files included in the binary package:
   /usr/include/xtb/xtb_param_covalentradd3.mod
   /usr/include/xtb/xtb_param_paulingen.mod
   /usr/include/xtb/xtb_param_sqrtzr4r2.mod
+  /usr/include/xtb/xtb_param_vdwradcosmo.mod
   /usr/include/xtb/xtb_param_vdwradd3.mod
   /usr/include/xtb/xtb_paramset.mod
   /usr/include/xtb/xtb_pbc.mod
+  /usr/include/xtb/xtb_pbc_optimizer_driver.mod
+  /usr/include/xtb/xtb_pbc_optimizer_filter.mod
+  /usr/include/xtb/xtb_pbc_optimizer_filter_cart.mod
+  /usr/include/xtb/xtb_pbc_optimizer_filter_type.mod
+  /usr/include/xtb/xtb_pbc_optimizer_lbfgs.mod
+  /usr/include/xtb/xtb_pbc_optimizer_optimizer.mod
   /usr/include/xtb/xtb_pbc_tools.mod
   /usr/include/xtb/xtb_peeq.mod
   /usr/include/xtb/xtb_printout.mod
-  /usr/include/xtb/xtb_prog_argparser.mod
-  /usr/include/xtb/xtb_prog_info.mod
-  /usr/include/xtb/xtb_prog_main.mod
-  /usr/include/xtb/xtb_prog_submodules.mod
-  /usr/include/xtb/xtb_prog_thermo.mod
-  /usr/include/xtb/xtb_prog_topology.mod
   /usr/include/xtb/xtb_propertyoutput.mod
+  /usr/include/xtb/xtb_ptb_calculator.mod
+  /usr/include/xtb/xtb_ptb_corebasis.mod
+  /usr/include/xtb/xtb_ptb_coulomb.mod
+  /usr/include/xtb/xtb_ptb_data.mod
+  /usr/include/xtb/xtb_ptb_guess.mod
+  /usr/include/xtb/xtb_ptb_hamiltonian.mod
+  /usr/include/xtb/xtb_ptb_integral_types.mod
+  /usr/include/xtb/xtb_ptb_integrals.mod
+  /usr/include/xtb/xtb_ptb_mmlpopanalysis.mod
+  /usr/include/xtb/xtb_ptb_ncoord.mod
+  /usr/include/xtb/xtb_ptb_param.mod
+  /usr/include/xtb/xtb_ptb_paulixc.mod
+  /usr/include/xtb/xtb_ptb_plusu.mod
+  /usr/include/xtb/xtb_ptb_property.mod
+  /usr/include/xtb/xtb_ptb_response.mod
+  /usr/include/xtb/xtb_ptb_scf.mod
+  /usr/include/xtb/xtb_ptb_vdzp.mod
   /usr/include/xtb/xtb_readin.mod
   /usr/include/xtb/xtb_readparam.mod
   /usr/include/xtb/xtb_relaxation_engine.mod
@@ -247,8 +290,10 @@ Files included in the binary package:
   /usr/include/xtb/xtb_solv_born.mod
   /usr/include/xtb/xtb_solv_cm5.mod
   /usr/include/xtb/xtb_solv_cosmo.mod
+  /usr/include/xtb/xtb_solv_cpx.mod
   /usr/include/xtb/xtb_solv_ddcosmo_core.mod
   /usr/include/xtb/xtb_solv_ddcosmo_solver.mod
+  /usr/include/xtb/xtb_solv_ddvolume.mod
   /usr/include/xtb/xtb_solv_gbsa.mod
   /usr/include/xtb/xtb_solv_input.mod
   /usr/include/xtb/xtb_solv_kernel.mod
@@ -258,6 +303,9 @@ Files included in the binary package:
   /usr/include/xtb/xtb_solv_state.mod
   /usr/include/xtb/xtb_sphereparam.mod
   /usr/include/xtb/xtb_splitparam.mod
+  /usr/include/xtb/xtb_tblite_calculator.mod
+  /usr/include/xtb/xtb_tblite_mapping.mod
+  /usr/include/xtb/xtb_tblite_restart.mod
   /usr/include/xtb/xtb_thermo.mod
   /usr/include/xtb/xtb_topology.mod
   /usr/include/xtb/xtb_type_anc.mod
@@ -288,6 +336,7 @@ Files included in the binary package:
   /usr/include/xtb/xtb_type_wavefunction.mod
   /usr/include/xtb/xtb_type_wignerseitzcell.mod
   /usr/include/xtb/xtb_type_wsc.mod
+  /usr/include/xtb/xtb_vertical.mod
   /usr/include/xtb/xtb_xtb_calculator.mod
   /usr/include/xtb/xtb_xtb_coulomb.mod
   /usr/include/xtb/xtb_xtb_data.mod
@@ -302,17 +351,15 @@ Files included in the binary package:
   /usr/include/xtb/xtb_xtb_multipole.mod
   /usr/include/xtb/xtb_xtb_repulsion.mod
   /usr/include/xtb/xtb_xtb_thirdorder.mod
-  /usr/lib/cmake/xtb/xtb-config-version.cmake
-  /usr/lib/cmake/xtb/xtb-config.cmake
-  /usr/lib/cmake/xtb/xtb-targets-release.cmake
-  /usr/lib/cmake/xtb/xtb-targets.cmake
-  /usr/lib/cmake/xtb/xtb-utils.cmake
   /usr/lib/libxtb.dll.a
   /usr/lib/pkgconfig/xtb.pc
 
 ------------------
 
 Port Notes:
+
+----- version 6.7.1-1bl1 -----
+Version bump.
 
 ----- version 6.5.1-1bl1 -----
 Version bump.

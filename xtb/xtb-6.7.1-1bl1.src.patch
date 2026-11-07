@@ -1,0 +1,7 @@
+--- origsrc/xtb-6.7.1/assets/templates/xtb.pc	2024-07-23 20:08:02.000000000 +0000
++++ src/xtb-6.7.1/assets/templates/xtb.pc	2026-11-07 13:25:50.373597500 +0000
+@@ -7,3 +7,4 @@ Description: @description@
+ Version: @version@
+ Libs: -L${libdir} -l@name@
+ Cflags: -I${includedir}
++Requires: mctc-lib

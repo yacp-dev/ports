@@ -1,0 +1,62 @@
+HOMEPAGE="https://github.com/grimme-lab/${PN}"
+SRC_URI="https://github.com/grimme-lab/${PN}/archive/v${PV}.tar.gz"
+PATCH_URI="https://src.fedoraproject.org/rpms/xtb/raw/3cc9a539e951e7ad4bb3312ad15afd9daa852cb7/f/xtb-6.7.1-formatting.patch"
+
+CATEGORY="Libs"
+SUMMARY="Semiempirical Extended Tight-Binding Program Package"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="LGPL-3.0-or-later AND GPL-2.0-or-later AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later AND GPL-2.0-or-later AND Apache-2.0"
+LICENSE_URI="COPYING.LESSER"
+
+BUILD_REQUIRES="
+	gcc-fortran
+	libcpx-devel
+	libdftd4-devel
+	liblapack-devel
+	libmctc-lib-devel
+	libmulticharge-devel
+	libtest-drive-devel
+"
+
+inherit meson
+
+CYGMESON_ARGS="
+	-Ddefault_library=shared
+	-Dtblite=disabled
+"
+
+src_install()
+{
+	cd ${S}
+	meson_install
+
+	cd ${S}/_build.${CHOST}
+	includeinto ${PN}
+	doinclude cygxtb-6.dll.p/*.mod
+}
+
+DOCS="
+	CONTRIBUTING.md
+"
+
+PKG_NAMES="
+	xtb
+	libxtb6
+	libxtb-devel
+"
+xtb_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libxtb6_CONTENTS="
+	usr/bin/cyg*-6.dll
+"
+libxtb_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+xtb_SUMMARY="${SUMMARY} (utilities)"
+libxtb6_SUMMARY="${SUMMARY} (runtime)"
+libxtb_devel_SUMMARY="${SUMMARY} (development)"

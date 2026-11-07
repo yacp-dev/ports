@@ -1,14 +1,5 @@
---- origsrc/xtl-0.8.0/CMakeLists.txt	2025-03-26 23:47:40.000000000 +0900
-+++ src/xtl-0.8.0/CMakeLists.txt	2025-09-09 10:59:17.626054400 +0900
-@@ -7,7 +7,7 @@
- # The full license is in the file LICENSE, distributed with this software. #
- ############################################################################
- 
--cmake_minimum_required(VERSION 3.29)
-+cmake_minimum_required(VERSION 3.28.3)
- project(xtl)
- 
- set(XTL_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+--- origsrc/xtl-0.8.2/CMakeLists.txt	2026-02-12 12:31:10.000000000 +0000
++++ src/xtl-0.8.2/CMakeLists.txt	2026-11-07 09:08:37.194062800 +0000
 @@ -104,7 +104,7 @@ install(TARGETS xtl
  export(EXPORT ${PROJECT_NAME}-targets
         FILE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Targets.cmake")
@@ -24,8 +15,8 @@
  install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc"
 -        DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig/")
 +        DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig/")
---- origsrc/xtl-0.8.0/include/xtl/xsystem.hpp	2025-03-26 23:47:40.000000000 +0900
-+++ src/xtl-0.8.0/include/xtl/xsystem.hpp	2025-09-09 11:14:34.922822300 +0900
+--- origsrc/xtl-0.8.2/include/xtl/xsystem.hpp	2026-02-12 12:31:10.000000000 +0000
++++ src/xtl-0.8.2/include/xtl/xsystem.hpp	2026-11-07 09:08:37.194062800 +0000
 @@ -10,7 +10,7 @@
  #ifndef XTL_XSYSTEM_HPP
  #define XTL_XSYSTEM_HPP
@@ -44,8 +35,8 @@
          if (readlink("/proc/self/exe", buffer, sizeof(buffer)) != -1)
          {
              path = buffer;
---- origsrc/xtl-0.8.0/test/CMakeLists.txt	2025-03-26 23:47:40.000000000 +0900
-+++ src/xtl-0.8.0/test/CMakeLists.txt	2025-09-09 10:59:42.621375800 +0900
+--- origsrc/xtl-0.8.2/test/CMakeLists.txt	2026-02-12 12:31:10.000000000 +0000
++++ src/xtl-0.8.2/test/CMakeLists.txt	2026-11-07 09:08:37.195821100 +0000
 @@ -7,7 +7,7 @@
  # The full license is in the file LICENSE, distributed with this software. #
  ############################################################################

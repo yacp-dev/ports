@@ -5,43 +5,48 @@ programming interface to build new YARA rulesets. This project is not
 associated with the YARA project.
 
 Runtime requirements:
-  cygwin-3.1.6-1
-  libgcc1-9.3.0-2
-  libre2_0-20200601-1bl1
-  libstdc++6-9.3.0-2
-  libyaramod-devel-3.7.2-1bl1
-  libyaramod0-3.7.2-1bl1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libre2_11-20251105-1bl2
+  libstdc++6-14.4.0-1
+  libyaramod-devel-4.8.3-1bl1
+  libyaramod0-4.8.3-1bl1
+  pkg-config-3.0.10-1
+  pog-0.5.3-1bl2
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.34+1git.de9c1b7cfe-1
-  cmake-3.14.5-1
-  cygport-0.34.0-1
-  gcc-core-9.3.0-2
-  gcc-g++-9.3.0-2
-  ninja-1.10.0-2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libfmt-devel-12.2.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  libre2-devel-20251105-1bl2
+  ninja-1.13.2-1
+  pog-0.5.3-1bl2
+  python3-devel-3.12.12-1
 
 Canonical website:
   https://github.com/avast/yaramod
 
 Canonical download:
-  https://github.com/avast/yaramod/archive/v3.7.2.tar.gz
+  https://github.com/avast/yaramod/archive/v4.8.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack yaramod-3.7.2-X-src.tar.xz
+  1. unpack yaramod-4.8.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./yaramod-3.7.2-X.cygport all
+        % cygport ./yaramod-4.8.3-X.cygport all
 
 This will create:
-  /usr/src/yaramod-3.7.2-X-src.tar.xz
-  /usr/src/yaramod-3.7.2-X.tar.xz
-  /usr/src/libyaramod0-3.7.2-X.tar.xz
-  /usr/src/libyaramod-devel-3.7.2-X.tar.xz
+  /usr/src/yaramod-4.8.3-X-src.tar.xz
+  /usr/src/yaramod-4.8.3-X.tar.xz
+  /usr/src/libyaramod0-4.8.3-X.tar.xz
+  /usr/src/libyaramod-devel-4.8.3-X.tar.xz
 
 -------------------------------------------
 
@@ -51,7 +56,6 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/yaramod.README
   /usr/share/doc/yaramod/CHANGELOG.md
   /usr/share/doc/yaramod/LICENSE
-  /usr/share/doc/yaramod/LICENSE-THIRD-PARTY
   /usr/share/doc/yaramod/README.md
 
 (libyaramod0)
@@ -62,36 +66,41 @@ Files included in the binary package:
   /usr/include/yaramod/builder/yara_file_builder.h
   /usr/include/yaramod/builder/yara_hex_string_builder.h
   /usr/include/yaramod/builder/yara_rule_builder.h
+  /usr/include/yaramod/json/json.hpp
   /usr/include/yaramod/parser/file_context.h
   /usr/include/yaramod/parser/location.h
   /usr/include/yaramod/parser/parser_driver.h
+  /usr/include/yaramod/parser/uid_generator.h
   /usr/include/yaramod/parser/value.h
   /usr/include/yaramod/types/expression.h
   /usr/include/yaramod/types/expression_type.h
   /usr/include/yaramod/types/expressions.h
+  /usr/include/yaramod/types/features.h
   /usr/include/yaramod/types/hex_string.h
   /usr/include/yaramod/types/literal.h
-  /usr/include/yaramod/types/location.h
   /usr/include/yaramod/types/meta.h
-  /usr/include/yaramod/types/modules/androguard_module.h
-  /usr/include/yaramod/types/modules/cuckoo_module.h
-  /usr/include/yaramod/types/modules/dex_module.h
-  /usr/include/yaramod/types/modules/dotnet_module.h
-  /usr/include/yaramod/types/modules/elf_module.h
-  /usr/include/yaramod/types/modules/hash_module.h
-  /usr/include/yaramod/types/modules/macho_module.h
-  /usr/include/yaramod/types/modules/magic_module.h
-  /usr/include/yaramod/types/modules/math_module.h
-  /usr/include/yaramod/types/modules/metadata_module.h
+  /usr/include/yaramod/types/modules/generated/module_console_generated.h
+  /usr/include/yaramod/types/modules/generated/module_cuckoo_deprecated_generated.h
+  /usr/include/yaramod/types/modules/generated/module_cuckoo_generated.h
+  /usr/include/yaramod/types/modules/generated/module_dex_generated.h
+  /usr/include/yaramod/types/modules/generated/module_dotnet_generated.h
+  /usr/include/yaramod/types/modules/generated/module_elf_generated.h
+  /usr/include/yaramod/types/modules/generated/module_hash_generated.h
+  /usr/include/yaramod/types/modules/generated/module_list.h
+  /usr/include/yaramod/types/modules/generated/module_macho_generated.h
+  /usr/include/yaramod/types/modules/generated/module_magic_generated.h
+  /usr/include/yaramod/types/modules/generated/module_math_generated.h
+  /usr/include/yaramod/types/modules/generated/module_pe_generated.h
+  /usr/include/yaramod/types/modules/generated/module_string_generated.h
+  /usr/include/yaramod/types/modules/generated/module_time_generated.h
+  /usr/include/yaramod/types/modules/generated/module_vt_generated.h
   /usr/include/yaramod/types/modules/module.h
-  /usr/include/yaramod/types/modules/modules.h
-  /usr/include/yaramod/types/modules/modules_pool.h
-  /usr/include/yaramod/types/modules/pe_module.h
-  /usr/include/yaramod/types/modules/phish_module.h
-  /usr/include/yaramod/types/modules/time_module.h
+  /usr/include/yaramod/types/modules/module_content.h
+  /usr/include/yaramod/types/modules/module_pool.h
   /usr/include/yaramod/types/plain_string.h
   /usr/include/yaramod/types/regexp.h
   /usr/include/yaramod/types/rule.h
+  /usr/include/yaramod/types/sections_summary.h
   /usr/include/yaramod/types/string.h
   /usr/include/yaramod/types/string_modifier.h
   /usr/include/yaramod/types/symbol.h
@@ -99,8 +108,11 @@ Files included in the binary package:
   /usr/include/yaramod/types/token.h
   /usr/include/yaramod/types/token_stream.h
   /usr/include/yaramod/types/token_type.h
+  /usr/include/yaramod/types/variable.h
   /usr/include/yaramod/types/yara_file.h
   /usr/include/yaramod/utils/filesystem.h
+  /usr/include/yaramod/utils/filesystem_operations.h
+  /usr/include/yaramod/utils/json.h
   /usr/include/yaramod/utils/modifying_visitor.h
   /usr/include/yaramod/utils/observing_visitor.h
   /usr/include/yaramod/utils/trie.h
@@ -115,6 +127,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.8.3-1bl1 -----
+Version bump.
 
 ----- version 3.7.2-1bl1 -----
 Version bump.

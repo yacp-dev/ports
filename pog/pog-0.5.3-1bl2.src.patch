@@ -1,5 +1,5 @@
---- origsrc/pog-0.5.3/CMakeLists.txt	2020-02-07 05:02:59.000000000 +0900
-+++ src/pog-0.5.3/CMakeLists.txt	2020-08-07 13:42:03.851147600 +0900
+--- origsrc/pog-0.5.3/CMakeLists.txt	2026-11-07 11:36:32.464417000 +0000
++++ src/pog-0.5.3/CMakeLists.txt	2026-11-07 11:36:32.713567900 +0000
 @@ -26,7 +26,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
  
  ## Variables.
@@ -31,26 +31,8 @@
  endif()
  
  ## Add deps folder to resolve bundled dependencies.
---- origsrc/pog-0.5.3/include/pog/item.h	2020-02-07 05:02:59.000000000 +0900
-+++ src/pog-0.5.3/include/pog/item.h	2020-08-07 13:46:15.451887200 +0900
-@@ -1,5 +1,6 @@
- #pragma once
- 
-+#include <cassert>
- #include <functional>
- #include <unordered_set>
- 
---- origsrc/pog-0.5.3/include/pog/parsing_table.h	2020-02-07 05:02:59.000000000 +0900
-+++ src/pog-0.5.3/include/pog/parsing_table.h	2020-08-07 13:45:11.276998800 +0900
-@@ -1,5 +1,6 @@
- #pragma once
- 
-+#include <cassert>
- #include <unordered_map>
- 
- #include <pog/action.h>
---- origsrc/pog-0.5.3/tests/CMakeLists.txt	2020-02-07 05:02:59.000000000 +0900
-+++ src/pog-0.5.3/tests/CMakeLists.txt	2020-08-07 14:06:08.728892900 +0900
+--- origsrc/pog-0.5.3/tests/CMakeLists.txt	2020-02-06 20:02:59.000000000 +0000
++++ src/pog-0.5.3/tests/CMakeLists.txt	2026-11-07 11:36:32.713567900 +0000
 @@ -1,4 +1,6 @@
 -add_subdirectory(googletest)
 +if (NOT CYGWIN)
@@ -65,7 +47,7 @@
  endif()
 -target_link_libraries(pog_tests pog googletest)
 +if (CYGWIN)
-+	target_link_libraries(pog_tests pog gtest)
++	target_link_libraries(pog_tests pog gmock gtest)
 +else()
 +	target_link_libraries(pog_tests pog googletest)
 +endif()

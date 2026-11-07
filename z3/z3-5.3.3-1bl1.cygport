@@ -1,10 +1,6 @@
 HOMEPAGE="https://github.com/Z3Prover/${PN}"
 SRC_URI="https://github.com/Z3Prover/${PN}/archive/refs/tags/${P}.tar.gz"
 SRC_DIR="${PN}-${P}"
-PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/4.13.3-1/debian/patches/01-soname.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-ocaml.patch
-"
 
 CATEGORY="Math"
 SUMMARY="Theorem prover"
@@ -26,6 +22,18 @@ CYGCMAKE_ARGS="
 	-DZ3_USE_LIB_GMP:BOOL=ON
 "
 
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	cd ${D}
+	sed -i -E \
+		-e 's|^prefix=.*|prefix=/usr|' \
+		-e "s|^Version:.*|Version: ${PV}|" \
+		usr/lib/pkgconfig/${PN}.pc
+}
+
 src_test()
 {
 	cd ${B}
@@ -39,20 +47,20 @@ DOCS="
 
 PKG_NAMES="
 	z3
-	libz3_${PV[1]}
+	libz3_5.3
 	libz3-devel
 "
 z3_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libz3_4_CONTENTS="
-	usr/bin/cyg*-${PV[1]}.dll
+libz3_5_3_CONTENTS="
+	usr/bin/cygz3-5.3.dll
 "
 libz3_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 z3_SUMMARY="${SUMMARY} (utilities)"
-libz3_4_SUMMARY="${SUMMARY} (runtime)"
+libz3_5_3_SUMMARY="${SUMMARY} (runtime)"
 libz3_devel_SUMMARY="${SUMMARY} (development)"

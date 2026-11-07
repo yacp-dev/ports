@@ -1,5 +1,5 @@
---- origsrc/numsa-0.2.0/meson.build	2025-03-12 18:02:29.000000000 +0900
-+++ src/numsa-0.2.0/meson.build	2025-09-09 19:36:32.278187400 +0900
+--- origsrc/numsa-0.2.0/meson.build	2025-03-12 09:02:29.000000000 +0000
++++ src/numsa-0.2.0/meson.build	2026-11-07 09:41:24.597826100 +0000
 @@ -70,7 +70,7 @@ if install
      install_dir: get_option('datadir')/'licenses'/meson.project_name()
    )
@@ -9,8 +9,8 @@
    meson.add_install_script(
      find_program(files('config'/'install-mod.py')),
      get_option('includedir') / module_id,
---- origsrc/numsa-0.2.0/test/meson.build	2025-03-12 18:02:29.000000000 +0900
-+++ src/numsa-0.2.0/test/meson.build	2025-09-09 19:41:35.499506300 +0900
+--- origsrc/numsa-0.2.0/test/meson.build	2025-03-12 09:02:29.000000000 +0000
++++ src/numsa-0.2.0/test/meson.build	2026-11-07 09:41:24.599839100 +0000
 @@ -14,20 +14,24 @@
  # You should have received a copy of the GNU Lesser General Public License
  # along with numsa.  If not, see <https://www.gnu.org/licenses/>.

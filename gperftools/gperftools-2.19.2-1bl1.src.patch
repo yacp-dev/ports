@@ -1,5 +1,5 @@
---- origsrc/gperftools-gperftools-2.19.1/Makefile.am	2026-10-21 19:08:27.000000000 +0000
-+++ src/gperftools-gperftools-2.19.1/Makefile.am	2026-10-22 14:22:13.456416400 +0000
+--- origsrc/gperftools-gperftools-2.19.2/Makefile.am	2026-10-29 02:02:42.000000000 +0000
++++ src/gperftools-gperftools-2.19.2/Makefile.am	2026-11-07 10:30:45.789176300 +0000
 @@ -284,7 +284,7 @@ libtcmalloc_minimal_la_SOURCES = $(TCMAL
  libtcmalloc_minimal_la_CXXFLAGS = -DNO_TCMALLOC_SAMPLES \
                                    -DNDEBUG $(AM_CXXFLAGS)
@@ -36,19 +36,27 @@
                                        $(AM_LDFLAGS)
  libtcmalloc_and_profiler_la_LIBADD = $(libtcmalloc_la_LIBADD)
  
---- origsrc/gperftools-gperftools-2.19.1/src/base/basictypes.h	2026-10-21 19:08:27.000000000 +0000
-+++ src/gperftools-gperftools-2.19.1/src/base/basictypes.h	2026-10-22 14:22:13.457923400 +0000
-@@ -127,7 +127,7 @@ inline void bit_store(Dest* dest, const
+--- origsrc/gperftools-gperftools-2.19.2/src/base/basictypes.h	2026-10-29 02:02:42.000000000 +0000
++++ src/gperftools-gperftools-2.19.2/src/base/basictypes.h	2026-11-07 10:30:45.791196800 +0000
+@@ -127,11 +127,14 @@ inline void bit_store(Dest* dest, const
    memcpy(dest, source, sizeof(Dest));
  }
  
 -#ifdef HAVE___ATTRIBUTE__
 +#if defined(HAVE___ATTRIBUTE__) && defined(__ELF__)
  #define ATTRIBUTE_WEAK __attribute__((weak))
- #define ATTRIBUTE_NOINLINE __attribute__((noinline))
+-#define ATTRIBUTE_NOINLINE __attribute__((noinline))
  #else
---- origsrc/gperftools-gperftools-2.19.1/src/base/proc_maps_iterator.cc	2026-10-21 19:08:27.000000000 +0000
-+++ src/gperftools-gperftools-2.19.1/src/base/proc_maps_iterator.cc	2026-10-22 14:22:13.458436800 +0000
+ #define ATTRIBUTE_WEAK
++#endif
++#ifdef HAVE___ATTRIBUTE__
++#define ATTRIBUTE_NOINLINE __attribute__((noinline))
++#else
+ #define ATTRIBUTE_NOINLINE
+ #endif
+ 
+--- origsrc/gperftools-gperftools-2.19.2/src/base/proc_maps_iterator.cc	2026-10-29 02:02:42.000000000 +0000
++++ src/gperftools-gperftools-2.19.2/src/base/proc_maps_iterator.cc	2026-11-07 10:30:45.791196800 +0000
 @@ -203,7 +203,7 @@ bool StringToIntegerUntilCharWithCheck(u
    return true;
  }
@@ -76,8 +84,8 @@
    return DoIterateLinux("/proc/self/maps", body, arg);
  #else
    return false;
---- origsrc/gperftools-gperftools-2.19.1/src/base/sysinfo.cc	2026-10-21 19:08:27.000000000 +0000
-+++ src/gperftools-gperftools-2.19.1/src/base/sysinfo.cc	2026-10-22 14:22:13.460456300 +0000
+--- origsrc/gperftools-gperftools-2.19.2/src/base/sysinfo.cc	2026-10-29 02:02:42.000000000 +0000
++++ src/gperftools-gperftools-2.19.2/src/base/sysinfo.cc	2026-11-07 10:30:45.793220800 +0000
 @@ -319,8 +319,7 @@ const char* GetProgramInvocationName() {
    static const char* argv0 = readlink_strdup("/proc/self/path/a.out");
    return argv0;
@@ -88,8 +96,8 @@
  #elif defined(__MACH__)
    // We don't want to allocate memory for this since we may be
    // calculating it when memory is corrupted.
---- origsrc/gperftools-gperftools-2.19.1/src/base/threading.h	2026-10-21 19:08:27.000000000 +0000
-+++ src/gperftools-gperftools-2.19.1/src/base/threading.h	2026-10-22 14:22:13.461477900 +0000
+--- origsrc/gperftools-gperftools-2.19.2/src/base/threading.h	2026-10-29 02:02:42.000000000 +0000
++++ src/gperftools-gperftools-2.19.2/src/base/threading.h	2026-11-07 10:30:45.793220800 +0000
 @@ -96,7 +96,8 @@ using TlsKey = pthread_key_t;
  // in standard (even without pthread_key_create_once_np), but we
  // have what we have. It's value is (int)(-1). And, indeed, -1 seems
@@ -100,8 +108,46 @@
  static_assert(sizeof(pthread_key_t) <= sizeof(uintptr_t));
  
  ATTRIBUTE_VISIBILITY_HIDDEN inline int CreateTlsKey(TlsKey* pkey, void (*destructor)(void*)) {
---- origsrc/gperftools-gperftools-2.19.1/src/tests/generic_writer_test.cc	2026-10-21 19:08:27.000000000 +0000
-+++ src/gperftools-gperftools-2.19.1/src/tests/generic_writer_test.cc	2026-10-22 14:22:13.461995400 +0000
+--- origsrc/gperftools-gperftools-2.19.2/src/stacktrace.cc	2026-10-29 02:02:42.000000000 +0000
++++ src/gperftools-gperftools-2.19.2/src/stacktrace.cc	2026-11-07 10:30:45.795249000 +0000
+@@ -109,7 +109,9 @@
+ #define HAVE_GST_libunwind
+ #endif  // USE_LIBUNWIND
+ 
+-#if !defined(_WIN32) && defined(__GNUC__) && \
++// The Win64 ABI (Cygwin included) doesn't keep the caller's frame pointer at
++// the frame pointer's address, so frame-pointer walking can't work there.
++#if !defined(_WIN32) && !defined(__CYGWIN__) && defined(__GNUC__) && \
+     (defined(__x86_64__) || defined(__i386__) || defined(__aarch64__) || defined(__riscv) || defined(__arm__))
+ // NOTE: legacy 32-bit arm works fine with recent clangs, but is broken in gcc:
+ // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=92172
+--- origsrc/gperftools-gperftools-2.19.2/src/stacktrace_win32-inl.h	2026-10-29 02:02:42.000000000 +0000
++++ src/gperftools-gperftools-2.19.2/src/stacktrace_win32-inl.h	2026-11-07 10:30:45.795249000 +0000
+@@ -72,7 +72,7 @@ static int GetStackTrace_win32(void** re
+     // TODO(csilvers): should we log an error here?
+     return 0;  // can't find a stacktrace with no function to call
+   }
+-  return (int)RtlCaptureStackBackTrace_fn(skip_count + 3, max_depth, result, 0);
++  return (int)RtlCaptureStackBackTrace_fn(skip_count + 2, max_depth, result, 0);
+ }
+ 
+ static int not_implemented(void) {
+@@ -89,7 +89,12 @@ static int GetStackFramesWithContext_win
+ }
+ 
+ static int GetStackTraceWithContext_win32(void** result, int max_depth, int skip_count, const void* uc) {
+-  return not_implemented();
++  // Like the libgcc implementation, this doesn't walk the given context: it
++  // captures the current stack, skipping the same number of frames.
++  if (!RtlCaptureStackBackTrace_fn) {
++    return 0;
++  }
++  return (int)RtlCaptureStackBackTrace_fn(skip_count + 2, max_depth, result, 0);
+ }
+ 
+ #endif  // BASE_STACKTRACE_WIN32_INL_H_
+--- origsrc/gperftools-gperftools-2.19.2/src/tests/generic_writer_test.cc	2026-10-29 02:02:42.000000000 +0000
++++ src/gperftools-gperftools-2.19.2/src/tests/generic_writer_test.cc	2026-11-07 10:30:45.797277600 +0000
 @@ -4,6 +4,9 @@
  #include "base/generic_writer.h"
  
@@ -124,8 +170,8 @@
      PrintLargeAmount(&writer);
    }
  
---- origsrc/gperftools-gperftools-2.19.1/src/tests/min_per_thread_cache_size_test.cc	2026-10-21 19:08:27.000000000 +0000
-+++ src/gperftools-gperftools-2.19.1/src/tests/min_per_thread_cache_size_test.cc	2026-10-22 14:22:13.464269400 +0000
+--- origsrc/gperftools-gperftools-2.19.2/src/tests/min_per_thread_cache_size_test.cc	2026-10-29 02:02:42.000000000 +0000
++++ src/gperftools-gperftools-2.19.2/src/tests/min_per_thread_cache_size_test.cc	2026-11-07 10:30:45.797277600 +0000
 @@ -34,6 +34,8 @@
  #include <new>
  #include <thread>

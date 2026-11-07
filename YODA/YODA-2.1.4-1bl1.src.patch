@@ -1,0 +1,528 @@
+--- origsrc/YODA-2.1.4/configure.ac	2026-09-10 14:35:05.000000000 +0000
++++ src/YODA-2.1.4/configure.ac	2026-11-07 14:50:35.762358100 +0000
+@@ -1,5 +1,6 @@
+ ## Process this file with autoconf to produce a configure script.
+ 
++m4_pattern_allow([^AX_LIB_HDF5$])
+ AC_PREREQ(2.69)
+ AC_INIT([YODA],[2.1.4],[yoda-support@cern.ch],[YODA])
+ 
+--- origsrc/YODA-2.1.4/include/YODA/Config/BuildConfig.h	2026-09-07 14:27:43.000000000 +0000
++++ src/YODA-2.1.4/include/YODA/Config/BuildConfig.h	2026-11-07 14:51:11.559748600 +0000
+@@ -42,12 +42,12 @@
+ #define HAVE_LIBZ 1
+ 
+ /* Defined if you have HDF5 support */
+-#define HAVE_HDF5 1
++/* #undef HAVE_HDF5 */
+ 
+ /* Defined if using bundled HighFive */
+ #define WITH_HIGHFIVE 1
+ 
+ /* Define to 1 if running on OSX. */
+-#define WITH_OSX 1
++/* #undef WITH_OSX */
+ 
+ #endif
+--- origsrc/YODA-2.1.4/include/YODA/Makefile.am	2026-08-13 20:29:56.000000000 +0000
++++ src/YODA-2.1.4/include/YODA/Makefile.am	2026-11-07 14:50:35.764368900 +0000
+@@ -60,6 +60,6 @@ if ENABLE_H5
+    pkginclude_HEADERS += ReaderH5.h WriterH5.h
+    nobase_pkginclude_HEADERS += Utils/H5Utils.h
+ if !WITH_HIGHFIVE_CPP
+-   nobase_pkginclude_HEADERS += highfive/*.hpp highfive/bits/*.hpp
++   nobase_pkginclude_HEADERS += $(srcdir)/highfive/*.hpp $(srcdir)/highfive/bits/*.hpp
+ endif
+ endif
+--- origsrc/YODA-2.1.4/include/YODA/Utils/BinEstimators.h	2026-08-05 21:07:55.000000000 +0000
++++ src/YODA-2.1.4/include/YODA/Utils/BinEstimators.h	2026-11-07 14:50:35.764368900 +0000
+@@ -5,6 +5,10 @@
+ #include "YODA/Utils/fastlog.h"
+ #include <cstdlib>
+ 
++#if defined(_N)
++#undef _N
++#endif
++
+ namespace YODA {
+ 
+ 
+--- origsrc/YODA-2.1.4/pyext/Makefile.am	2025-03-05 20:35:52.000000000 +0000
++++ src/YODA-2.1.4/pyext/Makefile.am	2026-11-07 14:50:35.765133600 +0000
+@@ -4,36 +4,36 @@ if ENABLE_PYEXT
+ PYEXT_ENV = CC="$(CXX)" CXX="$(CXX)" CXXFLAGS="$(PYEXT_CXXFLAGS)" ARCHFLAGS=""
+ 
+ PYCORE_SRC = \
+-    yoda/*.py \
+-    yoda/plotting/*.py
++    $(wildcard $(srcdir)/yoda/*.py) \
++    $(wildcard $(srcdir)/yoda/plotting/*.py)
+ 
+-all-local: build/yoda/core.so
++all-local: build/yoda/core.dll
+ 
+ if WITH_OSX
+ 
+-build/yoda/core.so: build.py yoda/core.cpp $(PYCORE_SRC)
++build/yoda/core.dll: build.py yoda/core.cpp $(PYCORE_SRC)
+ 	cd $(srcdir); \
+ 	$(PYEXT_ENV) YODA_LOCAL=1 $(PYTHON) $(abs_builddir)/build.py
+ 	install_name_tool -change \
+         $(libdir)/libYODA.dylib \
+         $(abs_top_srcdir)/src/.libs/libYODA.dylib \
+-        $(abs_builddir)/build/yoda/core.so
++        $(abs_builddir)/build/yoda/core.dll
+ 
+-install-exec-local: build/yoda/core.so
++install-exec-local: build/yoda/core.dll
+ 	$(MKDIR_P) $(DESTDIR)$(YODA_PYTHONPATH); \
+ 	cp -r $(abs_builddir)/build/yoda $(DESTDIR)$(YODA_PYTHONPATH)/
+ 	install_name_tool -change \
+         $(abs_top_srcdir)/src/.libs/libYODA.dylib \
+         $(libdir)/libYODA.dylib \
+-        $(abs_builddir)/build/yoda/core.so
++        $(abs_builddir)/build/yoda/core.dll
+ 
+ else
+ 
+-build/yoda/core.so: build.py yoda/core.cpp $(PYCORE_SRC)
++build/yoda/core.dll: build.py yoda/core.cpp $(PYCORE_SRC)
+ 	cd $(srcdir); \
+ 	$(PYEXT_ENV) YODA_LOCAL=1 $(PYTHON) $(abs_builddir)/build.py
+ 
+-install-exec-local: build/yoda/core.so
++install-exec-local: build/yoda/core.dll
+ 	$(MKDIR_P) $(DESTDIR)$(YODA_PYTHONPATH); \
+ 	cp -r $(abs_builddir)/build/yoda $(DESTDIR)$(YODA_PYTHONPATH)/
+ 
+--- origsrc/YODA-2.1.4/pyext/build.py.in	2026-08-13 20:29:56.000000000 +0000
++++ src/YODA-2.1.4/pyext/build.py.in	2026-11-07 14:50:35.765133600 +0000
+@@ -94,7 +94,7 @@ for srcname in srcnames:
+     xcmpargs, xlinkargs = cmpargs, linkargs
+ 
+     ## Assemble the compile & link command
+-    compile_cmd = "  ".join([os.environ.get("CXX", "g++"), "-shared -fPIC", "-o {}.so".format(srcname),
++    compile_cmd = "  ".join([os.environ.get("CXX", "g++"), "-shared -fPIC", "-o {}.dll".format(srcname),
+                              srcpath, incargs, xcmpargs, xlinkargs, libargs, pyargs])
+     print("Build command =", compile_cmd)
+ 
+--- origsrc/YODA-2.1.4/pyext/yoda/Makefile.am	2025-07-04 10:26:23.000000000 +0000
++++ src/YODA-2.1.4/pyext/yoda/Makefile.am	2026-11-07 14:50:35.766375300 +0000
+@@ -30,7 +30,7 @@ all: core.pyx
+ core.pyx:
+ 	test -s $(srcdir)/core.pyx || { $(srcdir)/mktemplates ${WITH_H5}; }
+ 
+-.made_pyx_templates: $(TEMPLATE_SRC)
++.made_pyx_templates: $(srcdir)/mktemplates $(wildcard $(srcdir)/templates/*.dat)
+ 	$(srcdir)/mktemplates ${WITH_H5} && touch $@
+ 
+ STATIC_SRC += \
+--- origsrc/YODA-2.1.4/src/Makefile.am	2025-07-04 10:45:38.000000000 +0000
++++ src/YODA-2.1.4/src/Makefile.am	2026-11-07 14:50:35.767141300 +0000
+@@ -18,7 +18,7 @@ libYODA_la_SOURCES = \
+     WriterFLAT.cc \
+     Counter.cc
+ 
+-libYODA_la_LDFLAGS = -avoid-version
++libYODA_la_LDFLAGS = -no-undefined
+ libYODA_la_LIBADD = $(builddir)/binreloc/libyoda-binreloc.la
+ if !WITH_YAML_CPP
+ libYODA_la_LIBADD += $(builddir)/yamlcpp/libyoda-yaml-cpp.la
+--- origsrc/YODA-2.1.4/tests/default.mplstyle	1970-01-01 00:00:00.000000000 +0000
++++ src/YODA-2.1.4/tests/default.mplstyle	2026-11-07 15:28:10.151060700 +0000
+@@ -0,0 +1,55 @@
++# font and font sizes
++font.family: serif
++font.serif: Palatino
++mathtext.fontset: custom
++mathtext.rm: Palatino
++mathtext.bf: Palatino:bold
++mathtext.it: Palatino:italic
++mathtext.default: it
++text.usetex: True
++font.size: 10
++axes.titlesize: 9
++axes.labelsize: 10
++xtick.labelsize: 8
++ytick.labelsize: 8
++legend.fontsize: 10
++figure.titlesize:  10
++lines.linewidth: 0.8
++
++# figure layout
++figure.figsize: 4.67, 4.21
++figure.subplot.bottom: 0.092
++figure.subplot.top: 0.934
++figure.subplot.left: 0.125
++figure.subplot.right: 0.968
++figure.subplot.hspace: 0
++
++# axes
++axes.axisbelow: False
++axes.titlepad: 7.5
++axes.labelpad: 2
++axes.linewidth: 0.3
++xaxis.labellocation: right
++lines.markersize: 2.5
++axes.formatter.min_exponent: 1  # 10^0 should not be in sci. notation
++axes.prop_cycle : cycler(color=['EE3311', '3366FF', '109618', 'FF9900', '990099'])
++
++# axis ticks
++xtick.major.width: 0.3
++ytick.major.width: 0.3
++xtick.minor.width: 0.3
++ytick.minor.width: 0.3
++xtick.major.size: 9
++ytick.major.size: 9
++xtick.minor.size: 4
++ytick.minor.size: 4
++xtick.direction: in
++ytick.direction: in
++xtick.minor.visible: True
++ytick.minor.visible: True
++xtick.top: True
++ytick.right: True
++
++# legend
++legend.frameon: False
++legend.labelspacing: 0.2
+--- origsrc/YODA-2.1.4/tests/foobar.py	1970-01-01 00:00:00.000000000 +0000
++++ src/YODA-2.1.4/tests/foobar.py	2026-11-07 15:28:10.166658100 +0000
+@@ -0,0 +1,233 @@
++#! /usr/bin/env python3
++
++# This Python script was auto-generated using YODA v2.1.4.
++# Analysis object: foobar
++# Timestamp: 07-11-2026 (15:28:10)
++
++import matplotlib as mpl
++import matplotlib.pyplot as plt
++mpl.use('Agg') # comment out for interactive use
++import os
++import numpy as np
++from numpy import nan, inf
++
++plotDir = os.path.split(os.path.realpath(__file__))[0]
++if 'YODA_USER_PLOT_PATH' in globals():
++    plot_outdir = globals()['YODA_USER_PLOT_PATH']
++else:
++    plot_outdir = plotDir
++
++#plot style
++plt.style.use(os.path.join(plotDir, 'default.mplstyle'))
++
++plt.rcParams['text.usetex'] = False
++plt.rc('font', family='DejaVu Sans')
++# plot metadata
++figW, figH = plt.rcParams['figure.figsize']
++ax_xLabel = '$x$'
++ax_yLabel = '$y$'
++ax_title  = 'Test'
++ax_xScale = 'linear'
++ax_yScale = 'linear'
++xLims = (0.0, 100.0)
++yLims = (0.0, 0.22000000000000003)
++
++# TeX-friendly labels for the legend
++labels = {
++  'legend' : ([ r"Data", r"testMC" ], r""),
++}
++
++# Adjust canvas width and height
++canvasW = 10.0
++canvasH = 9.0
++figW *= canvasW/10.
++figH *= canvasH/9.
++
++# Create figure and axis objects
++fig, (ax, ratio0_ax) = plt.subplots(2, 1, sharex=True,
++                  figsize=(figW,figH), gridspec_kw={'height_ratios': (6.0, 3.0)})
++
++# Set figure margins
++plt.subplots_adjust(
++    left   = 1.0 * plt.rcParams['figure.subplot.left'],
++    right  = 1.0 * plt.rcParams['figure.subplot.right'],
++    top    = 1.0 * plt.rcParams['figure.subplot.top'],
++    bottom = 1.0 * plt.rcParams['figure.subplot.bottom'])
++
++ratio0_ax.yaxis.set_major_locator(mpl.ticker.MultipleLocator(0.2))
++ratio0_ax.set_ylim(0.5, 1.4999)
++ratio0_ax.set_ylabel('Ratio')
++
++# the numerical data is stored in a separate file
++dataf = dict()
++prefix = os.path.split(__file__)[0]
++if prefix:    prefix = prefix + '/'
++exec(open(prefix+'foobar__data.py').read(), dataf)
++
++
++legend_handles = dict() # keep track of handles for the legend
++
++# style options for curves
++# starts at zorder>=5 to draw curve on top of legend
++styles = {
++  'Data': {
++    'color' : '#EE3311',
++    'linestyle' : '-',
++    'lineopacity' : 1.0,
++    'linewidth' : 1,
++    'marker' : 'none',
++    'markersize' : 2,
++    'capsize' : 0.0,
++    'zorder' : 5,
++    'histstyle' : 1,
++    'drawstyle' : 'steps-pre',
++    'xerrorbars' : 1,
++    'yerrorbars' : 1,
++    'fillcolor' : None,
++    'fillopacity' : 1.0,
++    'ratio0_linestyle' : '-',
++    'ratio0_lineopacity' : 1.0,
++    'ratio0_linewidth' : 1,
++    'ratio0_marker' : 'none',
++    'ratio0_markersize' : 2,
++    'ratio0_capsize' : 0.0,
++    'ratio0_zorder' : 5,
++    'ratio0_histstyle' : 1,
++    'ratio0_drawstyle' : 'steps-pre',
++    'ratio0_xerrorbars' : 1,
++    'ratio0_yerrorbars' : 1,
++  },
++  '/foo/bar/baz': {
++    'color' : '#3366FF',
++    'linestyle' : '-',
++    'lineopacity' : 1.0,
++    'linewidth' : 1,
++    'marker' : 'none',
++    'markersize' : 2,
++    'capsize' : 0.0,
++    'zorder' : 6,
++    'histstyle' : 1,
++    'drawstyle' : 'steps-pre',
++    'xerrorbars' : 1,
++    'yerrorbars' : 1,
++    'fillcolor' : None,
++    'fillopacity' : 1.0,
++    'ratio0_linestyle' : '-',
++    'ratio0_lineopacity' : 1.0,
++    'ratio0_linewidth' : 1,
++    'ratio0_marker' : 'none',
++    'ratio0_markersize' : 2,
++    'ratio0_capsize' : 0.0,
++    'ratio0_zorder' : 6,
++    'ratio0_histstyle' : 1,
++    'ratio0_drawstyle' : 'steps-pre',
++    'ratio0_xerrorbars' : 1,
++    'ratio0_yerrorbars' : 1,
++  },
++}
++
++# curve from input yoda files in main panel
++for label, yvals in dataf['yvals'].items():
++    if all(np.isnan(v) for v in dataf['yvals'][label]):
++        continue
++    tmp = None
++    if styles[label]['histstyle']: # draw as histogram
++        xpos = dataf['xedges'][label] if styles[label]['drawstyle'] else dataf['xpoints'][label]
++        ypos = np.insert(yvals, 0, yvals[0]) if styles[label]['drawstyle'] else yvals
++        if styles[label]['fillcolor']: # fill area below curve
++            ax.fill_between(xpos, ypos, step='pre',
++                            color=styles[label]['fillcolor'],
++                            alpha=styles[label]['fillopacity'])
++        tmp, = ax.plot(xpos, ypos,
++                       color=styles[label]['color'],
++                       linestyle=styles[label]['linestyle'],
++                       alpha=styles[label]['lineopacity'],
++                       linewidth=styles[label]['linewidth'],
++                       drawstyle=styles[label]['drawstyle'], solid_joinstyle='miter',
++                       zorder=styles[label]['zorder'], label=label)
++    tmp = ax.errorbar(dataf['xpoints'][label], yvals,
++                      xerr=np.array(dataf['xerrs'][label])*styles[label]['xerrorbars'],
++                      yerr=np.array(dataf['yerrs'][label])*styles[label]['yerrorbars'],
++                      fmt=styles[label]['marker'], capsize=styles[label]['capsize'],
++                      alpha=styles[label]['lineopacity'],
++                      markersize=styles[label]['markersize'],
++                      ecolor=styles[label]['color'],
++                      color=styles[label]['color'], zorder=styles[label]['zorder'])
++    tmp[-1][0].set_linestyle(styles[label]['linestyle'])
++    tmp[-1][0].set_linewidth(styles[label]['linewidth'])
++    if label in dataf['add_legend_handle']:  legend_handles[label] = tmp
++    for varLabel in dataf['variation_yvals'].keys():
++        if varLabel.startswith(label):
++            tmp, = ax.plot(dataf['xedges'][label], dataf['variation_yvals'][varLabel],
++                           color=styles[label]['color'],
++                           linestyle=styles[label]['linestyle'],
++                           linewidth=styles[label]['linewidth'],
++                           drawstyle='steps-pre', solid_joinstyle='miter',
++                           zorder=styles[label]['zorder'], alpha=0.5)
++
++
++# plots on ratio panel
++# curve from input yoda files in ratio panel
++for label, yvals in dataf['ratio0_yvals'].items():
++    if all(np.isnan(v) for v in yvals):
++        continue
++    if styles[label]['ratio0_histstyle']: # plot as histogram
++        xpos = dataf['xedges']['Data'] if styles[label]['ratio0_drawstyle'] else dataf['xpoints']['Data']
++        ypos = np.insert(yvals, 0, yvals[0]) if styles[label]['ratio0_drawstyle'] else yvals
++        ratio0_ax.plot(xpos, ypos,
++                       color=styles[label]['color'],
++                       linewidth=styles[label]['linewidth'],
++                       linestyle=styles[label]['ratio0_linestyle'],
++                       alpha=styles[label]['ratio0_lineopacity'],
++                       drawstyle=styles[label]['ratio0_drawstyle'], zorder=styles[label]['ratio0_zorder'],
++                       solid_joinstyle='miter')
++    tmp = ratio0_ax.errorbar(dataf['xpoints']['Data'], yvals,
++                             xerr=np.array(dataf['ref_xerrs'])*styles[label]['ratio0_xerrorbars'],
++                             yerr=np.array(dataf['ratio0_yerrs'][label])*styles[label]['ratio0_yerrorbars'],
++                             fmt=styles[label]['ratio0_marker'], capsize=styles[label]['ratio0_capsize'],
++                             alpha=styles[label]['ratio0_lineopacity'], zorder=styles[label]['ratio0_zorder'],
++                             markersize=styles[label]['ratio0_markersize'],
++                             ecolor=styles[label]['color'],
++                             color=styles[label]['color'])
++    tmp[-1][0].set_linestyle(styles[label]['ratio0_linestyle'])
++    tmp[-1][0].set_linewidth(styles[label]['ratio0_linewidth'])
++    if label in dataf['add_legend_handle']:  legend_handles['ratio0_'+label] = tmp
++
++    for varlabel in dataf['ratio0_variation_vals'].keys():
++        if varlabel.startswith(label):
++            ratio0_ax.plot(dataf['xedges']['Data'],
++                            dataf['ratio0_variation_vals'][varlabel],
++                            color=styles[label]['color'],
++                            linestyle=styles[label]['linestyle'],
++                            linewidth=styles[label]['linewidth'],
++                            drawstyle='steps-pre', solid_joinstyle='miter',
++                            zorder=1, alpha=0.5)
++
++legend_items = list(legend_handles.values())
++ax.add_artist(ax.legend(legend_items,
++                        labels['legend'][0],
++                        title=labels['legend'][1],
++                        alignment='left',
++                        loc='upper center',
++                        bbox_to_anchor=(0.5, 0.97)))
++
++# set plot metadata as defined above
++ratio0_ax.set_xlabel(ax_xLabel)
++ratio0_ax.xaxis.set_label_coords(1., -0.15)
++ax.set_ylabel(ax_yLabel, ha='right', va='top')
++ax.yaxis.set_label_coords(-0.11, 1.0)
++ax.set_title(ax_title, loc='left')
++ax.set_xscale(ax_xScale)
++ax.set_yscale(ax_yScale)
++ratio0_ax.set_yscale('linear')
++ax.set_xlim(xLims)
++ax.set_ylim(yLims)
++
++# tick formatting
++plt.rcParams['xtick.top'] = True
++plt.rcParams['ytick.right'] = True
++fig.align_ylabels((ax, ratio0_ax))
++plt.savefig(os.path.join(plot_outdir, 'foobar.pdf'), format='PDF')
++plt.savefig(os.path.join(plot_outdir, 'foobar.png'), format='PNG')
++
++plt.close(fig)
+\ No newline at end of file
+--- origsrc/YODA-2.1.4/tests/foobar__data.py	1970-01-01 00:00:00.000000000 +0000
++++ src/YODA-2.1.4/tests/foobar__data.py	2026-11-07 15:28:10.166658100 +0000
+@@ -0,0 +1,100 @@
++
++import numpy as np
++from numpy import nan, inf
++
++add_legend_handle = [
++  'Data',
++  '/foo/bar/baz'
++]
++
++xpoints = {
++            'Data' : [5.000000e+00, 1.500000e+01, 2.500000e+01, 3.500000e+01, 4.500000e+01,
++                      5.500000e+01, 6.500000e+01, 7.500000e+01, 8.500000e+01, 9.500000e+01],
++    '/foo/bar/baz' : [5.000000e+00, 1.500000e+01, 2.500000e+01, 3.500000e+01, 4.500000e+01,
++                      5.500000e+01, 6.500000e+01, 7.500000e+01, 8.500000e+01, 9.500000e+01],
++}
++
++xedges = {
++            'Data' : [0.000000e+00, 1.000000e+01, 2.000000e+01, 3.000000e+01, 4.000000e+01,
++                      5.000000e+01, 6.000000e+01, 7.000000e+01, 8.000000e+01, 9.000000e+01,
++                      1.000000e+02],
++    '/foo/bar/baz' : [0.000000e+00, 1.000000e+01, 2.000000e+01, 3.000000e+01, 4.000000e+01,
++                      5.000000e+01, 6.000000e+01, 7.000000e+01, 8.000000e+01, 9.000000e+01,
++                      1.000000e+02],
++}
++
++ref_xerrs = [
++  [abs(xpoints['Data'][i]   - xedges['Data'][i]) for i in range(len(xpoints['Data']))],
++  [abs(xedges['Data'][i+1] - xpoints['Data'][i]) for i in range(len(xpoints['Data']))]
++]
++
++yvals = {
++            'Data' : [2.000000e-01, 1.000000e-01, 2.000000e-01, 0.000000e+00, 0.000000e+00,
++                      1.000000e-01, 0.000000e+00, 2.000000e-01, 1.000000e-01, 0.000000e+00],
++    '/foo/bar/baz' : [2.000000e-01, 1.000000e-01, 2.000000e-01, 0.000000e+00, 0.000000e+00,
++                      1.000000e-01, 0.000000e+00, 2.000000e-01, 1.000000e-01, 0.000000e+00],
++}
++
++xerrs = {
++            'Data' : [
++                        [5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00,
++                         5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00],
++                        [5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00,
++                         5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00],
++                     ],
++    '/foo/bar/baz' : [
++                        [5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00,
++                         5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00],
++                        [5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00,
++                         5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00, 5.000000e+00],
++                     ],
++}
++
++yerrs = {
++            'Data' : [
++                        [1.414214e-01, 1.000000e-01, 1.414214e-01, 0.000000e+00, 0.000000e+00,
++                         1.000000e-01, 0.000000e+00, 1.414214e-01, 1.000000e-01, 0.000000e+00],
++                        [1.414214e-01, 1.000000e-01, 1.414214e-01, 0.000000e+00, 0.000000e+00,
++                         1.000000e-01, 0.000000e+00, 1.414214e-01, 1.000000e-01, 0.000000e+00],
++                     ],
++    '/foo/bar/baz' : [
++                        [1.414214e-01, 1.000000e-01, 1.414214e-01, 0.000000e+00, 0.000000e+00,
++                         1.000000e-01, 0.000000e+00, 1.414214e-01, 1.000000e-01, 0.000000e+00],
++                        [1.414214e-01, 1.000000e-01, 1.414214e-01, 0.000000e+00, 0.000000e+00,
++                         1.000000e-01, 0.000000e+00, 1.414214e-01, 1.000000e-01, 0.000000e+00],
++                     ],
++}
++
++variation_yvals = {
++}
++
++
++
++# lists for ratio plot
++ratio0_yvals = {
++            'Data' : [1.000000e+00, 1.000000e+00, 1.000000e+00, 1.000000e+00, 1.000000e+00,
++                      1.000000e+00, 1.000000e+00, 1.000000e+00, 1.000000e+00, 1.000000e+00],
++    '/foo/bar/baz' : [1.000000e+00, 1.000000e+00, 1.000000e+00, 1.000000e+00, 1.000000e+00,
++                      1.000000e+00, 1.000000e+00, 1.000000e+00, 1.000000e+00, 1.000000e+00],
++}
++
++ratio0_yerrs = {
++            'Data' : [
++                        [7.071068e-01, 1.000000e+00, 7.071068e-01, 1.000000e+00, 1.000000e+00,
++                         1.000000e+00, 1.000000e+00, 7.071068e-01, 1.000000e+00, 1.000000e+00],
++                        [7.071068e-01, 1.000000e+00, 7.071068e-01, 1.000000e+00, 1.000000e+00,
++                         1.000000e+00, 1.000000e+00, 7.071068e-01, 1.000000e+00, 1.000000e+00],
++                     ],
++    '/foo/bar/baz' : [
++                        [7.071068e-01, 1.000000e+00, 7.071068e-01, 1.000000e+00, 1.000000e+00,
++                         1.000000e+00, 1.000000e+00, 7.071068e-01, 1.000000e+00, 1.000000e+00],
++                        [7.071068e-01, 1.000000e+00, 7.071068e-01, 1.000000e+00, 1.000000e+00,
++                         1.000000e+00, 1.000000e+00, 7.071068e-01, 1.000000e+00, 1.000000e+00],
++                     ],
++}
++
++ratio0_variation_vals = {
++}
++
++ratio_band_edges = {
++}

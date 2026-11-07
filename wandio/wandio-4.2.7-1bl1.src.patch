@@ -1,5 +1,5 @@
---- origsrc/wandio-4.2.6-1/Makefile.am	2023-09-19 08:46:06.000000000 +0900
-+++ src/wandio-4.2.6-1/Makefile.am	2025-09-05 22:14:25.760068300 +0900
+--- origsrc/wandio-4.2.7-1/Makefile.am	2026-06-10 11:18:07.000000000 +0000
++++ src/wandio-4.2.7-1/Makefile.am	2026-11-07 14:21:58.984707900 +0000
 @@ -11,3 +11,6 @@ bootstrap-clean:
  		mkinstalldirs stamp-h.in \
  		lib/Makefile.in replace/libreplace.la  replace/Makefile.in
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/wandio-4.2.6-1/configure.ac	2023-09-19 08:46:06.000000000 +0900
-+++ src/wandio-4.2.6-1/configure.ac	2025-09-05 22:14:25.773767800 +0900
+--- origsrc/wandio-4.2.7-1/configure.ac	2026-06-10 11:18:07.000000000 +0000
++++ src/wandio-4.2.7-1/configure.ac	2026-11-07 14:21:58.984707900 +0000
 @@ -30,7 +30,7 @@ AC_DEFINE([WANDIO_MID],${WANDIO_MID},[wa
  AC_DEFINE([WANDIO_MINOR],${WANDIO_MINOR},[wandio minor version])
  
@@ -27,8 +27,8 @@
  LIBWANDIO_LIBS=""
  
  CFLAGS="$CFLAGS -Wall -Wmissing-prototypes -Wextra -DLT_BUILDING_DLL=1"
---- origsrc/wandio-4.2.6-1/tools/wandiocat/Makefile.am	2023-09-19 08:46:06.000000000 +0900
-+++ src/wandio-4.2.6-1/tools/wandiocat/Makefile.am	2025-09-05 22:14:25.777808000 +0900
+--- origsrc/wandio-4.2.7-1/tools/wandiocat/Makefile.am	2026-06-10 11:18:07.000000000 +0000
++++ src/wandio-4.2.7-1/tools/wandiocat/Makefile.am	2026-11-07 14:21:58.984707900 +0000
 @@ -2,5 +2,5 @@ bin_PROGRAMS = wandiocat
  wandiocat_SOURCES = wcat.c
  wandiocat_CFLAGS = -I"$(top_srcdir)/lib"
@@ -36,8 +36,8 @@
 -wandiocat_LDFLAGS = -L"$(top_srcdir)/lib" -lwandio
 +wandiocat_LDFLAGS = $(top_builddir)/lib/libwandio.la
  dist_man_MANS = wandiocat.1
---- origsrc/wandio-4.2.6-1/wandio.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/wandio-4.2.6-1/wandio.pc.in	2025-09-05 22:14:25.781839300 +0900
+--- origsrc/wandio-4.2.7-1/wandio.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/wandio-4.2.7-1/wandio.pc.in	2026-11-07 14:21:58.984707900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

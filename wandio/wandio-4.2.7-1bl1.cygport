@@ -10,8 +10,8 @@ compression methods. Provided pthreads are available, I/O performance will be
 improved by doing any compression and/or decompression using a separate
 thread."
 
-LICENSE="LGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE="LGPL-3.0-or-later AND MIT AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later AND MIT AND BSD-2-Clause"
 LICENSE_URI="COPYING.LESSER"
 
 BUILD_REQUIRES="
@@ -21,12 +21,22 @@ BUILD_REQUIRES="
 	liblzma-devel
 	liblzo2-devel
 	libzstd-devel
+	lz4
+	lzop
 	zlib-devel
+	zstd
 "
 
 DOCS="
 	COPYING.LESSER
 "
+
+src_test()
+{
+	cp -r ${S}/test ${B}/test
+	cd ${B}/test
+	PATH=${B}/lib/.libs:${PATH} verbose bash ./do-basic-tests.sh
+}
 
 PKG_NAMES="
 	${PN}

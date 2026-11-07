@@ -1,0 +1,103 @@
+--- origsrc/waffle-v1.8.3/meson.build	2026-06-29 19:15:15.000000000 +0000
++++ src/waffle-v1.8.3/meson.build	2026-11-07 14:43:06.672089300 +0000
+@@ -35,15 +35,15 @@ project(
+   default_options : ['c_std=c99', 'warning_level=1', 'buildtype=debugoptimized'],
+ )
+ 
+-waffle_name = meson.project_name() + '-1'
+-docdir = join_paths(get_option('datadir'), 'doc', meson.project_name() + '1')
++waffle_name = meson.project_name()
++docdir = join_paths(get_option('datadir'), 'doc', meson.project_name())
+ 
+ build_x11_egl = false
+ build_wayland = false
+ build_glx = false
+ build_gbm = false
+ build_surfaceless = false
+-build_wgl = ['windows', 'cygwin'].contains(host_machine.system())
++build_wgl = ['windows'].contains(host_machine.system())
+ build_cgl = host_machine.system() == 'darwin'
+ 
+ if get_option('nacl')
+--- origsrc/waffle-v1.8.3/src/waffle/egl/wegl_platform.c	2026-06-29 19:15:15.000000000 +0000
++++ src/waffle-v1.8.3/src/waffle/egl/wegl_platform.c	2026-11-07 14:43:06.672582800 +0000
+@@ -33,6 +33,8 @@
+ 
+ #ifdef WAFFLE_HAS_ANDROID
+ static const char *libEGL_filename = "libEGL.so";
++#elif defined(__CYGWIN__)
++static const char *libEGL_filename = "cygEGL-1.dll";
+ #else
+ static const char *libEGL_filename = "libEGL.so.1";
+ #endif
+--- origsrc/waffle-v1.8.3/src/waffle/glx/glx_platform.c	2026-06-29 19:15:15.000000000 +0000
++++ src/waffle-v1.8.3/src/waffle/glx/glx_platform.c	2026-11-07 14:43:06.674110700 +0000
+@@ -37,7 +37,11 @@
+ #include "glx_window.h"
+ #include "glx_wrappers.h"
+ 
++#ifdef __CYGWIN__
++static const char *libGL_filename = "cygGL-1.dll";
++#else
+ static const char *libGL_filename = "libGL.so.1";
++#endif
+ 
+ static const struct wcore_platform_vtbl glx_platform_vtbl;
+ 
+--- origsrc/waffle-v1.8.3/src/waffle/linux/linux_dl.c	2026-06-29 19:15:15.000000000 +0000
++++ src/waffle-v1.8.3/src/waffle/linux/linux_dl.c	2026-11-07 14:43:06.674594900 +0000
+@@ -51,6 +51,8 @@ linux_dl_get_name(int32_t waffle_dl)
+         case WAFFLE_DL_OPENGL:
+ #ifdef WAFFLE_HAS_ANDROID
+             return NULL;
++#elif defined(__CYGWIN__)
++            return "cygGL-1.dll";
+ #else
+             return "libGL.so.1";
+ #endif
+@@ -70,6 +72,8 @@ linux_dl_get_name(int32_t waffle_dl)
+             // ES3.
+ #ifdef WAFFLE_HAS_ANDROID
+             return "libGLESv2.so";
++#elif defined(__CYGWIN__)
++            return "cygGLESv2-2.dll";
+ #else
+             return "libGLESv2.so.2";
+ #endif
+--- origsrc/waffle-v1.8.3/src/waffle/meson.build	2026-06-29 19:15:15.000000000 +0000
++++ src/waffle-v1.8.3/src/waffle/meson.build	2026-11-07 14:43:06.675872400 +0000
+@@ -193,11 +193,9 @@ libwaffle = library(
+   include_directories : [include_libwaffle, inc_waffle, inc_include],
+   c_args : api_c_args,
+   dependencies : deps_for_waffle,
+-  name_prefix : host_machine.system() != 'windows' ? 'lib' : '',
+   soversion : host_machine.system() != 'windows' ? '0' : '',
+   version : _ver,
+   install : true,
+-  vs_module_defs : 'waffle.def',
+   gnu_symbol_visibility : 'hidden',
+ )
+ 
+--- origsrc/waffle-v1.8.3/src/waffle/surfaceless_egl/sl_platform.h	2026-06-29 19:15:15.000000000 +0000
++++ src/waffle-v1.8.3/src/waffle/surfaceless_egl/sl_platform.h	2026-11-07 14:43:06.676394200 +0000
+@@ -27,7 +27,9 @@
+ 
+ #include <stdbool.h>
+ #include <stdlib.h>
++#if !defined(__CYGWIN__)
+ #include <gbm.h>
++#endif
+ 
+ #undef linux
+ 
+--- origsrc/waffle-v1.8.3/third_party/threads/meson.build	2026-06-29 19:15:15.000000000 +0000
++++ src/waffle-v1.8.3/third_party/threads/meson.build	2026-11-07 14:43:06.676394200 +0000
+@@ -23,7 +23,7 @@
+ # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+-if ['cygwin', 'windows'].contains(host_machine.system())
++if ['windows'].contains(host_machine.system())
+   files_threads = files('threads_win32.c')
+ else
+   files_threads = files('threads_posix.c')

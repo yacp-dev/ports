@@ -13,7 +13,15 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="libX11-xcb-devel libX11-devel libxcb-devel"
+BUILD_REQUIRES="
+	cmake
+	libcmocka-devel
+	libEGL-devel
+	libGL-devel
+	libX11-devel
+	libX11-xcb-devel
+	libxcb-devel
+"
 
 inherit meson
 

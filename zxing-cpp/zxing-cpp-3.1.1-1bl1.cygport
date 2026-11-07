@@ -1,0 +1,66 @@
+HOMEPAGE="https://github.com/${PN}/${PN}"
+# stb's master as of the v${PV} build (zxing.cmake clones it with git when no stb.pc is found)
+STB_REV="8e2e85e5574aacda369c9faa558e9ebde73d8c98"
+SRC_URI="
+	https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/nothings/stb/archive/${STB_REV}.tar.gz#/stb-${STB_REV}.tar.gz
+"
+
+CATEGORY="Libs"
+SUMMARY="C++ Multi-format 1D/2D barcode image processing library"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="Apache-2.0 AND BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-3-Clause AND MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgmock-devel
+	libgtest-devel
+	libpng-devel
+	libzint-devel
+	zlib-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DZXING_UNIT_TESTS:BOOL=ON
+	-DZXING_USE_BUNDLED_ZINT:BOOL=OFF
+"
+
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	cygcmake -DSTB_IMAGE_INCLUDE_DIR:PATH=${srcdir}/stb-${STB_REV}
+	cygninja
+}
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/core:${PATH} ninja_test
+}
+
+PKG_NAMES="
+	zxing-cpp
+	libZXing4
+	libZXing-devel
+"
+zxing_cpp_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libZXing4_CONTENTS="
+	usr/bin/cyg*-4.dll
+"
+libZXing_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+zxing_cpp_SUMMARY="${SUMMARY} (utilities)"
+libZXing4_SUMMARY="${SUMMARY} (runtime)"
+libZXing_devel_SUMMARY="${SUMMARY} (development)"

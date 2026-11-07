@@ -12,7 +12,10 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="license_all.txt"
 
 BUILD_REQUIRES="
-	python39-devel
+	gcc-fortran
+	python3-devel
+	python312-numpy
+	swig
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
@@ -24,7 +27,7 @@ src_install()
 	cd ${S}
 	meson_install
 
-	verbose rm -f ${D}/usr/lib/python3.9/site-packages/*.dll.a
+	verbose rm -f ${D}/usr/lib/python3.12/site-packages/*.dll.a
 }
 
 DOCS="
@@ -37,7 +40,7 @@ PKG_NAMES="
 	libxrl-devel
 	libxrlf03_11
 	libxrlf03-devel
-	python39-${PN}
+	python312-${PN}
 "
 xraylib_CONTENTS="
 	usr/share
@@ -58,12 +61,12 @@ libxrlf03_devel_CONTENTS="
 	usr/lib/libxrlf03.dll.a
 	usr/lib/pkgconfig/libxrlf03.pc
 "
-python39_xraylib_CONTENTS="
-	usr/lib/python3.9
+python312_xraylib_CONTENTS="
+	usr/lib/python3.12
 "
 xraylib_SUMMARY="${SUMMARY} (licensing & readmes)"
 libxrl11_SUMMARY="${SUMMARY} (runtime)"
 libxrl_devel_SUMMARY="${SUMMARY} (development)"
 libxrlf03_11_SUMMARY="${SUMMARY} (runtime / fortran)"
 libxrlf03_devel_SUMMARY="${SUMMARY} (development / fortran)"
-python39_xraylib_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_xraylib_SUMMARY="${SUMMARY} (python312 bindings)"

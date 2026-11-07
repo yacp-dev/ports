@@ -6,8 +6,8 @@ SUMMARY="Fraunhofer Versatile Video Encoder"
 DESCRIPTION="The Fraunhofer Versatile Video Encoder (VVenC) is a fast and efficient
 real-world VVC encoder implementation."
 
-LICENSE="BSD-3-Clause-Clear"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause-Clear"
+LICENSE="BSD-3-Clause-Clear AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause-Clear AND MIT"
 LICENSE_URI="LICENSE.txt"
 
 inherit cmake
@@ -15,6 +15,7 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DVVENC_INSTALL_FULLFEATURE_APP:BOOL=ON
+	-DVVENC_ENABLE_LINK_TIME_OPT:BOOL=OFF
 "
 
 src_test()
@@ -40,7 +41,7 @@ vvenc_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libvvenc1_13_CONTENTS="
+libvvenc1_14_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libvvenc_devel_CONTENTS="
@@ -48,5 +49,6 @@ libvvenc_devel_CONTENTS="
 	usr/lib
 "
 vvenc_SUMMARY="${SUMMARY} (utilities)"
-libvvenc1_13_SUMMARY="${SUMMARY} (runtime)"
+libvvenc1_14_SUMMARY="${SUMMARY} (runtime)"
 libvvenc_devel_SUMMARY="${SUMMARY} (development)"
+libvvenc_devel_REQUIRES="vvenc"

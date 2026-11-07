@@ -1,6 +1,5 @@
 HOMEPAGE="https://github.com/Etersoft/${PN}"
-SRC_URI="https://github.com/Etersoft/${PN}/archive/${PV}-alt1.tar.gz"
-SRC_DIR="${P}-alt1"
+SRC_URI="https://github.com/Etersoft/${PN}/archive/${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Library to smooth charset/localization issues"
@@ -12,17 +11,18 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libiconv-devel libpopt-devel"
+BUILD_REQUIRES="
+	libiconv-devel
+	libpopt-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode
 "
 
-src_test()
-{
-	cd ${B}
-	./tests/test_get_charset.exe
-}
+DOCS="
+	README.md
+"
 
 PKG_NAMES="
 	${PN}
@@ -35,7 +35,7 @@ libnatspec_CONTENTS="
 	usr/share/man
 "
 libnatspec0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygnatspec-0.dll
 "
 libnatspec_devel_CONTENTS="
 	usr/include

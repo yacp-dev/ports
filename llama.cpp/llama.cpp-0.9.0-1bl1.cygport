@@ -12,6 +12,7 @@ LICENSE_URI="LICENSE"
 BUILD_REQUIRES="
 	libggml-devel
 	libssl-devel
+	python312-jinja2
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"

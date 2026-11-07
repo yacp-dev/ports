@@ -3,59 +3,61 @@ wandio
 Libwandio is a software library written in C that provides an API for
 transparently reading from and writing to files using a variety of supported
 compression methods. Provided pthreads are available, I/O performance will be
-improved by doing any compression and/or decompression using a separate
-thread.
+improved by doing any compression and/or decompression using a separate thread.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libbz2_1-1.0.8-1
-  libcurl4-8.15.0-1
+  cygwin-3.6.12-1
+  libbz2_1-1.0.8-2
+  libcurl4-8.23.0-1
   liblz4_1-1.9.4-1
-  liblzma5-5.8.1-1
+  liblzma5-5.8.4-1
   liblzo2_2-2.10-2
-  libwandio-devel-4.2.6-1bl2
-  libwandio6-4.2.6-1bl2
+  libwandio-devel-4.2.7-1bl1
+  libwandio6-4.2.7-1bl1
   libzstd1-1.5.7-1
-  pkg-config-2.5.1-1
-  zlib0-1.3.1-1
+  pkg-config-3.0.10-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  libbz2-devel-1.0.8-1
-  libcurl-devel-8.15.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libbz2-devel-1.0.8-2
+  libcurl-devel-8.23.0-1
   liblz4-devel-1.9.4-1
-  liblzma-devel-5.8.1-1
+  liblzma-devel-5.8.4-1
   liblzo2-devel-2.10-2
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   libzstd-devel-1.5.7-1
+  lz4-1.9.4-1
+  lzop-1.03-1
   make-4.4.1-2
-  zlib-devel-1.3.1-1
+  zlib-devel-1.3.2-1
+  zstd-1.5.7-1
 
 Canonical website:
   https://github.com/LibtraceTeam/wandio
 
 Canonical download:
-  https://github.com/LibtraceTeam/wandio/archive/refs/tags/4.2.6-1.tar.gz
+  https://github.com/LibtraceTeam/wandio/archive/refs/tags/4.2.7-1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack wandio-4.2.6-X-src.tar.xz
+  1. unpack wandio-4.2.7-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./wandio-4.2.6-X.cygport all
+        % cygport ./wandio-4.2.7-X.cygport all
 
 This will create:
-  /usr/src/wandio-4.2.6-X-src.tar.xz
-  /usr/src/wandio-4.2.6-X.tar.xz
-  /usr/src/libwandio6-4.2.6-X.tar.xz
-  /usr/src/libwandio-devel-4.2.6-X.tar.xz
+  /usr/src/wandio-4.2.7-X-src.tar.xz
+  /usr/src/wandio-4.2.7-X.tar.xz
+  /usr/src/libwandio6-4.2.7-X.tar.xz
+  /usr/src/libwandio-devel-4.2.7-X.tar.xz
 
 -------------------------------------------
 
@@ -82,6 +84,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.2.7-1bl1 -----
+Version bump.
 
 ----- version 4.2.6-1bl2 -----
 Rebuild with gcc-13.4.0

@@ -2,9 +2,8 @@ HOMEPAGE="https://github.com/zapping-vbi/${PN}/"
 SRC_URI="https://github.com/zapping-vbi/${PN}/archive/refs/tags/v${PV}.tar.gz"
 PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/disable-test-pdc-on-debian.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-0.2.24-tvfonts.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-0.2.25-openfix.patch
-	https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/media-libs/${PN}/files/${PN}-0.2.44-fix_typo.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/248fd3065aa8d1657ed23b425d8648d0acefffd4/f/${PN}-0.2.24-tvfonts.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/248fd3065aa8d1657ed23b425d8648d0acefffd4/f/${PN}-0.2.25-openfix.patch
 "
 
 CATEGORY="Libs"
@@ -17,11 +16,12 @@ blanking interval can be used to carry data, since anything sent during the VBI
 would naturally not be displayed; various test signals, closed captioning, and
 other digital data can be sent during this time period."
 
-LICENSE="LGPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND GPL-2.0-only AND LGPL-2.0-or-later AND MIT"
 LICENSE_URI="COPYING.md"
 
 BUILD_REQUIRES="
+	gettext-devel
 	libiconv-devel
 	libintl-devel
 	libpng-devel
@@ -33,7 +33,22 @@ CYGCONF_ARGS="
 	--enable-maintainer-mode
 "
 
+# The .src.patch touches src/Makefile.am, which makes make regenerate
+# network-table.h by downloading networks.xml with wget. Keep the shipped one.
+src_compile() {
+	cd ${S}
+	cygautoreconf
+	lndirs
+	cd ${B}
+	cygconf
+	touch ${S}/src/network-table.h
+	cygmake
+}
+
 DIFF_EXCLUDES="
+	_videodev.h
+	_videodev2.h
+	_videodev2k.h
 	*.po
 	stamp-po
 	zvbi.pot

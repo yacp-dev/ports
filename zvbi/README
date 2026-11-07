@@ -9,55 +9,54 @@ would naturally not be displayed; various test signals, closed captioning, and
 other digital data can be sent during this time period.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  cygwin-devel-3.6.6-1
-  libX11_6-1.8.12-1
-  libiconv2-1.17-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libX11_6-1.8.13-1
+  libiconv2-1.19-2
   libintl8-0.22.5-1
-  libpng-devel-1.6.47-2
-  libpng16-1.6.47-2
-  libzvbi-devel-0.2.44-1bl1
-  libzvbi0-0.2.44-1bl1
-  pkg-config-2.5.1-1
-  zlib-devel-1.3.1-1
+  libpng-devel-1.6.59-1
+  libpng16-1.6.59-1
+  libzvbi-devel-0.2.46-1bl1
+  libzvbi0-0.2.46-1bl1
+  pkg-config-3.0.10-1
+  zlib-devel-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libX11-devel-1.8.12-1
-  libiconv-devel-1.17-1
+  libX11-devel-1.8.13-1
+  libiconv-devel-1.19-2
   libintl-devel-0.22.5-1
-  libpng-devel-1.6.47-2
-  libtool-2.5.4-1
+  libpng-devel-1.6.59-1
+  libtool-2.6.2-1
   make-4.4.1-2
-  zlib-devel-1.3.1-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://github.com/zapping-vbi/zvbi/
 
 Canonical download:
-  https://github.com/zapping-vbi/zvbi/archive/refs/tags/v0.2.44.tar.gz
+  https://github.com/zapping-vbi/zvbi/archive/refs/tags/v0.2.46.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack zvbi-0.2.44-X-src.tar.xz
+  1. unpack zvbi-0.2.46-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./zvbi-0.2.44-X.cygport all
+        % cygport ./zvbi-0.2.46-X.cygport all
 
 This will create:
-  /usr/src/zvbi-0.2.44-X-src.tar.xz
-  /usr/src/zvbi-0.2.44-X.tar.xz
-  /usr/src/libzvbi0-0.2.44-X.tar.xz
-  /usr/src/libzvbi-devel-0.2.44-X.tar.xz
+  /usr/src/zvbi-0.2.46-X-src.tar.xz
+  /usr/src/zvbi-0.2.46-X.tar.xz
+  /usr/src/libzvbi0-0.2.46-X.tar.xz
+  /usr/src/libzvbi-devel-0.2.46-X.tar.xz
 
 -------------------------------------------
 
@@ -95,6 +94,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.46-1bl1 -----
+Version bump.
 
 ----- version 0.2.44-1bl1 -----
 Version bump.

@@ -3,23 +3,22 @@ docopt.cpp
 docopt creates beautiful command-line interfaces
 
 Runtime requirements:
-  cygwin-3.5.7-1
+  cygwin-3.6.12-1
   libboost_regex1.66-1.66.0-1
-  libdocopt-devel-0.6.3-1bl2
-  libdocopt0-0.6.3-1bl2
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  libdocopt-devel-0.6.3-1bl3
+  libdocopt0-0.6.3-1bl3
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  ninja-1.12.1-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/docopt/docopt.cpp
@@ -62,7 +61,7 @@ Files included in the binary package:
   /usr/include/docopt/docopt_value.h
   /usr/lib/cmake/docopt/docopt-config-version.cmake
   /usr/lib/cmake/docopt/docopt-config.cmake
-  /usr/lib/cmake/docopt/docopt-targets-release.cmake
+  /usr/lib/cmake/docopt/docopt-targets-relwithdebinfo.cmake
   /usr/lib/cmake/docopt/docopt-targets.cmake
   /usr/lib/libdocopt.dll.a
   /usr/lib/pkgconfig/docopt.pc
@@ -70,6 +69,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.6.3-1bl3 -----
+Fix libdocopt-devel REQUIRES
 
 ----- version 0.6.3-1bl2 -----
 Rebuild with gcc-12.4.0

@@ -1,5 +1,5 @@
---- origsrc/Netxx-0.3.2/CMakeLists.txt	1970-01-01 09:00:00.000000000 +0900
-+++ src/Netxx-0.3.2/CMakeLists.txt	2025-09-17 09:15:15.723229300 +0900
+--- origsrc/Netxx-0.3.2/CMakeLists.txt	1970-01-01 00:00:00.000000000 +0000
++++ src/Netxx-0.3.2/CMakeLists.txt	2026-11-07 07:07:13.791866200 +0000
 @@ -0,0 +1,34 @@
 +cmake_minimum_required(VERSION 3.28)
 +project(Netxx
@@ -35,8 +35,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/Netxx.pc.in ${CMAKE_BINARY_DIR}/Netxx.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/Netxx.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/Netxx-0.3.2/Netxx.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/Netxx-0.3.2/Netxx.pc.in	2025-09-17 09:15:11.553355500 +0900
+--- origsrc/Netxx-0.3.2/Netxx.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/Netxx-0.3.2/Netxx.pc.in	2026-11-07 07:07:13.793359500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -48,8 +48,8 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lNetxx
 +Cflags: -I${includedir}
---- origsrc/Netxx-0.3.2/examples/multi_server.cxx	2003-01-14 02:01:09.000000000 +0900
-+++ src/Netxx-0.3.2/examples/multi_server.cxx	2025-09-17 09:04:57.496970800 +0900
+--- origsrc/Netxx-0.3.2/examples/multi_server.cxx	2003-01-13 17:01:09.000000000 +0000
++++ src/Netxx-0.3.2/examples/multi_server.cxx	2026-11-07 07:07:13.793879400 +0000
 @@ -48,6 +48,7 @@
  #include <iostream>
  #include <exception>
@@ -58,8 +58,8 @@
  
  namespace {
      const Netxx::port_type const_port_echo	= 4000;
---- origsrc/Netxx-0.3.2/include/Netxx/Netbuf.h	2003-01-14 02:01:09.000000000 +0900
-+++ src/Netxx-0.3.2/include/Netxx/Netbuf.h	2025-09-17 09:10:05.029119300 +0900
+--- origsrc/Netxx-0.3.2/include/Netxx/Netbuf.h	2003-01-13 17:01:09.000000000 +0000
++++ src/Netxx-0.3.2/include/Netxx/Netbuf.h	2026-11-07 07:07:13.795377300 +0000
 @@ -63,6 +63,9 @@ namespace Netxx {
  template <typename std::streamsize bufsize, class charT=char, class traits=std::char_traits<char> >
  class Netbuf : public std::basic_streambuf<charT, traits> {
@@ -121,8 +121,8 @@
  	return rc;
      }
  }
---- origsrc/Netxx-0.3.2/src/Address.cxx	2003-01-14 02:01:24.000000000 +0900
-+++ src/Netxx-0.3.2/src/Address.cxx	2025-09-17 08:46:45.499708700 +0900
+--- origsrc/Netxx-0.3.2/src/Address.cxx	2003-01-13 17:01:24.000000000 +0000
++++ src/Netxx-0.3.2/src/Address.cxx	2026-11-07 07:07:13.795904800 +0000
 @@ -57,6 +57,7 @@
  
  // standard includes
@@ -131,8 +131,8 @@
  
  namespace {
      const char const_local_service[] = "local";
---- origsrc/Netxx-0.3.2/src/Peer.cxx	2003-07-09 04:24:16.000000000 +0900
-+++ src/Netxx-0.3.2/src/Peer.cxx	2025-09-17 08:48:01.224870700 +0900
+--- origsrc/Netxx-0.3.2/src/Peer.cxx	2003-07-08 19:24:16.000000000 +0000
++++ src/Netxx-0.3.2/src/Peer.cxx	2026-11-07 07:07:13.795904800 +0000
 @@ -57,6 +57,7 @@
  #include <algorithm>
  #include <iostream>
@@ -141,8 +141,8 @@
  #include <new>
  
  //####################################################################
---- origsrc/Netxx-0.3.2/src/Probe_select.cxx	2003-01-14 02:01:25.000000000 +0900
-+++ src/Netxx-0.3.2/src/Probe_select.cxx	2025-09-17 08:48:54.725149100 +0900
+--- origsrc/Netxx-0.3.2/src/Probe_select.cxx	2003-01-13 17:01:25.000000000 +0000
++++ src/Netxx-0.3.2/src/Probe_select.cxx	2026-11-07 07:07:13.797402300 +0000
 @@ -63,6 +63,7 @@
  #include <string>
  #include <list>
@@ -151,8 +151,8 @@
  
  //####################################################################
  namespace {
---- origsrc/Netxx-0.3.2/src/TLS_Certificate.cxx	2003-01-14 02:01:25.000000000 +0900
-+++ src/Netxx-0.3.2/src/TLS_Certificate.cxx	2025-09-17 08:49:27.702816300 +0900
+--- origsrc/Netxx-0.3.2/src/TLS_Certificate.cxx	2003-01-13 17:01:25.000000000 +0000
++++ src/Netxx-0.3.2/src/TLS_Certificate.cxx	2026-11-07 07:07:13.797916000 +0000
 @@ -40,6 +40,7 @@
  
  // standard includes

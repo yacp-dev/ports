@@ -6,9 +6,9 @@ SUMMARY="C++ network programming library"
 DESCRIPTION="Netxx is a C++ network programming library. It is designed to take the pain
 out of programming network communications applications."
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
-# LICENSE_URI=""
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="src/Accept.h"
 
 BUILD_REQUIRES="
 	libssl1.0-devel

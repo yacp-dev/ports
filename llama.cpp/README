@@ -1,0 +1,142 @@
+llama.cpp
+------------------------------------------
+LLM inference in C/C++
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libggml-devel-0.29.0-1bl1
+  libggml0-0.29.0-1bl1
+  libintl8-0.22.5-1
+  libllama-devel-0.9.0-1bl1
+  libllama0-0.9.0-1bl1
+  libmtmd0-0.9.0-1bl1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libggml-devel-0.29.0-1bl1
+  libssl-devel-3.5.9-1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/ggml-org/llama.cpp
+
+Canonical download:
+  https://github.com/ggml-org/llama.cpp/archive/refs/tags/v0.9.0.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack llama.cpp-0.9.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./llama.cpp-0.9.0-X.cygport all
+
+This will create:
+  /usr/src/llama.cpp-0.9.0-X-src.tar.xz
+  /usr/src/llama.cpp-0.9.0-X.tar.xz
+  /usr/src/libllama0-0.9.0-X.tar.xz
+  /usr/src/libmtmd0-0.9.0-X.tar.xz
+  /usr/src/libllama-devel-0.9.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(llama.cpp)
+  /usr/bin/cygllama-batched-bench-impl.dll
+  /usr/bin/cygllama-bench-impl.dll
+  /usr/bin/cygllama-cli-impl.dll
+  /usr/bin/cygllama-common-0.dll
+  /usr/bin/cygllama-completion-impl.dll
+  /usr/bin/cygllama-fit-params-impl.dll
+  /usr/bin/cygllama-perplexity-impl.dll
+  /usr/bin/cygllama-quantize-impl.dll
+  /usr/bin/cygllama-server-impl.dll
+  /usr/bin/llama-batched-bench.exe
+  /usr/bin/llama-batched.exe
+  /usr/bin/llama-bench.exe
+  /usr/bin/llama-cli.exe
+  /usr/bin/llama-completion.exe
+  /usr/bin/llama-convert-llama2c-to-ggml.exe
+  /usr/bin/llama-cvector-generator.exe
+  /usr/bin/llama-debug.exe
+  /usr/bin/llama-diffusion-cli.exe
+  /usr/bin/llama-embedding.exe
+  /usr/bin/llama-eval-callback.exe
+  /usr/bin/llama-export-lora.exe
+  /usr/bin/llama-finetune.exe
+  /usr/bin/llama-fit-params.exe
+  /usr/bin/llama-gen-docs.exe
+  /usr/bin/llama-gguf-hash.exe
+  /usr/bin/llama-gguf-split.exe
+  /usr/bin/llama-gguf.exe
+  /usr/bin/llama-idle.exe
+  /usr/bin/llama-imatrix.exe
+  /usr/bin/llama-lookahead.exe
+  /usr/bin/llama-lookup-create.exe
+  /usr/bin/llama-lookup-merge.exe
+  /usr/bin/llama-lookup-stats.exe
+  /usr/bin/llama-lookup.exe
+  /usr/bin/llama-mtmd-cli.exe
+  /usr/bin/llama-parallel.exe
+  /usr/bin/llama-passkey.exe
+  /usr/bin/llama-perplexity.exe
+  /usr/bin/llama-quantize.exe
+  /usr/bin/llama-results.exe
+  /usr/bin/llama-retrieval.exe
+  /usr/bin/llama-server.exe
+  /usr/bin/llama-simple-chat.exe
+  /usr/bin/llama-simple.exe
+  /usr/bin/llama-speculative-simple.exe
+  /usr/bin/llama-speculative.exe
+  /usr/bin/llama-tokenize.exe
+  /usr/bin/llama-tts.exe
+  /usr/bin/llama.exe
+  /usr/share/doc/Cygwin/llama.cpp.README
+  /usr/share/doc/llama.cpp/AUTHORS
+  /usr/share/doc/llama.cpp/LICENSE
+  /usr/share/doc/llama.cpp/README.md
+
+(libllama0)
+  /usr/bin/cygllama-0.dll
+
+(libmtmd0)
+  /usr/bin/cygmtmd-0.dll
+
+(libllama-devel)
+  /usr/include/llama-cpp.h
+  /usr/include/llama.h
+  /usr/include/mtmd-debug.h
+  /usr/include/mtmd-helper.h
+  /usr/include/mtmd.h
+  /usr/lib/cmake/llama/llama-config-version.cmake
+  /usr/lib/cmake/llama/llama-config.cmake
+  /usr/lib/libllama-batched-bench-impl.dll.a
+  /usr/lib/libllama-bench-impl.dll.a
+  /usr/lib/libllama-cli-impl.dll.a
+  /usr/lib/libllama-common.dll.a
+  /usr/lib/libllama-completion-impl.dll.a
+  /usr/lib/libllama-fit-params-impl.dll.a
+  /usr/lib/libllama-perplexity-impl.dll.a
+  /usr/lib/libllama-quantize-impl.dll.a
+  /usr/lib/libllama-server-impl.dll.a
+  /usr/lib/libllama.dll.a
+  /usr/lib/libmtmd.dll.a
+  /usr/lib/pkgconfig/llama.pc
+
+------------------
+
+Port Notes:
+
+----- version 0.9.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

@@ -1,0 +1,15 @@
+Don't require a libzip CMake config from lib3mfConfig.cmake when lib3mf is
+built shared: libzip is linked PRIVATE then, and Cygwin's libzip ships no
+libzipConfig.cmake (it is found through pkg-config at build time).
+
+--- a/cmake/lib3mfConfig.cmake.in
++++ b/cmake/lib3mfConfig.cmake.in
+@@ -2,7 +2,7 @@
+ 
+ include(CMakeFindDependencyMacro)
+ 
+-if(NOT @USE_INCLUDED_LIBZIP@)
++if(NOT @USE_INCLUDED_LIBZIP@ AND NOT @LIB3MF_BUILD_SHARED@)
+   find_dependency(libzip CONFIG)
+ endif()
+ 

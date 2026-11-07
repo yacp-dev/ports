@@ -3,48 +3,49 @@ lib3mf
 Lib3MF is a C++ implementation of the 3D Manufacturing Format file standard.
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  lib3mf-devel-2.2.0-1bl1
-  lib3mf2-2.2.0-1bl1
-  libgcc1-11.2.0-1
-  libstdc++6-11.2.0-1
+  cygwin-3.6.12-1
+  lib3mf-devel-2.5.0-1bl1
+  lib3mf2-2.5.0-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
   libzip-devel-1.5.1-1
   libzip5-1.5.1-1
-  pkg-config-1.6.3-1
-  zlib-devel-1.2.11-1
-  zlib0-1.2.11-1
+  pkg-config-3.0.10-1
+  zlib-devel-1.3.2-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-1
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  fast_float-8.3.3-1bl1
+  gcc-core-14.4.0-1
+  libssl-devel-3.5.9-1
   libzip-devel-1.5.1-1
-  ninja-1.10.2-1
-  zlib-devel-1.2.11-1
+  ninja-1.13.2-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://github.com/3MFConsortium/lib3mf
 
 Canonical download:
-  https://github.com/3MFConsortium/lib3mf/archive/v2.2.0.tar.gz
+  https://github.com/3MFConsortium/lib3mf/archive/v2.5.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack lib3mf-2.2.0-X-src.tar.xz
+  1. unpack lib3mf-2.5.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./lib3mf-2.2.0-X.cygport all
+        % cygport ./lib3mf-2.5.0-X.cygport all
 
 This will create:
-  /usr/src/lib3mf-2.2.0-X-src.tar.xz
-  /usr/src/lib3mf-2.2.0-X.tar.xz
-  /usr/src/lib3mf2-2.2.0-X.tar.xz
-  /usr/src/lib3mf-devel-2.2.0-X.tar.xz
+  /usr/src/lib3mf-2.5.0-X-src.tar.xz
+  /usr/src/lib3mf-2.5.0-X.tar.xz
+  /usr/src/lib3mf2-2.5.0-X.tar.xz
+  /usr/src/lib3mf-devel-2.5.0-X.tar.xz
 
 -------------------------------------------
 
@@ -73,8 +74,285 @@ Files included in the binary package:
   /usr/include/lib3mf/Bindings/CppDynamic/lib3mf_dynamic.h
   /usr/include/lib3mf/Bindings/CppDynamic/lib3mf_dynamic.hpp
   /usr/include/lib3mf/Bindings/CppDynamic/lib3mf_types.hpp
+  /usr/include/lib3mf/Bindings/Go/cfunc.go
   /usr/include/lib3mf/Bindings/Go/lib3mf.go
+  /usr/include/lib3mf/Bindings/Go/lib3mf_dynamic.c
+  /usr/include/lib3mf/Bindings/Go/lib3mf_dynamic.cc
+  /usr/include/lib3mf/Bindings/Go/lib3mf_dynamic.h
   /usr/include/lib3mf/Bindings/Go/lib3mf_impl.go
+  /usr/include/lib3mf/Bindings/Go/lib3mf_types.h
+  /usr/include/lib3mf/Bindings/Java8/build_jar.sh
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/AbsNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/AccessRight.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/AdditionNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ArcCosNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ArcSinNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ArcTan2Node.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ArcTanNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Attachment.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Ball.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Base.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/BaseMaterialGroup.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/BaseMaterialGroupIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Beam.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/BeamLattice.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/BeamLatticeNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/BeamSet.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Box.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/BuildItem.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/BuildItemIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/CeilNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ClampNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Color.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ColorGroup.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ColorGroupIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Component.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ComponentsObject.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ComponentsObjectIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ComposeMatrixNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ComposeVectorNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/CompositeConstituent.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/CompositeMaterials.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/CompositeMaterialsIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ConstMatNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ConstVecNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ConstantNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Consumer.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ContentEncryptionParams.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/CosNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/CoshNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/CrossNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/DecomposeVectorNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/DivisionNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/DotNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ExpNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/FloorNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/FmodNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/FractNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Function.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/FunctionCallNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/FunctionFromImage3D.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/FunctionGradientNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/FunctionIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/FunctionReference.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Image3D.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Image3DIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ImageStack.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ImplicitFunction.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ImplicitNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ImplicitPort.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ImplicitPortIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/InverseNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Iterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/KeyStore.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/LengthNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/LevelSet.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/LevelSetIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Lib3MFException.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Lib3MFWrapper.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Log10Node.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Log2Node.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/LogNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MatVecMultiplicationNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MaterialMapping.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Matrix4x4.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MatrixFromColumnsNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MatrixFromRowsNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MaxNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MeshNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MeshObject.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MeshObjectIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MetaData.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MetaDataGroup.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MinNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ModNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Model.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MultiPropertyGroup.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MultiPropertyGroupIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MultiPropertyLayer.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/MultiplicationNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/NodeIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/NormalizeDistanceNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Object.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ObjectIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/OneInputNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/PackagePart.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Position.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Position2D.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/PowNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Reader.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Resource.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ResourceData.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ResourceDataGroup.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ResourceIdNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/ResourceIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/RoundNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/SelectNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/SignNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/SinNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/SinhNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Slice.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/SliceStack.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/SliceStackIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/SqrtNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/SubtractionNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/TanNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/TanhNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Tex2Coord.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Texture2D.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Texture2DGroup.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Texture2DGroupIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Texture2DIterator.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Transform.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/TransposeNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Triangle.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/TriangleProperties.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/TriangleSet.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/TwoInputNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/UnsignedMeshNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Vector.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/VectorFromScalarNode.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/VolumeData.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/VolumeDataColor.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/VolumeDataComposite.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/VolumeDataProperty.java
+  /usr/include/lib3mf/Bindings/Java8/lib3mf/Writer.java
+  /usr/include/lib3mf/Bindings/Java9/build_jar.sh
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/AbsNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/AccessRight.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/AdditionNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ArcCosNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ArcSinNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ArcTan2Node.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ArcTanNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Attachment.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Ball.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Base.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/BaseMaterialGroup.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/BaseMaterialGroupIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Beam.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/BeamLattice.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/BeamLatticeNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/BeamSet.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Box.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/BuildItem.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/BuildItemIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/CeilNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ClampNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Color.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ColorGroup.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ColorGroupIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Component.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ComponentsObject.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ComponentsObjectIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ComposeMatrixNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ComposeVectorNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/CompositeConstituent.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/CompositeMaterials.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/CompositeMaterialsIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ConstMatNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ConstVecNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ConstantNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Consumer.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ContentEncryptionParams.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/CosNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/CoshNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/CrossNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/DecomposeVectorNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/DivisionNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/DotNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ExpNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/FloorNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/FmodNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/FractNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Function.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/FunctionCallNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/FunctionFromImage3D.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/FunctionGradientNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/FunctionIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/FunctionReference.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Image3D.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Image3DIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ImageStack.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ImplicitFunction.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ImplicitNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ImplicitPort.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ImplicitPortIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/InverseNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Iterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/KeyStore.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/LengthNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/LevelSet.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/LevelSetIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Lib3MFException.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Lib3MFWrapper.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Log10Node.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Log2Node.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/LogNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MatVecMultiplicationNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MaterialMapping.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Matrix4x4.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MatrixFromColumnsNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MatrixFromRowsNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MaxNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MeshNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MeshObject.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MeshObjectIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MetaData.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MetaDataGroup.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MinNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ModNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Model.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MultiPropertyGroup.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MultiPropertyGroupIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MultiPropertyLayer.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/MultiplicationNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/NodeIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/NormalizeDistanceNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Object.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ObjectIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/OneInputNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/PackagePart.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Position.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Position2D.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/PowNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Reader.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Resource.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ResourceData.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ResourceDataGroup.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ResourceIdNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/ResourceIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/RoundNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/SelectNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/SignNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/SinNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/SinhNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Slice.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/SliceStack.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/SliceStackIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/SqrtNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/SubtractionNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/TanNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/TanhNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Tex2Coord.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Texture2D.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Texture2DGroup.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Texture2DGroupIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Texture2DIterator.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Transform.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/TransposeNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Triangle.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/TriangleProperties.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/TriangleSet.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/TwoInputNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/UnsignedMeshNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Vector.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/VectorFromScalarNode.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/VolumeData.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/VolumeDataColor.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/VolumeDataComposite.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/VolumeDataProperty.java
+  /usr/include/lib3mf/Bindings/Java9/lib3mf/Writer.java
   /usr/include/lib3mf/Bindings/NodeJS/binding.gyp
   /usr/include/lib3mf/Bindings/NodeJS/lib3mf_dynamic.cc
   /usr/include/lib3mf/Bindings/NodeJS/lib3mf_dynamic.h
@@ -84,12 +362,20 @@ Files included in the binary package:
   /usr/include/lib3mf/Bindings/NodeJS/lib3mf_types.h
   /usr/include/lib3mf/Bindings/Pascal/Unit_Lib3MF.pas
   /usr/include/lib3mf/Bindings/Python/Lib3MF.py
+  /usr/include/lib3mf/Bindings/WASM/lib3mf_bindings.cpp
+  /usr/lib/cmake/lib3mf/lib3mfConfig.cmake
+  /usr/lib/cmake/lib3mf/lib3mfConfigVersion.cmake
+  /usr/lib/cmake/lib3mf/lib3mfTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/lib3mf/lib3mfTargets.cmake
   /usr/lib/lib3mf.dll.a
   /usr/lib/pkgconfig/lib3mf.pc
 
 ------------------
 
 Port Notes:
+
+----- version 2.5.0-1bl1 -----
+Version bump.
 
 ----- version 2.2.0-1bl1 -----
 Version bump.

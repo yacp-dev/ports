@@ -1,0 +1,15 @@
+--- origsrc/lib3mf-2.5.0/CMakeLists.txt	2026-02-24 17:23:52.000000000 +0000
++++ src/lib3mf-2.5.0/CMakeLists.txt	2026-11-07 06:10:47.487747900 +0000
+@@ -328,7 +328,11 @@ else()
+ endif()
+ 
+ 
+-set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" IMPORT_PREFIX "" )
++if (CYGWIN)
++  set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME 3mf)
++else()
++  set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" IMPORT_PREFIX "" )
++endif()
+ # This makes sure symbols are exported (shared builds only)
+ if (LIB3MF_BUILD_SHARED)
+   target_compile_options(${PROJECT_NAME} PRIVATE "-D__LIB3MF_EXPORTS")

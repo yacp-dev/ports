@@ -1,0 +1,14 @@
+--- origsrc/vvenc-1.14.0/cmake/install/vvencConfigVersion.cmake.in	2026-01-21 13:06:22.000000000 +0000
++++ src/vvenc-1.14.0/cmake/install/vvencConfigVersion.cmake.in	2026-11-07 15:18:19.842511800 +0000
+@@ -2,7 +2,10 @@
+ 
+ set( PACKAGE_VERSION @PROJECT_VERSION@ )
+ 
+-if( "${PACKAGE_FIND_VERSION_MAJOR}" EQUAL "@PROJECT_VERSION_MAJOR@" )
++if( NOT PACKAGE_FIND_VERSION )
++  # no version requested
++  set( PACKAGE_VERSION_COMPATIBLE TRUE )
++elseif( "${PACKAGE_FIND_VERSION_MAJOR}" EQUAL "@PROJECT_VERSION_MAJOR@" )
+   if( "${PACKAGE_FIND_VERSION_MINOR}" EQUAL "@PROJECT_VERSION_MINOR@" )
+     set( PACKAGE_VERSION_EXACT TRUE )
+   elseif( "${PACKAGE_FIND_VERSION_MINOR}" LESS "@PROJECT_VERSION_MINOR@" )

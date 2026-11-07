@@ -9,8 +9,8 @@ natural selection) using techniques in phylogenetics, molecular evolution, and
 machine learning. It features a rich scripting language for limitless
 customization of analyses."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

@@ -1,5 +1,5 @@
---- origsrc/fast_float-8.3.2/CMakeLists.txt	2026-10-09 19:56:38.000000000 +0000
-+++ src/fast_float-8.3.2/CMakeLists.txt	2026-10-23 06:16:42.890789000 +0000
+--- origsrc/fast_float-8.3.3/CMakeLists.txt	2026-10-31 13:45:33.000000000 +0000
++++ src/fast_float-8.3.3/CMakeLists.txt	2026-11-07 05:34:06.064739600 +0000
 @@ -64,7 +64,7 @@ if(FASTFLOAT_INSTALL)
  
    set(FASTFLOAT_VERSION_CONFIG "${CMAKE_CURRENT_BINARY_DIR}/module/FastFloatConfigVersion.cmake")

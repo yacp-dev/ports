@@ -9,8 +9,8 @@ which supports SSL/TLS via the wolfSSL library. This library was built from
 the ground up to be multi-platform, space conscience and extensible.
 Integrates with wolfSSL to provide TLS support."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -21,15 +21,15 @@ export CFLAGS=${CFLAGS//-Wp,/}
 
 PKG_NAMES="
 	wolfmqtt
-	libwolfmqtt18
+	libwolfmqtt20
 	libwolfmqtt-devel
 "
 wolfmqtt_CONTENTS="
 	usr/share/doc/Cygwin
 	usr/share/doc/${PN}/[CLR]*
 "
-libwolfmqtt18_CONTENTS="
-	usr/bin/cyg*-18.dll
+libwolfmqtt20_CONTENTS="
+	usr/bin/cyg*-20.dll
 "
 libwolfmqtt_devel_CONTENTS="
 	usr/bin/*-config
@@ -38,5 +38,5 @@ libwolfmqtt_devel_CONTENTS="
 	usr/share/doc/${PN}/example
 "
 wolfmqtt_SUMMARY="${SUMMARY} (licensing & readmes)"
-libwolfmqtt18_SUMMARY="${SUMMARY} (runtime)"
+libwolfmqtt20_SUMMARY="${SUMMARY} (runtime)"
 libwolfmqtt_devel_SUMMARY="${SUMMARY} (development)"

@@ -19,6 +19,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DGGML_CCACHE:BOOL=OFF
+	-DGGML_NATIVE:BOOL=OFF
 "
 
 # test-backend-ops alone takes about 15 minutes on the CI runner

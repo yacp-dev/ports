@@ -16,6 +16,7 @@ LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	gengetopt
 	libcurl-devel
 	libedit-devel
 	libpcsclite-devel
@@ -26,6 +27,7 @@ BUILD_REQUIRES="
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DDISABLE_LTO:BOOL=ON
 	-DWITHOUT_MANPAGES:BOOL=ON
 	-DYUBIHSM_INSTALL_PKGCONFIG_DIR:STRING=/usr/lib/pkgconfig
 "

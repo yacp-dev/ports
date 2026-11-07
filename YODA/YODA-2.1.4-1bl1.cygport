@@ -1,0 +1,92 @@
+HOMEPAGE="https://yoda.hepforge.org/"
+SRC_URI="https://yoda.hepforge.org/downloads/${P}.tar.bz2"
+
+CATEGORY="Science"
+SUMMARY="Yet more Objects for Data Analysis"
+DESCRIPTION="YODA is a small set of data analysis (specifically histogramming) classes
+being developed by MCnet members as a lightweight common system for MC event
+generator validation analyses, particularly as the core histogramming system
+in Rivet."
+
+LICENSE="GPL-3.0-only AND BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only AND BSD-3-Clause AND MIT"
+LICENSE_URI="https://gitlab.com/hepcedar/yoda/-/raw/yoda-${PV}/LICENSE"
+
+BUILD_REQUIRES="
+	autoconf-archive
+	libhdf5-devel
+	libyaml-cpp-devel
+	python312-cython
+	python312-matplotlib
+	python312-numpy
+	python3-devel
+	zlib-devel
+"
+
+export PYTHON=python3
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+export CXXFLAGS="${CXXFLAGS//-Werror=format-security/}"
+
+CYGCONF_ARGS="
+	--with-yaml-cpp=/usr
+"
+
+# cygport check takes about 30 minutes (compiling and running the tests)
+YACP_CHECK_TIMEOUT_MINUTES=60
+
+src_test()
+{
+	cd ${B}
+	export PATH=${B}/src/.libs:${PATH}
+	pushd tests
+	cp ${S}/tests/*.yoda ${S}/tests/*.yoda.gz ${S}/tests/*.data .
+	popd
+	mkdir -p data/plotting
+	cp ${S}/data/plotting/default.mplstyle data/plotting/
+	cygtest
+}
+
+DIFF_EXCLUDES="
+	*.pyx
+	declarations.pxd
+	yoda-config
+	yoda.pc
+"
+
+PKG_NAMES="
+	${PN}
+	lib${PN}0
+	lib${PN}-devel
+	python312-${PN}
+"
+YODA_CONTENTS="
+	usr/share
+"
+libYODA0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libYODA_devel_CONTENTS="
+	usr/bin/*-config
+	usr/include
+	usr/lib/*.dll.a
+	usr/lib/pkgconfig
+"
+python312_YODA_CONTENTS="
+	etc/bash_completion.d
+	usr/bin/root2yoda
+	usr/bin/yoda2root
+	usr/bin/yoda2yoda
+	usr/bin/yodacnv
+	usr/bin/yodadiff
+	usr/bin/yodaenvelope
+	usr/bin/yodals
+	usr/bin/yodamerge
+	usr/bin/yodaplot
+	usr/bin/yodascale
+	usr/bin/yodastack
+	usr/lib/python3.12
+"
+YODA_SUMMARY="${SUMMARY} (licensing & readmes)"
+libYODA0_SUMMARY="${SUMMARY} (runtime)"
+libYODA_devel_SUMMARY="${SUMMARY} (development)"
+python312_YODA_SUMMARY="${SUMMARY} (python312 bindings)"

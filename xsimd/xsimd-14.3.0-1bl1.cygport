@@ -1,9 +1,9 @@
 HOMEPAGE="https://github.com/xtensor-stack/${PN}"
 SRC_URI="https://github.com/xtensor-stack/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/13.2.0-1/debian/patches/pkgconfig_install_destination.patch
-	https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/dev-cpp/${PN}/files/${PN}-14.0.0-c%2B%2B17.patch
-	https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/dev-cpp/${PN}/files/${PN}-14.0.0-no-march.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/14.3.0-1/debian/patches/pkgconfig_install_destination.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/1a45de5cc585e652067eddeff75456db0cc4d467/dev-cpp/${PN}/files/${PN}-14.0.0-c%2B%2B17.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/1a45de5cc585e652067eddeff75456db0cc4d467/dev-cpp/${PN}/files/${PN}-14.2.0-no-march.patch
 "
 
 CATEGORY="Devel"
@@ -16,6 +16,7 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	doctest
 	xtl
 "
 
@@ -30,3 +31,5 @@ CYGCMAKE_ARGS="
 	-DENABLE_XTL_COMPLEX:BOOL=ON
 	-DXSIMD_CMAKECONFIG_INSTALL_DIR:STRING=lib/cmake/${PN}
 "
+
+xsimd_REQUIRES="xtl"

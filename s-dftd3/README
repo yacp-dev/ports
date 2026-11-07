@@ -3,47 +3,49 @@ s-dftd3
 Library first implementation of the D3 dispersion correction
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libgfortran5-13.4.0-1
-  libgomp1-13.4.0-1
-  libmctc-lib-devel-0.5.0-1bl1
-  libmctc-lib0-0.5.0-1bl1
-  libs-dftd3-devel-1.2.1-1bl1
-  libs-dftd3_1-1.2.1-1bl1
-  libtoml-f0-0.4.2-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libgomp1-14.4.0-1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmctc-lib0-0.7.0-1bl1
+  libs-dftd3-devel-1.7.0-1bl1
+  libs-dftd3_1-1.7.0-1bl1
+  libtoml-f0-0.5.2-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-fortran-13.4.0-1
-  libmctc-lib-devel-0.5.0-1bl1
-  libtoml-f-devel-0.4.2-1bl2
-  meson-1.4.2-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libmctc-lib-devel-0.7.0-1bl1
+  libmstore-devel-0.4.0-1bl1
+  libtoml-f-devel-0.5.2-1bl1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/dftd3/simple-dftd3
 
 Canonical download:
-  https://github.com/dftd3/simple-dftd3/archive/refs/tags/v1.2.1.tar.gz
+  https://github.com/dftd3/simple-dftd3/archive/refs/tags/v1.7.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack s-dftd3-1.2.1-X-src.tar.xz
+  1. unpack s-dftd3-1.7.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./s-dftd3-1.2.1-X.cygport all
+        % cygport ./s-dftd3-1.7.0-X.cygport all
 
 This will create:
-  /usr/src/s-dftd3-1.2.1-X-src.tar.xz
-  /usr/src/s-dftd3-1.2.1-X.tar.xz
-  /usr/src/libs-dftd3_1-1.2.1-X.tar.xz
-  /usr/src/libs-dftd3-devel-1.2.1-X.tar.xz
+  /usr/src/s-dftd3-1.7.0-X-src.tar.xz
+  /usr/src/s-dftd3-1.7.0-X.tar.xz
+  /usr/src/libs-dftd3_1-1.7.0-X.tar.xz
+  /usr/src/libs-dftd3-devel-1.7.0-X.tar.xz
 
 -------------------------------------------
 
@@ -64,33 +66,56 @@ Files included in the binary package:
   /usr/include/dftd3.h
   /usr/include/s-dftd3.h
   /usr/include/s-dftd3/modules/dftd3.mod
+  /usr/include/s-dftd3/modules/dftd3_accuracy.mod
   /usr/include/s-dftd3/modules/dftd3_api.mod
   /usr/include/s-dftd3/modules/dftd3_citation.mod
   /usr/include/s-dftd3/modules/dftd3_cutoff.mod
   /usr/include/s-dftd3/modules/dftd3_damping.mod
   /usr/include/s-dftd3/modules/dftd3_damping_atm.mod
+  /usr/include/s-dftd3/modules/dftd3_damping_cso.mod
   /usr/include/s-dftd3/modules/dftd3_damping_mzero.mod
   /usr/include/s-dftd3/modules/dftd3_damping_optimizedpower.mod
   /usr/include/s-dftd3/modules/dftd3_damping_rational.mod
+  /usr/include/s-dftd3/modules/dftd3_damping_z.mod
   /usr/include/s-dftd3/modules/dftd3_damping_zero.mod
   /usr/include/s-dftd3/modules/dftd3_data.mod
-  /usr/include/s-dftd3/modules/dftd3_data_covrad.mod
   /usr/include/s-dftd3/modules/dftd3_data_r4r2.mod
   /usr/include/s-dftd3/modules/dftd3_data_vdwrad.mod
   /usr/include/s-dftd3/modules/dftd3_disp.mod
+  /usr/include/s-dftd3/modules/dftd3_feature.mod
+  /usr/include/s-dftd3/modules/dftd3_fourier_decomposition.mod
+  /usr/include/s-dftd3/modules/dftd3_fourier_ewald.mod
+  /usr/include/s-dftd3/modules/dftd3_fourier_fft.mod
+  /usr/include/s-dftd3/modules/dftd3_fourier_jacobi.mod
+  /usr/include/s-dftd3/modules/dftd3_fourier_kernel.mod
+  /usr/include/s-dftd3/modules/dftd3_fourier_spme.mod
+  /usr/include/s-dftd3/modules/dftd3_gcp.mod
+  /usr/include/s-dftd3/modules/dftd3_gcp_param.mod
   /usr/include/s-dftd3/modules/dftd3_model.mod
+  /usr/include/s-dftd3/modules/dftd3_mpi.mod
+  /usr/include/s-dftd3/modules/dftd3_mpi_utils.mod
   /usr/include/s-dftd3/modules/dftd3_ncoord.mod
   /usr/include/s-dftd3/modules/dftd3_output.mod
   /usr/include/s-dftd3/modules/dftd3_param.mod
+  /usr/include/s-dftd3/modules/dftd3_partition.mod
   /usr/include/s-dftd3/modules/dftd3_reference.mod
   /usr/include/s-dftd3/modules/dftd3_utils.mod
   /usr/include/s-dftd3/modules/dftd3_version.mod
+  /usr/lib/cmake/s-dftd3/Findmctc-lib.cmake
+  /usr/lib/cmake/s-dftd3/Findmstore.cmake
+  /usr/lib/cmake/s-dftd3/Findtoml-f.cmake
+  /usr/lib/cmake/s-dftd3/s-dftd3-config.cmake
+  /usr/lib/cmake/s-dftd3/s-dftd3-targets.cmake
+  /usr/lib/cmake/s-dftd3/s-dftd3-utils.cmake
   /usr/lib/libs-dftd3.dll.a
   /usr/lib/pkgconfig/s-dftd3.pc
 
 ------------------
 
 Port Notes:
+
+----- version 1.7.0-1bl1 -----
+Version bump.
 
 ----- version 1.2.1-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

@@ -1,0 +1,33 @@
+--- origsrc/llama.cpp-0.9.0/common/download.cpp	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/common/download.cpp	2026-11-07 15:44:03.784828900 +0000
+@@ -31,6 +31,8 @@
+ #   endif
+ #elif defined(_AIX)
+ #include <sys/limits.h>
++#elif defined(__CYGWIN__)
++#include <limits.h>
+ #else
+ #include <sys/syslimits.h>
+ #endif
+--- origsrc/llama.cpp-0.9.0/src/llama-mmap.cpp	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/src/llama-mmap.cpp	2026-11-07 15:44:03.786364400 +0000
+@@ -715,7 +715,7 @@ struct llama_mlock::impl {
+ 
+         char* errmsg = std::strerror(errno);
+         bool suggest = (errno == ENOMEM);
+-#if defined(TARGET_OS_VISION) || defined(TARGET_OS_TV) || defined(_AIX) || defined(__HAIKU__)
++#if !defined(RLIMIT_MEMLOCK) || defined(TARGET_OS_VISION) || defined(TARGET_OS_TV) || defined(_AIX) || defined(__HAIKU__)
+         // visionOS/tvOS/Haiku don't support RLIMIT_MEMLOCK
+         // Skip resource limit checks on these platforms
+         suggest = false;
+--- origsrc/llama.cpp-0.9.0/vendor/sheredom/subprocess.h	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/vendor/sheredom/subprocess.h	2026-11-07 15:44:03.787547600 +0000
+@@ -58,7 +58,7 @@
+ #define subprocess_pure
+ #define subprocess_weak __inline
+ #define subprocess_tls __declspec(thread)
+-#elif defined(__MINGW32__)
++#elif defined(__MINGW32__) || defined(__CYGWIN__)
+ #define subprocess_pure SUBPROCESS_ATTRIBUTE(pure)
+ #define subprocess_weak static SUBPROCESS_ATTRIBUTE(used)
+ #define subprocess_tls __thread

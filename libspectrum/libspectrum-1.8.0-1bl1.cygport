@@ -1,4 +1,4 @@
-HOMEPAGE="http://fuse-emulator.sf.net/${PN}.php"
+HOMEPAGE="https://fuse-emulator.sourceforge.net/${PN}.php"
 SRC_URI="mirror://sourceforge/fuse-emulator/${P}.tar.gz"
 
 CATEGORY="Libs"
@@ -11,15 +11,10 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND MIT"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
-	libaudiofile-devel
 	libbz2-devel
 	libgcrypt-devel
 	libglib2.0-devel
 	zlib-devel
-"
-
-CYGCONF_ARGS="
-	--enable-audiofiletest
 "
 
 DIFF_EXCLUDES="

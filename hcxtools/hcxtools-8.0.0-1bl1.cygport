@@ -22,6 +22,25 @@ BUILD_REQUIRES="
 
 inherit meson
 
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/^  version: '[^']*',/  version: '${PV}',/" meson.build
+}
+
+src_test()
+{
+	cd ${S}/_build.${CHOST}
+	local t out
+	for t in hcxeiutool hcxhash2cap hcxhashtool hcxpcapngtool hcxpmktool hcxpsktool hcxwltool
+	do
+		out=$(./${t}.exe --version) || return 1
+		echo "${out}"
+		[[ "${out}" == "${t} ${PV} "* ]] || error "${t} does not report version ${PV}"
+	done
+}
+
 src_install()
 {
 	cd ${S}

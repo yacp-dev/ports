@@ -1,5 +1,5 @@
 HOMEPAGE="https://github.com/symisc/${PN}"
-SRC_URI="https://github.com/symisc/${PN}/archive/refs/tags/v${PV}.tar.gz"
+SRC_URI="https://github.com/symisc/${PN}/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Database"
 SUMMARY="Embeddable NoSQL Database Engine"
@@ -23,6 +23,12 @@ CYGCMAKE_ARGS="
 DOCS="
 	CHANGELOG.md
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${PATH} ninja_test
+}
 
 PKG_NAMES="
 	${PN}

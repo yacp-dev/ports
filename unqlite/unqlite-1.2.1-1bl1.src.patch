@@ -1,0 +1,49 @@
+--- origsrc/unqlite-1.2.1/CMakeLists.txt	2026-05-01 16:47:04.000000000 +0000
++++ src/unqlite-1.2.1/CMakeLists.txt	2026-11-08 20:17:16.800568900 +0000
+@@ -29,9 +29,20 @@ source_group("Source Files" FILES "${SOU
+ set(UNQLITE_STATIC_LIB unqlite)
+ add_library(${UNQLITE_STATIC_LIB} ${HEADERS_UNQLITE} ${SOURCES_UNQLITE})
+ 
+-install(TARGETS ${UNQLITE_STATIC_LIB} COMPONENT devel ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
++if (DEFINED SOVERSION)
++  set_target_properties(${UNQLITE_STATIC_LIB} PROPERTIES SOVERSION "${SOVERSION}")
++endif()
++
++install(TARGETS ${UNQLITE_STATIC_LIB} COMPONENT devel RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+ install(FILES ${HEADERS_UNQLITE} COMPONENT devel DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
+ 
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})
++set(includedir ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR})
++configure_file(${CMAKE_SOURCE_DIR}/unqlite.pc.in ${CMAKE_BINARY_DIR}/unqlite.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/unqlite.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/pkgconfig)
++
+ include(CTest)
+ if (BUILD_TESTING)
+   if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/samples/CMakeLists.txt")
+--- origsrc/unqlite-1.2.1/samples/CMakeLists.txt	2026-05-01 16:47:04.000000000 +0000
++++ src/unqlite-1.2.1/samples/CMakeLists.txt	2026-11-08 20:17:16.802596400 +0000
+@@ -7,4 +7,8 @@ foreach (name "1" "2" "3" "4" "5" "6" "u
+     add_test(NAME "${EXEC_NAME}" COMMAND "${EXEC_NAME}")
+ endforeach ()
+ 
+-add_subdirectory(demovfs)
++# demovfs calls unqlite_malloc()/unqlite_free(), which are internal and not
++# exported from the DLL
++if (NOT BUILD_SHARED_LIBS)
++  add_subdirectory(demovfs)
++endif()
+--- origsrc/unqlite-1.2.1/unqlite.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/unqlite-1.2.1/unqlite.pc.in	2026-11-08 20:17:16.802596400 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: unqlite
++Description: Embeddable NoSQL Database Engine
++Version: @VERSION@
++Libs: -L${libdir} -lunqlite
++Cflags: -I${includedir}

@@ -11,8 +11,8 @@ DESCRIPTION="Valkey is a high-performance data structure server that primarily s
 key/value workloads. It supports a wide range of native structures and an
 extensible plugin system for adding new data structures and access patterns."
 
-LICENSE="BSD-3-Clause AND MIT AND (Apache-2.0 OR BSL-1.0 OR MIT)"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT AND (Apache-2.0 OR BSL-1.0 OR MIT)"
+LICENSE="BSD-3-Clause AND BSD-2-Clause AND ISC AND MIT AND Zlib AND (Apache-2.0 OR BSL-1.0 OR MIT)"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause AND ISC AND MIT AND Zlib AND (Apache-2.0 OR BSL-1.0 OR MIT)"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
@@ -23,6 +23,7 @@ BUILD_REQUIRES="
 	libvalkey-devel
 	libvalkey_tls-devel
 	libtcmalloc-devel
+	tcl
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DUSE_SYSTEM_HDR_HISTOGRAM -DUSE_SYSTEM_LINENOISE"
@@ -35,6 +36,25 @@ CYGCMAKE_ARGS="
 	-DBUILD_TEST_MODULES:BOOL=ON
 	-DBUILD_TLS:BOOL=ON
 "
+
+src_test()
+{
+	# The tests put a Unix socket under tests/tmp, and the path to the
+	# build tree is too long for sun_path (108): run them from a copy.
+	local rc=0 t=$(mktemp -d /tmp/valkey-test.XXXXXX)
+	cp -r ${S}/tests ${t}/tests
+	cd ${t}
+	VALKEY_BIN_DIR=${B}/bin tclsh tests/test_helper.tcl --clients 4 \
+		--single unit/type/string \
+		--single unit/type/list \
+		--single unit/type/hash \
+		--single unit/type/set \
+		--single unit/type/zset \
+		--single unit/expire || rc=$?
+	cd ${B}
+	rm -rf ${t}
+	return ${rc}
+}
 
 src_install()
 {
@@ -56,4 +76,5 @@ DOCS="
 
 DIFF_EXCLUDES="
 	jemalloc
+	tmp
 "

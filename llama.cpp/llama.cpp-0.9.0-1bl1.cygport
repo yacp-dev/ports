@@ -1,0 +1,68 @@
+HOMEPAGE="https://github.com/ggml-org/${PN}"
+SRC_URI="https://github.com/ggml-org/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="LLM inference in C/C++"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="MIT AND BSD-2-Clause AND Unlicense"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSD-2-Clause AND Unlicense"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libggml-devel
+	libssl-devel
+	python312-jinja2
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DLLAMA_BUILD_COMMON:BOOL=ON
+	-DLLAMA_BUILD_TESTS:BOOL=ON
+	-DLLAMA_TESTS_INSTALL:BOOL=OFF
+	-DLLAMA_BUILD_TOOLS:BOOL=ON
+	-DLLAMA_TOOLS_INSTALL:BOOL=ON
+	-DLLAMA_BUILD_EXAMPLES:BOOL=ON
+	-DLLAMA_BUILD_SERVER:BOOL=ON
+	-DLLAMA_BUILD_APP:BOOL=ON
+	-DLLAMA_BUILD_IS_DEV:BOOL=OFF
+	-DLLAMA_BUILD_UI:BOOL=OFF
+	-DLLAMA_USE_PREBUILT_UI:BOOL=OFF
+	-DLLAMA_USE_SYSTEM_GGML:BOOL=ON
+"
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	# llama-common has no installed headers and isn't in llama-config.cmake
+	cd ${D}
+	rm usr/lib/libllama-common.dll.a
+}
+
+PKG_NAMES="
+	llama.cpp
+	libllama0
+	libllama-devel
+"
+llama_cpp_CONTENTS="
+	usr/bin/*.exe
+	usr/bin/cygllama-common-0.dll
+	usr/share
+"
+libllama0_CONTENTS="
+	usr/bin/cygllama-0.dll
+	usr/bin/cygmtmd-0.dll
+"
+libllama_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+llama_cpp_SUMMARY="${SUMMARY} (utilities)"
+libllama0_SUMMARY="${SUMMARY} (runtime)"
+libllama_devel_SUMMARY="${SUMMARY} (development)"

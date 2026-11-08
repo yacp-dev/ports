@@ -11,14 +11,11 @@ LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="
 	libbz2-devel
+	libcityhash-devel
 	zlib-devel
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
-
-CYGCONF_ARGS="
-	--disable-pdfman
-"
 
 src_test()
 {

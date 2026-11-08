@@ -1,44 +1,44 @@
 unibilium
 ------------------------------------------
-Unibilium is a very basic terminfo library. It doesn't depend on curses or
-any other library. It also doesn't use global variables, so it should be
+Unibilium is a very basic terminfo library. It doesn't depend on curses or any
+other library. It also doesn't use global variables, so it should be
 thread-safe.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libunibilium-devel-2.1.2-1bl1
-  libunibilium4-2.1.2-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libunibilium-devel-2.1.4-1bl1
+  libunibilium4-2.1.4-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  ninja-1.13.1-1
-  perl-5.40.3-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
+  perl-5.44.0-1
 
 Canonical website:
   https://github.com/neovim/unibilium
 
 Canonical download:
-  https://github.com/neovim/unibilium/archive/refs/tags/v2.1.2.tar.gz
+  https://github.com/neovim/unibilium/archive/refs/tags/v2.1.4.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack unibilium-2.1.2-X-src.tar.xz
+  1. unpack unibilium-2.1.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./unibilium-2.1.2-X.cygport all
+        % cygport ./unibilium-2.1.4-X.cygport all
 
 This will create:
-  /usr/src/unibilium-2.1.2-X-src.tar.xz
-  /usr/src/unibilium-2.1.2-X.tar.xz
-  /usr/src/libunibilium4-2.1.2-X.tar.xz
-  /usr/src/libunibilium-devel-2.1.2-X.tar.xz
+  /usr/src/unibilium-2.1.4-X-src.tar.xz
+  /usr/src/unibilium-2.1.4-X.tar.xz
+  /usr/src/libunibilium4-2.1.4-X.tar.xz
+  /usr/src/libunibilium-devel-2.1.4-X.tar.xz
 
 -------------------------------------------
 
@@ -116,6 +116,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.1.4-1bl1 -----
+Version bump.
 
 ----- version 2.1.2-1bl1 -----
 Version bump.

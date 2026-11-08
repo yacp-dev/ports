@@ -19,20 +19,12 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DSOVERSION:STRING=4
 "
 
-src_install()
+src_test()
 {
 	cd ${B}
-	ninja_install
-
-	mkdir -p ${D}/usr/share/man/man3
-	cd ${S}/doc
-	for man in *.pod
-	do
-		pod2man -c ${PN} -s3 -r ${P} ${man} > ${D}/usr/share/man/man3/${man%.*}.3
-	done
+	PATH=${B}:${PATH} ninja_test
 }
 
 DOCS="

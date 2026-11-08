@@ -1,6 +1,6 @@
 HOMEPAGE="https://github.com/jawatson/${PN}"
-SRC_URI="https://github.com/jawatson/${PN}/archive/refs/tags/v.${PV}.tar.gz"
-SRC_DIR="${PN}-v.${PV}"
+SRC_URI="https://github.com/jawatson/${PN}/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="${PN}-${PV}"
 
 CATEGORY="Science"
 SUMMARY="HF propagation prediction tool"
@@ -8,7 +8,13 @@ DESCRIPTION="This page describes the installation and operation of the VOACAP HF
 Prediction engine on any machine supporting the GCC compiler. The basic engine
 runs from a command line and requires no graphical interface."
 
-# LICENSE=""
+LICENSE="LicenseRef-voacapl AND CC0-1.0 AND GPL-3.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-voacapl AND CC0-1.0 AND GPL-3.0-only"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	gcc-fortran
+"
 
 src_install()
 {

@@ -13,7 +13,11 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libgsl-devel libprng-devel librngstreams-devel"
+BUILD_REQUIRES="
+	libgsl-devel
+	libprng-devel
+	librngstreams-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode
@@ -28,15 +32,15 @@ DOCS="
 
 PKG_NAMES="
 	${PN}
-	lib${PN}16
+	lib${PN}18
 	lib${PN}-devel
 "
 unuran_CONTENTS="
 	usr/share/doc/Cygwin
 	usr/share/doc/${PN}/[ACNRT]*
 "
-libunuran16_CONTENTS="
-	usr/bin/cyg*-16.dll
+libunuran18_CONTENTS="
+	usr/bin/cyg*-18.dll
 "
 libunuran_devel_CONTENTS="
 	usr/include
@@ -45,5 +49,5 @@ libunuran_devel_CONTENTS="
 	usr/share/info/${PN}*.info*
 "
 unuran_SUMMARY="${SUMMARY} (licensing & readmes)"
-libunuran16_SUMMARY="${SUMMARY} (runtime)"
+libunuran18_SUMMARY="${SUMMARY} (runtime)"
 libunuran_devel_SUMMARY="${SUMMARY} (development)"

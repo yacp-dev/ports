@@ -7,48 +7,47 @@ Generation) project group in Vienna, and released under the GNU Public License
 (GPL).
 
 Runtime requirements:
-  cygwin-3.5.0-0.404.gca2a4ec24362
+  cygwin-3.6.12-1
   libgsl19-2.3-2
-  libprng0-3.0.2-1bl5
-  librngstreams0-1.0.1-1bl5
-  libunuran-devel-1.11.0-1bl1
-  libunuran16-1.11.0-1bl1
-  pkg-config-2.0.2-1
+  libprng0-3.0.2-1bl6
+  librngstreams0-1.0.1-1bl6
+  libunuran-devel-1.12.0-1bl1
+  libunuran18-1.12.0-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   libgsl-devel-2.3-2
-  libprng-devel-3.0.2-1bl5
-  librngstreams-devel-1.0.1-1bl5
-  libtool-2.4.7-1
+  libprng-devel-3.0.2-1bl6
+  librngstreams-devel-1.0.1-1bl6
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://statmath.wu.ac.at/unuran/
 
 Canonical download:
-  https://statmath.wu.ac.at/unuran/unuran-1.11.0.tar.gz
+  https://statmath.wu.ac.at/unuran/unuran-1.12.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack unuran-1.11.0-X-src.tar.xz
+  1. unpack unuran-1.12.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./unuran-1.11.0-X.cygport all
+        % cygport ./unuran-1.12.0-X.cygport all
 
 This will create:
-  /usr/src/unuran-1.11.0-X-src.tar.xz
-  /usr/src/unuran-1.11.0-X.tar.xz
-  /usr/src/libunuran16-1.11.0-X.tar.xz
-  /usr/src/libunuran-devel-1.11.0-X.tar.xz
+  /usr/src/unuran-1.12.0-X-src.tar.xz
+  /usr/src/unuran-1.12.0-X.tar.xz
+  /usr/src/libunuran18-1.12.0-X.tar.xz
+  /usr/src/libunuran-devel-1.12.0-X.tar.xz
 
 -------------------------------------------
 
@@ -63,8 +62,8 @@ Files included in the binary package:
   /usr/share/doc/unuran/README
   /usr/share/doc/unuran/THANKS
 
-(libunuran16)
-  /usr/bin/cygunuran-16.dll
+(libunuran18)
+  /usr/bin/cygunuran-18.dll
 
 (libunuran-devel)
   /usr/include/unuran.h
@@ -109,6 +108,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.12.0-1bl1 -----
+Version bump.
 
 ----- version 1.11.0-1bl1 -----
 Version bump.

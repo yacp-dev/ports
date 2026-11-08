@@ -1,59 +1,73 @@
 YODA
 ------------------------------------------
-YODA is a small set of data analysis (specifically histogramming) classes
-being developed by MCnet members as a lightweight common system for MC event
-generator validation analyses, particularly as the core histogramming system
-in Rivet.
+YODA is a small set of data analysis (specifically histogramming) classes being
+developed by MCnet members as a lightweight common system for MC event
+generator validation analyses, particularly as the core histogramming system in
+Rivet.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.6-1
-  libYODA-devel-2.1.2-1bl1
-  libYODA0-2.1.2-1bl1
-  libgcc1-13.4.0-1
-  libhdf5-devel-2.0.0-1
-  libhdf5_320-2.0.0-1
+  cygwin-3.6.12-1
+  libYODA-devel-2.1.4-1bl1
+  libYODA0-2.1.4-1bl1
+  libgcc1-14.4.0-1
+  libhdf5-devel-2.2.0-1
+  libhdf5_320-2.2.0-1
   libintl8-0.22.5-1
-  libstdc++6-13.4.0-1
-  libyaml-cpp-devel-0.9.0-1bl1
-  pkg-config-2.5.1-1
-  zlib0-1.3.1-1
+  libstdc++6-14.4.0-1
+  libyaml-cpp-devel-0.9.0-1bl2
+  libyaml-cpp0.9-0.9.0-1bl2
+  pkg-config-3.0.10-1
+  python3-3.12.12-1
+  python312-3.12.12-1
+  python312-YODA-2.1.4-1bl1
+  python312-matplotlib-3.11.2-1
+  python312-numpy-2.5.4-1
+  zlib-devel-1.3.2-1
+  zlib0-1.3.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
+  autoconf-20260320-3
   autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libhdf5-devel-2.0.0-1
-  libtool-2.5.4-1
-  libyaml-cpp-devel-0.9.0-1bl1
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  hdf5-2.2.0-1
+  libhdf5-devel-2.2.0-1
+  libtool-2.6.2-1
+  libyaml-cpp-devel-0.9.0-1bl2
   make-4.4.1-2
-  zlib-devel-1.3.1-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  python312-cython-3.3.0-1
+  python312-matplotlib-3.11.2-1
+  python312-numpy-2.5.4-1
+  zlib-devel-1.3.2-1
 
 Canonical website:
   https://yoda.hepforge.org/
 
 Canonical download:
-  https://yoda.hepforge.org/downloads/YODA-2.1.2.tar.bz2
+  https://yoda.hepforge.org/downloads/YODA-2.1.4.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack YODA-2.1.2-X-src.tar.xz
+  1. unpack YODA-2.1.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./YODA-2.1.2-X.cygport all
+        % cygport ./YODA-2.1.4-X.cygport all
 
 This will create:
-  /usr/src/YODA-2.1.2-X-src.tar.xz
-  /usr/src/YODA-2.1.2-X.tar.xz
-  /usr/src/libYODA0-2.1.2-X.tar.xz
-  /usr/src/libYODA-devel-2.1.2-X.tar.xz
+  /usr/src/YODA-2.1.4-X-src.tar.xz
+  /usr/src/YODA-2.1.4-X.tar.xz
+  /usr/src/libYODA0-2.1.4-X.tar.xz
+  /usr/src/libYODA-devel-2.1.4-X.tar.xz
+  /usr/src/python312-YODA-2.1.4-X.tar.xz
 
 -------------------------------------------
 
@@ -104,8 +118,6 @@ Files included in the binary package:
   /usr/share/YODA/texmf/tex/latex/xkeyval/xkeyval.sty
   /usr/share/doc/Cygwin/YODA.README
   /usr/share/doc/YODA/AUTHORS
-  /usr/share/doc/YODA/COPYING
-  /usr/share/doc/YODA/ChangeLog
   /usr/share/doc/YODA/README.md
 
 (libYODA0)
@@ -247,9 +259,76 @@ Files included in the binary package:
   /usr/lib/libYODA.dll.a
   /usr/lib/pkgconfig/yoda.pc
 
+(python312-YODA)
+  /etc/bash_completion.d/yoda-completion
+  /usr/bin/root2yoda
+  /usr/bin/yoda2root
+  /usr/bin/yoda2yoda
+  /usr/bin/yodacnv
+  /usr/bin/yodadiff
+  /usr/bin/yodaenvelope
+  /usr/bin/yodals
+  /usr/bin/yodamerge
+  /usr/bin/yodaplot
+  /usr/bin/yodascale
+  /usr/bin/yodastack
+  /usr/lib/python3.12/site-packages/yoda/__init__.py
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/hepdata.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/hepdata.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/hepdata.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/hepdatacnv.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/hepdatacnv.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/hepdatacnv.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/root.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/root.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/root.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/rootcnv.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/rootcnv.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/rootcnv.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/script_helpers.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/script_helpers.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/script_helpers.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/search.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/search.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/__pycache__/search.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/core.dll
+  /usr/lib/python3.12/site-packages/yoda/hepdata.py
+  /usr/lib/python3.12/site-packages/yoda/hepdatacnv.py
+  /usr/lib/python3.12/site-packages/yoda/plotting/__init__.py
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/fetch_data.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/fetch_data.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/fetch_data.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/mlp_preprocessor.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/mlp_preprocessor.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/mlp_preprocessor.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/script_generator.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/script_generator.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/script_generator.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/utils.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/utils.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/__pycache__/utils.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/yoda/plotting/fetch_data.py
+  /usr/lib/python3.12/site-packages/yoda/plotting/mlp_preprocessor.py
+  /usr/lib/python3.12/site-packages/yoda/plotting/script_generator.py
+  /usr/lib/python3.12/site-packages/yoda/plotting/utils.py
+  /usr/lib/python3.12/site-packages/yoda/root.py
+  /usr/lib/python3.12/site-packages/yoda/rootcnv.py
+  /usr/lib/python3.12/site-packages/yoda/script_helpers.py
+  /usr/lib/python3.12/site-packages/yoda/search.py
+  /usr/lib/python3.12/site-packages/yoda/util.dll
+
 ------------------
 
 Port Notes:
+
+----- version 2.1.4-1bl1 -----
+Version bump.
 
 ----- version 2.1.2-1bl1 -----
 Version bump.

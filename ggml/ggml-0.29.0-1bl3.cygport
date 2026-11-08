@@ -15,6 +15,12 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
+# GCC can't realign the stack for 32-byte AVX2 spills on x86_64 Windows
+# (GCC PR 54412), so vmovdqa to the stack faults in the CPU backend; have
+# the assembler emit unaligned moves instead.
+CFLAGS+=" -Wa,-muse-unaligned-vector-move"
+CXXFLAGS+=" -Wa,-muse-unaligned-vector-move"
+
 inherit cmake
 
 CYGCMAKE_ARGS="

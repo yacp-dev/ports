@@ -6,20 +6,20 @@ explicit inversive congruential random number generators (called LCG, ICG and
 EICG, respectively) created by Otmar Lendl. It is part of the pLab project.
 
 Runtime requirements:
-  cygwin-3.3.5-1
-  libprng-devel-3.0.2-1bl5
-  libprng0-3.0.2-1bl5
-  pkg-config-1.8.0-1
+  cygwin-3.6.12-1
+  libprng-devel-3.0.2-1bl6
+  libprng0-3.0.2-1bl6
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.38-1
-  cygport-0.35.1-1
-  gcc-core-11.3.0-1
-  libtool-2.4.7-1
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://statmath.wu.ac.at/prng/
@@ -69,6 +69,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0.2-1bl6 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.0.2-1bl5 -----
 Rebuild with gcc-11.3.0

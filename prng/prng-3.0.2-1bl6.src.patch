@@ -1,5 +1,5 @@
---- origsrc/prng-3.0.2/Makefile.am	2003-07-30 23:06:06.000000000 +0900
-+++ src/prng-3.0.2/Makefile.am	2022-06-19 20:33:42.026812700 +0900
+--- origsrc/prng-3.0.2/Makefile.am	2003-07-30 14:06:06.000000000 +0000
++++ src/prng-3.0.2/Makefile.am	2026-11-08 19:07:25.859082100 +0000
 @@ -25,3 +25,6 @@ MAINTAINERCLEANFILES = \
   ltmain.sh \
   missing \
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/prng-3.0.2/configure.ac	2022-06-19 20:33:39.830737900 +0900
-+++ src/prng-3.0.2/configure.ac	2022-06-19 20:33:42.036825800 +0900
+--- origsrc/prng-3.0.2/configure.ac	2026-11-08 19:07:25.383113400 +0000
++++ src/prng-3.0.2/configure.ac	2026-11-08 19:07:25.859082100 +0000
 @@ -20,10 +20,9 @@ AC_PROG_CC
  AC_PROG_CPP
  AC_CHECK_TOOL(RANLIB, ranlib, :)
@@ -30,8 +30,8 @@
          Makefile \
          src/Makefile \
          doc/Makefile \
---- origsrc/prng-3.0.2/doc/prng.texi	2001-03-13 01:04:49.000000000 +0900
-+++ src/prng-3.0.2/doc/prng.texi	2022-06-19 20:33:42.042805400 +0900
+--- origsrc/prng-3.0.2/doc/prng.texi	2001-03-12 16:04:49.000000000 +0000
++++ src/prng-3.0.2/doc/prng.texi	2026-11-08 19:07:25.861109100 +0000
 @@ -90,7 +90,7 @@ Please let us also know about your exper
  
  @c ....................................................................
@@ -58,8 +58,8 @@
  
  Do
  
---- origsrc/prng-3.0.2/prng.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/prng-3.0.2/prng.pc.in	2022-06-19 20:33:42.047855700 +0900
+--- origsrc/prng-3.0.2/prng.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/prng-3.0.2/prng.pc.in	2026-11-08 19:07:25.861109100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -71,8 +71,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lprng
 +Cflags: -I${includedir}
---- origsrc/prng-3.0.2/src/Makefile.am	2022-06-19 20:33:39.840773100 +0900
-+++ src/prng-3.0.2/src/Makefile.am	2022-06-19 20:33:42.051889000 +0900
+--- origsrc/prng-3.0.2/src/Makefile.am	2026-11-08 19:07:25.385170000 +0000
++++ src/prng-3.0.2/src/Makefile.am	2026-11-08 19:07:25.861109100 +0000
 @@ -22,6 +22,7 @@ libprng_la_SOURCES = \
   anti.c \
   support.c 
@@ -81,8 +81,8 @@
  
  include_HEADERS = \
   prng.h
---- origsrc/prng-3.0.2/tests/Makefile.am	2003-07-30 23:31:26.000000000 +0900
-+++ src/prng-3.0.2/tests/Makefile.am	2022-06-19 20:33:42.055836200 +0900
+--- origsrc/prng-3.0.2/tests/Makefile.am	2003-07-30 14:31:26.000000000 +0000
++++ src/prng-3.0.2/tests/Makefile.am	2026-11-08 19:07:25.863792400 +0000
 @@ -1,7 +1,7 @@
  ## Process this file with automake to produce Makefile.in
  ## $Id: Makefile.am,v 1.4 2001/02/27 12:22:09 leydold Exp $

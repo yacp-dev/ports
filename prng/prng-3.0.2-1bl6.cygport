@@ -12,6 +12,10 @@ number generators such as linear congruential, inversive congruential, and
 explicit inversive congruential random number generators (called LCG, ICG and
 EICG, respectively) created by Otmar Lendl. It is part of the pLab project."
 
+LICENSE="LicenseRef-prng AND LGPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-prng AND LGPL-2.0-or-later"
+LICENSE_URI="src/prng.h"
+
 export CPPFLAGS="${CPPFLAGS} -Dinline="
 
 CYGPORT_USE_UNSTABLE_API=1
@@ -45,7 +49,7 @@ prng_CONTENTS="
 	usr/share/doc/${PN}/[A-Z]*
 "
 libprng0_CONTENTS="
-	usr/bin
+	usr/bin/cygprng-0.dll
 "
 libprng_devel_CONTENTS="
 	usr/include

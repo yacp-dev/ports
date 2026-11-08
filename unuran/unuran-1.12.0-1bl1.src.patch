@@ -1,14 +1,14 @@
---- origsrc/unuran-1.11.0/Makefile.am	2023-05-16 23:44:43.000000000 +0900
-+++ src/unuran-1.11.0/Makefile.am	2023-08-30 11:23:35.452182800 +0900
+--- origsrc/unuran-1.12.0/Makefile.am	2026-07-03 09:03:06.000000000 +0000
++++ src/unuran-1.12.0/Makefile.am	2026-11-08 19:47:14.398641000 +0000
 @@ -110,3 +110,5 @@ maintainer-clean-local:
  	rm -rf unuran-win32
  	@$(remove_rootdir)
  
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/unuran-1.11.0/configure.ac	2023-05-16 23:44:43.000000000 +0900
-+++ src/unuran-1.11.0/configure.ac	2023-08-30 11:23:35.452182800 +0900
-@@ -289,7 +289,7 @@ AC_SUBST(AM_CFLAGS,[$CC_FLAGS])
+--- origsrc/unuran-1.12.0/configure.ac	2026-07-03 09:37:24.000000000 +0000
++++ src/unuran-1.12.0/configure.ac	2026-11-08 19:47:14.398641000 +0000
+@@ -293,7 +293,7 @@ AC_SUBST(AM_CFLAGS,[$CC_FLAGS])
  
  dnl MinGW (Win32)
  case "${host}" in
@@ -17,7 +17,7 @@
      have_mingw=yes
      ;;
    *)
-@@ -299,7 +299,7 @@ AM_CONDITIONAL(HAVE_MINGW, test "$have_m
+@@ -303,7 +303,7 @@ AM_CONDITIONAL(HAVE_MINGW, test "$have_m
  
  
  dnl create Makefiles for source
@@ -26,8 +26,8 @@
  	Makefile \
  	src/Makefile \
  	src/distr/Makefile \
---- origsrc/unuran-1.11.0/unuran.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/unuran-1.11.0/unuran.pc.in	2023-08-30 11:23:35.452182800 +0900
+--- origsrc/unuran-1.12.0/unuran.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/unuran-1.12.0/unuran.pc.in	2026-11-08 19:47:14.399890900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

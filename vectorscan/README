@@ -6,43 +6,44 @@ be implemented when harwdare becomes accessible to the developers. More
 platforms will follow in the future, on demand/request.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libgcc1-13.4.0-1
-  libhs-devel-5.4.12-1bl1
-  libhs5-5.4.12-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libhs-devel-5.4.13-1bl1
+  libhs5-5.4.13-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libboost-devel-1.66.0-1
+  ninja-1.13.2-1
   ragel-7.0.0.11-3
 
 Canonical website:
   https://github.com/VectorCamp/vectorscan
 
 Canonical download:
-  https://github.com/VectorCamp/vectorscan/archive/refs/tags/vectorscan/5.4.12.tar.gz
+  https://github.com/VectorCamp/vectorscan/archive/refs/tags/vectorscan/5.4.13.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack vectorscan-5.4.12-X-src.tar.xz
+  1. unpack vectorscan-5.4.13-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./vectorscan-5.4.12-X.cygport all
+        % cygport ./vectorscan-5.4.13-X.cygport all
 
 This will create:
-  /usr/src/vectorscan-5.4.12-X-src.tar.xz
-  /usr/src/vectorscan-5.4.12-X.tar.xz
-  /usr/src/libhs5-5.4.12-X.tar.xz
-  /usr/src/libhs-devel-5.4.12-X.tar.xz
+  /usr/src/vectorscan-5.4.13-X-src.tar.xz
+  /usr/src/vectorscan-5.4.13-X.tar.xz
+  /usr/src/libhs5-5.4.13-X.tar.xz
+  /usr/src/libhs-devel-5.4.13-X.tar.xz
 
 -------------------------------------------
 
@@ -75,6 +76,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.4.13-1bl1 -----
+Version bump.
 
 ----- version 5.4.12-1bl1 -----
 Version bump.

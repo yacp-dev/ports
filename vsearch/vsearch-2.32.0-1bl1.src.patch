@@ -1,0 +1,126 @@
+--- origsrc/vsearch-2.32.0/configure.ac	2026-09-18 09:08:42.000000000 +0000
++++ src/vsearch-2.32.0/configure.ac	2026-11-08 00:04:56.122260200 +0000
+@@ -185,7 +185,11 @@ case $target in
+      *freebsd*) target_freebsd="yes" ;;
+ esac
+ 
+-AC_CHECK_HEADERS([windows.h], [AM_CONDITIONAL(TARGET_WIN, true)], [AM_CONDITIONAL(TARGET_WIN, false)])
++if test "$host_os" = "cygwin"; then
++  AM_CONDITIONAL(TARGET_WIN, false)
++else
++  AC_CHECK_HEADERS([windows.h], [AM_CONDITIONAL(TARGET_WIN, true)], [AM_CONDITIONAL(TARGET_WIN, false)])
++fi
+ 
+ AM_CONDITIONAL(INSTALL_COMPLETION, test "x$enable_completion" != "xno")
+ AM_CONDITIONAL(HAVE_PANDOC, test "x${have_pandoc}" = "xyes")
+--- origsrc/vsearch-2.32.0/src/Makefile.am	2026-09-18 09:08:42.000000000 +0000
++++ src/vsearch-2.32.0/src/Makefile.am	2026-11-08 00:04:56.124284300 +0000
+@@ -257,7 +257,7 @@ libcpu_sse2_pic_a_SOURCES = arch/x86_64/
+ libcpu_sse2_pic_a_CXXFLAGS = $(AM_CXXFLAGS) -msse2 -fPIC
+ libcpu_ssse3_pic_a_SOURCES = arch/x86_64/SSSE3/increment_counters.cpp $(VSEARCHHEADERS)
+ libcpu_ssse3_pic_a_CXXFLAGS = $(AM_CXXFLAGS) -mssse3 -fPIC
+-noinst_LIBRARIES = libcpu_sse2.a libcpu_ssse3.a libcpu_sse2_pic.a libcpu_ssse3_pic.a libcityhash.a libcityhash_pic.a libvsearch_core.a
++noinst_LIBRARIES = libcpu_sse2.a libcpu_ssse3.a libcpu_sse2_pic.a libcpu_ssse3_pic.a libvsearch_core.a
+ else
+ # One backend per non-x86 ISA, selected here (no per-target preprocessor
+ # branching in the source): NEON on aarch64, AltiVec on ppc64le, and a plain
+@@ -278,38 +278,23 @@ libcpu_pic_a_SOURCES = arch/generic/incr
+ endif
+ endif
+ libcpu_pic_a_CXXFLAGS = $(AM_CXXFLAGS) -fPIC
+-noinst_LIBRARIES = libcpu.a libcpu_pic.a libcityhash.a libcityhash_pic.a libvsearch_core.a
++noinst_LIBRARIES = libcpu.a libcpu_pic.a libvsearch_core.a
+ endif
+ 
+-libcityhash_a_SOURCES = vendored/city.cc vendored/city.h
+-libcityhash_pic_a_SOURCES = vendored/city.cc vendored/city.h
+-
+ if TARGET_WIN
+ 
+-# -Wno-conversion -Wno-sign-conversion: city.cc is vendored upstream
+-# (Google CityHash) and its many implicit integer conversions are
+-# intrinsic to that code, not ours to fix. It is no longer kept verbatim,
+-# though: it has had the constexpr/trailing-return treatment, and the arms
+-# configure never enabled (WORDS_BIGENDIAN, HAVE_BUILTIN_EXPECT) are gone,
+-# so resynchronising with upstream would be a merge rather than a copy.
+-libcityhash_a_CXXFLAGS = $(AM_CXXFLAGS) -Wno-sign-compare -Wno-conversion -Wno-sign-conversion -I$(srcdir)/vendored
+-libcityhash_pic_a_CXXFLAGS = $(AM_CXXFLAGS) -Wno-sign-compare -Wno-conversion -Wno-sign-conversion -fPIC -I$(srcdir)/vendored
+ __top_builddir__bin_vsearch_LDFLAGS = -static
+-__top_builddir__bin_vsearch_LDADD = libcityhash.a libcpu_ssse3.a libcpu_sse2.a
+-VSEARCH_PIC_LIBS = libcityhash_pic.a libcpu_ssse3_pic.a libcpu_sse2_pic.a
++__top_builddir__bin_vsearch_LDADD = -lcityhash libcpu_ssse3.a libcpu_sse2.a
++VSEARCH_PIC_LIBS = libcpu_ssse3_pic.a libcpu_sse2_pic.a
+ 
+ else
+ 
+-# -Wno-conversion -Wno-sign-conversion: see note in the TARGET_WIN branch above.
+-libcityhash_a_CXXFLAGS = $(AM_CXXFLAGS) -Wno-sign-compare -Wno-conversion -Wno-sign-conversion -I$(srcdir)/vendored
+-libcityhash_pic_a_CXXFLAGS = $(AM_CXXFLAGS) -Wno-sign-compare -Wno-conversion -Wno-sign-conversion -fPIC -I$(srcdir)/vendored
+-
+ if TARGET_X86_64
+-__top_builddir__bin_vsearch_LDADD = libcityhash.a libcpu_ssse3.a libcpu_sse2.a
+-VSEARCH_PIC_LIBS = libcityhash_pic.a libcpu_ssse3_pic.a libcpu_sse2_pic.a
++__top_builddir__bin_vsearch_LDADD = -lcityhash libcpu_ssse3.a libcpu_sse2.a
++VSEARCH_PIC_LIBS = libcpu_ssse3_pic.a libcpu_sse2_pic.a
+ else
+-__top_builddir__bin_vsearch_LDADD = libcityhash.a libcpu.a
+-VSEARCH_PIC_LIBS = libcityhash_pic.a libcpu_pic.a
++__top_builddir__bin_vsearch_LDADD = -lcityhash libcpu.a
++VSEARCH_PIC_LIBS = libcpu_pic.a
+ endif
+ 
+ endif
+--- origsrc/vsearch-2.32.0/src/commands/derep_smallmem.cpp	2026-09-18 09:08:42.000000000 +0000
++++ src/vsearch-2.32.0/src/commands/derep_smallmem.cpp	2026-11-08 00:04:56.122260200 +0000
+@@ -66,7 +66,7 @@
+ #include "core/fasta.hpp"
+ #include "core/fastx.hpp"
+ #include "utils/progress.hpp"
+-#include "vendored/city.h"
++#include <city.h>
+ #include "utils/base_mapping.hpp"
+ #include "utils/fatal.hpp"
+ #include "utils/grow_to_fit.hpp"  // vsearch::grow_to_fit
+--- origsrc/vsearch-2.32.0/src/os/dynlibs.cpp	2026-09-18 09:08:42.000000000 +0000
++++ src/vsearch-2.32.0/src/os/dynlibs.cpp	2026-11-08 00:04:56.124284300 +0000
+@@ -77,6 +77,8 @@
+ std::string const gz_libname = "zlib1.dll";
+ # elif defined(__APPLE__)
+ std::string const gz_libname = "libz.dylib";
++# elif defined(__CYGWIN__)
++std::string const gz_libname = "cygz.dll";
+ # elif defined(__FreeBSD__)
+ std::string const gz_libname = "libz.so.6";
+ # else
+@@ -89,6 +91,8 @@ std::string const gz_libname = "libz.so.
+ std::string const bz2_libname = "libbz2.dll";
+ # elif defined(__APPLE__)
+ std::string const bz2_libname = "libbz2.dylib";
++# elif defined(__CYGWIN__)
++std::string const bz2_libname = "cygbz2-1.dll";
+ # elif defined(__FreeBSD__)
+ std::string const bz2_libname = "libbz2.so.4";
+ # else
+--- origsrc/vsearch-2.32.0/src/utils/cityhash.hpp	2026-09-18 09:08:42.000000000 +0000
++++ src/vsearch-2.32.0/src/utils/cityhash.hpp	2026-11-08 00:04:56.125771900 +0000
+@@ -61,7 +61,7 @@
+ #pragma once
+ 
+ #include "utils/view.hpp"
+-#include "vendored/city.h"  // CityHash64, CityHash128, uint128
++#include <city.h>  // CityHash64, CityHash128, uint128
+ #include <cassert>
+ #include <cstddef>  // std::size_t
+ #include <cstdint>  // uint64_t
+--- origsrc/vsearch-2.32.0/src/utils/open_file.cpp	2026-09-18 09:08:42.000000000 +0000
++++ src/vsearch-2.32.0/src/utils/open_file.cpp	2026-11-08 00:04:56.126305200 +0000
+@@ -64,7 +64,8 @@
+ #include <cassert>
+ #include <cerrno>  // errno
+ #include <cstddef>  // std::size_t
+-#include <cstdio>  // std::fopen, fdopen
++#include <cstdio>  // std::fopen
++#include <stdio.h>  // fdopen
+ #include <cstring>  // std::strcmp
+ #include <map>  // std::map (the registry of open output streams)
+ #include <memory>  // std::weak_ptr

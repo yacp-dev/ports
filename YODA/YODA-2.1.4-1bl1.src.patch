@@ -1,0 +1,124 @@
+--- origsrc/YODA-2.1.4/configure.ac	2026-09-10 14:35:05.000000000 +0000
++++ src/YODA-2.1.4/configure.ac	2026-11-07 23:59:47.933056100 +0000
+@@ -1,5 +1,6 @@
+ ## Process this file with autoconf to produce a configure script.
+ 
++m4_pattern_allow([^AX_LIB_HDF5$])
+ AC_PREREQ(2.69)
+ AC_INIT([YODA],[2.1.4],[yoda-support@cern.ch],[YODA])
+ 
+@@ -87,7 +88,8 @@ AC_ARG_ENABLE([h5_rpath], AS_HELP_STRING
+ if test x$enable_h5 = xyes; then
+   AX_LIB_HDF5()
+   ## remove duplicate flags
+-  HDF5_LIBS=$(echo "$HDF5_LIBS" | tr ' ' '\n' | sort -u | tr '\n' ' ')
++  ## Cygwin's h5cc -show separates the libraries with ';' and names some by DLL (-lcygsz-2)
++  HDF5_LIBS=$(echo "$HDF5_LIBS" | tr ' ;' '\n\n' | grep -v '^-lcyg' | sort -u | tr '\n' ' ')
+   if test x$HDF5_TYPE = xparallel; then
+     AX_PROG_CXX_MPI([true], [], [AC_MSG_ERROR([Found hdf5-parallel, but no MPI compiler.])])
+   fi
+--- origsrc/YODA-2.1.4/include/YODA/Makefile.am	2026-08-13 20:29:56.000000000 +0000
++++ src/YODA-2.1.4/include/YODA/Makefile.am	2026-11-07 23:59:47.933517900 +0000
+@@ -60,6 +60,6 @@ if ENABLE_H5
+    pkginclude_HEADERS += ReaderH5.h WriterH5.h
+    nobase_pkginclude_HEADERS += Utils/H5Utils.h
+ if !WITH_HIGHFIVE_CPP
+-   nobase_pkginclude_HEADERS += highfive/*.hpp highfive/bits/*.hpp
++   nobase_pkginclude_HEADERS += $(srcdir)/highfive/*.hpp $(srcdir)/highfive/bits/*.hpp
+ endif
+ endif
+--- origsrc/YODA-2.1.4/include/YODA/Utils/BinEstimators.h	2026-08-05 21:07:55.000000000 +0000
++++ src/YODA-2.1.4/include/YODA/Utils/BinEstimators.h	2026-11-07 23:59:47.935278600 +0000
+@@ -5,6 +5,10 @@
+ #include "YODA/Utils/fastlog.h"
+ #include <cstdlib>
+ 
++#if defined(_N)
++#undef _N
++#endif
++
+ namespace YODA {
+ 
+ 
+--- origsrc/YODA-2.1.4/pyext/Makefile.am	2025-03-05 20:35:52.000000000 +0000
++++ src/YODA-2.1.4/pyext/Makefile.am	2026-11-07 23:59:47.935278600 +0000
+@@ -4,36 +4,36 @@ if ENABLE_PYEXT
+ PYEXT_ENV = CC="$(CXX)" CXX="$(CXX)" CXXFLAGS="$(PYEXT_CXXFLAGS)" ARCHFLAGS=""
+ 
+ PYCORE_SRC = \
+-    yoda/*.py \
+-    yoda/plotting/*.py
++    $(wildcard $(srcdir)/yoda/*.py) \
++    $(wildcard $(srcdir)/yoda/plotting/*.py)
+ 
+-all-local: build/yoda/core.so
++all-local: build/yoda/core.dll
+ 
+ if WITH_OSX
+ 
+-build/yoda/core.so: build.py yoda/core.cpp $(PYCORE_SRC)
++build/yoda/core.dll: build.py yoda/core.cpp $(PYCORE_SRC)
+ 	cd $(srcdir); \
+ 	$(PYEXT_ENV) YODA_LOCAL=1 $(PYTHON) $(abs_builddir)/build.py
+ 	install_name_tool -change \
+         $(libdir)/libYODA.dylib \
+         $(abs_top_srcdir)/src/.libs/libYODA.dylib \
+-        $(abs_builddir)/build/yoda/core.so
++        $(abs_builddir)/build/yoda/core.dll
+ 
+-install-exec-local: build/yoda/core.so
++install-exec-local: build/yoda/core.dll
+ 	$(MKDIR_P) $(DESTDIR)$(YODA_PYTHONPATH); \
+ 	cp -r $(abs_builddir)/build/yoda $(DESTDIR)$(YODA_PYTHONPATH)/
+ 	install_name_tool -change \
+         $(abs_top_srcdir)/src/.libs/libYODA.dylib \
+         $(libdir)/libYODA.dylib \
+-        $(abs_builddir)/build/yoda/core.so
++        $(abs_builddir)/build/yoda/core.dll
+ 
+ else
+ 
+-build/yoda/core.so: build.py yoda/core.cpp $(PYCORE_SRC)
++build/yoda/core.dll: build.py yoda/core.cpp $(PYCORE_SRC)
+ 	cd $(srcdir); \
+ 	$(PYEXT_ENV) YODA_LOCAL=1 $(PYTHON) $(abs_builddir)/build.py
+ 
+-install-exec-local: build/yoda/core.so
++install-exec-local: build/yoda/core.dll
+ 	$(MKDIR_P) $(DESTDIR)$(YODA_PYTHONPATH); \
+ 	cp -r $(abs_builddir)/build/yoda $(DESTDIR)$(YODA_PYTHONPATH)/
+ 
+--- origsrc/YODA-2.1.4/pyext/build.py.in	2026-08-13 20:29:56.000000000 +0000
++++ src/YODA-2.1.4/pyext/build.py.in	2026-11-07 23:59:47.938068300 +0000
+@@ -94,7 +94,7 @@ for srcname in srcnames:
+     xcmpargs, xlinkargs = cmpargs, linkargs
+ 
+     ## Assemble the compile & link command
+-    compile_cmd = "  ".join([os.environ.get("CXX", "g++"), "-shared -fPIC", "-o {}.so".format(srcname),
++    compile_cmd = "  ".join([os.environ.get("CXX", "g++"), "-shared -fPIC", "-o {}.dll".format(srcname),
+                              srcpath, incargs, xcmpargs, xlinkargs, libargs, pyargs])
+     print("Build command =", compile_cmd)
+ 
+--- origsrc/YODA-2.1.4/pyext/yoda/Makefile.am	2025-07-04 10:26:23.000000000 +0000
++++ src/YODA-2.1.4/pyext/yoda/Makefile.am	2026-11-07 23:59:47.939309900 +0000
+@@ -30,7 +30,7 @@ all: core.pyx
+ core.pyx:
+ 	test -s $(srcdir)/core.pyx || { $(srcdir)/mktemplates ${WITH_H5}; }
+ 
+-.made_pyx_templates: $(TEMPLATE_SRC)
++.made_pyx_templates: $(srcdir)/mktemplates $(wildcard $(srcdir)/templates/*.dat)
+ 	$(srcdir)/mktemplates ${WITH_H5} && touch $@
+ 
+ STATIC_SRC += \
+--- origsrc/YODA-2.1.4/src/Makefile.am	2025-07-04 10:45:38.000000000 +0000
++++ src/YODA-2.1.4/src/Makefile.am	2026-11-07 23:59:47.940092400 +0000
+@@ -18,7 +18,7 @@ libYODA_la_SOURCES = \
+     WriterFLAT.cc \
+     Counter.cc
+ 
+-libYODA_la_LDFLAGS = -avoid-version
++libYODA_la_LDFLAGS = -no-undefined
+ libYODA_la_LIBADD = $(builddir)/binreloc/libyoda-binreloc.la
+ if !WITH_YAML_CPP
+ libYODA_la_LIBADD += $(builddir)/yamlcpp/libyoda-yaml-cpp.la
+Binary files origsrc/YODA-2.1.4/tests/test.yoda.h5 and src/YODA-2.1.4/tests/test.yoda.h5 differ

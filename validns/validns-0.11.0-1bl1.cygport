@@ -1,6 +1,5 @@
 HOMEPAGE="https://codeberg.org/DNS-OARC/${PN}"
-GIT_URI="https://codeberg.org/DNS-OARC/${PN}.git"
-GIT_TAG="v${PV}"
+SRC_URI="https://www.dns-oarc.net/files/${PN}/${P}.tar.gz"
 
 CATEGORY="Net"
 SUMMARY="DNS and DNSSEC zone file validator"
@@ -14,5 +13,3 @@ BUILD_REQUIRES="
 	libJudy-devel
 	libssl-devel
 "
-
-inherit git

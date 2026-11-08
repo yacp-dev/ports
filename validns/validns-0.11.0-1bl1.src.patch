@@ -1,6 +1,6 @@
---- origsrc/validns/src/carp.c	2026-02-15 08:09:11.000000000 +0900
-+++ src/validns/src/carp.c	2026-02-15 09:07:28.343902100 +0900
-@@ -97,7 +97,7 @@ v(int use_errno, int exit_code, const ch
+--- origsrc/validns-0.11.0/src/carp.c	2026-05-18 12:33:43.000000000 +0000
++++ src/validns-0.11.0/src/carp.c	2026-11-08 13:32:33.496437600 +0000
+@@ -92,7 +92,7 @@ void v(int use_errno, int exit_code, con
          fprintf(stderr, "\n");
  }
  
@@ -9,7 +9,7 @@
  static char proggy[MAXPATHLEN];
  #endif
  
-@@ -109,7 +109,7 @@ const char *thisprogname(void)
+@@ -104,7 +104,7 @@ const char* thisprogname(void)
      return getprogname();
  #elif defined(__sun__)
      return getexecname();

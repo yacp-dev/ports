@@ -1,0 +1,195 @@
+--- origsrc/llama.cpp-0.9.0/common/download.cpp	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/common/download.cpp	2026-11-08 19:42:02.478250000 +0000
+@@ -31,6 +31,8 @@
+ #   endif
+ #elif defined(_AIX)
+ #include <sys/limits.h>
++#elif defined(__CYGWIN__)
++#include <limits.h>
+ #else
+ #include <sys/syslimits.h>
+ #endif
+--- origsrc/llama.cpp-0.9.0/src/llama-mmap.cpp	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/src/llama-mmap.cpp	2026-11-08 19:42:02.480269600 +0000
+@@ -715,7 +715,7 @@ struct llama_mlock::impl {
+ 
+         char* errmsg = std::strerror(errno);
+         bool suggest = (errno == ENOMEM);
+-#if defined(TARGET_OS_VISION) || defined(TARGET_OS_TV) || defined(_AIX) || defined(__HAIKU__)
++#if !defined(RLIMIT_MEMLOCK) || defined(TARGET_OS_VISION) || defined(TARGET_OS_TV) || defined(_AIX) || defined(__HAIKU__)
+         // visionOS/tvOS/Haiku don't support RLIMIT_MEMLOCK
+         // Skip resource limit checks on these platforms
+         suggest = false;
+--- origsrc/llama.cpp-0.9.0/tools/batched-bench/CMakeLists.txt	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/tools/batched-bench/CMakeLists.txt	2026-11-08 19:42:02.480269600 +0000
+@@ -2,14 +2,14 @@
+ 
+ set(TARGET llama-batched-bench-impl)
+ 
+-add_library(${TARGET} batched-bench.cpp)
++add_library(${TARGET} STATIC batched-bench.cpp)
+ set_target_properties(${TARGET} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+ 
+ target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+ target_link_libraries(${TARGET} PUBLIC llama-common llama ${CMAKE_THREAD_LIBS_INIT})
+ 
+ if(LLAMA_TOOLS_INSTALL)
+-    install(TARGETS ${TARGET} LIBRARY)
++    # static library: not installed
+ endif()
+ 
+ # llama-batched-bench executable
+--- origsrc/llama.cpp-0.9.0/tools/cli/CMakeLists.txt	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/tools/cli/CMakeLists.txt	2026-11-08 19:42:02.482288900 +0000
+@@ -2,7 +2,7 @@
+ 
+ set(TARGET llama-cli-impl)
+ 
+-add_library(${TARGET} cli.cpp
++add_library(${TARGET} STATIC cli.cpp
+                       cli-client.cpp
+                       cli-context.cpp)
+ set_target_properties(${TARGET} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+@@ -11,7 +11,7 @@ target_include_directories(${TARGET} PUB
+ target_link_libraries(${TARGET} PUBLIC llama-server-impl llama-common ${CMAKE_THREAD_LIBS_INIT})
+ 
+ if(LLAMA_TOOLS_INSTALL)
+-    install(TARGETS ${TARGET} LIBRARY)
++    # static library: not installed
+ endif()
+ 
+ # llama-cli executable
+--- origsrc/llama.cpp-0.9.0/tools/completion/CMakeLists.txt	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/tools/completion/CMakeLists.txt	2026-11-08 19:42:02.482288900 +0000
+@@ -2,14 +2,14 @@
+ 
+ set(TARGET llama-completion-impl)
+ 
+-add_library(${TARGET} completion.cpp)
++add_library(${TARGET} STATIC completion.cpp)
+ set_target_properties(${TARGET} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+ 
+ target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+ target_link_libraries(${TARGET} PUBLIC llama-common llama ${CMAKE_THREAD_LIBS_INIT})
+ 
+ if(LLAMA_TOOLS_INSTALL)
+-    install(TARGETS ${TARGET} LIBRARY)
++    # static library: not installed
+ endif()
+ 
+ # llama-completion executable
+--- origsrc/llama.cpp-0.9.0/tools/fit-params/CMakeLists.txt	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/tools/fit-params/CMakeLists.txt	2026-11-08 19:42:02.484307100 +0000
+@@ -2,14 +2,14 @@
+ 
+ set(TARGET llama-fit-params-impl)
+ 
+-add_library(${TARGET} fit-params.cpp)
++add_library(${TARGET} STATIC fit-params.cpp)
+ set_target_properties(${TARGET} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+ 
+ target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+ target_link_libraries(${TARGET} PUBLIC llama-common llama ${CMAKE_THREAD_LIBS_INIT})
+ 
+ if(LLAMA_TOOLS_INSTALL)
+-    install(TARGETS ${TARGET} LIBRARY)
++    # static library: not installed
+ endif()
+ 
+ # llama-fit-params executable
+--- origsrc/llama.cpp-0.9.0/tools/llama-bench/CMakeLists.txt	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/tools/llama-bench/CMakeLists.txt	2026-11-08 19:42:02.484307100 +0000
+@@ -2,14 +2,14 @@
+ 
+ set(TARGET llama-bench-impl)
+ 
+-add_library(${TARGET} llama-bench.cpp)
++add_library(${TARGET} STATIC llama-bench.cpp)
+ set_target_properties(${TARGET} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+ 
+ target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+ target_link_libraries(${TARGET} PUBLIC llama-common llama ${CMAKE_THREAD_LIBS_INIT})
+ 
+ if(LLAMA_TOOLS_INSTALL)
+-    install(TARGETS ${TARGET} LIBRARY)
++    # static library: not installed
+ endif()
+ 
+ # llama-bench executable
+--- origsrc/llama.cpp-0.9.0/tools/perplexity/CMakeLists.txt	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/tools/perplexity/CMakeLists.txt	2026-11-08 19:42:02.486588100 +0000
+@@ -2,14 +2,14 @@
+ 
+ set(TARGET llama-perplexity-impl)
+ 
+-add_library(${TARGET} perplexity.cpp)
++add_library(${TARGET} STATIC perplexity.cpp)
+ set_target_properties(${TARGET} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+ 
+ target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+ target_link_libraries(${TARGET} PUBLIC llama-common llama ${CMAKE_THREAD_LIBS_INIT})
+ 
+ if(LLAMA_TOOLS_INSTALL)
+-    install(TARGETS ${TARGET} LIBRARY)
++    # static library: not installed
+ endif()
+ 
+ # llama-perplexity executable
+--- origsrc/llama.cpp-0.9.0/tools/quantize/CMakeLists.txt	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/tools/quantize/CMakeLists.txt	2026-11-08 19:42:02.486588100 +0000
+@@ -2,14 +2,14 @@
+ 
+ set(TARGET llama-quantize-impl)
+ 
+-add_library(${TARGET} quantize.cpp)
++add_library(${TARGET} STATIC quantize.cpp)
+ set_target_properties(${TARGET} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+ 
+ target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+ target_link_libraries(${TARGET} PUBLIC llama-common llama ${CMAKE_THREAD_LIBS_INIT})
+ 
+ if(LLAMA_TOOLS_INSTALL)
+-    install(TARGETS ${TARGET} LIBRARY)
++    # static library: not installed
+ endif()
+ 
+ # llama-quantize executable
+--- origsrc/llama.cpp-0.9.0/tools/server/CMakeLists.txt	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/tools/server/CMakeLists.txt	2026-11-08 19:42:02.488601300 +0000
+@@ -41,7 +41,7 @@ target_link_libraries(${TARGET} PUBLIC l
+ 
+ set(TARGET llama-server-impl)
+ 
+-add_library(${TARGET}
++add_library(${TARGET} STATIC
+     server.cpp
+     server-connect.cpp
+     server-connect.h
+@@ -56,12 +56,14 @@ set_target_properties(${TARGET} PROPERTI
+ 
+ target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+ target_include_directories(${TARGET} PRIVATE ../mtmd ${PROJECT_SOURCE_DIR})
+-target_link_libraries(${TARGET} PUBLIC server-context llama-ui cpp-httplib ${CMAKE_THREAD_LIBS_INIT})
++# cpp-httplib is already linked (and all its symbols exported) by the llama-common DLL;
++# linking it again into every executable that uses this static library defines them twice
++target_link_libraries(${TARGET} PUBLIC server-context llama-ui $<COMPILE_ONLY:cpp-httplib> ${CMAKE_THREAD_LIBS_INIT})
+ 
+ add_dependencies(${TARGET} llama-ui-assets)
+ 
+ if(LLAMA_TOOLS_INSTALL)
+-    install(TARGETS ${TARGET} LIBRARY)
++    # static library: not installed
+ endif()
+ 
+ # llama-server executable
+--- origsrc/llama.cpp-0.9.0/vendor/sheredom/subprocess.h	2026-11-04 12:06:26.000000000 +0000
++++ src/llama.cpp-0.9.0/vendor/sheredom/subprocess.h	2026-11-08 19:42:02.488601300 +0000
+@@ -58,7 +58,7 @@
+ #define subprocess_pure
+ #define subprocess_weak __inline
+ #define subprocess_tls __declspec(thread)
+-#elif defined(__MINGW32__)
++#elif defined(__MINGW32__) || defined(__CYGWIN__)
+ #define subprocess_pure SUBPROCESS_ATTRIBUTE(pure)
+ #define subprocess_weak static SUBPROCESS_ATTRIBUTE(used)
+ #define subprocess_tls __thread

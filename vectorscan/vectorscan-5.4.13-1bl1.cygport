@@ -9,9 +9,14 @@ NEON/ASIMD is 100% functional, and Power VSX are in development. ARM SVE2 will
 be implemented when harwdare becomes accessible to the developers. More
 platforms will follow in the future, on demand/request."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND BSL-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSL-1.0"
 LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libboost-devel
+	ragel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

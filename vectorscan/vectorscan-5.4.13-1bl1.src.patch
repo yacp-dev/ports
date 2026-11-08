@@ -1,5 +1,5 @@
---- origsrc/vectorscan-vectorscan-5.4.12/cmake/cflags-generic.cmake	2025-07-23 00:09:14.000000000 +0900
-+++ src/vectorscan-vectorscan-5.4.12/cmake/cflags-generic.cmake	2025-09-05 18:18:46.297803500 +0900
+--- origsrc/vectorscan-vectorscan-5.4.13/cmake/cflags-generic.cmake	2026-08-23 08:41:50.000000000 +0000
++++ src/vectorscan-vectorscan-5.4.13/cmake/cflags-generic.cmake	2026-11-08 08:28:28.625419900 +0000
 @@ -5,10 +5,6 @@ if (NOT CMAKE_COMPILER_IS_CLANG)
      set(EXTRA_CXX_FLAGS "${EXTRA_CXX_FLAGS} -fno-new-ttp-matching")
  endif()
@@ -11,8 +11,8 @@
  if (DISABLE_ASSERTS)
      set(EXTRA_C_FLAGS "${EXTRA_C_FLAGS} -DNDEBUG")
      set(EXTRA_CXX_FLAGS "${EXTRA_CXX_FLAGS} -DNDEBUG")
---- origsrc/vectorscan-vectorscan-5.4.12/tools/hsbench/CMakeLists.txt	2025-07-23 00:09:14.000000000 +0900
-+++ src/vectorscan-vectorscan-5.4.12/tools/hsbench/CMakeLists.txt	2025-09-05 18:49:40.817187600 +0900
+--- origsrc/vectorscan-vectorscan-5.4.13/tools/hsbench/CMakeLists.txt	2026-08-23 08:41:50.000000000 +0000
++++ src/vectorscan-vectorscan-5.4.13/tools/hsbench/CMakeLists.txt	2026-11-08 08:28:28.625419900 +0000
 @@ -46,10 +46,10 @@ if (BUILD_CHIMERA)
      )
      add_executable(hsbench ${hsbench_SOURCES})

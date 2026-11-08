@@ -1,0 +1,52 @@
+HOMEPAGE="https://github.com/vinzenz/vsqlite--"
+SRC_URI="https://github.com/vinzenz/vsqlite--/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="vsqlite---${PV}"
+
+CATEGORY="Libs"
+SUMMARY="Welldesigned and portable SQLite3 Wrapper for C++"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libgtest-devel
+	libsqlite3-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DVSQLITE_BUNDLED_SQLITE:BOOL=OFF
+	-DVSQLITE_BUILD_EXAMPLES:BOOL=ON
+	-DVSQLITE_BUILD_TESTS:BOOL=ON
+"
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+	# upstream installs the same docs as cygport (DOCS) into doc/VSQLite++
+	rm -rf ${D}/usr/share/doc/VSQLite++
+}
+
+PKG_NAMES="
+	${PN}
+	libvsqlitepp0
+	libvsqlitepp-devel
+"
+vsqlite___CONTENTS="
+	usr/bin/vsqlitepp_example.exe
+	usr/share
+"
+libvsqlitepp0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libvsqlitepp_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+vsqlite___SUMMARY="${SUMMARY} (licensing & readmes)"
+libvsqlitepp0_SUMMARY="${SUMMARY} (runtime)"
+libvsqlitepp_devel_SUMMARY="${SUMMARY} (development)"

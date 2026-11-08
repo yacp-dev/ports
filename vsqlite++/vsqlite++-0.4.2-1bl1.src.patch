@@ -1,0 +1,47 @@
+--- origsrc/vsqlite---0.4.2/CMakeLists.txt	2026-05-26 04:37:29.000000000 +0000
++++ src/vsqlite---0.4.2/CMakeLists.txt	2026-11-08 00:04:38.353864300 +0000
+@@ -190,6 +190,11 @@ write_basic_package_version_file(
+   COMPATIBILITY SameMajorVersion
+ )
+ 
++configure_file(vsqlite++.pc.in "${CMAKE_CURRENT_BINARY_DIR}/vsqlite++.pc" @ONLY)
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/vsqlite++.pc"
++  DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
++)
++
+ install(FILES
+   "${CMAKE_CURRENT_BINARY_DIR}/vsqliteppConfig.cmake"
+   "${CMAKE_CURRENT_BINARY_DIR}/vsqliteppConfigVersion.cmake"
+@@ -198,17 +203,7 @@ install(FILES
+ 
+ if(VSQLITE_BUILD_TESTS)
+   enable_testing()
+-  set(VSQLITE_OLD_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS})
+-  set(BUILD_SHARED_LIBS OFF)
+-  set(INSTALL_GTEST OFF)
+-  include(FetchContent)
+-  FetchContent_Declare(
+-    googletest
+-    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+-    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+-  )
+-  FetchContent_MakeAvailable(googletest)
+-  set(BUILD_SHARED_LIBS ${VSQLITE_OLD_BUILD_SHARED_LIBS})
++  find_package(GTest REQUIRED)
+ 
+   set(VSQLITE_TEST_SOURCES
+     tests/test_backup.cpp
+--- origsrc/vsqlite---0.4.2/vsqlite++.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/vsqlite---0.4.2/vsqlite++.pc.in	2026-11-08 00:04:38.354394600 +0000
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
++includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
++
++Name: vsqlite++
++Description: Welldesigned and portable SQLite3 Wrapper for C++
++Version: @PROJECT_VERSION@
++Requires: sqlite3
++Libs: -L${libdir} -lvsqlitepp
++Cflags: -I${includedir}

@@ -5,39 +5,39 @@ Prediction engine on any machine supporting the GCC compiler. The basic engine
 runs from a command line and requires no graphical interface.
 
 Runtime requirements:
-  bash-5.2.15-3
-  cygwin-3.5.0-0.456.g3d94e07c49b5
-  libgcc1-11.4.0-1
-  libgfortran5-11.4.0-1
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.7-1
-  gcc-core-11.4.0-1
-  gcc-fortran-11.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/jawatson/voacapl
 
 Canonical download:
-  https://github.com/jawatson/voacapl/archive/refs/tags/v.0.7.6.tar.gz
+  https://github.com/jawatson/voacapl/archive/refs/tags/v0.7.7.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack voacapl-0.7.6-X-src.tar.xz
+  1. unpack voacapl-0.7.7-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./voacapl-0.7.6-X.cygport all
+        % cygport ./voacapl-0.7.7-X.cygport all
 
 This will create:
-  /usr/src/voacapl-0.7.6-X-src.tar.xz
-  /usr/src/voacapl-0.7.6-X.tar.xz
+  /usr/src/voacapl-0.7.7-X-src.tar.xz
+  /usr/src/voacapl-0.7.7-X.tar.xz
 
 -------------------------------------------
 
@@ -111,6 +111,7 @@ Files included in the binary package:
   /usr/share/doc/voacapl/voacapl/itshfbc/news/problems.txt
   /usr/share/man/man1/dst2ascii.1.gz
   /usr/share/man/man1/dst2csv.1.gz
+  /usr/share/man/man1/makeitshfbc.1.gz
   /usr/share/man/man1/voacapl.1.gz
   /usr/share/voacapl/itshfbc/antennas/default/ccir.000
   /usr/share/voacapl/itshfbc/antennas/default/ccir.001
@@ -340,6 +341,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.7.7-1bl1 -----
+Version bump.
 
 ----- version 0.7.6-1bl1 -----
 Version bump.

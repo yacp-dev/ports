@@ -6,6 +6,13 @@ SUMMARY="Multiple independent streams of pseudo-random numbers"
 DESCRIPTION="RngStreams is a C implementation of a high quality uniform random number
 generator that supports multiple independent streams of uniform random numbers."
 
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+# examples/example1.c puts 1000000 pointers (8 MB) on the stack; Cygwin's default is 2 MB
+LDFLAGS+=" -Wl,--stack,16777216"
+
 PKG_NAMES="
 	${PN}
 	lib${PN}0
@@ -15,7 +22,7 @@ rngstreams_CONTENTS="
 	usr/share/doc
 "
 librngstreams0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 librngstreams_devel_CONTENTS="
 	usr/include

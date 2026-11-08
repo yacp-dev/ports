@@ -1,8 +1,8 @@
---- origsrc/vifm-0.14.3/configure.ac	2025-06-04 17:28:08.000000000 +0900
-+++ src/vifm-0.14.3/configure.ac	2025-09-05 21:25:07.589669200 +0900
-@@ -492,54 +492,7 @@ if test "x$ncurses_found" != "xyes"; the
+--- origsrc/vifm-0.14.5/configure.ac	2026-10-20 09:25:38.000000000 +0000
++++ src/vifm-0.14.5/configure.ac	2026-11-08 19:47:32.674198500 +0000
+@@ -520,54 +520,7 @@ if test "x$ncurses_found" != "xyes"; the
+     fi
  fi
- LIBS=$LIBS $GUI_LINK_OPTS_TERM
  
 -dnl Check for curses.h header and all its required elements.
 -AC_CHECK_HEADER([curses.h], [], [AC_MSG_ERROR([curses.h header not found.])])
@@ -56,14 +56,32 @@
  
  dnl ----------------------------------------------------------------------------
  dnl check for extended colors/pairs
---- origsrc/vifm-0.14.3/src/Makefile.am	2025-06-04 17:28:08.000000000 +0900
-+++ src/vifm-0.14.3/src/Makefile.am	2025-09-05 21:25:07.592114200 +0900
+--- origsrc/vifm-0.14.5/src/Makefile.am	2026-10-20 09:25:38.000000000 +0000
++++ src/vifm-0.14.5/src/Makefile.am	2026-11-08 19:47:32.676219800 +0000
 @@ -351,6 +351,8 @@ vifm_SOURCES = \
  	vifm.c vifm.h
  nodist_vifm_SOURCES = \
  	compile_info.c
-+vifm_CFLAGS = $(NCURSES_CFLAGS)
-+vifm_LDADD = $(NCURSES_LIBS)
++AM_CFLAGS = $(NCURSES_CFLAGS)
++LDADD = $(NCURSES_LIBS)
  
  check_SCRIPTS = runtests
  TESTS = $(check_SCRIPTS)
+--- origsrc/vifm-0.14.5/tests/commands/completion.c	2026-10-20 09:25:38.000000000 +0000
++++ src/vifm-0.14.5/tests/commands/completion.c	2026-11-08 19:47:32.676219800 +0000
+@@ -198,7 +198,14 @@ TEST(bang_exec_completion)
+ 	assert_success(chdir(SANDBOX_PATH));
+ 	saved_cwd = save_cwd();
+ 
+-	env_set("PATH", saved_cwd);
++	{
++		/* Keep the original directories after the sandbox: on Cygwin a process
++		 * whose PATH lacks /usr/bin can't fork, as the child fails to find
++		 * cygwin1.dll. */
++		char path[8192];
++		snprintf(path, sizeof(path), "%s:%s", saved_cwd, original_path_env);
++		env_set("PATH", path);
++	}
+ 	update_path_env(1);
+ 
+ 	create_executable("exec-for-completion" EXE_SUFFIX);

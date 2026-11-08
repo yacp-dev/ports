@@ -8,14 +8,14 @@ borrows some useful ideas from mutt. If you use vi, vifm gives you complete
 keyboard control over your files without having to learn a new set of
 commands."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND MIT AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND MIT AND BSD-2-Clause"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	file
+	file-devel
 	libglib2.0-devel
-	libgtk2.0-devel
 	libncurses-devel
 "
 

@@ -2,50 +2,47 @@ vifm
 ------------------------------------------
 Vifm is a ncurses based file manager with vi like keybindings, which also
 borrows some useful ideas from mutt. If you use vi, vifm gives you complete
-keyboard control over your files without having to learn a new set of
-commands.
+keyboard control over your files without having to learn a new set of commands.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.4-1
-  file-5.44-1
-  libglib2.0_0-2.85.4-1
+  cygwin-3.6.12-1
+  file-5.46-1
+  libglib2.0_0-2.90.1-1
   libncursesw10-6.5+20240427-1
-  perl_base-5.40.3-1
+  perl_base-5.44.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  file-5.44-1
-  gcc-core-13.4.0-1
-  libglib2.0-devel-2.85.4-1
-  libgtk2.0-devel-2.24.33-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  file-5.46-1
+  file-devel-5.46-1
+  gcc-core-14.4.0-1
+  libglib2.0-devel-2.90.1-1
   libncurses-devel-6.5+20240427-1
-  lua-5.3.6-4
   make-4.4.1-2
 
 Canonical website:
   https://github.com/vifm/vifm
 
 Canonical download:
-  https://github.com/vifm/vifm/archive/refs/tags/v0.14.3.tar.gz
+  https://github.com/vifm/vifm/archive/refs/tags/v0.14.5.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack vifm-0.14.3-X-src.tar.xz
+  1. unpack vifm-0.14.5-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./vifm-0.14.3-X.cygport all
+        % cygport ./vifm-0.14.5-X.cygport all
 
 This will create:
-  /usr/src/vifm-0.14.3-X-src.tar.xz
-  /usr/src/vifm-0.14.3-X.tar.xz
+  /usr/src/vifm-0.14.5-X-src.tar.xz
+  /usr/src/vifm-0.14.5-X.tar.xz
 
 -------------------------------------------
 
@@ -115,6 +112,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.14.5-1bl1 -----
+Version bump.
 
 ----- version 0.14.3-1bl1 -----
 Version bump.

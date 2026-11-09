@@ -3,34 +3,35 @@ nprolog
 Interpreter and compiler to be compatible with Arity/Prolog32
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libgcc1-12.4.0-3
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libncurses-devel-6.5+20240427-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/sasagawa888/nprolog
 
 Canonical download:
-  https://github.com/sasagawa888/nprolog/archive/refs/tags/v4.05.tar.gz
+  https://github.com/sasagawa888/nprolog/archive/refs/tags/v5.20.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack nprolog-4.05-X-src.tar.xz
+  1. unpack nprolog-5.20-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./nprolog-4.05-X.cygport all
+        % cygport ./nprolog-5.20-X.cygport all
 
 This will create:
-  /usr/src/nprolog-4.05-X-src.tar.xz
-  /usr/src/nprolog-4.05-X.tar.xz
+  /usr/src/nprolog-5.20-X-src.tar.xz
+  /usr/src/nprolog-5.20-X.tar.xz
 
 -------------------------------------------
 
@@ -39,28 +40,57 @@ Files included in the binary package:
 (nprolog)
   /usr/bin/npl.exe
   /usr/share/doc/Cygwin/nprolog.README
+  /usr/share/doc/nprolog/ATFIRST.md
   /usr/share/doc/nprolog/CHECKER.md
+  /usr/share/doc/nprolog/CLPFD.md
+  /usr/share/doc/nprolog/CLUSTER.md
   /usr/share/doc/nprolog/COMPILER.md
+  /usr/share/doc/nprolog/CUBE.md
+  /usr/share/doc/nprolog/DCG.md
   /usr/share/doc/nprolog/EDLOG.md
+  /usr/share/doc/nprolog/GPIO.md
+  /usr/share/doc/nprolog/GRAPH.md
+  /usr/share/doc/nprolog/GRAPHICS.md
   /usr/share/doc/nprolog/HISTORY.md
   /usr/share/doc/nprolog/JSON.md
+  /usr/share/doc/nprolog/LAMBDA.md
+  /usr/share/doc/nprolog/LIST.md
   /usr/share/doc/nprolog/MANUAL.md
   /usr/share/doc/nprolog/MANUALja.md
+  /usr/share/doc/nprolog/MATH.md
+  /usr/share/doc/nprolog/MODE.md
   /usr/share/doc/nprolog/MODULE.md
+  /usr/share/doc/nprolog/MPW.md
+  /usr/share/doc/nprolog/OPENGL.md
   /usr/share/doc/nprolog/PARA1.md
   /usr/share/doc/nprolog/PARA2.md
+  /usr/share/doc/nprolog/PLOT.md
+  /usr/share/doc/nprolog/PYHTON.md
   /usr/share/doc/nprolog/README-ja.md
   /usr/share/doc/nprolog/README.md
+  /usr/share/doc/nprolog/SOX.md
   /usr/share/doc/nprolog/SUPERSET.md
+  /usr/share/doc/nprolog/TCLTK.md
+  /usr/share/doc/nprolog/TCPIP.md
+  /usr/share/doc/nprolog/UNICODE.md
+  /usr/share/doc/nprolog/UTILS.md
+  /usr/share/doc/nprolog/WIRINGPI.md
   /usr/share/doc/nprolog/book1.png
   /usr/share/doc/nprolog/book2.png
+  /usr/share/doc/nprolog/dijkstra.png
+  /usr/share/doc/nprolog/graph0.png
+  /usr/share/doc/nprolog/graph1.png
+  /usr/share/doc/nprolog/graph2.png
+  /usr/share/doc/nprolog/graph3.png
   /usr/share/doc/nprolog/license.txt
   /usr/share/doc/nprolog/para1.png
-  /usr/share/doc/nprolog/para2.png
   /usr/share/doc/nprolog/para3.png
   /usr/share/doc/nprolog/para4.png
   /usr/share/doc/nprolog/screen1.png
   /usr/share/doc/nprolog/screen2.png
+  /usr/share/doc/nprolog/screen3.png
+  /usr/share/doc/nprolog/screen4.png
+  /usr/share/doc/nprolog/screen5.png
   /usr/share/nprolog/example/animal.pl
   /usr/share/nprolog/example/assoc.pl
   /usr/share/nprolog/example/bagof.pl
@@ -80,7 +110,6 @@ Files included in the binary package:
   /usr/share/nprolog/example/fib.pl
   /usr/share/nprolog/example/fizzbuzz.pl
   /usr/share/nprolog/example/gcd.pl
-  /usr/share/nprolog/example/iitaka.pl
   /usr/share/nprolog/example/led.pl
   /usr/share/nprolog/example/length.pl
   /usr/share/nprolog/example/lisp.pl
@@ -91,7 +120,6 @@ Files included in the binary package:
   /usr/share/nprolog/example/monkey.pl
   /usr/share/nprolog/example/one-stroke.pl
   /usr/share/nprolog/example/paip.pl
-  /usr/share/nprolog/example/pp.pl
   /usr/share/nprolog/example/production.pl
   /usr/share/nprolog/example/prover.pl
   /usr/share/nprolog/example/quarternion.pl
@@ -104,16 +132,31 @@ Files included in the binary package:
   /usr/share/nprolog/example/utf8.pl
   /usr/share/nprolog/example/zebra.pl
   /usr/share/nprolog/library/checker.pl
+  /usr/share/nprolog/library/clpfd.pl
   /usr/share/nprolog/library/compiler.pl
+  /usr/share/nprolog/library/cube.pl
   /usr/share/nprolog/library/dcg.pl
+  /usr/share/nprolog/library/graph.pl
+  /usr/share/nprolog/library/iso.pl
   /usr/share/nprolog/library/json.pl
+  /usr/share/nprolog/library/lambda.pl
   /usr/share/nprolog/library/list.pl
+  /usr/share/nprolog/library/math.pl
+  /usr/share/nprolog/library/mode.pl
   /usr/share/nprolog/library/mpworld.pl
-  /usr/share/nprolog/library/sets.pl
+  /usr/share/nprolog/library/opengl.pl
+  /usr/share/nprolog/library/plot.pl
+  /usr/share/nprolog/library/python.pl
+  /usr/share/nprolog/library/sox.pl
+  /usr/share/nprolog/library/tcltk.pl
+  /usr/share/nprolog/library/utils.pl
 
 ------------------
 
 Port Notes:
+
+----- version 5.20-1bl1 -----
+Version bump.
 
 ----- version 4.05-1bl1 -----
 Version bump.

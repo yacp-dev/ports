@@ -11,6 +11,12 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
+BUILD_REQUIRES="
+	asciidoc
+	docbook-xml45
+	libxml2
+"
+
 PKG_NAMES="
 	${PN}
 	lib${PN}13

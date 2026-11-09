@@ -1,6 +1,6 @@
---- origsrc/the_foundation/CMakeLists.txt	2026-08-20 16:05:47.000000000 +0000
-+++ src/the_foundation/CMakeLists.txt	2026-11-02 12:12:52.755823200 +0000
-@@ -291,7 +291,7 @@ elseif (CMAKE_SYSTEM MATCHES "^MSYS.*")
+--- origsrc/the_foundation/CMakeLists.txt	2026-11-08 13:31:18.000000000 +0000
++++ src/the_foundation/CMakeLists.txt	2026-11-09 06:40:04.319556800 +0000
+@@ -306,7 +306,7 @@ elseif (CMAKE_SYSTEM MATCHES "^MSYS.*")
      set (SOURCES ${SOURCES} src/platform/windows.c)
  elseif (CMAKE_SYSTEM MATCHES "^CYGWIN.*")
      set (iPlatformCygwin YES)
@@ -9,7 +9,16 @@
  elseif (CMAKE_SYSTEM_NAME STREQUAL "Haiku")
      set (iPlatformHaiku YES)
      set (SOURCES ${SOURCES} src/platform/generic.c)
-@@ -472,7 +472,8 @@ tfdn_link_depends (${TFDN_LIB} ${TFDN_DE
+@@ -454,7 +454,7 @@ target_include_directories (${TFDN_LIB}
+     $<INSTALL_INTERFACE:include>
+ )
+ tfdn_set_compile_options (${TFDN_LIB})
+-if (iPlatformLinux OR iPlatformMsys)
++if (iPlatformLinux OR iPlatformMsys OR iPlatformCygwin)
+     target_compile_definitions (${TFDN_LIB} PRIVATE -D_GNU_SOURCE=1)
+ endif ()
+ 
+@@ -507,7 +507,8 @@ tfdn_link_depends (${TFDN_LIB} ${TFDN_DE
  if (TFDN_ENABLE_INSTALL)
      install (TARGETS ${TFDN_LIB}
          EXPORT ${TFDN_LIB}
@@ -19,8 +28,8 @@
      )
      install (EXPORT ${TFDN_LIB}
          DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${TFDN_LIB}
---- origsrc/the_foundation/tests/t_process.c	2026-08-20 16:05:47.000000000 +0000
-+++ src/the_foundation/tests/t_process.c	2026-11-02 12:12:52.755823200 +0000
+--- origsrc/the_foundation/tests/t_process.c	2026-11-08 13:31:18.000000000 +0000
++++ src/the_foundation/tests/t_process.c	2026-11-09 06:40:04.320812100 +0000
 @@ -81,6 +81,8 @@ int main(int argc, char *argv[]) {
              "/System/Applications/TextEdit.app/Contents/MacOS/TextEdit",
  #elif defined (iPlatformLinux)
@@ -30,8 +39,8 @@
  #endif
              NULL)));
          start_Process(proc);
---- origsrc/the_foundation/the_Foundation.pc.in	2026-08-20 16:05:47.000000000 +0000
-+++ src/the_foundation/the_Foundation.pc.in	2026-11-02 12:12:52.757846500 +0000
+--- origsrc/the_foundation/the_Foundation.pc.in	2026-11-08 13:31:18.000000000 +0000
++++ src/the_foundation/the_Foundation.pc.in	2026-11-09 06:40:04.321576300 +0000
 @@ -1,7 +1,7 @@
 -prefix="@CMAKE_INSTALL_PREFIX@"
 -exec_prefix="${prefix}"

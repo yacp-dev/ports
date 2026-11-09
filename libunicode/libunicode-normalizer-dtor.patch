@@ -1,0 +1,36 @@
+Define normalizer's destructor in the library, not inline in the header.
+
+On Cygwin the std::u32string members of a normalizer hold the empty string
+representation that lives in cygunicode-0.9.dll. The test executable
+destroyed a normalizer inline, took that representation for a heap block and
+freed it, so a normalizer whose strings were never assigned (flush() or
+reset() with nothing buffered) aborted when it went out of scope.
+
+diff --git a/src/libunicode/normalization.cpp b/src/libunicode/normalization.cpp
+index 109c486..981bc90 100644
+--- a/src/libunicode/normalization.cpp
++++ b/src/libunicode/normalization.cpp
+@@ -535,6 +535,8 @@ normalizer::normalizer(Normalization_Form form) noexcept: _form(form)
+ {
+ }
+ 
++normalizer::~normalizer() = default;
++
+ bool normalizer::is_boundary(char32_t codepoint) const noexcept
+ {
+     // Non-starters are never boundaries
+diff --git a/src/libunicode/normalization.h b/src/libunicode/normalization.h
+index f57b6ca..a1df35c 100644
+--- a/src/libunicode/normalization.h
++++ b/src/libunicode/normalization.h
+@@ -265,6 +265,10 @@ class normalizer
+     /// @param form The normalization form to apply.
+     explicit normalizer(Normalization_Form form) noexcept;
+ 
++    // Destroy in the library: the empty std::u32string a default-constructed member
++    // holds is a per-module object on Windows, so it must be freed by the module that made it.
++    ~normalizer();
++
+     /// Feeds a single codepoint into the normalizer.
+     /// @param codepoint The codepoint to process.
+     /// @return Normalized output segment, or empty if still buffering.

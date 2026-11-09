@@ -4,38 +4,36 @@ The goals of this project are simple: Create a highly configurable, easily
 modifiable source code beautifier.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
-  vala-0.56.18-1
 
 Canonical website:
   https://github.com/uncrustify/uncrustify
 
 Canonical download:
-  https://github.com/uncrustify/uncrustify/archive/refs/tags/uncrustify-0.82.0.tar.gz
+  https://github.com/uncrustify/uncrustify/archive/refs/tags/uncrustify-0.83.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack uncrustify-0.82.0-X-src.tar.xz
+  1. unpack uncrustify-0.83.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./uncrustify-0.82.0-X.cygport all
+        % cygport ./uncrustify-0.83.0-X.cygport all
 
 This will create:
-  /usr/src/uncrustify-0.82.0-X-src.tar.xz
-  /usr/src/uncrustify-0.82.0-X.tar.xz
+  /usr/src/uncrustify-0.83.0-X-src.tar.xz
+  /usr/src/uncrustify-0.83.0-X.tar.xz
 
 -------------------------------------------
 
@@ -57,6 +55,7 @@ Files included in the binary package:
   /usr/share/doc/uncrustify/NEWS
   /usr/share/doc/uncrustify/README.md
   /usr/share/doc/uncrustify/Tracking.txt
+  /usr/share/doc/uncrustify/align-span-line-filters.txt
   /usr/share/doc/uncrustify/align-thresholds.txt
   /usr/share/doc/uncrustify/control_the_spaces.txt
   /usr/share/doc/uncrustify/dump-steps.txt
@@ -156,6 +155,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.83.0-1bl1 -----
+Version bump.
 
 ----- version 0.82.0-1bl1 -----
 Version bump.

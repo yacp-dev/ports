@@ -5,53 +5,57 @@ connect to your local and remote databases, write SQL in a handy text editor
 with language recognition, and visualize SELECT results in a Gtk.Grid Widget.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libcairo2-1.18.4-1
+  cygwin-3.6.12-1
+  libcairo2-1.18.6-1
   libgda5.0_4-5.2.10-1
   libgee0.8_2-0.20.1-1
-  libglib2.0_0-2.87.0-1
-  libgranite6-6.2.0-1bl1
-  libgtk3_0-3.24.51-1
-  libgtksourceview3.0_1-3.24.6-1
+  libglib2.0_0-2.90.1-1
+  libgranite6-6.2.0-1bl2
+  libgtk3_0-3.24.52-1
+  libgtksourceview4.0-4.8.4-1
+  libintl8-0.22.5-1
   libsecret1_0-0.18.5-1
   libssh2_1-1.11.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.4-1
-  gcc-core-13.4.0-1
-  libcairo-devel-1.18.4-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.22.5-1
+  libcairo-devel-1.18.6-1
   libgda5.0-devel-5.2.10-1
   libgee0.8-devel-0.20.1-1
-  libglib2.0-devel-2.87.0-1
-  libgranite-devel-6.2.0-1bl1
-  libgtk3-devel-3.24.51-1
-  libgtksourceview3.0-devel-3.24.6-1
+  libglib2.0-devel-2.90.1-1
+  libgranite-devel-6.2.0-1bl2
+  libgtk3-devel-3.24.52-1
+  libgtksourceview4.0-devel-4.8.4-1
   libsecret1-devel-0.18.5-1
   libssh2-devel-1.11.0-1
-  meson-1.4.2-1
+  meson-1.10.2-1
   ninja-1.13.2-1
   vala-0.56.18-1
+  vala-granite-6.2.0-1bl2
+  vala-gtksourceview4.0-4.8.4-1
 
 Canonical website:
   https://github.com/ellie-commons/sequeler
 
 Canonical download:
-  https://github.com/ellie-commons/sequeler/archive/refs/tags/v0.8.2.tar.gz
+  https://github.com/ellie-commons/sequeler/archive/refs/tags/v0.9.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack sequeler-0.8.2-X-src.tar.xz
+  1. unpack sequeler-0.9.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./sequeler-0.8.2-X.cygport all
+        % cygport ./sequeler-0.9.0-X.cygport all
 
 This will create:
-  /usr/src/sequeler-0.8.2-X-src.tar.xz
-  /usr/src/sequeler-0.8.2-X.tar.xz
+  /usr/src/sequeler-0.9.0-X-src.tar.xz
+  /usr/src/sequeler-0.9.0-X.tar.xz
 
 -------------------------------------------
 
@@ -59,48 +63,62 @@ Files included in the binary package:
 
 (sequeler)
   /etc/postinstall/sequeler.sh
-  /usr/bin/com.github.alecaddd.sequeler.exe
-  /usr/share/applications/com.github.alecaddd.sequeler.desktop
+  /usr/bin/io.github.ellie_commons.sequeler.exe
+  /usr/share/applications/io.github.ellie_commons.sequeler.desktop
   /usr/share/doc/Cygwin/sequeler.README
   /usr/share/doc/sequeler/AUTHORS
   /usr/share/doc/sequeler/LICENSE
   /usr/share/doc/sequeler/README.md
-  /usr/share/glib-2.0/schemas/com.github.alecaddd.sequeler.gschema.xml
-  /usr/share/icons/hicolor/128x128/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/128x128@2/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/16x16/apps/com.github.alecaddd.sequeler.svg
+  /usr/share/glib-2.0/schemas/io.github.ellie_commons.sequeler.gschema.xml
+  /usr/share/icons/hicolor/128x128/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/icons/hicolor/128x128@2/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/icons/hicolor/16x16/apps/io.github.ellie_commons.sequeler.svg
   /usr/share/icons/hicolor/16x16/status/table-empty.svg
   /usr/share/icons/hicolor/16x16/status/table.svg
-  /usr/share/icons/hicolor/16x16@2/apps/com.github.alecaddd.sequeler.svg
+  /usr/share/icons/hicolor/16x16@2/apps/io.github.ellie_commons.sequeler.svg
   /usr/share/icons/hicolor/24x24/actions/application-logout.svg
   /usr/share/icons/hicolor/24x24/actions/office-database-edit.svg
   /usr/share/icons/hicolor/24x24/actions/office-database-new.svg
   /usr/share/icons/hicolor/24x24/actions/office-database-remove.svg
-  /usr/share/icons/hicolor/24x24/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/24x24@2/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/32x32/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/32x32@2/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/48x48/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/48x48@2/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/64x64/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/64x64@2/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/icons/hicolor/scalable/apps/com.github.alecaddd.sequeler.svg
-  /usr/share/locale/ca/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/de/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/es/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/fr/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/id/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/it/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/lg/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/lt/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/pt_BR/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/ru/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/locale/tr/LC_MESSAGES/com.github.alecaddd.sequeler.mo
-  /usr/share/metainfo/com.github.alecaddd.sequeler.appdata.xml
+  /usr/share/icons/hicolor/24x24/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/icons/hicolor/24x24@2/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/icons/hicolor/32x32/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/icons/hicolor/32x32@2/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/icons/hicolor/48x48/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/icons/hicolor/48x48@2/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/icons/hicolor/64x64/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/icons/hicolor/64x64@2/apps/io.github.ellie_commons.sequeler.svg
+  /usr/share/locale/ar_EG/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/ars/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/ca/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/cs/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/de/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/es/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/et/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/fr/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/hi/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/id/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/it/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/ja/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/lg/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/lt/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/pl/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/pt/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/pt_BR/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/ru/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/ta/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/tr/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/uk/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/zh_CN/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/locale/zh_TW/LC_MESSAGES/io.github.ellie_commons.sequeler.mo
+  /usr/share/metainfo/io.github.ellie_commons.sequeler.metainfo.xml
 
 ------------------
 
 Port Notes:
+
+----- version 0.9.0-1bl1 -----
+Version bump.
 
 ----- version 0.8.2-1bl1 -----
 Version bump.

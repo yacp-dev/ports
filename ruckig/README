@@ -11,42 +11,41 @@ parametrization jointly, resulting in significantly faster trajectories
 compared to traditional methods.
 
 Runtime requirements:
-  cygwin-3.6.2-1
-  libgcc1-12.4.0-3
-  libruckig-devel-0.15.3-1bl1
-  libruckig0-0.15.3-1bl1
-  libstdc++6-12.4.0-3
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libruckig-devel-0.19.4-1bl1
+  libruckig0-0.19.4-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/pantor/ruckig
 
 Canonical download:
-  https://github.com/pantor/ruckig/archive/refs/tags/v0.15.3.tar.gz
+  https://github.com/pantor/ruckig/archive/refs/tags/v0.19.4.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ruckig-0.15.3-X-src.tar.xz
+  1. unpack ruckig-0.19.4-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ruckig-0.15.3-X.cygport all
+        % cygport ./ruckig-0.19.4-X.cygport all
 
 This will create:
-  /usr/src/ruckig-0.15.3-X-src.tar.xz
-  /usr/src/ruckig-0.15.3-X.tar.xz
-  /usr/src/libruckig0-0.15.3-X.tar.xz
-  /usr/src/libruckig-devel-0.15.3-X.tar.xz
+  /usr/src/ruckig-0.19.4-X-src.tar.xz
+  /usr/src/ruckig-0.19.4-X.tar.xz
+  /usr/src/libruckig0-0.19.4-X.tar.xz
+  /usr/src/libruckig-devel-0.19.4-X.tar.xz
 
 -------------------------------------------
 
@@ -83,7 +82,7 @@ Files included in the binary package:
   /usr/include/ruckig/velocity.hpp
   /usr/lib/cmake/ruckig/ruckig-config-version.cmake
   /usr/lib/cmake/ruckig/ruckig-config.cmake
-  /usr/lib/cmake/ruckig/ruckig-targets-release.cmake
+  /usr/lib/cmake/ruckig/ruckig-targets-relwithdebinfo.cmake
   /usr/lib/cmake/ruckig/ruckig-targets.cmake
   /usr/lib/libruckig.dll.a
   /usr/lib/pkgconfig/ruckig.pc
@@ -92,6 +91,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.19.4-1bl1 -----
+Version bump.
 
 ----- version 0.15.3-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

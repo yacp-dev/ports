@@ -1,5 +1,5 @@
---- origsrc/ruckig-0.15.3/CMakeLists.txt	2025-05-16 22:50:05.000000000 +0900
-+++ src/ruckig-0.15.3/CMakeLists.txt	2025-05-31 15:56:02.813978100 +0900
+--- origsrc/ruckig-0.19.4/CMakeLists.txt	2026-07-15 06:33:24.000000000 +0000
++++ src/ruckig-0.19.4/CMakeLists.txt	2026-11-09 12:19:04.299542000 +0000
 @@ -55,6 +55,9 @@ endif()
  
  add_library(ruckig::ruckig ALIAS ruckig)
@@ -21,8 +21,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/ruckig.pc.in ${CMAKE_BINARY_DIR}/ruckig.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/ruckig.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/ruckig-0.15.3/ruckig.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/ruckig-0.15.3/ruckig.pc.in	2025-05-31 15:57:53.344027900 +0900
+--- origsrc/ruckig-0.19.4/ruckig.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/ruckig-0.19.4/ruckig.pc.in	2026-11-09 12:19:04.301225300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

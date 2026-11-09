@@ -8,11 +8,13 @@ DESCRIPTION="RELIC is a modern cryptographic meta-toolkit with emphasis on effic
 flexibility. RELIC can be used to build efficient and usable cryptographic
 toolkits tailored for specific security levels and algorithmic choices."
 
-LICENSE="Apache-2.0 OR LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 OR LGPL-2.1-or-later"
+LICENSE="(Apache-2.0 OR LGPL-2.1-only) AND CC0-1.0 AND Unlicense"
+LICENSE_SPDX="SPDX-License-Identifier: (Apache-2.0 OR LGPL-2.1-only) AND CC0-1.0 AND Unlicense"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libgmp-devel"
+BUILD_REQUIRES="
+	libgmp-devel
+"
 
 inherit cmake
 
@@ -23,6 +25,9 @@ CYGCMAKE_ARGS="
 	-DSOVERSION:STRING=0
 	-DSTLIB:BOOL=OFF
 "
+
+# the pairings and protocol suites take 6-14 min with the gmp backend
+YACP_CHECK_TIMEOUT_MINUTES=20
 
 src_test()
 {

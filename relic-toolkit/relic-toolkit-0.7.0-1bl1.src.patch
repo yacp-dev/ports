@@ -1,6 +1,6 @@
---- origsrc/relic-0.6.0/CMakeLists.txt	2022-06-19 22:34:22.000000000 +0900
-+++ src/relic-0.6.0/CMakeLists.txt	2023-11-04 11:08:15.456775100 +0900
-@@ -347,7 +347,7 @@ file(GLOB includes "${CMAKE_CURRENT_SOUR
+--- origsrc/relic-0.7.0/CMakeLists.txt	2024-12-27 15:24:16.000000000 +0000
++++ src/relic-0.7.0/CMakeLists.txt	2026-11-09 13:18:08.459233800 +0000
+@@ -361,7 +361,7 @@ file(GLOB includes "${CMAKE_CURRENT_SOUR
  install(FILES ${includes} DESTINATION include/${RELIC}/low)
  install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/include/" DESTINATION include/${RELIC})
  
@@ -9,7 +9,7 @@
  
  if(DOCUM)
  	include(cmake/doxygen.cmake)
-@@ -361,3 +361,10 @@ endif(TESTS GREATER 0)
+@@ -375,3 +375,10 @@ endif(TESTS GREATER 0)
  if(BENCH GREATER 0)
  	add_subdirectory(bench)
  endif(BENCH GREATER 0)
@@ -20,8 +20,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/relic-toolkit.pc.in ${CMAKE_BINARY_DIR}/relic-toolkit.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/relic-toolkit.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/relic-0.6.0/bench/bench_cp.c	2022-06-19 22:34:22.000000000 +0900
-+++ src/relic-0.6.0/bench/bench_cp.c	2023-11-04 07:21:41.227970000 +0900
+--- origsrc/relic-0.7.0/bench/bench_cp.c	2024-12-27 15:24:16.000000000 +0000
++++ src/relic-0.7.0/bench/bench_cp.c	2026-11-09 13:18:08.461251000 +0000
 @@ -1152,6 +1152,10 @@ static void bbs(void) {
  	g2_free(p);
  }
@@ -32,9 +32,9 @@
 +
  static int cls(void) {
  	int i, code = RLC_ERR;
- 	bn_t r, t, u, v, _v[4];
---- origsrc/relic-0.6.0/relic-toolkit.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/relic-0.6.0/relic-toolkit.pc.in	2023-11-04 11:08:30.752226800 +0900
+ 	bn_t r, t, u, v, vs[4];
+--- origsrc/relic-0.7.0/relic-toolkit.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/relic-0.7.0/relic-toolkit.pc.in	2026-11-09 13:18:08.461251000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -46,12 +46,12 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lrelic
 +Cflags: -I${includedir}
---- origsrc/relic-0.6.0/src/CMakeLists.txt	2022-06-19 22:34:22.000000000 +0900
-+++ src/relic-0.6.0/src/CMakeLists.txt	2023-11-04 11:03:18.033084300 +0900
-@@ -221,7 +221,10 @@ if (SHLIB)
- 	add_dependencies(${RELIC} arith_objs)
+--- origsrc/relic-0.7.0/src/CMakeLists.txt	2024-12-27 15:24:16.000000000 +0000
++++ src/relic-0.7.0/src/CMakeLists.txt	2026-11-09 13:18:08.461251000 +0000
+@@ -223,7 +223,10 @@ if (SHLIB)
  	target_link_libraries(${RELIC} ${ARITH_LIBS})
  	link_libs(${RELIC})
+ 	target_include_directories(${RELIC} PUBLIC ${INCLUDE})
 -	install(TARGETS ${RELIC} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
 +	if (DEFINED SOVERSION)
 +		set_target_properties(${RELIC} PROPERTIES SOVERSION "${SOVERSION}")

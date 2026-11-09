@@ -1,0 +1,17 @@
+--- origsrc/tree-sitter-regex-0.25.0/CMakeLists.txt	2025-09-13 04:57:50.000000000 +0000
++++ src/tree-sitter-regex-0.25.0/CMakeLists.txt	2026-11-09 04:17:32.641934500 +0000
+@@ -19,12 +19,14 @@ include(GNUInstallDirs)
+ 
+ find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")
+ 
++if (NOT TREE_SITTER_CLI STREQUAL "TREE_SITTER_CLI-NOTFOUND")
+ add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/parser.c"
+                    DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar.json"
+                    COMMAND "${TREE_SITTER_CLI}" generate src/grammar.json
+                             --abi=${TREE_SITTER_ABI_VERSION}
+                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+                    COMMENT "Generating parser.c")
++endif()
+ 
+ add_library(tree-sitter-regex src/parser.c)
+ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.c)

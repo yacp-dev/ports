@@ -13,19 +13,19 @@ inherit cmake
 
 PKG_NAMES="
 	tree-sitter-regex
-	libtree-sitter-regex14.0
+	libtree-sitter-regex15.0
 	libtree-sitter-regex-devel
 "
 tree_sitter_regex_CONTENTS="
 	usr/share
 "
-libtree_sitter_regex14_0_CONTENTS="
-	usr/bin/cyg*-14.0.dll
+libtree_sitter_regex15_0_CONTENTS="
+	usr/bin/cyg*-15.0.dll
 "
 libtree_sitter_regex_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 tree_sitter_regex_SUMMARY="${SUMMARY} (licensing & readmes)"
-libtree_sitter_regex14_0_SUMMARY="${SUMMARY} (runtime)"
+libtree_sitter_regex15_0_SUMMARY="${SUMMARY} (runtime)"
 libtree_sitter_regex_devel_SUMMARY="${SUMMARY} (development)"

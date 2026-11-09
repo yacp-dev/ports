@@ -12,12 +12,33 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	autoconf-archive
+	dbus
+	libcmocka-devel
+	libglib2.0-devel
+	libtss2-mu-devel
+	libtss2-rc-devel
+	libtss2-sys-devel
+	libtss2-tctildr-devel
+	tpm2-tss-devel
+"
+
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
 {
 	cd ${origsrcdir}/${SRC_DIR}
 	echo ${PV} > VERSION
 }
+
+CYGCONF_ARGS="
+	--enable-unit
+"
+
+# glib/gobject/gio headers declare their functions dllimport on Cygwin, so the
+# objects call them through __imp_g_*, which ld --wrap=g_* does not rewrite and
+# the unit tests mocking g_* never reach their wrappers.
+CFLAGS+=" -DGLIB_STATIC_COMPILATION -DGOBJECT_STATIC_COMPILATION -DGIO_STATIC_COMPILATION"
 
 DIFF_EXCLUDES="
 	*.m4

@@ -1,6 +1,5 @@
 HOMEPAGE="https://github.com/emilk/${PN}"
-GIT_URI="https://github.com/emilk/${PN}.git"
-GIT_REV="4adaa185883e3c04da25913579c451d3c32cfac1"
+SRC_URI="https://github.com/emilk/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Lightweight and flexible C++ logging library"
@@ -14,11 +13,16 @@ export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DLOGURU_WITH_STREAMS"
 export CXXFLAGS="${CXXFLAGS} -fpermissive"
 
 inherit cmake
-inherit git
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${PATH} ctest
+}
 
 PKG_NAMES="
 	loguru

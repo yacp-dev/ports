@@ -4,41 +4,39 @@ UDNS is a stub DNS resolver library with ability to perform both syncronous and
 asyncronous DNS queries.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libudns-devel-0.6-1bl1
-  libudns0-0.6-1bl1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libudns-devel-0.7-1bl1
+  libudns0-0.7-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.4.7-1
-  make-4.4.1-2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
-  http://www.corpit.ru/mjt/udns.html
+  https://www.corpit.ru/mjt/udns.html
 
 Canonical download:
-  http://www.corpit.ru/mjt/udns/udns-0.6.tar.gz
+  https://www.corpit.ru/mjt/udns/udns-0.7.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack udns-0.6-X-src.tar.xz
+  1. unpack udns-0.7-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./udns-0.6-X.cygport all
+        % cygport ./udns-0.7-X.cygport all
 
 This will create:
-  /usr/src/udns-0.6-X-src.tar.xz
-  /usr/src/udns-0.6-X.tar.xz
-  /usr/src/libudns0-0.6-X.tar.xz
-  /usr/src/libudns-devel-0.6-X.tar.xz
+  /usr/src/udns-0.7-X-src.tar.xz
+  /usr/src/udns-0.7-X.tar.xz
+  /usr/src/libudns0-0.7-X.tar.xz
+  /usr/src/libudns-devel-0.7-X.tar.xz
 
 -------------------------------------------
 
@@ -68,6 +66,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.7-1bl1 -----
+Version bump.
 
 ----- version 0.6-1bl1 -----
 Version bump.

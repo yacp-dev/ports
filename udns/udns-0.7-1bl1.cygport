@@ -1,5 +1,9 @@
-HOMEPAGE="http://www.corpit.ru/mjt/${PN}.html"
-SRC_URI="http://www.corpit.ru/mjt/${PN}/${P}.tar.gz"
+HOMEPAGE="https://www.corpit.ru/mjt/${PN}.html"
+SRC_URI="
+	https://www.corpit.ru/mjt/${PN}/${P}.tar.gz
+	CMakeLists.txt
+	udns.pc.in
+"
 
 CATEGORY="Net"
 SUMMARY="DNS resolver library"
@@ -9,6 +13,8 @@ and asyncronous DNS queries."
 LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING.LGPL"
+
+inherit cmake
 
 src_test()
 {

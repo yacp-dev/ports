@@ -19,6 +19,9 @@ BUILD_REQUIRES="
 	libvpx-devel
 "
 
+# the test suite takes about 12 minutes on the runner
+YACP_CHECK_TIMEOUT_MINUTES=20
+
 DOCS="
 	CHANGELOG.md
 	docs/*.md
@@ -42,6 +45,7 @@ libtoxcore2_CONTENTS="
 "
 libtoxcore_devel_CONTENTS="
 	usr/include/tox/tox.h
+	usr/include/tox/tox_log_level.h
 	usr/include/tox/tox_options.h
 	usr/include/tox/toxencryptsave.h
 	usr/lib/libtoxcore.dll.a

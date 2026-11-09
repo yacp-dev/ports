@@ -25,4 +25,6 @@ src_install()
 	doins tty-colorscheme/tty-colorscheme.conf
 	insinto /usr/lib/systemd/system
     doins tty-colorscheme/tty-colorscheme.service
+
+	make_etc_defaults /etc/tty-colorscheme/tty-colorscheme.conf
 }

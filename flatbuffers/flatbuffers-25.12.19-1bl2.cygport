@@ -1,10 +1,10 @@
 HOMEPAGE="https://github.com/google/${PN}"
 SRC_URI="
     https://github.com/google/${PN}/archive/refs/tags/v${PV}.tar.gz
-    https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/flatc.1
+    https://src.fedoraproject.org/rpms/${PN}/raw/883707f378f1c9eb8a05e003e0edd2da7adc415e/f/flatc.1
 "
 PATCH_URI="
-    https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/flatbuffers_mingw-lib.patch
+    https://src.fedoraproject.org/rpms/${PN}/raw/883707f378f1c9eb8a05e003e0edd2da7adc415e/f/flatbuffers_mingw-lib.patch
 "
 
 CATEGORY="Libs"
@@ -58,3 +58,4 @@ libflatbuffers_devel_CONTENTS="
 flatbuffers_SUMMARY="${SUMMARY} (utilities)"
 libflatbuffers25_12_19_SUMMARY="${SUMMARY} (runtime)"
 libflatbuffers_devel_SUMMARY="${SUMMARY} (development)"
+libflatbuffers_devel_REQUIRES="flatbuffers"

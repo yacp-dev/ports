@@ -5,11 +5,12 @@ CATEGORY="Science"
 SUMMARY="Faster replacement for most of the perl VCFtools commands"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="GPL-3.0-or-later OR MIT"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later OR MIT"
+LICENSE="(GPL-3.0-or-later OR MIT) AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: (GPL-3.0-or-later OR MIT) AND BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	htslib
 	libhts-devel
 	zlib-devel
 "
@@ -18,7 +19,7 @@ src_compile()
 {
 	CYGCONF_SOURCE=${B}
 	cd ${B}
-	lndirs
+	cp -a ${S}/. ${B}/
 	cygautoreconf
 	cygconf
 	cygmake

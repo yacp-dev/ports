@@ -1,0 +1,51 @@
+--- origsrc/bcftools-1.25/Makefile	2026-10-27 07:56:48.000000000 +0000
++++ src/bcftools-1.25/Makefile	2026-11-09 14:26:32.419123500 +0000
+@@ -47,7 +47,7 @@ OBJS     = main.o vcfindex.o tabix.o \
+            mpileup2/mpileup.o
+ PLUGIN_OBJS = vcfplugin.o
+ 
+-prefix      = /usr/local
++prefix      = /usr
+ exec_prefix = $(prefix)
+ bindir      = $(exec_prefix)/bin
+ libdir      = $(exec_prefix)/lib
+--- origsrc/bcftools-1.25/misc/guess-ploidy.py	2026-10-27 07:56:48.000000000 +0000
++++ src/bcftools-1.25/misc/guess-ploidy.py	2026-11-09 14:26:32.419123500 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ #
+ # Plot the output of "bcftools +guess-ploidy -v"
+ #
+--- origsrc/bcftools-1.25/test/test.pl	2026-10-27 07:56:48.000000000 +0000
++++ src/bcftools-1.25/test/test.pl	2026-11-09 14:26:32.423151000 +0000
+@@ -1268,7 +1268,8 @@ sub parse_params
+     $$opts{bin}  =~ s{/test/?$}{};
+     if ($^O =~ /^(cygwin|msys)/) {
+         $$opts{path} = cygpath($$opts{path});
+-        $$opts{bin}  = cygpath($$opts{bin});
++        # Cygwin's libhts splits BCFTOOLS_PLUGINS at ":", so a "D:/..." path breaks it
++        $$opts{bin}  = cygpath($$opts{bin}) if $^O =~ /^msys/;
+     }
+ 
+     return $opts;
+@@ -2032,7 +2033,8 @@ sub test_vcf_plugin
+     if ( !exists($args{args}) ) { $args{args} = ''; }
+     my $wpath = $$opts{path};
+     if ($^O =~ /^(cygwin|msys)/) {
+-        $wpath = `cygpath -w $$opts{path}`;
++        # Cygwin: a "D:" in a filter's AD[@file] is read as the index separator
++        $wpath = $^O eq 'cygwin' ? `cygpath -u $$opts{path}` : `cygpath -w $$opts{path}`;
+         $wpath =~ s/\r?\n//;
+     }
+     for my $key (qw(args cmd pipe))
+@@ -2215,7 +2217,8 @@ sub test_mpileup
+         {
+             print $fh1 "$$opts{path}/mpileup/$file.bam\n";
+             print $fh2 "$$opts{path}/mpileup/$file.cram\n";
+-            my $atmp = $^O =~ /^(cygwin|msys)/ ? cygpath("$$opts{path}/mpileup") : abs_path("$$opts{path}/mpileup");
++            my $atmp = $^O =~ /^msys/ ? cygpath("$$opts{path}/mpileup") : abs_path("$$opts{path}/mpileup");
++            if ($^O eq 'cygwin') { $atmp = `cygpath -u $$opts{path}/mpileup`; $atmp =~ s/\r?\n//; }
+             unless ($atmp =~ /^\//) { $atmp = "/$atmp"; }
+             print $fh3 "file://$atmp/$file.bam\n";
+             print $fh4 "file://$atmp/$file.cram\n";

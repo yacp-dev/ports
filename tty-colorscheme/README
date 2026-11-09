@@ -13,26 +13,29 @@ Canonical website:
   https://github.com/red-magic/tty-colorscheme
 
 Canonical download:
-  https://github.com/red-magic/tty-colorscheme/archive/refs/tags/1.21.tar.gz
+  https://github.com/red-magic/tty-colorscheme/archive/refs/tags/2.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack tty-colorscheme-1.21-X-src.tar.xz
+  1. unpack tty-colorscheme-2.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./tty-colorscheme-1.21-X.cygport all
+        % cygport ./tty-colorscheme-2.0-X.cygport all
 
 This will create:
-  /usr/src/tty-colorscheme-1.21-X-src.tar.xz
-  /usr/src/tty-colorscheme-1.21-X.tar.xz
+  /usr/src/tty-colorscheme-2.0-X-src.tar.xz
+  /usr/src/tty-colorscheme-2.0-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (tty-colorscheme)
+  /etc/defaults/etc/tty-colorscheme/tty-colorscheme.conf
+  /etc/postinstall/tty-colorscheme.sh
+  /etc/preremove/tty-colorscheme.sh
   /etc/tty-colorscheme/colorschemes/0x96f
   /etc/tty-colorscheme/colorschemes/12-bit-rainbow
   /etc/tty-colorscheme/colorschemes/1984-dark
@@ -1004,6 +1007,7 @@ Files included in the binary package:
   /etc/tty-colorscheme/colorschemes/sandstone-ink
   /etc/tty-colorscheme/colorschemes/sandstone-warm
   /etc/tty-colorscheme/colorschemes/sangdoist
+  /etc/tty-colorscheme/colorschemes/sangdoist-light
   /etc/tty-colorscheme/colorschemes/sat
   /etc/tty-colorscheme/colorschemes/sauber
   /etc/tty-colorscheme/colorschemes/scarlet-protocol
@@ -1035,6 +1039,7 @@ Files included in the binary package:
   /etc/tty-colorscheme/colorschemes/seoulbones-dark
   /etc/tty-colorscheme/colorschemes/seoulbones-light
   /etc/tty-colorscheme/colorschemes/seoulism
+  /etc/tty-colorscheme/colorschemes/seoulism-light
   /etc/tty-colorscheme/colorschemes/sequoia-monochrome-dark
   /etc/tty-colorscheme/colorschemes/sequoia-monochrome-light
   /etc/tty-colorscheme/colorschemes/sequoia-moonlight-dark
@@ -1293,7 +1298,6 @@ Files included in the binary package:
   /etc/tty-colorscheme/colorschemes/zenburned
   /etc/tty-colorscheme/colorschemes/zenwritten-dark
   /etc/tty-colorscheme/colorschemes/zenwritten-light
-  /etc/tty-colorscheme/tty-colorscheme.conf
   /usr/bin/tty-colorscheme
   /usr/lib/systemd/system/tty-colorscheme.service
   /usr/share/doc/Cygwin/tty-colorscheme.README
@@ -1303,6 +1307,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0-1bl1 -----
+Version bump.
 
 ----- version 1.21-1bl1 -----
 Version bump.

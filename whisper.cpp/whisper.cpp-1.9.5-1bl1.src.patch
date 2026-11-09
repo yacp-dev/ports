@@ -1,0 +1,59 @@
+--- origsrc/whisper.cpp-1.9.5/cmake/build-info.cmake	2026-10-06 14:10:35.000000000 +0000
++++ src/whisper.cpp-1.9.5/cmake/build-info.cmake	2026-11-09 00:49:44.054135800 +0000
+@@ -16,7 +16,7 @@ if(NOT Git_FOUND)
+ endif()
+ 
+ # Get the commit count and hash
+-if(Git_FOUND)
++if(Git_FOUND AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git")
+     execute_process(
+         COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+--- origsrc/whisper.cpp-1.9.5/cmake/git-vars.cmake	2026-10-06 14:10:35.000000000 +0000
++++ src/whisper.cpp-1.9.5/cmake/git-vars.cmake	2026-11-09 00:49:44.056160900 +0000
+@@ -1,5 +1,6 @@
+ find_package(Git)
+ 
++if (GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
+ # the commit's SHA1
+ execute_process(COMMAND
+     "${GIT_EXECUTABLE}" describe --match=NeVeRmAtCh --always --abbrev=8
+@@ -20,3 +21,4 @@ execute_process(COMMAND
+     WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+     OUTPUT_VARIABLE GIT_COMMIT_SUBJECT
+     ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
++endif()
+--- origsrc/whisper.cpp-1.9.5/examples/common-sdl.cpp	2026-10-06 14:10:35.000000000 +0000
++++ src/whisper.cpp-1.9.5/examples/common-sdl.cpp	2026-11-09 00:49:44.058191100 +0000
+@@ -1,6 +1,7 @@
+ #include "common-sdl.h"
+ 
+ #include <cstdio>
++#include <cstring>
+ 
+ audio_async::audio_async(int len_ms) {
+     m_len_ms = len_ms;
+--- origsrc/whisper.cpp-1.9.5/examples/stream/stream.cpp	2026-10-06 14:10:35.000000000 +0000
++++ src/whisper.cpp-1.9.5/examples/stream/stream.cpp	2026-11-09 00:49:44.058191100 +0000
+@@ -9,6 +9,7 @@
+ 
+ #include <chrono>
+ #include <cstdio>
++#include <cstring>
+ #include <fstream>
+ #include <string>
+ #include <thread>
+--- origsrc/whisper.cpp-1.9.5/src/parakeet.cpp	2026-10-06 14:10:35.000000000 +0000
++++ src/whisper.cpp-1.9.5/src/parakeet.cpp	2026-11-09 00:49:44.060219400 +0000
+@@ -1854,8 +1854,10 @@ static struct ggml_cgraph * parakeet_bui
+                     int center = pos_window / 2;
+                     size_t offset = rel_pos_scores->nb[0] * (center+1);
+ 
++                    // only the first content_scores->ne[1] rows are read below; a view of
++                    // pos_window rows reaches past the end of its source, which ggml >= 0.29 asserts
+                     rel_pos_scores = ggml_view_3d(ctx0, rel_pos_scores,
+-                                                  n_frame, pos_window, n_head_cur,
++                                                  n_frame, content_scores->ne[1], n_head_cur,
+                                                   (pos_window) * 4,
+                                                   rel_pos_scores->nb[2],
+                                                   offset);

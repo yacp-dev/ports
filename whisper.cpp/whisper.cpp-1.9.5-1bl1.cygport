@@ -14,6 +14,7 @@ BUILD_REQUIRES="
 	libavformat-devel
 	libavutil-devel
 	libggml-devel
+	libllama-devel
 	libSDL2-devel
 	libswresample-devel
 "
@@ -24,10 +25,16 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DWHISPER_CURL:BOOL=ON
-	-DWHISPER_FFMPEG:BOOL=ON
+	-DWHISPER_BUILD_IS_DEV:BOOL=OFF
+	-DWHISPER_COMMON_FFMPEG:BOOL=ON
 	-DWHISPER_SDL2:BOOL=ON
 	-DWHISPER_USE_SYSTEM_GGML:BOOL=ON
+	-DWHISPER_USE_SYSTEM_LLAMA:BOOL=ON
+"
+
+# cmake writes this into ${S} at configure time
+DIFF_EXCLUDES="
+	package.json
 "
 
 PKG_NAMES="

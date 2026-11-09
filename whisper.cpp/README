@@ -3,61 +3,64 @@ whisper.cpp
 Port of OpenAI's Whisper model in C/C++
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libSDL2_2.0_0-2.32.64-1
-  libavcodec62-8.0.1-3
-  libavformat62-8.0.1-3
-  libavutil60-8.0.1-3
-  libgcc1-13.4.0-1
-  libggml-devel-0.9.5-1bl1
-  libggml0-0.9.5-1bl1
-  libstdc++6-13.4.0-1
-  libswresample6-8.0.1-3
-  libwhisper-devel-1.8.3-1bl1
-  libwhisper1-1.8.3-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libSDL2_2.0_0-2.32.74-1
+  libavcodec63-9.0.2-3
+  libavformat63-9.0.2-3
+  libavutil61-9.0.2-3
+  libgcc1-14.4.0-1
+  libggml-devel-0.29.0-1bl3
+  libggml0-0.29.0-1bl3
+  libllama0-0.9.0-1bl1
+  libstdc++6-14.4.0-1
+  libswresample7-9.0.2-3
+  libwhisper-devel-1.9.5-1bl1
+  libwhisper1-1.9.5-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libSDL2-devel-2.32.64-1
-  libavcodec-devel-8.0.1-3
-  libavformat-devel-8.0.1-3
-  libavutil-devel-8.0.1-3
-  libggml-devel-0.9.5-1bl1
-  libswresample-devel-8.0.1-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libSDL2-devel-2.32.74-1
+  libavcodec-devel-9.0.2-3
+  libavformat-devel-9.0.2-3
+  libavutil-devel-9.0.2-3
+  libggml-devel-0.29.0-1bl3
+  libllama-devel-0.9.0-1bl1
+  libswresample-devel-9.0.2-3
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/ggml-org/whisper.cpp
 
 Canonical download:
-  https://github.com/ggml-org/whisper.cpp/archive/refs/tags/v1.8.3.tar.gz
+  https://github.com/ggml-org/whisper.cpp/archive/refs/tags/v1.9.5.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack whisper.cpp-1.8.3-X-src.tar.xz
+  1. unpack whisper.cpp-1.9.5-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./whisper.cpp-1.8.3-X.cygport all
+        % cygport ./whisper.cpp-1.9.5-X.cygport all
 
 This will create:
-  /usr/src/whisper.cpp-1.8.3-X-src.tar.xz
-  /usr/src/whisper.cpp-1.8.3-X.tar.xz
-  /usr/src/libwhisper1-1.8.3-X.tar.xz
-  /usr/src/libwhisper-devel-1.8.3-X.tar.xz
+  /usr/src/whisper.cpp-1.9.5-X-src.tar.xz
+  /usr/src/whisper.cpp-1.9.5-X.tar.xz
+  /usr/src/libwhisper1-1.9.5-X.tar.xz
+  /usr/src/libwhisper-devel-1.9.5-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (whisper.cpp)
+  /usr/bin/parakeet-cli.exe
+  /usr/bin/parakeet-quantize.exe
   /usr/bin/whisper-bench.exe
   /usr/bin/whisper-cli.exe
   /usr/bin/whisper-command.exe
@@ -73,18 +76,27 @@ Files included in the binary package:
   /usr/share/doc/whisper.cpp/README.md
 
 (libwhisper1)
+  /usr/bin/cygparakeet-1.dll
   /usr/bin/cygwhisper-1.dll
 
 (libwhisper-devel)
+  /usr/include/parakeet.h
   /usr/include/whisper.h
+  /usr/lib/cmake/parakeet/parakeet-config-version.cmake
+  /usr/lib/cmake/parakeet/parakeet-config.cmake
+  /usr/lib/cmake/whisper/whisper-config-version.cmake
   /usr/lib/cmake/whisper/whisper-config.cmake
-  /usr/lib/cmake/whisper/whisper-version.cmake
+  /usr/lib/libparakeet.dll.a
   /usr/lib/libwhisper.dll.a
+  /usr/lib/pkgconfig/parakeet.pc
   /usr/lib/pkgconfig/whisper.pc
 
 ------------------
 
 Port Notes:
+
+----- version 1.9.5-1bl1 -----
+Version bump.
 
 ----- version 1.8.3-1bl1 -----
 Version bump.

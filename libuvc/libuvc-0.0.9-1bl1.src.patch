@@ -1,0 +1,95 @@
+--- origsrc/libuvc-0.0.9/include/libuvc/libuvc_internal.h	2026-10-29 07:40:50.000000000 +0000
++++ src/libuvc-0.0.9/include/libuvc/libuvc_internal.h	2026-11-09 14:37:07.815809800 +0000
+@@ -73,6 +73,9 @@
+ /* http://stackoverflow.com/questions/19452971/array-size-macro-that-rejects-pointers */
+ #define IS_INDEXABLE(arg) (sizeof(arg[0]))
+ #define IS_ARRAY(arg) (IS_INDEXABLE(arg) && (((void *) &arg) == ((void *) arg)))
++#if defined(ARRAYSIZE)
++#undef ARRAYSIZE
++#endif
+ #define ARRAYSIZE(arr) (sizeof(arr) / (IS_ARRAY(arr) ? sizeof(arr[0]) : 0))
+ 
+ /** Video interface subclass code (A.2) */
+--- origsrc/libuvc-0.0.9/src/frame-mjpeg.c	2026-10-29 07:40:50.000000000 +0000
++++ src/libuvc-0.0.9/src/frame-mjpeg.c	2026-11-09 14:37:07.817067100 +0000
+@@ -37,7 +37,15 @@
+  */
+ #include "libuvc/libuvc.h"
+ #include "libuvc/libuvc_internal.h"
++#ifdef __CYGWIN__
++/* <windows.h> (via <libusb.h>) typedefs boolean as unsigned char, but
++   libjpeg's ABI uses int: give libjpeg's typedef its own name. */
++#define boolean jpeg_boolean
++#endif
+ #include <jpeglib.h>
++#ifdef __CYGWIN__
++#undef boolean
++#endif
+ #include <setjmp.h>
+ 
+ extern uvc_error_t uvc_ensure_frame_size(uvc_frame_t *frame, size_t need_bytes);
+--- origsrc/libuvc-0.0.9/test/CMakeLists.txt	2026-10-29 07:40:50.000000000 +0000
++++ src/libuvc-0.0.9/test/CMakeLists.txt	2026-11-09 14:37:07.817827500 +0000
+@@ -8,19 +8,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ find_package(GTest REQUIRED)
+ include(GoogleTest)
+ 
+-if(NOT TARGET uvc_static)
+-  message(FATAL_ERROR
+-    "Tests need the static library. Configure with "
+-    "-DCMAKE_BUILD_TARGET=Both (the default) or Static.")
++# Link the static library when it was built, otherwise the shared one.
++if(TARGET uvc_static)
++  set(UVC_TEST_LIB uvc_static)
++elseif(TARGET uvc)
++  set(UVC_TEST_LIB uvc)
++else()
++  message(FATAL_ERROR "Tests need libuvc to be built.")
+ endif()
+ 
+ add_executable(test_frame test_frame.cc)
+-target_link_libraries(test_frame PRIVATE uvc_static GTest::gtest_main)
++target_link_libraries(test_frame PRIVATE ${UVC_TEST_LIB} GTest::gtest_main)
+ 
+ # Reference images are read at run time, so the test needs to know where
+ # test/data/ is regardless of the working directory it is invoked from.
+ add_executable(test_frame_reference test_frame_reference.cc)
+-target_link_libraries(test_frame_reference PRIVATE uvc_static GTest::gtest_main)
++target_link_libraries(test_frame_reference PRIVATE ${UVC_TEST_LIB} GTest::gtest_main)
+ target_compile_definitions(test_frame_reference
+   PRIVATE UVC_TEST_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/data"
+ )
+@@ -28,7 +31,7 @@ target_compile_definitions(test_frame_re
+ # Compiles to an empty translation unit when libuvc was built without JPEG
+ # support, so it needs no guard here.
+ add_executable(test_frame_mjpeg test_frame_mjpeg.cc)
+-target_link_libraries(test_frame_mjpeg PRIVATE uvc_static GTest::gtest_main)
++target_link_libraries(test_frame_mjpeg PRIVATE ${UVC_TEST_LIB} GTest::gtest_main)
+ target_compile_definitions(test_frame_mjpeg
+   PRIVATE UVC_TEST_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/data"
+ )
+@@ -39,19 +42,22 @@ add_executable(test_descriptor test_desc
+ target_link_libraries(test_descriptor
+   # LibUSB explicitly: libuvc_internal.h includes <libusb.h>, and uvc_static
+   # links LibUSB privately so its include path does not propagate.
+-  PRIVATE uvc_static LibUSB::LibUSB GTest::gtest_main
++  PRIVATE ${UVC_TEST_LIB} LibUSB::LibUSB GTest::gtest_main
+ )
+ target_include_directories(test_descriptor PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ # Uses internal stream structures, so it needs libusb's headers too.
+ add_executable(test_stream test_stream.cc)
+ target_link_libraries(test_stream
+-  PRIVATE uvc_static LibUSB::LibUSB GTest::gtest_main
++  PRIVATE ${UVC_TEST_LIB} LibUSB::LibUSB GTest::gtest_main
+ )
+ target_include_directories(test_stream PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ foreach(test_name IN ITEMS test_frame test_frame_reference test_frame_mjpeg test_descriptor test_stream)
+   gtest_discover_tests(${test_name}
++    # Discover when ctest runs, not at build time: the test executables need
++    # the shared library, which is not on PATH while building.
++    DISCOVERY_MODE PRE_TEST
+     DISCOVERY_TIMEOUT 30
+     # A zero-length descriptor makes uvc_scan_streaming() loop forever, so a
+     # hang is a real outcome here, not a hypothetical.

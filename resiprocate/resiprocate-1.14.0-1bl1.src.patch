@@ -1,6 +1,6 @@
---- origsrc/resiprocate-resiprocate-1.13.2/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/CMakeLists.txt	2025-09-18 00:22:48.163455300 +0900
-@@ -245,9 +245,13 @@ function(version_libname)
+--- origsrc/resiprocate-resiprocate-1.14.0/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/CMakeLists.txt	2026-11-09 18:50:39.262000700 +0000
+@@ -257,9 +257,13 @@ function(version_libname)
     # Other people have complained about the same problem, e.g.
     # https://discourse.libsdl.org/t/patches-dynamic-library-name-should-it-be-libsdl2-2-0-so-or-libsdl2-so/19400/8
     if(VERSIONED_SONAME AND BUILD_SHARED_LIBS)
@@ -17,7 +17,7 @@
     endif()
  endfunction()
  
-@@ -442,7 +446,7 @@ if(USE_FMT)
+@@ -456,7 +460,7 @@ if(USE_FMT)
     if(USE_CONTRIB)
        add_subdirectory(contrib/fmt)
     else()
@@ -26,8 +26,8 @@
     endif()
     set_def(USE_FMT)
  endif()
---- origsrc/resiprocate-resiprocate-1.13.2/apps/sipdial/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/apps/sipdial/CMakeLists.txt	2025-09-18 00:24:35.069589900 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/apps/sipdial/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/apps/sipdial/CMakeLists.txt	2026-11-09 18:50:39.264018200 +0000
 @@ -24,7 +24,7 @@ set_target_properties(sipdialer PROPERTI
  install(TARGETS sipdialer DESTINATION ${CMAKE_INSTALL_BINDIR})
  
@@ -37,19 +37,19 @@
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/sipdial ${INCLUDES})
  
  install(FILES sipdialer.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
---- origsrc/resiprocate-resiprocate-1.13.2/media/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/media/CMakeLists.txt	2025-09-18 00:25:15.035296800 +0900
-@@ -19,7 +19,7 @@ add_library(resipmedia
- target_link_libraries(resipmedia PUBLIC rutil)
+--- origsrc/resiprocate-resiprocate-1.14.0/media/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/media/CMakeLists.txt	2026-11-09 18:50:39.264018200 +0000
+@@ -31,7 +31,7 @@ add_library(resipmedia
+ target_link_libraries(resipmedia PUBLIC resip)
  version_libname(resipmedia)
  
 -install(TARGETS resipmedia DESTINATION ${CMAKE_INSTALL_LIBDIR})
 +install(TARGETS resipmedia RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/media ${INCLUDES})
+ set_target_properties(resipmedia PROPERTIES FOLDER resipmedia)
  
- set_target_properties(resipmedia PROPERTIES FOLDER recon)
---- origsrc/resiprocate-resiprocate-1.13.2/media/gstreamer/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/media/gstreamer/CMakeLists.txt	2025-09-18 00:25:24.032713500 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/media/gstreamer/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/media/gstreamer/CMakeLists.txt	2026-11-09 18:50:39.265790100 +0000
 @@ -18,5 +18,5 @@ target_include_directories(gstreamerutil
  target_link_libraries(gstreamerutils PUBLIC resip resipmedia ${GSTREAMERMM_1_0_LIBRARIES} ${GST_WEBRTC_LIBRARIES})
  version_libname(gstreamerutils)
@@ -57,8 +57,8 @@
 -install(TARGETS gstreamerutils DESTINATION ${CMAKE_INSTALL_LIBDIR})
 +install(TARGETS gstreamerutils RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/media/gstreamer ${INCLUDES})
---- origsrc/resiprocate-resiprocate-1.13.2/media/kurento/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/media/kurento/CMakeLists.txt	2025-09-18 00:25:29.838396600 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/media/kurento/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/media/kurento/CMakeLists.txt	2026-11-09 18:50:39.265790100 +0000
 @@ -25,7 +25,7 @@ target_link_libraries(kurentoclient ruti
  set_target_properties(kurentoclient PROPERTIES FOLDER kurentoclient)
  version_libname(kurentoclient)
@@ -68,8 +68,8 @@
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/media/kurento ${INCLUDES})
  
  if(BUILD_TESTING)
---- origsrc/resiprocate-resiprocate-1.13.2/reTurn/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/reTurn/CMakeLists.txt	2025-09-18 00:26:15.285102300 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/reTurn/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/reTurn/CMakeLists.txt	2026-11-09 18:50:39.267812700 +0000
 @@ -100,7 +100,7 @@ if(WIN32 AND WITH_SSL)
    )
  endif()
@@ -79,8 +79,8 @@
  install(TARGETS reTurnServer DESTINATION ${CMAKE_INSTALL_SBINDIR})
  install(FILES reTurnServer.config DESTINATION ${CMAKE_INSTALL_SBINDIR})
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/reTurn ${INCLUDES_COMMON} ${INCLUDES})
---- origsrc/resiprocate-resiprocate-1.13.2/reTurn/client/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/reTurn/client/CMakeLists.txt	2025-09-18 00:26:20.320101500 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/reTurn/client/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/reTurn/client/CMakeLists.txt	2026-11-09 18:50:39.267812700 +0000
 @@ -31,7 +31,7 @@ target_link_libraries(reTurnClient reTur
  set_target_properties(reTurnClient PROPERTIES FOLDER reTurn/client)
  version_libname(reTurnClient)
@@ -90,8 +90,8 @@
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/reTurn/client ${INCLUDES})
  
  if(BUILD_TESTING)
---- origsrc/resiprocate-resiprocate-1.13.2/reflow/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/reflow/CMakeLists.txt	2025-09-18 00:25:35.501514100 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/reflow/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/reflow/CMakeLists.txt	2026-11-09 18:50:39.267812700 +0000
 @@ -45,7 +45,7 @@ endif()
  set_target_properties(reflow PROPERTIES FOLDER reflow)
  version_libname(reflow)
@@ -101,9 +101,9 @@
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/reflow ${INCLUDES})
  
  if(BUILD_TESTING)
---- origsrc/resiprocate-resiprocate-1.13.2/repro/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/repro/CMakeLists.txt	2025-09-18 00:25:45.153798000 +0900
-@@ -255,7 +255,7 @@ target_include_directories(repro PUBLIC
+--- origsrc/resiprocate-resiprocate-1.14.0/repro/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/repro/CMakeLists.txt	2026-11-09 18:50:39.269832900 +0000
+@@ -264,7 +264,7 @@ target_include_directories(repro PUBLIC
  
  set_target_properties(reprolib PROPERTIES FOLDER repro)
  
@@ -112,8 +112,8 @@
  
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/repro ${INCLUDES})
  
---- origsrc/resiprocate-resiprocate-1.13.2/resip/dum/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/resip/dum/CMakeLists.txt	2025-09-18 00:25:52.355858700 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/resip/dum/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/resip/dum/CMakeLists.txt	2026-11-09 18:50:39.269832900 +0000
 @@ -203,7 +203,7 @@ target_link_libraries(dum resip)
  version_libname(dum)
  set_target_properties(dum PROPERTIES FOLDER dum)
@@ -123,9 +123,9 @@
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/resip/dum ${INCLUDES})
  
  if(BUILD_TESTING)
---- origsrc/resiprocate-resiprocate-1.13.2/resip/recon/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/resip/recon/CMakeLists.txt	2025-09-18 00:25:57.598406700 +0900
-@@ -174,7 +174,7 @@ if(USE_GSTREAMER)
+--- origsrc/resiprocate-resiprocate-1.14.0/resip/recon/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/resip/recon/CMakeLists.txt	2026-11-09 18:50:39.271850400 +0000
+@@ -162,7 +162,7 @@ if(USE_GSTREAMER)
  endif()
  version_libname(recon)
  
@@ -134,9 +134,9 @@
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/recon ${INCLUDES})
  
  # FIXME - revise the code in these directories to eliminate
---- origsrc/resiprocate-resiprocate-1.13.2/resip/stack/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/resip/stack/CMakeLists.txt	2025-09-18 00:26:01.984946400 +0900
-@@ -409,7 +409,7 @@ target_link_libraries(resip ${opensigcom
+--- origsrc/resiprocate-resiprocate-1.14.0/resip/stack/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/resip/stack/CMakeLists.txt	2026-11-09 18:50:39.271850400 +0000
+@@ -411,7 +411,7 @@ target_link_libraries(resip ${opensigcom
  version_libname(resip)
  set_target_properties(resip PROPERTIES FOLDER resip)
  
@@ -145,8 +145,22 @@
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/resip/stack ${INCLUDES})
  
  if(BUILD_TESTING)
---- origsrc/resiprocate-resiprocate-1.13.2/resip/stack/test/testTransactionFSM.cxx	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/resip/stack/test/testTransactionFSM.cxx	2025-09-17 23:51:40.978720800 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/resip/stack/TcpBaseTransport.cxx	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/resip/stack/TcpBaseTransport.cxx	2026-11-09 18:50:39.271850400 +0000
+@@ -11,6 +11,11 @@
+ #include "rutil/NetNs.hxx"
+ #include "resip/stack/TcpBaseTransport.hxx"
+ 
++#if defined(__CYGWIN__) && !defined(SO_REUSEPORT)
++// Cygwin has no SO_REUSEPORT; SO_REUSEADDR is the closest equivalent
++#define SO_REUSEPORT SO_REUSEADDR
++#endif
++
+ #define RESIPROCATE_SUBSYSTEM Subsystem::TRANSPORT
+ 
+ using namespace std;
+--- origsrc/resiprocate-resiprocate-1.14.0/resip/stack/test/testTransactionFSM.cxx	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/resip/stack/test/testTransactionFSM.cxx	2026-11-09 18:50:39.273871400 +0000
 @@ -108,6 +108,7 @@ int clientFd;
  Fifo<SipMessage> fakeTxFifo;
  int errorCount = 0;
@@ -164,9 +178,9 @@
  
  void
  exitusage()
---- origsrc/resiprocate-resiprocate-1.13.2/rutil/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/rutil/CMakeLists.txt	2025-09-18 00:26:26.677209200 +0900
-@@ -259,7 +259,7 @@ endif()
+--- origsrc/resiprocate-resiprocate-1.14.0/rutil/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/rutil/CMakeLists.txt	2026-11-09 18:50:39.273871400 +0000
+@@ -264,7 +264,7 @@ endif()
  set_target_properties(rutil PROPERTIES FOLDER rutil)
  version_libname(rutil)
  
@@ -175,9 +189,9 @@
  install_and_preserve_hierarchy(${CMAKE_INSTALL_INCLUDEDIR}/rutil ${INCLUDES})
  
  if(NOT WITH_C_ARES)
---- origsrc/resiprocate-resiprocate-1.13.2/rutil/Log.cxx	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/rutil/Log.cxx	2025-09-17 22:42:55.056845200 +0900
-@@ -638,6 +638,9 @@ Log::tags(Log::Level level,
+--- origsrc/resiprocate-resiprocate-1.14.0/rutil/Log.cxx	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/rutil/Log.cxx	2026-11-09 18:50:39.275892700 +0000
+@@ -643,6 +643,9 @@ Log::tags(Log::Level level,
     {
        ++file;
     }
@@ -187,8 +201,8 @@
  #else // #if defined( WIN32 ) || defined( __APPLE__ )
     std::make_unsigned<pthread_t>::type threadId = pthread_self();
     const char* file = pfile;
---- origsrc/resiprocate-resiprocate-1.13.2/rutil/Timer.cxx	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/rutil/Timer.cxx	2025-09-17 22:47:13.648836100 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/rutil/Timer.cxx	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/rutil/Timer.cxx	2026-11-09 18:50:39.275892700 +0000
 @@ -9,7 +9,9 @@
  #  include <winbase.h>
  #else
@@ -199,8 +213,30 @@
  #  include <unistd.h>
  #endif
  
---- origsrc/resiprocate-resiprocate-1.13.2/rutil/dns/ares/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/rutil/dns/ares/CMakeLists.txt	2025-09-18 00:26:32.445605100 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/rutil/compat.hxx	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/rutil/compat.hxx	2026-11-09 18:50:39.277908100 +0000
+@@ -195,7 +195,7 @@ resipIntDiv(const _Tp1& __a, const _Tp2&
+    return __a/__b;
+ }
+ 
+-#if defined(WORDS_BIGENDIAN) || defined(_BIG_ENDIAN) || defined( __BIG_ENDIAN__ ) || (defined(__BYTE_ORDER__) && (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)) || defined(RESIP_BIG_ENDIAN)
++#if defined(WORDS_BIGENDIAN) || (defined(_BIG_ENDIAN) && !defined(__CYGWIN__)) || defined( __BIG_ENDIAN__ ) || (defined(__BYTE_ORDER__) && (__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)) || defined(RESIP_BIG_ENDIAN)
+ 
+ inline uint64_t
+ ntoh64(const uint64_t input)
+@@ -243,6 +243,10 @@ inline std::string strError(int err)
+ #ifdef _MSC_VER
+    strerror_s(buf, sizeof(buf), err);
+    return buf;
++#elif defined(__CYGWIN__)
++   // Cygwin's strerror_r returns int here (XSI), not char* (GNU)
++   strerror_r(err, buf, sizeof(buf));
++   return buf;
+ #else
+    char* res = strerror_r(err, buf, sizeof(buf));
+    return std::string(res);
+--- origsrc/resiprocate-resiprocate-1.14.0/rutil/dns/ares/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/rutil/dns/ares/CMakeLists.txt	2026-11-09 18:50:39.277908100 +0000
 @@ -56,7 +56,7 @@ endif()
  version_libname(resipares)
  set_target_properties(resipares PROPERTIES FOLDER rutil/ares)
@@ -210,8 +246,8 @@
  install(FILES ${INCLUDES} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/rutil/dns/ares)
  
  add_executable(ahost EXCLUDE_FROM_ALL ahost.c)
---- origsrc/resiprocate-resiprocate-1.13.2/tfm/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/tfm/CMakeLists.txt	2025-09-18 00:26:37.435818300 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/tfm/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/tfm/CMakeLists.txt	2026-11-09 18:50:39.277908100 +0000
 @@ -109,9 +109,9 @@ add_library(tfm
  )
  
@@ -224,9 +260,9 @@
 -install(TARGETS tfm DESTINATION ${CMAKE_INSTALL_LIBDIR})
 +install(TARGETS tfm RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
  
---- origsrc/resiprocate-resiprocate-1.13.2/tfm/Resolver.cxx	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/tfm/Resolver.cxx	2025-09-17 23:26:53.059186200 +0900
-@@ -143,7 +143,7 @@ Resolver::lookupARecords()
+--- origsrc/resiprocate-resiprocate-1.14.0/tfm/Resolver.cxx	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/tfm/Resolver.cxx	2026-11-09 18:50:39.279920600 +0000
+@@ -147,7 +147,7 @@ Resolver::lookupARecords()
     {
  #else
  
@@ -235,19 +271,8 @@
  	result = gethostbyname(mHost.c_str());
      int ret = (result==0);
  #elif defined(__NetBSD__)
---- origsrc/resiprocate-resiprocate-1.13.2/tfm/TfmDns.cxx	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/tfm/TfmDns.cxx	2025-09-17 23:19:40.532646900 +0900
-@@ -7,7 +7,7 @@
- #include <ares.h>
- #include <ares_dns.h>
- 
--#if !defined WIN32 && !defined __CYGWIN__
-+#if !defined WIN32// && !defined __CYGWIN__
- #include <resolv.h>
- #endif
- 
---- origsrc/resiprocate-resiprocate-1.13.2/tfm/repro/CMakeLists.txt	2025-05-15 01:56:08.000000000 +0900
-+++ src/resiprocate-resiprocate-1.13.2/tfm/repro/CMakeLists.txt	2025-09-18 00:26:44.759194800 +0900
+--- origsrc/resiprocate-resiprocate-1.14.0/tfm/repro/CMakeLists.txt	2026-06-18 15:39:13.000000000 +0000
++++ src/resiprocate-resiprocate-1.14.0/tfm/repro/CMakeLists.txt	2026-11-09 18:50:39.279920600 +0000
 @@ -55,7 +55,7 @@ if(BUILD_TESTING)
      )
  endif()

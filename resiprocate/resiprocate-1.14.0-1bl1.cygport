@@ -6,12 +6,13 @@ CATEGORY="Net"
 SUMMARY="C++ implementation of SIP, ICE, TURN and related protocols"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="VSL-1.0"
-LICENSE_SPDX="SPDX-License-Identifier: VSL-1.0"
+LICENSE="VSL-1.0 AND BSD-3-Clause AND BSD-2-Clause AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: VSL-1.0 AND BSD-3-Clause AND BSD-2-Clause AND Zlib"
 LICENSE_URI="LICENSE.md"
 
 BUILD_REQUIRES="
 	cppunit
+	libboost-devel
 	libcares-devel
 	libdb-devel
 	libfmt-devel
@@ -20,6 +21,7 @@ BUILD_REQUIRES="
 	libNetxx-devel
 	libpopt-devel
 	libpq-devel
+	libpq5
 	libradcli-devel
 	libssl-devel
 "
@@ -32,13 +34,25 @@ CYGCMAKE_ARGS="
 	-DBUILD_REFLOW:BOOL=OFF
 	-DBUILD_RETURN:BOOL=OFF
 	-DENABLE_LOG_REPOSITORY_DETAILS:BOOL=OFF
+	-DREGENERATE_MEDIA_SAMPLES:BOOL=OFF
 	-DRESIP_HAVE_RADCLI:BOOL=ON
 	-DUSE_FMT:BOOL=ON
 	-DUSE_MYSQL:BOOL=ON
 	-DUSE_POSTGRESQL:BOOL=ON
-	-DUSE_SOCI_POSTGRESQL:BOOL=ON
-	-DUSE_SOCI_MYSQL:BOOL=ON
 "
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	# tfm needs <resolv.h> (HFIXEDSZ, C_IN, ...) on Cygwin; done here rather than
+	# in the .src.patch because TfmDns.cxx has CRLF line endings
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e '/^#if !defined WIN32 && !defined __CYGWIN__ && !defined USE_ARES/s/ && !defined __CYGWIN__//' tfm/TfmDns.cxx
+}
+
+# sanityTests and dumTests (tfm) take 15-45 minutes each; the whole suite took 49 minutes
+# with dumTests failing at startup
+YACP_CHECK_TIMEOUT_MINUTES=90
 
 src_test()
 {
@@ -67,7 +81,7 @@ resiprocate_CONTENTS="
 	usr/sbin/*.exe
 	usr/share
 "
-libresiprocate1_13_CONTENTS="
+libresiprocate1_14_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libresiprocate_devel_CONTENTS="
@@ -75,5 +89,5 @@ libresiprocate_devel_CONTENTS="
 	usr/lib/lib*.dll.a
 "
 resiprocate_SUMMARY="${SUMMARY} (utilities)"
-libresiprocate1_13_SUMMARY="${SUMMARY} (runtime)"
+libresiprocate1_14_SUMMARY="${SUMMARY} (runtime)"
 libresiprocate_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,0 +1,50 @@
+--- origsrc/tpm2-pkcs11-1.10.1/Makefile.am	2026-11-09 13:50:36.418136600 +0000
++++ src/tpm2-pkcs11-1.10.1/Makefile.am	2026-11-09 13:50:36.973799000 +0000
+@@ -11,6 +11,8 @@ AM_LDFLAGS      = $(EXTRA_LDFLAGS) $(COD
+                   $(TSS2_MU_LIBS) $(TSS2_TCTILDR_LIBS) $(TSS2_RC_LIBS) \
+ 		  $(SQLITE3_LIBS) $(PTHREAD_LIBS) $(CRYPTO_LIBS) $(YAML_LIBS) $(TSS2_FAPI_LIBS)
+ 
++src_libtpm2_pkcs11_la_LDFLAGS += -no-undefined
++
+ check-programs: $(check_PROGRAMS)
+ 
+ JAVAROOT=$(top_builddir)/test/integration
+@@ -119,7 +121,7 @@ AM_TESTS_ENVIRONMENT = \
+     TPM2_PKCS11_MODULE=$(abs_builddir)/src/.libs/libtpm2_pkcs11.so \
+     TEST_JAVA_ROOT=$(JAVAROOT) \
+     PACKAGE_URL=$(PACKAGE_URL) \
+-    CC=$(CC) \
++    CC="$(CC)" \
+     dbus-run-session
+ 
+ TESTS_LDADD = $(noinst_LTLIBRARIES) $(lib_LTLIBRARIES) $(p11lib_LTLIBRARIES) $(AM_LDFLAGS) $(CMOCKA_LIBS) $(CRYPTO_LIBS)
+--- origsrc/tpm2-pkcs11-1.10.1/bootstrap	2026-08-06 13:47:09.000000000 +0000
++++ src/tpm2-pkcs11-1.10.1/bootstrap	2026-11-09 13:50:36.975811400 +0000
+@@ -4,7 +4,7 @@ set -e
+ 
+ # Generate a VERSION file that is included in the dist tarball to avoid needed git
+ # when calling autoreconf in a release tarball.
+-git describe --tags --always --dirty > VERSION
++test -f VERSION || git describe --tags --always --dirty > VERSION
+ 
+ # generate list of source files for use in Makefile.am
+ # if you add new source files, you must run ./bootstrap again
+--- origsrc/tpm2-pkcs11-1.10.1/misc/p11-kit/tpm2_pkcs11.module	2026-08-06 13:47:09.000000000 +0000
++++ src/tpm2-pkcs11-1.10.1/misc/p11-kit/tpm2_pkcs11.module	2026-11-09 13:50:36.975811400 +0000
+@@ -1,3 +1,3 @@
+-module: libtpm2_pkcs11.so
++module: cygtpm2_pkcs11-1.dll
+ 
+ critical: no
+--- origsrc/tpm2-pkcs11-1.10.1/src/lib/db.c	2026-08-06 13:47:09.000000000 +0000
++++ src/tpm2-pkcs11-1.10.1/src/lib/db.c	2026-11-09 13:50:36.977821200 +0000
+@@ -12,7 +12,9 @@
+ #include <libgen.h>
+ #include <unistd.h>
+ 
++#if defined(__linux__)
+ #include <linux/limits.h>
++#endif
+ 
+ #include <sys/file.h>
+ #include <sys/stat.h>

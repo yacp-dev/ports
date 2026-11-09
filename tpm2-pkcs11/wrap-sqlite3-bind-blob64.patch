@@ -1,0 +1,27 @@
+--- a/Makefile-unit.am	2026-11-09 22:47:00.673098151 +0900
++++ b/Makefile-unit.am	2026-11-09 22:47:00.871256877 +0900
+@@ -32,6 +32,7 @@
+                                  -Wl,--wrap=sqlite3_prepare_v2 \
+                                  -Wl,--wrap=sqlite3_finalize \
+                                  -Wl,--wrap=sqlite3_bind_blob \
++                                 -Wl,--wrap=sqlite3_bind_blob64 \
+                                  -Wl,--wrap=sqlite3_bind_int \
+                                  -Wl,--wrap=sqlite3_bind_text \
+                                  -Wl,--wrap=sqlite3_errmsg \
+--- a/test/unit/test_db.c	2026-11-09 22:47:00.676705312 +0900
++++ b/test/unit/test_db.c	2026-11-09 22:47:00.871509085 +0900
+@@ -152,6 +152,14 @@
+     return d->rc;
+ }
+ 
++/*
++ * Cygwin's sqlite3.h turns sqlite3_bind_blob() into sqlite3_bind_blob64() on
++ * 64-bit targets, so the call in db.c never reaches --wrap=sqlite3_bind_blob.
++ */
++int __wrap_sqlite3_bind_blob64(sqlite3_stmt *pStmt, int iCol, const void *data, sqlite3_uint64 len, void(*fnp)(void *data)) {
++    return __wrap_sqlite3_bind_blob(pStmt, iCol, data, (int)len, fnp);
++}
++
+ int __wrap_sqlite3_step(sqlite3_stmt *pStmt) {
+ 	UNUSED(pStmt);
+ 

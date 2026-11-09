@@ -13,19 +13,19 @@ inherit cmake
 
 PKG_NAMES="
 	tree-sitter-scala
-	libtree-sitter-scala14.0
+	libtree-sitter-scala15.0
 	libtree-sitter-scala-devel
 "
 tree_sitter_scala_CONTENTS="
 	usr/share
 "
-libtree_sitter_scala14_0_CONTENTS="
-	usr/bin/cyg*-14.0.dll
+libtree_sitter_scala15_0_CONTENTS="
+	usr/bin/cyg*-15.0.dll
 "
 libtree_sitter_scala_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 tree_sitter_scala_SUMMARY="${SUMMARY} (licensing & readmes)"
-libtree_sitter_scala14_0_SUMMARY="${SUMMARY} (runtime)"
+libtree_sitter_scala15_0_SUMMARY="${SUMMARY} (runtime)"
 libtree_sitter_scala_devel_SUMMARY="${SUMMARY} (development)"

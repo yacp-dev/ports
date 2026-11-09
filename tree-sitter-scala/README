@@ -3,40 +3,39 @@ tree-sitter-scala
 Scala grammar for tree-sitter
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libtree-sitter-scala-devel-0.24.0-1bl1
-  libtree-sitter-scala14.0-0.24.0-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libtree-sitter-scala-devel-0.26.9-1bl1
+  libtree-sitter-scala15.0-0.26.9-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/tree-sitter/tree-sitter-scala
 
 Canonical download:
-  https://github.com/tree-sitter/tree-sitter-scala/archive/refs/tags/v0.24.0.tar.gz
+  https://github.com/tree-sitter/tree-sitter-scala/archive/refs/tags/v0.26.9.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack tree-sitter-scala-0.24.0-X-src.tar.xz
+  1. unpack tree-sitter-scala-0.26.9-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./tree-sitter-scala-0.24.0-X.cygport all
+        % cygport ./tree-sitter-scala-0.26.9-X.cygport all
 
 This will create:
-  /usr/src/tree-sitter-scala-0.24.0-X-src.tar.xz
-  /usr/src/tree-sitter-scala-0.24.0-X.tar.xz
-  /usr/src/libtree-sitter-scala14.0-0.24.0-X.tar.xz
-  /usr/src/libtree-sitter-scala-devel-0.24.0-X.tar.xz
+  /usr/src/tree-sitter-scala-0.26.9-X-src.tar.xz
+  /usr/src/tree-sitter-scala-0.26.9-X.tar.xz
+  /usr/src/libtree-sitter-scala15.0-0.26.9-X.tar.xz
+  /usr/src/libtree-sitter-scala-devel-0.26.9-X.tar.xz
 
 -------------------------------------------
 
@@ -46,9 +45,13 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/tree-sitter-scala.README
   /usr/share/doc/tree-sitter-scala/LICENSE
   /usr/share/doc/tree-sitter-scala/README.md
+  /usr/share/tree-sitter/queries/scala/highlights.scm
+  /usr/share/tree-sitter/queries/scala/indents.scm
+  /usr/share/tree-sitter/queries/scala/locals.scm
+  /usr/share/tree-sitter/queries/scala/tags.scm
 
-(libtree-sitter-scala14.0)
-  /usr/bin/cygtree-sitter-scala-14.0.dll
+(libtree-sitter-scala15.0)
+  /usr/bin/cygtree-sitter-scala-15.0.dll
 
 (libtree-sitter-scala-devel)
   /usr/include/tree_sitter/tree-sitter-scala.h
@@ -58,6 +61,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.26.9-1bl1 -----
+Version bump.
 
 ----- version 0.24.0-1bl1 -----
 Version bump.

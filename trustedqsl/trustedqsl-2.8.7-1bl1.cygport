@@ -33,7 +33,7 @@ CYGCMAKE_ARGS="
 
 PKG_NAMES="
 	${PN}
-	libtqsllib2.8.6
+	libtqsllib2.8.7
 	libtqsllib-devel
 "
 trustedqsl_CONTENTS="
@@ -41,13 +41,13 @@ trustedqsl_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libtqsllib2_8_6_CONTENTS="
-	usr/bin/cyg*-2.8.6.dll
+libtqsllib2_8_7_CONTENTS="
+	usr/bin/cyg*-2.8.7.dll
 "
 libtqsllib_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 trustedqsl_SUMMARY="${SUMMARY} (utilities)"
-libtqsllib2_8_6_SUMMARY="${SUMMARY} (runtime)"
+libtqsllib2_8_7_SUMMARY="${SUMMARY} (runtime)"
 libtqsllib_devel_SUMMARY="${SUMMARY} (development)"

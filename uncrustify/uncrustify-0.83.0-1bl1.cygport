@@ -11,6 +11,9 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
+# the test suite takes about 13 minutes on the runner
+YACP_CHECK_TIMEOUT_MINUTES=20
+
 inherit cmake
 
 src_install()

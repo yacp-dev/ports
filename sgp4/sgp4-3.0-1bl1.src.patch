@@ -1,0 +1,104 @@
+--- origsrc/sgp4-3.0/CMakeLists.txt	2026-09-26 16:24:22.000000000 +0000
++++ src/sgp4-3.0/CMakeLists.txt	2026-11-09 09:14:53.101490400 +0000
+@@ -29,11 +29,14 @@ set(INSTALL_GTEST OFF CACHE BOOL "Enable
+ # GoogleTest rewrites /MD to /MT in its own flags unless this is set, which would
+ # link the static CRT into the tests and clash with the project's shared CRT.
+ set(gtest_force_shared_crt ON CACHE BOOL "Build GoogleTest against the shared CRT" FORCE)
+-FetchContent_Declare(
+-    googletest
+-    GIT_REPOSITORY https://github.com/google/googletest.git
+-    GIT_TAG v1.14.0)
+-FetchContent_MakeAvailable(googletest)
++find_package(GTest QUIET)
++if(NOT GTest_FOUND)
++    FetchContent_Declare(
++        googletest
++        GIT_REPOSITORY https://github.com/google/googletest.git
++        GIT_TAG v1.14.0)
++    FetchContent_MakeAvailable(googletest)
++endif()
+ 
+ enable_testing()
+ include(GoogleTest)
+--- origsrc/sgp4-3.0/csvprop/CMakeLists.txt	2026-09-26 16:24:22.000000000 +0000
++++ src/sgp4-3.0/csvprop/CMakeLists.txt	2026-11-09 09:14:53.103514300 +0000
+@@ -1,6 +1,6 @@
+ add_executable(csvprop csvprop.cpp)
+ target_link_libraries(csvprop PRIVATE SGP4::sgp4)
+-get_filename_component(CSV_DATA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../data" ABSOLUTE)
++set(CSV_DATA_DIR "${CMAKE_INSTALL_FULL_DATADIR}/sgp4")
+ target_compile_definitions(csvprop PRIVATE CSV_DATA_DIR="${CSV_DATA_DIR}")
+ 
+ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9.0)
+--- origsrc/sgp4-3.0/libsgp4/CMakeLists.txt	2026-09-26 16:24:22.000000000 +0000
++++ src/sgp4-3.0/libsgp4/CMakeLists.txt	2026-11-09 09:14:53.103514300 +0000
+@@ -36,28 +36,21 @@ set(SGP4_HEADERS
+     Util.h
+     Vector.h)
+ 
+-add_library(sgp4 STATIC ${SGP4_SOURCES})
+-add_library(sgp4s SHARED ${SGP4_SOURCES})
++add_library(sgp4 SHARED ${SGP4_SOURCES})
+ 
+ add_library(SGP4::sgp4 ALIAS sgp4)
+-add_library(SGP4::sgp4s ALIAS sgp4s)
+ 
+ target_include_directories(sgp4
+     PUBLIC
+         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
+         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+ 
+-target_include_directories(sgp4s
+-    PUBLIC
+-        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
+-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+-
+-set_target_properties(sgp4s PROPERTIES
++set_target_properties(sgp4 PROPERTIES
+     VERSION ${PROJECT_VERSION}
+     SOVERSION ${PROJECT_VERSION_MAJOR}
+     WINDOWS_EXPORT_ALL_SYMBOLS ON)
+ 
+-foreach(target sgp4 sgp4s)
++foreach(target sgp4)
+     target_compile_features(${target} PUBLIC cxx_std_17)
+ 
+     if(MSVC)
+@@ -70,7 +63,7 @@ foreach(target sgp4 sgp4s)
+     endif()
+ endforeach()
+ 
+-install(TARGETS sgp4 sgp4s
++install(TARGETS sgp4
+     EXPORT SGP4Targets
+     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+@@ -98,3 +91,15 @@ install(FILES
+     "${PROJECT_BINARY_DIR}/SGP4Config.cmake"
+     "${PROJECT_BINARY_DIR}/SGP4ConfigVersion.cmake"
+     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/SGP4)
++
++if(NOT SGP4_PC_VERSION)
++    set(SGP4_PC_VERSION ${PROJECT_VERSION})
++endif()
++
++configure_file(
++    "${CMAKE_CURRENT_SOURCE_DIR}/sgp4.pc.in"
++    "${PROJECT_BINARY_DIR}/sgp4.pc"
++    @ONLY)
++
++install(FILES "${PROJECT_BINARY_DIR}/sgp4.pc"
++    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/sgp4-3.0/libsgp4/sgp4.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/sgp4-3.0/libsgp4/sgp4.pc.in	2026-11-09 09:14:53.103514300 +0000
+@@ -0,0 +1,10 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=@CMAKE_INSTALL_FULL_LIBDIR@
++includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
++
++Name: sgp4
++Description: @PROJECT_DESCRIPTION@
++Version: @SGP4_PC_VERSION@
++Libs: -L${libdir} -lsgp4
++Cflags: -I${includedir}

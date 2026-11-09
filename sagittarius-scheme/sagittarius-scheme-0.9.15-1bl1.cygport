@@ -1,18 +1,40 @@
-HOMEPAGE="https://bitbucket.org/ktakashi/${PN}/wiki/Home"
-SRC_URI="https://bitbucket.org/ktakashi/${PN}/downloads/sagittarius-${PV}.tar.gz"
+HOMEPAGE="https://github.com/ktakashi/${PN}"
+SRC_URI="https://github.com/ktakashi/${PN}/releases/download/v${PV}/sagittarius-${PV}.tar.gz"
 SRC_DIR="sagittarius-${PV}"
 
 CATEGORY="Scheme"
 SUMMARY="Free Scheme implementation supporting R6RS and R7RS"
 DESCRIPTION="${SUMMARY}"
 
-BUILD_REQUIRES="libffi-devel libgc-devel libiodbc-devel libssl-devel zlib-devel"
+LICENSE="BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND MIT AND Unlicense"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause AND CC0-1.0 AND MIT AND Unlicense"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libffi-devel
+	libgc-devel
+	libiodbc-devel
+	libssl-devel
+	zlib-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DODBC_LIBRARIES:STRING=iodbc
 "
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	# Extension modules are only dlopen()ed; nothing links against their import libraries
+	rm -f ${D}/usr/lib/sagittarius/${PV}/x86_64-pc-cygwin/*.dll.a
+}
+
+# cygport check takes about 28 minutes on the CI runner (crypto/vector tests)
+YACP_CHECK_TIMEOUT_MINUTES=35
 
 src_test()
 {
@@ -25,7 +47,6 @@ PKG_IGNORE="
 	usr/lib/cygsagittarius.dll
 	usr/lib/sagittarius/${PV}/x86_64-pc-cygwin/compile-sagittarius
 	usr/lib/sagittarius/${PV}/x86_64-pc-cygwin/cygsagittarius-${PV}.dll
-	usr/lib/sagittarius/${PV}/x86_64-pc-cygwin/libsagittarius--socket.dll.a
 	usr/lib/sagittarius/${PV}/x86_64-pc-cygwin/sagittarius-config
 	usr/lib/sagittarius/${PV}/x86_64-pc-cygwin/sagittarius-package
 	usr/lib/sagittarius/${PV}/x86_64-pc-cygwin/sagittarius.exe
@@ -45,8 +66,8 @@ sagittarius_scheme_CONTENTS="
 	usr/share/sagittarius/${PV}/lib
 	usr/share/sagittarius/${PV}/sitelib
 "
-libsagittarius0_9_8_CONTENTS="
-	usr/bin/*.dll
+libsagittarius0_9_15_CONTENTS="
+	usr/bin/cygsagittarius-${PV}.dll
 "
 libsagittarius_devel_CONTENTS="
 	usr/bin/compile-*
@@ -61,5 +82,5 @@ libsagittarius_devel_CONTENTS="
 	usr/share/sagittarius/${PV}/template*
 "
 sagittarius_scheme_SUMMARY="${SUMMARY} (utilities)"
-libsagittarius0_9_8_SUMMARY="${SUMMARY} (runtime)"
+libsagittarius0_9_15_SUMMARY="${SUMMARY} (runtime)"
 libsagittarius_devel_SUMMARY="${SUMMARY} (development)"

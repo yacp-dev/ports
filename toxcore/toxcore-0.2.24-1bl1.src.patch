@@ -1,5 +1,5 @@
---- origsrc/c-toxcore-0.2.21/auto_tests/network_test.c	2025-05-15 21:08:17.000000000 +0900
-+++ src/c-toxcore-0.2.21/auto_tests/network_test.c	2026-02-05 18:14:41.878658400 +0900
+--- origsrc/c-toxcore-0.2.24/auto_tests/network_test.c	2026-11-01 19:07:04.000000000 +0000
++++ src/c-toxcore-0.2.24/auto_tests/network_test.c	2026-11-09 06:46:04.481624900 +0000
 @@ -1,4 +1,7 @@
  #include <string.h>
 +#if defined(__CYGWIN__)
@@ -7,20 +7,20 @@
 +#endif
  
  #include "../toxcore/network.h"
- #include "check_compat.h"
-@@ -14,7 +17,8 @@ static void test_addr_resolv_localhost(v
+ #include "../toxcore/os_memory.h"
+@@ -15,7 +18,8 @@ static void test_addr_resolv_localhost(v
       * normally this should happen automatically
       * cygwin doesn't do it for every network related function though
       * e.g. not for getaddrinfo... */
 -    net_socket(0, 0, 0);
 +    Family f = {0};
-+    net_socket(0, f, 0, 0);
++    net_socket(os_network(), f, 0, 0);
      errno = 0;
  #endif
  
---- origsrc/c-toxcore-0.2.21/configure.ac	2025-05-15 21:08:17.000000000 +0900
-+++ src/c-toxcore-0.2.21/configure.ac	2026-02-05 18:28:17.778427500 +0900
-@@ -225,6 +225,9 @@ case $host_os in
+--- origsrc/c-toxcore-0.2.24/configure.ac	2026-11-01 19:07:04.000000000 +0000
++++ src/c-toxcore-0.2.24/configure.ac	2026-11-09 06:46:04.483647800 +0000
+@@ -226,6 +226,9 @@ case $host_os in
          WIN32="yes"
          EXTRA_LT_LDFLAGS="$EXTRA_LT_LDFLAGS -no-undefined"
      ;;
@@ -30,7 +30,7 @@
      *solaris*)
          LIBS="$LIBS -lssp -lsocket -lnsl"
      ;;
-@@ -394,6 +397,15 @@ else
+@@ -395,6 +398,15 @@ else
      AC_MSG_WARN([pkg-config was not found on your system, will search for libraries manually])
  fi
  
@@ -46,9 +46,9 @@
  if (test "x$BUILD_DHT_BOOTSTRAP_DAEMON" = "xyes") && \
     (test "x$LIBCONFIG_FOUND" = "xno"); then
      AC_CHECK_HEADER(libconfig.h,
---- origsrc/c-toxcore-0.2.21/toxcore/Makefile.inc	2025-05-15 21:08:17.000000000 +0900
-+++ src/c-toxcore-0.2.21/toxcore/Makefile.inc	2026-02-05 18:28:59.607765700 +0900
-@@ -6,9 +6,7 @@ libtoxcore_la_include_HEADERS = \
+--- origsrc/c-toxcore-0.2.24/toxcore/Makefile.inc	2026-11-01 19:07:04.000000000 +0000
++++ src/c-toxcore-0.2.24/toxcore/Makefile.inc	2026-11-09 06:46:04.483647800 +0000
+@@ -7,9 +7,7 @@ libtoxcore_la_include_HEADERS = \
  
  libtoxcore_la_includedir = $(includedir)/tox
  
@@ -59,7 +59,7 @@
                          ../toxcore/events/conference_invite.c \
                          ../toxcore/events/conference_message.c \
                          ../toxcore/events/conference_peer_list_changed.c \
-@@ -172,6 +170,15 @@ libtoxcore_la_LIBADD =  $(LIBSODIUM_LIBS
+@@ -190,6 +188,15 @@ libtoxcore_la_LIBADD =  $(LIBSODIUM_LIBS
                          $(MSGPACK_LIBS) \
                          $(PTHREAD_LIBS)
  
@@ -75,8 +75,8 @@
  if SET_SO_VERSION
  
  EXTRA_libtoxcore_la_DEPENDENCIES = ../so.version
---- origsrc/c-toxcore-0.2.21/toxcore/bin_pack.c	2025-05-15 21:08:17.000000000 +0900
-+++ src/c-toxcore-0.2.21/toxcore/bin_pack.c	2026-02-05 18:29:34.736820200 +0900
+--- origsrc/c-toxcore-0.2.24/toxcore/bin_pack.c	2026-11-01 19:07:04.000000000 +0000
++++ src/c-toxcore-0.2.24/toxcore/bin_pack.c	2026-11-09 06:46:04.484843100 +0000
 @@ -7,7 +7,7 @@
  #include <assert.h>
  #include <string.h>
@@ -86,8 +86,8 @@
  #include "attributes.h"
  #include "ccompat.h"
  #include "logger.h"
---- origsrc/c-toxcore-0.2.21/toxcore/bin_unpack.c	2025-05-15 21:08:17.000000000 +0900
-+++ src/c-toxcore-0.2.21/toxcore/bin_unpack.c	2026-02-05 18:29:41.750057500 +0900
+--- origsrc/c-toxcore-0.2.24/toxcore/bin_unpack.c	2026-11-01 19:07:04.000000000 +0000
++++ src/c-toxcore-0.2.24/toxcore/bin_unpack.c	2026-11-09 06:46:04.485667600 +0000
 @@ -7,7 +7,7 @@
  #include <assert.h>
  #include <string.h>

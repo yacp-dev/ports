@@ -1,0 +1,31 @@
+--- origsrc/nprolog-5.20/extension.c	2026-10-17 23:44:34.000000000 +0000
++++ src/nprolog-5.20/extension.c	2026-11-09 13:47:08.897283300 +0000
+@@ -9,7 +9,17 @@
+ #include <unistd.h>
+ #include <stdlib.h>
+ #include <sys/mman.h>
++#ifdef __linux__
+ #include <linux/fb.h>
++#else
++/* No framebuffer device off Linux; just enough of the API to compile,
++   and open("/dev/fb0") fails so the graphics builtins do nothing. */
++struct fb_var_screeninfo {
++    unsigned int xres_virtual, yres_virtual, xoffset, yoffset, bits_per_pixel;
++};
++#define FBIOGET_VSCREENINFO 0
++#define FBIOPAN_DISPLAY 0
++#endif
+ #include <sys/ioctl.h>
+ #include <unistd.h>
+ #include <fcntl.h>
+--- origsrc/nprolog-5.20/makefile	2026-10-17 23:44:34.000000000 +0000
++++ src/nprolog-5.20/makefile	2026-11-09 13:47:08.897283300 +0000
+@@ -8,7 +8,7 @@ USE_FLTO ?= 0
+ CC   := gcc
+ LIBS := -lm -ldl -pthread
+ INCS :=
+-CFLAGS := $(INCS) -Wall -O3
++CFLAGS ?= $(INCS) -Wall -O3
+ DESTDIR :=
+ PREFIX  := /usr/local
+ BINDIR  := /bin

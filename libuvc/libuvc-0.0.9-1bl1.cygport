@@ -1,5 +1,5 @@
-HOMEPAGE="https://github.com/ktossell/${PN}"
-SRC_URI="https://github.com/ktossell/${PN}/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/libuvc/${PN}"
+SRC_URI="https://github.com/libuvc/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Cross-platform library for USB video devices"
@@ -14,6 +14,7 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="
+	libgtest-devel
 	libjpeg-devel
 	libusb1.0-devel
 "
@@ -21,6 +22,7 @@ BUILD_REQUIRES="
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DBUILD_TESTING:BOOL=ON
 	-DCMAKE_BUILD_TARGET:STRING=Shared
 "
 
@@ -28,6 +30,12 @@ DOCS="
 	cameras/*.txt
 	changelog.txt
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${PATH} ctest
+}
 
 PKG_NAMES="
 	${PN}

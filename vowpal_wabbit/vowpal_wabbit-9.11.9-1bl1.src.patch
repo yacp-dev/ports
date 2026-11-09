@@ -1,0 +1,182 @@
+--- origsrc/vowpal_wabbit-9.11.9/library/search_generate.cc	2026-09-27 22:36:55.000000000 +0000
++++ src/vowpal_wabbit-9.11.9/library/search_generate.cc	2026-11-09 08:25:27.714720300 +0000
+@@ -158,13 +158,13 @@ public:
+       , _subst_cost(subst_cost)
+       , _ins_cost(ins_cost)
+       , _del_cost(del_cost)
+-      , _N(target.length())
++      , _Nlen(target.length())
+       , _output_string("")
+   {
+-    _prev_row = new size_t[_N + 1];
+-    _cur_row = new size_t[_N + 1];
++    _prev_row = new size_t[_Nlen + 1];
++    _cur_row = new size_t[_Nlen + 1];
+ 
+-    for (size_t n = 0; n <= _N; n++) { _prev_row[n] = del_cost * n; }
++    for (size_t n = 0; n <= _Nlen; n++) { _prev_row[n] = del_cost * n; }
+ 
+     _prev_row_min = 0;
+   }
+@@ -174,7 +174,7 @@ public:
+     _output_string += c;
+     _cur_row[0] = _prev_row[0] + _ins_cost;
+     _prev_row_min = _cur_row[0];
+-    for (size_t n = 1; n <= _N; n++)
++    for (size_t n = 1; n <= _Nlen; n++)
+     {
+       _cur_row[n] = min3(_prev_row[n] + _ins_cost, _prev_row[n - 1] + ((_target[n - 1] == c) ? 0 : _subst_cost),
+           _cur_row[n - 1] + _del_cost);
+@@ -194,9 +194,9 @@ public:
+   std::vector<char>& next()
+   {
+     _A.clear();
+-    for (size_t n = 0; n <= _N; n++)
++    for (size_t n = 0; n <= _Nlen; n++)
+     {
+-      if (_prev_row[n] == _prev_row_min) { _A.push_back((n < _N) ? _target[n] : '$'); }
++      if (_prev_row[n] == _prev_row_min) { _A.push_back((n < _Nlen) ? _target[n] : '$'); }
+     }
+     return _A;
+   }
+@@ -206,9 +206,9 @@ public:
+     std::vector<std::pair<action, float>> b;
+     for (action a = 1; a <= 29; a++) { b.push_back(std::make_pair(a, 1.f)); }
+ 
+-    b[char2action('$') - 1].second = min_float(100.f, (float)(_prev_row[_N] - _prev_row_min));
++    b[char2action('$') - 1].second = min_float(100.f, (float)(_prev_row[_Nlen] - _prev_row_min));
+ 
+-    for (action n = 0; n < _N; n++)
++    for (action n = 0; n < _Nlen; n++)
+     {
+       if (_prev_row[n] == _prev_row_min) { b[char2action(_target[n]) - 1].second = 0.f; }
+     }
+@@ -219,9 +219,9 @@ public:
+   size_t distance() { return _prev_row_min; }
+   size_t finish_distance()
+   {  // find last occurrence of prev_row_min
+-    int n = (int)_N;
++    int n = (int)_Nlen;
+     while (n >= 0 && _prev_row[n] > _prev_row_min) { n--; }
+-    return (_N - n) * _ins_cost + _prev_row_min;
++    return (_Nlen - n) * _ins_cost + _prev_row_min;
+   }
+ 
+   ~IncrementalEditDistance()
+@@ -238,7 +238,7 @@ private:
+   size_t _ins_cost;
+   size_t _del_cost;
+   size_t _prev_row_min;
+-  size_t _N;
++  size_t _Nlen;
+   std::string _output_string;
+   std::vector<char> _A;
+ 
+--- origsrc/vowpal_wabbit-9.11.9/vowpalwabbit/common/include/vw/common/vw_exception.h	2026-09-27 22:36:55.000000000 +0000
++++ src/vowpal_wabbit-9.11.9/vowpalwabbit/common/include/vw/common/vw_exception.h	2026-11-09 08:25:27.715810400 +0000
+@@ -13,7 +13,7 @@
+ #  include <string>
+ 
+ // We want the exception types to marked as visible but not dll export
+-#  ifndef _WIN32
++#  if !defined(_WIN32) && !defined(__CYGWIN__)
+ #    define VW_EXPORT_EXCEPTION VW_DLL_PUBLIC
+ #  else
+ #    define VW_EXPORT_EXCEPTION
+--- origsrc/vowpal_wabbit-9.11.9/vowpalwabbit/core/src/reductions/cb/details/large_action/one_rank_spanner_impl.cc	2026-09-27 22:36:55.000000000 +0000
++++ src/vowpal_wabbit-9.11.9/vowpalwabbit/core/src/reductions/cb/details/large_action/one_rank_spanner_impl.cc	2026-11-09 08:25:27.717832400 +0000
+@@ -12,7 +12,7 @@ void one_rank_spanner_state::find_max_vo
+     const Eigen::MatrixXf& U, const Eigen::VectorXf& phi, float& max_volume, uint64_t& U_rid)
+ {
+   // find which action (which row of U) will provide the maximum phi * a volume
+-  // that a will replace the current row in _X and provide the determinant with the maximum volume
++  // that a will replace the current row in _Xmat and provide the determinant with the maximum volume
+   max_volume = -1.0f;
+   U_rid = 0;
+ 
+@@ -56,7 +56,7 @@ void one_rank_spanner_state::scale_all(f
+   float thislogdet = (1.f / num_examples) * (std::log(max_volume) - _log_determinant_factor);
+   float scale = std::exp(thislogdet);
+   _X_inv *= scale;
+-  _X /= scale;
++  _Xmat /= scale;
+ 
+   _log_determinant_factor += thislogdet;
+ }
+@@ -70,9 +70,9 @@ void one_rank_spanner_state::rank_one_de
+   y /= shrink_factor;
+   y /= std::exp(_log_determinant_factor);
+ 
+-  update_inverse(y, _X.row(i), i);
++  update_inverse(y, _Xmat.row(i), i);
+ 
+-  _X.row(i) = y;
++  _Xmat.row(i) = y;
+   _action_indices[i] = U_rid;
+ 
+   scale_all(max_volume, U.rows());
+@@ -101,7 +101,7 @@ void one_rank_spanner_state::compute_spa
+ 
+   // The size of U is K x d, where K is the total number of all actions
+   assert(static_cast<uint64_t>(U.cols()) >= num_actions_in_spanner);
+-  _X.setIdentity(num_actions_in_spanner, U.cols());
++  _Xmat.setIdentity(num_actions_in_spanner, U.cols());
+   _X_inv.setIdentity(num_actions_in_spanner, U.cols());
+   _log_determinant_factor = 0;
+ 
+@@ -124,7 +124,7 @@ void one_rank_spanner_state::compute_spa
+   {
+     bool found_larger_volume = false;
+ 
+-    // If replacing some row in _X results in larger volume, replace it with the row from U.
++    // If replacing some row in _Xmat results in larger volume, replace it with the row from U.
+     for (uint64_t i = 0; i < num_actions_in_spanner; ++i)
+     {
+       uint64_t U_rid;
+--- origsrc/vowpal_wabbit-9.11.9/vowpalwabbit/core/src/reductions/cb/details/large_action_space.h	2026-09-27 22:36:55.000000000 +0000
++++ src/vowpal_wabbit-9.11.9/vowpalwabbit/core/src/reductions/cb/details/large_action_space.h	2026-11-09 08:25:27.718774600 +0000
+@@ -121,7 +121,7 @@ private:
+   const float _c = 2;
+   std::vector<uint64_t> _action_indices;
+   float _log_determinant_factor;
+-  Eigen::MatrixXf _X;
++  Eigen::MatrixXf _Xmat;
+   Eigen::MatrixXf _X_inv;
+   std::vector<bool> _spanner_bitvec;
+ 
+--- origsrc/vowpal_wabbit-9.11.9/vowpalwabbit/fb_parser/CMakeLists.txt	2026-09-27 22:36:55.000000000 +0000
++++ src/vowpal_wabbit-9.11.9/vowpalwabbit/fb_parser/CMakeLists.txt	2026-11-09 08:25:27.719853000 +0000
+@@ -18,6 +18,7 @@ set(vw_fb_parser_sources
+ vw_add_library(
+     NAME "fb_parser"
+     TYPE "STATIC_ONLY"
++    ENABLE_INSTALL
+     SOURCES ${vw_fb_parser_sources}
+     PUBLIC_DEPS vw_core $<BUILD_INTERFACE:fb_generate_headers>
+     DESCRIPTION "Parser implementation that reads flatbuffer examples. Disabled by default. Enable with `VW_FEAT_FLATBUFFERS=ON`"
+@@ -26,10 +27,10 @@ vw_add_library(
+ target_include_directories(vw_fb_parser PUBLIC ${FLATBUFFERS_INCLUDE_DIR})
+ 
+ # Install the generated header
+-# if(VW_INSTALL)
+-#   install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/
+-#     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+-# endif()
++if(VW_INSTALL)
++  install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/
++    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
++endif()
+ 
+ set(vw_fb_parser_test_sources
+       tests/example_data_generator.h
+--- origsrc/vowpal_wabbit-9.11.9/vowpalwabbit/test_common/src/test_common.cc	2026-09-27 22:36:55.000000000 +0000
++++ src/vowpal_wabbit-9.11.9/vowpalwabbit/test_common/src/test_common.cc	2026-11-09 08:25:27.720801600 +0000
+@@ -30,7 +30,7 @@ VW::multi_ex vwtest::parse_dsjson(
+   if (interaction == nullptr) { interaction = &local_interaction; }
+ 
+   VW::parsers::json::read_line_decision_service_json<true>(
+-      all, examples, (char*)line.c_str(), line.size(), false, std::bind(VW::get_unused_example, &all), interaction);
++      all, examples, (char*)line.c_str(), line.size(), true, std::bind(VW::get_unused_example, &all), interaction);
+ 
+   VW::multi_ex result;
+   for (const auto& ex : examples) { result.push_back(ex); }

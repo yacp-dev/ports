@@ -1,5 +1,5 @@
---- origsrc/libticonv-1.1.5/configure.ac	2016-03-23 20:38:40.000000000 +0900
-+++ src/libticonv-1.1.5/configure.ac	2025-01-17 11:54:56.792430400 +0900
+--- origsrc/libticonv-1.1.5/configure.ac	2016-03-23 11:38:40.000000000 +0000
++++ src/libticonv-1.1.5/configure.ac	2026-11-09 06:00:17.178771100 +0000
 @@ -91,7 +91,7 @@ CFLAGS="$CFLAGS $ARCH"
  # What flag to depends on gcc version: gcc3 uses "-mms-bitfields", while
  # gcc2 uses "-fnative-struct".
@@ -9,8 +9,8 @@
    if test x$GCC = xyes; then
      msnative_struct=''
      AC_MSG_CHECKING([how to get MSVC-compatible struct packing])
---- origsrc/libticonv-1.1.5/src/Makefile.am	2016-10-31 03:03:55.000000000 +0900
-+++ src/libticonv-1.1.5/src/Makefile.am	2025-01-17 11:54:56.792430400 +0900
+--- origsrc/libticonv-1.1.5/src/Makefile.am	2016-10-30 18:03:55.000000000 +0000
++++ src/libticonv-1.1.5/src/Makefile.am	2026-11-09 06:00:17.180791400 +0000
 @@ -19,9 +19,7 @@ libticonv_la_SOURCES = \
  
  if USE_ICONV
@@ -22,8 +22,8 @@
  endif
  
  if OS_WIN32
---- origsrc/libticonv-1.1.5/tests/Makefile.am	2013-04-13 22:26:51.000000000 +0900
-+++ src/libticonv-1.1.5/tests/Makefile.am	2025-01-17 11:54:56.803481800 +0900
+--- origsrc/libticonv-1.1.5/tests/Makefile.am	2013-04-13 13:26:51.000000000 +0000
++++ src/libticonv-1.1.5/tests/Makefile.am	2026-11-09 06:00:17.180791400 +0000
 @@ -7,4 +7,4 @@ noinst_PROGRAMS = test_ticonv torture_ti
  test_ticonv_LDADD = $(top_builddir)/src/libticonv.la @GLIB_LIBS@
  torture_ticonv_LDADD = $(top_builddir)/src/libticonv.la @GLIB_LIBS@

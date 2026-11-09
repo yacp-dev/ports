@@ -25,6 +25,12 @@ src_install()
 	doman ${PN}.1
 }
 
+src_test()
+{
+	cd ${B}
+	TEST_STDSYSLOG=1 STDSYSLOG=${B}/${PN}.exe prove t
+}
+
 DOCS="
 	docs/*
 "

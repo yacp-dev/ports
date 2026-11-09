@@ -1,0 +1,24 @@
+--- origsrc/stdsyslog-0.3.5/t/02-signals.t	2026-10-31 14:58:03.000000000 +0000
++++ src/stdsyslog-0.3.5/t/02-signals.t	2026-11-09 12:01:02.085774800 +0000
+@@ -46,8 +46,8 @@ test_stdsyslog() {
+ 	fi
+ }
+ 
+-test_stdsyslog 130 'SIGINT to the parent' sh -c 'ppid=`ps -ho ppid "$$"`; kill -INT "$ppid"; sleep 1'
+-test_stdsyslog 0 'SIGINT caught' -d 0:info sh -c 'trap "echo ignoring a SIGINT" INT; ppid=`ps -ho ppid "$$"`; kill -INT "$ppid"; sleep 1'
++test_stdsyslog 130 'SIGINT to the parent' sh -c 'ppid=`cat /proc/$$/ppid 2>/dev/null || ps -ho ppid "$$"`; kill -INT "$ppid"; sleep 1'
++test_stdsyslog 0 'SIGINT caught' -d 0:info sh -c 'trap "echo ignoring a SIGINT" INT; ppid=`cat /proc/$$/ppid 2>/dev/null || ps -ho ppid "$$"`; kill -INT "$ppid"; sleep 1'
+ if fgrep -qe 'ignoring a SIGINT' "$f"; then
+ 	ok_ 'SIGINT caught indeed'
+ else
+@@ -55,8 +55,8 @@ else
+ 	cat "$f" 1>&2
+ fi
+ 
+-test_stdsyslog 143 'SIGTERM to the parent' sh -c 'ppid=`ps -ho ppid "$$"`; kill -TERM "$ppid"; sleep 1'
+-test_stdsyslog 0 'SIGTERM caught' -d 0:info sh -c 'trap "echo ignoring a SIGTERM" TERM; ppid=`ps -ho ppid "$$"`; kill -TERM "$ppid"; sleep 1'
++test_stdsyslog 143 'SIGTERM to the parent' sh -c 'ppid=`cat /proc/$$/ppid 2>/dev/null || ps -ho ppid "$$"`; kill -TERM "$ppid"; sleep 1'
++test_stdsyslog 0 'SIGTERM caught' -d 0:info sh -c 'trap "echo ignoring a SIGTERM" TERM; ppid=`cat /proc/$$/ppid 2>/dev/null || ps -ho ppid "$$"`; kill -TERM "$ppid"; sleep 1'
+ if fgrep -qe 'ignoring a SIGTERM' "$f"; then
+ 	ok_ 'SIGTERM caught indeed'
+ else

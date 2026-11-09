@@ -1,8 +1,5 @@
-HOMEPAGE="https://www.openfst.org/twiki/bin/view/FST/WebHome"
-SRC_URI="
-	https://www.openfst.org/twiki/pub/FST/FstDownload/${P}.tar.gz
-	https://www.openfst.org/twiki/pub/Contrib/OpenFstBashComp/openfstbc
-"
+HOMEPAGE="https://github.com/google-research/openfst"
+SRC_URI="https://github.com/google-research/openfst/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Weighted finite-state transducer library"
@@ -22,6 +19,9 @@ LICENSE_URI="COPYING"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
+# The test programs are template-heavy: compiling them takes ~48 minutes
+YACP_CHECK_TIMEOUT_MINUTES=60
+
 CYGCONF_ARGS="
 	--enable-bin
 	--enable-compact-fsts
@@ -38,28 +38,17 @@ CYGCONF_ARGS="
 	--enable-special
 "
 
-src_install()
-{
-	cd ${B}
-	cyginstall
-
-	cd ${S}
-	insinto /etc/bash_completion.d
-	doins ${PN}bc
-}
-
 PKG_NAMES="
 	${PN}
-	libfst26
+	libfst27
 	libfst-devel
 "
 openfst_CONTENTS="
-	etc
 	usr/bin/*.exe
 	usr/share
 "
-libfst26_CONTENTS="
-	usr/bin/cyg*-26.dll
+libfst27_CONTENTS="
+	usr/bin/cyg*-27.dll
 	usr/lib/fst/*.dll
 "
 libfst_devel_CONTENTS="
@@ -67,5 +56,5 @@ libfst_devel_CONTENTS="
 	usr/lib/lib*.dll.a
 "
 openfst_SUMMARY="${SUMMARY} (utilities)"
-libfst26_SUMMARY="${SUMMARY} (runtime)"
+libfst27_SUMMARY="${SUMMARY} (runtime)"
 libfst_devel_SUMMARY="${SUMMARY} (development)"

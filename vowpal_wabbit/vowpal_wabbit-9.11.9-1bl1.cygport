@@ -1,0 +1,109 @@
+HOMEPAGE="https://github.com/VowpalWabbit/${PN}"
+SRC_URI="https://github.com/VowpalWabbit/${PN}/archive/refs/tags/${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Online learning algorithm"
+DESCRIPTION="This is a project started at Yahoo! Research and continuing at Microsoft
+Research to design a fast, scalable, useful learning algorithm."
+
+LICENSE="BSD-3-Clause AND BSL-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSL-1.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	eigen3
+	help2man
+	libboost-devel
+	libflatbuffers-devel
+	libfmt-devel
+	libgmock-devel
+	libgtest-devel
+	libspdlog-devel
+	python3-devel
+	python312-pybind11
+	rapidjson-devel
+	zlib-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+# Win64 keeps the stack only 16-byte aligned (GCC PR 54412), but AVX locals are stored with aligned moves
+CFLAGS+=" -Wa,-muse-unaligned-vector-move"
+CXXFLAGS+=" -Wa,-muse-unaligned-vector-move"
+# Cygwin's Boost 1.66 ships no BoostConfig.cmake: use FindBoost's module mode
+export VW_USE_FINDBOOST_MODULE_MODE=1
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_PYTHON:BOOL=ON
+	-DBUILD_SHARED_LIBS:BOOL=OFF
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DFMT_SYS_DEP:BOOL=ON
+	-DPY_VERSION:STRING=3.12
+	-DRAPIDJSON_SYS_DEP:BOOL=ON
+	-DSPDLOG_SYS_DEP:BOOL=ON
+	-DVW_FEAT_FLATBUFFERS:BOOL=ON
+	-DVW_BOOST_MATH_SYS_DEP:BOOL=ON
+	-DVW_EIGEN_SYS_DEP:BOOL=ON
+	-DVW_GTEST_SYS_DEP:BOOL=ON
+	-DVW_CXX_STANDARD:STRING=17
+	-DVW_INSTALL:BOOL=ON
+	-DVW_PYTHON_SHARED_LIB_SUFFIX:STRING=.cpython-312-x86_64-cygwin.dll
+	-Dpybind11_DIR:PATH=/usr/lib/python3.12/site-packages/pybind11/share/cmake/pybind11
+"
+
+# python/vowpalwabbit/version.py reads the version from the package metadata, which the CMake build never writes
+vw_dist_info()
+{
+	mkdir -p $1/vowpalwabbit-${PV}.dist-info
+	printf 'Metadata-Version: 2.1\nName: vowpalwabbit\nVersion: %s\n' ${PV} > $1/vowpalwabbit-${PV}.dist-info/METADATA
+}
+
+src_test()
+{
+	cd ${B}
+	ctest --output-on-failure || test_failed=1
+
+	# The CMake tests never load the Python bindings: import them from the build tree
+	pylibvw=$(find ${B} -name 'pylibvw*.dll' | head -n 1)
+	vw_dist_info ${B}/python-test
+	PYTHONPATH=${pylibvw%/*}:${S}/python:${B}/python-test python3.12 -c 'import vowpalwabbit; print(vowpalwabbit.__version__)' || test_failed=1
+
+	[ -z "${test_failed}" ] || return 1
+}
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	# The CMake build installs no Python files: put the package, its metadata and pylibvw in site-packages
+	sitelib=/usr/lib/python3.12/site-packages
+	mkdir -p ${D}${sitelib}
+	cp -a ${S}/python/vowpalwabbit ${D}${sitelib}/
+	rm -f ${D}${sitelib}/vowpalwabbit/conda_install.sh
+	vw_dist_info ${D}${sitelib}
+	pylibvw=$(find ${B} -name 'pylibvw*.dll' | head -n 1)
+	install -m 755 ${pylibvw} ${D}${sitelib}/
+}
+
+DOCS="
+	ThirdPartyNotices.txt
+"
+
+DIFF_EXCLUDES="
+	test
+"
+
+PKG_NAMES="
+	${PN}
+	python312-${PN}
+"
+vowpal_wabbit_CONTENTS="
+	--exclude=usr/lib/python3.12
+	usr
+"
+python312_vowpal_wabbit_CONTENTS="
+	usr/lib/python3.12
+"
+python312_vowpal_wabbit_SUMMARY="${SUMMARY} (python312 bindings)"

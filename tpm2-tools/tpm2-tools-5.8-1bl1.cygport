@@ -10,6 +10,7 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="docs/LICENSE"
 
 BUILD_REQUIRES="
+	autoconf-archive
 	libcurl-devel
 	libssl-devel
 	libtss2-esys-devel
@@ -18,6 +19,7 @@ BUILD_REQUIRES="
 	libtss2-rc-devel
 	libtss2-sys-devel
 	libtss2-tctildr-devel
+	tpm2-tss-devel
 "
 
 CYGPORT_USE_UNSTABLE_API=1

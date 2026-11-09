@@ -1,5 +1,5 @@
---- origsrc/libticalcs2-1.1.9/configure.ac	2016-04-04 14:59:39.000000000 +0900
-+++ src/libticalcs2-1.1.9/configure.ac	2025-01-19 17:29:56.155506100 +0900
+--- origsrc/libticalcs2-1.1.9/configure.ac	2016-04-04 05:59:39.000000000 +0000
++++ src/libticalcs2-1.1.9/configure.ac	2026-11-09 06:39:11.049503600 +0000
 @@ -108,7 +108,7 @@ CFLAGS="$CFLAGS $ARCH"
  # What flag to depends on gcc version: gcc3 uses "-mms-bitfields", while
  # gcc2 uses "-fnative-struct".

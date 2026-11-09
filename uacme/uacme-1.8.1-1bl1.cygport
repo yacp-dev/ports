@@ -10,8 +10,8 @@ popular one) and an applicant to automate the process of verification and
 certificate issuance. The protocol also provides facilities for other
 certificate management functions, such as certificate revocation."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND ISC AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND ISC AND MIT"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="

@@ -1,15 +1,6 @@
---- origsrc/loguru/CMakeLists.txt	2025-06-09 09:17:17.000000000 +0900
-+++ src/loguru/CMakeLists.txt	2025-06-09 09:46:24.627750400 +0900
-@@ -61,7 +61,7 @@ endif()
- if (PROJECT_IS_TOP_LEVEL)
-   # enable ALL warnings for all subsequently defined targets
-   add_compile_options(
--    "$<$<CXX_COMPILER_ID:GNU>:-Wall;-Wextra;-Werror;-pedantic>"
-+    "$<$<CXX_COMPILER_ID:GNU>:-Wall;-Wextra;-pedantic>"
-     "$<$<CXX_COMPILER_ID:Clang>:-Weverything;-Wno-c++98-compat;-Wno-c++98-compat-pedantic>"
-     "$<$<CXX_COMPILER_ID:MSVC>:/W4>"
-   )
-@@ -172,15 +172,15 @@ set_property(DIRECTORY ${PROJECT_SOURCE_
+--- origsrc/loguru-2.2.0/CMakeLists.txt	2026-09-10 14:38:46.000000000 +0000
++++ src/loguru-2.2.0/CMakeLists.txt	2026-11-09 13:11:54.019153100 +0000
+@@ -190,15 +190,15 @@ set_property(DIRECTORY ${PROJECT_SOURCE_
  
  # TODO: make the examples work with this cmake paradigm
  if (LOGURU_BUILD_EXAMPLES)
@@ -30,7 +21,7 @@
  endif()
  
  # --- setup tests
-@@ -188,10 +188,11 @@ endif()
+@@ -206,10 +206,11 @@ endif()
  
  # TODO: make the tests work with this cmake paradigm
  if (LOGURU_BUILD_TESTS)
@@ -46,9 +37,9 @@
  endif()
  
  # --- setup install rules
---- origsrc/loguru/loguru.cpp	2025-06-09 09:17:17.000000000 +0900
-+++ src/loguru/loguru.cpp	2025-06-09 09:19:13.830864000 +0900
-@@ -76,7 +76,7 @@
+--- origsrc/loguru-2.2.0/loguru.cpp	2026-09-10 14:38:46.000000000 +0000
++++ src/loguru-2.2.0/loguru.cpp	2026-11-09 13:11:54.019909300 +0000
+@@ -80,7 +80,7 @@
  
  // TODO: use defined(_POSIX_VERSION) for some of these things?
  
@@ -57,8 +48,17 @@
  	#define LOGURU_PTHREADS    0
  	#define LOGURU_WINTHREADS  1
  	#ifndef LOGURU_STACKTRACES
---- origsrc/loguru/loguru_bench/CMakeLists.txt	2025-06-09 09:17:17.000000000 +0900
-+++ src/loguru/loguru_bench/CMakeLists.txt	2025-06-09 09:46:42.655367900 +0900
+@@ -1134,7 +1134,7 @@ namespace loguru
+ 				pid_t thread_id = getthrid();
+ 			#elif LOGURU_PTHREADS
+ 				// Here we rely on the opaque pthread_t being of integer type, which is the case on linux, but not other platforms.
+-				uint64_t thread_id = static_cast<uint64_t>(pthread_self());
++				uint64_t thread_id = reinterpret_cast<uint64_t>(pthread_self());
+ 			#else
+ 				// This ID does not correllate to anything we can get from the OS,
+ 				// so this is the worst way to get the ID.
+--- origsrc/loguru-2.2.0/loguru_bench/CMakeLists.txt	2026-09-10 14:38:46.000000000 +0000
++++ src/loguru-2.2.0/loguru_bench/CMakeLists.txt	2026-11-09 13:11:54.021927600 +0000
 @@ -9,7 +9,7 @@ endif(NOT CMAKE_BUILD_TYPE)
  
  MESSAGE(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
@@ -75,8 +75,8 @@
 -target_link_libraries(loguru_bench ${CMAKE_THREAD_LIBS_INIT}) # For pthreads
 +target_link_libraries(loguru_bench ${CMAKE_THREAD_LIBS_INIT} loguru) # For pthreads
  target_link_libraries(loguru_bench dl) # For ldl
---- origsrc/loguru/loguru_bench/loguru_bench.cpp	2025-06-09 09:17:17.000000000 +0900
-+++ src/loguru/loguru_bench/loguru_bench.cpp	2025-06-09 09:46:48.073093400 +0900
+--- origsrc/loguru-2.2.0/loguru_bench/loguru_bench.cpp	2026-09-10 14:38:46.000000000 +0000
++++ src/loguru-2.2.0/loguru_bench/loguru_bench.cpp	2026-11-09 13:11:54.021927600 +0000
 @@ -6,7 +6,7 @@
  
  #define LOGURU_WITH_STREAMS 1
@@ -86,8 +86,8 @@
  
  const size_t kNumRuns = 10;
  const double kPi = 3.1415926535897932384626433;
---- origsrc/loguru/loguru_example/CMakeLists.txt	2025-06-09 09:17:17.000000000 +0900
-+++ src/loguru/loguru_example/CMakeLists.txt	2025-06-09 09:44:12.374339900 +0900
+--- origsrc/loguru-2.2.0/loguru_example/CMakeLists.txt	2026-09-10 14:38:46.000000000 +0000
++++ src/loguru-2.2.0/loguru_example/CMakeLists.txt	2026-11-09 13:11:54.023950000 +0000
 @@ -12,7 +12,7 @@ MESSAGE(STATUS "CMAKE_BUILD_TYPE: ${CMAK
  if(MSVC)
      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Wall")
@@ -106,8 +106,8 @@
  if(NOT WIN32)
      target_link_libraries(loguru_example dl) # For ldl
  endif()
---- origsrc/loguru/loguru_example/main.cpp	2025-06-09 09:17:17.000000000 +0900
-+++ src/loguru/loguru_example/main.cpp	2025-06-09 09:44:17.888132500 +0900
+--- origsrc/loguru-2.2.0/loguru_example/main.cpp	2026-09-10 14:38:46.000000000 +0000
++++ src/loguru-2.2.0/loguru_example/main.cpp	2026-11-09 13:11:54.023950000 +0000
 @@ -2,7 +2,7 @@
  
  #include "loguru_example.hpp"
@@ -117,8 +117,8 @@
  
  int main(int argc, char* argv[])
  {
---- origsrc/loguru/test/CMakeLists.txt	2025-06-09 09:17:17.000000000 +0900
-+++ src/loguru/test/CMakeLists.txt	2025-06-09 09:35:12.559987200 +0900
+--- origsrc/loguru-2.2.0/test/CMakeLists.txt	2026-09-10 14:38:46.000000000 +0000
++++ src/loguru-2.2.0/test/CMakeLists.txt	2026-11-09 13:11:54.025230300 +0000
 @@ -12,7 +12,7 @@ MESSAGE(STATUS "CMAKE_BUILD_TYPE: ${CMAK
  if(MSVC)
      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Wall")
@@ -137,8 +137,8 @@
  if(NOT WIN32)
      target_link_libraries(loguru_test dl) # For ldl
  endif()
---- origsrc/loguru/test/loguru_test.cpp	2025-06-09 09:17:17.000000000 +0900
-+++ src/loguru/test/loguru_test.cpp	2025-06-09 09:34:48.188459200 +0900
+--- origsrc/loguru-2.2.0/test/loguru_test.cpp	2026-09-10 14:38:46.000000000 +0000
++++ src/loguru-2.2.0/test/loguru_test.cpp	2026-11-09 13:11:54.025967100 +0000
 @@ -6,13 +6,14 @@
  #define LOGURU_WITH_FILEABS     0
  // #define LOGURU_STACKTRACES      1

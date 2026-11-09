@@ -1,5 +1,5 @@
---- origsrc/tree-sitter-haskell-0.23.1/CMakeLists.txt	2024-11-11 03:07:41.000000000 +0900
-+++ src/tree-sitter-haskell-0.23.1/CMakeLists.txt	2024-11-11 17:49:35.933269500 +0900
+--- origsrc/tree-sitter-haskell-0.24.1/CMakeLists.txt	2026-09-30 15:37:19.000000000 +0000
++++ src/tree-sitter-haskell-0.24.1/CMakeLists.txt	2026-11-09 04:31:42.526363800 +0000
 @@ -17,12 +17,14 @@ endif()
  
  find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")

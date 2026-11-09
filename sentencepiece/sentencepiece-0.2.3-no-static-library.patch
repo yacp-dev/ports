@@ -1,0 +1,24 @@
+Do not install the static libraries, and build them only when a test needs them.
+
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -236,8 +236,8 @@
+   endif()
+ endif()
+ 
+-add_library(sentencepiece-static STATIC ${SPM_SRCS})
+-add_library(sentencepiece_train-static STATIC ${SPM_TRAIN_SRCS})
++add_library(sentencepiece-static STATIC EXCLUDE_FROM_ALL ${SPM_SRCS})
++add_library(sentencepiece_train-static STATIC EXCLUDE_FROM_ALL ${SPM_TRAIN_SRCS})
+ 
+ target_link_libraries(sentencepiece-static PRIVATE ${SPM_LIBS})
+ target_link_libraries(sentencepiece_train-static PRIVATE sentencepiece-static ${SPM_LIBS})
+@@ -335,7 +335,7 @@
+ # ==============================================================================
+ if (SPM_ENABLE_SHARED)
+   set(SPM_LIB_TARGETS sentencepiece sentencepiece_train)
+-  set(SPM_EXTRA_INSTALL_LIBS sentencepiece-static sentencepiece_train-static)
++  set(SPM_EXTRA_INSTALL_LIBS "")
+ elseif (SPM_PROTOBUF_PROVIDER STREQUAL "package" AND SPM_ABSL_PROVIDER STREQUAL "package")
+   set(SPM_LIB_TARGETS sentencepiece-static sentencepiece_train-static)
+   set(SPM_EXTRA_INSTALL_LIBS "")

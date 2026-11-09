@@ -1,0 +1,27 @@
+Use the installed googletest instead of fetching it with git.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -303,14 +303,14 @@
+     enable_testing()
+   endif()
+   set(INSTALL_GTEST OFF CACHE BOOL "Disable installation of googletest" FORCE)
+-  include(FetchContent)
+-  FetchContent_Declare(
+-    googletest
+-    GIT_REPOSITORY https://github.com/google/googletest.git
+-    GIT_TAG v1.18.0
+-    GIT_SHALLOW TRUE
+-  )
+-  FetchContent_MakeAvailable(googletest)
++  # Cygwin: use the installed googletest instead of fetching it
++  find_package(GTest REQUIRED)
++  foreach(_t gtest gtest_main gmock)
++    if (NOT TARGET ${_t})
++      add_library(${_t} INTERFACE IMPORTED GLOBAL)
++      target_link_libraries(${_t} INTERFACE GTest::${_t})
++    endif()
++  endforeach()
+ endif()
+ 
+ # Google Benchmark

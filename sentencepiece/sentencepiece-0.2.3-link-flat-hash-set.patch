@@ -1,0 +1,13 @@
+Link absl::flat_hash_set: sentencepiece_model_converters.cc uses it, and with a
+shared abseil it is not pulled in through absl::status.
+
+--- a/lite/CMakeLists.txt
++++ b/lite/CMakeLists.txt
+@@ -254,6 +254,7 @@
+   sentencepiece_lite
+   flatbuffers
+   ${LITE_PROTOBUF_LIB}
++  absl::flat_hash_set
+   absl::status
+   absl::statusor
+   absl::strings

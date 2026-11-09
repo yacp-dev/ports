@@ -1,0 +1,23 @@
+Pass std::string to set_piece(): the protobuf Cygwin ships (3.21) has no
+string_view overload.
+
+--- a/lite/sentencepiece_lite_test.cc
++++ b/lite/sentencepiece_lite_test.cc
+@@ -1973,7 +1973,7 @@
+   // "<USER>". When registered as a USER_DEFINED token, normalizer must skip it.
+   constexpr std::string_view kUserDefinedFullwidth = "＜ＵＳＥＲ＞";
+   auto* user_piece = proto.add_pieces();
+-  user_piece->set_piece(kUserDefinedFullwidth);
++  user_piece->set_piece(std::string(kUserDefinedFullwidth));
+   user_piece->set_type(
+       ::sentencepiece::ModelProto::SentencePiece::USER_DEFINED);
+   user_piece->set_score(0.0f);
+@@ -2033,7 +2033,7 @@
+   auto add_normal_piece = [](::sentencepiece::ModelProto* proto,
+                              std::string_view piece, float score) {
+     auto* p = proto->add_pieces();
+-    p->set_piece(piece);
++    p->set_piece(std::string(piece));
+     p->set_type(::sentencepiece::ModelProto::SentencePiece::NORMAL);
+     p->set_score(score);
+   };

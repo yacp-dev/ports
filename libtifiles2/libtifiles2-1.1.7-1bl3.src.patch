@@ -1,5 +1,5 @@
---- origsrc/libtifiles2-1.1.7/configure.ac	2016-04-04 14:59:39.000000000 +0900
-+++ src/libtifiles2-1.1.7/configure.ac	2025-01-19 17:16:01.409120400 +0900
+--- origsrc/libtifiles2-1.1.7/configure.ac	2016-04-04 05:59:39.000000000 +0000
++++ src/libtifiles2-1.1.7/configure.ac	2026-11-09 06:21:37.449898300 +0000
 @@ -101,7 +101,7 @@ CFLAGS="$CFLAGS $ARCH"
  # What flag to depends on gcc version: gcc3 uses "-mms-bitfields", while
  # gcc2 uses "-fnative-struct".
@@ -9,8 +9,8 @@
    if test x$GCC = xyes; then
      msnative_struct=''
      AC_MSG_CHECKING([how to get MSVC-compatible struct packing])
---- origsrc/libtifiles2-1.1.7/src/Makefile.am	2016-03-23 20:38:40.000000000 +0900
-+++ src/libtifiles2-1.1.7/src/Makefile.am	2025-01-19 17:16:01.409120400 +0900
+--- origsrc/libtifiles2-1.1.7/src/Makefile.am	2016-03-23 11:38:40.000000000 +0000
++++ src/libtifiles2-1.1.7/src/Makefile.am	2026-11-09 06:21:37.449898300 +0000
 @@ -20,7 +20,7 @@ libtifiles2_la_CPPFLAGS = -I$(top_srcdir
  	@GLIB_CFLAGS@ @TICONV_CFLAGS@ @ARCHIVE_CFLAGS@ -DTIFILES_EXPORTS
  libtifiles2_la_LIBADD = @GLIB_LIBS@ @LTLIBINTL@ @ARCHIVE_LIBS@ @TICONV_LIBS@

@@ -4,47 +4,45 @@ Spandsp is a library of many DSP functions for telephony. These range from
 simple modules, such as DTMF detection, to a complete software FAX machine.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libjpeg8-3.0.4-1
-  libspandsp-devel-3.0.0+git20240328-1bl1
-  libspandsp3-3.0.0+git20240328-1bl1
-  libtiff7-4.7.0-1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libjpeg8-3.2.0-1
+  libspandsp-devel-3.1.1-1bl1
+  libspandsp4-3.1.1-1bl1
+  libtiff7-4.7.2-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libjpeg-devel-3.0.4-1
-  libtiff-devel-4.7.0-1
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libjpeg-devel-3.2.0-1
+  libtiff-devel-4.7.2-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/freeswitch/spandsp
 
 Canonical download:
-  https://github.com/freeswitch/spandsp.git
+  https://github.com/freeswitch/spandsp/archive/refs/tags/v3.1.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack spandsp-3.0.0+git20240328-X-src.tar.xz
+  1. unpack spandsp-3.1.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./spandsp-3.0.0+git20240328-X.cygport all
+        % cygport ./spandsp-3.1.1-X.cygport all
 
 This will create:
-  /usr/src/spandsp-3.0.0+git20240328-X-src.tar.xz
-  /usr/src/spandsp-3.0.0+git20240328-X.tar.xz
-  /usr/src/libspandsp3-3.0.0+git20240328-X.tar.xz
-  /usr/src/libspandsp-devel-3.0.0+git20240328-X.tar.xz
+  /usr/src/spandsp-3.1.1-X-src.tar.xz
+  /usr/src/spandsp-3.1.1-X.tar.xz
+  /usr/src/libspandsp4-3.1.1-X.tar.xz
+  /usr/src/libspandsp-devel-3.1.1-X.tar.xz
 
 -------------------------------------------
 
@@ -59,8 +57,8 @@ Files included in the binary package:
   /usr/share/doc/spandsp/NEWS
   /usr/share/doc/spandsp/README
 
-(libspandsp3)
-  /usr/bin/cygspandsp-3.dll
+(libspandsp4)
+  /usr/bin/cygspandsp-4.dll
 
 (libspandsp-devel)
   /usr/include/spandsp.h
@@ -249,6 +247,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.1.1-1bl1 -----
+Version bump.
 
 ----- version 3.0.0+git20240328-1bl1 -----
 Version bump.

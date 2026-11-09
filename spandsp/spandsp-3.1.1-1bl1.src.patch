@@ -1,5 +1,5 @@
---- origsrc/spandsp/src/Makefile.am	2024-10-21 14:01:03.000000000 +0900
-+++ src/spandsp/src/Makefile.am	2024-10-21 14:12:44.821169500 +0900
+--- origsrc/spandsp-3.1.1/src/Makefile.am	2026-07-31 19:03:42.000000000 +0000
++++ src/spandsp-3.1.1/src/Makefile.am	2026-11-09 07:26:42.563136700 +0000
 @@ -425,13 +425,13 @@ make_v34_convolutional_coders$(EXEEXT):
  	$(CC_FOR_BUILD) -o make_v34_convolutional_coders$(EXEEXT) $(top_srcdir)/src/make_v34_convolutional_coders.c -DHAVE_CONFIG_H -I$(top_builddir)/src -lm
  

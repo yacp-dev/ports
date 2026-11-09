@@ -1,18 +1,19 @@
 HOMEPAGE="https://github.com/freeswitch/${PN}"
-GIT_URI="https://github.com/freeswitch/${PN}.git"
+SRC_URI="https://github.com/freeswitch/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Library of DSP functions for telephony"
 DESCRIPTION="Spandsp is a library of many DSP functions for telephony. These range from
 simple modules, such as DTMF detection, to a complete software FAX machine."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND GPL-2.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND GPL-2.0-only"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libjpeg-devel libtiff-devel"
-
-inherit git
+BUILD_REQUIRES="
+	libjpeg-devel
+	libtiff-devel
+"
 
 # --enable-tests : Cannot make tests without sox installed
 
@@ -26,19 +27,19 @@ DOCS="
 
 PKG_NAMES="
 	${PN}
-	lib${PN}3
+	lib${PN}4
 	lib${PN}-devel
 "
 spandsp_CONTENTS="
 	usr/share
 "
-libspandsp3_CONTENTS="
-	usr/bin/cyg*-3.dll
+libspandsp4_CONTENTS="
+	usr/bin/cyg*-4.dll
 "
 libspandsp_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 spandsp_SUMMARY="${SUMMARY} (licensing & readmes)"
-libspandsp3_SUMMARY="${SUMMARY} (runtime)"
+libspandsp4_SUMMARY="${SUMMARY} (runtime)"
 libspandsp_devel_SUMMARY="${SUMMARY} (development)"

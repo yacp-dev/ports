@@ -1,7 +1,11 @@
 HOMEPAGE="https://github.com/google/${PN}"
 SRC_URI="https://github.com/google/${PN}/archive/refs/tags/v${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/disable-static-library.patch
+	${PN}-${PV}-use-system-flatbuffers.patch
+	${PN}-${PV}-use-system-googletest.patch
+	${PN}-${PV}-no-static-library.patch
+	${PN}-${PV}-lite-test-string.patch
+	${PN}-${PV}-link-flat-hash-set.patch
 "
 
 CATEGORY="Text"
@@ -14,19 +18,28 @@ language model [Kudo.]) with the extension of direct training from raw
 entences. SentencePiece allows us to make a purely end-to-end system that does
 not depend on language-specific pre/postprocessing."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	flatbuffers
+	libabseil-devel
+	libflatbuffers-devel
+	libgmock-devel
+	libgtest-devel
 	libprotobuf-devel
-	libtcmalloc-devel
 "
 
 inherit cmake
 
+# tcmalloc linked into the DLL makes every program that loads it segfault at startup
 CYGCMAKE_ARGS="
-	-DSPM_USE_BUILTIN_PROTOBUF:BOOL=OFF
+	-DSPM_ABSL_PROVIDER:STRING=package
+	-DSPM_PROTOBUF_PROVIDER:STRING=package
+	-DSPM_FLATC_EXECUTABLE:FILEPATH=/usr/bin/flatc
+	-DSPM_BUILD_TEST:BOOL=ON
+	-DSPM_ENABLE_TCMALLOC:BOOL=OFF
 "
 
 DOCS="
@@ -52,3 +65,4 @@ libsentencepiece_devel_CONTENTS="
 sentencepiece_SUMMARY="${SUMMARY} (utilities)"
 libsentencepiece0_SUMMARY="${SUMMARY} (runtime)"
 libsentencepiece_devel_SUMMARY="${SUMMARY} (development)"
+libsentencepiece_devel_REQUIRES="libabseil-devel"

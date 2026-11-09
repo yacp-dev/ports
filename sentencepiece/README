@@ -9,46 +9,52 @@ entences. SentencePiece allows us to make a purely end-to-end system that does
 not depend on language-specific pre/postprocessing.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libgcc1-13.4.0-1
-  libprotobuf-devel-21.12-1
-  libsentencepiece-devel-0.2.1-1bl1
-  libsentencepiece0-0.2.1-1bl1
-  libstdc++6-13.4.0-1
-  libtcmalloc4-2.16-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libabseil2608.0.0-20260817.0-1bl2
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libprotobuf-devel-21.12-2
+  libprotobuf32-21.12-2
+  libsentencepiece-devel-0.2.3-1bl1
+  libsentencepiece0-0.2.3-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libprotobuf-devel-21.12-1
-  libtcmalloc-devel-2.16-1bl1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  flatbuffers-25.12.19-1bl2
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libabseil-devel-20260817.0-1bl2
+  libflatbuffers-devel-25.12.19-1bl2
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  libprotobuf-devel-21.12-2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/google/sentencepiece
 
 Canonical download:
-  https://github.com/google/sentencepiece/archive/refs/tags/v0.2.1.tar.gz
+  https://github.com/google/sentencepiece/archive/refs/tags/v0.2.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack sentencepiece-0.2.1-X-src.tar.xz
+  1. unpack sentencepiece-0.2.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./sentencepiece-0.2.1-X.cygport all
+        % cygport ./sentencepiece-0.2.3-X.cygport all
 
 This will create:
-  /usr/src/sentencepiece-0.2.1-X-src.tar.xz
-  /usr/src/sentencepiece-0.2.1-X.tar.xz
-  /usr/src/libsentencepiece0-0.2.1-X.tar.xz
-  /usr/src/libsentencepiece-devel-0.2.1-X.tar.xz
+  /usr/src/sentencepiece-0.2.3-X-src.tar.xz
+  /usr/src/sentencepiece-0.2.3-X.tar.xz
+  /usr/src/libsentencepiece0-0.2.3-X.tar.xz
+  /usr/src/libsentencepiece-devel-0.2.3-X.tar.xz
 
 -------------------------------------------
 
@@ -57,16 +63,24 @@ Files included in the binary package:
 (sentencepiece)
   /usr/bin/spm_decode.exe
   /usr/bin/spm_encode.exe
+  /usr/bin/spm_eval.exe
   /usr/bin/spm_export_vocab.exe
   /usr/bin/spm_normalize.exe
   /usr/bin/spm_train.exe
   /usr/share/doc/Cygwin/sentencepiece.README
   /usr/share/doc/sentencepiece/LICENSE
   /usr/share/doc/sentencepiece/README.md
-  /usr/share/doc/sentencepiece/api.md
-  /usr/share/doc/sentencepiece/experiments.md
+  /usr/share/doc/sentencepiece/auto_character_coverage.md
+  /usr/share/doc/sentencepiece/bazel.md
+  /usr/share/doc/sentencepiece/cli.md
+  /usr/share/doc/sentencepiece/cmake.md
+  /usr/share/doc/sentencepiece/cpp.md
+  /usr/share/doc/sentencepiece/model_proto.md
   /usr/share/doc/sentencepiece/normalization.md
   /usr/share/doc/sentencepiece/options.md
+  /usr/share/doc/sentencepiece/performance_benchmark.md
+  /usr/share/doc/sentencepiece/piece_constraints.md
+  /usr/share/doc/sentencepiece/sparse_l1_unigram.md
   /usr/share/doc/sentencepiece/special_symbols.md
 
 (libsentencepiece0)
@@ -74,8 +88,14 @@ Files included in the binary package:
   /usr/bin/cygsentencepiece_train-0.dll
 
 (libsentencepiece-devel)
+  /usr/include/sentencepiece.pb.h
+  /usr/include/sentencepiece_model.pb.h
   /usr/include/sentencepiece_processor.h
   /usr/include/sentencepiece_trainer.h
+  /usr/lib/cmake/sentencepiece/sentencepieceConfig.cmake
+  /usr/lib/cmake/sentencepiece/sentencepieceConfigVersion.cmake
+  /usr/lib/cmake/sentencepiece/sentencepieceTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/sentencepiece/sentencepieceTargets.cmake
   /usr/lib/libsentencepiece.dll.a
   /usr/lib/libsentencepiece_train.dll.a
   /usr/lib/pkgconfig/sentencepiece.pc
@@ -83,6 +103,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.3-1bl1 -----
+Version bump.
 
 ----- version 0.2.1-1bl1 -----
 Version bump.

@@ -1,0 +1,26 @@
+Use the installed flatbuffers (headers and flatc) instead of fetching it with git.
+The CMake build has no find_package() path for it, and lite/CMakeLists.txt fetches it
+unless both the flatbuffers and flatc targets exist.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -256,6 +256,19 @@
+ endif()
+ 
+ # FlatBuffers
++# Cygwin: use the installed flatbuffers (headers only) instead of fetching it
++# (lite/CMakeLists.txt calls FetchContent_GetProperties() without including it)
++include(FetchContent)
++if (NOT TARGET flatbuffers)
++  find_package(flatbuffers REQUIRED)
++  find_path(FLATBUFFERS_INCLUDE_DIR flatbuffers/flatbuffers.h REQUIRED)
++  add_library(flatbuffers INTERFACE IMPORTED GLOBAL)
++  set_target_properties(flatbuffers PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${FLATBUFFERS_INCLUDE_DIR}")
++  if (NOT TARGET flatc)
++    add_executable(flatc IMPORTED GLOBAL)
++    set_target_properties(flatc PROPERTIES IMPORTED_LOCATION "${SPM_FLATC_EXECUTABLE}")
++  endif()
++endif()
+ if (NOT TARGET flatbuffers)
+   include(FetchContent)
+   set(FLATBUFFERS_BUILD_TESTS OFF CACHE BOOL "Disable flatbuffers tests" FORCE)

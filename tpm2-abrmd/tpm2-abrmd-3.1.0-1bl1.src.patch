@@ -1,0 +1,78 @@
+--- origsrc/tpm2-abrmd-3.1.0/Makefile.am	2026-10-19 18:10:24.000000000 +0000
++++ src/tpm2-abrmd-3.1.0/Makefile.am	2026-11-09 09:40:14.770447800 +0000
+@@ -261,7 +261,7 @@ src_libutil_la_SOURCES = \
+     src/util.h
+ 
+ test_integration_libtest_la_LIBADD  = $(TSS2_SYS_LIBS) $(TSS2_TCTILDR_LIBS) \
+-    $(GLIB_LIBS)
++    $(GIO_LIBS) $(GLIB_LIBS)
+ test_integration_libtest_la_SOURCES = \
+     test/integration/common.c \
+     test/integration/common.h \
+@@ -281,7 +281,7 @@ src_libtss2_tcti_tabrmd_la_LIBADD = $(GI
+ if !ENABLE_ASAN
+ UNDEFINED_SYMS := -Wl,--no-undefined
+ endif
+-src_libtss2_tcti_tabrmd_la_LDFLAGS = -fPIC $(UNDEFINED_SYMS) -Wl,-z,nodelete -Wl,--version-script=$(srcdir)/src/tcti-tabrmd.map
++src_libtss2_tcti_tabrmd_la_LDFLAGS = -no-undefined -fPIC $(UNDEFINED_SYMS) -Wl,--version-script=$(srcdir)/src/tcti-tabrmd.map
+ src_libtss2_tcti_tabrmd_la_SOURCES = src/tcti-tabrmd.c src/tcti-tabrmd-priv.h $(srcdir)/src/tcti-tabrmd.map
+ 
+ src_tpm2_abrmd_LDADD   = $(GIO_LIBS) $(GLIB_LIBS) $(PTHREAD_LIBS) \
+@@ -320,7 +320,7 @@ endef
+ 
+ if UNIT
+ UNIT_CFLAGS = $(AM_CFLAGS) $(CMOCKA_CFLAGS)
+-UNIT_LIBS = $(CMOCKA_LIBS) $(libutil) $(libtest)
++UNIT_LIBS = $(libutil) $(libtest) $(CMOCKA_LIBS)
+ test_tabrmd_init_unit_CFLAGS = $(UNIT_CFLAGS)
+ test_tabrmd_init_unit_LDADD = $(UNIT_LIBS)
+ test_tabrmd_init_unit_LDFLAGS = -Wl,--wrap=g_main_loop_is_running \
+--- origsrc/tpm2-abrmd-3.1.0/src/tcti-tabrmd.c	2026-10-19 18:10:24.000000000 +0000
++++ src/tpm2-abrmd-3.1.0/src/tcti-tabrmd.c	2026-11-09 09:40:14.772469000 +0000
+@@ -123,11 +123,9 @@ gerror_code_to_tcti_rc (int error_number
+     }
+ }
+ 
+-#if defined(__FreeBSD__)
+ #ifndef POLLRDHUP
+ #define POLLRDHUP 0x0
+ #endif
+-#endif
+ /*
+  * This is a thin wrapper around a call to poll. It packages up the provided
+  * file descriptor and timeout and polls on that same FD for data or a hangup.
+--- origsrc/tpm2-abrmd-3.1.0/test/tcti-tabrmd-receive_unit.c	2026-10-19 18:10:24.000000000 +0000
++++ src/tpm2-abrmd-3.1.0/test/tcti-tabrmd-receive_unit.c	2026-11-09 09:40:14.773261000 +0000
+@@ -62,11 +62,9 @@ tcti_tabrmd_poll_fd_ready_pollpri (void
+  * expected response code for the POLLRDHUP event.
+  */
+ 
+-#if defined(__FreeBSD__)
+ #ifndef POLLRDHUP
+ #define POLLRDHUP 0x0
+ #endif
+-#endif
+ static void
+ tcti_tabrmd_poll_fd_ready_pollrdhup (void **state)
+ {
+--- origsrc/tpm2-abrmd-3.1.0/test/util_unit.c	2026-10-19 18:10:24.000000000 +0000
++++ src/tpm2-abrmd-3.1.0/test/util_unit.c	2026-11-09 09:40:14.774491400 +0000
+@@ -9,6 +9,7 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <string.h>
++#include <sys/socket.h>
+ 
+ #include <setjmp.h>
+ #include <cmocka.h>
+@@ -201,7 +202,9 @@ create_socket_pair_success_test (void **
+     int ret, client_fd, server_fd, flags = 0;
+     UNUSED_PARAM(state);
+ 
+-#if !defined(__FreeBSD__)
++#if defined(__CYGWIN__)
++    flags = SOCK_CLOEXEC;
++#elif !defined(__FreeBSD__)
+     flags = O_CLOEXEC;
+ #endif
+ 

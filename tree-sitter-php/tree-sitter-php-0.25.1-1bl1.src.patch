@@ -1,6 +1,12 @@
---- origsrc/tree-sitter-php-0.24.2/CMakeLists.txt	2025-08-18 14:11:55.000000000 +0900
-+++ src/tree-sitter-php-0.24.2/CMakeLists.txt	2025-09-13 18:37:39.160850000 +0900
-@@ -20,12 +20,14 @@ find_program(TREE_SITTER_CLI tree-sitter
+--- origsrc/tree-sitter-php-0.25.1/CMakeLists.txt	2026-10-06 16:44:08.000000000 +0000
++++ src/tree-sitter-php-0.25.1/CMakeLists.txt	2026-11-09 04:20:06.693104200 +0000
+@@ -15,17 +15,19 @@ if(NOT ${TREE_SITTER_ABI_VERSION} MATCHE
+     message(FATAL_ERROR "TREE_SITTER_ABI_VERSION must be an integer")
+ endif()
+ 
+-find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI" REQUIRED)
++find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")
+ 
  include(GNUInstallDirs)
  
  macro(add_parser name)

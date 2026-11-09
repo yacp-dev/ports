@@ -1,0 +1,73 @@
+HOMEPAGE="https://github.com/dnwrnr/${PN}"
+SRC_URI="https://github.com/dnwrnr/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Simplified perturbations models"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgtest-devel
+"
+
+# CMAKE_CXX_EXTENSIONS is OFF (-std=c++17), which hides fileno/fdopen/mkstemp from gtest-port.h
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DSGP4_PC_VERSION:STRING=${PV}
+"
+
+# the tests (and gtest_discover_tests at build time) run before install and
+# need cygsgp4-3.dll, which only PATH can supply on Cygwin
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	cygcmake
+	PATH=${B}/libsgp4:${PATH} cygninja
+}
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/libsgp4:${PATH} ninja_test
+}
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	insinto /usr/share/${PN}
+	doins SGP4-VER.TLE
+	doins ${S}/data/geodetic.csv
+
+	dobin passpredict/passpredict.exe
+	dobin sattrack/sattrack.exe
+	dobin csvprop/csvprop.exe
+}
+
+PKG_NAMES="
+	sgp4
+	libsgp4_3
+	libsgp4-devel
+"
+sgp4_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libsgp4_3_CONTENTS="
+	usr/bin/cygsgp4-3.dll
+"
+libsgp4_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+sgp4_SUMMARY="${SUMMARY} (utilities)"
+libsgp4_3_SUMMARY="${SUMMARY} (runtime)"
+libsgp4_devel_SUMMARY="${SUMMARY} (development)"

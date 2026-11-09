@@ -3,81 +3,91 @@ sgp4
 Simplified perturbations models
 
 Runtime requirements:
-  cygwin-3.3.2-1
-  libgcc1-11.2.0-1
-  libsgp4-devel-0+git20210112-1bl1
-  libsgp4_0-0+git20210112-1bl1
-  libstdc++6-11.2.0-1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libsgp4-devel-3.0-1bl1
+  libsgp4_3-3.0-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-2
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
-  ninja-1.10.2-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/dnwrnr/sgp4
 
 Canonical download:
-  https://github.com/dnwrnr/sgp4.git
+  https://github.com/dnwrnr/sgp4/archive/refs/tags/v3.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack sgp4-0+git20210112-X-src.tar.xz
+  1. unpack sgp4-3.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./sgp4-0+git20210112-X.cygport all
+        % cygport ./sgp4-3.0-X.cygport all
 
 This will create:
-  /usr/src/sgp4-0+git20210112-X-src.tar.xz
-  /usr/src/sgp4-0+git20210112-X.tar.xz
-  /usr/src/libsgp4_0-0+git20210112-X.tar.xz
-  /usr/src/libsgp4-devel-0+git20210112-X.tar.xz
+  /usr/src/sgp4-3.0-X-src.tar.xz
+  /usr/src/sgp4-3.0-X.tar.xz
+  /usr/src/libsgp4_3-3.0-X.tar.xz
+  /usr/src/libsgp4-devel-3.0-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (sgp4)
+  /usr/bin/csvprop.exe
   /usr/bin/passpredict.exe
   /usr/bin/sattrack.exe
   /usr/share/doc/Cygwin/sgp4.README
   /usr/share/doc/sgp4/LICENSE
   /usr/share/doc/sgp4/README.md
   /usr/share/sgp4/SGP4-VER.TLE
+  /usr/share/sgp4/geodetic.csv
 
-(libsgp4_0)
-  /usr/bin/cygsgp4-0.dll
+(libsgp4_3)
+  /usr/bin/cygsgp4-3.dll
 
 (libsgp4-devel)
-  /usr/include/SGP4/CoordGeodetic.h
-  /usr/include/SGP4/CoordTopocentric.h
-  /usr/include/SGP4/DateTime.h
-  /usr/include/SGP4/DecayedException.h
-  /usr/include/SGP4/Eci.h
-  /usr/include/SGP4/Globals.h
-  /usr/include/SGP4/Observer.h
-  /usr/include/SGP4/OrbitalElements.h
-  /usr/include/SGP4/SGP4.h
-  /usr/include/SGP4/SatelliteException.h
-  /usr/include/SGP4/SolarPosition.h
-  /usr/include/SGP4/TimeSpan.h
-  /usr/include/SGP4/Tle.h
-  /usr/include/SGP4/TleException.h
-  /usr/include/SGP4/Util.h
-  /usr/include/SGP4/Vector.h
+  /usr/include/libsgp4/CoordGeodetic.h
+  /usr/include/libsgp4/CoordTopocentric.h
+  /usr/include/libsgp4/CsvTleLoader.h
+  /usr/include/libsgp4/DateTime.h
+  /usr/include/libsgp4/DecayedException.h
+  /usr/include/libsgp4/Eci.h
+  /usr/include/libsgp4/Globals.h
+  /usr/include/libsgp4/Observer.h
+  /usr/include/libsgp4/OrbitalElements.h
+  /usr/include/libsgp4/SGP4.h
+  /usr/include/libsgp4/SatelliteException.h
+  /usr/include/libsgp4/SolarPosition.h
+  /usr/include/libsgp4/TimeSpan.h
+  /usr/include/libsgp4/Tle.h
+  /usr/include/libsgp4/TleException.h
+  /usr/include/libsgp4/Util.h
+  /usr/include/libsgp4/Vector.h
+  /usr/lib/cmake/SGP4/SGP4Config.cmake
+  /usr/lib/cmake/SGP4/SGP4ConfigVersion.cmake
+  /usr/lib/cmake/SGP4/SGP4Targets-relwithdebinfo.cmake
+  /usr/lib/cmake/SGP4/SGP4Targets.cmake
   /usr/lib/libsgp4.dll.a
   /usr/lib/pkgconfig/sgp4.pc
 
 ------------------
 
 Port Notes:
+
+----- version 3.0-1bl1 -----
+Version bump.
 
 ----- version 0+git20210112-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

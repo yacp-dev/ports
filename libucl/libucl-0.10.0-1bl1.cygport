@@ -6,8 +6,8 @@ SUMMARY="Universal configuration library parser"
 DESCRIPTION="UCL is heavily infused by nginx configuration as the example of a convenient
 configuration system."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND MIT"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="

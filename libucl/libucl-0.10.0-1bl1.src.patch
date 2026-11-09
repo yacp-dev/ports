@@ -1,5 +1,5 @@
---- origsrc/libucl-0.9.4/configure.ac	2026-02-17 10:43:22.000000000 +0000
-+++ src/libucl-0.9.4/configure.ac	2026-08-10 23:13:21.300967900 +0000
+--- origsrc/libucl-0.10.0/configure.ac	2026-10-31 12:32:44.000000000 +0000
++++ src/libucl-0.10.0/configure.ac	2026-11-09 14:31:51.917850500 +0000
 @@ -107,7 +107,7 @@ AS_IF([test "x$enable_regex" = "xyes"],
  AC_SUBST(LIBREGEX_LIB)
  
@@ -9,8 +9,8 @@
  		AX_LUA_HEADERS([
  			AX_LUA_LIBS([
  				AC_DEFINE(HAVE_LUA, 1, [Define to 1 for lua support.])
---- origsrc/libucl-0.9.4/lua/Makefile.am	2026-02-17 10:43:22.000000000 +0000
-+++ src/libucl-0.9.4/lua/Makefile.am	2026-08-10 23:13:21.301739900 +0000
+--- origsrc/libucl-0.10.0/lua/Makefile.am	2026-10-31 12:32:44.000000000 +0000
++++ src/libucl-0.10.0/lua/Makefile.am	2026-11-09 14:31:51.919878600 +0000
 @@ -6,8 +6,8 @@ luaexec_LTLIBRARIES=	ucl.la
  ucl_la_SOURCES=	lua_ucl.c
  ucl_la_CFLAGS=	$(ucl_common_cflags) \
@@ -22,9 +22,9 @@
  					@LIBFETCH_LIBS@ \
  					@LIBCRYPTO_LIB@ \
  					@LIBREGEX_LIB@ \
---- origsrc/libucl-0.9.4/src/Makefile.am	2026-02-17 10:43:22.000000000 +0000
-+++ src/libucl-0.9.4/src/Makefile.am	2026-08-10 23:13:21.302981100 +0000
-@@ -15,7 +15,7 @@ libucl_la_SOURCES=	ucl_emitter.c \
+--- origsrc/libucl-0.10.0/src/Makefile.am	2026-10-31 12:32:44.000000000 +0000
++++ src/libucl-0.10.0/src/Makefile.am	2026-11-09 14:31:51.919878600 +0000
+@@ -16,7 +16,7 @@ libucl_la_SOURCES=	ucl_emitter.c \
  					ucl_sexp.c
  libucl_la_CFLAGS=	$(libucl_common_cflags) \
  					@CURL_CFLAGS@

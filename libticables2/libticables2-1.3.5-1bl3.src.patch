@@ -1,5 +1,5 @@
---- origsrc/libticables2-1.3.5/configure.ac	2016-03-23 20:38:40.000000000 +0900
-+++ src/libticables2-1.3.5/configure.ac	2025-01-19 16:57:41.664856000 +0900
+--- origsrc/libticables2-1.3.5/configure.ac	2016-03-23 11:38:40.000000000 +0000
++++ src/libticables2-1.3.5/configure.ac	2026-11-09 06:11:09.911331300 +0000
 @@ -91,7 +91,7 @@ if [test "x$cab_cv_use_libusb" != xno];
        ])
    else
@@ -18,8 +18,8 @@
    if test x$GCC = xyes; then
      msnative_struct=''
      AC_MSG_CHECKING([how to get MSVC-compatible struct packing])
---- origsrc/libticables2-1.3.5/src/detect.c	2013-04-13 22:26:51.000000000 +0900
-+++ src/libticables2-1.3.5/src/detect.c	2025-01-19 16:57:41.664856000 +0900
+--- origsrc/libticables2-1.3.5/src/detect.c	2013-04-13 13:26:51.000000000 +0000
++++ src/libticables2-1.3.5/src/detect.c	2026-11-09 06:11:09.911331300 +0000
 @@ -32,7 +32,7 @@
  # include <config.h>
  #endif
@@ -29,8 +29,8 @@
  #include "linux/detect.c"
  #elif defined(__MACOSX__)
  #include "macos/detect.c"
---- origsrc/libticables2-1.3.5/src/ioports.c	2013-04-13 22:26:51.000000000 +0900
-+++ src/libticables2-1.3.5/src/ioports.c	2025-01-19 16:57:41.664856000 +0900
+--- origsrc/libticables2-1.3.5/src/ioports.c	2013-04-13 13:26:51.000000000 +0000
++++ src/libticables2-1.3.5/src/ioports.c	2026-11-09 06:11:09.911331300 +0000
 @@ -23,7 +23,7 @@
  # include <config.h>
  #endif
@@ -40,8 +40,8 @@
  #include "linux/ioports.c"
  #elif defined(__BSD__)
  #include "linux/ioports.c"
---- origsrc/libticables2-1.3.5/src/link_blk.c	2015-04-09 01:06:16.000000000 +0900
-+++ src/libticables2-1.3.5/src/link_blk.c	2025-01-19 16:57:41.664856000 +0900
+--- origsrc/libticables2-1.3.5/src/link_blk.c	2015-04-08 16:06:16.000000000 +0000
++++ src/libticables2-1.3.5/src/link_blk.c	2026-11-09 06:11:09.913340500 +0000
 @@ -27,7 +27,7 @@
  
  #ifndef NO_CABLE_BLK
@@ -51,8 +51,8 @@
  #include "linux/link_ser.c"
  
  #elif defined(__BSD__)
---- origsrc/libticables2-1.3.5/src/link_gry.c	2015-04-09 01:06:16.000000000 +0900
-+++ src/libticables2-1.3.5/src/link_gry.c	2025-01-19 16:57:41.664856000 +0900
+--- origsrc/libticables2-1.3.5/src/link_gry.c	2015-04-08 16:06:16.000000000 +0000
++++ src/libticables2-1.3.5/src/link_gry.c	2026-11-09 06:11:09.914122500 +0000
 @@ -27,7 +27,7 @@
  
  #ifndef NO_CABLE_GRY
@@ -62,8 +62,8 @@
  #include "linux/link_gry.c"
  
  #elif defined(__BSD__)
---- origsrc/libticables2-1.3.5/src/link_tcpc.c	2016-04-04 14:59:39.000000000 +0900
-+++ src/libticables2-1.3.5/src/link_tcpc.c	2025-01-19 16:57:41.664856000 +0900
+--- origsrc/libticables2-1.3.5/src/link_tcpc.c	2016-04-04 05:59:39.000000000 +0000
++++ src/libticables2-1.3.5/src/link_tcpc.c	2026-11-09 06:11:09.914122500 +0000
 @@ -26,7 +26,7 @@
  
  #ifndef NO_CABLE_TCPC
@@ -73,8 +73,8 @@
  #include "linux/link_tcpc.c"
  
  #elif defined(__BSD__)
---- origsrc/libticables2-1.3.5/src/link_tcps.c	2016-04-04 14:59:39.000000000 +0900
-+++ src/libticables2-1.3.5/src/link_tcps.c	2025-01-19 16:57:41.686013100 +0900
+--- origsrc/libticables2-1.3.5/src/link_tcps.c	2016-04-04 05:59:39.000000000 +0000
++++ src/libticables2-1.3.5/src/link_tcps.c	2026-11-09 06:11:09.915348900 +0000
 @@ -26,7 +26,7 @@
  
  #ifndef NO_CABLE_TCPS
@@ -84,8 +84,8 @@
  #include "linux/link_tcps.c"
  
  #elif defined(__BSD__)
---- origsrc/libticables2-1.3.5/src/link_tie.c	2013-04-13 22:26:51.000000000 +0900
-+++ src/libticables2-1.3.5/src/link_tie.c	2025-01-19 16:57:41.686013100 +0900
+--- origsrc/libticables2-1.3.5/src/link_tie.c	2013-04-13 13:26:51.000000000 +0000
++++ src/libticables2-1.3.5/src/link_tie.c	2026-11-09 06:11:09.916144900 +0000
 @@ -27,7 +27,7 @@
  
  #ifndef NO_CABLE_TIE
@@ -95,8 +95,8 @@
  #include "linux/link_tie.c"
  
  #elif defined(__BSD__)
---- origsrc/libticables2-1.3.5/src/link_vti.c	2013-04-13 22:26:51.000000000 +0900
-+++ src/libticables2-1.3.5/src/link_vti.c	2025-01-19 16:57:41.686013100 +0900
+--- origsrc/libticables2-1.3.5/src/link_vti.c	2013-04-13 13:26:51.000000000 +0000
++++ src/libticables2-1.3.5/src/link_vti.c	2026-11-09 06:11:09.917358400 +0000
 @@ -27,7 +27,7 @@
  
  #ifndef NO_CABLE_VTI

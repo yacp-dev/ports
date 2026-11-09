@@ -2,6 +2,7 @@ HOMEPAGE="https://github.com/tpm2-software/${PN}"
 SRC_URI="https://github.com/tpm2-software/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.9.1-0.1/debian/patches/set-version-of-library.patch
+	wrap-sqlite3-bind-blob64.patch
 "
 
 CATEGORY="Security"
@@ -16,6 +17,9 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	autoconf-archive
+	dbus
+	libcmocka-devel
 	libsqlite3-devel
 	libssl-devel
 	libtss2-esys-devel
@@ -24,6 +28,7 @@ BUILD_REQUIRES="
 	libtss2-rc-devel
 	libtss2-tctildr-devel
 	libyaml-devel
+	tpm2-tss-devel
 "
 
 CYGPORT_USE_UNSTABLE_API=1
@@ -36,6 +41,7 @@ src_patch_hook()
 CYGCONF_ARGS="
 	--disable-hardening
 	--disable-ptool-checks
+	--enable-unit
 "
 
 src_compile()

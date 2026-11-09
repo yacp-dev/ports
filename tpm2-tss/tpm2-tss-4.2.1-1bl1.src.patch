@@ -1,6 +1,6 @@
---- origsrc/tpm2-tss-4.1.3/Makefile.am	2024-05-21 21:43:43.000000000 +0900
-+++ src/tpm2-tss-4.1.3/Makefile.am	2025-09-12 14:51:09.656500800 +0900
-@@ -270,7 +270,7 @@ pkgconfig_DATA += lib/tss2-mu.pc
+--- origsrc/tpm2-tss-4.2.1/Makefile.am	2026-10-30 08:20:05.000000000 +0000
++++ src/tpm2-tss-4.2.1/Makefile.am	2026-11-09 07:16:46.808540100 +0000
+@@ -277,7 +277,7 @@ pkgconfig_DATA += lib/tss2-mu.pc
  EXTRA_DIST += lib/tss2-mu.map lib/tss2-mu.def src/tss2-mu/tss2-mu.vcxproj
  
  # Bump sys soname revision due to change in TPMU_CAPABILITY ABI
@@ -9,7 +9,7 @@
  
  if HAVE_LD_VERSION_SCRIPT
  src_tss2_mu_libtss2_mu_la_LDFLAGS += -Wl,--version-script=$(srcdir)/lib/tss2-mu.map
-@@ -288,8 +288,9 @@ pkgconfig_DATA += lib/tss2-tctildr.pc
+@@ -295,8 +295,9 @@ pkgconfig_DATA += lib/tss2-tctildr.pc
  EXTRA_DIST += lib/tss2-tctildr.map
  
  src_tss2_tcti_libtss2_tctildr_la_CFLAGS = $(AM_CFLAGS)
@@ -20,7 +20,7 @@
      -Wl,--version-script=$(srcdir)/lib/tss2-tctildr.map
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tctildr_la_LIBADD = $(libutil)
-@@ -311,8 +312,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -318,8 +319,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_device)
  pkgconfig_DATA += lib/tss2-tcti-device.pc
  
@@ -31,7 +31,7 @@
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_device_la_LIBADD   = $(libtss2_mu) $(libutil) $(libutilio)
  src_tss2_tcti_libtss2_tcti_device_la_SOURCES  = \
-@@ -328,8 +330,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -335,8 +337,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_swtpm)
  pkgconfig_DATA += lib/tss2-tcti-swtpm.pc
  
@@ -42,7 +42,7 @@
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_swtpm_la_LIBADD   = $(libtss2_mu) $(libutil) $(libutilio)
  src_tss2_tcti_libtss2_tcti_swtpm_la_SOURCES  = \
-@@ -346,8 +349,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -353,8 +356,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_mssim)
  pkgconfig_DATA += lib/tss2-tcti-mssim.pc
  
@@ -53,7 +53,7 @@
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_mssim_la_LIBADD   = $(libtss2_mu) $(libutil) $(libutilio)
  src_tss2_tcti_libtss2_tcti_mssim_la_SOURCES  = \
-@@ -365,8 +369,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -372,8 +376,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_pcap)
  pkgconfig_DATA += lib/tss2-tcti-pcap.pc
  
@@ -64,7 +64,19 @@
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_pcap_la_LIBADD   = $(libtss2_tctildr) $(libtss2_mu) $(libutil) $(libutilio)
  src_tss2_tcti_libtss2_tcti_pcap_la_SOURCES  = \
-@@ -383,8 +388,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -390,8 +395,10 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+ lib_LTLIBRARIES += $(libtss2_tcti_null)
+ pkgconfig_DATA += lib/tss2-tcti-null.pc
+ 
++src_tss2_tcti_libtss2_tcti_null_la_LDFLAGS  = -no-undefined
++
+ if HAVE_LD_VERSION_SCRIPT
+-src_tss2_tcti_libtss2_tcti_null_la_LDFLAGS  = -Wl,--version-script=$(srcdir)/lib/tss2-tcti-null.map
++src_tss2_tcti_libtss2_tcti_null_la_LDFLAGS  += -Wl,--version-script=$(srcdir)/lib/tss2-tcti-null.map
+ endif # HAVE_LD_VERSION_SCRIPT
+ src_tss2_tcti_libtss2_tcti_null_la_LIBADD   = $(libtss2_tctildr) $(libtss2_mu) $(libutil) $(libutilio)
+ src_tss2_tcti_libtss2_tcti_null_la_SOURCES  = \
+@@ -409,8 +416,9 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_libtpms)
  pkgconfig_DATA += lib/tss2-tcti-libtpms.pc
  
@@ -75,7 +87,7 @@
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_libtpms_la_LIBADD   = $(libtss2_mu) $(libutil)
  src_tss2_tcti_libtss2_tcti_libtpms_la_SOURCES  = \
-@@ -401,9 +407,10 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -427,9 +435,10 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_cmd)
  pkgconfig_DATA += lib/tss2-tcti-cmd.pc
  
@@ -87,7 +99,7 @@
  endif # UNIT
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_cmd_la_LIBADD   = $(libutil) $(libtss2_mu)
-@@ -422,9 +429,10 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -448,9 +457,10 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_spi_helper)
  pkgconfig_DATA += lib/tss2-tcti-spi-helper.pc
  
@@ -99,7 +111,7 @@
  endif # UNIT
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_spi_helper_la_LIBADD   = $(libutil) $(libtss2_mu)
-@@ -443,7 +451,7 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -469,7 +479,7 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_spi_ltt2go)
  pkgconfig_DATA += lib/tss2-tcti-spi-ltt2go.pc
  
@@ -108,7 +120,7 @@
  
  if HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_spi_ltt2go_la_LDFLAGS  += -Wl,--version-script=$(srcdir)/lib/tss2-tcti-spi-ltt2go.map
-@@ -464,7 +472,7 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -490,7 +500,7 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_spidev)
  pkgconfig_DATA += lib/tss2-tcti-spidev.pc
  
@@ -117,7 +129,7 @@
  
  if HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_spidev_la_LDFLAGS  += -Wl,--version-script=$(srcdir)/lib/tss2-tcti-spidev.map
-@@ -485,7 +493,7 @@ lib_LTLIBRARIES += $(libtss2_tcti_spi_ft
+@@ -511,7 +521,7 @@ lib_LTLIBRARIES += $(libtss2_tcti_spi_ft
  pkgconfig_DATA += lib/tss2-tcti-spi-ftdi.pc
  
  src_tss2_tcti_libtss2_tcti_spi_ftdi_la_CFLAGS  = $(AM_CFLAGS) $(LIBFTDI_CFLAGS) -Wno-deprecated-declarations
@@ -126,7 +138,7 @@
  if HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_spi_ftdi_la_LDFLAGS  += -Wl,--version-script=$(srcdir)/lib/tss2-tcti-spi-ftdi.map
  endif # HAVE_LD_VERSION_SCRIPT
-@@ -509,9 +517,10 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
+@@ -535,9 +545,10 @@ tss2_HEADERS += $(srcdir)/include/tss2/t
  lib_LTLIBRARIES += $(libtss2_tcti_i2c_helper)
  pkgconfig_DATA += lib/tss2-tcti-i2c-helper.pc
  
@@ -138,7 +150,7 @@
  endif # UNIT
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_i2c_helper_la_LIBADD   = $(libutil) $(libtss2_mu)
-@@ -531,7 +540,7 @@ lib_LTLIBRARIES += $(libtss2_tcti_i2c_ft
+@@ -557,7 +568,7 @@ lib_LTLIBRARIES += $(libtss2_tcti_i2c_ft
  pkgconfig_DATA += lib/tss2-tcti-i2c-ftdi.pc
  
  src_tss2_tcti_libtss2_tcti_i2c_ftdi_la_CFLAGS  = $(AM_CFLAGS) $(LIBFTDI_CFLAGS) -Wno-deprecated-declarations
@@ -147,7 +159,7 @@
  if HAVE_LD_VERSION_SCRIPT
  src_tss2_tcti_libtss2_tcti_i2c_ftdi_la_LDFLAGS  += -Wl,--version-script=$(srcdir)/lib/tss2-tcti-i2c-ftdi.map
  endif # HAVE_LD_VERSION_SCRIPT
-@@ -555,7 +564,7 @@ lib_LTLIBRARIES += $(libtss2_sys)
+@@ -581,7 +592,7 @@ lib_LTLIBRARIES += $(libtss2_sys)
  pkgconfig_DATA += lib/tss2-sys.pc
  
  src_tss2_sys_libtss2_sys_la_CFLAGS = $(AM_CFLAGS) -I$(srcdir)/src/tss2-sys
@@ -156,7 +168,7 @@
  
  if HAVE_LD_VERSION_SCRIPT
  src_tss2_sys_libtss2_sys_la_LDFLAGS += -Wl,--version-script=$(srcdir)/lib/tss2-sys.map
-@@ -589,7 +598,7 @@ src_tss2_esys_libtss2_esys_la_CFLAGS  =
+@@ -615,7 +626,7 @@ src_tss2_esys_libtss2_esys_la_CFLAGS  =
      $(TSS2_ESYS_CFLAGS_CRYPTO)
  src_tss2_esys_libtss2_esys_la_LIBADD  = $(libtss2_sys) $(libtss2_mu) $(libutil)
  
@@ -165,9 +177,9 @@
                                          $(TSS2_ESYS_LDFLAGS_CRYPTO)
  if HAVE_LD_VERSION_SCRIPT
  src_tss2_esys_libtss2_esys_la_LDFLAGS += -Wl,--version-script=$(srcdir)/lib/tss2-esys.map
-@@ -620,8 +629,9 @@ lib_LTLIBRARIES += $(libtss2_rc)
- pkgconfig_DATA += lib/tss2-rc.pc
- EXTRA_DIST += lib/tss2-rc.map lib/tss2-rc.def
+@@ -647,8 +658,9 @@ pkgconfig_DATA += lib/tss2-rc.pc
+ EXTRA_DIST += lib/tss2-rc.map lib/tss2-rc.def \
+               src/tss2-rc/tss2-rc.vcxproj
  
 +src_tss2_rc_libtss2_rc_la_LDFLAGS = -no-undefined
  if HAVE_LD_VERSION_SCRIPT
@@ -176,7 +188,7 @@
  endif # HAVE_LD_VERSION_SCRIPT
  src_tss2_rc_libtss2_rc_la_SOURCES = $(TSS2_RC_SRC)
  
-@@ -637,8 +647,9 @@ src_tss2_policy_libtss2_policy_la_CFLAGS
+@@ -664,8 +676,9 @@ src_tss2_policy_libtss2_policy_la_CFLAGS
  src_tss2_policy_libtss2_policy_la_LIBADD  = $(libtss2_esys) $(libtss2_mu) $(libutil) $(JSONC_LIBS) $(UUID_LIBS) \
  	$(CRYPTO_LIBS)
  
@@ -187,7 +199,7 @@
  endif # HAVE_LD_VERSION_SCRIPT
  
  src_tss2_policy_libtss2_policy_la_SOURCES = $(TSS2_POLICY_SRC) \
-@@ -806,7 +817,7 @@ src_tss2_fapi_libtss2_fapi_la_LIBADD  =
+@@ -852,7 +865,7 @@ src_tss2_fapi_libtss2_fapi_la_LIBADD  =
  src_tss2_fapi_libtss2_fapi_la_SOURCES = $(TSS2_FAPI_SRC)
  src_tss2_fapi_libtss2_fapi_la_CFLAGS  = $(AM_CFLAGS) -I$(srcdir)/src/tss2-fapi $(CRYPTO_CFLAGS) $(JSONC_CFLAGS) \
                                          $(UUID_CFLAGS)
@@ -196,10 +208,10 @@
  if HAVE_LD_VERSION_SCRIPT
  src_tss2_fapi_libtss2_fapi_la_LDFLAGS += -Wl,--version-script=$(srcdir)/lib/tss2-fapi.map
  endif # HAVE_LD_VERSION_SCRIPT
---- origsrc/tpm2-tss-4.1.3/bootstrap	2024-05-21 21:43:43.000000000 +0900
-+++ src/tpm2-tss-4.1.3/bootstrap	2025-09-12 14:51:39.537210200 +0900
-@@ -1,7 +1,7 @@
- #!/bin/sh
+--- origsrc/tpm2-tss-4.2.1/bootstrap	2026-10-30 08:20:05.000000000 +0000
++++ src/tpm2-tss-4.2.1/bootstrap	2026-11-09 07:16:46.808540100 +0000
+@@ -8,7 +8,7 @@
+ 
  set -e
  
 -git describe --tags --always --dirty > VERSION
@@ -207,8 +219,8 @@
  
  # generate list of source files for use in Makefile.am
  # if you add new source files, you must run ./bootstrap again
---- origsrc/tpm2-tss-4.1.3/configure.ac	2024-05-21 21:43:43.000000000 +0900
-+++ src/tpm2-tss-4.1.3/configure.ac	2025-09-12 14:52:00.543255800 +0900
+--- origsrc/tpm2-tss-4.2.1/configure.ac	2026-10-30 08:20:05.000000000 +0000
++++ src/tpm2-tss-4.2.1/configure.ac	2026-11-09 07:16:46.810566600 +0000
 @@ -45,6 +45,10 @@ case "${host_os}" in
          HOSTOS='BSD'
          LIBSOCKET_LDFLAGS=""
@@ -220,3 +232,45 @@
      *)
          #Assume linux
          HOSTOS='Linux'
+--- origsrc/tpm2-tss-4.2.1/test/unit/dlopen-fail.c	2026-10-30 08:20:05.000000000 +0000
++++ src/tpm2-tss-4.2.1/test/unit/dlopen-fail.c	2026-11-09 07:16:46.812582300 +0000
+@@ -85,7 +85,11 @@ test_rc(void **state) {
+ 
+     will_return(__wrap_dlopen, NULL);
+     r = Tss2_RC_Decode(0);
++#ifdef __CYGWIN__
++    assert_string_equal(r, "cygtss2-rc-0.dll not found.");
++#else
+     assert_string_equal(r, "libtss2-rc.so.0 not found.");
++#endif
+ 
+     will_return(__wrap_dlopen, NULL);
+     h = Tss2_RC_SetHandler(0, NULL, NULL);
+--- origsrc/tpm2-tss-4.2.1/tss2-dlopen/tss2-dlopen-mu.c	2026-10-30 08:20:05.000000000 +0000
++++ src/tpm2-tss-4.2.1/tss2-dlopen/tss2-dlopen-mu.c	2026-11-09 07:16:46.812582300 +0000
+@@ -38,7 +38,11 @@
+     } while (0)
+ #endif /* ENABLE_WARN */
+ 
++#ifdef __CYGWIN__
++#define LIB "cygtss2-mu-0.dll"
++#else
+ #define LIB "libtss2-mu.so.0"
++#endif
+ static void *dlhandle = NULL;
+ 
+ static TSS2_RC
+--- origsrc/tpm2-tss-4.2.1/tss2-dlopen/tss2-dlopen-rc.c	2026-10-30 08:20:05.000000000 +0000
++++ src/tpm2-tss-4.2.1/tss2-dlopen/tss2-dlopen-rc.c	2026-11-09 07:16:46.814596100 +0000
+@@ -37,7 +37,11 @@
+     } while (0)
+ #endif /* ENABLE_WARN */
+ 
++#ifdef __CYGWIN__
++#define LIB "cygtss2-rc-0.dll"
++#else
+ #define LIB "libtss2-rc.so.0"
++#endif
+ static void *dlhandle = NULL;
+ 
+ static TSS2_RC

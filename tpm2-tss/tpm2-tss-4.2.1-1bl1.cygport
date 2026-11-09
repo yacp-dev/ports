@@ -1,9 +1,5 @@
 HOMEPAGE="https://github.com/tpm2-software/${PN}"
 SRC_URI="https://github.com/tpm2-software/${PN}/archive/refs/tags/${PV}.tar.gz"
-PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1.2/debian/patches/0004-ESYS-FAPI-Fix-order-of-calloc-parameters.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1.2/debian/patches/0005-FAPI-Fix-wrong-format-directive-in-ifap_set_auth.patch
-"
 
 CATEGORY="Libs"
 SUMMARY="OSS implementation of the TCG TPM2 Software Stack"
@@ -15,6 +11,8 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	autoconf-archive
+	libcmocka-devel
 	libcurl-devel
 	libjson-c-devel
 	libssl-devel
@@ -29,6 +27,7 @@ src_patch_hook()
 }
 
 CYGCONF_ARGS="
+	--enable-unit
 	--disable-tcti-cmd
 	--disable-tcti-i2c-ftdi
 	--disable-tcti-spi-ftdi
@@ -94,6 +93,8 @@ PKG_NAMES="
 	libtss2-tcti-i2c-helper-devel
 	libtss2-tcti-mssim0
 	libtss2-tcti-mssim-devel
+	libtss2-tcti-null0
+	libtss2-tcti-null-devel
 	libtss2-tcti-pcap0
 	libtss2-tcti-pcap-devel
 	libtss2-tcti-spi-helper0
@@ -191,6 +192,14 @@ libtss2_tcti_mssim_devel_CONTENTS="
 	usr/share/man/man3/Tss2_Tcti_Mssim_Init.3.gz
 	usr/share/man/man7/tss2-tcti-mssim.7.gz
 "
+libtss2_tcti_null0_CONTENTS="
+	usr/bin/cygtss2-tcti-null-0.dll
+"
+libtss2_tcti_null_devel_CONTENTS="
+	usr/include/tss2/tss2_tcti_null.h
+	usr/lib/libtss2-tcti-null.dll.a
+	usr/lib/pkgconfig/tss2-tcti-null.pc
+"
 libtss2_tcti_pcap0_CONTENTS="
 	usr/bin/cygtss2-tcti-pcap-0.dll
 "
@@ -245,6 +254,8 @@ libtss2_tcti_i2c_helper0_SUMMARY="${SUMMARY} (runtime / tcti i2c helper)"
 libtss2_tcti_i2c_helper_devel_SUMMARY="${SUMMARY} (development / tcti i2c helper)"
 libtss2_tcti_mssim0_SUMMARY="${SUMMARY} (runtime / tcti mssim)"
 libtss2_tcti_mssim_devel_SUMMARY="${SUMMARY} (development / tcti mssim)"
+libtss2_tcti_null0_SUMMARY="${SUMMARY} (runtime / tcti null)"
+libtss2_tcti_null_devel_SUMMARY="${SUMMARY} (development / tcti null)"
 libtss2_tcti_pcap0_SUMMARY="${SUMMARY} (runtime / tcti pcap)"
 libtss2_tcti_pcap_devel_SUMMARY="${SUMMARY} (development / tcti pcap)"
 libtss2_tcti_spi_helper0_SUMMARY="${SUMMARY} (runtime / tcti spi helper)"

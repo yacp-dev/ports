@@ -1,0 +1,56 @@
+--- origsrc/tree-sitter-ocaml-0.26.0/CMakeLists.txt	2026-09-13 12:52:07.000000000 +0000
++++ src/tree-sitter-ocaml-0.26.0/CMakeLists.txt	2026-11-09 04:17:34.458514100 +0000
+@@ -17,25 +17,27 @@ endif()
+ 
+ include(GNUInstallDirs)
+ 
+-find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI" REQUIRED)
++find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")
+ 
+ macro(add_parser name)
+-    add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar.json"
+-                              "${CMAKE_CURRENT_SOURCE_DIR}/src/node-types.json"
+-                       DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/grammar.js"
+-                       COMMAND "${TREE_SITTER_CLI}" generate grammar.js --no-parser
+-                       WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+-                       COMMENT "Generating grammar.json")
+-
+-    add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/parser.c"
+-                       BYPRODUCTS "${CMAKE_CURRENT_SOURCE_DIR}/src/tree_sitter/parser.h"
+-                                  "${CMAKE_CURRENT_SOURCE_DIR}/src/tree_sitter/alloc.h"
+-                                  "${CMAKE_CURRENT_SOURCE_DIR}/src/tree_sitter/array.h"
+-                       DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar.json"
+-                       COMMAND "${TREE_SITTER_CLI}" generate src/grammar.json
+-                                --abi=${TREE_SITTER_ABI_VERSION}
+-                       WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+-                       COMMENT "Generating parser.c")
++    if (NOT TREE_SITTER_CLI STREQUAL "TREE_SITTER_CLI-NOTFOUND")
++        add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar.json"
++                                  "${CMAKE_CURRENT_SOURCE_DIR}/src/node-types.json"
++                           DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/grammar.js"
++                           COMMAND "${TREE_SITTER_CLI}" generate grammar.js --no-parser
++                           WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
++                           COMMENT "Generating grammar.json")
++
++        add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/parser.c"
++                           BYPRODUCTS "${CMAKE_CURRENT_SOURCE_DIR}/src/tree_sitter/parser.h"
++                                      "${CMAKE_CURRENT_SOURCE_DIR}/src/tree_sitter/alloc.h"
++                                      "${CMAKE_CURRENT_SOURCE_DIR}/src/tree_sitter/array.h"
++                           DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar.json"
++                           COMMAND "${TREE_SITTER_CLI}" generate src/grammar.json
++                                    --abi=${TREE_SITTER_ABI_VERSION}
++                           WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
++                           COMMENT "Generating parser.c")
++    endif()
+ 
+     add_library(tree-sitter-${name} "${CMAKE_CURRENT_SOURCE_DIR}/src/parser.c")
+     target_sources(tree-sitter-${name} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.c")
+@@ -62,7 +64,7 @@ macro(add_parser name)
+             DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+             FILES_MATCHING PATTERN "*.h")
+     install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-${name}.pc"
+-            DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig")
++            DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
+     install(TARGETS tree-sitter-${name}
+             LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+ endmacro()

@@ -9,18 +9,18 @@ Runtime requirements:
   cygwin-3.6.12-1
   libgfortran5-14.4.0-1
   libgomp1-14.4.0-1
-  liblis-devel-2.1.20-1bl1
-  liblis0-2.1.20-1bl1
+  liblis-devel-2.1.23-1bl1
+  liblis0-2.1.23-1bl1
   libopenmpi40-4.1.6-1
   libopenmpifh40-4.1.6-1
-  pkg-config-3.0.9-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   autoconf-20260320-3
   automake-20260320-2
   binutils-2.47-1
-  cygport-0.37.11-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
   gcc-fortran-14.4.0-1
   libevent-devel-2.1.13-1
@@ -28,28 +28,28 @@ Build requirements:
   libopenmpi-devel-4.1.6-1
   libtool-2.6.2-1
   make-4.4.1-2
-  zlib-devel-1.3.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://www.ssisc.org/lis/index.en.html
 
 Canonical download:
-  https://www.ssisc.org/lis/dl/lis-2.1.20.zip
+  https://www.ssisc.org/lis/dl/lis-2.1.23.zip
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack lis-2.1.20-X-src.tar.xz
+  1. unpack lis-2.1.23-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./lis-2.1.20-X.cygport all
+        % cygport ./lis-2.1.23-X.cygport all
 
 This will create:
-  /usr/src/lis-2.1.20-X-src.tar.xz
-  /usr/src/lis-2.1.20-X.tar.xz
-  /usr/src/liblis0-2.1.20-X.tar.xz
-  /usr/src/liblis-devel-2.1.20-X.tar.xz
+  /usr/src/lis-2.1.23-X-src.tar.xz
+  /usr/src/lis-2.1.23-X.tar.xz
+  /usr/src/liblis0-2.1.23-X.tar.xz
+  /usr/src/liblis-devel-2.1.23-X.tar.xz
 
 -------------------------------------------
 
@@ -70,6 +70,8 @@ Files included in the binary package:
   /usr/bin/spmvtest3b.exe
   /usr/bin/spmvtest4.exe
   /usr/bin/spmvtest5.exe
+  /usr/lib/lis/examples/benchautojacobirefresh.exe
+  /usr/lib/lis/examples/benchfrozenilut.exe
   /usr/lib/lis/examples/defs
   /usr/lib/lis/examples/etest1.exe
   /usr/lib/lis/examples/etest1f.exe
@@ -110,6 +112,24 @@ Files included in the binary package:
   /usr/lib/lis/examples/test7.exe
   /usr/lib/lis/examples/test7f.exe
   /usr/lib/lis/examples/test8f.exe
+  /usr/lib/lis/examples/test_krylov_adaptive_ex.exe
+  /usr/lib/lis/examples/test_krylov_api_contract.exe
+  /usr/lib/lis/examples/test_krylov_be_lock_order.exe
+  /usr/lib/lis/examples/test_krylov_both_ends.exe
+  /usr/lib/lis/examples/test_krylov_inertia.exe
+  /usr/lib/lis/examples/test_krylov_lis.exe
+  /usr/lib/lis/examples/test_krylov_modes.exe
+  /usr/lib/lis/examples/test_krylov_openmp.exe
+  /usr/lib/lis/examples/test_krylov_projected.exe
+  /usr/lib/lis/examples/test_krylov_regression.exe
+  /usr/lib/lis/examples/test_krylov_residual_reuse.exe
+  /usr/lib/lis/examples/test_krylov_semidefinite.exe
+  /usr/lib/lis/examples/test_krylov_sparse.exe
+  /usr/lib/lis/examples/test_krylov_stress.exe
+  /usr/lib/lis/examples/test_krylov_unified.exe
+  /usr/lib/lis/examples/test_krylov_window.exe
+  /usr/lib/lis/examples/test_krylov_workspace.exe
+  /usr/lib/lis/examples/testabi.exe
   /usr/lib/lis/examples/testblockgram.exe
   /usr/lib/lis/examples/testblockorthogonal.exe
   /usr/lib/lis/examples/testblockrank.exe
@@ -118,20 +138,26 @@ Files included in the binary package:
   /usr/lib/lis/examples/testchangingsystem.exe
   /usr/lib/lis/examples/testcoarseapply.exe
   /usr/lib/lis/examples/testcoarsesetup.exe
+  /usr/lib/lis/examples/testcomponentnullspace.exe
   /usr/lib/lis/examples/testdiagonal.exe
   /usr/lib/lis/examples/testeigenbreakdown.exe
+  /usr/lib/lis/examples/testesolverselection.exe
+  /usr/lib/lis/examples/testesubspaceretry.exe
   /usr/lib/lis/examples/testexactnullspace.exe
   /usr/lib/lis/examples/testexternalstorage.exe
   /usr/lib/lis/examples/testfeastcontour.exe
   /usr/lib/lis/examples/testfeastfoundation.exe
   /usr/lib/lis/examples/testfeastshifted.exe
   /usr/lib/lis/examples/testfgcrodr.exe
+  /usr/lib/lis/examples/testfrozenilut.exe
   /usr/lib/lis/examples/testgcrodrconfig.exe
   /usr/lib/lis/examples/testgcrodroptions.exe
   /usr/lib/lis/examples/testgcrodrsequence.exe
+  /usr/lib/lis/examples/testgesolvepair.exe
   /usr/lib/lis/examples/testgmreswork.exe
   /usr/lib/lis/examples/testhalfconfig.exe
   /usr/lib/lis/examples/testhalfconvert.exe
+  /usr/lib/lis/examples/testhybridnested.exe
   /usr/lib/lis/examples/testilupivot.exe
   /usr/lib/lis/examples/testjacobiuser.exe
   /usr/lib/lis/examples/testkrylovrobust.exe
@@ -140,12 +166,23 @@ Files included in the binary package:
   /usr/lib/lis/examples/testmat2.mtx
   /usr/lib/lis/examples/testmat3.mtx
   /usr/lib/lis/examples/testmat4.mtx
+  /usr/lib/lis/examples/testmatrixautosession.exe
   /usr/lib/lis/examples/testmatrixgeneration.exe
+  /usr/lib/lis/examples/testmatrixgraph.exe
+  /usr/lib/lis/examples/testmatrixmaterialize.exe
+  /usr/lib/lis/examples/testmatrixmaterializeomp.exe
+  /usr/lib/lis/examples/testmatrixoperatorlifecycle.exe
+  /usr/lib/lis/examples/testmatrixoperatormpi.exe
+  /usr/lib/lis/examples/testmatrixpolicysolve.exe
   /usr/lib/lis/examples/testmatvecblock.exe
   /usr/lib/lis/examples/testmfamg.exe
   /usr/lib/lis/examples/testmfamggalerkin.exe
   /usr/lib/lis/examples/testnearnullspace.exe
+  /usr/lib/lis/examples/testnullspacecandidates.exe
+  /usr/lib/lis/examples/testnullspacelift.exe
+  /usr/lib/lis/examples/testompelastic.exe
   /usr/lib/lis/examples/testoperator.exe
+  /usr/lib/lis/examples/testoperatorrowprecon.exe
   /usr/lib/lis/examples/testparamupdate.exe
   /usr/lib/lis/examples/testprebuiltuser.exe
   /usr/lib/lis/examples/testpreconlifecycle.exe
@@ -162,13 +199,20 @@ Files included in the binary package:
   /usr/lib/lis/examples/testshellscale.exe
   /usr/lib/lis/examples/testsolvercallbackcert.exe
   /usr/lib/lis/examples/testsolvercallbackpaths.exe
+  /usr/lib/lis/examples/testsolvercapabilities.exe
   /usr/lib/lis/examples/testsolvermonitor.exe
+  /usr/lib/lis/examples/testsolveroptionreplace.exe
+  /usr/lib/lis/examples/testsplitview.exe
+  /usr/lib/lis/examples/testsplitviewi64.exe
+  /usr/lib/lis/examples/testsplitviewreal64.exe
   /usr/lib/lis/examples/testsymmdiagguard.exe
   /usr/lib/lis/examples/testthreads.exe
   /usr/lib/lis/examples/testuser.exe
   /usr/lib/lis/examples/testuserprecon.exe
   /usr/lib/lis/examples/testuserrow.exe
   /usr/lib/lis/examples/testvec0.mtx
+  /usr/lib/lis/examples/testvectornrm2mpi.exe
+  /usr/lib/lis/examples/testvectorreal64.exe
   /usr/lib/lis/examples/testwarmstart.exe
   /usr/lib/lis/examples/testworkcompat.exe
   /usr/lib/lis/examples/testworkreuse.exe
@@ -197,7 +241,20 @@ Files included in the binary package:
 
 (liblis-devel)
   /usr/include/lis/lis.h
+  /usr/include/lis/lis_abi.h
   /usr/include/lis/lis_config.h
+  /usr/include/lis/lis_esolver_config.h
+  /usr/include/lis/lis_esolver_selection.h
+  /usr/include/lis/lis_krylov.h
+  /usr/include/lis/lis_matrix_graph.h
+  /usr/include/lis/lis_matrix_materialize.h
+  /usr/include/lis/lis_matrix_operator.h
+  /usr/include/lis/lis_matrix_split_view.h
+  /usr/include/lis/lis_nullspace_candidates.h
+  /usr/include/lis/lis_nullspace_lift.h
+  /usr/include/lis/lis_omp_capacity.h
+  /usr/include/lis/lis_solver_capabilities.h
+  /usr/include/lis/lis_solver_options.h
   /usr/include/lis/lisf.h
   /usr/lib/liblis.dll.a
   /usr/lib/pkgconfig/lis.pc
@@ -471,6 +528,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.1.23-1bl1 -----
+Version bump.
 
 ----- version 2.1.20-1bl1 -----
 Version bump.

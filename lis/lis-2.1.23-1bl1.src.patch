@@ -1,0 +1,139 @@
+--- origsrc/lis-2.1.23/Makefile.am	2026-10-21 01:38:53.000000000 +0000
++++ src/lis-2.1.23/Makefile.am	2026-11-09 20:51:39.504078100 +0000
+@@ -648,3 +648,6 @@ man_MANS =   doc/man/man1/lsolve.1 \
+ ACLOCAL_AMFLAGS = -I m4
+ 
+ AUTOMAKE_OPTIONS = dist-zip
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/lis-2.1.23/configure.ac	2026-11-05 09:38:45.000000000 +0000
++++ src/lis-2.1.23/configure.ac	2026-11-09 20:51:39.504078100 +0000
+@@ -1321,7 +1321,7 @@ LIBS="-lm $LIBS"
+ 
+ # Output
+ 
+-AC_CONFIG_FILES([Makefile
++AC_CONFIG_FILES([lis.pc Makefile
+                  src/Makefile
+                  src/vector/Makefile
+                  src/matrix/Makefile
+--- origsrc/lis-2.1.23/lis.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/lis-2.1.23/lis.pc.in	2026-11-09 20:51:39.506091100 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: lis
++Description: Library of Iterative Solvers for Linear Systems
++Version: @VERSION@
++Libs: -L${libdir} -llis
++Cflags: -I${includedir}
+--- origsrc/lis-2.1.23/src/Makefile.am	2026-10-21 01:38:53.000000000 +0000
++++ src/lis-2.1.23/src/Makefile.am	2026-11-09 20:51:39.506091100 +0000
+@@ -19,11 +19,12 @@ liblis@LIBSUFFIX@_la_LIBADD = array/liba
+                    system/libsystem.la \
+                    vector/libvector.la
+ if ENABLE_SAAMG
+-  liblis@LIBSUFFIX@_la_LIBADD += fortran/amg/libsaamg.la
+-  liblis@LIBSUFFIX@_la_LIBADD += fortran/libfortran.la
++  liblis@LIBSUFFIX@_la_LIBADD += fortran/amg/libsaamg.la -lmpi_mpifh
++  liblis@LIBSUFFIX@_la_LIBADD += fortran/libfortran.la -lgfortran
+ else
+ if ENABLE_FORTRAN
+-  liblis@LIBSUFFIX@_la_LIBADD += fortran/libfortran.la
++  liblis@LIBSUFFIX@_la_LIBADD += fortran/libfortran.la -lgfortran
+ endif
+ endif
+ liblis@LIBSUFFIX@_la_SOURCES = 
++liblis@LIBSUFFIX@_la_LDFLAGS = -no-undefined
+--- origsrc/lis-2.1.23/src/fortran/amg/lis_m_count_time_mod.F90	2026-10-21 01:38:53.000000000 +0000
++++ src/lis-2.1.23/src/fortran/amg/lis_m_count_time_mod.F90	2026-11-09 20:51:39.507849900 +0000
+@@ -47,6 +47,7 @@ contains
+     INTEGER(kind=kint) :: ierr, NPROCS, i, num_of_kinds
+     REAL   (kind=kreal), SAVE :: time_table(TIME_KINDS), start_table(TIME_KINDS)
+     REAL   (kind=kreal) :: recv_time, send_time, out_time
++    LOGICAL, SAVE :: started(TIME_KINDS) = .FALSE.
+     LOGICAL :: prt_ech_PE(TIME_KINDS)
+     DATA time_table/TIME_KINDS*0/
+     DATA start_table/TIME_KINDS*0/
+@@ -65,12 +66,14 @@ contains
+        
+     CASE(1)
+        start_table(time_kind) = MPI_WTIME()
++       started(time_kind) = .TRUE.
+ 
+     CASE(2)
+-       IF(start_table(time_kind) /= 0) THEN
++       IF(started(time_kind)) THEN
+           time_table(time_kind) = time_table(time_kind) + &
+                &                  MPI_WTIME() - start_table(time_kind)
+           start_table(time_kind) = 0
++          started(time_kind) = .FALSE.
+        ELSE
+           WRITE(*,*) "timer error...:", time_kind, start_table(time_kind)
+           STOP "timer error!!"
+--- origsrc/lis-2.1.23/src/solver/lis_solver_fgcrodr.c	2026-10-25 01:12:05.000000000 +0000
++++ src/lis-2.1.23/src/solver/lis_solver_fgcrodr.c	2026-11-09 20:51:39.509864600 +0000
+@@ -15,6 +15,14 @@
+ #endif
+ #endif
+ 
++#ifdef HAVE_CONFIG_H
++	#include "lis_config.h"
++#else
++#ifdef HAVE_CONFIG_WIN_H
++	#include "lis_config_win.h"
++#endif
++#endif
++
+ #include <math.h>
+ #include <string.h>
+ 
+--- origsrc/lis-2.1.23/test/Makefile.am	2026-11-05 09:37:33.000000000 +0000
++++ src/lis-2.1.23/test/Makefile.am	2026-11-09 20:51:39.509864600 +0000
+@@ -5,7 +5,7 @@ AM_LDFLAGS = $(AMDEFS)
+ 
+ EXTRA_DIST = defs test.sh testmat.mtx testmat2.mtx testmat3.mtx testmat4.mtx testmat0.mtx testvec0.mtx
+ 
+-testdir = ${prefix}/share/examples/lis
++testdir = $(libdir)/lis/examples
+ 
+ test_DATA = testmat.mtx testmat2.mtx testmat3.mtx testmat4.mtx testmat0.mtx testvec0.mtx
+ 
+--- origsrc/lis-2.1.23/test/test.sh	2026-10-21 01:38:53.000000000 +0000
++++ src/lis-2.1.23/test/test.sh	2026-11-09 20:51:39.511878600 +0000
+@@ -27,25 +27,25 @@ fi
+ 
+ echo ' '
+ echo 'checking linear solvers...'
+-$MPIRUN $srcdir/test1 $srcdir/testmat.mtx 0 /dev/null /dev/null
++$MPIRUN $top_builddir/test/test1 $srcdir/testmat.mtx 0 /dev/null /dev/null
+ 
+ echo 'checking eigensolvers...'
+-$MPIRUN $srcdir/etest1 $srcdir/testmat.mtx /dev/null /dev/null
++$MPIRUN $top_builddir/test/etest1 $srcdir/testmat.mtx /dev/null /dev/null
+ 
+ if test "$enable_fortran" = "yes" || test "$enable_f90" = "yes"; then
+   echo 'checking Fortran interface...'
+-  $MPIRUN $srcdir/test4f
++  $MPIRUN $top_builddir/test/test4f
+   echo ' '
+ fi
+ 
+ if test "$enable_quad" = "yes"; then
+   echo 'checking double-double precision operations...'
+-  $MPIRUN $srcdir/test5 200 2.0 -f double
+-  $MPIRUN $srcdir/test5 200 2.0 -f quad
++  $MPIRUN $top_builddir/test/test5 200 2.0 -f double
++  $MPIRUN $top_builddir/test/test5 200 2.0 -f quad
+ fi
+ 
+ if test "$enable_saamg" = "yes"; then
+   echo 'checking SAAMG preconditioner...'
+-  $MPIRUN $srcdir/test2 10 10 1 /dev/null /dev/null -i cg -p saamg
++  $MPIRUN $top_builddir/test/test2 10 10 1 /dev/null /dev/null -i cg -p saamg
+ fi
+ 

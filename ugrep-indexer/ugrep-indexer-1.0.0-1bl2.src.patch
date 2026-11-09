@@ -1,5 +1,5 @@
---- origsrc/ugrep-indexer-1.0.0/src/Makefile.am	2024-04-19 02:32:26.000000000 +0900
-+++ src/ugrep-indexer-1.0.0/src/Makefile.am	2024-06-07 17:36:12.373789700 +0900
+--- origsrc/ugrep-indexer-1.0.0/src/Makefile.am	2024-04-18 17:32:26.000000000 +0000
++++ src/ugrep-indexer-1.0.0/src/Makefile.am	2026-11-09 00:30:35.226282500 +0000
 @@ -1,4 +1,4 @@
  bin_PROGRAMS   = ugrep-indexer
 -ugrep_indexer_CPPFLAGS = $(EXTRA_CFLAGS) -DPLATFORM=\"$(PLATFORM)\"

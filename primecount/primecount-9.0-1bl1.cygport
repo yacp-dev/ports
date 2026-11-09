@@ -32,20 +32,20 @@ src_test()
 
 PKG_NAMES="
 	primecount
-	libprimecount8
+	libprimecount9
 	libprimecount-devel
 "
 primecount_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libprimecount8_CONTENTS="
-	usr/bin/cyg*-8.dll
+libprimecount9_CONTENTS="
+	usr/bin/cyg*-9.dll
 "
 libprimecount_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 primecount_SUMMARY="${SUMMARY} (utilities)"
-libprimecount8_SUMMARY="${SUMMARY} (runtime)"
+libprimecount9_SUMMARY="${SUMMARY} (runtime)"
 libprimecount_devel_SUMMARY="${SUMMARY} (development)"

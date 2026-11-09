@@ -8,12 +8,12 @@ Runtime requirements:
   cygwin-3.6.12-1
   libgcc1-14.4.0-1
   libgomp1-14.4.0-1
-  libprimecount-devel-8.8-1bl1
-  libprimecount8-8.8-1bl1
-  libprimesieve-devel-12.16-1bl1
-  libprimesieve12-12.16-1bl1
+  libprimecount-devel-9.0-1bl1
+  libprimecount9-9.0-1bl1
+  libprimesieve-devel-12.17-1bl1
+  libprimesieve12-12.17-1bl1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.9-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
@@ -21,29 +21,29 @@ Build requirements:
   cmake-4.4.5-1
   cygport-0.37.12-1
   gcc-g++-14.4.0-1
-  libprimesieve-devel-12.16-1bl1
+  libprimesieve-devel-12.17-1bl1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/kimwalisch/primecount
 
 Canonical download:
-  https://github.com/kimwalisch/primecount/archive/refs/tags/v8.8.tar.gz
+  https://github.com/kimwalisch/primecount/archive/refs/tags/v9.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack primecount-8.8-X-src.tar.xz
+  1. unpack primecount-9.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./primecount-8.8-X.cygport all
+        % cygport ./primecount-9.0-X.cygport all
 
 This will create:
-  /usr/src/primecount-8.8-X-src.tar.xz
-  /usr/src/primecount-8.8-X.tar.xz
-  /usr/src/libprimecount8-8.8-X.tar.xz
-  /usr/src/libprimecount-devel-8.8-X.tar.xz
+  /usr/src/primecount-9.0-X-src.tar.xz
+  /usr/src/primecount-9.0-X.tar.xz
+  /usr/src/libprimecount9-9.0-X.tar.xz
+  /usr/src/libprimecount-devel-9.0-X.tar.xz
 
 -------------------------------------------
 
@@ -57,8 +57,8 @@ Files included in the binary package:
   /usr/share/doc/primecount/README.md
   /usr/share/man/man1/primecount.1.gz
 
-(libprimecount8)
-  /usr/bin/cygprimecount-8.dll
+(libprimecount9)
+  /usr/bin/cygprimecount-9.dll
 
 (libprimecount-devel)
   /usr/include/primecount.h
@@ -73,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 9.0-1bl1 -----
+Version bump.
 
 ----- version 8.8-1bl1 -----
 Version bump.

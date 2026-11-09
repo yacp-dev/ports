@@ -1,0 +1,13 @@
+--- origsrc/unarr-1.2.0/CMakeLists.txt	2026-10-31 18:01:08.000000000 +0000
++++ src/unarr-1.2.0/CMakeLists.txt	2026-11-09 00:04:55.891371100 +0000
+@@ -260,9 +260,7 @@ if(UNIX
+             -Werror-implicit-function-declaration
+             $<$<CONFIG:Release>:-fomit-frame-pointer>
+             $<$<C_COMPILER_ID:Clang,AppleClang>:
+-            -Wno-missing-field-initializers>
+-            -ffile-prefix-map=${PROJECT_SOURCE_DIR}=unarr
+-            )
++            -Wno-missing-field-initializers>)
+   if(PROJECT_IS_TOP_LEVEL AND BUILD_FUZZER)
+     target_link_libraries(unarr PRIVATE fuzzer_flags)
+   endif()

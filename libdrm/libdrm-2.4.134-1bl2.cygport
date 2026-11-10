@@ -1,8 +1,6 @@
 HOMEPAGE="https://dri.freedesktop.org/wiki/"
 SRC_URI="https://dri.freedesktop.org/${PN}/${P}.tar.xz"
-PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-make-dri-perms-okay.patch
-"
+PATCH_URI="https://src.fedoraproject.org/rpms/${PN}/raw/f372001636d10e5492ba826b7d8be0c5179f5fa0/f/${PN}-make-dri-perms-okay.patch"
 
 CATEGORY="Libs"
 SUMMARY="Direct Rendering Manager runtime library"
@@ -17,17 +15,22 @@ written to the DRI specification, including drivers for chipsets produced by
 
 LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
-# LICENSE_URI="LICENSE"
+LICENSE_URI="meson.build"
 
 BUILD_REQUIRES="
 	libcairo-devel
 	libpciaccess-devel
-	python39-docutils
+	python312-docutils
 "
 
 export CPPFLAGS="${CPPFLAGS} -D__USE_LINUX_IOCTL_DEFS -DDRM_MAJOR=226"
 
 inherit meson
+
+src_test() {
+	cd ${S}/_build.${CHOST}
+	PATH=${S}/_build.${CHOST}:${PATH} ninja_test
+}
 
 CYGMESON_ARGS="
 	-Detnaviv=enabled

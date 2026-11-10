@@ -32,14 +32,14 @@ export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 PKG_NAMES="
 	libdatovka
-	libdatovka8
+	libdatovka11
 	libdatovka-devel
 "
 libdatovka_CONTENTS="
 	usr/share/doc
 "
-libdatovka8_CONTENTS="
-	usr/bin/cyg*-8.dll
+libdatovka11_CONTENTS="
+	usr/bin/cyg*-11.dll
 	usr/share/locale
 "
 libdatovka_devel_CONTENTS="
@@ -48,5 +48,5 @@ libdatovka_devel_CONTENTS="
 	usr/share/man/man3
 "
 libdatovka_SUMMARY="${SUMMARY} (licensing & readmes)"
-libdatovka8_SUMMARY="${SUMMARY} (runtime)"
+libdatovka11_SUMMARY="${SUMMARY} (runtime)"
 libdatovka_devel_SUMMARY="${SUMMARY} (development)"

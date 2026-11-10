@@ -1,5 +1,5 @@
-HOMEPAGE="https://github.com/kakwa/${PN}"
-SRC_URI="https://github.com/kakwa/${PN}/archive/refs/tags/${PV}.tar.gz"
+HOMEPAGE="https://github.com/claricle/${PN}"
+SRC_URI="https://github.com/claricle/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Microsoft (MS) EMF to SVG conversion library"

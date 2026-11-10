@@ -3,53 +3,53 @@ libemf2svg
 MS EMF (Enhanced Metafile) to SVG conversion library.
 
 Runtime requirements:
-  cygwin-3.6.6-1
+  cygwin-3.6.12-1
   libargp-20250917-2
-  libemf2svg1-1.8.1-1bl1
-  libfontconfig1-2.17.1-1
+  libemf2svg1-1.8.2-1bl1
+  libfontconfig1-2.18.3-1
   libfreetype6-2.13.3-1
-  libgcc1-13.4.0-1
-  libiconv2-1.17-1
-  libpng16-1.6.47-2
-  libstdc++6-13.4.0-1
-  libuemf0-0.2.8-1bl1
+  libgcc1-14.4.0-1
+  libiconv2-1.19-2
+  libpng16-1.6.59-1
+  libstdc++6-14.4.0-1
+  libuemf0-0.2.8-1bl2
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libargp-devel-20250917-2
-  libfontconfig-devel-2.17.1-1
+  libfontconfig-devel-2.18.3-1
   libfreetype-devel-2.13.3-1
-  libiconv-devel-1.17-1
-  libpng-devel-1.6.47-2
-  libuemf-devel-0.2.8-1bl1
-  libxml2-devel-2.10.4-2
+  libiconv-devel-1.19-2
+  libpng-devel-1.6.59-1
+  libuemf-devel-0.2.8-1bl2
+  libxml2-devel-2.13.9-3
   ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/kakwa/libemf2svg
+  https://github.com/claricle/libemf2svg
 
 Canonical download:
-  https://github.com/kakwa/libemf2svg/archive/refs/tags/1.8.1.tar.gz
+  https://github.com/claricle/libemf2svg/archive/refs/tags/v1.8.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libemf2svg-1.8.1-X-src.tar.xz
+  1. unpack libemf2svg-1.8.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libemf2svg-1.8.1-X.cygport all
+        % cygport ./libemf2svg-1.8.2-X.cygport all
 
 This will create:
-  /usr/src/libemf2svg-1.8.1-X-src.tar.xz
-  /usr/src/libemf2svg-1.8.1-X.tar.xz
-  /usr/src/libemf2svg1-1.8.1-X.tar.xz
-  /usr/src/libemf2svg-devel-1.8.1-X.tar.xz
+  /usr/src/libemf2svg-1.8.2-X-src.tar.xz
+  /usr/src/libemf2svg-1.8.2-X.tar.xz
+  /usr/src/libemf2svg1-1.8.2-X.tar.xz
+  /usr/src/libemf2svg-devel-1.8.2-X.tar.xz
 
 -------------------------------------------
 
@@ -71,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.8.2-1bl1 -----
+Version bump.
 
 ----- version 1.8.1-1bl1 -----
 Version bump.

@@ -13,8 +13,8 @@ limited to GPUs or Intel specific hardware, as other hardware and
 manufacturers can also freely use this API for hardware accelerated video
 decoding."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND X11"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND X11"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="

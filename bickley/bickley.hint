@@ -1,8 +1,0 @@
-category: Libs
-requires: cygwin libbickley0.4_0 libdbus-glib_1_2 libexif12 libgconf2_4 libgdk_pixbuf2.0_0 libglib2.0_0 libgstreamer0.10_0 libgtk2.0_0 libgupnp-av1.0_2 libgupnp1.0_4 libtdb1
-sdesc: "Meta data management API and framework (utilities)"
-ldesc: "Bickley is a meta data management API and framework. The core API
-allows storing and querying of URIs and associating key/value pairs. The core
-bickley API in the libbickley library provides shared access to common
-meta-data storage. Different processes can access and manipulate the same set
-of URIs and meta data about them in parallel."

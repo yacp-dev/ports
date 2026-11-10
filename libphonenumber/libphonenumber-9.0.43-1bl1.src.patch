@@ -1,5 +1,5 @@
---- origsrc/libphonenumber-9.0.42/cpp/CMakeLists.txt	2026-10-22 15:21:10.000000000 +0000
-+++ src/libphonenumber-9.0.42/cpp/CMakeLists.txt	2026-10-26 04:25:51.112739000 +0000
+--- origsrc/libphonenumber-9.0.43/cpp/CMakeLists.txt	2026-11-04 12:49:37.000000000 +0000
++++ src/libphonenumber-9.0.43/cpp/CMakeLists.txt	2026-11-10 13:50:20.632902500 +0000
 @@ -462,7 +462,7 @@ if (BUILD_STATIC_LIB)
  
    if (BUILD_GEOCODER)
@@ -68,8 +68,8 @@
    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
  
---- origsrc/libphonenumber-9.0.42/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-10-22 15:21:10.000000000 +0000
-+++ src/libphonenumber-9.0.42/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-10-26 04:25:51.114397500 +0000
+--- origsrc/libphonenumber-9.0.43/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-11-04 12:49:37.000000000 +0000
++++ src/libphonenumber-9.0.43/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-11-10 13:50:20.634915700 +0000
 @@ -77,7 +77,7 @@ void PhoneNumberOfflineGeocoder::Init(
  }
  
@@ -88,8 +88,8 @@
    const AreaCodeMap* const descriptions = GetPhonePrefixDescriptions(
        phone_prefix, lang, script, region);
    const char* description = descriptions ? descriptions->Lookup(number) : NULL;
---- origsrc/libphonenumber-9.0.42/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-10-22 15:21:10.000000000 +0000
-+++ src/libphonenumber-9.0.42/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-10-26 04:25:51.114752300 +0000
+--- origsrc/libphonenumber-9.0.43/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-11-04 12:49:37.000000000 +0000
++++ src/libphonenumber-9.0.43/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-11-10 13:50:20.634915700 +0000
 @@ -31,6 +31,8 @@
  namespace i18n {
  namespace phonenumbers {
@@ -108,3 +108,42 @@
    }
  
    StringPiece* Data() {
+@@ -143,8 +145,36 @@ class RE2RegExp : public RegExp {
+       return RE2::GlobalReplace(string_to_process, utf8_regexp_,
+                                 re2_replacement_string);
+     } else {
+-      return RE2::Replace(string_to_process, utf8_regexp_,
+-                          re2_replacement_string);
++      // Workaround for Cygwin RE2 issue where the first Match call on a reused
++      // RE2 object across different string buffers can return submatch[0] pointing
++      // to the previous buffer's memory, causing out-of-bounds string replacements.
++      // If an invalid pointer is returned, retry Match once to refresh the DFA cache.
++      StringPiece vec[16];
++      int nvec = 1 + utf8_regexp_.NumberOfCapturingGroups();
++      if (nvec > 16) nvec = 16;
++      for (int i = 0; i < nvec; ++i) vec[i] = StringPiece();
++      if (!utf8_regexp_.Match(*string_to_process, 0, string_to_process->size(),
++                              RE2::UNANCHORED, vec, nvec)) {
++        return false;
++      }
++      std::ptrdiff_t off = vec[0].data() - string_to_process->data();
++      if (off < 0 || static_cast<size_t>(off) + vec[0].size() > string_to_process->size()) {
++        for (int i = 0; i < nvec; ++i) vec[i] = StringPiece();
++        if (!utf8_regexp_.Match(*string_to_process, 0, string_to_process->size(),
++                                RE2::UNANCHORED, vec, nvec)) {
++          return false;
++        }
++        off = vec[0].data() - string_to_process->data();
++        if (off < 0 || static_cast<size_t>(off) + vec[0].size() > string_to_process->size()) {
++          return false;
++        }
++      }
++      string s;
++      if (!utf8_regexp_.Rewrite(&s, re2_replacement_string, vec, nvec)) {
++        return false;
++      }
++      string_to_process->replace(static_cast<size_t>(off), vec[0].size(), s);
++      return true;
+     }
+   }
+ 

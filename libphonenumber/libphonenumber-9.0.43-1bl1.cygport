@@ -76,3 +76,9 @@ libphonenumber_devel_CONTENTS="
 libphonenumber_SUMMARY="${SUMMARY} (licensing & readmes)"
 libphonenumber9_SUMMARY="${SUMMARY} (runtime)"
 libphonenumber_devel_SUMMARY="${SUMMARY} (development)"
+
+libphonenumber_devel_REQUIRES="
+	libboost-devel
+	libprotobuf-devel
+	libre2-devel
+"

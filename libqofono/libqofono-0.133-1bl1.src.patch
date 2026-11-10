@@ -1,5 +1,5 @@
---- origsrc/libqofono-0.132/plugin/CMakeLists.txt	2026-09-11 16:27:25.000000000 +0000
-+++ src/libqofono-0.132/plugin/CMakeLists.txt	2026-10-19 02:45:06.856619900 +0000
+--- origsrc/libqofono-0.133/plugin/CMakeLists.txt	2026-11-07 17:49:51.000000000 +0000
++++ src/libqofono-0.133/plugin/CMakeLists.txt	2026-11-10 07:09:09.693306800 +0000
 @@ -6,7 +6,9 @@ set(PLUGIN_SOURCES
      qofonosimlistmodel.cpp
  )

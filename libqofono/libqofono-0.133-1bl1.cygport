@@ -1,10 +1,10 @@
 HOMEPAGE="https://github.com/sailfishos/${PN}"
 SRC_URI="https://github.com/sailfishos/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/${PV}-1/debian/patches/1001_context-preferred.patch
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/${PV}-1/debian/patches/1003_mtk_settings_binding.patch
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/${PV}-1/debian/patches/2001_path-adjustments.patch
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/${PV}-1/debian/patches/1004_desktop-file-fields.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.132-1/debian/patches/1001_context-preferred.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.132-1/debian/patches/1003_mtk_settings_binding.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.132-1/debian/patches/2001_path-adjustments.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.132-1/debian/patches/1004_desktop-file-fields.patch
 "
 
 CATEGORY="Libs"

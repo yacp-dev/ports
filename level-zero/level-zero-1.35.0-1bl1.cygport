@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="oneAPI Level Zero Specification Headers and Loader"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND Apache-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -29,9 +29,6 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_L0_LOADER_TESTS:BOOL=ON
-	-Dpkgconfig_prefix:PATH=usr
-	-Dpkgconfig_include_dir:PATH=include
-	-Dpkgconfig_lib_dir:PATH=lib
 "
 
 DOCS="

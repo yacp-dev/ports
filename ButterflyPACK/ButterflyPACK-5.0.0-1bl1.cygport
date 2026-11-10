@@ -16,11 +16,14 @@ algebra tool well-suited for compressing matrices arising from high-frequency
 wave equations or highly oscillatory integral operators. ButterflyPACK also
 provides preconditioned TFQMR iterative solvers."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause-LBNL"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause-LBNL"
 LICENSE_URI="license.txt"
 
-BUILD_REQUIRES="liblapack-devel"
+BUILD_REQUIRES="
+	gcc-fortran
+	liblapack-devel
+"
 
 inherit cmake
 
@@ -59,20 +62,21 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	ButterflyPACK
-	libbutterflypack3
+	libbutterflypack5
 	libbutterflypack-devel
 "
 ButterflyPACK_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libbutterflypack3_CONTENTS="
-	usr/bin/cyg*-3.dll
+libbutterflypack5_CONTENTS="
+	usr/bin/cyg*-5.dll
 "
 libbutterflypack_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 ButterflyPACK_SUMMARY="${SUMMARY} (utilities)"
-libbutterflypack3_SUMMARY="${SUMMARY} (runtime)"
+libbutterflypack5_SUMMARY="${SUMMARY} (runtime)"
 libbutterflypack_devel_SUMMARY="${SUMMARY} (development)"
+libbutterflypack_devel_REQUIRES="liblapack-devel"

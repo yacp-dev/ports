@@ -14,47 +14,47 @@ wave equations or highly oscillatory integral operators. ButterflyPACK also
 provides preconditioned TFQMR iterative solvers.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libbutterflypack-devel-3.2.0-1bl1
-  libbutterflypack3-3.2.0-1bl1
-  libgcc1-12.4.0-3
-  libgfortran5-12.4.0-3
-  libgomp1-12.4.0-3
-  liblapack0-3.12.1-1
-  libopenblas-0.3.26-1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libbutterflypack-devel-5.0.0-1bl1
+  libbutterflypack5-5.0.0-1bl1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libgomp1-14.4.0-1
+  liblapack0-3.12.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-fortran-12.4.0-3
-  gcc-g++-12.4.0-3
-  liblapack-devel-3.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  gcc-g++-14.4.0-1
+  liblapack-devel-3.12.0-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/liuyangzhuan/ButterflyPACK
 
 Canonical download:
-  https://github.com/liuyangzhuan/ButterflyPACK/archive/refs/tags/v3.2.0.tar.gz
+  https://github.com/liuyangzhuan/ButterflyPACK/archive/refs/tags/v5.0.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ButterflyPACK-3.2.0-X-src.tar.xz
+  1. unpack ButterflyPACK-5.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ButterflyPACK-3.2.0-X.cygport all
+        % cygport ./ButterflyPACK-5.0.0-X.cygport all
 
 This will create:
-  /usr/src/ButterflyPACK-3.2.0-X-src.tar.xz
-  /usr/src/ButterflyPACK-3.2.0-X.tar.xz
-  /usr/src/libbutterflypack3-3.2.0-X.tar.xz
-  /usr/src/libbutterflypack-devel-3.2.0-X.tar.xz
+  /usr/src/ButterflyPACK-5.0.0-X-src.tar.xz
+  /usr/src/ButterflyPACK-5.0.0-X.tar.xz
+  /usr/src/libbutterflypack5-5.0.0-X.tar.xz
+  /usr/src/libbutterflypack-devel-5.0.0-X.tar.xz
 
 -------------------------------------------
 
@@ -67,22 +67,23 @@ Files included in the binary package:
   /usr/bin/ie3deigen.exe
   /usr/bin/ie3dport.exe
   /usr/bin/ie3dporteigen.exe
+  /usr/bin/testproxy.exe
+  /usr/bin/testqtt.exe
+  /usr/bin/testtt.exe
   /usr/share/doc/ButterflyPACK/CHANGELOG
   /usr/share/doc/ButterflyPACK/README.md
   /usr/share/doc/ButterflyPACK/license.txt
   /usr/share/doc/Cygwin/ButterflyPACK.README
 
-(libbutterflypack3)
-  /usr/bin/cygcbutterflypack-3.dll
-  /usr/bin/cygdbutterflypack-3.dll
-  /usr/bin/cygmpi_dummy-3.dll
-  /usr/bin/cygsbutterflypack-3.dll
-  /usr/bin/cygzbutterflypack-3.dll
+(libbutterflypack5)
+  /usr/bin/cygbutterflypack-5.dll
+  /usr/bin/cygmpi_dummy-5.dll
 
 (libbutterflypack-devel)
   /usr/include/ButterflyPACK/ButterflyPACK_config.fi
+  /usr/include/ButterflyPACK/CPPWrapper.hpp
+  /usr/include/ButterflyPACK/cBPACK_wrapper.h
   /usr/include/ButterflyPACK/cButterflyPACK_config.fi
-  /usr/include/ButterflyPACK/cC_BPACK_wrapper.h
   /usr/include/ButterflyPACK/c_bpack_block_sendrecv.mod
   /usr/include/ButterflyPACK/c_bpack_constr.mod
   /usr/include/ButterflyPACK/c_bpack_defs.mod
@@ -100,8 +101,8 @@ Files included in the binary package:
   /usr/include/ButterflyPACK/c_magma_utilities.mod
   /usr/include/ButterflyPACK/c_misc_densela.mod
   /usr/include/ButterflyPACK/c_misc_utilities.mod
+  /usr/include/ButterflyPACK/dBPACK_wrapper.h
   /usr/include/ButterflyPACK/dButterflyPACK_config.fi
-  /usr/include/ButterflyPACK/dC_BPACK_wrapper.h
   /usr/include/ButterflyPACK/d_bpack_block_sendrecv.mod
   /usr/include/ButterflyPACK/d_bpack_constr.mod
   /usr/include/ButterflyPACK/d_bpack_defs.mod
@@ -120,8 +121,8 @@ Files included in the binary package:
   /usr/include/ButterflyPACK/d_misc_densela.mod
   /usr/include/ButterflyPACK/d_misc_utilities.mod
   /usr/include/ButterflyPACK/mpi_dummy.fi
+  /usr/include/ButterflyPACK/sBPACK_wrapper.h
   /usr/include/ButterflyPACK/sButterflyPACK_config.fi
-  /usr/include/ButterflyPACK/sC_BPACK_wrapper.h
   /usr/include/ButterflyPACK/s_bpack_block_sendrecv.mod
   /usr/include/ButterflyPACK/s_bpack_constr.mod
   /usr/include/ButterflyPACK/s_bpack_defs.mod
@@ -139,8 +140,8 @@ Files included in the binary package:
   /usr/include/ButterflyPACK/s_magma_utilities.mod
   /usr/include/ButterflyPACK/s_misc_densela.mod
   /usr/include/ButterflyPACK/s_misc_utilities.mod
+  /usr/include/ButterflyPACK/zBPACK_wrapper.h
   /usr/include/ButterflyPACK/zButterflyPACK_config.fi
-  /usr/include/ButterflyPACK/zC_BPACK_wrapper.h
   /usr/include/ButterflyPACK/z_bpack_block_sendrecv.mod
   /usr/include/ButterflyPACK/z_bpack_constr.mod
   /usr/include/ButterflyPACK/z_bpack_defs.mod
@@ -160,18 +161,18 @@ Files included in the binary package:
   /usr/include/ButterflyPACK/z_misc_utilities.mod
   /usr/lib/cmake/ButterflyPACK/butterflypack-config-version.cmake
   /usr/lib/cmake/ButterflyPACK/butterflypack-config.cmake
-  /usr/lib/cmake/ButterflyPACK/butterflypack-targets-release.cmake
+  /usr/lib/cmake/ButterflyPACK/butterflypack-targets-relwithdebinfo.cmake
   /usr/lib/cmake/ButterflyPACK/butterflypack-targets.cmake
-  /usr/lib/libcbutterflypack.dll.a
-  /usr/lib/libdbutterflypack.dll.a
+  /usr/lib/libbutterflypack.dll.a
   /usr/lib/libmpi_dummy.dll.a
-  /usr/lib/libsbutterflypack.dll.a
-  /usr/lib/libzbutterflypack.dll.a
   /usr/lib/pkgconfig/butterflypack.pc
 
 ------------------
 
 Port Notes:
+
+----- version 5.0.0-1bl1 -----
+Version bump.
 
 ----- version 3.2.0-1bl1 -----
 Version bump.

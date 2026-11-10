@@ -1,51 +1,51 @@
 libdrm
 ------------------------------------------
 The Direct Rendering Infrastructure, also known as the DRI, is a framework for
-allowing direct access to graphics hardware under the X Window System in a
-safe and efficient manner. It includes changes to the X server, to several
-client libraries, and to the kernel (DRM, Direct Rendering Manager). The most
+allowing direct access to graphics hardware under the X Window System in a safe
+and efficient manner. It includes changes to the X server, to several client
+libraries, and to the kernel (DRM, Direct Rendering Manager). The most
 important use for the DRI is to create fast OpenGL implementations providing
 hardware acceleration for Mesa. Several 3D accelerated drivers have been
 written to the DRI specification, including drivers for chipsets produced by
 3DFX, AMD (formerly ATI), Intel and Matrox.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libcairo2-1.18.4-1
-  libdrm-devel-2.4.134-1bl1
-  libdrm2-2.4.134-1bl1
-  libdrm_amdgpu-devel-2.4.134-1bl1
-  libdrm_amdgpu1-2.4.134-1bl1
-  libdrm_etnaviv-devel-2.4.134-1bl1
-  libdrm_etnaviv1-2.4.134-1bl1
-  libdrm_exynos-devel-2.4.134-1bl1
-  libdrm_exynos1-2.4.134-1bl1
-  libdrm_freedreno-devel-2.4.134-1bl1
-  libdrm_freedreno1-2.4.134-1bl1
-  libdrm_intel-devel-2.4.134-1bl1
-  libdrm_intel1-2.4.134-1bl1
-  libdrm_nouveau-devel-2.4.134-1bl1
-  libdrm_nouveau2-2.4.134-1bl1
-  libdrm_omap-devel-2.4.134-1bl1
-  libdrm_omap1-2.4.134-1bl1
-  libdrm_radeon-devel-2.4.134-1bl1
-  libdrm_radeon1-2.4.134-1bl1
-  libdrm_tegra-devel-2.4.134-1bl1
-  libdrm_tegra0-2.4.134-1bl1
-  libpciaccess-devel-0.19-1bl1
-  libpciaccess0-0.19-1bl1
-  pkg-config-3.0.4-2
+  cygwin-3.6.12-1
+  libcairo2-1.18.6-1
+  libdrm-devel-2.4.134-1bl2
+  libdrm2-2.4.134-1bl2
+  libdrm_amdgpu-devel-2.4.134-1bl2
+  libdrm_amdgpu1-2.4.134-1bl2
+  libdrm_etnaviv-devel-2.4.134-1bl2
+  libdrm_etnaviv1-2.4.134-1bl2
+  libdrm_exynos-devel-2.4.134-1bl2
+  libdrm_exynos1-2.4.134-1bl2
+  libdrm_freedreno-devel-2.4.134-1bl2
+  libdrm_freedreno1-2.4.134-1bl2
+  libdrm_intel-devel-2.4.134-1bl2
+  libdrm_intel1-2.4.134-1bl2
+  libdrm_nouveau-devel-2.4.134-1bl2
+  libdrm_nouveau2-2.4.134-1bl2
+  libdrm_omap-devel-2.4.134-1bl2
+  libdrm_omap1-2.4.134-1bl2
+  libdrm_radeon-devel-2.4.134-1bl2
+  libdrm_radeon1-2.4.134-1bl2
+  libdrm_tegra-devel-2.4.134-1bl2
+  libdrm_tegra0-2.4.134-1bl2
+  libpciaccess-devel-0.19-1bl2
+  libpciaccess0-0.19-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
-  libcairo-devel-1.18.4-1
-  libpciaccess-devel-0.19-1bl1
-  meson-1.8.5-1
+  libcairo-devel-1.18.6-1
+  libpciaccess-devel-0.19-1bl2
+  meson-1.10.2-1
   ninja-1.13.2-1
-  python39-docutils-0.22.4-1
+  python312-docutils-0.23-1
 
 Canonical website:
   https://dri.freedesktop.org/wiki/
@@ -251,6 +251,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.4.134-1bl2 -----
+Rebuild for python312-docutils
 
 ----- version 2.4.134-1bl1 -----
 Version bump.

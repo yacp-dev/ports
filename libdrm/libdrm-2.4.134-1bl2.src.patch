@@ -1,5 +1,5 @@
---- origsrc/libdrm-2.4.134/include/drm/drm.h	2026-05-29 17:49:42.000000000 +0900
-+++ src/libdrm-2.4.134/include/drm/drm.h	2026-07-30 09:40:32.803823700 +0900
+--- origsrc/libdrm-2.4.134/include/drm/drm.h	2026-05-29 08:49:42.000000000 +0000
++++ src/libdrm-2.4.134/include/drm/drm.h	2026-11-10 13:52:09.486343400 +0000
 @@ -44,7 +44,11 @@ typedef unsigned int drm_handle_t;
  #else /* One of the BSDs */
  
@@ -12,8 +12,8 @@
  #include <sys/types.h>
  typedef int8_t   __s8;
  typedef uint8_t  __u8;
---- origsrc/libdrm-2.4.134/tests/nouveau/threaded.c	2026-05-29 17:49:42.000000000 +0900
-+++ src/libdrm-2.4.134/tests/nouveau/threaded.c	2026-07-30 09:43:29.215461700 +0900
+--- origsrc/libdrm-2.4.134/tests/nouveau/threaded.c	2026-05-29 08:49:42.000000000 +0000
++++ src/libdrm-2.4.134/tests/nouveau/threaded.c	2026-11-10 13:52:09.488106100 +0000
 @@ -36,6 +36,7 @@ static int failed;
  
  static int import_fd;
@@ -40,8 +40,8 @@
  
  	if (argc < 2) {
  		fd = drmOpenWithType("nouveau", NULL, DRM_NODE_RENDER);
---- origsrc/libdrm-2.4.134/xf86drm.h	2026-07-30 09:32:15.928411000 +0900
-+++ src/libdrm-2.4.134/xf86drm.h	2026-07-30 09:43:45.782768600 +0900
+--- origsrc/libdrm-2.4.134/xf86drm.h	2026-11-10 13:52:09.011001800 +0000
++++ src/libdrm-2.4.134/xf86drm.h	2026-11-10 13:52:09.488106100 +0000
 @@ -47,7 +47,7 @@ extern "C" {
  #define DRM_MAX_MINOR   64 /* deprecated */
  #endif

@@ -1,5 +1,5 @@
---- origsrc/libva-2.23.0/va/libva.def	2025-12-12 16:58:13.000000000 +0900
-+++ src/libva-2.23.0/va/libva.def	2026-01-22 16:08:51.031510100 +0900
+--- origsrc/libva-2.24.1/va/libva.def	2026-07-08 08:05:48.000000000 +0000
++++ src/libva-2.24.1/va/libva.def	2026-11-10 14:30:42.200849100 +0000
 @@ -85,3 +85,6 @@ EXPORTS
      vaSyncSurface2
      vaDisplayIsValid
@@ -7,8 +7,8 @@
 +    va_TraceStatus
 +    va_trace_flag
 +    va_TracePutSurface
---- origsrc/libva-2.23.0/va/va.c	2025-12-12 16:58:13.000000000 +0900
-+++ src/libva-2.23.0/va/va.c	2026-01-22 15:55:29.013321800 +0900
+--- origsrc/libva-2.24.1/va/va.c	2026-07-08 08:05:48.000000000 +0000
++++ src/libva-2.24.1/va/va.c	2026-11-10 14:30:42.200849100 +0000
 @@ -44,7 +44,11 @@
  #else
  #include <dlfcn.h>
@@ -21,8 +21,8 @@
  #define DRIVER_PATH_STRING  "%s/%s%s"
  #define ENV_VAR_SEPARATOR ":"
  #endif
---- origsrc/libva-2.23.0/va/va_compat.c	2025-12-12 16:58:13.000000000 +0900
-+++ src/libva-2.23.0/va/va_compat.c	2026-01-22 15:55:29.015334100 +0900
+--- origsrc/libva-2.24.1/va/va_compat.c	2026-07-08 08:05:48.000000000 +0000
++++ src/libva-2.24.1/va/va_compat.c	2026-11-10 14:30:42.202859800 +0000
 @@ -40,6 +40,6 @@ vaCreateSurfaces_0_32_0(
      return vaCreateSurfaces(dpy, format, width, height, surfaces, num_surfaces,
                              NULL, 0);

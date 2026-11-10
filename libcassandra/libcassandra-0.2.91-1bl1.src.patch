@@ -1,0 +1,590 @@
+--- origsrc/libcassandra-0.2.91/Makefile.am	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/Makefile.am	2026-11-10 05:31:31.182104100 +0000
+@@ -27,6 +27,9 @@ include tests/include.am
+ 
+ TESTS += ${check_PROGRAMS}
+ 
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc libgenthrift.pc
++
+ 
+ 
+ fedora:
+--- origsrc/libcassandra-0.2.91/configure.ac	2026-11-10 05:31:30.553602100 +0000
++++ src/libcassandra-0.2.91/configure.ac	2026-11-10 05:31:31.162096600 +0000
+@@ -16,7 +16,7 @@ AC_PROG_CXX
+ AC_PROG_LIBTOOL
+ AM_PROG_AR
+ 
+-PANDORA_CANONICAL_TARGET(less-warnings, warnings-always-on, require-cxx, skip-visibility)
++PANDORA_CANONICAL_TARGET(less-warnings, require-cxx, skip-visibility)
+ 
+ #shared library versioning
+ # TODO: Setting here does seems to work, currently setting maunally in 
+@@ -43,6 +43,7 @@ AC_SEARCH_LIBS(gethostbyname, nsl)
+ AC_CHECK_FUNCS([getline])
+ 
+ PANDORA_REQUIRE_THRIFT
++PKG_CHECK_MODULES([THRIFT], [thrift])
+ 
+ AC_LANG_PUSH(C++)
+ PANDORA_REQUIRE_PTHREAD
+@@ -74,6 +75,8 @@ AC_CONFIG_FILES([
+   libgenthrift/Makefile
+   libcassandra/configure.h
+   libcassandra/Makefile
++  libcassandra.pc
++  libgenthrift.pc
+   ])
+ AC_OUTPUT
+ 
+--- origsrc/libcassandra-0.2.91/examples/ant_simple.cc	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/examples/ant_simple.cc	2026-11-10 05:31:31.162096600 +0000
+@@ -26,14 +26,14 @@ int main()
+ {
+ /*
+     CassandraFactory factory(host, port);
+-    boost::shared_ptr<Cassandra> client(factory.create());
+-    boost::shared_ptr<Cassandra> client2(factory.create());
++    std::shared_ptr<Cassandra> client(factory.create());
++    std::shared_ptr<Cassandra> client2(factory.create());
+     */
+-    boost::shared_ptr<Cassandra> client (connect_cassandra_client(host, port, drizzle_keyspace) );
++    std::shared_ptr<Cassandra> client (connect_cassandra_client(host, port, drizzle_keyspace) );
+     /*
+-    boost::shared_ptr<Cassandra> client2 (connect_cassandra_client(host, port, drizzle_keyspace) );
++    std::shared_ptr<Cassandra> client2 (connect_cassandra_client(host, port, drizzle_keyspace) );
+     try {
+-	boost::shared_ptr<Cassandra> client3 (connect_cassandra_client("appserver2.biuro.ant.vpn", port, drizzle_keyspace) );
++	std::shared_ptr<Cassandra> client3 (connect_cassandra_client("appserver2.biuro.ant.vpn", port, drizzle_keyspace) );
+     } catch (exception & e) {
+ 	cout << "Exception in client3." << endl;
+     }*/
+--- origsrc/libcassandra-0.2.91/examples/simple.cc	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/examples/simple.cc	2026-11-10 05:31:31.164122500 +0000
+@@ -23,7 +23,7 @@ int main()
+ {
+ 
+   CassandraFactory factory(host, port);
+-  boost::shared_ptr<Cassandra> client(factory.create());
++  std::shared_ptr<Cassandra> client(factory.create());
+ 
+   // Not really needed since the factory timeout sets all 3 by default:
+   client->setRecvTimeout(timeout);
+--- origsrc/libcassandra-0.2.91/libcassandra/Makefile.am	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra/Makefile.am	2026-11-10 05:31:31.170199500 +0000
+@@ -26,7 +26,7 @@ libcassandra_la_HEADERS = \
+ 			 util/timetools.h
+ 
+ 
+-libcassandra_la_CXXFLAGS= ${AM_CXXFLAGS}
++libcassandra_la_CXXFLAGS= ${AM_CXXFLAGS} -I$(top_srcdir)
+ libcassandra_la_SOURCES = \
+ 				       cassandra.cc \
+ 				       cassandra_factory.cc \
+@@ -43,8 +43,8 @@ libcassandra_la_SOURCES = \
+ 				       util/timetools.cc
+ 
+ libcassandra_la_DEPENDENCIES= ../libgenthrift/libgenthrift.la
+-libcassandra_la_LIBADD= $(LIBM) ../libgenthrift/libgenthrift.la
++libcassandra_la_LIBADD= $(LIBM) ../libgenthrift/libgenthrift.la $(THRIFT_LIBS)
+ # libcassandra_la_LDFLAGS= ${AM_LDFLAGS} -version-info $(CASSANDRA_LIBRARY_VERSION)
+-libcassandra_la_LDFLAGS= ${AM_LDFLAGS} -version-info 3:0:0
++libcassandra_la_LDFLAGS= ${AM_LDFLAGS} -no-undefined -version-info 3:0:0
+ 
+ 
+--- origsrc/libcassandra-0.2.91/libcassandra/cassandra.cc	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra/cassandra.cc	2026-11-10 05:31:31.166148800 +0000
+@@ -126,10 +126,10 @@ Cassandra::~Cassandra()
+ void Cassandra::setRecvTimeout(int recv_timeout) {
+ 
+   if (recv_timeout > 0) {
+-    boost::shared_ptr<apache::thrift::transport::TTransport>            t1 = thrift_client->getInputProtocol()->getTransport();
+-    boost::shared_ptr<apache::thrift::transport::TFramedTransport>      t2 = boost::dynamic_pointer_cast<apache::thrift::transport::TFramedTransport>(t1);
+-    boost::shared_ptr<apache::thrift::transport::TTransport>            t3 = t2->getUnderlyingTransport();
+-    boost::shared_ptr<apache::thrift::transport::TSocket>                s = boost::dynamic_pointer_cast<apache::thrift::transport::TSocket>(t3);
++    std::shared_ptr<apache::thrift::transport::TTransport>            t1 = thrift_client->getInputProtocol()->getTransport();
++    std::shared_ptr<apache::thrift::transport::TFramedTransport>      t2 = std::dynamic_pointer_cast<apache::thrift::transport::TFramedTransport>(t1);
++    std::shared_ptr<apache::thrift::transport::TTransport>            t3 = t2->getUnderlyingTransport();
++    std::shared_ptr<apache::thrift::transport::TSocket>                s = std::dynamic_pointer_cast<apache::thrift::transport::TSocket>(t3);
+     s->setRecvTimeout(recv_timeout);
+   }
+ 
+@@ -138,10 +138,10 @@ void Cassandra::setRecvTimeout(int recv_
+ void Cassandra::setSendTimeout(int send_timeout) {
+ 
+   if (send_timeout > 0) {
+-    boost::shared_ptr<apache::thrift::transport::TTransport>            t1 = thrift_client->getOutputProtocol()->getTransport();
+-    boost::shared_ptr<apache::thrift::transport::TFramedTransport>      t2 = boost::dynamic_pointer_cast<apache::thrift::transport::TFramedTransport>(t1);
+-    boost::shared_ptr<apache::thrift::transport::TTransport>            t3 = t2->getUnderlyingTransport();
+-    boost::shared_ptr<apache::thrift::transport::TSocket>                s = boost::dynamic_pointer_cast<apache::thrift::transport::TSocket>(t3);
++    std::shared_ptr<apache::thrift::transport::TTransport>            t1 = thrift_client->getOutputProtocol()->getTransport();
++    std::shared_ptr<apache::thrift::transport::TFramedTransport>      t2 = std::dynamic_pointer_cast<apache::thrift::transport::TFramedTransport>(t1);
++    std::shared_ptr<apache::thrift::transport::TTransport>            t3 = t2->getUnderlyingTransport();
++    std::shared_ptr<apache::thrift::transport::TSocket>                s = std::dynamic_pointer_cast<apache::thrift::transport::TSocket>(t3);
+     s->setSendTimeout(send_timeout);
+   }
+ 
+--- origsrc/libcassandra-0.2.91/libcassandra/cassandra_factory.cc	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra/cassandra_factory.cc	2026-11-10 05:31:31.164122500 +0000
+@@ -26,7 +26,6 @@ using namespace apache::thrift;
+ using namespace apache::thrift::protocol;
+ using namespace apache::thrift::transport;
+ using namespace org::apache::cassandra;
+-using namespace boost;
+ 
+ 
+ CassandraFactory::CassandraFactory(const string& server_list)
+@@ -83,18 +82,18 @@ CassandraFactory::CassandraFactory(const
+ CassandraFactory::~CassandraFactory() {}
+ 
+ 
+-boost::shared_ptr<Cassandra> CassandraFactory::create()
++std::shared_ptr<Cassandra> CassandraFactory::create()
+ {
+   CassandraClient *thrift_client= createThriftClient(host, port, conn_timeout, recv_timeout, send_timeout);
+-  boost::shared_ptr<Cassandra> ret(new Cassandra(thrift_client, host, port));
++  std::shared_ptr<Cassandra> ret(new Cassandra(thrift_client, host, port));
+   return ret;
+ }
+ 
+ 
+-boost::shared_ptr<Cassandra> CassandraFactory::create(const string& keyspace)
++std::shared_ptr<Cassandra> CassandraFactory::create(const string& keyspace)
+ {
+   CassandraClient *thrift_client= createThriftClient(host, port, conn_timeout, recv_timeout, send_timeout);
+-  boost::shared_ptr<Cassandra> ret(new Cassandra(thrift_client, host, port, keyspace));
++  std::shared_ptr<Cassandra> ret(new Cassandra(thrift_client, host, port, keyspace));
+   return ret;
+ }
+ 
+@@ -105,7 +104,7 @@ CassandraClient *CassandraFactory::creat
+                                                       int in_recv_timeout,
+                                                       int in_send_timeout)
+ {
+-  boost::shared_ptr<TSocket> socket(new TSocket(in_host, in_port));
++  std::shared_ptr<TSocket> socket(new TSocket(in_host, in_port));
+ 
+   if (in_conn_timeout >= 0) {
+     socket->setConnTimeout(in_conn_timeout);
+@@ -117,8 +116,8 @@ CassandraClient *CassandraFactory::creat
+     socket->setSendTimeout(in_send_timeout);
+   }
+ 
+-  boost::shared_ptr<TTransport> transport = boost::shared_ptr<TTransport>(new TFramedTransport(socket));
+-  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
++  std::shared_ptr<TTransport> transport = std::shared_ptr<TTransport>(new TFramedTransport(socket));
++  std::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+   transport->open(); /* throws an exception */
+ 
+   CassandraClient *client= new(std::nothrow) CassandraClient(protocol);
+--- origsrc/libcassandra-0.2.91/libcassandra/cassandra_factory.h	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra/cassandra_factory.h	2026-11-10 05:31:31.166148800 +0000
+@@ -13,7 +13,7 @@
+ #include <string>
+ #include <vector>
+ // #include <tr1/memory>
+-#include <boost/shared_ptr.hpp>
++#include <memory>
+ 
+ 
+ namespace org 
+@@ -47,13 +47,13 @@ public:
+   /**
+    * @return a shared ptr which points to a Cassandra client
+    */
+-  boost::shared_ptr<Cassandra> create();
++  std::shared_ptr<Cassandra> create();
+ 
+   /**
+    * @param[in] keyspace name of keyspace to associate this instance with
+    * @return a shared ptr which points to a Cassandra client
+    */
+-  boost::shared_ptr<Cassandra> create(const std::string& keyspace);
++  std::shared_ptr<Cassandra> create(const std::string& keyspace);
+ 
+   /**
+    * @return port number associated with cassandra instances created
+--- origsrc/libcassandra-0.2.91/libcassandra/keyspace.cc	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra/keyspace.cc	2026-11-10 05:31:31.168174200 +0000
+@@ -27,7 +27,6 @@ using namespace apache::thrift;
+ using namespace apache::thrift::protocol;
+ using namespace apache::thrift::transport;
+ using namespace org::apache::cassandra;
+-using namespace boost;
+ 
+ 
+ Keyspace::Keyspace(Cassandra *in_client,
+--- origsrc/libcassandra-0.2.91/libcassandra/keyspace_factory.cc	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra/keyspace_factory.cc	2026-11-10 05:31:31.168174200 +0000
+@@ -27,7 +27,6 @@ using namespace apache::thrift;
+ using namespace apache::thrift::protocol;
+ using namespace apache::thrift::transport;
+ using namespace org::apache::cassandra;
+-using namespace boost;
+ 
+ 
+ KeyspaceFactory::KeyspaceFactory() {}
+--- origsrc/libcassandra-0.2.91/libcassandra/multihost_cassandra.cc	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra/multihost_cassandra.cc	2026-11-10 05:31:31.170199500 +0000
+@@ -10,6 +10,7 @@
+ #include <exception>
+ #include <stdexcept> 
+ 
++#include <unistd.h>
+ 
+ #include <transport/TSocket.h>
+ #include <transport/TBufferTransports.h>
+@@ -25,12 +26,12 @@ using namespace libcassandra;
+ using namespace std;
+ 
+ 
+-boost::shared_ptr<Cassandra> 
++std::shared_ptr<Cassandra> 
+ libcassandra::connect_cassandra_client(const std::string & host, int port, const std::string& keyspace, int socket_timeout)
+ {
+ 	// clog << "CCALLED: connect_cassandra_client(host='" << host << "', port=" << port << " keyspace='" << keyspace << "' socket_timeout=" << socket_timeout << " )" << endl;
+ 	CassandraFactory factory(host, port, socket_timeout);
+-	boost::shared_ptr<Cassandra> cassandra(factory.create(keyspace));
++	std::shared_ptr<Cassandra> cassandra(factory.create(keyspace));
+ 	// string clus_name= cassandra->getClusterName();
+ 	// clog << "CDEBUG: connect_cassandra_client(): cluster name: " << clus_name << endl;
+ 	// debug_check_get_columns(*cassandra,"connect_cassandra_client(): Just after create.");
+@@ -68,7 +69,7 @@ libcassandra::MultihostCassandra::add_cl
+ 	cassandra_states.push_back(CassandraStateRow(host,port));
+ 	CassandraStateRow & state_row = cassandra_states.back();
+ 	try {
+-		boost::shared_ptr<Cassandra>  cassandra = connect_cassandra_client(host,port,keyspace,socket_timeout);
++		std::shared_ptr<Cassandra>  cassandra = connect_cassandra_client(host,port,keyspace,socket_timeout);
+ 		// clog << "CLOG: Connected " <<  *cassandra << endl; TODO:
+ 		clog << "CLOG: Connected to " << host << ":" << port << " KS: '" << keyspace << "' (timeout: " << socket_timeout << " ms)." << endl;
+ 		// debug_check_get_columns(*cassandra,"After first connect"); 
+@@ -111,7 +112,7 @@ libcassandra::MultihostCassandra::getCol
+ 		throw logic_error("No cassandra nodes defined");
+ 	}
+ 	while (1) {
+-		boost::shared_ptr<Cassandra> picked_cassandra(pick_cassandra()); /// That may throw errors in case of serious failure
++		std::shared_ptr<Cassandra> picked_cassandra(pick_cassandra()); /// That may throw errors in case of serious failure
+ 		try {
+ 			// clog << "CDEBUG: Calling getColumns(key=" << key << ",column_family=" << column_family << " column_slice_predicate=" << column_slice_predicate << " on " << picked_cassandra->getNode() ;
+ 			picked_cassandra->getColumns(result_columns,key,column_family,column_slice_predicate,consistency_level);
+@@ -139,7 +140,7 @@ libcassandra::MultihostCassandra::getCol
+ 		throw logic_error("No cassandra nodes defined");
+ 	}
+ 	while (1) {
+-		boost::shared_ptr<Cassandra> picked_cassandra(pick_cassandra()); /// That may throw errors in case of serious failure
++		std::shared_ptr<Cassandra> picked_cassandra(pick_cassandra()); /// That may throw errors in case of serious failure
+ 		try {
+ 			return picked_cassandra->getColumnValue(key,column_family,column_name,consistency_level);
+ 		} catch (org::apache::cassandra::NotFoundException & nfe) { // Exceptions which we propagate
+@@ -154,7 +155,7 @@ libcassandra::MultihostCassandra::getCol
+ }
+ 
+ 
+-boost::shared_ptr<Cassandra> 
++std::shared_ptr<Cassandra> 
+ libcassandra::MultihostCassandra::pick_cassandra()
+ {
+ 	/// Simplest version
+@@ -165,7 +166,7 @@ libcassandra::MultihostCassandra::pick_c
+ 	/// Most of tasks here could have been done in background thread (assuming proper locking of cassandra_states)
+ 	
+ 	
+-	boost::shared_ptr<Cassandra> picked_cassandra;
++	std::shared_ptr<Cassandra> picked_cassandra;
+ 	///  for(auto it = seq.begin()   - type deduction  needes  -std=c++0x
+ 	for (std::deque<CassandraStateRow>::iterator state_it = cassandra_states.begin(); state_it != cassandra_states.end(); ++state_it) {
+ 		if (state_it->state == CassandraStateRow::operational) {
+@@ -179,7 +180,7 @@ libcassandra::MultihostCassandra::pick_c
+ 			if (timeval_seconds_delta(current_timeval, state_it->socket_error_timeval) > connection_retry_interval) {
+ 				clog << "CDEBUG: Retrying to reconnect with: " << *state_it << endl;
+ 				try {
+-					// boost::shared_ptr<Cassandra>  cassandra 
++					// std::shared_ptr<Cassandra>  cassandra 
+ 					picked_cassandra = connect_cassandra_client(state_it->host, state_it->port, keyspace, socket_timeout);
+ 					state_it->switch_to_operational_state(picked_cassandra);
+ 					return picked_cassandra;
+@@ -208,7 +209,7 @@ libcassandra::MultihostCassandra::pick_c
+ 			} else if ( state_it->state == CassandraStateRow::init) {
+ 				clog << "CDEBUG: Retrying to reconnect with: " << *state_it << endl;
+ 				try {
+-					// boost::shared_ptr<Cassandra>  cassandra 
++					// std::shared_ptr<Cassandra>  cassandra 
+ 					picked_cassandra = connect_cassandra_client(state_it->host, state_it->port, keyspace, socket_timeout);
+ 					state_it->switch_to_operational_state(picked_cassandra);
+ 					return picked_cassandra;
+--- origsrc/libcassandra-0.2.91/libcassandra/multihost_cassandra.h	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra/multihost_cassandra.h	2026-11-10 05:31:31.172225200 +0000
+@@ -11,6 +11,7 @@
+ #define __LIBCASSANDRA_MULTIHOST_CASSANDRA_H
+ 
+ #include <time.h>
++#include <sys/time.h>
+ #include <deque>
+ 
+ #include "libcassandra/cassandra.h"
+@@ -31,7 +32,7 @@ namespace libcassandra
+  * @param[in] socket_timeout   Each socket operation timeouts in miliseconds.
+  * @return a shared ptr which points to a Cassandra client
+  */
+-boost::shared_ptr<Cassandra> 
++std::shared_ptr<Cassandra> 
+ connect_cassandra_client(const std::string & host, int port, const std::string& keyspace, int socket_timeout = 10000);
+ 
+ 
+@@ -134,7 +135,7 @@ public:
+ 				state = init;				
+ 				// socket_error_clock = 0; // TODO: Make sure it's standard to be integer-like ?
+ 			}
+-			boost::shared_ptr<Cassandra> cassandra;
++			std::shared_ptr<Cassandra> cassandra;
+ 			 
+ 			std::string host;
+ 			int port;
+@@ -145,7 +146,7 @@ public:
+ 			/**
+ 			* Switches to fully operational state, cassandra is ready to answer queries
+ 			*/
+-			void switch_to_operational_state(boost::shared_ptr<Cassandra> a_cassandra) {
++			void switch_to_operational_state(std::shared_ptr<Cassandra> a_cassandra) {
+ 				cassandra = a_cassandra;
+ 				state = operational;
+ 			}
+@@ -172,7 +173,7 @@ private:
+ 	// std::vector<CassandraStateRow> cassandra_states;
+ 	/// http://www.sgi.com/tech/stl/Deque.html
+ 	std::deque<CassandraStateRow> cassandra_states;
+-	boost::shared_ptr<Cassandra>  pick_cassandra();
++	std::shared_ptr<Cassandra>  pick_cassandra();
+ 	void mark_picked_cassandra_error(const Cassandra & error_cassandra);
+ 	
+ 	
+--- origsrc/libcassandra-0.2.91/libcassandra/util/ping.cc	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra/util/ping.cc	2026-11-10 05:31:31.173996500 +0000
+@@ -24,7 +24,6 @@ using namespace apache::thrift;
+ using namespace apache::thrift::protocol;
+ using namespace apache::thrift::transport;
+ using namespace org::apache::cassandra;
+-using namespace boost;
+ 
+ namespace libcassandra
+ {
+@@ -34,9 +33,9 @@ bool util::pingCassandraServer(const str
+ {
+   try
+   {
+-    boost::shared_ptr<TTransport> socket(new TSocket(hostname, port));
+-    boost::shared_ptr<TTransport> transport= boost::shared_ptr<TTransport>(new TFramedTransport(socket));
+-    boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
++    std::shared_ptr<TTransport> socket(new TSocket(hostname, port));
++    std::shared_ptr<TTransport> transport= std::shared_ptr<TTransport>(new TFramedTransport(socket));
++    std::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+     CassandraClient client(protocol);
+     transport->open(); /* throws an exception */
+   }
+--- origsrc/libcassandra-0.2.91/libcassandra.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libcassandra-0.2.91/libcassandra.pc.in	2026-11-10 05:31:31.174517800 +0000
+@@ -0,0 +1,11 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libcassandra
++Description: High level C++ client for Cassandra
++Version: @VERSION@
++Libs: -L${libdir} -lcassandra
++Cflags: -I${includedir}
++Requires: libgenthrift thrift
+--- origsrc/libcassandra-0.2.91/libgenthrift/Cassandra.cpp	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libgenthrift/Cassandra.cpp	2026-11-10 05:31:31.176538300 +0000
+@@ -8098,7 +8098,7 @@ void CassandraClient::recv_system_update
+   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "system_update_column_family failed: unknown result");
+ }
+ 
+-bool CassandraProcessor::process(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot, boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot) {
++bool CassandraProcessor::process(std::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot, std::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot) {
+ 
+   ::apache::thrift::protocol::TProtocol* iprot = piprot.get();
+   ::apache::thrift::protocol::TProtocol* oprot = poprot.get();
+--- origsrc/libcassandra-0.2.91/libgenthrift/Cassandra.h	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libgenthrift/Cassandra.h	2026-11-10 05:31:31.178559100 +0000
+@@ -3136,22 +3136,22 @@ class Cassandra_system_update_column_fam
+ 
+ class CassandraClient : virtual public CassandraIf {
+  public:
+-  CassandraClient(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> prot) :
++  CassandraClient(std::shared_ptr< ::apache::thrift::protocol::TProtocol> prot) :
+     piprot_(prot),
+     poprot_(prot) {
+     iprot_ = prot.get();
+     oprot_ = prot.get();
+   }
+-  CassandraClient(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> iprot, boost::shared_ptr< ::apache::thrift::protocol::TProtocol> oprot) :
++  CassandraClient(std::shared_ptr< ::apache::thrift::protocol::TProtocol> iprot, std::shared_ptr< ::apache::thrift::protocol::TProtocol> oprot) :
+     piprot_(iprot),
+     poprot_(oprot) {
+     iprot_ = iprot.get();
+     oprot_ = oprot.get();
+   }
+-  boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getInputProtocol() {
++  std::shared_ptr< ::apache::thrift::protocol::TProtocol> getInputProtocol() {
+     return piprot_;
+   }
+-  boost::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
++  std::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
+     return poprot_;
+   }
+   void login(const AuthenticationRequest& auth_request);
+@@ -3239,15 +3239,15 @@ class CassandraClient : virtual public C
+   void send_system_update_column_family(const CfDef& cf_def);
+   void recv_system_update_column_family(std::string& _return);
+  protected:
+-  boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
+-  boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
++  std::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
++  std::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot_;
+   ::apache::thrift::protocol::TProtocol* iprot_;
+   ::apache::thrift::protocol::TProtocol* oprot_;
+ };
+ 
+ class CassandraProcessor : virtual public ::apache::thrift::TProcessor {
+  protected:
+-  boost::shared_ptr<CassandraIf> iface_;
++  std::shared_ptr<CassandraIf> iface_;
+   virtual bool process_fn(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, std::string& fname, int32_t seqid);
+  private:
+   std::map<std::string, void (CassandraProcessor::*)(int32_t, ::apache::thrift::protocol::TProtocol*, ::apache::thrift::protocol::TProtocol*)> processMap_;
+@@ -3280,7 +3280,7 @@ class CassandraProcessor : virtual publi
+   void process_system_update_keyspace(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot);
+   void process_system_update_column_family(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot);
+  public:
+-  CassandraProcessor(boost::shared_ptr<CassandraIf> iface) :
++  CassandraProcessor(std::shared_ptr<CassandraIf> iface) :
+     iface_(iface) {
+     processMap_["login"] = &CassandraProcessor::process_login;
+     processMap_["set_keyspace"] = &CassandraProcessor::process_set_keyspace;
+@@ -3312,19 +3312,19 @@ class CassandraProcessor : virtual publi
+     processMap_["system_update_column_family"] = &CassandraProcessor::process_system_update_column_family;
+   }
+ 
+-  virtual bool process(boost::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot, boost::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot);
++  virtual bool process(std::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot, std::shared_ptr< ::apache::thrift::protocol::TProtocol> poprot);
+   virtual ~CassandraProcessor() {}
+ };
+ 
+ class CassandraMultiface : virtual public CassandraIf {
+  public:
+-  CassandraMultiface(std::vector<boost::shared_ptr<CassandraIf> >& ifaces) : ifaces_(ifaces) {
++  CassandraMultiface(std::vector<std::shared_ptr<CassandraIf> >& ifaces) : ifaces_(ifaces) {
+   }
+   virtual ~CassandraMultiface() {}
+  protected:
+-  std::vector<boost::shared_ptr<CassandraIf> > ifaces_;
++  std::vector<std::shared_ptr<CassandraIf> > ifaces_;
+   CassandraMultiface() {}
+-  void add(boost::shared_ptr<CassandraIf> iface) {
++  void add(std::shared_ptr<CassandraIf> iface) {
+     ifaces_.push_back(iface);
+   }
+  public:
+--- origsrc/libcassandra-0.2.91/libgenthrift/Cassandra_server.skeleton.cpp	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/libgenthrift/Cassandra_server.skeleton.cpp	2026-11-10 05:31:31.174517800 +0000
+@@ -12,7 +12,7 @@ using namespace ::apache::thrift::protoc
+ using namespace ::apache::thrift::transport;
+ using namespace ::apache::thrift::server;
+ 
+-using boost::shared_ptr;
++using std::shared_ptr;
+ 
+ using namespace org::apache::cassandra;
+ 
+--- origsrc/libcassandra-0.2.91/libgenthrift/Makefile.am	2026-11-10 05:31:30.555361500 +0000
++++ src/libcassandra-0.2.91/libgenthrift/Makefile.am	2026-11-10 05:31:31.180573900 +0000
+@@ -37,8 +37,8 @@ libgenthrift_la_CXXFLAGS= \
+ 				 ${AM_CXXFLAGS} 
+ 
+ libgenthrift_la_LIBADD= \
+-				  $(LTLIBTHRIFT)
++				  $(LTLIBTHRIFT) $(THRIFT_LIBS)
+ 
+ 
+ # libgenthrift_la_LDFLAGS= ${AM_LDFLAGS} -version-info ${CASSANDRA_LIBRARY_VERSION}
+-libgenthrift_la_LDFLAGS= ${AM_LDFLAGS} -version-info 3:0:0
++libgenthrift_la_LDFLAGS= ${AM_LDFLAGS} -no-undefined -version-info 3:0:0
+--- origsrc/libcassandra-0.2.91/libgenthrift.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libcassandra-0.2.91/libgenthrift.pc.in	2026-11-10 05:31:31.180573900 +0000
+@@ -0,0 +1,11 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libgenthrift
++Description: High level C++ client for Cassandra (genthrift)
++Version: @VERSION@
++Libs: -L${libdir} -lgenthrift
++Cflags: -I${includedir}
++Requires: thrift
+--- origsrc/libcassandra-0.2.91/tests/cassandra_client_test.cc	2011-06-01 11:08:55.000000000 +0000
++++ src/libcassandra-0.2.91/tests/cassandra_client_test.cc	2026-11-10 05:31:31.182594300 +0000
+@@ -32,7 +32,6 @@ using namespace apache::thrift;
+ using namespace apache::thrift::protocol;
+ using namespace apache::thrift::transport;
+ using namespace org::apache::cassandra;
+-using namespace boost;
+ 
+ 
+ class ClientTest : public testing::Test
+@@ -62,9 +61,9 @@ TEST(Cassandra, ConsructorFromHostAndPor
+ {
+   const string host("localhost");
+   int port= 9160;
+-  boost::shared_ptr<TTransport> socket(new TSocket(host, port));
+-  boost::shared_ptr<TTransport> transport(new TFramedTransport(socket));
+-  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
++  std::shared_ptr<TTransport> socket(new TSocket(host, port));
++  std::shared_ptr<TTransport> transport(new TFramedTransport(socket));
++  std::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+   CassandraClient *client= new CassandraClient(protocol);
+   transport->open();
+   Cassandra c(client, host, port);
+@@ -79,9 +78,9 @@ TEST(Cassandra, GetServerVersion)
+ {
+   const string host("localhost");
+   int port= 9160;
+-  boost::shared_ptr<TTransport> socket(new TSocket(host, port));
+-  boost::shared_ptr<TTransport> transport(new TFramedTransport(socket));
+-  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
++  std::shared_ptr<TTransport> socket(new TSocket(host, port));
++  std::shared_ptr<TTransport> transport(new TFramedTransport(socket));
++  std::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+   CassandraClient *client= new CassandraClient(protocol);
+   transport->open();
+   Cassandra c(client, host, port);
+@@ -95,9 +94,9 @@ TEST(Cassandra, GetClusterName)
+ {
+   const string host("localhost");
+   int port= 9160;
+-  boost::shared_ptr<TTransport> socket(new TSocket(host, port));
+-  boost::shared_ptr<TTransport> transport(new TFramedTransport(socket));
+-  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
++  std::shared_ptr<TTransport> socket(new TSocket(host, port));
++  std::shared_ptr<TTransport> transport(new TFramedTransport(socket));
++  std::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+   CassandraClient *client= new CassandraClient(protocol);
+   transport->open();
+   Cassandra c(client, host, port);
+@@ -111,9 +110,9 @@ TEST(Cassandra, GetKeyspaces)
+ {
+   const string host("localhost");
+   int port= 9160;
+-  boost::shared_ptr<TTransport> socket(new TSocket(host, port));
+-  boost::shared_ptr<TTransport> transport(new TFramedTransport(socket));
+-  boost::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
++  std::shared_ptr<TTransport> socket(new TSocket(host, port));
++  std::shared_ptr<TTransport> transport(new TFramedTransport(socket));
++  std::shared_ptr<TProtocol> protocol(new TBinaryProtocol(transport));
+   CassandraClient *client= new CassandraClient(protocol);
+   transport->open();
+   Cassandra c(client, host, port);

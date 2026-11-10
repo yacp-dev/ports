@@ -3,15 +3,15 @@ clib
 Package manager for the C programming language.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libcurl4-8.9.1-1
+  cygwin-3.6.12-1
+  libcurl4-8.23.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libcurl-devel-8.9.1-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcurl-devel-8.23.0-1
   make-4.4.1-2
 
 Canonical website:
@@ -56,6 +56,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.8.7-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.8.7-1bl1 -----
 Version bump.

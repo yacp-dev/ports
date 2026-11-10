@@ -5,11 +5,13 @@ CATEGORY="Libs"
 SUMMARY="C package manager-ish"
 DESCRIPTION="Package manager for the C programming language."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND Apache-2.0 AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND Apache-2.0 AND BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libcurl-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+"
 
 src_compile()
 {
@@ -21,7 +23,7 @@ src_compile()
 src_test()
 {
 	cd ${B}
-	PATH=${B}:${PATH} sh ./test.sh
+	CFLAGS="${CFLAGS} -U__STRICT_ANSI__" PATH=${B}:${PATH} sh ./test.sh
 }
 
 src_install()

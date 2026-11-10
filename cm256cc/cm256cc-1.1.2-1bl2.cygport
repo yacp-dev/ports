@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="Fast GF(256) Cauchy MDS Block Erasure Codec in C++"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"

@@ -1,0 +1,127 @@
+diff --git a/src/audio-metadata.c b/src/audio-metadata.c
+index 373a938..d08ad60 100755
+--- a/src/audio-metadata.c
++++ b/src/audio-metadata.c
+@@ -51,57 +51,68 @@ static GHashTable *coverart_cache = NULL;
+ #define THUMBNAIL_SIZE 256
+ static char *
+ write_thumbnail (GFile     *file,
+-                 GdkPixbuf *pixbuf)
++                 GdkPixbuf *pixbuf,
++		 char      *album,
++		 char      *artist)
+ {
+     GdkPixbuf *pb;
+-    char *uri, *filename, *fullname;
++    char *uri = NULL, *filename = NULL, *fullname = NULL;
+     GError *error = NULL;
+     int width, height;
+ 
+-    uri = g_file_get_uri (file);
+-    filename = g_compute_checksum_for_string (G_CHECKSUM_MD5, uri, -1);
++    if (album != NULL && artist != NULL) {
++        gchar *album_id;
++        album_id = g_strdup_printf("%s;%s", album, artist);
++        filename = g_compute_checksum_for_string (G_CHECKSUM_MD5, album_id, -1);
++        g_free(album_id);
++    } else {
++        uri = g_file_get_uri (file);
++        filename = g_compute_checksum_for_string (G_CHECKSUM_MD5, uri, -1);
++    }
+ 
+     fullname = g_build_filename (g_get_home_dir (), ".bkl-thumbnails",
+                                  filename, NULL);
+     g_free (filename);
+ 
+-    width = gdk_pixbuf_get_width (pixbuf);
+-    height = gdk_pixbuf_get_height (pixbuf);
++    if (!g_file_test(fullname, G_FILE_TEST_EXISTS)){
++        width = gdk_pixbuf_get_width (pixbuf);
++        height = gdk_pixbuf_get_height (pixbuf);
+ 
+-    if (width > THUMBNAIL_SIZE || height > THUMBNAIL_SIZE) {
+-        int nw, nh;
+-        float ratio;
++        if (width > THUMBNAIL_SIZE || height > THUMBNAIL_SIZE) {
++            int nw, nh;
++            float ratio;
+ 
+-        if (width > height) {
+-            nw = THUMBNAIL_SIZE;
+-            ratio = (float) width / (float) THUMBNAIL_SIZE;
+-            nh = (int) ((float) height / ratio);
++            if (width > height) {
++                nw = THUMBNAIL_SIZE;
++                ratio = (float) width / (float) THUMBNAIL_SIZE;
++                nh = (int) ((float) height / ratio);
++            } else {
++                nh = THUMBNAIL_SIZE;
++                ratio = (float) height / (float) THUMBNAIL_SIZE;
++                nw = (int) ((float) width / ratio);
++            }
++
++            pb = gdk_pixbuf_scale_simple (pixbuf, nw, nh, GDK_INTERP_BILINEAR);
+         } else {
+-            nh = THUMBNAIL_SIZE;
+-            ratio = (float) height / (float) THUMBNAIL_SIZE;
+-            nw = (int) ((float) width / ratio);
++            pb = g_object_ref (pixbuf);
+         }
+ 
+-        pb = gdk_pixbuf_scale_simple (pixbuf, nw, nh, GDK_INTERP_BILINEAR);
+-    } else {
+-        pb = g_object_ref (pixbuf);
+-    }
++        if (gdk_pixbuf_save (pb, fullname, "png", &error, NULL) == FALSE) {
++            g_warning ("Error writing file %s for %s: %s", fullname, uri,
++                       error->message);
++            g_error_free (error);
+ 
+-    if (gdk_pixbuf_save (pb, fullname, "png", &error, NULL) == FALSE) {
+-        g_warning ("Error writing file %s for %s: %s", fullname, uri,
+-                   error->message);
+-        g_error_free (error);
++            g_object_unref (pb);
++            g_free (uri);
++            g_free (fullname);
++
++            return NULL;
++        }
+ 
+         g_object_unref (pb);
+         g_free (uri);
+-        g_free (fullname);
+-
+-        return NULL;
+     }
+ 
+-    g_object_unref (pb);
+-    g_free (uri);
+-
+     uri = g_filename_to_uri (fullname, NULL, &error);
+     if (uri == NULL) {
+         g_warning ("Error converting %s to uri: %s", fullname, error->message);
+@@ -224,7 +235,10 @@ parse_tags (const GstTagList *tags,
+             thumb = gdk_pixbuf_loader_get_pixbuf (loader);
+ 
+             if (thumb) {
+-                char *art = write_thumbnail (mmd->file, thumb);
++                char *art, *album, *artist;
++	        album = g_hash_table_lookup (metadata, METADATA_AUDIO_ALBUM);
++	        artist = g_hash_table_lookup (metadata, METADATA_AUDIO_ARTIST);
++                art = write_thumbnail (mmd->file, thumb, album, artist);
+ 
+                 if (art) {
+                     g_hash_table_insert (metadata, METADATA_EXTENDED_THUMBNAIL,
+@@ -470,7 +484,10 @@ sanitise_metadata (GFile      *file,
+         GdkPixbuf *pixbuf = find_art_in_directory (file);
+ 
+         if (pixbuf) {
+-            char *art = write_thumbnail (file, pixbuf);
++            char *art, *album, *artist;
++	    album = g_hash_table_lookup (metadata, METADATA_AUDIO_ALBUM);
++	    artist = g_hash_table_lookup (metadata, METADATA_AUDIO_ARTIST);
++	    art = write_thumbnail (file, pixbuf, album, artist);
+ 
+             g_object_unref (pixbuf);
+ 

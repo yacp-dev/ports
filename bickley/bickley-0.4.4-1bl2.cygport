@@ -1,0 +1,33 @@
+DESCRIPTION="Meta data management API and framework"
+HOMEPAGE="https://web.archive.org/web/20110430083756/http://moblin.org/"
+SRC_URI="https://snapshot.debian.org/archive/debian-archive/20150827T091707Z/debian/pool/main/b/${PN}/${PN}_${PV}.orig.tar.gz"
+
+PATCH_URI="
+	${PN}-audio-cover-thumbnail.patch
+	${PN}-fixvoidreturn.patch
+"
+
+LICENSE="LGPL-2.1-only AND GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-only AND GPL-3.0-or-later"
+LICENSE_URI="COPYING.LIB"
+
+PKG_NAMES="
+	${PN}
+	lib${PN}0.4_0
+	lib${PN}0.4-devel
+"
+bickley_CONTENTS="
+	etc
+	usr/bin/*.exe
+	usr/lib/*.exe
+	usr/share
+"
+libbickley0_4_0_CONTENTS="
+	usr/bin/cygbickley-0.4-0.dll
+	usr/bin/cygkozo-0.dll
+"
+libbickley0_4_devel_CONTENTS="
+	usr/include
+	usr/lib/lib*
+	usr/lib/pkgconfig
+"

@@ -5,15 +5,27 @@ CATEGORY="Archive"
 SUMMARY="Unofficial Slackware Linux Package Manager"
 DESCRIPTION="${SUMMARY}"
 
-# LICENSE="Public Domain"
-# LICENSE_SPDX="SPDX-License-Identifier: "
+LICENSE="LicenseRef-Public-Domain"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-Public-Domain"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libJudy-devel libglib2.0-devel libpopt-devel zlib-devel"
+BUILD_REQUIRES="
+	libJudy-devel
+	libglib2.0-devel
+	libpopt-devel
+	zlib-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode
 "
+
+src_test()
+{
+	cd ${B}
+	./src/${PN}.exe --version
+	./src/${PN}.exe --help
+}
 
 PKG_NAMES="
 	${PN}

@@ -5,11 +5,13 @@ CATEGORY="Utils"
 SUMMARY="Emulates an old-style 'code page 437' / 'IBM-PC' character set terminal on a modern UTF-8 terminal emulator"
 DESCRIPTION="${SUMMARY}"
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
-# LICENSE_URI="COPYING"
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="COPYRIGHT"
 
-BUILD_REQUIRES="libiconv-devel"
+BUILD_REQUIRES="
+	libiconv-devel
+"
 
 src_compile()
 {

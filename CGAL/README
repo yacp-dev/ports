@@ -10,34 +10,29 @@ Runtime requirements:
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  bison-3.8.2-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  flex-2.6.4-2
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  lua-5.3.6-4
-  ninja-1.12.0-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  libboost-devel-1.66.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://www.cgal.org/
 
 Canonical download:
-  https://github.com/CGAL/cgal/archive/refs/tags/v6.0.1.tar.gz
+  https://github.com/CGAL/cgal/archive/refs/tags/v6.2.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack CGAL-6.0.1-X-src.tar.xz
+  1. unpack CGAL-6.2.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./CGAL-6.0.1-X.cygport all
+        % cygport ./CGAL-6.2.1-X.cygport all
 
 This will create:
-  /usr/src/CGAL-6.0.1-X-src.tar.xz
-  /usr/src/CGAL-6.0.1-X.tar.xz
+  /usr/src/CGAL-6.2.1-X-src.tar.xz
+  /usr/src/CGAL-6.2.1-X.tar.xz
 
 -------------------------------------------
 
@@ -135,8 +130,6 @@ Files included in the binary package:
   /usr/include/CGAL/Algebraic_kernel_for_spheres/internal_functions_on_roots_and_polynomials_1_3.h
   /usr/include/CGAL/Algebraic_kernel_for_spheres/internal_functions_on_roots_and_polynomials_2_3.h
   /usr/include/CGAL/Algebraic_kernel_for_spheres_2_3.h
-  /usr/include/CGAL/Algebraic_kernel_rs_gmpq_d_1.h
-  /usr/include/CGAL/Algebraic_kernel_rs_gmpz_d_1.h
   /usr/include/CGAL/Algebraic_structure_traits.h
   /usr/include/CGAL/Alpha_shape_2.h
   /usr/include/CGAL/Alpha_shape_3.h
@@ -147,6 +140,18 @@ Files included in the binary package:
   /usr/include/CGAL/Alpha_shapes_2/internal/Lazy_alpha_nt_2.h
   /usr/include/CGAL/Alpha_shapes_3/internal/Classification_type.h
   /usr/include/CGAL/Alpha_shapes_3/internal/Lazy_alpha_nt_3.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/Alpha_wrap_2.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/Alpha_wrap_AABB_geom_traits.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/Alpha_wrap_triangulation_face_base_2.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/Alpha_wrap_triangulation_vertex_base_2.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/Oracle_base.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/Point_set_oracle.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/Segment_soup_oracle.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/gate_priority_queue.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/geometry_utils.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/offset_intersection.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/oracles.h
+  /usr/include/CGAL/Alpha_wrap_2/internal/validation.h
   /usr/include/CGAL/Alpha_wrap_3/internal/Alpha_wrap_3.h
   /usr/include/CGAL/Alpha_wrap_3/internal/Alpha_wrap_AABB_geom_traits.h
   /usr/include/CGAL/Alpha_wrap_3/internal/Alpha_wrap_triangulation_cell_base_3.h
@@ -232,6 +237,7 @@ Files included in the binary package:
   /usr/include/CGAL/Arr_default_dcel.h
   /usr/include/CGAL/Arr_default_overlay_traits.h
   /usr/include/CGAL/Arr_directional_non_caching_segment_basic_traits_2.h
+  /usr/include/CGAL/Arr_do_intersect_overlay_2.h
   /usr/include/CGAL/Arr_enums.h
   /usr/include/CGAL/Arr_extended_dcel.h
   /usr/include/CGAL/Arr_face_index_map.h
@@ -258,6 +264,7 @@ Files included in the binary package:
   /usr/include/CGAL/Arr_geometry_traits/Rational_arc_2.h
   /usr/include/CGAL/Arr_geometry_traits/Segment_assertions.h
   /usr/include/CGAL/Arr_geometry_traits/de_Casteljau_2.h
+  /usr/include/CGAL/Arr_has.h
   /usr/include/CGAL/Arr_landmarks_point_location.h
   /usr/include/CGAL/Arr_line_arc_traits_2.h
   /usr/include/CGAL/Arr_linear_traits_2.h
@@ -370,6 +377,7 @@ Files included in the binary package:
   /usr/include/CGAL/Arrangement_2/Arrangement_on_surface_2_impl.h
   /usr/include/CGAL/Arrangement_2/Arrangement_zone_2_impl.h
   /usr/include/CGAL/Arrangement_2/arrangement_type_traits.h
+  /usr/include/CGAL/Arrangement_2/do_segments_intersect.h
   /usr/include/CGAL/Arrangement_2/graph_traits_dual.h
   /usr/include/CGAL/Arrangement_on_surface_2.h
   /usr/include/CGAL/Arrangement_on_surface_with_history_2.h
@@ -391,10 +399,19 @@ Files included in the binary package:
   /usr/include/CGAL/Barycentric_coordinates_2/internal/utils_2.h
   /usr/include/CGAL/Barycentric_coordinates_2/segment_coordinates_2.h
   /usr/include/CGAL/Barycentric_coordinates_2/triangle_coordinates_2.h
-  /usr/include/CGAL/Base_with_time_stamp.h
+  /usr/include/CGAL/Barycentric_coordinates_3.h
+  /usr/include/CGAL/Barycentric_coordinates_3/Discrete_harmonic_coordinates_3.h
+  /usr/include/CGAL/Barycentric_coordinates_3/Mean_value_coordinates_3.h
+  /usr/include/CGAL/Barycentric_coordinates_3/Wachspress_coordinates_3.h
+  /usr/include/CGAL/Barycentric_coordinates_3/barycentric_enum_3.h
+  /usr/include/CGAL/Barycentric_coordinates_3/boundary_coordinates_3.h
+  /usr/include/CGAL/Barycentric_coordinates_3/internal/utils_3.h
+  /usr/include/CGAL/Barycentric_coordinates_3/tetrahedron_coordinates_3.h
   /usr/include/CGAL/Basic_shaders.h
+  /usr/include/CGAL/Basic_viewer.h
   /usr/include/CGAL/Bbox_2.h
   /usr/include/CGAL/Bbox_3.h
+  /usr/include/CGAL/Bbox_d.h
   /usr/include/CGAL/Bigfloat_interval_traits.h
   /usr/include/CGAL/Boolean_set_operations_2.h
   /usr/include/CGAL/Boolean_set_operations_2/Bso_internal_functions.h
@@ -413,6 +430,7 @@ Files included in the binary package:
   /usr/include/CGAL/Boolean_set_operations_2/Gps_default_dcel.h
   /usr/include/CGAL/Boolean_set_operations_2/Gps_default_traits.h
   /usr/include/CGAL/Boolean_set_operations_2/Gps_difference_functor.h
+  /usr/include/CGAL/Boolean_set_operations_2/Gps_do_intersect_agg_op_visitor.h
   /usr/include/CGAL/Boolean_set_operations_2/Gps_do_intersect_functor.h
   /usr/include/CGAL/Boolean_set_operations_2/Gps_insertion_meta_traits.h
   /usr/include/CGAL/Boolean_set_operations_2/Gps_intersection_functor.h
@@ -537,7 +555,6 @@ Files included in the binary package:
   /usr/include/CGAL/Cartesian/line_constructions_2.h
   /usr/include/CGAL/Cartesian/plane_constructions_3.h
   /usr/include/CGAL/Cartesian/point_constructions_2.h
-  /usr/include/CGAL/Cartesian/point_constructions_3.h
   /usr/include/CGAL/Cartesian/predicates_on_directions_2.h
   /usr/include/CGAL/Cartesian/predicates_on_planes_3.h
   /usr/include/CGAL/Cartesian/predicates_on_points_2.h
@@ -668,6 +685,7 @@ Files included in the binary package:
   /usr/include/CGAL/Complex_2_in_triangulation_3.h
   /usr/include/CGAL/Complex_2_in_triangulation_cell_base_3.h
   /usr/include/CGAL/Complex_2_in_triangulation_vertex_base_3.h
+  /usr/include/CGAL/Complex_number.h
   /usr/include/CGAL/Complexity_tags.h
   /usr/include/CGAL/Compute_anchor_3.h
   /usr/include/CGAL/Compute_cone_boundaries_2.h
@@ -677,10 +695,22 @@ Files included in the binary package:
   /usr/include/CGAL/Cone_spanners_2/Plane_scan_tree.h
   /usr/include/CGAL/Cone_spanners_2/Plane_scan_tree_impl.h
   /usr/include/CGAL/Cone_spanners_enum_2.h
+  /usr/include/CGAL/Conforming_Delaunay_triangulation_3.h
+  /usr/include/CGAL/Conforming_constrained_Delaunay_triangulation_3.h
+  /usr/include/CGAL/Conforming_constrained_Delaunay_triangulation_3_fwd.h
+  /usr/include/CGAL/Conforming_constrained_Delaunay_triangulation_cell_base_3.h
+  /usr/include/CGAL/Conforming_constrained_Delaunay_triangulation_cell_data_3.h
+  /usr/include/CGAL/Conforming_constrained_Delaunay_triangulation_vertex_base_3.h
+  /usr/include/CGAL/Conforming_constrained_Delaunay_triangulation_vertex_data_3.h
   /usr/include/CGAL/Conic_2.h
   /usr/include/CGAL/Constrained_Delaunay_triangulation_2.h
   /usr/include/CGAL/Constrained_Delaunay_triangulation_face_base_2.h
   /usr/include/CGAL/Constrained_triangulation_2.h
+  /usr/include/CGAL/Constrained_triangulation_3/internal/cdt_debug_io.h
+  /usr/include/CGAL/Constrained_triangulation_3/internal/config.h
+  /usr/include/CGAL/Constrained_triangulation_3/internal/ostream_redirect_guard.h
+  /usr/include/CGAL/Constrained_triangulation_3/internal/read_polygon_mesh_for_cdt_3.h
+  /usr/include/CGAL/Constrained_triangulation_3_types.h
   /usr/include/CGAL/Constrained_triangulation_face_base_2.h
   /usr/include/CGAL/Constrained_triangulation_plus_2.h
   /usr/include/CGAL/Constrained_voronoi_diagram_2.h
@@ -710,6 +740,8 @@ Files included in the binary package:
   /usr/include/CGAL/Convex_hull_2/ch_melkman_impl.h
   /usr/include/CGAL/Convex_hull_2/ch_selected_extreme_points_2_impl.h
   /usr/include/CGAL/Convex_hull_2/convexity_check_2_impl.h
+  /usr/include/CGAL/Convex_hull_3/distance.h
+  /usr/include/CGAL/Convex_hull_3/do_intersect.h
   /usr/include/CGAL/Convex_hull_3/dual/Convex_hull_traits_dual_2.h
   /usr/include/CGAL/Convex_hull_3/dual/Convex_hull_traits_dual_3.h
   /usr/include/CGAL/Convex_hull_3/dual/halfspace_intersection_3.h
@@ -717,10 +749,12 @@ Files included in the binary package:
   /usr/include/CGAL/Convex_hull_3/dual/halfspace_intersection_with_constructions_3.h
   /usr/include/CGAL/Convex_hull_3/dual/predicates.h
   /usr/include/CGAL/Convex_hull_3/internal/Indexed_triangle_set.h
+  /usr/include/CGAL/Convex_hull_3/internal/helpers.h
   /usr/include/CGAL/Convex_hull_d.h
   /usr/include/CGAL/Convex_hull_d_to_polyhedron_3.h
   /usr/include/CGAL/Convex_hull_d_traits_3.h
   /usr/include/CGAL/Convex_hull_face_base_2.h
+  /usr/include/CGAL/Convex_hull_hierarchy_3.h
   /usr/include/CGAL/Convex_hull_traits_3.h
   /usr/include/CGAL/Convex_hull_traits_adapter_2.h
   /usr/include/CGAL/Convex_hull_vertex_base_2.h
@@ -769,6 +803,8 @@ Files included in the binary package:
   /usr/include/CGAL/Delaunay_triangulation_adaptation_traits_2.h
   /usr/include/CGAL/Delaunay_triangulation_cell_base_3.h
   /usr/include/CGAL/Delaunay_triangulation_cell_base_with_circumcenter_3.h
+  /usr/include/CGAL/Delaunay_triangulation_face_base_2.h
+  /usr/include/CGAL/Delaunay_triangulation_face_base_with_circumcenter_2.h
   /usr/include/CGAL/Delaunay_triangulation_on_sphere_2.h
   /usr/include/CGAL/Delaunay_triangulation_on_sphere_adaptation_policies_2.h
   /usr/include/CGAL/Delaunay_triangulation_on_sphere_adaptation_traits_2.h
@@ -814,16 +850,30 @@ Files included in the binary package:
   /usr/include/CGAL/Distance_3/Triangle_3_Triangle_3.h
   /usr/include/CGAL/Distance_3/Weighted_point_3_Weighted_point_3.h
   /usr/include/CGAL/Distance_3/internal/squared_distance_utils_3.h
+  /usr/include/CGAL/Do_intersect_surface_sweep_2.h
   /usr/include/CGAL/Double_map.h
+  /usr/include/CGAL/Draw_aos/Arr_approximation_cache.h
+  /usr/include/CGAL/Draw_aos/Arr_bounded_approximate_face.h
+  /usr/include/CGAL/Draw_aos/Arr_bounded_approximate_halfedge.h
+  /usr/include/CGAL/Draw_aos/Arr_bounded_approximate_vertex.h
+  /usr/include/CGAL/Draw_aos/Arr_bounded_face_triangulator.h
+  /usr/include/CGAL/Draw_aos/Arr_bounded_renderer.h
+  /usr/include/CGAL/Draw_aos/Arr_coordinate_converter.h
+  /usr/include/CGAL/Draw_aos/Arr_face_point_generator.h
+  /usr/include/CGAL/Draw_aos/Arr_render_context.h
+  /usr/include/CGAL/Draw_aos/Arr_viewer.h
+  /usr/include/CGAL/Draw_aos/type_utils.h
   /usr/include/CGAL/Dummy_tds_2.h
   /usr/include/CGAL/Dynamic_matrix.h
   /usr/include/CGAL/Dynamic_property_map.h
+  /usr/include/CGAL/EPIC_predicate_if_convertible.h
   /usr/include/CGAL/Eigen_diagonalize_traits.h
   /usr/include/CGAL/Eigen_matrix.h
   /usr/include/CGAL/Eigen_solver_traits.h
   /usr/include/CGAL/Eigen_sparse_matrix.h
   /usr/include/CGAL/Eigen_svd.h
   /usr/include/CGAL/Eigen_vector.h
+  /usr/include/CGAL/Element_topo.h
   /usr/include/CGAL/Enum_converter.h
   /usr/include/CGAL/Env_default_diagram_1.h
   /usr/include/CGAL/Env_plane_traits_3.h
@@ -860,6 +910,7 @@ Files included in the binary package:
   /usr/include/CGAL/Exact_predicates_inexact_constructions_kernel.h
   /usr/include/CGAL/Exact_rational.h
   /usr/include/CGAL/Exact_spherical_kernel_3.h
+  /usr/include/CGAL/Exception_ostream.h
   /usr/include/CGAL/Exponent_vector.h
   /usr/include/CGAL/Extended_cartesian.h
   /usr/include/CGAL/Extended_homogeneous.h
@@ -895,9 +946,14 @@ Files included in the binary package:
   /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Do_intersect_3.h
   /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Equal_2.h
   /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Equal_3.h
+  /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Has_on_unbounded_side_2.h
+  /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Has_on_unbounded_side_3.h
   /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Is_degenerate_3.h
   /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Orientation_2.h
   /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Orientation_3.h
+  /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Orientation_4.h
+  /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Orientation_5.h
+  /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Orientation_6.h
   /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Power_side_of_oriented_power_circle_2.h
   /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Power_side_of_oriented_power_sphere_3.h
   /usr/include/CGAL/Filtered_kernel/internal/Static_filters/Side_of_oriented_circle_2.h
@@ -915,6 +971,23 @@ Files included in the binary package:
   /usr/include/CGAL/Flattening_iterator.h
   /usr/include/CGAL/Fourtuple.h
   /usr/include/CGAL/Fraction_traits.h
+  /usr/include/CGAL/Frechet_distance.h
+  /usr/include/CGAL/Frechet_distance/Neighbor_search.h
+  /usr/include/CGAL/Frechet_distance/internal/Certificate.h
+  /usr/include/CGAL/Frechet_distance/internal/Curve.h
+  /usr/include/CGAL/Frechet_distance/internal/Filter.h
+  /usr/include/CGAL/Frechet_distance/internal/Frechet_classical.h
+  /usr/include/CGAL/Frechet_distance/internal/Frechet_distance.h
+  /usr/include/CGAL/Frechet_distance/internal/Frechet_distance_traits.h
+  /usr/include/CGAL/Frechet_distance/internal/Frechet_light.h
+  /usr/include/CGAL/Frechet_distance/internal/Frechet_light_types.h
+  /usr/include/CGAL/Frechet_distance/internal/Id.h
+  /usr/include/CGAL/Frechet_distance/internal/Neighbor_search.h
+  /usr/include/CGAL/Frechet_distance/internal/geometry_basics.h
+  /usr/include/CGAL/Frechet_distance/internal/high_level_predicates.h
+  /usr/include/CGAL/Frechet_distance_traits_2.h
+  /usr/include/CGAL/Frechet_distance_traits_3.h
+  /usr/include/CGAL/Frechet_distance_traits_d.h
   /usr/include/CGAL/Fuzzy_iso_box.h
   /usr/include/CGAL/Fuzzy_sphere.h
   /usr/include/CGAL/GLPK_mixed_integer_program_traits.h
@@ -1045,7 +1118,11 @@ Files included in the binary package:
   /usr/include/CGAL/Hyperbolic_Delaunay_triangulation_2.h
   /usr/include/CGAL/Hyperbolic_Delaunay_triangulation_CK_traits_2.h
   /usr/include/CGAL/Hyperbolic_Delaunay_triangulation_traits_2.h
+  /usr/include/CGAL/Hyperbolic_fundamental_domain_2.h
+  /usr/include/CGAL/Hyperbolic_fundamental_domain_factory_2.h
+  /usr/include/CGAL/Hyperbolic_isometry_2.h
   /usr/include/CGAL/Hyperbolic_octagon_translation.h
+  /usr/include/CGAL/Hyperbolic_surface_traits_2.h
   /usr/include/CGAL/Hyperbolic_triangulation_2/internal/Exact_complex.h
   /usr/include/CGAL/Hyperbolic_triangulation_2/internal/Hyperbolic_Delaunay_triangulation_traits_2_functions.h
   /usr/include/CGAL/Hyperbolic_triangulation_face_base_2.h
@@ -1062,6 +1139,7 @@ Files included in the binary package:
   /usr/include/CGAL/IO/Arrangement_2_reader.h
   /usr/include/CGAL/IO/Arrangement_2_writer.h
   /usr/include/CGAL/IO/Color.h
+  /usr/include/CGAL/IO/Color_ostream.h
   /usr/include/CGAL/IO/Complex_2_in_triangulation_3_file_writer.h
   /usr/include/CGAL/IO/Complex_2_in_triangulation_3_polyhedron_builder.h
   /usr/include/CGAL/IO/Complex_2_in_triangulation_3_to_medit.h
@@ -1082,7 +1160,12 @@ Files included in the binary package:
   /usr/include/CGAL/IO/GOCAD.h
   /usr/include/CGAL/IO/Generic_writer.h
   /usr/include/CGAL/IO/Gps_iostream.h
+  /usr/include/CGAL/IO/Indenting_ostream.h
   /usr/include/CGAL/IO/Istream_iterator.h
+  /usr/include/CGAL/IO/LAS.h
+  /usr/include/CGAL/IO/LAS/Las_property.h
+  /usr/include/CGAL/IO/LAS/read_las_points.h
+  /usr/include/CGAL/IO/LAS/write_las_points.h
   /usr/include/CGAL/IO/Nef_polyhedron_2_PS_stream.h
   /usr/include/CGAL/IO/Nef_polyhedron_iostream_3.h
   /usr/include/CGAL/IO/OBJ.h
@@ -1096,6 +1179,8 @@ Files included in the binary package:
   /usr/include/CGAL/IO/OFF/File_writer_OFF.h
   /usr/include/CGAL/IO/OFF/Scanner_OFF.h
   /usr/include/CGAL/IO/OFF/generic_copy_OFF.h
+  /usr/include/CGAL/IO/OFF/read_off_points.h
+  /usr/include/CGAL/IO/OFF/write_off_points.h
   /usr/include/CGAL/IO/OI.h
   /usr/include/CGAL/IO/OI/File_writer_inventor.h
   /usr/include/CGAL/IO/OI/Inventor_ostream.h
@@ -1103,6 +1188,8 @@ Files included in the binary package:
   /usr/include/CGAL/IO/PLY.h
   /usr/include/CGAL/IO/PLY/PLY_reader.h
   /usr/include/CGAL/IO/PLY/PLY_writer.h
+  /usr/include/CGAL/IO/PLY/read_ply_points.h
+  /usr/include/CGAL/IO/PLY/write_ply_points.h
   /usr/include/CGAL/IO/Polyhedron_OFF_iostream.h
   /usr/include/CGAL/IO/Polyhedron_VRML_1_ostream.h
   /usr/include/CGAL/IO/Polyhedron_VRML_2_ostream.h
@@ -1132,6 +1219,9 @@ Files included in the binary package:
   /usr/include/CGAL/IO/WKT/traits_point.h
   /usr/include/CGAL/IO/WKT/traits_point_3.h
   /usr/include/CGAL/IO/WKT/traits_polygon.h
+  /usr/include/CGAL/IO/XYZ.h
+  /usr/include/CGAL/IO/XYZ/read_xyz_points.h
+  /usr/include/CGAL/IO/XYZ/write_xyz_points.h
   /usr/include/CGAL/IO/binary_file_io.h
   /usr/include/CGAL/IO/facets_in_complex_2_to_triangle_mesh.h
   /usr/include/CGAL/IO/facets_in_complex_3_to_triangle_mesh.h
@@ -1152,6 +1242,7 @@ Files included in the binary package:
   /usr/include/CGAL/IO/read_xyz_points.h
   /usr/include/CGAL/IO/scan_OFF.h
   /usr/include/CGAL/IO/trace.h
+  /usr/include/CGAL/IO/write_MEDIT.h
   /usr/include/CGAL/IO/write_VTU.h
   /usr/include/CGAL/IO/write_las_points.h
   /usr/include/CGAL/IO/write_off_points.h
@@ -1160,38 +1251,38 @@ Files included in the binary package:
   /usr/include/CGAL/IO/write_xyz_points.h
   /usr/include/CGAL/Identity_policy_2.h
   /usr/include/CGAL/ImageIO.h
+  /usr/include/CGAL/ImageIO/Attic/bmp.h
+  /usr/include/CGAL/ImageIO/Attic/bmp_impl.h
+  /usr/include/CGAL/ImageIO/Attic/bmpendian.h
+  /usr/include/CGAL/ImageIO/Attic/bmpendian_impl.h
+  /usr/include/CGAL/ImageIO/Attic/bmpread.h
+  /usr/include/CGAL/ImageIO/Attic/bmpread_impl.h
+  /usr/include/CGAL/ImageIO/Attic/bmptypes.h
+  /usr/include/CGAL/ImageIO/Attic/convert.h
+  /usr/include/CGAL/ImageIO/Attic/convert_impl.h
+  /usr/include/CGAL/ImageIO/Attic/gif.h
+  /usr/include/CGAL/ImageIO/Attic/gif_impl.h
+  /usr/include/CGAL/ImageIO/Attic/gis.h
+  /usr/include/CGAL/ImageIO/Attic/gis_impl.h
+  /usr/include/CGAL/ImageIO/Attic/iris.h
+  /usr/include/CGAL/ImageIO/Attic/iris_impl.h
+  /usr/include/CGAL/ImageIO/Attic/mincio.h
+  /usr/include/CGAL/ImageIO/Attic/mincio_impl.h
+  /usr/include/CGAL/ImageIO/Attic/pnm.h
+  /usr/include/CGAL/ImageIO/Attic/pnm_impl.h
+  /usr/include/CGAL/ImageIO/Attic/recbuffer.h
+  /usr/include/CGAL/ImageIO/Attic/recbuffer_impl.h
+  /usr/include/CGAL/ImageIO/Attic/recline.h
+  /usr/include/CGAL/ImageIO/Attic/recline_impl.h
+  /usr/include/CGAL/ImageIO/Attic/reech4x4.h
+  /usr/include/CGAL/ImageIO/Attic/reech4x4_impl.h
+  /usr/include/CGAL/ImageIO/Attic/typedefs.h
   /usr/include/CGAL/ImageIO/analyze.h
   /usr/include/CGAL/ImageIO/analyze_impl.h
-  /usr/include/CGAL/ImageIO/bmp.h
-  /usr/include/CGAL/ImageIO/bmp_impl.h
-  /usr/include/CGAL/ImageIO/bmpendian.h
-  /usr/include/CGAL/ImageIO/bmpendian_impl.h
-  /usr/include/CGAL/ImageIO/bmpread.h
-  /usr/include/CGAL/ImageIO/bmpread_impl.h
-  /usr/include/CGAL/ImageIO/bmptypes.h
-  /usr/include/CGAL/ImageIO/convert.h
-  /usr/include/CGAL/ImageIO/convert_impl.h
   /usr/include/CGAL/ImageIO/fgetns.h
   /usr/include/CGAL/ImageIO/fgetns_impl.h
-  /usr/include/CGAL/ImageIO/gif.h
-  /usr/include/CGAL/ImageIO/gif_impl.h
-  /usr/include/CGAL/ImageIO/gis.h
-  /usr/include/CGAL/ImageIO/gis_impl.h
   /usr/include/CGAL/ImageIO/inr.h
   /usr/include/CGAL/ImageIO/inr_impl.h
-  /usr/include/CGAL/ImageIO/iris.h
-  /usr/include/CGAL/ImageIO/iris_impl.h
-  /usr/include/CGAL/ImageIO/mincio.h
-  /usr/include/CGAL/ImageIO/mincio_impl.h
-  /usr/include/CGAL/ImageIO/pnm.h
-  /usr/include/CGAL/ImageIO/pnm_impl.h
-  /usr/include/CGAL/ImageIO/recbuffer.h
-  /usr/include/CGAL/ImageIO/recbuffer_impl.h
-  /usr/include/CGAL/ImageIO/recline.h
-  /usr/include/CGAL/ImageIO/recline_impl.h
-  /usr/include/CGAL/ImageIO/reech4x4.h
-  /usr/include/CGAL/ImageIO/reech4x4_impl.h
-  /usr/include/CGAL/ImageIO/typedefs.h
   /usr/include/CGAL/ImageIO_impl.h
   /usr/include/CGAL/Image_3.h
   /usr/include/CGAL/Image_3_impl.h
@@ -1413,11 +1504,36 @@ Files included in the binary package:
   /usr/include/CGAL/Interval_skip_list_interval.h
   /usr/include/CGAL/Interval_traits.h
   /usr/include/CGAL/Inverse_index.h
-  /usr/include/CGAL/Is_a_predicate.h
   /usr/include/CGAL/Is_extended_kernel.h
   /usr/include/CGAL/Iso_cuboid_3.h
   /usr/include/CGAL/Iso_rectangle_2.h
   /usr/include/CGAL/Iso_rectangle_d.h
+  /usr/include/CGAL/Isosurfacing_3/Cartesian_grid_3.h
+  /usr/include/CGAL/Isosurfacing_3/Dual_contouring_domain_3.h
+  /usr/include/CGAL/Isosurfacing_3/Finite_difference_gradient_3.h
+  /usr/include/CGAL/Isosurfacing_3/Gradient_function_3.h
+  /usr/include/CGAL/Isosurfacing_3/IO/Image_3.h
+  /usr/include/CGAL/Isosurfacing_3/IO/OBJ.h
+  /usr/include/CGAL/Isosurfacing_3/Interpolated_discrete_gradients_3.h
+  /usr/include/CGAL/Isosurfacing_3/Interpolated_discrete_values_3.h
+  /usr/include/CGAL/Isosurfacing_3/Marching_cubes_domain_3.h
+  /usr/include/CGAL/Isosurfacing_3/Octree_partition.h
+  /usr/include/CGAL/Isosurfacing_3/Value_function_3.h
+  /usr/include/CGAL/Isosurfacing_3/dual_contouring_3.h
+  /usr/include/CGAL/Isosurfacing_3/edge_intersection_oracles_3.h
+  /usr/include/CGAL/Isosurfacing_3/internal/Cell_type.h
+  /usr/include/CGAL/Isosurfacing_3/internal/Isosurfacing_domain_3.h
+  /usr/include/CGAL/Isosurfacing_3/internal/Octree_domain_3.h
+  /usr/include/CGAL/Isosurfacing_3/internal/dual_contouring_functors.h
+  /usr/include/CGAL/Isosurfacing_3/internal/implicit_shapes_helper.h
+  /usr/include/CGAL/Isosurfacing_3/internal/marching_cubes_functors.h
+  /usr/include/CGAL/Isosurfacing_3/internal/partition_traits.h
+  /usr/include/CGAL/Isosurfacing_3/internal/partition_traits_Cartesian_grid.h
+  /usr/include/CGAL/Isosurfacing_3/internal/partition_traits_Octree.h
+  /usr/include/CGAL/Isosurfacing_3/internal/tables.h
+  /usr/include/CGAL/Isosurfacing_3/internal/topologically_correct_marching_cubes_functors.h
+  /usr/include/CGAL/Isosurfacing_3/interpolation_schemes_3.h
+  /usr/include/CGAL/Isosurfacing_3/marching_cubes_3.h
   /usr/include/CGAL/Iterator_project.h
   /usr/include/CGAL/Iterator_range.h
   /usr/include/CGAL/Iterator_transform.h
@@ -1528,6 +1644,7 @@ Files included in the binary package:
   /usr/include/CGAL/Line_arc_3.h
   /usr/include/CGAL/Linear_algebraCd.h
   /usr/include/CGAL/Linear_algebraHd.h
+  /usr/include/CGAL/Linear_cell_complex/IO/VTK.h
   /usr/include/CGAL/Linear_cell_complex_base.h
   /usr/include/CGAL/Linear_cell_complex_bgl_min_items.h
   /usr/include/CGAL/Linear_cell_complex_constructors.h
@@ -1565,6 +1682,8 @@ Files included in the binary package:
   /usr/include/CGAL/Mesh_3/C3T3_helpers.h
   /usr/include/CGAL/Mesh_3/Cell_criteria_visitor_with_balls.h
   /usr/include/CGAL/Mesh_3/Concurrent_mesher_config.h
+  /usr/include/CGAL/Mesh_3/Construct_initial_points_gray_image.h
+  /usr/include/CGAL/Mesh_3/Construct_initial_points_labeled_image.h
   /usr/include/CGAL/Mesh_3/Detect_features_in_image.h
   /usr/include/CGAL/Mesh_3/Detect_features_on_image_bbox.h
   /usr/include/CGAL/Mesh_3/Dump_c3t3.h
@@ -1574,6 +1693,8 @@ Files included in the binary package:
   /usr/include/CGAL/Mesh_3/Image_to_labeled_function_wrapper.h
   /usr/include/CGAL/Mesh_3/Implicit_surface_mesher_visitor.h
   /usr/include/CGAL/Mesh_3/Is_mesh_domain_field_3.h
+  /usr/include/CGAL/Mesh_3/Labeled_mesh_domain_3_image.h
+  /usr/include/CGAL/Mesh_3/Labeled_mesh_domain_3_implicit_function.h
   /usr/include/CGAL/Mesh_3/Lloyd_move.h
   /usr/include/CGAL/Mesh_3/Mesh_complex_3_in_triangulation_3_fwd.h
   /usr/include/CGAL/Mesh_3/Mesh_global_optimizer.h
@@ -1626,9 +1747,8 @@ Files included in the binary package:
   /usr/include/CGAL/Mesh_3/features_detection/features_detection_helpers.h
   /usr/include/CGAL/Mesh_3/features_detection/postprocess_weights.h
   /usr/include/CGAL/Mesh_3/generate_label_weights.h
-  /usr/include/CGAL/Mesh_3/initialize_triangulation_from_gray_image.h
-  /usr/include/CGAL/Mesh_3/initialize_triangulation_from_labeled_image.h
   /usr/include/CGAL/Mesh_3/internal/Graph_manipulations.h
+  /usr/include/CGAL/Mesh_3/internal/Polyline.h
   /usr/include/CGAL/Mesh_3/internal/check_weights.h
   /usr/include/CGAL/Mesh_3/internal/helpers.h
   /usr/include/CGAL/Mesh_3/io_signature.h
@@ -1640,6 +1760,7 @@ Files included in the binary package:
   /usr/include/CGAL/Mesh_3/parameters_defaults.h
   /usr/include/CGAL/Mesh_3/polyhedral_to_labeled_function_wrapper.h
   /usr/include/CGAL/Mesh_3/polylines_to_protect.h
+  /usr/include/CGAL/Mesh_3/polylines_to_protect_in_image.h
   /usr/include/CGAL/Mesh_3/radius_ratio.h
   /usr/include/CGAL/Mesh_3/search_for_connected_components_in_labeled_image.h
   /usr/include/CGAL/Mesh_3/sliver_criteria.h
@@ -1907,6 +2028,9 @@ Files included in the binary package:
   /usr/include/CGAL/NewKernel_d/function_objects_cartesian.h
   /usr/include/CGAL/NewKernel_d/functor_properties.h
   /usr/include/CGAL/NewKernel_d/functor_tags.h
+  /usr/include/CGAL/NewKernel_d/orientationC4.h
+  /usr/include/CGAL/NewKernel_d/orientationC5.h
+  /usr/include/CGAL/NewKernel_d/orientationC6.h
   /usr/include/CGAL/NewKernel_d/static_int.h
   /usr/include/CGAL/NewKernel_d/store_kernel.h
   /usr/include/CGAL/NewKernel_d/utils.h
@@ -2089,6 +2213,7 @@ Files included in the binary package:
   /usr/include/CGAL/Point_with_surface_index_geom_traits.h
   /usr/include/CGAL/Poisson_implicit_surface_3.h
   /usr/include/CGAL/Poisson_mesh_cell_criteria_3.h
+  /usr/include/CGAL/Poisson_mesh_domain_3.h
   /usr/include/CGAL/Poisson_reconstruction_function.h
   /usr/include/CGAL/Poisson_surface_reconstruction_3/internal/Poisson_mesh_traits_generator_3.h
   /usr/include/CGAL/Poisson_surface_reconstruction_3/internal/Poisson_sphere_oracle_3.h
@@ -2107,6 +2232,7 @@ Files included in the binary package:
   /usr/include/CGAL/Polygon_mesh_processing/Non_manifold_feature_map.h
   /usr/include/CGAL/Polygon_mesh_processing/Uniform_sizing_field.h
   /usr/include/CGAL/Polygon_mesh_processing/angle_and_area_smoothing.h
+  /usr/include/CGAL/Polygon_mesh_processing/approximated_centroidal_Voronoi_diagram_remeshing.h
   /usr/include/CGAL/Polygon_mesh_processing/autorefinement.h
   /usr/include/CGAL/Polygon_mesh_processing/bbox.h
   /usr/include/CGAL/Polygon_mesh_processing/border.h
@@ -2114,6 +2240,7 @@ Files included in the binary package:
   /usr/include/CGAL/Polygon_mesh_processing/compute_normal.h
   /usr/include/CGAL/Polygon_mesh_processing/connected_components.h
   /usr/include/CGAL/Polygon_mesh_processing/corefinement.h
+  /usr/include/CGAL/Polygon_mesh_processing/curvature.h
   /usr/include/CGAL/Polygon_mesh_processing/detect_features.h
   /usr/include/CGAL/Polygon_mesh_processing/distance.h
   /usr/include/CGAL/Polygon_mesh_processing/extrude.h
@@ -2124,6 +2251,7 @@ Files included in the binary package:
   /usr/include/CGAL/Polygon_mesh_processing/internal/Corefinement/Generic_clip_output_builder.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/Corefinement/Intersection_type.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/Corefinement/Output_builder_for_autorefinement.h
+  /usr/include/CGAL/Polygon_mesh_processing/internal/Corefinement/Self_intersection_exception.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/Corefinement/Visitor.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/Corefinement/face_graph_utils.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/Corefinement/intersect_triangle_and_segment_3.h
@@ -2149,14 +2277,19 @@ Files included in the binary package:
   /usr/include/CGAL/Polygon_mesh_processing/internal/Snapping/helper.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/Snapping/snap.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/Snapping/snap_vertices.h
+  /usr/include/CGAL/Polygon_mesh_processing/internal/Three_point_cut_plane_traits.h
+  /usr/include/CGAL/Polygon_mesh_processing/internal/clip_convex.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/do_no_use_CDT2.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/fair_impl.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/mesh_to_point_set_hausdorff_distance.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/refine_impl.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/repair_extra.h
   /usr/include/CGAL/Polygon_mesh_processing/internal/simplify_polyline.h
+  /usr/include/CGAL/Polygon_mesh_processing/internal/triangle_soup_snap_rounding.h
   /usr/include/CGAL/Polygon_mesh_processing/interpolated_corrected_curvatures.h
   /usr/include/CGAL/Polygon_mesh_processing/intersection.h
+  /usr/include/CGAL/Polygon_mesh_processing/intersection_polylines.h
+  /usr/include/CGAL/Polygon_mesh_processing/kernel.h
   /usr/include/CGAL/Polygon_mesh_processing/locate.h
   /usr/include/CGAL/Polygon_mesh_processing/manifoldness.h
   /usr/include/CGAL/Polygon_mesh_processing/measure.h
@@ -2165,10 +2298,12 @@ Files included in the binary package:
   /usr/include/CGAL/Polygon_mesh_processing/orient_polygon_soup_extension.h
   /usr/include/CGAL/Polygon_mesh_processing/orientation.h
   /usr/include/CGAL/Polygon_mesh_processing/polygon_mesh_to_polygon_soup.h
+  /usr/include/CGAL/Polygon_mesh_processing/polygon_soup_self_intersections.h
   /usr/include/CGAL/Polygon_mesh_processing/polygon_soup_to_polygon_mesh.h
   /usr/include/CGAL/Polygon_mesh_processing/random_perturbation.h
   /usr/include/CGAL/Polygon_mesh_processing/refine.h
   /usr/include/CGAL/Polygon_mesh_processing/refine_mesh_at_isolevel.h
+  /usr/include/CGAL/Polygon_mesh_processing/refine_with_plane.h
   /usr/include/CGAL/Polygon_mesh_processing/region_growing.h
   /usr/include/CGAL/Polygon_mesh_processing/remesh.h
   /usr/include/CGAL/Polygon_mesh_processing/remesh_planar_patches.h
@@ -2176,6 +2311,7 @@ Files included in the binary package:
   /usr/include/CGAL/Polygon_mesh_processing/repair_degeneracies.h
   /usr/include/CGAL/Polygon_mesh_processing/repair_polygon_soup.h
   /usr/include/CGAL/Polygon_mesh_processing/repair_self_intersections.h
+  /usr/include/CGAL/Polygon_mesh_processing/self_intersection_polylines.h
   /usr/include/CGAL/Polygon_mesh_processing/self_intersections.h
   /usr/include/CGAL/Polygon_mesh_processing/shape_predicates.h
   /usr/include/CGAL/Polygon_mesh_processing/smooth_mesh.h
@@ -2191,7 +2327,12 @@ Files included in the binary package:
   /usr/include/CGAL/Polygon_nop_decomposition_2.h
   /usr/include/CGAL/Polygon_offset_builder_2.h
   /usr/include/CGAL/Polygon_offset_builder_traits_2.h
+  /usr/include/CGAL/Polygon_repair/Boolean.h
   /usr/include/CGAL/Polygon_repair/Even_odd_rule.h
+  /usr/include/CGAL/Polygon_repair/Intersection_rule.h
+  /usr/include/CGAL/Polygon_repair/Non_zero_rule.h
+  /usr/include/CGAL/Polygon_repair/Union_rule.h
+  /usr/include/CGAL/Polygon_repair/Winding.h
   /usr/include/CGAL/Polygon_repair/internal/Triangulation_face_base_with_repair_info_2.h
   /usr/include/CGAL/Polygon_repair/internal/Triangulation_with_even_odd_constraints_2.h
   /usr/include/CGAL/Polygon_repair/repair.h
@@ -2258,7 +2399,6 @@ Files included in the binary package:
   /usr/include/CGAL/Polynomial/modular_gcd_utils.h
   /usr/include/CGAL/Polynomial/polynomial_gcd.h
   /usr/include/CGAL/Polynomial/polynomial_gcd_implementations.h
-  /usr/include/CGAL/Polynomial/polynomial_gcd_ntl.h
   /usr/include/CGAL/Polynomial/prs_resultant.h
   /usr/include/CGAL/Polynomial/resultant.h
   /usr/include/CGAL/Polynomial/square_free_factorize.h
@@ -2335,6 +2475,7 @@ Files included in the binary package:
   /usr/include/CGAL/Qt/GraphicsViewPolylineInput_impl.h
   /usr/include/CGAL/Qt/ImageInterface.ui
   /usr/include/CGAL/Qt/LineGraphicsItem.h
+  /usr/include/CGAL/Qt/MultipolygonWithHolesGraphicsItem.h
   /usr/include/CGAL/Qt/PainterOstream.h
   /usr/include/CGAL/Qt/PointsGraphicsItem.h
   /usr/include/CGAL/Qt/PointsInKdTreeGraphicsItem.h
@@ -2385,27 +2526,10 @@ Files included in the binary package:
   /usr/include/CGAL/Quadtree.h
   /usr/include/CGAL/Quotient.h
   /usr/include/CGAL/Quotient_fwd.h
-  /usr/include/CGAL/RS/Gmpfr_make_unique.h
-  /usr/include/CGAL/RS/ak_1.h
-  /usr/include/CGAL/RS/ak_z_1.h
-  /usr/include/CGAL/RS/algebraic_1.h
-  /usr/include/CGAL/RS/algebraic_z_1.h
-  /usr/include/CGAL/RS/bisection_refiner_1.h
-  /usr/include/CGAL/RS/comparator_1.h
-  /usr/include/CGAL/RS/dyadic.h
-  /usr/include/CGAL/RS/exact_signat_1.h
-  /usr/include/CGAL/RS/functors_1.h
-  /usr/include/CGAL/RS/functors_z_1.h
-  /usr/include/CGAL/RS/polynomial_converter_1.h
-  /usr/include/CGAL/RS/rs23_k_isolator_1.h
-  /usr/include/CGAL/RS/rs2_calls.h
-  /usr/include/CGAL/RS/rs2_isolator_1.h
-  /usr/include/CGAL/RS/rs3_k_refiner_1.h
-  /usr/include/CGAL/RS/rs3_refiner_1.h
-  /usr/include/CGAL/RS/signat_1.h
   /usr/include/CGAL/Random.h
   /usr/include/CGAL/Random_access_adaptor.h
   /usr/include/CGAL/Random_access_value_adaptor.h
+  /usr/include/CGAL/Random_allocator.h
   /usr/include/CGAL/Random_convex_hull_traits_2.h
   /usr/include/CGAL/Random_convex_set_traits_2.h
   /usr/include/CGAL/Random_impl.h
@@ -2442,6 +2566,7 @@ Files included in the binary package:
   /usr/include/CGAL/Rigid_triangle_mesh_collision_detection.h
   /usr/include/CGAL/Robust_circumcenter_traits_3.h
   /usr/include/CGAL/Robust_construction.h
+  /usr/include/CGAL/Robust_weighted_circumcenter_filtered_traits_2.h
   /usr/include/CGAL/Robust_weighted_circumcenter_filtered_traits_3.h
   /usr/include/CGAL/Root_for_circles_2_2.h
   /usr/include/CGAL/Root_for_spheres_2_3.h
@@ -2464,6 +2589,7 @@ Files included in the binary package:
   /usr/include/CGAL/STL_Extension/internal/Has_features.h
   /usr/include/CGAL/STL_Extension/internal/Has_member_visited.h
   /usr/include/CGAL/STL_Extension/internal/Has_nested_type_Bare_point.h
+  /usr/include/CGAL/STL_Extension/internal/Has_nested_type_Has_filtered_predicates_tag.h
   /usr/include/CGAL/STL_Extension/internal/boost/array_binary_tree.hpp
   /usr/include/CGAL/STL_Extension/internal/boost/mutable_heap.hpp
   /usr/include/CGAL/STL_Extension/internal/boost/mutable_queue.hpp
@@ -2472,6 +2598,7 @@ Files included in the binary package:
   /usr/include/CGAL/STL_Extension/internal/mesh_option_classes.h
   /usr/include/CGAL/STL_Extension/internal/mesh_parameters_interface.h
   /usr/include/CGAL/STL_Extension/internal/parameters_interface.h
+  /usr/include/CGAL/STL_Extension/internal/tuple_like_helpers.h
   /usr/include/CGAL/Scalar_factor_traits.h
   /usr/include/CGAL/Scale_space_reconstruction_3/Advancing_front_mesher.h
   /usr/include/CGAL/Scale_space_reconstruction_3/Alpha_shape_mesher.h
@@ -2595,14 +2722,18 @@ Files included in the binary package:
   /usr/include/CGAL/Shape_detection/Region_growing/Point_set/Least_squares_sphere_fit_sorting.h
   /usr/include/CGAL/Shape_detection/Region_growing/Point_set/Sphere_neighbor_query.h
   /usr/include/CGAL/Shape_detection/Region_growing/Polygon_mesh.h
+  /usr/include/CGAL/Shape_detection/Region_growing/Polygon_mesh/Face_area_sorting.h
   /usr/include/CGAL/Shape_detection/Region_growing/Polygon_mesh/Least_squares_plane_fit_region.h
   /usr/include/CGAL/Shape_detection/Region_growing/Polygon_mesh/Least_squares_plane_fit_sorting.h
   /usr/include/CGAL/Shape_detection/Region_growing/Polygon_mesh/One_ring_neighbor_query.h
+  /usr/include/CGAL/Shape_detection/Region_growing/Polygon_mesh/Plane_face_region.h
   /usr/include/CGAL/Shape_detection/Region_growing/Polygon_mesh/Polyline_graph.h
   /usr/include/CGAL/Shape_detection/Region_growing/Region_growing.h
   /usr/include/CGAL/Shape_detection/Region_growing/Segment_set.h
   /usr/include/CGAL/Shape_detection/Region_growing/Segment_set/Least_squares_line_fit_region.h
   /usr/include/CGAL/Shape_detection/Region_growing/Segment_set/Least_squares_line_fit_sorting.h
+  /usr/include/CGAL/Shape_detection/Region_growing/Segment_set/Line_segment_region.h
+  /usr/include/CGAL/Shape_detection/Region_growing/Segment_set/Segment_length_sorting.h
   /usr/include/CGAL/Shape_detection/Region_growing/internal/cylinder_fitting.h
   /usr/include/CGAL/Shape_detection/Region_growing/internal/property_map.h
   /usr/include/CGAL/Shape_detection/Region_growing/internal/region_growing_traits.h
@@ -2688,7 +2819,6 @@ Files included in the binary package:
   /usr/include/CGAL/Sqrt_extension/convert_to_bfi.h
   /usr/include/CGAL/Sqrt_extension/io.h
   /usr/include/CGAL/Sqrt_extension_fwd.h
-  /usr/include/CGAL/Static_filtered_predicate.h
   /usr/include/CGAL/Straight_skeleton_2.h
   /usr/include/CGAL/Straight_skeleton_2/IO/Dxf_stream.h
   /usr/include/CGAL/Straight_skeleton_2/IO/Dxf_writer.h
@@ -2791,6 +2921,7 @@ Files included in the binary package:
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Face_count_ratio_stop_predicate.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Face_count_stop_predicate.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/FastEnvelope_filter.h
+  /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/GarlandHeckbert_plane_and_line_policies.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/GarlandHeckbert_plane_policies.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/GarlandHeckbert_policies.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/GarlandHeckbert_probabilistic_plane_policies.h
@@ -2801,7 +2932,9 @@ Files included in the binary package:
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/LindstromTurk_placement.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Midpoint_placement.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Polyhedral_envelope_filter.h
+  /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/internal/GarlandHeckbert_composed_policies.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/internal/GarlandHeckbert_functions.h
+  /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/internal/GarlandHeckbert_line_policies.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/internal/GarlandHeckbert_policy_base.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/internal/LindstromTurk_params.h
   /usr/include/CGAL/Surface_mesh_simplification/Policies/Edge_collapse/internal/Lindstrom_Turk_core.h
@@ -2854,6 +2987,7 @@ Files included in the binary package:
   /usr/include/CGAL/Surface_sweep_2/Arr_construction_ss_visitor.h
   /usr/include/CGAL/Surface_sweep_2/Arr_construction_subcurve.h
   /usr/include/CGAL/Surface_sweep_2/Arr_default_overlay_traits_base.h
+  /usr/include/CGAL/Surface_sweep_2/Arr_do_intersect_overlay_ss_visitor.h
   /usr/include/CGAL/Surface_sweep_2/Arr_insertion_ss_visitor.h
   /usr/include/CGAL/Surface_sweep_2/Arr_insertion_traits_2.h
   /usr/include/CGAL/Surface_sweep_2/Arr_no_intersection_insertion_ss_visitor.h
@@ -2863,12 +2997,15 @@ Files included in the binary package:
   /usr/include/CGAL/Surface_sweep_2/Arr_overlay_traits_2.h
   /usr/include/CGAL/Surface_sweep_2/Arr_vert_decomp_ss_visitor.h
   /usr/include/CGAL/Surface_sweep_2/Curve_comparer.h
+  /usr/include/CGAL/Surface_sweep_2/Default_arr_traits.h
   /usr/include/CGAL/Surface_sweep_2/Default_event.h
   /usr/include/CGAL/Surface_sweep_2/Default_event_base.h
   /usr/include/CGAL/Surface_sweep_2/Default_subcurve.h
   /usr/include/CGAL/Surface_sweep_2/Default_visitor.h
   /usr/include/CGAL/Surface_sweep_2/Default_visitor_base.h
   /usr/include/CGAL/Surface_sweep_2/Do_interior_intersect_visitor.h
+  /usr/include/CGAL/Surface_sweep_2/Do_intersect_surface_sweep_2_impl.h
+  /usr/include/CGAL/Surface_sweep_2/Do_intersect_visitor.h
   /usr/include/CGAL/Surface_sweep_2/Event_comparer.h
   /usr/include/CGAL/Surface_sweep_2/Intersection_points_visitor.h
   /usr/include/CGAL/Surface_sweep_2/No_intersection_surface_sweep_2_impl.h
@@ -3005,6 +3142,8 @@ Files included in the binary package:
   /usr/include/CGAL/Triangulation_hierarchy_vertex_base_2.h
   /usr/include/CGAL/Triangulation_hierarchy_vertex_base_3.h
   /usr/include/CGAL/Triangulation_incremental_builder_3.h
+  /usr/include/CGAL/Triangulation_on_hyperbolic_surface_2.h
+  /usr/include/CGAL/Triangulation_on_hyperbolic_surface_2_IO.h
   /usr/include/CGAL/Triangulation_on_sphere_2.h
   /usr/include/CGAL/Triangulation_on_sphere_2/IO/OFF.h
   /usr/include/CGAL/Triangulation_on_sphere_2/internal/arc_on_sphere_2_subsampling.h
@@ -3013,6 +3152,7 @@ Files included in the binary package:
   /usr/include/CGAL/Triangulation_on_sphere_vertex_base_2.h
   /usr/include/CGAL/Triangulation_segment_traverser_3.h
   /usr/include/CGAL/Triangulation_simplex_3.h
+  /usr/include/CGAL/Triangulation_simplex_base_with_time_stamp.h
   /usr/include/CGAL/Triangulation_sphere_line_face_circulator_2.h
   /usr/include/CGAL/Triangulation_structural_filtering_traits.h
   /usr/include/CGAL/Triangulation_utils_2.h
@@ -3103,8 +3243,10 @@ Files included in the binary package:
   /usr/include/CGAL/aff_transformation_tags_impl.h
   /usr/include/CGAL/algorithm.h
   /usr/include/CGAL/all_furthest_neighbors_2.h
+  /usr/include/CGAL/alpha_wrap_2.h
   /usr/include/CGAL/alpha_wrap_3.h
   /usr/include/CGAL/apply_to_range.h
+  /usr/include/CGAL/approximate_convex_decomposition.h
   /usr/include/CGAL/approximated_offset_2.h
   /usr/include/CGAL/argument_swaps.h
   /usr/include/CGAL/arrange_offset_polygons_2.h
@@ -3124,6 +3266,7 @@ Files included in the binary package:
   /usr/include/CGAL/basic_constructions_2.h
   /usr/include/CGAL/basic_constructions_3.h
   /usr/include/CGAL/bilateral_smooth_point_set.h
+  /usr/include/CGAL/bisect_failures.h
   /usr/include/CGAL/boost/bimap.hpp
   /usr/include/CGAL/boost/bimap/multiset_of.hpp
   /usr/include/CGAL/boost/graph/Alpha_expansion_MaxFlow_tag.h
@@ -3139,6 +3282,7 @@ Files included in the binary package:
   /usr/include/CGAL/boost/graph/IO/INP.h
   /usr/include/CGAL/boost/graph/IO/OBJ.h
   /usr/include/CGAL/boost/graph/IO/OFF.h
+  /usr/include/CGAL/boost/graph/IO/OM.h
   /usr/include/CGAL/boost/graph/IO/PLY.h
   /usr/include/CGAL/boost/graph/IO/STL.h
   /usr/include/CGAL/boost/graph/IO/Tds_2_off.h
@@ -3150,9 +3294,11 @@ Files included in the binary package:
   /usr/include/CGAL/boost/graph/Seam_mesh.h
   /usr/include/CGAL/boost/graph/alpha_expansion_graphcut.h
   /usr/include/CGAL/boost/graph/backward_compatibility_functions.h
+  /usr/include/CGAL/boost/graph/border.h
   /usr/include/CGAL/boost/graph/breadth_first_search.h
   /usr/include/CGAL/boost/graph/convert_nef_polyhedron_to_polygon_mesh.h
   /usr/include/CGAL/boost/graph/copy_face_graph.h
+  /usr/include/CGAL/boost/graph/dijkstra_shortest_path.h
   /usr/include/CGAL/boost/graph/generators.h
   /usr/include/CGAL/boost/graph/graph_concepts.h
   /usr/include/CGAL/boost/graph/graph_traits_Arrangement_2.h
@@ -3280,6 +3426,7 @@ Files included in the binary package:
   /usr/include/CGAL/double.h
   /usr/include/CGAL/draw_arrangement_2.h
   /usr/include/CGAL/draw_constrained_triangulation_2.h
+  /usr/include/CGAL/draw_constrained_triangulation_3.h
   /usr/include/CGAL/draw_face_graph.h
   /usr/include/CGAL/draw_face_graph_with_paths.h
   /usr/include/CGAL/draw_linear_cell_complex.h
@@ -3303,6 +3450,7 @@ Files included in the binary package:
   /usr/include/CGAL/envelope_3.h
   /usr/include/CGAL/estimate_scale.h
   /usr/include/CGAL/exceptions.h
+  /usr/include/CGAL/expected.h
   /usr/include/CGAL/export/CGAL.h
   /usr/include/CGAL/export/CORE.h
   /usr/include/CGAL/export/ImageIO.h
@@ -3311,6 +3459,7 @@ Files included in the binary package:
   /usr/include/CGAL/extended_euclidean_algorithm.h
   /usr/include/CGAL/extract_mean_curvature_flow_skeleton.h
   /usr/include/CGAL/extremal_polygon_2.h
+  /usr/include/CGAL/extreme_point_3.h
   /usr/include/CGAL/extrude_skeleton.h
   /usr/include/CGAL/exude_mesh_3.h
   /usr/include/CGAL/facets_in_complex_3_to_triangle_mesh.h
@@ -3320,10 +3469,12 @@ Files included in the binary package:
   /usr/include/CGAL/functional.h
   /usr/include/CGAL/functions_on_enums.h
   /usr/include/CGAL/functions_on_signs.h
+  /usr/include/CGAL/gdb_autoload.h
   /usr/include/CGAL/generators.h
   /usr/include/CGAL/generic_sweep.h
   /usr/include/CGAL/gl.h
   /usr/include/CGAL/global_functions_circular_kernel_2.h
+  /usr/include/CGAL/global_functions_distance_3.h
   /usr/include/CGAL/global_functions_on_root_for_sphere_2_3.h
   /usr/include/CGAL/global_functions_on_roots_and_polynomials_1_3.h
   /usr/include/CGAL/global_functions_on_roots_and_polynomials_2_3.h
@@ -3348,6 +3499,7 @@ Files included in the binary package:
   /usr/include/CGAL/hilbert_sort_on_sphere.h
   /usr/include/CGAL/in_place_edge_list.h
   /usr/include/CGAL/int.h
+  /usr/include/CGAL/internal/robust_cross_product.h
   /usr/include/CGAL/interpolation_functions.h
   /usr/include/CGAL/intersection_2.h
   /usr/include/CGAL/intersection_3.h
@@ -3377,10 +3529,12 @@ Files included in the binary package:
   /usr/include/CGAL/license/Advancing_front_surface_reconstruction.h
   /usr/include/CGAL/license/Alpha_shapes_2.h
   /usr/include/CGAL/license/Alpha_shapes_3.h
+  /usr/include/CGAL/license/Alpha_wrap_2.h
   /usr/include/CGAL/license/Alpha_wrap_3.h
   /usr/include/CGAL/license/Apollonius_graph_2.h
   /usr/include/CGAL/license/Arrangement_on_surface_2.h
   /usr/include/CGAL/license/Barycentric_coordinates_2.h
+  /usr/include/CGAL/license/Barycentric_coordinates_3.h
   /usr/include/CGAL/license/Boolean_set_operations_2.h
   /usr/include/CGAL/license/Bounding_volumes.h
   /usr/include/CGAL/license/Box_intersection_d.h
@@ -3388,18 +3542,21 @@ Files included in the binary package:
   /usr/include/CGAL/license/Circular_kernel_3.h
   /usr/include/CGAL/license/Classification.h
   /usr/include/CGAL/license/Cone_spanners_2.h
+  /usr/include/CGAL/license/Constrained_triangulation_3.h
   /usr/include/CGAL/license/Convex_decomposition_3.h
   /usr/include/CGAL/license/Convex_hull_2.h
   /usr/include/CGAL/license/Convex_hull_3.h
   /usr/include/CGAL/license/Convex_hull_d.h
   /usr/include/CGAL/license/Envelope_2.h
   /usr/include/CGAL/license/Envelope_3.h
+  /usr/include/CGAL/license/Frechet_distance.h
   /usr/include/CGAL/license/GraphicsView.h
   /usr/include/CGAL/license/Heat_method_3.h
   /usr/include/CGAL/license/Hyperbolic_triangulation_2.h
   /usr/include/CGAL/license/Inscribed_areas.h
   /usr/include/CGAL/license/Interpolation.h
   /usr/include/CGAL/license/Interval_skip_list.h
+  /usr/include/CGAL/license/Isosurfacing_3.h
   /usr/include/CGAL/license/Jet_fitting_3.h
   /usr/include/CGAL/license/Kinetic_space_partition.h
   /usr/include/CGAL/license/Kinetic_surface_reconstruction.h
@@ -3426,6 +3583,7 @@ Files included in the binary package:
   /usr/include/CGAL/license/Polygon_mesh_processing.h
   /usr/include/CGAL/license/Polygon_mesh_processing/Compute_normal.h
   /usr/include/CGAL/license/Polygon_mesh_processing/Polyhedral_envelope.h
+  /usr/include/CGAL/license/Polygon_mesh_processing/acvd.h
   /usr/include/CGAL/license/Polygon_mesh_processing/autorefinement.h
   /usr/include/CGAL/license/Polygon_mesh_processing/collision_detection.h
   /usr/include/CGAL/license/Polygon_mesh_processing/combinatorial_repair.h
@@ -3467,6 +3625,7 @@ Files included in the binary package:
   /usr/include/CGAL/license/Stream_lines_2.h
   /usr/include/CGAL/license/Surface_mesh.h
   /usr/include/CGAL/license/Surface_mesh_approximation.h
+  /usr/include/CGAL/license/Surface_mesh_decomposition.h
   /usr/include/CGAL/license/Surface_mesh_deformation.h
   /usr/include/CGAL/license/Surface_mesh_parameterization.h
   /usr/include/CGAL/license/Surface_mesh_segmentation.h
@@ -3483,6 +3642,7 @@ Files included in the binary package:
   /usr/include/CGAL/license/Triangulation.h
   /usr/include/CGAL/license/Triangulation_2.h
   /usr/include/CGAL/license/Triangulation_3.h
+  /usr/include/CGAL/license/Triangulation_on_hyperbolic_surface_2.h
   /usr/include/CGAL/license/Triangulation_on_sphere_2.h
   /usr/include/CGAL/license/Visibility_2.h
   /usr/include/CGAL/license/Voronoi_diagram_2.h
@@ -3508,6 +3668,7 @@ Files included in the binary package:
   /usr/include/CGAL/lloyd_optimize_mesh_3.h
   /usr/include/CGAL/long_double.h
   /usr/include/CGAL/long_long.h
+  /usr/include/CGAL/make_conforming_constrained_Delaunay_triangulation_3.h
   /usr/include/CGAL/make_mesh_3.h
   /usr/include/CGAL/make_periodic_3_mesh_3.h
   /usr/include/CGAL/make_piecewise_smooth_surface_mesh.h
@@ -3557,6 +3718,7 @@ Files included in the binary package:
   /usr/include/CGAL/point_generators_d.h
   /usr/include/CGAL/pointmatcher/compute_registration_transformation.h
   /usr/include/CGAL/pointmatcher/register_point_sets.h
+  /usr/include/CGAL/poisson_eliminate.h
   /usr/include/CGAL/poisson_refine_triangulation.h
   /usr/include/CGAL/poisson_surface_reconstruction.h
   /usr/include/CGAL/polygon_function_objects.h
@@ -3630,6 +3792,8 @@ Files included in the binary package:
   /usr/include/CGAL/type_traits.h
   /usr/include/CGAL/type_traits/is_iterator.h
   /usr/include/CGAL/typeset.h
+  /usr/include/CGAL/unordered_flat_map.h
+  /usr/include/CGAL/unordered_flat_set.h
   /usr/include/CGAL/use.h
   /usr/include/CGAL/user_classes.h
   /usr/include/CGAL/utility.h
@@ -3637,6 +3801,7 @@ Files included in the binary package:
   /usr/include/CGAL/utils_classes.h
   /usr/include/CGAL/value_type_traits.h
   /usr/include/CGAL/variant.h
+  /usr/include/CGAL/variant_output_iterator.h
   /usr/include/CGAL/vcm_estimate_edges.h
   /usr/include/CGAL/vcm_estimate_normals.h
   /usr/include/CGAL/vector.h
@@ -3654,6 +3819,7 @@ Files included in the binary package:
   /usr/lib/cmake/CGAL/CGALConfig_binary.cmake.in
   /usr/lib/cmake/CGAL/CGALConfig_binary_header_only.cmake.in
   /usr/lib/cmake/CGAL/CGALConfig_install.cmake.in
+  /usr/lib/cmake/CGAL/CGALHelpers.cmake
   /usr/lib/cmake/CGAL/CGALLibConfig.cmake.in
   /usr/lib/cmake/CGAL/CGAL_Boost_iostreams_support.cmake
   /usr/lib/cmake/CGAL/CGAL_Boost_serialization_support.cmake
@@ -3702,7 +3868,6 @@ Files included in the binary package:
   /usr/lib/cmake/CGAL/CGAL_target_use_TBB.cmake
   /usr/lib/cmake/CGAL/FindCORE.cmake
   /usr/lib/cmake/CGAL/FindESBTL.cmake
-  /usr/lib/cmake/CGAL/FindEigen3.cmake
   /usr/lib/cmake/CGAL/FindF2C.cmake
   /usr/lib/cmake/CGAL/FindGLPK.cmake
   /usr/lib/cmake/CGAL/FindGMP.cmake
@@ -3716,11 +3881,9 @@ Files included in the binary package:
   /usr/lib/cmake/CGAL/FindMKL.cmake
   /usr/lib/cmake/CGAL/FindMPFI.cmake
   /usr/lib/cmake/CGAL/FindMPFR.cmake
-  /usr/lib/cmake/CGAL/FindNTL.cmake
   /usr/lib/cmake/CGAL/FindOSQP.cmake
   /usr/lib/cmake/CGAL/FindRS.cmake
   /usr/lib/cmake/CGAL/FindRS3.cmake
-  /usr/lib/cmake/CGAL/FindSuiteSparse.cmake
   /usr/lib/cmake/CGAL/FindTBB.cmake
   /usr/lib/cmake/CGAL/Help/CGAL_SetupBoost.rst
   /usr/lib/cmake/CGAL/Help/CGAL_SetupCGALDependencies.rst
@@ -3818,6 +3981,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 6.2.1-1bl1 -----
+Version bump.
 
 ----- version 6.0.1-1bl1 -----
 Version bump.

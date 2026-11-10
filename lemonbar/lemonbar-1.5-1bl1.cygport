@@ -1,5 +1,6 @@
-HOMEPAGE="https://github.com/LemonBoy/${PN}"
-SRC_URI="https://github.com/LemonBoy/${PN}/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/LemonBoy/bar"
+SRC_URI="https://github.com/LemonBoy/bar/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="bar-${PV}"
 
 CATEGORY="Utils"
 SUMMARY="Featherweight lemon-scented bar"
@@ -11,12 +12,19 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libxcb-randr-devel libxcb-devel perl"
+BUILD_REQUIRES="
+	libxcb-randr-devel
+	libxcb-devel
+	libxcb-xinerama-devel
+	perl
+"
 
 src_compile()
 {
 	cd ${B}
 	lndirs
+	# The Makefile appends to the environment CFLAGS; Xinerama code is built only with WITH_XINERAMA
+	CFLAGS+=" -DWITH_XINERAMA"
 	cygmake
 	cygmake doc
 }

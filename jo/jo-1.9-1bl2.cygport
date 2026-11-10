@@ -5,9 +5,13 @@ CATEGORY="Utils"
 SUMMARY="JSON output from a shell"
 DESCRIPTION="This is jo, a small utility to create JSON objects or arrays."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND MIT"
 LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	bash-completion-devel
+"
 
 DIFF_EXCLUDES="
 	tap-driver.sh

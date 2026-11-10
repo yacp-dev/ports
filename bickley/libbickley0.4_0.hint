@@ -1,9 +1,0 @@
-category: Libs
-requires: cygwin libdbus-glib_1_2 libglib2.0_0libtdb1
-external-source: bickley
-sdesc: "Meta data management API and framework (runtime)"
-ldesc: "Bickley is a meta data management API and framework. The core API
-allows storing and querying of URIs and associating key/value pairs. The core
-bickley API in the libbickley library provides shared access to common
-meta-data storage. Different processes can access and manipulate the same set
-of URIs and meta data about them in parallel."

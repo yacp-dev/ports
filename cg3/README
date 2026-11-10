@@ -3,52 +3,55 @@ cg3
 Tools for the 3rd edition of the Constraint Grammar formalism
 
 Runtime requirements:
-  cygwin-3.6.2-1
-  libcg3-devel-1.5.1-1bl1
-  libcg3_1-1.5.1-1bl1
-  libgcc1-12.4.0-3
+  cygwin-3.6.12-1
+  libcg3-devel-1.7.0-1bl1
+  libcg3_1-1.7.0-1bl1
+  libgcc1-14.4.0-1
   libicu76-76.1-2
   libsqlite3_0-3.49.1-1
-  libstdc++6-12.4.0-3
-  perl_base-5.40.2-1
-  pkg-config-2.4.3-1
-  python39-3.9.18-2
-  python39-cg3-1.5.1-1bl1
+  libstdc++6-14.4.0-1
+  perl_base-5.44.0-1
+  pkg-config-3.0.10-1
+  python3-3.12.12-1
+  python312-3.12.12-1
+  python312-cg3-1.7.0-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libboost-devel-1.66.0-1
   libicu-devel-76.1-2
   libsqlite3-devel-3.49.1-1
-  ninja-1.12.1-1
-  python39-3.9.18-2
-  python39-devel-3.9.18-2
+  ninja-1.13.2-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  rapidjson-devel-1.1.0p577-1
+  swig-4.5.1-1
 
 Canonical website:
   https://github.com/GrammarSoft/cg3
 
 Canonical download:
-  https://github.com/GrammarSoft/cg3/archive/refs/tags/v1.5.1.tar.gz
+  https://github.com/GrammarSoft/cg3/archive/refs/tags/v1.7.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack cg3-1.5.1-X-src.tar.xz
+  1. unpack cg3-1.7.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./cg3-1.5.1-X.cygport all
+        % cygport ./cg3-1.7.0-X.cygport all
 
 This will create:
-  /usr/src/cg3-1.5.1-X-src.tar.xz
-  /usr/src/cg3-1.5.1-X.tar.xz
-  /usr/src/libcg3_1-1.5.1-X.tar.xz
-  /usr/src/libcg3-devel-1.5.1-X.tar.xz
-  /usr/src/python39-cg3-1.5.1-X.tar.xz
+  /usr/src/cg3-1.7.0-X-src.tar.xz
+  /usr/src/cg3-1.7.0-X.tar.xz
+  /usr/src/libcg3_1-1.7.0-X.tar.xz
+  /usr/src/libcg3-devel-1.7.0-X.tar.xz
+  /usr/src/python312-cg3-1.7.0-X.tar.xz
 
 -------------------------------------------
 
@@ -63,6 +66,7 @@ Files included in the binary package:
   /usr/bin/cg-proc.exe
   /usr/bin/cg-relabel.exe
   /usr/bin/cg-sort
+  /usr/bin/cg-stabilize-relations
   /usr/bin/cg-strictify
   /usr/bin/cg-untrace
   /usr/bin/cg3-autobin.pl
@@ -124,24 +128,27 @@ Files included in the binary package:
   /usr/lib/libcg3.dll.a
   /usr/lib/pkgconfig/cg3.pc
 
-(python39-cg3)
-  /usr/lib/python3.9/site-packages/__pycache__/cg3.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/cg3.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/cg3.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/constraint_grammar.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/constraint_grammar.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/constraint_grammar.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/_constraint_grammar.cpython-39-x86_64-cygwin.dll
-  /usr/lib/python3.9/site-packages/cg3.py
-  /usr/lib/python3.9/site-packages/constraint_grammar-1.5.1.13898-py3.9.egg-info/PKG-INFO
-  /usr/lib/python3.9/site-packages/constraint_grammar-1.5.1.13898-py3.9.egg-info/SOURCES.txt
-  /usr/lib/python3.9/site-packages/constraint_grammar-1.5.1.13898-py3.9.egg-info/dependency_links.txt
-  /usr/lib/python3.9/site-packages/constraint_grammar-1.5.1.13898-py3.9.egg-info/top_level.txt
-  /usr/lib/python3.9/site-packages/constraint_grammar.py
+(python312-cg3)
+  /usr/lib/python3.12/site-packages/__pycache__/cg3.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/cg3.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/cg3.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/constraint_grammar.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/constraint_grammar.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/constraint_grammar.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/_constraint_grammar.cpython-312-x86_64-cygwin.dll
+  /usr/lib/python3.12/site-packages/cg3.py
+  /usr/lib/python3.12/site-packages/constraint_grammar-1.7.0.13898-py3.12.egg-info/PKG-INFO
+  /usr/lib/python3.12/site-packages/constraint_grammar-1.7.0.13898-py3.12.egg-info/SOURCES.txt
+  /usr/lib/python3.12/site-packages/constraint_grammar-1.7.0.13898-py3.12.egg-info/dependency_links.txt
+  /usr/lib/python3.12/site-packages/constraint_grammar-1.7.0.13898-py3.12.egg-info/top_level.txt
+  /usr/lib/python3.12/site-packages/constraint_grammar.py
 
 ------------------
 
 Port Notes:
+
+----- version 1.7.0-1bl1 -----
+Version bump.
 
 ----- version 1.5.1-1bl1 -----
 Version bump.

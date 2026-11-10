@@ -1,0 +1,44 @@
+--- origsrc/cg3-1.7.0/CMakeLists.txt	2026-11-02 15:32:12.000000000 +0000
++++ src/cg3-1.7.0/CMakeLists.txt	2026-11-10 16:56:45.512104200 +0000
+@@ -44,7 +44,7 @@ else()
+ 	include(CheckCCompilerFlag)
+ 	include(CheckCXXCompilerFlag)
+ 
+-	foreach(flag "-Wno-unused-result" "-flto")
++	foreach(flag "-Wno-unused-result")
+ 		string(REGEX REPLACE "[^A-Za-z0-9]" "" _flag ${flag})
+ 		CHECK_CXX_COMPILER_FLAG(${flag} COMPILER_SUPPORTS_${_flag})
+ 		if(COMPILER_SUPPORTS_${_flag})
+--- origsrc/cg3-1.7.0/cg3.pc.in	2026-11-02 15:32:12.000000000 +0000
++++ src/cg3-1.7.0/cg3.pc.in	2026-11-10 16:56:45.510349300 +0000
+@@ -5,6 +5,6 @@ includedir=${prefix}/@includedir@
+ 
+ Name: cg3
+ Description: CG-3 is a compiler and applicator for the third edition of the Constraint Grammar formalism.
+-Version: @VERSION@
++Version: @_cg3_VERSION_MAJOR@.@_cg3_VERSION_MINOR@.@_cg3_VERSION_PATCH@
+ Libs: -L${libdir} -lcg3 @CG3_LIBS@
+ Cflags: -I${includedir}/ @CG3_CFLAGS@
+--- origsrc/cg3-1.7.0/python/setup.py.in	2026-11-02 15:32:12.000000000 +0000
++++ src/cg3-1.7.0/python/setup.py.in	2026-11-10 16:56:45.512104200 +0000
+@@ -18,7 +18,7 @@ constraint_grammar_module = Extension(
+     swig_opts = ['-c++', '-I/usr/include', '-I${CMAKE_SOURCE_DIR}', '-I${CMAKE_SOURCE_DIR}/src', '-I${CMAKE_SOURCE_DIR}/include', '-Wall'],
+     include_dirs=['${CMAKE_SOURCE_DIR}', '${CMAKE_SOURCE_DIR}/src', '${CMAKE_SOURCE_DIR}/include', '${CMAKE_SOURCE_DIR}/include/posix'],
+     library_dirs=['${CMAKE_BINARY_DIR}/src'],
+-    libraries=['cg3', 'icuuc', 'icuio', 'icui18n'],
++    libraries=['cg3', 'icuuc', 'icuio', 'icui18n', 'cg3'],
+     extra_compile_args=compile_args,
+     extra_link_args=link_args,
+ )
+--- origsrc/cg3-1.7.0/src/CMakeLists.txt	2026-11-02 15:32:12.000000000 +0000
++++ src/cg3-1.7.0/src/CMakeLists.txt	2026-11-10 16:56:45.512104200 +0000
+@@ -23,6 +23,9 @@ else()
+ 		cmake_policy(SET CMP0167 OLD)
+ 	endif()
+ 
++	# Cygwin's Boost 1.66 ships no BoostConfig.cmake; use FindBoost
++	cmake_policy(SET CMP0167 OLD)
++
+ 	# Boost
+ 	find_path(Boost_LOCAL NAMES boost/config.hpp PATHS "../include" NO_DEFAULT_PATH)
+ 	if(Boost_LOCAL)

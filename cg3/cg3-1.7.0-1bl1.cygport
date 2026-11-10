@@ -5,11 +5,18 @@ CATEGORY="Science"
 SUMMARY="Tools for the 3rd edition of the Constraint Grammar formalism"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND ICU"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND ICU"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libicu-devel libsqlite3-devel python39-devel"
+BUILD_REQUIRES="
+	libboost-devel
+	libicu-devel
+	libsqlite3-devel
+	python3-devel
+	rapidjson-devel
+	swig
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 export LDFLAGS="${LDFLAGS} -Wl,--allow-multiple-definition"
@@ -18,6 +25,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DENABLE_PYTHON_BINDINGS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 src_test()
@@ -47,7 +55,7 @@ PKG_NAMES="
 	cg3
 	libcg3_1
 	libcg3-devel
-	python39-cg3
+	python312-cg3
 "
 cg3_CONTENTS="
 	usr/bin/cg*
@@ -62,10 +70,10 @@ libcg3_devel_CONTENTS="
 	usr/lib/*.dll.a
 	usr/lib/pkgconfig
 "
-python39_cg3_CONTENTS="
-	usr/lib/python3.9
+python312_cg3_CONTENTS="
+	usr/lib/python3.12
 "
 cg3_SUMMARY="${SUMMARY} (utilities)"
 libcg3_1_SUMMARY="${SUMMARY} (runtime)"
 libcg3_devel_SUMMARY="${SUMMARY} (development)"
-python39_cg3_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_cg3_SUMMARY="${SUMMARY} (python312 bindings)"

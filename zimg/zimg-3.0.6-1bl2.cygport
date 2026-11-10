@@ -10,11 +10,16 @@ LICENSE="WTFPL"
 LICENSE_SPDX="SPDX-License-Identifier: WTFPL"
 LICENSE_URI="COPYING"
 
+BUILD_REQUIRES="
+	libgtest-devel
+"
+
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 CYGCONF_ARGS="
 	--enable-example
 	--enable-testapp
+	--enable-unit-test
 "
 
 PKG_NAMES="

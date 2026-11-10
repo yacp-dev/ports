@@ -1,0 +1,7 @@
+--- origsrc/libexttextcat-3.4.9/langclass/LM/Makefile.am	2026-11-07 21:59:36.000000000 +0000
++++ src/libexttextcat-3.4.9/langclass/LM/Makefile.am	2026-11-10 04:24:39.591563200 +0000
+@@ -1,3 +1,3 @@
+ EXTRA_DIST = ${wildcard *.lm}
+ 
+-pkgdata_DATA = ${wildcard *.lm}
++pkgdata_DATA = $(srcdir)/*.lm

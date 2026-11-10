@@ -3,46 +3,46 @@ libtatsu
 Library handling the communication with Apple's Tatsu Signing Server
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libcurl4-8.18.0-1
-  libplist2.0-devel-2.7.0-1bl1
-  libplist2.0_4-2.7.0-1bl1
-  libtatsu-devel-1.0.5-1bl1
-  libtatsu0-1.0.5-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libcurl4-8.23.0-1
+  libplist2.0-devel-2.8.1-1bl1
+  libplist2.0_12-2.8.1-1bl1
+  libtatsu-devel-1.1.0-1bl1
+  libtatsu0-1.1.0-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libcurl-devel-8.18.0-1
-  libplist2.0-devel-2.7.0-1bl1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcurl-devel-8.23.0-1
+  libplist2.0-devel-2.8.1-1bl1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/libimobiledevice/libtatsu
 
 Canonical download:
-  https://github.com/libimobiledevice/libtatsu/archive/refs/tags/1.0.5.tar.gz
+  https://github.com/libimobiledevice/libtatsu/archive/refs/tags/1.1.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libtatsu-1.0.5-X-src.tar.xz
+  1. unpack libtatsu-1.1.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libtatsu-1.0.5-X.cygport all
+        % cygport ./libtatsu-1.1.0-X.cygport all
 
 This will create:
-  /usr/src/libtatsu-1.0.5-X-src.tar.xz
-  /usr/src/libtatsu-1.0.5-X.tar.xz
-  /usr/src/libtatsu0-1.0.5-X.tar.xz
-  /usr/src/libtatsu-devel-1.0.5-X.tar.xz
+  /usr/src/libtatsu-1.1.0-X-src.tar.xz
+  /usr/src/libtatsu-1.1.0-X.tar.xz
+  /usr/src/libtatsu0-1.1.0-X.tar.xz
+  /usr/src/libtatsu-devel-1.1.0-X.tar.xz
 
 -------------------------------------------
 
@@ -66,6 +66,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.0-1bl1 -----
+Version bump.
 
 ----- version 1.0.5-1bl1 -----
 Version bump.

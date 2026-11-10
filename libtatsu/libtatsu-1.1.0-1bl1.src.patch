@@ -1,0 +1,11 @@
+--- origsrc/libtatsu-1.1.0/configure.ac	2026-11-05 07:14:53.000000000 +0000
++++ src/libtatsu-1.1.0/configure.ac	2026-11-10 07:18:31.689621300 +0000
+@@ -64,7 +64,7 @@ fi
+ # Check for operating system
+ AC_MSG_CHECKING([for platform-specific build settings])
+ case ${host_os} in
+-  *mingw32*|*cygwin*)
++  *mingw32*)
+     AC_MSG_RESULT([${host_os}])
+     win32=true
+     AC_DEFINE(WINVER, 0x0501, [minimum Windows version])

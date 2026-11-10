@@ -1,19 +1,21 @@
 HOMEPAGE="https://github.com/github/${PN}"
 SRC_URI="https://github.com/github/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="https://raw.githubusercontent.com/gentoo/gentoo/4c0c56318d40e8ed82d44c6e959727354d39ca3f/app-text/cmark-gfm/files/cmark-gfm-${PV}-cmake4.patch#cmark-gfm-cmake4.patch"
 
 CATEGORY="Libs"
 SUMMARY="C implementation of GitHub Flavored Markdown"
 DESCRIPTION="cmark-gfm is an extended version of the C reference implementation of
 CommonMark, a rationalized version of Markdown syntax with a spec."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND MIT"
 LICENSE_URI="COPYING"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DCMARK_STATIC:BOOL=OFF
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 src_test()
@@ -25,7 +27,7 @@ src_test()
 	pushd extensions
 		ln -fs cygcmark-gfm-extensions-${PV}.dll cygcmark-gfm-extensions.dll
 	popd
-	ninja_test
+	PATH="${B}/src:${B}/extensions:${PATH}" ninja_test
 	rm -f src/cygcmark-gfm.dll extensions/cygcmark-gfm-extensions.dll
 }
 

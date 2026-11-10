@@ -1,5 +1,5 @@
---- origsrc/cmark-gfm-0.29.0.gfm.13/extensions/CMakeLists.txt	2023-07-22 00:19:43.000000000 +0900
-+++ src/cmark-gfm-0.29.0.gfm.13/extensions/CMakeLists.txt	2023-07-27 13:00:14.527289500 +0900
+--- origsrc/cmark-gfm-0.29.0.gfm.13/extensions/CMakeLists.txt	2023-07-21 15:19:43.000000000 +0000
++++ src/cmark-gfm-0.29.0.gfm.13/extensions/CMakeLists.txt	2026-11-10 16:20:03.956275600 +0000
 @@ -79,7 +79,7 @@ if (CMARK_SHARED OR CMARK_STATIC)
    DESTINATION include
    )
@@ -9,8 +9,8 @@
  endif()
  
  # Feature tests
---- origsrc/cmark-gfm-0.29.0.gfm.13/src/CMakeLists.txt	2023-07-22 00:19:43.000000000 +0900
-+++ src/cmark-gfm-0.29.0.gfm.13/src/CMakeLists.txt	2023-07-27 13:00:14.527289500 +0900
+--- origsrc/cmark-gfm-0.29.0.gfm.13/src/CMakeLists.txt	2023-07-21 15:19:43.000000000 +0000
++++ src/cmark-gfm-0.29.0.gfm.13/src/CMakeLists.txt	2026-11-10 16:20:03.958289400 +0000
 @@ -175,7 +175,7 @@ if(CMARK_SHARED OR CMARK_STATIC)
      DESTINATION include
      )
@@ -20,8 +20,8 @@
  endif()
  
  # Feature tests
---- origsrc/cmark-gfm-0.29.0.gfm.13/test/cmark.py	2023-07-22 00:19:43.000000000 +0900
-+++ src/cmark-gfm-0.29.0.gfm.13/test/cmark.py	2023-07-27 13:00:14.527289500 +0900
+--- origsrc/cmark-gfm-0.29.0.gfm.13/test/cmark.py	2023-07-21 15:19:43.000000000 +0000
++++ src/cmark-gfm-0.29.0.gfm.13/test/cmark.py	2026-11-10 16:20:03.958289400 +0000
 @@ -5,6 +5,7 @@ from ctypes import CDLL, c_char_p, c_siz
  from subprocess import *
  import platform

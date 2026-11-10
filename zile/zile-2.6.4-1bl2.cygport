@@ -16,9 +16,16 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	autoconf-archive
+	help2man
 	libgee0.8-devel
 	libglib2.0-devel
 	libncurses-devel
+	vala
+"
+
+CYGCONF_ARGS="
+	gl_cv_clean_version_stddef=yes
 "
 
 DIFF_EXCLUDES="

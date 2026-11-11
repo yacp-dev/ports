@@ -1,5 +1,3 @@
-inherit gnome2
-
 HOMEPAGE="https://launchpad.net/${PN}"
 SRC_URI="https://launchpad.net/${PN}/1.0/${PV}/+download/${P}.tar.gz"
 PATCH_URI="
@@ -10,9 +8,9 @@ PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}%2B17.10.20170616-8/debian/patches/vapi-skip-properties.patch
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}%2B17.10.20170616-8/debian/patches/vala-gir.patch
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}%2B17.10.20170616-8/debian/patches/incompatible-pointer-types.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-gcc6-fixes.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-deprecated-g_type_class_add_private.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-fix-g_string_free-usage.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/9e2281e70ba2ee9f4ad7651bcc1d18490eda0a39/f/${P}-gcc6-fixes.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/9e2281e70ba2ee9f4ad7651bcc1d18490eda0a39/f/${P}-deprecated-g_type_class_add_private.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/9e2281e70ba2ee9f4ad7651bcc1d18490eda0a39/f/${P}-fix-g_string_free-usage.patch
 "
 
 CATEGORY="Libs"
@@ -27,10 +25,16 @@ LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	dbus
 	dbus-test-runner
+	gobject-introspection
 	libglib2.0-devel
 	libicu-devel
+	python3-devel
+	vala
 "
+
+export WANT_AUTOMAKE=1.19
 
 CYGCONF_ARGS="
 	--disable-gtk-doc
@@ -41,12 +45,16 @@ DOCS="
 	COPYING.GPL
 "
 
+DIFF_EXCLUDES="
+	py-compile
+"
+
 PKG_NAMES="
 	${PN}
 	lib${PN}1.0_4
 	lib${PN}1.0-devel
 	girepository-Dee1.0
-	python39-${PN}
+	python312-${PN}
 	vala-${PN}1.0
 "
 dee_CONTENTS="
@@ -65,8 +73,8 @@ girepository_Dee1_0_CONTENTS="
 	usr/lib/girepository-1.0
 	usr/share/gir-1.0
 "
-python39_dee_CONTENTS="
-	usr/lib/python3.9
+python312_dee_CONTENTS="
+	usr/lib/python3.12
 "
 vala_dee1_0_CONTENTS="
 	usr/share/vala
@@ -75,5 +83,5 @@ dee_SUMMARY="${SUMMARY} (utilities)"
 libdee1_0_4_SUMMARY="${SUMMARY} (runtime)"
 libdee1_0_devel_SUMMARY="${SUMMARY} (development)"
 girepository_Dee1_0_SUMMARY="${SUMMARY} (GObject Introspection data)"
-python39_dee_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_dee_SUMMARY="${SUMMARY} (python312 bindings)"
 vala_dee1_0_SUMMARY="${SUMMARY} (vala bindings)"

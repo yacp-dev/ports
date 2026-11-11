@@ -1,7 +1,7 @@
 HOMEPAGE="https://github.com/ros/${PN}"
 SRC_URI="https://github.com/ros/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-    https://sources.debian.org/data/main/u/urdfdom-headers/1.1.2-2/debian/patches/0004-Fix-prefix-path.patch
+	https://sources.debian.org/data/main/u/urdfdom-headers/1.1.2-2/debian/patches/0004-Fix-prefix-path.patch
 "
 
 CATEGORY="Devel"

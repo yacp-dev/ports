@@ -1,5 +1,5 @@
---- origsrc/urdfdom_headers-2.1.0/CMakeLists.txt	2026-02-01 05:17:44.000000000 +0900
-+++ src/urdfdom_headers-2.1.0/CMakeLists.txt	2026-02-06 11:13:27.716108900 +0900
+--- origsrc/urdfdom_headers-3.0.1/CMakeLists.txt	2026-07-30 07:15:08.000000000 +0000
++++ src/urdfdom_headers-3.0.1/CMakeLists.txt	2026-11-11 21:41:57.655575700 +0000
 @@ -32,6 +32,8 @@ install(DIRECTORY include/ DESTINATION $
  
  if(WIN32 AND NOT CYGWIN)

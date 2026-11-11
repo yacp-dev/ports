@@ -40,19 +40,24 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	c-blosc2
-	libblosc2_9
+	libblosc2_10
 	libblosc2-devel
 "
 c_blosc2_CONTENTS="
 	usr/share
 "
-libblosc2_9_CONTENTS="
-	usr/bin/cyg*-9.dll
+libblosc2_10_CONTENTS="
+	usr/bin/cyg*-10.dll
 "
 libblosc2_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 c_blosc2_SUMMARY="${SUMMARY} (licensing & readmes)"
-libblosc2_9_SUMMARY="${SUMMARY} (runtime)"
+libblosc2_10_SUMMARY="${SUMMARY} (runtime)"
 libblosc2_devel_SUMMARY="${SUMMARY} (development)"
+libblosc2_devel_REQUIRES="
+	liblz4-devel
+	libz-ng-devel
+	libzstd-devel
+"

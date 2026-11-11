@@ -1,0 +1,20 @@
+--- origsrc/c-blosc2-3.6.0/blosc/prefetch.c	2026-11-09 13:23:13.000000000 +0000
++++ src/c-blosc2-3.6.0/blosc/prefetch.c	2026-11-11 01:31:44.860598400 +0000
+@@ -17,7 +17,7 @@
+   POSIX only (Linux, macOS, BSDs).  On Windows everything here is a no-op and reads work as without read-ahead.
+ */
+ 
+-#if !defined(_WIN32)
++#if !defined(_WIN32) && !defined(__CYGWIN__)
+ // Make mincore(), MAP_SHARED and F_RDADVISE visible despite -D_XOPEN_SOURCE=600 (as in frame.c and blosc2-stdio.c)
+ #if !defined(_GNU_SOURCE)
+ #define _GNU_SOURCE
+@@ -74,7 +74,7 @@ int blosc2_set_prefetch(int nthreads, in
+ }
+ 
+ 
+-#if defined(_WIN32)
++#if defined(_WIN32) || defined(__CYGWIN__)
+ 
+ bool prefetch_applies(const blosc2_frame_s *frame) {
+   BLOSC_UNUSED_PARAM(frame);

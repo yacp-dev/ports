@@ -24,3 +24,9 @@ inherit meson
 DOCS="
 	README.asc
 "
+
+src_test()
+{
+	cd ${S}/_build.${CHOST}
+	verbose ./${PN}.exe -v
+}

@@ -1,0 +1,37 @@
+HOMEPAGE="https://www.eso.org/sci/software/cpl/"
+SRC_URI="https://ftp.eso.org/pub/dfs/pipelines/libraries/cext/${P}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="ESO's C Library Extensions"
+DESCRIPTION="This is libcext, ESO's C Library Extensions. It is a C utility library, which is used to implement ESO's Common Pipeline Library (CPL)."
+
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="COPYING"
+
+CYGCONF_ARGS="
+	--enable-maintainer-mode
+"
+
+DIFF_EXCLUDES="
+	*.m4
+"
+
+PKG_NAMES="
+	cext
+	libcext0
+	libcext-devel
+"
+cext_CONTENTS="
+	usr/share
+"
+libcext0_CONTENTS="
+	usr/bin/cygcext-0.dll
+"
+libcext_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+cext_SUMMARY="${SUMMARY} (licensing & readmes)"
+libcext0_SUMMARY="${SUMMARY} (runtime)"
+libcext_devel_SUMMARY="${SUMMARY} (development)"

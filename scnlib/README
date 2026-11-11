@@ -3,21 +3,24 @@ scnlib
 Scanf for modern C++
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libgcc1-12.4.0-3
-  libscn-devel-4.0.1-1bl1
-  libscn4-4.0.1-1bl1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libintl8-0.22.5-1
+  libscn-devel-4.0.1-1bl2
+  libscn4-4.0.1-1bl2
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  fast_float-8.3.3-1bl1
+  gcc-g++-14.4.0-1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/eliaskosunen/scnlib
@@ -63,7 +66,7 @@ Files included in the binary package:
   /usr/include/scn/xchar.h
   /usr/lib/cmake/scn/scn-config-version.cmake
   /usr/lib/cmake/scn/scn-config.cmake
-  /usr/lib/cmake/scn/scn-targets-release.cmake
+  /usr/lib/cmake/scn/scn-targets-relwithdebinfo.cmake
   /usr/lib/cmake/scn/scn-targets.cmake
   /usr/lib/libscn.dll.a
   /usr/lib/pkgconfig/scnlib.pc
@@ -71,6 +74,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.0.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 4.0.1-1bl1 -----
 Version bump.

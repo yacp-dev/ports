@@ -4,33 +4,33 @@ Libfreenect is the core library for accessing the Microsoft Kinect USB camera.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.5.4-1
-  libGL1-19.1.6-1
-  libGLU1-9.0.2-1
-  libfreenect-devel-0.7.5-1bl1
-  libfreenect0-0.7.5-1bl1
-  libgcc1-12.4.0-3
+  cygwin-3.6.12-1
+  libGL1-23.3.6-1
+  libGLU1-9.0.3-1
+  libfreenect-devel-0.7.5-1bl2
+  libfreenect0-0.7.5-1bl2
+  libgcc1-14.4.0-1
   libglut3-3.4.0-1
   libopencv3.4-3.4.1-3
-  libstdc++6-12.4.0-3
+  libstdc++6-14.4.0-1
   libusb1.0-1.0.21-1
   libusb1.0-devel-1.0.21-1
-  pkg-config-2.3.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libGL-devel-19.1.6-1
-  libGLU-devel-9.0.2-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libGL-devel-23.3.6-1
+  libGLU-devel-9.0.3-1
   libglut-devel-3.4.0-1
   libopencv-devel-3.4.1-3
   libusb1.0-devel-1.0.21-1
-  ninja-1.12.0-1
-  python39-3.9.18-2
+  ninja-1.13.2-1
+  python3-3.12.12-1
 
 Canonical website:
   https://github.com/OpenKinect/libfreenect
@@ -105,6 +105,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.7.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.7.5-1bl1 -----
 Version bump.

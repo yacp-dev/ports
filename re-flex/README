@@ -4,45 +4,43 @@ High-performance C++ regex library and lexical analyzer generator with Unicode
 support.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libreflex-devel-6.0.0-1bl1
-  libreflex6-6.0.0-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libreflex-devel-6.5.0-1bl1
+  libreflex6-6.5.0-1bl1
+  libreflexmin6-6.5.0-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  bison-3.8.2-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  flex-2.6.4-2
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  lua-5.3.6-4
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/Genivia/RE-flex
 
 Canonical download:
-  https://github.com/Genivia/RE-flex/archive/refs/tags/v6.0.0.tar.gz
+  https://github.com/Genivia/RE-flex/archive/refs/tags/v6.5.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack re-flex-6.0.0-X-src.tar.xz
+  1. unpack re-flex-6.5.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./re-flex-6.0.0-X.cygport all
+        % cygport ./re-flex-6.5.0-X.cygport all
 
 This will create:
-  /usr/src/re-flex-6.0.0-X-src.tar.xz
-  /usr/src/re-flex-6.0.0-X.tar.xz
-  /usr/src/libreflex6-6.0.0-X.tar.xz
-  /usr/src/libreflex-devel-6.0.0-X.tar.xz
+  /usr/src/re-flex-6.5.0-X-src.tar.xz
+  /usr/src/re-flex-6.5.0-X.tar.xz
+  /usr/src/libreflex6-6.5.0-X.tar.xz
+  /usr/src/libreflexmin6-6.5.0-X.tar.xz
+  /usr/src/libreflex-devel-6.5.0-X.tar.xz
 
 -------------------------------------------
 
@@ -56,6 +54,9 @@ Files included in the binary package:
 
 (libreflex6)
   /usr/bin/cygreflex-6.dll
+
+(libreflexmin6)
+  /usr/bin/cygreflexmin-6.dll
 
 (libreflex-devel)
   /usr/include/reflex/abslexer.h
@@ -82,14 +83,20 @@ Files included in the binary package:
   /usr/include/reflex/unicode.h
   /usr/include/reflex/utf8.h
   /usr/lib/cmake/reflex/ReflexConfig.cmake
-  /usr/lib/cmake/reflex/ReflexTargets-release.cmake
+  /usr/lib/cmake/reflex/ReflexConfigVersion.cmake
+  /usr/lib/cmake/reflex/ReflexTargets-relwithdebinfo.cmake
   /usr/lib/cmake/reflex/ReflexTargets.cmake
   /usr/lib/libreflex.dll.a
+  /usr/lib/libreflexmin.dll.a
   /usr/lib/pkgconfig/reflex.pc
+  /usr/lib/pkgconfig/reflexmin.pc
 
 ------------------
 
 Port Notes:
+
+----- version 6.5.0-1bl1 -----
+Version bump.
 
 ----- version 6.0.0-1bl1 -----
 Version bump.

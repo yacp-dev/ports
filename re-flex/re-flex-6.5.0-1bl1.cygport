@@ -21,6 +21,7 @@ CYGCMAKE_ARGS="
 PKG_NAMES="
 	re-flex
 	libreflex6
+	libreflexmin6
 	libreflex-devel
 "
 re_flex_CONTENTS="
@@ -28,7 +29,10 @@ re_flex_CONTENTS="
 	usr/share
 "
 libreflex6_CONTENTS="
-	usr/bin/cyg*-6.dll
+	usr/bin/cygreflex-6.dll
+"
+libreflexmin6_CONTENTS="
+	usr/bin/cygreflexmin-6.dll
 "
 libreflex_devel_CONTENTS="
 	usr/include
@@ -36,4 +40,7 @@ libreflex_devel_CONTENTS="
 "
 re_flex_SUMMARY="${SUMMARY} (utilities)"
 libreflex6_SUMMARY="${SUMMARY} (runtime)"
+libreflexmin6_SUMMARY="${SUMMARY} (minimal runtime)"
 libreflex_devel_SUMMARY="${SUMMARY} (development)"
+
+libreflex_devel_REQUIRES="re-flex"

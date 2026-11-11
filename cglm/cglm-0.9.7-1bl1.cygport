@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/recp/${PN}"
 SRC_URI="https://github.com/recp/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/c/cglm/0.9.7-1/debian/patches/Re-add-glm_vec3_step_uni-and-glm_vec4_step_uni.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Optimized OpenGL/Graphics Math (glm) for C"

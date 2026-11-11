@@ -24,7 +24,7 @@ PKG_NAMES="
 tommyds_CONTENTS="
 	usr/share
 "
-libtommyds2_CONTENTS="
+libtommyds3_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.dll
 "
 libtommyds_devel_CONTENTS="
@@ -32,5 +32,5 @@ libtommyds_devel_CONTENTS="
 	usr/lib
 "
 tommyds_SUMMARY="${SUMMARY} (licensing & readmes)"
-libtommyds2_SUMMARY="${SUMMARY} (runtime)"
+libtommyds3_SUMMARY="${SUMMARY} (runtime)"
 libtommyds_devel_SUMMARY="${SUMMARY} (development)"

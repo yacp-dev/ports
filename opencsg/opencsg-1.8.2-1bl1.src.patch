@@ -1,5 +1,5 @@
---- origsrc/OpenCSG-1.8.1/CMakeLists.txt	2025-03-09 19:19:40.000000000 +0900
-+++ src/OpenCSG-1.8.1/CMakeLists.txt	2025-03-22 20:45:17.447046500 +0900
+--- origsrc/OpenCSG-1.8.2/CMakeLists.txt	2026-02-07 17:49:03.000000000 +0000
++++ src/OpenCSG-1.8.2/CMakeLists.txt	2026-11-11 11:40:56.048040100 +0000
 @@ -10,3 +10,10 @@ add_subdirectory(src)
  if(BUILD_EXAMPLE)
      add_subdirectory(example)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/opencsg.pc.in ${CMAKE_BINARY_DIR}/opencsg.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/opencsg.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/OpenCSG-1.8.1/opencsg.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/OpenCSG-1.8.1/opencsg.pc.in	2025-03-22 20:45:29.890115900 +0900
+--- origsrc/OpenCSG-1.8.2/opencsg.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/OpenCSG-1.8.2/opencsg.pc.in	2026-11-11 11:40:56.050056700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

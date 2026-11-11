@@ -6,11 +6,15 @@ CATEGORY="Libs"
 SUMMARY="Library for Constructive Solid Geometry using OpenGL"
 DESCRIPTION="OpenCSG is a library that does image-based CSG rendering using OpenGL."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND (WTFPL OR CC0-1.0) AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND (WTFPL OR CC0-1.0) AND Apache-2.0"
 LICENSE_URI="copying.txt"
 
-BUILD_REQUIRES="libGL-devel libGLEW-devel libglut-devel"
+BUILD_REQUIRES="
+	libGL-devel
+	libGLU-devel
+	libglut-devel
+"
 
 inherit cmake
 

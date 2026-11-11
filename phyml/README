@@ -16,35 +16,35 @@ used to estimate population densities and rates of dispersal. Its output can be
 processed by treeannotator (from the BEAST package) as well as SPREAD.
 
 Runtime requirements:
-  cygwin-3.3.5-1
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.38-1
-  cygport-0.35.1-1
-  gcc-core-11.3.0-1
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/stephaneguindon/phyml
 
 Canonical download:
-  https://github.com/stephaneguindon/phyml/archive/refs/tags/v3.3.20220408.tar.gz
+  https://github.com/stephaneguindon/phyml/archive/refs/tags/v3.3.20260528.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack phyml-3.3.20220408-X-src.tar.xz
+  1. unpack phyml-3.3.20260528-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./phyml-3.3.20220408-X.cygport all
+        % cygport ./phyml-3.3.20260528-X.cygport all
 
 This will create:
-  /usr/src/phyml-3.3.20220408-X-src.tar.xz
-  /usr/src/phyml-3.3.20220408-X.tar.xz
+  /usr/src/phyml-3.3.20260528-X-src.tar.xz
+  /usr/src/phyml-3.3.20260528-X.tar.xz
 
 -------------------------------------------
 
@@ -60,6 +60,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.3.20260528-1bl1 -----
+Version bump.
 
 ----- version 3.3.20220408-1bl1 -----
 Version bump.

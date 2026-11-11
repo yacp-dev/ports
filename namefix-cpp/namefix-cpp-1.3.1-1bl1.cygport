@@ -7,27 +7,30 @@ DESCRIPTION="Fix bad filenames - tries to rename files so all characters are ASC
 replaces spaces with an underscore and periods with a hypen, replaces all
 other non-ASCII characters with a question mark and keeps extension untouched."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MIT"
 LICENSE_URI="LICENSE.md"
 
-BUILD_REQUIRES="libicu-devel"
+BUILD_REQUIRES="
+	libicu-devel
+"
 
 src_compile()
 {
 	cd ${B}
 	lndirs
-	cygmake ${PN}
+	cygmake namefix
 }
 
 src_test()
 {
 	cd ${B}
-	./${PN}.exe --version
+	./namefix.exe --version
 }
 
 src_install()
 {
 	cd ${B}
-	dobin ${PN}.exe
+	dobin namefix.exe
+	doman man/namefix.1
 }

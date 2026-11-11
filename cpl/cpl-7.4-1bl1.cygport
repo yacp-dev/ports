@@ -1,8 +1,8 @@
 HOMEPAGE="https://www.eso.org/sci/software/${PN}/"
 SRC_URI="https://ftp.eso.org/pub/dfs/pipelines/libraries/${PN}/${P}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/c/cpl/7.3.2%2Bds-1/debian/patches/Remove-private-library-libltdl-and-use-the-installed-one.patch
-	https://sources.debian.org/data/main/c/cpl/7.3.2%2Bds-1/debian/patches/Force-serial-tests-to-get-better-verbose-output.patch
+	https://sources.debian.org/data/main/c/cpl/7.4-1/debian/patches/Remove-private-library-libltdl-and-use-the-installed-one.patch
+	https://sources.debian.org/data/main/c/cpl/7.4-1/debian/patches/Force-serial-tests-to-get-better-verbose-output.patch
 "
 
 CATEGORY="Science"
@@ -13,7 +13,12 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcfitsio-devel libfftw3-devel libwcs-devel"
+BUILD_REQUIRES="
+	libcext-devel
+	libcfitsio-devel
+	libfftw3-devel
+	libwcs-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode
@@ -28,8 +33,6 @@ PKG_NAMES="
 	${PN}
 	lib${PN}26
 	lib${PN}-devel
-	libcext0
-	libcext-devel
 "
 cpl_CONTENTS="
 	usr/share
@@ -40,17 +43,8 @@ libcpl26_CONTENTS="
 libcpl_devel_CONTENTS="
 	usr/include/cpl*.h
 	usr/lib/libcpl*.dll.a
-"
-libcext0_CONTENTS="
-	usr/bin/cygcext-0.dll
-"
-libcext_devel_CONTENTS="
-	usr/include/cx*.h
-	usr/lib/libcext.dll.a
-	usr/lib/pkgconfig/cext.pc
+	usr/lib/pkgconfig/cpl*.pc
 "
 cpl_SUMMARY="${SUMMARY} (licensing & readmes)"
 libcpl26_SUMMARY="${SUMMARY} (runtime)"
 libcpl_devel_SUMMARY="${SUMMARY} (development)"
-libcext0_SUMMARY="Commonly used utility functions for C programs (runtime)"
-libcext_devel_SUMMARY="Commonly used utility functions for C programs (development)"

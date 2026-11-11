@@ -1,0 +1,99 @@
+--- origsrc/cpl-7.4/Makefile.am	2026-11-11 06:17:05.833443700 +0000
++++ src/cpl-7.4/Makefile.am	2026-11-11 06:17:06.765378600 +0000
+@@ -26,6 +26,7 @@ DISTCLEANFILES = *~
+ 
+ if GASGANO_SUPPORT
+ cpljava = cpljava
++cplgasgano_pc = pkgconfig/cplgasgano.pc
+ endif
+ 
+ SUBDIRS = $(libcext) cplcore cplui cpldrs cpldfs $(cpljava)
+@@ -36,7 +37,7 @@ DOXYGEN_SUBDIRS =
+ include_HEADERS = cpl.h
+ 
+ pkgconfig_DATA = pkgconfig/cpl.pc pkgconfig/cplcore.pc pkgconfig/cplui.pc \
+-    pkgconfig/cpldfs.pc pkgconfig/cpldrs.pc pkgconfig/cplgasgano.pc
++    pkgconfig/cpldfs.pc pkgconfig/cpldrs.pc $(cplgasgano_pc)
+ 
+ EXTRA_DIST = BUGS ChangeLog-0 ChangeLog-1 Doxyfile.in m4/cpl.m4 \
+     admin/doxygen.am doxygen/cpl.css
+--- origsrc/cpl-7.4/configure.ac	2026-05-26 08:06:50.000000000 +0000
++++ src/cpl-7.4/configure.ac	2026-11-11 06:17:06.757317900 +0000
+@@ -68,8 +68,22 @@ AC_CHECK_LIB(socket, socket, [LIBS="$LIB
+ AC_CHECK_LIB(nsl, inet_ntoa, [LIBS="$LIBS -lnsl"])
+ 
+ CPL_CONFIG_CEXT
+-CPL_CONFIG_CFITSIO([3.35])
+-CPL_CHECK_WCS([4.16])
++PKG_CHECK_MODULES([CFITSIO], [cfitsio])
++CFITSIO_INCLUDES="$CFITSIO_CFLAGS"
++LIBCFITSIO="$CFITSIO_LIBS"
++CFITSIO_LDFLAGS=""
++AC_SUBST(CFITSIO_INCLUDES)
++AC_SUBST(LIBCFITSIO)
++AC_SUBST(CFITSIO_LDFLAGS)
++
++PKG_CHECK_MODULES([WCSLIB], [wcslib])
++WCS_INCLUDES="$WCSLIB_CFLAGS"
++LIBWCS="$WCSLIB_LIBS"
++WCS_LDFLAGS=""
++AC_SUBST(WCS_INCLUDES)
++AC_SUBST(LIBWCS)
++AC_SUBST(WCS_LDFLAGS)
++AC_DEFINE_UNQUOTED([CPL_WCS_INSTALLED], 1, [Defined if WCS is available])
+ CPL_CHECK_FFTW([3.3.3])
+ 
+ # Checks for header files.
+--- origsrc/cpl-7.4/cplcore/Makefile.am	2026-05-28 09:07:38.000000000 +0000
++++ src/cpl-7.4/cplcore/Makefile.am	2026-11-11 06:17:06.759333400 +0000
+@@ -137,7 +137,7 @@ libcplcore_la_SOURCES = cpl_array.c \
+ # Place optional 3rd party components last since those locations may contain
+ # obsolete and therefore unwanted CFITSIO installations
+ libcplcore_la_CFLAGS = -I\$(top_srcdir)/cpldrs $(CX_INCLUDES) $(CFITSIO_INCLUDES) $(WCS_INCLUDES) $(FFTW_INCLUDES) $(FFTWF_INCLUDES)
+-libcplcore_la_LDFLAGS = $(CX_LDFLAGS) $(CFITSIO_LDFLAGS) $(FFTW_LDFLAGS) $(FFTWF_LDFLAGS) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
++libcplcore_la_LDFLAGS = -no-undefined $(CX_LDFLAGS) $(CFITSIO_LDFLAGS) $(FFTW_LDFLAGS) $(FFTWF_LDFLAGS) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+ libcplcore_la_LIBADD =  $(LIBCEXT) $(LIBCFITSIO) $(LIBFFTW) $(LIBFFTWF) -lm
+ libcplcore_la_DEPENDENCIES =
+ 
+--- origsrc/cpl-7.4/cpldfs/Makefile.am	2026-05-28 09:07:38.000000000 +0000
++++ src/cpl-7.4/cpldfs/Makefile.am	2026-11-11 06:17:06.761349500 +0000
+@@ -42,7 +42,7 @@ libcpldfs_la_SOURCES = cpl_dfs.c cpl_mul
+ 
+ libcpldfs_la_CFLAGS = $(CPLDFS_INCLUDES) $(CPLUI_INCLUDES) \
+                       $(CPLCORE_INCLUDES) $(CX_INCLUDES) $(CFITSIO_INCLUDES)
+-libcpldfs_la_LDFLAGS = $(CX_LDFLAGS) $(CFITSIO_LDFLAGS) -version-info \
++libcpldfs_la_LDFLAGS = -no-undefined $(CX_LDFLAGS) $(CFITSIO_LDFLAGS) -version-info \
+                        $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+ libcpldfs_la_LIBADD = $(LIBCPLUI) $(LIBCPLCORE) $(LIBCFITSIO) \
+                       $(LIBCEXT) -lm
+--- origsrc/cpl-7.4/cpldrs/Makefile.am	2026-05-28 09:07:38.000000000 +0000
++++ src/cpl-7.4/cpldrs/Makefile.am	2026-11-11 06:17:06.761349500 +0000
+@@ -70,6 +70,6 @@ libcpldrs_la_SOURCES =  cpl_apertures.c
+ # obsolete and therefore unwanted CFITSIO installations
+ libcpldrs_la_CFLAGS = $(CPLDRS_INCLUDES) $(CPLCORE_INCLUDES) $(CX_INCLUDES) \
+ 	$(CFITSIO_INCLUDES) $(WCS_INCLUDES) $(FFTW_INCLUDES) $(FFTWF_INCLUDES)
+-libcpldrs_la_LDFLAGS = $(CX_LDFLAGS) $(CFITSIO_LDFLAGS) $(FFTW_LDFLAGS) $(FFTWF_LDFLAGS) $(WCS_LDFLAGS) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
++libcpldrs_la_LDFLAGS = -no-undefined $(CX_LDFLAGS) $(CFITSIO_LDFLAGS) $(FFTW_LDFLAGS) $(FFTWF_LDFLAGS) $(WCS_LDFLAGS) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+ libcpldrs_la_LIBADD = $(LIBCPLCORE) $(LIBCFITSIO) $(LIBWCS) $(LIBCEXT) $(LIBFFTW) $(LIBFFTWF) -lm
+ libcpldrs_la_DEPENDENCIES = $(LIBCPLCORE)
+--- origsrc/cpl-7.4/cplui/Makefile.am	2026-05-28 09:07:38.000000000 +0000
++++ src/cpl-7.4/cplui/Makefile.am	2026-11-11 06:17:06.763363600 +0000
+@@ -48,6 +48,6 @@ libcplui_la_SOURCES = cpl_frame.c cpl_fr
+                       cpl_pluginlist.c cpl_recipeconfig.c cpl_framedata.c
+ 
+ libcplui_la_CFLAGS = $(CPLCORE_INCLUDES) $(CX_INCLUDES) $(CFITSIO_INCLUDES)
+-libcplui_la_LDFLAGS = $(CX_LDFLAGS) $(CFITSIO_LDFLAGS) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
++libcplui_la_LDFLAGS = -no-undefined $(CX_LDFLAGS) $(CFITSIO_LDFLAGS) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+ libcplui_la_LIBADD = $(LIBCPLCORE) $(LIBCFITSIO) $(LIBCEXT) -lm
+ libcplui_la_DEPENDENCIES = $(LIBCPLCORE)
+--- origsrc/cpl-7.4/pkgconfig/cpldrs.pc.in	2026-02-20 14:36:15.000000000 +0000
++++ src/cpl-7.4/pkgconfig/cpldrs.pc.in	2026-11-11 06:17:06.765378600 +0000
+@@ -8,7 +8,7 @@ Description: CPL library (cpldrs compone
+ URL: https://www.eso.org/sci/software/cpl 
+ Version: @VERSION@
+ Requires: cplcore = @VERSION@
+-Requires.private: wcslib >= 7.6
++Requires.private: wcslib >= 4.16
+ Libs: -L${libdir} -lcpldrs
+ Libs.private: @LIBS@ -lm -pthread
+ Cflags: -I${includedir}

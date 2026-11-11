@@ -5,22 +5,22 @@ programs that take full advantage of multicore performance, that are portable,
 composable and have future-proof scalability.
 
 Runtime requirements:
-  cygwin-3.6.11-1
+  cygwin-3.6.12-1
   libgcc1-14.4.0-1
   libhwloc15-2.13.0-1
   libstdc++6-14.4.0-1
-  libtbb-devel-2023.1.0-1bl1
-  libtbb12-2023.1.0-1bl1
-  libtbbbind_2_5_3-2023.1.0-1bl1
-  libtbbmalloc2-2023.1.0-1bl1
-  pkg-config-3.0.7-1
+  libtbb-devel-2023.2.0-1bl1
+  libtbb12-2023.2.0-1bl1
+  libtbbbind_2_5_3-2023.2.0-1bl1
+  libtbbmalloc2-2023.2.0-1bl1
+  libtcm1-2023.2.0-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.4.4-1
-  cygport-0.37.10-1
-  gcc-core-14.4.0-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   gcc-g++-14.4.0-1
   libhwloc-devel-2.13.0-1
   ninja-1.13.2-1
@@ -29,24 +29,25 @@ Canonical website:
   https://github.com/uxlfoundation/oneTBB
 
 Canonical download:
-  https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2023.1.0.tar.gz
+  https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2023.2.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack onetbb-2023.1.0-X-src.tar.xz
+  1. unpack onetbb-2023.2.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./onetbb-2023.1.0-X.cygport all
+        % cygport ./onetbb-2023.2.0-X.cygport all
 
 This will create:
-  /usr/src/onetbb-2023.1.0-X-src.tar.xz
-  /usr/src/onetbb-2023.1.0-X.tar.xz
-  /usr/src/libtbb12-2023.1.0-X.tar.xz
-  /usr/src/libtbbbind_2_5_3-2023.1.0-X.tar.xz
-  /usr/src/libtbbmalloc2-2023.1.0-X.tar.xz
-  /usr/src/libtbb-devel-2023.1.0-X.tar.xz
+  /usr/src/onetbb-2023.2.0-X-src.tar.xz
+  /usr/src/onetbb-2023.2.0-X.tar.xz
+  /usr/src/libtbb12-2023.2.0-X.tar.xz
+  /usr/src/libtbbbind_2_5_3-2023.2.0-X.tar.xz
+  /usr/src/libtbbmalloc2-2023.2.0-X.tar.xz
+  /usr/src/libtcm1-2023.2.0-X.tar.xz
+  /usr/src/libtbb-devel-2023.2.0-X.tar.xz
 
 -------------------------------------------
 
@@ -67,6 +68,9 @@ Files included in the binary package:
 (libtbbmalloc2)
   /usr/bin/cygtbbmalloc-2.dll
   /usr/bin/cygtbbmalloc_proxy-2.dll
+
+(libtcm1)
+  /usr/bin/cygtcm-1.dll
 
 (libtbb-devel)
   /usr/include/oneapi/tbb.cppm
@@ -119,6 +123,8 @@ Files included in the binary package:
   /usr/include/oneapi/tbb/detail/_mutex_common.h
   /usr/include/oneapi/tbb/detail/_namespace_injection.h
   /usr/include/oneapi/tbb/detail/_node_handle.h
+  /usr/include/oneapi/tbb/detail/_parallel_partition.h
+  /usr/include/oneapi/tbb/detail/_parallel_phase.h
   /usr/include/oneapi/tbb/detail/_pipeline_filters.h
   /usr/include/oneapi/tbb/detail/_pipeline_filters_deduction.h
   /usr/include/oneapi/tbb/detail/_range_common.h
@@ -217,19 +223,32 @@ Files included in the binary package:
   /usr/include/tbb/tbbmalloc_proxy.h
   /usr/include/tbb/tick_count.h
   /usr/include/tbb/version.h
+  /usr/include/tcm.h
+  /usr/include/tcm/detail/_config.h
+  /usr/include/tcm/detail/_export.h
+  /usr/include/tcm/types.h
+  /usr/include/tcm/version.h
   /usr/lib/cmake/TBB/TBBConfig.cmake
   /usr/lib/cmake/TBB/TBBConfigVersion.cmake
   /usr/lib/cmake/TBB/TBBTargets-relwithdebinfo.cmake
   /usr/lib/cmake/TBB/TBBTargets.cmake
+  /usr/lib/cmake/TCM/TCMConfig.cmake
+  /usr/lib/cmake/TCM/TCMConfigVersion.cmake
+  /usr/lib/cmake/TCM/TCMTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/TCM/TCMTargets.cmake
   /usr/lib/libtbb.dll.a
   /usr/lib/libtbbbind_2_5.dll.a
   /usr/lib/libtbbmalloc.dll.a
   /usr/lib/libtbbmalloc_proxy.dll.a
+  /usr/lib/libtcm.dll.a
   /usr/lib/pkgconfig/tbb.pc
 
 ------------------
 
 Port Notes:
+
+----- version 2023.2.0-1bl1 -----
+Version bump.
 
 ----- version 2023.1.0-1bl1 -----
 Version bump.

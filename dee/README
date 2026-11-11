@@ -1,36 +1,37 @@
 dee
 ------------------------------------------
-Libdee is a library that uses DBus to provide objects allowing you
-to create Model-View-Controller type programs across DBus. It also consists of
-utility objects which extend DBus allowing for peer-to-peer discoverability of
-known objects without needing a central registrar.
+Libdee is a library that uses DBus to provide objects allowing you to create
+Model-View-Controller type programs across DBus. It also consists of utility
+objects which extend DBus allowing for peer-to-peer discoverability of known
+objects without needing a central registrar.
 
 Runtime requirements:
-  cygwin-3.6.7-1
+  cygwin-3.6.12-1
   girepository-GLib2.0-1.86.0-2
-  libdee1.0-devel-1.2.7-1bl4
-  libdee1.0_4-1.2.7-1bl4
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
+  libdee1.0-devel-1.2.7-1bl5
+  libdee1.0_4-1.2.7-1bl5
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
   libicu76-76.1-2
-  pkg-config-2.5.1-1
-  python39-3.9.16-1
+  pkg-config-3.0.10-1
+  python312-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  automake-20250528-1
-  binutils-2.46-1
-  cygport-0.37.7-1
-  dbus-test-runner-19.04.0-1bl3
-  gcc-core-13.4.0-1
-  gnome-common-3.18.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  dbus-1.16.2-1
+  dbus-test-runner-19.04.0-1bl4
+  gcc-core-14.4.0-1
   gobject-introspection-1.86.0-2
-  libglib2.0-devel-2.87.0-1
+  libglib2.0-devel-2.90.1-1
   libicu-devel-76.1-2
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   make-4.4.1-2
-  python39-3.9.16-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
   vala-0.56.18-1
 
 Canonical website:
@@ -54,7 +55,7 @@ This will create:
   /usr/src/libdee1.0_4-1.2.7-X.tar.xz
   /usr/src/libdee1.0-devel-1.2.7-X.tar.xz
   /usr/src/girepository-Dee1.0-1.2.7-X.tar.xz
-  /usr/src/python39-dee-1.2.7-X.tar.xz
+  /usr/src/python312-dee-1.2.7-X.tar.xz
   /usr/src/vala-dee1.0-1.2.7-X.tar.xz
 
 -------------------------------------------
@@ -107,11 +108,11 @@ Files included in the binary package:
   /usr/lib/girepository-1.0/Dee-1.0.typelib
   /usr/share/gir-1.0/Dee-1.0.gir
 
-(python39-dee)
-  /usr/lib/python3.9/site-packages/gi/overrides/Dee.py
-  /usr/lib/python3.9/site-packages/gi/overrides/__pycache__/Dee.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/gi/overrides/__pycache__/Dee.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/gi/overrides/__pycache__/Dee.cpython-39.pyc
+(python312-dee)
+  /usr/lib/python3.12/site-packages/gi/overrides/Dee.py
+  /usr/lib/python3.12/site-packages/gi/overrides/__pycache__/Dee.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/gi/overrides/__pycache__/Dee.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/gi/overrides/__pycache__/Dee.cpython-312.pyc
 
 (vala-dee1.0)
   /usr/share/vala/vapi/dee-1.0.deps
@@ -120,6 +121,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.7-1bl5 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.2.7-1bl4 -----
 Rebuild with gcc-13.4.0

@@ -1,5 +1,5 @@
---- origsrc/namefix-1.2.0/makefile	2024-05-13 03:17:21.000000000 +0900
-+++ src/namefix-1.2.0/makefile	2024-05-15 05:24:17.948402500 +0900
+--- origsrc/namefix-cpp-1.3.1/makefile	2025-11-26 13:48:25.000000000 +0000
++++ src/namefix-cpp-1.3.1/makefile	2026-11-11 10:09:04.261270000 +0000
 @@ -1,5 +1,5 @@
  CXX = g++
 -CXXFLAGS = -std=c++17 -Wall -Wpedantic -Wextra -licuuc -licui18n

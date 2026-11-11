@@ -1,0 +1,84 @@
+cext
+------------------------------------------
+This is libcext, ESO's C Library Extensions. It is a C utility library, which
+is used to implement ESO's Common Pipeline Library (CPL).
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libcext-devel-1.3.2-1bl1
+  libcext0-1.3.2-1bl1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
+
+Canonical website:
+  https://www.eso.org/sci/software/cpl/
+
+Canonical download:
+  https://ftp.eso.org/pub/dfs/pipelines/libraries/cext/cext-1.3.2.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack cext-1.3.2-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./cext-1.3.2-X.cygport all
+
+This will create:
+  /usr/src/cext-1.3.2-X-src.tar.xz
+  /usr/src/cext-1.3.2-X.tar.xz
+  /usr/src/libcext0-1.3.2-X.tar.xz
+  /usr/src/libcext-devel-1.3.2-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(cext)
+  /usr/share/doc/Cygwin/cext.README
+  /usr/share/doc/cext/AUTHORS
+  /usr/share/doc/cext/BUGS
+  /usr/share/doc/cext/COPYING
+  /usr/share/doc/cext/ChangeLog
+  /usr/share/doc/cext/NEWS
+  /usr/share/doc/cext/README
+
+(libcext0)
+  /usr/bin/cygcext-0.dll
+
+(libcext-devel)
+  /usr/include/cxconfig.h
+  /usr/include/cxdeque.h
+  /usr/include/cxfileutils.h
+  /usr/include/cxlist.h
+  /usr/include/cxmacros.h
+  /usr/include/cxmap.h
+  /usr/include/cxmemory.h
+  /usr/include/cxmessages.h
+  /usr/include/cxmultimap.h
+  /usr/include/cxslist.h
+  /usr/include/cxstring.h
+  /usr/include/cxstrutils.h
+  /usr/include/cxtree.h
+  /usr/include/cxtypes.h
+  /usr/include/cxutils.h
+  /usr/include/cxversion.h
+  /usr/lib/libcext.dll.a
+  /usr/lib/pkgconfig/cext.pc
+
+------------------
+
+Port Notes:
+
+----- version 1.3.2-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

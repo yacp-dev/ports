@@ -1,0 +1,31 @@
+--- origsrc/cext-1.3.2/cext/Makefile.am	2026-05-18 13:18:17.000000000 +0000
++++ src/cext-1.3.2/cext/Makefile.am	2026-11-11 04:25:50.545604600 +0000
+@@ -50,7 +50,7 @@ libcext_la_SOURCES = cxfileutils.c cxlis
+ 
+ EXTRA_libcext_la_SOURCES = snprintf.h snprintf.c
+ 
+-libcext_la_LDFLAGS = -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
++libcext_la_LDFLAGS = -no-undefined -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+ libcext_la_LIBADD = @SNPRINTF@
+ libcext_la_DEPENDENCIES = @SNPRINTF@
+ 
+--- origsrc/cext-1.3.2/tests/Makefile.am	2026-03-19 10:20:41.000000000 +0000
++++ src/cext-1.3.2/tests/Makefile.am	2026-11-11 04:25:50.545604600 +0000
+@@ -34,7 +34,6 @@ EXTRA_DIST =
+ LIBCEXT = $(top_builddir)/cext/libcext.la
+ 
+ AM_CPPFLAGS = -I$(top_srcdir)/cext -I$(top_builddir)/cext
+-AM_LDFLAGS = -static
+ 
+ LDADD = $(LIBCEXT)
+ 
+@@ -52,7 +51,8 @@ cxmessages_test_SOURCES = cxmessages-tes
+ 
+ 
+ # Be sure to reexport important environment variables.
+-TESTS_ENVIRONMENT = MAKE="$(MAKE)" CC="$(CC)" CFLAGS="$(CFLAGS)" \
++TESTS_ENVIRONMENT = PATH="$(top_builddir)/cext/.libs:$(top_builddir)/cext:$$PATH" \
++	MAKE="$(MAKE)" CC="$(CC)" CFLAGS="$(CFLAGS)" \
+ 	CPPFLAGS="$(CPPFLAGS)" LD="$(LD)" LDFLAGS="$(LDFLAGS)" \
+ 	LIBS="$(LIBS)" LN_S="$(LN_S)" NM="$(NM)" RANLIB="$(RANLIB)" \
+ 	OBJEXT="$(OBJEXT)" EXEEXT="$(EXEEXT)"

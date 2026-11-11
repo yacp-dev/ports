@@ -1,0 +1,56 @@
+clpbar
+------------------------------------------
+Bar is a simple tool to process a stream of data and print a display for the
+user on stderr showing the amount of data passed, the throughput of the data
+transfer, and, if the total size of the data stream is known, estimated time
+remaining, percent complete, and a progress bar.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  make-4.4.1-2
+
+Canonical website:
+  https://clpbar.sourceforge.net/
+
+Canonical download:
+  mirror://sourceforge/clpbar/clpbar/bar-1.11.1/bar_1.11.1.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack clpbar-1.11.1-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./clpbar-1.11.1-X.cygport all
+
+This will create:
+  /usr/src/clpbar-1.11.1-X-src.tar.xz
+  /usr/src/clpbar-1.11.1-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(clpbar)
+  /usr/bin/bar.exe
+  /usr/share/doc/Cygwin/clpbar.README
+  /usr/share/doc/clpbar/AUTHORS
+  /usr/share/doc/clpbar/COPYING
+  /usr/share/doc/clpbar/TODO
+  /usr/share/man/man1/bar.1.gz
+
+------------------
+
+Port Notes:
+
+----- version 1.11.1-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

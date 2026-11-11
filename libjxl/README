@@ -15,8 +15,8 @@ Runtime requirements:
   libhwy1-1.4.0-1bl2
   libilmbase2_5_25-2.5.8-1
   libjpeg8-3.2.0-1
-  libjxl-devel-0.12.0-1bl1
-  libjxl0.12-0.12.0-1bl1
+  libjxl-devel-0.13.0-1bl1
+  libjxl0.13-0.13.0-1bl1
   libpng16-1.6.59-1
   libstdc++6-14.4.0-1
   libwebp7-1.6.0-1
@@ -48,17 +48,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack libjxl-0.12.0-X-src.tar.xz
+  1. unpack libjxl-0.13.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libjxl-0.12.0-X.cygport all
+        % cygport ./libjxl-0.13.0-X.cygport all
 
 This will create:
-  /usr/src/libjxl-0.12.0-X-src.tar.xz
-  /usr/src/libjxl-0.12.0-X.tar.xz
-  /usr/src/libjxl0.12-0.12.0-X.tar.xz
-  /usr/src/libjxl-devel-0.12.0-X.tar.xz
+  /usr/src/libjxl-0.13.0-X-src.tar.xz
+  /usr/src/libjxl-0.13.0-X.tar.xz
+  /usr/src/libjxl0.13-0.13.0-X.tar.xz
+  /usr/src/libjxl-devel-0.13.0-X.tar.xz
 
 -------------------------------------------
 
@@ -78,10 +78,10 @@ Files included in the binary package:
   /usr/share/doc/libjxl/PATENTS
   /usr/share/doc/libjxl/README.md
 
-(libjxl0.12)
-  /usr/bin/cygjxl-0.12.dll
-  /usr/bin/cygjxl_cms-0.12.dll
-  /usr/bin/cygjxl_threads-0.12.dll
+(libjxl0.13)
+  /usr/bin/cygjxl-0.13.dll
+  /usr/bin/cygjxl_cms-0.13.dll
+  /usr/bin/cygjxl_threads-0.13.dll
 
 (libjxl-devel)
   /usr/include/jxl/cms.h
@@ -117,6 +117,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.13.0-1bl1 -----
+Version bump.
 
 ----- version 0.12.0-1bl1 -----
 Version bump.

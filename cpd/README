@@ -3,29 +3,28 @@ cpd
 C++ implementation of the Coherent Point Drift point set registration algorithm
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libcpd-devel-0.5.5-1bl1
-  libcpd-jsoncpp-devel-0.5.5-1bl1
-  libcpd-jsoncpp0-0.5.5-1bl1
-  libcpd0-0.5.5-1bl1
-  libfgt0-0.4.11-1bl1
-  libgcc1-12.4.0-3
-  libjsoncpp26-1.9.6-1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libcpd-devel-0.5.5-1bl2
+  libcpd-jsoncpp-devel-0.5.5-1bl2
+  libcpd-jsoncpp0-0.5.5-1bl2
+  libcpd0-0.5.5-1bl2
+  libfgt0-0.4.11-1bl2
+  libgcc1-14.4.0-1
+  libjsoncpp27-1.9.8-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   eigen3-3.4.0-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libfgt-devel-0.4.11-1bl1
-  libgtest-devel-1.16.0-1bl1
-  libjsoncpp-devel-1.9.6-1
-  ninja-1.12.1-1
+  gcc-g++-14.4.0-1
+  libfgt-devel-0.4.11-1bl2
+  libgtest-devel-1.18.0-1bl1
+  libjsoncpp-devel-1.9.8-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/gadomski/cpd
@@ -75,7 +74,7 @@ Files included in the binary package:
   /usr/include/cpd/version.hpp
   /usr/lib/cmake/cpd/cpd-config-version.cmake
   /usr/lib/cmake/cpd/cpd-config.cmake
-  /usr/lib/cmake/cpd/cpd-targets-release.cmake
+  /usr/lib/cmake/cpd/cpd-targets-relwithdebinfo.cmake
   /usr/lib/cmake/cpd/cpd-targets.cmake
   /usr/lib/libcpd.dll.a
   /usr/lib/pkgconfig/cpd.pc
@@ -85,7 +84,7 @@ Files included in the binary package:
 
 (libcpd-jsoncpp-devel)
   /usr/include/cpd/jsoncpp.hpp
-  /usr/lib/cmake/cpd/cpd-jsoncpp-targets-release.cmake
+  /usr/lib/cmake/cpd/cpd-jsoncpp-targets-relwithdebinfo.cmake
   /usr/lib/cmake/cpd/cpd-jsoncpp-targets.cmake
   /usr/lib/libcpd-jsoncpp.dll.a
   /usr/lib/pkgconfig/cpd-jsoncpp.pc
@@ -93,6 +92,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.5.5-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

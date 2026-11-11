@@ -6,8 +6,8 @@ is faster than other byte-oriented compression techniques.
 
 Runtime requirements:
   cygwin-3.6.12-1
-  libstreamvbyte-devel-3.0.2-1bl1
-  libstreamvbyte3-3.0.2-1bl1
+  libstreamvbyte-devel-3.1.0-1bl1
+  libstreamvbyte3-3.1.0-1bl1
   pkg-config-3.0.10-1
 
 Build requirements:
@@ -22,22 +22,22 @@ Canonical website:
   https://github.com/fast-pack/streamvbyte
 
 Canonical download:
-  https://github.com/fast-pack/streamvbyte/archive/refs/tags/v3.0.2.tar.gz
+  https://github.com/fast-pack/streamvbyte/archive/refs/tags/v3.1.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack streamvbyte-3.0.2-X-src.tar.xz
+  1. unpack streamvbyte-3.1.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./streamvbyte-3.0.2-X.cygport all
+        % cygport ./streamvbyte-3.1.0-X.cygport all
 
 This will create:
-  /usr/src/streamvbyte-3.0.2-X-src.tar.xz
-  /usr/src/streamvbyte-3.0.2-X.tar.xz
-  /usr/src/libstreamvbyte3-3.0.2-X.tar.xz
-  /usr/src/libstreamvbyte-devel-3.0.2-X.tar.xz
+  /usr/src/streamvbyte-3.1.0-X-src.tar.xz
+  /usr/src/streamvbyte-3.1.0-X.tar.xz
+  /usr/src/libstreamvbyte3-3.1.0-X.tar.xz
+  /usr/src/libstreamvbyte-devel-3.1.0-X.tar.xz
 
 -------------------------------------------
 
@@ -62,6 +62,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.1.0-1bl1 -----
+Version bump.
 
 ----- version 3.0.2-1bl1 -----
 Version bump.

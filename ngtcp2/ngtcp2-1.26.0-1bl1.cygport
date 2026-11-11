@@ -18,6 +18,7 @@ BUILD_REQUIRES="
 	libev-devel
 	libgnutls-devel
 	libnghttp3-devel
+	libssl-devel
 "
 
 CYGCONF_ARGS="
@@ -26,6 +27,7 @@ CYGCONF_ARGS="
 	--with-libbrotlidec
 	--with-libev
 	--with-libnghttp3
+	--with-openssl
 "
 
 src_test()

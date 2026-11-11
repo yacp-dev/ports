@@ -7,37 +7,37 @@ collected by Prometheus, but other push/pull collections can be added as
 plugins.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libcivetweb-cpp1.16.0-1.16-1bl2
-  libcivetweb1.16.0-1.16-1bl2
-  libcurl-devel-8.11.1-1
-  libcurl4-8.11.1-1
-  libgcc1-12.4.0-3
-  libprometheus-cpp-core-devel-1.3.0-1bl1
-  libprometheus-cpp-core1.3-1.3.0-1bl1
-  libprometheus-cpp-pull-devel-1.3.0-1bl1
-  libprometheus-cpp-pull1.3-1.3.0-1bl1
-  libprometheus-cpp-push-devel-1.3.0-1bl1
-  libprometheus-cpp-push1.3-1.3.0-1bl1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
-  zlib-devel-1.3.1-1
-  zlib0-1.3.1-1
+  cygwin-3.6.12-1
+  libcivetweb-cpp1.16.0-1.16-1bl3
+  libcivetweb1.16.0-1.16-1bl3
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libgcc1-14.4.0-1
+  libprometheus-cpp-core-devel-1.3.0-1bl2
+  libprometheus-cpp-core1.3-1.3.0-1bl2
+  libprometheus-cpp-pull-devel-1.3.0-1bl2
+  libprometheus-cpp-pull1.3-1.3.0-1bl2
+  libprometheus-cpp-push-devel-1.3.0-1bl2
+  libprometheus-cpp-push1.3-1.3.0-1bl2
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
+  zlib-devel-1.4-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libbenchmark-devel-1.9.1-1bl1
-  libcivetweb-cpp-devel-1.16-1bl2
-  libcivetweb-devel-1.16-1bl2
-  libcurl-devel-8.11.1-1
-  libgtest-devel-1.15.2-1bl1
-  ninja-1.12.0-1
-  zlib-devel-1.3.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libbenchmark-devel-1.10.0-1bl1
+  libcivetweb-cpp-devel-1.16-1bl3
+  libcivetweb-devel-1.16-1bl3
+  libcurl-devel-8.23.0-1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/jupp0r/prometheus-cpp
@@ -100,7 +100,7 @@ Files included in the binary package:
   /usr/include/prometheus/text_serializer.h
   /usr/lib/cmake/prometheus-cpp/prometheus-cpp-config-version.cmake
   /usr/lib/cmake/prometheus-cpp/prometheus-cpp-config.cmake
-  /usr/lib/cmake/prometheus-cpp/prometheus-cpp-targets-release.cmake
+  /usr/lib/cmake/prometheus-cpp/prometheus-cpp-targets-relwithdebinfo.cmake
   /usr/lib/cmake/prometheus-cpp/prometheus-cpp-targets.cmake
   /usr/lib/libprometheus-cpp-core.dll.a
   /usr/lib/pkgconfig/prometheus-cpp-core.pc
@@ -127,6 +127,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.3.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.3.0-1bl1 -----
 Version bump.

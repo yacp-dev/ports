@@ -9,11 +9,19 @@ collect and expose metrics. We offer the possibility for metrics to be
 collected by Prometheus, but other push/pull collections can be added as
 plugins."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND 0BSD"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND 0BSD"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libbenchmark-devel libcivetweb-cpp-devel libcivetweb-devel libcurl-devel libgtest-devel zlib-devel"
+BUILD_REQUIRES="
+	libbenchmark-devel
+	libcivetweb-cpp-devel
+	libcivetweb-devel
+	libcurl-devel
+	libgmock-devel
+	libgtest-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -73,3 +81,5 @@ libprometheus_cpp_pull1_3_SUMMARY="${SUMMARY} (runtime / pull)"
 libprometheus_cpp_pull_devel_SUMMARY="${SUMMARY} (development / pull)"
 libprometheus_cpp_push1_3_SUMMARY="${SUMMARY} (runtime / push)"
 libprometheus_cpp_push_devel_SUMMARY="${SUMMARY} (development / push)"
+
+libprometheus_cpp_core_devel_REQUIRES="libcivetweb-devel libprometheus-cpp-pull-devel libprometheus-cpp-push-devel"

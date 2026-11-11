@@ -1,5 +1,5 @@
 HOMEPAGE="https://${PN}.build/"
-SRC_URI="https://${PN}.build/releases/v${PV}/${PN}-v${PV}.tar.gz"
+SRC_URI="https://dl.${PN}.build/v${PV}/${PN}-v${PV}.tar.gz"
 SRC_DIR="${PN}-v${PV}"
 
 CATEGORY="Devel"
@@ -7,8 +7,8 @@ SUMMARY="Meson implementation in C"
 DESCRIPTION="muon is an implementation of the meson build system in c99 with minimal
 dependencies."
 
-LICENSE="GPL-3.0-only"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only"
+LICENSE="GPL-3.0-only AND MIT AND Unlicense"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only AND MIT AND Unlicense"
 LICENSE_URI="LICENSES"
 
 BUILD_REQUIRES="

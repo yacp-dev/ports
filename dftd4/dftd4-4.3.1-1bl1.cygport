@@ -16,6 +16,7 @@ BUILD_REQUIRES="
 	libmctc-lib-devel
 	libmstore-devel
 	libmulticharge-devel
+	python3-pytest
 "
 
 inherit meson

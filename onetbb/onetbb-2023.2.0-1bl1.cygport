@@ -1,11 +1,11 @@
 HOMEPAGE="https://github.com/uxlfoundation/oneTBB"
 SRC_URI="https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v${PV}.tar.gz"
-SRC_DIR="oneTBB-${PV}"
 PATCH_URI="
 	https://sources.debian.org/data/main/o/onetbb/2023.1.0-3/debian/patches/1000-remove-unaligned-test.patch
 	https://sources.debian.org/data/main/o/onetbb/2023.1.0-3/debian/patches/1010-test-less-stress.patch
 	https://sources.debian.org/data/main/o/onetbb/2023.1.0-3/debian/patches/1020-arch-generic.patch
 "
+SRC_DIR="oneTBB-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="oneAPI Threading Building Blocks"
@@ -27,18 +27,24 @@ export CXXFLAGS="${CXXFLAGS//-ggdb/} -Wa,-mbig-obj"
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DTBB_STRICT:BOOL=OFF
+	-DTCM_STRICT:BOOL=OFF
 "
 
-PKG_IGNORE="
-	usr/share/doc/TBB/README.md
-"
+src_install() {
+	cd ${B}
+	ninja_install
+
+	rm -rf ${D}/usr/share/doc/TBB
+}
 
 PKG_NAMES="
 	${PN}
 	libtbb12
 	libtbbbind_2_5_3
 	libtbbmalloc2
+	libtcm1
 	libtbb-devel
 "
 onetbb_CONTENTS="
@@ -55,6 +61,9 @@ libtbbmalloc2_CONTENTS="
 	usr/bin/cygtbbmalloc-2.dll
 	usr/bin/cygtbbmalloc_proxy-2.dll
 "
+libtcm1_CONTENTS="
+	usr/bin/cygtcm-1.dll
+"
 libtbb_devel_CONTENTS="
 	usr/include
 	usr/lib
@@ -63,4 +72,5 @@ onetbb_SUMMARY="${SUMMARY} (licensing & readmes)"
 libtbb12_SUMMARY="${SUMMARY} (runtime)"
 libtbbbind_2_5_3_SUMMARY="${SUMMARY} (runtime / bind)"
 libtbbmalloc2_SUMMARY="${SUMMARY} (runtime / malloc)"
+libtcm1_SUMMARY="${SUMMARY} (runtime / tcm)"
 libtbb_devel_SUMMARY="${SUMMARY} (development)"

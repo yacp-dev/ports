@@ -8,8 +8,8 @@ POSIX-based platforms. Dropbear is open source software, distributed under a
 MIT-style license. Dropbear is particularly useful for embedded-type Linux (or
 other Unix) systems, such as wireless routers."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -39,6 +39,6 @@ src_install()
 }
 
 DOCS="
-	MULTI
-	SMALL
+	MULTI.md
+	SMALL.md
 "

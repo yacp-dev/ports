@@ -1,6 +1,6 @@
---- origsrc/dropbear-2025.89/src/default_options.h	2025-12-16 23:30:00.000000000 +0900
-+++ src/dropbear-2025.89/src/default_options.h	2026-01-05 11:43:20.271671000 +0900
-@@ -255,7 +255,7 @@ group1 in Dropbear server too */
+--- origsrc/dropbear-2026.94/src/default_options.h	2026-07-23 11:00:00.000000000 +0000
++++ src/dropbear-2026.94/src/default_options.h	2026-11-11 06:26:16.881818000 +0000
+@@ -261,7 +261,7 @@ group1 in Dropbear server too */
  /* Set this to 0 if your system does not have multiple user support.
     (Linux kernel CONFIG_MULTIUSER option)
     The resulting binary will not run on a normal system. */

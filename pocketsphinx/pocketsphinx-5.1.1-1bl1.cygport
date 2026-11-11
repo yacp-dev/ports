@@ -7,11 +7,15 @@ DESCRIPTION="This is PocketSphinx, one of Carnegie Mellon University's open sour
 vocabulary, speaker-independent continuous speech recognition engine. Please
 see the LICENSE file for terms of use."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libglib2.0-devel libgstreamer1.0-devel"
+BUILD_REQUIRES="
+	libglib2.0-devel
+	libgstreamer1.0-devel
+	sox
+"
 
 inherit cmake
 
@@ -20,6 +24,12 @@ CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DBUILD_TESTING:BOOL=ON
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${PATH} cygninja check
+}
 
 PKG_NAMES="
 	${PN}

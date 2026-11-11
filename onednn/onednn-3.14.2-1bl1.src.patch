@@ -1,0 +1,115 @@
+--- origsrc/oneDNN-3.14.2/CMakeLists.txt	2026-11-04 01:30:32.000000000 +0000
++++ src/oneDNN-3.14.2/CMakeLists.txt	2026-11-11 21:30:47.983232700 +0000
+@@ -58,7 +58,7 @@ endif()
+ 
+ set(PROJECT_NAME "oneDNN")
+ set(PROJECT_FULL_NAME "oneAPI Deep Neural Network Library (oneDNN)")
+-set(PROJECT_VERSION "3.14.1")
++set(PROJECT_VERSION "3.14.2")
+ 
+ project(${PROJECT_NAME} VERSION "${PROJECT_VERSION}" LANGUAGES C CXX)
+ 
+@@ -176,3 +176,10 @@ else()
+     install(FILES THIRD-PARTY-PROGRAMS DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/${LIB_PACKAGE_NAME})
+     install(FILES ${PROJECT_BINARY_DIR}/README DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/${LIB_PACKAGE_NAME})
+ endif()
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/onednn.pc.in ${CMAKE_BINARY_DIR}/onednn.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/onednn.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/oneDNN-3.14.2/cmake/SDL.cmake	2026-11-04 01:30:32.000000000 +0000
++++ src/oneDNN-3.14.2/cmake/SDL.cmake	2026-11-11 21:30:47.981215300 +0000
+@@ -78,7 +78,7 @@ if(UNIX)
+     endif()
+     if(APPLE)
+         append(ONEDNN_SDL_LINKER_FLAGS "-Wl,-bind_at_load")
+-    else()
++    elseif(NOT CYGWIN)
+         # Only applies to executables.
+         append(CMAKE_EXE_LINKER_FLAGS "-pie")
+         append(ONEDNN_SDL_LINKER_FLAGS "-Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now")
+--- origsrc/oneDNN-3.14.2/onednn.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/oneDNN-3.14.2/onednn.pc.in	2026-11-11 21:30:47.983232700 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: onednn
++Description: Deep Neural Network Library
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -ldnnl
++Cflags: -I${includedir}
+--- origsrc/oneDNN-3.14.2/src/common/tag_traits.hpp	2026-11-04 01:30:32.000000000 +0000
++++ src/oneDNN-3.14.2/src/common/tag_traits.hpp	2026-11-11 21:30:47.985524200 +0000
+@@ -23,6 +23,13 @@
+ #include "c_types_map.hpp"
+ #include "utils.hpp"
+ 
++#if defined(_B)
++#undef _B
++#endif
++#if defined(_C)
++#undef _C
++#endif
++
+ namespace dnnl {
+ namespace impl {
+ 
+--- origsrc/oneDNN-3.14.2/src/cpu/x64/platform.cpp	2026-11-04 01:30:32.000000000 +0000
++++ src/oneDNN-3.14.2/src/cpu/x64/platform.cpp	2026-11-11 21:30:47.987021300 +0000
+@@ -31,7 +31,7 @@ namespace platform {
+ 
+ namespace {
+ 
+-#ifndef __APPLE__
++#if !defined(__APPLE__) && !defined(__CYGWIN__)
+ // Global CPU topology instance, initialized on first use
+ // This is thread-safe due to C++11 magic statics
+ // NOTE: xbyak::util::CpuTopology is not supported on macOS.
+@@ -437,12 +437,12 @@ void print_cache_debuginfo_once() {
+     verbose_printf(verbose_t::debuginfo, "%s", buf);
+ }
+ 
+-#endif // !__APPLE__
++#endif // !__APPLE__ && !__CYGWIN__
+ 
+ } // anonymous namespace
+ 
+ bool is_hybrid() {
+-#ifdef __APPLE__
++#if defined(__APPLE__) || defined(__CYGWIN__)
+     // xbyak::util::CpuTopology is not supported on macOS; assume non-hybrid.
+     return false;
+ #else
+@@ -457,7 +457,7 @@ bool is_hybrid() {
+ unsigned get_per_core_cache_size_cpuid(int level) {
+     if (level > 0 && (unsigned)level <= cpu().getDataCacheLevels()) {
+         unsigned l = level - 1;
+-#ifdef __APPLE__
++#if defined(__APPLE__) || defined(__CYGWIN__)
+         // cores_sharing_cache() (leaf 0x1F/0xB + OS fallback) is not compiled
+         // on macOS; use the legacy leaf-4-only count directly.
+         return cpu().getDataCacheSize(l) / cpu().getCoresSharingDataCache(l);
+@@ -471,7 +471,7 @@ unsigned get_per_core_cache_size_cpuid(i
+ unsigned get_per_core_cache_size(int level) {
+     if (level < 1 || level > 3) { return 0; }
+ 
+-#ifdef __APPLE__
++#if defined(__APPLE__) || defined(__CYGWIN__)
+     return get_per_core_cache_size_cpuid(level);
+ #else
+     // Fast path: on non-hybrid systems avoid the expensive CpuTopology init.
+@@ -495,7 +495,7 @@ unsigned get_per_core_cache_size(int lev
+ }
+ 
+ bool has_lpe_core() {
+-#ifdef __APPLE__
++#if defined(__APPLE__) || defined(__CYGWIN__)
+     return false;
+ #else
+     if (!is_hybrid()) return false;

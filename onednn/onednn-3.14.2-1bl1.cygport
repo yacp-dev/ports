@@ -31,14 +31,16 @@ src_test()
 	PATH=${B}/src:${PATH} ninja_test
 }
 
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	rm -rf ${D}/usr/share/doc/dnnl
+}
+
 DOCS="
 	THIRD-PARTY-PROGRAMS
-"
-
-PKG_IGNORE="
-	usr/share/doc/dnnl/LICENSE
-	usr/share/doc/dnnl/README
-	usr/share/doc/dnnl/THIRD-PARTY-PROGRAMS
 "
 
 PKG_NAMES="

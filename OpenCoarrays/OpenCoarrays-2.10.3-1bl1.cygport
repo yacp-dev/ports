@@ -1,5 +1,9 @@
 HOMEPAGE="https://github.com/sourceryinstitute/${PN}"
 SRC_URI="https://github.com/sourceryinstitute/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/o/open-coarrays/2.10.3-4/debian/patches/pr800.patch
+	https://sources.debian.org/data/main/o/open-coarrays/2.10.3-4/debian/patches/pr801.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Parallel application binary interface for Fortran 2018 compilers"
@@ -19,7 +23,13 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libopenmpi-devel"
+BUILD_REQUIRES="
+	gcc-fortran
+	libevent-devel
+	libhwloc-devel
+	libopenmpi-devel
+	zlib-devel
+"
 
 inherit cmake
 
@@ -46,7 +56,7 @@ OpenCoarrays_CONTENTS="
 	usr/share
 "
 libcaf_mpi3_CONTENTS="
-	usr/bin/cygcaf_mpi-*.dll
+	usr/bin/cygcaf_mpi-3.dll
 "
 libcaf_mpi_devel_CONTENTS="
 	usr/include/libcaf*
@@ -54,7 +64,7 @@ libcaf_mpi_devel_CONTENTS="
 	usr/lib/libcaf_mpi.dll.a
 "
 libopencoarrays_mod2_CONTENTS="
-	usr/bin/cygopencoarrays_mod-*.dll
+	usr/bin/cygopencoarrays_mod-2.dll
 "
 libopencoarrays_mod_devel_CONTENTS="
 	usr/include/opencoarrays.mod
@@ -65,3 +75,11 @@ libcaf_mpi3_SUMMARY="${SUMMARY} (runtime)"
 libcaf_mpi_devel_SUMMARY="${SUMMARY} (development)"
 libopencoarrays_mod2_SUMMARY="${SUMMARY} (runtime / OpenCoarrays)"
 libopencoarrays_mod_devel_SUMMARY="${SUMMARY} (devvelopment / OpenCoarrays)"
+
+libcaf_mpi_devel_REQUIRES="
+	libevent-devel
+	libhwloc-devel
+	libopencoarrays_mod-devel
+	libopenmpi-devel
+	zlib-devel
+"

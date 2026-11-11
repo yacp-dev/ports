@@ -1,0 +1,10 @@
+--- origsrc/openjazz-20260301/src/io/sound.cpp	2026-03-01 00:41:49.000000000 +0000
++++ src/openjazz-20260301/src/io/sound.cpp	2026-11-11 12:03:39.387117000 +0000
+@@ -34,6 +34,7 @@
+ #endif
+ #include <psmplug.h>
+ #include <cassert>
++#include <cstring>
+ 
+ // default configuration
+ 

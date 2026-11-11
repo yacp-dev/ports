@@ -5,10 +5,18 @@ CATEGORY="Games"
 SUMMARY="Open source Jazz Jackrabit engine"
 DESCRIPTION="OpenJazz is a free, open-source version of the classic Jazz Jackrabbit™ games."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND MIT AND (MIT OR Unlicense)"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND MIT AND (MIT OR Unlicense)"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libSDL2-devel"
+BUILD_REQUIRES="
+	libSDL2-devel
+"
 
 inherit cmake
+
+src_test()
+{
+	cd ${B}
+	./OpenJazz.exe --version
+}

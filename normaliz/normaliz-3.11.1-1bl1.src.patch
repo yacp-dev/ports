@@ -1,14 +1,14 @@
---- origsrc/Normaliz-3.10.4/Makefile.am	2024-10-07 17:13:14.000000000 +0900
-+++ src/Normaliz-3.10.4/Makefile.am	2025-03-21 10:06:17.179788700 +0900
-@@ -72,3 +72,6 @@ dist-hook:
+--- origsrc/Normaliz-3.11.1/Makefile.am	2026-02-02 10:27:57.000000000 +0000
++++ src/Normaliz-3.11.1/Makefile.am	2026-11-11 10:28:59.022014000 +0000
+@@ -74,3 +74,6 @@ dist-hook:
  	rm -rf $(distdir)/PyNormaliz/.git
  
  
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = normaliz.pc
---- origsrc/Normaliz-3.10.4/configure.ac	2025-03-21 10:05:15.077506400 +0900
-+++ src/Normaliz-3.10.4/configure.ac	2025-03-21 10:05:54.744717400 +0900
+--- origsrc/Normaliz-3.11.1/configure.ac	2026-11-11 10:28:55.771357200 +0000
++++ src/Normaliz-3.11.1/configure.ac	2026-11-11 10:28:59.024036900 +0000
 @@ -477,7 +477,7 @@ AS_IF([test x$enable_shared = xyes],
  dnl
  dnl Output everything
@@ -18,8 +18,8 @@
      Makefile
  	example/Makefile
  	source/libnormaliz/nmz_config.h
---- origsrc/Normaliz-3.10.4/normaliz.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/Normaliz-3.10.4/normaliz.pc.in	2025-03-21 10:06:25.309936800 +0900
+--- origsrc/Normaliz-3.11.1/normaliz.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/Normaliz-3.11.1/normaliz.pc.in	2026-11-11 10:28:59.024036900 +0000
 @@ -0,0 +1,11 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

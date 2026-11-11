@@ -1,9 +1,9 @@
 HOMEPAGE="https://github.com/Normaliz/Normaliz"
 SRC_URI="https://github.com/Normaliz/Normaliz/archive/refs/tags/v${PV}.tar.gz"
-SRC_DIR="Normaliz-${PV}"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/normaliz-hash-library.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/4c9139a07a0b502c39c77358e67552f2bb1fa236/f/normaliz-hash-library.patch
 "
+SRC_DIR="Normaliz-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="Open source tool for computations in affine monoids, vector configurations, lattice polytopes, and rational cones"
@@ -16,10 +16,15 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libflint-devel libgmp-devel libssl-devel"
+BUILD_REQUIRES="
+	libflint-devel
+	libgmp-devel
+	libmpfr-devel
+	libssl-devel
+"
 
 CYGCONF_ARGS="
-	--enable-flint
+	--with-flint
 	--enable-openmp
 "
 

@@ -1,17 +1,17 @@
---- origsrc/OpenJPH-0.32.0/tests/CMakeLists.txt	2026-09-16 23:48:24.000000000 +0000
-+++ src/OpenJPH-0.32.0/tests/CMakeLists.txt	2026-10-31 13:18:38.355952500 +0000
-@@ -1,5 +1,9 @@
--# Fetch googletest
+--- origsrc/OpenJPH-0.33.0/tests/CMakeLists.txt	2026-11-01 21:57:19.000000000 +0000
++++ src/OpenJPH-0.33.0/tests/CMakeLists.txt	2026-11-11 12:04:16.819652600 +0000
+@@ -7,6 +7,10 @@ endif()
+ 
+ # Fetch googletest
  include(FetchContent)
 +
 +find_package(GTest)
 +if (NOT GTest_FOUND)
 +
-+# Fetch googletest
  FetchContent_Declare(
    googletest
    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz
-@@ -11,6 +15,8 @@ set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+@@ -18,6 +22,8 @@ set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
  option(INSTALL_GTEST "Enable installation of googletest." OFF)
  FetchContent_MakeAvailable(googletest)
  
@@ -20,7 +20,7 @@
  # Fetch test files
  FetchContent_Declare(
    jp2k_test_codestreams
-@@ -80,11 +86,18 @@ target_link_libraries(
+@@ -122,6 +128,14 @@ target_link_libraries(
    GTest::gtest_main
  )
  
@@ -29,17 +29,21 @@
 +add_test(test_mixed_coc test_mixed_coc)
 +add_test(test_nlt test_nlt)
 +add_test(test_tlm test_tlm)
++add_test(test_quant_weights test_quant_weights)
++add_test(test_signed_shift test_signed_shift)
 +else()
  include(GoogleTest)
  gtest_add_tests(TARGET test_executables)
  gtest_add_tests(TARGET test_mixed_coc)
- gtest_add_tests(TARGET test_nlt)
+@@ -129,6 +143,7 @@ gtest_add_tests(TARGET test_nlt)
  gtest_add_tests(TARGET test_tlm)
+ gtest_add_tests(TARGET test_quant_weights)
+ gtest_add_tests(TARGET test_signed_shift)
 +endif()
  
  if (MSVC)
    add_custom_command(TARGET test_executables POST_BUILD
-@@ -117,7 +130,7 @@ else()
+@@ -161,7 +176,7 @@ else()
        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE_DIR:ojph_compress>/ojph_compress.wasm" "./"
      )
    endif(EMSCRIPTEN)

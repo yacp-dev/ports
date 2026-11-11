@@ -1,8 +1,8 @@
 HOMEPAGE="https://github.com/aous72/OpenJPH"
 SRC_URI="https://github.com/aous72/OpenJPH/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/o/openjph/0.32.0-1/debian/patches/fix-typo-codestream-dir.patch
-	https://sources.debian.org/data/main/o/openjph/0.32.0-1/debian/patches/fix-typo-ojph_params.cpp.patch
+	https://sources.debian.org/data/main/o/openjph/0.33.0-1/debian/patches/fix-typo-codestream-dir.patch
+	https://sources.debian.org/data/main/o/openjph/0.33.0-1/debian/patches/fix-typo-ojph_params.cpp.patch
 "
 SRC_DIR="OpenJPH-${PV}"
 
@@ -25,6 +25,11 @@ BUILD_REQUIRES="
 
 inherit cmake
 
+# GCC can't realign the stack for 32-byte AVX spills on x86_64 Windows
+# (GCC PR 54412), so vmovdqa to the stack faults; have the assembler emit
+# unaligned moves instead.
+CXXFLAGS+=" -Wa,-muse-unaligned-vector-move"
+
 CYGCMAKE_ARGS="
 	-DOJPH_BUILD_TESTS:BOOL=ON
 "
@@ -44,7 +49,7 @@ openjph_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libopenjph0_32_CONTENTS="
+libopenjph0_33_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libopenjph_devel_CONTENTS="
@@ -52,5 +57,5 @@ libopenjph_devel_CONTENTS="
 	usr/lib
 "
 openjph_SUMMARY="${SUMMARY} (utilities)"
-libopenjph0_32_SUMMARY="${SUMMARY} (runtime)"
+libopenjph0_33_SUMMARY="${SUMMARY} (runtime)"
 libopenjph_devel_SUMMARY="${SUMMARY} (development)"

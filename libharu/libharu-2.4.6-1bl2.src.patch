@@ -1,5 +1,5 @@
---- origsrc/libharu-2.4.6/CMakeLists.txt	2026-03-27 04:06:59.000000000 +0900
-+++ src/libharu-2.4.6/CMakeLists.txt	2026-05-13 10:37:28.893145900 +0900
+--- origsrc/libharu-2.4.6/CMakeLists.txt	2026-03-26 19:06:59.000000000 +0000
++++ src/libharu-2.4.6/CMakeLists.txt	2026-11-11 21:59:37.962457900 +0000
 @@ -141,3 +141,10 @@ install(DIRECTORY bindings DESTINATION $
  # print out some information
  # =======================================================================
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libharu.pc.in ${CMAKE_BINARY_DIR}/libharu.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libharu.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libharu-2.4.6/libharu.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libharu-2.4.6/libharu.pc.in	2026-05-13 10:40:11.409778700 +0900
+--- origsrc/libharu-2.4.6/libharu.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libharu-2.4.6/libharu.pc.in	2026-11-11 21:59:37.962457900 +0000
 @@ -0,0 +1,11 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

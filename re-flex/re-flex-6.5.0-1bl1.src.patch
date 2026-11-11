@@ -1,0 +1,74 @@
+--- origsrc/RE-flex-6.5.0/CMakeLists.txt	2026-09-15 13:39:03.000000000 +0000
++++ src/RE-flex-6.5.0/CMakeLists.txt	2026-11-11 15:01:16.969954000 +0000
+@@ -75,11 +75,9 @@ if(REFLEX_MSVC_TOOLCHAIN)
+   set(reflexmin_library_targets ReflexMinLib)
+ else()
+   add_library(ReflexLib SHARED)
+-  add_library(ReflexLibStatic STATIC)
+   add_library(ReflexMinLib SHARED)
+-  add_library(ReflexMinLibStatic STATIC)
+-  set(reflex_library_targets ReflexLib ReflexLibStatic)
+-  set(reflexmin_library_targets ReflexMinLib ReflexMinLibStatic)
++  set(reflex_library_targets ReflexLib)
++  set(reflexmin_library_targets ReflexMinLib)
+ endif()
+ 
+ # Set the source files contained in each full-library target.
+@@ -142,6 +140,11 @@ foreach(target IN LISTS reflexmin_librar
+   set_target_properties(${target} PROPERTIES OUTPUT_NAME reflexmin)
+ endforeach()
+ 
++if(DEFINED SOVERSION)
++  set_target_properties(ReflexLib PROPERTIES SOVERSION "${SOVERSION}")
++  set_target_properties(ReflexMinLib PROPERTIES SOVERSION "${SOVERSION}")
++endif()
++
+ set_target_properties(Reflex PROPERTIES OUTPUT_NAME reflex)
+ 
+ # Install the generator and public libraries, and record the library targets for
+@@ -188,30 +191,10 @@ install(FILES
+   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/reflex
+ )
+ 
+-# Make relative installations relocatable by deriving their prefix from the
+-# installed .pc file.  Absolute library destinations retain their fixed paths.
+-if(IS_ABSOLUTE "${CMAKE_INSTALL_LIBDIR}")
+-  set(prefix "${CMAKE_INSTALL_PREFIX}")
+-  set(exec_prefix "\${prefix}")
+-  set(libdir "${CMAKE_INSTALL_LIBDIR}")
+-else()
+-  # Anchor both inputs in the native build directory because RELATIVE_PATH
+-  # requires full paths; only their relative structure enters the .pc file.
+-  file(RELATIVE_PATH reflex_pc_prefix_relative
+-    "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/pkgconfig"
+-    "${CMAKE_CURRENT_BINARY_DIR}"
+-  )
+-  set(prefix "\${pcfiledir}/${reflex_pc_prefix_relative}")
+-  set(exec_prefix "\${prefix}")
+-  set(libdir "\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}")
+-endif()
+-
+-# GNUInstallDirs also permits the header destination to be absolute.
+-if(IS_ABSOLUTE "${CMAKE_INSTALL_INCLUDEDIR}")
+-  set(includedir "${CMAKE_INSTALL_INCLUDEDIR}")
+-else()
+-  set(includedir "\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}")
+-endif()
++set(prefix "${CMAKE_INSTALL_PREFIX}")
++set(exec_prefix "\${prefix}")
++set(libdir "\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}")
++set(includedir "\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}")
+ 
+ # Reuse the Autotools templates, which expect the project version in VERSION.
+ set(VERSION "${PROJECT_VERSION}")
+--- origsrc/RE-flex-6.5.0/include/reflex/timer.h	2026-09-15 13:39:03.000000000 +0000
++++ src/RE-flex-6.5.0/include/reflex/timer.h	2026-11-11 15:01:16.971976900 +0000
+@@ -37,7 +37,7 @@
+ #ifndef REFLEX_TIMER_H
+ #define REFLEX_TIMER_H
+ 
+-#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(__CYGWIN__) || defined(__MINGW32__) || defined(__MINGW64__) || defined(__BORLANDC__)
++#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(__MINGW32__) || defined(__MINGW64__) || defined(__BORLANDC__)
+ 
+ // disable min/max macros to use std::min and std::max
+ #ifndef NOMINMAX

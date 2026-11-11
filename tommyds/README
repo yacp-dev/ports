@@ -4,40 +4,39 @@ TommyDS is a C library of array, hashtables and tries data structures, designed
 for high performance and providing an easy to use interface.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libtommyds-devel-2.2-1bl2
-  libtommyds2-2.2-1bl2
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libtommyds-devel-3.0-1bl1
+  libtommyds3-3.0-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/amadvance/tommyds
 
 Canonical download:
-  https://github.com/amadvance/tommyds/archive/refs/tags/v2.2.tar.gz
+  https://github.com/amadvance/tommyds/archive/refs/tags/v3.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack tommyds-2.2-X-src.tar.xz
+  1. unpack tommyds-3.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./tommyds-2.2-X.cygport all
+        % cygport ./tommyds-3.0-X.cygport all
 
 This will create:
-  /usr/src/tommyds-2.2-X-src.tar.xz
-  /usr/src/tommyds-2.2-X.tar.xz
-  /usr/src/libtommyds2-2.2-X.tar.xz
-  /usr/src/libtommyds-devel-2.2-X.tar.xz
+  /usr/src/tommyds-3.0-X-src.tar.xz
+  /usr/src/tommyds-3.0-X.tar.xz
+  /usr/src/libtommyds3-3.0-X.tar.xz
+  /usr/src/libtommyds-devel-3.0-X.tar.xz
 
 -------------------------------------------
 
@@ -50,8 +49,8 @@ Files included in the binary package:
   /usr/share/doc/tommyds/LICENSE
   /usr/share/doc/tommyds/README
 
-(libtommyds2)
-  /usr/bin/cygtommyds-2.dll
+(libtommyds3)
+  /usr/bin/cygtommyds-3.dll
 
 (libtommyds-devel)
   /usr/include/tommy.h
@@ -76,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0-1bl1 -----
+Version bump.
 
 ----- version 2.2-1bl2 -----
 Rebuild with gcc-12.4.0

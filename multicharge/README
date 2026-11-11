@@ -3,21 +3,21 @@ multicharge
 Electronegativity equilibration model for atomic partial charges
 
 Runtime requirements:
-  cygwin-3.6.11-1
+  cygwin-3.6.12-1
   libgfortran5-14.4.0-1
   libgomp1-14.4.0-1
   liblapack-devel-3.12.0-1
   liblapack0-3.12.0-1
   libmctc-lib-devel-0.7.0-1bl1
   libmctc-lib0-0.7.0-1bl1
-  libmulticharge-devel-0.5.0-1bl2
-  libmulticharge0-0.5.0-1bl2
-  pkg-config-3.0.9-1
+  libmulticharge-devel-0.6.0-1bl1
+  libmulticharge0-0.6.0-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.10-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
   gcc-fortran-14.4.0-1
   liblapack-devel-3.12.0-1
@@ -30,22 +30,22 @@ Canonical website:
   https://github.com/grimme-lab/multicharge
 
 Canonical download:
-  https://github.com/grimme-lab/multicharge/archive/refs/tags/v0.5.0.tar.gz
+  https://github.com/grimme-lab/multicharge/archive/refs/tags/v0.6.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack multicharge-0.5.0-X-src.tar.xz
+  1. unpack multicharge-0.6.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./multicharge-0.5.0-X.cygport all
+        % cygport ./multicharge-0.6.0-X.cygport all
 
 This will create:
-  /usr/src/multicharge-0.5.0-X-src.tar.xz
-  /usr/src/multicharge-0.5.0-X.tar.xz
-  /usr/src/libmulticharge0-0.5.0-X.tar.xz
-  /usr/src/libmulticharge-devel-0.5.0-X.tar.xz
+  /usr/src/multicharge-0.6.0-X-src.tar.xz
+  /usr/src/multicharge-0.6.0-X.tar.xz
+  /usr/src/libmulticharge0-0.6.0-X.tar.xz
+  /usr/src/libmulticharge-devel-0.6.0-X.tar.xz
 
 -------------------------------------------
 
@@ -70,6 +70,7 @@ Files included in the binary package:
   /usr/include/multicharge/modules/multicharge_model_cache.mod
   /usr/include/multicharge/modules/multicharge_model_eeq.mod
   /usr/include/multicharge/modules/multicharge_model_eeqbc.mod
+  /usr/include/multicharge/modules/multicharge_model_hessian.mod
   /usr/include/multicharge/modules/multicharge_model_type.mod
   /usr/include/multicharge/modules/multicharge_output.mod
   /usr/include/multicharge/modules/multicharge_param.mod
@@ -77,12 +78,20 @@ Files included in the binary package:
   /usr/include/multicharge/modules/multicharge_param_eeqbc2025.mod
   /usr/include/multicharge/modules/multicharge_version.mod
   /usr/include/multicharge/modules/multicharge_wignerseitz.mod
+  /usr/lib/cmake/multicharge/Findmctc-lib.cmake
+  /usr/lib/cmake/multicharge/Findmstore.cmake
+  /usr/lib/cmake/multicharge/multicharge-config.cmake
+  /usr/lib/cmake/multicharge/multicharge-targets.cmake
+  /usr/lib/cmake/multicharge/multicharge-utils.cmake
   /usr/lib/libmulticharge.dll.a
   /usr/lib/pkgconfig/multicharge.pc
 
 ------------------
 
 Port Notes:
+
+----- version 0.6.0-1bl1 -----
+Version bump.
 
 ----- version 0.5.0-1bl2 -----
 Rebuild with gcc-14.4.0

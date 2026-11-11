@@ -1,0 +1,78 @@
+dhb
+------------------------------------------
+DHB (Dynamic Hashed Blocks) is a high-performance data structure designed for
+sparse dynamic graphs and matrices.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libdhb-devel-1.0.0+git20260923-1bl1
+  libdhb1-1.0.0+git20260923-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libCatch2-devel-3.16.1-1bl2
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/hu-macsy/dhb
+
+Canonical download:
+  https://github.com/hu-macsy/dhb.git
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack dhb-1.0.0+git20260923-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./dhb-1.0.0+git20260923-X.cygport all
+
+This will create:
+  /usr/src/dhb-1.0.0+git20260923-X-src.tar.xz
+  /usr/src/dhb-1.0.0+git20260923-X.tar.xz
+  /usr/src/libdhb1-1.0.0+git20260923-X.tar.xz
+  /usr/src/libdhb-devel-1.0.0+git20260923-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(dhb)
+  /usr/share/doc/Cygwin/dhb.README
+  /usr/share/doc/dhb/LICENSE
+  /usr/share/doc/dhb/README.md
+
+(libdhb1)
+  /usr/bin/cygdhb-1.dll
+
+(libdhb-devel)
+  /usr/include/dhb/batcher.h
+  /usr/include/dhb/block.h
+  /usr/include/dhb/buckets.h
+  /usr/include/dhb/dynamic_hashed_blocks.h
+  /usr/include/dhb/graph.h
+  /usr/include/dhb/hash_tools.h
+  /usr/include/dhb/integer_log2.h
+  /usr/include/dhb/submatrix.h
+  /usr/include/dhb/vec.h
+  /usr/lib/cmake/dhb/dhbConfig.cmake
+  /usr/lib/cmake/dhb/dhbConfigVersion.cmake
+  /usr/lib/cmake/dhb/dhbTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/dhb/dhbTargets.cmake
+  /usr/lib/libdhb.dll.a
+  /usr/lib/pkgconfig/dhb.pc
+
+------------------
+
+Port Notes:
+
+----- version 1.0.0+git20260923-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

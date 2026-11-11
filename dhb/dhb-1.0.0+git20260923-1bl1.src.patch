@@ -1,0 +1,79 @@
+--- origsrc/dhb/CMakeLists.txt	2026-11-11 12:00:07.000000000 +0000
++++ src/dhb/CMakeLists.txt	2026-11-11 12:00:15.149864100 +0000
+@@ -13,7 +13,7 @@ option(DHB_WITH_SYSTEM_ALLOCATOR "Use DH
+ option(DHB_WITH_64BIT_IDS "Use 64 bit IDs." OFF)
+ option(DHB_WARNINGS_AS_ERRORS "Sets warning level high, treats warnings as errors ." OFF)
+ 
+-add_library(dhb STATIC)
++add_library(dhb)
+ 
+ set(public_headers
+   include/dhb/vec.h
+@@ -128,6 +128,7 @@ set_target_properties(dhb PROPERTIES CXX
+ set_target_properties(dhb PROPERTIES POSITION_INDEPENDENT_CODE ON)
+ set_target_properties(dhb PROPERTIES DEBUG_POSTFIX "d")
+ set_target_properties(dhb PROPERTIES PUBLIC_HEADER "${public_headers}")
++set_target_properties(dhb PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
+ 
+ # ===================================
+ # Make a Configuration Package
+@@ -166,18 +167,24 @@ set_property(TARGET dhb APPEND PROPERTY
+   COMPATIBLE_INTERFACE_STRING dhb_MAJOR_VERSION
+ )
+ 
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_FULL_LIBDIR})
++set(includedir ${CMAKE_INSTALL_FULL_INCLUDEDIR})
++if (NOT DEFINED VERSION)
++  set(VERSION ${PROJECT_VERSION})
++endif()
++configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dhb.pc.in
++  ${CMAKE_CURRENT_BINARY_DIR}/dhb.pc @ONLY)
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/dhb.pc
++  DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
++
+ # ========================
+ # Test Target
+ # ========================
+ option(DHB_BUILD_TESTS "Build test target." OFF)
+ if (DHB_BUILD_TESTS)
+-  if(EXISTS "${PROJECT_SOURCE_DIR}/test/lib/Catch2")
+-    add_subdirectory(${PROJECT_SOURCE_DIR}/test/lib/Catch2)
+-  else()
+-    message(FATAL_ERROR
+-        "Missing Catch2 library in test/lib/Catch2 "
+-        "Please run `git submodule update --init` to fetch the submodule.")
+-  endif()
++  find_package(Catch2 3 REQUIRED)
+ 
+   if(EXISTS "${PROJECT_SOURCE_DIR}/test/graphs")
+     add_definitions(-DDHB_TEST_GRAPH_DIR="${PROJECT_SOURCE_DIR}/test/graphs")
+@@ -202,13 +209,8 @@ if (DHB_BUILD_TESTS)
+ 
+   target_link_libraries(dhb_test PRIVATE dhb Catch2::Catch2WithMain OpenMP::OpenMP_CXX)
+ 
+-  install(
+-    TARGETS dhb_test
+-    RUNTIME DESTINATION bin
+-  )
+-
+   # Test setup. Use CTest + Catch2's CTest integration.
+   include(CTest)
+-  include(${PROJECT_SOURCE_DIR}/test/lib/Catch2/extras/Catch.cmake)
++  include(Catch)
+   catch_discover_tests(dhb_test)
+ endif()
+--- origsrc/dhb/dhb.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/dhb/dhb.pc.in	2026-11-11 12:00:15.149864100 +0000
+@@ -0,0 +1,10 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=@CMAKE_INSTALL_PREFIX@
++libdir=@CMAKE_INSTALL_FULL_LIBDIR@
++includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
++
++Name: dhb
++Description: Dynamic Hashed Blocks (DHB) format
++Version: @VERSION@
++Libs: -L${libdir} -ldhb
++Cflags: -I${includedir}

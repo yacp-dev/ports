@@ -11,12 +11,16 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE.md"
 
-BUILD_REQUIRES="libssl-devel zlib-devel"
+BUILD_REQUIRES="
+	libssl-devel
+	zlib-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DCIVETWEB_BUILD_TESTING:BOOL=OFF
 	-DCIVETWEB_ENABLE_CXX:BOOL=ON
 	-DCIVETWEB_ENABLE_IPV6:BOOL=ON
@@ -67,3 +71,10 @@ libcivetweb1_16_0_SUMMARY="${SUMMARY} (runtime)"
 libcivetweb_devel_SUMMARY="${SUMMARY} (development)"
 libcivetweb_cpp1_16_0_SUMMARY="${SUMMARY} (runtime / c++)"
 libcivetweb_cpp_devel_SUMMARY="${SUMMARY} (development / c++)"
+
+libcivetweb_devel_REQUIRES="
+	civetweb
+	libcivetweb-cpp-devel
+	libssl-devel
+	zlib-devel
+"

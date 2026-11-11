@@ -1,5 +1,5 @@
---- origsrc/civetweb-1.16/CMakeLists.txt	2023-04-09 00:38:36.000000000 +0900
-+++ src/civetweb-1.16/CMakeLists.txt	2024-09-14 16:20:53.670432200 +0900
+--- origsrc/civetweb-1.16/CMakeLists.txt	2023-04-08 15:38:36.000000000 +0000
++++ src/civetweb-1.16/CMakeLists.txt	2026-11-11 11:53:21.781796200 +0000
 @@ -37,7 +37,7 @@ include(AddCXXCompilerFlag)
  include(DetermineTargetArchitecture)
  include(CMakeDependentOption)
@@ -30,8 +30,8 @@
  # Finalize CPack settings
  include(CPack)
 -
---- origsrc/civetweb-1.16/cmake/civetweb-cpp.pc.in	2023-04-09 00:38:36.000000000 +0900
-+++ src/civetweb-1.16/cmake/civetweb-cpp.pc.in	2024-09-14 16:20:53.670432200 +0900
+--- origsrc/civetweb-1.16/cmake/civetweb-cpp.pc.in	2023-04-08 15:38:36.000000000 +0000
++++ src/civetweb-1.16/cmake/civetweb-cpp.pc.in	2026-11-11 11:53:21.783808500 +0000
 @@ -5,7 +5,7 @@ libdir=${exec_prefix}/@CMAKE_INSTALL_LIB
  
  Name: @PROJECT_NAME@-cpp
@@ -41,8 +41,8 @@
  Requires:
  Libs: -L${libdir} -l@PROJECT_NAME@-cpp
  Cflags: -I${includedir}
---- origsrc/civetweb-1.16/cmake/civetweb.pc.in	2023-04-09 00:38:36.000000000 +0900
-+++ src/civetweb-1.16/cmake/civetweb.pc.in	2024-09-14 16:20:53.670432200 +0900
+--- origsrc/civetweb-1.16/cmake/civetweb.pc.in	2023-04-08 15:38:36.000000000 +0000
++++ src/civetweb-1.16/cmake/civetweb.pc.in	2026-11-11 11:53:21.783808500 +0000
 @@ -5,7 +5,7 @@ libdir=${exec_prefix}/@CMAKE_INSTALL_LIB
  
  Name: @PROJECT_NAME@
@@ -52,8 +52,8 @@
  Requires:
  Libs: -L${libdir} -l@PROJECT_NAME@
  Cflags: -I${includedir}
---- origsrc/civetweb-1.16/src/sort.inl	2023-04-09 00:38:36.000000000 +0900
-+++ src/civetweb-1.16/src/sort.inl	2024-09-14 16:20:53.670432200 +0900
+--- origsrc/civetweb-1.16/src/sort.inl	2023-04-08 15:38:36.000000000 +0000
++++ src/civetweb-1.16/src/sort.inl	2026-11-11 11:53:21.785819000 +0000
 @@ -1,6 +1,8 @@
  /* Sort function. */
  /* from https://github.com/bel2125/sort_r */

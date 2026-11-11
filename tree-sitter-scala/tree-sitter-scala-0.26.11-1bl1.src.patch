@@ -1,5 +1,5 @@
---- origsrc/tree-sitter-scala-0.26.9/CMakeLists.txt	2026-11-07 02:39:39.000000000 +0000
-+++ src/tree-sitter-scala-0.26.9/CMakeLists.txt	2026-11-09 04:05:02.930174500 +0000
+--- origsrc/tree-sitter-scala-0.26.11/CMakeLists.txt	2026-11-10 16:36:14.000000000 +0000
++++ src/tree-sitter-scala-0.26.11/CMakeLists.txt	2026-11-11 15:31:33.316791400 +0000
 @@ -19,6 +19,7 @@ include(GNUInstallDirs)
  
  find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")

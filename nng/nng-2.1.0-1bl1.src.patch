@@ -1,6 +1,6 @@
---- origsrc/nng-1.11/CMakeLists.txt	2025-06-02 23:33:39.000000000 +0900
-+++ src/nng-1.11/CMakeLists.txt	2026-01-27 18:29:17.026502400 +0900
-@@ -268,6 +268,11 @@ elseif (CMAKE_SYSTEM_NAME MATCHES "QNX")
+--- origsrc/nng-2.1.0/CMakeLists.txt	2026-10-28 03:17:28.000000000 +0000
++++ src/nng-2.1.0/CMakeLists.txt	2026-11-11 10:06:30.611912200 +0000
+@@ -342,6 +342,11 @@ elseif (CMAKE_SYSTEM_NAME MATCHES "QNX")
      add_definitions(-DNNG_PLATFORM_QNX)
      set(NNG_PLATFORM_POSIX ON)
  
@@ -12,7 +12,7 @@
  else ()
      message(AUTHOR_WARNING "WARNING: This platform may not be supported: ${CMAKE_SYSTEM_NAME}")
      message(AUTHOR_WARNING "${ISSUE_REPORT_MSG}")
-@@ -310,3 +315,9 @@ set(CPACK_PACKAGE_FILE_NAME "${PROJECT_N
+@@ -395,3 +400,9 @@ set(CPACK_PACKAGE_FILE_NAME "${PROJECT_N
  
  add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
  include(CPack)
@@ -22,8 +22,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/nng.pc.in ${CMAKE_BINARY_DIR}/nng.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/nng.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/nng-1.11/nng.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/nng-1.11/nng.pc.in	2026-01-27 18:52:59.199351900 +0900
+--- origsrc/nng-2.1.0/nng.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/nng-2.1.0/nng.pc.in	2026-11-11 10:06:30.613929700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

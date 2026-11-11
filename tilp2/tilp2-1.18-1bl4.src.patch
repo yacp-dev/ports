@@ -1,12 +1,12 @@
---- origsrc/tilp2-1.18/builder/Makefile.am	2013-04-05 03:40:49.000000000 +0900
-+++ src/tilp2-1.18/builder/Makefile.am	2025-05-04 06:09:54.399344000 +0900
+--- origsrc/tilp2-1.18/builder/Makefile.am	2013-04-04 18:40:49.000000000 +0000
++++ src/tilp2-1.18/builder/Makefile.am	2026-11-11 15:38:41.596679800 +0000
 @@ -1,3 +1,3 @@
  builderdir = $(pkgdatadir)/builder
 -dist_builder_DATA = *.ui
 +dist_builder_DATA = $(srcdir)/*.ui
  EXTRA_DIST = README
---- origsrc/tilp2-1.18/configure.ac	2016-01-16 05:28:52.000000000 +0900
-+++ src/tilp2-1.18/configure.ac	2025-05-04 06:09:54.399344000 +0900
+--- origsrc/tilp2-1.18/configure.ac	2016-01-15 20:28:52.000000000 +0000
++++ src/tilp2-1.18/configure.ac	2026-11-11 15:38:41.596679800 +0000
 @@ -111,7 +111,6 @@ AC_CHECK_FUNCS([getcwd memset mkdir strc
  dnl AC_CANONICAL_HOST
  case "$host" in
@@ -32,8 +32,8 @@
    if test x$GCC = xyes; then
      msnative_struct=''
      AC_MSG_CHECKING([how to get MSVC-compatible struct packing])
---- origsrc/tilp2-1.18/desktop/Makefile.am	2016-01-17 16:40:07.000000000 +0900
-+++ src/tilp2-1.18/desktop/Makefile.am	2025-05-04 06:10:28.870838500 +0900
+--- origsrc/tilp2-1.18/desktop/Makefile.am	2016-01-17 07:40:07.000000000 +0000
++++ src/tilp2-1.18/desktop/Makefile.am	2026-11-11 15:38:41.596679800 +0000
 @@ -1,7 +1,7 @@
  desktopdir = $(datadir)/applications
  mimedir = $(datadir)/mime/packages
@@ -43,8 +43,8 @@
  desktop_in_files = tilp.desktop.in
  desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
  mime_files = tilp.xml
---- origsrc/tilp2-1.18/help/Makefile.am	2013-04-05 03:40:49.000000000 +0900
-+++ src/tilp2-1.18/help/Makefile.am	2025-05-04 06:09:54.399344000 +0900
+--- origsrc/tilp2-1.18/help/Makefile.am	2013-04-04 18:40:49.000000000 +0000
++++ src/tilp2-1.18/help/Makefile.am	2026-11-11 15:38:41.598693500 +0000
 @@ -1,5 +1,5 @@
  helpdir = $(pkgdatadir)/help
 -dist_help_DATA = *.html *.png
@@ -52,8 +52,8 @@
  
  dos2unix:
  	dos2unix
---- origsrc/tilp2-1.18/icons/Makefile.am	2013-04-05 03:40:49.000000000 +0900
-+++ src/tilp2-1.18/icons/Makefile.am	2025-05-04 06:09:54.399344000 +0900
+--- origsrc/tilp2-1.18/icons/Makefile.am	2013-04-04 18:40:49.000000000 +0000
++++ src/tilp2-1.18/icons/Makefile.am	2026-11-11 15:38:41.598693500 +0000
 @@ -1,11 +1,11 @@
  iconsdir = $(pkgdatadir)/icons
 -dist_icons_DATA = *.ico
@@ -68,8 +68,8 @@
  	ppmtoxpm -alphamask $${I}_and.pbm $${I}_xor.ppm > \
  	`echo $$I | sed -e 's/\.ico$$/.xpm/g'`; rm -f \
  	$${I}_???.p?m; \
---- origsrc/tilp2-1.18/man/Makefile.am	2016-01-27 06:28:20.000000000 +0900
-+++ src/tilp2-1.18/man/Makefile.am	2025-05-04 06:09:54.399344000 +0900
+--- origsrc/tilp2-1.18/man/Makefile.am	2016-01-26 21:28:20.000000000 +0000
++++ src/tilp2-1.18/man/Makefile.am	2026-11-11 15:38:41.600707100 +0000
 @@ -9,8 +9,8 @@ view: $(man_MANS)
  	groff -Tascii -man $(man_MANS) | less
  
@@ -81,8 +81,8 @@
  	./cleaner Manpage
  	rm -f Manpage cleaner
  
---- origsrc/tilp2-1.18/pixmaps/Makefile.am	2013-04-05 03:40:49.000000000 +0900
-+++ src/tilp2-1.18/pixmaps/Makefile.am	2025-05-04 06:09:54.399344000 +0900
+--- origsrc/tilp2-1.18/pixmaps/Makefile.am	2013-04-04 18:40:49.000000000 +0000
++++ src/tilp2-1.18/pixmaps/Makefile.am	2026-11-11 15:38:41.600707100 +0000
 @@ -1,5 +1,5 @@
  pixmapsdir = $(pkgdatadir)/pixmaps
 -dist_pixmaps_DATA = *.xpm *.png
@@ -90,8 +90,8 @@
  
  EXTRA_DIST = copy.bat
  
---- origsrc/tilp2-1.18/src/Makefile.am	2016-03-15 04:55:57.000000000 +0900
-+++ src/tilp2-1.18/src/Makefile.am	2025-05-04 06:09:54.399344000 +0900
+--- origsrc/tilp2-1.18/src/Makefile.am	2016-03-14 19:55:57.000000000 +0000
++++ src/tilp2-1.18/src/Makefile.am	2026-11-11 15:38:41.600707100 +0000
 @@ -9,7 +9,7 @@ bin_PROGRAMS = tilp
  tilp_CPPFLAGS = -I$(top_srcdir)/intl \
  	@TICABLES_CFLAGS@ @TIFILES_CFLAGS@ @TICALCS_CFLAGS@ @TICONV_CFLAGS@ \

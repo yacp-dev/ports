@@ -5,11 +5,14 @@ CATEGORY="Libs"
 SUMMARY="C++ library for fast Gauss transforms"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND BSD-2-Clause"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="eigen3 libgtest-devel"
+BUILD_REQUIRES="
+	eigen3
+	libgtest-devel
+"
 
 inherit cmake
 

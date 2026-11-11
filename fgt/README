@@ -3,23 +3,22 @@ fgt
 C++ library for fast Gauss transforms
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libfgt-devel-0.4.11-1bl1
-  libfgt0-0.4.11-1bl1
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libfgt-devel-0.4.11-1bl2
+  libfgt0-0.4.11-1bl2
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   eigen3-3.4.0-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libgtest-devel-1.16.0-1bl1
-  ninja-1.12.1-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/gadomski/fgt
@@ -58,7 +57,7 @@ Files included in the binary package:
   /usr/include/fgt.hpp
   /usr/lib/cmake/fgt/fgt-config-version.cmake
   /usr/lib/cmake/fgt/fgt-config.cmake
-  /usr/lib/cmake/fgt/fgt-targets-release.cmake
+  /usr/lib/cmake/fgt/fgt-targets-relwithdebinfo.cmake
   /usr/lib/cmake/fgt/fgt-targets.cmake
   /usr/lib/libfgt.dll.a
   /usr/lib/pkgconfig/fgt.pc
@@ -66,6 +65,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.4.11-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.4.11-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

@@ -1,16 +1,5 @@
---- origsrc/PDAL-2.8.4-src/cmake/macros.cmake	2025-02-03 22:42:28.000000000 +0900
-+++ src/PDAL-2.8.4-src/cmake/macros.cmake	2025-03-25 02:18:33.385702200 +0900
-@@ -215,7 +215,7 @@ macro(PDAL_ADD_TEST _name)
-     target_link_libraries(${_name}
-         PRIVATE
-             ${PDAL_LIB_NAME}
--            gtest
-+            gtest gtest_main
-             ${PDAL_ADD_TEST_LINK_WITH}
-             ${WINSOCK_LIBRARY}
-     )
---- origsrc/PDAL-2.8.4-src/plugins/e57/CMakeLists.txt	2025-02-03 22:42:28.000000000 +0900
-+++ src/PDAL-2.8.4-src/plugins/e57/CMakeLists.txt	2025-03-25 01:46:58.989751500 +0900
+--- origsrc/PDAL-2.10.2-src/plugins/e57/CMakeLists.txt	2026-06-12 14:34:21.000000000 +0000
++++ src/PDAL-2.10.2-src/plugins/e57/CMakeLists.txt	2026-11-11 15:19:51.137786400 +0000
 @@ -6,8 +6,15 @@ if (STANDALONE)
      include("${PROJECT_SOURCE_DIR}/../../cmake/nlohmann.cmake" )
  endif(STANDALONE)
@@ -55,8 +44,8 @@
  )
  
  if (WITH_TESTS)
-@@ -49,9 +56,9 @@ if (WITH_TESTS)
-             test/ScanTest.cpp
+@@ -47,9 +54,9 @@ if (WITH_TESTS)
+             test/E57ReaderTest.cpp
          LINK_WITH
              ${e57plugin_reader}
 -            E57Format
@@ -67,7 +56,7 @@
      )
  
      PDAL_ADD_TEST(pdal_io_e57_write_test
-@@ -61,8 +68,8 @@ if (WITH_TESTS)
+@@ -58,9 +65,9 @@ if (WITH_TESTS)
          LINK_WITH
              ${e57plugin_reader}
              ${e57plugin_writer}
@@ -77,25 +66,5 @@
 -            libE57Format/include
 +            ${E57FORMAT_INCLUDE_DIRS}
      )
- endif()
---- origsrc/PDAL-2.8.4-src/plugins/e57/io/E57Writer.cpp	2025-02-03 22:42:28.000000000 +0900
-+++ src/PDAL-2.8.4-src/plugins/e57/io/E57Writer.cpp	2025-03-25 01:52:58.459982600 +0900
-@@ -34,6 +34,9 @@
- 
- #include <pdal/util/Algorithm.hpp>
- 
-+#include <E57Format.h>
-+#include <E57Version.h>
-+
- #include "E57Writer.hpp"
- #include "Utils.hpp"
- #include "Uuid.hpp"
-@@ -323,7 +326,7 @@ void E57Writer::setupFileHeader()
-     // We are using the E57 v1.0 data format standard fieldnames.
-     // The standard fieldnames are used without an extension prefix
-     // (in the default namespace).
--    m_imageFile->extensionsAdd("", E57_V1_0_URI);
-+    m_imageFile->extensionsAdd("", e57::E57_V1_0_URI);
-     m_imageFile->extensionsAdd("nor",
-                                "http://www.libe57.org/E57_NOR_surface_normals.txt");
- 
+     PDAL_ADD_TEST(pdal_io_e57_scan_test
+         FILES

@@ -1,9 +1,11 @@
 HOMEPAGE="https://github.com/PDAL/PDAL"
 SRC_URI="https://github.com/PDAL/PDAL/releases/download/${PV}/PDAL-${PV}-src.tar.gz"
-SRC_DIR="PDAL-${PV}-src"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/PDAL/raw/rawhide/f/PDAL_unbundle.patch
+	https://src.fedoraproject.org/rpms/PDAL/raw/fc5d7fa7b23d04e458b1b5f6d83f1a02224cc3ff/f/PDAL_unbundle.patch
+	https://src.fedoraproject.org/rpms/PDAL/raw/fc5d7fa7b23d04e458b1b5f6d83f1a02224cc3ff/f/PDAL_gdalinc.patch
+	https://src.fedoraproject.org/rpms/PDAL/raw/fc5d7fa7b23d04e458b1b5f6d83f1a02224cc3ff/f/PDAL_cstdint.patch
 "
+SRC_DIR="PDAL-${PV}-src"
 
 CATEGORY="Libs"
 SUMMARY="Point Data Abstraction Library"
@@ -12,11 +14,28 @@ applications for translating and processing point cloud data. It is not
 limited to LiDAR data, although the focus and impetus for many of the tools in
 the library have their origins in LiDAR."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
-LICENSE_URI="LICENSE.txt"
+LICENSE="Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND MIT"
+LICENSE_URI="LICENSE.txt vendor/arbiter/LICENSE vendor/utfcpp/LICENSE"
 
-BUILD_REQUIRES="eigen3 libcpd-devel libcurl-devel libdraco-devel libE57Format-devel libgdal-devel libgeotiff-devel libgtest-devel libhdf5-devel libpq-devel libproj-devel libssl-devel libxerces-c-devel libxml2-devel libzstd-devel zlib-devel"
+BUILD_REQUIRES="
+	eigen3
+	hdf5
+	libaec-devel
+	libcpd-devel
+	libcurl-devel
+	libdraco-devel
+	libE57Format-devel
+	libgdal-devel
+	libgeotiff-devel
+	libgtest-devel
+	libhdf5-devel
+	libpq-devel
+	libproj-devel
+	libssl-devel
+	libxml2-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -37,7 +56,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	PATH=${B}/bin:${PATH} ctest
+	PATH=${B}/bin:${PATH} ./bin/pdal.exe --version
 }
 
 DIFF_EXCLUDES="
@@ -47,15 +66,15 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	pdal
-	libpdal18
+	libpdal20
 	libpdal-devel
 "
 pdal_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libpdal18_CONTENTS="
-	usr/bin/cyg*-18.dll
+libpdal20_CONTENTS="
+	usr/bin/cyg*-20.dll
 "
 libpdal_devel_CONTENTS="
 	usr/bin/*-config
@@ -63,5 +82,5 @@ libpdal_devel_CONTENTS="
 	usr/lib
 "
 pdal_SUMMARY="${SUMMARY} (utilities)"
-libpdal18_SUMMARY="${SUMMARY} (runtime)"
+libpdal20_SUMMARY="${SUMMARY} (runtime)"
 libpdal_devel_SUMMARY="${SUMMARY} (development)"

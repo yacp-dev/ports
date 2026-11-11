@@ -1,5 +1,5 @@
---- origsrc/dhb/CMakeLists.txt	2026-11-11 12:00:07.000000000 +0000
-+++ src/dhb/CMakeLists.txt	2026-11-11 12:00:15.149864100 +0000
+--- origsrc/dhb/CMakeLists.txt	2026-11-11 12:29:02.000000000 +0000
++++ src/dhb/CMakeLists.txt	2026-11-11 12:29:09.993062700 +0000
 @@ -13,7 +13,7 @@ option(DHB_WITH_SYSTEM_ALLOCATOR "Use DH
  option(DHB_WITH_64BIT_IDS "Use 64 bit IDs." OFF)
  option(DHB_WARNINGS_AS_ERRORS "Sets warning level high, treats warnings as errors ." OFF)
@@ -17,7 +17,7 @@
  
  # ===================================
  # Make a Configuration Package
-@@ -166,18 +167,24 @@ set_property(TARGET dhb APPEND PROPERTY
+@@ -166,18 +167,27 @@ set_property(TARGET dhb APPEND PROPERTY
    COMPATIBLE_INTERFACE_STRING dhb_MAJOR_VERSION
  )
  
@@ -27,6 +27,9 @@
 +set(includedir ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 +if (NOT DEFINED VERSION)
 +  set(VERSION ${PROJECT_VERSION})
++endif()
++if (DHB_WITH_64BIT_IDS)
++  set(DHB_PC_CFLAGS "-DDHB_64BIT_IDS")
 +endif()
 +configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dhb.pc.in
 +  ${CMAKE_CURRENT_BINARY_DIR}/dhb.pc @ONLY)
@@ -49,7 +52,7 @@
  
    if(EXISTS "${PROJECT_SOURCE_DIR}/test/graphs")
      add_definitions(-DDHB_TEST_GRAPH_DIR="${PROJECT_SOURCE_DIR}/test/graphs")
-@@ -202,13 +209,8 @@ if (DHB_BUILD_TESTS)
+@@ -202,13 +212,8 @@ if (DHB_BUILD_TESTS)
  
    target_link_libraries(dhb_test PRIVATE dhb Catch2::Catch2WithMain OpenMP::OpenMP_CXX)
  
@@ -65,7 +68,7 @@
    catch_discover_tests(dhb_test)
  endif()
 --- origsrc/dhb/dhb.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/dhb/dhb.pc.in	2026-11-11 12:00:15.149864100 +0000
++++ src/dhb/dhb.pc.in	2026-11-11 12:29:09.993062700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@CMAKE_INSTALL_PREFIX@
 +exec_prefix=@CMAKE_INSTALL_PREFIX@
@@ -76,4 +79,4 @@
 +Description: Dynamic Hashed Blocks (DHB) format
 +Version: @VERSION@
 +Libs: -L${libdir} -ldhb
-+Cflags: -I${includedir}
++Cflags: -I${includedir} @DHB_PC_CFLAGS@

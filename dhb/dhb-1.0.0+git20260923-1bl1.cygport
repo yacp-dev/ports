@@ -1,0 +1,43 @@
+HOMEPAGE="https://github.com/hu-macsy/${PN}"
+GIT_URI="https://github.com/hu-macsy/${PN}.git"
+GIT_REV="8357570820ae2fe9d76afc7034b15102c2e41ccf"
+
+CATEGORY="Libs"
+SUMMARY="Dynamic Hashed Blocks (DHB) format"
+DESCRIPTION="DHB (Dynamic Hashed Blocks) is a high-performance data structure designed for
+sparse dynamic graphs and matrices."
+
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libCatch2-devel
+"
+
+inherit cmake
+inherit git
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DDHB_BUILD_TESTS:BOOL=ON
+"
+
+PKG_NAMES="
+	dhb
+	libdhb1
+	libdhb-devel
+"
+dhb_CONTENTS="
+	usr/share
+"
+libdhb1_CONTENTS="
+	usr/bin/cyg*-1.dll
+"
+libdhb_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+dhb_SUMMARY="${SUMMARY} (licensing & readmes)"
+libdhb1_SUMMARY="${SUMMARY} (runtime)"
+libdhb_devel_SUMMARY="${SUMMARY} (development)"

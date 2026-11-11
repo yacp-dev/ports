@@ -9,8 +9,8 @@ compressed bitmaps such as WAH, EWAH or Concise. In some instances, they can
 be hundreds of times faster and they often offer significantly better
 compression."
 
-LICENSE="Apache-2.0 OR MIT"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 OR MIT"
+LICENSE="(Apache-2.0 OR MIT) AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: (Apache-2.0 OR MIT) AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -38,19 +38,19 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	croaring
-	libroaring29
+	libroaring31
 	libroaring-devel
 "
 croaring_CONTENTS="
 	usr/share
 "
-libroaring29_CONTENTS="
-	usr/bin/cyg*-29.dll
+libroaring31_CONTENTS="
+	usr/bin/cyg*-31.dll
 "
 libroaring_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 croaring_SUMMARY="${SUMMARY} (licensing & readmes)"
-libroaring29_SUMMARY="${SUMMARY} (runtime)"
+libroaring31_SUMMARY="${SUMMARY} (runtime)"
 libroaring_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,6 +1,6 @@
---- origsrc/OpenCoarrays-2.10.1/CMakeLists.txt	2022-09-03 01:55:05.000000000 +0900
-+++ src/OpenCoarrays-2.10.1/CMakeLists.txt	2022-12-22 11:43:21.027938500 +0900
-@@ -536,7 +536,7 @@ endif()
+--- origsrc/OpenCoarrays-2.10.3/CMakeLists.txt	2025-04-10 19:03:42.000000000 +0000
++++ src/OpenCoarrays-2.10.3/CMakeLists.txt	2026-11-11 12:54:24.320599200 +0000
+@@ -543,7 +543,7 @@ endif()
  # Use standardized GNU install directory conventions
  #---------------------------------------------------
  include(GNUInstallDirs)
@@ -9,7 +9,7 @@
  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/${OpenCoarrays_dist_string}-tests")
  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
-@@ -577,10 +577,11 @@ function(caf_compile_executable target m
+@@ -584,10 +584,11 @@ function(caf_compile_executable target m
              ${includes} ${localDefs} ${config_Fortran_flags}
              -o "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}"
              "${CMAKE_CURRENT_SOURCE_DIR}/${main_depend}"
@@ -24,8 +24,8 @@
      VERBATIM
      )
    add_custom_target("build_${target}" ALL
---- origsrc/OpenCoarrays-2.10.1/src/runtime-libraries/mpi/CMakeLists.txt	2022-09-03 01:55:05.000000000 +0900
-+++ src/OpenCoarrays-2.10.1/src/runtime-libraries/mpi/CMakeLists.txt	2022-12-22 11:59:09.627426800 +0900
+--- origsrc/OpenCoarrays-2.10.3/src/runtime-libraries/mpi/CMakeLists.txt	2026-11-11 12:54:23.754499400 +0000
++++ src/OpenCoarrays-2.10.3/src/runtime-libraries/mpi/CMakeLists.txt	2026-11-11 12:54:24.320599200 +0000
 @@ -19,7 +19,7 @@ endif()
  #-----------------------------------------------------------
  # Add the actual library targets, then adjust them as needed
@@ -171,7 +171,7 @@
  
  #----------------------------------
  # Determine if we're using Open MPI
-@@ -180,14 +205,21 @@ CHECK_INCLUDE_FILE("alloca.h" HAVE_ALLOC
+@@ -184,14 +209,21 @@ CHECK_INCLUDE_FILE("alloca.h" HAVE_ALLOC
  if(NOT HAVE_ALLOCA)
    target_compile_definitions(caf_mpi
      PRIVATE -DALLOCA_MISSING)
@@ -195,7 +195,7 @@
  set(MPI_HAS_FAULT_TOL_EXT YES)
  
  CHECK_INCLUDE_FILE("signal.h" HAVE_SIGNAL_H)
-@@ -204,7 +236,7 @@ if(NOT HAVE_SIGKILL) # try -D_POSIX, nee
+@@ -208,7 +240,7 @@ if(NOT HAVE_SIGKILL) # try -D_POSIX, nee
    CHECK_SYMBOL_EXISTS(SIGKILL "signal.h" HAVE_SIGKILL2)
    if(HAVE_SIGKILL2)
      set(HAVE_SIGKILL ${HAVE_SIGKILL2})
@@ -204,7 +204,7 @@
        target_compile_definitions(${lib}
      	PUBLIC -D_POSIX)
      endforeach()
-@@ -241,7 +273,7 @@ set(MPI_HEADERS mpi.h)
+@@ -245,7 +277,7 @@ set(MPI_HEADERS mpi.h)
  include(CheckIncludeFiles)
  CHECK_INCLUDE_FILES("mpi.h;mpi-ext.h" HAVE_MPI_EXT)
  if(HAVE_MPI_EXT)
@@ -213,7 +213,7 @@
        target_compile_definitions(${lib}
      	PRIVATE -DHAVE_MPI_EXT_H)
      endforeach()
-@@ -279,7 +311,7 @@ else()
+@@ -283,7 +315,7 @@ else()
  endif()
  
  if(CAF_ENABLE_FAILED_IMAGES)
@@ -222,7 +222,7 @@
      target_compile_definitions(${lib}
        PUBLIC -DUSE_FAILED_IMAGES)
    endforeach()
-@@ -297,7 +329,7 @@ endif()
+@@ -301,7 +333,7 @@ endif()
  CHECK_INCLUDE_FILES("mpi.h" HAVE_MPI_H)
  CHECK_SYMBOL_EXISTS(I_MPI_VERSION "mpi.h" HAVE_Intel_MPI)
  if(HAVE_Intel_MPI AND WIN32)
@@ -231,7 +231,7 @@
      target_compile_definitions(${lib}
        PUBLIC -DUSE_GCC)
    endforeach()
-@@ -334,11 +366,13 @@ foreach( fcflag IN LISTS MPI_Fortran_COM
+@@ -338,11 +370,13 @@ foreach( fcflag IN LISTS MPI_Fortran_COM
    set(CAF_MPI_Fortran_COMPILE_FLAGS "${CAF_MPI_Fortran_COMPILE_FLAGS} ${fcflag}" )
  endforeach()
  string(STRIP "${CAF_MPI_Fortran_COMPILE_FLAGS}" CAF_MPI_Fortran_COMPILE_FLAGS)
@@ -249,29 +249,25 @@
  
  configure_file("${CMAKE_SOURCE_DIR}/src/script-templates/caf.in" "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/caf"
    @ONLY)
---- origsrc/OpenCoarrays-2.10.1/src/tests/integration/pde_solvers/coarrayBurgers/CMakeLists.txt	2022-09-03 01:55:05.000000000 +0900
-+++ src/OpenCoarrays-2.10.1/src/tests/integration/pde_solvers/coarrayBurgers/CMakeLists.txt	2022-12-22 11:54:49.352158000 +0900
-@@ -27,5 +27,5 @@ add_executable(coarray_burgers_pde
-   ${library_directory}/object_interface.F90
-   ${library_directory}/co_object_interface.F90
+--- origsrc/OpenCoarrays-2.10.3/src/tests/integration/pde_solvers/coarrayBurgers/CMakeLists.txt	2025-04-10 19:03:42.000000000 +0000
++++ src/OpenCoarrays-2.10.3/src/tests/integration/pde_solvers/coarrayBurgers/CMakeLists.txt	2026-11-11 12:54:24.322608600 +0000
+@@ -34,7 +34,7 @@ add_executable(coarray_burgers_pde
+   global_field.F90
+   main.F90
  )
--add_dependencies(coarray_burgers_pde caf_mpi_static)
-+add_dependencies(coarray_burgers_pde caf_mpi)
- target_include_directories(coarray_burgers_pde PRIVATE ${config_directory})
---- origsrc/OpenCoarrays-2.10.1/src/tests/integration/pde_solvers/coarrayHeatSimplified/CMakeLists.txt	2022-09-03 01:55:05.000000000 +0900
-+++ src/OpenCoarrays-2.10.1/src/tests/integration/pde_solvers/coarrayHeatSimplified/CMakeLists.txt	2022-12-22 11:54:16.132077300 +0900
-@@ -1,11 +1,11 @@
- set(CMAKE_Fortran_COMPILER "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/caf")
- add_library(local_field OBJECT local_field.f90)
- add_library(global_field OBJECT global_field.f90)
--add_dependencies(local_field caf_mpi_static)
--add_dependencies(global_field local_field caf_mpi_static)
-+add_dependencies(local_field caf_mpi)
-+add_dependencies(global_field local_field caf_mpi)
+-target_link_libraries(cbp_local PUBLIC cbp_base caf_mpi_static)
++target_link_libraries(cbp_local PUBLIC cbp_base caf_mpi)
+ target_link_libraries(coarray_burgers_pde PRIVATE cbp_local)
+ set_target_properties(cbp_base cbp_local coarray_burgers_pde
+   PROPERTIES
+--- origsrc/OpenCoarrays-2.10.3/src/tests/integration/pde_solvers/coarrayHeatSimplified/CMakeLists.txt	2025-04-10 19:03:42.000000000 +0000
++++ src/OpenCoarrays-2.10.3/src/tests/integration/pde_solvers/coarrayHeatSimplified/CMakeLists.txt	2026-11-11 12:54:24.322608600 +0000
+@@ -4,7 +4,7 @@ add_library(global_field STATIC global_f
  add_executable(co_heat
    main.f90
-   $<TARGET_OBJECTS:local_field>
-   $<TARGET_OBJECTS:global_field>
  )
--add_dependencies(co_heat caf_mpi_static)
-+add_dependencies(co_heat caf_mpi)
+-target_link_libraries(global_field PUBLIC local_field caf_mpi_static)
++target_link_libraries(global_field PUBLIC local_field caf_mpi)
+ target_link_libraries(co_heat PRIVATE global_field)
+ set_target_properties(local_field global_field co_heat
+   PROPERTIES

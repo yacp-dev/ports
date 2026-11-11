@@ -4,49 +4,46 @@ UPnP renderer front-end for MPD
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.6-1
-  libcurl4-8.18.0-1
-  libgcc1-13.4.0-1
-  libjsoncpp26-1.9.6-1
-  libmicrohttpd12-1.0.2-1bl1
+  cygwin-3.6.12-1
+  libcurl4-8.23.0-1
+  libgcc1-14.4.0-1
+  libjsoncpp27-1.9.8-1
+  libmicrohttpd12-1.0.10-1bl1
   libmpdclient2-2.14-1
-  libstdc++6-13.4.0-1
-  libupnpp17-1.0.3-1bl1
-  python39-3.9.16-1
+  libstdc++6-14.4.0-1
+  libupnpp17-1.0.4-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libcurl-devel-8.18.0-1
-  libjsoncpp-devel-1.9.6-1
-  libmicrohttpd-devel-1.0.2-1bl1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libcurl-devel-8.23.0-1
+  libjsoncpp-devel-1.9.8-1
+  libmicrohttpd-devel-1.0.10-1bl1
   libmpdclient-devel-2.14-1
-  libupnpp-devel-1.0.3-1bl1
-  meson-1.5.2-1
+  libupnpp-devel-1.0.4-1bl1
+  meson-1.10.2-1
   ninja-1.13.2-1
-  python39-3.9.16-1
 
 Canonical website:
   https://www.lesbonscomptes.com/upmpdcli/
 
 Canonical download:
-  https://www.lesbonscomptes.com/upmpdcli/downloads/upmpdcli-1.9.12.tar.gz
+  https://www.lesbonscomptes.com/upmpdcli/downloads/upmpdcli-1.10.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack upmpdcli-1.9.12-X-src.tar.xz
+  1. unpack upmpdcli-1.10.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./upmpdcli-1.9.12-X.cygport all
+        % cygport ./upmpdcli-1.10.1-X.cygport all
 
 This will create:
-  /usr/src/upmpdcli-1.9.12-X-src.tar.xz
-  /usr/src/upmpdcli-1.9.12-X.tar.xz
+  /usr/src/upmpdcli-1.10.1-X-src.tar.xz
+  /usr/src/upmpdcli-1.10.1-X.tar.xz
 
 -------------------------------------------
 
@@ -76,20 +73,11 @@ Files included in the binary package:
   /usr/share/upmpdcli/OHVolume.xml
   /usr/share/upmpdcli/RenderingControl.xml
   /usr/share/upmpdcli/cdplugins/bbc/bbc-app.py
+  /usr/share/upmpdcli/cdplugins/bbc/bbc-icon.png
   /usr/share/upmpdcli/cdplugins/hra/hra-app.py
+  /usr/share/upmpdcli/cdplugins/hra/hra-icon.png
   /usr/share/upmpdcli/cdplugins/hra/hraapi.py
   /usr/share/upmpdcli/cdplugins/hra/session.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/codec.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/constants.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/element_type.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/identifier_util.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/item_identifier.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/item_identifier_key.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/mother-earth-radio-app.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/radio_station_entry.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/radio_stations.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/tag_type.py
-  /usr/share/upmpdcli/cdplugins/mother-earth-radio/upnp_util.py
   /usr/share/upmpdcli/cdplugins/pycommon/cmdtalk.py
   /usr/share/upmpdcli/cdplugins/pycommon/cmdtalkplugin.py
   /usr/share/upmpdcli/cdplugins/pycommon/conftree.py
@@ -105,12 +93,16 @@ Files included in the binary package:
   /usr/share/upmpdcli/cdplugins/pycommon/upradioconf.py
   /usr/share/upmpdcli/cdplugins/pycommon/xbmcplug.py
   /usr/share/upmpdcli/cdplugins/qobuz/__init__.py
+  /usr/share/upmpdcli/cdplugins/qobuz/api/LICENSES.txt
   /usr/share/upmpdcli/cdplugins/qobuz/api/__init__.py
+  /usr/share/upmpdcli/cdplugins/qobuz/api/bundle.py
   /usr/share/upmpdcli/cdplugins/qobuz/api/raw.py
-  /usr/share/upmpdcli/cdplugins/qobuz/api/spoofbuz.py
   /usr/share/upmpdcli/cdplugins/qobuz/qobuz-app.py
+  /usr/share/upmpdcli/cdplugins/qobuz/qobuz-icon.jpg
+  /usr/share/upmpdcli/cdplugins/qobuz/qobuz-init-oauth.py
   /usr/share/upmpdcli/cdplugins/qobuz/session.py
   /usr/share/upmpdcli/cdplugins/radio-browser/radio-browser-app.py
+  /usr/share/upmpdcli/cdplugins/radio-browser/radio-browser-icon.png
   /usr/share/upmpdcli/cdplugins/radio-paradise/codec.py
   /usr/share/upmpdcli/cdplugins/radio-paradise/constants.py
   /usr/share/upmpdcli/cdplugins/radio-paradise/element_type.py
@@ -118,22 +110,34 @@ Files included in the binary package:
   /usr/share/upmpdcli/cdplugins/radio-paradise/item_identifier.py
   /usr/share/upmpdcli/cdplugins/radio-paradise/item_identifier_key.py
   /usr/share/upmpdcli/cdplugins/radio-paradise/radio-paradise-app.py
+  /usr/share/upmpdcli/cdplugins/radio-paradise/radio-paradise-icon.png
   /usr/share/upmpdcli/cdplugins/radio-paradise/radio_station_entry.py
   /usr/share/upmpdcli/cdplugins/radio-paradise/radio_stations.py
   /usr/share/upmpdcli/cdplugins/radio-paradise/tag_type.py
   /usr/share/upmpdcli/cdplugins/radio-paradise/upnp_util.py
+  /usr/share/upmpdcli/cdplugins/subsonic/album_metadata.py
+  /usr/share/upmpdcli/cdplugins/subsonic/album_property_key.py
+  /usr/share/upmpdcli/cdplugins/subsonic/album_property_metadata.py
   /usr/share/upmpdcli/cdplugins/subsonic/album_util.py
   /usr/share/upmpdcli/cdplugins/subsonic/art_retriever.py
+  /usr/share/upmpdcli/cdplugins/subsonic/artist_from_album.py
+  /usr/share/upmpdcli/cdplugins/subsonic/artist_metadata.py
+  /usr/share/upmpdcli/cdplugins/subsonic/artist_role.py
+  /usr/share/upmpdcli/cdplugins/subsonic/audio_codec.py
   /usr/share/upmpdcli/cdplugins/subsonic/cache_actions.py
   /usr/share/upmpdcli/cdplugins/subsonic/cache_manager_provider.py
   /usr/share/upmpdcli/cdplugins/subsonic/cache_type.py
   /usr/share/upmpdcli/cdplugins/subsonic/caching.py
   /usr/share/upmpdcli/cdplugins/subsonic/codec.py
   /usr/share/upmpdcli/cdplugins/subsonic/codec_delimiter_style.py
+  /usr/share/upmpdcli/cdplugins/subsonic/column_name.py
+  /usr/share/upmpdcli/cdplugins/subsonic/common_data_structures.py
   /usr/share/upmpdcli/cdplugins/subsonic/config.md
   /usr/share/upmpdcli/cdplugins/subsonic/config.py
   /usr/share/upmpdcli/cdplugins/subsonic/connector_provider.py
   /usr/share/upmpdcli/cdplugins/subsonic/constants.py
+  /usr/share/upmpdcli/cdplugins/subsonic/datetime_util.py
+  /usr/share/upmpdcli/cdplugins/subsonic/disc_title.py
   /usr/share/upmpdcli/cdplugins/subsonic/element_type.py
   /usr/share/upmpdcli/cdplugins/subsonic/entry_creator.py
   /usr/share/upmpdcli/cdplugins/subsonic/generate_config-md.py
@@ -142,30 +146,45 @@ Files included in the binary package:
   /usr/share/upmpdcli/cdplugins/subsonic/images/static/unknown-cover.svg
   /usr/share/upmpdcli/cdplugins/subsonic/item_identifier.py
   /usr/share/upmpdcli/cdplugins/subsonic/item_identifier_key.py
+  /usr/share/upmpdcli/cdplugins/subsonic/metadata.py
+  /usr/share/upmpdcli/cdplugins/subsonic/metadata_converter.py
+  /usr/share/upmpdcli/cdplugins/subsonic/metadata_model.py
   /usr/share/upmpdcli/cdplugins/subsonic/msgproc_provider.py
   /usr/share/upmpdcli/cdplugins/subsonic/option_key.py
   /usr/share/upmpdcli/cdplugins/subsonic/option_util.py
   /usr/share/upmpdcli/cdplugins/subsonic/persistence.py
   /usr/share/upmpdcli/cdplugins/subsonic/persistence_constants.py
+  /usr/share/upmpdcli/cdplugins/subsonic/persistence_tuple.py
   /usr/share/upmpdcli/cdplugins/subsonic/radio_entry_type.py
   /usr/share/upmpdcli/cdplugins/subsonic/release.md
+  /usr/share/upmpdcli/cdplugins/subsonic/release_date.py
+  /usr/share/upmpdcli/cdplugins/subsonic/replay_gain.py
   /usr/share/upmpdcli/cdplugins/subsonic/request_cache.py
   /usr/share/upmpdcli/cdplugins/subsonic/retrieved_art.py
+  /usr/share/upmpdcli/cdplugins/subsonic/search_result_rank.py
   /usr/share/upmpdcli/cdplugins/subsonic/search_type.py
+  /usr/share/upmpdcli/cdplugins/subsonic/search_util.py
+  /usr/share/upmpdcli/cdplugins/subsonic/song_data_structures.py
+  /usr/share/upmpdcli/cdplugins/subsonic/song_info.py
+  /usr/share/upmpdcli/cdplugins/subsonic/song_metadata.py
   /usr/share/upmpdcli/cdplugins/subsonic/subsonic-app.py
+  /usr/share/upmpdcli/cdplugins/subsonic/subsonic-icon.png
   /usr/share/upmpdcli/cdplugins/subsonic/subsonic_init.py
-  /usr/share/upmpdcli/cdplugins/subsonic/subsonic_init_provider.py
   /usr/share/upmpdcli/cdplugins/subsonic/subsonic_util.py
+  /usr/share/upmpdcli/cdplugins/subsonic/table_name.py
   /usr/share/upmpdcli/cdplugins/subsonic/tag_to_entry_context.py
   /usr/share/upmpdcli/cdplugins/subsonic/tag_type.py
-  /usr/share/upmpdcli/cdplugins/subsonic/track_info.py
   /usr/share/upmpdcli/cdplugins/subsonic/upnp_util.py
+  /usr/share/upmpdcli/cdplugins/subsonic/value_holder.py
   /usr/share/upmpdcli/cdplugins/tidal/album_adapter.py
+  /usr/share/upmpdcli/cdplugins/tidal/album_metadata.py
   /usr/share/upmpdcli/cdplugins/tidal/album_sort_criteria.py
   /usr/share/upmpdcli/cdplugins/tidal/artist_sort_criteria.py
   /usr/share/upmpdcli/cdplugins/tidal/codec.py
+  /usr/share/upmpdcli/cdplugins/tidal/column.py
   /usr/share/upmpdcli/cdplugins/tidal/config.py
   /usr/share/upmpdcli/cdplugins/tidal/constants.py
+  /usr/share/upmpdcli/cdplugins/tidal/container_type.py
   /usr/share/upmpdcli/cdplugins/tidal/context.py
   /usr/share/upmpdcli/cdplugins/tidal/context_key.py
   /usr/share/upmpdcli/cdplugins/tidal/element_type.py
@@ -184,16 +203,20 @@ Files included in the binary package:
   /usr/share/upmpdcli/cdplugins/tidal/release.md
   /usr/share/upmpdcli/cdplugins/tidal/search_type.py
   /usr/share/upmpdcli/cdplugins/tidal/streaming_info.py
+  /usr/share/upmpdcli/cdplugins/tidal/table_name.py
   /usr/share/upmpdcli/cdplugins/tidal/tag_type.py
   /usr/share/upmpdcli/cdplugins/tidal/tidal-app.py
+  /usr/share/upmpdcli/cdplugins/tidal/tidal-icon.png
   /usr/share/upmpdcli/cdplugins/tidal/tidal_page_definition.py
   /usr/share/upmpdcli/cdplugins/tidal/tidal_track_adapter.py
   /usr/share/upmpdcli/cdplugins/tidal/tidal_util.py
   /usr/share/upmpdcli/cdplugins/tidal/tile_image.py
   /usr/share/upmpdcli/cdplugins/tidal/tile_type.py
   /usr/share/upmpdcli/cdplugins/tidal/track_adapter.py
+  /usr/share/upmpdcli/cdplugins/tidal/track_metadata.py
   /usr/share/upmpdcli/cdplugins/tidal/upnp_util.py
   /usr/share/upmpdcli/cdplugins/upradios/upradios-app.py
+  /usr/share/upmpdcli/cdplugins/upradios/upradios-icon.png
   /usr/share/upmpdcli/cdplugins/uprcl/bottle.py
   /usr/share/upmpdcli/cdplugins/uprcl/bottle/static/style.css
   /usr/share/upmpdcli/cdplugins/uprcl/bottle/views/footer.tpl
@@ -206,7 +229,9 @@ Files included in the binary package:
   /usr/share/upmpdcli/cdplugins/uprcl/rclconfig-mimemap
   /usr/share/upmpdcli/cdplugins/uprcl/rwlock.py
   /usr/share/upmpdcli/cdplugins/uprcl/uprcl-app.py
+  /usr/share/upmpdcli/cdplugins/uprcl/uprcl-icon.jpg
   /usr/share/upmpdcli/cdplugins/uprcl/uprclfolders.py
+  /usr/share/upmpdcli/cdplugins/uprcl/uprclfolderscreate.py
   /usr/share/upmpdcli/cdplugins/uprcl/uprclhttp.py
   /usr/share/upmpdcli/cdplugins/uprcl/uprclindex.py
   /usr/share/upmpdcli/cdplugins/uprcl/uprclinit.py
@@ -220,7 +245,6 @@ Files included in the binary package:
   /usr/share/upmpdcli/icon.png
   /usr/share/upmpdcli/presentation.html
   /usr/share/upmpdcli/protocolinfo.txt
-  /usr/share/upmpdcli/radio_scripts/mother-earth-meta.py
   /usr/share/upmpdcli/radio_scripts/npo-dynamic-art.py
   /usr/share/upmpdcli/radio_scripts/npo-funx-dynamic-art.py
   /usr/share/upmpdcli/radio_scripts/radio-france-meta.py
@@ -249,6 +273,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.10.1-1bl1 -----
+Version bump.
 
 ----- version 1.9.12-1bl1 -----
 Version bump.

@@ -1,9 +1,9 @@
---- origsrc/upmpdcli-1.9.12/meson.build	2026-01-23 22:25:48.000000000 +0900
-+++ src/upmpdcli-1.9.12/meson.build	2026-02-06 10:03:36.370628400 +0900
+--- origsrc/upmpdcli-1.10.1/meson.build	2026-11-10 09:28:56.000000000 +0000
++++ src/upmpdcli-1.10.1/meson.build	2026-11-11 22:02:39.403683800 +0000
 @@ -3,7 +3,7 @@ project(
    'cpp',
    license: 'LGPL 2.1+',
-   version: '1.9.12',
+   version: '1.10.1',
 -  default_options: ['cpp_std=c++17', 'buildtype=debugoptimized'],
 +  default_options: ['cpp_std=gnu++17', 'buildtype=debugoptimized'],
    meson_version: '>=0.49',
@@ -18,8 +18,8 @@
    deps += dep_libupnpp
    deps += dependency('libcurl')
    deps += dependency('libmicrohttpd')
---- origsrc/upmpdcli-1.9.12/src/main.cxx	2026-01-18 17:02:58.000000000 +0900
-+++ src/upmpdcli-1.9.12/src/main.cxx	2026-02-06 10:05:33.574446000 +0900
+--- origsrc/upmpdcli-1.10.1/src/main.cxx	2026-11-10 07:56:44.000000000 +0000
++++ src/upmpdcli-1.10.1/src/main.cxx	2026-11-11 22:02:39.405695000 +0000
 @@ -428,13 +428,14 @@ int main(int argc, char *argv[])
              std::cerr << "chown(" << logfilename << ") : errno : " << errno << '\n';
          }
@@ -36,8 +36,8 @@
      // If a streaming service is enabled, we need a Media
      // Server. We let a static ContentDirectory method decide this
      // for us. The way we then implement it depends on the command
---- origsrc/upmpdcli-1.9.12/src/sysvshm.cpp	2023-04-09 15:57:28.000000000 +0900
-+++ src/upmpdcli-1.9.12/src/sysvshm.cpp	2026-02-06 09:50:49.560998000 +0900
+--- origsrc/upmpdcli-1.10.1/src/sysvshm.cpp	2023-04-09 06:57:28.000000000 +0000
++++ src/upmpdcli-1.10.1/src/sysvshm.cpp	2026-11-11 22:02:39.405695000 +0000
 @@ -155,7 +155,7 @@ LockableShmSeg::LockableShmSeg(key_t ky,
          err = pthread_mutexattr_init(&attr);if (err) goto done;
          err = pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_SHARED); 

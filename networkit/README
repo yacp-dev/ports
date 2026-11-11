@@ -11,19 +11,21 @@ recently published research (see list of publications below).
 
 Runtime requirements:
   cygwin-3.6.12-1
+  libdhb1-1.0.0+git20260923-1bl2
   libgcc1-14.4.0-1
   libgomp1-14.4.0-1
-  libnetworkit-devel-11.2.2-1bl1
-  libnetworkit11-11.2.2-1bl1
+  libnetworkit-devel-11.3-1bl1
+  libnetworkit11-11.3-1bl1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.9-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.4.4-1
-  cygport-0.37.11-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   gcc-g++-14.4.0-1
+  libdhb-devel-1.0.0+git20260923-1bl2
   libgmock-devel-1.18.0-1bl1
   libgtest-devel-1.18.0-1bl1
   libtlx-devel-0.6.1-1bl3
@@ -38,17 +40,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack networkit-11.2.2-X-src.tar.xz
+  1. unpack networkit-11.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./networkit-11.2.2-X.cygport all
+        % cygport ./networkit-11.3-X.cygport all
 
 This will create:
-  /usr/src/networkit-11.2.2-X-src.tar.xz
-  /usr/src/networkit-11.2.2-X.tar.xz
-  /usr/src/libnetworkit11-11.2.2-X.tar.xz
-  /usr/src/libnetworkit-devel-11.2.2-X.tar.xz
+  /usr/src/networkit-11.3-X-src.tar.xz
+  /usr/src/networkit-11.3-X.tar.xz
+  /usr/src/libnetworkit11-11.3-X.tar.xz
+  /usr/src/libnetworkit-devel-11.3-X.tar.xz
 
 -------------------------------------------
 
@@ -85,7 +87,8 @@ Files included in the binary package:
   /usr/include/networkit/auxiliary/AlignedAllocator.hpp
   /usr/include/networkit/auxiliary/ArrayTools.hpp
   /usr/include/networkit/auxiliary/BloomFilter.hpp
-  /usr/include/networkit/auxiliary/BucketPQ.hpp
+  /usr/include/networkit/auxiliary/BucketPriorityQueue.hpp
+  /usr/include/networkit/auxiliary/BucketPriorityQueueImpl.hpp
   /usr/include/networkit/auxiliary/Enforce.hpp
   /usr/include/networkit/auxiliary/FunctionTraits.hpp
   /usr/include/networkit/auxiliary/HashUtils.hpp
@@ -227,6 +230,7 @@ Files included in the binary package:
   /usr/include/networkit/distance/EffectiveDiameter.hpp
   /usr/include/networkit/distance/EffectiveDiameterApproximation.hpp
   /usr/include/networkit/distance/FloydWarshall.hpp
+  /usr/include/networkit/distance/FloydWarshallImpl.hpp
   /usr/include/networkit/distance/GraphDistance.hpp
   /usr/include/networkit/distance/HopPlotApproximation.hpp
   /usr/include/networkit/distance/IncompleteDijkstra.hpp
@@ -242,6 +246,7 @@ Files included in the binary package:
   /usr/include/networkit/distance/ReverseBFS.hpp
   /usr/include/networkit/distance/SPSP.hpp
   /usr/include/networkit/distance/SSSP.hpp
+  /usr/include/networkit/distance/SSSPImpl.hpp
   /usr/include/networkit/distance/STSP.hpp
   /usr/include/networkit/distance/Volume.hpp
   /usr/include/networkit/dynamics/DGSStreamParser.hpp
@@ -260,6 +265,7 @@ Files included in the binary package:
   /usr/include/networkit/edgescores/EdgeScoreNormalizer.hpp
   /usr/include/networkit/edgescores/GeometricMeanScore.hpp
   /usr/include/networkit/edgescores/PrefixJaccardScore.hpp
+  /usr/include/networkit/edgescores/SimRankScore.hpp
   /usr/include/networkit/edgescores/TriangleEdgeScore.hpp
   /usr/include/networkit/embedding/Node2Vec.hpp
   /usr/include/networkit/flow/Dinic.hpp
@@ -306,13 +312,19 @@ Files included in the binary package:
   /usr/include/networkit/geometric/Point2DWithIndex.hpp
   /usr/include/networkit/global/ClusteringCoefficient.hpp
   /usr/include/networkit/global/GlobalClusteringCoefficient.hpp
+  /usr/include/networkit/graph/AdjListGraph.hpp
+  /usr/include/networkit/graph/AdjListGraphImpl.hpp
   /usr/include/networkit/graph/Attributes.hpp
   /usr/include/networkit/graph/BFS.hpp
   /usr/include/networkit/graph/DFS.hpp
+  /usr/include/networkit/graph/DHBGraph.hpp
   /usr/include/networkit/graph/Dijkstra.hpp
   /usr/include/networkit/graph/EdgeIterators.hpp
+  /usr/include/networkit/graph/EdgeUtils.hpp
   /usr/include/networkit/graph/Graph.hpp
   /usr/include/networkit/graph/GraphBuilder.hpp
+  /usr/include/networkit/graph/GraphConcepts.hpp
+  /usr/include/networkit/graph/GraphTestUtils.hpp
   /usr/include/networkit/graph/GraphTools.hpp
   /usr/include/networkit/graph/KruskalMSF.hpp
   /usr/include/networkit/graph/NeighborIterators.hpp
@@ -321,6 +333,8 @@ Files included in the binary package:
   /usr/include/networkit/graph/RandomMaximumSpanningForest.hpp
   /usr/include/networkit/graph/SpanningForest.hpp
   /usr/include/networkit/graph/TopologicalSort.hpp
+  /usr/include/networkit/graph/TopologicalSortImpl.hpp
+  /usr/include/networkit/graph/TraversalImpl.hpp
   /usr/include/networkit/graph/UnionMaximumSpanningForest.hpp
   /usr/include/networkit/graph/test/GraphBuilderBenchmark.hpp
   /usr/include/networkit/independentset/IndependentSetFinder.hpp
@@ -350,7 +364,9 @@ Files included in the binary package:
   /usr/include/networkit/io/KONECTGraphReader.hpp
   /usr/include/networkit/io/LineFileReader.hpp
   /usr/include/networkit/io/METISGraphReader.hpp
+  /usr/include/networkit/io/METISGraphReaderImpl.hpp
   /usr/include/networkit/io/METISGraphWriter.hpp
+  /usr/include/networkit/io/METISGraphWriterImpl.hpp
   /usr/include/networkit/io/METISParser.hpp
   /usr/include/networkit/io/MTXGraphReader.hpp
   /usr/include/networkit/io/MTXParser.hpp
@@ -370,6 +386,8 @@ Files included in the binary package:
   /usr/include/networkit/io/SNAPGraphWriter.hpp
   /usr/include/networkit/io/ThrillGraphBinaryReader.hpp
   /usr/include/networkit/io/ThrillGraphBinaryWriter.hpp
+  /usr/include/networkit/isomorphism/SubgraphIsomorphism.hpp
+  /usr/include/networkit/isomorphism/VF2.hpp
   /usr/include/networkit/layout/LayoutAlgorithm.hpp
   /usr/include/networkit/linkprediction/AdamicAdarIndex.hpp
   /usr/include/networkit/linkprediction/AdjustedRandIndex.hpp
@@ -422,6 +440,7 @@ Files included in the binary package:
   /usr/include/networkit/overlap/HashingOverlapper.hpp
   /usr/include/networkit/overlap/Overlapper.hpp
   /usr/include/networkit/planarity/LeftRightPlanarityCheck.hpp
+  /usr/include/networkit/planarity/LeftRightPlanarityCheckImpl.hpp
   /usr/include/networkit/randomization/Curveball.hpp
   /usr/include/networkit/randomization/CurveballGlobalTradeGenerator.hpp
   /usr/include/networkit/randomization/CurveballUniformTradeGenerator.hpp
@@ -462,6 +481,10 @@ Files included in the binary package:
   /usr/include/networkit/sparsification/SimmelianScore.hpp
   /usr/include/networkit/sparsification/Sparsifiers.hpp
   /usr/include/networkit/structures/Cover.hpp
+  /usr/include/networkit/structures/CoverImpl.hpp
+  /usr/include/networkit/structures/GenericPartition.hpp
+  /usr/include/networkit/structures/GenericPartitionImpl.hpp
+  /usr/include/networkit/structures/GenericUnionFind.hpp
   /usr/include/networkit/structures/LocalCommunity.hpp
   /usr/include/networkit/structures/Partition.hpp
   /usr/include/networkit/structures/UnionFind.hpp
@@ -490,6 +513,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 11.3-1bl1 -----
+Version bump.
 
 ----- version 11.2.2-1bl1 -----
 Version bump.

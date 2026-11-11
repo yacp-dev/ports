@@ -1,6 +1,6 @@
---- origsrc/networkit/CMakeLists.txt	2026-10-27 07:29:29.000000000 +0000
-+++ src/networkit/CMakeLists.txt	2026-10-27 07:29:44.459560800 +0000
-@@ -224,10 +224,14 @@ if(NOT NETWORKIT_EXT_TLX)
+--- origsrc/networkit/CMakeLists.txt	2026-11-11 12:43:34.000000000 +0000
++++ src/networkit/CMakeLists.txt	2026-11-11 12:43:46.976355000 +0000
+@@ -225,15 +225,25 @@ if(NOT NETWORKIT_EXT_TLX)
  				"Please run `git submodule update --init` to fetch the submodule.")
  	endif()
  else()
@@ -19,15 +19,26 @@
  endif()
  
  ################################################################################
-@@ -269,11 +273,15 @@ if(NETWORKIT_BUILD_CORE AND NETWORKIT_MO
- 			CXX_STANDARD ${NETWORKIT_CXX_STANDARD}
+ # Use DHB as a CMake submodule
+-if(EXISTS "${PROJECT_SOURCE_DIR}/extlibs/dhb/CMakeLists.txt")
++find_package(dhb CONFIG)
++if(TARGET dhb::dhb)
++	if(NOT TARGET dhb)
++		add_library(dhb INTERFACE IMPORTED)
++		target_link_libraries(dhb INTERFACE dhb::dhb)
++	endif()
++elseif(EXISTS "${PROJECT_SOURCE_DIR}/extlibs/dhb/CMakeLists.txt")
+ 	set(DHB_WITH_64BIT_IDS ON CACHE BOOL "Build DHB using 64 bit vertex IDs.")
+ 	
+ 	if(MSVC)
+@@ -292,10 +302,14 @@ if(NETWORKIT_BUILD_CORE AND NETWORKIT_MO
  			COMPILE_FLAGS "${NETWORKIT_CXX_FLAGS}"
  			LINK_FLAGS "${NETWORKIT_LINK_FLAGS}")
-+
+ 	
 +	if (DEFINED SOVERSION)
 +		set_target_properties(networkit PROPERTIES SOVERSION "${SOVERSION}")
 +	endif()
- 	
++	
  	install(TARGETS networkit
  			LIBRARY DESTINATION ${NETWORKIT_LIB_DEST}
  			ARCHIVE DESTINATION ${NETWORKIT_LIB_DEST}
@@ -36,7 +47,7 @@
  
  	target_include_directories(networkit BEFORE PUBLIC "${PROJECT_SOURCE_DIR}/include")
  	target_include_directories(networkit PUBLIC "${PROJECT_SOURCE_DIR}/extlibs/ttmath/")
-@@ -455,6 +463,8 @@ endfunction()
+@@ -477,6 +491,8 @@ endfunction()
  if (NETWORKIT_BUILD_TESTS)
  	enable_testing()
  
@@ -45,7 +56,7 @@
  	if(EXISTS "${PROJECT_SOURCE_DIR}/extlibs/googletest/CMakeLists.txt")
  		if (MSVC)
  			# While by default MSVC projects link against the shared runtime library
-@@ -470,6 +480,7 @@ if (NETWORKIT_BUILD_TESTS)
+@@ -492,6 +508,7 @@ if (NETWORKIT_BUILD_TESTS)
  			"Missing GoogleTest and GoogleMock in extlibs/googletest. "
  			"Please run `git submodule update --init` to fetch the submodule.")
  	endif()
@@ -53,8 +64,8 @@
  
  	if (NETWORKIT_MONOLITH)
  		add_executable(networkit_tests networkit/cpp/Unittests-X.cpp)
---- origsrc/networkit/networkit.pc	2026-10-27 07:29:29.000000000 +0000
-+++ src/networkit/networkit.pc	2026-10-27 07:29:44.460364500 +0000
+--- origsrc/networkit/networkit.pc	2026-11-11 12:43:34.000000000 +0000
++++ src/networkit/networkit.pc	2026-11-11 12:43:46.976355000 +0000
 @@ -6,6 +6,6 @@ libdir=${exec_prefix}/@NETWORKIT_INSTALL
  Name: networkit
  Description: networkit

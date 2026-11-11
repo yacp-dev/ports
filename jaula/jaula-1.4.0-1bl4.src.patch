@@ -1,5 +1,5 @@
---- origsrc/jaula-1.4.0/Makefile.am	2009-01-12 01:34:56.000000000 +0900
-+++ src/jaula-1.4.0/Makefile.am	2025-11-24 07:35:48.915076200 +0900
+--- origsrc/jaula-1.4.0/Makefile.am	2009-01-11 16:34:56.000000000 +0000
++++ src/jaula-1.4.0/Makefile.am	2026-11-11 00:59:04.222280000 +0000
 @@ -26,5 +26,7 @@ libtool: $(LIBTOOL_DEPS)
  docs:
  	make -C doc
@@ -9,8 +9,8 @@
 +pkgconfig_DATA = $(PACKAGE).pc
  
 +# # EOF $Id: Makefile.am 45 2009-01-11 16:17:03Z morongo $
---- origsrc/jaula-1.4.0/configure.in	2009-01-12 01:34:56.000000000 +0900
-+++ src/jaula-1.4.0/configure.in	2025-11-24 07:35:48.917085600 +0900
+--- origsrc/jaula-1.4.0/configure.in	2009-01-11 16:34:56.000000000 +0000
++++ src/jaula-1.4.0/configure.in	2026-11-11 00:59:04.222280000 +0000
 @@ -24,7 +24,7 @@ dnl Default installation directory
  AC_PREFIX_DEFAULT([/usr])
  
@@ -28,8 +28,8 @@
 +AC_OUTPUT([Makefile doc/Doxyfile doc/Makefile jaula/Makefile examples/Makefile jaula.pc])
  
  dnl EOF $Id: configure.in 48 2009-01-11 16:31:24Z morongo $
---- origsrc/jaula-1.4.0/examples/Makefile.am	2009-01-12 01:34:56.000000000 +0900
-+++ src/jaula-1.4.0/examples/Makefile.am	2025-11-24 07:35:48.919097100 +0900
+--- origsrc/jaula-1.4.0/examples/Makefile.am	2009-01-11 16:34:56.000000000 +0000
++++ src/jaula-1.4.0/examples/Makefile.am	2026-11-11 00:59:04.224096800 +0000
 @@ -1,4 +1,3 @@
 - 
  # # svn info
@@ -49,8 +49,8 @@
  # # jparse_LDFLAGS = -static
  
  # # EOF $Id: Makefile.am 45 2009-01-11 16:17:03Z morongo $
---- origsrc/jaula-1.4.0/jaula/Makefile.am	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/Makefile.am	2025-11-24 07:35:48.921106700 +0900
+--- origsrc/jaula-1.4.0/jaula/Makefile.am	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/Makefile.am	2026-11-11 00:59:04.224096800 +0000
 @@ -1,4 +1,3 @@
 - 
  # # svn info
@@ -67,8 +67,8 @@
  
  clean-local:
  	$(RM) jaula_lexan.cc
---- origsrc/jaula-1.4.0/jaula/jaula_parse.cc	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_parse.cc	2025-11-24 07:55:53.529506600 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_parse.cc	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_parse.cc	2026-11-11 00:59:04.226108500 +0000
 @@ -71,7 +71,7 @@ namespace JAULA
  
    Value_Complex *Parser::parseStream(std::istream &inpStream
@@ -96,8 +96,8 @@
    {
      try
      {
---- origsrc/jaula-1.4.0/jaula/jaula_parse.h	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_parse.h	2025-11-24 07:55:33.280432200 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_parse.h	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_parse.h	2026-11-11 00:59:04.226905600 +0000
 @@ -109,7 +109,7 @@ namespace JAULA
        static Value_Complex *parseStream(std::istream &inpStream
          , bool comments_allowed = false
@@ -125,8 +125,8 @@
        };                         // class Value_Parser
  
    };                             // class Parser
---- origsrc/jaula-1.4.0/jaula/jaula_value.cc	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value.cc	2025-11-24 07:54:58.412893100 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value.cc	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value.cc	2026-11-11 00:59:04.226905600 +0000
 @@ -58,7 +58,7 @@ namespace JAULA
      return Type_;
    }
@@ -145,8 +145,8 @@
    {
      try
      {
---- origsrc/jaula-1.4.0/jaula/jaula_value.h	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value.h	2025-11-24 07:51:11.341591200 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value.h	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value.h	2026-11-11 00:59:04.228130800 +0000
 @@ -107,7 +107,7 @@ namespace JAULA
         * This exception is launched in case that origin and destination value
         * types are different.
@@ -165,8 +165,8 @@
  
        /**
         * \brief Creates a duplicate of a value
---- origsrc/jaula-1.4.0/jaula/jaula_value_array.cc	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_array.cc	2025-11-24 07:54:58.415978400 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_array.cc	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_array.cc	2026-11-11 00:59:04.228920600 +0000
 @@ -94,7 +94,7 @@ namespace JAULA
        data_.push_back(duplicate(*(*it)));
    }
@@ -176,8 +176,8 @@
    {
      try
      {
---- origsrc/jaula-1.4.0/jaula/jaula_value_array.h	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_array.h	2025-11-24 07:54:58.413891000 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_array.h	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_array.h	2026-11-11 00:59:04.228920600 +0000
 @@ -148,7 +148,7 @@ namespace JAULA
         * The destination array is destroyed during the asignment process so,
         * any references to it or to its former elements will be void.
@@ -187,8 +187,8 @@
  
        /**
         * \brief Appends one item to the array
---- origsrc/jaula-1.4.0/jaula/jaula_value_boolean.cc	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_boolean.cc	2025-11-24 07:51:43.566035700 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_boolean.cc	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_boolean.cc	2026-11-11 00:59:04.230151800 +0000
 @@ -65,7 +65,7 @@ namespace JAULA
      data_ = data;
    }
@@ -198,8 +198,8 @@
    {
      try
      {
---- origsrc/jaula-1.4.0/jaula/jaula_value_boolean.h	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_boolean.h	2025-11-24 07:51:28.304299900 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_boolean.h	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_boolean.h	2026-11-11 00:59:04.230934200 +0000
 @@ -95,7 +95,7 @@ namespace JAULA
         * This exception is launched in case that origin and destination value
         * types are different.
@@ -209,8 +209,8 @@
  
      private:
  
---- origsrc/jaula-1.4.0/jaula/jaula_value_null.cc	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_null.cc	2025-11-24 07:54:58.415978400 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_null.cc	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_null.cc	2026-11-11 00:59:04.230934200 +0000
 @@ -51,7 +51,7 @@ namespace JAULA
      ostr << "null";
    }
@@ -220,8 +220,8 @@
    {
      try
      {
---- origsrc/jaula-1.4.0/jaula/jaula_value_null.h	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_null.h	2025-11-24 07:54:58.420017100 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_null.h	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_null.h	2026-11-11 00:59:04.232169500 +0000
 @@ -80,7 +80,7 @@ namespace JAULA
         * This exception is launched in case that origin and destination value
         * types are different.
@@ -231,8 +231,8 @@
  
    };                             // class Value_Null
  
---- origsrc/jaula-1.4.0/jaula/jaula_value_number.cc	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_number.cc	2025-11-24 07:54:58.420017100 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_number.cc	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_number.cc	2026-11-11 00:59:04.232944800 +0000
 @@ -62,7 +62,7 @@ namespace JAULA
      data_ = data;
    }
@@ -242,8 +242,8 @@
    {
      try
      {
---- origsrc/jaula-1.4.0/jaula/jaula_value_number.h	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_number.h	2025-11-24 07:54:58.415978400 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_number.h	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_number.h	2026-11-11 00:59:04.234188000 +0000
 @@ -95,7 +95,7 @@ namespace JAULA
         * This exception is launched in case that origin and destination value
         * types are different.
@@ -253,8 +253,8 @@
  
      private:
  
---- origsrc/jaula-1.4.0/jaula/jaula_value_number_int.cc	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_number_int.cc	2025-11-24 07:54:58.415978400 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_number_int.cc	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_number_int.cc	2026-11-11 00:59:04.234954200 +0000
 @@ -61,7 +61,7 @@ namespace JAULA
      data_ = data;
    }
@@ -264,8 +264,8 @@
    {
      try
      {
---- origsrc/jaula-1.4.0/jaula/jaula_value_number_int.h	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_number_int.h	2025-11-24 07:54:58.420017100 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_number_int.h	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_number_int.h	2026-11-11 00:59:04.234954200 +0000
 @@ -96,7 +96,7 @@ namespace JAULA
         * This exception is launched in case that origin and destination value
         * types are different.
@@ -275,8 +275,8 @@
  
      private:
  
---- origsrc/jaula-1.4.0/jaula/jaula_value_object.cc	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_object.cc	2025-11-24 07:55:52.648349100 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_object.cc	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_object.cc	2026-11-11 00:59:04.236209900 +0000
 @@ -93,7 +93,7 @@ namespace JAULA
        data_.insert(dataType::value_type(it->first, duplicate(*(it->second))));
    }
@@ -295,8 +295,8 @@
    {
      std::pair<dataType::iterator, bool> insSt = data_.insert(dataType::value_type(name, duplicate(item)));
      if (!insSt.second)
---- origsrc/jaula-1.4.0/jaula/jaula_value_object.h	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_object.h	2025-11-24 07:55:52.648349100 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_object.h	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_object.h	2026-11-11 00:59:04.236965400 +0000
 @@ -151,7 +151,7 @@ namespace JAULA
         * The destination object is destroyed during the asignment process so,
         * any references to it or to its former elements will be void.
@@ -315,8 +315,8 @@
  
        /**
         * \brief Empties the contents of an instance
---- origsrc/jaula-1.4.0/jaula/jaula_value_string.cc	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_string.cc	2025-11-24 07:54:58.420017100 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_string.cc	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_string.cc	2026-11-11 00:59:04.236965400 +0000
 @@ -71,7 +71,7 @@ namespace JAULA
      data_ = data;
    }
@@ -326,8 +326,8 @@
    {
      try
      {
---- origsrc/jaula-1.4.0/jaula/jaula_value_string.h	2009-01-12 01:34:55.000000000 +0900
-+++ src/jaula-1.4.0/jaula/jaula_value_string.h	2025-11-24 07:54:58.425980100 +0900
+--- origsrc/jaula-1.4.0/jaula/jaula_value_string.h	2009-01-11 16:34:55.000000000 +0000
++++ src/jaula-1.4.0/jaula/jaula_value_string.h	2026-11-11 00:59:04.238484800 +0000
 @@ -95,7 +95,7 @@ namespace JAULA
         * This exception is launched in case that origin and destination value
         * types are different.
@@ -337,8 +337,8 @@
  
        /**
         * \brief Represents a string in JSON Notation
---- origsrc/jaula-1.4.0/jaula.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/jaula-1.4.0/jaula.pc.in	2025-11-24 07:35:48.921106700 +0900
+--- origsrc/jaula-1.4.0/jaula.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/jaula-1.4.0/jaula.pc.in	2026-11-11 00:59:04.238484800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

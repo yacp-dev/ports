@@ -1,5 +1,5 @@
---- origsrc/darts-0.32/darts.h	2008-03-23 01:34:02.000000000 +0900
-+++ src/darts-0.32/darts.h	2015-05-08 16:14:59.883774600 +0900
+--- origsrc/darts-0.32/darts.h	2008-03-22 16:34:02.000000000 +0000
++++ src/darts-0.32/darts.h	2026-11-11 04:24:34.843289300 +0000
 @@ -501,7 +501,7 @@ namespace Darts {
  #define DARTS_ARRAY_SIZE_IS_DEFINED 1
  #endif

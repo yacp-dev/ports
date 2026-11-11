@@ -3,19 +3,18 @@ darts
 C++ Template Library for Double-Array
 
 Runtime requirements:
-  cygwin-2.0.1-1
-  libgcc1-4.9.2-3
-  libstdc++6-4.9.2-3
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-1
-  cygport-0.18.1-1
-  gcc-core-4.9.2-3
-  gcc-g++-4.9.2-3
-  make-4.1-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  make-4.4.1-2
 
 Canonical website:
   http://www.chasen.org/~taku/software/darts/
@@ -54,9 +53,11 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 0.32-1bl3 -----
+Rebuild with gcc-14.4.0
+
 ----- version 0.32-1bl2 -----
 Rebuild on x86_64
 
 ----- version 0.32-1bl1 -----
 Initial release for Cygwin-1.7 by fd0 <http://fd0.hatenablog.jp/>
-

@@ -9,11 +9,17 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="eigen3 libfgt-devel libgtest-devel libjsoncpp-devel"
+BUILD_REQUIRES="
+	eigen3
+	libfgt-devel
+	libgtest-devel
+	libjsoncpp-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DBUILD_SHARED_LIBS:BOOL=ON
 "
 
@@ -57,3 +63,5 @@ libcpd0_SUMMARY="${SUMMARY} (runtime)"
 libcpd_devel_SUMMARY="${SUMMARY} (development)"
 libcpd_jsoncpp0_SUMMARY="${SUMMARY} (runtime / jsoncpp)"
 libcpd_jsoncpp_devel_SUMMARY="${SUMMARY} (development / jsoncpp)"
+
+libcpd_devel_REQUIRES="libfgt-devel"

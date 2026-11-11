@@ -1,5 +1,5 @@
---- origsrc/cpd-0.5.5/CMakeLists.txt	2024-04-18 01:57:13.000000000 +0900
-+++ src/cpd-0.5.5/CMakeLists.txt	2025-03-25 04:40:40.638040300 +0900
+--- origsrc/cpd-0.5.5/CMakeLists.txt	2024-04-17 16:57:13.000000000 +0000
++++ src/cpd-0.5.5/CMakeLists.txt	2026-11-11 13:05:23.347868600 +0000
 @@ -49,7 +49,7 @@ else()
      list(APPEND library-src src/gauss_transform_make_default.cpp)
  endif()
@@ -48,8 +48,8 @@
 +
 +configure_file(${CMAKE_SOURCE_DIR}/cpd.pc.in ${CMAKE_BINARY_DIR}/cpd.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/cpd.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/cpd-0.5.5/cmake/cpd_test.cmake	2024-04-18 01:57:13.000000000 +0900
-+++ src/cpd-0.5.5/cmake/cpd_test.cmake	2025-03-25 04:33:35.012830200 +0900
+--- origsrc/cpd-0.5.5/cmake/cpd_test.cmake	2024-04-17 16:57:13.000000000 +0000
++++ src/cpd-0.5.5/cmake/cpd_test.cmake	2026-11-11 13:05:23.349106800 +0000
 @@ -4,6 +4,6 @@ function(cpd_test name)
      add_executable(${target} ${src})
      set_target_properties(${target} PROPERTIES OUTPUT_NAME ${name})
@@ -58,8 +58,8 @@
 +    target_link_libraries(${target} PRIVATE Library-C++ ${ARGN} gtest gtest_main)
      target_include_directories(${target} PRIVATE "${PROJECT_BINARY_DIR}")
  endfunction()
---- origsrc/cpd-0.5.5/components/jsoncpp/CMakeLists.txt	2024-04-18 01:57:13.000000000 +0900
-+++ src/cpd-0.5.5/components/jsoncpp/CMakeLists.txt	2025-03-25 04:43:22.084698600 +0900
+--- origsrc/cpd-0.5.5/components/jsoncpp/CMakeLists.txt	2024-04-17 16:57:13.000000000 +0000
++++ src/cpd-0.5.5/components/jsoncpp/CMakeLists.txt	2026-11-11 13:05:23.349876700 +0000
 @@ -1,4 +1,4 @@
 -add_library(Jsoncpp STATIC src/jsoncpp.cpp)
 +add_library(Jsoncpp SHARED src/jsoncpp.cpp)
@@ -81,8 +81,8 @@
 +
 +configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cpd-jsoncpp.pc.in ${CMAKE_BINARY_DIR}/cpd-jsoncpp.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/cpd-jsoncpp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/cpd-0.5.5/components/jsoncpp/cpd-jsoncpp.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/cpd-0.5.5/components/jsoncpp/cpd-jsoncpp.pc.in	2025-03-25 04:42:12.680093700 +0900
+--- origsrc/cpd-0.5.5/components/jsoncpp/cpd-jsoncpp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/cpd-0.5.5/components/jsoncpp/cpd-jsoncpp.pc.in	2026-11-11 13:05:23.349876700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -94,8 +94,8 @@
 +Version: @CPD_VERSION@
 +Libs: -L${libdir} -lcpd-jsoncpp
 +Cflags: -I${includedir}
---- origsrc/cpd-0.5.5/cpd.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/cpd-0.5.5/cpd.pc.in	2025-03-25 04:42:03.201927600 +0900
+--- origsrc/cpd-0.5.5/cpd.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/cpd-0.5.5/cpd.pc.in	2026-11-11 13:05:23.351504200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

@@ -1,41 +1,41 @@
 openjazz
 ------------------------------------------
-OpenJazz is a free, open-source version of the classic Jazz Jackrabbit™ games.
+OpenJazz is a free, open-source version of the classic Jazz Jackrabbit™
+games.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libSDL2_2.0_0-2.32.2-1
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libSDL2_2.0_0-2.32.74-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libSDL2-devel-2.32.2-1
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libSDL2-devel-2.32.74-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/AlisterT/openjazz/
 
 Canonical download:
-  https://github.com/AlisterT/openjazz/archive/refs/tags/20240919.tar.gz
+  https://github.com/AlisterT/openjazz/archive/refs/tags/20260301.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack openjazz-20240919-X-src.tar.xz
+  1. unpack openjazz-20260301-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./openjazz-20240919-X.cygport all
+        % cygport ./openjazz-20260301-X.cygport all
 
 This will create:
-  /usr/src/openjazz-20240919-X-src.tar.xz
-  /usr/src/openjazz-20240919-X.tar.xz
+  /usr/src/openjazz-20260301-X-src.tar.xz
+  /usr/src/openjazz-20260301-X.tar.xz
 
 -------------------------------------------
 
@@ -55,6 +55,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20260301-1bl1 -----
+Version bump.
 
 ----- version 20240919-1bl1 -----
 Version bump.

@@ -9,6 +9,10 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="copying.md"
 
+BUILD_REQUIRES="
+	flex
+"
+
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
@@ -17,6 +21,12 @@ CYGCMAKE_ARGS="
 	-DDOXYGEN_ENABLE:BOOL=OFF
 	-DREGISTER_USERPACKAGE:BOOL=OFF
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/nyan:${PATH} ./nyan/nyancat.exe --help
+}
 
 PKG_NAMES="
 	nyan
@@ -37,3 +47,7 @@ libnyan_devel_CONTENTS="
 nyan_SUMMARY="${SUMMARY} (utilities)"
 libnyan1_SUMMARY="${SUMMARY} (runtime)"
 libnyan_devel_SUMMARY="${SUMMARY} (development)"
+
+libnyan_devel_REQUIRES="
+	nyan
+"

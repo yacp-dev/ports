@@ -65,7 +65,7 @@ libjxl_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libjxl0_12_CONTENTS="
+libjxl0_13_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libjxl_devel_CONTENTS="
@@ -73,5 +73,5 @@ libjxl_devel_CONTENTS="
 	usr/lib
 "
 libjxl_SUMMARY="${SUMMARY} (utilities)"
-libjxl0_12_SUMMARY="${SUMMARY} (runtime)"
+libjxl0_13_SUMMARY="${SUMMARY} (runtime)"
 libjxl_devel_SUMMARY="${SUMMARY} (development)"

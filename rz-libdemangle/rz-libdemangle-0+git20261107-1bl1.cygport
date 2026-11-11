@@ -7,8 +7,8 @@ SUMMARY="Rizin Library to demangle symbols"
 DESCRIPTION="This library contains all rizin demanglers and is linked to provide demangling
 support in rizin"
 
-LICENSE="GPL-2.0-or-later OR LGPL-2.0-or-later OR LGPL-3.0-only OR MIT"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later OR LGPL-2.0-or-later OR LGPL-3.0-only OR MIT"
+LICENSE="LGPL-3.0-only OR MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-only OR MIT"
 LICENSE_URI="LICENSES"
 
 inherit meson

@@ -1,0 +1,98 @@
+--- origsrc/rz-libdemangle/meson.build	2026-11-11 15:28:56.000000000 +0000
++++ src/rz-libdemangle/meson.build	2026-11-11 15:28:58.345138100 +0000
+@@ -32,6 +32,10 @@ libdemangle_src = [
+     'src' / 'd' / 'dmd.c',
+ ]
+ 
++libdemangle_hdr = [
++    'include/rz_libdemangle.h'
++]
++
+ tests = [
+     'borland',
+     'java',
+@@ -82,29 +86,19 @@ elif cc.has_argument('--std=c99')
+     add_project_arguments('--std=c99', language : 'c')
+ endif
+ 
+-libdemangle = both_libraries(
++libdemangle = shared_library(
+     'demangle',
+     libdemangle_src,
+     c_args : common_c_args + libdemangle_c_args,
++    soversion : 0,
+     dependencies : [],
+     implicit_include_directories : false,
+     install : get_option('install_lib'),
+     include_directories : include_directories(['include', 'src']),
+ )
+ 
+-# When used as a subproject with default_library=static (e.g., Rizin),
+-# prefer the static library. Otherwise, use the shared library by default.
+-if get_option('default_library') == 'static'
+-    libdemangle_link = libdemangle.get_static_lib()
+-elif get_option('default_library') == 'shared'
+-    libdemangle_link = libdemangle.get_shared_lib()
+-else
+-    # For 'both', prefer static for better compatibility as a subproject
+-    libdemangle_link = libdemangle.get_static_lib()
+-endif
+-
+ libdemangle_dep = declare_dependency(
+-    link_with : libdemangle_link,
++    link_with : libdemangle,
+     dependencies : [],
+     include_directories : include_directories('include'),
+ )
+@@ -125,6 +119,17 @@ if get_option('enable_cli')
+     )
+ endif
+ 
++install_headers(libdemangle_hdr)
++
++pkgconfig = import('pkgconfig')
++pkgconfig.generate(
++    description: 'Rizin Library to demangle symbols',
++    filebase: 'libdemangle',
++    libraries: libdemangle,
++    name: 'libdemangle',
++    version: '0'
++)
++
+ if get_option('enable_fuzz')
+     # Build a separate static library with full sanitizer + coverage
+     # instrumentation so libFuzzer can see coverage inside library code.
+@@ -151,6 +156,15 @@ if get_option('enable_fuzz')
+ endif
+ 
+ if get_option('enable_tests') and not meson.is_subproject()
++    libdemangle_static = static_library(
++        'demangle_static',
++        libdemangle_src,
++        c_args : common_c_args + libdemangle_c_args,
++        include_directories : include_directories(['include', 'src']),
++        implicit_include_directories : false,
++        install : false,
++    )
++
+     test_dependencies = []
+     if get_option('b_sanitize').contains('address')
+         test_dependencies += cc.find_library('asan')
+@@ -188,7 +202,7 @@ if get_option('enable_tests') and not me
+         exe = executable(
+             'test_@0@'.format(test),
+             'test/test_@0@.c'.format(test),
+-            link_whole : libdemangle.get_static_lib(),
++            link_whole : libdemangle_static,
+             include_directories : include_directories(['include', 'test', 'src']),
+             dependencies : test_dependencies,
+             c_args : test_c_args,
+@@ -206,7 +220,7 @@ if get_option('enable_tests') and not me
+         exe = executable(
+             'test_@0@'.format(test),
+             'test/unit/test_@0@.c'.format(test),
+-            link_whole : libdemangle.get_static_lib(),
++            link_whole : libdemangle_static,
+             include_directories : include_directories(['include', 'test', 'src']),
+             dependencies : test_dependencies,
+             c_args : common_c_args,

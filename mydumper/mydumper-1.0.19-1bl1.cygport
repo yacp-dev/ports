@@ -1,0 +1,32 @@
+HOMEPAGE="https://github.com/mydumper/${PN}"
+SRC_URI="https://github.com/mydumper/${PN}/archive/refs/tags/v${PV}-1.tar.gz"
+SRC_DIR="${PN}-${PV}-1"
+
+CATEGORY="Database"
+SUMMARY="Official mydumper project"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libglib2.0-devel
+	libmariadb-devel
+	libpcre2-devel
+	libssl-devel
+	zlib-devel
+"
+
+inherit cmake
+
+src_test()
+{
+	cd ${B}
+	ninja_test
+	./mydumper.exe -V
+}
+
+DIFF_EXCLUDES="
+	config.h
+"

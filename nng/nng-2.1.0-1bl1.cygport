@@ -1,8 +1,5 @@
 HOMEPAGE="https://github.com/nanomsg/${PN}"
 SRC_URI="https://github.com/nanomsg/${PN}/archive/refs/tags/v${PV}.tar.gz"
-PATCH_URI="
-	https://raw.githubusercontent.com/gentoo/gentoo/refs/heads/master/dev-libs/${PN}/files/${PN}-1.11-cmake-3.patch
-"
 
 CATEGORY="Libs"
 SUMMARY="nanomsg-next-generation"
@@ -32,25 +29,25 @@ src_test()
 }
 
 DOCS="
-	README.adoc
+	README.md
 "
 
 PKG_NAMES="
 	nng
-	libnng1
+	libnng2
 	libnng-devel
 "
 nng_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libnng1_CONTENTS="
-	usr/bin/cyg*-1.dll
+libnng2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libnng_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 nng_SUMMARY="${SUMMARY} (utilities)"
-libnng1_SUMMARY="${SUMMARY} (runtime)"
+libnng2_SUMMARY="${SUMMARY} (runtime)"
 libnng_devel_SUMMARY="${SUMMARY} (development)"

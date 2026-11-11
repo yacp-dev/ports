@@ -1,0 +1,30 @@
+--- origsrc/phyml-3.3.20260528/src/io.c	2026-05-28 08:19:44.000000000 +0000
++++ src/phyml-3.3.20260528/src/io.c	2026-11-11 13:00:41.663087600 +0000
+@@ -8177,6 +8177,7 @@ xml_node *Generate_PhyREX_XMLObj(char *r
+ 
+ void Print_Trace(void)
+ {
++#if !defined(__CYGWIN__)
+   void  *array[10];
+   char **strings;
+   int    size, i;
+@@ -8191,6 +8192,7 @@ void Print_Trace(void)
+ 
+     Free(strings);
+   }
++#endif
+ }
+ 
+ /*////////////////////////////////////////////////////////////
+--- origsrc/phyml-3.3.20260528/src/utilities.h	2026-05-28 08:19:44.000000000 +0000
++++ src/phyml-3.3.20260528/src/utilities.h	2026-11-11 13:00:41.665109000 +0000
+@@ -20,7 +20,9 @@ the GNU public licence. See http://www.o
+ #include <assert.h>
+ #include <ctype.h>
+ #include <errno.h>
++#if !defined(__CYGWIN__)
+ #include <execinfo.h>
++#endif
+ #include <float.h>
+ #include <limits.h>
+ #include <math.h>

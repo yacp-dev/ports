@@ -19,6 +19,27 @@ demes. PhyREX can be used to estimate population densities and rates of
 dispersal. Its output can be processed by treeannotator (from the BEAST
 package) as well as SPREAD."
 
+LICENSE="GPL-3.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only"
+LICENSE_URI="COPYING"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	rm -f config.status config.log config.h stamp-h1
+	find . -name Makefile -delete
+}
+
+src_test()
+{
+	cd ${B}
+	local rc=0 out
+	out=$(./src/${PN}.exe --version 2>&1) || rc=$?
+	echo "${out}"
+	[ ${rc} -eq 1 ] && echo "${out}" | grep -q 'This is PhyML version'
+}
+
 DOCS="
     doc/*.pdf
 "

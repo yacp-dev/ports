@@ -4,22 +4,22 @@ GNU C++ library for coding and decoding JSON (Javascript Object Notation) data
 into or from streams
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libgcc1-13.4.0-1
-  libjaula-devel-1.4.0-1bl3
-  libjaula1-1.4.0-1bl3
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libjaula-devel-1.4.0-1bl4
+  libjaula1-1.4.0-1bl4
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.3-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  flex-2.6.4-2
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -88,6 +88,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.4.0-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.4.0-1bl3 -----
 Rebuild with gcc-13.4.0

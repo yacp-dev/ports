@@ -10,6 +10,10 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
+BUILD_REQUIRES="
+	flex
+"
+
 PKG_NAMES="
 	${PN}
 	lib${PN}1
@@ -29,3 +33,9 @@ libjaula_devel_CONTENTS="
 jaula_SUMMARY="${SUMMARY} (utilities)"
 libjaula1_SUMMARY="${SUMMARY} (runtime)"
 libjaula_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test()
+{
+	cd ${B}
+	PATH="${B}/jaula/.libs:${PATH}" ./examples/jparse.exe ${S}/examples/example1.json
+}

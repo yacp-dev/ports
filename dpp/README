@@ -5,51 +5,50 @@ covering as much of the API specification as possible with an incredibly small
 memory footprint even when caching large amounts of data.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libdpp-devel-10.1.4-1bl1
-  libdpp10.1.4-10.1.4-1bl1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libdpp-devel-10.1.6-1bl1
+  libdpp10.1.6-10.1.6-1bl1
+  libgcc1-14.4.0-1
   libintl8-0.22.5-1
-  libopus0-1.6-1
-  libssl3-3.0.18-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
-  zlib0-1.3.1-1
+  libopus0-1.6.1-1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libintl-devel-0.22.5-1
-  libopus-devel-1.6-1
-  libssl-devel-3.0.18-1
+  libopus-devel-1.6.1-1
+  libssl-devel-3.5.9-1
   ninja-1.13.2-1
-  nlohmann_json-3.12.0-1bl2
-  zlib-devel-1.3.1-1
+  nlohmann_json-3.12.0-1bl3
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/brainboxdotcc/DPP
 
 Canonical download:
-  https://github.com/brainboxdotcc/DPP/archive/refs/tags/v10.1.4.tar.gz
+  https://github.com/brainboxdotcc/DPP/archive/refs/tags/v10.1.6.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack dpp-10.1.4-X-src.tar.xz
+  1. unpack dpp-10.1.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./dpp-10.1.4-X.cygport all
+        % cygport ./dpp-10.1.6-X.cygport all
 
 This will create:
-  /usr/src/dpp-10.1.4-X-src.tar.xz
-  /usr/src/dpp-10.1.4-X.tar.xz
-  /usr/src/libdpp10.1.4-10.1.4-X.tar.xz
-  /usr/src/libdpp-devel-10.1.4-X.tar.xz
+  /usr/src/dpp-10.1.6-X-src.tar.xz
+  /usr/src/dpp-10.1.6-X.tar.xz
+  /usr/src/libdpp10.1.6-10.1.6-X.tar.xz
+  /usr/src/libdpp-devel-10.1.6-X.tar.xz
 
 -------------------------------------------
 
@@ -63,8 +62,8 @@ Files included in the binary package:
   /usr/share/doc/dpp/README.md
   /usr/share/doc/dpp/SECURITY.md
 
-(libdpp10.1.4)
-  /usr/bin/cygdpp-10.1.4.dll
+(libdpp10.1.6)
+  /usr/bin/cygdpp-10.1.6.dll
 
 (libdpp-devel)
   /usr/include/dpp/appcommand.h
@@ -163,7 +162,7 @@ Files included in the binary package:
   /usr/include/dpp/zlibcontext.h
   /usr/lib/cmake/dpp/dpp-config-version.cmake
   /usr/lib/cmake/dpp/dpp-config.cmake
-  /usr/lib/cmake/dpp/dpp-release.cmake
+  /usr/lib/cmake/dpp/dpp-relwithdebinfo.cmake
   /usr/lib/cmake/dpp/dpp.cmake
   /usr/lib/libdpp.dll.a
   /usr/lib/pkgconfig/dpp.pc
@@ -171,6 +170,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 10.1.6-1bl1 -----
+Version bump.
 
 ----- version 10.1.4-1bl1 -----
 Version bump.

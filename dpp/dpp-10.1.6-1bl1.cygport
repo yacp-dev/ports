@@ -8,8 +8,8 @@ DESCRIPTION="D++ is a lightweight and efficient library for Discord written in m
 covering as much of the API specification as possible with an incredibly small
 memory footprint even when caching large amounts of data."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-2-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -36,6 +36,12 @@ DIFF_EXCLUDES="
 	namespace.h
 "
 
+src_test()
+{
+	cd ${B}
+	PATH=${B}/library:${PATH} TEST_DATA_DIR="${S}/testdata/" ninja_test
+}
+
 PKG_NAMES="
 	dpp
 	libdpp${PV}
@@ -44,7 +50,7 @@ PKG_NAMES="
 dpp_CONTENTS="
 	usr/share
 "
-libdpp10_1_4_CONTENTS="
+libdpp10_1_6_CONTENTS="
 	usr/bin/cyg*-${PV}.dll
 "
 libdpp_devel_CONTENTS="
@@ -52,5 +58,10 @@ libdpp_devel_CONTENTS="
 	usr/lib
 "
 dpp_SUMMARY="${SUMMARY} (licensing & readmes)"
-libdpp10_1_4_SUMMARY="${SUMMARY} (runtime)"
+libdpp10_1_6_SUMMARY="${SUMMARY} (runtime)"
 libdpp_devel_SUMMARY="${SUMMARY} (development)"
+libdpp_devel_REQUIRES="
+	libopus-devel
+	libssl-devel
+	zlib-devel
+"

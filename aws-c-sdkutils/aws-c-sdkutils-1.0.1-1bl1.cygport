@@ -17,7 +17,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DSOVERSION:STRING=${PV[1]}
+	-DCMAKE_PREFIX_PATH:STRING=/usr
 	-DVERSION:STRING=${PV}
 "
 
@@ -29,19 +29,22 @@ src_test()
 
 PKG_NAMES="
 	aws-c-sdkutils
-	libaws-c-sdkutils0
+	libaws-c-sdkutils1.0
 	libaws-c-sdkutils-devel
 "
 aws_c_sdkutils_CONTENTS="
 	usr/share
 "
-libaws_c_sdkutils0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libaws_c_sdkutils1_0_CONTENTS="
+	usr/bin/cyg*-1.0.dll
 "
 libaws_c_sdkutils_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 aws_c_sdkutils_SUMMARY="${SUMMARY} (licensing & readmes)"
-libaws_c_sdkutils0_SUMMARY="${SUMMARY} (runtime)"
+libaws_c_sdkutils1_0_SUMMARY="${SUMMARY} (runtime)"
 libaws_c_sdkutils_devel_SUMMARY="${SUMMARY} (development)"
+libaws_c_sdkutils_devel_REQUIRES="
+	libaws-c-common-devel
+"

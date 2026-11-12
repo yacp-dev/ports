@@ -5,24 +5,24 @@ intended for software that want to support Blu-ray playback (such as VLC and
 MPlayer). We, the authors of this library, do not condone nor endorse piracy.
 
 Runtime requirements:
-  cygwin-3.3.5-1
-  libbdplus-devel-0.2.0-1bl1
-  libbdplus0-0.2.0-1bl1
-  libgcrypt20-1.10.1-1
-  libgpg-error0-1.37-1
-  pkg-config-1.8.0-1
+  cygwin-3.6.12-1
+  libbdplus-devel-0.2.0-1bl2
+  libbdplus0-0.2.0-1bl2
+  libgcrypt20-1.12.4-1
+  libgpg-error0-1.61-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.38-1
-  cygport-0.35.0-1
-  gcc-core-11.3.0-1
-  libgcrypt-devel-1.10.1-1
-  libgpg-error-devel-1.37-1
-  libtool-2.4.7-1
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libgcrypt-devel-1.12.4-1
+  libgpg-error-devel-1.61-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://www.videolan.org/developers/libbdplus.html
@@ -67,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2.0-1bl1 -----
 Version bump.

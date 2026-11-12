@@ -24,6 +24,24 @@ src_install()
 	dobin  _build.${CHOST}/examples/*.exe
 }
 
+src_test()
+{
+	cd ${S}/_build.${CHOST}
+	export PATH=${S}/_build.${CHOST}/src:${PATH}
+
+	# the examples print their usage and exit 255 when given no arguments
+	for exe in udfcat udfls
+	do
+		rc=0
+		out=$(verbose ./examples/${exe}.exe 2>&1) || rc=$?
+		echo "${out}"
+		if [ ${rc} -ne 255 ] || ! echo "${out}" | grep -q "^usage: ${exe}"
+		then
+			error "${exe}.exe did not print its usage (exit ${rc})"
+		fi
+	done
+}
+
 PKG_NAMES="
 	libudfread
 	libudfread3

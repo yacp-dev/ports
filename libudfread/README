@@ -3,17 +3,17 @@ libudfread
 This library allows reading UDF filesystems, like raw devices and image files.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libudfread-devel-1.2.0-1bl1
-  libudfread3-1.2.0-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libudfread-devel-1.2.0-1bl2
+  libudfread3-1.2.0-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  meson-1.4.2-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -61,6 +61,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.2.0-1bl1 -----
 Version bump.

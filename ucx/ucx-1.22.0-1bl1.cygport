@@ -1,0 +1,39 @@
+HOMEPAGE="https://www.openucx.org/"
+SRC_URI="https://github.com/openucx/${PN}/releases/download/v${PV}/${P}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Communication framework for data-centric and high-performance applications"
+DESCRIPTION="UCX is an optimized communication framework for high-performance distributed
+applications. UCX utilizes high-speed networks, such as RDMA (InfiniBand, RoCE,
+etc), Cray Gemini or Aries, for inter-node communication. If no such network is
+available, TCP is used instead."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+CYGCONF_ARGS="
+	--without-go
+	--without-java
+"
+
+PKG_NAMES="
+	${PN}
+	lib${PN}0
+	lib${PN}-devel
+"
+ucx_CONTENTS="
+	etc
+	usr/bin/*.exe
+	usr/share
+"
+libucx0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libucx_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+ucx_SUMMARY="${SUMMARY} (utilities)"
+libucx0_SUMMARY="${SUMMARY} (runtime)"
+libucx_devel_SUMMARY="${SUMMARY} (development)"

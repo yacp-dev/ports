@@ -1,0 +1,283 @@
+--- origsrc/wiredtiger-11.3.1/CMakeLists.txt	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/CMakeLists.txt	2026-11-12 03:50:52.204752200 +0000
+@@ -34,7 +34,11 @@ if(NOT WT_ARCH)
+ endif()
+ if(NOT WT_OS)
+     # Defer to our hosts OS as our target OS.
+-    string(TOLOWER "${CMAKE_HOST_SYSTEM_NAME}" host_os)
++    if(CYGWIN)
++        set(host_os "linux")
++    else()
++        string(TOLOWER "${CMAKE_HOST_SYSTEM_NAME}" host_os)
++    endif()
+     set(WT_OS "${host_os}")
+ endif()
+ 
+--- origsrc/wiredtiger-11.3.1/cmake/configs/base.cmake	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/cmake/configs/base.cmake	2026-11-12 03:50:52.205272300 +0000
+@@ -18,13 +18,15 @@ if("${CMAKE_BUILD_TYPE}" MATCHES "^(Rele
+ endif()
+ 
+ # Enable python if we have the minimum version.
+-set(python_libs)
+-set(python_version)
+-set(python_executable)
+-source_python3_package(python_libs python_version python_executable)
++if(NOT DEFINED ENABLE_PYTHON OR ENABLE_PYTHON)
++    set(python_libs)
++    set(python_version)
++    set(python_executable)
++    source_python3_package(python_libs python_version python_executable)
+ 
+-if("${python_version}" VERSION_GREATER_EQUAL "3")
+-  set(default_enable_python ON)
++    if("${python_version}" VERSION_GREATER_EQUAL "3")
++      set(default_enable_python ON)
++    endif()
+ endif()
+ 
+ # MSan / UBSan fails on Python tests due to linking issue.
+--- origsrc/wiredtiger-11.3.1/cmake/configs/x86/linux/config.cmake	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/cmake/configs/x86/linux/config.cmake	2026-11-12 03:50:52.206515300 +0000
+@@ -6,6 +6,7 @@ set(WT_POSIX ON CACHE BOOL "")
+ # e.g. Access to O_DIRECT on Linux. Append this macro to our compiler flags for Linux-based
+ # builds.
+ add_cmake_flag(CMAKE_C_FLAGS -D_GNU_SOURCE)
++add_cmake_flag(CMAKE_CXX_FLAGS -D_GNU_SOURCE)
+ 
+ # Linux requires buffers aligned to 4KB boundaries for O_DIRECT to work.
+ set(WT_BUFFER_ALIGNMENT_DEFAULT "4096" CACHE STRING "")
+--- origsrc/wiredtiger-11.3.1/cmake/install/install.cmake	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/cmake/install/install.cmake	2026-11-12 03:50:52.206515300 +0000
+@@ -19,6 +19,7 @@ endif()
+ 
+ # Install the wiredtiger library targets.
+ install(TARGETS ${wt_targets}
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+ )
+--- origsrc/wiredtiger-11.3.1/ext/test/fail_fs/fail_fs.c	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/ext/test/fail_fs/fail_fs.c	2026-11-12 03:50:52.206515300 +0000
+@@ -35,7 +35,9 @@
+ #include <unistd.h>
+ #include <fcntl.h>
+ #include <sys/stat.h>
++#if !defined(__CYGWIN__)
+ #include <execinfo.h>
++#endif
+ 
+ #include <wiredtiger_ext.h>
+ #include "queue.h"
+@@ -658,6 +660,7 @@ static int
+ fail_fs_simulate_fail(
+   FAIL_FILE_HANDLE *fail_fh, WT_SESSION *session, int64_t nops, const char *opkind)
+ {
++#if !defined(__CYGWIN__)
+     FAIL_FILE_SYSTEM *fail_fs;
+     WT_EXTENSION_API *wtext;
+ #if defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
+@@ -685,6 +688,7 @@ fail_fs_simulate_fail(
+             free(btstr);
+         }
+     }
++#endif
+     return (EIO);
+ }
+ 
+--- origsrc/wiredtiger-11.3.1/src/include/posix.h	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/src/include/posix.h	2026-11-12 03:50:52.208532100 +0000
+@@ -20,7 +20,9 @@
+ #endif
+ 
+ /* Define O_BINARY for Posix systems */
++#if !defined(O_BINARY)
+ #define O_BINARY 0
++#endif
+ 
+ /*
+  * Define WT threading and concurrency primitives
+--- origsrc/wiredtiger-11.3.1/src/include/wt_internal.h	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/src/include/wt_internal.h	2026-11-12 03:50:52.209313300 +0000
+@@ -23,8 +23,15 @@ extern "C" {
+  * WiredTiger system include files.
+  *******************************************/
+ #ifndef _WIN32
++#include <sys/types.h>
+ #include <sys/mman.h>
+ #endif
++#if defined(__cplusplus)
++typedef unsigned char u_char;
++typedef unsigned short u_short;
++typedef unsigned int u_int;
++typedef unsigned long u_long;
++#endif
+ #include <sys/stat.h>
+ #ifndef _WIN32
+ #include <sys/time.h>
+@@ -559,9 +566,9 @@ typedef uint64_t wt_timestamp_t;
+ #include "extern_win.h"
+ #else
+ #include "extern_posix.h"
+-#ifdef __linux__
++#if defined(__linux__) || defined(__CYGWIN__)
+ #include "extern_linux.h"
+-#elif __APPLE__
++#elif defined(__APPLE__)
+ #include "extern_darwin.h"
+ #endif
+ #endif
+--- origsrc/wiredtiger-11.3.1/src/os_linux/os_futex.c	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/src/os_linux/os_futex.c	2026-11-12 03:50:52.210549700 +0000
+@@ -7,6 +7,73 @@
+ 
+ #include "wt_internal.h"
+ 
++#if defined(__CYGWIN__)
++#include <errno.h>
++#include <pthread.h>
++#include <time.h>
++
++static pthread_mutex_t __wt_cygwin_futex_mutex = PTHREAD_MUTEX_INITIALIZER;
++static pthread_cond_t __wt_cygwin_futex_cond = PTHREAD_COND_INITIALIZER;
++
++/*
++ * __wt_futex_wait --
++ *     Wait on the futex. The timeout is in microseconds and MUST be greater than zero.
++ */
++int
++__wt_futex_wait(
++  volatile WT_FUTEX_WORD *addr, WT_FUTEX_WORD expected, time_t usec, WT_FUTEX_WORD *wake_valp)
++{
++    struct timespec ts;
++    int ret;
++
++    WT_ASSERT(NULL, usec > 0);
++
++    pthread_mutex_lock(&__wt_cygwin_futex_mutex);
++    if (*addr != expected) {
++        *wake_valp = *addr;
++        pthread_mutex_unlock(&__wt_cygwin_futex_mutex);
++        return (0);
++    }
++
++    (void)clock_gettime(CLOCK_REALTIME, &ts);
++    ts.tv_sec += usec / WT_MILLION;
++    ts.tv_nsec += (long)((usec % WT_MILLION) * WT_THOUSAND);
++    if (ts.tv_nsec >= WT_BILLION) {
++        ts.tv_sec += 1;
++        ts.tv_nsec -= WT_BILLION;
++    }
++
++    ret = pthread_cond_timedwait(&__wt_cygwin_futex_cond, &__wt_cygwin_futex_mutex, &ts);
++    *wake_valp = *addr;
++    pthread_mutex_unlock(&__wt_cygwin_futex_mutex);
++
++    if (ret != 0) {
++        errno = ret;
++        return (-1);
++    }
++    return (0);
++}
++
++/*
++ * __wt_futex_wake --
++ *     Wake the futex.
++ */
++int
++__wt_futex_wake(volatile WT_FUTEX_WORD *addr, WT_FUTEX_WAKE wake, WT_FUTEX_WORD wake_val)
++{
++    WT_ASSERT(NULL, wake == WT_FUTEX_WAKE_ONE || wake == WT_FUTEX_WAKE_ALL);
++
++    pthread_mutex_lock(&__wt_cygwin_futex_mutex);
++    *addr = wake_val;
++    if (wake == WT_FUTEX_WAKE_ALL)
++        pthread_cond_broadcast(&__wt_cygwin_futex_cond);
++    else
++        pthread_cond_signal(&__wt_cygwin_futex_cond);
++    pthread_mutex_unlock(&__wt_cygwin_futex_mutex);
++
++    return (0);
++}
++#else
+ #include <linux/futex.h>
+ #include <sys/syscall.h>
+ 
+@@ -49,3 +116,4 @@ __wt_futex_wake(volatile WT_FUTEX_WORD *
+ 
+     return ((int)((sysret >= 0) ? 0 : sysret));
+ }
++#endif
+--- origsrc/wiredtiger-11.3.1/test/cppsuite/src/util/instruction_counter.cpp	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/test/cppsuite/src/util/instruction_counter.cpp	2026-11-12 03:50:52.211336800 +0000
+@@ -38,6 +38,7 @@ namespace test_harness {
+ instruction_counter::instruction_counter(const std::string &id, const std::string &test_name)
+     : _id(id), _test_name(test_name), _instruction_count(0)
+ {
++#if defined(__linux__) && !defined(__CYGWIN__)
+     memset(&_pe, 0, sizeof(_pe));
+     _pe.type = PERF_TYPE_HARDWARE;
+     _pe.size = sizeof(_pe);
+@@ -45,6 +46,7 @@ instruction_counter::instruction_counter
+     _pe.disabled = 1;
+     _pe.exclude_kernel = 1;
+     _pe.exclude_hv = 1;
++#endif
+ }
+ 
+ void
+--- origsrc/wiredtiger-11.3.1/test/cppsuite/src/util/instruction_counter.h	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/test/cppsuite/src/util/instruction_counter.h	2026-11-12 03:50:52.211336800 +0000
+@@ -28,11 +28,13 @@
+ 
+ #pragma once
+ 
++#if defined(__linux__) && !defined(__CYGWIN__)
+ #include <linux/perf_event.h>
+ #include <linux/hw_breakpoint.h>
+ #include <sys/syscall.h>
+-#include <unistd.h>
+ #include <sys/ioctl.h>
++#endif
++#include <unistd.h>
+ 
+ #include "src/main/test.h"
+ 
+@@ -58,6 +60,7 @@ public:
+     int
+     track(T lambda)
+     {
++#if defined(__linux__) && !defined(__CYGWIN__)
+         int fd = syscall(SYS_perf_event_open, &_pe,
+           0,  // pid: calling process/thread
+           -1, // cpu: any CPU
+@@ -81,12 +84,17 @@ public:
+             close(fd);
+         }
+         return ret;
++#else
++        return lambda();
++#endif
+     }
+ 
+ private:
+     std::string _id;
+     std::string _test_name;
+     uint64_t _instruction_count;
++#if defined(__linux__) && !defined(__CYGWIN__)
+     struct perf_event_attr _pe;
++#endif
+ };
+ } // namespace test_harness
+--- origsrc/wiredtiger-11.3.1/test/model/test/common/util.cpp	2024-11-14 22:24:41.000000000 +0000
++++ src/wiredtiger-11.3.1/test/model/test/common/util.cpp	2026-11-12 03:50:52.212565900 +0000
+@@ -27,6 +27,9 @@
+  */
+ 
+ #include <sys/time.h>
++#if !defined(_WIN32)
++#include <alloca.h>
++#endif
+ #include <cstdio>
+ #include <cstdlib>
+ #include <cstring>

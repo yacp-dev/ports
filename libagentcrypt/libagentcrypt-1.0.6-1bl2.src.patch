@@ -1,5 +1,5 @@
---- origsrc/libagentcrypt-1.0.6/Makefile.am	2022-06-12 22:51:55.000000000 +0900
-+++ src/libagentcrypt-1.0.6/Makefile.am	2022-07-02 18:35:51.345663600 +0900
+--- origsrc/libagentcrypt-1.0.6/Makefile.am	2022-06-12 13:51:55.000000000 +0000
++++ src/libagentcrypt-1.0.6/Makefile.am	2026-11-12 21:37:40.107786400 +0000
 @@ -16,7 +16,7 @@ ACLOCAL_AMFLAGS = -I build-aux/m4
  
  lib_LTLIBRARIES = libagentcrypt.la
@@ -9,8 +9,8 @@
  
  include_HEADERS = libagentcrypt.h
  
---- origsrc/libagentcrypt-1.0.6/libagentcrypt.c	2022-06-12 22:51:55.000000000 +0900
-+++ src/libagentcrypt-1.0.6/libagentcrypt.c	2022-07-02 18:35:51.350677000 +0900
+--- origsrc/libagentcrypt-1.0.6/libagentcrypt.c	2022-06-12 13:51:55.000000000 +0000
++++ src/libagentcrypt-1.0.6/libagentcrypt.c	2026-11-12 21:37:40.109797400 +0000
 @@ -620,7 +620,9 @@ static int agent_sign(int fd, string_t *
      switch (key_type(key_blob))
      {

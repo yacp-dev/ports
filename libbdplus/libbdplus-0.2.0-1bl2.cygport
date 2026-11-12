@@ -7,7 +7,14 @@ DESCRIPTION="This library is written for the purpose of playing Blu-ray movies. 
 intended for software that want to support Blu-ray playback (such as VLC and
 MPlayer). We, the authors of this library, do not condone nor endorse piracy."
 
-BUILD_REQUIRES="libgcrypt-devel libgpg-error-devel"
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libgcrypt-devel
+	libgpg-error-devel
+"
 
 PKG_NAMES="
 	${PN}
@@ -18,7 +25,7 @@ libbdplus_CONTENTS="
 	usr/share
 "
 libbdplus0_CONTENTS="
-	usr/bin
+	usr/bin/cygbdplus-0.dll
 "
 libbdplus_devel_CONTENTS="
 	usr/include

@@ -1,5 +1,5 @@
---- origsrc/zfp-1.0.1/examples/diffusion.cpp	2023-12-16 14:28:20.000000000 +0900
-+++ src/zfp-1.0.1/examples/diffusion.cpp	2025-06-10 21:35:46.220477200 +0900
+--- origsrc/zfp-1.0.1/examples/diffusion.cpp	2023-12-16 05:28:20.000000000 +0000
++++ src/zfp-1.0.1/examples/diffusion.cpp	2026-11-12 08:15:42.461942100 +0000
 @@ -15,7 +15,7 @@
  // add half precision if compiler supports it
  #define __STDC_WANT_IEC_60559_TYPES_EXT__

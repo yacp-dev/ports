@@ -1,4 +1,4 @@
-HOMEPAGE="https://www.openucx.org/"
+HOMEPAGE="https://github.com/openucx/ucx"
 SRC_URI="https://github.com/openucx/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
 CATEGORY="Libs"

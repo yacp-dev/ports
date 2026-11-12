@@ -20,20 +20,20 @@ Canonical website:
   https://github.com/xtensor-stack/xtensor
 
 Canonical download:
-  https://github.com/xtensor-stack/xtensor/archive/refs/tags/0.27.1.tar.gz
+  https://github.com/xtensor-stack/xtensor/archive/refs/tags/0.27.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack xtensor-0.27.1-X-src.tar.xz
+  1. unpack xtensor-0.27.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./xtensor-0.27.1-X.cygport all
+        % cygport ./xtensor-0.27.2-X.cygport all
 
 This will create:
-  /usr/src/xtensor-0.27.1-X-src.tar.xz
-  /usr/src/xtensor-0.27.1-X.tar.xz
+  /usr/src/xtensor-0.27.2-X-src.tar.xz
+  /usr/src/xtensor-0.27.2-X.tar.xz
 
 -------------------------------------------
 
@@ -128,6 +128,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.27.2-1bl1 -----
+Version bump.
 
 ----- version 0.27.1-1bl1 -----
 Version bump.

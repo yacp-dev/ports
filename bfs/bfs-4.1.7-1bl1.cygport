@@ -17,7 +17,7 @@ src_compile()
 {
 	cd ${B}
 	lndirs
-	verbose ./configure --enable-release
+	verbose ./configure --enable-release --disable-lto
 	cygmake
 }
 

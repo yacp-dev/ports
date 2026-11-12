@@ -3,24 +3,24 @@ libafcgi
 Libev based asynchronous FastCGI library
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libafcgi-devel-0.1.0+git20101102-1bl1
-  libafcgi0-0.1.0+git20101102-1bl1
+  cygwin-3.6.12-1
+  libafcgi-devel-0.1.0+git20101102-1bl2
+  libafcgi0-0.1.0+git20101102-1bl2
   libev4-4.33-1
-  libglib2.0-devel-2.85.2-1
-  libglib2.0_0-2.85.2-1
-  pkg-config-2.5.1-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   libev-devel-4.33-1
-  libglib2.0-devel-2.85.2-1
-  libtool-2.5.4-1
+  libglib2.0-devel-2.90.1-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -65,6 +65,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1.0+git20101102-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1.0+git20101102-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

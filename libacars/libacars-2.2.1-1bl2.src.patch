@@ -1,5 +1,5 @@
---- origsrc/libacars-2.2.1/libacars/asn1/INTEGER.c	2025-11-02 19:22:42.000000000 +0900
-+++ src/libacars-2.2.1/libacars/asn1/INTEGER.c	2026-01-15 16:53:37.267431000 +0900
+--- origsrc/libacars-2.2.1/libacars/asn1/INTEGER.c	2025-11-02 10:22:42.000000000 +0000
++++ src/libacars-2.2.1/libacars/asn1/INTEGER.c	2026-11-12 14:27:23.251913400 +0000
 @@ -6,6 +6,7 @@
  #include "asn_internal.h"
  #include "INTEGER.h"
@@ -8,8 +8,8 @@
  #include <errno.h>
  
  /*
---- origsrc/libacars-2.2.1/libacars/asn1/NativeEnumerated.c	2025-11-02 19:22:42.000000000 +0900
-+++ src/libacars-2.2.1/libacars/asn1/NativeEnumerated.c	2026-01-15 16:53:37.267431000 +0900
+--- origsrc/libacars-2.2.1/libacars/asn1/NativeEnumerated.c	2025-11-02 10:22:42.000000000 +0000
++++ src/libacars-2.2.1/libacars/asn1/NativeEnumerated.c	2026-11-12 14:27:23.253936800 +0000
 @@ -11,6 +11,7 @@
   */
  #include "asn_internal.h"
@@ -18,8 +18,8 @@
  
  /*
   * NativeEnumerated basic type description.
---- origsrc/libacars-2.2.1/libacars/asn1/der_encoder.c	2025-11-02 19:22:42.000000000 +0900
-+++ src/libacars-2.2.1/libacars/asn1/der_encoder.c	2026-01-15 16:53:37.267431000 +0900
+--- origsrc/libacars-2.2.1/libacars/asn1/der_encoder.c	2025-11-02 10:22:42.000000000 +0000
++++ src/libacars-2.2.1/libacars/asn1/der_encoder.c	2026-11-12 14:27:23.255951700 +0000
 @@ -3,6 +3,7 @@
   * Redistribution and modifications are permitted subject to BSD license.
   */

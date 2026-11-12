@@ -27,6 +27,13 @@ src_install()
 	verbose mv usr/share/doc/${PN}-2/* usr/share/doc/${PN}
 }
 
+src_test()
+{
+	cd ${B}
+	export PATH=${B}/libacars:${PATH}
+	verbose ./examples/decode_acars_apps.exe -h
+}
+
 DOCS="
 	CHANGELOG.md
 "

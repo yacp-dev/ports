@@ -1,13 +1,24 @@
 HOMEPAGE="https://github.com/sleepdefic1t/${PN}"
 SRC_URI="https://github.com/sleepdefic1t/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_DIR="BIP66-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="Simple Bitcoin BIP66 Implementation in C++ for the ARK Blockchain"
 DESCRIPTION="${SUMMARY}"
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgtest-devel
+	libgtest0
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DSOVERSION:STRING=${PV[1]}
 	-DUNIT_TEST:BOOL=ON
 	-DVERSION:STRING=${PV}
@@ -33,7 +44,7 @@ bip66_CONTENTS="
 	usr/share
 "
 libbip66_0_CONTENTS="
-	usr/bin
+	usr/bin/cygbip66-0.dll
 "
 libbip66_devel_CONTENTS="
 	usr/include

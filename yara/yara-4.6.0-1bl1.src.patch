@@ -1,5 +1,5 @@
---- origsrc/yara-4.5.5/Makefile.am	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/Makefile.am	2026-02-09 13:30:19.117287900 +0900
+--- origsrc/yara-4.6.0/Makefile.am	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/Makefile.am	2026-11-12 04:50:41.599518900 +0000
 @@ -199,7 +199,7 @@ dist_noinst_DATA = libyara/pb/yara.proto
  lib_LTLIBRARIES = libyara.la
  
@@ -18,7 +18,7 @@
  
  bin_PROGRAMS = yara yarac
  
-@@ -306,49 +306,49 @@ tests_mapper_CFLAGS = -O0
+@@ -306,55 +306,55 @@ tests_mapper_CFLAGS = -O0
  
  test_alignment_SOURCES = tests/test-alignment.c tests/util.c
  test_alignment_LDADD = libyara.la
@@ -79,10 +79,18 @@
  test_async_LDADD = libyara.la
 -test_async_LDFLAGS = -static
 +test_async_LDFLAGS = 
+ test_iterators_SOURCES = tests/test-iterators.c tests/util.c
+ test_iterators_LDADD = libyara.la
+-test_iterators_LDFLAGS = -static
++test_iterators_LDFLAGS = 
+ test_exec_SOURCES = tests/test-exec.c tests/util.c
+ test_exec_LDADD = libyara.la
+-test_exec_LDFLAGS = -static
++test_exec_LDFLAGS = 
  
  TESTS = $(check_PROGRAMS)
  TESTS_ENVIRONMENT = TOP_SRCDIR=$(top_srcdir) TOP_BUILDDIR=$(top_builddir)
-@@ -379,7 +379,7 @@ if !ADDRESS_SANITIZER
+@@ -387,7 +387,7 @@ if !ADDRESS_SANITIZER
  check_PROGRAMS+=test-exception
  test_exception_SOURCES = tests/test-exception.c tests/util.c
  test_exception_LDADD = libyara.la
@@ -91,7 +99,7 @@
  endif
  endif
  
-@@ -387,35 +387,35 @@ if MACHO_MODULE
+@@ -395,35 +395,35 @@ if MACHO_MODULE
  check_PROGRAMS+=test-macho
  test_macho_SOURCES = tests/test-macho.c tests/util.c
  test_macho_LDADD = libyara.la
@@ -132,8 +140,8 @@
  endif
  
  # man pages
---- origsrc/yara-4.5.5/cli/threading.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/cli/threading.c	2026-02-09 13:30:19.120309700 +0900
+--- origsrc/yara-4.6.0/cli/threading.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/cli/threading.c	2026-11-12 04:50:41.581843000 +0000
 @@ -29,7 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  
  #include <fcntl.h>
@@ -233,8 +241,8 @@
    WaitForSingleObject(*thread, INFINITE);
  #else
    pthread_join(*thread, NULL);
---- origsrc/yara-4.5.5/cli/threading.h	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/cli/threading.h	2026-02-09 13:30:19.124962500 +0900
+--- origsrc/yara-4.6.0/cli/threading.h	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/cli/threading.h	2026-11-12 04:50:41.583102500 +0000
 @@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #ifndef THREADING_H
  #define THREADING_H
@@ -253,8 +261,8 @@
  
  typedef HANDLE SEMAPHORE;
  typedef CRITICAL_SECTION MUTEX;
---- origsrc/yara-4.5.5/cli/yara.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/cli/yara.c	2026-02-09 13:30:19.126993000 +0900
+--- origsrc/yara-4.6.0/cli/yara.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/cli/yara.c	2026-11-12 04:50:41.583861800 +0000
 @@ -27,7 +27,7 @@ ANY THEORY OF LIABILITY, WHETHER IN CONT
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
@@ -282,9 +290,9 @@
  static DWORD WINAPI scanning_thread(LPVOID param)
  #else
  static void* scanning_thread(void* param)
---- origsrc/yara-4.5.5/libyara/arena.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/arena.c	2026-02-09 13:30:19.129004800 +0900
-@@ -163,7 +163,7 @@ static int _yr_arena_allocate_memory(
+--- origsrc/yara-4.6.0/libyara/arena.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/arena.c	2026-11-12 04:50:41.585876200 +0000
+@@ -191,7 +191,7 @@ static int _yr_arena_allocate_memory(
  // When yr_realloc uses the Windows API (HeapAlloc, HeapReAlloc) it is not
  // necessary to set the memory to zero because the API is called with the
  // HEAP_ZERO_MEMORY flag.
@@ -293,9 +301,9 @@
      if (flags & YR_ARENA_ZERO_MEMORY)
        memset(new_data + b->used, 0, new_size - b->used);
  #endif
---- origsrc/yara-4.5.5/libyara/compiler.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/compiler.c	2026-02-09 13:30:19.131015200 +0900
-@@ -83,7 +83,7 @@ const char* _yr_compiler_default_include
+--- origsrc/yara-4.6.0/libyara/compiler.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/compiler.c	2026-11-12 04:50:41.585876200 +0000
+@@ -85,7 +85,7 @@ const char* _yr_compiler_default_include
  
  #if defined(_MSC_VER)
    _sopen_s(&fd, include_name, _O_RDONLY | _O_BINARY, _SH_DENYWR, _S_IREAD);
@@ -304,8 +312,8 @@
    fd = open(include_name, O_RDONLY | O_BINARY);
  #else
    fd = open(include_name, O_RDONLY);
---- origsrc/yara-4.5.5/libyara/exception.h	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/exception.h	2026-02-09 13:30:19.131015200 +0900
+--- origsrc/yara-4.6.0/libyara/exception.h	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/exception.h	2026-11-12 04:50:41.587158200 +0000
 @@ -40,7 +40,7 @@ typedef struct {
  } jumpinfo;
  
@@ -315,8 +323,8 @@
  
  #include <windows.h>
  
---- origsrc/yara-4.5.5/libyara/filemap.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/filemap.c	2026-02-09 13:30:19.133024100 +0900
+--- origsrc/yara-4.6.0/libyara/filemap.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/filemap.c	2026-11-12 04:50:41.587893600 +0000
 @@ -29,7 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  
  #include <fcntl.h>
@@ -344,8 +352,8 @@
  
  YR_API int yr_filemap_map_ex(
      const char* file_path,
---- origsrc/yara-4.5.5/libyara/include/yara/error.h	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/include/yara/error.h	2026-02-09 13:30:19.133024100 +0900
+--- origsrc/yara-4.6.0/libyara/include/yara/error.h	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/include/yara/error.h	2026-11-12 04:50:41.589185900 +0000
 @@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  
  #include <string.h>
@@ -355,8 +363,8 @@
  #include <windows.h>
  #endif
  
---- origsrc/yara-4.5.5/libyara/include/yara/filemap.h	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/include/yara/filemap.h	2026-02-09 13:30:19.135033800 +0900
+--- origsrc/yara-4.6.0/libyara/include/yara/filemap.h	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/include/yara/filemap.h	2026-11-12 04:50:41.589912700 +0000
 @@ -32,7 +32,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  
  #include <sys/types.h>
@@ -375,8 +383,8 @@
    HANDLE mapping;
  #endif
  
---- origsrc/yara-4.5.5/libyara/include/yara/globals.h	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/include/yara/globals.h	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/libyara/include/yara/globals.h	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/include/yara/globals.h	2026-11-12 04:50:41.591214200 +0000
 @@ -48,7 +48,7 @@ extern YR_THREAD_STORAGE_KEY yr_yyfatal_
  // Thread-local storage (TLS) key used by YR_TRYCATCH.
  extern YR_THREAD_STORAGE_KEY yr_trycatch_trampoline_tls;
@@ -386,8 +394,8 @@
  extern struct sigaction old_sigsegv_exception_handler;
  extern struct sigaction old_sigbus_exception_handler;
  extern int exception_handler_usecount;
---- origsrc/yara-4.5.5/libyara/include/yara/limits.h	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/include/yara/limits.h	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/libyara/include/yara/limits.h	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/include/yara/limits.h	2026-11-12 04:50:41.591932200 +0000
 @@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #ifndef YR_LIMITS_H
  #define YR_LIMITS_H
@@ -397,8 +405,8 @@
  #include <windows.h>
  #endif
  
---- origsrc/yara-4.5.5/libyara/include/yara/pe.h	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/include/yara/pe.h	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/libyara/include/yara/pe.h	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/include/yara/pe.h	2026-11-12 04:50:41.593473300 +0000
 @@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #include <yara/endian.h>
  #include <yara/types.h>
@@ -417,8 +425,8 @@
  
  #define CVINFO_PDB70_CVSIGNATURE 0x53445352  // "RSDS"
  #define CVINFO_PDB20_CVSIGNATURE 0x3031424e  // "NB10"
---- origsrc/yara-4.5.5/libyara/include/yara/threading.h	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/include/yara/threading.h	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/libyara/include/yara/threading.h	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/include/yara/threading.h	2026-11-12 04:50:41.593473300 +0000
 @@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #ifndef YR_MUTEX_H
  #define YR_MUTEX_H
@@ -428,8 +436,8 @@
  
  #include <windows.h>
  
---- origsrc/yara-4.5.5/libyara/lexer.l	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/lexer.l	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/libyara/lexer.l	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/lexer.l	2026-11-12 04:50:41.595487100 +0000
 @@ -51,7 +51,7 @@ with noyywrap then we can remove this pr
  #include <string.h>
  #include <setjmp.h>
@@ -475,8 +483,8 @@
    if (!ReadFile(rules_fd, buffer, file_size, &bytes_read, NULL))
    #else
    if (read(rules_fd, buffer, file_size) != file_size)
---- origsrc/yara-4.5.5/libyara/libyara.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/libyara.c	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/libyara/libyara.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/libyara.c	2026-11-12 04:50:41.595487100 +0000
 @@ -43,7 +43,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  
  #include "crypto.h"
@@ -495,8 +503,8 @@
  
  #include <pthread.h>
  #include <signal.h>
---- origsrc/yara-4.5.5/libyara/mem.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/mem.c	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/libyara/mem.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/mem.c	2026-11-12 04:50:41.597502500 +0000
 @@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #include <yara/error.h>
  #include <yara/mem.h>
@@ -506,8 +514,8 @@
  
  #include <string.h>
  #include <windows.h>
---- origsrc/yara-4.5.5/libyara/modules/cuckoo/cuckoo.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/modules/cuckoo/cuckoo.c	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/libyara/modules/cuckoo/cuckoo.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/modules/cuckoo/cuckoo.c	2026-11-12 04:50:41.597502500 +0000
 @@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #include <yara/re.h>
  
@@ -517,8 +525,8 @@
  #define strcasecmp _stricmp
  #endif
  
---- origsrc/yara-4.5.5/libyara/threading.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/libyara/threading.c	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/libyara/threading.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/libyara/threading.c	2026-11-12 04:50:41.599518900 +0000
 @@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #include <yara/error.h>
  #include <yara/threading.h>
@@ -528,9 +536,9 @@
  
  YR_THREAD_ID yr_current_thread_id(void)
  {
---- origsrc/yara-4.5.5/tests/test-api.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/tests/test-api.c	2026-02-09 13:30:19.136044500 +0900
-@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
+--- origsrc/yara-4.6.0/tests/test-api.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/tests/test-api.c	2026-11-12 04:50:41.601538900 +0000
+@@ -38,7 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  
  #include "util.h"
  
@@ -538,8 +546,8 @@
 +#if defined(_WIN32)
  #include <fileapi.h>
  #else
- #include <unistd.h>
-@@ -135,7 +135,7 @@ void test_file_descriptor()
+ #include <sys/mman.h>
+@@ -203,7 +203,7 @@ void test_file_descriptor()
    YR_COMPILER* compiler = NULL;
    YR_RULES* rules = NULL;
  
@@ -548,7 +556,7 @@
    HANDLE fd = CreateFile(
        "tests/data/baz.yar", GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL);
    if (fd == INVALID_HANDLE_VALUE)
-@@ -166,7 +166,7 @@ void test_file_descriptor()
+@@ -234,7 +234,7 @@ void test_file_descriptor()
      exit(EXIT_FAILURE);
    }
  
@@ -557,8 +565,8 @@
    CloseHandle(fd);
  #else
    close(fd);
---- origsrc/yara-4.5.5/tests/test-async.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/tests/test-async.c	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/tests/test-async.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/tests/test-async.c	2026-11-12 04:50:41.601538900 +0000
 @@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #include <signal.h>
  #include <stdlib.h>
@@ -568,37 +576,19 @@
  #include <sys/wait.h>
  #endif
  #include <unistd.h>
---- origsrc/yara-4.5.5/tests/test-rules.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/tests/test-rules.c	2026-02-09 13:30:19.136044500 +0900
-@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
- #include <unistd.h>
- #include <yara.h>
- 
--#if !defined(_WIN32) && !defined(__CYGWIN__)
-+#if !defined(_WIN32)
- #include <sys/wait.h>
- #endif
- 
-@@ -3479,7 +3479,7 @@ void test_tags()
+--- origsrc/yara-4.6.0/tests/test-rules.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/tests/test-rules.c	2026-11-12 04:50:41.603562300 +0000
+@@ -3753,7 +3753,7 @@ void test_tags()
    YR_DEBUG_FPRINTF(1, stderr, "} // %s()\n", __FUNCTION__);
  }
  
 -#if !defined(_WIN32) || defined(__CYGWIN__)
-+#if !defined(_WIN32)
++#if !defined(_WIN32) && !defined(__CYGWIN__)
  
  #define spawn(cmd, rest...)                                     \
    do                                                            \
-@@ -4004,7 +4004,7 @@ static void test_pass(int pass)
-   test_meta();
-   test_warnings();
- 
--#if !defined(USE_NO_PROC) && !defined(_WIN32) && !defined(__CYGWIN__)
-+#if !defined(USE_NO_PROC) && !defined(_WIN32)
-   test_process_scan();
- #endif
- 
---- origsrc/yara-4.5.5/tests/util.c	2025-10-30 18:58:07.000000000 +0900
-+++ src/yara-4.5.5/tests/util.c	2026-02-09 13:30:19.136044500 +0900
+--- origsrc/yara-4.6.0/tests/util.c	2026-10-27 11:53:33.000000000 +0000
++++ src/yara-4.6.0/tests/util.c	2026-11-12 04:50:41.603562300 +0000
 @@ -633,7 +633,7 @@ int read_file(char* filename, char** buf
  {
    int fd;

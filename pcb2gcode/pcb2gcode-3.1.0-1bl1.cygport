@@ -8,16 +8,29 @@ of PCBs. It takes Gerber files as input and it outputs gcode files, suitable
 for the milling of PCBs. It also includes an Autoleveller, useful for the
 automatic dynamic calibration of the milling depth."
 
-BUILD_REQUIRES="libboost-devel libgerbv-devel libglib2.0-devel"
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="COPYING"
 
-src_compile()
+BUILD_REQUIRES="
+	libboost-devel
+	libgeos-devel
+	libgerbv-devel
+	libglib2.0-devel
+	nlohmann_json
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_TESTING:BOOL=OFF
+	-DPCB2GCODE_COMPILE_WARNING_AS_ERROR:BOOL=OFF
+"
+
+src_test()
 {
-    cd ${S}
-    cygautoreconf
-    cd ${B}
-    git init
-    git commit --allow-empty -m 'dummy commit'
-    git tag ${PV}
-    cygconf
-    cygmake
+	cd ${B}
+	verbose ./${PN}.exe --version
 }

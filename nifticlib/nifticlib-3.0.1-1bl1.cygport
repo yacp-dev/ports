@@ -1,0 +1,81 @@
+HOMEPAGE="https://github.com/NIFTI-Imaging/nifti_clib"
+SRC_URI="https://github.com/NIFTI-Imaging/nifti_clib/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/nifticlib/raw/b6a172c2c955f6cbac2a5c9441855afa587c40a6/f/0001-dont-get-version-from-git.patch
+"
+SRC_DIR="nifti_clib-${PV}"
+
+CATEGORY="Libs"
+SUMMARY="Libraries for the nifti-1 data format"
+DESCRIPTION="Niftilib is a set of i/o libraries for reading and writing files in the
+nifti-1 data format. nifti-1 is a binary file format for storing medical image
+data, e.g. magnetic resonance image (MRI) and functional MRI (fMRI) brain
+images."
+
+LICENSE="LicenseRef-Public-Domain"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-Public-Domain"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	zlib-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DDOWNLOAD_TEST_DATA:BOOL=OFF
+	-DGIT_REPO_VERSION:STRING=${PV}
+	-DNIFTI_INSTALL_NO_DOCS:BOOL=ON
+"
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	cd ${D}
+	mkdir -p usr/lib/cmake
+	mv usr/share/cmake/NIFTI usr/lib/cmake/
+	rm -rf usr/share/cmake
+}
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/bin:${B}/nifticdf:${B}/niftilib:${B}/nifti2:${B}/znzlib:${PATH} ctest --output-on-failure -LE NEEDS_DATA -E '(dsets_test|install_linking)'
+}
+
+DOCS="
+	Updates.txt
+"
+
+PKG_NAMES="
+	${PN}
+	libnifti2
+	libznz3
+	libnifti-devel
+"
+nifticlib_CONTENTS="
+	usr/bin/*.exe
+	usr/share/doc
+"
+libnifti2_CONTENTS="
+	usr/bin/cygnifti*-2.dll
+"
+libznz3_CONTENTS="
+	usr/bin/cygznz-3.dll
+"
+libnifti_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+nifticlib_SUMMARY="${SUMMARY} (utilities)"
+libnifti2_SUMMARY="${SUMMARY} (runtime / nifti)"
+libznz3_SUMMARY="${SUMMARY} (runtime / znz)"
+libnifti_devel_SUMMARY="${SUMMARY} (development)"
+
+libnifti_devel_REQUIRES="
+	${PN}
+	zlib-devel
+"

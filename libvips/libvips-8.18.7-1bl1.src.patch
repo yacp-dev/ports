@@ -1,5 +1,17 @@
---- origsrc/libvips-8.18.0/libvips/include/vips/meson.build	2025-12-17 21:24:25.000000000 +0900
-+++ src/libvips-8.18.0/libvips/include/vips/meson.build	2026-02-06 14:33:06.810321300 +0900
+--- origsrc/libvips-8.18.7/fuzz/test_fuzz.sh	2026-09-26 11:29:16.000000000 +0000
++++ src/libvips-8.18.7/fuzz/test_fuzz.sh	2026-11-12 06:35:54.756472600 +0000
+@@ -10,7 +10,8 @@ export VIPS_WARNING=0
+ 
+ ret=0
+ 
+-for fuzzer in *_fuzzer; do
++for fuzzer in *_fuzzer *_fuzzer.exe; do
++  [ -f "$fuzzer" ] || continue
+   for file in $top_srcdir/fuzz/common_fuzzer_corpus/*; do
+     exit_code=0
+     ./$fuzzer $file || exit_code=$?
+--- origsrc/libvips-8.18.7/libvips/include/vips/meson.build	2026-09-26 11:29:16.000000000 +0000
++++ src/libvips-8.18.7/libvips/include/vips/meson.build	2026-11-12 06:35:54.756472600 +0000
 @@ -109,7 +109,7 @@ foreach _, section : build_features
      foreach key, arr : section
          dep_name = arr[0]
@@ -9,8 +21,8 @@
              dep_name = arr[1].name()
          endif
          dynamic_module = arr.length() > 2 ? ' (dynamic module: @0@)'.format(arr[2]) : ''
---- origsrc/libvips-8.18.0/meson.build	2025-12-17 21:24:25.000000000 +0900
-+++ src/libvips-8.18.0/meson.build	2026-02-06 14:33:06.814350600 +0900
+--- origsrc/libvips-8.18.7/meson.build	2026-09-26 11:29:16.000000000 +0000
++++ src/libvips-8.18.7/meson.build	2026-11-12 06:35:54.758492400 +0000
 @@ -276,7 +276,11 @@ endif
  # quant package we use
  quantisation_package = disabler()
@@ -24,7 +36,7 @@
  if imagequant_dep.found()
      external_deps += imagequant_dep
      cfg_var.set('HAVE_IMAGEQUANT', true)
-@@ -742,9 +746,12 @@ build_features = {
+@@ -744,9 +748,12 @@ build_features = {
  # which will make summary fail
  seen_deps = []
  foreach dep: external_deps + module_deps
@@ -40,7 +52,7 @@
      endif
  endforeach
  foreach section_title, section : build_summary
-@@ -754,7 +761,7 @@ foreach section_title, section: build_fe
+@@ -756,7 +763,7 @@ foreach section_title, section: build_fe
      foreach key, arr : section
          dep_name = arr[0]
          found = arr[1].found()
@@ -49,3 +61,13 @@
              dep_name = arr[1].name()
          endif
          dynamic_module = arr.length() > 2 ? [' (dynamic module: ', arr[2], ')'] : []
+--- origsrc/libvips-8.18.7/test/variables.sh.in	2026-09-26 11:29:16.000000000 +0000
++++ src/libvips-8.18.7/test/variables.sh.in	2026-11-12 06:35:54.758492400 +0000
+@@ -6,6 +6,7 @@ tmp=$top_builddir/test/tmp-$$
+ test_images=$top_srcdir/test/test-suite/images
+ image=$test_images/sample.jpg
+ mkdir -p $tmp
++export PATH="$top_builddir/libvips:$top_builddir/tools:$PATH"
+ vips=$top_builddir/tools/vips
+ vipsthumbnail=$top_builddir/tools/vipsthumbnail
+ vipsheader=$top_builddir/tools/vipsheader

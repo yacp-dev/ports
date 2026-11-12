@@ -12,6 +12,10 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	gcc-fortran
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
@@ -77,3 +81,5 @@ libcfp1_SUMMARY="${SUMMARY} (runtime / CFP arrays)"
 libcfp_devel_SUMMARY="${SUMMARY} (development / CFP arrays)"
 libzFORp1_SUMMARY="${SUMMARY} (runtime / fortran)"
 libzFORp_devel_SUMMARY="${SUMMARY} (development / fortran)"
+
+libzfp_devel_REQUIRES="libcfp-devel"

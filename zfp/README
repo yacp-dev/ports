@@ -6,23 +6,23 @@ streaming compression of integer and floating-point data, e.g., for
 applications that read and write large data sets to and from disk.
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libcfp1-1.0.1-1bl2
-  libgcc1-12.4.0-3
-  libgomp1-12.4.0-3
-  libstdc++6-12.4.0-3
-  libzFORp1-1.0.1-1bl2
-  libzfp1-1.0.1-1bl2
+  cygwin-3.6.12-1
+  libcfp1-1.0.1-1bl3
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libzFORp1-1.0.1-1bl3
+  libzfp1-1.0.1-1bl3
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-fortran-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/LLNL/zfp
@@ -129,7 +129,7 @@ Files included in the binary package:
   /usr/include/zfp/version.h
   /usr/lib/cmake/zfp/zfp-config-version.cmake
   /usr/lib/cmake/zfp/zfp-config.cmake
-  /usr/lib/cmake/zfp/zfp-targets-release.cmake
+  /usr/lib/cmake/zfp/zfp-targets-relwithdebinfo.cmake
   /usr/lib/cmake/zfp/zfp-targets.cmake
   /usr/lib/libzfp.dll.a
 
@@ -146,7 +146,7 @@ Files included in the binary package:
   /usr/include/zfp/internal/cfp/array4d.h
   /usr/include/zfp/internal/cfp/array4f.h
   /usr/include/zfp/internal/cfp/header.h
-  /usr/lib/cmake/zfp/cfp-targets-release.cmake
+  /usr/lib/cmake/zfp/cfp-targets-relwithdebinfo.cmake
   /usr/lib/cmake/zfp/cfp-targets.cmake
   /usr/lib/libcfp.dll.a
 
@@ -160,6 +160,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.1-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.1-1bl2 -----
 Rebuild with gcc-12.4.0

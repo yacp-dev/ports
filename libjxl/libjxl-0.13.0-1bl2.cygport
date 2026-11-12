@@ -1,6 +1,16 @@
 HOMEPAGE="https://github.com/${PN}/${PN}"
-GIT_URI="https://github.com/${PN}/${PN}.git"
-GIT_TAG="v${PV}"
+# the git submodules the build uses, which the tag's tarball leaves empty:
+# testdata for the tests, sjpeg and skcms compiled in. Keep them at the
+# commits the tag points to; the other submodules are system libraries here
+TESTDATA_REV="73695d303670c90e4d506ea89d9901b081385089"
+SJPEG_REV="dd4d9857c58a25713711a46d37385ad23ca2177e"
+SKCMS_REV="96d9171c94b937a1b5f0293de7309ac16311b722"
+SRC_URI="
+	https://github.com/${PN}/${PN}/archive/refs/tags/v${PV}.tar.gz#/${P}.tar.gz
+	https://github.com/${PN}/testdata/archive/${TESTDATA_REV}.tar.gz#/testdata-${TESTDATA_REV}.tar.gz
+	https://github.com/webmproject/sjpeg/archive/${SJPEG_REV}.tar.gz#/sjpeg-${SJPEG_REV}.tar.gz
+	https://github.com/google/skcms/archive/${SKCMS_REV}.tar.gz#/skcms-${SKCMS_REV}.tar.gz
+"
 
 CATEGORY="Libs"
 SUMMARY="JPEG XL image format reference implementation"
@@ -29,8 +39,17 @@ export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 export CFLAGS="${CFLAGS} -Wa,-muse-unaligned-vector-move"
 export CXXFLAGS="${CXXFLAGS} -Wa,-muse-unaligned-vector-move"
 
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose rmdir testdata third_party/sjpeg third_party/skcms
+	verbose mv ${origsrcdir}/testdata-${TESTDATA_REV} testdata
+	verbose mv ${origsrcdir}/sjpeg-${SJPEG_REV} third_party/sjpeg
+	verbose mv ${origsrcdir}/skcms-${SKCMS_REV} third_party/skcms
+}
+
 inherit cmake
-inherit git
 
 CYGCMAKE_ARGS="
 	-DBUILD_TESTING:BOOL=ON

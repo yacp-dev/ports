@@ -1,5 +1,5 @@
---- origsrc/bifrost-1.3.5/CMakeLists.txt	2024-03-16 00:20:17.000000000 +0900
-+++ src/bifrost-1.3.5/CMakeLists.txt	2024-12-12 23:27:06.559171200 +0900
+--- origsrc/bifrost-1.3.9/CMakeLists.txt	2026-08-11 15:47:31.000000000 +0000
++++ src/bifrost-1.3.9/CMakeLists.txt	2026-11-12 12:12:02.898783800 +0000
 @@ -11,10 +11,6 @@ SET(COMPILATION_ARCH "native" CACHE STRI
  # Enable AVX2 instructions
  SET(ENABLE_AVX2 "ON" CACHE STRING "ENABLE_AVX2")
@@ -11,7 +11,7 @@
  set(CMAKE_MACOSX_RPATH 1)
  
  set_property(SOURCE BlockedBloomFilter.cpp APPEND_STRING PROPERTY COMPILE_FLAGS " -funroll-loops")
-@@ -45,21 +41,6 @@ if(NOT CMAKE_BUILD_TYPE)
+@@ -53,21 +49,6 @@ if(NOT CMAKE_BUILD_TYPE)
    set(CMAKE_BUILD_TYPE "Release")
  endif(NOT CMAKE_BUILD_TYPE)
  
@@ -33,9 +33,39 @@
  MATH(EXPR PRINT_MAX_KMER_SIZE "${MAX_KMER_SIZE}-1")
  message("Maximum k-mer size: " ${PRINT_MAX_KMER_SIZE})
  
---- origsrc/bifrost-1.3.5/src/CMakeLists.txt	2024-03-16 00:20:17.000000000 +0900
-+++ src/bifrost-1.3.5/src/CMakeLists.txt	2024-12-12 23:32:12.154737600 +0900
-@@ -6,23 +6,22 @@ list(REMOVE_ITEM sources Bifrost.cpp)
+@@ -75,3 +56,10 @@ MATH(EXPR PRINT_MAX_GMER_SIZE "${MAX_GME
+ message("Maximum g-mer size: " ${PRINT_MAX_GMER_SIZE})
+ 
+ add_subdirectory(src)
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/bifrost.pc.in ${CMAKE_BINARY_DIR}/bifrost.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/bifrost.pc DESTINATION lib/pkgconfig)
+--- origsrc/bifrost-1.3.9/bifrost.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/bifrost-1.3.9/bifrost.pc.in	2026-11-12 12:12:02.898783800 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: bifrost
++Description: Highly parallel construction and indexing of colored and compacted de Bruijn graphs
++Version: @VERSION@
++Libs: -L${libdir} -lbifrost
++Cflags: -I${includedir}
+--- origsrc/bifrost-1.3.9/src/CMakeLists.txt	2026-08-11 15:47:31.000000000 +0000
++++ src/bifrost-1.3.9/src/CMakeLists.txt	2026-11-12 12:12:02.900811400 +0000
+@@ -1,28 +1,27 @@
+ file(GLOB sources *.cpp roaring.c)
+ file(GLOB headers *.h *.hpp *.hh *.tcc)
+ 
+-list(REMOVE_ITEM sources Bifrost.cpp)
++list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/Bifrost.cpp)
+ 
  add_definitions(-DMAX_KMER_SIZE=${MAX_KMER_SIZE})
  add_definitions(-DMAX_GMER_SIZE=${MAX_GMER_SIZE})
  
@@ -82,3 +112,19 @@
 -install(TARGETS bifrost_static DESTINATION lib)
 +install(TARGETS bifrost_dynamic RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
  install(FILES ${headers} DESTINATION include/bifrost)
+--- origsrc/bifrost-1.3.9/src/roaring.h	2026-08-11 15:47:31.000000000 +0000
++++ src/bifrost-1.3.9/src/roaring.h	2026-11-12 12:12:02.902825600 +0000
+@@ -6464,7 +6464,12 @@ bool roaring_bitmap_remove_checked(roari
+ /**
+  * Check if value x is present
+  */
+-inline bool roaring_bitmap_contains(const roaring_bitmap_t *r, uint32_t val) {
++#if defined(__cplusplus)
++static inline
++#else
++inline
++#endif
++bool roaring_bitmap_contains(const roaring_bitmap_t *r, uint32_t val) {
+     const uint16_t hb = val >> 16;
+     /*
+      * the next function call involves a binary search and lots of branching.

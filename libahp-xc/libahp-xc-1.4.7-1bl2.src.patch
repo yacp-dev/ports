@@ -1,5 +1,5 @@
---- origsrc/libahp-xc-1.4.7/CMakeLists.txt	2025-12-26 19:08:24.000000000 +0900
-+++ src/libahp-xc-1.4.7/CMakeLists.txt	2026-01-15 22:27:43.526722300 +0900
+--- origsrc/libahp-xc-1.4.7/CMakeLists.txt	2025-12-26 10:08:24.000000000 +0000
++++ src/libahp-xc-1.4.7/CMakeLists.txt	2026-11-12 21:36:05.447875300 +0000
 @@ -8,7 +8,6 @@ include(GNUInstallDirs)
  
  find_package(Threads REQUIRED)
@@ -39,8 +39,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libahp-xc.pc.in ${CMAKE_BINARY_DIR}/libahp-xc.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libahp-xc.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libahp-xc-1.4.7/libahp-xc.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libahp-xc-1.4.7/libahp-xc.pc.in	2026-01-15 22:21:45.965164000 +0900
+--- origsrc/libahp-xc-1.4.7/libahp-xc.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libahp-xc-1.4.7/libahp-xc.pc.in	2026-11-12 21:36:05.447875300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

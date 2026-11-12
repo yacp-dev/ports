@@ -5,64 +5,75 @@ data format. nifti-1 is a binary file format for storing medical image data,
 e.g. magnetic resonance image (MRI) and functional MRI (fMRI) brain images.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libnifti2-2.0.0-1bl4
-  zlib0-1.3.1-1
+  cygwin-3.6.12-1
+  libnifti2-3.0.1-1bl1
+  libznz3-3.0.1-1bl1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  ninja-1.12.0-1
-  zlib-devel-1.3.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
-  https://sourceforge.net/projects/niftilib/
+  https://github.com/NIFTI-Imaging/nifti_clib
 
 Canonical download:
-  mirror://sourceforge/niftilib/nifticlib-2.0.0.tar.gz
+  https://github.com/NIFTI-Imaging/nifti_clib/archive/refs/tags/v3.0.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack nifticlib-2.0.0-X-src.tar.xz
+  1. unpack nifticlib-3.0.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./nifticlib-2.0.0-X.cygport all
+        % cygport ./nifticlib-3.0.1-X.cygport all
 
 This will create:
-  /usr/src/nifticlib-2.0.0-X-src.tar.xz
-  /usr/src/nifticlib-2.0.0-X.tar.xz
-  /usr/src/libnifti2-2.0.0-X.tar.xz
-  /usr/src/libnifti-devel-2.0.0-X.tar.xz
+  /usr/src/nifticlib-3.0.1-X-src.tar.xz
+  /usr/src/nifticlib-3.0.1-X.tar.xz
+  /usr/src/libnifti2-3.0.1-X.tar.xz
+  /usr/src/libznz3-3.0.1-X.tar.xz
+  /usr/src/libnifti-devel-3.0.1-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (nifticlib)
-  /usr/bin/nifti1_test.exe
+  /usr/bin/nifti1_tool.exe
   /usr/bin/nifti_stats.exe
   /usr/bin/nifti_tool.exe
   /usr/share/doc/Cygwin/nifticlib.README
   /usr/share/doc/nifticlib/LICENSE
-  /usr/share/doc/nifticlib/README
+  /usr/share/doc/nifticlib/README.md
   /usr/share/doc/nifticlib/Updates.txt
 
 (libnifti2)
+  /usr/bin/cygnifti2-2.dll
   /usr/bin/cygnifticdf-2.dll
   /usr/bin/cygniftiio-2.dll
-  /usr/bin/cygznz-2.dll
+
+(libznz3)
+  /usr/bin/cygznz-3.dll
 
 (libnifti-devel)
   /usr/include/nifti/nifti1.h
   /usr/include/nifti/nifti1_io.h
-  /usr/include/nifti/nifti_tool.h
+  /usr/include/nifti/nifti2.h
+  /usr/include/nifti/nifti2_io.h
   /usr/include/nifti/nifticdf.h
   /usr/include/nifti/znzlib.h
+  /usr/lib/cmake/NIFTI/NIFTIConfig.cmake
+  /usr/lib/cmake/NIFTI/NIFTIConfigVersion.cmake
+  /usr/lib/cmake/NIFTI/NIFTITargets-relwithdebinfo.cmake
+  /usr/lib/cmake/NIFTI/NIFTITargets.cmake
+  /usr/lib/libnifti2.dll.a
   /usr/lib/libnifticdf.dll.a
   /usr/lib/libniftiio.dll.a
   /usr/lib/libznz.dll.a
@@ -70,6 +81,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0.1-1bl1 -----
+Version bump.
 
 ----- version 2.0.0-1bl4 -----
 Rebuild with gcc-12.4.0

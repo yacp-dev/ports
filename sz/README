@@ -1,68 +1,69 @@
-sz3
+sz
 ------------------------------------------
 Modular Error-bounded Lossy Compression Framework for Scientific Datasets
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libSZ3c3-3.2.1-1bl1
-  libgcc1-12.4.0-3
-  libgomp1-12.4.0-3
-  libhdf5_310-1.14.6-1
-  libhdf5sz3_3-3.2.1-1bl1
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libSZ3c3.4-3.4.0-1bl1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libhdf5_320-2.2.0-1
+  libhdf5sz3_3.4-3.4.0-1bl1
+  libstdc++6-14.4.0-1
   libzstd1-1.5.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libhdf5-devel-1.14.6-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  hdf5-2.2.0-1
+  libaec-devel-1.1.8-1
+  libgtest-devel-1.18.0-1bl1
+  libhdf5-devel-2.2.0-1
   libzstd-devel-1.5.7-1
-  ninja-1.12.1-1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/szcompressor/SZ3
 
 Canonical download:
-  https://github.com/szcompressor/SZ3/archive/refs/tags/v3.2.1.tar.gz
+  https://github.com/szcompressor/SZ3/archive/refs/tags/v3.4.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack sz3-3.2.1-X-src.tar.xz
+  1. unpack sz-3.4.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./sz3-3.2.1-X.cygport all
+        % cygport ./sz-3.4.0-X.cygport all
 
 This will create:
-  /usr/src/sz3-3.2.1-X-src.tar.xz
-  /usr/src/sz3-3.2.1-X.tar.xz
-  /usr/src/sz3-devel-3.2.1-X.tar.xz
-  /usr/src/libSZ3c3-3.2.1-X.tar.xz
-  /usr/src/libSZ3c-devel-3.2.1-X.tar.xz
-  /usr/src/libhdf5sz3_3-3.2.1-X.tar.xz
-  /usr/src/libhdf5sz3-devel-3.2.1-X.tar.xz
+  /usr/src/sz-3.4.0-X-src.tar.xz
+  /usr/src/sz-3.4.0-X.tar.xz
+  /usr/src/sz-devel-3.4.0-X.tar.xz
+  /usr/src/libSZ3c3.4-3.4.0-X.tar.xz
+  /usr/src/libhdf5sz3_3.4-3.4.0-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
-(sz3)
+(sz)
   /usr/bin/mdz.exe
   /usr/bin/mdz_smoke_test.exe
   /usr/bin/sz3.exe
   /usr/bin/sz3_smoke_test.exe
-  /usr/share/SZ3/testfloat_8_8_128.dat
-  /usr/share/doc/Cygwin/sz3.README
-  /usr/share/doc/sz3/README.md
-  /usr/share/doc/sz3/copyright-and-BSD-license.txt
+  /usr/share/doc/Cygwin/sz.README
+  /usr/share/doc/sz/README.md
+  /usr/share/doc/sz/copyright-and-BSD-license.txt
 
-(sz3-devel)
+(sz-devel)
   /usr/include/MDZ/mdz.hpp
+  /usr/include/SZ3/api/impl/SZAlgoBioMD.hpp
   /usr/include/SZ3/api/impl/SZAlgoInterp.hpp
   /usr/include/SZ3/api/impl/SZAlgoLorenzoReg.hpp
   /usr/include/SZ3/api/impl/SZAlgoNopred.hpp
@@ -72,39 +73,29 @@ Files included in the binary package:
   /usr/include/SZ3/api/sz.hpp
   /usr/include/SZ3/compressor/Compressor.hpp
   /usr/include/SZ3/compressor/SZGenericCompressor.hpp
-  /usr/include/SZ3/compressor/SZIterateCompressor.hpp
-  /usr/include/SZ3/compressor/specialized/SZBlockInterpolationCompressor.hpp
   /usr/include/SZ3/compressor/specialized/SZExaaltCompressor.hpp
-  /usr/include/SZ3/compressor/specialized/SZTruncateCompressor.hpp
+  /usr/include/SZ3/decomposition/BlockwiseDecomposition.hpp
   /usr/include/SZ3/decomposition/Decomposition.hpp
   /usr/include/SZ3/decomposition/InterpolationDecomposition.hpp
-  /usr/include/SZ3/decomposition/LorenzoRegressionDecomposition.hpp
   /usr/include/SZ3/decomposition/NoPredictionDecomposition.hpp
+  /usr/include/SZ3/decomposition/SZBioMDDecomposition.hpp
   /usr/include/SZ3/decomposition/TimeSeriesDecomposition.hpp
   /usr/include/SZ3/def.hpp
-  /usr/include/SZ3/encoder/ArithmeticEncoder.hpp
+  /usr/include/SZ3/deprecated/HuffmanEncoderV1.hpp
   /usr/include/SZ3/encoder/BypassEncoder.hpp
   /usr/include/SZ3/encoder/Encoder.hpp
   /usr/include/SZ3/encoder/HuffmanEncoder.hpp
-  /usr/include/SZ3/encoder/RunlengthEncoder.hpp
+  /usr/include/SZ3/encoder/SegmentedEncoder.hpp
   /usr/include/SZ3/lossless/Lossless.hpp
   /usr/include/SZ3/lossless/Lossless_bypass.hpp
   /usr/include/SZ3/lossless/Lossless_zstd.hpp
   /usr/include/SZ3/predictor/ComposedPredictor.hpp
   /usr/include/SZ3/predictor/LorenzoPredictor.hpp
-  /usr/include/SZ3/predictor/MetaLorenzoPredictor.hpp
-  /usr/include/SZ3/predictor/MetaRegressionPredictor.hpp
-  /usr/include/SZ3/predictor/PolyRegressionCoeffAux.hpp
-  /usr/include/SZ3/predictor/PolyRegressionCoeffAux.m
-  /usr/include/SZ3/predictor/PolyRegressionPredictor.hpp
   /usr/include/SZ3/predictor/Predictor.hpp
   /usr/include/SZ3/predictor/RegressionPredictor.hpp
-  /usr/include/SZ3/preprocessor/PreFilter.hpp
-  /usr/include/SZ3/preprocessor/PreProcessor.hpp
-  /usr/include/SZ3/preprocessor/Transpose.hpp
-  /usr/include/SZ3/preprocessor/Wavelet.hpp
   /usr/include/SZ3/quantizer/LinearQuantizer.hpp
   /usr/include/SZ3/quantizer/Quantizer.hpp
+  /usr/include/SZ3/utils/BlockwiseIterator.hpp
   /usr/include/SZ3/utils/ByteUtil.hpp
   /usr/include/SZ3/utils/Config.hpp
   /usr/include/SZ3/utils/Extraction.hpp
@@ -113,39 +104,32 @@ Files included in the binary package:
   /usr/include/SZ3/utils/Iterator.hpp
   /usr/include/SZ3/utils/KmeansUtil.hpp
   /usr/include/SZ3/utils/MemoryUtil.hpp
-  /usr/include/SZ3/utils/MetaDef.hpp
-  /usr/include/SZ3/utils/QuantOptimizatioin.hpp
+  /usr/include/SZ3/utils/QuantOptimization.hpp
+  /usr/include/SZ3/utils/Sample.hpp
   /usr/include/SZ3/utils/Statistic.hpp
   /usr/include/SZ3/utils/Timer.hpp
-  /usr/include/SZ3/utils/inih/INIReader.h
-  /usr/include/SZ3/utils/inih/LICENSE.txt
-  /usr/include/SZ3/utils/ska_hash/LICENSE.txt
-  /usr/include/SZ3/utils/ska_hash/bytell_hash_map.hpp
-  /usr/include/SZ3/utils/ska_hash/flat_hash_map.hpp
-  /usr/include/SZ3/utils/ska_hash/unordered_map.hpp
   /usr/include/SZ3/version.hpp
-  /usr/include/SZ3/version.hpp.in
+  /usr/include/SZ3c/sz3c.h
+  /usr/include/hdf5_sz3/H5Z_SZ3.hpp
+  /usr/lib/cmake/SZ3/HDF5SZ3-relwithdebinfo.cmake
+  /usr/lib/cmake/SZ3/HDF5SZ3.cmake
   /usr/lib/cmake/SZ3/SZ3Config.cmake
   /usr/lib/cmake/SZ3/SZ3ConfigVersion.cmake
   /usr/lib/cmake/SZ3/SZ3Targets.cmake
-
-(libSZ3c3)
-  /usr/bin/cygSZ3c-3.dll
-
-(libSZ3c-devel)
-  /usr/include/SZ3c/sz3c.h
+  /usr/lib/cmake/SZ3/SZ3c-relwithdebinfo.cmake
+  /usr/lib/cmake/SZ3/SZ3c.cmake
   /usr/lib/libSZ3c.dll.a
-
-(libhdf5sz3_3)
-  /usr/bin/cyghdf5sz3-3.dll
-
-(libhdf5sz3-devel)
-  /usr/include/hdf5_sz3/include/H5Z_SZ3.hpp
   /usr/lib/libhdf5sz3.dll.a
+
+(libSZ3c3.4)
+  /usr/bin/cygSZ3c-3.4.dll
+
+(libhdf5sz3_3.4)
+  /usr/bin/cyghdf5sz3-3.4.dll
 
 ------------------
 
 Port Notes:
 
------ version 3.2.1-1bl1 -----
-Initial release by fd0 <https://github.com/fd00/>
+----- version 3.4.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

@@ -1,0 +1,13 @@
+--- origsrc/kokkos-5.3.0/core/unit_test/TestTeamScan.hpp	2026-11-10 21:52:12.000000000 +0000
++++ src/kokkos-5.3.0/core/unit_test/TestTeamScan.hpp	2026-11-12 13:44:15.904292800 +0000
+@@ -15,6 +15,10 @@ import kokkos.core_impl;
+ #include <sstream>
+ #include <type_traits>
+ 
++#if defined(_N)
++#undef _N
++#endif
++
+ namespace Test {
+ 
+ template <class ExecutionSpace, class DataType>

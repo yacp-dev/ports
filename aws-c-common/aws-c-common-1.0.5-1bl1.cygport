@@ -33,19 +33,19 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	aws-c-common
-	libaws-c-common1
+	libaws-c-common1.0
 	libaws-c-common-devel
 "
 aws_c_common_CONTENTS="
 	usr/share
 "
-libaws_c_common1_CONTENTS="
-	usr/bin/cyg*-1.dll
+libaws_c_common1_0_CONTENTS="
+	usr/bin/cyg*-1.0.dll
 "
 libaws_c_common_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 aws_c_common_SUMMARY="${SUMMARY} (licensing & readmes)"
-libaws_c_common1_SUMMARY="${SUMMARY} (runtime)"
+libaws_c_common1_0_SUMMARY="${SUMMARY} (runtime)"
 libaws_c_common_devel_SUMMARY="${SUMMARY} (development)"

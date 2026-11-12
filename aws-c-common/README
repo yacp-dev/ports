@@ -4,41 +4,40 @@ Core c99 package for AWS SDK for C. Includes cross-platform primitives,
 configuration, data structures, and error handling.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libaws-c-common-devel-0.14.4-1bl1
-  libaws-c-common1-0.14.4-1bl1
+  cygwin-3.6.12-1
+  libaws-c-common-devel-1.0.5-1bl1
+  libaws-c-common1.0-1.0.5-1bl1
   libgcc1-14.4.0-1
-  pkg-config-3.0.4-2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
-  gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/awslabs/aws-c-common
 
 Canonical download:
-  https://github.com/awslabs/aws-c-common/archive/refs/tags/v0.14.4.tar.gz
+  https://github.com/awslabs/aws-c-common/archive/refs/tags/v1.0.5.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack aws-c-common-0.14.4-X-src.tar.xz
+  1. unpack aws-c-common-1.0.5-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./aws-c-common-0.14.4-X.cygport all
+        % cygport ./aws-c-common-1.0.5-X.cygport all
 
 This will create:
-  /usr/src/aws-c-common-0.14.4-X-src.tar.xz
-  /usr/src/aws-c-common-0.14.4-X.tar.xz
-  /usr/src/libaws-c-common1-0.14.4-X.tar.xz
-  /usr/src/libaws-c-common-devel-0.14.4-X.tar.xz
+  /usr/src/aws-c-common-1.0.5-X-src.tar.xz
+  /usr/src/aws-c-common-1.0.5-X.tar.xz
+  /usr/src/libaws-c-common1.0-1.0.5-X.tar.xz
+  /usr/src/libaws-c-common-devel-1.0.5-X.tar.xz
 
 -------------------------------------------
 
@@ -51,8 +50,8 @@ Files included in the binary package:
   /usr/share/doc/aws-c-common/NOTICE
   /usr/share/doc/aws-c-common/README.md
 
-(libaws-c-common1)
-  /usr/bin/cygaws-c-common-1.dll
+(libaws-c-common1.0)
+  /usr/bin/cygaws-c-common-1.0.dll
 
 (libaws-c-common-devel)
   /usr/include/aws/common/allocator.h
@@ -65,6 +64,7 @@ Files included in the binary package:
   /usr/include/aws/common/atomics_gnu.inl
   /usr/include/aws/common/atomics_gnu_old.inl
   /usr/include/aws/common/atomics_msvc.inl
+  /usr/include/aws/common/bignum.h
   /usr/include/aws/common/byte_buf.h
   /usr/include/aws/common/byte_order.h
   /usr/include/aws/common/byte_order.inl
@@ -134,6 +134,7 @@ Files included in the binary package:
   /usr/include/aws/common/thread.h
   /usr/include/aws/common/thread_scheduler.h
   /usr/include/aws/common/time.h
+  /usr/include/aws/common/tribool.h
   /usr/include/aws/common/uri.h
   /usr/include/aws/common/uuid.h
   /usr/include/aws/common/xml_parser.h
@@ -141,13 +142,14 @@ Files included in the binary package:
   /usr/include/aws/common/zero.inl
   /usr/include/aws/testing/aws_test_harness.h
   /usr/lib/cmake/aws-c-common/aws-c-common-config.cmake
-  /usr/lib/cmake/aws-c-common/aws-c-common-targets-release.cmake
+  /usr/lib/cmake/aws-c-common/aws-c-common-targets-relwithdebinfo.cmake
   /usr/lib/cmake/aws-c-common/aws-c-common-targets.cmake
   /usr/lib/cmake/aws-c-common/modules/AwsCFlags.cmake
   /usr/lib/cmake/aws-c-common/modules/AwsCRuntime.cmake
   /usr/lib/cmake/aws-c-common/modules/AwsCheckHeaders.cmake
   /usr/lib/cmake/aws-c-common/modules/AwsFeatureTests.cmake
   /usr/lib/cmake/aws-c-common/modules/AwsFindPackage.cmake
+  /usr/lib/cmake/aws-c-common/modules/AwsGetVersion.cmake
   /usr/lib/cmake/aws-c-common/modules/AwsLibFuzzer.cmake
   /usr/lib/cmake/aws-c-common/modules/AwsSIMD.cmake
   /usr/lib/cmake/aws-c-common/modules/AwsSanitizers.cmake
@@ -159,6 +161,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.5-1bl1 -----
+Version bump.
 
 ----- version 0.14.4-1bl1 -----
 Version bump.

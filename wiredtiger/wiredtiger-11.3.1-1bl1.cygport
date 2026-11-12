@@ -1,0 +1,66 @@
+HOMEPAGE="https://github.com/${PN}/${PN}"
+SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/${PV}.tar.gz"
+
+CATEGORY="Net"
+SUMMARY="High performance NoSQL extensible platform for data management"
+DESCRIPTION="WiredTiger is an high performance, scalable, production quality, NoSQL, Open
+Source extensible platform for data management."
+
+LICENSE="GPL-2.0-only OR GPL-3.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	liblz4-devel
+	libsnappy-devel
+	libzstd-devel
+	zlib-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DENABLE_PYTHON=OFF
+	-DENABLE_STRICT=OFF
+	-DHAVE_BUILTIN_EXTENSION_LZ4=1
+	-DHAVE_BUILTIN_EXTENSION_SNAPPY=1
+	-DHAVE_BUILTIN_EXTENSION_ZLIB=1
+	-DHAVE_BUILTIN_EXTENSION_ZSTD=1
+"
+
+src_test() {
+	cd ${B}
+	# Exclude long-running stress tests and Cygwin-incompatible tests:
+	# - test_checkpoint_*, test_fops (>8m), test_schema_abort (>5m), and tests
+	#   labeled long_running/cppsuite/sanitizer_long: multi-threaded endurance
+	#   benchmarks (taking 15m to >1h upstream) that exceed the CI 10-minute timeout.
+	# - test_random_directio: Cygwin lacks O_DIRECT support.
+	# - test_syscall: relies on Linux-specific syscall interfaces.
+	# - test_format: heavy randomized stress test.
+	# - test_wt11126_compile_config: host compiler environment test.
+	PATH="${B}:${PATH}" ctest -j 4 \
+		-LE "long_running|test_checkpoint|cppsuite|sanitizer_long" \
+		-E "test_random_directio|test_syscall|test_format|test_wt11126_compile_config|test_fops|test_schema_abort|cppsuite" \
+		--output-on-failure
+}
+
+PKG_NAMES="
+	wiredtiger
+	libwiredtiger${PV}
+	libwiredtiger-devel
+"
+wiredtiger_CONTENTS="
+	usr/bin/wt.exe
+	usr/share/doc
+"
+libwiredtiger11_3_1_CONTENTS="
+	usr/bin/cygwiredtiger-11.3.1.dll
+"
+libwiredtiger_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+wiredtiger_SUMMARY="${SUMMARY} (utilities)"
+libwiredtiger11_3_1_SUMMARY="${SUMMARY} (runtime)"
+libwiredtiger_devel_SUMMARY="${SUMMARY} (development)"

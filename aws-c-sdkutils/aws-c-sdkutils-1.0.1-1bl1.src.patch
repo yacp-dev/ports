@@ -1,17 +1,6 @@
---- origsrc/aws-c-sdkutils-0.2.8/CMakeLists.txt	2026-07-29 05:27:01.000000000 +0900
-+++ src/aws-c-sdkutils-0.2.8/CMakeLists.txt	2026-07-31 11:09:05.978008900 +0900
-@@ -54,6 +54,10 @@ target_link_libraries(${PROJECT_NAME} PU
- # Our ABI is not yet stable
- set_target_properties(${PROJECT_NAME} PROPERTIES VERSION 1.0.0)
- 
-+if (DEFINED SOVERSION)
-+    set_target_properties(${PROJECT_NAME} PROPERTIES SOVERSION "${SOVERSION}")
-+endif()
-+
- target_include_directories(${PROJECT_NAME} PUBLIC
-         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-         $<INSTALL_INTERFACE:include>)
-@@ -78,7 +82,7 @@ else()
+--- origsrc/aws-c-sdkutils-1.0.1/CMakeLists.txt	2026-10-23 16:32:12.000000000 +0000
++++ src/aws-c-sdkutils-1.0.1/CMakeLists.txt	2026-11-12 12:17:54.810158100 +0000
+@@ -93,7 +93,7 @@ else()
  endif()
  
  install(EXPORT "${PROJECT_NAME}-targets"
@@ -20,7 +9,7 @@
      NAMESPACE AWS::
      COMPONENT Development)
  
-@@ -96,3 +100,10 @@ if (NOT CMAKE_CROSSCOMPILING)
+@@ -111,3 +111,10 @@ if (NOT CMAKE_CROSSCOMPILING)
          add_subdirectory(tests)
      endif()
  endif()
@@ -31,8 +20,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/aws-c-sdkutils.pc.in ${CMAKE_BINARY_DIR}/aws-c-sdkutils.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/aws-c-sdkutils.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/aws-c-sdkutils-0.2.8/aws-c-sdkutils.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/aws-c-sdkutils-0.2.8/aws-c-sdkutils.pc.in	2026-07-31 11:09:05.984047800 +0900
+--- origsrc/aws-c-sdkutils-1.0.1/aws-c-sdkutils.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/aws-c-sdkutils-1.0.1/aws-c-sdkutils.pc.in	2026-11-12 12:17:54.810158100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -44,8 +33,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -laws-c-sdkutils
 +Cflags: -I${includedir}
---- origsrc/aws-c-sdkutils-0.2.8/cmake/aws-c-sdkutils-config.cmake	2026-07-29 05:27:01.000000000 +0900
-+++ src/aws-c-sdkutils-0.2.8/cmake/aws-c-sdkutils-config.cmake	2026-07-31 11:09:05.984047800 +0900
+--- origsrc/aws-c-sdkutils-1.0.1/cmake/aws-c-sdkutils-config.cmake	2026-10-23 16:32:12.000000000 +0000
++++ src/aws-c-sdkutils-1.0.1/cmake/aws-c-sdkutils-config.cmake	2026-11-12 12:17:54.812175200 +0000
 @@ -2,21 +2,4 @@ include(CMakeFindDependencyMacro)
  
  find_dependency(aws-c-common)

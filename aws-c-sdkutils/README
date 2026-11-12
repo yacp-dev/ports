@@ -3,41 +3,41 @@ aws-c-sdkutils
 C99 library implementing AWS SDK specific utilities
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libaws-c-common1-0.14.4-1bl1
-  libaws-c-sdkutils-devel-0.2.8-1bl1
-  libaws-c-sdkutils0-0.2.8-1bl1
-  pkg-config-3.0.4-2
+  cygwin-3.6.12-1
+  libaws-c-common1.0-1.0.5-1bl1
+  libaws-c-sdkutils-devel-1.0.1-1bl1
+  libaws-c-sdkutils1.0-1.0.1-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
-  libaws-c-common-devel-0.14.4-1bl1
+  libaws-c-common-devel-1.0.5-1bl1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/awslabs/aws-c-sdkutils
 
 Canonical download:
-  https://github.com/awslabs/aws-c-sdkutils/archive/refs/tags/v0.2.8.tar.gz
+  https://github.com/awslabs/aws-c-sdkutils/archive/refs/tags/v1.0.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack aws-c-sdkutils-0.2.8-X-src.tar.xz
+  1. unpack aws-c-sdkutils-1.0.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./aws-c-sdkutils-0.2.8-X.cygport all
+        % cygport ./aws-c-sdkutils-1.0.1-X.cygport all
 
 This will create:
-  /usr/src/aws-c-sdkutils-0.2.8-X-src.tar.xz
-  /usr/src/aws-c-sdkutils-0.2.8-X.tar.xz
-  /usr/src/libaws-c-sdkutils0-0.2.8-X.tar.xz
-  /usr/src/libaws-c-sdkutils-devel-0.2.8-X.tar.xz
+  /usr/src/aws-c-sdkutils-1.0.1-X-src.tar.xz
+  /usr/src/aws-c-sdkutils-1.0.1-X.tar.xz
+  /usr/src/libaws-c-sdkutils1.0-1.0.1-X.tar.xz
+  /usr/src/libaws-c-sdkutils-devel-1.0.1-X.tar.xz
 
 -------------------------------------------
 
@@ -49,10 +49,11 @@ Files included in the binary package:
   /usr/share/doc/aws-c-sdkutils/NOTICE
   /usr/share/doc/aws-c-sdkutils/README.md
 
-(libaws-c-sdkutils0)
-  /usr/bin/cygaws-c-sdkutils-0.dll
+(libaws-c-sdkutils1.0)
+  /usr/bin/cygaws-c-sdkutils-1.0.dll
 
 (libaws-c-sdkutils-devel)
+  /usr/include/aws/sdkutils/aws_chunked_decoder.h
   /usr/include/aws/sdkutils/aws_profile.h
   /usr/include/aws/sdkutils/endpoints_bdd_engine.h
   /usr/include/aws/sdkutils/endpoints_rule_engine.h
@@ -61,7 +62,7 @@ Files included in the binary package:
   /usr/include/aws/sdkutils/resource_name.h
   /usr/include/aws/sdkutils/sdkutils.h
   /usr/lib/cmake/aws-c-sdkutils/aws-c-sdkutils-config.cmake
-  /usr/lib/cmake/aws-c-sdkutils/aws-c-sdkutils-targets-release.cmake
+  /usr/lib/cmake/aws-c-sdkutils/aws-c-sdkutils-targets-relwithdebinfo.cmake
   /usr/lib/cmake/aws-c-sdkutils/aws-c-sdkutils-targets.cmake
   /usr/lib/libaws-c-sdkutils.dll.a
   /usr/lib/pkgconfig/aws-c-sdkutils.pc
@@ -69,6 +70,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.1-1bl1 -----
+Version bump.
 
 ----- version 0.2.8-1bl1 -----
 Version bump.

@@ -10,42 +10,42 @@ backends in development.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.0-0.212.g6af8fea4bbad
-  libgcc1-12.4.0-3
-  libhwloc15-2.10.0-1
-  libkokkos4.4-4.4.01-1bl1
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libhwloc15-2.13.0-1
+  libkokkos5.3-5.3.0-1bl1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libhwloc-devel-2.10.0-1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  libhwloc-devel-2.13.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/kokkos/kokkos
 
 Canonical download:
-  https://github.com/kokkos/kokkos/archive/refs/tags/4.4.01.tar.gz
+  https://github.com/kokkos/kokkos/archive/refs/tags/5.3.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack kokkos-4.4.01-X-src.tar.xz
+  1. unpack kokkos-5.3.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./kokkos-4.4.01-X.cygport all
+        % cygport ./kokkos-5.3.0-X.cygport all
 
 This will create:
-  /usr/src/kokkos-4.4.01-X-src.tar.xz
-  /usr/src/kokkos-4.4.01-X.tar.xz
-  /usr/src/libkokkos4.4-4.4.01-X.tar.xz
-  /usr/src/libkokkos-devel-4.4.01-X.tar.xz
+  /usr/src/kokkos-5.3.0-X-src.tar.xz
+  /usr/src/kokkos-5.3.0-X.tar.xz
+  /usr/src/libkokkos5.3-5.3.0-X.tar.xz
+  /usr/src/libkokkos-devel-5.3.0-X.tar.xz
 
 -------------------------------------------
 
@@ -56,24 +56,18 @@ Files included in the binary package:
   /usr/bin/kokkos_launch_compiler
   /usr/bin/nvcc_wrapper
   /usr/share/doc/Cygwin/kokkos.README
-  /usr/share/doc/kokkos/BUILD.md
   /usr/share/doc/kokkos/CHANGELOG.md
+  /usr/share/doc/kokkos/CODE_OF_CONDUCT.md
   /usr/share/doc/kokkos/CONTRIBUTING.md
-  /usr/share/doc/kokkos/Copyright.txt
-  /usr/share/doc/kokkos/HOW_TO_SNAPSHOT
+  /usr/share/doc/kokkos/COPYRIGHT.md
   /usr/share/doc/kokkos/LICENSE
   /usr/share/doc/kokkos/README.md
-  /usr/share/doc/kokkos/SAND2017-10464-Kokkos-Task-DAG.pdf
   /usr/share/doc/kokkos/SECURITY.md
-  /usr/share/doc/kokkos/Spack.md
   /usr/share/doc/kokkos/TuningDesign.md
-  /usr/share/doc/kokkos/design_notes_space_instances.md
-  /usr/share/doc/kokkos/master_history.txt
 
-(libkokkos4.4)
-  /usr/bin/cygkokkoscontainers-4.4.dll
-  /usr/bin/cygkokkoscore-4.4.dll
-  /usr/bin/cygkokkossimd-4.4.dll
+(libkokkos5.3)
+  /usr/bin/cygkokkoscontainers-5.3.dll
+  /usr/bin/cygkokkoscore-5.3.dll
 
 (libkokkos-devel)
   /usr/include/kokkos/Cuda/Kokkos_Cuda.hpp
@@ -85,6 +79,7 @@ Files included in the binary package:
   /usr/include/kokkos/Cuda/Kokkos_Cuda_Graph_Impl.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_Half_Conversion.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_Half_Impl_Type.hpp
+  /usr/include/kokkos/Cuda/Kokkos_Cuda_Half_MathematicalFunctions.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_Instance.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_KernelLaunch.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_MDRangePolicy.hpp
@@ -92,11 +87,9 @@ Files included in the binary package:
   /usr/include/kokkos/Cuda/Kokkos_Cuda_Parallel_Range.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_Parallel_Team.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_ReduceScan.hpp
-  /usr/include/kokkos/Cuda/Kokkos_Cuda_Task.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_Team.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_UniqueToken.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_Vectorization.hpp
-  /usr/include/kokkos/Cuda/Kokkos_Cuda_View.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_WorkGraphPolicy.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_ZeroMemset.hpp
   /usr/include/kokkos/Cuda/Kokkos_Cuda_abort.hpp
@@ -110,7 +103,9 @@ Files included in the binary package:
   /usr/include/kokkos/HIP/Kokkos_HIP_Graph_Impl.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_Half_Conversion.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_Half_Impl_Type.hpp
+  /usr/include/kokkos/HIP/Kokkos_HIP_Half_MathematicalFunctions.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_Instance.hpp
+  /usr/include/kokkos/HIP/Kokkos_HIP_IsXnack.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_KernelLaunch.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_MDRangePolicy.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_ParallelFor_MDRange.hpp
@@ -121,7 +116,6 @@ Files included in the binary package:
   /usr/include/kokkos/HIP/Kokkos_HIP_ParallelReduce_Team.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_ParallelScan_Range.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_ReduceScan.hpp
-  /usr/include/kokkos/HIP/Kokkos_HIP_SharedAllocationRecord.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_Shuffle_Reduce.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_Space.hpp
   /usr/include/kokkos/HIP/Kokkos_HIP_Team.hpp
@@ -132,7 +126,6 @@ Files included in the binary package:
   /usr/include/kokkos/HIP/Kokkos_HIP_ZeroMemset.hpp
   /usr/include/kokkos/HPX/Kokkos_HPX.hpp
   /usr/include/kokkos/HPX/Kokkos_HPX_MDRangePolicy.hpp
-  /usr/include/kokkos/HPX/Kokkos_HPX_Task.hpp
   /usr/include/kokkos/HPX/Kokkos_HPX_WorkGraphPolicy.hpp
   /usr/include/kokkos/KokkosCore_Config_DeclareBackend.hpp
   /usr/include/kokkos/KokkosCore_Config_FwdBackend.hpp
@@ -146,7 +139,6 @@ Files included in the binary package:
   /usr/include/kokkos/Kokkos_Array.hpp
   /usr/include/kokkos/Kokkos_Assert.hpp
   /usr/include/kokkos/Kokkos_Atomic.hpp
-  /usr/include/kokkos/Kokkos_Atomics_Desul_Volatile_Wrapper.hpp
   /usr/include/kokkos/Kokkos_Atomics_Desul_Wrapper.hpp
   /usr/include/kokkos/Kokkos_BitManipulation.hpp
   /usr/include/kokkos/Kokkos_Bitset.hpp
@@ -163,14 +155,14 @@ Files included in the binary package:
   /usr/include/kokkos/Kokkos_DynamicView.hpp
   /usr/include/kokkos/Kokkos_ErrorReporter.hpp
   /usr/include/kokkos/Kokkos_ExecPolicy.hpp
-  /usr/include/kokkos/Kokkos_Extents.hpp
   /usr/include/kokkos/Kokkos_Functional.hpp
-  /usr/include/kokkos/Kokkos_Future.hpp
   /usr/include/kokkos/Kokkos_Graph.hpp
   /usr/include/kokkos/Kokkos_GraphNode.hpp
   /usr/include/kokkos/Kokkos_Graph_fwd.hpp
   /usr/include/kokkos/Kokkos_Half.hpp
   /usr/include/kokkos/Kokkos_HostSpace.hpp
+  /usr/include/kokkos/Kokkos_InitializeFinalize.hpp
+  /usr/include/kokkos/Kokkos_Iterator.hpp
   /usr/include/kokkos/Kokkos_Layout.hpp
   /usr/include/kokkos/Kokkos_Macros.hpp
   /usr/include/kokkos/Kokkos_MathematicalConstants.hpp
@@ -184,8 +176,9 @@ Files included in the binary package:
   /usr/include/kokkos/Kokkos_OffsetView.hpp
   /usr/include/kokkos/Kokkos_Pair.hpp
   /usr/include/kokkos/Kokkos_Parallel.hpp
+  /usr/include/kokkos/Kokkos_Parallel_For.hpp
   /usr/include/kokkos/Kokkos_Parallel_Reduce.hpp
-  /usr/include/kokkos/Kokkos_PointerOwnership.hpp
+  /usr/include/kokkos/Kokkos_Parallel_Scan.hpp
   /usr/include/kokkos/Kokkos_Printf.hpp
   /usr/include/kokkos/Kokkos_Profiling_ProfileSection.hpp
   /usr/include/kokkos/Kokkos_Profiling_ScopedRegion.hpp
@@ -195,27 +188,50 @@ Files included in the binary package:
   /usr/include/kokkos/Kokkos_SIMD.hpp
   /usr/include/kokkos/Kokkos_SIMD_AVX2.hpp
   /usr/include/kokkos/Kokkos_SIMD_AVX512.hpp
+  /usr/include/kokkos/Kokkos_SIMD_Base.hpp
   /usr/include/kokkos/Kokkos_SIMD_Common.hpp
   /usr/include/kokkos/Kokkos_SIMD_Common_Math.hpp
   /usr/include/kokkos/Kokkos_SIMD_NEON.hpp
+  /usr/include/kokkos/Kokkos_SIMD_SVE.hpp
   /usr/include/kokkos/Kokkos_SIMD_Scalar.hpp
+  /usr/include/kokkos/Kokkos_SIMD_undef.hpp
   /usr/include/kokkos/Kokkos_ScatterView.hpp
+  /usr/include/kokkos/Kokkos_ScopeGuard.hpp
   /usr/include/kokkos/Kokkos_ScratchSpace.hpp
   /usr/include/kokkos/Kokkos_Sort.hpp
-  /usr/include/kokkos/Kokkos_StaticCrsGraph.hpp
   /usr/include/kokkos/Kokkos_StdAlgorithms.hpp
   /usr/include/kokkos/Kokkos_Swap.hpp
-  /usr/include/kokkos/Kokkos_TaskScheduler.hpp
-  /usr/include/kokkos/Kokkos_TaskScheduler_fwd.hpp
   /usr/include/kokkos/Kokkos_Timer.hpp
   /usr/include/kokkos/Kokkos_Tuners.hpp
+  /usr/include/kokkos/Kokkos_TypeInfo.hpp
   /usr/include/kokkos/Kokkos_UniqueToken.hpp
   /usr/include/kokkos/Kokkos_UnorderedMap.hpp
-  /usr/include/kokkos/Kokkos_Vector.hpp
   /usr/include/kokkos/Kokkos_Vectorization.hpp
   /usr/include/kokkos/Kokkos_View.hpp
   /usr/include/kokkos/Kokkos_WorkGraphPolicy.hpp
   /usr/include/kokkos/Kokkos_hwloc.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSiliconSpace.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_Abort.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_DeepCopy.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_HeapBuffer.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_InitializationCallbacks.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_Instance.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_Intrinsics.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_MDRangePolicy.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_PageAlignedData.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_ParallelFor_Range.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_ParallelFor_Team.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_ParallelReduce.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_ParallelReduce_Range.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_ParallelReduce_Team.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_ParallelScan_Range.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_ParallelScan_Team.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_Parallel_MDRange.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_Printf.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_Team.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_ThreadSpaceGuard.hpp
+  /usr/include/kokkos/NextSilicon/Kokkos_NextSilicon_ZeroMemset.hpp
   /usr/include/kokkos/OpenACC/Kokkos_OpenACC.hpp
   /usr/include/kokkos/OpenACC/Kokkos_OpenACCSpace.hpp
   /usr/include/kokkos/OpenACC/Kokkos_OpenACC_DeepCopy.hpp
@@ -231,7 +247,6 @@ Files included in the binary package:
   /usr/include/kokkos/OpenACC/Kokkos_OpenACC_ParallelReduce_Team.hpp
   /usr/include/kokkos/OpenACC/Kokkos_OpenACC_ParallelScan_Range.hpp
   /usr/include/kokkos/OpenACC/Kokkos_OpenACC_ScheduleType.hpp
-  /usr/include/kokkos/OpenACC/Kokkos_OpenACC_SharedAllocationRecord.hpp
   /usr/include/kokkos/OpenACC/Kokkos_OpenACC_Team.hpp
   /usr/include/kokkos/OpenACC/Kokkos_OpenACC_Traits.hpp
   /usr/include/kokkos/OpenMP/Kokkos_OpenMP.hpp
@@ -240,30 +255,10 @@ Files included in the binary package:
   /usr/include/kokkos/OpenMP/Kokkos_OpenMP_Parallel_For.hpp
   /usr/include/kokkos/OpenMP/Kokkos_OpenMP_Parallel_Reduce.hpp
   /usr/include/kokkos/OpenMP/Kokkos_OpenMP_Parallel_Scan.hpp
-  /usr/include/kokkos/OpenMP/Kokkos_OpenMP_Task.hpp
   /usr/include/kokkos/OpenMP/Kokkos_OpenMP_Team.hpp
   /usr/include/kokkos/OpenMP/Kokkos_OpenMP_UniqueToken.hpp
   /usr/include/kokkos/OpenMP/Kokkos_OpenMP_WorkGraphPolicy.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTargetSpace.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_Abort.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_Error.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_Instance.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_MDRangePolicy.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_Macros.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_Parallel.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_ParallelFor_MDRange.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_ParallelFor_Range.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_ParallelFor_Team.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_ParallelReduce_MDRange.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_ParallelReduce_Range.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_ParallelReduce_Team.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_ParallelScan_Range.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_ParallelScan_Team.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_Parallel_Common.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_Reducer.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_Task.hpp
-  /usr/include/kokkos/OpenMPTarget/Kokkos_OpenMPTarget_UniqueToken.hpp
+  /usr/include/kokkos/OpenMP/Kokkos_OpenMP_ZeroMemset.hpp
   /usr/include/kokkos/SYCL/Kokkos_SYCL.hpp
   /usr/include/kokkos/SYCL/Kokkos_SYCL_Abort.hpp
   /usr/include/kokkos/SYCL/Kokkos_SYCL_DeepCopy.hpp
@@ -272,6 +267,7 @@ Files included in the binary package:
   /usr/include/kokkos/SYCL/Kokkos_SYCL_Graph_Impl.hpp
   /usr/include/kokkos/SYCL/Kokkos_SYCL_Half_Conversion.hpp
   /usr/include/kokkos/SYCL/Kokkos_SYCL_Half_Impl_Type.hpp
+  /usr/include/kokkos/SYCL/Kokkos_SYCL_Half_MathematicalFunctions.hpp
   /usr/include/kokkos/SYCL/Kokkos_SYCL_Instance.hpp
   /usr/include/kokkos/SYCL/Kokkos_SYCL_MDRangePolicy.hpp
   /usr/include/kokkos/SYCL/Kokkos_SYCL_ParallelFor_MDRange.hpp
@@ -292,7 +288,6 @@ Files included in the binary package:
   /usr/include/kokkos/Serial/Kokkos_Serial_Parallel_MDRange.hpp
   /usr/include/kokkos/Serial/Kokkos_Serial_Parallel_Range.hpp
   /usr/include/kokkos/Serial/Kokkos_Serial_Parallel_Team.hpp
-  /usr/include/kokkos/Serial/Kokkos_Serial_Task.hpp
   /usr/include/kokkos/Serial/Kokkos_Serial_UniqueToken.hpp
   /usr/include/kokkos/Serial/Kokkos_Serial_WorkGraphPolicy.hpp
   /usr/include/kokkos/Serial/Kokkos_Serial_ZeroMemset.hpp
@@ -311,8 +306,17 @@ Files included in the binary package:
   /usr/include/kokkos/Threads/Kokkos_Threads_Team.hpp
   /usr/include/kokkos/Threads/Kokkos_Threads_UniqueToken.hpp
   /usr/include/kokkos/Threads/Kokkos_Threads_WorkGraphPolicy.hpp
+  /usr/include/kokkos/Threads/Kokkos_Threads_ZeroMemset.hpp
   /usr/include/kokkos/View/Hooks/Kokkos_ViewHooks.hpp
+  /usr/include/kokkos/View/Kokkos_BasicView.hpp
+  /usr/include/kokkos/View/Kokkos_ViewAccessPreconditionsCheck.hpp
   /usr/include/kokkos/View/Kokkos_ViewAlloc.hpp
+  /usr/include/kokkos/View/Kokkos_ViewCommonType.hpp
+  /usr/include/kokkos/View/Kokkos_ViewCtor.hpp
+  /usr/include/kokkos/View/Kokkos_ViewDataAnalysis.hpp
+  /usr/include/kokkos/View/Kokkos_ViewTracker.hpp
+  /usr/include/kokkos/View/Kokkos_ViewTraits.hpp
+  /usr/include/kokkos/View/Kokkos_ViewUniformType.hpp
   /usr/include/kokkos/View/MDSpan/Kokkos_MDSpan_Accessor.hpp
   /usr/include/kokkos/View/MDSpan/Kokkos_MDSpan_Extents.hpp
   /usr/include/kokkos/View/MDSpan/Kokkos_MDSpan_Header.hpp
@@ -320,9 +324,9 @@ Files included in the binary package:
   /usr/include/kokkos/decl/Kokkos_Declare_CUDA.hpp
   /usr/include/kokkos/decl/Kokkos_Declare_HIP.hpp
   /usr/include/kokkos/decl/Kokkos_Declare_HPX.hpp
+  /usr/include/kokkos/decl/Kokkos_Declare_NEXTSILICON.hpp
   /usr/include/kokkos/decl/Kokkos_Declare_OPENACC.hpp
   /usr/include/kokkos/decl/Kokkos_Declare_OPENMP.hpp
-  /usr/include/kokkos/decl/Kokkos_Declare_OPENMPTARGET.hpp
   /usr/include/kokkos/decl/Kokkos_Declare_SERIAL.hpp
   /usr/include/kokkos/decl/Kokkos_Declare_SYCL.hpp
   /usr/include/kokkos/decl/Kokkos_Declare_THREADS.hpp
@@ -353,6 +357,15 @@ Files included in the binary package:
   /usr/include/kokkos/desul/atomics/Fetch_Op_SYCL.hpp
   /usr/include/kokkos/desul/atomics/Fetch_Op_ScopeCaller.hpp
   /usr/include/kokkos/desul/atomics/Generic.hpp
+  /usr/include/kokkos/desul/atomics/Load_And_Store.hpp
+  /usr/include/kokkos/desul/atomics/Load_And_Store_CUDA.hpp
+  /usr/include/kokkos/desul/atomics/Load_And_Store_GCC.hpp
+  /usr/include/kokkos/desul/atomics/Load_And_Store_HIP.hpp
+  /usr/include/kokkos/desul/atomics/Load_And_Store_MSVC.hpp
+  /usr/include/kokkos/desul/atomics/Load_And_Store_OpenACC.hpp
+  /usr/include/kokkos/desul/atomics/Load_And_Store_OpenMP.hpp
+  /usr/include/kokkos/desul/atomics/Load_And_Store_SYCL.hpp
+  /usr/include/kokkos/desul/atomics/Load_And_Store_ScopeCaller.hpp
   /usr/include/kokkos/desul/atomics/Lock_Array.hpp
   /usr/include/kokkos/desul/atomics/Lock_Array_CUDA.hpp
   /usr/include/kokkos/desul/atomics/Lock_Array_HIP.hpp
@@ -364,6 +377,13 @@ Files included in the binary package:
   /usr/include/kokkos/desul/atomics/Lock_Based_Fetch_Op_OpenACC.hpp
   /usr/include/kokkos/desul/atomics/Lock_Based_Fetch_Op_SYCL.hpp
   /usr/include/kokkos/desul/atomics/Lock_Free_Fetch_Op.hpp
+  /usr/include/kokkos/desul/atomics/Lock_Free_Types_CUDA.hpp
+  /usr/include/kokkos/desul/atomics/Lock_Free_Types_GCC.hpp
+  /usr/include/kokkos/desul/atomics/Lock_Free_Types_HIP.hpp
+  /usr/include/kokkos/desul/atomics/Lock_Free_Types_MSVC.hpp
+  /usr/include/kokkos/desul/atomics/Lock_Free_Types_OpenACC.hpp
+  /usr/include/kokkos/desul/atomics/Lock_Free_Types_OpenMP.hpp
+  /usr/include/kokkos/desul/atomics/Lock_Free_Types_SYCL.hpp
   /usr/include/kokkos/desul/atomics/Macros.hpp
   /usr/include/kokkos/desul/atomics/Operator_Function_Objects.hpp
   /usr/include/kokkos/desul/atomics/Thread_Fence.hpp
@@ -377,6 +397,7 @@ Files included in the binary package:
   /usr/include/kokkos/desul/atomics/Thread_Fence_ScopeCaller.hpp
   /usr/include/kokkos/desul/atomics/cuda/CUDA_asm.hpp
   /usr/include/kokkos/desul/atomics/cuda/CUDA_asm_exchange.hpp
+  /usr/include/kokkos/desul/atomics/cuda/CUDA_asm_loadstore.hpp
   /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm.inc
   /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_atomic_fetch_op.inc
   /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_atomic_fetch_op.inc_isglobal
@@ -387,50 +408,33 @@ Files included in the binary package:
   /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_exchange.inc
   /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_exchange_memorder.inc
   /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_exchange_op.inc
+  /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_load_op.inc
+  /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_loadstore.inc
+  /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_loadstore_memorder.inc
   /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_memorder.inc
+  /usr/include/kokkos/desul/atomics/cuda/cuda_cc7_asm_store_op.inc
+  /usr/include/kokkos/desul/atomics/cuda/cuda_cc9_asm_exchange.inc
+  /usr/include/kokkos/desul/atomics/cuda/cuda_cc9_asm_exchange_memorder.inc
+  /usr/include/kokkos/desul/atomics/cuda/cuda_cc9_asm_exchange_op.inc
   /usr/include/kokkos/desul/atomics/openmp/OpenMP_40.hpp
   /usr/include/kokkos/desul/atomics/openmp/OpenMP_40_op.inc
-  /usr/include/kokkos/experimental/__p0009_bits/compressed_pair.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/config.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/default_accessor.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/dynamic_extent.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/extents.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/full_extent_t.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/layout_left.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/layout_right.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/layout_stride.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/macros.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/mdspan.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/no_unique_address.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/trait_backports.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/type_list.hpp
-  /usr/include/kokkos/experimental/__p0009_bits/utility.hpp
-  /usr/include/kokkos/experimental/__p1684_bits/mdarray.hpp
-  /usr/include/kokkos/experimental/__p2389_bits/dims.hpp
-  /usr/include/kokkos/experimental/__p2630_bits/strided_slice.hpp
-  /usr/include/kokkos/experimental/__p2630_bits/submdspan.hpp
-  /usr/include/kokkos/experimental/__p2630_bits/submdspan_extents.hpp
-  /usr/include/kokkos/experimental/__p2630_bits/submdspan_mapping.hpp
-  /usr/include/kokkos/experimental/__p2642_bits/layout_padded.hpp
-  /usr/include/kokkos/experimental/__p2642_bits/layout_padded_fwd.hpp
   /usr/include/kokkos/fwd/Kokkos_Fwd_CUDA.hpp
   /usr/include/kokkos/fwd/Kokkos_Fwd_HIP.hpp
   /usr/include/kokkos/fwd/Kokkos_Fwd_HPX.hpp
+  /usr/include/kokkos/fwd/Kokkos_Fwd_NEXTSILICON.hpp
   /usr/include/kokkos/fwd/Kokkos_Fwd_OPENACC.hpp
   /usr/include/kokkos/fwd/Kokkos_Fwd_OPENMP.hpp
-  /usr/include/kokkos/fwd/Kokkos_Fwd_OPENMPTARGET.hpp
   /usr/include/kokkos/fwd/Kokkos_Fwd_SERIAL.hpp
   /usr/include/kokkos/fwd/Kokkos_Fwd_SYCL.hpp
   /usr/include/kokkos/fwd/Kokkos_Fwd_THREADS.hpp
   /usr/include/kokkos/impl/KokkosExp_Host_IterateTile.hpp
   /usr/include/kokkos/impl/KokkosExp_IterateTileGPU.hpp
-  /usr/include/kokkos/impl/KokkosExp_ViewMapping.hpp
   /usr/include/kokkos/impl/Kokkos_AnalyzePolicy.hpp
-  /usr/include/kokkos/impl/Kokkos_Atomic_View.hpp
-  /usr/include/kokkos/impl/Kokkos_BitOps.hpp
   /usr/include/kokkos/impl/Kokkos_Bitset_impl.hpp
+  /usr/include/kokkos/impl/Kokkos_BuiltinReducers.hpp
   /usr/include/kokkos/impl/Kokkos_CPUDiscovery.hpp
-  /usr/include/kokkos/impl/Kokkos_ChaseLev.hpp
+  /usr/include/kokkos/impl/Kokkos_CStyleMemoryManagement.hpp
+  /usr/include/kokkos/impl/Kokkos_CheckUsage.hpp
   /usr/include/kokkos/impl/Kokkos_CheckedIntegerOps.hpp
   /usr/include/kokkos/impl/Kokkos_ClockTic.hpp
   /usr/include/kokkos/impl/Kokkos_Combined_Reducer.hpp
@@ -441,75 +445,96 @@ Files included in the binary package:
   /usr/include/kokkos/impl/Kokkos_Default_Graph_Impl.hpp
   /usr/include/kokkos/impl/Kokkos_Default_Graph_fwd.hpp
   /usr/include/kokkos/impl/Kokkos_DesulAtomicsConfig.hpp
+  /usr/include/kokkos/impl/Kokkos_DeviceHandle.hpp
   /usr/include/kokkos/impl/Kokkos_DeviceManagement.hpp
   /usr/include/kokkos/impl/Kokkos_EBO.hpp
   /usr/include/kokkos/impl/Kokkos_Error.hpp
   /usr/include/kokkos/impl/Kokkos_ExecSpaceManager.hpp
-  /usr/include/kokkos/impl/Kokkos_FixedBufferMemoryPool.hpp
+  /usr/include/kokkos/impl/Kokkos_Fence.hpp
   /usr/include/kokkos/impl/Kokkos_Functional_impl.hpp
   /usr/include/kokkos/impl/Kokkos_FunctorAnalysis.hpp
   /usr/include/kokkos/impl/Kokkos_GraphImpl.hpp
   /usr/include/kokkos/impl/Kokkos_GraphImpl_Utilities.hpp
   /usr/include/kokkos/impl/Kokkos_GraphImpl_fwd.hpp
+  /usr/include/kokkos/impl/Kokkos_GraphNodeCtorProps.hpp
   /usr/include/kokkos/impl/Kokkos_GraphNodeCustomization.hpp
   /usr/include/kokkos/impl/Kokkos_GraphNodeImpl.hpp
+  /usr/include/kokkos/impl/Kokkos_GraphNodeThenImpl.hpp
+  /usr/include/kokkos/impl/Kokkos_GraphNodeThenPolicy.hpp
+  /usr/include/kokkos/impl/Kokkos_Half_CommonType.hpp
   /usr/include/kokkos/impl/Kokkos_Half_FloatingPointWrapper.hpp
   /usr/include/kokkos/impl/Kokkos_Half_MathematicalFunctions.hpp
   /usr/include/kokkos/impl/Kokkos_Half_NumericTraits.hpp
+  /usr/include/kokkos/impl/Kokkos_Half_ReductionIdentity.hpp
   /usr/include/kokkos/impl/Kokkos_HostBarrier.hpp
   /usr/include/kokkos/impl/Kokkos_HostSharedPtr.hpp
-  /usr/include/kokkos/impl/Kokkos_HostSpace_ZeroMemset.hpp
   /usr/include/kokkos/impl/Kokkos_HostSpace_deepcopy.hpp
   /usr/include/kokkos/impl/Kokkos_HostThreadTeam.hpp
   /usr/include/kokkos/impl/Kokkos_InitializationSettings.hpp
-  /usr/include/kokkos/impl/Kokkos_LIFO.hpp
-  /usr/include/kokkos/impl/Kokkos_LinkedListNode.hpp
-  /usr/include/kokkos/impl/Kokkos_MemoryPoolAllocator.hpp
-  /usr/include/kokkos/impl/Kokkos_MultipleTaskQueue.hpp
+  /usr/include/kokkos/impl/Kokkos_Neon_SVE_bridge.hpp
   /usr/include/kokkos/impl/Kokkos_NvidiaGpuArchitectures.hpp
-  /usr/include/kokkos/impl/Kokkos_OptionalRef.hpp
   /usr/include/kokkos/impl/Kokkos_ParseCommandLineArgumentsAndEnvironmentVariables.hpp
+  /usr/include/kokkos/impl/Kokkos_PartitionSpace.hpp
   /usr/include/kokkos/impl/Kokkos_Profiling.hpp
   /usr/include/kokkos/impl/Kokkos_Profiling_C_Interface.h
   /usr/include/kokkos/impl/Kokkos_Profiling_DeviceInfo.hpp
   /usr/include/kokkos/impl/Kokkos_Profiling_Interface.hpp
   /usr/include/kokkos/impl/Kokkos_QuadPrecisionMath.hpp
+  /usr/include/kokkos/impl/Kokkos_RandomAccessIterator.hpp
+  /usr/include/kokkos/impl/Kokkos_RuntimeInfo.hpp
+  /usr/include/kokkos/impl/Kokkos_SIMD_Impl_AVX2.hpp
+  /usr/include/kokkos/impl/Kokkos_SIMD_Impl_Macros.hpp
+  /usr/include/kokkos/impl/Kokkos_SIMD_RangesCtorSupport.hpp
+  /usr/include/kokkos/impl/Kokkos_STD_Half_Conversion.hpp
+  /usr/include/kokkos/impl/Kokkos_STD_Half_Impl_Type.hpp
+  /usr/include/kokkos/impl/Kokkos_STD_Half_MathematicalFunctions.hpp
   /usr/include/kokkos/impl/Kokkos_SharedAlloc.hpp
   /usr/include/kokkos/impl/Kokkos_SharedAlloc_timpl.hpp
-  /usr/include/kokkos/impl/Kokkos_SimpleTaskScheduler.hpp
-  /usr/include/kokkos/impl/Kokkos_SingleTaskQueue.hpp
+  /usr/include/kokkos/impl/Kokkos_Single.hpp
+  /usr/include/kokkos/impl/Kokkos_Single_Default_Impl.hpp
+  /usr/include/kokkos/impl/Kokkos_Single_fwd.hpp
   /usr/include/kokkos/impl/Kokkos_Stacktrace.hpp
-  /usr/include/kokkos/impl/Kokkos_StaticCrsGraph_factory.hpp
   /usr/include/kokkos/impl/Kokkos_StringManipulation.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskBase.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskNode.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskPolicyData.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskQueue.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskQueueCommon.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskQueueMemoryManager.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskQueueMultiple.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskQueueMultiple_impl.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskQueue_impl.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskResult.hpp
-  /usr/include/kokkos/impl/Kokkos_TaskTeamMember.hpp
   /usr/include/kokkos/impl/Kokkos_TeamMDPolicy.hpp
   /usr/include/kokkos/impl/Kokkos_Tools.hpp
   /usr/include/kokkos/impl/Kokkos_Tools_Generic.hpp
   /usr/include/kokkos/impl/Kokkos_Traits.hpp
+  /usr/include/kokkos/impl/Kokkos_UnbindIndexArgument.hpp
   /usr/include/kokkos/impl/Kokkos_UnorderedMap_impl.hpp
   /usr/include/kokkos/impl/Kokkos_Utilities.hpp
-  /usr/include/kokkos/impl/Kokkos_VLAEmulation.hpp
-  /usr/include/kokkos/impl/Kokkos_ViewCtor.hpp
-  /usr/include/kokkos/impl/Kokkos_ViewDataAnalysis.hpp
-  /usr/include/kokkos/impl/Kokkos_ViewMapping.hpp
-  /usr/include/kokkos/impl/Kokkos_ViewTracker.hpp
-  /usr/include/kokkos/impl/Kokkos_ViewUniformType.hpp
   /usr/include/kokkos/impl/Kokkos_Volatile_Load.hpp
   /usr/include/kokkos/impl/Kokkos_ZeroMemset_fwd.hpp
+  /usr/include/kokkos/mdspan/impl/compressed_pair.hpp
+  /usr/include/kokkos/mdspan/impl/config.hpp
+  /usr/include/kokkos/mdspan/impl/constant_wrapper.hpp
+  /usr/include/kokkos/mdspan/impl/default_accessor.hpp
+  /usr/include/kokkos/mdspan/impl/dims.hpp
+  /usr/include/kokkos/mdspan/impl/dynamic_extent.hpp
+  /usr/include/kokkos/mdspan/impl/extents.hpp
+  /usr/include/kokkos/mdspan/impl/full_extent_t.hpp
+  /usr/include/kokkos/mdspan/impl/integral_constant_like.hpp
+  /usr/include/kokkos/mdspan/impl/layout_left.hpp
+  /usr/include/kokkos/mdspan/impl/layout_padded.hpp
+  /usr/include/kokkos/mdspan/impl/layout_padded_fwd.hpp
+  /usr/include/kokkos/mdspan/impl/layout_right.hpp
+  /usr/include/kokkos/mdspan/impl/layout_stride.hpp
+  /usr/include/kokkos/mdspan/impl/macros.hpp
+  /usr/include/kokkos/mdspan/impl/mdarray.hpp
+  /usr/include/kokkos/mdspan/impl/mdspan.hpp
+  /usr/include/kokkos/mdspan/impl/no_unique_address.hpp
+  /usr/include/kokkos/mdspan/impl/strided_slice.hpp
+  /usr/include/kokkos/mdspan/impl/submdspan.hpp
+  /usr/include/kokkos/mdspan/impl/submdspan_canonicalize_slices.hpp
+  /usr/include/kokkos/mdspan/impl/submdspan_extents.hpp
+  /usr/include/kokkos/mdspan/impl/submdspan_mapping.hpp
+  /usr/include/kokkos/mdspan/impl/trait_backports.hpp
+  /usr/include/kokkos/mdspan/impl/type_list.hpp
+  /usr/include/kokkos/mdspan/impl/utility.hpp
   /usr/include/kokkos/mdspan/mdarray.hpp
   /usr/include/kokkos/mdspan/mdspan.hpp
   /usr/include/kokkos/setup/Kokkos_Setup_Cuda.hpp
   /usr/include/kokkos/setup/Kokkos_Setup_HIP.hpp
+  /usr/include/kokkos/setup/Kokkos_Setup_NextSilicon.hpp
   /usr/include/kokkos/setup/Kokkos_Setup_SYCL.hpp
   /usr/include/kokkos/sorting/Kokkos_BinOpsPublicAPI.hpp
   /usr/include/kokkos/sorting/Kokkos_BinSortPublicAPI.hpp
@@ -524,14 +549,12 @@ Files included in the binary package:
   /usr/include/kokkos/std_algorithms/Kokkos_AdjacentFind.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_AllOf.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_AnyOf.hpp
-  /usr/include/kokkos/std_algorithms/Kokkos_BeginEnd.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_Copy.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_CopyBackward.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_CopyIf.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_CopyN.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_Count.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_CountIf.hpp
-  /usr/include/kokkos/std_algorithms/Kokkos_Distance.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_Equal.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_ExclusiveScan.hpp
   /usr/include/kokkos/std_algorithms/Kokkos_Fill.hpp
@@ -615,7 +638,6 @@ Files included in the binary package:
   /usr/include/kokkos/std_algorithms/impl/Kokkos_MustUseKokkosSingleInTeam.hpp
   /usr/include/kokkos/std_algorithms/impl/Kokkos_PartitionCopy.hpp
   /usr/include/kokkos/std_algorithms/impl/Kokkos_PartitionPoint.hpp
-  /usr/include/kokkos/std_algorithms/impl/Kokkos_RandomAccessIterator.hpp
   /usr/include/kokkos/std_algorithms/impl/Kokkos_Reduce.hpp
   /usr/include/kokkos/std_algorithms/impl/Kokkos_ReducerWithArbitraryJoinerNoNeutralElement.hpp
   /usr/include/kokkos/std_algorithms/impl/Kokkos_RemoveAllVariants.hpp
@@ -648,21 +670,28 @@ Files included in the binary package:
   /usr/include/kokkos/traits/Kokkos_PolicyTraitAdaptor.hpp
   /usr/include/kokkos/traits/Kokkos_PolicyTraitMatcher.hpp
   /usr/include/kokkos/traits/Kokkos_ScheduleTrait.hpp
+  /usr/include/kokkos/traits/Kokkos_StaticBatchSizeTrait.hpp
+  /usr/include/kokkos/traits/Kokkos_TeamHandleTrait.hpp
+  /usr/include/kokkos/traits/Kokkos_ThreadHandleTrait.hpp
   /usr/include/kokkos/traits/Kokkos_Traits_fwd.hpp
   /usr/include/kokkos/traits/Kokkos_WorkItemPropertyTrait.hpp
   /usr/include/kokkos/traits/Kokkos_WorkTagTrait.hpp
   /usr/lib/cmake/Kokkos/KokkosConfig.cmake
   /usr/lib/cmake/Kokkos/KokkosConfigCommon.cmake
   /usr/lib/cmake/Kokkos/KokkosConfigVersion.cmake
-  /usr/lib/cmake/Kokkos/KokkosTargets-release.cmake
+  /usr/lib/cmake/Kokkos/KokkosTargets-relwithdebinfo.cmake
   /usr/lib/cmake/Kokkos/KokkosTargets.cmake
+  /usr/lib/libkokkosalgorithms.a
   /usr/lib/libkokkoscontainers.dll.a
   /usr/lib/libkokkoscore.dll.a
-  /usr/lib/libkokkossimd.dll.a
+  /usr/lib/libkokkossimd.a
 
 ------------------
 
 Port Notes:
+
+----- version 5.3.0-1bl1 -----
+Version bump.
 
 ----- version 4.4.01-1bl1 -----
 Version bump.

@@ -8,7 +8,14 @@ authenticated encryption and decryption securely without typing passwords. It
 works with both RSA and ED25519 SSH keys including those made available to a
 remote host by SSH Agent forwarding."
 
-BUILD_REQUIRES="libsodium-devel"
+LICENSE="ISC"
+LICENSE_SPDX="SPDX-License-Identifier: ISC"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	autoconf-archive
+	libsodium-devel
+"
 
 CYGCONF_ARGS="
 	--disable-docs
@@ -31,7 +38,7 @@ libagentcrypt_CONTENTS="
 	usr/share/man/man1
 "
 libagentcrypt0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygagentcrypt-0.dll
 "
 libagentcrypt_devel_CONTENTS="
 	usr/include

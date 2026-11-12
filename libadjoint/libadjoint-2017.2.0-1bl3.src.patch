@@ -1,5 +1,5 @@
---- origsrc/libadjoint/CMakeLists.txt	2018-01-05 20:57:37.000000000 +0900
-+++ src/libadjoint/CMakeLists.txt	2025-08-12 14:30:57.775629900 +0900
+--- origsrc/libadjoint/CMakeLists.txt	2018-01-05 11:57:37.000000000 +0000
++++ src/libadjoint/CMakeLists.txt	2026-11-12 20:39:50.538107800 +0000
 @@ -25,3 +25,10 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TR
  
  add_subdirectory(src)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libadjoint.pc.in ${CMAKE_BINARY_DIR}/libadjoint.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libadjoint.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libadjoint/libadjoint.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libadjoint/libadjoint.pc.in	2025-08-12 14:30:25.751438000 +0900
+--- origsrc/libadjoint/libadjoint.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libadjoint/libadjoint.pc.in	2026-11-12 20:39:50.538107800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,8 +24,8 @@
 +Version: @libadjoint_VERSION@
 +Libs: -L${libdir} -ladjoint
 +Cflags: -I${includedir}
---- origsrc/libadjoint/src/CMakeLists.txt	2018-01-05 20:53:52.000000000 +0900
-+++ src/libadjoint/src/CMakeLists.txt	2025-08-12 14:30:25.751438000 +0900
+--- origsrc/libadjoint/src/CMakeLists.txt	2018-01-05 11:53:52.000000000 +0000
++++ src/libadjoint/src/CMakeLists.txt	2026-11-12 20:39:50.540116900 +0000
 @@ -19,10 +19,12 @@ set_target_properties(adjoint PROPERTIES
    SOVERSION ${libadjoint_MAJOR_VERSION}
    )

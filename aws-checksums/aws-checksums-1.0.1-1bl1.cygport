@@ -6,8 +6,8 @@ SUMMARY="Cross-Platform HW accelerated CRC32c and CRC32 with fallback to efficie
 DESCRIPTION="Cross-Platform HW accelerated CRC32c and CRC32 with fallback to efficient SW
 implementations. C interface with language bindings for each of our SDKs."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -18,7 +18,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DSOVERSION:STRING=${PV[1]}
+	-DCMAKE_PREFIX_PATH:STRING=/usr
 	-DVERSION:STRING=${PV}
 "
 
@@ -30,20 +30,20 @@ src_test()
 
 PKG_NAMES="
 	aws-checksums
-	libaws-checksums0
+	libaws-checksums1.0
 	libaws-checksums-devel
 "
 aws_checksums_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libaws_checksums0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libaws_checksums1_0_CONTENTS="
+	usr/bin/cyg*-1.0.dll
 "
 libaws_checksums_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 aws_checksums_SUMMARY="${SUMMARY} (utilities)"
-libaws_checksums0_SUMMARY="${SUMMARY} (runtime)"
+libaws_checksums1_0_SUMMARY="${SUMMARY} (runtime)"
 libaws_checksums_devel_SUMMARY="${SUMMARY} (development)"

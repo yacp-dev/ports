@@ -1,17 +1,6 @@
---- origsrc/aws-checksums-0.2.10/CMakeLists.txt	2026-02-14 02:41:18.000000000 +0900
-+++ src/aws-checksums-0.2.10/CMakeLists.txt	2026-04-20 05:02:05.165168800 +0900
-@@ -57,6 +57,10 @@ aws_add_sanitizers(${PROJECT_NAME})
- # We are not ABI stable yet
- set_target_properties(${PROJECT_NAME} PROPERTIES VERSION 1.0.0)
- 
-+if (DEFINED SOVERSION)
-+    set_target_properties(${PROJECT_NAME} PROPERTIES SOVERSION "${SOVERSION}")
-+endif()
-+
- if (USE_CPU_EXTENSIONS)
-     if (AWS_ARCH_INTEL)
-         file (GLOB AWS_ARCH_INTEL_SRC
-@@ -141,7 +145,7 @@ else()
+--- origsrc/aws-checksums-1.0.1/CMakeLists.txt	2026-09-30 19:10:24.000000000 +0000
++++ src/aws-checksums-1.0.1/CMakeLists.txt	2026-11-12 12:21:35.220359200 +0000
+@@ -156,7 +156,7 @@ else()
  endif()
  
  install(EXPORT "${PROJECT_NAME}-targets"
@@ -20,7 +9,7 @@
          NAMESPACE AWS::
          COMPONENT Development)
  
-@@ -158,3 +162,10 @@ if (BUILD_TESTING)
+@@ -173,3 +173,10 @@ if (BUILD_TESTING)
      add_subdirectory(tests)
      add_subdirectory(bin/benchmark)
  endif ()
@@ -31,8 +20,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/aws-checksums.pc.in ${CMAKE_BINARY_DIR}/aws-checksums.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/aws-checksums.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/aws-checksums-0.2.10/aws-checksums.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/aws-checksums-0.2.10/aws-checksums.pc.in	2026-04-20 05:02:05.165168800 +0900
+--- origsrc/aws-checksums-1.0.1/aws-checksums.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/aws-checksums-1.0.1/aws-checksums.pc.in	2026-11-12 12:21:35.220359200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -44,8 +33,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -laws-checksums
 +Cflags: -I${includedir}
---- origsrc/aws-checksums-0.2.10/cmake/aws-checksums-config.cmake	2026-02-14 02:41:18.000000000 +0900
-+++ src/aws-checksums-0.2.10/cmake/aws-checksums-config.cmake	2026-04-20 05:02:05.165168800 +0900
+--- origsrc/aws-checksums-1.0.1/cmake/aws-checksums-config.cmake	2026-09-30 19:10:24.000000000 +0000
++++ src/aws-checksums-1.0.1/cmake/aws-checksums-config.cmake	2026-11-12 12:21:35.222471800 +0000
 @@ -1,18 +1 @@
 -macro(aws_load_targets type)
 -    include(${CMAKE_CURRENT_LIST_DIR}/${type}/@PROJECT_NAME@-targets.cmake)

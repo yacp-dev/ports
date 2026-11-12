@@ -1,0 +1,70 @@
+HOMEPAGE="https://github.com/szcompressor/SZ3"
+SRC_URI="https://github.com/szcompressor/SZ3/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="SZ3-${PV}"
+
+CATEGORY="Archive"
+SUMMARY="Modular Error-bounded Lossy Compression Framework for Scientific Datasets"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="LicenseRef-SZ3"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-SZ3"
+LICENSE_URI="copyright-and-BSD-license.txt"
+
+BUILD_REQUIRES="
+	hdf5
+	libaec-devel
+	libgtest-devel
+	libhdf5-devel
+	libzstd-devel
+	zlib-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_H5Z_FILTER:BOOL=ON
+	-DBUILD_MDZ:BOOL=ON
+	-DBUILD_TESTING:BOOL=ON
+	-DH5Z_SZ3_PLUGIN_INSTALL_DIR:STRING=
+"
+
+DOCS="
+	copyright-and-BSD-license.txt
+"
+
+PKG_NAMES="
+	sz
+	sz-devel
+	libSZ3c3.4
+	libhdf5sz3_3.4
+"
+sz_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+sz_devel_CONTENTS="
+	usr/include/SZ3
+	usr/include/MDZ
+	usr/include/SZ3c
+	usr/include/hdf5_sz3
+	usr/lib/cmake
+	usr/lib/libSZ3c.dll.a
+	usr/lib/libhdf5sz3.dll.a
+"
+libSZ3c3_4_CONTENTS="
+	usr/bin/cygSZ3c-3.4.dll
+"
+libhdf5sz3_3_4_CONTENTS="
+	usr/bin/cyghdf5sz3-3.4.dll
+"
+sz_SUMMARY="${SUMMARY} (utilities)"
+sz_devel_SUMMARY="${SUMMARY} (development)"
+libSZ3c3_4_SUMMARY="${SUMMARY} (runtime)"
+libhdf5sz3_3_4_SUMMARY="${SUMMARY} (runtime / hdf5)"
+sz_devel_REQUIRES="
+	hdf5
+	libaec-devel
+	libhdf5-devel
+	libzstd-devel
+	zlib-devel
+"

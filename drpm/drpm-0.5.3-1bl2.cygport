@@ -5,12 +5,13 @@ CATEGORY="Libs"
 SUMMARY="Library for making, reading and applying deltarpm packages"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="BSD-3-Clause AND LGPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND LGPL-2.0-or-later"
+LICENSE="BSD-3-Clause AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	libbz2-devel
+	libcmocka-devel
 	liblzma-devel
 	libssl-devel
 	libzstd-devel

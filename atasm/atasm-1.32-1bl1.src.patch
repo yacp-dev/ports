@@ -1,5 +1,5 @@
---- origsrc/atasm-1.30/src/Makefile	2025-05-21 21:48:28.000000000 +0900
-+++ src/atasm-1.30/src/Makefile	2025-05-25 22:03:33.403602600 +0900
+--- origsrc/atasm-1.32/src/Makefile	2026-11-09 16:36:51.000000000 +0000
++++ src/atasm-1.32/src/Makefile	2026-11-12 04:29:50.285434400 +0000
 @@ -17,7 +17,7 @@ UNIX    = -DUNIX
  
  # Compiler flags, if you are using egcs, pgcs, or gcc >2.8.1 use:

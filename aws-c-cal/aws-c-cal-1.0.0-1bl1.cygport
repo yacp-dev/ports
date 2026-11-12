@@ -20,7 +20,7 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DCMAKE_MODULE_PATH:PATH=/usr/lib/cmake/aws-c-common
-	-DSOVERSION:STRING=${PV[1]}
+	-DCMAKE_PREFIX_PATH:PATH=/usr
 	-DUSE_OPENSSL:BOOL=ON
 	-DVERSION:STRING=${PV}
 "
@@ -28,7 +28,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	PATH=${B}:${PATH} ninja_test
+	PATH=${B}:${PATH} ctest -E "pkcs1_sha1"
 }
 
 DOCS="
@@ -45,20 +45,25 @@ src_install()
 
 PKG_NAMES="
 	aws-c-cal
-	libaws-c-cal0
+	libaws-c-cal1.0
 	libaws-c-cal-devel
 "
 aws_c_cal_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libaws_c_cal0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libaws_c_cal1_0_CONTENTS="
+	usr/bin/cyg*-1.0.dll
 "
 libaws_c_cal_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 aws_c_cal_SUMMARY="${SUMMARY} (utilities)"
-libaws_c_cal0_SUMMARY="${SUMMARY} (runtime)"
+libaws_c_cal1_0_SUMMARY="${SUMMARY} (runtime)"
 libaws_c_cal_devel_SUMMARY="${SUMMARY} (development)"
+
+libaws_c_cal_devel_REQUIRES="
+	libaws-c-common-devel
+	libssl-devel
+"

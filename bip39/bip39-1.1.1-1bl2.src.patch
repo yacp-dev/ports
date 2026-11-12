@@ -1,5 +1,5 @@
---- origsrc/bip39-1.1.1/CMakeLists.txt	2019-02-16 03:00:34.000000000 +0900
-+++ src/bip39-1.1.1/CMakeLists.txt	2022-05-15 15:32:41.873182100 +0900
+--- origsrc/bip39-1.1.1/CMakeLists.txt	2019-02-15 18:00:34.000000000 +0000
++++ src/bip39-1.1.1/CMakeLists.txt	2026-11-12 13:42:24.545916200 +0000
 @@ -4,8 +4,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
  
  set(CMAKE_CXX_STANDARD 17)
@@ -41,8 +41,8 @@
 +  configure_file(${CMAKE_SOURCE_DIR}/bip39.pc.in ${CMAKE_BINARY_DIR}/bip39.pc @ONLY)
 +  install(FILES ${CMAKE_BINARY_DIR}/bip39.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
 +endif()
---- origsrc/bip39-1.1.1/bip39.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/bip39-1.1.1/bip39.pc.in	2022-05-15 15:32:41.805159100 +0900
+--- origsrc/bip39-1.1.1/bip39.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/bip39-1.1.1/bip39.pc.in	2026-11-12 13:42:24.547934300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -54,8 +54,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lbip39
 +Cflags: -I${includedir}
---- origsrc/bip39-1.1.1/src/CMakeLists.txt	2019-02-16 03:00:34.000000000 +0900
-+++ src/bip39-1.1.1/src/CMakeLists.txt	2022-05-15 15:27:46.105207100 +0900
+--- origsrc/bip39-1.1.1/src/CMakeLists.txt	2019-02-15 18:00:34.000000000 +0000
++++ src/bip39-1.1.1/src/CMakeLists.txt	2026-11-12 13:42:24.547934300 +0000
 @@ -8,7 +8,11 @@ set(SOURCE_FILES
  	util.cpp
  )
@@ -78,8 +78,8 @@
 +install(FILES ${HEADERS} DESTINATION include/bip39)
 +
 +install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
---- origsrc/bip39-1.1.1/test/CMakeLists.txt	2019-02-16 03:00:34.000000000 +0900
-+++ src/bip39-1.1.1/test/CMakeLists.txt	2022-05-15 15:22:01.313072800 +0900
+--- origsrc/bip39-1.1.1/test/CMakeLists.txt	2019-02-15 18:00:34.000000000 +0000
++++ src/bip39-1.1.1/test/CMakeLists.txt	2026-11-12 13:42:24.549957300 +0000
 @@ -1,9 +1,11 @@
  cmake_minimum_required(VERSION 3.2)
  project(bip39_tests C CXX)

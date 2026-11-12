@@ -4,20 +4,21 @@ This small libraries find constant in rpm header and provide function to find
 value <=> constant name pair.
 
 Runtime requirements:
-  cygwin-3.3.4-2
-  libpopt0-1.18-1
-  librpmconstant0-0.1.5-1bl1
+  cygwin-3.6.12-1
+  libpopt0-1.19-1
+  librpmconstant0-0.1.5-1bl2
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.37-2
-  cygport-0.34.2-1
-  gcc-core-11.2.0-1
-  libpopt-devel-1.18-1
-  libtool-2.4.6-8
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libpopt-devel-1.19-1
+  libtool-2.6.2-1
+  make-4.4.1-2
+  rpm-devel-4.18.0-1
 
 Canonical website:
   https://github.com/rpm-software-management/rpmconstant
@@ -63,6 +64,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1.5-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

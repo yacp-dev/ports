@@ -1,5 +1,5 @@
---- origsrc/rpmconstant-0.1.5/Makefile.am	2019-09-09 23:18:35.000000000 +0900
-+++ src/rpmconstant-0.1.5/Makefile.am	2022-02-24 16:45:45.764005900 +0900
+--- origsrc/rpmconstant-0.1.5/Makefile.am	2019-09-09 14:18:35.000000000 +0000
++++ src/rpmconstant-0.1.5/Makefile.am	2026-11-12 13:54:17.301536100 +0000
 @@ -2,7 +2,7 @@
  
  bin_PROGRAMS = rpmconstant

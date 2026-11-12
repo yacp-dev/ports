@@ -1,5 +1,5 @@
---- origsrc/BIP66-0.3.2/CMakeLists.txt	2019-12-04 19:50:03.000000000 +0900
-+++ src/BIP66-0.3.2/CMakeLists.txt	2022-05-15 14:44:21.363015900 +0900
+--- origsrc/BIP66-0.3.2/CMakeLists.txt	2019-12-04 10:50:03.000000000 +0000
++++ src/BIP66-0.3.2/CMakeLists.txt	2026-11-12 13:57:23.878825000 +0000
 @@ -10,7 +10,6 @@ project(bip66)
  set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
  set(CMAKE_CXX_STANDARD 11)
@@ -21,8 +21,8 @@
 +  configure_file(${CMAKE_SOURCE_DIR}/bip66.pc.in ${CMAKE_BINARY_DIR}/bip66.pc @ONLY)
 +  install(FILES ${CMAKE_BINARY_DIR}/bip66.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
 +endif()
---- origsrc/BIP66-0.3.2/bip66.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/BIP66-0.3.2/bip66.pc.in	2022-05-15 14:43:01.642377000 +0900
+--- origsrc/BIP66-0.3.2/bip66.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/BIP66-0.3.2/bip66.pc.in	2026-11-12 13:57:23.878825000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -34,8 +34,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lbip66
 +Cflags: -I${includedir}
---- origsrc/BIP66-0.3.2/src/CMakeLists.txt	2019-12-04 19:50:03.000000000 +0900
-+++ src/BIP66-0.3.2/src/CMakeLists.txt	2022-05-15 14:36:52.333272100 +0900
+--- origsrc/BIP66-0.3.2/src/CMakeLists.txt	2019-12-04 10:50:03.000000000 +0000
++++ src/BIP66-0.3.2/src/CMakeLists.txt	2026-11-12 13:57:23.880847700 +0000
 @@ -5,7 +5,11 @@ project(bip66 C CXX)
  
  # ------------------------------------------------------------------------------
@@ -58,9 +58,9 @@
 +install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
 +
  # ------------------------------------------------------------------------------
---- origsrc/BIP66-0.3.2/test/CMakeLists.txt	2019-12-04 19:50:03.000000000 +0900
-+++ src/BIP66-0.3.2/test/CMakeLists.txt	2022-05-15 14:31:11.960630500 +0900
-@@ -7,7 +7,10 @@ project(${PROJECT_NAME}_tests C CXX)
+--- origsrc/BIP66-0.3.2/test/CMakeLists.txt	2019-12-04 10:50:03.000000000 +0000
++++ src/BIP66-0.3.2/test/CMakeLists.txt	2026-11-12 13:57:23.880847700 +0000
+@@ -7,7 +7,13 @@ project(${PROJECT_NAME}_tests C CXX)
  # Google Test
  # ------------------------------------------------------------------------------
  
@@ -69,6 +69,9 @@
 +if (NOT GTEST_FOUND)
 +    include(${CMAKE_SOURCE_DIR}/cmake/GTest.cmake)
 +endif()
++
++# GoogleTest requires C++17
++set(CMAKE_CXX_STANDARD 17)
  
  # ------------------------------------------------------------------------------
  

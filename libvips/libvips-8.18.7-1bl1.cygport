@@ -10,11 +10,14 @@ suite), for working with colour, for scientific analysis and for general
 research & development. As well as JPEG, TIFF and PNG images, it also supports
 scientific formats like FITS, Matlab, Analyze, PFM, Radiance and OpenSlide."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND MIT AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND MIT AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	bc
+	gettext-devel
+	gobject-introspection
 	libarchive-devel
 	libcairo-devel
 	libcfitsio-devel
@@ -29,6 +32,7 @@ BUILD_REQUIRES="
 	libimagequant-devel
 	libintl-devel
 	libjpeg-devel
+	libjxl-devel
 	liblcms2-devel
 	libMagick-devel
 	libmatio-devel
@@ -37,7 +41,9 @@ BUILD_REQUIRES="
 	libopenjp2-devel
 	libopenslide-devel
 	libpango1.0-devel
+	libpng-devel
 	libpoppler-glib-devel
+	libraw-devel
 	librsvg2-devel
 	libtiff-devel
 	libuhdr-devel

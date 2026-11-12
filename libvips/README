@@ -2,139 +2,145 @@ libvips
 ------------------------------------------
 VIPS is a free image processing system. It is good with large images (images
 larger than the amount of RAM you have available), with many CPUs (see
-Benchmarks for examples of SMP scaling, VIPS is also part of the PARSEC
-suite), for working with colour, for scientific analysis and for general
-research & development. As well as JPEG, TIFF and PNG images, it also supports
-scientific formats like FITS, Matlab, Analyze, PFM, Radiance and OpenSlide.
+Benchmarks for examples of SMP scaling, VIPS is also part of the PARSEC suite),
+for working with colour, for scientific analysis and for general research &
+development. As well as JPEG, TIFF and PNG images, it also supports scientific
+formats like FITS, Matlab, Analyze, PFM, Radiance and OpenSlide.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  girepository-GLib2.0-1.86.0-1
+  cygwin-3.6.12-1
+  girepository-GLib2.0-1.86.0-2
   libIlmImf2_5_26-2.5.8-1
-  libMagickCore7_10-7.1.2.11-1
-  libarchive-devel-3.8.5-1
-  libarchive13-3.8.5-1
-  libcairo-devel-1.18.4-1
-  libcairo2-1.18.4-1
-  libcfitsio-devel-4.6.3-1
-  libcfitsio10-4.6.3-1
+  libMagickCore7_10-7.1.2.30-1
+  libarchive-devel-3.8.11-1
+  libarchive13-3.8.11-1
+  libcairo-devel-1.18.6-1
+  libcairo2-1.18.6-1
+  libcfitsio-devel-4.7.0-1
+  libcfitsio10-4.7.0-1
   libcgif-devel-0.5.0-1
   libcgif0-0.5.0-1
-  libexif-devel-0.6.25-1
-  libexif12-0.6.25-1
-  libexpat-devel-2.7.3-1
-  libexpat1-2.7.3-1
-  libfftw3-devel-3.3.10-1
-  libfftw3_3-3.3.10-1
-  libfontconfig-devel-2.17.1-1
-  libfontconfig1-2.17.1-1
-  libgcc1-13.4.0-1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
-  libheif1-1.12.0-1
-  libhwy-devel-1.2.0-1bl1
-  libhwy1-1.2.0-1bl1
+  libexif-devel-0.6.26-1
+  libexif12-0.6.26-1
+  libexpat-devel-2.10.0-1
+  libexpat1-2.10.0-1
+  libfftw3-devel-3.3.11-1
+  libfftw3_3-3.3.11-1
+  libfontconfig-devel-2.18.3-1
+  libfontconfig1-2.18.3-1
+  libgcc1-14.4.0-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libheif1-1.23.7-1
+  libhwy-devel-1.4.0-1bl2
+  libhwy1-1.4.0-1bl2
   libimagequant0-2.10.0-1
   libintl8-0.22.5-1
-  libjpeg-devel-3.1.3-1
-  libjpeg8-3.1.3-1
-  libjxl0.11-0.11.1-1bl1
-  liblcms2-devel-2.16-1
-  liblcms2_2-2.16-1
-  libmatio-devel-1.5.28-1bl1
-  libmatio13-1.5.28-1bl1
-  libnifti2-2.0.0-1bl4
+  libjpeg-devel-3.2.0-1
+  libjpeg8-3.2.0-1
+  libjxl0.13-0.13.0-1bl2
+  liblcms2-devel-2.19-1
+  liblcms2_2-2.19-1
+  libmatio-devel-1.6.0-1bl1
+  libmatio14-1.6.0-1bl1
+  libnifti2-3.0.1-1bl1
   libopenexr-devel-2.5.8-1
   libopenjp2-devel-2.5.4-1
   libopenjp2_7-2.5.4-1
-  libopenslide1-4.0.0-1bl2
-  libpango1.0-devel-1.57.0-1
-  libpango1.0_0-1.57.0-1
-  libpng-devel-1.6.47-2
-  libpng16-1.6.47-2
+  libopenslide1-4.0.1-1bl1
+  libpango1.0-devel-1.58.2-1
+  libpango1.0_0-1.58.2-1
+  libpng-devel-1.6.59-1
+  libpng16-1.6.59-1
   libpoppler-glib8-21.01.0-1
   libraw-devel-0.18.5-1
   libraw16-0.18.5-1
   librsvg2-devel-2.40.20-1
   librsvg2_2-2.40.20-1
-  libstdc++6-13.4.0-1
-  libtiff-devel-4.7.1-1
-  libtiff7-4.7.1-1
-  libuhdr-devel-1.4.0-1bl1
-  libuhdr1-1.4.0-1bl1
-  libvips-cpp-devel-8.18.0-1bl1
-  libvips-cpp42-8.18.0-1bl1
-  libvips-devel-8.18.0-1bl1
-  libvips42-8.18.0-1bl1
+  libstdc++6-14.4.0-1
+  libtiff-devel-4.7.2-1
+  libtiff7-4.7.2-1
+  libuhdr-devel-2.0.2-1bl1
+  libuhdr2-2.0.2-1bl1
+  libvips-cpp-devel-8.18.7-1bl1
+  libvips-cpp42-8.18.7-1bl1
+  libvips-devel-8.18.7-1bl1
+  libvips42-8.18.7-1bl1
   libwebp-devel-1.6.0-1
   libwebp7-1.6.0-1
   libwebpdemux2-1.6.0-1
   libwebpmux3-1.6.0-1
-  pkg-config-2.5.1-1
-  zlib-devel-1.3.1-1
-  zlib0-1.3.1-1
+  libznz3-3.0.1-1bl1
+  pkg-config-3.0.10-1
+  zlib-devel-1.4-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  gobject-introspection-1.86.0-1
-  libMagick-devel-7.1.2.11-1
-  libarchive-devel-3.8.5-1
-  libcairo-devel-1.18.4-1
-  libcfitsio-devel-4.6.3-1
+  bc-1.08.2-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  gettext-devel-0.22.5-1
+  gobject-introspection-1.86.0-2
+  libMagick-devel-7.1.2.30-1
+  libarchive-devel-3.8.11-1
+  libcairo-devel-1.18.6-1
+  libcfitsio-devel-4.7.0-1
   libcgif-devel-0.5.0-1
-  libexif-devel-0.6.25-1
-  libexpat-devel-2.7.3-1
-  libfftw3-devel-3.3.10-1
-  libfontconfig-devel-2.17.1-1
-  libglib2.0-devel-2.87.0-1
-  libheif-devel-1.12.0-1
-  libhwy-devel-1.2.0-1bl1
+  libexif-devel-0.6.26-1
+  libexpat-devel-2.10.0-1
+  libfftw3-devel-3.3.11-1
+  libfontconfig-devel-2.18.3-1
+  libglib2.0-devel-2.90.1-1
+  libheif-devel-1.23.7-1
+  libhwy-devel-1.4.0-1bl2
   libimagequant-devel-2.10.0-1
   libintl-devel-0.22.5-1
-  libjpeg-devel-3.1.3-1
-  liblcms2-devel-2.16-1
-  libmatio-devel-1.5.28-1bl1
-  libnifti-devel-2.0.0-1bl4
+  libjpeg-devel-3.2.0-1
+  libjxl-devel-0.13.0-1bl2
+  liblcms2-devel-2.19-1
+  libmatio-devel-1.6.0-1bl1
+  libnifti-devel-3.0.1-1bl1
   libopenexr-devel-2.5.8-1
   libopenjp2-devel-2.5.4-1
-  libopenslide-devel-4.0.0-1bl2
-  libpango1.0-devel-1.57.0-1
+  libopenslide-devel-4.0.1-1bl1
+  libpango1.0-devel-1.58.2-1
+  libpng-devel-1.6.59-1
   libpoppler-glib-devel-21.01.0-1
+  libraw-devel-0.18.5-1
   librsvg2-devel-2.40.20-1
-  libtiff-devel-4.7.1-1
-  libuhdr-devel-1.4.0-1bl1
+  libtiff-devel-4.7.2-1
+  libuhdr-devel-2.0.2-1bl1
   libwebp-devel-1.6.0-1
-  meson-1.5.2-1
+  meson-1.10.2-1
   ninja-1.13.2-1
-  zlib-devel-1.3.1-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/libvips/libvips
 
 Canonical download:
-  https://github.com/libvips/libvips/archive/refs/tags/v8.18.0.tar.gz
+  https://github.com/libvips/libvips/archive/refs/tags/v8.18.7.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libvips-8.18.0-X-src.tar.xz
+  1. unpack libvips-8.18.7-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libvips-8.18.0-X.cygport all
+        % cygport ./libvips-8.18.7-X.cygport all
 
 This will create:
-  /usr/src/libvips-8.18.0-X-src.tar.xz
-  /usr/src/libvips-8.18.0-X.tar.xz
-  /usr/src/libvips42-8.18.0-X.tar.xz
-  /usr/src/libvips-devel-8.18.0-X.tar.xz
-  /usr/src/libvips-cpp42-8.18.0-X.tar.xz
-  /usr/src/libvips-cpp-devel-8.18.0-X.tar.xz
-  /usr/src/girepository-Vips8.0-8.18.0-X.tar.xz
+  /usr/src/libvips-8.18.7-X-src.tar.xz
+  /usr/src/libvips-8.18.7-X.tar.xz
+  /usr/src/libvips42-8.18.7-X.tar.xz
+  /usr/src/libvips-devel-8.18.7-X.tar.xz
+  /usr/src/libvips-cpp42-8.18.7-X.tar.xz
+  /usr/src/libvips-cpp-devel-8.18.7-X.tar.xz
+  /usr/src/girepository-Vips8.0-8.18.7-X.tar.xz
 
 -------------------------------------------
 
@@ -236,6 +242,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 8.18.7-1bl1 -----
+Version bump.
 
 ----- version 8.18.0-1bl1 -----
 Version bump.

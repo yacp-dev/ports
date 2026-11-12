@@ -1,6 +1,6 @@
 HOMEPAGE="https://github.com/markokr/${PN}"
-GIT_URI="https://github.com/markokr/${PN}.git"
-GIT_REV="110a8a03806c2a4e00b772a32f17b7207060000f"
+SRC_URI="https://github.com/markokr/${PN}/archive/refs/tags/${PN}_v${PV}.tar.gz"
+SRC_DIR="${PN}-${PN}_v${PV}"
 
 CATEGORY="Libs"
 SUMMARY="Library for InterPlay ACM Audio format"
@@ -10,26 +10,33 @@ LICENSE="ISC"
 LICENSE_SPDX="SPDX-License-Identifier: ISC"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libao-devel"
-
-inherit git
+BUILD_REQUIRES="
+	libao-devel
+"
 
 PKG_NAMES="
 	libacm
-	libacm0
+	libacm1
 	libacm-devel
 "
 libacm_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libacm0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libacm1_CONTENTS="
+	usr/bin/cyg*-1.dll
 "
 libacm_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libacm_SUMMARY="${SUMMARY} (licensing & readmes)"
-libacm0_SUMMARY="${SUMMARY} (runtime)"
+libacm1_SUMMARY="${SUMMARY} (runtime)"
 libacm_devel_SUMMARY="${SUMMARY} (development)"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/AC_INIT(\[libacm\],\[[^]]*\]/AC_INIT([libacm],[${PV}]/" configure.ac
+}

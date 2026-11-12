@@ -10,7 +10,10 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libev-devel libglib2.0-devel"
+BUILD_REQUIRES="
+	libev-devel
+	libglib2.0-devel
+"
 
 inherit git
 

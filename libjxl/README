@@ -15,8 +15,8 @@ Runtime requirements:
   libhwy1-1.4.0-1bl2
   libilmbase2_5_25-2.5.8-1
   libjpeg8-3.2.0-1
-  libjxl-devel-0.13.0-1bl1
-  libjxl0.13-0.13.0-1bl1
+  libjxl-devel-0.13.0-1bl2
+  libjxl0.13-0.13.0-1bl2
   libpng16-1.6.59-1
   libstdc++6-14.4.0-1
   libwebp7-1.6.0-1
@@ -43,7 +43,7 @@ Canonical website:
   https://github.com/libjxl/libjxl
 
 Canonical download:
-  https://github.com/libjxl/libjxl.git
+  https://github.com/libjxl/libjxl/archive/refs/tags/v0.13.0.tar.gz#/libjxl-0.13.0.tar.gz
 
 -------------------------------------------
 
@@ -117,6 +117,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.13.0-1bl2 -----
+Fix source package over 100 MiB
 
 ----- version 0.13.0-1bl1 -----
 Version bump.

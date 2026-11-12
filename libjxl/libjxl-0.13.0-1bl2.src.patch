@@ -1,5 +1,5 @@
---- origsrc/libjxl/CMakeLists.txt	2026-11-11 21:44:52.000000000 +0000
-+++ src/libjxl/CMakeLists.txt	2026-11-11 21:45:57.717454900 +0000
+--- origsrc/libjxl-0.13.0/CMakeLists.txt	2026-11-11 11:16:50.000000000 +0000
++++ src/libjxl-0.13.0/CMakeLists.txt	2026-11-11 23:36:04.767775600 +0000
 @@ -483,7 +483,7 @@ if(JPEGXL_ENABLE_MANPAGES)
          add_custom_command(
            OUTPUT "${PAGE}.1"

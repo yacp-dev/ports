@@ -1,5 +1,5 @@
---- origsrc/xtensor-0.27.1/CMakeLists.txt	2025-09-19 15:11:56.000000000 +0000
-+++ src/xtensor-0.27.1/CMakeLists.txt	2026-11-07 13:26:38.211939200 +0000
+--- origsrc/xtensor-0.27.2/CMakeLists.txt	2026-11-11 00:30:32.000000000 +0000
++++ src/xtensor-0.27.2/CMakeLists.txt	2026-11-12 04:07:50.575152100 +0000
 @@ -70,7 +70,7 @@ if(XTENSOR_USE_TBB AND XTENSOR_USE_OPENM
  endif()
  

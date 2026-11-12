@@ -1,0 +1,11 @@
+--- origsrc/pcb2gcode-3.1.0/CMakeLists.txt	2026-10-28 19:38:25.000000000 +0000
++++ src/pcb2gcode-3.1.0/CMakeLists.txt	2026-11-12 07:43:54.337196400 +0000
+@@ -62,7 +62,7 @@ if(PCB2GCODE_ENABLE_CODE_COVERAGE)
+ endif()
+ 
+ find_package(PkgConfig REQUIRED)
+-find_package(Boost 1.60 CONFIG REQUIRED COMPONENTS program_options)
++find_package(Boost 1.60 REQUIRED COMPONENTS program_options)
+ pkg_check_modules(GERBV REQUIRED IMPORTED_TARGET libgerbv>=2.1.0)
+ find_package(Git QUIET)
+ 

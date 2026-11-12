@@ -6,20 +6,21 @@ License (v2.0). It uses OpenSSL for the underlying AES and CMAC implementations
 and follows a similar interface style.
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libaes_siv-devel-1.0.0-1bl3
-  libaes_siv1-1.0.0-1bl3
-  libssl3-3.0.13-1
-  pkg-config-2.2.0-1
+  cygwin-3.6.12-1
+  libaes_siv-devel-1.0.0-1bl4
+  libaes_siv1-1.0.0-1bl4
+  libssl3-3.5.9-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.42-1
-  cmake-3.28.3-1
-  cygport-0.36.8-1
-  gcc-core-11.4.0-1
-  libssl-devel-3.0.13-1
-  ninja-1.12.0-1
+  asciidoc-10.2.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libssl-devel-3.5.9-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/dfoxfranke/libaes_siv
@@ -72,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.0-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.0-1bl3 -----
 Rebuild for libssl

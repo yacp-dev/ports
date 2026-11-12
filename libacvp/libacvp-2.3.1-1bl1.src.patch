@@ -1,0 +1,104 @@
+--- origsrc/libacvp-2.3.1/Makefile.am	2026-03-12 21:20:12.000000000 +0000
++++ src/libacvp-2.3.1/Makefile.am	2026-11-12 20:53:17.877907100 +0000
+@@ -20,9 +20,12 @@ endif
+ ##dist_data_DATA includes files to be installed to the /share folder
+ ##SUBDIRS references code that needs to be built and their files only. These files are included in dist.
+ ##EXTRA_DIST is not referenced for building code but for creating the dist and includes NON-code files as well.
+-dist_data_DATA = README.md
++#dist_data_DATA = README.md
+ EXTRA_DIST = ms docker certs scripts metadata murl test Doxyfile app/implementations/stubs
+ SUBDIRS = safe_c_stub $(LIB_DIR) $(APP_DIR) $(TEST_DIR)
+ 
+ doc:
+ 	doxygen Doxyfile
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/libacvp-2.3.1/app/Makefile.am	2026-03-12 21:20:12.000000000 +0000
++++ src/libacvp-2.3.1/app/Makefile.am	2026-11-12 20:53:17.879927900 +0000
+@@ -55,7 +55,7 @@ bin_PROGRAMS = acvp_app
+ 
+ acvp_app_includedir=$(includedir)/acvp
+ acvp_app_SOURCES = ${tmp_sources}
+-acvp_app_CFLAGS = $(AM_CFLAGS) -g -fPIE $(LIBACVP_CFLAGS) $(IUT_CFLAGS) $(SAFEC_CFLAGS) $(COND_ALG_CFLAGS)
++acvp_app_CFLAGS = $(AM_CFLAGS) -g -fPIE -I$(top_srcdir)/safe_c_stub/include -I$(top_srcdir)/include $(LIBACVP_CFLAGS) $(IUT_CFLAGS) $(SAFEC_CFLAGS) $(COND_ALG_CFLAGS)
+ acvp_app_LDFLAGS = $(LIBACVP_LDFLAGS) $(IUT_LDFLAGS)
+ acvp_app_LDADD =  $(IUT_LIBS) $(ADDL_LIB_DEPENDENCIES)
+ 
+--- origsrc/libacvp-2.3.1/configure.ac	2026-03-12 21:20:12.000000000 +0000
++++ src/libacvp-2.3.1/configure.ac	2026-11-12 20:53:17.881690900 +0000
+@@ -284,6 +284,8 @@ if test "x$disable_app" = "xno" ; then
+                 iut_lib_flags="${iut_lib_flags} $iut_dir/lib/lib${lib}.so "
+             elif test -f "$iut_dir/lib/lib${lib}.dylib"; then
+                 iut_lib_flags="${iut_lib_flags} $iut_dir/lib/lib${lib}.dylib "
++            elif test -f "$iut_dir/lib/lib${lib}.dll.a"; then
++                iut_lib_flags="${iut_lib_flags} $iut_dir/lib/lib${lib}.dll.a "
+             elif test -f "$iut_dir/lib64/lib${lib}.a"; then
+                 iut_lib_flags="${iut_lib_flags} $iut_dir/lib64/lib${lib}.a "
+             elif test -f "$iut_dir/lib/lib${lib}.a"; then
+@@ -484,5 +486,6 @@ AC_PREFIX_DEFAULT([/usr/local/acvp])
+ cp confdefs.h acvp_config.h
+ 
+ AC_CONFIG_FILES([Makefile safe_c_stub/Makefile safe_c_stub/lib/Makefile src/Makefile app/Makefile test/Makefile])
++AC_CONFIG_FILES([libacvp.pc])
+ AC_OUTPUT
+ 
+--- origsrc/libacvp-2.3.1/libacvp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libacvp-2.3.1/libacvp.pc.in	2026-11-12 20:53:17.881690900 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libacvp
++Description: Client-side implementation of the draft ACVP protocol
++Version: @VERSION@
++Libs: -L${libdir} -lacvp
++Cflags: -I${includedir}
+--- origsrc/libacvp-2.3.1/safe_c_stub/lib/Makefile.am	2026-03-12 21:20:12.000000000 +0000
++++ src/libacvp-2.3.1/safe_c_stub/lib/Makefile.am	2026-11-12 20:53:17.881690900 +0000
+@@ -12,5 +12,5 @@ libsafe_lib_la_SOURCES =  \
+ ../src/safe_mem_stub.c \
+ ../src/safe_str_stub.c
+ 
+-libsafe_lib_la_CFLAGS=-I../include -fPIC
++libsafe_lib_la_CFLAGS=-I$(top_srcdir)/safe_c_stub/include -fPIC
+ 
+--- origsrc/libacvp-2.3.1/src/Makefile.am	2026-03-12 21:20:12.000000000 +0000
++++ src/libacvp-2.3.1/src/Makefile.am	2026-11-12 20:53:17.883711300 +0000
+@@ -1,5 +1,5 @@
+ lib_LTLIBRARIES = libacvp.la
+-AM_CFLAGS += -I$(top_srcdir)/include/acvp $(SAFEC_CFLAGS) $(LIBCURL_CFLAGS)
++AM_CFLAGS += -I$(top_srcdir)/include/acvp -I$(top_srcdir)/safe_c_stub/include $(SAFEC_CFLAGS) $(LIBCURL_CFLAGS)
+ 
+ if BUILDING_OFFLINE
+ AM_CFLAGS+= -DACVP_OFFLINE
+@@ -50,6 +50,7 @@ libacvp_la_SOURCES =  acvp.c \
+                     acvp_slh_dsa.c
+ 
+ libacvp_la_LIBADD = $(SAFEC_LDFLAGS) $(LIBCURL_LDFLAGS) $(ADDL_LIB_DEPENDENCIES)
++libacvp_la_LDFLAGS = -no-undefined
+ libacvp_includedir=$(includedir)/acvp
+ libacvp_include_HEADERS = $(top_srcdir)/include/acvp/acvp.h
+ noinst_HEADERS = $(top_srcdir)/include/acvp/acvp_lcl.h \
+--- origsrc/libacvp-2.3.1/test/Makefile.am	2026-03-12 21:20:12.000000000 +0000
++++ src/libacvp-2.3.1/test/Makefile.am	2026-11-12 20:53:17.885727600 +0000
+@@ -4,7 +4,7 @@ runtest_SOURCES = run_all_tests.c \
+                   unity/unity.c \
+                   unity/unity_fixture.c
+ 
+-tmp_cflags = -g -O0 -Wall -DNO_SSL_DL $(SAFEC_CFLAGS) $(LIBACVP_CFLAGS) -I../include
++tmp_cflags = -g -O0 -Wall -DNO_SSL_DL $(SAFEC_CFLAGS) $(LIBACVP_CFLAGS) -I$(top_srcdir)/include -I$(top_srcdir)/safe_c_stub/include
+ tmp_ldflags= $(SAFEC_LDFLAGS) $(LIBACVP_LDFLAGS)
+ 
+ # Define APP_NOT_SUPPORTED if app is disabled
+@@ -133,7 +133,7 @@ if APP_IUT_JENT
+ APP_LINK += ../app/implementations/jitter_entropy/acvp_app-iut.o
+ endif
+ 
+-tmp_cflags += $(IUT_CFLAGS) -I../app
++tmp_cflags += $(IUT_CFLAGS) -I$(top_srcdir)/app
+ tmp_ldflags += $(IUT_LDFLAGS)
+ endif
+ 

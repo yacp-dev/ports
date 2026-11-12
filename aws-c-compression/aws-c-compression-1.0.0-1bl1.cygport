@@ -19,7 +19,7 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_HUFFMAN_GENERATOR:BOOL=ON
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DSOVERSION:STRING=${PV[1]}
+	-DCMAKE_PREFIX_PATH:PATH=/usr
 	-DVERSION:STRING=${PV}
 "
 
@@ -31,20 +31,24 @@ src_test()
 
 PKG_NAMES="
 	aws-c-compression
-	libaws-c-compression0
+	libaws-c-compression1.0
 	libaws-c-compression-devel
 "
 aws_c_compression_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libaws_c_compression0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libaws_c_compression1_0_CONTENTS="
+	usr/bin/cyg*-1.0.dll
 "
 libaws_c_compression_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 aws_c_compression_SUMMARY="${SUMMARY} (utilities)"
-libaws_c_compression0_SUMMARY="${SUMMARY} (runtime)"
+libaws_c_compression1_0_SUMMARY="${SUMMARY} (runtime)"
 libaws_c_compression_devel_SUMMARY="${SUMMARY} (development)"
+
+libaws_c_compression_devel_REQUIRES="
+	libaws-c-common-devel
+"

@@ -30,14 +30,14 @@ src_install()
 
 PKG_NAMES="
 	libaegis
-	libaegis${PV[1]}
+	libaegis0
 	libaegis-devel
 "
 libaegis_CONTENTS="
 	usr/share
 "
 libaegis0_CONTENTS="
-	usr/bin/cyg*-${PV[1]}.dll
+	usr/bin/cyg*-0.dll
 "
 libaegis_devel_CONTENTS="
 	usr/include

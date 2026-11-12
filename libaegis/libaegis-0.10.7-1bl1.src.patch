@@ -1,5 +1,5 @@
---- origsrc/libaegis-0.10.6/CMakeLists.txt	2026-09-21 16:48:21.000000000 +0000
-+++ src/libaegis-0.10.6/CMakeLists.txt	2026-10-14 13:11:09.493676800 +0000
+--- origsrc/libaegis-0.10.7/CMakeLists.txt	2026-11-12 16:53:23.000000000 +0000
++++ src/libaegis-0.10.7/CMakeLists.txt	2026-11-12 20:40:36.571369400 +0000
 @@ -57,7 +57,8 @@ install(FILES ${HEADER_FILES} DESTINATIO
  
  # CMake find_package() support
@@ -20,8 +20,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libaegis.pc.in ${CMAKE_BINARY_DIR}/libaegis.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libaegis.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libaegis-0.10.6/libaegis.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/libaegis-0.10.6/libaegis.pc.in	2026-10-14 13:11:09.495437100 +0000
+--- origsrc/libaegis-0.10.7/libaegis.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libaegis-0.10.7/libaegis.pc.in	2026-11-12 20:40:36.571369400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

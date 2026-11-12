@@ -7,9 +7,18 @@ DESCRIPTION="This is a portable C++ implementation of BIP39. The goal of this pr
 provide a BIP39 implementation with minimal dependencies and to be compatiable
 with the most number of platforms, including Arduino."
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgtest-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DSOVERSION:STRING=${PV[1]}
 	-DVERSION:STRING=${PV}
 "
@@ -29,7 +38,7 @@ bip39_CONTENTS="
 	usr/share
 "
 libbip39_1_CONTENTS="
-	usr/bin
+	usr/bin/cygbip39-1.dll
 "
 libbip39_devel_CONTENTS="
 	usr/include

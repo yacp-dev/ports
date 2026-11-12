@@ -3,30 +3,31 @@ drpm
 Library for making, reading and applying deltarpm packages
 
 Runtime requirements:
-  cygwin-3.6.5-1
+  cygwin-3.6.12-1
   libbz2_1-1.0.8-2
-  libdrpm-devel-0.5.3-1bl1
-  libdrpm0-0.5.3-1bl1
-  liblzma5-5.8.1-1
-  libssl3-3.0.18-1
+  libdrpm-devel-0.5.3-1bl2
+  libdrpm0-0.5.3-1bl2
+  liblzma5-5.8.4-1
+  libssl3-3.5.9-1
   libzstd1-1.5.7-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.10-1
   rpm-4.18.0-1
-  zlib0-1.3.1-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   libbz2-devel-1.0.8-2
-  liblzma-devel-5.8.1-1
-  libssl-devel-3.0.18-1
+  libcmocka-devel-2.0.2-1
+  liblzma-devel-5.8.4-1
+  libssl-devel-3.5.9-1
   libzstd-devel-1.5.7-1
   ninja-1.13.2-1
   rpm-devel-4.18.0-1
-  zlib-devel-1.3.1-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/rpm-software-management/drpm
@@ -69,6 +70,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.3-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.5.3-1bl1 -----
 Version bump.

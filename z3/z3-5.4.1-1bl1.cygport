@@ -47,20 +47,20 @@ DOCS="
 
 PKG_NAMES="
 	z3
-	libz3_5.3
+	libz3_5.4
 	libz3-devel
 "
 z3_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libz3_5_3_CONTENTS="
-	usr/bin/cygz3-5.3.dll
+libz3_5_4_CONTENTS="
+	usr/bin/cygz3-5.4.dll
 "
 libz3_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 z3_SUMMARY="${SUMMARY} (utilities)"
-libz3_5_3_SUMMARY="${SUMMARY} (runtime)"
+libz3_5_4_SUMMARY="${SUMMARY} (runtime)"
 libz3_devel_SUMMARY="${SUMMARY} (development)"

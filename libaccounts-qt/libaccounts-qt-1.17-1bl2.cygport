@@ -1,5 +1,8 @@
 HOMEPAGE="https://gitlab.com/accounts-sso/${PN}"
 SRC_URI="https://gitlab.com/accounts-sso/${PN}/-/archive/VERSION_${PV}/${PN}-VERSION_${PV}.tar.bz2"
+PATCH_URI="
+	libaccounts-qt-1.17-test-sync-and-block.patch
+"
 SRC_DIR="${PN}-VERSION_${PV}"
 
 CATEGORY="Libs"
@@ -11,14 +14,27 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libaccounts-glib-devel libglib2.0-devel"
+BUILD_REQUIRES="
+	dbus
+	doxygen
+	libaccounts-glib-devel
+	libglib2.0-devel
+	libQt5Core-devel
+"
 
 inherit qt5-qmake
 
 src_test()
 {
 	cd ${B}
-	PATH=${B}/Accounts:${PATH} cygtest
+	# The tests need a D-Bus session bus, and dbus-test-runner (which the
+	# test script would use to start one) is not in Cygwin.
+	local out rc=0
+	out=$(dbus-daemon --session --fork --print-address --print-pid)
+	export DBUS_SESSION_BUS_ADDRESS=$(echo "${out}" | head -n 1)
+	PATH=${B}/Accounts:${PATH} cygtest || rc=$?
+	kill $(echo "${out}" | tail -n 1)
+	return ${rc}
 }
 
 PKG_NAMES="

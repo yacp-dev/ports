@@ -1,0 +1,35 @@
+tests: store synchronously in testAccount and testAccountList on Cygwin
+
+The tests call account->sync() (an asynchronous store) and delete the
+manager without running an event loop. The store keeps the accounts DB
+open (its -shm file stays mapped), and Cygwin cannot unlink an open file,
+so clearDb() of the following tests fails with EBUSY and the old accounts
+stay. testObjectsLifetime and testAccountList then fail.
+
+---
+--- a/tests/tst_libaccounts.cpp
++++ b/tests/tst_libaccounts.cpp
+@@ -186,7 +186,11 @@
+ 
+     // make sure there is account
+     Account *account = mgr->createAccount(NULL);
++#ifdef __CYGWIN__
++    account->syncAndBlock();
++#else
+     account->sync();
++#endif
+ 
+     //now we get account
+     account2 = mgr->account(1);
+@@ -248,7 +252,11 @@
+ 
+     // make sure there is account
+     Account *account = mgr->createAccount(NULL);
++#ifdef __CYGWIN__
++    account->syncAndBlock();
++#else
+     account->sync();
++#endif
+ 
+     AccountIdList list = mgr->accountList(NULL);
+     QVERIFY(!list.isEmpty());

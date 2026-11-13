@@ -1,26 +1,17 @@
---- origsrc/libansilove-1.4.4/CMakeLists.txt	2026-11-02 00:05:22.000000000 +0000
-+++ src/libansilove-1.4.4/CMakeLists.txt	2026-11-07 05:59:45.801309800 +0000
-@@ -48,7 +48,6 @@ add_library(objlib OBJECT ${SRC} ${LOADE
- set_property(TARGET objlib PROPERTY POSITION_INDEPENDENT_CODE ON)
- 
- add_library(ansilove SHARED $<TARGET_OBJECTS:objlib>)
--add_library(ansilove-static STATIC $<TARGET_OBJECTS:objlib>)
- 
- target_link_libraries(ansilove ${GD_LIBRARIES} m)
- 
-@@ -56,8 +55,9 @@ set_target_properties(ansilove PROPERTIE
+--- origsrc/libansilove-1.4.5/CMakeLists.txt	2026-11-11 18:30:03.000000000 +0000
++++ src/libansilove-1.4.5/CMakeLists.txt	2026-11-13 20:59:13.556934500 +0000
+@@ -56,7 +56,9 @@ set_target_properties(ansilove PROPERTIE
    VERSION ${LIB_VERSION_STRING} SOVERSION ${LIB_VERSION_MAJOR}
    C_VISIBILITY_PRESET hidden)
  
 -install(TARGETS ansilove DESTINATION ${CMAKE_INSTALL_LIBDIR})
--install(TARGETS ansilove-static DESTINATION ${CMAKE_INSTALL_LIBDIR})
 +add_subdirectory(example)
 +
 +install(TARGETS ansilove RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
- install(FILES include/ansilove.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
- install(FILES man/libansilove.3 DESTINATION ${CMAKE_INSTALL_MANDIR}/man3/)
- install(FILES man/ansilove_clean.3 DESTINATION ${CMAKE_INSTALL_MANDIR}/man3/)
-@@ -72,3 +72,10 @@ install(FILES man/ansilove_icedraw.3 DES
+ 
+ if(BUILD_STATIC_LIBS)
+   add_library(ansilove-static STATIC $<TARGET_OBJECTS:objlib>)
+@@ -80,3 +82,10 @@ install(FILES man/ansilove_icedraw.3 DES
  install(FILES man/ansilove_pcboard.3 DESTINATION ${CMAKE_INSTALL_MANDIR}/man3/)
  install(FILES man/ansilove_tundra.3 DESTINATION ${CMAKE_INSTALL_MANDIR}/man3/)
  install(FILES man/ansilove_xbin.3 DESTINATION ${CMAKE_INSTALL_MANDIR}/man3/)
@@ -31,8 +22,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libansilove.pc.in ${CMAKE_BINARY_DIR}/libansilove.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libansilove.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libansilove-1.4.4/example/CMakeLists.txt	2026-11-02 00:05:22.000000000 +0000
-+++ src/libansilove-1.4.4/example/CMakeLists.txt	2026-11-07 05:59:45.802567300 +0000
+--- origsrc/libansilove-1.4.5/example/CMakeLists.txt	2026-11-11 18:30:03.000000000 +0000
++++ src/libansilove-1.4.5/example/CMakeLists.txt	2026-11-13 20:59:13.556934500 +0000
 @@ -7,8 +7,8 @@ set(CMAKE_C_EXTENSIONS OFF)
  project(example C)
  
@@ -50,8 +41,8 @@
  
 +target_link_directories(example PRIVATE ${CMAKE_BINARY_DIR})
  target_link_libraries(example ${ANSILOVE_LIBRARIES})
---- origsrc/libansilove-1.4.4/libansilove.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/libansilove-1.4.4/libansilove.pc.in	2026-11-07 05:59:45.803319900 +0000
+--- origsrc/libansilove-1.4.5/libansilove.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libansilove-1.4.5/libansilove.pc.in	2026-11-13 20:59:13.558946300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

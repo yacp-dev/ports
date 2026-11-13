@@ -1,12 +1,12 @@
---- origsrc/libamivideo/src/libamivideo/Makefile.am	2024-11-20 08:42:55.000000000 +0900
-+++ src/libamivideo/src/libamivideo/Makefile.am	2024-11-20 08:42:56.292849200 +0900
+--- origsrc/libamivideo/src/libamivideo/Makefile.am	2026-11-13 21:05:08.000000000 +0000
++++ src/libamivideo/src/libamivideo/Makefile.am	2026-11-13 21:05:09.685657200 +0000
 @@ -2,3 +2,4 @@ lib_LTLIBRARIES = libamivideo.la
  pkginclude_HEADERS = amivideotypes.h viewportmode.h palette.h screen.h
  
  libamivideo_la_SOURCES = viewportmode.c palette.c screen.c
 +libamivideo_la_LDFLAGS = -no-undefined
---- origsrc/libamivideo/tests/Makefile.am	2024-11-20 08:42:55.000000000 +0900
-+++ src/libamivideo/tests/Makefile.am	2024-11-20 08:42:56.292849200 +0900
+--- origsrc/libamivideo/tests/Makefile.am	2026-11-13 21:05:08.000000000 +0000
++++ src/libamivideo/tests/Makefile.am	2026-11-13 21:05:09.685657200 +0000
 @@ -2,6 +2,6 @@ check_PROGRAMS = chunky
  
  chunky_SOURCES = chunky.c

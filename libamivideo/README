@@ -4,19 +4,19 @@ Commodore Amiga hardware uses a different means of storing and displaying
 graphics compared to modern hardware, such as PCs.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libamivideo-devel-0.1+git20240222-1bl1
-  libamivideo0-0.1+git20240222-1bl1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libamivideo-devel-0.1+git20240222-1bl2
+  libamivideo0-0.1+git20240222-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -64,6 +64,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1+git20240222-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1+git20240222-1bl1 -----
 Version bump.

@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/svanderburg/${PN}"
 GIT_URI="https://github.com/svanderburg/${PN}.git"
+GIT_REV="de7ff68d8e536c1fd44880b3ad711bd998de457a"
 
 CATEGORY="Libs"
 SUMMARY="Conversion library for Amiga planar graphics data and EHB, HAM screen modes"

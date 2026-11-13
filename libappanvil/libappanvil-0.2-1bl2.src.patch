@@ -1,5 +1,5 @@
---- origsrc/libappanvil-0.2/CMakeLists.txt	2023-05-09 09:53:41.000000000 +0900
-+++ src/libappanvil-0.2/CMakeLists.txt	2024-03-17 17:00:52.299537200 +0900
+--- origsrc/libappanvil-0.2/CMakeLists.txt	2023-05-09 00:53:41.000000000 +0000
++++ src/libappanvil-0.2/CMakeLists.txt	2026-11-13 21:15:44.862691900 +0000
 @@ -9,7 +9,11 @@ set(AUTOGEN_SOURCE_DIR ${CMAKE_CURRENT_S
  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/dist)
  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/dist)
@@ -43,8 +43,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libappanvil.pc.in ${CMAKE_BINARY_DIR}/libappanvil.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libappanvil.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libappanvil-0.2/libappanvil.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libappanvil-0.2/libappanvil.pc.in	2024-03-17 17:00:52.221420700 +0900
+--- origsrc/libappanvil-0.2/libappanvil.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libappanvil-0.2/libappanvil.pc.in	2026-11-13 21:15:44.862691900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -56,8 +56,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lappanvil
 +Cflags: -I${includedir}
---- origsrc/libappanvil-0.2/src/parser/parser.cc	2023-05-09 09:53:41.000000000 +0900
-+++ src/libappanvil-0.2/src/parser/parser.cc	2024-03-17 14:40:45.560649600 +0900
+--- origsrc/libappanvil-0.2/src/parser/parser.cc	2023-05-09 00:53:41.000000000 +0000
++++ src/libappanvil-0.2/src/parser/parser.cc	2026-11-13 21:15:44.864717500 +0000
 @@ -27,7 +27,9 @@
  #include <cstdlib>
  #include <cstring>
@@ -98,8 +98,8 @@
  #ifdef RLIMIT_NICE
  	{"nice",		RLIMIT_NICE},
  #endif
---- origsrc/libappanvil-0.2/src/parser/parser_yacc.y	2023-05-09 09:53:41.000000000 +0900
-+++ src/libappanvil-0.2/src/parser/parser_yacc.y	2024-03-17 14:36:41.222752400 +0900
+--- origsrc/libappanvil-0.2/src/parser/parser_yacc.y	2023-05-09 00:53:41.000000000 +0000
++++ src/libappanvil-0.2/src/parser/parser_yacc.y	2026-11-13 21:15:44.864717500 +0000
 @@ -544,7 +544,7 @@ void yyerror(const char *msg, ...)
  }
  
@@ -111,8 +111,8 @@
 -}
 \ No newline at end of file
 +}
---- origsrc/libappanvil-0.2/test/e2e/CMakeLists.txt	2023-05-09 09:53:41.000000000 +0900
-+++ src/libappanvil-0.2/test/e2e/CMakeLists.txt	2024-03-17 14:43:51.003856400 +0900
+--- origsrc/libappanvil-0.2/test/e2e/CMakeLists.txt	2023-05-09 00:53:41.000000000 +0000
++++ src/libappanvil-0.2/test/e2e/CMakeLists.txt	2026-11-13 21:15:44.864717500 +0000
 @@ -26,6 +26,9 @@ if(${GTEST_FOUND})
  
    target_link_libraries(${PROJECT_NAME} PUBLIC ${LIBRARY_NAME})
@@ -130,8 +130,8 @@
 -endif()
 \ No newline at end of file
 +endif()
---- origsrc/libappanvil-0.2/test/simple/CMakeLists.txt	2023-05-09 09:53:41.000000000 +0900
-+++ src/libappanvil-0.2/test/simple/CMakeLists.txt	2024-03-17 14:42:46.447721900 +0900
+--- origsrc/libappanvil-0.2/test/simple/CMakeLists.txt	2023-05-09 00:53:41.000000000 +0000
++++ src/libappanvil-0.2/test/simple/CMakeLists.txt	2026-11-13 21:15:44.866733400 +0000
 @@ -7,6 +7,9 @@ set(TEST_SOURCES ${CMAKE_CURRENT_SOURCE_
  #### Create the test executable ####
  add_executable(${PROJECT_NAME} ${TEST_SOURCES})

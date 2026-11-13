@@ -5,11 +5,15 @@ CATEGORY="Libs"
 SUMMARY="Community-built parser library for AppArmor profiles"
 DESCRIPTION="${SUMMARY}"
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
-# LICENSE_URI=""
+LICENSE="GPL-2.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-only"
+LICENSE_URI="src/parser/parser.cc"
 
-BUILD_REQUIRES="libintl-devel"
+BUILD_REQUIRES="
+	bison
+	flex
+	libintl-devel
+"
 
 inherit cmake
 
@@ -18,6 +22,9 @@ CYGCMAKE_ARGS="
 	-DSOVERSION:STRING=0
 	-DVERSION:STRING=${PV}
 "
+
+# flex 2.6.11 emits yypanic() for %option nodefault but declares it only for C scanners
+export CXXFLAGS="${CXXFLAGS} -Dyypanic=LexerError"
 
 DIFF_EXCLUDES="
 	cmake_uninstall.cmake

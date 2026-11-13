@@ -6,11 +6,15 @@ CATEGORY="Libs"
 SUMMARY="Libplayback replacement library"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND (AFL-2.1 OR GPL-2.0-or-later)"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND (AFL-2.1 OR GPL-2.0-or-later)"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libdbus1-devel libglib2.0-devel"
+BUILD_REQUIRES="
+	dbus
+	libdbus1-devel
+	libglib2.0-devel
+"
 
 inherit git 
 
@@ -24,7 +28,8 @@ src_patch_hook()
 src_test()
 {
 	cd ${B}
-	cygmake check
+	# tests/Makefile.am lists TESTS = resource-test, which no rule builds
+	verbose cygmake -C dbus-gmain check DBUS_RUN_SESSION=dbus-run-session
 }
 
 DIFF_EXCLUDES="

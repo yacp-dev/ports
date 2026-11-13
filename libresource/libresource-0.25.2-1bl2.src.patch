@@ -1,5 +1,5 @@
---- origsrc/libresource/client/Makefile.am	2025-01-10 11:22:43.000000000 +0900
-+++ src/libresource/client/Makefile.am	2025-01-10 11:22:47.582048800 +0900
+--- origsrc/libresource/client/Makefile.am	2026-11-13 22:04:15.000000000 +0000
++++ src/libresource/client/Makefile.am	2026-11-13 22:04:18.805782800 +0000
 @@ -3,7 +3,7 @@ AM_CPPFLAGS= \
  	$(GLIB_CFLAGS) \
  	$(DBUS_CFLAGS)
@@ -17,8 +17,8 @@
  resource_client_LDADD = $(top_builddir)/src/libresource.la \
  	$(top_srcdir)/dbus-gmain/libdbus-gmain.la \
  	$(DBUS_LIBS) \
---- origsrc/libresource/src/Makefile.am	2025-01-10 11:22:43.000000000 +0900
-+++ src/libresource/src/Makefile.am	2025-01-10 11:22:47.582048800 +0900
+--- origsrc/libresource/src/Makefile.am	2026-11-13 22:04:15.000000000 +0000
++++ src/libresource/src/Makefile.am	2026-11-13 22:04:18.807792600 +0000
 @@ -15,16 +15,16 @@ libresource_la_SOURCES = res-msg.c res-c
  if DEBUG
  libresource_la_CFLAGS = -D__DEBUG__
@@ -40,8 +40,8 @@
  
  
  pkgincludedir = $(includedir)/resource
---- origsrc/libresource/tests/Makefile.am	2025-01-10 11:22:43.000000000 +0900
-+++ src/libresource/tests/Makefile.am	2025-01-10 11:22:47.582048800 +0900
+--- origsrc/libresource/tests/Makefile.am	2026-11-13 22:04:15.000000000 +0000
++++ src/libresource/tests/Makefile.am	2026-11-13 22:04:18.807792600 +0000
 @@ -6,7 +6,7 @@ AM_CPPFLAGS = \
  TESTS = resource-test 
  

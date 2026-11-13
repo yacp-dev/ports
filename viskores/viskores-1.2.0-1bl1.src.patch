@@ -1,0 +1,67 @@
+--- origsrc/viskores-1.2.0/viskores/thirdparty/loguru/viskoresloguru/loguru.cpp	2026-08-19 21:01:56.000000000 +0000
++++ src/viskores-1.2.0/viskores/thirdparty/loguru/viskoresloguru/loguru.cpp	2026-11-13 04:18:25.126984100 +0000
+@@ -68,12 +68,18 @@
+ 
+ // TODO: use defined(_POSIX_VERSION) for some of these things?
+ 
+-#if defined(_WIN32) || defined(__CYGWIN__)
++#if defined(_WIN32)
+ 	#define LOGURU_PTHREADS    0
+ 	#define LOGURU_WINTHREADS  1
+ 	#ifndef LOGURU_STACKTRACES
+ 		#define LOGURU_STACKTRACES 0
+ 	#endif
++#elif defined(__CYGWIN__)
++	#define LOGURU_PTHREADS    1
++	#define LOGURU_WINTHREADS  0
++	#ifndef LOGURU_STACKTRACES
++		#define LOGURU_STACKTRACES 0
++	#endif
+ #elif defined(__rtems__) || defined(__ANDROID__)
+ 	#define LOGURU_PTHREADS    1
+ 	#define LOGURU_WINTHREADS  0
+@@ -565,7 +571,7 @@ namespace loguru
+ 		#elif LOGURU_PTHREADS
+ 			char old_thread_name[16] = {0};
+ 			auto this_thread = pthread_self();
+-			#if defined(__APPLE__) || defined(__linux__)
++			#if defined(__APPLE__) || defined(__linux__) || defined(__CYGWIN__)
+ 				pthread_getname_np(this_thread, old_thread_name, sizeof(old_thread_name));
+ 			#endif
+ 			if (old_thread_name[0] == 0) {
+@@ -573,7 +579,7 @@ namespace loguru
+ 					pthread_setname_np("main thread");
+ 				#elif defined(__FreeBSD__) || defined(__OpenBSD__)
+ 					pthread_set_name_np(this_thread, "main thread");
+-				#elif defined(__linux__)
++				#elif defined(__linux__) || defined(__CYGWIN__)
+ 					pthread_setname_np(this_thread, "main thread");
+ 				#endif
+ 			}
+@@ -915,7 +921,7 @@ namespace loguru
+ 				pthread_setname_np(name);
+ 			#elif defined(__FreeBSD__) || defined(__OpenBSD__)
+ 				pthread_set_name_np(pthread_self(), name);
+-			#elif defined(__linux__)
++			#elif defined(__linux__) || defined(__CYGWIN__)
+ 				pthread_setname_np(pthread_self(), name);
+ 			#endif
+ 		#elif LOGURU_WINTHREADS
+@@ -948,7 +954,7 @@ namespace loguru
+ 			} else {
+ 				buffer[0] = 0;
+ 			}
+-		#elif defined(__APPLE__) || defined(__linux__)
++		#elif defined(__APPLE__) || defined(__linux__) || defined(__CYGWIN__)
+ 			pthread_getname_np(thread, buffer, length);
+ 		#else
+ 			buffer[0] = 0;
+@@ -967,6 +973,8 @@ namespace loguru
+ 				(void)thr_self(&thread_id);
+ 			#elif defined(__OpenBSD__)
+ 				unsigned thread_id = -1;
++			#elif defined(__CYGWIN__)
++				uint64_t thread_id = (uint64_t)(uintptr_t)thread;
+ 			#else
+ 				uint64_t thread_id = thread;
+ 			#endif

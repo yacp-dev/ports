@@ -1,5 +1,5 @@
---- origsrc/libaudec-v0.3.4/meson.build	2021-02-28 13:13:47.000000000 +0900
-+++ src/libaudec-v0.3.4/meson.build	2022-01-26 14:55:41.982581500 +0900
+--- origsrc/libaudec-v0.3.4/meson.build	2021-02-28 04:13:47.000000000 +0000
++++ src/libaudec-v0.3.4/meson.build	2026-11-13 21:44:34.032943800 +0000
 @@ -195,7 +195,7 @@ mapfile = configure_file(
  )
  vflag = '-Wl,--version-script,@0@'.format (mapfile)
@@ -26,8 +26,8 @@
  
  if not meson.is_subproject()
    pkg_mod = import('pkgconfig')
---- origsrc/libaudec-v0.3.4/tests/log.c	2021-02-28 13:13:47.000000000 +0900
-+++ src/libaudec-v0.3.4/tests/log.c	2022-01-26 15:15:25.123624900 +0900
+--- origsrc/libaudec-v0.3.4/tests/log.c	2021-02-28 04:13:47.000000000 +0000
++++ src/libaudec-v0.3.4/tests/log.c	2026-11-13 21:44:34.032943800 +0000
 @@ -56,9 +56,11 @@ int main (
    /* test log function */
    audec_set_log_func (log_fn);
@@ -40,8 +40,8 @@
  
    audec_close (handle);
  
---- origsrc/libaudec-v0.3.4/tests/meson.build	2021-02-28 13:13:47.000000000 +0900
-+++ src/libaudec-v0.3.4/tests/meson.build	2022-01-26 14:56:13.577576400 +0900
+--- origsrc/libaudec-v0.3.4/tests/meson.build	2021-02-28 04:13:47.000000000 +0000
++++ src/libaudec-v0.3.4/tests/meson.build	2026-11-13 21:44:34.034964700 +0000
 @@ -39,7 +39,7 @@ if get_option ('tests')
    log_test = executable (
      'log_test_exe', 'log.c',

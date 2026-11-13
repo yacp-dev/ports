@@ -5,22 +5,22 @@ libsamplerate for reading and resampling audio files, based on Robin Gareus'
 audio_decoder code (https://github.com/x42/silan/tree/master/audio_decoder)
 
 Runtime requirements:
-  cygwin-3.3.3-1
-  libaudec-devel-0.3.4-1bl1
-  libaudec0-0.3.4-1bl1
-  libsamplerate0-0.1.8-1
-  libsndfile1-1.0.28-2
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libaudec-devel-0.3.4-1bl2
+  libaudec0-0.3.4-1bl2
+  libsamplerate0-0.2.2-1
+  libsndfile1-1.2.2-2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-2
-  cygport-0.34.1-1
-  gcc-core-11.2.0-1
-  libsamplerate-devel-0.1.8-1
-  libsndfile-devel-1.0.28-2
-  meson-0.60.3-1
-  ninja-1.10.2-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libsamplerate-devel-0.2.2-1
+  libsndfile-devel-1.2.2-2
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://git.sr.ht/~alextee/libaudec
@@ -66,6 +66,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.3.4-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.3.4-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

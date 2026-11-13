@@ -4,26 +4,27 @@ This project is a library for managing accounts which can be used from Qt
 applications. It is part of the @accounts-sso project.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
+  cygwin-3.6.12-1
   libQt5Core-devel-5.9.4-2
   libQt5Core5-5.9.4-2
-  libaccounts-glib0-1.27-1bl1
-  libaccounts-qt5-devel-1.17-1bl1
-  libaccounts-qt5_1-1.17-1bl1
-  libgcc1-12.4.0-3
-  libglib2.0_0-2.64.6-1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  libaccounts-glib0-1.27-1bl3
+  libaccounts-qt5-devel-1.17-1bl2
+  libaccounts-qt5_1-1.17-1bl2
+  libgcc1-14.4.0-1
+  libglib2.0_0-2.90.1-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cygport-0.37.12-1
+  dbus-1.16.2-1
+  doxygen-1.18.0-1
+  gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
-  libaccounts-glib-devel-1.27-1bl1
-  libglib2.0-devel-2.64.6-1
+  libaccounts-glib-devel-1.27-1bl3
+  libglib2.0-devel-2.90.1-1
   make-4.4.1-2
 
 Canonical website:
@@ -99,8 +100,6 @@ Files included in the binary package:
   /usr/share/doc/accounts-qt/html/application_8h_source.html
   /usr/share/doc/accounts-qt/html/auth-data_8cpp_source.html
   /usr/share/doc/accounts-qt/html/auth-data_8h_source.html
-  /usr/share/doc/accounts-qt/html/bc_s.png
-  /usr/share/doc/accounts-qt/html/bc_sd.png
   /usr/share/doc/accounts-qt/html/classAccounts_1_1AccountService-members.html
   /usr/share/doc/accounts-qt/html/classAccounts_1_1AccountService.html
   /usr/share/doc/accounts-qt/html/classAccounts_1_1AccountService.js
@@ -127,13 +126,11 @@ Files included in the binary package:
   /usr/share/doc/accounts-qt/html/classAccounts_1_1ServiceType.js
   /usr/share/doc/accounts-qt/html/classes.html
   /usr/share/doc/accounts-qt/html/clipboard.js
-  /usr/share/doc/accounts-qt/html/closed.png
+  /usr/share/doc/accounts-qt/html/codefolding.js
   /usr/share/doc/accounts-qt/html/cookie.js
   /usr/share/doc/accounts-qt/html/deprecated.html
   /usr/share/doc/accounts-qt/html/dir_c3d1d086c816c0518443c9e800634b9c.html
   /usr/share/doc/accounts-qt/html/dir_c3d1d086c816c0518443c9e800634b9c.js
-  /usr/share/doc/accounts-qt/html/doc.svg
-  /usr/share/doc/accounts-qt/html/docd.svg
   /usr/share/doc/accounts-qt/html/doxygen.css
   /usr/share/doc/accounts-qt/html/doxygen.svg
   /usr/share/doc/accounts-qt/html/doxygen_blank.html
@@ -143,59 +140,30 @@ Files included in the binary package:
   /usr/share/doc/accounts-qt/html/error_8h_source.html
   /usr/share/doc/accounts-qt/html/files.html
   /usr/share/doc/accounts-qt/html/files_dup.js
-  /usr/share/doc/accounts-qt/html/folderclosed.svg
-  /usr/share/doc/accounts-qt/html/folderclosedd.svg
-  /usr/share/doc/accounts-qt/html/folderopen.svg
-  /usr/share/doc/accounts-qt/html/folderopend.svg
   /usr/share/doc/accounts-qt/html/functions.html
   /usr/share/doc/accounts-qt/html/functions_enum.html
   /usr/share/doc/accounts-qt/html/functions_eval.html
   /usr/share/doc/accounts-qt/html/functions_func.html
   /usr/share/doc/accounts-qt/html/graph_legend.html
   /usr/share/doc/accounts-qt/html/graph_legend.md5
-  /usr/share/doc/accounts-qt/html/graph_legend.png
   /usr/share/doc/accounts-qt/html/index.html
   /usr/share/doc/accounts-qt/html/index.qhp
-  /usr/share/doc/accounts-qt/html/jquery.js
   /usr/share/doc/accounts-qt/html/manager_8cpp_source.html
   /usr/share/doc/accounts-qt/html/manager_8h_source.html
   /usr/share/doc/accounts-qt/html/manager__p_8h_source.html
   /usr/share/doc/accounts-qt/html/menu.js
   /usr/share/doc/accounts-qt/html/menudata.js
-  /usr/share/doc/accounts-qt/html/minus.svg
-  /usr/share/doc/accounts-qt/html/minusd.svg
-  /usr/share/doc/accounts-qt/html/nav_f.png
-  /usr/share/doc/accounts-qt/html/nav_fd.png
-  /usr/share/doc/accounts-qt/html/nav_g.png
-  /usr/share/doc/accounts-qt/html/nav_h.png
-  /usr/share/doc/accounts-qt/html/nav_hd.png
   /usr/share/doc/accounts-qt/html/navtree.css
   /usr/share/doc/accounts-qt/html/navtree.js
   /usr/share/doc/accounts-qt/html/navtreedata.js
   /usr/share/doc/accounts-qt/html/navtreeindex0.js
-  /usr/share/doc/accounts-qt/html/open.png
   /usr/share/doc/accounts-qt/html/pages.html
-  /usr/share/doc/accounts-qt/html/plus.svg
-  /usr/share/doc/accounts-qt/html/plusd.svg
   /usr/share/doc/accounts-qt/html/provider_8cpp_source.html
   /usr/share/doc/accounts-qt/html/provider_8h_source.html
-  /usr/share/doc/accounts-qt/html/resize.js
   /usr/share/doc/accounts-qt/html/service-type_8cpp_source.html
   /usr/share/doc/accounts-qt/html/service-type_8h_source.html
   /usr/share/doc/accounts-qt/html/service_8cpp_source.html
   /usr/share/doc/accounts-qt/html/service_8h_source.html
-  /usr/share/doc/accounts-qt/html/splitbar.png
-  /usr/share/doc/accounts-qt/html/splitbard.png
-  /usr/share/doc/accounts-qt/html/sync_off.png
-  /usr/share/doc/accounts-qt/html/sync_on.png
-  /usr/share/doc/accounts-qt/html/tab_a.png
-  /usr/share/doc/accounts-qt/html/tab_ad.png
-  /usr/share/doc/accounts-qt/html/tab_b.png
-  /usr/share/doc/accounts-qt/html/tab_bd.png
-  /usr/share/doc/accounts-qt/html/tab_h.png
-  /usr/share/doc/accounts-qt/html/tab_hd.png
-  /usr/share/doc/accounts-qt/html/tab_s.png
-  /usr/share/doc/accounts-qt/html/tab_sd.png
   /usr/share/doc/accounts-qt/html/tabs.css
   /usr/share/doc/accounts-qt/html/utils_8cpp_source.html
   /usr/share/doc/accounts-qt/html/utils_8h_source.html
@@ -203,6 +171,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.17-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.17-1bl1 -----
 Version bump.

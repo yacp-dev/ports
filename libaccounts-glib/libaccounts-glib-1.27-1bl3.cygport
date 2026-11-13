@@ -13,10 +13,17 @@ LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	check
+	dbus
+	gobject-introspection
+	gtk-doc
+	libgirepository1.0-devel
 	libglib2.0-devel
 	libsqlite3-devel
 	libxml2-devel
-	python39-gi
+	python3-devel
+	python312-gi
+	vala
 "
 
 inherit meson
@@ -25,13 +32,19 @@ CYGMESON_ARGS="
 	-Dinstall-py-overrides=true
 "
 
+src_test()
+{
+	cd ${S}/_build.${CHOST}
+	verbose dbus-run-session -- meson test --print-errorlogs
+}
+
 PKG_NAMES="
 	${PN}
 	${PN}0
 	${PN}-devel
 	girepository-Accounts1.0
 	vala-${PN}
-	python39-${PN}
+	python312-${PN}
 "
 libaccounts_glib_CONTENTS="
 	usr/bin/*.exe
@@ -56,12 +69,12 @@ girepository_Accounts1_0_CONTENTS="
 vala_libaccounts_glib_CONTENTS="
 	usr/share/vala
 "
-python39_libaccounts_glib_CONTENTS="
-	usr/lib/python3.9
+python312_libaccounts_glib_CONTENTS="
+	usr/lib/python3.12
 "
 accounts_glib_SUMMARY="${SUMMARY} (utilities)"
 libaccounts_glib0_SUMMARY="${SUMMARY} (runtime)"
 libaccounts_glib_devel_SUMMARY="${SUMMARY} (development)"
 girepository_Accounts1_0_SUMMARY="${SUMMARY} (GObject Introspection data)"
 vala_libaccounts_glib_SUMMARY="${SUMMARY} (vala bindings)"
-python39_libaccounts_glib_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libaccounts_glib_SUMMARY="${SUMMARY} (python312 bindings)"

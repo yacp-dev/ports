@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libatrac9
+Description: Library for decoding audio in Sony's ATRAC9 format
+Version: @PROJECT_VERSION@
+Libs: -L${libdir} -latrac9
+Cflags: -I${includedir}

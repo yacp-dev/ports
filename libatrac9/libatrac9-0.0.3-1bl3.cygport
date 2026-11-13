@@ -1,5 +1,9 @@
 HOMEPAGE="https://github.com/Thealexbarney/LibAtrac9"
-SRC_URI="https://github.com/Thealexbarney/LibAtrac9/archive/refs/tags/v${PV}.tar.gz"
+SRC_URI="
+	https://github.com/Thealexbarney/LibAtrac9/archive/refs/tags/v${PV}.tar.gz
+	CMakeLists.txt
+	libatrac9.pc.in
+"
 SRC_DIR="LibAtrac9-${PV}"
 
 CATEGORY="Libs"
@@ -8,9 +12,11 @@ DESCRIPTION="${SUMMARY}"
 
 LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
-# LICENSE_URI="LICENSE"
+LICENSE_URI="https://raw.githubusercontent.com/Thealexbarney/LibAtrac9/master/LICENSE"
 
 inherit cmake
+
+CFLAGS+=" -Wno-error=incompatible-pointer-types"
 
 PKG_NAMES="
 	libatrac9
@@ -21,7 +27,7 @@ libatrac9_CONTENTS="
 	usr/share
 "
 libatrac9_0_CONTENTS="
-	usr/bin
+	usr/bin/cygatrac9-0.dll
 "
 libatrac9_devel_CONTENTS="
 	usr/include

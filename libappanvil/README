@@ -3,25 +3,25 @@ libappanvil
 Community-built parser library for AppArmor profiles
 
 Runtime requirements:
-  cygwin-3.5.1-1
-  libappanvil-devel-0.2-1bl1
-  libappanvil0-0.2-1bl1
-  libgcc1-11.4.0-1
-  libintl8-0.22.4-1
-  libstdc++6-11.4.0-1
-  pkg-config-2.1.1-1
+  cygwin-3.6.12-1
+  libappanvil-devel-0.2-1bl2
+  libappanvil0-0.2-1bl2
+  libgcc1-14.4.0-1
+  libintl8-0.22.5-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.42-1
+  binutils-2.47-1
   bison-3.8.2-1
-  cmake-3.28.3-1
-  cygport-0.36.8-1
-  flex-2.6.4-2
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libintl-devel-0.22.4-1
-  ninja-1.11.1-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  flex-2.6.11-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libintl-devel-0.22.5-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/jack-ullery/libappanvil
@@ -73,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

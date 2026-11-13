@@ -1,5 +1,5 @@
---- origsrc/libartnet-1.2.0/artnet/Makefile.am	2023-07-16 04:32:49.000000000 +0900
-+++ src/libartnet-1.2.0/artnet/Makefile.am	2023-10-25 11:09:28.440122200 +0900
+--- origsrc/libartnet-1.2.0/artnet/Makefile.am	2023-07-15 19:32:49.000000000 +0000
++++ src/libartnet-1.2.0/artnet/Makefile.am	2026-11-13 21:29:48.559437500 +0000
 @@ -9,9 +9,9 @@ pkgincludedir = $(includedir)/artnet
  lib_LTLIBRARIES = libartnet.la
  libartnet_la_SOURCES = artnet.c private.h misc.c network.c receive.c \
@@ -12,8 +12,8 @@
 +libartnet_la_LDFLAGS += -liphlpapi -lnetapi32 -lws2_32 -ldpnet
  endif
  
---- origsrc/libartnet-1.2.0/artnet/network.c	2023-07-16 04:32:49.000000000 +0900
-+++ src/libartnet-1.2.0/artnet/network.c	2023-10-25 11:22:32.264453100 +0900
+--- origsrc/libartnet-1.2.0/artnet/network.c	2023-07-15 19:32:49.000000000 +0000
++++ src/libartnet-1.2.0/artnet/network.c	2026-11-13 21:29:48.559437500 +0000
 @@ -536,6 +536,7 @@ int artnet_net_start(node n) {
        artnet_net_close(sock);
        return ARTNET_ENET;

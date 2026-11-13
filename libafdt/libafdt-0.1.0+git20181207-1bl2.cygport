@@ -6,11 +6,13 @@ SUMMARY="Library for Asynchronous File Descriptor Transfer"
 DESCRIPTION="libafdt is a library for performing asynchronous file descriptor transfers
 using libevent."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND ISC"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libevent-devel"
+BUILD_REQUIRES="
+	libevent-devel
+"
 
 inherit git
 

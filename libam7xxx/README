@@ -4,34 +4,35 @@ libam7xxx is an Open Source library to communicate via USB with projectors and
 Digital Picture Frames based on the Actions Micro AM7XXX family if ICs.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libam7xxx-devel-0.1.7+git20180302-1bl1
-  libam7xxx0.1-0.1.7+git20180302-1bl1
-  libavcodec61-7.1.1-1
-  libavdevice61-7.1.1-1
-  libavformat61-7.1.1-1
-  libavutil59-7.1.1-1
-  libswscale8-7.1.1-1
+  cygwin-3.6.12-1
+  libam7xxx-devel-0.1.7+git20180302-1bl2
+  libam7xxx0.1-0.1.7+git20180302-1bl2
+  libavcodec63-9.0.2-3
+  libavdevice63-9.0.2-3
+  libavformat63-9.0.2-3
+  libavutil61-9.0.2-3
+  libswscale10-9.0.2-3
   libusb1.0-1.0.21-1
   libusb1.0-devel-1.0.21-1
-  libxcb1-1.17.0-1
-  pkg-config-2.4.3-1
+  libxcb1-1.17.0-2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  asciidoc-10.2.0-1
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libavcodec-devel-7.1.1-1
-  libavdevice-devel-7.1.1-1
-  libavformat-devel-7.1.1-1
-  libavutil-devel-7.1.1-1
-  libswscale-devel-7.1.1-1
+  asciidoc-10.2.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  docbook-xml45-4.5-1
+  gcc-core-14.4.0-1
+  libavcodec-devel-9.0.2-3
+  libavdevice-devel-9.0.2-3
+  libavformat-devel-9.0.2-3
+  libavutil-devel-9.0.2-3
+  libswscale-devel-9.0.2-3
   libusb1.0-devel-1.0.21-1
-  libxcb-devel-1.17.0-1
-  ninja-1.12.1-1
+  libxcb-devel-1.17.0-2
+  ninja-1.13.2-1
 
 Canonical website:
   https://git.ao2.it/libam7xxx.git/
@@ -82,6 +83,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1.7+git20180302-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1.7+git20180302-1bl1 -----
 Version bump.

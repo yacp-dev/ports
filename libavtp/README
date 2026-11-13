@@ -4,18 +4,19 @@ Open source implementation of Audio Video Transport Protocol (AVTP) specified
 in IEEE 1722-2016 spec.
 
 Runtime requirements:
-  cygwin-3.5.0-0.450.g2ef627c46eb2
-  libavtp-devel-0.2.0-1bl1
-  libavtp0-0.2.0-1bl1
-  pkg-config-2.0.3-1
+  cygwin-3.6.12-1
+  libavtp-devel-0.2.0-1bl2
+  libavtp0-0.2.0-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-3
-  cygport-0.36.7-1
-  gcc-core-11.4.0-1
-  meson-1.0.2-1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcmocka-devel-2.0.2-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/Avnu/libavtp
@@ -65,6 +66,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

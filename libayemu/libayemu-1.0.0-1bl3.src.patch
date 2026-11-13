@@ -1,5 +1,5 @@
---- origsrc/libayemu-1.0.0/Makefile.am	2008-05-18 18:17:41.000000000 +0900
-+++ src/libayemu-1.0.0/Makefile.am	2024-10-24 04:35:27.808923400 +0900
+--- origsrc/libayemu-1.0.0/Makefile.am	2008-05-18 09:17:41.000000000 +0000
++++ src/libayemu-1.0.0/Makefile.am	2026-11-13 23:35:09.618684800 +0000
 @@ -24,3 +24,6 @@ install-exec-hook:
  # create distribute .tar.gz (source archive with autotools and ChangeLog files)
  #dist:
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libayemu-1.0.0/configure.in	2008-05-18 16:52:07.000000000 +0900
-+++ src/libayemu-1.0.0/configure.in	2024-10-24 04:37:19.491606100 +0900
+--- origsrc/libayemu-1.0.0/configure.in	2008-05-18 07:52:07.000000000 +0000
++++ src/libayemu-1.0.0/configure.in	2026-11-13 23:35:09.620266900 +0000
 @@ -1,7 +1,7 @@
  # Process this file with autoconf to produce a configure script.
 -AC_INIT(src/ay8912.c)
@@ -26,8 +26,8 @@
 -AC_OUTPUT(Makefile src/Makefile include/Makefile)
 +AC_OUTPUT(Makefile src/Makefile include/Makefile libayemu.pc)
  
---- origsrc/libayemu-1.0.0/libayemu.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libayemu-1.0.0/libayemu.pc.in	2024-10-24 04:35:27.793884000 +0900
+--- origsrc/libayemu-1.0.0/libayemu.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libayemu-1.0.0/libayemu.pc.in	2026-11-13 23:35:09.620705500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -39,8 +39,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -layemu
 +Cflags: -I${includedir}
---- origsrc/libayemu-1.0.0/src/Makefile.am	2008-05-18 16:52:07.000000000 +0900
-+++ src/libayemu-1.0.0/src/Makefile.am	2024-10-24 04:22:50.319520100 +0900
+--- origsrc/libayemu-1.0.0/src/Makefile.am	2008-05-18 07:52:07.000000000 +0000
++++ src/libayemu-1.0.0/src/Makefile.am	2026-11-13 23:35:09.622280000 +0000
 @@ -7,3 +7,4 @@ AM_CPPFLAGS             = -Wall -I$(top_
  
  check_PROGRAMS = test

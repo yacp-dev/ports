@@ -12,10 +12,11 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
+# upstream's only test (src/test.c, check_PROGRAMS) plays sound through OSS
+# (/dev/dsp), which is unavailable on Cygwin and CI
 src_test()
 {
-	cd ${B}
-	./src/test.exe
+	:
 }
 
 DOCS="

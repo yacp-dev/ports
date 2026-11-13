@@ -8,7 +8,14 @@ DESCRIPTION="libaudec (lib audio decoder) is a wrapper library over minimp3, snd
 libsamplerate for reading and resampling audio files, based on Robin Gareus'
 audio_decoder code (https://github.com/x42/silan/tree/master/audio_decoder)"
 
-BUILD_REQUIRES="libsamplerate-devel libsndfile-devel"
+LICENSE="AGPL-3.0-or-later AND GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later AND GPL-3.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libsamplerate-devel
+	libsndfile-devel
+"
 
 inherit meson
 
@@ -31,7 +38,7 @@ libaudec_CONTENTS="
 	usr/share
 "
 libaudec0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-0.dll
 "
 libaudec_devel_CONTENTS="
 	usr/include

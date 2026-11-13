@@ -1,5 +1,5 @@
---- origsrc/libam7xxx/doc/CMakeLists.txt	2025-05-02 16:38:34.000000000 +0900
-+++ src/libam7xxx/doc/CMakeLists.txt	2025-05-02 16:40:15.173160500 +0900
+--- origsrc/libam7xxx/doc/CMakeLists.txt	2026-11-13 14:45:17.000000000 +0000
++++ src/libam7xxx/doc/CMakeLists.txt	2026-11-13 14:45:20.294290900 +0000
 @@ -1,6 +1,6 @@
  # add a target to generate API documentation with Doxygen
  find_package(Doxygen)
@@ -8,8 +8,8 @@
    configure_file("Doxyfile.in" "Doxyfile" @ONLY IMMEDIATE)
  
    add_custom_target(doc
---- origsrc/libam7xxx/examples/CMakeLists.txt	2025-05-02 16:38:34.000000000 +0900
-+++ src/libam7xxx/examples/CMakeLists.txt	2025-05-02 16:39:48.565899900 +0900
+--- origsrc/libam7xxx/examples/CMakeLists.txt	2026-11-13 14:45:17.000000000 +0000
++++ src/libam7xxx/examples/CMakeLists.txt	2026-11-13 14:45:20.294743800 +0000
 @@ -55,6 +55,7 @@ if(BUILD_AM7XXX-PLAY)
  
    target_link_libraries(am7xxx-play am7xxx
@@ -18,8 +18,8 @@
      ${FFMPEG_LIBSWSCALE_LIBRARIES}
      ${OPTIONAL_LIBRARIES})
    install(TARGETS am7xxx-play
---- origsrc/libam7xxx/src/CMakeLists.txt	2025-05-02 16:38:34.000000000 +0900
-+++ src/libam7xxx/src/CMakeLists.txt	2025-05-02 16:39:17.849203000 +0900
+--- origsrc/libam7xxx/src/CMakeLists.txt	2026-11-13 14:45:17.000000000 +0000
++++ src/libam7xxx/src/CMakeLists.txt	2026-11-13 14:45:20.295767800 +0000
 @@ -17,15 +17,8 @@ set_target_properties(am7xxx PROPERTIES
    VERSION ${PROJECT_VER}
    SOVERSION ${PROJECT_APIVER})
@@ -46,3 +46,13 @@
  
  # Install the header files
  install(FILES "am7xxx.h"
+--- origsrc/libam7xxx/src/libam7xxx.pc.in	2026-11-13 14:45:17.000000000 +0000
++++ src/libam7xxx/src/libam7xxx.pc.in	2026-11-13 14:45:20.295767800 +0000
+@@ -4,6 +4,6 @@ includedir=@CMAKE_INSTALL_FULL_INCLUDEDI
+ Name: @PROJECT_NAME@
+ Description: @PROJECT_DESCRIPTION@
+ Requires.private: libusb-1.0
+-Version: @PROJECT_APIVER@
++Version: @PROJECT_VER@
+ Libs: -L${libdir} -lam7xxx
+ Cflags: -I${includedir}

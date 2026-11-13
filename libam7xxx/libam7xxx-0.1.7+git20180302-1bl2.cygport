@@ -3,6 +3,8 @@ GIT_URI="https://git.ao2.it/${PN}.git"
 GIT_REV="fbad283acdc978c30c7215e4f4f2f231e9e826e2"
 PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.1.7-5/debian/patches/FFmpeg-5.0-compatibility.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.1.7-7/debian/patches/cmake-4.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/0.1.7-7/debian/patches/avcodec_close-dep.patch
 "
 
 CATEGORY="Libs"
@@ -10,11 +12,21 @@ SUMMARY="Open Source library to communicate via USB with Projectors and Digital 
 DESCRIPTION="libam7xxx is an Open Source library to communicate via USB with projectors and
 Digital Picture Frames based on the Actions Micro AM7XXX family if ICs."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND GPL-3.0-or-later"
 LICENSE_URI="GPL-2"
 
-BUILD_REQUIRES="asciidoc libavcodec-devel libavdevice-devel libavformat-devel libavutil-devel libswscale-devel libusb1.0-devel libxcb-devel"
+BUILD_REQUIRES="
+	asciidoc
+	docbook-xml45
+	libavcodec-devel
+	libavdevice-devel
+	libavformat-devel
+	libavutil-devel
+	libswscale-devel
+	libusb1.0-devel
+	libxcb-devel
+"
 
 inherit cmake
 inherit git
@@ -42,3 +54,11 @@ libam7xxx_devel_CONTENTS="
 libam7xxx_SUMMARY="${SUMMARY} (utilities)"
 libam7xxx0_1_SUMMARY="${SUMMARY} (runtime)"
 libam7xxx_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test()
+{
+	cd ${B}
+	export PATH=${B}/lib:${PATH}
+	verbose ./bin/picoproj.exe -h > picoproj-usage.txt
+	grep '^usage: ' picoproj-usage.txt
+}

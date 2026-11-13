@@ -3,18 +3,18 @@ libatrac9
 Library for decoding audio in Sony's ATRAC9 format
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libatrac9-devel-0.0.3-1bl2
-  libatrac9_0-0.0.3-1bl2
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libatrac9-devel-0.0.3-1bl3
+  libatrac9_0-0.0.3-1bl3
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/Thealexbarney/LibAtrac9
@@ -55,6 +55,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.0.3-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.0.3-1bl2 -----
 Rebuild with gcc-12.4.0

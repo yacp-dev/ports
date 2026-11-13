@@ -1,5 +1,5 @@
---- origsrc/libafdt/Makefile.am	2024-10-09 22:19:54.000000000 +0900
-+++ src/libafdt/Makefile.am	2024-10-09 22:19:55.183683200 +0900
+--- origsrc/libafdt/Makefile.am	2026-11-13 01:00:44.000000000 +0000
++++ src/libafdt/Makefile.am	2026-11-13 01:00:45.162964500 +0000
 @@ -20,6 +20,9 @@ libafdt_la_SOURCES += src/async.c
  libafdt_la_LIBADD = $(LIBEVENT_LIBS)
  endif
@@ -17,9 +17,9 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libafdt/configure.ac	2024-10-09 22:19:54.000000000 +0900
-+++ src/libafdt/configure.ac	2024-10-09 22:30:29.641409500 +0900
-@@ -38,18 +38,7 @@ AC_CHECK_FUNCS([strerror])
+--- origsrc/libafdt/configure.ac	2026-11-13 01:00:44.000000000 +0000
++++ src/libafdt/configure.ac	2026-11-13 01:00:45.163478400 +0000
+@@ -38,18 +38,9 @@ AC_CHECK_FUNCS([strerror])
  AC_CHECK_DECLS([AF_LOCAL], [], [], [[#include <sys/socket.h>]])
  AC_CHECK_DECLS([PF_LOCAL], [], [], [[#include <sys/socket.h>]])
  
@@ -35,11 +35,13 @@
 -if test "x$ax_have_libevent" = "xyes" ; then : ; else
 -  AX_LIB_EVENT
 -fi
-+PKG_CHECK_MODULES([LIBEVENT], [libevent])
++PKG_CHECK_MODULES([LIBEVENT], [libevent >= 2.0.9])
++have_libevent_209="yes"
++have_libevent_143="yes"
  
  if test "x$ax_have_libevent_2_0_9" = "xyes" ; then
    have_libevent_209="yes"
-@@ -64,10 +53,10 @@ fi
+@@ -64,10 +55,10 @@ fi
  
  AM_CONDITIONAL([HAVE_LIBEVENT_143], [test "x$have_libevent_143" = "xyes"])
  AM_CONDITIONAL([HAVE_LIBEVENT_209], [test "x$have_libevent_209" = "xyes"])
@@ -52,8 +54,8 @@
 -AC_CONFIG_FILES([Makefile])
 +AC_CONFIG_FILES([libafdt.pc Makefile])
  AC_OUTPUT
---- origsrc/libafdt/libafdt.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libafdt/libafdt.pc.in	2024-10-09 22:19:55.183683200 +0900
+--- origsrc/libafdt/libafdt.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libafdt/libafdt.pc.in	2026-11-13 01:00:45.163478400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

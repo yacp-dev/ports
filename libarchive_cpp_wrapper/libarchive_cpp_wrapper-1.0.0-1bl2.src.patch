@@ -1,5 +1,5 @@
---- origsrc/libarchive_cpp_wrapper-1.0.0/CMakeLists.txt	2014-09-27 07:02:18.000000000 +0900
-+++ src/libarchive_cpp_wrapper-1.0.0/CMakeLists.txt	2025-02-07 20:30:41.231323500 +0900
+--- origsrc/libarchive_cpp_wrapper-1.0.0/CMakeLists.txt	2014-09-26 22:02:18.000000000 +0000
++++ src/libarchive_cpp_wrapper-1.0.0/CMakeLists.txt	2026-11-13 21:20:17.552048100 +0000
 @@ -84,3 +84,10 @@ install(
    
    DESTINATION include 
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libarchive_cpp_wrapper.pc.in ${CMAKE_BINARY_DIR}/libarchive_cpp_wrapper.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libarchive_cpp_wrapper.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libarchive_cpp_wrapper-1.0.0/archive_entry.hpp	2014-09-27 07:02:18.000000000 +0900
-+++ src/libarchive_cpp_wrapper-1.0.0/archive_entry.hpp	2025-02-07 20:27:26.893841900 +0900
+--- origsrc/libarchive_cpp_wrapper-1.0.0/archive_entry.hpp	2014-09-26 22:02:18.000000000 +0000
++++ src/libarchive_cpp_wrapper-1.0.0/archive_entry.hpp	2026-11-13 21:20:17.553292400 +0000
 @@ -35,7 +35,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #include <cstdint>
  #include <istream>
@@ -23,8 +23,8 @@
  
  #include "archive_reader_entry_buffer.hpp"
  
---- origsrc/libarchive_cpp_wrapper-1.0.0/libarchive_cpp_wrapper.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libarchive_cpp_wrapper-1.0.0/libarchive_cpp_wrapper.pc.in	2025-02-07 20:30:58.276609300 +0900
+--- origsrc/libarchive_cpp_wrapper-1.0.0/libarchive_cpp_wrapper.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libarchive_cpp_wrapper-1.0.0/libarchive_cpp_wrapper.pc.in	2026-11-13 21:20:17.554070000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

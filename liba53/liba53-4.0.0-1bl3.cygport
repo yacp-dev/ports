@@ -5,9 +5,15 @@ CATEGORY="Libs"
 SUMMARY="A5/3 Call Encryption Library"
 DESCRIPTION="${SUMMARY}"
 
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
 DIFF_EXCLUDES="
 	Makefile
 "
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 PKG_NAMES="
 	${PN}
@@ -18,7 +24,7 @@ liba53_CONTENTS="
 	usr/share
 "
 liba53_1_CONTENTS="
-	usr/bin
+	usr/bin/cyga53-1.dll
 "
 liba53_devel_CONTENTS="
 	usr/include

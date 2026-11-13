@@ -9,11 +9,14 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 # LICENSE_URI=""
 
-BUILD_REQUIRES="libarchive-devel"
+BUILD_REQUIRES="
+	libarchive-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-Dlibarchive_LIBRARIES:STRING=archive
 	-DVERSION:STRING=${PV}
 "

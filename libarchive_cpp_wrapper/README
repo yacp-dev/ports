@@ -3,23 +3,22 @@ libarchive_cpp_wrapper
 C++ wrapper arround libarchive library
 
 Runtime requirements:
-  cygwin-3.5.7-1
-  libarchive13-3.7.7-1
-  libarchive_cpp_wrapper-devel-1.0.0-1bl1
-  libarchive_cpp_wrapper1-1.0.0-1bl1
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libarchive13-3.8.11-1
+  libarchive_cpp_wrapper-devel-1.0.0-1bl2
+  libarchive_cpp_wrapper1-1.0.0-1bl2
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libarchive-devel-3.7.7-1
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libarchive-devel-3.8.11-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/do-m-en/libarchive_cpp_wrapper
@@ -72,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

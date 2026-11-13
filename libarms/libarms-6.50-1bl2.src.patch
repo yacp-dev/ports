@@ -1,5 +1,5 @@
---- origsrc/libarms-6.50/Makefile.am	2024-12-04 09:27:42.000000000 +0900
-+++ src/libarms-6.50/Makefile.am	2026-01-16 00:00:37.831127300 +0900
+--- origsrc/libarms-6.50/Makefile.am	2024-12-04 00:27:42.000000000 +0000
++++ src/libarms-6.50/Makefile.am	2026-11-13 21:29:33.188391100 +0000
 @@ -5,7 +5,7 @@
  # revision: increment if source change.
  # age: increment if function add.
@@ -56,16 +56,16 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libarms-6.50/configure.ac	2024-12-04 09:27:42.000000000 +0900
-+++ src/libarms-6.50/configure.ac	2026-01-16 00:00:37.831127300 +0900
+--- origsrc/libarms-6.50/configure.ac	2024-12-04 00:27:42.000000000 +0000
++++ src/libarms-6.50/configure.ac	2026-11-13 21:29:33.189607600 +0000
 @@ -158,4 +158,5 @@ AC_ARG_ENABLE(debug,
  
  AC_CONFIG_FILES([Makefile])
  AC_OUTPUT_COMMANDS([echo timestamp > stamp-h1])
 +AC_CONFIG_FILES([libarms.pc])
  AC_OUTPUT
---- origsrc/libarms-6.50/libarms/sock.c	2024-12-04 09:27:42.000000000 +0900
-+++ src/libarms-6.50/libarms/sock.c	2026-01-16 00:00:37.834573900 +0900
+--- origsrc/libarms-6.50/libarms/sock.c	2024-12-04 00:27:42.000000000 +0000
++++ src/libarms-6.50/libarms/sock.c	2026-11-13 21:29:33.190415100 +0000
 @@ -32,7 +32,9 @@
  #include <sys/types.h>
  #include <sys/socket.h>
@@ -76,8 +76,8 @@
  
  #ifdef RTM_ADD
  #define USE_RTMSG
---- origsrc/libarms-6.50/libarms.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libarms-6.50/libarms.pc.in	2026-01-16 00:00:37.836587400 +0900
+--- origsrc/libarms-6.50/libarms.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libarms-6.50/libarms.pc.in	2026-11-13 21:29:33.191619900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

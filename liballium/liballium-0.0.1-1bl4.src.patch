@@ -1,5 +1,5 @@
---- origsrc/liballium-0.0.1/Makefile.am	2014-03-04 19:09:55.000000000 +0900
-+++ src/liballium-0.0.1/Makefile.am	2025-01-05 14:07:07.793425300 +0900
+--- origsrc/liballium-0.0.1/Makefile.am	2014-03-04 10:09:55.000000000 +0000
++++ src/liballium-0.0.1/Makefile.am	2026-11-13 01:15:26.391127500 +0000
 @@ -15,7 +15,7 @@ liballium_@ALLIUM_API_VERSION@_la_SOURCE
  	src/allium_ptcfg.c \
  	src/allium_util.c
@@ -9,8 +9,8 @@
  
  liballiumincludedir = ${includedir}/allium
  liballiuminclude_HEADERS = include/allium.h \
---- origsrc/liballium-0.0.1/src/bstrlib.c	2014-03-04 19:09:55.000000000 +0900
-+++ src/liballium-0.0.1/src/bstrlib.c	2025-01-05 14:07:07.809019800 +0900
+--- origsrc/liballium-0.0.1/src/bstrlib.c	2014-03-04 10:09:55.000000000 +0000
++++ src/liballium-0.0.1/src/bstrlib.c	2026-11-13 01:15:26.392144700 +0000
 @@ -2756,7 +2756,7 @@ struct genBstrList g;
  #define START_VSNBUFF (256)
  #else

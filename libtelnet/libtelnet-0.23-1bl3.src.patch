@@ -1,5 +1,5 @@
---- origsrc/libtelnet-0.23/Makefile.am	2018-10-18 15:18:49.000000000 +0900
-+++ src/libtelnet-0.23/Makefile.am	2024-10-10 00:05:13.121969500 +0900
+--- origsrc/libtelnet-0.23/Makefile.am	2018-10-18 06:18:49.000000000 +0000
++++ src/libtelnet-0.23/Makefile.am	2026-11-14 11:49:46.627171600 +0000
 @@ -8,7 +8,7 @@ include_HEADERS = libtelnet.h
  
  lib_LTLIBRARIES = libtelnet.la
@@ -9,8 +9,8 @@
  libtelnet_la_LIBADD = $(zlib_LIBS)
  
  pkgconfigdir = $(libdir)/pkgconfig
---- origsrc/libtelnet-0.23/configure.ac	2018-10-18 15:18:49.000000000 +0900
-+++ src/libtelnet-0.23/configure.ac	2024-10-10 00:05:13.121969500 +0900
+--- origsrc/libtelnet-0.23/configure.ac	2018-10-18 06:18:49.000000000 +0000
++++ src/libtelnet-0.23/configure.ac	2026-11-14 11:49:46.627171600 +0000
 @@ -7,7 +7,7 @@ AC_INIT([libtelnet], [0.23], [http://git
  AC_CONFIG_HEADERS([config.h])
  AC_CONFIG_MACRO_DIR([m4])
@@ -20,8 +20,8 @@
  AM_PROG_AR
  #LT_INIT([win32-dll])
  AC_LIBTOOL_WIN32_DLL
---- origsrc/libtelnet-0.23/util/Makefile.am	2018-10-18 15:18:49.000000000 +0900
-+++ src/libtelnet-0.23/util/Makefile.am	2024-10-10 00:05:13.121969500 +0900
+--- origsrc/libtelnet-0.23/util/Makefile.am	2018-10-18 06:18:49.000000000 +0000
++++ src/libtelnet-0.23/util/Makefile.am	2026-11-14 11:49:46.629195200 +0000
 @@ -1,15 +1,15 @@
  AM_CFLAGS = -I$(top_srcdir)
  

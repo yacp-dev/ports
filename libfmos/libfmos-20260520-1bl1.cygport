@@ -9,7 +9,13 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libcerror-devel libcnotify-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcerror-devel
+	libcnotify-devel
+	libcthreads-devel
+	python3-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -28,21 +34,21 @@ src_test()
 	pushd tests
 		for sh in ${S}/tests/*.sh ${S}/tests/*.py
 		do
-			ln -fs ${sh} .
+			cp -f ${sh} .
 		done
 	popd
-	cygtest
-	rm tests/*.sh tests/*.py
+	CHECK_WITH_STDERR=1 PYTHON=python3 PYTHONPATH=${B}/pyfmos/.libs PATH=${B}/libfmos/.libs:${B}/pyfmos/.libs:${PATH} cygtest
+	rm -f tests/*.sh tests/*.py
 }
 
 PKG_NAMES="
 	libfmos
 	libfmos1
 	libfmos-devel
-	python39-libfmos
+	python312-libfmos
 "
 libfmos_CONTENTS="
-	usr/share
+	usr/share/doc
 "
 libfmos1_CONTENTS="
 	usr/bin/cyg*-1.dll
@@ -51,11 +57,12 @@ libfmos_devel_CONTENTS="
 	usr/include
 	usr/lib/lib*.dll.a
 	usr/lib/pkgconfig
+	usr/share/man/man3
 "
-python39_libfmos_CONTENTS="
-	usr/lib/python3.9
+python312_libfmos_CONTENTS="
+	usr/lib/python3.12
 "
 libfmos_SUMMARY="${SUMMARY} (licensing & readmes)"
 libfmos1_SUMMARY="${SUMMARY} (runtime)"
 libfmos_devel_SUMMARY="${SUMMARY} (development)"
-python39_libfmos_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libfmos_SUMMARY="${SUMMARY} (python312 bindings)"

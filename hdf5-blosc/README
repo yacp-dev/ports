@@ -4,19 +4,22 @@ This is a filter for HDF5 that uses the Blosc compressor; by installing this
 filter, you can read and write HDF5 files with Blosc-compressed datasets.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libblosc1-1.21.6-1bl1
-  libhdf5_310-1.14.6-1
+  cygwin-3.6.12-1
+  libblosc1-1.21.7-1bl1
+  libhdf5_320-2.2.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libblosc-devel-1.21.6-1bl1
-  libhdf5-devel-1.14.6-1
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  hdf5-2.2.0-1
+  libaec-devel-1.1.8-1
+  libblosc-devel-1.21.7-1bl1
+  libhdf5-devel-2.2.0-1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/Blosc/hdf5-blosc
@@ -43,16 +46,17 @@ Files included in the binary package:
 
 (hdf5-blosc)
   /usr/include/blosc_filter.h
-  /usr/lib/hdf5/plugins/cygH5Zblosc.dll
-  /usr/lib/hdf5/plugins/cygblosc_filter.dll
-  /usr/lib/hdf5/plugins/libH5Zblosc.dll.a
-  /usr/lib/hdf5/plugins/libblosc_filter.dll.a
+  /usr/lib/plugin/cygH5Zblosc.dll
+  /usr/lib/plugin/cygblosc_filter.dll
   /usr/share/doc/Cygwin/hdf5-blosc.README
   /usr/share/doc/hdf5-blosc/README.rst
 
 ------------------
 
 Port Notes:
+
+----- version 1.0.1-1bl2 -----
+Install plugins to /usr/lib/plugin
 
 ----- version 1.0.1-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

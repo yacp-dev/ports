@@ -1,5 +1,5 @@
---- origsrc/libfwsi-20240423/Makefile.am	2024-04-23 14:00:36.000000000 +0900
-+++ src/libfwsi-20240423/Makefile.am	2025-05-18 06:07:48.236824900 +0900
+--- origsrc/libfwsi-20260522/Makefile.am	2024-04-23 14:00:36.000000000 +0900
++++ src/libfwsi-20260522/Makefile.am	2025-05-18 06:07:48.236824900 +0900
 @@ -3,19 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -20,8 +20,8 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfwsi-20240423/configure.ac	2024-04-23 14:00:36.000000000 +0900
-+++ src/libfwsi-20240423/configure.ac	2025-05-18 06:07:48.236824900 +0900
+--- origsrc/libfwsi-20260522/configure.ac	2024-04-23 14:00:36.000000000 +0900
++++ src/libfwsi-20260522/configure.ac	2025-05-18 06:07:48.236824900 +0900
 @@ -142,16 +142,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
@@ -39,8 +39,8 @@
  AC_CONFIG_FILES([libfwsi/Makefile])
  AC_CONFIG_FILES([pyfwsi/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
---- origsrc/libfwsi-20240423/pyfwsi/Makefile.am	2024-04-23 14:00:36.000000000 +0900
-+++ src/libfwsi-20240423/pyfwsi/Makefile.am	2025-05-18 06:08:12.425203500 +0900
+--- origsrc/libfwsi-20260522/pyfwsi/Makefile.am	2024-04-23 14:00:36.000000000 +0900
++++ src/libfwsi-20260522/pyfwsi/Makefile.am	2025-05-18 06:08:12.425203500 +0900
 @@ -50,7 +50,7 @@ pyfwsi_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  

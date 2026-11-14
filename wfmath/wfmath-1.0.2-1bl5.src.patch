@@ -1,5 +1,5 @@
---- origsrc/wfmath-1.0.2/doc/Doxyfile.in	2013-09-01 03:34:54.000000000 +0900
-+++ src/wfmath-1.0.2/doc/Doxyfile.in	2025-01-16 22:50:57.385352700 +0900
+--- origsrc/wfmath-1.0.2/doc/Doxyfile.in	2013-08-31 18:34:54.000000000 +0000
++++ src/wfmath-1.0.2/doc/Doxyfile.in	2026-11-14 07:57:19.236682400 +0000
 @@ -574,7 +574,7 @@ WARN_LOGFILE           =
  # directories like "/usr/src/myproject". Separate the files or directories
  # with spaces.
@@ -9,8 +9,8 @@
                           shape.h
  
  # This tag can be used to specify the character encoding of the source files
---- origsrc/wfmath-1.0.2/wfmath/Makefile.am	2013-09-01 03:34:54.000000000 +0900
-+++ src/wfmath-1.0.2/wfmath/Makefile.am	2025-01-16 22:50:57.385352700 +0900
+--- origsrc/wfmath-1.0.2/wfmath/Makefile.am	2013-08-31 18:34:54.000000000 +0000
++++ src/wfmath-1.0.2/wfmath/Makefile.am	2026-11-14 07:57:19.238694900 +0000
 @@ -28,7 +28,7 @@ libwfmath_1_0_la_SOURCES = basis.h const
  	point.cpp quaternion.cpp polygon.cpp intersect.cpp \
  	axisbox.cpp polygon_intersect.cpp ball.cpp rotbox.cpp segment.cpp \

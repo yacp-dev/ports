@@ -12,11 +12,13 @@ KokkosKernels can be the building block of a parallel linear algebra library
 like Tpetra that uses MPI and threads for parallelism, or it can be used
 stand-alone in your application."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="Apache-2.0 WITH LLVM-exception"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libkokkos-devel"
+BUILD_REQUIRES="
+	libkokkos-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 export CXXFLAGS="${CXXFLAGS} -fpermissive"
@@ -38,8 +40,7 @@ src_test()
 }
 
 DOCS="
-	CHANGELOG.md
-	docs/kokkos-promotion.txt
+	*.md
 	master_history.txt
 "
 
@@ -51,13 +52,16 @@ PKG_NAMES="
 kokkos_kernels_CONTENTS="
 	usr/share
 "
-libkokkoskernels4_4_CONTENTS="
-	usr/bin/cyg*-4.4.dll
+libkokkoskernels5_3_CONTENTS="
+	usr/bin/cyg*-5.3.dll
 "
 libkokkoskernels_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 kokkos_kernels_SUMMARY="${SUMMARY} (licensing & readmes)"
-libkokkoskernels4_4_SUMMARY="${SUMMARY} (runtime)"
+libkokkoskernels5_3_SUMMARY="${SUMMARY} (runtime)"
 libkokkoskernels_devel_SUMMARY="${SUMMARY} (development)"
+
+libkokkoskernels_devel_REQUIRES="libkokkos-devel"
+

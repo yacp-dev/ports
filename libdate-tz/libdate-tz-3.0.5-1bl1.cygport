@@ -1,10 +1,10 @@
 HOMEPAGE="https://github.com/HowardHinnant/date"
 SRC_URI="https://github.com/HowardHinnant/date/archive/refs/tags/v${PV}.tar.gz"
-SRC_DIR="date-${PV}"
 PATCH_URI="
 	https://sources.debian.org/data/main/h/howardhinnant-date/3.0.3%2Bds-2/debian/patches/tests-disable-lcurl.patch
-	https://src.fedoraproject.org/rpms/date/raw/rawhide/f/output-date-pc-for-pkg-config.patch
+	https://src.fedoraproject.org/rpms/date/raw/97fae409e92661e6ccc200ad2086ac2501ff0912/f/output-date-pc-for-pkg-config.patch
 "
+SRC_DIR="date-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="C++ library for date and time operations based on <chrono>"
@@ -16,6 +16,8 @@ LICENSE_URI="LICENSE.txt"
 
 inherit cmake
 
+CXXFLAGS+=" -DHAS_CHRONO_20=0"
+
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DBUILD_TZ_LIB:BOOL=ON
@@ -23,6 +25,11 @@ CYGCMAKE_ARGS="
 	-DPACKAGE_VERSION=${PV}
 	-DUSE_SYSTEM_TZ_DB:BOOL=ON
 "
+
+src_test() {
+	cd ${B}
+	PATH=${B}:${PATH} cygninja testit
+}
 
 PKG_NAMES="
 	libdate-tz

@@ -1,0 +1,52 @@
+HOMEPAGE="https://github.com/LeelaChessZero/${PN}"
+LCZERO_COMMON_REV="b326b154221a6eb91977bdccf11d6f89e8547875"
+SRC_URI="
+	https://github.com/LeelaChessZero/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/LeelaChessZero/lczero-common/archive/${LCZERO_COMMON_REV}.tar.gz#/lczero-common-${LCZERO_COMMON_REV}.tar.gz
+"
+
+CATEGORY="Games"
+SUMMARY="Open source neural network based chess engine"
+DESCRIPTION="Lc0 is a UCI-compliant chess engine designed to play chess via neural network,
+specifically those of the LeelaChessZero project."
+
+LICENSE="GPL-3.0-or-later AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND Apache-2.0"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	eigen3
+	libabseil-devel
+	libgmock-devel
+	libgtest-devel
+	libOpenCL-devel
+	zlib-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -I/usr/include/eigen3"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	rm -rf libs/lczero-common
+	verbose mv ${origsrcdir}/lczero-common-${LCZERO_COMMON_REV} libs/lczero-common
+}
+
+inherit meson
+
+CYGMESON_ARGS="
+	-Dgtest=true
+	-Dmetal=disabled
+	-Dnative_arch=false
+	-Dopencl=true
+"
+
+DOCS="
+	*.md
+	changelog.txt
+"
+
+DIFF_EXCLUDES="
+	libs
+"

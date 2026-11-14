@@ -1,0 +1,45 @@
+--- origsrc/lc0-0.32.1/meson.build	2025-11-23 20:00:03.000000000 +0000
++++ src/lc0-0.32.1/meson.build	2026-11-14 13:55:37.856841200 +0000
+@@ -229,8 +229,8 @@ files += [
+ 
+ includes += include_directories('src')
+ 
+-absl = subproject('abseil-cpp', default_options : ['warning_level=0', 'cpp_std=c++20'])
+-deps += absl.get_variable('absl_container_dep').as_system()
++deps += dependency('absl_flat_hash_map')
++deps += dependency('absl_cleanup')
+ 
+ deps += dependency('threads')
+ 
+@@ -873,7 +873,7 @@ endif
+ if get_option('gtest')
+   gtest = dependency('gtest', fallback: ['gtest', 'gtest_dep'])
+   gmock = dependency('gmock', fallback: ['gtest', 'gmock_dep'])
+-  lc0_lib = library('lc0_lib', common_files, include_directories: includes, dependencies: deps)
++  lc0_lib = static_library('lc0_lib', common_files, include_directories: includes, dependencies: deps)
+ 
+   test('ChessBoard',
+     executable('chessboard_test', 'src/chess/board_test.cc',
+--- origsrc/lc0-0.32.1/third_party/opencl.hpp	2025-11-23 20:00:03.000000000 +0000
++++ src/lc0-0.32.1/third_party/opencl.hpp	2026-11-14 13:55:37.858862900 +0000
+@@ -7192,14 +7192,20 @@ enum class ExternalMemoryType : cl_exter
+     None = 0,
+ 
+     OpaqueFd = CL_EXTERNAL_MEMORY_HANDLE_OPAQUE_FD_KHR,
++#ifdef CL_EXTERNAL_MEMORY_HANDLE_OPAQUE_WIN32_KHR
+     OpaqueWin32 = CL_EXTERNAL_MEMORY_HANDLE_OPAQUE_WIN32_KHR,
+     OpaqueWin32Kmt = CL_EXTERNAL_MEMORY_HANDLE_OPAQUE_WIN32_KMT_KHR,
++#endif
+ 
++#ifdef CL_EXTERNAL_MEMORY_HANDLE_D3D11_TEXTURE_KHR
+     D3D11Texture = CL_EXTERNAL_MEMORY_HANDLE_D3D11_TEXTURE_KHR,
+     D3D11TextureKmt = CL_EXTERNAL_MEMORY_HANDLE_D3D11_TEXTURE_KMT_KHR,
++#endif
+ 
++#ifdef CL_EXTERNAL_MEMORY_HANDLE_D3D12_HEAP_KHR
+     D3D12Heap = CL_EXTERNAL_MEMORY_HANDLE_D3D12_HEAP_KHR,
+     D3D12Resource = CL_EXTERNAL_MEMORY_HANDLE_D3D12_RESOURCE_KHR,
++#endif
+ 
+     DmaBuf = CL_EXTERNAL_MEMORY_HANDLE_DMA_BUF_KHR,
+ };

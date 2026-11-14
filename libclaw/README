@@ -5,25 +5,26 @@ algorithms, like containers, string algorithms, tweeners and more.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.5-1
-  libclaw1-1.7.4-1bl3
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libclaw1-1.7.4-1bl4
+  libgcc1-14.4.0-1
   libintl8-0.22.5-1
-  libjpeg8-3.1.0-1
-  libpng16-1.6.47-2
-  libstdc++6-13.4.0-1
+  libjpeg8-3.2.0-1
+  libpng16-1.6.59-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-3.31.3-1
-  cygport-0.37.3-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  gettext-devel-0.22.5-1
+  libboost-devel-1.66.0-1
   libintl-devel-0.22.5-1
-  libjpeg-devel-3.1.0-1
-  libpng-devel-1.6.47-2
-  ninja-1.13.1-1
+  libjpeg-devel-3.2.0-1
+  libpng-devel-1.6.59-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://sourceforge.net/projects/libclaw/
@@ -238,6 +239,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.7.4-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.7.4-1bl3 -----
 Rebuild with gcc-13.4.0

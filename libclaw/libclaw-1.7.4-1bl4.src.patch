@@ -1,5 +1,5 @@
---- origsrc/libclaw-1.7.4/CMakeLists.txt	2025-11-17 13:17:44.006390300 +0900
-+++ src/libclaw-1.7.4/CMakeLists.txt	2025-11-17 13:17:46.597340000 +0900
+--- origsrc/libclaw-1.7.4/CMakeLists.txt	2026-11-14 13:42:52.395876700 +0000
++++ src/libclaw-1.7.4/CMakeLists.txt	2026-11-14 13:42:52.975552200 +0000
 @@ -85,7 +85,6 @@ set( CLAW_APPLICATION_SOURCES
    ${CLAW_CODE_DIR}arguments_table.cpp
  )
@@ -74,7 +74,7 @@
  target_link_libraries(claw_graphic ${CLAW_GRAPHIC_LIBRARIES})
  
  # tween
-@@ -239,10 +218,6 @@ include_directories(
+@@ -240,10 +219,6 @@ include_directories(
    )
  
  add_library( claw_tween SHARED ${CLAW_TWEEN_SOURCES} )
@@ -85,7 +85,7 @@
  
  # extra flags for the link
  set_target_properties(
-@@ -254,7 +229,7 @@ set( CLAW_ALL_LIBRARIES ${CLAW_LIBRARIES
+@@ -255,7 +230,7 @@ set( CLAW_ALL_LIBRARIES ${CLAW_LIBRARIES
  
  #-------------------------------------------------------------------------------
  # subdirectories
@@ -94,7 +94,7 @@
  
  #-------------------------------------------------------------------------------
  # install libraries
-@@ -265,15 +240,7 @@ foreach( lib ${CLAW_LIBRARIES} )
+@@ -266,15 +241,7 @@ foreach( lib ${CLAW_LIBRARIES} )
      SOVERSION ${CLAW_VERSION_MAJOR}
    )
  

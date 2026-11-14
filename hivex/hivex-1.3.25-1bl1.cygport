@@ -11,17 +11,33 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libiconv-devel libintl-devel libreadline-devel libxml2-devel ocaml ocaml-findlib python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libiconv-devel
+	libintl-devel
+	libreadline-devel
+	libxml2-devel
+	ocaml
+	ocaml-findlib
+	python3-devel
+"
 
 export PYTHON=python3
 
 CYGCONF_ARGS="
 	--disable-ruby
+	--with-python-installdir=/usr/lib/python3.12/site-packages
 "
 
 MAKEOPTS="
 	-j1
 "
+
+src_test()
+{
+	cd ${B}
+	PATH="${B}/lib/.libs:${B}/ocaml:${B}/python/.libs:${PATH}" cygtest
+}
 
 src_install()
 {
@@ -39,7 +55,7 @@ PKG_NAMES="
 	lib${PN}0
 	lib${PN}-devel
 	ocaml-${PN}
-	python39-${PN}
+	python312-${PN}
 "
 hivex_CONTENTS="
 	usr/bin/${PN}*
@@ -59,11 +75,11 @@ libhivex_devel_CONTENTS="
 ocaml_hivex_CONTENTS="
 	usr/lib/ocaml
 "
-python39_hivex_CONTENTS="
-	usr/lib/python*
+python312_hivex_CONTENTS="
+	usr/lib/python3.12
 "
 hivex_SUMMARY="${SUMMARY} (utilities)"
 libhivex0_SUMMARY="${SUMMARY} (runtime)"
 libhivex_devel_SUMMARY="${SUMMARY} (development)"
 ocaml_hivex_SUMMARY="${SUMMARY} (ocaml bindings)"
-python39_hivex_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_hivex_SUMMARY="${SUMMARY} (python312 bindings)"

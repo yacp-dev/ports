@@ -1,0 +1,117 @@
+HOMEPAGE="https://www.webtoolkit.eu/wt"
+SRC_URI="https://github.com/emweb/wt/archive/refs/tags/${PV}.tar.gz#/wt-${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="C++ library for developing web applications"
+DESCRIPTION="Wt (pronounced witty) is a C++ library and application server for
+developing and deploying web applications."
+
+LICENSE="GPL-2.0-only AND LicenseRef-wt-OpenSSL-exception AND BSL-1.0 AND MIT AND Zlib AND LicenseRef-PublicDomain AND LicenseRef-passwdqc AND LicenseRef-FPL"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-only AND LicenseRef-wt-OpenSSL-exception AND BSL-1.0 AND MIT AND Zlib AND LicenseRef-PublicDomain AND LicenseRef-passwdqc AND LicenseRef-FPL"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libboost-devel
+	libfcgi-devel
+	libGL-devel
+	libGLEW-devel
+	libGraphicsMagick-devel
+	libhpdf-devel
+	libmariadb-devel
+	libpango1.0-devel
+	libpng-devel
+	libpq-devel
+	libpq5
+	libsqlite3-devel
+	libssl-devel
+	libX11-devel
+	zlib-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DSHARED_LIBS:BOOL=ON
+	-DWT_SOVERSION:STRING=4
+	-DWT_WRASTERIMAGE_IMPLEMENTATION:STRING=GraphicsMagick
+	-DBUILD_TESTS:BOOL=ON
+	-DENABLE_QT4:BOOL=OFF
+	-DENABLE_QT5:BOOL=OFF
+	-DENABLE_QT6:BOOL=OFF
+	-DENABLE_FIREBIRD:BOOL=OFF
+	-DENABLE_MSSQLSERVER:BOOL=OFF
+	-DCMAKE_CXX_STANDARD_LIBRARIES:STRING=-lX11
+	-DCONFIGDIR:STRING=/etc/wt
+	-DRUNDIR:PATH=/var/run/wt
+"
+
+# upstream defines __USE_W32_SOCKETS on Cygwin, which hides the POSIX socket
+# types (fd_set, addrinfo, ...) that Boost.Asio uses here; and it builds with
+# -std=c++17 (no GNU extensions), which needs _GNU_SOURCE for POSIX APIs
+CXXFLAGS+=" -U__USE_W32_SOCKETS -D_GNU_SOURCE"
+
+# upstream registers no ctest tests; its Boost.Test binary has to be run
+# directly, with the DLLs from the build tree on PATH
+src_test()
+{
+	# the tests open their data files relative to the source's test directory
+	cd ${S}/test
+	export PATH=${B}/src:${PATH}
+	local exe=${B}/test/test.wt.exe
+	# a test that abort()s ends the whole process, so run each case on its own
+	${exe} --list_content=HRF 2>&1 | awk '
+		{ match($0, /^ */); ind = RLENGTH; name = $0
+		  sub(/^ */, "", name); sub(/\*$/, "", name)
+		  if (have && ind <= prev) print prevname
+		  prev = ind; prevname = name; have = 1 }
+		END { print prevname }' > ${B}/test/cases.txt
+	wc -l ${B}/test/cases.txt
+	local t failed=0
+	for t in $(cat ${B}/test/cases.txt)
+	do
+		if ! timeout 120 ${exe} --run_test=${t} > ${B}/test/case.log 2>&1
+		then
+			grep -q 'no test cases matching' ${B}/test/case.log && continue
+			echo "FAILED: ${t}: $(tail -n 3 ${B}/test/case.log | tr '\n' ' ')"
+			failed=$((failed + 1))
+		fi
+	done
+	echo "${failed} test case(s) failed"
+	[ ${failed} -eq 0 ]
+}
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	cd ${D}
+	make_etc_defaults /etc/wt/wt_config.xml
+}
+
+# the tests write their output under test/out of the source tree
+DIFF_EXCLUDES="
+	out
+"
+
+PKG_NAMES="
+	wt
+	libwt4
+	libwt-devel
+"
+wt_CONTENTS="
+	etc
+	usr/share
+"
+libwt4_CONTENTS="
+	usr/bin/cyg*-4.dll
+"
+libwt_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+wt_SUMMARY="${SUMMARY} (licensing & readmes)"
+libwt4_SUMMARY="${SUMMARY} (runtime)"
+libwt_devel_SUMMARY="${SUMMARY} (development)"
+
+libwt_devel_REQUIRES="libboost-devel"

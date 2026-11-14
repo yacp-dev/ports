@@ -1,0 +1,135 @@
+--- origsrc/wt-4.15.0/CMakeLists.txt	2026-10-28 12:58:05.000000000 +0000
++++ src/wt-4.15.0/CMakeLists.txt	2026-11-14 13:21:33.530647900 +0000
+@@ -14,6 +14,8 @@ SET(VERSION_SERIES 4)
+ SET(VERSION_MAJOR 15)
+ SET(VERSION_MINOR 0)
+ 
++SET(WT_SOVERSION "" CACHE STRING "SOVERSION of the shared libraries (unset: none)")
++
+ IF(NOT SHARED_LIBS)
+   IF(WIN32)
+     OPTION(SHARED_LIBS "Compile shared libraries" OFF)
+--- origsrc/wt-4.15.0/src/CMakeLists.txt	2026-10-28 12:58:05.000000000 +0000
++++ src/wt-4.15.0/src/CMakeLists.txt	2026-11-14 13:21:33.532657200 +0000
+@@ -649,6 +649,7 @@ IF(ENABLE_LIBWTTEST)
+   PROPERTIES
+     EXPORT_NAME Test
+     VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++    SOVERSION ${WT_SOVERSION}
+     DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+   )
+ ELSE(ENABLE_LIBWTTEST)
+@@ -763,6 +764,7 @@ PROPERTIES
+   EXPORT_NAME Wt
+   POST_INSTALL_SCRIPT ${WT_BINARY_DIR}/WtInstall.cmake
+   VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++  SOVERSION ${WT_SOVERSION}
+   DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+ )
+ 
+--- origsrc/wt-4.15.0/src/Wt/Dbo/CMakeLists.txt	2026-10-28 12:58:05.000000000 +0000
++++ src/wt-4.15.0/src/Wt/Dbo/CMakeLists.txt	2026-11-14 13:21:33.534668400 +0000
+@@ -76,6 +76,7 @@ IF(ENABLE_LIBWTDBO)
+   PROPERTIES
+     EXPORT_NAME Dbo
+     VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++    SOVERSION ${WT_SOVERSION}
+     DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+   )
+   IF(MSVC)
+--- origsrc/wt-4.15.0/src/Wt/Dbo/backend/CMakeLists.txt	2026-10-28 12:58:05.000000000 +0000
++++ src/wt-4.15.0/src/Wt/Dbo/backend/CMakeLists.txt	2026-11-14 13:21:33.534668400 +0000
+@@ -84,6 +84,7 @@ IF(ENABLE_SQLITE)
+   PROPERTIES
+     EXPORT_NAME DboSqlite3
+     VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++    SOVERSION ${WT_SOVERSION}
+     DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+     )
+ 
+@@ -166,6 +167,7 @@ IF(ENABLE_POSTGRES AND POSTGRES_FOUND)
+   PROPERTIES
+     EXPORT_NAME DboPostgres
+     VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++    SOVERSION ${WT_SOVERSION}
+     DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+   )
+ 
+@@ -266,6 +268,7 @@ IF(ENABLE_FIREBIRD AND FIREBIRD_FOUND)
+   PROPERTIES
+     EXPORT_NAME DboFirebird
+     VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++    SOVERSION ${WT_SOVERSION}
+     DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+   )
+ 
+@@ -338,6 +341,7 @@ IF(ENABLE_MYSQL AND MYSQL_FOUND)
+   PROPERTIES
+     EXPORT_NAME DboMySQL
+     VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++    SOVERSION ${WT_SOVERSION}
+     DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+   )
+   INSTALL_FILES(/include/Wt/Dbo/backend "^.*MySQL.*h$")
+@@ -412,6 +416,7 @@ IF(ENABLE_MSSQLSERVER AND ODBC_FOUND)
+   PROPERTIES
+     EXPORT_NAME DboMSSQLServer
+     VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++    SOVERSION ${WT_SOVERSION}
+     DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+     )
+ 
+--- origsrc/wt-4.15.0/src/fcgi/CMakeLists.txt	2026-10-28 12:58:05.000000000 +0000
++++ src/wt-4.15.0/src/fcgi/CMakeLists.txt	2026-11-14 13:21:33.536677700 +0000
+@@ -41,6 +41,7 @@ IF(CONNECTOR_FCGI)
+     PROPERTIES
+       EXPORT_NAME FCGI
+       VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++      SOVERSION ${WT_SOVERSION}
+       DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+     )
+ 
+--- origsrc/wt-4.15.0/src/http/CMakeLists.txt	2026-10-28 12:58:05.000000000 +0000
++++ src/wt-4.15.0/src/http/CMakeLists.txt	2026-11-14 13:21:33.536677700 +0000
+@@ -132,6 +132,7 @@ IF(CONNECTOR_HTTP)
+   PROPERTIES
+     EXPORT_NAME HTTP
+     VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++    SOVERSION ${WT_SOVERSION}
+     DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+   )
+ 
+--- origsrc/wt-4.15.0/src/http/Configuration.C	2026-10-28 12:58:05.000000000 +0000
++++ src/wt-4.15.0/src/http/Configuration.C	2026-11-14 13:21:33.538685400 +0000
+@@ -26,10 +26,6 @@
+ #include <iostream>
+ #include <fstream>
+ 
+-#ifdef __CYGWIN__
+-#include <winsock2.h> // for gethostname()
+-#endif
+-
+ namespace Wt {
+   LOGGER("wthttp");
+ }
+--- origsrc/wt-4.15.0/src/isapi/CMakeLists.txt	2026-10-28 12:58:05.000000000 +0000
++++ src/wt-4.15.0/src/isapi/CMakeLists.txt	2026-11-14 13:21:33.538685400 +0000
+@@ -28,6 +28,7 @@ IF(CONNECTOR_ISAPI)
+     PROPERTIES
+       EXPORT_NAME Isapi
+       VERSION ${VERSION_SERIES}.${VERSION_MAJOR}.${VERSION_MINOR}
++      SOVERSION ${WT_SOVERSION}
+       DEBUG_POSTFIX ${DEBUG_LIB_POSTFIX}
+     )
+     IF(MSVC)
+--- origsrc/wt-4.15.0/src/web/FileUtils.C	2026-10-28 12:58:05.000000000 +0000
++++ src/wt-4.15.0/src/web/FileUtils.C	2026-11-14 13:21:33.540693800 +0000
+@@ -30,7 +30,7 @@
+ // GCC, Clang, and compatible compilers define __GNUC__ and support it on any
+ // non-Windows target. Other compilers keep a strong definition, so the
+ // functions are simply not replaceable there.
+-#if !defined(WT_WIN32) && defined(__GNUC__)
++#if !defined(WT_WIN32) && !defined(__CYGWIN__) && defined(__GNUC__)
+ #define WT_WEAK __attribute__((weak))
+ #else
+ #define WT_WEAK

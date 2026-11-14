@@ -5,8 +5,8 @@ Duo two-factor authentication for Unix systems
 Runtime requirements:
   bash-5.2.21-1
   cygwin-3.6.12-1
-  libduo-devel-2.3.0-1bl1
-  libduo3-2.3.0-1bl1
+  libduo-devel-2.3.0-1bl2
+  libduo3-2.3.0-1bl2
   libssl-devel-3.5.9-1
   libssl3-3.5.9-1
   pkg-config-3.0.10-1
@@ -75,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.3.0-1bl2 -----
+Fix LICENSE expression
 
 ----- version 2.3.0-1bl1 -----
 Version bump.

@@ -1,5 +1,5 @@
---- origsrc/libhmac-20240417/Makefile.am	2024-04-18 03:55:59.000000000 +0900
-+++ src/libhmac-20240417/Makefile.am	2025-05-18 10:02:46.139132400 +0900
+--- origsrc/libhmac-20260522/Makefile.am	2026-05-22 11:13:38.000000000 +0000
++++ src/libhmac-20260522/Makefile.am	2026-11-14 11:24:10.142163200 +0000
 @@ -3,18 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -19,9 +19,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libhmac-20240417/configure.ac	2024-04-18 03:55:59.000000000 +0900
-+++ src/libhmac-20240417/configure.ac	2025-05-18 10:02:46.139132400 +0900
-@@ -149,16 +149,8 @@ dnl Generate Makefiles
+--- origsrc/libhmac-20260522/configure.ac	2026-05-22 11:13:38.000000000 +0000
++++ src/libhmac-20260522/configure.ac	2026-11-14 11:24:10.142163200 +0000
+@@ -148,16 +148,8 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -38,8 +38,8 @@
  AC_CONFIG_FILES([hmactools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libhmac-20240417/pyhmac/Makefile.am	2024-04-18 03:55:59.000000000 +0900
-+++ src/libhmac-20240417/pyhmac/Makefile.am	2025-05-18 10:02:46.139132400 +0900
+--- origsrc/libhmac-20260522/pyhmac/Makefile.am	2026-05-22 11:13:38.000000000 +0000
++++ src/libhmac-20260522/pyhmac/Makefile.am	2026-11-14 11:24:10.144175800 +0000
 @@ -30,7 +30,7 @@ pyhmac_la_LIBADD = \
  	../libhmac/libhmac.la
  

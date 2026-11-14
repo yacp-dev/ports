@@ -3,33 +3,33 @@ jwasm
 Masm compatible assembler
 
 Runtime requirements:
-  cygwin-3.6.6-1
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/Baron-von-Riedesel/JWasm
 
 Canonical download:
-  https://github.com/Baron-von-Riedesel/JWasm/archive/refs/tags/v2.20.tar.gz
+  https://github.com/Baron-von-Riedesel/JWasm/archive/refs/tags/v2.21.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack jwasm-2.20-X-src.tar.xz
+  1. unpack jwasm-2.21-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./jwasm-2.20-X.cygport all
+        % cygport ./jwasm-2.21-X.cygport all
 
 This will create:
-  /usr/src/jwasm-2.20-X-src.tar.xz
-  /usr/src/jwasm-2.20-X.tar.xz
+  /usr/src/jwasm-2.21-X-src.tar.xz
+  /usr/src/jwasm-2.21-X.tar.xz
 
 -------------------------------------------
 
@@ -47,6 +47,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.21-1bl1 -----
+Version bump.
 
 ----- version 2.20-1bl1 -----
 Version bump.

@@ -32,7 +32,7 @@ libbaseencode_CONTENTS="
 	usr/share
 "
 libbaseencode1_CONTENTS="
-	usr/bin
+	usr/bin/cygbaseencode-1.dll
 "
 libbaseencode_devel_CONTENTS="
 	usr/include

@@ -1,6 +1,6 @@
---- origsrc/libddwaf-2.1.0/CMakeLists.txt	2026-09-15 12:18:21.000000000 +0000
-+++ src/libddwaf-2.1.0/CMakeLists.txt	2026-10-25 15:06:09.039359000 +0000
-@@ -128,3 +128,10 @@ if (LIBDDWAF_TESTING)
+--- origsrc/libddwaf-2.2.1/CMakeLists.txt	2026-11-10 13:50:03.000000000 +0000
++++ src/libddwaf-2.2.1/CMakeLists.txt	2026-11-14 15:29:47.414776700 +0000
+@@ -143,3 +143,10 @@ if (LIBDDWAF_TESTING)
      include(cmake/clang-tidy.cmake)
      include(cmake/clang-format.cmake)
  endif()
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libddwaf.pc.in ${CMAKE_BINARY_DIR}/libddwaf.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libddwaf.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libddwaf-2.1.0/cmake/package.cmake	2026-09-15 12:18:21.000000000 +0000
-+++ src/libddwaf-2.1.0/cmake/package.cmake	2026-10-25 15:06:09.041112500 +0000
+--- origsrc/libddwaf-2.2.1/cmake/package.cmake	2026-11-10 13:50:03.000000000 +0000
++++ src/libddwaf-2.2.1/cmake/package.cmake	2026-11-14 15:29:47.416788000 +0000
 @@ -1,7 +1,7 @@
  # Packaging
  
@@ -22,9 +22,9 @@
  
  if(APPLE AND NOT CMAKE_OSX_ARCHITECTURES STREQUAL "")
      set(LIBDDWAF_PACKAGE_PROCESSOR ${CMAKE_OSX_ARCHITECTURES} CACHE STRING "Alternative processor for packaging purposes")
---- origsrc/libddwaf-2.1.0/cmake/shared.cmake	2026-09-15 12:18:21.000000000 +0000
-+++ src/libddwaf-2.1.0/cmake/shared.cmake	2026-10-25 15:06:09.041112500 +0000
-@@ -19,8 +19,13 @@ if(MINGW)
+--- origsrc/libddwaf-2.2.1/cmake/shared.cmake	2026-11-10 13:50:03.000000000 +0000
++++ src/libddwaf-2.2.1/cmake/shared.cmake	2026-11-14 15:29:47.416788000 +0000
+@@ -23,8 +23,13 @@ if(MINGW)
      set_target_properties(libddwaf_shared PROPERTIES PREFIX "")
  endif()
  
@@ -39,8 +39,8 @@
      INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
  
  if(LINUX)
---- origsrc/libddwaf-2.1.0/libddwaf.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/libddwaf-2.1.0/libddwaf.pc.in	2026-10-25 15:06:09.041112500 +0000
+--- origsrc/libddwaf-2.2.1/libddwaf.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libddwaf-2.2.1/libddwaf.pc.in	2026-11-14 15:29:47.417771200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -52,8 +52,8 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lddwaf
 +Cflags: -I${includedir}
---- origsrc/libddwaf-2.1.0/src/context_allocator.hpp	2026-09-15 12:18:21.000000000 +0000
-+++ src/libddwaf-2.1.0/src/context_allocator.hpp	2026-10-25 15:06:09.041112500 +0000
+--- origsrc/libddwaf-2.2.1/src/context_allocator.hpp	2026-11-10 13:50:03.000000000 +0000
++++ src/libddwaf-2.2.1/src/context_allocator.hpp	2026-11-14 15:29:47.417771200 +0000
 @@ -82,8 +82,8 @@ public:
          mr->deallocate(p, n * sizeof(T), alignof(T));
      }
@@ -65,8 +65,8 @@
  };
  
  // Required STL type definitions with context allocator
---- origsrc/libddwaf-2.1.0/tests/CMakeLists.txt	2026-09-15 12:18:21.000000000 +0000
-+++ src/libddwaf-2.1.0/tests/CMakeLists.txt	2026-10-25 15:06:09.043124900 +0000
+--- origsrc/libddwaf-2.2.1/tests/CMakeLists.txt	2026-11-10 13:50:03.000000000 +0000
++++ src/libddwaf-2.2.1/tests/CMakeLists.txt	2026-11-14 15:29:47.419786000 +0000
 @@ -18,7 +18,7 @@ if (LIBDDWAF_TESTING AND LIBDDWAF_ON_VAL
          target_compile_definitions(waf_test PRIVATE RE2_ON_VALGRIND)
  endif()
@@ -76,8 +76,8 @@
  if(NOT MSVC AND LIBDDWAF_TEST_COVERAGE)
      target_compile_options(waf_test PRIVATE -ggdb --coverage)
      list(APPEND LIBDDWAF_TEST_LIBRARIES gcov)
---- origsrc/libddwaf-2.1.0/tests/common/json_utils.hpp	2026-09-15 12:18:21.000000000 +0000
-+++ src/libddwaf-2.1.0/tests/common/json_utils.hpp	2026-10-25 15:06:09.043124900 +0000
+--- origsrc/libddwaf-2.2.1/tests/common/json_utils.hpp	2026-11-10 13:50:03.000000000 +0000
++++ src/libddwaf-2.2.1/tests/common/json_utils.hpp	2026-11-14 15:29:47.419786000 +0000
 @@ -5,7 +5,9 @@
  // Copyright 2021 Datadog, Inc.
  #pragma once
@@ -88,8 +88,8 @@
  #include <rapidjson/prettywriter.h>
  #include <rapidjson/schema.h>
  #include <unordered_map>
---- origsrc/libddwaf-2.1.0/third_party/CMakeLists.txt	2026-09-15 12:18:21.000000000 +0000
-+++ src/libddwaf-2.1.0/third_party/CMakeLists.txt	2026-10-25 15:06:09.045133200 +0000
+--- origsrc/libddwaf-2.2.1/third_party/CMakeLists.txt	2026-11-10 13:50:03.000000000 +0000
++++ src/libddwaf-2.2.1/third_party/CMakeLists.txt	2026-11-14 15:29:47.421798600 +0000
 @@ -12,87 +12,112 @@ set(INSTALL_DIR ${CMAKE_BINARY_DIR}/thir
  # Work around imported include directories having to exist at configure time.
  file(MAKE_DIRECTORY ${INSTALL_DIR}/include)

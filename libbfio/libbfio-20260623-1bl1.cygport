@@ -9,7 +9,18 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcdata-devel libcerror-devel libcfile-devel libclocale-devel libcpath-devel libcthreads-devel libuna-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libuna-devel
+"
 
 CYGCONF_ARGS="
 	--enable-wide-character-type

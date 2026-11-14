@@ -1,5 +1,5 @@
---- origsrc/libbfio-20240414/Makefile.am	2024-04-14 17:29:21.000000000 +0900
-+++ src/libbfio-20240414/Makefile.am	2025-05-18 10:51:34.576982800 +0900
+--- origsrc/libbfio-20260623/Makefile.am	2026-06-23 06:22:17.000000000 +0000
++++ src/libbfio-20260623/Makefile.am	2026-11-14 15:30:55.306427200 +0000
 @@ -3,17 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -18,9 +18,9 @@
  	manuals \
  	tests \
  	msvscpp
---- origsrc/libbfio-20240414/configure.ac	2024-04-14 17:29:21.000000000 +0900
-+++ src/libbfio-20240414/configure.ac	2025-05-18 10:51:34.576982800 +0900
-@@ -124,15 +124,6 @@ dnl Generate Makefiles
+--- origsrc/libbfio-20260623/configure.ac	2026-06-23 06:22:17.000000000 +0000
++++ src/libbfio-20260623/configure.ac	2026-11-14 15:30:55.306427200 +0000
+@@ -134,15 +134,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])

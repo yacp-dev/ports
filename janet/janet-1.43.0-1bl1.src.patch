@@ -1,5 +1,5 @@
---- origsrc/janet-1.42.1/meson.build	2026-09-10 21:45:02.000000000 +0000
-+++ src/janet-1.42.1/meson.build	2026-10-25 06:20:26.533127700 +0000
+--- origsrc/janet-1.43.0/meson.build	2026-11-07 14:53:57.000000000 +0000
++++ src/janet-1.43.0/meson.build	2026-11-14 11:54:25.492699700 +0000
 @@ -41,12 +41,25 @@ m_dep = cc.find_library('m', required :
  dl_dep = cc.find_library('dl', required : false)
  
@@ -26,9 +26,9 @@
  
  android_spawn_dep = cc.find_library('android-spawn', required : false)
  thread_dep = dependency('threads')
---- origsrc/janet-1.42.1/src/core/ffi.c	2026-09-10 21:45:02.000000000 +0000
-+++ src/janet-1.42.1/src/core/ffi.c	2026-10-25 06:20:26.535145000 +0000
-@@ -1794,7 +1794,12 @@ JANET_CORE_FN(janet_core_native_lookup,
+--- origsrc/janet-1.43.0/src/core/ffi.c	2026-11-07 14:53:57.000000000 +0000
++++ src/janet-1.43.0/src/core/ffi.c	2026-11-14 11:54:25.492699700 +0000
+@@ -1816,7 +1816,12 @@ JANET_CORE_FN(janet_core_native_lookup,
      JanetAbstractNative *anative = janet_getabstract(argv, 0, &janet_native_type);
      const char *sym = janet_getcstring(argv, 1);
      if (anative->closed) janet_panic("native object already closed");

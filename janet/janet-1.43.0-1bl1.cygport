@@ -46,7 +46,7 @@ janet_CONTENTS="
 	usr/bin/j*
 	usr/share
 "
-libjanet1_42_CONTENTS="
+libjanet1_43_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
 "
 libjanet_devel_CONTENTS="
@@ -54,5 +54,5 @@ libjanet_devel_CONTENTS="
 	usr/lib
 "
 janet_SUMMARY="${SUMMARY} (utilities)"
-libjanet1_42_SUMMARY="${SUMMARY} (runtime)"
+libjanet1_43_SUMMARY="${SUMMARY} (runtime)"
 libjanet_devel_SUMMARY="${SUMMARY} (development)"

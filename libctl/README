@@ -6,42 +6,43 @@ Meep software, but has proven useful in other programs too.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libctl7-4.5.1-1bl2
-  libgcc1-12.4.0-3
-  libguile3.0_1-3.0.9-3
+  cygwin-3.6.12-1
+  libctl7-4.7.1-1bl1
+  libgcc1-14.4.0-1
+  libguile3.0_1-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libguile3.0-devel-3.0.9-3
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libgmp-devel-6.3.0-1
+  libguile3.0-devel-3.0.11-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/NanoComp/libctl
 
 Canonical download:
-  https://github.com/NanoComp/libctl/archive/refs/tags/v4.5.1.tar.gz
+  https://github.com/NanoComp/libctl/archive/refs/tags/v4.7.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libctl-4.5.1-X-src.tar.xz
+  1. unpack libctl-4.7.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libctl-4.5.1-X.cygport all
+        % cygport ./libctl-4.7.1-X.cygport all
 
 This will create:
-  /usr/src/libctl-4.5.1-X-src.tar.xz
-  /usr/src/libctl-4.5.1-X.tar.xz
-  /usr/src/libctl7-4.5.1-X.tar.xz
-  /usr/src/libctl-devel-4.5.1-X.tar.xz
+  /usr/src/libctl-4.7.1-X-src.tar.xz
+  /usr/src/libctl-4.7.1-X.tar.xz
+  /usr/src/libctl7-4.7.1-X.tar.xz
+  /usr/src/libctl-devel-4.7.1-X.tar.xz
 
 -------------------------------------------
 
@@ -90,6 +91,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.7.1-1bl1 -----
+Version bump.
 
 ----- version 4.5.1-1bl2 -----
 Rebuild with gcc-12.4.0

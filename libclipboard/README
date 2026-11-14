@@ -1,0 +1,66 @@
+libclipboard
+------------------------------------------
+libclipboard is a cross-platform clipboard library written in C. It supports
+reading and writing text on the Windows, X11 and macOS clipboards, and provides
+custom allocator support.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libclipboard-devel-1.1-1bl1
+  libclipboard1.1-1.1-1bl1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/jtanx/libclipboard
+
+Canonical download:
+  https://github.com/jtanx/libclipboard/archive/refs/tags/v1.1.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack libclipboard-1.1-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./libclipboard-1.1-X.cygport all
+
+This will create:
+  /usr/src/libclipboard-1.1-X-src.tar.xz
+  /usr/src/libclipboard-1.1-X.tar.xz
+  /usr/src/libclipboard1.1-1.1-X.tar.xz
+  /usr/src/libclipboard-devel-1.1-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(libclipboard)
+  /usr/share/doc/Cygwin/libclipboard.README
+  /usr/share/doc/libclipboard/LICENSE
+  /usr/share/doc/libclipboard/README.md
+
+(libclipboard1.1)
+  /usr/bin/cygclipboard-1.1.dll
+
+(libclipboard-devel)
+  /usr/include/libclipboard-config.h
+  /usr/include/libclipboard.h
+  /usr/lib/libclipboard.dll.a
+  /usr/lib/pkgconfig/libclipboard.pc
+
+------------------
+
+Port Notes:
+
+----- version 1.1-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

@@ -1,0 +1,49 @@
+HOMEPAGE="https://github.com/jtanx/${PN}"
+SRC_URI="https://github.com/jtanx/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	${PN}-${PV}-gtest.patch
+"
+
+CATEGORY="Libs"
+SUMMARY="Cross-platform clipboard library"
+DESCRIPTION="libclipboard is a cross-platform clipboard library written in C.
+It supports reading and writing text on the Windows, X11 and macOS
+clipboards, and provides custom allocator support."
+
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgtest-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DLIBCLIPBOARD_ADD_SOVERSION:BOOL=ON
+	-DCMAKE_CXX_STANDARD:STRING=17
+	-DLIBCLIPBOARD_FORCE_WIN32:BOOL=ON
+	-DLIBCLIPBOARD_VERSION_MINOR:STRING=1
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
+PKG_NAMES="
+	${PN}
+	${PN}${PV}
+	${PN}-devel
+"
+libclipboard_CONTENTS="
+	usr/share
+"
+libclipboard1_1_CONTENTS="
+	usr/bin/cygclipboard-1.1.dll
+"
+libclipboard_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+libclipboard_SUMMARY="${SUMMARY} (licensing & readmes)"
+libclipboard1_1_SUMMARY="${SUMMARY} (runtime)"
+libclipboard_devel_SUMMARY="${SUMMARY} (development)"

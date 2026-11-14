@@ -1,0 +1,385 @@
+adios2
+------------------------------------------
+ADIOS2 is a unified framework for I/O and in situ data processing of
+large-scale scientific data, with C, C++ and Fortran bindings.
+
+Runtime requirements:
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libadios2_2.12-2.12.1-1bl1
+  libbz2_1-1.0.8-2
+  libcurl4-8.23.0-1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libgomp1-14.4.0-1
+  libhdf5_320-2.2.0-1
+  libpng16-1.6.59-1
+  libsodium26-1.0.20-1
+  libsqlite3_0-3.49.1-1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  libzfp1-1.0.1-1bl3
+  libzmq5-4.3.5-1
+  libzstd1-1.5.7-1
+  python3-3.12.12-1
+  python312-3.12.12-1
+  python312-adios2-2.12.1-1bl1
+  python312-numpy-2.5.4-1
+  zlib0-1.4-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  bison-3.8.2-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  flex-2.6.11-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  gcc-g++-14.4.0-1
+  hdf5-2.2.0-1
+  libaec-devel-1.1.8-1
+  libblosc2-devel-3.6.0-1bl1
+  libbz2-devel-1.0.8-2
+  libcurl-devel-8.23.0-1
+  libgtest-devel-1.18.0-1bl1
+  libhdf5-devel-2.2.0-1
+  libpng-devel-1.6.59-1
+  libsodium-devel-1.0.20-1
+  libsqlite3-devel-3.49.1-1
+  libssl-devel-3.5.9-1
+  libzfp-devel-1.0.1-1bl3
+  libzmq-devel-4.3.5-1
+  libzstd-devel-1.5.7-1
+  ninja-1.13.2-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  python312-numpy-2.5.4-1
+  sz-devel-3.4.0-1bl1
+  zlib-devel-1.4-1
+
+Canonical website:
+  https://github.com/ornladios/ADIOS2
+
+Canonical download:
+  https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.12.1.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack adios2-2.12.1-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./adios2-2.12.1-X.cygport all
+
+This will create:
+  /usr/src/adios2-2.12.1-X-src.tar.xz
+  /usr/src/adios2-2.12.1-X.tar.xz
+  /usr/src/adios2-h5vol-2.12.1-X.tar.xz
+  /usr/src/libadios2_2.12-2.12.1-X.tar.xz
+  /usr/src/libadios2-devel-2.12.1-X.tar.xz
+  /usr/src/python312-adios2-2.12.1-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(adios2)
+  /usr/bin/adios2_deactivate_bp
+  /usr/bin/adios2_json_pp
+  /usr/bin/adios2_remote_server.exe
+  /usr/bin/adios2_reorganize.exe
+  /usr/bin/bp2h5
+  /usr/bin/bp4dbg
+  /usr/bin/bp5dbg
+  /usr/bin/bpls.exe
+  /usr/bin/sst_conn_tool.exe
+  /usr/share/doc/Cygwin/adios2.README
+  /usr/share/doc/adios2/Copyright.txt
+  /usr/share/doc/adios2/LICENSE
+
+(adios2-h5vol)
+  /usr/lib/plugin/cygadios2_h5vol.dll
+
+(libadios2_2.12)
+  /usr/bin/cygadios2_atl-2.12.dll
+  /usr/bin/cygadios2_c-2.12.dll
+  /usr/bin/cygadios2_core-2.12.dll
+  /usr/bin/cygadios2_cxx-2.12.dll
+  /usr/bin/cygadios2_dill-2.12.dll
+  /usr/bin/cygadios2_enet-2.12.dll
+  /usr/bin/cygadios2_evpath-2.12.dll
+  /usr/bin/cygadios2_ffs-2.12.dll
+  /usr/bin/cygadios2_fortran-2.12.dll
+  /usr/bin/cygadios2_perfstubs-2.12.dll
+  /usr/lib/adios2/cygEncryptionOperator.dll
+
+(libadios2-devel)
+  /usr/bin/adios2-config
+  /usr/include/adios2.h
+  /usr/include/adios2/c/adios2_c_adios.h
+  /usr/include/adios2/c/adios2_c_attribute.h
+  /usr/include/adios2/c/adios2_c_engine.h
+  /usr/include/adios2/c/adios2_c_io.h
+  /usr/include/adios2/c/adios2_c_operator.h
+  /usr/include/adios2/c/adios2_c_types.h
+  /usr/include/adios2/c/adios2_c_variable.h
+  /usr/include/adios2/common/ADIOSBaseTypes.h
+  /usr/include/adios2/common/ADIOSConfig.h
+  /usr/include/adios2/common/ADIOSMacros.h
+  /usr/include/adios2/common/ADIOSTypes.h
+  /usr/include/adios2/common/ADIOSTypes.inl
+  /usr/include/adios2/common/Selection.h
+  /usr/include/adios2/cxx/ADIOS.h
+  /usr/include/adios2/cxx/ADIOS.inl
+  /usr/include/adios2/cxx/ADIOSView.h
+  /usr/include/adios2/cxx/Attribute.h
+  /usr/include/adios2/cxx/Engine.h
+  /usr/include/adios2/cxx/Group.h
+  /usr/include/adios2/cxx/IO.h
+  /usr/include/adios2/cxx/KokkosView.h
+  /usr/include/adios2/cxx/Operator.h
+  /usr/include/adios2/cxx/Query.h
+  /usr/include/adios2/cxx/Selection.h
+  /usr/include/adios2/cxx/Types.h
+  /usr/include/adios2/cxx/Variable.h
+  /usr/include/adios2/cxx/VariableNT.h
+  /usr/include/adios2/cxx/fstream/ADIOS2fstream.h
+  /usr/include/adios2/cxx11/ADIOS.h
+  /usr/include/adios2/cxx11/ADIOS.inl
+  /usr/include/adios2/cxx11/ADIOSView.h
+  /usr/include/adios2/cxx11/Attribute.h
+  /usr/include/adios2/cxx11/Engine.h
+  /usr/include/adios2/cxx11/Group.h
+  /usr/include/adios2/cxx11/IO.h
+  /usr/include/adios2/cxx11/KokkosView.h
+  /usr/include/adios2/cxx11/Operator.h
+  /usr/include/adios2/cxx11/Query.h
+  /usr/include/adios2/cxx11/Types.h
+  /usr/include/adios2/cxx11/Variable.h
+  /usr/include/adios2/cxx11/VariableNT.h
+  /usr/include/adios2/cxx11/fstream/ADIOS2fstream.h
+  /usr/include/adios2/fortran/adios2.mod
+  /usr/include/adios2/fortran/adios2.smod
+  /usr/include/adios2/fortran/adios2_adios_init_mod.mod
+  /usr/include/adios2/fortran/adios2_adios_init_mod.smod
+  /usr/include/adios2/fortran/adios2_adios_init_mod@adios2_adios_init_serial_smod.smod
+  /usr/include/adios2/fortran/adios2_adios_mod.mod
+  /usr/include/adios2/fortran/adios2_adios_mod.smod
+  /usr/include/adios2/fortran/adios2_attribute_data_mod.mod
+  /usr/include/adios2/fortran/adios2_attribute_mod.mod
+  /usr/include/adios2/fortran/adios2_engine_begin_step_mod.mod
+  /usr/include/adios2/fortran/adios2_engine_get_mod.mod
+  /usr/include/adios2/fortran/adios2_engine_mod.mod
+  /usr/include/adios2/fortran/adios2_engine_put_mod.mod
+  /usr/include/adios2/fortran/adios2_functions_allocate_mod.mod
+  /usr/include/adios2/fortran/adios2_functions_mod.mod
+  /usr/include/adios2/fortran/adios2_io_define_attribute_mod.mod
+  /usr/include/adios2/fortran/adios2_io_define_derived_variable_mod.mod
+  /usr/include/adios2/fortran/adios2_io_define_variable_mod.mod
+  /usr/include/adios2/fortran/adios2_io_mod.mod
+  /usr/include/adios2/fortran/adios2_io_mod.smod
+  /usr/include/adios2/fortran/adios2_io_open_mod.mod
+  /usr/include/adios2/fortran/adios2_io_open_mod.smod
+  /usr/include/adios2/fortran/adios2_io_open_mod@adios2_io_open_serial_smod.smod
+  /usr/include/adios2/fortran/adios2_operator_mod.mod
+  /usr/include/adios2/fortran/adios2_parameters_mod.mod
+  /usr/include/adios2/fortran/adios2_variable_max_mod.mod
+  /usr/include/adios2/fortran/adios2_variable_min_mod.mod
+  /usr/include/adios2/fortran/adios2_variable_mod.mod
+  /usr/include/adios2/plugin/PluginEngineInterface.h
+  /usr/include/adios2/plugin/PluginOperatorInterface.h
+  /usr/include/adios2/toolkit/sst/SSTConfig.h
+  /usr/include/adios2_c.h
+  /usr/lib/cmake/adios2/CMakeFindDependencyMacro.cmake
+  /usr/lib/cmake/adios2/FindBZip2.cmake
+  /usr/lib/cmake/adios2/FindCaliper.cmake
+  /usr/lib/cmake/adios2/FindCrayDRC.cmake
+  /usr/lib/cmake/adios2/FindDAOS.cmake
+  /usr/lib/cmake/adios2/FindDataSpaces.cmake
+  /usr/lib/cmake/adios2/FindHDF5.cmake
+  /usr/lib/cmake/adios2/FindIME.cmake
+  /usr/lib/cmake/adios2/FindLIBFABRIC.cmake
+  /usr/lib/cmake/adios2/FindMPI.cmake
+  /usr/lib/cmake/adios2/FindPkgConfig.cmake
+  /usr/lib/cmake/adios2/FindPython.cmake
+  /usr/lib/cmake/adios2/FindPythonModule.cmake
+  /usr/lib/cmake/adios2/FindSZ.cmake
+  /usr/lib/cmake/adios2/FindSodium.cmake
+  /usr/lib/cmake/adios2/FindUCX.cmake
+  /usr/lib/cmake/adios2/FindZeroMQ.cmake
+  /usr/lib/cmake/adios2/Findpugixml.cmake
+  /usr/lib/cmake/adios2/adios2-c-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/adios2/adios2-c-targets.cmake
+  /usr/lib/cmake/adios2/adios2-config-common.cmake
+  /usr/lib/cmake/adios2/adios2-config-version.cmake
+  /usr/lib/cmake/adios2/adios2-config.cmake
+  /usr/lib/cmake/adios2/adios2-cxx-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/adios2/adios2-cxx-targets.cmake
+  /usr/lib/cmake/adios2/adios2-fortran-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/adios2/adios2-fortran-targets.cmake
+  /usr/lib/cmake/adios2/adios2-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/adios2/adios2-targets.cmake
+  /usr/lib/cmake/adios2/thirdparty/EVPathConfig.cmake
+  /usr/lib/cmake/adios2/thirdparty/EVPathConfigCommon.cmake
+  /usr/lib/cmake/adios2/thirdparty/EVPathConfigVersion.cmake
+  /usr/lib/cmake/adios2/thirdparty/EVPathTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/adios2/thirdparty/EVPathTargets.cmake
+  /usr/lib/cmake/adios2/thirdparty/FindBinUtils.cmake
+  /usr/lib/cmake/adios2/thirdparty/FindCERCSProject.cmake
+  /usr/lib/cmake/adios2/thirdparty/FindIBVERBS.cmake
+  /usr/lib/cmake/adios2/thirdparty/FindLIBFABRIC.cmake
+  /usr/lib/cmake/adios2/thirdparty/FindLibFFI.cmake
+  /usr/lib/cmake/adios2/thirdparty/FindNNTI.cmake
+  /usr/lib/cmake/adios2/thirdparty/FindNVML.cmake
+  /usr/lib/cmake/adios2/thirdparty/FindPkgConfig.cmake
+  /usr/lib/cmake/adios2/thirdparty/atl-config-version.cmake
+  /usr/lib/cmake/adios2/thirdparty/atl-config.cmake
+  /usr/lib/cmake/adios2/thirdparty/atl-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/adios2/thirdparty/atl-targets.cmake
+  /usr/lib/cmake/adios2/thirdparty/dill-config-common.cmake
+  /usr/lib/cmake/adios2/thirdparty/dill-config-version.cmake
+  /usr/lib/cmake/adios2/thirdparty/dill-config.cmake
+  /usr/lib/cmake/adios2/thirdparty/dill-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/adios2/thirdparty/dill-targets.cmake
+  /usr/lib/cmake/adios2/thirdparty/enet-config-version.cmake
+  /usr/lib/cmake/adios2/thirdparty/enet-config.cmake
+  /usr/lib/cmake/adios2/thirdparty/enet-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/adios2/thirdparty/enet-targets.cmake
+  /usr/lib/cmake/adios2/thirdparty/ffs-config-version.cmake
+  /usr/lib/cmake/adios2/thirdparty/ffs-config.cmake
+  /usr/lib/cmake/adios2/thirdparty/ffs-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/adios2/thirdparty/ffs-targets.cmake
+  /usr/lib/cmake/adios2/thirdparty/upstream/FindPkgConfig.cmake
+  /usr/lib/cmake/adios2/upstream/CMakeFindDependencyMacro.cmake
+  /usr/lib/cmake/adios2/upstream/FindBZip2.cmake
+  /usr/lib/cmake/adios2/upstream/FindHDF5.cmake
+  /usr/lib/cmake/adios2/upstream/FindMPI.cmake
+  /usr/lib/cmake/adios2/upstream/FindMPI/fortranparam_mpi.f90.in
+  /usr/lib/cmake/adios2/upstream/FindMPI/libver_mpi.c
+  /usr/lib/cmake/adios2/upstream/FindMPI/libver_mpi.f90.in
+  /usr/lib/cmake/adios2/upstream/FindMPI/mpiver.f90.in
+  /usr/lib/cmake/adios2/upstream/FindMPI/test_mpi.c
+  /usr/lib/cmake/adios2/upstream/FindMPI/test_mpi.f90.in
+  /usr/lib/cmake/adios2/upstream/FindPkgConfig.cmake
+  /usr/lib/cmake/adios2/upstream/FindPython.cmake
+  /usr/lib/cmake/adios2/upstream/FindPython/Support.cmake
+  /usr/lib/cmake/adios2/upstream/GoogleTest.cmake
+  /usr/lib/libadios2_atl.dll.a
+  /usr/lib/libadios2_c.dll.a
+  /usr/lib/libadios2_core.dll.a
+  /usr/lib/libadios2_cxx.dll.a
+  /usr/lib/libadios2_dill.dll.a
+  /usr/lib/libadios2_enet.dll.a
+  /usr/lib/libadios2_evpath.dll.a
+  /usr/lib/libadios2_ffs.dll.a
+  /usr/lib/libadios2_fortran.dll.a
+  /usr/lib/libadios2_perfstubs.dll.a
+
+(python312-adios2)
+  /usr/bin/bpcmp.py
+  /usr/lib/python3.12/site-packages/adios2/__init__.py
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/adios.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/adios.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/adios.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/attribute.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/attribute.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/attribute.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/derived_variable.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/derived_variable.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/derived_variable.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/engine.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/engine.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/engine.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/file_reader.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/file_reader.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/file_reader.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/io.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/io.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/io.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/operator.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/operator.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/operator.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/stream.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/stream.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/stream.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/variable.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/variable.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/__pycache__/variable.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/adios.py
+  /usr/lib/python3.12/site-packages/adios2/attribute.py
+  /usr/lib/python3.12/site-packages/adios2/bindings/__init__.py
+  /usr/lib/python3.12/site-packages/adios2/bindings/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bindings/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bindings/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bindings/adios2_bindings.cpython-312-x86_64-cygwin.dll
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__init__.py
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/data.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/data.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/data.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/idxtable.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/idxtable.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/idxtable.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/metadata.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/metadata.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/metadata.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/utils.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/utils.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/__pycache__/utils.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/data.py
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/idxtable.py
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/metadata.py
+  /usr/lib/python3.12/site-packages/adios2/bp4dbg/utils.py
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__init__.py
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/ffs.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/ffs.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/ffs.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/idxtable.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/idxtable.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/idxtable.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/metadata.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/metadata.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/metadata.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/metametadata.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/metametadata.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/metametadata.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/utils.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/utils.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/__pycache__/utils.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/ffs.py
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/idxtable.py
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/metadata.py
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/metametadata.py
+  /usr/lib/python3.12/site-packages/adios2/bp5dbg/utils.py
+  /usr/lib/python3.12/site-packages/adios2/derived_variable.py
+  /usr/lib/python3.12/site-packages/adios2/engine.py
+  /usr/lib/python3.12/site-packages/adios2/file_reader.py
+  /usr/lib/python3.12/site-packages/adios2/io.py
+  /usr/lib/python3.12/site-packages/adios2/operator.py
+  /usr/lib/python3.12/site-packages/adios2/stream.py
+  /usr/lib/python3.12/site-packages/adios2/test/__init__.py
+  /usr/lib/python3.12/site-packages/adios2/test/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/test/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/test/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/test/__pycache__/simple_read_write.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/adios2/test/__pycache__/simple_read_write.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/adios2/test/__pycache__/simple_read_write.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/adios2/test/simple_read_write.py
+  /usr/lib/python3.12/site-packages/adios2/variable.py
+
+------------------
+
+Port Notes:
+
+----- version 2.12.1-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

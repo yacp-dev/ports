@@ -1,0 +1,65 @@
+--- origsrc/ADIOS2-2.12.1/cmake/FindSodium.cmake	2026-04-29 00:58:00.000000000 +0000
++++ src/ADIOS2-2.12.1/cmake/FindSodium.cmake	2026-11-14 01:24:08.464402900 +0000
+@@ -280,6 +280,12 @@ else()
+             IMPORTED_LOCATION "${sodium_LIBRARY_RELEASE}"
+             IMPORTED_LOCATION_DEBUG "${sodium_LIBRARY_DEBUG}"
+         )
++        if (CYGWIN)
++            set_target_properties(sodium PROPERTIES
++                IMPORTED_IMPLIB "${sodium_LIBRARY_RELEASE}"
++                IMPORTED_IMPLIB_DEBUG "${sodium_LIBRARY_DEBUG}"
++            )
++        endif()
+     elseif (WIN32)
+         set_target_properties(sodium PROPERTIES
+             IMPORTED_IMPLIB "${sodium_LIBRARY_RELEASE}"
+--- origsrc/ADIOS2-2.12.1/source/adios2/helper/adiosXMLUtil.cpp	2026-04-29 00:58:00.000000000 +0000
++++ src/ADIOS2-2.12.1/source/adios2/helper/adiosXMLUtil.cpp	2026-11-14 01:24:08.464402900 +0000
+@@ -23,7 +23,7 @@ std::unique_ptr<pugi::xml_document> XMLD
+ {
+     auto document = std::make_unique<pugi::xml_document>();
+     auto parse_result =
+-        document->load_buffer_inplace(const_cast<char *>(xmlContents.data()), xmlContents.size());
++        document->load_buffer(xmlContents.data(), xmlContents.size());
+ 
+     if (!parse_result)
+     {
+--- origsrc/ADIOS2-2.12.1/source/adios2/toolkit/format/dataman/DataManSerializer.h	2026-04-29 00:58:00.000000000 +0000
++++ src/ADIOS2-2.12.1/source/adios2/toolkit/format/dataman/DataManSerializer.h	2026-11-14 01:24:08.464402900 +0000
+@@ -226,6 +226,14 @@ private:
+     int m_Verbosity = 0;
+ };
+ 
++// Declared before any use so that other translation units do not instantiate the
++// primary template for std::string (the definition is in DataManSerializer.cpp).
++template <>
++int DataManSerializer::GetData(std::string *outputData, const std::string &varName,
++                               const Dims &varStart, const Dims &varCount, const size_t step,
++                               const MemorySpace varMemSpace, const Dims &varMemStart,
++                               const Dims &varMemCount);
++
+ } // end namespace format
+ } // end namespace adios2
+ 
+--- origsrc/ADIOS2-2.12.1/thirdparty/KWSys/CMakeLists.txt	2026-04-29 00:58:00.000000000 +0000
++++ src/ADIOS2-2.12.1/thirdparty/KWSys/CMakeLists.txt	2026-11-14 01:24:08.466410900 +0000
+@@ -6,7 +6,7 @@ set(KWSYS_USE_DynamicLoader ON)
+ set(KWSYS_USE_RegularExpression ON)
+ set(KWSYS_USE_SystemTools ON)
+ set(KWSYS_USE_MD5 ON)
+-if(WIN32)
++if(WIN32 OR CYGWIN)
+   set(KWSYS_BUILD_SHARED OFF)
+ else()
+   set(KWSYS_BUILD_SHARED ${BUILD_SHARED_LIBS})
+--- origsrc/ADIOS2-2.12.1/thirdparty/nanobind/nanobind/cmake/nanobind-config.cmake	2026-04-29 00:58:00.000000000 +0000
++++ src/ADIOS2-2.12.1/thirdparty/nanobind/nanobind/cmake/nanobind-config.cmake	2026-11-14 01:24:08.466410900 +0000
+@@ -240,7 +240,7 @@ function (nanobind_build_library TARGET_
+     target_compile_options(${TARGET_NAME} PRIVATE -fno-strict-aliasing)
+   endif()
+ 
+-  if (WIN32)
++  if (WIN32 OR CYGWIN)
+     if (${TARGET_NAME} MATCHES "-abi3")
+       target_link_libraries(${TARGET_NAME} PUBLIC Python::SABIModule)
+     else()

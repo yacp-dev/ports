@@ -1,0 +1,116 @@
+HOMEPAGE="https://github.com/ornladios/ADIOS2"
+SRC_URI="https://github.com/ornladios/ADIOS2/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="ADIOS2-${PV}"
+
+CATEGORY="Libs"
+SUMMARY="Adaptable Input Output System version 2"
+DESCRIPTION="ADIOS2 is a unified framework for I/O and in situ data processing of large-scale scientific data, with C, C++ and Fortran bindings."
+
+LICENSE="Apache-2.0 AND BSD-3-Clause AND CC0-1.0 AND MIT AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-3-Clause AND CC0-1.0 AND MIT AND Zlib"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	bison
+	flex
+	gcc-fortran
+	hdf5
+	libaec-devel
+	libblosc2-devel
+	libbz2-devel
+	libcurl-devel
+	libgtest-devel
+	libhdf5-devel
+	libpng-devel
+	libsodium-devel
+	libsqlite3-devel
+	libssl-devel
+	libzfp-devel
+	libzmq-devel
+	libzstd-devel
+	python3-devel
+	python312-numpy
+	sz-devel
+	zlib-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DHAVE_WINDOWS_H:INTERNAL=0
+	-DHAVE_WINSOCK2_H:INTERNAL=0
+	-DHAVE_WINSOCK_H:INTERNAL=0
+	-DADIOS2_USE_MPI:STRING=OFF
+	-DCMAKE_INSTALL_PYTHONDIR:PATH=lib/python3.12/site-packages
+	-DADIOS2_USE_Python:STRING=ON
+	-DADIOS2_USE_Fortran:STRING=ON
+	-DADIOS2_USE_Blosc2:STRING=ON
+	-DADIOS2_USE_HDF5:STRING=ON
+	-DADIOS2_USE_SZ3:STRING=ON
+	-DADIOS2_USE_ZFP:STRING=ON
+	-DBUILD_TESTING:BOOL=ON
+"
+
+# Engine.BP.BPBufferSizeTest.* hangs on Cygwin, and even ctest --timeout cannot
+# kill it, so it is excluded to let the rest of the suite run
+src_test() {
+	cd ${B}
+	PATH=${B}/bin:${PATH} verbose ctest --timeout 300 -E BPBufferSizeTest --output-on-failure
+}
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	# HDF5 loads VOL connectors from its default plugin directory (/usr/lib/plugin); nothing links to this one
+	mkdir -p ${D}/usr/lib/plugin
+	mv ${D}/usr/bin/cygadios2_h5vol.dll ${D}/usr/lib/plugin/ || error "moving the VOL connector failed"
+	rm -f ${D}/usr/lib/libadios2_h5vol.dll.a
+
+	# the encryption operator is a plugin loaded through ADIOS2_PLUGIN_PATH, not a library to link
+	mkdir -p ${D}/usr/lib/adios2
+	mv ${D}/usr/lib/cygEncryptionOperator.dll ${D}/usr/lib/adios2/ || error "moving the encryption operator failed"
+}
+
+PKG_NAMES="
+	adios2
+	adios2-h5vol
+	libadios2_2.12
+	libadios2-devel
+	python312-adios2
+"
+adios2_CONTENTS="
+	usr/bin/*.exe
+	usr/bin/adios2_deactivate_bp
+	usr/bin/adios2_json_pp
+	usr/bin/bp2h5
+	usr/bin/bp4dbg
+	usr/bin/bp5dbg
+	usr/share
+"
+adios2_h5vol_CONTENTS="
+	usr/lib/plugin/cygadios2_h5vol.dll
+"
+python312_adios2_CONTENTS="
+	usr/bin/bpcmp.py
+	usr/lib/python3.12/site-packages/adios2
+"
+libadios2_2_12_CONTENTS="
+	usr/bin/cyg*-2.12.dll
+	usr/lib/adios2/cygEncryptionOperator.dll
+"
+libadios2_devel_CONTENTS="
+	usr/bin/adios2-config
+	usr/include
+	usr/lib/cmake
+	usr/lib/lib*
+"
+adios2_SUMMARY="${SUMMARY} (utilities, licensing & readmes)"
+libadios2_2_12_SUMMARY="${SUMMARY} (runtime)"
+libadios2_devel_SUMMARY="${SUMMARY} (development)"
+adios2_h5vol_SUMMARY="${SUMMARY} (HDF5 VOL connector)"
+python312_adios2_SUMMARY="${SUMMARY} (Python bindings)"
+adios2_REQUIRES="python312-adios2"
+python312_adios2_REQUIRES="python312-numpy"
+libadios2_devel_REQUIRES="pkg-config"

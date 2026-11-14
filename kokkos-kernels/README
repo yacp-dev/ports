@@ -10,44 +10,43 @@ like Tpetra that uses MPI and threads for parallelism, or it can be used
 stand-alone in your application.
 
 Runtime requirements:
-  cygwin-3.6.0-0.212.g6af8fea4bbad
-  libgcc1-12.4.0-3
-  libkokkos4.4-4.4.01-1bl1
-  libkokkoskernels-devel-4.4.01-1bl1
-  libkokkoskernels4.4-4.4.01-1bl1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libkokkos5.3-5.3.0-1bl1
+  libkokkoskernels-devel-5.3.0-1bl1
+  libkokkoskernels5.3-5.3.0-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libkokkos-devel-4.4.01-1bl1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libkokkos-devel-5.3.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/kokkos/kokkos-kernels
 
 Canonical download:
-  https://github.com/kokkos/kokkos-kernels/archive/refs/tags/4.4.01.tar.gz
+  https://github.com/kokkos/kokkos-kernels/archive/refs/tags/5.3.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack kokkos-kernels-4.4.01-X-src.tar.xz
+  1. unpack kokkos-kernels-5.3.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./kokkos-kernels-4.4.01-X.cygport all
+        % cygport ./kokkos-kernels-5.3.0-X.cygport all
 
 This will create:
-  /usr/src/kokkos-kernels-4.4.01-X-src.tar.xz
-  /usr/src/kokkos-kernels-4.4.01-X.tar.xz
-  /usr/src/libkokkoskernels4.4-4.4.01-X.tar.xz
-  /usr/src/libkokkoskernels-devel-4.4.01-X.tar.xz
+  /usr/src/kokkos-kernels-5.3.0-X-src.tar.xz
+  /usr/src/kokkos-kernels-5.3.0-X.tar.xz
+  /usr/src/libkokkoskernels5.3-5.3.0-X.tar.xz
+  /usr/src/libkokkoskernels-devel-5.3.0-X.tar.xz
 
 -------------------------------------------
 
@@ -55,15 +54,16 @@ Files included in the binary package:
 
 (kokkos-kernels)
   /usr/share/doc/Cygwin/kokkos-kernels.README
+  /usr/share/doc/kokkos-kernels/BUILD.md
   /usr/share/doc/kokkos-kernels/CHANGELOG.md
   /usr/share/doc/kokkos-kernels/Copyright.txt
+  /usr/share/doc/kokkos-kernels/DEVELOPER.md
   /usr/share/doc/kokkos-kernels/LICENSE
   /usr/share/doc/kokkos-kernels/README.md
-  /usr/share/doc/kokkos-kernels/kokkos-promotion.txt
   /usr/share/doc/kokkos-kernels/master_history.txt
 
-(libkokkoskernels4.4)
-  /usr/bin/cygkokkoskernels-4.4.dll
+(libkokkoskernels5.3)
+  /usr/bin/cygkokkoskernels-5.3.dll
 
 (libkokkoskernels-devel)
   /usr/include/kokkos-kernels/KokkosBatched_AddRadial_Decl.hpp
@@ -93,6 +93,7 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBatched_Copy_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_CrsMatrix.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Dot.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Dot_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Dot_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Eigendecomposition_Decl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Eigendecomposition_Serial_Impl.hpp
@@ -106,6 +107,13 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBatched_GMRES_Serial_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_GMRES_TeamVector_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_GMRES_Team_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Gbtrf.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Gbtrf_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Gbtrf_Serial_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Gbtrs.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Gbtrs_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Gbtrs_Serial_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Gemm_Common_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Gemm_Decl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Gemm_Serial_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Gemm_Serial_Internal.hpp
@@ -118,8 +126,17 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBatched_Gemv_TeamVector_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Gemv_Team_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Gemv_Team_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Ger.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Ger_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Ger_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Gesv.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Gesv_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Getrf.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Getrf_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Getrf_Serial_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Getrs.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Getrs_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Getrs_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Givens_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_HadamardProduct.hpp
   /usr/include/kokkos-kernels/KokkosBatched_HadamardProduct_Impl.hpp
@@ -138,6 +155,9 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBatched_Householder_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Householder_TeamVector_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Householder_TeamVector_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Iamax.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Iamax_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Iamax_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Identity.hpp
   /usr/include/kokkos-kernels/KokkosBatched_InnerGemmFixA_Decl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_InnerGemmFixA_Serial_Impl.hpp
@@ -151,7 +171,6 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBatched_InnerTrsm_Decl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_InnerTrsm_Serial_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_InverseLU_Decl.hpp
-  /usr/include/kokkos-kernels/KokkosBatched_InverseLU_Serial_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_JacobiPrec.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Kernel_Handle.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Krylov_Handle.hpp
@@ -161,11 +180,29 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBatched_LU_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_LU_Team_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_LU_Team_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Lacgv.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Lacgv_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Lacgv_Serial_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Laswp.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Laswp_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Laswp_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_LeftEigenvectorFromSchur_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Normalize_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Nrm.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Nrm_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Nrm_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Pbtrf.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Pbtrf_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Pbtrf_Serial_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Pbtrs.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Pbtrs_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Pbtrs_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Pttrf.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Pttrf_Serial_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Pttrf_Serial_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Pttrs.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Pttrs_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Pttrs_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_QR_Decl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_QR_FormQ_Serial_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_QR_FormQ_TeamVector_Internal.hpp
@@ -177,6 +214,16 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBatched_QR_WithColumnPivoting_TeamVector_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_QR_WithColumnPivoting_TeamVector_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_RightEigenvectorFromSchur_Serial_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rot.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rot_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rot_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rotg.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rotg_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rotm.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rotm_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rotm_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rotmg.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Rotmg_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_SVD_Decl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_SVD_Serial_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_SVD_Serial_Internal.hpp
@@ -197,6 +244,24 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBatched_Spmv_Serial_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Spmv_TeamVector_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Spmv_Team_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Spr.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Spr_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Spr_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Swap.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Swap_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Swap_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Symv.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Symv_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Symv_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Syr.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Syr2.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Syr2_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Syr2_Serial_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Syr_Serial_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Syr_Serial_Internal.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Syrk.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Syrk_Impl.hpp
+  /usr/include/kokkos-kernels/KokkosBatched_Syrk_Internal.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Tbsv.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Tbsv_Serial_Impl.hpp
   /usr/include/kokkos-kernels/KokkosBatched_Tbsv_Serial_Internal.hpp
@@ -248,7 +313,7 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBlas1_axpby_spec.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_axpby_tpl_spec_avail.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_axpby_tpl_spec_decl.hpp
-  /usr/include/kokkos-kernels/KokkosBlas1_axpby_unification_attempt_traits.hpp
+  /usr/include/kokkos-kernels/KokkosBlas1_axpby_unification.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_dot.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_dot_impl.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_dot_mv_impl.hpp
@@ -319,6 +384,7 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosBlas1_scal_spec.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_scal_tpl_spec_avail.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_scal_tpl_spec_decl.hpp
+  /usr/include/kokkos-kernels/KokkosBlas1_scal_unification.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_serial_scal_impl.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_set.hpp
   /usr/include/kokkos-kernels/KokkosBlas1_set_impl.hpp
@@ -429,21 +495,33 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosGraph_ExplicitCoarsening.hpp
   /usr/include/kokkos-kernels/KokkosGraph_ExplicitCoarsening_impl.hpp
   /usr/include/kokkos-kernels/KokkosGraph_GraphColorHandle.hpp
+  /usr/include/kokkos-kernels/KokkosGraph_LoadBalance.hpp
+  /usr/include/kokkos-kernels/KokkosGraph_LoadBalance_impl.hpp
   /usr/include/kokkos-kernels/KokkosGraph_MIS2.hpp
+  /usr/include/kokkos-kernels/KokkosGraph_Merge.hpp
+  /usr/include/kokkos-kernels/KokkosGraph_MergePath.hpp
+  /usr/include/kokkos-kernels/KokkosGraph_MergePath_impl.hpp
+  /usr/include/kokkos-kernels/KokkosGraph_Merge_impl.hpp
+  /usr/include/kokkos-kernels/KokkosGraph_RCB.hpp
+  /usr/include/kokkos-kernels/KokkosGraph_RCB_impl.hpp
   /usr/include/kokkos-kernels/KokkosGraph_RCM.hpp
   /usr/include/kokkos-kernels/KokkosGraph_Triangle.hpp
   /usr/include/kokkos-kernels/KokkosGraph_color_d1_spec.hpp
   /usr/include/kokkos-kernels/KokkosGraph_graph_color.hpp
   /usr/include/kokkos-kernels/KokkosKernels_AlwaysFalse.hpp
+  /usr/include/kokkos-kernels/KokkosKernels_ArithTraits.hpp
   /usr/include/kokkos-kernels/KokkosKernels_BitUtils.hpp
   /usr/include/kokkos-kernels/KokkosKernels_BlockHashmapAccumulator.hpp
   /usr/include/kokkos-kernels/KokkosKernels_BlockUtils.hpp
   /usr/include/kokkos-kernels/KokkosKernels_Controls.hpp
+  /usr/include/kokkos-kernels/KokkosKernels_Cuda_Utils.hpp
+  /usr/include/kokkos-kernels/KokkosKernels_EagerInitialize.hpp
   /usr/include/kokkos-kernels/KokkosKernels_Error.hpp
   /usr/include/kokkos-kernels/KokkosKernels_ExecSpaceUtils.hpp
   /usr/include/kokkos-kernels/KokkosKernels_Handle.hpp
   /usr/include/kokkos-kernels/KokkosKernels_HashmapAccumulator.hpp
   /usr/include/kokkos-kernels/KokkosKernels_IOUtils.hpp
+  /usr/include/kokkos-kernels/KokkosKernels_InnerProductSpaceTraits.hpp
   /usr/include/kokkos-kernels/KokkosKernels_Iota.hpp
   /usr/include/kokkos-kernels/KokkosKernels_LowerBound.hpp
   /usr/include/kokkos-kernels/KokkosKernels_Macros.hpp
@@ -453,6 +531,7 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosKernels_PrintUtils.hpp
   /usr/include/kokkos-kernels/KokkosKernels_SafeCompare.hpp
   /usr/include/kokkos-kernels/KokkosKernels_SimpleUtils.hpp
+  /usr/include/kokkos-kernels/KokkosKernels_Singleton.hpp
   /usr/include/kokkos-kernels/KokkosKernels_Sorting.hpp
   /usr/include/kokkos-kernels/KokkosKernels_TplsVersion.hpp
   /usr/include/kokkos-kernels/KokkosKernels_Uniform_Initialized_MemoryPool.hpp
@@ -469,12 +548,47 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosLapack_Host_tpl.hpp
   /usr/include/kokkos-kernels/KokkosLapack_Magma_tpl.hpp
   /usr/include/kokkos-kernels/KokkosLapack_cusolver.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gegqr.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gegqr_impl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gegqr_spec.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gegqr_tpl_spec_avail.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gegqr_tpl_spec_decl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gemqr.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gemqr_impl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gemqr_spec.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gemqr_tpl_spec_avail.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_gemqr_tpl_spec_decl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_geqrf.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_geqrf_impl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_geqrf_spec.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_geqrf_tpl_spec_avail.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_geqrf_tpl_spec_decl.hpp
   /usr/include/kokkos-kernels/KokkosLapack_gesv.hpp
   /usr/include/kokkos-kernels/KokkosLapack_gesv_impl.hpp
   /usr/include/kokkos-kernels/KokkosLapack_gesv_spec.hpp
   /usr/include/kokkos-kernels/KokkosLapack_gesv_tpl_spec_avail.hpp
   /usr/include/kokkos-kernels/KokkosLapack_gesv_tpl_spec_decl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrf.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrf_impl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrf_spec.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrf_tpl_spec_avail.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrf_tpl_spec_decl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrs.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrs_impl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrs_spec.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrs_tpl_spec_avail.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_getrs_tpl_spec_decl.hpp
   /usr/include/kokkos-kernels/KokkosLapack_magma.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrf.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrf_impl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrf_spec.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrf_tpl_spec_avail.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrf_tpl_spec_decl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrs.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrs_impl.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrs_spec.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrs_tpl_spec_avail.hpp
+  /usr/include/kokkos-kernels/KokkosLapack_potrs_tpl_spec_decl.hpp
   /usr/include/kokkos-kernels/KokkosLapack_svd.hpp
   /usr/include/kokkos-kernels/KokkosLapack_svd_impl.hpp
   /usr/include/kokkos-kernels/KokkosLapack_svd_spec.hpp
@@ -503,7 +617,10 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosSparse_MatrixPrec.hpp
   /usr/include/kokkos-kernels/KokkosSparse_OrdinalTraits.hpp
   /usr/include/kokkos-kernels/KokkosSparse_Preconditioner.hpp
+  /usr/include/kokkos-kernels/KokkosSparse_SellMatrix.hpp
   /usr/include/kokkos-kernels/KokkosSparse_SortCrs.hpp
+  /usr/include/kokkos-kernels/KokkosSparse_StaticCcsGraph.hpp
+  /usr/include/kokkos-kernels/KokkosSparse_StaticCrsGraph.hpp
   /usr/include/kokkos-kernels/KokkosSparse_Utils.hpp
   /usr/include/kokkos-kernels/KokkosSparse_Utils_cusparse.hpp
   /usr/include/kokkos-kernels/KokkosSparse_Utils_mkl.hpp
@@ -612,13 +729,16 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosSparse_spmv_bsrmatrix_spec.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_bsrmatrix_tpl_spec_avail.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_bsrmatrix_tpl_spec_decl.hpp
-  /usr/include/kokkos-kernels/KokkosSparse_spmv_deprecated.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_handle.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_impl.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_impl_merge.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_impl_omp.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_mv_tpl_spec_avail.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_mv_tpl_spec_decl.hpp
+  /usr/include/kokkos-kernels/KokkosSparse_spmv_sellmatrix_impl.hpp
+  /usr/include/kokkos-kernels/KokkosSparse_spmv_sellmatrix_spec.hpp
+  /usr/include/kokkos-kernels/KokkosSparse_spmv_sellmatrix_tpl_spec_avail.hpp
+  /usr/include/kokkos-kernels/KokkosSparse_spmv_sellmatrix_tpl_spec_decl.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_spec.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_struct_impl.hpp
   /usr/include/kokkos-kernels/KokkosSparse_spmv_struct_spec.hpp
@@ -651,212 +771,173 @@ Files included in the binary package:
   /usr/include/kokkos-kernels/KokkosSparse_twostage_gauss_seidel_impl.hpp
   /usr/include/kokkos-kernels/Kokkos_ArithTraits.hpp
   /usr/include/kokkos-kernels/Kokkos_InnerProductSpaceTraits.hpp
-  /usr/include/kokkos-kernels/Test_Batched_BatchedGemm.hpp
-  /usr/include/kokkos-kernels/Test_Batched_BatchedGemm_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_BatchedGemm_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_Dense.hpp
-  /usr/include/kokkos-kernels/Test_Batched_DenseUtils.hpp
-  /usr/include/kokkos-kernels/Test_Batched_Dense_GEMM.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialAxpy.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialAxpy_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialAxpy_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialEigendecomposition.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialEigendecomposition_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialGMRES.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialGMRES_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialGemm.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialGemm_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialGemm_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialGesv.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialGesv_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialInverseLU.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialInverseLU_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialInverseLU_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialLU.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialLU_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialLU_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialPttrf.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialPttrf_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialPttrf_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialSVD.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialSolveLU.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialSolveLU_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialSolveLU_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialSpmv.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialSpmv_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTbsv.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTbsv_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTbsv_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrmm.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrmm_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrmm_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrsm.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrsm_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrsm_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrsv.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrsv_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrsv_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrtri.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrtri_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SerialTrtri_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_Sparse.hpp
-  /usr/include/kokkos-kernels/Test_Batched_SparseUtils.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamAxpy.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamAxpy_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamAxpy_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamCG.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamCG_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamGMRES.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamGMRES_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamGemm.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamGemm_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamGemm_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamGesv.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamGesv_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamInverseLU.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamInverseLU_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamInverseLU_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamLU.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamLU_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamLU_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamSolveLU.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamSolveLU_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamSolveLU_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamSpmv.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamSpmv_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamTrsm.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamTrsm_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamTrsm_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamTrsv.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamTrsv_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamTrsv_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorAxpy.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorAxpy_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorAxpy_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorCG.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorCG_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorEigendecomposition.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorEigendecomposition_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorGMRES.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorGMRES_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorGemm.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorGemm_Complex.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorGemm_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorGesv.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorGesv_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorQR.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorQR_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorQR_WithColumnPivoting.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorQR_WithColumnPivoting_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorSolveUTV.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorSolveUTV2.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorSolveUTV2_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorSolveUTV_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorSpmv.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorSpmv_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorUTV.hpp
-  /usr/include/kokkos-kernels/Test_Batched_TeamVectorUTV_Real.hpp
-  /usr/include/kokkos-kernels/Test_Batched_VectorArithmatic.hpp
-  /usr/include/kokkos-kernels/Test_Batched_VectorLogical.hpp
-  /usr/include/kokkos-kernels/Test_Batched_VectorMath.hpp
-  /usr/include/kokkos-kernels/Test_Batched_VectorMisc.hpp
-  /usr/include/kokkos-kernels/Test_Batched_VectorRelation.hpp
-  /usr/include/kokkos-kernels/Test_Batched_VectorView.hpp
-  /usr/include/kokkos-kernels/Test_Common.hpp
-  /usr/include/kokkos-kernels/Test_Common_AlignPtrTo.hpp
-  /usr/include/kokkos-kernels/Test_Common_ArithTraits.hpp
-  /usr/include/kokkos-kernels/Test_Common_Error.hpp
-  /usr/include/kokkos-kernels/Test_Common_IOUtils.hpp
-  /usr/include/kokkos-kernels/Test_Common_Iota.hpp
-  /usr/include/kokkos-kernels/Test_Common_LowerBound.hpp
-  /usr/include/kokkos-kernels/Test_Common_PrintConfiguration.hpp
-  /usr/include/kokkos-kernels/Test_Common_Sorting.hpp
-  /usr/include/kokkos-kernels/Test_Common_UpperBound.hpp
-  /usr/include/kokkos-kernels/Test_Common_Version.hpp
-  /usr/include/kokkos-kernels/Test_Common_float128.hpp
-  /usr/include/kokkos-kernels/Test_Common_set_bit_count.hpp
-  /usr/include/kokkos-kernels/Test_ODE.hpp
-  /usr/include/kokkos-kernels/Test_ODE_BDF.hpp
-  /usr/include/kokkos-kernels/Test_ODE_Newton.hpp
-  /usr/include/kokkos-kernels/Test_ODE_RK.hpp
-  /usr/include/kokkos-kernels/Test_ODE_RK_chem.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_nt_nt_bll_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_nt_nt_bll_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_nt_nt_blr_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_nt_nt_blr_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_nt_t_bll_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_nt_t_bll_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_nt_t_blr_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_nt_t_blr_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_t_nt_bll_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_t_nt_bll_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_t_nt_blr_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_t_nt_blr_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_t_t_bll_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_t_t_bll_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_t_t_blr_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBatched_Gemm_t_t_blr_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_abs_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_abs_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_abs_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_abs_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_axpby_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_axpby_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_axpby_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_axpby_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_dot_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_dot_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_dot_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_dot_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_iamax_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_iamax_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_iamax_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_iamax_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_mult_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_mult_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_mult_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_mult_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm1_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm1_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm1_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm1_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm2_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm2_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm2_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm2_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm2w_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm2w_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm2w_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrm2w_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrminf_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrminf_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrminf_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_nrminf_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_reciprocal_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_reciprocal_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_reciprocal_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_reciprocal_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_rot_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_rot_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_rotg_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_rotg_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_rotm_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_rotm_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_rotmg_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_rotmg_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_scal_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_scal_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_scal_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_scal_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_sum_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_sum_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_sum_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_sum_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_swap_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_swap_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_update_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_update_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_update_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas1_update_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas2_gemv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas2_gemv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas2_ger_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas2_ger_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas2_syr2_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas2_syr2_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas2_syr_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas2_syr_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas3_gemm_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas3_gemm_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas3_trmm_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas3_trmm_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas3_trsm_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosBlas3_trsm_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosGraph_color_d1_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosGraph_color_d1_eti_spec_decl.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_gegqr_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_gegqr_eti_spec_decl.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_gemqr_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_gemqr_eti_spec_decl.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_geqrf_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_geqrf_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_gesv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_gesv_eti_spec_decl.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_getrf_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_getrf_eti_spec_decl.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_getrs_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_getrs_eti_spec_decl.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_potrf_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_potrf_eti_spec_decl.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_potrs_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_potrs_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_svd_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_svd_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_trtri_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosLapack_trtri_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_bspgemm_numeric_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_bspgemm_numeric_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_gauss_seidel_apply_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_gauss_seidel_apply_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_gauss_seidel_numeric_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_gauss_seidel_numeric_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_gauss_seidel_symbolic_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_gauss_seidel_symbolic_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_gmres_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_gmres_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_par_ilut_numeric_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_par_ilut_numeric_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_par_ilut_symbolic_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_par_ilut_symbolic_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spadd_numeric_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spadd_numeric_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spadd_symbolic_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spadd_symbolic_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spgemm_jacobi_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spgemm_jacobi_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spgemm_noreuse_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spgemm_noreuse_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spgemm_numeric_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spgemm_numeric_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spgemm_symbolic_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spgemm_symbolic_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spiluk_numeric_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spiluk_numeric_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spiluk_symbolic_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spiluk_symbolic_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_bsrmatrix_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_bsrmatrix_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_mv_bsrmatrix_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_mv_bsrmatrix_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_mv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_mv_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_mv_struct_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_mv_struct_eti_spec_decl.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_sellmatrix_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_sellmatrix_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_struct_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_spmv_struct_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_sptrsv_solve_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_sptrsv_solve_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_sptrsv_symbolic_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_sptrsv_symbolic_eti_spec_decl.hpp
   /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_trsv_eti_spec_avail.hpp
+  /usr/include/kokkos-kernels/generated_specializations_hpp/KokkosSparse_trsv_eti_spec_decl.hpp
   /usr/lib/cmake/KokkosKernels/KokkosKernelsConfig.cmake
   /usr/lib/cmake/KokkosKernels/KokkosKernelsConfigVersion.cmake
-  /usr/lib/cmake/KokkosKernels/KokkosKernelsTargets-release.cmake
+  /usr/lib/cmake/KokkosKernels/KokkosKernelsTargets-relwithdebinfo.cmake
   /usr/lib/cmake/KokkosKernels/KokkosKernelsTargets.cmake
   /usr/lib/libkokkoskernels.dll.a
   /usr/lib/pkgconfig/kokkos-kernels.pc
@@ -864,6 +945,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.3.0-1bl1 -----
+Version bump.
 
 ----- version 4.4.01-1bl1 -----
 Version bump.

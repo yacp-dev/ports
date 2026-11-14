@@ -12,8 +12,26 @@ filter, you can read and write HDF5 files with Blosc-compressed datasets."
 
 LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
-# LICENSE_URI=""
+LICENSE_URI="LICENSES/BLOSC_HDF5.txt"
 
-BUILD_REQUIRES="libblosc-devel libhdf5-devel"
+BUILD_REQUIRES="
+	hdf5
+	libaec-devel
+	libblosc-devel
+	libhdf5-devel
+	zlib-devel
+"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DPLUGIN_INSTALL_PATH:PATH=/usr/lib/plugin
+"
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+	rm -f ${D}/usr/lib/plugin/*.dll.a
+}

@@ -12,6 +12,11 @@ LICENSE_URI="LICENSE"
 
 inherit cmake
 
+src_test() {
+	cd ${B}
+	verbose ./test.exe
+}
+
 PKG_NAMES="
 	libcoopgamma
 	libcoopgamma1

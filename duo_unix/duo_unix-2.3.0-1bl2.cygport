@@ -6,8 +6,8 @@ CATEGORY="Security"
 SUMMARY="Duo two-factor authentication for Unix systems"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="GPL-2.0-with-classpath-exception"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-with-classpath-exception"
+LICENSE="GPL-2.0-only WITH Classpath-exception-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-only WITH Classpath-exception-2.0"
 LICENSE_URI="LICENSES/GPL-2.0-with-classpath-exception.txt"
 
 BUILD_REQUIRES="

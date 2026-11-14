@@ -1,0 +1,103 @@
+--- origsrc/VTK-9.7.2/Common/Core/vtkLogger.cxx	2026-11-04 19:33:05.000000000 +0000
++++ src/VTK-9.7.2/Common/Core/vtkLogger.cxx	2026-11-14 11:11:54.428520400 +0000
+@@ -5,6 +5,8 @@
+ #include "vtkObjectFactory.h"
+ #include "vtkStringScanner.h"
+ 
++#define LOGURU_WITH_STREAMS 1
++
+ #if VTK_MODULE_ENABLE_VTK_loguru
+ #include <vtk_loguru.h>
+ #endif
+--- origsrc/VTK-9.7.2/Rendering/GL2PSOpenGL2/CMakeLists.txt	2026-11-04 19:33:05.000000000 +0000
++++ src/VTK-9.7.2/Rendering/GL2PSOpenGL2/CMakeLists.txt	2026-11-14 11:11:54.430539300 +0000
+@@ -14,3 +14,5 @@ vtk_module_add_module(VTK::RenderingGL2P
+   SOURCES ${vtk_object_factory_source}
+   PRIVATE_HEADERS ${vtk_object_factory_header})
+ vtk_add_test_mangling(VTK::RenderingGL2PSOpenGL2)
++vtk_module_link(VTK::RenderingGL2PSOpenGL2 PRIVATE GL)
++
+--- origsrc/VTK-9.7.2/ThirdParty/ioss/vtkioss/cgns/Iocgns_Utils.C	2026-11-04 19:33:05.000000000 +0000
++++ src/VTK-9.7.2/ThirdParty/ioss/vtkioss/cgns/Iocgns_Utils.C	2026-11-14 11:11:54.432560100 +0000
+@@ -99,7 +99,7 @@
+   } while (0)
+ 
+ namespace {
+-#if defined(__IOSS_WINDOWS__) || defined(__CYGWIN__)
++#if defined(__IOSS_WINDOWS__)
+   const char *strcasestr(const char *haystack, const char *needle)
+   {
+     std::string lneedle(Ioss::Utils::lowercase(needle));
+--- origsrc/VTK-9.7.2/ThirdParty/loguru/CMakeLists.txt	2026-11-04 19:33:05.000000000 +0000
++++ src/VTK-9.7.2/ThirdParty/loguru/CMakeLists.txt	2026-11-14 11:11:54.434586300 +0000
+@@ -6,7 +6,8 @@ vtk_third_party_extract(
+   VERSION_FROM_TAG
+     tag  loguru_version "^for/vtk-[0-9]*-([0-9\\.]+)$")
+ 
+-vtk_module_third_party_internal(
++vtk_module_third_party(
++  INTERNAL
+     LICENSE_FILES
+       "vtkloguru/LICENSE"
+     SPDX_LICENSE_IDENTIFIER
+@@ -21,6 +22,11 @@ vtk_module_third_party_internal(
+       "PublicDomain-loguru"
+     VERSION
+       "${loguru_version}"
++    STANDARD_INCLUDE_DIRS
++  EXTERNAL
++    PACKAGE loguru
++    TARGETS loguru::loguru
++    VERSION "2.1.0"
+     STANDARD_INCLUDE_DIRS)
+ 
+ configure_file(
+--- origsrc/VTK-9.7.2/ThirdParty/scn/vtkscn/include/vtkscn/scan.h	2026-11-04 19:33:05.000000000 +0000
++++ src/VTK-9.7.2/ThirdParty/scn/vtkscn/include/vtkscn/scan.h	2026-11-14 11:11:54.438387000 +0000
+@@ -5019,7 +5019,11 @@ struct stdio_file_interface_impl<File, b
+     }
+     void fill_buffer()
+     {
++#if defined(__CYGWIN__)
++        if (__srget_r(_REENT, this->file) != EOF) {
++#else
+         if (__srget(this->file) != EOF) {
++#endif
+             --this->file->_p;
+             ++this->file->_r;
+         }
+--- origsrc/VTK-9.7.2/ThirdParty/verdict/vtkverdict/verdict.h	2026-11-04 19:33:05.000000000 +0000
++++ src/VTK-9.7.2/ThirdParty/verdict/vtkverdict/verdict.h	2026-11-14 11:11:54.440406200 +0000
+@@ -46,7 +46,7 @@
+ #endif
+ 
+ #if defined(VERDICT_SHARED_LIB)
+-#ifdef verdict_EXPORTS
++#if defined(verdict_EXPORTS) || defined(vtkverdict_EXPORTS)
+ #define VERDICT_EXPORT VERDICT_ABI_EXPORT VERDICT_HOST_DEVICE
+ #else
+ #define VERDICT_EXPORT VERDICT_ABI_IMPORT VERDICT_HOST_DEVICE
+--- origsrc/VTK-9.7.2/Utilities/X11/vtkX11Functions.cxx	2026-11-04 19:33:05.000000000 +0000
++++ src/VTK-9.7.2/Utilities/X11/vtkX11Functions.cxx	2026-11-14 11:11:54.442425200 +0000
+@@ -13,9 +13,19 @@
+ namespace
+ {
+ std::atomic<std::size_t> RequestId = 0;
+-const char* X11_LIBRARY_NAMES[] = { "libX11.so.6", "libX11.so", nullptr };
++const char* X11_LIBRARY_NAMES[] = {
++#if defined(__CYGWIN__)
++  "cygX11-6.dll",
++#endif
++  "libX11.so.6", "libX11.so", nullptr
++};
+ #if VTK_HAVE_XCURSOR
+-const char* XCURSOR_LIBRARY_NAMES[] = { "libXcursor.so.1", "libXcursor.so", nullptr };
++const char* XCURSOR_LIBRARY_NAMES[] = {
++#if defined(__CYGWIN__)
++  "cygXcursor-1.dll",
++#endif
++  "libXcursor.so.1", "libXcursor.so", nullptr
++};
+ #endif
+ }
+ 

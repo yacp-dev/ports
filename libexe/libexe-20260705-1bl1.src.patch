@@ -1,5 +1,5 @@
---- origsrc/libexe-20240420/Makefile.am	2024-04-21 02:18:22.000000000 +0900
-+++ src/libexe-20240420/Makefile.am	2025-05-18 12:07:42.644573400 +0900
+--- origsrc/libexe-20260705/Makefile.am	2026-07-05 07:14:59.000000000 +0000
++++ src/libexe-20260705/Makefile.am	2026-11-14 23:43:26.682192100 +0000
 @@ -3,23 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -24,9 +24,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libexe-20240420/configure.ac	2024-04-21 02:18:22.000000000 +0900
-+++ src/libexe-20240420/configure.ac	2025-05-18 12:07:42.644573400 +0900
-@@ -160,19 +160,6 @@ dnl Generate Makefiles
+--- origsrc/libexe-20260705/configure.ac	2026-07-05 07:14:59.000000000 +0000
++++ src/libexe-20260705/configure.ac	2026-11-14 23:43:26.682192100 +0000
+@@ -170,19 +170,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -46,19 +46,19 @@
  AC_CONFIG_FILES([libexe/Makefile])
  AC_CONFIG_FILES([pyexe/Makefile])
  AC_CONFIG_FILES([exetools/Makefile])
---- origsrc/libexe-20240420/pyexe/Makefile.am	2024-04-21 02:18:22.000000000 +0900
-+++ src/libexe-20240420/pyexe/Makefile.am	2025-05-18 12:07:51.171949300 +0900
+--- origsrc/libexe-20260705/pyexe/Makefile.am	2026-07-05 07:14:59.000000000 +0000
++++ src/libexe-20260705/pyexe/Makefile.am	2026-11-14 23:43:26.682192100 +0000
 @@ -43,7 +43,7 @@ pyexe_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyexe_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyexe_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyexe_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyexe_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  
  endif
  
---- origsrc/libexe-20240420/tests/Makefile.am	2024-04-21 02:18:22.000000000 +0900
-+++ src/libexe-20240420/tests/Makefile.am	2025-05-18 12:17:32.656549800 +0900
+--- origsrc/libexe-20260705/tests/Makefile.am	2026-07-05 07:14:59.000000000 +0000
++++ src/libexe-20260705/tests/Makefile.am	2026-11-14 23:43:26.684210200 +0000
 @@ -3,6 +3,7 @@ AUTOMAKE_OPTIONS = subdir-objects
  AM_CPPFLAGS = \
  	-I../include -I$(top_srcdir)/include \

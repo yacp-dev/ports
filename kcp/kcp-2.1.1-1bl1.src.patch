@@ -1,28 +1,20 @@
---- origsrc/kcp-1.7/CMakeLists.txt	2020-04-24 18:05:43.000000000 +0900
-+++ src/kcp-1.7/CMakeLists.txt	2025-06-07 09:42:53.743615100 +0900
-@@ -5,12 +5,17 @@ project(kcp LANGUAGES C)
- include(CTest)
- include(GNUInstallDirs)
+--- origsrc/kcp-2.1.1/CMakeLists.txt	2026-05-15 17:52:21.000000000 +0000
++++ src/kcp-2.1.1/CMakeLists.txt	2026-11-14 12:32:59.946569600 +0000
+@@ -36,6 +36,10 @@ else()
+     add_library(kcp ikcp.c)
+ endif()
  
--add_library(kcp STATIC ikcp.c)
-+add_library(kcp SHARED ikcp.c)
-+
 +if (DEFINED SOVERSION)
 +    set_target_properties(kcp PROPERTIES SOVERSION "${SOVERSION}")
 +endif()
- 
- install(FILES ikcp.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
++
+ install(FILES ikcp.h DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")
  
  install(TARGETS kcp
-     EXPORT kcp-targets
-+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
- )
-@@ -29,3 +34,10 @@ if (BUILD_TESTING)
+@@ -60,3 +64,10 @@ if(BUILD_TESTING)
          target_compile_options(kcp_test PRIVATE /utf-8)
      endif()
- endif ()
+ endif()
 +
 +set(prefix ${CMAKE_INSTALL_PREFIX})
 +set(exec_prefix ${CMAKE_INSTALL_PREFIX})
@@ -30,8 +22,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/kcp.pc.in ${CMAKE_BINARY_DIR}/kcp.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/kcp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/kcp-1.7/kcp.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/kcp-1.7/kcp.pc.in	2025-06-07 09:42:28.181125900 +0900
+--- origsrc/kcp-2.1.1/kcp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/kcp-2.1.1/kcp.pc.in	2026-11-14 12:32:59.946569600 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

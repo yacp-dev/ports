@@ -9,9 +9,13 @@ balls, lines), in addition to the basic math objects that are used to build
 these shapes (points, vectors, matrices). WFMath provides a means for other
 system compenents to pass geometric information around in a common format."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND BSD-3-Clause"
 LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libAtlas0.6-devel
+"
 
 PKG_NAMES="
 	${PN}

@@ -10,7 +10,27 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libcpath-devel libfcache-devel libfdata-devel libfdatetime-devel libfguid-devel libfvalue-devel libfwnt-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcsplit-devel
+	libcpath-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfdatetime-devel
+	libfguid-devel
+	libfmapi-devel
+	libfvalue-devel
+	libfwnt-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -37,6 +57,7 @@ src_test()
 }
 
 DOCS="
+	COPYING
 	COPYING.LESSER
 "
 
@@ -44,7 +65,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libesedb_CONTENTS="
 	usr/bin/*.exe
@@ -60,10 +81,10 @@ libesedb_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libesedb_CONTENTS="
-	usr/lib/python3*
+python312_libesedb_CONTENTS="
+	usr/lib/python3.12
 "
 libesedb_SUMMARY="${SUMMARY} (utilities)"
 libesedb1_SUMMARY="${SUMMARY} (runtime)"
 libesedb_devel_SUMMARY="${SUMMARY} (development)"
-python39_libesedb_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libesedb_SUMMARY="${SUMMARY} (python312 bindings)"

@@ -1,5 +1,5 @@
---- origsrc/libcint-6.2.0/examples/time_c2h6.c	2026-10-16 22:50:06.000000000 +0000
-+++ src/libcint-6.2.0/examples/time_c2h6.c	2026-10-19 12:46:54.076974600 +0000
+--- origsrc/libcint-6.2.1/examples/time_c2h6.c	2026-11-02 05:53:42.000000000 +0000
++++ src/libcint-6.2.1/examples/time_c2h6.c	2026-11-14 12:47:43.011132300 +0000
 @@ -717,7 +717,7 @@ void run_all(int *atm, int natm, int *ba
          printf("\tcint2e_sph without optimizer: total num ERI = %.2e\n", tot);
          pct = 0; count = 0;
@@ -27,8 +27,8 @@
          private(di, dj, dk, dl, i, j, k, l, ij, kl, shls, buf, time1)
  #pragma omp for nowait schedule(dynamic, 2)
          for (ij = 0; ij < nbas*nbas; ij++) {
---- origsrc/libcint-6.2.0/examples/time_c60.c	2026-10-16 22:50:06.000000000 +0000
-+++ src/libcint-6.2.0/examples/time_c60.c	2026-10-19 12:46:54.076974600 +0000
+--- origsrc/libcint-6.2.1/examples/time_c60.c	2026-11-02 05:53:42.000000000 +0000
++++ src/libcint-6.2.1/examples/time_c60.c	2026-11-14 12:47:43.011132300 +0000
 @@ -194,7 +194,7 @@ void run_all(int *atm, int natm, int *ba
  
          pct = 0; count = 0;
@@ -38,8 +38,8 @@
          private(di, dj, dk, dl, i, j, k, l, ij, kl, kl_max, shls, buf, time1)
  #pragma omp for nowait schedule(dynamic, 2)
          for (ij = 0; ij < nbas*(nbas+1)/2; ij++) {
---- origsrc/libcint-6.2.0/testsuite/test_3c2e.py	2026-10-16 22:50:06.000000000 +0000
-+++ src/libcint-6.2.0/testsuite/test_3c2e.py	2026-10-19 12:46:54.078985400 +0000
+--- origsrc/libcint-6.2.1/testsuite/test_3c2e.py	2026-11-02 05:53:42.000000000 +0000
++++ src/libcint-6.2.1/testsuite/test_3c2e.py	2026-11-14 12:47:43.011132300 +0000
 @@ -13,7 +13,7 @@ import os
  import ctypes
  import numpy
@@ -49,8 +49,8 @@
  
  PTR_LIGHT_SPEED    = 0
  PTR_COMMON_ORIG    = 1
---- origsrc/libcint-6.2.0/testsuite/test_cint.py	2026-10-16 22:50:06.000000000 +0000
-+++ src/libcint-6.2.0/testsuite/test_cint.py	2026-10-19 12:46:54.078985400 +0000
+--- origsrc/libcint-6.2.1/testsuite/test_cint.py	2026-11-02 05:53:42.000000000 +0000
++++ src/libcint-6.2.1/testsuite/test_cint.py	2026-11-14 12:47:43.013150600 +0000
 @@ -13,7 +13,7 @@ import os
  import ctypes
  import numpy

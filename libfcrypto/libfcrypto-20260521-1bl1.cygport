@@ -9,7 +9,11 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libcerror-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcerror-devel
+	python3-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -28,11 +32,31 @@ src_test()
 	pushd tests
 		for sh in ${S}/tests/*.{py,sh}
 		do
-			ln -fs ${sh} .
+			cp -f ${sh} .
 		done
 	popd
+	pushd pyfcrypto/.libs
+		python_tag=$(python3 -c 'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX"))')
+		cp -a pyfcrypto.dll pyfcrypto${python_tag}
+		cp -a pyfcrypto.dll ${B}/tests/
+		cp -a pyfcrypto${python_tag} ${B}/tests/
+	popd
+	PATH="${B}/libfcrypto/.libs:${B}/pyfcrypto/.libs:${PATH}" \
+	PYTHON=python3 \
+	CHECK_WITH_STDERR=1 \
 	cygtest
-	rm tests/*.{py,sh}
+	rm -f tests/*.{py,sh} tests/pyfcrypto*
+}
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	pushd ${D}/usr/lib/python3.12/site-packages
+		python_tag=$(python3 -c 'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX"))')
+		cp -a pyfcrypto.dll pyfcrypto${python_tag}
+	popd
 }
 
 DOCS="
@@ -43,7 +67,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libfcrypto_CONTENTS="
 	usr/share/doc
@@ -57,10 +81,10 @@ libfcrypto_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man
 "
-python39_libfcrypto_CONTENTS="
-	usr/lib/python3.9
+python312_libfcrypto_CONTENTS="
+	usr/lib/python3.12
 "
 libfcrypto_SUMMARY="${SUMMARY} (licensing & readmes)"
 libfcrypto1_SUMMARY="${SUMMARY} (runtime)"
 libfcrypto_devel_SUMMARY="${SUMMARY} (development)"
-python39_libfcrypto_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libfcrypto_SUMMARY="${SUMMARY} (python312 bindings)"

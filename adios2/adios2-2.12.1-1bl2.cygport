@@ -71,6 +71,9 @@ src_install()
 	# the encryption operator is a plugin loaded through ADIOS2_PLUGIN_PATH, not a library to link
 	mkdir -p ${D}/usr/lib/adios2
 	mv ${D}/usr/lib/cygEncryptionOperator.dll ${D}/usr/lib/adios2/ || error "moving the encryption operator failed"
+	# the exported targets still name the old location, which breaks find_package(ADIOS2)
+	verbose sed -i -e 's|/lib/cygEncryptionOperator\.dll|/lib/adios2/cygEncryptionOperator.dll|' ${D}/usr/lib/cmake/adios2/*.cmake
+	! grep -q '/lib/cygEncryptionOperator\.dll' ${D}/usr/lib/cmake/adios2/*.cmake || error "the CMake config still names the old encryption operator location"
 }
 
 PKG_NAMES="

@@ -22,9 +22,12 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="Copyright.txt"
 
 BUILD_REQUIRES="
+	cli11
+	eigen3
+	fast_float
 	libcgns-devel
-	libdouble-conversion-devel
 	libexpat-devel
+	libfides-devel
 	libfmt-devel
 	libfreetype-devel
 	libGL-devel
@@ -41,12 +44,16 @@ BUILD_REQUIRES="
 	libpng-devel
 	libproj-devel
 	libpugixml-devel
+	libscn-devel
 	libsqlite3-devel
 	libtheora-devel
+	libtheora1
 	libtiff-devel
+	libviskores-devel
 	libX11-devel
 	libXcursor-devel
 	libxml2-devel
+	sqlite3
 	utf8cpp-devel
 	zlib-devel
 "
@@ -55,8 +62,8 @@ export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 export CXXFLAGS="${CXXFLAGS} -fpermissive -Wa,-mbig-obj"
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DVTK_BUILD_EXAMPLES:BOOL=ON
-	-DVTK_IGNORE_CMAKE_CXX11_CHECKS:BOOL=ON
 	-DVTK_ENABLE_KITS:BOOL=ON
 	-DVTK_MODULE_USE_EXTERNAL_VTK_exprtk:BOOL=OFF
 	-DVTK_MODULE_USE_EXTERNAL_VTK_ioss:BOOL=OFF
@@ -79,13 +86,14 @@ VTK_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libVTK9_5_1_CONTENTS="
+libVTK9_7_1_CONTENTS="
 	usr/bin/cyg*-1.dll
 "
-libVTK9_5_devel_CONTENTS="
+libVTK9_7_1_REQUIRES="libX11_6 libXcursor1"
+libVTK9_7_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 VTK_SUMMARY="${SUMMARY} (utilities)"
-libVTK9_5_1_SUMMARY="${SUMMARY} (runtime)"
-libVTK9_5_devel_SUMMARY="${SUMMARY} (development)"
+libVTK9_7_1_SUMMARY="${SUMMARY} (runtime)"
+libVTK9_7_devel_SUMMARY="${SUMMARY} (development)"

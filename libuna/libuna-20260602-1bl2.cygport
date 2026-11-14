@@ -11,8 +11,24 @@ LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	gettext-devel
+	libcdatetime-devel
 	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
 "
+
+src_test()
+{
+	cd ${B}
+	pushd tests
+		ln -fs ${S}/tests/test_library.sh .
+		ln -fs ${S}/tests/test_runner.sh .
+		ln -fs ${S}/tests/test_unaexport.sh .
+	popd
+	cygtest
+	rm -f tests/test_library.sh tests/test_runner.sh tests/test_unaexport.sh
+}
 
 src_install()
 {
@@ -33,7 +49,9 @@ PKG_NAMES="
 	${PN}-devel
 "
 libuna_CONTENTS="
+	usr/bin/*.exe
 	usr/share/doc
+	usr/share/man/man1
 "
 libuna1_CONTENTS="
 	usr/bin/cyg*-1.dll
@@ -43,6 +61,6 @@ libuna_devel_CONTENTS="
 	usr/lib
 	usr/share/man/man3
 "
-libuna_SUMMARY="${SUMMARY} (licensing & readmes)"
+libuna_SUMMARY="${SUMMARY} (utilities)"
 libuna1_SUMMARY="${SUMMARY} (runtime)"
 libuna_devel_SUMMARY="${SUMMARY} (development)"

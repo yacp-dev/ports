@@ -1,0 +1,42 @@
+--- origsrc/libuna-20260602/Makefile.am	2026-06-01 12:56:10.000000000 +0000
++++ src/libuna-20260602/Makefile.am	2026-11-14 08:39:09.979945300 +0000
+@@ -3,14 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
+ SUBDIRS = \
+ 	include \
+ 	common \
+-	libcerror \
+ 	libuna \
+-	libcdatetime \
+-	libclocale \
+-	libcnotify \
+-	libcfile \
+ 	unatools \
+-	po \
+ 	documents \
+ 	manuals \
+ 	tests \
+--- origsrc/libuna-20260602/configure.ac	2026-06-01 12:56:10.000000000 +0000
++++ src/libuna-20260602/configure.ac	2026-11-14 08:39:09.980437700 +0000
+@@ -127,12 +127,7 @@ dnl Generate Makefiles
+ AC_CONFIG_FILES([Makefile])
+ AC_CONFIG_FILES([include/Makefile])
+ AC_CONFIG_FILES([common/Makefile])
+-AC_CONFIG_FILES([libcerror/Makefile])
+ AC_CONFIG_FILES([libuna/Makefile])
+-AC_CONFIG_FILES([libcdatetime/Makefile])
+-AC_CONFIG_FILES([libclocale/Makefile])
+-AC_CONFIG_FILES([libcnotify/Makefile])
+-AC_CONFIG_FILES([libcfile/Makefile])
+ AC_CONFIG_FILES([unatools/Makefile])
+ AC_CONFIG_FILES([po/Makefile.in])
+ AC_CONFIG_FILES([po/Makevars])
+--- origsrc/libuna-20260602/tests/Makefile.am	2026-06-01 12:56:10.000000000 +0000
++++ src/libuna-20260602/tests/Makefile.am	2026-11-14 08:39:09.980437700 +0000
+@@ -1,6 +1,7 @@
+ AM_CPPFLAGS = \
+ 	-I../include -I$(top_srcdir)/include \
+ 	-I../common -I$(top_srcdir)/common \
++	-I$(top_builddir)/libuna \
+ 	@LIBCERROR_CPPFLAGS@ \
+ 	@LIBUNA_DLL_IMPORT@
+ 

@@ -1,5 +1,5 @@
---- origsrc/JWasm-2.20/GccUnix.mak	2025-11-30 19:13:04.000000000 +0900
-+++ src/JWasm-2.20/GccUnix.mak	2026-01-13 16:54:46.218586600 +0900
+--- origsrc/JWasm-2.21/GccUnix.mak	2026-11-08 02:55:46.000000000 +0000
++++ src/JWasm-2.21/GccUnix.mak	2026-11-14 12:24:08.615092100 +0000
 @@ -1,6 +1,8 @@
  
  # This makefile creates the JWasm Elf binary for Linux/FreeBSD.

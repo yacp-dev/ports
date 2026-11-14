@@ -1,0 +1,39 @@
+--- origsrc/calcurse-4.9.0/configure.ac	1970-01-01 00:00:00.000000000 +0000
++++ src/calcurse-4.9.0/configure.ac	2026-11-14 05:32:53.139983100 +0000
+@@ -2,7 +2,7 @@
+ #                                                                           Init
+ #-------------------------------------------------------------------------------
+ AC_PREREQ([2.71])
+-AC_INIT([calcurse],[m4_esyscmd(build-aux/git-version-gen .version)],[bugs@calcurse.org])
++AC_INIT([calcurse],[4.9.0],[bugs@calcurse.org])
+ AM_INIT_AUTOMAKE
+ #m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
+ AM_GNU_GETTEXT([external])
+--- origsrc/calcurse-4.9.0/test/run-test.c	1970-01-01 00:00:00.000000000 +0000
++++ src/calcurse-4.9.0/test/run-test.c	2026-11-14 05:32:53.140499400 +0000
+@@ -217,15 +217,17 @@ static int run_test(const char *name, in
+ 	int stat1, stat2;
+ 	int ret = 1;
+ 
+-	if (snprintf(filename, BUFSIZ, "./%s", name) >= BUFSIZ)
+-		die("file name too long\n");
+-
+-	if (access(filename, F_OK) != 0) {
+-		if (snprintf(filename, BUFSIZ, "./%s.sh", name) >= BUFSIZ)
++	if (access(name, F_OK) == 0) {
++		if (snprintf(filename, BUFSIZ, "%s", name) >= BUFSIZ)
+ 			die("file name too long\n");
+-
+-		if (access(filename, F_OK) != 0)
+-			die("test not found: %s\n", name);
++	} else if (snprintf(filename, BUFSIZ, "%s.sh", name) < BUFSIZ && access(filename, F_OK) == 0) {
++		/* name.sh */
++	} else if (snprintf(filename, BUFSIZ, "./%s", name) < BUFSIZ && access(filename, F_OK) == 0) {
++		/* ./%s */
++	} else if (snprintf(filename, BUFSIZ, "./%s.sh", name) < BUFSIZ && access(filename, F_OK) == 0) {
++		/* ./%s.sh */
++	} else {
++		die("test not found: %s\n", name);
+ 	}
+ 
+ 	if (access(filename, X_OK) != 0)

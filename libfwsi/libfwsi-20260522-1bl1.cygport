@@ -16,7 +16,16 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libfguid-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcdata-devel
+	libcerror-devel
+	libclocale-devel
+	libcnotify-devel
+	libfguid-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -43,7 +52,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libfwsi_CONTENTS="
 	usr/share/doc
@@ -57,10 +66,10 @@ libfwsi_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man
 "
-python39_libfwsi_CONTENTS="
-	usr/lib/python3*
+python312_libfwsi_CONTENTS="
+	usr/lib/python3.12
 "
 libfwsi_SUMMARY="${SUMMARY} (licensing & readmes)"
 libfwsi1_SUMMARY="${SUMMARY} (runtime)"
 libfwsi_devel_SUMMARY="${SUMMARY} (development)"
-python39_libfwsi_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libfwsi_SUMMARY="${SUMMARY} (python312 bindings)"

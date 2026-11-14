@@ -3,54 +3,53 @@ libfwnt
 libfwnt is a library for Windows NT data types.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libcdata1-20240414-1bl1
-  libcerror1-20240413-1bl1
-  libcnotify1-20240414-1bl1
-  libfwnt-devel-20240415-1bl1
-  libfwnt1-20240415-1bl1
-  pkg-config-2.4.3-1
-  python39-3.9.18-2
+  cygwin-3.6.12-1
+  libcdata1-20260703-1bl1
+  libcerror1-20260703-1bl1
+  libcnotify1-20260703-1bl1
+  libfwnt-devel-20260602-1bl1
+  libfwnt1-20260602-1bl1
+  pkg-config-3.0.10-1
+  python312-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libcdata-devel-20240414-1bl1
-  libcerror-devel-20240413-1bl1
-  libcnotify-devel-20240414-1bl1
-  libtool-2.5.4-1
+  libcdata-devel-20260703-1bl1
+  libcerror-devel-20260703-1bl1
+  libcnotify-devel-20260703-1bl1
+  libcthreads-devel-20260703-1bl1
+  libtool-2.6.2-1
   make-4.4.1-2
-  python39-3.9.18-2
-  python39-devel-3.9.18-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
 
 Canonical website:
   https://github.com/libyal/libfwnt
 
 Canonical download:
-  https://github.com/libyal/libfwnt/archive/refs/tags/20240415.tar.gz
+  https://github.com/libyal/libfwnt/archive/refs/tags/20260602.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libfwnt-20240415-X-src.tar.xz
+  1. unpack libfwnt-20260602-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libfwnt-20240415-X.cygport all
+        % cygport ./libfwnt-20260602-X.cygport all
 
 This will create:
-  /usr/src/libfwnt-20240415-X-src.tar.xz
-  /usr/src/libfwnt-20240415-X.tar.xz
-  /usr/src/libfwnt1-20240415-X.tar.xz
-  /usr/src/libfwnt-devel-20240415-X.tar.xz
-  /usr/src/python39-libfwnt-20240415-X.tar.xz
+  /usr/src/libfwnt-20260602-X-src.tar.xz
+  /usr/src/libfwnt-20260602-X.tar.xz
+  /usr/src/libfwnt1-20260602-X.tar.xz
+  /usr/src/libfwnt-devel-20260602-X.tar.xz
+  /usr/src/python312-libfwnt-20260602-X.tar.xz
 
 -------------------------------------------
 
@@ -78,12 +77,16 @@ Files included in the binary package:
   /usr/lib/pkgconfig/libfwnt.pc
   /usr/share/man/man3/libfwnt.3.gz
 
-(python39-libfwnt)
-  /usr/lib/python3.9/site-packages/pyfwnt.dll
+(python312-libfwnt)
+  /usr/lib/python3.12/site-packages/pyfwnt.cpython-312-x86_64-cygwin.dll
+  /usr/lib/python3.12/site-packages/pyfwnt.dll
 
 ------------------
 
 Port Notes:
+
+----- version 20260602-1bl1 -----
+Version bump.
 
 ----- version 20240415-1bl1 -----
 Version bump.

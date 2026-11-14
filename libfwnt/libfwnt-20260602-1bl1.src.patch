@@ -1,5 +1,5 @@
---- origsrc/libfwnt-20240415/Makefile.am	2024-04-15 23:56:10.000000000 +0900
-+++ src/libfwnt-20240415/Makefile.am	2025-05-17 16:50:13.664458400 +0900
+--- origsrc/libfwnt-20260602/Makefile.am	2026-06-02 05:49:36.000000000 +0000
++++ src/libfwnt-20260602/Makefile.am	2026-11-14 11:44:54.729184700 +0000
 @@ -3,13 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -14,9 +14,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfwnt-20240415/configure.ac	2024-04-15 23:56:10.000000000 +0900
-+++ src/libfwnt-20240415/configure.ac	2025-05-17 16:50:13.664458400 +0900
-@@ -124,10 +124,6 @@ dnl Generate Makefiles
+--- origsrc/libfwnt-20260602/configure.ac	2026-06-02 05:49:36.000000000 +0000
++++ src/libfwnt-20260602/configure.ac	2026-11-14 11:44:54.729184700 +0000
+@@ -132,10 +132,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -27,27 +27,8 @@
  AC_CONFIG_FILES([libfwnt/Makefile])
  AC_CONFIG_FILES([pyfwnt/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
---- origsrc/libfwnt-20240415/libfwnt/libfwnt_locale_identifier.h	2024-04-15 23:56:10.000000000 +0900
-+++ src/libfwnt-20240415/libfwnt/libfwnt_locale_identifier.h	2025-05-17 16:50:13.664458400 +0900
-@@ -25,6 +25,8 @@
- #include <common.h>
- #include <types.h>
- 
-+#include "libfwnt_extern.h"
-+
- #if defined( __cplusplus )
- extern "C" {
- #endif
-@@ -46,6 +48,7 @@ struct libfwnt_locale_identifier_languag
- 	const char *description;
- };
- 
-+LIBFWNT_EXTERN \
- const char *libfwnt_locale_identifier_language_tag_get_identifier(
-              uint16_t lcid_language_tag );
- 
---- origsrc/libfwnt-20240415/libfwnt/libfwnt_lzx.c	2024-04-15 23:56:10.000000000 +0900
-+++ src/libfwnt-20240415/libfwnt/libfwnt_lzx.c	2025-05-17 16:50:13.664458400 +0900
+--- origsrc/libfwnt-20260602/libfwnt/libfwnt_lzx.c	2026-06-02 05:49:36.000000000 +0000
++++ src/libfwnt-20260602/libfwnt/libfwnt_lzx.c	2026-11-14 11:44:54.731555400 +0000
 @@ -103,6 +103,7 @@ int libfwnt_lzx_read_huffman_code_sizes(
  
  			goto on_error;
@@ -270,8 +251,31 @@
  				if( (size_t) block_size > ( bit_stream->byte_stream_size - bit_stream->byte_stream_offset ) )
  				{
  					block_size = (uint32_t) ( bit_stream->byte_stream_size - bit_stream->byte_stream_offset );
---- origsrc/libfwnt-20240415/pyfwnt/Makefile.am	2024-04-15 23:56:10.000000000 +0900
-+++ src/libfwnt-20240415/pyfwnt/Makefile.am	2025-05-17 16:50:24.578238100 +0900
+--- origsrc/libfwnt-20260602/m4/python.m4	2026-06-02 05:49:36.000000000 +0000
++++ src/libfwnt-20260602/m4/python.m4	2026-11-14 11:44:54.731555400 +0000
+@@ -80,11 +80,16 @@ AC_DEFUN([AX_PYTHON_CHECK],
+       [$PYTHON_LDFLAGS])
+ 
+     dnl Check for Python extension suffix
+-    ac_cv_python_exention_suffix=`${PYTHON_CONFIG} --extension-suffix 2>/dev/null`;
++    AS_CASE(
++      [$build],
++      [*-*-cygwin*],[],
++      [*],[
++      ac_cv_python_exention_suffix=`${PYTHON_CONFIG} --extension-suffix 2>/dev/null`;
+ 
+-    AS_IF(
+-      [test "x${ac_cv_python_exention_suffix}" != x],
+-      [PYTHON_LDFLAGS="${PYTHON_LDFLAGS} -shrext ${ac_cv_python_exention_suffix}"])
++      AS_IF(
++        [test "x${ac_cv_python_exention_suffix}" != x],
++        [PYTHON_LDFLAGS="${PYTHON_LDFLAGS} -shrext ${ac_cv_python_exention_suffix}"])
++      ])
+ 
+     dnl For CygWin and MinGW add the -no-undefined linker flag
+     AS_CASE(
+--- origsrc/libfwnt-20260602/pyfwnt/Makefile.am	2026-06-02 05:49:36.000000000 +0000
++++ src/libfwnt-20260602/pyfwnt/Makefile.am	2026-11-14 11:44:54.733205300 +0000
 @@ -32,7 +32,7 @@ pyfwnt_la_LIBADD = \
  	@LIBCDATA_LIBADD@
  

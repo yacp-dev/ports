@@ -1,5 +1,5 @@
---- origsrc/atlas-cpp-0.6.4/Atlas/Codecs/Makefile.am	2017-07-24 00:31:49.000000000 +0900
-+++ src/atlas-cpp-0.6.4/Atlas/Codecs/Makefile.am	2025-01-16 22:54:00.866021400 +0900
+--- origsrc/atlas-cpp-0.6.4/Atlas/Codecs/Makefile.am	2017-07-23 15:31:49.000000000 +0000
++++ src/atlas-cpp-0.6.4/Atlas/Codecs/Makefile.am	2026-11-14 06:16:29.402797600 +0000
 @@ -3,7 +3,7 @@ AM_CPPFLAGS = -I$(top_srcdir)
  
  lib_LTLIBRARIES = libAtlasCodecs-0.6.la
@@ -9,8 +9,8 @@
  
  libAtlasCodecs_0_6_la_LIBADD = $(top_builddir)/Atlas/libAtlas-0.6.la
  
---- origsrc/atlas-cpp-0.6.4/Atlas/Filters/Makefile.am	2017-07-24 00:31:49.000000000 +0900
-+++ src/atlas-cpp-0.6.4/Atlas/Filters/Makefile.am	2025-01-16 22:54:00.866021400 +0900
+--- origsrc/atlas-cpp-0.6.4/Atlas/Filters/Makefile.am	2017-07-23 15:31:49.000000000 +0000
++++ src/atlas-cpp-0.6.4/Atlas/Filters/Makefile.am	2026-11-14 06:16:29.404036000 +0000
 @@ -3,7 +3,7 @@ AM_CPPFLAGS = -I$(top_srcdir) -I$(top_bu
  
  lib_LTLIBRARIES = libAtlasFilters-0.6.la
@@ -20,8 +20,8 @@
  
  libAtlasFilters_0_6_la_LIBADD = $(top_builddir)/Atlas/libAtlas-0.6.la \
  	$(OTHER_LIBS)
---- origsrc/atlas-cpp-0.6.4/Atlas/Funky/Makefile.am	2017-07-24 00:31:49.000000000 +0900
-+++ src/atlas-cpp-0.6.4/Atlas/Funky/Makefile.am	2025-01-16 22:54:00.866021400 +0900
+--- origsrc/atlas-cpp-0.6.4/Atlas/Funky/Makefile.am	2017-07-23 15:31:49.000000000 +0000
++++ src/atlas-cpp-0.6.4/Atlas/Funky/Makefile.am	2026-11-14 06:16:29.404823700 +0000
 @@ -3,7 +3,7 @@ AM_CPPFLAGS = -I$(top_srcdir)
  
  lib_LTLIBRARIES = libAtlasFunky-0.6.la
@@ -31,8 +31,8 @@
  
  libAtlasFunky_0_6_la_SOURCES = \
          FEncoder.cpp
---- origsrc/atlas-cpp-0.6.4/Atlas/Makefile.am	2017-07-24 00:31:49.000000000 +0900
-+++ src/atlas-cpp-0.6.4/Atlas/Makefile.am	2025-01-16 22:54:00.866021400 +0900
+--- origsrc/atlas-cpp-0.6.4/Atlas/Makefile.am	2017-07-23 15:31:49.000000000 +0000
++++ src/atlas-cpp-0.6.4/Atlas/Makefile.am	2026-11-14 06:16:29.405831600 +0000
 @@ -4,7 +4,7 @@ AM_CPPFLAGS = -I$(top_srcdir)
  
  lib_LTLIBRARIES = libAtlas-0.6.la
@@ -42,8 +42,8 @@
  
  libAtlas_0_6_la_SOURCES = \
  	Bridge.cpp Codec.cpp Negotiate.cpp EncoderBase.cpp Exception.cpp \
---- origsrc/atlas-cpp-0.6.4/Atlas/Message/Makefile.am	2017-07-24 00:31:49.000000000 +0900
-+++ src/atlas-cpp-0.6.4/Atlas/Message/Makefile.am	2025-01-16 22:54:00.881627000 +0900
+--- origsrc/atlas-cpp-0.6.4/Atlas/Message/Makefile.am	2017-07-23 15:31:49.000000000 +0000
++++ src/atlas-cpp-0.6.4/Atlas/Message/Makefile.am	2026-11-14 06:16:29.405831600 +0000
 @@ -3,7 +3,7 @@ AM_CPPFLAGS = -I$(top_srcdir)
  
  lib_LTLIBRARIES = libAtlasMessage-0.6.la
@@ -53,8 +53,8 @@
  
  libAtlasMessage_0_6_la_LIBADD = $(top_builddir)/Atlas/libAtlas-0.6.la
  
---- origsrc/atlas-cpp-0.6.4/Atlas/Net/Makefile.am	2017-07-24 00:31:49.000000000 +0900
-+++ src/atlas-cpp-0.6.4/Atlas/Net/Makefile.am	2025-01-16 22:54:00.881627000 +0900
+--- origsrc/atlas-cpp-0.6.4/Atlas/Net/Makefile.am	2017-07-23 15:31:49.000000000 +0000
++++ src/atlas-cpp-0.6.4/Atlas/Net/Makefile.am	2026-11-14 06:16:29.407808800 +0000
 @@ -3,7 +3,7 @@ AM_CPPFLAGS = -I$(top_srcdir)
  
  lib_LTLIBRARIES = libAtlasNet-0.6.la
@@ -64,8 +64,8 @@
  
  libAtlasNet_0_6_la_LIBADD = $(top_builddir)/Atlas/Codecs/libAtlasCodecs-0.6.la \
      $(top_builddir)/Atlas/libAtlas-0.6.la
---- origsrc/atlas-cpp-0.6.4/Atlas/Objects/Makefile.am	2017-07-24 00:31:49.000000000 +0900
-+++ src/atlas-cpp-0.6.4/Atlas/Objects/Makefile.am	2025-01-16 22:54:00.881627000 +0900
+--- origsrc/atlas-cpp-0.6.4/Atlas/Objects/Makefile.am	2017-07-23 15:31:49.000000000 +0000
++++ src/atlas-cpp-0.6.4/Atlas/Objects/Makefile.am	2026-11-14 06:16:29.407808800 +0000
 @@ -3,7 +3,7 @@ AM_CPPFLAGS = -I$(top_srcdir)
  
  lib_LTLIBRARIES = libAtlasObjects-0.6.la
@@ -75,8 +75,8 @@
  
  libAtlasObjects_0_6_la_LIBADD = $(top_builddir)/Atlas/libAtlas-0.6.la \
      $(top_builddir)/Atlas/Message/libAtlasMessage-0.6.la \
---- origsrc/atlas-cpp-0.6.4/Makefile.am	2017-07-24 00:31:49.000000000 +0900
-+++ src/atlas-cpp-0.6.4/Makefile.am	2025-01-16 22:54:00.881627000 +0900
+--- origsrc/atlas-cpp-0.6.4/Makefile.am	2017-07-23 15:31:49.000000000 +0000
++++ src/atlas-cpp-0.6.4/Makefile.am	2026-11-14 06:16:29.409823900 +0000
 @@ -9,7 +9,7 @@ EXTRA_DIST = HACKING ROADMAP Doxyfile fo
  
  docs:
@@ -86,3 +86,21 @@
  	@echo "documentation is in doc/."
  
  dist-hook:
+--- origsrc/atlas-cpp-0.6.4/configure.ac	2017-07-23 15:31:49.000000000 +0000
++++ src/atlas-cpp-0.6.4/configure.ac	2026-11-14 06:16:29.409823900 +0000
+@@ -35,12 +35,12 @@ AC_ARG_ENABLE(debug,
+     [  --enable-debug          enable debug information [default=no]],
+     [
+         if test "$enableval" = "yes"; then
+-            CXXFLAGS="$CXXFLAGS -Wall -Werror -DDEBUG"
++            CXXFLAGS="$CXXFLAGS -Wall -DDEBUG"
+         else
+-            CXXFLAGS="$CXXFLAGS -Wall -Werror -DNDEBUG"
++            CXXFLAGS="$CXXFLAGS -Wall -DNDEBUG"
+         fi
+     ],[
+-        CXXFLAGS="$CXXFLAGS -Wall -Werror -DNDEBUG"
++        CXXFLAGS="$CXXFLAGS -Wall -DNDEBUG"
+     ]
+ )
+ 

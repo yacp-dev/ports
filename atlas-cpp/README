@@ -6,23 +6,21 @@ native implementation of the entire Atlas specification including negotiation,
 message encode and decode and the overlying Objects layer.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libAtlas0.6-devel-0.6.4-1bl2
-  libAtlas0.6_3-0.6.4-1bl2
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libAtlas0.6-devel-0.6.4-1bl3
+  libAtlas0.6_3-0.6.4-1bl3
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -124,6 +122,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.6.4-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.6.4-1bl2 -----
 Rebuild with gcc-12.4.0

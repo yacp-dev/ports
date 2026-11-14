@@ -1,7 +1,10 @@
 HOMEPAGE="https://github.com/${PN}/${PN}"
 SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/filebench/raw/7396b4a9c793ef3b1e65ab24ef0f07760692c247/f/make-dofile-global.patch
+"
 
-CATEGORY="Benchmark"
+CATEGORY="Utils"
 SUMMARY="Model Based File System Workload Generator"
 DESCRIPTION="Filebench is a file system and storage benchmark that can generate a large
 variety of workloads. Unlike typical benchmarks it is extremely flexible and
@@ -12,8 +15,22 @@ Filebench (e.g., mail-, web-, file-, and database-server workloads). Filebench
 is equally good for micro- and macro-benchmarking, quick to setup, and
 relatively easy to use."
 
+LICENSE="CDDL-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: CDDL-1.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	bison
+	flex
+"
+
+CFLAGS+=" -std=gnu17"
+
 src_test()
 {
 	cd ${B}
-	./${PN}.exe -h
+	local rc=0 out
+	out=$(verbose ./${PN}.exe -h 2>&1) || rc=$?
+	echo "${out}"
+	[ ${rc} -eq 1 ] && echo "${out}" | grep -q '^Usage:'
 }

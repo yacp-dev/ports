@@ -1,0 +1,11 @@
+--- origsrc/filebench-1.4.9.1/ipc.c	2011-09-06 17:14:12.000000000 +0000
++++ src/filebench-1.4.9.1/ipc.c	2026-11-14 06:28:59.136228700 +0000
+@@ -128,7 +128,7 @@ ipc_mutexattr_init(int mtx_type)
+ 		    "PROCESS_SHARED on this platform");
+ //		filebench_shutdown(1);
+ 	}
+-#ifdef HAVE_PTHREAD_MUTEXATTR_SETPROTOCOL
++#if defined(HAVE_PTHREAD_MUTEXATTR_SETPROTOCOL) && defined(PTHREAD_PRIO_INHERIT)
+ 	if (mtx_type & IPC_MUTEX_PRIORITY) {
+ 		if (pthread_mutexattr_setprotocol(mtx_attrp,
+ 		    PTHREAD_PRIO_INHERIT) != 0) {

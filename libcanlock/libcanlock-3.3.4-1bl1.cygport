@@ -1,0 +1,53 @@
+HOMEPAGE="https://micha.freeshell.org/libcanlock/"
+SRC_URI="https://micha.freeshell.org/libcanlock/src/${P}.tar.bz2"
+
+CATEGORY="Libs"
+SUMMARY="Library for creating and verifying Netnews Cancel-Locks"
+DESCRIPTION="libcanlock is a library for creating and verifying RFC 8315
+Netnews Cancel-Locks. It also provides article header parsers and command line
+tools."
+
+LICENSE="BSD-3-Clause AND ICU AND NLPL"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND ICU AND NLPL"
+LICENSE_URI="LICENSES/ICU.txt"
+
+BUILD_REQUIRES="
+	bison
+	flex
+"
+
+CYGCONF_ARGS="
+	--enable-pc-files
+"
+
+# canlock.h is generated into the build directory, which upstream's Makefiles
+# leave off the include path
+export CPPFLAGS="${CPPFLAGS} -I../include"
+
+DOCS="
+	LICENSES/BSD-3-Clause.txt
+	LICENSES/ICU.txt
+	LICENSES/NLPL.txt
+"
+
+PKG_NAMES="
+	libcanlock
+	libcanlock3
+	libcanlock-devel
+"
+libcanlock_CONTENTS="
+	usr/bin/*.exe
+	usr/share/doc
+	usr/share/man/man1
+"
+libcanlock3_CONTENTS="
+	usr/bin/cyg*-3.dll
+"
+libcanlock_devel_CONTENTS="
+	usr/include
+	usr/lib
+	usr/share/man/man3
+"
+libcanlock_SUMMARY="${SUMMARY} (utilities)"
+libcanlock3_SUMMARY="${SUMMARY} (runtime)"
+libcanlock_devel_SUMMARY="${SUMMARY} (development)"

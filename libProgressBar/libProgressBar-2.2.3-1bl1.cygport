@@ -10,17 +10,15 @@ LICENSE="LGPL-2.0-only"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-only"
 LICENSE_URI="COPYING"
 
-CYGPORT_USE_UNSTABLE_API=1
-src_patch_hook()
-{
-	cd ${origsrcdir}/${SRC_DIR}
-	echo ${PV} > config/version
-}
-
 export CPPFLAGS="${CPPFLAGS} -D_BSD_SOURCE"
 
 CYGCONF_ARGS="
+	--disable-code-statistics
 	--disable-doxygen-doc
+"
+
+DIFF_EXCLUDES="
+	version.configure.ac
 "
 
 src_install()

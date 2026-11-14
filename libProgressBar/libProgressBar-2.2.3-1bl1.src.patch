@@ -1,0 +1,36 @@
+--- origsrc/libProgressBar-v2.2.3/config/git-version-gen	2026-03-07 03:05:54.000000000 +0000
++++ src/libProgressBar-v2.2.3/config/git-version-gen	2026-11-14 23:31:01.616016100 +0000
+@@ -87,7 +87,7 @@ TIMESTAMP=false
+ FORCE_UPDATE=auto
+ CREATE_FILE=auto
+ FILE=
+-GIT="$(which git)"
++GIT="$(which git 2>/dev/null || true)"
+ NO_VERSION="[unknown]"
+ NO_COMMIT_DATE="(unknown)"
+ 
+@@ -232,9 +232,11 @@ done
+ # Getting the top level directory of the git project corresponding to the     #
+ # current working directory.                                                  #
+ ###############################################################################
+-MAIN_DIR=$(${GIT} rev-parse --show-toplevel 2>/dev/null || true)
++MAIN_DIR=
++if [ -n "${GIT}" ] && [ -d .git -o -f .git ]; then
++  MAIN_DIR=$(${GIT} rev-parse --show-toplevel 2>/dev/null || true)
++fi
+ if [ -z "${MAIN_DIR}" -o ! -d "${MAIN_DIR}" ]; then
+-  usage "Main git project path not found. Using current working directory [${PWD}]." no_exit >&2
+   MAIN_DIR="${PWD}"
+ fi
+ 
+--- origsrc/libProgressBar-v2.2.3/src/Makefile.am	2026-03-07 03:05:54.000000000 +0000
++++ src/libProgressBar-v2.2.3/src/Makefile.am	2026-11-14 23:31:01.616397100 +0000
+@@ -68,7 +68,7 @@ libProgressBar_la_SOURCES = progressBar.
+ 
+ libProgressBar_la_configdir = $(libdir)/$(install_dirname)/include
+ libProgressBar_la_config_DATA = $(CONFIG_HEADER)
+-libProgressBar_la_LDFLAGS = -version-info "$(LIB_VERSION)" $(AM_LDFLAGS)
++libProgressBar_la_LDFLAGS = -no-undefined -version-info "$(LIB_VERSION)" $(AM_LDFLAGS)
+ 
+ libProgressBar_debug_ladir = $(libProgressBar_ladir)
+ libProgressBar_debug_la_SOURCES = $(libProgressBar_la_SOURCES)

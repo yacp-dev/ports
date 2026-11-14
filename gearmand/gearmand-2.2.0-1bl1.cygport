@@ -17,10 +17,11 @@ web sites to the transport of database replication events. In other words, it
 is the nervous system for how distributed processing communicates."
 
 LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clauser"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gperf
 	libboost-devel
 	libdrizzle-devel
 	libevent-devel
@@ -28,10 +29,14 @@ BUILD_REQUIRES="
 	libmariadb-devel
 	libmemcached-devel
 	libpq-devel
+	libpq5
 	libsqlite3-devel
 	libssl-devel
 	libuuid-devel
 "
+
+# linking and running test binaries takes over 10 minutes on the runner
+YACP_CHECK_TIMEOUT_MINUTES=30
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

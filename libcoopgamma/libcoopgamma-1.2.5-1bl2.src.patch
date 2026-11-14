@@ -1,5 +1,5 @@
---- origsrc/libcoopgamma/CMakeLists.txt	1970-01-01 09:00:00.000000000 +0900
-+++ src/libcoopgamma/CMakeLists.txt	2026-03-21 18:02:04.281837700 +0900
+--- origsrc/libcoopgamma/CMakeLists.txt	1970-01-01 00:00:00.000000000 +0000
++++ src/libcoopgamma/CMakeLists.txt	2026-11-14 04:17:35.430086000 +0000
 @@ -0,0 +1,52 @@
 +cmake_minimum_required(VERSION 3.5)
 +
@@ -53,8 +53,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libcoopgamma.pc.in ${CMAKE_BINARY_DIR}/libcoopgamma.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libcoopgamma.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libcoopgamma/libcoopgamma.c	2026-02-22 22:07:27.000000000 +0900
-+++ src/libcoopgamma/libcoopgamma.c	2026-03-21 18:01:41.517655900 +0900
+--- origsrc/libcoopgamma/libcoopgamma.c	2026-02-22 13:07:27.000000000 +0000
++++ src/libcoopgamma/libcoopgamma.c	2026-11-14 04:17:35.430086000 +0000
 @@ -3,7 +3,13 @@
  
  
@@ -70,8 +70,8 @@
  #endif
  
  
---- origsrc/libcoopgamma/libcoopgamma.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libcoopgamma/libcoopgamma.pc.in	2026-03-21 18:01:41.517655900 +0900
+--- origsrc/libcoopgamma/libcoopgamma.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libcoopgamma/libcoopgamma.pc.in	2026-11-14 04:17:35.431353500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

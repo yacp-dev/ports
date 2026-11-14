@@ -22,6 +22,13 @@ src_patch_hook()
 	echo "${PV}" > .tarball-version
 }
 
+src_test()
+{
+	cd ${B}
+	PATH=${B}/src/.libs:${PATH}
+	verbose ./tools/inetcat.exe --version
+}
+
 PKG_NAMES="
 	libusbmuxd
 	libusbmuxd2.0_7

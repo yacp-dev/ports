@@ -1,5 +1,5 @@
---- origsrc/libusbmuxd-2.1.1/configure.ac	2025-06-04 22:26:10.000000000 +0900
-+++ src/libusbmuxd-2.1.1/configure.ac	2025-10-07 13:19:39.229909600 +0900
+--- origsrc/libusbmuxd-2.1.1/configure.ac	2025-06-04 13:26:10.000000000 +0000
++++ src/libusbmuxd-2.1.1/configure.ac	2026-11-14 12:25:59.204796500 +0000
 @@ -74,7 +74,7 @@ AC_CHECK_FUNCS([strcasecmp strdup strerr
  # Check for operating system
  AC_MSG_CHECKING([for platform-specific build settings])

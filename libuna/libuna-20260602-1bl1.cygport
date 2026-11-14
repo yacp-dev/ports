@@ -9,19 +9,10 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcdatetime-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel"
-
-src_test()
-{
-	cd ${B}
-	pushd tests
-		ln -fs ${S}/tests/test_library.sh .
-		ln -fs ${S}/tests/test_runner.sh .
-		ln -fs ${S}/tests/test_unaexport.sh .
-	popd
-	cygtest
-	rm -f tests/test_library.sh tests/test_runner.sh tests/test_unaexport.sh
-}
+BUILD_REQUIRES="
+	gettext-devel
+	libcerror-devel
+"
 
 src_install()
 {
@@ -42,9 +33,7 @@ PKG_NAMES="
 	${PN}-devel
 "
 libuna_CONTENTS="
-	usr/bin/*.exe
 	usr/share/doc
-	usr/share/man/man1
 "
 libuna1_CONTENTS="
 	usr/bin/cyg*-1.dll
@@ -54,6 +43,6 @@ libuna_devel_CONTENTS="
 	usr/lib
 	usr/share/man/man3
 "
-libuna_SUMMARY="${SUMMARY} (utilities)"
+libuna_SUMMARY="${SUMMARY} (licensing & readmes)"
 libuna1_SUMMARY="${SUMMARY} (runtime)"
 libuna_devel_SUMMARY="${SUMMARY} (development)"

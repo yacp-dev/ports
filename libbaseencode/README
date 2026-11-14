@@ -4,18 +4,18 @@ Library written in C for encoding and decoding data using base32 or base64
 (RFC-4648)
 
 Runtime requirements:
-  cygwin-3.4.5-1
-  libbaseencode-devel-1.0.15-1bl1
-  libbaseencode1-1.0.15-1bl1
-  pkg-config-1.9.4-1
+  cygwin-3.6.12-1
+  libbaseencode-devel-1.0.15-1bl2
+  libbaseencode1-1.0.15-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.39-1
-  cmake-3.23.2-1
-  cygport-0.36.0-1
-  gcc-core-11.3.0-1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/paolostivanin/libbaseencode
@@ -58,6 +58,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.15-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.15-1bl1 -----
 Version bump.

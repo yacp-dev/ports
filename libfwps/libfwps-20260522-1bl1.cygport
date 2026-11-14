@@ -9,7 +9,18 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libcdata-devel libcerror-devel libcnotify-devel libfguid-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcdata-devel
+	libcerror-devel
+	libclocale-devel
+	libcnotify-devel
+	libcthreads-devel
+	libfdatetime-devel
+	libfguid-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -28,11 +39,12 @@ src_test()
 	pushd tests
 		for f in ${S}/tests/*.{py,sh}
 		do
-			ln -fs ${f} .
+			cp -f ${f} .
 		done
+		cp -f ${B}/pyfwps/.libs/pyfwps.dll .
 	popd
-	cygtest
-	rm tests/*.{py,sh}
+	CHECK_WITH_STDERR=1 PYTHON=python3 PATH=${B}/${PN}/.libs:${B}/pyfwps/.libs:${PATH} cygtest
+	rm -f tests/*.{py,sh} tests/pyfwps.dll
 }
 
 DOCS="
@@ -43,7 +55,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libfwps_CONTENTS="
 	usr/share/doc
@@ -57,10 +69,10 @@ libfwps_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man
 "
-python39_libfwps_CONTENTS="
-	usr/lib/python3*
+python312_libfwps_CONTENTS="
+	usr/lib/python3.12
 "
 libfwps_SUMMARY="${SUMMARY} (licensing & readmes)"
 libfwps1_SUMMARY="${SUMMARY} (runtime)"
 libfwps_devel_SUMMARY="${SUMMARY} (development)"
-python39_libfwps_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libfwps_SUMMARY="${SUMMARY} (python312 bindings)"

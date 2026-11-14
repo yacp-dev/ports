@@ -1,0 +1,39 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -105,21 +105,10 @@ if (LIBCLIPBOARD_ADD_SOVERSION)
+ endif()
+ 
+ # Testing mode?
+-if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/third_party/googletest/googletest)
+-    # gtest does not play well with pthreads and mingw
+-    if (gtest_disable_pthreads)
+-        set(LIBCLIPBOARD_USE_PTHREADS_INIT ${CMAKE_USE_PTHREADS_INIT})
+-        unset(CMAKE_USE_PTHREADS_INIT)
+-    endif()
+-
+-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third_party/googletest EXCLUDE_FROM_ALL)
++find_package(GTest)
++if (GTest_FOUND)
+     enable_testing()
+-    include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
+-
+-    set(CMAKE_USE_PTHREADS_INIT ${LIBCLIPBOARD_USE_PTHREADS_INIT})
+-else()
+-
+ endif()
+ 
+ # Build sample executables
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -14,7 +14,7 @@ add_executable (run-tests ${HEADERS} ${SOURCE})
+ add_executable (run-smoke1 smoke_test1.c)
+ 
+ # Link it to gtest
+-target_link_libraries(run-tests LINK_PRIVATE gtest gtest_main)
++target_link_libraries(run-tests LINK_PRIVATE GTest::gtest GTest::gtest_main)
+ 
+ if (BUILD_SHARED_LIBS)
+     target_compile_definitions(run-tests PRIVATE -DGTEST_LINKED_AS_SHARED_LIBRARY)

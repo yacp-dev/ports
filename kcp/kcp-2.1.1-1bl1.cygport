@@ -15,6 +15,7 @@ LICENSE_URI="LICENSE"
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DSOVERSION:STRING=${PV[1]}
 	-DVERSION:STRING=${PV}
 "
@@ -43,7 +44,7 @@ PKG_NAMES="
 kcp_CONTENTS="
 	usr/share
 "
-libkcp1_CONTENTS="
+libkcp2_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.dll
 "
 libkcp_devel_CONTENTS="
@@ -51,5 +52,5 @@ libkcp_devel_CONTENTS="
 	usr/lib
 "
 kcp_SUMMARY="${SUMMARY} (licensing & readmes)"
-libkcp1_SUMMARY="${SUMMARY} (runtime)"
+libkcp2_SUMMARY="${SUMMARY} (runtime)"
 libkcp_devel_SUMMARY="${SUMMARY} (development)"

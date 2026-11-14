@@ -1,5 +1,5 @@
---- origsrc/libcaes-20240413/Makefile.am	2024-04-13 21:46:21.000000000 +0900
-+++ src/libcaes-20240413/Makefile.am	2025-05-17 02:52:54.824929800 +0900
+--- origsrc/libcaes-20261028/Makefile.am	2026-10-28 10:28:12.000000000 +0000
++++ src/libcaes-20261028/Makefile.am	2026-11-14 09:10:30.104609800 +0000
 @@ -3,10 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -11,9 +11,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libcaes-20240413/configure.ac	2024-04-13 21:46:21.000000000 +0900
-+++ src/libcaes-20240413/configure.ac	2025-05-17 02:53:06.572278900 +0900
-@@ -109,7 +109,6 @@ dnl Generate Makefiles
+--- origsrc/libcaes-20261028/configure.ac	2026-10-28 10:28:12.000000000 +0000
++++ src/libcaes-20261028/configure.ac	2026-11-14 09:10:30.106623600 +0000
+@@ -122,7 +122,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -21,12 +21,12 @@
  AC_CONFIG_FILES([libcaes/Makefile])
  AC_CONFIG_FILES([pycaes/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
---- origsrc/libcaes-20240413/pycaes/Makefile.am	2024-04-13 21:46:21.000000000 +0900
-+++ src/libcaes-20240413/pycaes/Makefile.am	2025-05-17 02:53:34.593174900 +0900
+--- origsrc/libcaes-20261028/pycaes/Makefile.am	2026-10-28 10:28:12.000000000 +0000
++++ src/libcaes-20261028/pycaes/Makefile.am	2026-11-14 09:10:30.106623600 +0000
 @@ -24,7 +24,7 @@ pycaes_la_LIBADD = \
  	../libcaes/libcaes.la
  
- pycaes_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pycaes_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pycaes_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pycaes_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

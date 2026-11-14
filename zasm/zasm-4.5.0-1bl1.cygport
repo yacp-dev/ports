@@ -1,0 +1,59 @@
+HOMEPAGE="https://github.com/Megatokio/${PN}"
+GIT_URI="https://github.com/Megatokio/${PN}.git"
+GIT_TAG="${PV}"
+
+CATEGORY="Devel"
+SUMMARY="Z80, 8080 and Z180 assembler"
+DESCRIPTION="zasm accepts source code using 8080 and Z80 syntax and can
+convert 8080 syntax to Z80. It can generate binary files, Intel Hex or Motorola
+S19 files, and specialized files for Sinclair and Jupiter Ace and .tzx tape
+files."
+
+LICENSE="BSD-2-Clause AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	zlib-devel
+"
+
+# The tree has symlinks into the author's own file system and one that loops
+# back into the tree, which make `cygport diff` fail
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${PN}
+	verbose rm Libraries/LibraryTester/Libraries
+	verbose find . -xtype l -delete
+}
+
+inherit git
+
+# The Makefile sets its own CFLAGS, links statically on Windows_NT and strips
+# the binary; hand it cygport's flags instead
+src_compile()
+{
+	cd ${B}
+	lndirs
+	cygmake \
+		CFLAGS="${CFLAGS} -DNDEBUG -DRELEASE" \
+		CXXFLAGS="${CXXFLAGS} -Wno-multichar -std=c++14 -DNDEBUG -DRELEASE" \
+		LFLAGS="${LDFLAGS}" \
+		STRIP=true
+}
+
+src_test()
+{
+	cd ${B}
+	verbose ./${PN}.exe -T
+}
+
+src_install()
+{
+	cd ${B}
+	dobin ${PN}.exe
+}
+
+DOCS="
+	README.md
+"

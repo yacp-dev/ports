@@ -3,59 +3,57 @@ gource
 OpenGL-based 3D visualisation tool for source control repositories.
 
 Runtime requirements:
-  cygwin-3.5.3-1
+  cygwin-3.6.12-1
   libGLEW2.1-2.1.0-1
-  libGLU1-9.0.2-1
-  libSDL2_2.0_0-2.30.4-1
+  libGLU1-9.0.3-1
+  libSDL2_2.0_0-2.32.74-1
   libSDL2_image2.0_0-2.0.2-1
   libboost_filesystem1.66-1.66.0-1
   libboost_system1.66-1.66.0-1
-  libfreetype6-2.13.2-1
-  libgcc1-11.4.0-1
-  libpcre2_8_0-10.44-1
-  libpng16-1.6.42-1
-  libstdc++6-11.4.0-1
-  libtinyxml0-2.6.2-1bl3
+  libfreetype6-2.13.3-1
+  libgcc1-14.4.0-1
+  libpcre2_8_0-10.49-1
+  libpng16-1.6.59-1
+  libstdc++6-14.4.0-1
+  libtinyxml0-2.6.2-1bl5
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2023.02.20-1
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.9-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  glm-devel-0.9.9.5-1
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  glm-devel-1.0.3-1
   libGLEW-devel-2.1.0-1
-  libGLU-devel-9.0.2-1
-  libSDL2-devel-2.30.4-1
+  libGLU-devel-9.0.3-1
+  libSDL2-devel-2.32.74-1
   libSDL2_image-devel-2.0.2-1
   libboost-devel-1.66.0-1
-  libfreetype-devel-2.13.2-1
-  libpcre2-devel-10.44-1
-  libpng-devel-1.6.42-1
-  libtinyxml-devel-2.6.2-1bl3
+  libfreetype-devel-2.13.3-1
+  libpcre2-devel-10.49-1
+  libpng-devel-1.6.59-1
+  libtinyxml-devel-2.6.2-1bl5
   make-4.4.1-2
 
 Canonical website:
   https://github.com/acaudwell/Gource
 
 Canonical download:
-  https://github.com/acaudwell/Gource/releases/download/gource-0.55/gource-0.55.tar.gz
+  https://github.com/acaudwell/Gource/releases/download/gource-0.56/gource-0.56.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack gource-0.55-X-src.tar.xz
+  1. unpack gource-0.56-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./gource-0.55-X.cygport all
+        % cygport ./gource-0.56-X.cygport all
 
 This will create:
-  /usr/src/gource-0.55-X-src.tar.xz
-  /usr/src/gource-0.55-X.tar.xz
+  /usr/src/gource-0.56-X-src.tar.xz
+  /usr/src/gource-0.56-X.tar.xz
 
 -------------------------------------------
 
@@ -87,6 +85,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.56-1bl1 -----
+Version bump.
 
 ----- version 0.55-1bl1 -----
 Version bump.

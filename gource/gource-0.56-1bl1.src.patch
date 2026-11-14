@@ -1,0 +1,21 @@
+--- origsrc/gource-0.56/configure.ac	2026-03-06 05:29:06.000000000 +0000
++++ src/gource-0.56/configure.ac	2026-11-14 08:26:09.563623000 +0000
+@@ -4,6 +4,7 @@
+ AC_PREREQ(2.61)
+ 
+ AC_INIT(Gource, 0.56, [acaudwell@gmail.com])
++m4_pattern_allow([^AX_CHECK_GL_MANUAL_LIBS_GENERIC$])
+ AC_CONFIG_AUX_DIR([build-aux])
+ AC_CONFIG_SRCDIR([src/main.h])
+ AM_INIT_AUTOMAKE([dist-bzip2 foreign subdir-objects])
+@@ -46,7 +47,9 @@ AC_CHECK_FUNCS([IMG_LoadPNG_RW], , AC_MS
+ AC_CHECK_FUNCS([IMG_LoadJPG_RW], , AC_MSG_ERROR([SDL2_image with JPEG support required. Please see INSTALL]))
+ 
+ #BOOST
+-AX_BOOST_BASE([1.69], , AC_MSG_ERROR(Boost Filesystem >= 1.69 is required. Please see INSTALL))
++AX_BOOST_BASE([1.46], , AC_MSG_ERROR(Boost Filesystem >= 1.46 is required. Please see INSTALL))
++AC_CHECK_LIB([boost_system],[main],[BOOST_SYSTEM_LIB="-lboost_system"])
++AC_SUBST(BOOST_SYSTEM_LIB)
+ AX_BOOST_FILESYSTEM
+ 
+ CPPFLAGS="$CPPFLAGS $BOOST_CPPFLAGS"

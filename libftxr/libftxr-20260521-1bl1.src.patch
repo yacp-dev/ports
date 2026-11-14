@@ -1,5 +1,5 @@
---- origsrc/libftxr-20240416/Makefile.am	2024-04-17 00:06:17.000000000 +0900
-+++ src/libftxr-20240416/Makefile.am	2025-05-17 21:42:06.540557200 +0900
+--- origsrc/libftxr-20260521/Makefile.am	2026-05-21 18:35:33.000000000 +0000
++++ src/libftxr-20260521/Makefile.am	2026-11-14 13:28:16.636573400 +0000
 @@ -3,14 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -15,9 +15,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libftxr-20240416/configure.ac	2024-04-17 00:06:17.000000000 +0900
-+++ src/libftxr-20240416/configure.ac	2025-05-17 21:42:06.540557200 +0900
-@@ -114,12 +114,6 @@ dnl Generate Makefiles
+--- origsrc/libftxr-20260521/configure.ac	2026-05-21 18:35:33.000000000 +0000
++++ src/libftxr-20260521/configure.ac	2026-11-14 13:28:16.636573400 +0000
+@@ -113,12 +113,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])

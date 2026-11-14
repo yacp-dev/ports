@@ -1,0 +1,55 @@
+zasm
+------------------------------------------
+zasm accepts source code using 8080 and Z80 syntax and can convert 8080 syntax
+to Z80. It can generate binary files, Intel Hex or Motorola S19 files, and
+specialized files for Sinclair and Jupiter Ace and .tzx tape files.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  zlib0-1.4-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  make-4.4.1-2
+  zlib-devel-1.4-1
+
+Canonical website:
+  https://github.com/Megatokio/zasm
+
+Canonical download:
+  https://github.com/Megatokio/zasm.git
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack zasm-4.5.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./zasm-4.5.0-X.cygport all
+
+This will create:
+  /usr/src/zasm-4.5.0-X-src.tar.xz
+  /usr/src/zasm-4.5.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(zasm)
+  /usr/bin/zasm.exe
+  /usr/share/doc/Cygwin/zasm.README
+  /usr/share/doc/zasm/LICENSE
+  /usr/share/doc/zasm/README.md
+
+------------------
+
+Port Notes:
+
+----- version 4.5.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

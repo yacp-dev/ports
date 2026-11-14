@@ -10,10 +10,11 @@ be customized to suit user needs. All of the commands are documented within an
 online help system."
 
 LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Cluase"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	autoconf-archive
 	gettext-devel
 	libintl-devel
 	libncurses-devel

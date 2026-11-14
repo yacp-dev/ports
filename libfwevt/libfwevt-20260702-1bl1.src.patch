@@ -1,5 +1,5 @@
---- origsrc/libfwevt-20240504/Makefile.am	2024-05-04 13:35:42.000000000 +0900
-+++ src/libfwevt-20240504/Makefile.am	2025-05-17 22:51:12.702843900 +0900
+--- origsrc/libfwevt-20260702/Makefile.am	2026-07-02 04:14:59.000000000 +0000
++++ src/libfwevt-20260702/Makefile.am	2026-11-14 13:58:04.956393300 +0000
 @@ -3,17 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -18,9 +18,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfwevt-20240504/configure.ac	2024-05-04 13:35:42.000000000 +0900
-+++ src/libfwevt-20240504/configure.ac	2025-05-17 22:51:12.702843900 +0900
-@@ -136,14 +136,6 @@ dnl Generate Makefiles
+--- origsrc/libfwevt-20260702/configure.ac	2026-07-02 04:14:59.000000000 +0000
++++ src/libfwevt-20260702/configure.ac	2026-11-14 13:58:04.956393300 +0000
+@@ -146,14 +146,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -35,12 +35,12 @@
  AC_CONFIG_FILES([libfwevt/Makefile])
  AC_CONFIG_FILES([pyfwevt/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
---- origsrc/libfwevt-20240504/pyfwevt/Makefile.am	2024-05-04 13:35:42.000000000 +0900
-+++ src/libfwevt-20240504/pyfwevt/Makefile.am	2025-05-17 22:51:12.702843900 +0900
+--- origsrc/libfwevt-20260702/pyfwevt/Makefile.am	2026-07-02 04:14:59.000000000 +0000
++++ src/libfwevt-20260702/pyfwevt/Makefile.am	2026-11-14 13:58:04.958400000 +0000
 @@ -48,7 +48,7 @@ pyfwevt_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  
- pyfwevt_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyfwevt_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyfwevt_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyfwevt_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

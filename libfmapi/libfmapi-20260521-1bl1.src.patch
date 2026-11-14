@@ -1,5 +1,5 @@
---- origsrc/libfmapi-20240415/Makefile.am	2024-04-16 00:23:53.000000000 +0900
-+++ src/libfmapi-20240415/Makefile.am	2025-05-17 15:31:38.123044700 +0900
+--- origsrc/libfmapi-20260521/Makefile.am	2026-05-21 07:31:23.000000000 +0000
++++ src/libfmapi-20260521/Makefile.am	2026-11-14 12:11:49.183544100 +0000
 @@ -3,16 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -17,9 +17,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfmapi-20240415/configure.ac	2024-04-16 00:23:53.000000000 +0900
-+++ src/libfmapi-20240415/configure.ac	2025-05-17 15:31:38.123044700 +0900
-@@ -120,14 +120,6 @@ dnl Generate Makefiles
+--- origsrc/libfmapi-20260521/configure.ac	2026-05-21 07:31:23.000000000 +0000
++++ src/libfmapi-20260521/configure.ac	2026-11-14 12:11:49.185571300 +0000
+@@ -119,14 +119,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])

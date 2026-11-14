@@ -7,9 +7,19 @@ DESCRIPTION="libfmapi is a library for MAPI data types."
 
 LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
-LICENSE_URI="COPYING"
+LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libcerror-devel libuna-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcdata-devel
+	libcerror-devel
+	libcnotify-devel
+	libcthreads-devel
+	libfdatetime-devel
+	libfguid-devel
+	libfwnt-devel
+	libuna-devel
+"
 
 src_test()
 {
@@ -21,8 +31,12 @@ src_test()
 		done
 	popd
 	cygtest
-	rm tests/*.sh
+	rm -f tests/*.sh
 }
+
+DOCS="
+	COPYING.LESSER
+"
 
 PKG_NAMES="
 	${PN}

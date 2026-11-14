@@ -16,7 +16,9 @@ LICENSE="LGPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libtirpc-devel"
+BUILD_REQUIRES="
+	libtirpc-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -DO_ASYNC=0"
 export CXXFLAGS="${CXXFLAGS//-Werror=return-type/}"

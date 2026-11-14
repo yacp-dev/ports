@@ -1,0 +1,47 @@
+--- origsrc/fides-v1.3.0/fides/CMakeLists.txt	2026-04-09 21:44:56.000000000 +0000
++++ src/fides-v1.3.0/fides/CMakeLists.txt	2026-11-14 05:41:02.080267600 +0000
+@@ -62,6 +62,13 @@ endif()
+ 
+ fides_generate_export_header(fides)
+ 
++set(FIDES_SOVERSION "" CACHE STRING "SOVERSION of the fides library")
++if (FIDES_SOVERSION)
++  set_target_properties(fides PROPERTIES
++    VERSION ${Fides_VERSION_FULL}
++    SOVERSION ${FIDES_SOVERSION})
++endif()
++
+ target_compile_definitions(fides PUBLIC ${MPI_DEFS} PRIVATE ${ADIOS_DEFS})
+ set(VISKORES_LIBS viskores::cont viskores::filter_clean_grid)
+ target_link_libraries(fides PUBLIC ${VISKORES_LIBS} adios2::adios2 PRIVATE
+@@ -87,8 +94,15 @@ configure_package_config_file(${FIDES_SO
+ 
+ install(FILES "${FIDES_BINARY_DIR}/FidesConfig.cmake" DESTINATION lib/cmake/fides)
+ 
+-install(TARGETS fides DESTINATION lib
+-  EXPORT ${FIDES_EXPORT_NAME})
++configure_file(${CMAKE_CURRENT_SOURCE_DIR}/fides.pc.in
++  "${CMAKE_CURRENT_BINARY_DIR}/fides.pc" @ONLY)
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/fides.pc" DESTINATION lib/pkgconfig)
++
++install(TARGETS fides
++  EXPORT ${FIDES_EXPORT_NAME}
++  RUNTIME DESTINATION bin
++  LIBRARY DESTINATION lib
++  ARCHIVE DESTINATION lib)
+ 
+ install(EXPORT ${FIDES_EXPORT_NAME} FILE FidesTargets.cmake DESTINATION lib/cmake/fides)
+ 
+--- origsrc/fides-v1.3.0/fides/fides.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/fides-v1.3.0/fides/fides.pc.in	2026-11-14 05:41:02.080267600 +0000
+@@ -0,0 +1,10 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: fides
++Description: Library for reading ADIOS2 data into Viskores datasets
++Version: @Fides_VERSION_FULL@
++Requires: viskores
++Libs: -L${libdir} -lfides -ladios2_cxx
++Cflags: -I${includedir} -I${includedir}/fides/thirdparty/rapidjson

@@ -4,9 +4,13 @@ libuna is a library to support Unicode and ASCII (byte string) conversions.
 
 Runtime requirements:
   cygwin-3.6.12-1
+  libcdatetime1-20260703-1bl1
   libcerror1-20260703-1bl1
-  libuna-devel-20260602-1bl1
-  libuna1-20260602-1bl1
+  libcfile1-20260704-1bl1
+  libclocale1-20260703-1bl1
+  libcnotify1-20260703-1bl1
+  libuna-devel-20260602-1bl2
+  libuna1-20260602-1bl2
   pkg-config-3.0.10-1
 
 Build requirements:
@@ -17,7 +21,11 @@ Build requirements:
   cygport-0.37.12-1
   gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
+  libcdatetime-devel-20260703-1bl1
   libcerror-devel-20260703-1bl1
+  libcfile-devel-20260704-1bl1
+  libclocale-devel-20260703-1bl1
+  libcnotify-devel-20260703-1bl1
   libtool-2.6.2-1
   make-4.4.1-2
 
@@ -47,12 +55,15 @@ This will create:
 Files included in the binary package:
 
 (libuna)
+  /usr/bin/unabase.exe
+  /usr/bin/unaexport.exe
   /usr/share/doc/Cygwin/libuna.README
   /usr/share/doc/libuna/AUTHORS
   /usr/share/doc/libuna/COPYING
   /usr/share/doc/libuna/COPYING.LESSER
   /usr/share/doc/libuna/ChangeLog
   /usr/share/doc/libuna/README
+  /usr/share/man/man1/unaexport.1.gz
 
 (libuna1)
   /usr/bin/cyguna-1.dll
@@ -138,6 +149,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20260602-1bl2 -----
+Restore unatools and tests
 
 ----- version 20260602-1bl1 -----
 Version bump.

@@ -6,7 +6,7 @@ large-scale scientific data, with C, C++ and Fortran bindings.
 Runtime requirements:
   bash-5.2.21-1
   cygwin-3.6.12-1
-  libadios2_2.12-2.12.1-1bl1
+  libadios2_2.12-2.12.1-1bl2
   libbz2_1-1.0.8-2
   libcurl4-8.23.0-1
   libgcc1-14.4.0-1
@@ -23,7 +23,7 @@ Runtime requirements:
   libzstd1-1.5.7-1
   python3-3.12.12-1
   python312-3.12.12-1
-  python312-adios2-2.12.1-1bl1
+  python312-adios2-2.12.1-1bl2
   python312-numpy-2.5.4-1
   zlib0-1.4-1
 
@@ -380,6 +380,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.12.1-1bl2 -----
+Fix adios2-targets.cmake
 
 ----- version 2.12.1-1bl1 -----
 Initial release by yacp-dev <https://github.com/yacp-dev>

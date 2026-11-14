@@ -1,5 +1,5 @@
---- origsrc/libextractor-1.19/src/main/getopt.c	2025-03-01 23:25:47.000000000 +0000
-+++ src/libextractor-1.19/src/main/getopt.c	2026-10-24 15:18:04.051596200 +0000
+--- origsrc/libextractor-1.20/src/main/getopt.c	2025-03-01 23:25:47.000000000 +0000
++++ src/libextractor-1.20/src/main/getopt.c	2026-11-14 23:04:32.529200800 +0000
 @@ -208,7 +208,7 @@ static char *posixly_correct;
  /* Avoid depending on library functions or files
     whose names are inconsistent.  */
@@ -9,8 +9,8 @@
  
  static char *
  my_index (str, chr)
---- origsrc/libextractor-1.19/src/main/getopt.h	2025-03-01 23:25:50.000000000 +0000
-+++ src/libextractor-1.19/src/main/getopt.h	2026-10-24 15:18:04.051596200 +0000
+--- origsrc/libextractor-1.20/src/main/getopt.h	2025-03-01 23:25:50.000000000 +0000
++++ src/libextractor-1.20/src/main/getopt.h	2026-11-14 23:04:32.531209900 +0000
 @@ -108,7 +108,7 @@ struct option
  extern int getopt (int argc, char *const *argv, const char *shortopts);
  
@@ -20,9 +20,9 @@
  
  #endif /* __GNU_LIBRARY__ */
  extern int getopt_long (int argc, char *const *argv, const char *shortopts,
---- origsrc/libextractor-1.19/src/plugins/Makefile.am	2026-07-29 10:01:55.000000000 +0000
-+++ src/libextractor-1.19/src/plugins/Makefile.am	2026-10-24 15:18:04.053611100 +0000
-@@ -669,7 +669,7 @@ libextractor_rpm_la_SOURCES = \
+--- origsrc/libextractor-1.20/src/plugins/Makefile.am	2026-11-01 19:02:22.000000000 +0000
++++ src/libextractor-1.20/src/plugins/Makefile.am	2026-11-14 23:04:32.531209900 +0000
+@@ -1074,7 +1074,7 @@ libextractor_rpm_la_SOURCES = \
  libextractor_rpm_la_LDFLAGS = \
    $(PLUGINFLAGS)
  libextractor_rpm_la_LIBADD = \

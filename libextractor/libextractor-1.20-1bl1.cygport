@@ -25,6 +25,9 @@ BUILD_REQUIRES="
 	gettext-devel
 	libapparmor-devel
 	libarchive-devel
+	libavcodec-devel
+	libavformat-devel
+	libavutil-devel
 	libbz2-devel
 	libexiv2-devel
 	libgdk_pixbuf2.0-devel
@@ -38,6 +41,9 @@ BUILD_REQUIRES="
 	libjpeg-devel
 	libmpeg2-devel
 	libsmf-devel
+	libswresample-devel
+	libswscale-devel
+	libtidy-devel
 	libtiff-devel
 	libvorbis-devel
 	rpm-devel
@@ -70,3 +76,17 @@ libextractor_devel_CONTENTS="
 libextractor_SUMMARY="${SUMMARY} (utilities)"
 libextractor3_SUMMARY="${SUMMARY} (runtime)"
 libextractor_devel_SUMMARY="${SUMMARY} (development)"
+
+# the test suite builds and runs 56 test programs and takes about 15-20 minutes on the runner
+YACP_CHECK_TIMEOUT_MINUTES=30
+
+src_test()
+{
+	cd ${B}
+	ln -fs ${S}/src/main/test_file.dat* ${B}/src/main/
+	rm -f ${B}/src/plugins/testdata
+	ln -s ${S}/src/plugins/testdata ${B}/src/plugins/testdata
+	cygtest
+	rm -f ${B}/src/main/test_file.dat* ${B}/src/plugins/testdata
+}
+

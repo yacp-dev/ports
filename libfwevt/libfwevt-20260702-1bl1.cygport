@@ -9,7 +9,18 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libcdata-devel libcerror-devel libcnotify-devel libfdatetime-devel libfguid-devel libfwnt-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcdata-devel
+	libcerror-devel
+	libcnotify-devel
+	libcthreads-devel
+	libfdatetime-devel
+	libfguid-devel
+	libfwnt-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -43,7 +54,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libfwevt_CONTENTS="
 	usr/share/doc
@@ -57,10 +68,10 @@ libfwevt_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man
 "
-python39_libfwevt_CONTENTS="
-	usr/lib/python3.9
+python312_libfwevt_CONTENTS="
+	usr/lib/python3.12
 "
 libfwevt_SUMMARY="${SUMMARY} (licensing & readmes)"
 libfwevt1_SUMMARY="${SUMMARY} (runtime)"
 libfwevt_devel_SUMMARY="${SUMMARY} (development)"
-python39_libfwevt_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libfwevt_SUMMARY="${SUMMARY} (python312 bindings)"

@@ -8,11 +8,14 @@ protocol.  In addition to the base TELNET protocol, libtelnet also
 implements the Q method of TELNET option negotiation.  libtelnet can
 be used for writing servers, clients, or proxies."
 
-# LICENSE="Public Domain"
-# LICENSE_SPDX="SPDX-License-Identifier: "
+LICENSE="LicenseRef-Public-Domain"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-Public-Domain"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="zlib-devel"
+BUILD_REQUIRES="
+	doxygen
+	zlib-devel
+"
 
 DIFF_EXCLUDES="
 	doc

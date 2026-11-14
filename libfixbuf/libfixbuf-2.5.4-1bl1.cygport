@@ -10,8 +10,8 @@ Information' (RFC 5101). It supports the information model defined in
 proposed by 'Bidirectional Flow Export using IPFIX' (RFC 5103) to support
 information elements for representing biflows."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="

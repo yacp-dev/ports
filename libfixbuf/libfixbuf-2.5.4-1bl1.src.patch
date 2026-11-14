@@ -1,5 +1,5 @@
---- origsrc/libfixbuf-2.5.3/src/Makefile.am	2025-01-15 02:47:52.000000000 +0900
-+++ src/libfixbuf-2.5.3/src/Makefile.am	2026-01-17 20:41:17.701543600 +0900
+--- origsrc/libfixbuf-2.5.4/src/Makefile.am	2026-03-05 19:04:25.000000000 +0000
++++ src/libfixbuf-2.5.4/src/Makefile.am	2026-11-14 21:59:31.030230800 +0000
 @@ -44,7 +44,7 @@ libfixbuf_la_SOURCES =  fbuf.c       fbi
                          fbconnspec.c fbexporter.c  fbcollector.c fbcollector.h \
                          fblistener.c fbnetflow.c   fbsflow.c     fbxml.c

@@ -1,5 +1,5 @@
---- origsrc/dcm2niix-1.0.20260724/console/nifti1.h	2026-07-24 19:16:20.000000000 +0000
-+++ src/dcm2niix-1.0.20260724/console/nifti1.h	2026-10-24 08:39:37.483392200 +0000
+--- origsrc/dcm2niix-1.0.20261029/console/nifti1.h	2026-10-29 18:53:32.000000000 +0000
++++ src/dcm2niix-1.0.20261029/console/nifti1.h	2026-11-14 05:36:16.549094700 +0000
 @@ -480,7 +480,7 @@ typedef struct nifti1_extension nifti1_e
     when it encounters a dataset with a type it doesn't like.
  -----------------------------------------------------------------------------*/

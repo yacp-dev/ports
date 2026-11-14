@@ -10,13 +10,26 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libcsplit-devel libssl-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libssl-devel
+	libuna-devel
+	python3-devel
+	zlib-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
 {
 	cd ${origsrcdir}/${SRC_DIR}
-	chmod u+x tests/*.{py,sh}
+	chmod -R u+x tests/*.{py,sh}
 }
 
 CYGCONF_ARGS="
@@ -27,13 +40,33 @@ src_test()
 {
 	cd ${B}
 	pushd tests
-		for f in ${S}/tests/*.{py,sh}
+		for sh in ${S}/tests/*.{py,sh}
 		do
-			ln -fs ${f} .
+			cp -f ${sh} .
 		done
 	popd
+	pushd pyhmac/.libs
+		python_tag=$(python3 -c 'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX"))')
+		cp -a pyhmac.dll pyhmac${python_tag}
+		cp -a pyhmac.dll ${B}/tests/
+		cp -a pyhmac${python_tag} ${B}/tests/
+	popd
+	PATH="${B}/libhmac/.libs:${B}/pyhmac/.libs:${PATH}" \
+	PYTHON=python3 \
+	CHECK_WITH_STDERR=1 \
 	cygtest
-	rm tests/*.{py,sh}
+	rm -f tests/*.{py,sh} tests/pyhmac*
+}
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	pushd ${D}/usr/lib/python3.12/site-packages
+		python_tag=$(python3 -c 'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX"))')
+		cp -a pyhmac.dll pyhmac${python_tag}
+	popd
 }
 
 DOCS="
@@ -44,7 +77,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libhmac_CONTENTS="
 	usr/bin/*.exe
@@ -60,10 +93,10 @@ libhmac_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libhmac_CONTENTS="
-	usr/lib/python3.9
+python312_libhmac_CONTENTS="
+	usr/lib/python3.12
 "
 libhmac_SUMMARY="${SUMMARY} (utilities)"
 libhmac1_SUMMARY="${SUMMARY} (runtime)"
 libhmac_devel_SUMMARY="${SUMMARY} (development)"
-python39_libhmac_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libhmac_SUMMARY="${SUMMARY} (python312 bindings)"

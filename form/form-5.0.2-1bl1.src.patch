@@ -1,0 +1,22 @@
+--- origsrc/form-5.0.2/doc/Makefile.am	2026-09-17 17:55:00.000000000 +0000
++++ src/form-5.0.2/doc/Makefile.am	2026-11-14 00:00:00.000000000 +0000
+@@ -15,7 +15,7 @@ dist-hook:
+ if FIXED_VERSION
+ 
+ UPDATE_VERSION_MAN = \
+-	[ -f form.1 ] || $(LN_S) "$(srcdir)/form.1.in" form.1
++	[ -f form.1 ] || $(LN_S) "$(srcdir)/form.1" form.1
+ 
+ DISTHOOK_VERSION_MAN = \
+ 	cp "$(srcdir)/form.1" "$(distdir)/form.1"
+--- origsrc/form-5.0.2/doc/Makefile.in	2026-09-19 01:45:00.000000000 +0000
++++ src/form-5.0.2/doc/Makefile.in	2026-11-14 00:00:00.000000000 +0000
+@@ -345,7 +345,7 @@ CLEANFILES = form.1
+ 	$(SHELL) "$(top_srcdir)/scripts/git-version-gen.sh" -C "$(srcdir)" --man --date-format '%Y-%m-%d' -o form.1 && cat "$(srcdir)/form.1.in" >> form.1
+ 
+ @FIXED_VERSION_TRUE@UPDATE_VERSION_MAN = \
+-@FIXED_VERSION_TRUE@	[ -f form.1 ] || $(LN_S) "$(srcdir)/form.1.in" form.1
++@FIXED_VERSION_TRUE@	[ -f form.1 ] || $(LN_S) "$(srcdir)/form.1" form.1
+ 
+ @FIXED_VERSION_FALSE@DISTHOOK_VERSION_MAN = \
+ 	$(SHELL) "$(top_srcdir)/scripts/git-version-gen.sh" -C "$(srcdir)" --man --date-format '%Y-%m-%d' -o "$(distdir)/form.1" && cat "$(srcdir)/form.1.in" >> "$(distdir)/form.1"

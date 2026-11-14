@@ -1,5 +1,5 @@
-HOMEPAGE="https://github.com/vermaseren/${PN}"
-SRC_URI="https://github.com/vermaseren/${PN}/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/form-dev/${PN}"
+SRC_URI="https://github.com/form-dev/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
 CATEGORY="Science"
 SUMMARY="Symbolic manipulation of very big expressions"
@@ -13,7 +13,12 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libgmp-devel zlib-devel"
+BUILD_REQUIRES="
+	libgmp-devel
+	libmpfr-devel
+	libzstd-devel
+	zlib-devel
+"
 
 DIFF_EXCLUDES="
 	.version

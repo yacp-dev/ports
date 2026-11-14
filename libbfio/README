@@ -3,56 +3,58 @@ libbfio
 libbfio is a library to provide basic file input/output abstraction.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libbfio-devel-20240414-1bl1
-  libbfio1-20240414-1bl1
-  libcdata1-20240414-1bl1
-  libcerror1-20240413-1bl1
-  libcfile1-20240414-1bl1
-  libclocale1-20240414-1bl1
-  libcpath1-20240414-1bl1
-  libcthreads1-20240413-1bl1
-  libuna1-20240414-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libbfio-devel-20260623-1bl1
+  libbfio1-20260623-1bl1
+  libcdata1-20260703-1bl1
+  libcerror1-20260703-1bl1
+  libcfile1-20260704-1bl1
+  libclocale1-20260703-1bl1
+  libcpath1-20260703-1bl1
+  libcthreads1-20260703-1bl1
+  libuna1-20260602-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libcdata-devel-20240414-1bl1
-  libcerror-devel-20240413-1bl1
-  libcfile-devel-20240414-1bl1
-  libclocale-devel-20240414-1bl1
-  libcpath-devel-20240414-1bl1
-  libcthreads-devel-20240413-1bl1
-  libtool-2.5.4-1
-  libuna-devel-20240414-1bl1
+  libcdata-devel-20260703-1bl1
+  libcerror-devel-20260703-1bl1
+  libcfile-devel-20260704-1bl1
+  libclocale-devel-20260703-1bl1
+  libcnotify-devel-20260703-1bl1
+  libcpath-devel-20260703-1bl1
+  libcsplit-devel-20260703-1bl1
+  libcthreads-devel-20260703-1bl1
+  libtool-2.6.2-1
+  libuna-devel-20260602-1bl2
   make-4.4.1-2
 
 Canonical website:
   https://github.com/libyal/libbfio
 
 Canonical download:
-  https://github.com/libyal/libbfio/archive/refs/tags/20240414.tar.gz
+  https://github.com/libyal/libbfio/archive/refs/tags/20260623.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libbfio-20240414-X-src.tar.xz
+  1. unpack libbfio-20260623-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libbfio-20240414-X.cygport all
+        % cygport ./libbfio-20260623-X.cygport all
 
 This will create:
-  /usr/src/libbfio-20240414-X-src.tar.xz
-  /usr/src/libbfio-20240414-X.tar.xz
-  /usr/src/libbfio1-20240414-X.tar.xz
-  /usr/src/libbfio-devel-20240414-X.tar.xz
+  /usr/src/libbfio-20260623-X-src.tar.xz
+  /usr/src/libbfio-20260623-X.tar.xz
+  /usr/src/libbfio1-20260623-X.tar.xz
+  /usr/src/libbfio-devel-20260623-X.tar.xz
 
 -------------------------------------------
 
@@ -84,6 +86,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20260623-1bl1 -----
+Version bump.
 
 ----- version 20240414-1bl1 -----
 Version bump.

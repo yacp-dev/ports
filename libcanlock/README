@@ -1,0 +1,92 @@
+libcanlock
+------------------------------------------
+libcanlock is a library for creating and verifying RFC 8315 Netnews
+Cancel-Locks. It also provides article header parsers and command line tools.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libcanlock-devel-3.3.4-1bl1
+  libcanlock3-3.3.4-1bl1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  bison-3.8.2-1
+  cygport-0.37.12-1
+  flex-2.6.11-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
+
+Canonical website:
+  https://micha.freeshell.org/libcanlock/
+
+Canonical download:
+  https://micha.freeshell.org/libcanlock/src/libcanlock-3.3.4.tar.bz2
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack libcanlock-3.3.4-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./libcanlock-3.3.4-X.cygport all
+
+This will create:
+  /usr/src/libcanlock-3.3.4-X-src.tar.xz
+  /usr/src/libcanlock-3.3.4-X.tar.xz
+  /usr/src/libcanlock3-3.3.4-X.tar.xz
+  /usr/src/libcanlock-devel-3.3.4-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(libcanlock)
+  /usr/bin/canlock-hfp.exe
+  /usr/bin/canlock-mhp.exe
+  /usr/bin/canlock.exe
+  /usr/share/doc/Cygwin/libcanlock.README
+  /usr/share/doc/libcanlock/BSD-3-Clause.txt
+  /usr/share/doc/libcanlock/COPYING
+  /usr/share/doc/libcanlock/ChangeLog
+  /usr/share/doc/libcanlock/ICU.txt
+  /usr/share/doc/libcanlock/LICENSE
+  /usr/share/doc/libcanlock/NLPL.txt
+  /usr/share/doc/libcanlock/README
+  /usr/share/doc/libcanlock/TODO
+  /usr/share/man/man1/canlock-hfp.1.gz
+  /usr/share/man/man1/canlock-mhp.1.gz
+  /usr/share/man/man1/canlock.1.gz
+
+(libcanlock3)
+  /usr/bin/cygcanlock-3.dll
+  /usr/bin/cygcanlock-hp-3.dll
+
+(libcanlock-devel)
+  /usr/include/libcanlock-3/canlock-hp.h
+  /usr/include/libcanlock-3/canlock.h
+  /usr/lib/libcanlock-hp.dll.a
+  /usr/lib/libcanlock.dll.a
+  /usr/lib/pkgconfig/libcanlock-3.pc
+  /usr/lib/pkgconfig/libcanlock-hp-3.pc
+  /usr/share/man/man3/cl_clear_secret.3.gz
+  /usr/share/man/man3/cl_get_key.3.gz
+  /usr/share/man/man3/cl_get_lock.3.gz
+  /usr/share/man/man3/cl_hp_get_field.3.gz
+  /usr/share/man/man3/cl_hp_parse_field.3.gz
+  /usr/share/man/man3/cl_hp_unfold_field.3.gz
+  /usr/share/man/man3/cl_split.3.gz
+  /usr/share/man/man3/cl_verify.3.gz
+  /usr/share/man/man3/cl_verify_multi.3.gz
+
+------------------
+
+Port Notes:
+
+----- version 3.3.4-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

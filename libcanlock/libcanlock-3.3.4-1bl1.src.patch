@@ -1,0 +1,97 @@
+--- origsrc/libcanlock-3.3.4/doc/Makefile.am	2026-05-01 12:33:46.000000000 +0000
++++ src/libcanlock-3.3.4/doc/Makefile.am	2026-11-14 05:11:57.904561300 +0000
+@@ -24,10 +24,10 @@ CLEANFILES = $(man_MANS)
+ 	$(AM_V_GEN)export LC_ALL=POSIX ; $(SED) -e 's/$$NAME/libcanlock/g' \
+            -e 's/$$VERSION/$(PACKAGE_VERSION)/g' \
+            -e 's/$$BUGREPORT/$(PACKAGE_BUGREPORT)/g' \
+-           -e 's/$$DATE/@RELEASE_DATE@/g' $*.in3 >$@
++           -e 's/$$DATE/@RELEASE_DATE@/g' $(srcdir)/$*.in3 >$@
+ 
+ canlock.1: canlock.in1
+ 	$(AM_V_GEN)export LC_ALL=POSIX ; $(SED) -e 's/$$NAME/canlock/g' \
+            -e 's/$$VERSION/$(PACKAGE_VERSION)/g' \
+            -e 's/$$BUGREPORT/$(PACKAGE_BUGREPORT)/g' \
+-           -e 's/$$DATE/@RELEASE_DATE@/g' canlock.in1 >$@
++           -e 's/$$DATE/@RELEASE_DATE@/g' $(srcdir)/canlock.in1 >$@
+--- origsrc/libcanlock-3.3.4/hp/doc/Makefile.am	2026-05-01 16:22:41.000000000 +0000
++++ src/libcanlock-3.3.4/hp/doc/Makefile.am	2026-11-14 05:11:57.906571400 +0000
+@@ -23,11 +23,11 @@ CLEANFILES = $(man_MANS)
+            -e 's/$$VERSION/$(PACKAGE_VERSION)/g' \
+            -e 's/$$NAME/$(*)/g' \
+            -e 's/$$BUGREPORT/$(PACKAGE_BUGREPORT)/g' \
+-           -e 's/$$DATE/@RELEASE_DATE@/g' $*.in1 >$@
++           -e 's/$$DATE/@RELEASE_DATE@/g' $(srcdir)/$*.in1 >$@
+ 
+ .in3.3:
+ 	$(AM_V_GEN)export LC_ALL=POSIX ; $(SED) -e 's/$$PACKAGE/canlock-hp/g' \
+            -e 's/$$VERSION/$(PACKAGE_VERSION)/g' \
+            -e 's/$$NAME/$(*)/g' \
+            -e 's/$$BUGREPORT/$(PACKAGE_BUGREPORT)/g' \
+-           -e 's/$$DATE/@RELEASE_DATE@/g' $*.in3 >$@
++           -e 's/$$DATE/@RELEASE_DATE@/g' $(srcdir)/$*.in3 >$@
+--- origsrc/libcanlock-3.3.4/hp/test/mhptest1.sh	2026-05-01 16:47:55.000000000 +0000
++++ src/libcanlock-3.3.4/hp/test/mhptest1.sh	2026-11-14 05:11:57.906571400 +0000
+@@ -10,7 +10,7 @@ set -e
+ printf "%s\n\n" "Check for case-insensitive match"
+ 
+ EXPECTED="cancel-LOCK: (Comment with quoted-pair: \(, (Not scheme sha1:)) sha256:RrKLp7YCQc9T8HmgSbxwIDlnCDWsgy1awqtiDuhedRo=(sha1:abc)"
+-RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <article1.txt)
++RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <"${srcdir}/article1.txt")
+ if test "$RESULT" = "$EXPECTED"
+ then
+    printf "%s\n" "$RESULT"
+--- origsrc/libcanlock-3.3.4/hp/test/mhptest2.sh	2026-05-01 16:48:02.000000000 +0000
++++ src/libcanlock-3.3.4/hp/test/mhptest2.sh	2026-11-14 05:11:57.906571400 +0000
+@@ -10,7 +10,7 @@ set -e
+ printf "%s\n\n" "Check memory management with header larger than 4 KiBytes"
+ 
+ EXPECTED="CANCEL-lock: (Comment with quoted-pair: \(, (Not scheme sha1:)) sha256:RrKLp7YCQc9T8HmgSbxwIDlnCDWsgy1awqtiDuhedRo=(sha1:abc)"
+-RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <article2.txt)
++RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <"${srcdir}/article2.txt")
+ if test "$RESULT" = "$EXPECTED"
+ then
+    printf "%s\n" "$RESULT"
+--- origsrc/libcanlock-3.3.4/hp/test/mhptest3.sh	2026-05-01 16:48:10.000000000 +0000
++++ src/libcanlock-3.3.4/hp/test/mhptest3.sh	2026-11-14 05:11:57.908582300 +0000
+@@ -10,7 +10,7 @@ set -e
+ printf "%s\n\n" "Check that \"X-Cancel-Lock\" header field before target is ignored"
+ 
+ EXPECTED="Cancel-LOCK: (Comment with quoted-pair: \(, (Not scheme sha1:)) sha256:RrKLp7YCQc9T8HmgSbxwIDlnCDWsgy1awqtiDuhedRo=(sha1:abc)"
+-RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <article3.txt)
++RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <"${srcdir}/article3.txt")
+ if test "$RESULT" = "$EXPECTED"
+ then
+    printf "%s\n" "$RESULT"
+--- origsrc/libcanlock-3.3.4/hp/test/mhptest4.sh	2026-05-01 16:48:16.000000000 +0000
++++ src/libcanlock-3.3.4/hp/test/mhptest4.sh	2026-11-14 05:11:57.908582300 +0000
+@@ -10,7 +10,7 @@ set -e
+ printf "%s\n\n" "Check multiple fields with same name"
+ 
+ EXPECTED="cAncel-LOCK: (Comment with quoted-pair: \(, (Not scheme sha1:)) sha256:RrKLp7YCQc9T8HmgSbxwIDlnCDWsgy1awqtiDuhedRo=(sha1:abc)"
+-RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <article4.txt)
++RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <"${srcdir}/article4.txt")
+ if test "$RESULT" = "$EXPECTED"
+ then
+    printf "%s\n" "$RESULT"
+--- origsrc/libcanlock-3.3.4/hp/test/mhptest5.sh	2026-05-01 16:48:23.000000000 +0000
++++ src/libcanlock-3.3.4/hp/test/mhptest5.sh	2026-11-14 05:11:57.910603900 +0000
+@@ -10,7 +10,7 @@ set -e
+ printf "%s\n\n" "Check whether prefix and suffix in field name is ignored"
+ 
+ EXPECTED="caNcel-LOCK: (Comment with quoted-pair: \(, (Not scheme sha1:)) sha256:RrKLp7YCQc9T8HmgSbxwIDlnCDWsgy1awqtiDuhedRo=(sha1:abc)"
+-RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <article5.txt)
++RESULT=$(../util/canlock-mhp -f "Cancel-Lock" <"${srcdir}/article5.txt")
+ if test "$RESULT" = "$EXPECTED"
+ then
+    printf "%s\n" "$RESULT"
+--- origsrc/libcanlock-3.3.4/test/Makefile.am	2026-05-01 14:01:13.000000000 +0000
++++ src/libcanlock-3.3.4/test/Makefile.am	2026-11-14 05:11:57.910603900 +0000
+@@ -17,7 +17,7 @@ check_SCRIPTS = shatest_check.sh
+ # Attention: Linking against the static library is intended here!
+ # (The shared library does not export the internal symbols)
+ shatest_SOURCES = hkdf.c shatest.c
+-shatest_LDADD = ../src/.libs/libcanlock.a
++shatest_LDADD = ../src/libcanlock.la
+ 
+ canlocktest_SOURCES = canlocktest.c
+ canlocktest_LDADD = ../src/libcanlock.la

@@ -9,7 +9,16 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libcdata-devel libcerror-devel libcnotify-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcdata-devel
+	libcerror-devel
+	libcnotify-devel
+	libcthreads-devel
+	python3-devel
+"
+
+export PYTHON=python3
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -28,11 +37,31 @@ src_test()
 	pushd tests
 		for sh in ${S}/tests/*.{py,sh}
 		do
-			ln -fs ${sh} .
+			cp -f ${sh} .
 		done
 	popd
+	pushd pyfwnt/.libs
+		python_tag=$(python3 -c 'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX"))')
+		cp -a pyfwnt.dll pyfwnt${python_tag}
+		cp -a pyfwnt.dll ${B}/tests/
+		cp -a pyfwnt${python_tag} ${B}/tests/
+	popd
+	PATH="${B}/libfwnt/.libs:${B}/pyfwnt/.libs:${PATH}" \
+	PYTHON=python3 \
+	CHECK_WITH_STDERR=1 \
 	cygtest
-	rm tests/*.{py,sh}
+	rm -f tests/*.{py,sh} tests/pyfwnt*
+}
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	pushd ${D}/usr/lib/python3.12/site-packages
+		python_tag=$(python3 -c 'import sysconfig; print(sysconfig.get_config_var("EXT_SUFFIX"))')
+		cp -a pyfwnt.dll pyfwnt${python_tag}
+	popd
 }
 
 DOCS="
@@ -43,7 +72,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libfwnt_CONTENTS="
 	usr/share/doc
@@ -57,10 +86,10 @@ libfwnt_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man
 "
-python39_libfwnt_CONTENTS="
-	usr/lib/python*
+python312_libfwnt_CONTENTS="
+	usr/lib/python3.12
 "
 libfwnt_SUMMARY="${SUMMARY} (licensing & readmes)"
 libfwnt1_SUMMARY="${SUMMARY} (runtime)"
 libfwnt_devel_SUMMARY="${SUMMARY} (development)"
-python39_libfwnt_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libfwnt_SUMMARY="${SUMMARY} (python312 bindings)"

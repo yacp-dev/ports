@@ -1,5 +1,5 @@
---- origsrc/libfdata-20240415/Makefile.am	2024-04-15 13:35:53.000000000 +0900
-+++ src/libfdata-20240415/Makefile.am	2025-05-17 09:19:04.840986800 +0900
+--- origsrc/libfdata-20260521/Makefile.am	2026-05-21 04:37:26.000000000 +0000
++++ src/libfdata-20260521/Makefile.am	2026-11-14 10:34:34.987043500 +0000
 @@ -3,13 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -14,9 +14,9 @@
  	manuals \
  	tests \
  	msvscpp
---- origsrc/libfdata-20240415/configure.ac	2024-04-15 13:35:53.000000000 +0900
-+++ src/libfdata-20240415/configure.ac	2025-05-17 09:19:04.840986800 +0900
-@@ -109,11 +109,6 @@ dnl Generate Makefiles
+--- origsrc/libfdata-20260521/configure.ac	2026-05-21 04:37:26.000000000 +0000
++++ src/libfdata-20260521/configure.ac	2026-11-14 10:34:34.989057400 +0000
+@@ -108,11 +108,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -28,8 +28,8 @@
  AC_CONFIG_FILES([libfdata/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libfdata-20240415/libfdata/libfdata_list_element.h	2024-04-15 13:35:53.000000000 +0900
-+++ src/libfdata-20240415/libfdata/libfdata_list_element.h	2025-05-17 09:19:04.840986800 +0900
+--- origsrc/libfdata-20260521/libfdata/libfdata_list_element.h	2026-05-21 04:37:26.000000000 +0000
++++ src/libfdata-20260521/libfdata/libfdata_list_element.h	2026-11-14 10:34:34.989057400 +0000
 @@ -64,16 +64,19 @@ struct libfdata_internal_list_element
  	uint8_t flags;
  };

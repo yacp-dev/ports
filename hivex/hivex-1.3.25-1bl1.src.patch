@@ -1,5 +1,5 @@
---- origsrc/hivex-1.3.24/python/Makefile.am	2023-11-16 19:51:29.000000000 +0900
-+++ src/hivex-1.3.24/python/Makefile.am	2024-09-11 23:39:36.814831900 +0900
+--- origsrc/hivex-1.3.25/python/Makefile.am	2026-11-10 10:44:53.000000000 +0000
++++ src/hivex-1.3.25/python/Makefile.am	2026-11-14 11:46:26.767692200 +0000
 @@ -39,8 +39,8 @@ python_LTLIBRARIES = libhivexmod.la
  libhivexmod_la_SOURCES = hivex-py.c
  libhivexmod_la_CFLAGS = -Wall $(PYTHON_CFLAGS) \
@@ -9,5 +9,5 @@
 +libhivexmod_la_LIBADD = $(top_builddir)/lib/libhivex.la -lpython$(PYTHON_VERSION)
 +libhivexmod_la_LDFLAGS = -no-undefined -avoid-version -shared -module -shrext $(PYTHON_EXT_SUFFIX)
  
- TESTS_ENVIRONMENT = ../run
+ LOG_COMPILER = $(top_builddir)/run
  

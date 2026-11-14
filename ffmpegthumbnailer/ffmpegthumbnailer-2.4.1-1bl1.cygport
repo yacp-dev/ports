@@ -37,20 +37,20 @@ src_test()
 
 PKG_NAMES="
 	ffmpegthumbnailer
-	libffmpegthumbnailer4
+	libffmpegthumbnailer5
 	libffmpegthumbnailer-devel
 "
 ffmpegthumbnailer_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libffmpegthumbnailer4_CONTENTS="
-	usr/bin/cyg*-4.dll
+libffmpegthumbnailer5_CONTENTS="
+	usr/bin/cyg*-5.dll
 "
 libffmpegthumbnailer_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 ffmpegthumbnailer_SUMMARY="${SUMMARY} (utilities)"
-libffmpegthumbnailer4_SUMMARY="${SUMMARY} (runtime)"
+libffmpegthumbnailer5_SUMMARY="${SUMMARY} (runtime)"
 libffmpegthumbnailer_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,6 +1,6 @@
---- origsrc/ffmpegthumbnailer-2.3.1/main.cpp	2026-08-28 21:55:37.000000000 +0000
-+++ src/ffmpegthumbnailer-2.3.1/main.cpp	2026-10-23 05:41:06.634151100 +0000
-@@ -260,9 +260,15 @@ void tryUriConvert(std::string& filename
+--- origsrc/ffmpegthumbnailer-2.4.1/main.cpp	2026-10-29 19:28:55.000000000 +0000
++++ src/ffmpegthumbnailer-2.4.1/main.cpp	2026-11-14 05:53:31.747875000 +0000
+@@ -352,9 +352,15 @@ void tryUriConvert(std::string& filename
          return;
      }
  

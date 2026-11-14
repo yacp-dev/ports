@@ -1,5 +1,5 @@
---- origsrc/libfwps-20240417/Makefile.am	2024-04-17 12:49:04.000000000 +0900
-+++ src/libfwps-20240417/Makefile.am	2025-05-17 23:08:00.636458200 +0900
+--- origsrc/libfwps-20260522/Makefile.am	2026-05-22 06:14:36.000000000 +0000
++++ src/libfwps-20260522/Makefile.am	2026-11-14 16:28:11.884547400 +0000
 @@ -3,17 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -18,9 +18,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfwps-20240417/configure.ac	2024-04-17 12:49:04.000000000 +0900
-+++ src/libfwps-20240417/configure.ac	2025-05-17 23:08:00.636458200 +0900
-@@ -136,14 +136,6 @@ dnl Generate Makefiles
+--- origsrc/libfwps-20260522/configure.ac	2026-05-22 06:14:36.000000000 +0000
++++ src/libfwps-20260522/configure.ac	2026-11-14 16:28:11.885333000 +0000
+@@ -135,14 +135,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -35,8 +35,8 @@
  AC_CONFIG_FILES([libfwps/Makefile])
  AC_CONFIG_FILES([pyfwps/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
---- origsrc/libfwps-20240417/pyfwps/Makefile.am	2024-04-17 12:49:04.000000000 +0900
-+++ src/libfwps-20240417/pyfwps/Makefile.am	2025-05-17 23:08:14.755216300 +0900
+--- origsrc/libfwps-20260522/pyfwps/Makefile.am	2026-05-22 06:14:36.000000000 +0000
++++ src/libfwps-20260522/pyfwps/Makefile.am	2026-11-14 16:28:11.886561300 +0000
 @@ -40,7 +40,7 @@ pyfwps_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  

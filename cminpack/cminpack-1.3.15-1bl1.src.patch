@@ -1,0 +1,19 @@
+--- origsrc/cminpack-1.3.15/CMakeLists.txt	2026-11-10 16:41:04.000000000 +0000
++++ src/cminpack-1.3.15/CMakeLists.txt	2026-11-14 05:33:30.888861800 +0000
+@@ -240,7 +240,7 @@ foreach (cminpack_lib ${cminpack_libs})
+     file (RELATIVE_PATH pc_to_prefix
+       "${CMAKE_INSTALL_PREFIX}/${CMINPACK_LIB_INSTALL_DIR}/pkgconfig" "${CMAKE_INSTALL_PREFIX}")
+     string (REGEX REPLACE "/$" "" pc_to_prefix "${pc_to_prefix}")
+-    set (PC_CMINPACK_PREFIX "\${pcfiledir}/${pc_to_prefix}")
++    set (PC_CMINPACK_PREFIX "${CMAKE_INSTALL_PREFIX}")
+     set (PC_CMINPACK_LIBDIR "\${prefix}/${CMINPACK_LIB_INSTALL_DIR}")
+   endif ()
+   configure_file (cmake/cminpack.pc.in ${pkg_conf_file} @ONLY)
+@@ -249,6 +249,6 @@ foreach (cminpack_lib ${cminpack_libs})
+ 
+ endforeach ()
+ 
+-install (EXPORT CMinpackConfig DESTINATION share/cminpack NAMESPACE cminpack::)
++install (EXPORT CMinpackConfig DESTINATION lib/cmake/cminpack NAMESPACE cminpack::)
+ 
+ add_subdirectory (examples)

@@ -1,0 +1,22 @@
+--- origsrc/libfole-20260521/Makefile.am	2026-05-21 12:01:23.000000000 +0000
++++ src/libfole-20260521/Makefile.am	2026-11-14 10:30:46.458349300 +0000
+@@ -3,9 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
+ SUBDIRS = \
+ 	include \
+ 	common \
+-	libcerror \
+ 	libfole \
+-	po \
+ 	manuals \
+ 	tests \
+ 	msvscpp
+--- origsrc/libfole-20260521/configure.ac	2026-05-21 12:01:23.000000000 +0000
++++ src/libfole-20260521/configure.ac	2026-11-14 10:30:46.458349300 +0000
+@@ -96,7 +96,6 @@ dnl Generate Makefiles
+ AC_CONFIG_FILES([Makefile])
+ AC_CONFIG_FILES([include/Makefile])
+ AC_CONFIG_FILES([common/Makefile])
+-AC_CONFIG_FILES([libcerror/Makefile])
+ AC_CONFIG_FILES([libfole/Makefile])
+ AC_CONFIG_FILES([po/Makefile.in])
+ AC_CONFIG_FILES([po/Makevars])

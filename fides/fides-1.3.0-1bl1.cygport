@@ -1,0 +1,54 @@
+HOMEPAGE="https://gitlab.kitware.com/vtk/fides"
+SRC_URI="https://gitlab.kitware.com/vtk/fides/-/archive/v${PV}/fides-v${PV}.tar.gz"
+SRC_DIR="${PN}-v${PV}"
+
+CATEGORY="Libs"
+SUMMARY="Library for reading ADIOS2 data into Viskores datasets"
+DESCRIPTION="Fides is a library that provides a schema for reading and writing
+data stored in ADIOS2 using a JSON-based data model, and for turning it into
+Viskores datasets for visualization."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	libadios2-devel
+	libviskores-devel
+	rapidjson-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DFIDES_ENABLE_TESTING:BOOL=ON
+	-DFIDES_ENABLE_EXAMPLES:BOOL=OFF
+	-DFIDES_USE_EXTERNAL_RAPIDJSON:BOOL=ON
+	-DFIDES_SOVERSION:STRING=${PV[1]}
+"
+
+src_test() {
+	cd ${B}
+	PATH=${B}/fides:${PATH} verbose ctest --output-on-failure
+}
+
+PKG_NAMES="
+	${PN}
+	lib${PN}${PV[1]}
+	lib${PN}-devel
+"
+fides_CONTENTS="
+	usr/share/doc
+"
+libfides1_CONTENTS="
+	usr/bin/cygfides-${PV[1]}.dll
+"
+libfides_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+fides_SUMMARY="${SUMMARY} (licensing & readmes)"
+libfides1_SUMMARY="${SUMMARY} (runtime)"
+libfides_devel_SUMMARY="${SUMMARY} (development)"
+libfides_devel_REQUIRES="libadios2-devel rapidjson-devel"

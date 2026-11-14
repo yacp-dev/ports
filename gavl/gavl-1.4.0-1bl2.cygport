@@ -1,9 +1,9 @@
 HOMEPAGE="https://sourceforge.net/projects/gmerlin/"
 SRC_URI="mirror://sourceforge/gmerlin/${P}.tar.gz"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-1.1.1-system_libgdither.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-configure-c99.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-c99.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/4e07f59ac5f6690e02a9ed4e247333ff3e85ba49/f/${PN}-1.1.1-system_libgdither.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/4e07f59ac5f6690e02a9ed4e247333ff3e85ba49/f/${PN}-configure-c99.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/4e07f59ac5f6690e02a9ed4e247333ff3e85ba49/f/${PN}-c99.patch
 "
 
 CATEGORY="Libs"

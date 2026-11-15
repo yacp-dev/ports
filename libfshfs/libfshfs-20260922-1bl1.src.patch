@@ -1,5 +1,5 @@
---- origsrc/libfshfs-20240501/Makefile.am	2024-05-01 16:17:14.000000000 +0900
-+++ src/libfshfs-20240501/Makefile.am	2025-05-18 20:54:31.234972700 +0900
+--- origsrc/libfshfs-20260922/Makefile.am	2026-09-22 05:42:35.000000000 +0000
++++ src/libfshfs-20260922/Makefile.am	2026-11-15 08:13:34.983053700 +0000
 @@ -3,26 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -27,9 +27,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfshfs-20240501/configure.ac	2024-05-01 16:17:14.000000000 +0900
-+++ src/libfshfs-20240501/configure.ac	2025-05-18 20:54:31.234972700 +0900
-@@ -183,24 +183,8 @@ dnl Generate Makefiles
+--- origsrc/libfshfs-20260922/configure.ac	2026-09-22 05:42:35.000000000 +0000
++++ src/libfshfs-20260922/configure.ac	2026-11-15 08:13:34.983053700 +0000
+@@ -193,24 +193,8 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -54,12 +54,12 @@
  AC_CONFIG_FILES([fshfstools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libfshfs-20240501/pyfshfs/Makefile.am	2024-05-01 16:17:14.000000000 +0900
-+++ src/libfshfs-20240501/pyfshfs/Makefile.am	2025-05-18 20:54:47.455555000 +0900
+--- origsrc/libfshfs-20260922/pyfshfs/Makefile.am	2026-09-22 05:42:35.000000000 +0000
++++ src/libfshfs-20260922/pyfshfs/Makefile.am	2026-11-15 08:13:34.985077200 +0000
 @@ -44,7 +44,7 @@ pyfshfs_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyfshfs_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyfshfs_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyfshfs_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyfshfs_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

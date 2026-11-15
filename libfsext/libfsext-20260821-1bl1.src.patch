@@ -1,5 +1,5 @@
---- origsrc/libfsext-20240501/Makefile.am	2024-05-01 13:11:32.000000000 +0900
-+++ src/libfsext-20240501/Makefile.am	2025-05-18 20:17:55.673373400 +0900
+--- origsrc/libfsext-20260821/Makefile.am	2026-08-21 05:15:06.000000000 +0000
++++ src/libfsext-20260821/Makefile.am	2026-11-15 08:13:02.982171400 +0000
 @@ -3,25 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -26,9 +26,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfsext-20240501/configure.ac	2024-05-01 13:11:32.000000000 +0900
-+++ src/libfsext-20240501/configure.ac	2025-05-18 20:17:55.673373400 +0900
-@@ -176,23 +176,8 @@ dnl Generate Makefiles
+--- origsrc/libfsext-20260821/configure.ac	2026-08-21 05:15:06.000000000 +0000
++++ src/libfsext-20260821/configure.ac	2026-11-15 08:13:02.980157200 +0000
+@@ -188,23 +188,8 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -52,12 +52,12 @@
  AC_CONFIG_FILES([fsexttools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libfsext-20240501/pyfsext/Makefile.am	2024-05-01 13:11:32.000000000 +0900
-+++ src/libfsext-20240501/pyfsext/Makefile.am	2025-05-18 20:17:55.673373400 +0900
+--- origsrc/libfsext-20260821/pyfsext/Makefile.am	2026-08-21 05:15:06.000000000 +0000
++++ src/libfsext-20260821/pyfsext/Makefile.am	2026-11-15 08:13:02.982171400 +0000
 @@ -43,7 +43,7 @@ pyfsext_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyfsext_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyfsext_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyfsext_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyfsext_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

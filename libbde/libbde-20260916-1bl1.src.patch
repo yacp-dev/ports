@@ -1,5 +1,5 @@
---- origsrc/libbde-20240502/Makefile.am	2024-05-02 13:08:30.000000000 +0900
-+++ src/libbde-20240502/Makefile.am	2025-05-19 08:33:32.075604600 +0900
+--- origsrc/libbde-20260916/Makefile.am	2026-09-16 06:28:44.000000000 +0000
++++ src/libbde-20260916/Makefile.am	2026-11-15 09:08:35.527908700 +0000
 @@ -3,26 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -27,9 +27,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libbde-20240502/configure.ac	2024-05-02 13:08:30.000000000 +0900
-+++ src/libbde-20240502/configure.ac	2025-05-19 08:33:14.104714600 +0900
-@@ -179,22 +179,6 @@ dnl Generate Makefiles
+--- origsrc/libbde-20260916/configure.ac	2026-09-16 06:28:44.000000000 +0000
++++ src/libbde-20260916/configure.ac	2026-11-15 09:08:35.527908700 +0000
+@@ -189,22 +189,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -52,12 +52,12 @@
  AC_CONFIG_FILES([libbde/Makefile])
  AC_CONFIG_FILES([pybde/Makefile])
  AC_CONFIG_FILES([bdetools/Makefile])
---- origsrc/libbde-20240502/pybde/Makefile.am	2024-05-02 13:08:30.000000000 +0900
-+++ src/libbde-20240502/pybde/Makefile.am	2025-05-19 08:33:43.775504100 +0900
+--- origsrc/libbde-20260916/pybde/Makefile.am	2026-09-16 06:28:44.000000000 +0000
++++ src/libbde-20260916/pybde/Makefile.am	2026-11-15 09:08:35.529921800 +0000
 @@ -48,7 +48,7 @@ pybde_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  
- pybde_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pybde_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pybde_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pybde_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

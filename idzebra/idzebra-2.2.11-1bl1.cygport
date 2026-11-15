@@ -1,0 +1,100 @@
+HOMEPAGE="https://github.com/indexdata/idzebra"
+# m4 and doc/common are git submodules, not in the tag tarball
+ID_M4_REV="7d0de47b22739b4c13272604c60d3152b9cb55a2"
+ID_DOCBOOK_COMMON_REV="34b6301de5e648bf5444d0f27bbaeaa254bded71"
+SRC_URI="https://github.com/indexdata/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/indexdata/m4/archive/${ID_M4_REV}.tar.gz#/id-m4-${ID_M4_REV}.tar.gz
+	https://github.com/indexdata/id-docbook-common/archive/${ID_DOCBOOK_COMMON_REV}.tar.gz#/id-docbook-common-${ID_DOCBOOK_COMMON_REV}.tar.gz"
+
+CATEGORY="Net"
+SUMMARY="High-performance, structured text indexing and retrival engine"
+DESCRIPTION="Zebra is a high-performance, general-purpose structured text indexing and
+retrieval engine. It reads structured records in a variety of input formats
+(eg. email, XML, MARC) and allows access to them through exact boolean search
+expressions and relevance-ranked free-text queries."
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="LICENSE.zebra"
+
+BUILD_REQUIRES="
+	docbook-xml44
+	docbook-xsl
+	libbz2-devel
+	libexpat-devel
+	libgcrypt-devel
+	libgpg-error-devel
+	libicu-devel
+	libiconv-devel
+	libxml2-devel
+	libxslt-devel
+	libyaz-devel
+	rsvg
+	zlib-devel
+"
+
+DOCS="
+	LICENSE.zebra
+	README.md
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose rmdir m4 doc/common
+	verbose mv ${origsrcdir}/m4-${ID_M4_REV} m4
+	verbose mv ${origsrcdir}/id-docbook-common-${ID_DOCBOOK_COMMON_REV} doc/common
+}
+
+# Cygwin's libyaz-devel has yaz.pc only, no yaz-icu.pc or yaz-server.pc;
+# zebra.pc's Libs.private already names their libraries
+src_install()
+{
+	cd ${B}
+	cyginstall
+	verbose sed -i 's/^Requires: yaz-icu yaz-server$/Requires: yaz/' \
+		${D}/usr/lib/pkgconfig/zebra.pc
+
+	# index/Makefile.am's install-exec-hook renames zebraidx.exe to
+	# zebraidx.exe-2.0 (cygport then adds another .exe to that name)
+	# and links zebraidx.exe to it
+	cd ${D}/usr/bin
+	for p in zebraidx zebrasrv
+	do
+		verbose mv -f ${p}.exe-2.0 ${p}-2.0.exe
+		verbose ln -sf ${p}-2.0.exe ${p}.exe
+	done
+}
+
+PKG_NAMES="
+	idzebra
+	libidzebra2.0_0
+	libidzebra2.0-devel
+"
+idzebra_CONTENTS="
+	usr/bin/${PN}-abs2dom
+	usr/bin/zebra*
+	usr/share/doc/Cygwin
+	usr/share/doc/${PN}
+	usr/share/${PN}-2.0*
+	usr/share/man/man1/${PN}-abs2dom*
+"
+libidzebra2_0_0_CONTENTS="
+	usr/bin/cygidzebra-2.0-0.dll
+	usr/lib/${PN}-2.0/modules/*.dll
+"
+libidzebra2_0_devel_CONTENTS="
+	usr/bin/*-config*
+	usr/include
+	usr/lib/lib*.dll.a
+	usr/lib/pkgconfig
+	usr/share/aclocal
+	usr/share/doc/${PN}-2.0
+	usr/share/man/man1/${PN}-config*
+	usr/share/man/man1/zebra*
+	usr/share/man/man8/zebra*
+"
+idzebra_SUMMARY="${SUMMARY} (utilities)"
+libidzebra2_0_0_SUMMARY="${SUMMARY} (runtime)"
+libidzebra2_0_devel_SUMMARY="${SUMMARY} (development)"

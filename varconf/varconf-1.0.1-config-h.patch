@@ -1,0 +1,16 @@
+Drop the dynamic exception specification from the Config::parseStream
+declaration. The .src.patch removes it from the definition in config.cpp, and
+C++17 (gcc 14's default) rejects both the specification and a mismatch.
+config.h is left out of cygport diff, hence the separate patch.
+
+--- a/varconf/config.h
++++ b/varconf/config.h
+@@ -94,7 +94,7 @@ public:
+ 
+   // Ensures specified filestream is properly formatted.
+   // Why isn't this protected?
+-  void parseStream(std::istream & in, Scope scope) throw (ParseError);
++  void parseStream(std::istream & in, Scope scope);
+ 
+   // Wrapper for find(section)
+   bool findSection(const std::string & section) const;

@@ -1,5 +1,5 @@
---- origsrc/varconf-1.0.1/tests/Makefile.am	2013-08-27 06:34:38.000000000 +0900
-+++ src/varconf-1.0.1/tests/Makefile.am	2025-01-16 22:42:08.459873700 +0900
+--- origsrc/varconf-1.0.1/tests/Makefile.am	2013-08-26 21:34:38.000000000 +0000
++++ src/varconf-1.0.1/tests/Makefile.am	2026-11-15 22:21:59.152286700 +0000
 @@ -15,7 +15,7 @@ LDADD = $(top_builddir)/varconf/libvarco
  
  conftest_SOURCES = conftest.cpp
@@ -9,8 +9,8 @@
  	@set -e; \
  	newsymbols=$$(mktemp); \
  	test -f ${srcdir}/symbols.${host_cpu} && \
---- origsrc/varconf-1.0.1/varconf/Makefile.am	2013-08-27 06:34:38.000000000 +0900
-+++ src/varconf-1.0.1/varconf/Makefile.am	2025-01-16 22:42:08.475450800 +0900
+--- origsrc/varconf-1.0.1/varconf/Makefile.am	2013-08-26 21:34:38.000000000 +0000
++++ src/varconf-1.0.1/varconf/Makefile.am	2026-11-15 22:21:59.152286700 +0000
 @@ -4,7 +4,7 @@ INCLUDES = -I$(top_srcdir)
  
  lib_LTLIBRARIES = libvarconf-1.0.la
@@ -20,8 +20,8 @@
  
  libvarconf_1_0_la_SOURCES = \
      config.cpp parse_error.cpp variable.cpp \
---- origsrc/varconf-1.0.1/varconf/config.cpp	2013-08-27 06:34:38.000000000 +0900
-+++ src/varconf-1.0.1/varconf/config.cpp	2025-01-16 22:45:02.363952900 +0900
+--- origsrc/varconf-1.0.1/varconf/config.cpp	2013-08-26 21:34:38.000000000 +0000
++++ src/varconf-1.0.1/varconf/config.cpp	2026-11-15 22:21:59.154298500 +0000
 @@ -337,7 +337,7 @@ const conf_map& Config::getSections() co
  }
  

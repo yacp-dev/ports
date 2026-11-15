@@ -1,5 +1,5 @@
---- origsrc/libmodi-20240507/Makefile.am	2024-05-07 13:25:08.000000000 +0900
-+++ src/libmodi-20240507/Makefile.am	2025-05-20 10:09:18.012621100 +0900
+--- origsrc/libmodi-20260902/Makefile.am	2026-09-02 09:14:28.000000000 +0000
++++ src/libmodi-20260902/Makefile.am	2026-11-15 14:06:31.713936300 +0000
 @@ -3,29 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -30,9 +30,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libmodi-20240507/configure.ac	2024-05-07 13:25:08.000000000 +0900
-+++ src/libmodi-20240507/configure.ac	2025-05-20 10:09:18.012621100 +0900
-@@ -199,25 +199,6 @@ dnl Generate Makefiles
+--- origsrc/libmodi-20260902/configure.ac	2026-09-02 09:14:28.000000000 +0000
++++ src/libmodi-20260902/configure.ac	2026-11-15 14:06:31.712723000 +0000
+@@ -209,25 +209,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -58,12 +58,12 @@
  AC_CONFIG_FILES([libmodi/Makefile])
  AC_CONFIG_FILES([pymodi/Makefile])
  AC_CONFIG_FILES([moditools/Makefile])
---- origsrc/libmodi-20240507/pymodi/Makefile.am	2024-05-07 13:25:08.000000000 +0900
-+++ src/libmodi-20240507/pymodi/Makefile.am	2025-05-20 10:09:33.834160600 +0900
+--- origsrc/libmodi-20260902/pymodi/Makefile.am	2026-09-02 09:14:28.000000000 +0000
++++ src/libmodi-20260902/pymodi/Makefile.am	2026-11-15 14:06:31.714738200 +0000
 @@ -40,7 +40,7 @@ pymodi_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pymodi_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pymodi_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pymodi_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pymodi_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

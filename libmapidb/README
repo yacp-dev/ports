@@ -3,22 +3,23 @@ libmapidb
 libmapidb is a library access the Exchange MAPI database format.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libcerror1-20240413-1bl1
-  libmapidb-devel-20240420-1bl1
-  libmapidb1-20240420-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libcerror1-20260703-1bl1
+  libmapidb-devel-20240420-1bl2
+  libmapidb1-20240420-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libcerror-devel-20240413-1bl1
-  libtool-2.5.4-1
+  libcerror-devel-20260703-1bl1
+  libcnotify-devel-20260703-1bl1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -71,6 +72,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20240420-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 20240420-1bl1 -----
 Version bump.

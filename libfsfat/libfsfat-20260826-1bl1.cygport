@@ -17,7 +17,25 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libcthreads-devel libfcache-devel libfdata-devel libfdatetime-devel libhmac-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfdatetime-devel
+	libfguid-devel
+	libhmac-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -46,7 +64,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libfsfat_CONTENTS="
 	usr/bin/*.exe
@@ -62,10 +80,10 @@ libfsfat_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libfsfat_CONTENTS="
-	usr/lib/python3.9
+python312_libfsfat_CONTENTS="
+	usr/lib/python3.12
 "
 libfsfat_SUMMARY="${SUMMARY} (utilities)"
 libfsfat1_SUMMARY="${SUMMARY} (runtime)"
 libfsfat_devel_SUMMARY="${SUMMARY} (development)"
-python39_libfsfat_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libfsfat_SUMMARY="${SUMMARY} (python312 bindings)"

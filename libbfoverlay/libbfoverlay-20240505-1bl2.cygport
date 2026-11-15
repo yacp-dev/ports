@@ -16,7 +16,21 @@ src_patch_hook()
 	chmod u+x tests/*.sh
 }
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libcthreads-devel libfvalue-devel"
+BUILD_REQUIRES="
+	cygfuse
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfvalue-devel
+	libuna-devel
+"
 
 CYGCONF_ARGS="
 	--enable-wide-character-type

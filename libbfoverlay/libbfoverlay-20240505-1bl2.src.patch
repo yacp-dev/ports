@@ -1,5 +1,5 @@
---- origsrc/libbfoverlay-20240505/Makefile.am	2024-05-05 15:48:36.000000000 +0900
-+++ src/libbfoverlay-20240505/Makefile.am	2025-05-20 18:57:58.978533600 +0900
+--- origsrc/libbfoverlay-20240505/Makefile.am	2024-05-05 06:48:36.000000000 +0000
++++ src/libbfoverlay-20240505/Makefile.am	2026-11-15 15:40:24.267680100 +0000
 @@ -3,20 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -21,8 +21,8 @@
  	manuals \
  	tests \
  	msvscpp
---- origsrc/libbfoverlay-20240505/configure.ac	2024-05-05 15:48:36.000000000 +0900
-+++ src/libbfoverlay-20240505/configure.ac	2025-05-20 18:58:09.819170000 +0900
+--- origsrc/libbfoverlay-20240505/configure.ac	2024-05-05 06:48:36.000000000 +0000
++++ src/libbfoverlay-20240505/configure.ac	2026-11-15 15:40:24.267680100 +0000
 @@ -146,17 +146,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])

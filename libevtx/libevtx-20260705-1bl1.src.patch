@@ -1,5 +1,5 @@
---- origsrc/libevtx-20240504/Makefile.am	2024-05-04 14:50:37.000000000 +0900
-+++ src/libevtx-20240504/Makefile.am	2025-05-18 13:44:48.318418000 +0900
+--- origsrc/libevtx-20260705/Makefile.am	2026-07-05 09:15:56.000000000 +0000
++++ src/libevtx-20260705/Makefile.am	2026-11-15 08:12:54.964306700 +0000
 @@ -3,31 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -32,9 +32,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libevtx-20240504/configure.ac	2024-05-04 14:50:37.000000000 +0900
-+++ src/libevtx-20240504/configure.ac	2025-05-18 13:44:48.318418000 +0900
-@@ -191,29 +191,8 @@ dnl Generate Makefiles
+--- origsrc/libevtx-20260705/configure.ac	2026-07-05 09:15:56.000000000 +0000
++++ src/libevtx-20260705/configure.ac	2026-11-15 08:12:54.964306700 +0000
+@@ -201,29 +201,8 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -64,12 +64,12 @@
  AC_CONFIG_FILES([evtxtools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libevtx-20240504/pyevtx/Makefile.am	2024-05-04 14:50:37.000000000 +0900
-+++ src/libevtx-20240504/pyevtx/Makefile.am	2025-05-18 13:45:02.105413900 +0900
+--- origsrc/libevtx-20260705/pyevtx/Makefile.am	2026-07-05 09:15:56.000000000 +0000
++++ src/libevtx-20260705/pyevtx/Makefile.am	2026-11-15 08:12:54.966324100 +0000
 @@ -46,7 +46,7 @@ pyevtx_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyevtx_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyevtx_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyevtx_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyevtx_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

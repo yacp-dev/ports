@@ -16,7 +16,27 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libfcache-devel libfdata-devel libfdatetime-devel libfvalue-devel libfwnt-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfdatetime-devel
+	libfvalue-devel
+	libfwnt-devel
+	libuna-devel
+	python3-devel
+"
+
+export PYTHON=python3
 
 CYGCONF_ARGS="
 	--enable-python
@@ -31,9 +51,14 @@ src_test()
 		do
 			ln -fs ${f} .
 		done
+		cp -f ${B}/pyscca/.libs/pyscca.dll ./pyscca.cpython-312-x86_64-cygwin.dll
+		cp -f ${B}/pyscca/.libs/pyscca.dll ./pyscca.dll
 	popd
-	cygtest
-	rm tests/*.{py,sh}
+	pushd pyscca/.libs
+		cp -f pyscca.dll pyscca.cpython-312-x86_64-cygwin.dll
+	popd
+	CHECK_WITH_STDERR=1 PYTHON=python3 PATH="${B}/libscca/.libs:${B}/pyscca/.libs:${PATH}" cygtest
+	rm -f tests/*.{py,sh} tests/*.dll pyscca/.libs/pyscca.cpython-312-x86_64-cygwin.dll
 }
 
 DOCS="
@@ -44,7 +69,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libscca_CONTENTS="
 	usr/bin/*.exe
@@ -60,10 +85,10 @@ libscca_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libscca_CONTENTS="
-	usr/lib/python3.9
+python312_libscca_CONTENTS="
+	usr/lib/python3.12
 "
 libscca_SUMMARY="${SUMMARY} (utilities)"
 libscca1_SUMMARY="${SUMMARY} (runtime)"
 libscca_devel_SUMMARY="${SUMMARY} (development)"
-python39_libscca_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libscca_SUMMARY="${SUMMARY} (python312 bindings)"

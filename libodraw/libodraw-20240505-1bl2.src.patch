@@ -1,5 +1,5 @@
---- origsrc/libodraw-20240505/Makefile.am	2024-05-05 19:52:00.000000000 +0900
-+++ src/libodraw-20240505/Makefile.am	2025-05-20 08:17:28.934480200 +0900
+--- origsrc/libodraw-20240505/Makefile.am	2024-05-05 10:52:00.000000000 +0000
++++ src/libodraw-20240505/Makefile.am	2026-11-15 13:47:51.168173600 +0000
 @@ -3,20 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -21,8 +21,8 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libodraw-20240505/configure.ac	2024-05-05 19:52:00.000000000 +0900
-+++ src/libodraw-20240505/configure.ac	2025-05-20 08:17:28.950126800 +0900
+--- origsrc/libodraw-20240505/configure.ac	2024-05-05 10:52:00.000000000 +0000
++++ src/libodraw-20240505/configure.ac	2026-11-15 13:47:51.168968600 +0000
 @@ -145,18 +145,7 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])

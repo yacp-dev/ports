@@ -24,6 +24,14 @@ CYGCONF_ARGS="
 	--enable-maintainer-mode
 "
 
+src_test()
+{
+	cd ${B}/applications
+	verbose ./GDSIIConvert.exe > usage.log || test $? -eq 1
+	cat usage.log
+	grep -q "Usage: GDSIIConvert" usage.log
+}
+
 src_install()
 {
 	cd ${B}

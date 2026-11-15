@@ -5,7 +5,13 @@ CATEGORY="Libs"
 SUMMARY="Hierarchical matrix C/C++ library"
 DESCRIPTION="A hierarchical matrix C/C++ library including a LU solver."
 
-BUILD_REQUIRES="liblapack-devel"
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="LICENSE.md"
+
+BUILD_REQUIRES="
+	liblapack-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -19,20 +25,20 @@ CYGCMAKE_ARGS="
 
 PKG_NAMES="
 	hmat-oss
-	libhmat2
+	libhmat4
 	libhmat-devel
 "
 hmat_oss_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libhmat2_CONTENTS="
-	usr/bin/*.dll
+libhmat4_CONTENTS="
+	usr/bin/cyghmat-4.dll
 "
 libhmat_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 hmat_oss_SUMMARY="${SUMMARY} (utilities)"
-libhmat2_SUMMARY="${SUMMARY} (runtime)"
+libhmat4_SUMMARY="${SUMMARY} (runtime)"
 libhmat_devel_SUMMARY="${SUMMARY} (development)"

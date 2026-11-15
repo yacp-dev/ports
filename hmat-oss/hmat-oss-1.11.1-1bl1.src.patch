@@ -1,5 +1,5 @@
---- origsrc/hmat-oss-1.7.1/CMakeLists.txt	2021-06-08 23:58:41.000000000 +0900
-+++ src/hmat-oss-1.7.1/CMakeLists.txt	2021-06-28 21:57:02.218429400 +0900
+--- origsrc/hmat-oss-1.11.1/CMakeLists.txt	2021-06-08 23:58:41.000000000 +0900
++++ src/hmat-oss-1.11.1/CMakeLists.txt	2021-06-28 21:57:02.218429400 +0900
 @@ -457,3 +457,10 @@ endif()
  # ========================
  include(FeatureSummary)
@@ -11,8 +11,8 @@
 +SET(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/hmat-oss.pc.in ${CMAKE_BINARY_DIR}/hmat-oss.pc @ONLY)
 +INSTALL(FILES ${CMAKE_BINARY_DIR}/hmat-oss.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/hmat-oss-1.7.1/hmat-oss.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/hmat-oss-1.7.1/hmat-oss.pc.in	2021-06-29 01:11:41.912235300 +0900
+--- origsrc/hmat-oss-1.11.1/hmat-oss.pc.in	1970-01-01 09:00:00.000000000 +0900
++++ src/hmat-oss-1.11.1/hmat-oss.pc.in	2021-06-29 01:11:41.912235300 +0900
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,8 +24,8 @@
 +Version: @HMAT_VERSION@
 +Libs: -L${libdir} -lhmat
 +Cflags: -I${includedir}
---- origsrc/hmat-oss-1.7.1/src/blas_overloads.hpp	2021-06-08 23:58:41.000000000 +0900
-+++ src/hmat-oss-1.7.1/src/blas_overloads.hpp	2021-06-28 21:57:02.238441200 +0900
+--- origsrc/hmat-oss-1.11.1/src/blas_overloads.hpp	2021-06-08 23:58:41.000000000 +0900
++++ src/hmat-oss-1.11.1/src/blas_overloads.hpp	2021-06-28 21:57:02.238441200 +0900
 @@ -41,6 +41,10 @@
  
  namespace proxy_cblas {
@@ -37,8 +37,8 @@
  #if defined(OPENBLAS_COMPLEX_STRUCT) || defined(OPENBLAS_COMPLEX_C99)
   #define _C(x) (_C_T::value_type*)x
   #define _CC(T, x) (T*)x
---- origsrc/hmat-oss-1.7.1/src/common/my_assert.h	2021-06-08 23:58:41.000000000 +0900
-+++ src/hmat-oss-1.7.1/src/common/my_assert.h	2021-06-28 21:57:02.244456400 +0900
+--- origsrc/hmat-oss-1.11.1/src/common/my_assert.h	2021-06-08 23:58:41.000000000 +0900
++++ src/hmat-oss-1.11.1/src/common/my_assert.h	2021-06-28 21:57:02.244456400 +0900
 @@ -39,7 +39,7 @@
  #  define HMAT_FUNCTION ((const char *) 0)
  #endif

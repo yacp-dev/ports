@@ -1,5 +1,5 @@
---- origsrc/libmsiecf-20240425/Makefile.am	2024-04-25 14:10:35.000000000 +0900
-+++ src/libmsiecf-20240425/Makefile.am	2025-05-18 14:51:12.063323400 +0900
+--- origsrc/libmsiecf-20260525/Makefile.am	2026-05-25 19:09:31.000000000 +0000
++++ src/libmsiecf-20260525/Makefile.am	2026-11-15 04:29:52.856500400 +0000
 @@ -3,24 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -25,9 +25,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libmsiecf-20240425/configure.ac	2024-04-25 14:10:35.000000000 +0900
-+++ src/libmsiecf-20240425/configure.ac	2025-05-18 14:51:12.063323400 +0900
-@@ -163,20 +163,6 @@ dnl Generate Makefiles
+--- origsrc/libmsiecf-20260525/configure.ac	2026-05-25 19:09:31.000000000 +0000
++++ src/libmsiecf-20260525/configure.ac	2026-11-15 04:29:52.857728200 +0000
+@@ -162,20 +162,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -48,8 +48,8 @@
  AC_CONFIG_FILES([libmsiecf/Makefile])
  AC_CONFIG_FILES([pymsiecf/Makefile])
  AC_CONFIG_FILES([msiecftools/Makefile])
---- origsrc/libmsiecf-20240425/pymsiecf/Makefile.am	2024-04-25 14:10:35.000000000 +0900
-+++ src/libmsiecf-20240425/pymsiecf/Makefile.am	2025-05-18 14:51:37.772770400 +0900
+--- origsrc/libmsiecf-20260525/pymsiecf/Makefile.am	2026-05-25 19:09:31.000000000 +0000
++++ src/libmsiecf-20260525/pymsiecf/Makefile.am	2026-11-15 04:29:52.858508500 +0000
 @@ -50,7 +50,7 @@ pymsiecf_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  

@@ -9,7 +9,22 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libcthreads-devel libfcache-devel libfdata-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -31,16 +46,26 @@ src_test()
 		do
 			ln -fs ${f} .
 		done
+		cp -f ${B}/pyvsmbr/.libs/pyvsmbr.dll ./pyvsmbr.cpython-312-x86_64-cygwin.dll
+		cp -f ${B}/pyvsmbr/.libs/pyvsmbr.dll ./pyvsmbr.dll
 	popd
-	cygtest
-	rm tests/*.{py,sh}
+	pushd pyvsmbr/.libs
+		cp -f pyvsmbr.dll pyvsmbr.cpython-312-x86_64-cygwin.dll
+	popd
+	CHECK_WITH_STDERR=1 PYTHON=python3 PATH="${B}/libvsmbr/.libs:${B}/pyvsmbr/.libs:${PATH}" cygtest
+	rm -f tests/*.{py,sh} tests/*.dll pyvsmbr/.libs/pyvsmbr.cpython-312-x86_64-cygwin.dll
 }
+
+DOCS="
+	COPYING.LESSER
+	documentation/*
+"
 
 PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libvsmbr_CONTENTS="
 	usr/bin/*.exe
@@ -56,10 +81,10 @@ libvsmbr_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libvsmbr_CONTENTS="
-	usr/lib/python3.9
+python312_libvsmbr_CONTENTS="
+	usr/lib/python3.12
 "
 libvsmbr_SUMMARY="${SUMMARY} (utilities)"
 libvsmbr1_SUMMARY="${SUMMARY} (runtime)"
 libvsmbr_devel_SUMMARY="${SUMMARY} (development)"
-python39_libvsmbr_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libvsmbr_SUMMARY="${SUMMARY} (python312 bindings)"

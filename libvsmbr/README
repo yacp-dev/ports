@@ -3,42 +3,44 @@ libvsmbr
 libvsmbr is a library to access the Master Boot Record (MBR) volume system.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libbfio1-20240414-1bl1
-  libcdata1-20240414-1bl1
-  libcerror1-20240413-1bl1
-  libclocale1-20240414-1bl1
-  libcnotify1-20240414-1bl1
-  libcthreads1-20240413-1bl1
-  libfcache1-20240414-1bl1
-  libfdata1-20240415-1bl1
-  libvsmbr-devel-20240505-1bl1
-  libvsmbr1-20240505-1bl1
-  pkg-config-2.4.3-1
-  python39-3.9.18-2
+  cygwin-3.6.12-1
+  libbfio1-20260623-1bl1
+  libcdata1-20260703-1bl1
+  libcerror1-20260703-1bl1
+  libclocale1-20260703-1bl1
+  libcnotify1-20260703-1bl1
+  libcthreads1-20260703-1bl1
+  libfcache1-20260520-1bl1
+  libfdata1-20260521-1bl1
+  libvsmbr-devel-20240505-1bl2
+  libvsmbr1-20240505-1bl2
+  pkg-config-3.0.10-1
+  python312-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libbfio-devel-20240414-1bl1
-  libcdata-devel-20240414-1bl1
-  libcerror-devel-20240413-1bl1
-  libclocale-devel-20240414-1bl1
-  libcnotify-devel-20240414-1bl1
-  libcthreads-devel-20240413-1bl1
-  libfcache-devel-20240414-1bl1
-  libfdata-devel-20240415-1bl1
-  libtool-2.5.4-1
+  libbfio-devel-20260623-1bl1
+  libcdata-devel-20260703-1bl1
+  libcerror-devel-20260703-1bl1
+  libcfile-devel-20260704-1bl1
+  libclocale-devel-20260703-1bl1
+  libcnotify-devel-20260703-1bl1
+  libcpath-devel-20260703-1bl1
+  libcsplit-devel-20260703-1bl1
+  libcthreads-devel-20260703-1bl1
+  libfcache-devel-20260520-1bl1
+  libfdata-devel-20260521-1bl1
+  libtool-2.6.2-1
+  libuna-devel-20260602-1bl2
   make-4.4.1-2
-  python39-3.9.18-2
-  python39-devel-3.9.18-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
 
 Canonical website:
   https://github.com/libyal/libvsmbr
@@ -60,7 +62,7 @@ This will create:
   /usr/src/libvsmbr-20240505-X.tar.xz
   /usr/src/libvsmbr1-20240505-X.tar.xz
   /usr/src/libvsmbr-devel-20240505-X.tar.xz
-  /usr/src/python39-libvsmbr-20240505-X.tar.xz
+  /usr/src/python312-libvsmbr-20240505-X.tar.xz
 
 -------------------------------------------
 
@@ -71,7 +73,9 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/libvsmbr.README
   /usr/share/doc/libvsmbr/AUTHORS
   /usr/share/doc/libvsmbr/COPYING
+  /usr/share/doc/libvsmbr/COPYING.LESSER
   /usr/share/doc/libvsmbr/ChangeLog
+  /usr/share/doc/libvsmbr/Master Boot Record (MBR) partition table format.asciidoc
   /usr/share/doc/libvsmbr/README
   /usr/share/man/man1/vsmbrinfo.1.gz
 
@@ -90,12 +94,15 @@ Files included in the binary package:
   /usr/lib/pkgconfig/libvsmbr.pc
   /usr/share/man/man3/libvsmbr.3.gz
 
-(python39-libvsmbr)
-  /usr/lib/python3.9/site-packages/pyvsmbr.dll
+(python312-libvsmbr)
+  /usr/lib/python3.12/site-packages/pyvsmbr.dll
 
 ------------------
 
 Port Notes:
+
+----- version 20240505-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 20240505-1bl1 -----
 Version bump.

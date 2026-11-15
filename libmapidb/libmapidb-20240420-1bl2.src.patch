@@ -1,5 +1,5 @@
---- origsrc/libmapidb-20240420/Makefile.am	2024-04-20 21:21:23.000000000 +0900
-+++ src/libmapidb-20240420/Makefile.am	2025-05-18 19:13:42.370847100 +0900
+--- origsrc/libmapidb-20240420/Makefile.am	2024-04-20 12:21:23.000000000 +0000
++++ src/libmapidb-20240420/Makefile.am	2026-11-15 04:16:23.235314300 +0000
 @@ -3,10 +3,7 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -11,8 +11,19 @@
  	manuals \
  	tests \
  	msvscpp
---- origsrc/libmapidb-20240420/configure.ac	2024-04-20 21:21:23.000000000 +0900
-+++ src/libmapidb-20240420/configure.ac	2025-05-18 19:13:34.559303800 +0900
+--- origsrc/libmapidb-20240420/acinclude.m4	2024-04-20 12:21:23.000000000 +0000
++++ src/libmapidb-20240420/acinclude.m4	2026-11-15 04:16:23.233304700 +0000
+@@ -3,6 +3,8 @@ dnl
+ dnl Version: 20200715
+ 
+ dnl Function to detect if libmapidb dependencies are available
++AC_DEFUN([AX_LIBMAPIDB_CHECK_LOCAL],
++  [dnl No additional checks.
+   ])
+ 
+ dnl Function to check if DLL support is needed
+--- origsrc/libmapidb-20240420/configure.ac	2024-04-20 12:21:23.000000000 +0000
++++ src/libmapidb-20240420/configure.ac	2026-11-15 04:16:23.233304700 +0000
 @@ -100,8 +100,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
@@ -22,8 +33,8 @@
  AC_CONFIG_FILES([libmapidb/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libmapidb-20240420/tests/mapidb_test_memory.c	2024-04-20 21:21:23.000000000 +0900
-+++ src/libmapidb-20240420/tests/mapidb_test_memory.c	2025-05-18 19:14:06.608906100 +0900
+--- origsrc/libmapidb-20240420/tests/mapidb_test_memory.c	2024-04-20 12:21:23.000000000 +0000
++++ src/libmapidb-20240420/tests/mapidb_test_memory.c	2026-11-15 04:16:23.235314300 +0000
 @@ -45,6 +45,7 @@ int mapidb_test_memcpy_attempts_before_f
  int mapidb_test_memset_attempts_before_fail                           = -1;
  int mapidb_test_realloc_attempts_before_fail                          = -1;

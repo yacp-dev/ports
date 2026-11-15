@@ -16,7 +16,27 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libbfio-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libcpath-devel libfdatetime-devel libfguid-devel libfvalue-devel libuna-devel python39-devel"
+export PYTHON=python3
+
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfdatetime-devel
+	libfguid-devel
+	libfmapi-devel
+	libfvalue-devel
+	libfwnt-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -28,11 +48,12 @@ src_test()
 	pushd tests
 		for f in ${S}/tests/*.{py,sh}
 		do
-			ln -fs ${f} .
+			cp -f ${f} .
 		done
+		cp -f ${B}/pynk2/.libs/pynk2.dll .
 	popd
-	cygtest
-	rm tests/*.{py,sh}
+	CHECK_WITH_STDERR=1 PYTHON=python3 PATH=${B}/${PN}/.libs:${B}/pynk2/.libs:${PATH} cygtest
+	rm -f tests/*.{py,sh} tests/pynk2.dll
 }
 
 DOCS="
@@ -43,7 +64,7 @@ PKG_NAMES="
 	${PN}
 	${PN}_1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libnk2_CONTENTS="
 	usr/bin/*.exe
@@ -59,10 +80,10 @@ libnk2_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libnk2_CONTENTS="
-	usr/lib/python3.9
+python312_libnk2_CONTENTS="
+	usr/lib/python3.12
 "
 libnk2_SUMMARY="${SUMMARY} (utilities)"
 libnk2_1_SUMMARY="${SUMMARY} (runtime)"
 libnk2_devel_SUMMARY="${SUMMARY} (development)"
-python39_libnk2_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libnk2_SUMMARY="${SUMMARY} (python312 bindings)"

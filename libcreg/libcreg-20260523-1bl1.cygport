@@ -9,7 +9,22 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libcthreads-devel libfcache-devel libfdata-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -28,11 +43,12 @@ src_test()
 	pushd tests
 		for f in ${S}/tests/*.{py,sh}
 		do
-			ln -fs ${f} .
+			cp -f ${f} .
 		done
+		cp -f ${B}/pycreg/.libs/pycreg.dll .
 	popd
-	cygtest
-	rm tests/*.{py,sh}
+	CHECK_WITH_STDERR=1 PYTHON=python3 PATH=${B}/${PN}/.libs:${B}/pycreg/.libs:${PATH} cygtest
+	rm -f tests/*.{py,sh} tests/pycreg.dll
 }
 
 DOCS="
@@ -43,7 +59,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libcreg_CONTENTS="
 	usr/bin/*.exe
@@ -59,10 +75,10 @@ libcreg_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libcreg_CONTENTS="
-	usr/lib/python3.9
+python312_libcreg_CONTENTS="
+	usr/lib/python3.12
 "
 libcreg_SUMMARY="${SUMMARY} (utilities)"
 libcreg1_SUMMARY="${SUMMARY} (runtime)"
 libcreg_devel_SUMMARY="${SUMMARY} (development)"
-python39_libcreg_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libcreg_SUMMARY="${SUMMARY} (python312 bindings)"

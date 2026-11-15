@@ -1,5 +1,5 @@
---- origsrc/libcreg-20240419/Makefile.am	2024-04-19 13:38:43.000000000 +0900
-+++ src/libcreg-20240419/Makefile.am	2025-05-18 11:15:45.540412700 +0900
+--- origsrc/libcreg-20260523/Makefile.am	2026-05-23 10:00:24.000000000 +0000
++++ src/libcreg-20260523/Makefile.am	2026-11-15 00:03:42.765037500 +0000
 @@ -3,22 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -23,9 +23,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libcreg-20240419/configure.ac	2024-04-19 13:38:43.000000000 +0900
-+++ src/libcreg-20240419/configure.ac	2025-05-18 11:15:45.540412700 +0900
-@@ -167,18 +167,6 @@ dnl Generate Makefiles
+--- origsrc/libcreg-20260523/configure.ac	2026-05-23 10:00:24.000000000 +0000
++++ src/libcreg-20260523/configure.ac	2026-11-15 00:03:42.765037500 +0000
+@@ -166,18 +166,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -44,8 +44,8 @@
  AC_CONFIG_FILES([libcreg/Makefile])
  AC_CONFIG_FILES([pycreg/Makefile])
  AC_CONFIG_FILES([cregtools/Makefile])
---- origsrc/libcreg-20240419/pycreg/Makefile.am	2024-04-19 13:38:43.000000000 +0900
-+++ src/libcreg-20240419/pycreg/Makefile.am	2025-05-18 11:16:14.025478400 +0900
+--- origsrc/libcreg-20260523/pycreg/Makefile.am	2026-05-23 10:00:24.000000000 +0000
++++ src/libcreg-20260523/pycreg/Makefile.am	2026-11-15 00:03:42.765037500 +0000
 @@ -45,7 +45,7 @@ pycreg_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  

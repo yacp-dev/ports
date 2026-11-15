@@ -1,5 +1,5 @@
---- origsrc/libgzipf-20240422/Makefile.am	2024-04-22 13:38:48.000000000 +0900
-+++ src/libgzipf-20240422/Makefile.am	2025-05-18 14:08:07.410609300 +0900
+--- origsrc/libgzipf-20260525/Makefile.am	2026-05-25 04:46:54.000000000 +0000
++++ src/libgzipf-20260525/Makefile.am	2026-11-15 00:16:39.148250200 +0000
 @@ -3,23 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -24,9 +24,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libgzipf-20240422/configure.ac	2024-04-22 13:38:48.000000000 +0900
-+++ src/libgzipf-20240422/configure.ac	2025-05-18 14:08:07.410609300 +0900
-@@ -174,19 +174,6 @@ dnl Generate Makefiles
+--- origsrc/libgzipf-20260525/configure.ac	2026-05-25 04:46:54.000000000 +0000
++++ src/libgzipf-20260525/configure.ac	2026-11-15 00:16:39.149738400 +0000
+@@ -173,19 +173,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -46,8 +46,8 @@
  AC_CONFIG_FILES([libgzipf/Makefile])
  AC_CONFIG_FILES([pygzipf/Makefile])
  AC_CONFIG_FILES([gzipftools/Makefile])
---- origsrc/libgzipf-20240422/pygzipf/Makefile.am	2024-04-22 13:38:48.000000000 +0900
-+++ src/libgzipf-20240422/pygzipf/Makefile.am	2025-05-18 14:08:22.030329100 +0900
+--- origsrc/libgzipf-20260525/pygzipf/Makefile.am	2026-05-25 04:46:54.000000000 +0000
++++ src/libgzipf-20260525/pygzipf/Makefile.am	2026-11-15 00:16:39.150268200 +0000
 @@ -43,7 +43,7 @@ pygzipf_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
@@ -57,8 +57,8 @@
  
  endif
  
---- origsrc/libgzipf-20240422/tests/Makefile.am	2024-04-22 13:38:48.000000000 +0900
-+++ src/libgzipf-20240422/tests/Makefile.am	2025-05-18 14:18:52.625718100 +0900
+--- origsrc/libgzipf-20260525/tests/Makefile.am	2026-05-25 04:46:54.000000000 +0000
++++ src/libgzipf-20260525/tests/Makefile.am	2026-11-15 00:16:39.151749700 +0000
 @@ -3,6 +3,7 @@ AUTOMAKE_OPTIONS = subdir-objects
  AM_CPPFLAGS = \
  	-I../include -I$(top_srcdir)/include \

@@ -3,90 +3,94 @@ libewf
 libewf is a library to access the Expert Witness Compression Format (EWF).
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libbfio1-20240414-1bl1
-  libbz2_1-1.0.8-1
-  libcdata1-20240414-1bl1
-  libcdatetime1-20240414-1bl1
-  libcerror1-20240413-1bl1
-  libcfile1-20240414-1bl1
-  libclocale1-20240414-1bl1
-  libcnotify1-20240414-1bl1
-  libcpath1-20240414-1bl1
-  libcsplit1-20240414-1bl1
-  libcthreads1-20240413-1bl1
-  libewf-devel-20240506-1bl1
-  libewf3-20240506-1bl1
-  libfcache1-20240414-1bl1
-  libfdata1-20240415-1bl1
-  libfdatetime1-20240415-1bl1
-  libfvalue1-20240415-1bl1
-  libhmac1-20240417-1bl1
-  libodraw1-20240505-1bl1
-  libsmdev1-20240505-1bl1
-  libsmraw1-20240506-1bl1
-  libuna1-20240414-1bl1
-  pkg-config-2.4.3-1
-  python39-3.9.18-2
-  zlib0-1.3.1-1
+  cygfuse-3.2.0-3
+  cygwin-3.6.12-1
+  libbfio1-20260623-1bl1
+  libbz2_1-1.0.8-2
+  libcdata1-20260703-1bl1
+  libcdatetime1-20260703-1bl1
+  libcerror1-20260703-1bl1
+  libcfile1-20260704-1bl1
+  libclocale1-20260703-1bl1
+  libcnotify1-20260703-1bl1
+  libcpath1-20260703-1bl1
+  libcsplit1-20260703-1bl1
+  libcthreads1-20260703-1bl1
+  libewf-devel-20260924-1bl1
+  libewf3-20260924-1bl1
+  libfcache1-20260520-1bl1
+  libfdata1-20260521-1bl1
+  libfdatetime1-20260521-1bl1
+  libfvalue1-20260531-1bl1
+  libhmac1-20260522-1bl1
+  libodraw1-20240505-1bl2
+  libsmdev1-20260902-1bl1
+  libsmraw1-20260902-1bl1
+  libuna1-20260602-1bl2
+  libuuid1-2.40.2-2
+  pkg-config-3.0.10-1
+  python312-3.12.12-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygfuse-3.2.0-3
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libbfio-devel-20240414-1bl1
-  libbz2-devel-1.0.8-1
-  libcdata-devel-20240414-1bl1
-  libcdatetime-devel-20240414-1bl1
-  libcerror-devel-20240413-1bl1
-  libcfile-devel-20240414-1bl1
-  libclocale-devel-20240414-1bl1
-  libcnotify-devel-20240414-1bl1
-  libcpath-devel-20240414-1bl1
-  libcsplit-devel-20240414-1bl1
-  libcthreads-devel-20240413-1bl1
-  libfcache-devel-20240414-1bl1
-  libfdata-devel-20240415-1bl1
-  libfdatetime-devel-20240415-1bl1
-  libfvalue-devel-20240415-1bl1
-  libhmac-devel-20240417-1bl1
-  libodraw-devel-20240505-1bl1
-  libsmdev-devel-20240505-1bl1
-  libsmraw-devel-20240506-1bl1
-  libtool-2.5.4-1
-  libuna-devel-20240414-1bl1
+  libbfio-devel-20260623-1bl1
+  libbz2-devel-1.0.8-2
+  libcaes-devel-20261028-1bl1
+  libcdata-devel-20260703-1bl1
+  libcdatetime-devel-20260703-1bl1
+  libcerror-devel-20260703-1bl1
+  libcfile-devel-20260704-1bl1
+  libclocale-devel-20260703-1bl1
+  libcnotify-devel-20260703-1bl1
+  libcpath-devel-20260703-1bl1
+  libcsplit-devel-20260703-1bl1
+  libcthreads-devel-20260703-1bl1
+  libfcache-devel-20260520-1bl1
+  libfdata-devel-20260521-1bl1
+  libfdatetime-devel-20260521-1bl1
+  libfguid-devel-20260521-1bl1
+  libfvalue-devel-20260531-1bl1
+  libhmac-devel-20260522-1bl1
+  libodraw-devel-20240505-1bl2
+  libsmdev-devel-20260902-1bl1
+  libsmraw-devel-20260902-1bl1
+  libtool-2.6.2-1
+  libuna-devel-20260602-1bl2
+  libuuid-devel-2.40.2-2
   make-4.4.1-2
-  python39-3.9.18-2
-  python39-devel-3.9.18-2
-  zlib-devel-1.3.1-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/libyal/libewf
 
 Canonical download:
-  https://github.com/libyal/libewf/archive/refs/tags/20240506.tar.gz
+  https://github.com/libyal/libewf/archive/refs/tags/20260924.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libewf-20240506-X-src.tar.xz
+  1. unpack libewf-20260924-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libewf-20240506-X.cygport all
+        % cygport ./libewf-20260924-X.cygport all
 
 This will create:
-  /usr/src/libewf-20240506-X-src.tar.xz
-  /usr/src/libewf-20240506-X.tar.xz
-  /usr/src/libewf3-20240506-X.tar.xz
-  /usr/src/libewf-devel-20240506-X.tar.xz
-  /usr/src/python39-libewf-20240506-X.tar.xz
+  /usr/src/libewf-20260924-X-src.tar.xz
+  /usr/src/libewf-20260924-X.tar.xz
+  /usr/src/libewf3-20260924-X.tar.xz
+  /usr/src/libewf-devel-20260924-X.tar.xz
+  /usr/src/python312-libewf-20260924-X.tar.xz
 
 -------------------------------------------
 
@@ -132,12 +136,15 @@ Files included in the binary package:
   /usr/lib/pkgconfig/libewf.pc
   /usr/share/man/man3/libewf.3.gz
 
-(python39-libewf)
-  /usr/lib/python3.9/site-packages/pyewf.dll
+(python312-libewf)
+  /usr/lib/python3.12/site-packages/pyewf.cpython-312-x86_64-cygwin.dll
 
 ------------------
 
 Port Notes:
+
+----- version 20260924-1bl1 -----
+Version bump.
 
 ----- version 20240506-1bl1 -----
 Version bump.

@@ -1,5 +1,5 @@
---- origsrc/libewf-20240506/Makefile.am	2024-05-06 13:26:24.000000000 +0900
-+++ src/libewf-20240506/Makefile.am	2025-05-20 09:26:07.991669700 +0900
+--- origsrc/libewf-20260924/Makefile.am	2026-09-24 16:25:12.000000000 +0000
++++ src/libewf-20260924/Makefile.am	2026-11-15 16:14:58.379292300 +0000
 @@ -3,32 +3,10 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -33,9 +33,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libewf-20240506/configure.ac	2024-05-06 13:26:24.000000000 +0900
-+++ src/libewf-20240506/configure.ac	2025-05-20 09:25:50.369786600 +0900
-@@ -230,30 +230,9 @@ dnl Generate Makefiles
+--- origsrc/libewf-20260924/configure.ac	2026-09-24 16:25:12.000000000 +0000
++++ src/libewf-20260924/configure.ac	2026-11-15 16:14:58.379292300 +0000
+@@ -240,30 +240,9 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -66,9 +66,9 @@
  AC_CONFIG_FILES([ewftools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libewf-20240506/libewf/libewf_chunk_group.c	2024-05-06 13:26:24.000000000 +0900
-+++ src/libewf-20240506/libewf/libewf_chunk_group.c	2025-05-20 09:36:57.326365400 +0900
-@@ -474,6 +474,7 @@ int libewf_chunk_group_fill_v1(
+--- origsrc/libewf-20260924/libewf/libewf_chunk_group.c	2026-09-24 16:25:12.000000000 +0000
++++ src/libewf-20260924/libewf/libewf_chunk_group.c	2026-11-15 16:14:58.381301200 +0000
+@@ -475,6 +475,7 @@ int libewf_chunk_group_fill_v1(
  		}
  		if( chunk_data_size == 0 )
  		{
@@ -76,7 +76,7 @@
  			if( libcnotify_verbose != 0 )
  			{
  				libcnotify_printf(
-@@ -481,10 +482,12 @@ int libewf_chunk_group_fill_v1(
+@@ -482,10 +483,12 @@ int libewf_chunk_group_fill_v1(
  				 function,
  				 table_entry_index );
  			}
@@ -89,7 +89,7 @@
  			if( libcnotify_verbose != 0 )
  			{
  				libcnotify_printf(
-@@ -492,6 +495,7 @@ int libewf_chunk_group_fill_v1(
+@@ -493,6 +496,7 @@ int libewf_chunk_group_fill_v1(
  				 function,
  				 table_entry_index );
  			}
@@ -97,7 +97,7 @@
  			corrupted = 1;
  		}
  		if( is_compressed != 0 )
-@@ -979,7 +983,7 @@ int libewf_chunk_group_fill_v2(
+@@ -973,7 +977,7 @@ int libewf_chunk_group_fill_v2(
  		{
  		}
  */
@@ -106,7 +106,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			if( ( chunk_data_flags & ~( 0x00000007UL ) ) != 0 )
-@@ -1191,6 +1195,7 @@ int libewf_chunk_group_correct_v1(
+@@ -1179,6 +1183,7 @@ int libewf_chunk_group_correct_v1(
  		}
  		if( chunk_data_size == 0 )
  		{
@@ -114,7 +114,7 @@
  			if( libcnotify_verbose != 0 )
  			{
  				libcnotify_printf(
-@@ -1198,10 +1203,12 @@ int libewf_chunk_group_correct_v1(
+@@ -1186,10 +1191,12 @@ int libewf_chunk_group_correct_v1(
  				 function,
  				 chunk_index );
  			}
@@ -127,7 +127,7 @@
  			if( libcnotify_verbose != 0 )
  			{
  				libcnotify_printf(
-@@ -1209,6 +1216,7 @@ int libewf_chunk_group_correct_v1(
+@@ -1197,6 +1204,7 @@ int libewf_chunk_group_correct_v1(
  				 function,
  				 chunk_index );
  			}
@@ -135,19 +135,19 @@
  			corrupted = 1;
  		}
  		range_flags = LIBEWF_RANGE_FLAG_HAS_CHECKSUM;
---- origsrc/libewf-20240506/pyewf/Makefile.am	2024-05-06 13:26:24.000000000 +0900
-+++ src/libewf-20240506/pyewf/Makefile.am	2025-05-20 09:26:17.271220100 +0900
+--- origsrc/libewf-20260924/pyewf/Makefile.am	2026-09-24 16:25:12.000000000 +0000
++++ src/libewf-20260924/pyewf/Makefile.am	2026-11-15 16:14:58.381301200 +0000
 @@ -47,7 +47,7 @@ pyewf_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyewf_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyewf_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyewf_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyewf_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  
  endif
  
---- origsrc/libewf-20240506/tests/Makefile.am	2024-05-06 13:26:24.000000000 +0900
-+++ src/libewf-20240506/tests/Makefile.am	2025-05-20 09:50:26.776699300 +0900
+--- origsrc/libewf-20260924/tests/Makefile.am	2026-09-24 16:25:12.000000000 +0000
++++ src/libewf-20260924/tests/Makefile.am	2026-11-15 16:14:58.383310600 +0000
 @@ -3,6 +3,7 @@ AUTOMAKE_OPTIONS = subdir-objects
  AM_CPPFLAGS = \
  	-I../include -I$(top_srcdir)/include \

@@ -1,5 +1,5 @@
---- origsrc/libnsfdb-20240426/Makefile.am	2024-04-26 14:38:08.000000000 +0900
-+++ src/libnsfdb-20240426/Makefile.am	2025-05-18 15:31:42.808553800 +0900
+--- origsrc/libnsfdb-20260526/Makefile.am	2026-05-26 07:56:52.000000000 +0000
++++ src/libnsfdb-20260526/Makefile.am	2026-11-15 05:40:06.434959600 +0000
 @@ -3,23 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -24,9 +24,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libnsfdb-20240426/configure.ac	2024-04-26 14:38:08.000000000 +0900
-+++ src/libnsfdb-20240426/configure.ac	2025-05-18 15:32:10.618790700 +0900
-@@ -147,20 +147,6 @@ dnl Generate Makefiles
+--- origsrc/libnsfdb-20260526/configure.ac	2026-05-26 07:56:52.000000000 +0000
++++ src/libnsfdb-20260526/configure.ac	2026-11-15 05:40:06.435462800 +0000
+@@ -146,20 +146,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -47,8 +47,8 @@
  AC_CONFIG_FILES([libnsfdb/Makefile])
  AC_CONFIG_FILES([nsfdbtools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
---- origsrc/libnsfdb-20240426/nsfdbtools/export_handle.c	2024-04-26 14:38:08.000000000 +0900
-+++ src/libnsfdb-20240426/nsfdbtools/export_handle.c	2025-05-18 15:37:27.734745600 +0900
+--- origsrc/libnsfdb-20260526/nsfdbtools/export_handle.c	2026-05-26 07:56:52.000000000 +0000
++++ src/libnsfdb-20260526/nsfdbtools/export_handle.c	2026-11-15 05:40:06.436970400 +0000
 @@ -711,6 +711,7 @@ int export_handle_export_note(
  	     log_handle,
  	     error ) != 1 )
@@ -82,8 +82,8 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
---- origsrc/libnsfdb-20240426/tests/nsfdb_test_memory.c	2024-04-26 14:38:08.000000000 +0900
-+++ src/libnsfdb-20240426/tests/nsfdb_test_memory.c	2025-05-18 15:39:54.105855700 +0900
+--- origsrc/libnsfdb-20260526/tests/nsfdb_test_memory.c	2026-05-26 07:56:52.000000000 +0000
++++ src/libnsfdb-20260526/tests/nsfdb_test_memory.c	2026-11-15 05:40:06.437474000 +0000
 @@ -45,6 +45,7 @@ int nsfdb_test_memcpy_attempts_before_fa
  int nsfdb_test_memset_attempts_before_fail                           = -1;
  int nsfdb_test_realloc_attempts_before_fail                          = -1;

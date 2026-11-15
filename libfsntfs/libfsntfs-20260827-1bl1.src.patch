@@ -1,5 +1,5 @@
---- origsrc/libfsntfs-20240501/Makefile.am	2024-05-01 17:05:06.000000000 +0900
-+++ src/libfsntfs-20240501/Makefile.am	2025-05-18 23:45:10.494269700 +0900
+--- origsrc/libfsntfs-20260827/Makefile.am	2026-08-27 10:58:45.000000000 +0000
++++ src/libfsntfs-20260827/Makefile.am	2026-11-15 11:51:11.999017800 +0000
 @@ -3,27 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -28,9 +28,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfsntfs-20240501/configure.ac	2024-05-01 17:05:06.000000000 +0900
-+++ src/libfsntfs-20240501/configure.ac	2025-05-18 23:45:10.494269700 +0900
-@@ -182,25 +182,8 @@ dnl Generate Makefiles
+--- origsrc/libfsntfs-20260827/configure.ac	2026-08-27 10:58:45.000000000 +0000
++++ src/libfsntfs-20260827/configure.ac	2026-11-15 11:51:11.999017800 +0000
+@@ -192,25 +192,8 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -56,19 +56,19 @@
  AC_CONFIG_FILES([fsntfstools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libfsntfs-20240501/pyfsntfs/Makefile.am	2024-05-01 17:05:06.000000000 +0900
-+++ src/libfsntfs-20240501/pyfsntfs/Makefile.am	2025-05-18 23:45:10.494269700 +0900
+--- origsrc/libfsntfs-20260827/pyfsntfs/Makefile.am	2026-08-27 10:58:45.000000000 +0000
++++ src/libfsntfs-20260827/pyfsntfs/Makefile.am	2026-11-15 11:51:12.001038300 +0000
 @@ -65,7 +65,7 @@ pyfsntfs_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  
- pyfsntfs_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyfsntfs_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyfsntfs_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyfsntfs_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  
  endif
  
---- origsrc/libfsntfs-20240501/tests/Makefile.am	2024-05-01 17:05:06.000000000 +0900
-+++ src/libfsntfs-20240501/tests/Makefile.am	2025-05-18 23:45:10.494269700 +0900
+--- origsrc/libfsntfs-20260827/tests/Makefile.am	2026-08-27 10:58:45.000000000 +0000
++++ src/libfsntfs-20260827/tests/Makefile.am	2026-11-15 11:51:12.001038300 +0000
 @@ -3,6 +3,7 @@ AUTOMAKE_OPTIONS = subdir-objects
  AM_CPPFLAGS = \
  	-I../include -I$(top_srcdir)/include \

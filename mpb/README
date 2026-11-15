@@ -1,37 +1,37 @@
 mpb
 ------------------------------------------
-MPB is a free software package for computing photonic band structures and modes.
+MPB is a free software package for computing photonic band structures and
+modes.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.6-1
-  libctl7-4.5.1-1bl2
-  libfftw3-devel-3.3.10-1
-  libfftw3_3-3.3.10-1
+  cygwin-3.6.12-1
+  libctl7-4.7.1-1bl1
+  libfftw3-devel-3.3.11-1
+  libfftw3_3-3.3.11-1
   libguile3.0_1-3.0.11-1
-  libhdf5_320-2.0.0-1
+  libhdf5_320-2.2.0-1
   liblapack0-3.12.0-1
-  libmpb-devel-1.12.0-1bl1
-  libmpb6-1.12.0-1bl1
-  libnlopt1-2.10.0-1bl1
-  libopenblas-0.3.25-1
-  pkg-config-2.5.1-1
+  libmpb-devel-1.12.0-1bl2
+  libmpb6-1.12.0-1bl2
+  libnlopt1-2.11.0-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libctl-devel-4.5.1-1bl2
-  libfftw3-devel-3.3.10-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libctl-devel-4.7.1-1bl1
+  libfftw3-devel-3.3.11-1
+  libgmp-devel-6.3.0-1
   libguile3.0-devel-3.0.11-1
-  libhdf5-devel-2.0.0-1
+  libhdf5-devel-2.2.0-1
   liblapack-devel-3.12.0-1
-  libnlopt-devel-2.10.0-1bl1
-  libtool-2.5.4-1
+  libnlopt-devel-2.11.0-1bl1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -91,6 +91,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.12.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.12.0-1bl1 -----
 Version bump.

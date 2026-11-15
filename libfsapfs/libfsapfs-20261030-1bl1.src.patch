@@ -1,5 +1,5 @@
---- origsrc/libfsapfs-20240429/Makefile.am	2024-04-29 13:08:24.000000000 +0900
-+++ src/libfsapfs-20240429/Makefile.am	2025-05-18 19:28:38.523452400 +0900
+--- origsrc/libfsapfs-20261030/Makefile.am	2026-10-30 04:56:32.000000000 +0000
++++ src/libfsapfs-20261030/Makefile.am	2026-11-15 05:56:42.736703500 +0000
 @@ -3,27 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -28,9 +28,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfsapfs-20240429/configure.ac	2024-04-29 13:08:24.000000000 +0900
-+++ src/libfsapfs-20240429/configure.ac	2025-05-18 19:28:38.539112100 +0900
-@@ -186,23 +186,6 @@ dnl Generate Makefiles
+--- origsrc/libfsapfs-20261030/configure.ac	2026-10-30 04:56:32.000000000 +0000
++++ src/libfsapfs-20261030/configure.ac	2026-11-15 05:56:42.734688600 +0000
+@@ -196,23 +196,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -54,12 +54,12 @@
  AC_CONFIG_FILES([libfsapfs/Makefile])
  AC_CONFIG_FILES([pyfsapfs/Makefile])
  AC_CONFIG_FILES([fsapfstools/Makefile])
---- origsrc/libfsapfs-20240429/pyfsapfs/Makefile.am	2024-04-29 13:08:24.000000000 +0900
-+++ src/libfsapfs-20240429/pyfsapfs/Makefile.am	2025-05-18 19:28:53.887469800 +0900
+--- origsrc/libfsapfs-20261030/pyfsapfs/Makefile.am	2026-10-30 04:56:32.000000000 +0000
++++ src/libfsapfs-20261030/pyfsapfs/Makefile.am	2026-11-15 05:56:42.736703500 +0000
 @@ -50,7 +50,7 @@ pyfsapfs_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  
- pyfsapfs_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyfsapfs_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyfsapfs_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyfsapfs_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

@@ -1,0 +1,20 @@
+Don't pass MSG_WAITALL to recv() on the network input socket.
+
+On Cygwin, recv() with MSG_WAITALL does not return when the peer has closed
+the connection after sending only part of the requested block, so the
+receiving mbuffer never sees the end of the stream and hangs in CLOSE_WAIT.
+readBlock() already loops until a whole block has been read (and handles
+0 as end-of-file), so a plain recv() is equivalent.
+
+diff --git a/input.c b/input.c
+--- a/input.c
++++ b/input.c
+@@ -292,7 +292,7 @@
+ 		if (IDevBSize)
+ 			in = devread(at,num);
+ 		else if (InSocket)
+-			in = recv(In,Buffer[at] + num,Blocksize - num,MSG_WAITALL);
++			in = recv(In,Buffer[at] + num,Blocksize - num,0);
+ 		else
+ 			in = read(In,Buffer[at] + num,Blocksize - num);
+ 		debugiomsg("inputThread: read(In, Buffer[%d] + %llu, %llu) = %d\n", at, num, Blocksize - num, in);

@@ -8,9 +8,29 @@ format."
 
 LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
-LICENSE_URI="COPYING"
+LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libfcache-devel libcpath-devel libfdata-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfdatetime-devel
+	libfvalue-devel
+	libuna-devel
+"
+
+DOCS="
+	COPYING.LESSER
+"
 
 src_test()
 {

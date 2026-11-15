@@ -1,5 +1,5 @@
---- origsrc/libwrc-20240421/Makefile.am	2024-04-21 14:53:55.000000000 +0900
-+++ src/libwrc-20240421/Makefile.am	2025-05-18 13:06:07.660465300 +0900
+--- origsrc/libwrc-20260705/Makefile.am	2026-07-05 08:32:29.000000000 +0000
++++ src/libwrc-20260705/Makefile.am	2026-11-15 04:12:18.729967800 +0000
 @@ -3,27 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -28,9 +28,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libwrc-20240421/configure.ac	2024-04-21 14:53:55.000000000 +0900
-+++ src/libwrc-20240421/configure.ac	2025-05-18 13:06:07.660465300 +0900
-@@ -179,25 +179,8 @@ dnl Generate Makefiles
+--- origsrc/libwrc-20260705/configure.ac	2026-07-05 08:32:29.000000000 +0000
++++ src/libwrc-20260705/configure.ac	2026-11-15 04:12:18.727957200 +0000
+@@ -189,25 +189,8 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -56,12 +56,12 @@
  AC_CONFIG_FILES([wrctools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libwrc-20240421/pywrc/Makefile.am	2024-04-21 14:53:55.000000000 +0900
-+++ src/libwrc-20240421/pywrc/Makefile.am	2025-05-18 13:06:22.465253600 +0900
+--- origsrc/libwrc-20260705/pywrc/Makefile.am	2026-07-05 08:32:29.000000000 +0000
++++ src/libwrc-20260705/pywrc/Makefile.am	2026-11-15 04:12:18.729967800 +0000
 @@ -49,7 +49,7 @@ pywrc_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pywrc_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pywrc_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pywrc_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pywrc_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

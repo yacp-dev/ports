@@ -16,7 +16,28 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libexe-devel libfvalue-devel libfwevt-devel libfwnt-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libexe-devel
+	libfcache-devel
+	libfdata-devel
+	libfdatetime-devel
+	libfguid-devel
+	libfvalue-devel
+	libfwevt-devel
+	libfwnt-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -43,7 +64,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libwrc_CONTENTS="
 	usr/bin/*.exe
@@ -59,10 +80,10 @@ libwrc_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libwrc_CONTENTS="
-	usr/lib/python3.9
+python312_libwrc_CONTENTS="
+	usr/lib/python3.12
 "
 libwrc_SUMMARY="${SUMMARY} (utilities)"
 libwrc1_SUMMARY="${SUMMARY} (runtime)"
 libwrc_devel_SUMMARY="${SUMMARY} (development)"
-python39_libwrc_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libwrc_SUMMARY="${SUMMARY} (python312 bindings)"

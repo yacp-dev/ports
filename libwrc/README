@@ -3,67 +3,73 @@ libwrc
 libwrc is a library to access the Windows Resource Compiler (WRC) format.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libbfio1-20240414-1bl1
-  libcdata1-20240414-1bl1
-  libcerror1-20240413-1bl1
-  libclocale1-20240414-1bl1
-  libcnotify1-20240414-1bl1
-  libexe1-20240420-1bl1
-  libfvalue1-20240415-1bl1
-  libfwnt1-20240415-1bl1
-  libuna1-20240414-1bl1
-  libwrc-devel-20240421-1bl1
-  libwrc1-20240421-1bl1
-  pkg-config-2.4.3-1
-  python39-3.9.18-2
+  cygwin-3.6.12-1
+  libbfio1-20260623-1bl1
+  libcdata1-20260703-1bl1
+  libcerror1-20260703-1bl1
+  libclocale1-20260703-1bl1
+  libcnotify1-20260703-1bl1
+  libexe1-20260705-1bl1
+  libfvalue1-20260531-1bl1
+  libfwnt1-20260602-1bl1
+  libuna1-20260602-1bl2
+  libwrc-devel-20260705-1bl1
+  libwrc1-20260705-1bl1
+  pkg-config-3.0.10-1
+  python312-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  autoconf-20260320-3
+  automake-20260320-2
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   gettext-devel-0.22.5-1
-  libbfio-devel-20240414-1bl1
-  libcdata-devel-20240414-1bl1
-  libcerror-devel-20240413-1bl1
-  libclocale-devel-20240414-1bl1
-  libcnotify-devel-20240414-1bl1
-  libexe-devel-20240420-1bl1
-  libfvalue-devel-20240415-1bl1
-  libfwevt-devel-20240504-1bl1
-  libfwnt-devel-20240415-1bl1
-  libtool-2.5.4-1
-  libuna-devel-20240414-1bl1
+  libbfio-devel-20260623-1bl1
+  libcdata-devel-20260703-1bl1
+  libcerror-devel-20260703-1bl1
+  libcfile-devel-20260704-1bl1
+  libclocale-devel-20260703-1bl1
+  libcnotify-devel-20260703-1bl1
+  libcpath-devel-20260703-1bl1
+  libcsplit-devel-20260703-1bl1
+  libcthreads-devel-20260703-1bl1
+  libexe-devel-20260705-1bl1
+  libfcache-devel-20260520-1bl1
+  libfdata-devel-20260521-1bl1
+  libfdatetime-devel-20260521-1bl1
+  libfguid-devel-20260521-1bl1
+  libfvalue-devel-20260531-1bl1
+  libfwevt-devel-20260702-1bl1
+  libfwnt-devel-20260602-1bl1
+  libtool-2.6.2-1
+  libuna-devel-20260602-1bl2
   make-4.4.1-2
-  python39-3.9.18-2
-  python39-devel-3.9.18-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
 
 Canonical website:
   https://github.com/libyal/libwrc
 
 Canonical download:
-  https://github.com/libyal/libwrc/archive/refs/tags/20240421.tar.gz
+  https://github.com/libyal/libwrc/archive/refs/tags/20260705.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libwrc-20240421-X-src.tar.xz
+  1. unpack libwrc-20260705-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libwrc-20240421-X.cygport all
+        % cygport ./libwrc-20260705-X.cygport all
 
 This will create:
-  /usr/src/libwrc-20240421-X-src.tar.xz
-  /usr/src/libwrc-20240421-X.tar.xz
-  /usr/src/libwrc1-20240421-X.tar.xz
-  /usr/src/libwrc-devel-20240421-X.tar.xz
-  /usr/src/python39-libwrc-20240421-X.tar.xz
+  /usr/src/libwrc-20260705-X-src.tar.xz
+  /usr/src/libwrc-20260705-X.tar.xz
+  /usr/src/libwrc1-20260705-X.tar.xz
+  /usr/src/libwrc-devel-20260705-X.tar.xz
+  /usr/src/python312-libwrc-20260705-X.tar.xz
 
 -------------------------------------------
 
@@ -94,12 +100,15 @@ Files included in the binary package:
   /usr/lib/pkgconfig/libwrc.pc
   /usr/share/man/man3/libwrc.3.gz
 
-(python39-libwrc)
-  /usr/lib/python3.9/site-packages/pywrc.dll
+(python312-libwrc)
+  /usr/lib/python3.12/site-packages/pywrc.cpython-312-x86_64-cygwin.dll
 
 ------------------
 
 Port Notes:
+
+----- version 20260705-1bl1 -----
+Version bump.
 
 ----- version 20240421-1bl1 -----
 Version bump.

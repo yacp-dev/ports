@@ -6,8 +6,8 @@ SUMMARY="Man-page inspired Markdown pager"
 DESCRIPTION="Need to lookup things from README? Or from manual page? Or perhaps just want
 to install something cool..."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND ISC"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

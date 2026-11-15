@@ -1,5 +1,5 @@
---- origsrc/libluksde-20240503/Makefile.am	2024-05-03 12:46:37.000000000 +0900
-+++ src/libluksde-20240503/Makefile.am	2025-05-19 17:30:27.272590900 +0900
+--- origsrc/libluksde-20260902/Makefile.am	2026-09-02 13:21:27.000000000 +0000
++++ src/libluksde-20260902/Makefile.am	2026-11-15 12:08:46.676600700 +0000
 @@ -3,25 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -26,9 +26,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libluksde-20240503/configure.ac	2024-05-03 12:46:37.000000000 +0900
-+++ src/libluksde-20240503/configure.ac	2025-05-19 17:30:27.288237600 +0900
-@@ -176,21 +176,6 @@ dnl Generate Makefiles
+--- origsrc/libluksde-20260902/configure.ac	2026-09-02 13:21:27.000000000 +0000
++++ src/libluksde-20260902/configure.ac	2026-11-15 12:08:46.674579700 +0000
+@@ -186,21 +186,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -50,12 +50,12 @@
  AC_CONFIG_FILES([libluksde/Makefile])
  AC_CONFIG_FILES([pyluksde/Makefile])
  AC_CONFIG_FILES([luksdetools/Makefile])
---- origsrc/libluksde-20240503/pyluksde/Makefile.am	2024-05-03 12:46:37.000000000 +0900
-+++ src/libluksde-20240503/pyluksde/Makefile.am	2025-05-19 17:30:45.271631800 +0900
+--- origsrc/libluksde-20260902/pyluksde/Makefile.am	2026-09-02 13:21:27.000000000 +0000
++++ src/libluksde-20260902/pyluksde/Makefile.am	2026-11-15 12:08:46.676600700 +0000
 @@ -47,7 +47,7 @@ pyluksde_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  
- pyluksde_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyluksde_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyluksde_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyluksde_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

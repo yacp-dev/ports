@@ -1,6 +1,6 @@
 HOMEPAGE="https://github.com/kokkos/${PN}"
-SRC_URI="https://github.com/kokkos/${PN}/archive/refs/tags/${P}.tar.gz"
-SRC_DIR="${PN}-${P}"
+SRC_URI="https://github.com/kokkos/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_DIR="${P}"
 
 CATEGORY="Devel"
 SUMMARY="Reference implementation of mdspan targeting C++23"
@@ -16,6 +16,10 @@ BUILD_REQUIRES="
 "
 
 inherit cmake
+
+# the tests are built with -Werror (COMPILE_WARNING_AS_ERROR on each target),
+# which trips over warnings in upstream's test code; only the tests are compiled
+CXXFLAGS+=" -w"
 
 CYGCMAKE_ARGS="
 	-DMDSPAN_ENABLE_TESTS:BOOL=ON

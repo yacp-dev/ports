@@ -1,13 +1,13 @@
---- origsrc/libGDSII-0.21/configure.ac	2019-04-11 01:23:45.000000000 +0900
-+++ src/libGDSII-0.21/configure.ac	2025-08-14 23:37:35.955513900 +0900
+--- origsrc/libGDSII-0.21/configure.ac	2019-04-10 16:23:45.000000000 +0000
++++ src/libGDSII-0.21/configure.ac	2026-11-15 22:00:39.362427100 +0000
 @@ -1,4 +1,4 @@
 -AC_INIT(libGDSII, 0.1, homer@homerreid.com)
 +AC_INIT(libGDSII, 0.21, homer@homerreid.com)
  AC_CONFIG_SRCDIR([README])
  
  # Shared-library version.  This has a technical
---- origsrc/libGDSII-0.21/lib/Makefile.am	2019-04-11 01:23:45.000000000 +0900
-+++ src/libGDSII-0.21/lib/Makefile.am	2025-08-14 22:59:36.727771800 +0900
+--- origsrc/libGDSII-0.21/lib/Makefile.am	2019-04-10 16:23:45.000000000 +0000
++++ src/libGDSII-0.21/lib/Makefile.am	2026-11-15 22:00:39.364206400 +0000
 @@ -5,3 +5,4 @@ libGDSII_la_SOURCES = 		\
   libGDSII.cc			\
   Flatten.cc 			\

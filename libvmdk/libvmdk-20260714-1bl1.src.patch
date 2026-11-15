@@ -1,5 +1,5 @@
---- origsrc/libvmdk-20240510/Makefile.am	2024-05-10 13:06:04.000000000 +0900
-+++ src/libvmdk-20240510/Makefile.am	2025-05-20 17:10:23.561126600 +0900
+--- origsrc/libvmdk-20260714/Makefile.am	2026-07-14 09:30:25.000000000 +0000
++++ src/libvmdk-20260714/Makefile.am	2026-11-15 15:02:24.250236600 +0000
 @@ -3,23 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -24,9 +24,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libvmdk-20240510/configure.ac	2024-05-10 13:06:04.000000000 +0900
-+++ src/libvmdk-20240510/configure.ac	2025-05-20 17:10:23.561126600 +0900
-@@ -174,19 +174,6 @@ dnl Generate Makefiles
+--- origsrc/libvmdk-20260714/configure.ac	2026-07-14 09:30:25.000000000 +0000
++++ src/libvmdk-20260714/configure.ac	2026-11-15 15:02:24.250751800 +0000
+@@ -184,19 +184,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -46,12 +46,12 @@
  AC_CONFIG_FILES([libvmdk/Makefile])
  AC_CONFIG_FILES([pyvmdk/Makefile])
  AC_CONFIG_FILES([vmdktools/Makefile])
---- origsrc/libvmdk-20240510/pyvmdk/Makefile.am	2024-05-10 13:06:04.000000000 +0900
-+++ src/libvmdk-20240510/pyvmdk/Makefile.am	2025-05-20 17:11:07.457602600 +0900
+--- origsrc/libvmdk-20260714/pyvmdk/Makefile.am	2026-07-14 09:30:25.000000000 +0000
++++ src/libvmdk-20260714/pyvmdk/Makefile.am	2026-11-15 15:02:24.252248800 +0000
 @@ -44,7 +44,7 @@ pyvmdk_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyvmdk_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyvmdk_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyvmdk_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyvmdk_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

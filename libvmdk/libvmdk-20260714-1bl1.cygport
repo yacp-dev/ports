@@ -16,7 +16,25 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libcpath-devel libcsplit-devel libcthreads-devel libfcache-devel libfdata-devel libfvalue-devel libuna-devel python39-devel zlib-devel"
+BUILD_REQUIRES="
+	cygfuse
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfvalue-devel
+	libuna-devel
+	python3-devel
+	zlib-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -45,7 +63,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libvmdk_CONTENTS="
 	usr/bin/*.exe
@@ -61,10 +79,10 @@ libvmdk_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libvmdk_CONTENTS="
-	usr/lib/python3.9
+python312_libvmdk_CONTENTS="
+	usr/lib/python3.12
 "
 libvmdk_SUMMARY="${SUMMARY} (utilities)"
 libvmdk1_SUMMARY="${SUMMARY} (runtime)"
 libvmdk_devel_SUMMARY="${SUMMARY} (development)"
-python39_libvmdk_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libvmdk_SUMMARY="${SUMMARY} (python312 bindings)"

@@ -1,5 +1,5 @@
---- origsrc/libphdi-20240508/Makefile.am	2024-05-08 13:08:47.000000000 +0900
-+++ src/libphdi-20240508/Makefile.am	2025-05-20 11:21:30.574326700 +0900
+--- origsrc/libphdi-20260902/Makefile.am	2026-09-02 07:56:42.000000000 +0000
++++ src/libphdi-20260902/Makefile.am	2026-11-15 15:16:00.929588700 +0000
 @@ -3,25 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -26,9 +26,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libphdi-20240508/configure.ac	2024-05-08 13:08:47.000000000 +0900
-+++ src/libphdi-20240508/configure.ac	2025-05-20 11:21:30.574326700 +0900
-@@ -176,21 +176,6 @@ dnl Generate Makefiles
+--- origsrc/libphdi-20260902/configure.ac	2026-09-02 07:56:42.000000000 +0000
++++ src/libphdi-20260902/configure.ac	2026-11-15 15:16:00.931605400 +0000
+@@ -186,21 +186,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -50,12 +50,12 @@
  AC_CONFIG_FILES([libphdi/Makefile])
  AC_CONFIG_FILES([pyphdi/Makefile])
  AC_CONFIG_FILES([phditools/Makefile])
---- origsrc/libphdi-20240508/pyphdi/Makefile.am	2024-05-08 13:08:47.000000000 +0900
-+++ src/libphdi-20240508/pyphdi/Makefile.am	2025-05-20 11:21:46.389313100 +0900
+--- origsrc/libphdi-20260902/pyphdi/Makefile.am	2026-09-02 07:56:42.000000000 +0000
++++ src/libphdi-20260902/pyphdi/Makefile.am	2026-11-15 15:16:00.937649600 +0000
 @@ -44,7 +44,7 @@ pyphdi_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyphdi_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyphdi_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyphdi_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyphdi_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

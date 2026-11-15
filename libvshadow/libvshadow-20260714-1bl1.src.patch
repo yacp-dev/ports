@@ -1,5 +1,5 @@
---- origsrc/libvshadow-20240504/Makefile.am	2024-05-04 15:16:57.000000000 +0900
-+++ src/libvshadow-20240504/Makefile.am	2025-05-19 22:34:16.924540300 +0900
+--- origsrc/libvshadow-20260714/Makefile.am	2026-07-14 08:57:12.000000000 +0000
++++ src/libvshadow-20260714/Makefile.am	2026-11-15 13:39:14.679721400 +0000
 @@ -3,22 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -23,9 +23,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libvshadow-20240504/configure.ac	2024-05-04 15:16:57.000000000 +0900
-+++ src/libvshadow-20240504/configure.ac	2025-05-19 22:34:16.924540300 +0900
-@@ -167,18 +167,6 @@ dnl Generate Makefiles
+--- origsrc/libvshadow-20260714/configure.ac	2026-07-14 08:57:12.000000000 +0000
++++ src/libvshadow-20260714/configure.ac	2026-11-15 13:39:14.677700100 +0000
+@@ -177,18 +177,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -44,12 +44,12 @@
  AC_CONFIG_FILES([libvshadow/Makefile])
  AC_CONFIG_FILES([pyvshadow/Makefile])
  AC_CONFIG_FILES([vshadowtools/Makefile])
---- origsrc/libvshadow-20240504/pyvshadow/Makefile.am	2024-05-04 15:16:57.000000000 +0900
-+++ src/libvshadow-20240504/pyvshadow/Makefile.am	2025-05-19 22:34:27.657782000 +0900
+--- origsrc/libvshadow-20260714/pyvshadow/Makefile.am	2026-07-14 08:57:12.000000000 +0000
++++ src/libvshadow-20260714/pyvshadow/Makefile.am	2026-11-15 13:39:14.679721400 +0000
 @@ -49,7 +49,7 @@ pyvshadow_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  
- pyvshadow_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyvshadow_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyvshadow_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyvshadow_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

@@ -1,0 +1,114 @@
+--- origsrc/libvsbsdl-20240504/Makefile.am	2024-05-04 03:55:45.000000000 +0000
++++ src/libvsbsdl-20240504/Makefile.am	2026-11-15 12:42:34.876146600 +0000
+@@ -3,22 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
+ SUBDIRS = \
+ 	include \
+ 	common \
+-	libcerror \
+-	libcthreads \
+-	libcdata \
+-	libclocale \
+-	libcnotify \
+-	libcsplit \
+-	libuna \
+-	libcfile \
+-	libcpath \
+-	libbfio \
+-	libfcache \
+-	libfdata \
+ 	libvsbsdl \
+ 	vsbsdltools \
+ 	pyvsbsdl \
+-	po \
+ 	manuals \
+ 	tests \
+ 	ossfuzz \
+--- origsrc/libvsbsdl-20240504/configure.ac	2024-05-04 03:55:45.000000000 +0000
++++ src/libvsbsdl-20240504/configure.ac	2026-11-15 12:42:34.878157100 +0000
+@@ -157,18 +157,6 @@ dnl Generate Makefiles
+ AC_CONFIG_FILES([Makefile])
+ AC_CONFIG_FILES([include/Makefile])
+ AC_CONFIG_FILES([common/Makefile])
+-AC_CONFIG_FILES([libcerror/Makefile])
+-AC_CONFIG_FILES([libcthreads/Makefile])
+-AC_CONFIG_FILES([libcdata/Makefile])
+-AC_CONFIG_FILES([libclocale/Makefile])
+-AC_CONFIG_FILES([libcnotify/Makefile])
+-AC_CONFIG_FILES([libcsplit/Makefile])
+-AC_CONFIG_FILES([libuna/Makefile])
+-AC_CONFIG_FILES([libcfile/Makefile])
+-AC_CONFIG_FILES([libcpath/Makefile])
+-AC_CONFIG_FILES([libbfio/Makefile])
+-AC_CONFIG_FILES([libfcache/Makefile])
+-AC_CONFIG_FILES([libfdata/Makefile])
+ AC_CONFIG_FILES([libvsbsdl/Makefile])
+ AC_CONFIG_FILES([pyvsbsdl/Makefile])
+ AC_CONFIG_FILES([vsbsdltools/Makefile])
+--- origsrc/libvsbsdl-20240504/pyvsbsdl/Makefile.am	2024-05-04 03:55:45.000000000 +0000
++++ src/libvsbsdl-20240504/pyvsbsdl/Makefile.am	2026-11-15 12:42:34.878157100 +0000
+@@ -41,7 +41,7 @@ pyvsbsdl_la_LIBADD = \
+ 	@LIBBFIO_LIBADD@
+ 
+ pyvsbsdl_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+-pyvsbsdl_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
++pyvsbsdl_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
+ 
+ endif
+ 
+--- origsrc/libvsbsdl-20240504/tests/test_python_module.sh	2024-05-04 03:55:45.000000000 +0000
++++ src/libvsbsdl-20240504/tests/test_python_module.sh	2026-11-15 12:42:34.878157100 +0000
+@@ -143,10 +143,9 @@ source ${TEST_RUNNER};
+ 
+ PLATFORM=`uname -s | sed 's/-.*$//'`;
+ 
+-if test "${PLATFORM}" = "MINGW64_NT" || test "${PLATFORM}" = "MSYS_NT";
++if test "${PLATFORM}" = "MINGW32_NT" || test "${PLATFORM}" = "MINGW64_NT" || test "${PLATFORM}" = "MSYS_NT" || test "${PLATFORM}" = "CYGWIN_NT";
+ then
+-	cp ../${LIBRARY_NAME}/.libs/*.dll ../${PYTHON_MODULE}/.libs/;
+-	cp ../${PYTHON_MODULE}/.libs/${PYTHON_MODULE}.dll ../${PYTHON_MODULE}/.libs/${PYTHON_MODULE}.pyd;
++	export PATH=../${LIBRARY_NAME}/.libs:../${PYTHON_MODULE}/.libs:$PATH;
+ fi
+ 
+ RESULT=${EXIT_IGNORE};
+--- origsrc/libvsbsdl-20240504/tests/test_runner.sh	2024-05-04 03:55:45.000000000 +0000
++++ src/libvsbsdl-20240504/tests/test_runner.sh	2026-11-15 12:42:34.880165900 +0000
+@@ -190,7 +190,7 @@ find_binary_executable()
+ find_binary_library_path()
+ {
+ 	local TEST_EXECUTABLE=$1;
+-	local LIBRARY_NAME=`dirname ${TEST_EXECUTABLE}`;
++	local LIBRARY_NAME=`basename ${TEST_EXECUTABLE}`;
+ 
+ 	local NAME=`basename ${LIBRARY_NAME}`;
+ 
+@@ -440,7 +440,7 @@ run_test_with_arguments()
+ 	# Check if the test executable is a Python script.
+ 	# Linux: Python script, ASCII text executable
+ 	# Mac OS X: a python script text executable
+-	echo "${EXECUTABLE_TYPE}" | grep -i "python script" > /dev/null 2>&1;
++	echo "${TEST_EXECUTABLE}" | grep '\.py$' > /dev/null 2>&1 || echo "${EXECUTABLE_TYPE}" | grep -i "python" > /dev/null 2>&1;
+ 	local IS_PYTHON_SCRIPT=$?;
+ 
+ 	if test ${IS_PYTHON_SCRIPT} -eq 0 && test -z ${PYTHON};
+@@ -673,10 +673,10 @@ run_test_with_arguments()
+ 		then
+ 			if test -n "${CHECK_WITH_STDERR}";
+ 			then
+-				PATH="${LIBRARY_PATH}:${PATH}" PYTHONPATH="${PYTHON_MODULE_PATH}" "${PYTHON}" "${TEST_EXECUTABLE}" ${ARGUMENTS[@]};
++				PATH="${LIBRARY_PATH}:${PATH}" PYTHONPATH="${PYTHON_MODULE_PATH}:${PYTHONPATH}" "${PYTHON}" "${TEST_EXECUTABLE}" ${ARGUMENTS[@]};
+ 				RESULT=$?;
+ 			else
+-				PATH="${LIBRARY_PATH}:${PATH}" PYTHONPATH="${PYTHON_MODULE_PATH}" "${PYTHON}" "${TEST_EXECUTABLE}" ${ARGUMENTS[@]} 2> /dev/null;
++				PATH="${LIBRARY_PATH}:${PATH}" PYTHONPATH="${PYTHON_MODULE_PATH}:${PYTHONPATH}" "${PYTHON}" "${TEST_EXECUTABLE}" ${ARGUMENTS[@]} 2> /dev/null;
+ 				RESULT=$?;
+ 			fi
+ 
+@@ -760,7 +760,7 @@ run_test_with_input_and_arguments()
+ 	# Check if the test executable is a Python script.
+ 	# Linux: Python script, ASCII text executable
+ 	# Mac OS X: a python script text executable
+-	echo "${EXECUTABLE_TYPE}" | grep -i "python script" > /dev/null 2>&1;
++	echo "${TEST_EXECUTABLE}" | grep '\.py$' > /dev/null 2>&1 || echo "${EXECUTABLE_TYPE}" | grep -i "python" > /dev/null 2>&1;
+ 	local IS_PYTHON_SCRIPT=$?;
+ 
+ 	if test ${IS_PYTHON_SCRIPT} -eq 0 && test -z ${PYTHON};

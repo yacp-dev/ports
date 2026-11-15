@@ -16,12 +16,43 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libbfio-devel libbz2-devel libcdata-devel libcdatetime-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libcpath-devel libcsplit-devel libcthreads-devel libfcache-devel libfdata-devel libfdatetime-devel libfvalue-devel libhmac-devel libodraw-devel libsmdev-devel libsmraw-devel libuna-devel python39-devel zlib-devel"
+BUILD_REQUIRES="
+	cygfuse
+	gettext-devel
+	libbfio-devel
+	libbz2-devel
+	libcaes-devel
+	libcdata-devel
+	libcdatetime-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfdatetime-devel
+	libfguid-devel
+	libfvalue-devel
+	libhmac-devel
+	libodraw-devel
+	libsmdev-devel
+	libsmraw-devel
+	libuna-devel
+	libuuid-devel
+	python3-devel
+	zlib-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
 	--enable-wide-character-type
 "
+
+# cygport check takes about 14 minutes
+YACP_CHECK_TIMEOUT_MINUTES=25
 
 src_test()
 {
@@ -45,7 +76,7 @@ PKG_NAMES="
 	${PN}
 	${PN}3
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libewf_CONTENTS="
 	usr/bin/*.exe
@@ -61,10 +92,10 @@ libewf_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libewf_CONTENTS="
-	usr/lib/python3.9
+python312_libewf_CONTENTS="
+	usr/lib/python3.12
 "
 libewf_SUMMARY="${SUMMARY} (utilities)"
 libewf3_SUMMARY="${SUMMARY} (runtime)"
 libewf_devel_SUMMARY="${SUMMARY} (development)"
-python39_libewf_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libewf_SUMMARY="${SUMMARY} (python312 bindings)"

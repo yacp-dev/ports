@@ -1,5 +1,5 @@
---- origsrc/libvslvm-20240504/Makefile.am	2024-05-04 17:43:21.000000000 +0900
-+++ src/libvslvm-20240504/Makefile.am	2025-05-19 22:56:43.089912100 +0900
+--- origsrc/libvslvm-20260901/Makefile.am	2026-09-01 12:37:26.000000000 +0000
++++ src/libvslvm-20260901/Makefile.am	2026-11-15 13:42:31.069104300 +0000
 @@ -3,23 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -24,9 +24,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libvslvm-20240504/configure.ac	2024-05-04 17:43:21.000000000 +0900
-+++ src/libvslvm-20240504/configure.ac	2025-05-19 22:56:43.089912100 +0900
-@@ -170,19 +170,6 @@ dnl Generate Makefiles
+--- origsrc/libvslvm-20260901/configure.ac	2026-09-01 12:37:26.000000000 +0000
++++ src/libvslvm-20260901/configure.ac	2026-11-15 13:42:31.068345700 +0000
+@@ -180,19 +180,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -46,12 +46,12 @@
  AC_CONFIG_FILES([libvslvm/Makefile])
  AC_CONFIG_FILES([pyvslvm/Makefile])
  AC_CONFIG_FILES([vslvmtools/Makefile])
---- origsrc/libvslvm-20240504/pyvslvm/Makefile.am	2024-05-04 17:43:21.000000000 +0900
-+++ src/libvslvm-20240504/pyvslvm/Makefile.am	2025-05-19 22:56:56.749032800 +0900
+--- origsrc/libvslvm-20260901/pyvslvm/Makefile.am	2026-09-01 12:37:26.000000000 +0000
++++ src/libvslvm-20260901/pyvslvm/Makefile.am	2026-11-15 13:42:31.070365400 +0000
 @@ -49,7 +49,7 @@ pyvslvm_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyvslvm_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyvslvm_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyvslvm_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyvslvm_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

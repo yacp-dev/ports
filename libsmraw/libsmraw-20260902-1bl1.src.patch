@@ -1,5 +1,5 @@
---- origsrc/libsmraw-20240506/Makefile.am	2024-05-06 12:26:25.000000000 +0900
-+++ src/libsmraw-20240506/Makefile.am	2025-05-20 09:04:33.581909300 +0900
+--- origsrc/libsmraw-20260902/Makefile.am	2026-09-02 06:15:27.000000000 +0000
++++ src/libsmraw-20260902/Makefile.am	2026-11-15 14:22:31.978110400 +0000
 @@ -3,25 +3,10 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -26,9 +26,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libsmraw-20240506/configure.ac	2024-05-06 12:26:25.000000000 +0900
-+++ src/libsmraw-20240506/configure.ac	2025-05-20 09:04:39.385672600 +0900
-@@ -173,23 +173,9 @@ dnl Generate Makefiles
+--- origsrc/libsmraw-20260902/configure.ac	2026-09-02 06:15:27.000000000 +0000
++++ src/libsmraw-20260902/configure.ac	2026-11-15 14:22:31.980126900 +0000
+@@ -183,23 +183,9 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -52,12 +52,12 @@
  AC_CONFIG_FILES([smrawtools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libsmraw-20240506/pysmraw/Makefile.am	2024-05-06 12:26:25.000000000 +0900
-+++ src/libsmraw-20240506/pysmraw/Makefile.am	2025-05-20 09:04:50.270344600 +0900
+--- origsrc/libsmraw-20260902/pysmraw/Makefile.am	2026-09-02 06:15:27.000000000 +0000
++++ src/libsmraw-20260902/pysmraw/Makefile.am	2026-11-15 14:22:31.981678800 +0000
 @@ -41,7 +41,7 @@ pysmraw_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pysmraw_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pysmraw_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pysmraw_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pysmraw_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

@@ -1,11 +1,11 @@
 HOMEPAGE="https://github.com/worldforge/${PN}"
 SRC_URI="https://github.com/worldforge/${PN}/archive/refs/tags/${P}.tar.gz"
-SRC_DIR="${PN}-${P}"
 PATCH_URI="
 	https://sources.debian.org/data/main/libw/libwfut/0.2.3-6/debian/patches/0004-wrap-README-lines-at-80-chars.patch
 	https://sources.debian.org/data/main/libw/libwfut/0.2.3-6/debian/patches/0002-manpage.patch
 	https://sources.debian.org/data/main/libw/libwfut/0.2.3-6/debian/patches/Remove-sigc%2B%2B-object_slot.patch
 "
+SRC_DIR="${PN}-${P}"
 
 CATEGORY="Libs"
 SUMMARY="C++ implementation of the client side of WFUT"
@@ -18,7 +18,12 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcurl-devel libsigc2.0-devel libtinyxml-devel zlib-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+	libsigc2.0-devel
+	libtinyxml-devel
+	zlib-devel
+"
 
 PKG_NAMES="
 	${PN}
@@ -40,3 +45,9 @@ libwfut0_2_devel_CONTENTS="
 libwfut_SUMMARY="${SUMMARY} (utilities)"
 libwfut0_2_1_SUMMARY="${SUMMARY} (runtime)"
 libwfut0_2_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test()
+{
+	cd ${B}/tools
+	verbose ./wfut.exe --version
+}

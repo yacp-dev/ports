@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/worldforge/${PN}"
 SRC_URI="https://github.com/worldforge/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	${PN}-${PV}-config-h.patch
+"
 
 CATEGORY="Games"
 SUMMARY="STAGE Configuration System"
@@ -12,7 +15,9 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libsigc2.0-devel"
+BUILD_REQUIRES="
+	libsigc2.0-devel
+"
 
 src_test()
 {

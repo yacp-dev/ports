@@ -1,5 +1,5 @@
---- origsrc/mpb-1.12.0/Makefile.am	2025-04-04 04:58:47.000000000 +0900
-+++ src/mpb-1.12.0/Makefile.am	2026-01-26 17:08:33.783699100 +0900
+--- origsrc/mpb-1.12.0/Makefile.am	2025-04-03 19:58:47.000000000 +0000
++++ src/mpb-1.12.0/Makefile.am	2026-11-15 21:59:38.557470800 +0000
 @@ -10,3 +10,6 @@ SUBDIRS += utils
  endif
  
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/mpb-1.12.0/configure.ac	2025-04-04 04:58:47.000000000 +0900
-+++ src/mpb-1.12.0/configure.ac	2026-01-26 17:08:33.785715400 +0900
+--- origsrc/mpb-1.12.0/configure.ac	2025-04-03 19:58:47.000000000 +0000
++++ src/mpb-1.12.0/configure.ac	2026-11-15 21:59:38.557817900 +0000
 @@ -584,7 +584,7 @@ AC_SUBST(MPB_SUFFIX)
  program_transform_name="s,_,-,g;$program_transform_name"
  ##############################################################################
@@ -18,8 +18,8 @@
  	Makefile
  	examples/Makefile
  	tests/Makefile
---- origsrc/mpb-1.12.0/mpb.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/mpb-1.12.0/mpb.pc.in	2026-01-26 17:08:33.789737900 +0900
+--- origsrc/mpb-1.12.0/mpb.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/mpb-1.12.0/mpb.pc.in	2026-11-15 21:59:38.557817900 +0000
 @@ -0,0 +1,12 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -33,16 +33,16 @@
 +Libs.private: -lblas -llapack
 +Cflags: -I${includedir}
 +Requires.private: fftw3
---- origsrc/mpb-1.12.0/src/maxwell/Makefile.am	2025-04-04 04:58:47.000000000 +0900
-+++ src/mpb-1.12.0/src/maxwell/Makefile.am	2026-01-26 17:08:33.791759900 +0900
+--- origsrc/mpb-1.12.0/src/maxwell/Makefile.am	2025-04-03 19:58:47.000000000 +0000
++++ src/mpb-1.12.0/src/maxwell/Makefile.am	2026-11-15 21:59:38.559488900 +0000
 @@ -3,4 +3,4 @@ EXTRA_DIST = README
  
  libmaxwell_la_SOURCES = imaxwell.h maxwell.c maxwell.h xyz_loop.h		\
  maxwell_constraints.c maxwell_eps.c maxwell_op.c maxwell_pre.c
 -libmaxwell_la_CPPFLAGS = -I$(srcdir)/../util -I$(srcdir)/../matrices
 +libmaxwell_la_CPPFLAGS = -I$(srcdir)/../util -I$(srcdir)/../matrices -I$(top_builddir)/src/util
---- origsrc/mpb-1.12.0/tests/Makefile.am	2025-04-04 04:58:47.000000000 +0900
-+++ src/mpb-1.12.0/tests/Makefile.am	2026-01-26 17:08:33.793771600 +0900
+--- origsrc/mpb-1.12.0/tests/Makefile.am	2025-04-03 19:58:47.000000000 +0000
++++ src/mpb-1.12.0/tests/Makefile.am	2026-11-15 21:59:38.560253500 +0000
 @@ -5,7 +5,7 @@ endif
  EXTRA_DIST = blastest.real.out blastest.complex.out
  

@@ -52,3 +52,7 @@ libmailio_devel_CONTENTS="
 mailio_SUMMARY="${SUMMARY} (licensing & readmes)"
 libmailio2_SUMMARY="${SUMMARY} (runtime)"
 libmailio_devel_SUMMARY="${SUMMARY} (development)"
+libmailio_devel_REQUIRES="
+	libboost-devel
+	libssl-devel
+"

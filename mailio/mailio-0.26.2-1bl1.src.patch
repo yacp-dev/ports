@@ -1,0 +1,76 @@
+--- origsrc/mailio-0.26.2/CMakeLists.txt	2026-11-15 22:39:52.362046300 +0000
++++ src/mailio-0.26.2/CMakeLists.txt	2026-11-15 22:39:52.787698000 +0000
+@@ -1,4 +1,5 @@
+ cmake_minimum_required(VERSION "3.30.0")
++cmake_policy(SET CMP0167 OLD)
+ 
+ if("${CMAKE_CURRENT_BINARY_DIR}/" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}/")
+     message(FATAL_ERROR "In-source builds are not allowed.")
+@@ -11,9 +12,6 @@ project(
+     HOMEPAGE_URL "https://github.com/karastojko/mailio"
+     LANGUAGES "CXX"
+     VERSION "0.26.2")
+-set(CMAKE_CXX_EXTENSIONS OFF)
+-set(CMAKE_CXX_STANDARD 17)
+-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ 
+ # Modules
+ include("CMakeDependentOption")
+@@ -42,7 +40,7 @@ if(${WIN32})
+     set(Boost_USE_STATIC_LIBS ON)
+ endif()
+ 
+-find_package("Boost" REQUIRED COMPONENTS "date_time" "regex")
++find_package("Boost" REQUIRED COMPONENTS "system" "date_time" "regex")
+ find_package("OpenSSL" REQUIRED COMPONENTS "SSL")
+ 
+ if(${MAILIO_BUILD_DOCUMENTATION})
+@@ -79,7 +77,7 @@ target_include_directories("${PROJECT_NA
+                                                     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/>)
+ 
+ # Link libraries
+-target_link_libraries("${PROJECT_NAME}" PUBLIC "Boost::date_time" "Boost::regex")
++target_link_libraries("${PROJECT_NAME}" PUBLIC "Boost::system" "Boost::date_time" "Boost::regex")
+ target_link_libraries("${PROJECT_NAME}" PUBLIC "OpenSSL::SSL")
+ 
+ if (MAILIO_BUILD_SHARED_LIBRARY)
+--- origsrc/mailio-0.26.2/include/mailio/dialog.hpp	2026-11-13 16:14:58.000000000 +0000
++++ src/mailio-0.26.2/include/mailio/dialog.hpp	2026-11-15 22:39:52.787698000 +0000
+@@ -32,7 +32,7 @@ namespace mailio
+ /**
+ Dealing with network in a line oriented fashion.
+ **/
+-class dialog : public std::enable_shared_from_this<dialog>
++class MAILIO_EXPORT dialog : public std::enable_shared_from_this<dialog>
+ {
+ public:
+ 
+@@ -215,7 +215,7 @@ protected:
+ /**
+ Secure version of `dialog` class.
+ **/
+-class dialog_ssl : public dialog
++class MAILIO_EXPORT dialog_ssl : public dialog
+ {
+ public:
+ 
+@@ -318,7 +318,7 @@ protected:
+ /**
+ Error thrown by `dialog` client.
+ **/
+-class dialog_error : public std::runtime_error
++class MAILIO_EXPORT dialog_error : public std::runtime_error
+ {
+ public:
+ 
+--- origsrc/mailio-0.26.2/test/test_dialog.cpp	2026-11-13 16:14:58.000000000 +0000
++++ src/mailio-0.26.2/test/test_dialog.cpp	2026-11-15 22:39:52.789710500 +0000
+@@ -16,7 +16,7 @@ copy at http://www.freebsd.org/copyright
+ #include <boost/test/tools/old/interface.hpp>
+ #include <boost/asio/ip/tcp.hpp>
+ #include <boost/asio/steady_timer.hpp>
+-#include <boost/system/detail/error_code.hpp>
++#include <boost/system/error_code.hpp>
+ #include <mailio/dialog.hpp>
+ 
+ #include <chrono>

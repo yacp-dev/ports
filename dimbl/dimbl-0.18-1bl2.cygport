@@ -9,8 +9,23 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libicu-devel libticcutils-devel libtimbl-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	libicu-devel
+	libticcutils-devel
+	libtimbl-devel
+"
+
+DOCS="README.md"
 
 DIFF_EXCLUDES="
 	*.m4
 "
+
+# tst.sh diffs tst.out against tst.ok in the build directory, but tst.ok is in
+# the source tree, which an out-of-tree build doesn't see.
+src_test() {
+	cd ${B}
+	verbose cp ${S}/src/tst.ok ${B}/src/
+	cygtest
+}

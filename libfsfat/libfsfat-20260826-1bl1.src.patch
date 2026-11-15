@@ -1,5 +1,5 @@
---- origsrc/libfsfat-20240501/Makefile.am	2024-05-01 15:08:10.000000000 +0900
-+++ src/libfsfat-20240501/Makefile.am	2025-05-18 20:37:07.625255200 +0900
+--- origsrc/libfsfat-20260826/Makefile.am	2026-08-26 18:20:10.000000000 +0000
++++ src/libfsfat-20260826/Makefile.am	2026-11-15 08:13:09.283989300 +0000
 @@ -3,25 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -26,9 +26,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfsfat-20240501/configure.ac	2024-05-01 15:08:10.000000000 +0900
-+++ src/libfsfat-20240501/configure.ac	2025-05-18 20:37:07.625255200 +0900
-@@ -176,23 +176,8 @@ dnl Generate Makefiles
+--- origsrc/libfsfat-20260826/configure.ac	2026-08-26 18:20:10.000000000 +0000
++++ src/libfsfat-20260826/configure.ac	2026-11-15 08:13:09.283989300 +0000
+@@ -186,23 +186,8 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -52,12 +52,12 @@
  AC_CONFIG_FILES([fsfattools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libfsfat-20240501/pyfsfat/Makefile.am	2024-05-01 15:08:10.000000000 +0900
-+++ src/libfsfat-20240501/pyfsfat/Makefile.am	2025-05-18 20:37:21.366446100 +0900
+--- origsrc/libfsfat-20260826/pyfsfat/Makefile.am	2026-08-26 18:20:10.000000000 +0000
++++ src/libfsfat-20260826/pyfsfat/Makefile.am	2026-11-15 08:13:09.286008900 +0000
 @@ -43,7 +43,7 @@ pyfsfat_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyfsfat_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyfsfat_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyfsfat_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyfsfat_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

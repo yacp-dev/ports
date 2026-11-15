@@ -1,18 +1,32 @@
---- origsrc/idzebra-2.2.0/index/Makefile.am	2020-04-07 20:57:13.000000000 +0900
-+++ src/idzebra-2.2.0/index/Makefile.am	2020-09-25 09:12:43.501556300 +0900
+--- origsrc/idzebra-2.2.11/examples/oai-pmh/Makefile.am	2026-05-20 15:40:21.000000000 +0000
++++ src/idzebra-2.2.11/examples/oai-pmh/Makefile.am	2026-11-15 22:30:52.403943200 +0000
+@@ -24,7 +24,8 @@ oaidatadata_DATA = data/debug-record.xml
+ EXTRA_DIST = $(oaidata_DATA) $(oaiconfdata_DATA) $(oaidatadata_DATA)
+ 
+ conf/cql2pqf.txt: conf/explain2cqlpqftxt.xsl conf/explain.xml
+-	xsltproc conf/explain2cqlpqftxt.xsl conf/explain.xml > conf/cql2pqf.txt
++	$(MKDIR_P) conf
++	xsltproc $(srcdir)/conf/explain2cqlpqftxt.xsl $(srcdir)/conf/explain.xml > conf/cql2pqf.txt
+ 
+ clean:
+ 	rm -f tmp/*.mf tmp/*..LCK zebrasrv.pid
+--- origsrc/idzebra-2.2.11/index/Makefile.am	2026-05-20 15:40:21.000000000 +0000
++++ src/idzebra-2.2.11/index/Makefile.am	2026-11-15 22:30:52.405955700 +0000
 @@ -21,37 +21,37 @@ tabdatadir = $(datadir)/$(PACKAGE)$(PACK
  
  # The shared modules 
  mod_grs_regx_la_SOURCES = mod_grs_regx.c
 -mod_grs_regx_la_LDFLAGS = -rpath $(modlibdir) -module -avoid-version
+-mod_grs_regx_la_LADD = $(TCL_LIBS)
 +mod_grs_regx_la_LDFLAGS = -no-undefined -rpath $(modlibdir) -module -avoid-version
- mod_grs_regx_la_LADD = $(TCL_LIBS)
++mod_grs_regx_la_LADD = $(YAZLALIB) $(TCL_LIBS)
  mod_grs_regx_la_LIBADD = $(zebralib) $(mod_grs_regx_la_LADD)
  
  mod_grs_xml_la_SOURCES = mod_grs_xml.c
 -mod_grs_xml_la_LDFLAGS = -rpath $(modlibdir) -module -avoid-version
+-mod_grs_xml_la_LADD = $(EXPAT_LIBS)
 +mod_grs_xml_la_LDFLAGS = -no-undefined -rpath $(modlibdir) -module -avoid-version
- mod_grs_xml_la_LADD = $(EXPAT_LIBS)
++mod_grs_xml_la_LADD = $(YAZLALIB) $(EXPAT_LIBS)
  mod_grs_xml_la_LIBADD = $(zebralib) $(mod_grs_xml_la_LADD)
  
  mod_grs_marc_la_SOURCES = mod_grs_marc.c marcomp.c marcomp.h inline.c inline.h
@@ -45,14 +59,24 @@
  mod_text_la_LADD = $(YAZLALIB)
  mod_text_la_LIBADD = $(zebralib) $(mod_text_la_LADD)
  
-@@ -77,8 +77,8 @@ EXTRA_libidzebra_2_0_la_SOURCES = \
- lib_LTLIBRARIES = $(zebralib)
+@@ -78,7 +78,7 @@ lib_LTLIBRARIES = $(zebralib)
  
  libidzebra_2_0_la_DEPENDENCIES = $(STATIC_MODULE_OBJ) $(aux_libs)
--libidzebra_2_0_la_LIBADD = $(STATIC_MODULE_OBJ)  $(aux_libs) $(STATIC_MODULE_LADD)
+ libidzebra_2_0_la_LIBADD = $(STATIC_MODULE_OBJ) $(aux_libs) $(STATIC_MODULE_LADD) $(YAZLALIB)
 -libidzebra_2_0_la_LDFLAGS=-export-dynamic -version-info $(ZEBRALIBS_VERSION_INFO)
-+libidzebra_2_0_la_LIBADD = $(STATIC_MODULE_OBJ)  $(aux_libs) $(STATIC_MODULE_LADD) $(YAZLIB)
 +libidzebra_2_0_la_LDFLAGS = -no-undefined -export-dynamic -version-info $(ZEBRALIBS_VERSION_INFO)
  libidzebra_2_0_la_SOURCES = \
    recctrl.c \
    recgrs.c \
+--- origsrc/idzebra-2.2.11/index/recctrl.c	2026-05-20 15:40:21.000000000 +0000
++++ src/idzebra-2.2.11/index/recctrl.c	2026-11-15 22:30:52.405955700 +0000
+@@ -141,7 +141,8 @@ static void load_from_dir(RecTypeClass *
+             size_t dlen = strlen(de->d_name);
+             if (dlen >= 5 &&
+                 !memcmp(de->d_name, "mod-", 4) &&
+-                !strcmp(de->d_name + dlen - 3, ".so"))
++                (!strcmp(de->d_name + dlen - 3, ".so") ||
++                 !strcmp(de->d_name + dlen - 4, ".dll")))
+             {
+                 void *mod_p, *fl;
+                 char fname[FILENAME_MAX*2+1];

@@ -1,5 +1,8 @@
 HOMEPAGE="http://www.maier-komor.de/${PN}.html"
 SRC_URI="http://www.maier-komor.de/software/${PN}/${P}.tgz"
+PATCH_URI="
+	${PN}-no-msg-waitall.patch
+"
 
 CATEGORY="System"
 SUMMARY="M(easuring)buffer is a replacement for buffer with additional functionality"
@@ -27,4 +30,12 @@ src_compile()
 	cygconf
 	# idev.so and tapetest.so (LD_PRELOAD hooks for the tests) need RTLD_NEXT
 	cygmake mbuffer.exe
+}
+
+src_test()
+{
+	cd ${B}
+	# test4-test6 interpose libc through LD_PRELOAD (tapetest.so, idev.so),
+	# which needs RTLD_NEXT; Cygwin has neither
+	cygmake test0 test1 test2 test3 test7
 }

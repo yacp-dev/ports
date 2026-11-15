@@ -9,7 +9,22 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libcthreads-devel libfcache-devel libfdata-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -31,9 +46,14 @@ src_test()
 		do
 			ln -fs ${f} .
 		done
+		cp -f ${B}/pyvsbsdl/.libs/pyvsbsdl.dll ./pyvsbsdl.cpython-312-x86_64-cygwin.dll
+		cp -f ${B}/pyvsbsdl/.libs/pyvsbsdl.dll ./pyvsbsdl.dll
 	popd
-	cygtest
-	rm tests/*.{py,sh}
+	pushd pyvsbsdl/.libs
+		cp -f pyvsbsdl.dll pyvsbsdl.cpython-312-x86_64-cygwin.dll
+	popd
+	CHECK_WITH_STDERR=1 PYTHON=python3 PATH="${B}/libvsbsdl/.libs:${B}/pyvsbsdl/.libs:${PATH}" cygtest
+	rm -f tests/*.{py,sh} tests/*.dll pyvsbsdl/.libs/pyvsbsdl.cpython-312-x86_64-cygwin.dll
 }
 
 DOCS="
@@ -45,7 +65,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libvsbsdl_CONTENTS="
 	usr/bin/*.exe
@@ -61,10 +81,10 @@ libvsbsdl_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libvsbsdl_CONTENTS="
-	usr/lib/python3.9
+python312_libvsbsdl_CONTENTS="
+	usr/lib/python3.12
 "
 libvsbsdl_SUMMARY="${SUMMARY} (utilities)"
 libvsbsdl1_SUMMARY="${SUMMARY} (runtime)"
 libvsbsdl_devel_SUMMARY="${SUMMARY} (development)"
-python39_libvsbsdl_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libvsbsdl_SUMMARY="${SUMMARY} (python312 bindings)"

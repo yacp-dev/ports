@@ -1,5 +1,5 @@
---- origsrc/mercator-0.3.3/Doxyfile.in	2013-08-30 06:41:04.000000000 +0900
-+++ src/mercator-0.3.3/Doxyfile.in	2025-01-16 23:43:29.615543500 +0900
+--- origsrc/mercator-0.3.3/Doxyfile.in	2013-08-29 21:41:04.000000000 +0000
++++ src/mercator-0.3.3/Doxyfile.in	2026-11-15 21:47:47.208396300 +0000
 @@ -574,8 +574,8 @@ WARN_LOGFILE           =
  # directories like "/usr/src/myproject". Separate the files or directories
  # with spaces.
@@ -20,8 +20,8 @@
  
  # The MAN_OUTPUT tag is used to specify where the man pages will be put.
  # If a relative path is entered the value of OUTPUT_DIRECTORY will be
---- origsrc/mercator-0.3.3/Mercator/Makefile.am	2013-08-30 06:41:04.000000000 +0900
-+++ src/mercator-0.3.3/Mercator/Makefile.am	2025-01-16 23:43:29.615543500 +0900
+--- origsrc/mercator-0.3.3/Mercator/Makefile.am	2013-08-29 21:41:04.000000000 +0000
++++ src/mercator-0.3.3/Mercator/Makefile.am	2026-11-15 21:47:47.208396300 +0000
 @@ -2,7 +2,7 @@ AM_CPPFLAGS = -I$(top_builddir) -I$(top_
  
  lib_LTLIBRARIES = libmercator-0.3.la
@@ -31,8 +31,8 @@
  
  libmercator_0_3_la_SOURCES = \
  	iround.h \
---- origsrc/mercator-0.3.3/Mercator/iround.h	2013-08-30 06:41:04.000000000 +0900
-+++ src/mercator-0.3.3/Mercator/iround.h	2025-01-16 23:43:29.615543500 +0900
+--- origsrc/mercator-0.3.3/Mercator/iround.h	2013-08-29 21:41:04.000000000 +0000
++++ src/mercator-0.3.3/Mercator/iround.h	2026-11-15 21:47:47.208396300 +0000
 @@ -9,6 +9,8 @@
  #ifdef _MSC_VER
  #include <boost/math/special_functions/round.hpp>
@@ -42,8 +42,8 @@
  #else
  #include <cmath>
  #define I_ROUND(_x) (std::lround(_x))
---- origsrc/mercator-0.3.3/configure.ac	2013-08-30 06:41:04.000000000 +0900
-+++ src/mercator-0.3.3/configure.ac	2025-01-16 23:43:29.615543500 +0900
+--- origsrc/mercator-0.3.3/configure.ac	2013-08-29 21:41:04.000000000 +0000
++++ src/mercator-0.3.3/configure.ac	2026-11-15 21:47:47.209796000 +0000
 @@ -93,5 +93,6 @@ AC_CONFIG_FILES([
  	mercator.spec
  	mingw32-mercator.spec

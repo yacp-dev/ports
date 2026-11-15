@@ -1,5 +1,5 @@
---- origsrc/libvhdi-20240509/Makefile.am	2024-05-09 14:05:33.000000000 +0900
-+++ src/libvhdi-20240509/Makefile.am	2025-05-20 13:50:27.746880400 +0900
+--- origsrc/libvhdi-20260901/Makefile.am	2026-09-01 15:35:21.000000000 +0000
++++ src/libvhdi-20260901/Makefile.am	2026-11-15 14:49:22.615772000 +0000
 @@ -3,23 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -24,9 +24,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libvhdi-20240509/configure.ac	2024-05-09 14:05:33.000000000 +0900
-+++ src/libvhdi-20240509/configure.ac	2025-05-20 13:50:27.746880400 +0900
-@@ -170,19 +170,6 @@ dnl Generate Makefiles
+--- origsrc/libvhdi-20260901/configure.ac	2026-09-01 15:35:21.000000000 +0000
++++ src/libvhdi-20260901/configure.ac	2026-11-15 14:49:22.615772000 +0000
+@@ -180,19 +180,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -46,12 +46,12 @@
  AC_CONFIG_FILES([libvhdi/Makefile])
  AC_CONFIG_FILES([pyvhdi/Makefile])
  AC_CONFIG_FILES([vhditools/Makefile])
---- origsrc/libvhdi-20240509/pyvhdi/Makefile.am	2024-05-09 14:05:33.000000000 +0900
-+++ src/libvhdi-20240509/pyvhdi/Makefile.am	2025-05-20 13:50:45.306819200 +0900
+--- origsrc/libvhdi-20260901/pyvhdi/Makefile.am	2026-09-01 15:35:21.000000000 +0000
++++ src/libvhdi-20260901/pyvhdi/Makefile.am	2026-11-15 14:49:22.617783500 +0000
 @@ -44,7 +44,7 @@ pyvhdi_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  
- pyvhdi_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyvhdi_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyvhdi_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyvhdi_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

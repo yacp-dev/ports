@@ -1,5 +1,5 @@
---- origsrc/libqcow-20240308/Makefile.am	2024-03-08 14:54:13.000000000 +0900
-+++ src/libqcow-20240308/Makefile.am	2025-05-20 12:20:52.151080200 +0900
+--- origsrc/libqcow-20260703/Makefile.am	2026-07-03 08:21:03.000000000 +0000
++++ src/libqcow-20260703/Makefile.am	2026-11-15 14:59:23.176095200 +0000
 @@ -3,23 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -24,9 +24,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libqcow-20240308/configure.ac	2024-03-08 14:54:13.000000000 +0900
-+++ src/libqcow-20240308/configure.ac	2025-05-20 12:20:52.151080200 +0900
-@@ -174,19 +174,6 @@ dnl Generate Makefiles
+--- origsrc/libqcow-20260703/configure.ac	2026-07-03 08:21:03.000000000 +0000
++++ src/libqcow-20260703/configure.ac	2026-11-15 14:59:23.175770000 +0000
+@@ -184,19 +184,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -46,12 +46,12 @@
  AC_CONFIG_FILES([libqcow/Makefile])
  AC_CONFIG_FILES([pyqcow/Makefile])
  AC_CONFIG_FILES([qcowtools/Makefile])
---- origsrc/libqcow-20240308/pyqcow/Makefile.am	2024-03-08 14:54:13.000000000 +0900
-+++ src/libqcow-20240308/pyqcow/Makefile.am	2025-05-20 12:21:10.438483800 +0900
+--- origsrc/libqcow-20260703/pyqcow/Makefile.am	2026-07-03 08:21:03.000000000 +0000
++++ src/libqcow-20260703/pyqcow/Makefile.am	2026-11-15 14:59:23.176095200 +0000
 @@ -40,7 +40,7 @@ pyqcow_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pyqcow_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pyqcow_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pyqcow_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pyqcow_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

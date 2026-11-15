@@ -5,67 +5,69 @@ database suitable for applications like rendering into a map, geocoding with
 Nominatim, or general analysis.
 
 Runtime requirements:
-  cygwin-3.4.5-1
-  libboost_filesystem1.66-1.66.0-1
-  libboost_system1.66-1.66.0-1
-  libbz2_1-1.0.8-1
-  libexpat1-2.4.1-1
-  libgcc1-11.3.0-1
+  cygwin-3.6.12-1
+  libbz2_1-1.0.8-2
+  libexpat1-2.10.0-1
+  libgcc1-14.4.0-1
   liblua5.3-5.3.6-4
-  libpq5-14.5-1
-  libproj25-9.0.1-1
-  libstdc++6-11.3.0-1
-  python39-3.9.10-1
-  zlib0-1.2.13-1
+  libpq5-18.7-1
+  libproj25-9.9.0-1
+  libstdc++6-14.4.0-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.39-1
-  cmake-3.23.2-1
-  cygport-0.36.0-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
-  libbz2-devel-1.0.8-1
-  libexpat-devel-2.4.1-1
+  libbz2-devel-1.0.8-2
+  libexpat-devel-2.10.0-1
   liblua-devel-5.3.6-4
-  libpq-devel-14.5-1
-  libproj-devel-9.0.1-1
+  libpq-devel-18.7-1
+  libpq5-18.7-1
+  libproj-devel-9.9.0-1
   lua-5.3.6-4
-  ninja-1.11.1-1
-  zlib-devel-1.2.13-1
+  ninja-1.13.2-1
+  nlohmann_json-3.12.0-1bl3
+  proj-9.9.0-1
+  zlib-devel-1.4-1
 
 Canonical website:
-  https://github.com/openstreetmap/osm2pgsql
+  https://github.com/osm2pgsql-dev/osm2pgsql
 
 Canonical download:
-  https://github.com/openstreetmap/osm2pgsql/archive/refs/tags/1.8.0.tar.gz
+  https://github.com/osm2pgsql-dev/osm2pgsql/archive/refs/tags/2.3.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack osm2pgsql-1.8.0-X-src.tar.xz
+  1. unpack osm2pgsql-2.3.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./osm2pgsql-1.8.0-X.cygport all
+        % cygport ./osm2pgsql-2.3.1-X.cygport all
 
 This will create:
-  /usr/src/osm2pgsql-1.8.0-X-src.tar.xz
-  /usr/src/osm2pgsql-1.8.0-X.tar.xz
+  /usr/src/osm2pgsql-2.3.1-X-src.tar.xz
+  /usr/src/osm2pgsql-2.3.1-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (osm2pgsql)
+  /usr/bin/osm2pgsql-expire.exe
   /usr/bin/osm2pgsql-replication
   /usr/bin/osm2pgsql.exe
   /usr/share/doc/Cygwin/osm2pgsql.README
   /usr/share/doc/osm2pgsql/AUTHORS
   /usr/share/doc/osm2pgsql/COPYING
   /usr/share/doc/osm2pgsql/README.md
+  /usr/share/man/man1/osm2pgsql-expire.1.gz
   /usr/share/man/man1/osm2pgsql-replication.1.gz
+  /usr/share/man/man1/osm2pgsql-test-style.1.gz
   /usr/share/man/man1/osm2pgsql.1.gz
   /usr/share/osm2pgsql/default.style
   /usr/share/osm2pgsql/empty.style
@@ -73,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.3.1-1bl1 -----
+Version bump.
 
 ----- version 1.8.0-1bl1 -----
 Version bump.

@@ -1,0 +1,50 @@
+--- origsrc/osm2pgsql-2.3.1/CMakeLists.txt	2026-07-05 09:06:14.000000000 +0000
++++ src/osm2pgsql-2.3.1/CMakeLists.txt	2026-11-14 23:44:30.277379200 +0000
+@@ -1,6 +1,10 @@
+ 
+ cmake_minimum_required(VERSION 3.10.0)
+ 
++if (POLICY CMP0167)
++    cmake_policy(SET CMP0167 OLD)
++endif()
++
+ project(osm2pgsql VERSION 2.3.1 LANGUAGES CXX C)
+ 
+ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+@@ -191,7 +195,7 @@ endif()
+ 
+ find_program(LUA_EXE NAMES lua lua5.4 lua5.3 lua5.2 lua5.1)
+ 
+-find_package(Boost CONFIG 1.50 REQUIRED)
++find_package(Boost 1.50 REQUIRED)
+ include_directories(SYSTEM ${Boost_INCLUDE_DIR})
+ 
+ find_package(PostgreSQL REQUIRED)
+--- origsrc/osm2pgsql-2.3.1/src/geom-functions.cpp	2026-07-05 09:06:14.000000000 +0000
++++ src/osm2pgsql-2.3.1/src/geom-functions.cpp	2026-11-14 23:44:30.277889300 +0000
+@@ -13,6 +13,8 @@
+ #include "overloaded.hpp"
+ #include "projection.hpp"
+ 
++#include <boost/version.hpp>
++
+ #include <algorithm>
+ #include <cmath>
+ #include <iterator>
+@@ -375,9 +377,16 @@ double spherical_area(polygon_t const &g
+     boost::geometry::model::polygon<sph_point> sph_geom;
+     boost::geometry::convert(geom, sph_geom);
+ 
++#if BOOST_VERSION < 106700
++    return boost::geometry::area(sph_geom,
++                                 boost::geometry::strategy::area::geographic<
++                                     sph_point,
++                                     boost::geometry::strategy::vincenty>{});
++#else
+     return boost::geometry::area(sph_geom,
+                                  boost::geometry::strategy::area::geographic<
+                                      boost::geometry::strategy::vincenty>{});
++#endif
+ }
+ 
+ double spherical_length(linestring_t const &geom)

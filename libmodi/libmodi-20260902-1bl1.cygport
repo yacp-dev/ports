@@ -16,7 +16,32 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libbfio-devel libbz2-devel libcdata-devel libcdirectory-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libcpath-devel libcthreads-devel libfcache-devel libfdata-devel libfmos-devel libfplist-devel libfvalue-devel liblzma-devel libuna-devel python39-devel zlib-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libbz2-devel
+	libcaes-devel
+	libcdata-devel
+	libcdirectory-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfguid-devel
+	libfmos-devel
+	libfplist-devel
+	libfvalue-devel
+	libhmac-devel
+	liblzma-devel
+	libuna-devel
+	python3-devel
+	zlib-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -37,7 +62,7 @@ src_test()
 }
 
 DOCS="
-	COPYING.LESSER
+	COPYING*
 	documentation/*
 "
 
@@ -45,7 +70,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libmodi_CONTENTS="
 	usr/bin/*.exe
@@ -61,10 +86,10 @@ libmodi_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libmodi_CONTENTS="
-	usr/lib/python3.9
+python312_libmodi_CONTENTS="
+	usr/lib/python3.12
 "
 libmodi_SUMMARY="${SUMMARY} (utilities)"
 libmodi1_SUMMARY="${SUMMARY} (runtime)"
 libmodi_devel_SUMMARY="${SUMMARY} (development)"
-python39_libmodi_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libmodi_SUMMARY="${SUMMARY} (python312 bindings)"

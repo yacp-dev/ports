@@ -1,5 +1,5 @@
---- origsrc/libimobiledevice-1.4.0/configure.ac	2025-10-11 01:08:40.000000000 +0900
-+++ src/libimobiledevice-1.4.0/configure.ac	2026-01-18 20:54:28.974648200 +0900
+--- origsrc/libimobiledevice-1.4.0/configure.ac	2025-10-10 16:08:40.000000000 +0000
++++ src/libimobiledevice-1.4.0/configure.ac	2026-11-15 21:25:18.503316600 +0000
 @@ -105,7 +105,7 @@ CFLAGS="$CACHED_CFLAGS"
  # Check for operating system
  AC_MSG_CHECKING([for platform-specific build settings])

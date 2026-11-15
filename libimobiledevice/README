@@ -3,36 +3,35 @@ libimobiledevice
 Cross-platform protocol library to communicate with iOS devices
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libimobiledevice-glue1.0-devel-1.3.2-1bl1
-  libimobiledevice-glue1.0_0-1.3.2-1bl1
-  libimobiledevice1.0-devel-1.4.0-1bl1
-  libimobiledevice1.0_6-1.4.0-1bl1
-  libplist2.0-devel-2.7.0-1bl1
-  libplist2.0_4-2.7.0-1bl1
+  cygwin-3.6.12-1
+  libimobiledevice-glue1.0-devel-1.3.3-1bl1
+  libimobiledevice-glue1.0_0-1.3.3-1bl1
+  libimobiledevice1.0-devel-1.4.0-1bl2
+  libimobiledevice1.0_6-1.4.0-1bl2
+  libplist2.0-devel-2.8.1-1bl1
+  libplist2.0_12-2.8.1-1bl1
   libreadline8-8.3-1
-  libssl-devel-3.0.18-1
-  libssl3-3.0.18-1
-  libtatsu0-1.0.4-1bl1
-  libusbmuxd2.0-devel-2.1.1-1bl1
-  libusbmuxd2.0_7-2.1.1-1bl1
-  pkg-config-2.5.1-1
+  libssl-devel-3.5.9-1
+  libssl3-3.5.9-1
+  libtatsu0-1.1.0-1bl1
+  libusbmuxd2.0-devel-2.1.1-1bl2
+  libusbmuxd2.0_7-2.1.1-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libimobiledevice-glue1.0-devel-1.3.2-1bl1
-  libplist2.0-devel-2.7.0-1bl1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libimobiledevice-glue1.0-devel-1.3.3-1bl1
+  libplist2.0-devel-2.8.1-1bl1
   libreadline-devel-8.3-1
-  libssl-devel-3.0.18-1
-  libtatsu-devel-1.0.4-1bl1
-  libtool-2.5.4-1
-  libusbmuxd2.0-devel-2.1.1-1bl1
+  libssl-devel-3.5.9-1
+  libtatsu-devel-1.1.0-1bl1
+  libtool-2.6.2-1
+  libusbmuxd2.0-devel-2.1.1-1bl2
   make-4.4.1-2
 
 Canonical website:
@@ -83,8 +82,11 @@ Files included in the binary package:
   /usr/bin/idevicesetlocation.exe
   /usr/bin/idevicesyslog.exe
   /usr/share/doc/Cygwin/libimobiledevice.README
+  /usr/share/doc/libimobiledevice/3rd_party/ed25519/LICENSE
+  /usr/share/doc/libimobiledevice/3rd_party/libsrp6a-sha512/LICENSE
   /usr/share/doc/libimobiledevice/AUTHORS
   /usr/share/doc/libimobiledevice/COPYING
+  /usr/share/doc/libimobiledevice/COPYING.LESSER
   /usr/share/doc/libimobiledevice/NEWS
   /usr/share/doc/libimobiledevice/README.md
   /usr/share/man/man1/afcclient.1.gz
@@ -147,6 +149,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.4.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.4.0-1bl1 -----
 Version bump.

@@ -9,7 +9,17 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libcdata-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcthreads-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -44,7 +54,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libsmdev_CONTENTS="
 	usr/bin/*.exe
@@ -60,10 +70,10 @@ libsmdev_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libsmdev_CONTENTS="
-	usr/lib/python3.9
+python312_libsmdev_CONTENTS="
+	usr/lib/python3.12
 "
 libsmdev_SUMMARY="${SUMMARY} (utilities)"
 libsmdev1_SUMMARY="${SUMMARY} (runtime)"
 libsmdev_devel_SUMMARY="${SUMMARY} (development)"
-python39_libsmdev_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libsmdev_SUMMARY="${SUMMARY} (python312 bindings)"

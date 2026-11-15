@@ -1,5 +1,5 @@
---- origsrc/libsmdev-20240505/Makefile.am	2024-05-05 17:52:36.000000000 +0900
-+++ src/libsmdev-20240505/Makefile.am	2025-05-20 08:33:36.163261400 +0900
+--- origsrc/libsmdev-20260902/Makefile.am	2026-09-02 10:22:02.000000000 +0000
++++ src/libsmdev-20260902/Makefile.am	2026-11-15 13:59:42.308256000 +0000
 @@ -3,17 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -18,9 +18,9 @@
  	manuals \
  	tests \
  	msvscpp
---- origsrc/libsmdev-20240505/configure.ac	2024-05-05 17:52:36.000000000 +0900
-+++ src/libsmdev-20240505/configure.ac	2025-05-20 08:33:26.866373400 +0900
-@@ -140,13 +140,6 @@ dnl Generate Makefiles
+--- origsrc/libsmdev-20260902/configure.ac	2026-09-02 10:22:02.000000000 +0000
++++ src/libsmdev-20260902/configure.ac	2026-11-15 13:59:42.308256000 +0000
+@@ -150,13 +150,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -34,12 +34,12 @@
  AC_CONFIG_FILES([libsmdev/Makefile])
  AC_CONFIG_FILES([pysmdev/Makefile])
  AC_CONFIG_FILES([smdevtools/Makefile])
---- origsrc/libsmdev-20240505/pysmdev/Makefile.am	2024-05-05 17:52:36.000000000 +0900
-+++ src/libsmdev-20240505/pysmdev/Makefile.am	2025-05-20 08:33:43.674448000 +0900
+--- origsrc/libsmdev-20260902/pysmdev/Makefile.am	2026-09-02 10:22:02.000000000 +0000
++++ src/libsmdev-20260902/pysmdev/Makefile.am	2026-11-15 13:59:42.310272100 +0000
 @@ -32,7 +32,7 @@ pysmdev_la_LIBADD = \
  	@LIBCFILE_LIBADD@
  
- pysmdev_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pysmdev_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pysmdev_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pysmdev_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

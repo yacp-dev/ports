@@ -16,57 +16,68 @@ Canonical website:
   https://github.com/kokkos/mdspan
 
 Canonical download:
-  https://github.com/kokkos/mdspan/archive/refs/tags/mdspan-0.6.0.tar.gz
+  https://github.com/kokkos/mdspan/archive/refs/tags/5.3.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mdspan-0.6.0-X-src.tar.xz
+  1. unpack mdspan-5.3.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mdspan-0.6.0-X.cygport all
+        % cygport ./mdspan-5.3.0-X.cygport all
 
 This will create:
-  /usr/src/mdspan-0.6.0-X-src.tar.xz
-  /usr/src/mdspan-0.6.0-X.tar.xz
+  /usr/src/mdspan-5.3.0-X-src.tar.xz
+  /usr/src/mdspan-5.3.0-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (mdspan)
-  /usr/include/experimental/__p0009_bits/compressed_pair.hpp
-  /usr/include/experimental/__p0009_bits/config.hpp
-  /usr/include/experimental/__p0009_bits/default_accessor.hpp
-  /usr/include/experimental/__p0009_bits/dynamic_extent.hpp
-  /usr/include/experimental/__p0009_bits/extents.hpp
-  /usr/include/experimental/__p0009_bits/full_extent_t.hpp
-  /usr/include/experimental/__p0009_bits/layout_left.hpp
-  /usr/include/experimental/__p0009_bits/layout_right.hpp
-  /usr/include/experimental/__p0009_bits/layout_stride.hpp
-  /usr/include/experimental/__p0009_bits/macros.hpp
-  /usr/include/experimental/__p0009_bits/mdspan.hpp
-  /usr/include/experimental/__p0009_bits/no_unique_address.hpp
-  /usr/include/experimental/__p0009_bits/trait_backports.hpp
-  /usr/include/experimental/__p0009_bits/type_list.hpp
-  /usr/include/experimental/__p1684_bits/mdarray.hpp
-  /usr/include/experimental/__p2630_bits/strided_slice.hpp
-  /usr/include/experimental/__p2630_bits/submdspan.hpp
-  /usr/include/experimental/__p2630_bits/submdspan_extents.hpp
-  /usr/include/experimental/__p2630_bits/submdspan_mapping.hpp
-  /usr/include/experimental/mdarray
-  /usr/include/experimental/mdspan
+  /usr/include/mdspan/impl/compressed_pair.hpp
+  /usr/include/mdspan/impl/config.hpp
+  /usr/include/mdspan/impl/constant_wrapper.hpp
+  /usr/include/mdspan/impl/default_accessor.hpp
+  /usr/include/mdspan/impl/dims.hpp
+  /usr/include/mdspan/impl/dynamic_extent.hpp
+  /usr/include/mdspan/impl/extents.hpp
+  /usr/include/mdspan/impl/full_extent_t.hpp
+  /usr/include/mdspan/impl/integral_constant_like.hpp
+  /usr/include/mdspan/impl/layout_left.hpp
+  /usr/include/mdspan/impl/layout_padded.hpp
+  /usr/include/mdspan/impl/layout_padded_fwd.hpp
+  /usr/include/mdspan/impl/layout_right.hpp
+  /usr/include/mdspan/impl/layout_stride.hpp
+  /usr/include/mdspan/impl/macros.hpp
+  /usr/include/mdspan/impl/mdarray.hpp
+  /usr/include/mdspan/impl/mdspan.hpp
+  /usr/include/mdspan/impl/no_unique_address.hpp
+  /usr/include/mdspan/impl/strided_slice.hpp
+  /usr/include/mdspan/impl/submdspan.hpp
+  /usr/include/mdspan/impl/submdspan_canonicalize_slices.hpp
+  /usr/include/mdspan/impl/submdspan_extents.hpp
+  /usr/include/mdspan/impl/submdspan_mapping.hpp
+  /usr/include/mdspan/impl/trait_backports.hpp
+  /usr/include/mdspan/impl/type_list.hpp
+  /usr/include/mdspan/impl/utility.hpp
+  /usr/include/mdspan/mdarray.hpp
+  /usr/include/mdspan/mdspan.hpp
   /usr/lib/cmake/mdspan/mdspanConfig.cmake
   /usr/lib/cmake/mdspan/mdspanConfigVersion.cmake
   /usr/lib/cmake/mdspan/mdspanTargets.cmake
   /usr/share/doc/Cygwin/mdspan.README
+  /usr/share/doc/mdspan/COPYRIGHT.md
   /usr/share/doc/mdspan/LICENSE
   /usr/share/doc/mdspan/README.md
 
 ------------------
 
 Port Notes:
+
+----- version 5.3.0-1bl1 -----
+Version bump.
 
 ----- version 0.6.0-1bl2 -----
 Fix conflict with ctype.h macros

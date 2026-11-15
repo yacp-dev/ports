@@ -1,0 +1,13 @@
+--- origsrc/mdspan-5.3.0/include/mdspan/impl/trait_backports.hpp	2026-11-10 21:38:29.000000000 +0000
++++ src/mdspan-5.3.0/include/mdspan/impl/trait_backports.hpp	2026-11-15 16:39:18.787247800 +0000
+@@ -110,8 +110,8 @@ namespace MDSPAN_IMPL_STANDARD_NAMESPACE
+ MDSPAN_IMPL_BACKPORT_TRAIT_ALIAS(remove_cv)
+ MDSPAN_IMPL_BACKPORT_TRAIT_ALIAS(remove_reference)
+ 
+-template <bool _B, class T = void>
+-using enable_if_t = typename enable_if<_B, T>::type;
++template <bool _Bp, class T = void>
++using enable_if_t = typename enable_if<_Bp, T>::type;
+ 
+ #undef MDSPAN_IMPL_BACKPORT_TRAIT_ALIAS
+ 

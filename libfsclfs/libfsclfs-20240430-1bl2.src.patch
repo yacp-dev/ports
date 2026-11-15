@@ -1,5 +1,5 @@
---- origsrc/libfsclfs-20240430/Makefile.am	2024-04-30 11:36:29.000000000 +0900
-+++ src/libfsclfs-20240430/Makefile.am	2025-05-18 19:49:21.059595600 +0900
+--- origsrc/libfsclfs-20240430/Makefile.am	2024-04-30 02:36:29.000000000 +0000
++++ src/libfsclfs-20240430/Makefile.am	2026-11-15 06:10:46.151478300 +0000
 @@ -3,27 +3,8 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -28,8 +28,8 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libfsclfs-20240430/configure.ac	2024-04-30 11:36:29.000000000 +0900
-+++ src/libfsclfs-20240430/configure.ac	2025-05-18 19:49:07.700347000 +0900
+--- origsrc/libfsclfs-20240430/configure.ac	2024-04-30 02:36:29.000000000 +0000
++++ src/libfsclfs-20240430/configure.ac	2026-11-15 06:10:46.151478300 +0000
 @@ -166,25 +166,7 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
@@ -56,8 +56,8 @@
  AC_CONFIG_FILES([fsclfstools/Makefile])
  AC_CONFIG_FILES([po/Makefile.in])
  AC_CONFIG_FILES([po/Makevars])
---- origsrc/libfsclfs-20240430/tests/fsclfs_test_memory.c	2024-04-30 11:36:29.000000000 +0900
-+++ src/libfsclfs-20240430/tests/fsclfs_test_memory.c	2025-05-18 19:49:50.722555100 +0900
+--- origsrc/libfsclfs-20240430/tests/fsclfs_test_memory.c	2024-04-30 02:36:29.000000000 +0000
++++ src/libfsclfs-20240430/tests/fsclfs_test_memory.c	2026-11-15 06:10:46.153248000 +0000
 @@ -45,6 +45,7 @@ int fsclfs_test_memcpy_attempts_before_f
  int fsclfs_test_memset_attempts_before_fail                           = -1;
  int fsclfs_test_realloc_attempts_before_fail                          = -1;

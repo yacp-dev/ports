@@ -9,7 +9,27 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libftxf-devel libftxr-devel libuna-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfdatetime-devel
+	libfguid-devel
+	libftxf-devel
+	libftxr-devel
+	libfusn-devel
+	libfwnt-devel
+	libuna-devel
+"
 
 CYGCONF_ARGS="
 	--enable-wide-character-type

@@ -4,21 +4,20 @@ tolua++ is an extension of toLua, a tool to integrate C/C++ code with Lua.
 tolua++ includes new features oriented to c++, such as class templates.
 
 Runtime requirements:
-  cygwin-3.1.2-1
-  libtoluapp-devel-1.0.93-1bl2
-  libtoluapp0-1.0.93-1bl2
+  cygwin-3.6.12-1
+  libtoluapp-devel-1.0.93-1bl3
+  libtoluapp0-1.0.93-1bl3
   lua5.1-5.1.5-3
-  pkg-config-1.6.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.29-1
-  cmake-3.14.5-1
-  cygport-0.33.1-1
-  gcc-core-7.4.0-1
-  gcc-g++-7.4.0-1
-  lua-5.3.5-1
-  ninja-1.9.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  lua5.1-devel-5.1.5-3
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/LuaDist/toluapp
@@ -66,6 +65,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.93-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.93-1bl2 -----
 Rebuild for lua

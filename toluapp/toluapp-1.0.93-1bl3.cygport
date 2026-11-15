@@ -6,11 +6,27 @@ SUMMARY="Tool to integrate C/Cpp code with Lua"
 DESCRIPTION="tolua++ is an extension of toLua, a tool to integrate C/C++ code with Lua.
 tolua++ includes new features oriented to c++, such as class templates."
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="COPYRIGHT"
+
+BUILD_REQUIRES="
+	lua5.1-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DVERSION:STRING=${PV}
 "
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i "s/tolua++-1\.0\.92/tolua++-${PV}/" include/tolua++.h
+}
 
 src_test()
 {
@@ -19,6 +35,7 @@ src_test()
 }
 
 DOCS="
+	COPYRIGHT
 	README-5.1
 "
 HTMLDOCS="
@@ -35,7 +52,7 @@ toluapp_CONTENTS="
 	usr/share
 "
 libtoluapp0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygtoluapp-0.dll
 "
 libtoluapp_devel_CONTENTS="
 	usr/include

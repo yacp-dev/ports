@@ -1,5 +1,5 @@
---- origsrc/libsigscan-20240505/Makefile.am	2024-05-05 17:03:22.000000000 +0900
-+++ src/libsigscan-20240505/Makefile.am	2025-05-20 19:16:52.840320300 +0900
+--- origsrc/libsigscan-20260902/Makefile.am	2026-09-02 10:42:40.000000000 +0000
++++ src/libsigscan-20260902/Makefile.am	2026-11-15 15:36:36.920781200 +0000
 @@ -3,20 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -21,9 +21,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libsigscan-20240505/configure.ac	2024-05-05 17:03:22.000000000 +0900
-+++ src/libsigscan-20240505/configure.ac	2025-05-20 19:16:52.840320300 +0900
-@@ -151,16 +151,6 @@ dnl Generate Makefiles
+--- origsrc/libsigscan-20260902/configure.ac	2026-09-02 10:42:40.000000000 +0000
++++ src/libsigscan-20260902/configure.ac	2026-11-15 15:36:36.922550400 +0000
+@@ -161,16 +161,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -40,12 +40,12 @@
  AC_CONFIG_FILES([libsigscan/Makefile])
  AC_CONFIG_FILES([pysigscan/Makefile])
  AC_CONFIG_FILES([sigscantools/Makefile])
---- origsrc/libsigscan-20240505/pysigscan/Makefile.am	2024-05-05 17:03:22.000000000 +0900
-+++ src/libsigscan-20240505/pysigscan/Makefile.am	2025-05-20 19:17:42.076179500 +0900
+--- origsrc/libsigscan-20260902/pysigscan/Makefile.am	2026-09-02 10:42:40.000000000 +0000
++++ src/libsigscan-20260902/pysigscan/Makefile.am	2026-11-15 15:36:36.922550400 +0000
 @@ -43,7 +43,7 @@ pysigscan_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pysigscan_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pysigscan_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pysigscan_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pysigscan_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  

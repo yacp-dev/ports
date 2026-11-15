@@ -9,14 +9,32 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfdatetime-devel
+	libfguid-devel
+	libfole-devel
+	libfvalue-devel
+	libfwps-devel
+	libuna-devel
+	python3-devel
+"
+
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
 {
 	cd ${origsrcdir}/${SRC_DIR}
 	chmod u+x tests/*.{py,sh}
 }
-
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libcpath-devel libfdatetime-devel libfguid-devel libfole-devel libfvalue-devel libuna-devel python39-devel"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -28,11 +46,12 @@ src_test()
 	pushd tests
 		for f in ${S}/tests/*.{py,sh}
 		do
-			ln -fs ${f} .
+			cp -f ${f} .
 		done
+		cp -f ${B}/pyolecf/.libs/pyolecf.dll .
 	popd
-	cygtest
-	rm tests/*.{py,sh}
+	CHECK_WITH_STDERR=1 PYTHON=python3 PATH=${B}/${PN}/.libs:${B}/pyolecf/.libs:${PATH} cygtest
+	rm -f tests/*.{py,sh} tests/pyolecf.dll
 }
 
 DOCS="
@@ -43,7 +62,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libolecf_CONTENTS="
 	usr/bin/*.exe
@@ -59,10 +78,10 @@ libolecf_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libolecf_CONTENTS="
-	usr/lib/python3.9
+python312_libolecf_CONTENTS="
+	usr/lib/python3.12
 "
 libolecf_SUMMARY="${SUMMARY} (utilities)"
 libolecf1_SUMMARY="${SUMMARY} (runtime)"
 libolecf_devel_SUMMARY="${SUMMARY} (development)"
-python39_libolecf_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libolecf_SUMMARY="${SUMMARY} (python312 bindings)"

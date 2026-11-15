@@ -1,5 +1,5 @@
---- origsrc/libolecf-20240427/Makefile.am	2024-04-27 12:47:07.000000000 +0900
-+++ src/libolecf-20240427/Makefile.am	2025-05-18 15:49:45.011327000 +0900
+--- origsrc/libolecf-20260526/Makefile.am	2026-05-26 13:21:35.000000000 +0000
++++ src/libolecf-20260526/Makefile.am	2026-11-15 04:29:48.278768700 +0000
 @@ -3,25 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -26,9 +26,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libolecf-20240427/configure.ac	2024-04-27 12:47:07.000000000 +0900
-+++ src/libolecf-20240427/configure.ac	2025-05-18 15:49:45.011327000 +0900
-@@ -176,21 +176,6 @@ dnl Generate Makefiles
+--- origsrc/libolecf-20260526/configure.ac	2026-05-26 13:21:35.000000000 +0000
++++ src/libolecf-20260526/configure.ac	2026-11-15 04:29:48.280011400 +0000
+@@ -175,21 +175,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -50,8 +50,8 @@
  AC_CONFIG_FILES([libolecf/Makefile])
  AC_CONFIG_FILES([pyolecf/Makefile])
  AC_CONFIG_FILES([olecftools/Makefile])
---- origsrc/libolecf-20240427/olecftools/export_handle.c	2024-04-27 12:47:07.000000000 +0900
-+++ src/libolecf-20240427/olecftools/export_handle.c	2025-05-18 15:49:45.011327000 +0900
+--- origsrc/libolecf-20260526/olecftools/export_handle.c	2026-05-26 13:21:35.000000000 +0000
++++ src/libolecf-20260526/olecftools/export_handle.c	2026-11-15 04:29:48.280776400 +0000
 @@ -1467,6 +1467,7 @@ int export_handle_export_sub_items(
  			 sub_item_iterator + 1,
  			 number_of_sub_items );
@@ -68,8 +68,8 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
---- origsrc/libolecf-20240427/pyolecf/Makefile.am	2024-04-27 12:47:07.000000000 +0900
-+++ src/libolecf-20240427/pyolecf/Makefile.am	2025-05-18 15:50:11.329358800 +0900
+--- origsrc/libolecf-20260526/pyolecf/Makefile.am	2026-05-26 13:21:35.000000000 +0000
++++ src/libolecf-20260526/pyolecf/Makefile.am	2026-11-15 04:29:48.280776400 +0000
 @@ -56,7 +56,7 @@ pyolecf_la_LIBADD = \
  	@LIBFGUID_LIBADD@
  

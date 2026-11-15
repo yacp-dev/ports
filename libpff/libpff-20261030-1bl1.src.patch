@@ -1,5 +1,5 @@
---- origsrc/libpff-20231205/Makefile.am	2023-12-05 15:34:03.000000000 +0900
-+++ src/libpff-20231205/Makefile.am	2025-05-18 16:14:07.654469000 +0900
+--- origsrc/libpff-20261030/Makefile.am	2026-11-07 10:31:22.000000000 +0000
++++ src/libpff-20261030/Makefile.am	2026-11-15 05:56:37.364854000 +0000
 @@ -3,28 +3,10 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = \
  	include \
@@ -29,9 +29,9 @@
  	manuals \
  	tests \
  	ossfuzz \
---- origsrc/libpff-20231205/configure.ac	2023-12-05 15:34:03.000000000 +0900
-+++ src/libpff-20231205/configure.ac	2025-05-18 16:14:07.654469000 +0900
-@@ -179,23 +179,6 @@ dnl Generate Makefiles
+--- origsrc/libpff-20261030/configure.ac	2026-11-07 10:31:22.000000000 +0000
++++ src/libpff-20261030/configure.ac	2026-11-15 05:56:37.362824800 +0000
+@@ -189,23 +189,6 @@ dnl Generate Makefiles
  AC_CONFIG_FILES([Makefile])
  AC_CONFIG_FILES([include/Makefile])
  AC_CONFIG_FILES([common/Makefile])
@@ -55,17 +55,9 @@
  AC_CONFIG_FILES([libpff/Makefile])
  AC_CONFIG_FILES([pypff/Makefile])
  AC_CONFIG_FILES([jpff/Makefile])
---- origsrc/libpff-20231205/jpff/Makefile.am	2023-12-05 15:34:03.000000000 +0900
-+++ src/libpff-20231205/jpff/Makefile.am	2025-05-18 16:14:07.654469000 +0900
-@@ -8,6 +8,7 @@ JAVA_FILES = \
- 
- if HAVE_JAVA
- AM_CFLAGS = \
-+	-I$(top_builddir)/include \
- 	-I$(top_srcdir)/include \
- 	-I$(top_srcdir)/common \
- 	@LIBCERROR_CPPFLAGS@
-@@ -38,7 +39,7 @@ libjpff_la_LIBADD = \
+--- origsrc/libpff-20261030/jpff/Makefile.am	2026-11-07 10:31:22.000000000 +0000
++++ src/libpff-20261030/jpff/Makefile.am	2026-11-15 05:56:37.362824800 +0000
+@@ -38,7 +38,7 @@ libjpff_la_LIBADD = \
  	../libpff/libpff.la
  
  libjpff_la_CPPFLAGS = $(JAVA_CPPFLAGS)
@@ -74,16 +66,8 @@
  
  endif
  
---- origsrc/libpff-20231205/libpff/Makefile.am	2023-12-05 15:34:03.000000000 +0900
-+++ src/libpff-20231205/libpff/Makefile.am	2025-05-18 16:14:07.654469000 +0900
-@@ -1,4 +1,5 @@
- AM_CPPFLAGS = \
-+	-I$(top_builddir)/include \
- 	-I$(top_srcdir)/include \
- 	-I$(top_srcdir)/common \
- 	@LIBCERROR_CPPFLAGS@ \
---- origsrc/libpff-20231205/libpff/libpff_name_to_id_map.c	2023-12-05 15:34:03.000000000 +0900
-+++ src/libpff-20231205/libpff/libpff_name_to_id_map.c	2025-05-18 16:14:07.654469000 +0900
+--- origsrc/libpff-20261030/libpff/libpff_name_to_id_map.c	2026-11-07 10:31:22.000000000 +0000
++++ src/libpff-20261030/libpff/libpff_name_to_id_map.c	2026-11-15 05:56:37.364854000 +0000
 @@ -739,11 +739,13 @@ int libpff_name_to_id_map_entry_read(
  	}
  	else if( name_to_id_map_entry_type == 5 )
@@ -108,16 +92,8 @@
  	}
  #if defined( HAVE_DEBUG_OUTPUT )
  	if( libcnotify_verbose != 0 )
---- origsrc/libpff-20231205/pfftools/Makefile.am	2023-12-05 15:34:03.000000000 +0900
-+++ src/libpff-20231205/pfftools/Makefile.am	2025-05-18 16:14:07.654469000 +0900
-@@ -1,4 +1,5 @@
- AM_CPPFLAGS = \
-+	-I$(top_builddir)/include \
- 	-I$(top_srcdir)/include \
- 	-I$(top_srcdir)/common \
- 	@LIBCERROR_CPPFLAGS@ \
---- origsrc/libpff-20231205/pfftools/export_handle.c	2023-12-05 15:34:03.000000000 +0900
-+++ src/libpff-20231205/pfftools/export_handle.c	2025-05-18 16:14:07.669954000 +0900
+--- origsrc/libpff-20261030/pfftools/export_handle.c	2026-11-07 10:31:22.000000000 +0000
++++ src/libpff-20261030/pfftools/export_handle.c	2026-11-15 05:56:37.370916800 +0000
 @@ -1594,6 +1594,7 @@ int export_handle_export_item(
  	}
  	if( result == -1 )
@@ -166,7 +142,7 @@
  			log_handle_printf(
  			 log_handle,
  			 "Skipped export of item: %d out of: %d of type: %" PRIs_SYSTEM " (0x%02" PRIx8 ").\n",
-@@ -2704,6 +2710,7 @@ int export_handle_export_sub_items(
+@@ -2923,6 +2929,7 @@ int export_handle_export_sub_items(
  			 sub_item_iterator + 1,
  			 number_of_sub_items );
  
@@ -174,7 +150,7 @@
  			if( libcnotify_verbose != 0 )
  			{
  				libcnotify_printf(
-@@ -2711,6 +2718,7 @@ int export_handle_export_sub_items(
+@@ -2930,6 +2937,7 @@ int export_handle_export_sub_items(
  				 function,
  				 sub_item_iterator + 1 );
  			}
@@ -182,7 +158,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -7115,12 +7123,14 @@ int export_handle_export_attachments(
+@@ -7300,12 +7308,14 @@ int export_handle_export_attachments(
  				     log_handle,
  				     error ) != 1 )
  				{
@@ -197,7 +173,7 @@
  					if( ( error != NULL )
  					 && ( *error != NULL ) )
  					{
-@@ -7192,6 +7202,7 @@ int export_handle_export_attachments(
+@@ -7377,6 +7387,7 @@ int export_handle_export_attachments(
  			     log_handle,
  			     error ) != 1 )
  			{
@@ -205,7 +181,7 @@
  				if( libcnotify_verbose != 0 )
  				{
  					libcnotify_printf(
-@@ -7199,6 +7210,7 @@ int export_handle_export_attachments(
+@@ -7384,6 +7395,7 @@ int export_handle_export_attachments(
  					 function,
  					 attachment_index + 1 );
  				}
@@ -213,7 +189,7 @@
  				if( ( error != NULL )
  				 && ( *error != NULL ) )
  				{
-@@ -7290,12 +7302,14 @@ int export_handle_export_attachment(
+@@ -7475,12 +7487,14 @@ int export_handle_export_attachment(
  		 export_handle->notify_stream,
  		 "Unsupported attachment type.\n" );
  
@@ -228,7 +204,7 @@
  		log_handle_printf(
  		 log_handle,
  		 "Unsupported attachment type.\n" );
-@@ -8248,12 +8262,14 @@ int export_handle_export_recipients(
+@@ -8561,12 +8575,14 @@ int export_handle_export_recipients(
  				     log_handle,
  				     error ) != 1 )
  				{
@@ -243,7 +219,7 @@
  					if( ( error != NULL )
  					 && ( *error != NULL ) )
  					{
-@@ -8710,6 +8726,7 @@ int export_handle_export_activity(
+@@ -9003,6 +9019,7 @@ int export_handle_export_activity(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -251,7 +227,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -8717,6 +8734,7 @@ int export_handle_export_activity(
+@@ -9010,6 +9027,7 @@ int export_handle_export_activity(
  			 function,
  			 identifier );
  		}
@@ -259,7 +235,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -8762,12 +8780,14 @@ int export_handle_export_activity(
+@@ -9055,12 +9073,14 @@ int export_handle_export_activity(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -274,7 +250,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -8890,12 +8910,14 @@ int export_handle_export_activity(
+@@ -9183,12 +9203,14 @@ int export_handle_export_activity(
  		     item_file,
  		     error ) != 1 )
  		{
@@ -289,7 +265,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -8944,12 +8966,14 @@ int export_handle_export_activity(
+@@ -9237,12 +9259,14 @@ int export_handle_export_activity(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -304,7 +280,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -8971,12 +8995,14 @@ int export_handle_export_activity(
+@@ -9264,12 +9288,14 @@ int export_handle_export_activity(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -319,7 +295,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -9000,12 +9026,14 @@ int export_handle_export_activity(
+@@ -9293,12 +9319,14 @@ int export_handle_export_activity(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -334,7 +310,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -9116,6 +9144,7 @@ int export_handle_export_appointment(
+@@ -9441,6 +9469,7 @@ int export_handle_export_appointment(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -342,7 +318,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -9123,6 +9152,7 @@ int export_handle_export_appointment(
+@@ -9448,6 +9477,7 @@ int export_handle_export_appointment(
  			 function,
  			 identifier );
  		}
@@ -350,7 +326,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -9157,12 +9187,14 @@ int export_handle_export_appointment(
+@@ -9482,12 +9512,14 @@ int export_handle_export_appointment(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -365,7 +341,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -9276,12 +9308,14 @@ int export_handle_export_appointment(
+@@ -9601,12 +9633,14 @@ int export_handle_export_appointment(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -380,7 +356,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -9305,12 +9339,14 @@ int export_handle_export_appointment(
+@@ -9630,12 +9664,14 @@ int export_handle_export_appointment(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -395,7 +371,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -9449,6 +9485,7 @@ int export_handle_export_contact(
+@@ -9866,6 +9902,7 @@ int export_handle_export_contact(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -403,7 +379,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -9456,6 +9493,7 @@ int export_handle_export_contact(
+@@ -9873,6 +9910,7 @@ int export_handle_export_contact(
  			 function,
  			 identifier );
  		}
@@ -411,7 +387,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -9490,12 +9528,14 @@ int export_handle_export_contact(
+@@ -9907,12 +9945,14 @@ int export_handle_export_contact(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -426,7 +402,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -9621,12 +9661,14 @@ int export_handle_export_contact(
+@@ -10038,12 +10078,14 @@ int export_handle_export_contact(
  		     item_file,
  		     error ) != 1 )
  		{
@@ -441,7 +417,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -9675,12 +9717,14 @@ int export_handle_export_contact(
+@@ -10092,12 +10134,14 @@ int export_handle_export_contact(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -456,7 +432,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -9702,12 +9746,14 @@ int export_handle_export_contact(
+@@ -10119,12 +10163,14 @@ int export_handle_export_contact(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -471,7 +447,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -9731,12 +9777,14 @@ int export_handle_export_contact(
+@@ -10148,12 +10194,14 @@ int export_handle_export_contact(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -486,7 +462,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -9861,6 +9909,7 @@ int export_handle_export_distribution_li
+@@ -10276,6 +10324,7 @@ int export_handle_export_distribution_li
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -494,7 +470,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -9868,6 +9917,7 @@ int export_handle_export_distribution_li
+@@ -10283,6 +10332,7 @@ int export_handle_export_distribution_li
  			 function,
  			 identifier );
  		}
@@ -502,7 +478,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -9913,12 +9963,14 @@ int export_handle_export_distribution_li
+@@ -10328,12 +10378,14 @@ int export_handle_export_distribution_li
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -517,7 +493,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -10294,12 +10346,14 @@ int export_handle_export_distribution_li
+@@ -10706,12 +10758,14 @@ int export_handle_export_distribution_li
  		     item_file,
  		     error ) != 1 )
  		{
@@ -532,7 +508,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -10348,12 +10402,14 @@ int export_handle_export_distribution_li
+@@ -10760,12 +10814,14 @@ int export_handle_export_distribution_li
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -547,7 +523,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -10486,6 +10542,7 @@ int export_handle_export_document(
+@@ -10910,6 +10966,7 @@ int export_handle_export_document(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -555,7 +531,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -10493,6 +10550,7 @@ int export_handle_export_document(
+@@ -10917,6 +10974,7 @@ int export_handle_export_document(
  			 function,
  			 identifier );
  		}
@@ -563,7 +539,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -10538,12 +10596,14 @@ int export_handle_export_document(
+@@ -10962,12 +11020,14 @@ int export_handle_export_document(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -578,7 +554,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -10639,12 +10699,14 @@ int export_handle_export_document(
+@@ -11063,12 +11123,14 @@ int export_handle_export_document(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -593,7 +569,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -10668,12 +10730,14 @@ int export_handle_export_document(
+@@ -11092,12 +11154,14 @@ int export_handle_export_document(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -608,7 +584,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -10780,6 +10844,7 @@ int export_handle_export_email(
+@@ -11204,6 +11268,7 @@ int export_handle_export_email(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -616,7 +592,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -10787,6 +10852,7 @@ int export_handle_export_email(
+@@ -11211,6 +11276,7 @@ int export_handle_export_email(
  			 function,
  			 identifier );
  		}
@@ -624,7 +600,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -10832,12 +10898,14 @@ int export_handle_export_email(
+@@ -11256,12 +11322,14 @@ int export_handle_export_email(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -639,7 +615,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -10978,12 +11046,14 @@ int export_handle_export_email(
+@@ -11402,12 +11470,14 @@ int export_handle_export_email(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -654,7 +630,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -11005,12 +11075,14 @@ int export_handle_export_email(
+@@ -11429,12 +11499,14 @@ int export_handle_export_email(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -669,7 +645,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -11108,12 +11180,14 @@ int export_handle_export_email(
+@@ -11532,12 +11604,14 @@ int export_handle_export_email(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -684,7 +660,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -11174,12 +11248,14 @@ int export_handle_export_email(
+@@ -11598,12 +11672,14 @@ int export_handle_export_email(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -699,7 +675,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -11406,12 +11482,14 @@ int export_handle_export_email_ftk(
+@@ -11830,12 +11906,14 @@ int export_handle_export_email_ftk(
  			     item_file,
  			     error ) != 1 )
  			{
@@ -714,7 +690,7 @@
  				if( ( error != NULL )
  				 && ( *error != NULL ) )
  				{
-@@ -11629,6 +11707,7 @@ int export_handle_export_meeting(
+@@ -12053,6 +12131,7 @@ int export_handle_export_meeting(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -722,7 +698,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -11636,6 +11715,7 @@ int export_handle_export_meeting(
+@@ -12060,6 +12139,7 @@ int export_handle_export_meeting(
  			 function,
  			 identifier );
  		}
@@ -730,7 +706,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -11681,12 +11761,14 @@ int export_handle_export_meeting(
+@@ -12105,12 +12185,14 @@ int export_handle_export_meeting(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -745,7 +721,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -11809,12 +11891,14 @@ int export_handle_export_meeting(
+@@ -12233,12 +12315,14 @@ int export_handle_export_meeting(
  		     item_file,
  		     error ) != 1 )
  		{
@@ -760,7 +736,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -11863,12 +11947,14 @@ int export_handle_export_meeting(
+@@ -12287,12 +12371,14 @@ int export_handle_export_meeting(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -775,7 +751,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -11981,6 +12067,7 @@ int export_handle_export_note(
+@@ -12405,6 +12491,7 @@ int export_handle_export_note(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -783,7 +759,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -11988,6 +12075,7 @@ int export_handle_export_note(
+@@ -12412,6 +12499,7 @@ int export_handle_export_note(
  			 function,
  			 identifier );
  		}
@@ -791,7 +767,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -12033,12 +12121,14 @@ int export_handle_export_note(
+@@ -12457,12 +12545,14 @@ int export_handle_export_note(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -806,7 +782,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -12161,12 +12251,14 @@ int export_handle_export_note(
+@@ -12585,12 +12675,14 @@ int export_handle_export_note(
  		     item_file,
  		     error ) != 1 )
  		{
@@ -821,7 +797,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -12215,12 +12307,14 @@ int export_handle_export_note(
+@@ -12639,12 +12731,14 @@ int export_handle_export_note(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -836,7 +812,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -12242,12 +12336,14 @@ int export_handle_export_note(
+@@ -12666,12 +12760,14 @@ int export_handle_export_note(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -851,7 +827,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -12273,12 +12369,14 @@ int export_handle_export_note(
+@@ -12697,12 +12793,14 @@ int export_handle_export_note(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -866,7 +842,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -12390,6 +12488,7 @@ int export_handle_export_rss_feed(
+@@ -12814,6 +12912,7 @@ int export_handle_export_rss_feed(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -874,7 +850,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -12397,6 +12496,7 @@ int export_handle_export_rss_feed(
+@@ -12821,6 +12920,7 @@ int export_handle_export_rss_feed(
  			 function,
  			 identifier );
  		}
@@ -882,7 +858,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -12442,12 +12542,14 @@ int export_handle_export_rss_feed(
+@@ -12866,12 +12966,14 @@ int export_handle_export_rss_feed(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -897,7 +873,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -12570,12 +12672,14 @@ int export_handle_export_rss_feed(
+@@ -12994,12 +13096,14 @@ int export_handle_export_rss_feed(
  		     item_file,
  		     error ) != 1 )
  		{
@@ -912,7 +888,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -12624,12 +12728,14 @@ int export_handle_export_rss_feed(
+@@ -13048,12 +13152,14 @@ int export_handle_export_rss_feed(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -927,7 +903,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -12651,12 +12757,14 @@ int export_handle_export_rss_feed(
+@@ -13075,12 +13181,14 @@ int export_handle_export_rss_feed(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -942,7 +918,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -12680,12 +12788,14 @@ int export_handle_export_rss_feed(
+@@ -13104,12 +13212,14 @@ int export_handle_export_rss_feed(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -957,7 +933,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -12808,6 +12918,7 @@ int export_handle_export_task(
+@@ -13268,6 +13378,7 @@ int export_handle_export_task(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -965,7 +941,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -12815,6 +12926,7 @@ int export_handle_export_task(
+@@ -13275,6 +13386,7 @@ int export_handle_export_task(
  			 function,
  			 identifier );
  		}
@@ -973,7 +949,7 @@
  	}
  	if( export_handle_create_default_item_directory(
  	     export_handle,
-@@ -12860,12 +12972,14 @@ int export_handle_export_task(
+@@ -13320,12 +13432,14 @@ int export_handle_export_task(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -988,7 +964,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -12991,12 +13105,14 @@ int export_handle_export_task(
+@@ -13451,12 +13565,14 @@ int export_handle_export_task(
  		     item_file,
  		     error ) != 1 )
  		{
@@ -1003,7 +979,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -13045,12 +13161,14 @@ int export_handle_export_task(
+@@ -13505,12 +13621,14 @@ int export_handle_export_task(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -1018,7 +994,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -13072,12 +13190,14 @@ int export_handle_export_task(
+@@ -13532,12 +13650,14 @@ int export_handle_export_task(
  	     log_handle,
  	     error ) != 1 )
  	{
@@ -1033,7 +1009,7 @@
  		if( ( error != NULL )
  		 && ( *error != NULL ) )
  		{
-@@ -13101,12 +13221,14 @@ int export_handle_export_task(
+@@ -13561,12 +13681,14 @@ int export_handle_export_task(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -1048,7 +1024,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -13422,6 +13544,7 @@ int export_handle_export_folder(
+@@ -13882,6 +14004,7 @@ int export_handle_export_folder(
  
  	if( export_handle->export_mode == EXPORT_MODE_DEBUG )
  	{
@@ -1056,7 +1032,7 @@
  		if( libcnotify_verbose != 0 )
  		{
  			libcnotify_printf(
-@@ -13429,6 +13552,7 @@ int export_handle_export_folder(
+@@ -13889,6 +14012,7 @@ int export_handle_export_folder(
  			 function,
  			 identifier );
  		}
@@ -1064,7 +1040,7 @@
  	}
  	/* Create the folder directory
  	 */
-@@ -13608,12 +13732,14 @@ int export_handle_export_folder(
+@@ -14068,12 +14192,14 @@ int export_handle_export_folder(
  		     log_handle,
  		     error ) != 1 )
  		{
@@ -1079,7 +1055,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -13840,6 +13966,7 @@ int export_handle_export_sub_folders(
+@@ -14300,6 +14426,7 @@ int export_handle_export_sub_folders(
  			 sub_folder_iterator + 1,
  			 number_of_sub_folders );
  
@@ -1087,7 +1063,7 @@
  			if( libcnotify_verbose != 0 )
  			{
  				libcnotify_printf(
-@@ -13847,6 +13974,7 @@ int export_handle_export_sub_folders(
+@@ -14307,6 +14434,7 @@ int export_handle_export_sub_folders(
  				 function,
  				 sub_folder_iterator + 1 );
  			}
@@ -1095,7 +1071,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -13983,6 +14111,7 @@ int export_handle_export_sub_messages(
+@@ -14443,6 +14571,7 @@ int export_handle_export_sub_messages(
  			 sub_message_iterator + 1,
  			 number_of_sub_messages );
  
@@ -1103,7 +1079,7 @@
  			if( libcnotify_verbose != 0 )
  			{
  				libcnotify_printf(
-@@ -13990,6 +14119,7 @@ int export_handle_export_sub_messages(
+@@ -14450,6 +14579,7 @@ int export_handle_export_sub_messages(
  				 function,
  				 sub_message_iterator + 1 );
  			}
@@ -1111,7 +1087,7 @@
  			if( ( error != NULL )
  			 && ( *error != NULL ) )
  			{
-@@ -14448,6 +14578,7 @@ int export_handle_export_orphan_items(
+@@ -14908,6 +15038,7 @@ int export_handle_export_orphan_items(
  				 orphan_item_iterator + 1,
  				 export_handle->number_of_orphan_items );
  
@@ -1119,7 +1095,7 @@
  				if( libcnotify_verbose != 0 )
  				{
  					libcnotify_printf(
-@@ -14455,6 +14586,7 @@ int export_handle_export_orphan_items(
+@@ -14915,6 +15046,7 @@ int export_handle_export_orphan_items(
  					 function,
  					 orphan_item_iterator + 1 );
  				}
@@ -1127,7 +1103,7 @@
  				if( ( error != NULL )
  				 && ( *error != NULL ) )
  				{
-@@ -14672,6 +14804,7 @@ int export_handle_export_recovered_items
+@@ -15132,6 +15264,7 @@ int export_handle_export_recovered_items
  				 recovered_item_iterator + 1,
  				 export_handle->number_of_recovered_items );
  
@@ -1135,7 +1111,7 @@
  				if( libcnotify_verbose != 0 )
  				{
  					libcnotify_printf(
-@@ -14679,6 +14812,7 @@ int export_handle_export_recovered_items
+@@ -15139,6 +15272,7 @@ int export_handle_export_recovered_items
  					 function,
  					 recovered_item_iterator + 1 );
  				}
@@ -1143,31 +1119,14 @@
  				if( ( error != NULL )
  				 && ( *error != NULL ) )
  				{
---- origsrc/libpff-20231205/pypff/Makefile.am	2023-12-05 15:34:03.000000000 +0900
-+++ src/libpff-20231205/pypff/Makefile.am	2025-05-18 16:14:07.669954000 +0900
-@@ -1,5 +1,6 @@
- if HAVE_PYTHON
- AM_CFLAGS = \
-+	-I$(top_builddir)/include \
- 	-I$(top_srcdir)/include \
- 	-I$(top_srcdir)/common \
- 	@LIBCERROR_CPPFLAGS@ \
-@@ -53,7 +54,7 @@ pypff_la_LIBADD = \
+--- origsrc/libpff-20261030/pypff/Makefile.am	2026-11-07 10:31:22.000000000 +0000
++++ src/libpff-20261030/pypff/Makefile.am	2026-11-15 05:56:37.370916800 +0000
+@@ -59,7 +59,7 @@ pypff_la_LIBADD = \
  	@LIBBFIO_LIBADD@
  
- pypff_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+ pypff_la_CPPFLAGS = $(AM_CPPFLAGS) $(PYTHON_CPPFLAGS)
 -pypff_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
 +pypff_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
  
  endif
  
---- origsrc/libpff-20231205/tests/Makefile.am	2023-12-05 15:34:03.000000000 +0900
-+++ src/libpff-20231205/tests/Makefile.am	2025-05-18 16:14:07.669954000 +0900
-@@ -1,6 +1,7 @@
- AUTOMAKE_OPTIONS = subdir-objects
- 
- AM_CPPFLAGS = \
-+	-I$(top_builddir)/include \
- 	-I$(top_srcdir)/include \
- 	-I$(top_srcdir)/common \
- 	@LIBCERROR_CPPFLAGS@ \

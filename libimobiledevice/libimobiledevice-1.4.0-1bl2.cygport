@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="Cross-platform protocol library to communicate with iOS devices"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND GPL-2.0-or-later AND Zlib AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND GPL-2.0-or-later AND Zlib AND MIT"
 LICENSE_URI="COPYING.LESSER"
 
 BUILD_REQUIRES="
@@ -30,6 +30,33 @@ src_patch_hook()
 CYGCONF_ARGS="
 	--without-cython
 "
+
+DOCS="
+	COPYING
+	COPYING.LESSER
+"
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	cd ${S}
+	insinto /usr/share/doc/${PN}/3rd_party/ed25519
+	doins 3rd_party/ed25519/LICENSE
+	insinto /usr/share/doc/${PN}/3rd_party/libsrp6a-sha512
+	doins 3rd_party/libsrp6a-sha512/LICENSE
+}
+
+src_test()
+{
+	cd ${B}/tools
+	verbose ./afcclient.exe --version
+	verbose ./idevice_id.exe --version
+	verbose ./idevicebackup.exe --version
+	verbose ./idevicebackup2.exe --version
+	verbose ./idevicebtlogger.exe --version
+}
 
 PKG_NAMES="
 	libimobiledevice

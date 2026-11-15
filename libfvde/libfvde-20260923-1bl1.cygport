@@ -17,7 +17,29 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libbfio-devel libcaes-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libcthreads-devel libfcache-devel libfdata-devel libfguid-devel libfplist-devel libhmac-devel libuna-devel python39-devel zlib-devel"
+BUILD_REQUIRES="
+	cygfuse
+	gettext-devel
+	libbfio-devel
+	libcaes-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfguid-devel
+	libfplist-devel
+	libfvalue-devel
+	libhmac-devel
+	libuna-devel
+	python3-devel
+	zlib-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -46,7 +68,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libfvde_CONTENTS="
 	usr/bin/*.exe
@@ -62,10 +84,10 @@ libfvde_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libfvde_CONTENTS="
-	usr/lib/python3.9
+python312_libfvde_CONTENTS="
+	usr/lib/python3.12
 "
 libfvde_SUMMARY="${SUMMARY} (utilities)"
 libfvde1_SUMMARY="${SUMMARY} (runtime)"
 libfvde_devel_SUMMARY="${SUMMARY} (development)"
-python39_libfvde_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libfvde_SUMMARY="${SUMMARY} (python312 bindings)"

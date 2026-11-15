@@ -1,6 +1,6 @@
---- origsrc/mandown-1.0.5.2/Makefile	2025-04-02 03:26:54.000000000 +0900
-+++ src/mandown-1.0.5.2/Makefile	2026-06-15 06:45:06.940196400 +0900
-@@ -61,7 +61,8 @@ WARNINGS  = -Wall -Wextra -Wpointer-arit
+--- origsrc/mandown-1.1/Makefile	2026-10-30 01:30:23.000000000 +0000
++++ src/mandown-1.1/Makefile	2026-11-15 16:25:13.896740800 +0000
+@@ -68,7 +68,8 @@ endif
  DEPENDS   = -MMD -MP
  INCLUDES  = -Iparser -Iblender -Isrc
  DEFINES   =

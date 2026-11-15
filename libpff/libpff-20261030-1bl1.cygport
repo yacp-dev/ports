@@ -10,7 +10,28 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libcfile-devel libclocale-devel libcnotify-devel libcpath-devel libfcache-devel libfdata-devel libfdatetime-devel libfguid-devel libfmapi-devel libfvalue-devel libuna-devel python39-devel zlib-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfdatetime-devel
+	libfguid-devel
+	libfmapi-devel
+	libfvalue-devel
+	libfwnt-devel
+	libuna-devel
+	python3-devel
+	zlib-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -45,7 +66,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libpff_CONTENTS="
 	usr/bin/*.exe
@@ -61,10 +82,10 @@ libpff_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libpff_CONTENTS="
-	usr/lib/python3.9
+python312_libpff_CONTENTS="
+	usr/lib/python3.12
 "
 libpff_SUMMARY="${SUMMARY} (utilities)"
 libpff1_SUMMARY="${SUMMARY} (runtime)"
 libpff_devel_SUMMARY="${SUMMARY} (development)"
-python39_libpff_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libpff_SUMMARY="${SUMMARY} (python312 bindings)"

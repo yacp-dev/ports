@@ -16,7 +16,24 @@ src_patch_hook()
 	chmod u+x tests/*.{py,sh}
 }
 
-BUILD_REQUIRES="libbfio-devel libcdata-devel libcerror-devel libclocale-devel libcnotify-devel libcthreads-devel libfcache-devel libfdata-devel libfdatetime-devel libuna-devel python39-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libbfio-devel
+	libcdata-devel
+	libcerror-devel
+	libcfile-devel
+	libclocale-devel
+	libcnotify-devel
+	libcpath-devel
+	libcsplit-devel
+	libcthreads-devel
+	libfcache-devel
+	libfdata-devel
+	libfdatetime-devel
+	libfwnt-devel
+	libuna-devel
+	python3-devel
+"
 
 CYGCONF_ARGS="
 	--enable-python
@@ -30,9 +47,14 @@ src_test()
 		do
 			ln -fs ${f} .
 		done
+		cp -f ${B}/pyregf/.libs/pyregf.dll ./pyregf.cpython-312-x86_64-cygwin.dll
+		cp -f ${B}/pyregf/.libs/pyregf.dll ./pyregf.dll
 	popd
-	cygtest
-	rm tests/*.{py,sh}
+	pushd pyregf/.libs
+		cp -f pyregf.dll pyregf.cpython-312-x86_64-cygwin.dll
+	popd
+	CHECK_WITH_STDERR=1 PYTHON=python3 PATH="${B}/libregf/.libs:${B}/pyregf/.libs:${PATH}" cygtest
+	rm -f tests/*.{py,sh} tests/*.dll pyregf/.libs/pyregf.cpython-312-x86_64-cygwin.dll
 }
 
 DOCS="
@@ -43,7 +65,7 @@ PKG_NAMES="
 	${PN}
 	${PN}1
 	${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 libregf_CONTENTS="
 	usr/bin/*.exe
@@ -59,10 +81,10 @@ libregf_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/man/man3
 "
-python39_libregf_CONTENTS="
-	usr/lib/python3.9
+python312_libregf_CONTENTS="
+	usr/lib/python3.12
 "
 libregf_SUMMARY="${SUMMARY} (utilities)"
 libregf1_SUMMARY="${SUMMARY} (runtime)"
 libregf_devel_SUMMARY="${SUMMARY} (development)"
-python39_libregf_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libregf_SUMMARY="${SUMMARY} (python312 bindings)"

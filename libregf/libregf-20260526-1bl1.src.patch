@@ -1,0 +1,105 @@
+--- origsrc/libregf-20260526/Makefile.am	2026-05-26 15:38:21.000000000 +0000
++++ src/libregf-20260526/Makefile.am	2026-11-15 05:40:21.218744300 +0000
+@@ -3,24 +3,9 @@ ACLOCAL_AMFLAGS = -I m4
+ SUBDIRS = \
+ 	include \
+ 	common \
+-	libcerror \
+-	libcthreads \
+-	libcdata \
+-	libclocale \
+-	libcnotify \
+-	libcsplit \
+-	libuna \
+-	libcfile \
+-	libcpath \
+-	libbfio \
+-	libfcache \
+-	libfdata \
+-	libfdatetime \
+-	libfwnt \
+ 	libregf \
+ 	regftools \
+ 	pyregf \
+-	po \
+ 	manuals \
+ 	tests \
+ 	ossfuzz \
+--- origsrc/libregf-20260526/configure.ac	2026-05-26 15:38:21.000000000 +0000
++++ src/libregf-20260526/configure.ac	2026-11-15 05:40:21.220765700 +0000
+@@ -172,20 +172,6 @@ dnl Generate Makefiles
+ AC_CONFIG_FILES([Makefile])
+ AC_CONFIG_FILES([include/Makefile])
+ AC_CONFIG_FILES([common/Makefile])
+-AC_CONFIG_FILES([libcerror/Makefile])
+-AC_CONFIG_FILES([libcthreads/Makefile])
+-AC_CONFIG_FILES([libcdata/Makefile])
+-AC_CONFIG_FILES([libclocale/Makefile])
+-AC_CONFIG_FILES([libcnotify/Makefile])
+-AC_CONFIG_FILES([libcsplit/Makefile])
+-AC_CONFIG_FILES([libuna/Makefile])
+-AC_CONFIG_FILES([libcfile/Makefile])
+-AC_CONFIG_FILES([libcpath/Makefile])
+-AC_CONFIG_FILES([libbfio/Makefile])
+-AC_CONFIG_FILES([libfcache/Makefile])
+-AC_CONFIG_FILES([libfdata/Makefile])
+-AC_CONFIG_FILES([libfdatetime/Makefile])
+-AC_CONFIG_FILES([libfwnt/Makefile])
+ AC_CONFIG_FILES([libregf/Makefile])
+ AC_CONFIG_FILES([pyregf/Makefile])
+ AC_CONFIG_FILES([regftools/Makefile])
+--- origsrc/libregf-20260526/pyregf/Makefile.am	2026-05-26 15:38:21.000000000 +0000
++++ src/libregf-20260526/pyregf/Makefile.am	2026-11-15 05:40:21.220765700 +0000
+@@ -50,7 +50,7 @@ pyregf_la_LIBADD = \
+ 	@LIBCDATA_LIBADD@
+ 
+ pyregf_la_CPPFLAGS = $(PYTHON_CPPFLAGS)
+-pyregf_la_LDFLAGS  = -module -avoid-version $(PYTHON_LDFLAGS)
++pyregf_la_LDFLAGS  = -no-undefined -module -avoid-version $(PYTHON_LDFLAGS)
+ 
+ endif
+ 
+--- origsrc/libregf-20260526/tests/test_python_module.sh	2026-05-26 15:38:21.000000000 +0000
++++ src/libregf-20260526/tests/test_python_module.sh	2026-11-15 05:40:21.222535100 +0000
+@@ -145,7 +145,7 @@ PLATFORM=`uname -s | sed 's/-.*$//'`;
+ 
+ echo "Platform: ${PLATFORM}";
+ 
+-if test "${PLATFORM}" = "MINGW32_NT" || test "${PLATFORM}" = "MINGW64_NT" || test "${PLATFORM}" = "MSYS_NT";
++if test "${PLATFORM}" = "MINGW32_NT" || test "${PLATFORM}" = "MINGW64_NT" || test "${PLATFORM}" = "MSYS_NT" || test "${PLATFORM}" = "CYGWIN_NT";
+ then
+ 	export PATH=../${LIBRARY_NAME}/.libs:../${PYTHON_MODULE}/.libs:$PATH;
+ fi
+--- origsrc/libregf-20260526/tests/test_runner.sh	2026-05-26 15:38:21.000000000 +0000
++++ src/libregf-20260526/tests/test_runner.sh	2026-11-15 05:40:21.223051600 +0000
+@@ -190,7 +190,7 @@ find_binary_executable()
+ find_binary_library_path()
+ {
+ 	local TEST_EXECUTABLE=$1;
+-	local LIBRARY_NAME=`dirname ${TEST_EXECUTABLE}`;
++	local LIBRARY_NAME=`basename ${TEST_EXECUTABLE}`;
+ 
+ 	local NAME=`basename ${LIBRARY_NAME}`;
+ 
+@@ -440,7 +440,7 @@ run_test_with_arguments()
+ 	# Check if the test executable is a Python script.
+ 	# Linux: Python script, ASCII text executable
+ 	# Mac OS X: a python script text executable
+-	echo "${EXECUTABLE_TYPE}" | grep -i "python script" > /dev/null 2>&1;
++	echo "${TEST_EXECUTABLE}" | grep '\.py$' > /dev/null 2>&1 || echo "${EXECUTABLE_TYPE}" | grep -i "python" > /dev/null 2>&1;
+ 	local IS_PYTHON_SCRIPT=$?;
+ 
+ 	if test ${IS_PYTHON_SCRIPT} -eq 0 && test -z ${PYTHON};
+@@ -673,10 +673,10 @@ run_test_with_arguments()
+ 		then
+ 			if test -n "${CHECK_WITH_STDERR}";
+ 			then
+-				PATH="${LIBRARY_PATH}:${PATH}" PYTHONPATH="${PYTHON_MODULE_PATH}" "${PYTHON}" "${TEST_EXECUTABLE}" ${ARGUMENTS[@]};
++				PATH="${LIBRARY_PATH}:${PATH}" PYTHONPATH="${PYTHON_MODULE_PATH}:${PYTHONPATH}" "${PYTHON}" "${TEST_EXECUTABLE}" ${ARGUMENTS[@]};
+ 				RESULT=$?;
+ 			else
+-				PATH="${LIBRARY_PATH}:${PATH}" PYTHONPATH="${PYTHON_MODULE_PATH}" "${PYTHON}" "${TEST_EXECUTABLE}" ${ARGUMENTS[@]} 2> /dev/null;
++				PATH="${LIBRARY_PATH}:${PATH}" PYTHONPATH="${PYTHON_MODULE_PATH}:${PYTHONPATH}" "${PYTHON}" "${TEST_EXECUTABLE}" ${ARGUMENTS[@]} 2> /dev/null;
+ 				RESULT=$?;
+ 			fi
+ 

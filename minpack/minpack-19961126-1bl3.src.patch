@@ -1,5 +1,5 @@
---- origsrc/minpack-debian-19961126+dfsg1-5/Makefile.am	2018-10-28 17:52:07.000000000 +0900
-+++ src/minpack-debian-19961126+dfsg1-5/Makefile.am	2025-03-21 11:28:14.199550100 +0900
+--- origsrc/minpack-debian-19961126+dfsg1-6/Makefile.am	2026-10-18 22:31:57.000000000 +0000
++++ src/minpack-debian-19961126+dfsg1-6/Makefile.am	2026-11-15 22:03:17.870132800 +0000
 @@ -9,7 +9,7 @@ VERSION_CURRENT=@VERSION_CURRENT@
  VERSION_REVISION=@VERSION_REVISION@
  VERSION_AGE=@VERSION_AGE@
@@ -16,8 +16,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/minpack-debian-19961126+dfsg1-5/configure.in	2018-10-28 17:52:07.000000000 +0900
-+++ src/minpack-debian-19961126+dfsg1-5/configure.in	2025-03-21 11:28:14.199550100 +0900
+--- origsrc/minpack-debian-19961126+dfsg1-6/configure.in	2026-10-18 22:31:57.000000000 +0000
++++ src/minpack-debian-19961126+dfsg1-6/configure.in	2026-11-15 22:03:17.870132800 +0000
 @@ -1,9 +1,9 @@
  dnl Process this file with autoconf to produce a configure script.
  
@@ -36,8 +36,8 @@
  
 -AC_OUTPUT(Makefile)
 +AC_OUTPUT([Makefile minpack.pc])
---- origsrc/minpack-debian-19961126+dfsg1-5/minpack.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/minpack-debian-19961126+dfsg1-5/minpack.pc.in	2025-03-21 11:28:14.199550100 +0900
+--- origsrc/minpack-debian-19961126+dfsg1-6/minpack.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/minpack-debian-19961126+dfsg1-6/minpack.pc.in	2026-11-15 22:03:17.870132800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

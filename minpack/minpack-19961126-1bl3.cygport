@@ -1,14 +1,18 @@
 HOMEPAGE="https://salsa.debian.org/science-team/${PN}"
-SRC_URI="https://salsa.debian.org/science-team/${PN}/-/archive/debian/${PV}+dfsg1-5/${PN}-debian-${PV}+dfsg1-5.tar.bz2"
-SRC_DIR="${PN}-debian-${PV}+dfsg1-5"
+SRC_URI="https://salsa.debian.org/science-team/${PN}/-/archive/debian/${PV}+dfsg1-6/${PN}-debian-${PV}+dfsg1-6.tar.bz2"
+SRC_DIR="${PN}-debian-${PV}+dfsg1-6"
 
 CATEGORY="Libs"
 SUMMARY="Software for solving nonlinear equations and nonlinear least squares problems"
 DESCRIPTION="${SUMMARY}"
 
-# LICENSE="BSD-4-Cluase-Modified"
-# LICENSE_SPDX="SPDX-License-Identifier: "
-# LICENSE_URI=""
+LICENSE="Minpack"
+LICENSE_SPDX="SPDX-License-Identifier: Minpack"
+LICENSE_URI="debian/copyright"
+
+BUILD_REQUIRES="
+	gcc-fortran
+"
 
 PKG_NAMES="
 	minpack

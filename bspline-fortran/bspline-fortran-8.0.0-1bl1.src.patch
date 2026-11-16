@@ -1,0 +1,54 @@
+--- origsrc/bspline-fortran/CMakeLists.txt	2026-11-16 12:18:34.000000000 +0000
++++ src/bspline-fortran/CMakeLists.txt	2026-11-16 12:18:35.640640000 +0000
+@@ -57,8 +57,13 @@ set( SOURCES
+   src/bspline_oo_module.f90
+   src/bspline_sub_module.f90 )
+ 
+-set(INSTALL_MOD_DIR "lib")
+-set(INSTALL_LIB_DIR "${INSTALL_MOD_DIR}")
++if (CYGWIN)
++  set(INSTALL_MOD_DIR "include")
++  set(INSTALL_LIB_DIR "lib")
++else()
++  set(INSTALL_MOD_DIR "lib")
++  set(INSTALL_LIB_DIR "${INSTALL_MOD_DIR}")
++endif()
+ set(ABS_LIB_INSTALL_DIR "\${CMAKE_INSTALL_PREFIX}/${INSTALL_LIB_DIR}")
+ set(MODULE_DIR "${CMAKE_BINARY_DIR}/lib")
+ 
+@@ -87,6 +92,11 @@ if(BSPLINE_BUILD_SHARED_LIBS)
+     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+     Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR})
+ 
++  if (CYGWIN)
++    set_target_properties(${LIB_NAME} PROPERTIES SOVERSION ${SOVERSION})
++    install( TARGETS ${LIB_NAME} RUNTIME DESTINATION "bin" )
++  endif()
++
+   # install library:
+   install( TARGETS ${LIB_NAME}
+   LIBRARY DESTINATION "${INSTALL_LIB_DIR}"
+@@ -149,3 +159,10 @@ if(BSPLINE_BUILD_TESTING)
+               COMMAND ${prog_name})
+   endforeach()
+ endif()
++
++SET(prefix ${CMAKE_INSTALL_PREFIX})
++SET(exec_prefix ${CMAKE_INSTALL_PREFIX})
++SET(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++SET(includedir ${CMAKE_INSTALL_PREFIX}/include)
++CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/bspline-fortran.pc.in ${CMAKE_BINARY_DIR}/bspline-fortran.pc @ONLY)
++INSTALL(FILES ${CMAKE_BINARY_DIR}/bspline-fortran.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/bspline-fortran/bspline-fortran.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/bspline-fortran/bspline-fortran.pc.in	2026-11-16 12:18:35.639422200 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: bspline-fortran
++Description: Multidimensional B-Spline Interpolation of Data on a Regular Grid
++Version: @VERSION@
++Libs: -L${libdir} -lbspline-fortran
++Cflags: -I${includedir}

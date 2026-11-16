@@ -6,20 +6,20 @@ There are two ways to use the module, via a basic subroutine interface and an
 object-oriented interface. Both are thread safe.
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  libbspline-fortran-devel-6.1.0-1bl1
-  libbspline-fortran6-6.1.0-1bl1
-  libgfortran5-11.2.0-1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libbspline-fortran-devel-8.0.0-1bl1
+  libbspline-fortran8-8.0.0-1bl1
+  libgfortran5-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-2
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  gcc-fortran-11.2.0-1
-  ninja-1.10.2-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/jacobwilliams/bspline-fortran
@@ -30,17 +30,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack bspline-fortran-6.1.0-X-src.tar.xz
+  1. unpack bspline-fortran-8.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./bspline-fortran-6.1.0-X.cygport all
+        % cygport ./bspline-fortran-8.0.0-X.cygport all
 
 This will create:
-  /usr/src/bspline-fortran-6.1.0-X-src.tar.xz
-  /usr/src/bspline-fortran-6.1.0-X.tar.xz
-  /usr/src/libbspline-fortran6-6.1.0-X.tar.xz
-  /usr/src/libbspline-fortran-devel-6.1.0-X.tar.xz
+  /usr/src/bspline-fortran-8.0.0-X-src.tar.xz
+  /usr/src/bspline-fortran-8.0.0-X.tar.xz
+  /usr/src/libbspline-fortran8-8.0.0-X.tar.xz
+  /usr/src/libbspline-fortran-devel-8.0.0-X.tar.xz
 
 -------------------------------------------
 
@@ -50,12 +50,13 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/bspline-fortran.README
   /usr/share/doc/bspline-fortran/LICENSE
   /usr/share/doc/bspline-fortran/README.md
-  /usr/share/doc/bspline-fortran/bspline-fortran.md
 
-(libbspline-fortran6)
-  /usr/bin/cygbspline-fortran-6.dll
+(libbspline-fortran8)
+  /usr/bin/cygbspline-fortran-8.dll
 
 (libbspline-fortran-devel)
+  /usr/include/bspline_blas_module.mod
+  /usr/include/bspline_defc_module.mod
   /usr/include/bspline_kinds_module.mod
   /usr/include/bspline_module.mod
   /usr/include/bspline_oo_module.mod
@@ -66,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 8.0.0-1bl1 -----
+Version bump.
 
 ----- version 6.1.0-1bl1 -----
 Version bump.

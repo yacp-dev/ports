@@ -9,17 +9,24 @@ using B-splines. The code is written in modern Fortran (i.e., Fortran 2003+).
 There are two ways to use the module, via a basic subroutine interface and an
 object-oriented interface. Both are thread safe."
 
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	gcc-fortran
+"
+
 inherit cmake
 inherit git
 
 CYGCMAKE_ARGS="
-	-DBSPLINE_TESTS:BOOL=OFF
 	-DSOVERSION:STRING=${PV[1]}
 	-DVERSION:STRING=${PV}
 "
 
 DOCS="
-	${PN}.md
+	README.md
 "
 
 PKG_IGNORE="
@@ -29,14 +36,14 @@ PKG_IGNORE="
 
 PKG_NAMES="
 	bspline-fortran
-	libbspline-fortran6
+	libbspline-fortran8
 	libbspline-fortran-devel
 "
 bspline_fortran_CONTENTS="
 	usr/share
 "
-libbspline_fortran6_CONTENTS="
-	usr/bin
+libbspline_fortran8_CONTENTS="
+	usr/bin/cygbspline-fortran-8.dll
 "
 libbspline_fortran_devel_CONTENTS="
 	usr/include/*.mod
@@ -44,5 +51,5 @@ libbspline_fortran_devel_CONTENTS="
 	usr/lib/pkgconfig
 "
 bspline_fortran_SUMMARY="${SUMMARY} (licensing & readmes)"
-libbspline_fortran6_SUMMARY="${SUMMARY} (runtime)"
+libbspline_fortran8_SUMMARY="${SUMMARY} (runtime)"
 libbspline_fortran_devel_SUMMARY="${SUMMARY} (development)"

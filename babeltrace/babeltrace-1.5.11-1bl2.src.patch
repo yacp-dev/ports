@@ -1,5 +1,5 @@
---- origsrc/babeltrace-1.5.11/bindings/python/setup.py.in	2022-11-03 00:09:19.000000000 +0900
-+++ src/babeltrace-1.5.11/bindings/python/setup.py.in	2026-03-26 19:46:53.093449300 +0900
+--- origsrc/babeltrace-1.5.11/bindings/python/setup.py.in	2022-11-02 15:09:19.000000000 +0000
++++ src/babeltrace-1.5.11/bindings/python/setup.py.in	2026-11-16 10:26:51.619877500 +0000
 @@ -40,7 +40,7 @@ following command to your .bashrc/.zshrc
  def main():
      babeltrace_ext = Extension('babeltrace/_babeltrace',

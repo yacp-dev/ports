@@ -1,5 +1,10 @@
 HOMEPAGE="https://babeltrace.org/"
 SRC_URI="https://www.efficios.com/files/${PN}/${P}.tar.bz2"
+PATCH_URI="
+	https://sources.debian.org/data/main/b/babeltrace/1.5.11-6.1/debian/patches/Fix-handle-NULL-list-pointer-to-avoid-Python-segfaul.patch
+	https://sources.debian.org/data/main/b/babeltrace/1.5.11-6.1/debian/patches/Print-a-clear-error-when-reading-a-CTF-2-trace.patch
+	babeltrace-1.5.11-python-helper-dll.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Trace Viewer and Converter, mainly for the Common Trace Format"
@@ -15,7 +20,8 @@ BUILD_REQUIRES="
 	libglib2.0-devel
 	libpopt-devel
 	libuuid-devel
-	python39-devel
+	python3-devel
+	swig
 "
 
 CYGCONF_ARGS="
@@ -28,7 +34,7 @@ PKG_NAMES="
 	${PN}
 	lib${PN}1
 	lib${PN}-devel
-	python39-${PN}
+	python312-${PN}
 "
 babeltrace_CONTENTS="
 	usr/bin/*.exe
@@ -42,10 +48,10 @@ libbabeltrace_devel_CONTENTS="
 	usr/lib/lib${PN}*
 	usr/lib/pkgconfig
 "
-python39_babeltrace_CONTENTS="
-	usr/lib/python3.9
+python312_babeltrace_CONTENTS="
+	usr/lib/python3.12
 "
 babeltrace_SUMMARY="${SUMMARY} (utilities)"
 libbabeltrace1_SUMMARY="${SUMMARY} (runtime)"
 libbabeltrace_devel_SUMMARY="${SUMMARY} (development)"
-python39_babeltrace_SUMMARY="${SUMMARY} (python3.9 bindings)"
+python312_babeltrace_SUMMARY="${SUMMARY} (python3.12 bindings)"

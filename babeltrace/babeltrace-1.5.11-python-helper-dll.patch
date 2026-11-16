@@ -1,0 +1,16 @@
+Load the in-tree Cygwin DLLs (cyg*-1.dll) instead of lib*.so in the Python tests
+
+--- a/tests/bin/intersection/bt_python_helper.py.in
++++ b/tests/bin/intersection/bt_python_helper.py.in
+@@ -33,8 +33,8 @@
+ 
+ # Manually load the shared libraries used by the Babeltrace module during the
+ # tests
+-bt_lib_ctf_path = '@abs_top_builddir@/formats/ctf/.libs/libbabeltrace-ctf.so'
+-bt_lib_bt_path = '@abs_top_builddir@/lib/.libs/libbabeltrace.so'
++bt_lib_ctf_path = '@abs_top_builddir@/formats/ctf/.libs/cygbabeltrace-ctf-1.dll'
++bt_lib_bt_path = '@abs_top_builddir@/lib/.libs/cygbabeltrace-1.dll'
+ 
+-ctypes.cdll.LoadLibrary(bt_lib_ctf_path)
+ ctypes.cdll.LoadLibrary(bt_lib_bt_path)
++ctypes.cdll.LoadLibrary(bt_lib_ctf_path)

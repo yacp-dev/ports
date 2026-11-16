@@ -6,18 +6,18 @@ language of his own devising called qhasm. The original qhasm source isn't
 available, only the x86 32-bit assembly output.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libcurve25519-donna-devel-1.3-1bl4
-  libcurve25519-donna1-1.3-1bl4
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libcurve25519-donna-devel-1.3-1bl5
+  libcurve25519-donna1-1.3-1bl5
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/agl/curve25519-donna
@@ -60,6 +60,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.3-1bl5 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.3-1bl4 -----
 Rebuild with gcc-13.4.0

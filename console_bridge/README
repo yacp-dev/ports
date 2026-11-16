@@ -4,22 +4,22 @@ A ROS-independent package for logging that seamlessly pipes into
 rosconsole/rosout for ROS-dependent packages
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libconsole_bridge-devel-1.0.2-1bl2
-  libconsole_bridge1.0-1.0.2-1bl2
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libconsole_bridge-devel-1.0.2-1bl3
+  libconsole_bridge1.0-1.0.2-1bl3
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libgtest-devel-1.15.2-1bl1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cppcheck-1.84-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/ros/console_bridge
@@ -61,7 +61,7 @@ Files included in the binary package:
   /usr/include/console_bridge/console_bridge_export.h
   /usr/lib/cmake/console_bridge/console_bridge-config-version.cmake
   /usr/lib/cmake/console_bridge/console_bridge-config.cmake
-  /usr/lib/cmake/console_bridge/console_bridge-targets-release.cmake
+  /usr/lib/cmake/console_bridge/console_bridge-targets-relwithdebinfo.cmake
   /usr/lib/cmake/console_bridge/console_bridge-targets.cmake
   /usr/lib/libconsole_bridge.dll.a
   /usr/lib/pkgconfig/console_bridge.pc
@@ -69,6 +69,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.2-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.2-1bl2 -----
 Rebuild with gcc-12.4.0

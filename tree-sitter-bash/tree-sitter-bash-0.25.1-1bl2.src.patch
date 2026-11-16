@@ -1,5 +1,5 @@
---- origsrc/tree-sitter-bash-0.25.1/CMakeLists.txt	2025-12-03 02:01:54.000000000 +0900
-+++ src/tree-sitter-bash-0.25.1/CMakeLists.txt	2026-02-05 21:26:47.537851400 +0900
+--- origsrc/tree-sitter-bash-0.25.1/CMakeLists.txt	2025-12-02 17:01:54.000000000 +0000
++++ src/tree-sitter-bash-0.25.1/CMakeLists.txt	2026-11-16 00:36:28.101507400 +0000
 @@ -17,12 +17,14 @@ endif()
  
  find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")

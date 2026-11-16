@@ -14,10 +14,6 @@ LICENSE_URI="LICENSE"
 
 inherit cmake
 
-CYGCMAKE_ARGS="
-	-DSOVERSION:STRING=0
-"
-
 src_test()
 {
 	cd ${B}
@@ -30,19 +26,19 @@ DOCS="
 
 PKG_NAMES="
 	testsweeper
-	libtestsweeper0
+	libtestsweeper2
 	libtestsweeper-devel
 "
 testsweeper_CONTENTS="
 	usr/share
 "
-libtestsweeper0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libtestsweeper2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libtestsweeper_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 testsweeper_SUMMARY="${SUMMARY} (licensing & readmes)"
-libtestsweeper0_SUMMARY="${SUMMARY} (runtime)"
+libtestsweeper2_SUMMARY="${SUMMARY} (runtime)"
 libtestsweeper_devel_SUMMARY="${SUMMARY} (development)"

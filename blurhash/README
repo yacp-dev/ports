@@ -3,22 +3,21 @@ blurhash
 Simple encoder and decoder for blurhashes
 
 Runtime requirements:
-  cygwin-3.4.6-1
-  libblurhash-devel-0.2.0-1bl1
-  libblurhash0.2-0.2.0-1bl1
-  libgcc1-11.3.0-1
-  libstdc++6-11.3.0-1
-  pkg-config-1.9.4-1
+  cygwin-3.6.12-1
+  libblurhash-devel-0.2.0-1bl2
+  libblurhash0.2-0.2.0-1bl2
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.40-1
-  cygport-0.36.1-1
-  doctest-2.4.8-1bl1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  meson-0.63.3-1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  doctest-2.5.3-1bl1
+  gcc-g++-14.4.0-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://nheko.im/nheko-reborn/blurhash
@@ -64,6 +63,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2.0-1bl1 -----
 Version bump.

@@ -1,29 +1,28 @@
 m4ri
 ------------------------------------------
-M4RI is a library for fast arithmetic with dense matrices over F_2.
-The name M4RI comes from the first implemented algorithm: The Method
-of the Four Russians inversion algorithm published by Gregory Bard.
-M4RI is used by the Sage mathematics software and the PolyBoRi library.
+M4RI is a library for fast arithmetic with dense matrices over F_2. The name
+M4RI comes from the first implemented algorithm: The Method of the Four
+Russians inversion algorithm published by Gregory Bard. M4RI is used by the
+Sage mathematics software and the PolyBoRi library.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgomp1-13.4.0-1
-  libm4ri-devel-20260122-1bl1
-  libm4ri2-20260122-1bl1
-  libpng-devel-1.6.47-2
-  libpng16-1.6.47-2
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgomp1-14.4.0-1
+  libm4ri-devel-20260122-1bl2
+  libm4ri2-20260122-1bl2
+  libpng-devel-1.6.59-1
+  libpng16-1.6.59-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libpng-devel-1.6.47-2
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libpng-devel-1.6.59-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -90,6 +89,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20260122-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 20260122-1bl1 -----
 Version bump.

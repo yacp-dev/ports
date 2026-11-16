@@ -2,27 +2,24 @@ bitset
 ------------------------------------------
 The bitset structure uses word-aligned run-length encoding to compress sets of
 unsigned integers. 64-bit offsets are supported for very sparse sets. Unlike
-most succinct data structures which are immutable and append-only, the
-included bitset structure is mutable after construction.
-
-The library includes a vector abstraction (vector of bitsets) which can be
-used to represent another dimension such as time. Bitsets are packed together
-contiguously to improve cache locality.
+most succinct data structures which are immutable and append-only, the included
+bitset structure is mutable after construction.
 
 Runtime requirements:
-  cygwin-1.7.30-1
-  libbitset-devel-2.8.4-1bl1
-  libbitset1-2.8.4-1bl1
+  cygwin-3.6.12-1
+  libbitset-devel-2.8.4-1bl2
+  libbitset1-2.8.4-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.24.51-4
-  cygport-0.16.0-1
-  gcc-core-4.9.0-1
-  libtool-2.4.2-5
-  make-4.0-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/chriso/bitset
@@ -33,11 +30,11 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack bitset-2.8.4-X-src.tar.xz
-    if you use setup to install this src package, it will be
-        unpacked under /usr/src automatically
-  cd /usr/src
-  cygport ./bitset-2.8.4-X.cygport all
+  1. unpack bitset-2.8.4-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./bitset-2.8.4-X.cygport all
 
 This will create:
   /usr/src/bitset-2.8.4-X-src.tar.xz
@@ -70,9 +67,11 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 2.8.4-1bl2 -----
+Rebuild with gcc-14.4.0
+
 ----- version 2.8.4-1bl1 -----
 Version bump.
 
 ----- version 2.8.1-1bl1 -----
 Initial release for Cygwin-1.7 by fd0 <http://fd0.hatenablog.jp/>
-

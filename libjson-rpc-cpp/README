@@ -6,32 +6,31 @@ compatible (JSON-RPC 2.0) and provides additional features, such as generic
 authentication mechanisms.
 
 Runtime requirements:
-  cygwin-3.3.5-1
-  libargtable2_0-13-1bl4
-  libcurl-devel-7.83.1-1
-  libcurl4-7.83.1-1
-  libgcc1-11.3.0-1
-  libjsoncpp-devel-1.9.5-1
-  libjsoncpp25-1.9.5-1
-  libjsonrpccpp-devel-1.4.1-1bl1
-  libjsonrpccpp1-1.4.1-1bl1
-  libmicrohttpd-devel-0.9.75-1bl1
-  libmicrohttpd12-0.9.75-1bl1
-  libstdc++6-11.3.0-1
-  pkg-config-1.8.0-1
+  cygwin-3.6.12-1
+  libargtable2_0-13-1bl6
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libgcc1-14.4.0-1
+  libjsoncpp-devel-1.9.8-1
+  libjsoncpp27-1.9.8-1
+  libjsonrpccpp-devel-1.4.1-1bl2
+  libjsonrpccpp1-1.4.1-1bl2
+  libmicrohttpd-devel-1.0.10-1bl1
+  libmicrohttpd12-1.0.10-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cmake-3.20.0-1
-  cygport-0.35.0-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libargtable2-devel-13-1bl4
-  libcurl-devel-7.83.1-1
-  libjsoncpp-devel-1.9.5-1
-  libmicrohttpd-devel-0.9.75-1bl1
-  make-4.3-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libargtable2-devel-13-1bl6
+  libcurl-devel-8.23.0-1
+  libjsoncpp-devel-1.9.8-1
+  libmicrohttpd-devel-1.0.10-1bl1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/cinemast/libjson-rpc-cpp
@@ -113,7 +112,7 @@ Files included in the binary package:
   /usr/include/jsonrpccpp/version.h
   /usr/lib/cmake/libjson-rpc-cpp/libjson-rpc-cppConfig.cmake
   /usr/lib/cmake/libjson-rpc-cpp/libjson-rpc-cppConfigVersion.cmake
-  /usr/lib/cmake/libjson-rpc-cpp/libjson-rpc-cppTargets-release.cmake
+  /usr/lib/cmake/libjson-rpc-cpp/libjson-rpc-cppTargets-relwithdebinfo.cmake
   /usr/lib/cmake/libjson-rpc-cpp/libjson-rpc-cppTargets.cmake
   /usr/lib/libjsonrpccpp-client.dll.a
   /usr/lib/libjsonrpccpp-common.dll.a
@@ -127,6 +126,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.4.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.4.1-1bl1 -----
 Version bump.

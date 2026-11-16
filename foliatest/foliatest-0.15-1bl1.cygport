@@ -1,0 +1,43 @@
+HOMEPAGE="https://github.com/LanguageMachines/${PN}"
+SRC_URI="
+	https://github.com/LanguageMachines/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/proycon/folia/archive/962f3dddb1b0ca043830ad28bdaef31aaa0e4027.tar.gz#/folia-962f3dddb1b0ca043830ad28bdaef31aaa0e4027.tar.gz
+"
+PATCH_URI="
+	foliatest-${PV}-utf8-default-codepage.patch
+"
+
+CATEGORY="Utils"
+SUMMARY="Test suite for libfolia"
+DESCRIPTION="This package provides series of tests for libfolia."
+
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	autoconf-archive
+	libfolia
+	libfolia-devel
+	libicu-devel
+	libxml2-devel
+	libticcutils-devel
+"
+
+DOCS="
+	README.md
+"
+
+DIFF_EXCLUDES="
+	*.m4
+"
+
+# The tests read the FoLiA examples. Upstream's CI takes them from the
+# folia-repo submodule of foliapy, pinned here to the same commit.
+# tst.sh runs from the build directory and opens tests/*.xml relative to it.
+src_test()
+{
+	cd ${B}
+	verbose cp -r ${S}/tests ${B}/
+	FOLIAPATH=${origsrcdir}/folia-962f3dddb1b0ca043830ad28bdaef31aaa0e4027 verbose cygtest
+}

@@ -3,20 +3,19 @@ backward-cpp
 Beautiful stack trace pretty printer for C++
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  libbackward-devel-1.6-1bl1
-  libbackward0-1.6-1bl1
-  libstdc++6-11.2.0-1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libbackward-devel-1.6-1bl2
+  libbackward0-1.6-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-1
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
-  ninja-1.10.2-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/bombela/backward-cpp
@@ -60,6 +59,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.6-1bl1 -----
 Version bump.

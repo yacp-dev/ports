@@ -5,9 +5,18 @@ CATEGORY="Libs"
 SUMMARY="Beautiful stack trace pretty printer for C++"
 DESCRIPTION="${SUMMARY}"
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	zlib-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DBACKWARD_SHARED:BOOL=ON
 	-DVERSION:STRING=${PV}
 "
@@ -27,7 +36,7 @@ backward_cpp_CONTENTS="
 	usr/share
 "
 libbackward0_CONTENTS="
-	usr/bin
+	usr/bin/cygbackward-0.dll
 "
 libbackward_devel_CONTENTS="
 	usr/include

@@ -1,5 +1,9 @@
 HOMEPAGE="https://github.com/OlafvdSpek/${PN}"
 SRC_URI="https://github.com/OlafvdSpek/${PN}/archive/refs/tags/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/c/ctemplate/2.4-4/debian/patches/upstream_Fixed-compilation-error-string-doesn-t-name-a-type.patch
+	https://sources.debian.org/data/main/c/ctemplate/2.4-4/debian/patches/upstream_C-20-gcc10-fix-remove-hint-removed-typedef.patch
+"
 SRC_DIR="${PN}-${P}"
 
 CATEGORY="Libs"
@@ -34,3 +38,10 @@ libctemplate_devel_CONTENTS="
 ctemplate_SUMMARY="${SUMMARY} (utilities)"
 libctemplate3_SUMMARY="${SUMMARY} (runtime)"
 libctemplate_devel_SUMMARY="${SUMMARY} (development)"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/\[2\.3\]/[${PV}]/" configure.ac
+}

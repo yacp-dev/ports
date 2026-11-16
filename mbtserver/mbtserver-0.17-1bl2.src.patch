@@ -1,5 +1,5 @@
---- origsrc/mbtserver-0.17/src/Makefile.am	2024-12-16 19:11:19.000000000 +0900
-+++ src/mbtserver-0.17/src/Makefile.am	2025-01-19 14:48:24.845338400 +0900
+--- origsrc/mbtserver-0.17/src/Makefile.am	2024-12-16 10:11:19.000000000 +0000
++++ src/mbtserver-0.17/src/Makefile.am	2026-11-16 00:17:53.677053000 +0000
 @@ -1,5 +1,5 @@
 -AM_CPPFLAGS = -I@top_srcdir@/include
 -AM_CXXFLAGS = -std=c++17 -W -Wall -g -O3 -pedantic

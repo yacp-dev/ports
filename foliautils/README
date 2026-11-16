@@ -5,35 +5,34 @@ Command-line utilities for working with the Format for Linguistic Annotation
 University)
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libfolia22-2.21-1bl1
-  libfoliautils-devel-0.23-1bl1
-  libfoliautils1-0.23-1bl1
-  libgcc1-12.4.0-3
-  libgomp1-12.4.0-3
-  libicu74-74.2-1
-  libstdc++6-12.4.0-3
-  libticcutils10-0.36-1bl1
-  libucto6-0.35-1bl1
-  libxml2-2.10.4-2
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libfolia22-2.22-1bl2
+  libfoliautils-devel-0.23-1bl2
+  libfoliautils1-0.23-1bl2
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libicu76-76.1-2
+  libstdc++6-14.4.0-1
+  libticcutils10-0.38-1bl2
+  libucto6-0.37-1bl1
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  flex-2.6.4-2
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libfolia-devel-2.21-1bl1
-  libicu-devel-74.2-1
-  libticcutils-devel-0.36-1bl1
-  libtool-2.5.3-1
-  libucto-devel-0.35-1bl1
-  libxml2-devel-2.10.4-2
+  autoconf-20260320-3
+  autoconf-archive-2026.11.11-1
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libexttextcat2.0-devel-3.4.9-1bl1
+  libfolia-devel-2.22-1bl2
+  libicu-devel-76.1-2
+  libticcutils-devel-0.38-1bl2
+  libtool-2.6.2-1
+  libucto-devel-0.37-1bl1
+  libxml2-devel-2.13.9-3
   make-4.4.1-2
 
 Canonical website:
@@ -111,6 +110,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.23-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.23-1bl1 -----
 Version bump.

@@ -11,7 +11,15 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libfolia-devel libicu-devel libticcutils-devel libucto-devel libxml2-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	libexttextcat2.0-devel
+	libfolia-devel
+	libicu-devel
+	libticcutils-devel
+	libucto-devel
+	libxml2-devel
+"
 
 src_test()
 {

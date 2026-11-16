@@ -1,5 +1,5 @@
---- origsrc/curve25519-donna-1.3/CMakeLists.txt	1970-01-01 09:00:00.000000000 +0900
-+++ src/curve25519-donna-1.3/CMakeLists.txt	2025-08-04 08:53:37.959799200 +0900
+--- origsrc/curve25519-donna-1.3/CMakeLists.txt	1970-01-01 00:00:00.000000000 +0000
++++ src/curve25519-donna-1.3/CMakeLists.txt	2026-11-16 21:45:22.214864600 +0000
 @@ -0,0 +1,38 @@
 +cmake_minimum_required(VERSION 3.28)
 +project(curve25519-donna
@@ -39,16 +39,16 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/curve25519-donna.pc.in ${CMAKE_BINARY_DIR}/curve25519-donna.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/curve25519-donna.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/curve25519-donna-1.3/curve25519-donna.h	1970-01-01 09:00:00.000000000 +0900
-+++ src/curve25519-donna-1.3/curve25519-donna.h	2025-08-04 08:51:50.434290900 +0900
+--- origsrc/curve25519-donna-1.3/curve25519-donna.h	1970-01-01 00:00:00.000000000 +0000
++++ src/curve25519-donna-1.3/curve25519-donna.h	2026-11-16 21:45:22.216886900 +0000
 @@ -0,0 +1,5 @@
 +#ifndef CURVE25519_DONNA_H
 +#define CURVE25519_DONNA_H
 +extern void curve25519_donna(unsigned char *output, const unsigned char *a,
 +                             const unsigned char *b);
 +#endif /* CURVE25519_DONNA_H */
---- origsrc/curve25519-donna-1.3/curve25519-donna.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/curve25519-donna-1.3/curve25519-donna.pc.in	2025-08-04 08:54:01.434294700 +0900
+--- origsrc/curve25519-donna-1.3/curve25519-donna.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/curve25519-donna-1.3/curve25519-donna.pc.in	2026-11-16 21:45:22.216886900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -60,8 +60,8 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lcurve25519-donna
 +Cflags: -I${includedir}
---- origsrc/curve25519-donna-1.3/test-curve25519.c	2015-02-09 03:51:11.000000000 +0900
-+++ src/curve25519-donna-1.3/test-curve25519.c	2025-08-04 08:49:53.119899300 +0900
+--- origsrc/curve25519-donna-1.3/test-curve25519.c	2015-02-08 18:51:11.000000000 +0000
++++ src/curve25519-donna-1.3/test-curve25519.c	2026-11-16 21:45:22.216886900 +0000
 @@ -16,10 +16,10 @@ void doit(unsigned char *ek,unsigned cha
  {
    int i;

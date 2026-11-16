@@ -1,0 +1,25 @@
+--- origsrc/frog-0.35.1/configure.ac	2026-08-17 11:08:44.000000000 +0000
++++ src/frog-0.35.1/configure.ac	2026-11-16 04:08:15.773489000 +0000
+@@ -9,6 +9,7 @@ AC_CONFIG_SRCDIR([configure.ac])
+ AC_CONFIG_MACRO_DIR([m4])
+ AC_CONFIG_HEADERS([config.h])
+ 
++m4_pattern_allow([^AX_PTHREAD_SOLARIS__REENTRANT$])
+ AX_REQUIRE_DEFINED([AX_CXX_COMPILE_STDCXX_17])
+ 
+ # Checks for programs.
+--- origsrc/frog-0.35.1/src/Makefile.am	2026-08-17 11:08:44.000000000 +0000
++++ src/frog-0.35.1/src/Makefile.am	2026-11-16 04:08:15.773489000 +0000
+@@ -1,5 +1,5 @@
+ AM_CPPFLAGS = -I@top_srcdir@/include
+-AM_CXXFLAGS = -DSYSCONF_PATH=\"$(datadir)\" -std=c++17 -W -Wall -pedantic -g -O3
++AM_CXXFLAGS = -DSYSCONF_PATH=\"$(datadir)\" -pedantic
+ bin_PROGRAMS = frog mbma mblem ner
+ 
+ frog_SOURCES = Frog.cxx
+@@ -25,3 +25,5 @@ TESTS = tst.sh
+ 
+ EXTRA_DIST = tst.sh
+ CLEANFILES = tst.out
++
++libfrog_la_LDFLAGS += -no-undefined

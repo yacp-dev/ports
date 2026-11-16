@@ -1,7 +1,7 @@
 HOMEPAGE="https://github.com/malb/${PN}"
 SRC_URI="https://github.com/malb/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-pkgconfig.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/f7a3c908d436869ec3257f11ac4fa31d03c06160/f/${PN}-pkgconfig.patch
 "
 
 CATEGORY="Math"

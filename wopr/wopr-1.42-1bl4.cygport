@@ -11,11 +11,17 @@ about WOPR in the reference guide offering installation instructions,
 walkthroughs, basic performance measurements (including a comparison to
 SRILM), and an overview of options."
 
-# LICENSE="UVT"
-# LICENSE_SPDX="SPDX-License-Identifier: UVT"
+LICENSE="GPL-2.0-or-later AND Zlib AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND Zlib AND BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libfolia-devel libicu-devel libticcutils-devel libtimbl-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	libfolia-devel
+	libicu-devel
+	libticcutils-devel
+	libtimbl-devel
+"
 
 src_test()
 {

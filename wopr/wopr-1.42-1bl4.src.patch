@@ -1,0 +1,442 @@
+--- origsrc/wopr-1.42/configure.ac	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/configure.ac	2026-11-16 00:42:36.313605400 +0000
+@@ -168,8 +168,9 @@ fi
+ # ---
+ 
+ # Check for a hash table implementation
+-AC_CXX_HEADER_TR1_UNORDERED_MAP
+-AC_CXX_HEADER_TR1_UNORDERED_SET
++AC_LANG_PUSH([C++])
++AC_CHECK_HEADERS([tr1/unordered_map tr1/unordered_set])
++AC_LANG_POP([C++])
+ 
+ AC_CONFIG_FILES([Makefile
+                  include/Makefile
+--- origsrc/wopr-1.42/include/wopr/Classifier.h	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/include/wopr/Classifier.h	2026-11-16 00:42:36.315626900 +0000
+@@ -229,8 +229,8 @@ class Classifier {
+ 
+ 	Timbl::ValueDistribution::dist_iterator it = vd->begin();
+ 	while ( it != vd->end() ) {
+-	  std::string tvs  = it->second->Value()->Name();
+-	  long        wght = it->second->Weight(); // absolute frequency.
++	  std::string tvs  = it->Value()->Name();
++	  long        wght = it->Weight(); // absolute frequency.
+ 	  double      p    = (double)wght / (double)vd->totalSize();
+ 	  md2_elem md2e;
+ 	  md2e.token = tvs;
+@@ -353,8 +353,8 @@ class Classifier {
+     // Should calc entropy and other stuff relevant for spel corr here.
+     //
+     while ( it != vd->end() ) {
+-      std::string tvs  = it->second->Value()->Name();
+-      long        wght = it->second->Weight(); // absolute frequency.
++      std::string tvs  = it->Value()->Name();
++      long        wght = it->Weight(); // absolute frequency.
+       double      p    = (double)wght / (double)vd->totalSize();
+       md2_elem md2e;
+       md2e.token = tvs;
+--- origsrc/wopr-1.42/src/Makefile.am	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/src/Makefile.am	2026-11-16 00:42:36.315626900 +0000
+@@ -1,5 +1,5 @@
+-AM_CPPFLAGS = -I@top_srcdir@/include
+-AM_CXXFLAGS = -std=c++11 -Wall
++AM_CPPFLAGS = -I$(top_srcdir)/include
++AM_CXXFLAGS = 
+ 
+ bin_PROGRAMS = wopr
+ 
+--- origsrc/wopr-1.42/src/general_test.cc	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/src/general_test.cc	2026-11-16 00:42:36.317648200 +0000
+@@ -360,10 +360,10 @@ int gen_test( Logfile& l, Config& c ) {
+ 
+ 	int rank_counter = 1;
+ 	while ( it != vd->end() ) {
+-	  //const Timbl::TargetValue *tv = it->second->Value();
++	  //const Timbl::TargetValue *tv = it->Value();
+ 
+-	  std::string tvs  = it->second->Value()->Name();
+-	  double      wght = it->second->Weight(); // absolute frequency.
++	  std::string tvs  = it->Value()->Name();
++	  double      wght = it->Weight(); // absolute frequency.
+ 
+ 	  if ( topn > 0 ) { // only save if we want to sort/print them later.
+ 	    distr_elem  d;
+--- origsrc/wopr-1.42/src/generator.cc	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/src/generator.cc	2026-11-16 00:42:36.317648200 +0000
+@@ -198,14 +198,14 @@ int generate( Logfile& l, Config& c ) {
+       } else {
+ 	unsigned long sum = 0;
+ 	for ( unsigned int i = 0; i < rnd_idx; i++ ) {
+-	  sum += it->second->Weight();
++	  sum += it->Weight();
+ 	  if ( sum > rnd_idx ) {
+ 	    break;
+ 	  }
+ 	  ++it;
+ 	}
+       }
+-      std::string tvs  = it->second->Value()->Name();
++      std::string tvs  = it->Value()->Name();
+       answer = tvs;
+ 
+       result = result + answer;
+@@ -286,7 +286,7 @@ std::string generate_one( std::string& a
+     for ( int i = 0; i < rnd_idx; i++ ) {
+       ++it;
+     }
+-    std::string tvs  = it->second->Value()->Name();
++    std::string tvs  = it->Value()->Name();
+     answer = tvs;
+ 
+     result = result + answer + " ";
+@@ -392,15 +392,15 @@ std::string generate_xml( std::string& a
+ #else
+     unsigned long sum = 0;
+     for ( unsigned int i = 0; i < rnd_idx; ++i ) {
+-      sum += it->second->Weight();
++      sum += it->Weight();
+       if ( sum > rnd_idx ) {
+ 	break;
+       }
+       ++it;
+     }
+ #endif
+-    std::string tvs  = it->second->Value()->Name();
+-    double      wght = it->second->Weight();
++    std::string tvs  = it->Value()->Name();
++    double      wght = it->Weight();
+     answer = tvs;
+ 
+     tmp_res = tmp_res + answer + "/" + to_str(cnt)+"/"+to_str(distr_count)+" ";
+--- origsrc/wopr-1.42/src/levenshtein.cc	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/src/levenshtein.cc	2026-11-16 00:42:36.319669400 +0000
+@@ -436,8 +436,8 @@ void distr_spelcorr( const Timbl::ValueD
+ 
+   // NB some of the test are outside this loop (max_distr, in_distr)
+   for ( const auto& it : *vd ) { // loop over distribution
+-    std::string tvs  = it.second->Value()->Name(); // element in distribution
+-    double      wght = it.second->Weight(); // frequency of distr. element
++    std::string tvs  = it.Value()->Name(); // element in distribution
++    double      wght = it.Weight(); // frequency of distr. element
+     // LD shortcut, if stringlength differs more than mld, we don't need to try
+     int         ld   = lev_distance( target, tvs, mld, cs ); // LD with target (word in text)
+ 
+@@ -506,8 +506,8 @@ void tdistr_spelcorr( const Timbl::Value
+   // NB some of the test are outside this loop (max_distr, in_distr)
+   for ( const auto& it : *vd ) { // loop over distribution
+ 
+-    std::string tvs  = it.second->Value()->Name(); // element in distribution
+-    double      wght = it.second->Weight(); // frequency of distr. element
++    std::string tvs  = it.Value()->Name(); // element in distribution
++    double      wght = it.Weight(); // frequency of distr. element
+     // LD shortcut, if stringlength differs more than mld, we don't need to try
+     int         ld   = lev_distance( target, tvs, mld, cs ); // LD with target (word in text)
+ 
+@@ -938,10 +938,10 @@ int correct( Logfile& l, Config& c ) {
+ 		// Check if target word is in the distribution.
+ 		//
+ 		while ( it != vd->end() ) {
+-		  //const Timbl::TargetValue *tv = it->second->Value();
++		  //const Timbl::TargetValue *tv = it->Value();
+ 
+-		  std::string tvs  = it->second->Value()->Name();
+-		  double      wght = it->second->Weight();
++		  std::string tvs  = it->Value()->Name();
++		  double      wght = it->Weight();
+ 
+ 		  // Prob. of this item in distribution.
+ 		  //
+@@ -1487,10 +1487,10 @@ int tcorrect( Logfile& l, Config& c ) {
+ 		// Check if target word is in the distribution.
+ 		//
+ 		while ( it != vd->end() ) {
+-		  //const Timbl::TargetValue *tv = it->second->Value();
++		  //const Timbl::TargetValue *tv = it->Value();
+ 
+-		  std::string tvs  = it->second->Value()->Name();
+-		  double      wght = it->second->Weight();
++		  std::string tvs  = it->Value()->Name();
++		  double      wght = it->Weight();
+ 
+ 		  // Prob. of this item in distribution.
+ 		  //
+@@ -1905,10 +1905,10 @@ int server_sc( Logfile& l, Config& c ) {
+ 	    Timbl::ValueDistribution::dist_iterator it = vd->begin();
+ 	    if ( cnt < max_distr ) {
+ 	      while ( it != vd->end() ) {
+-		//const Timbl::TargetValue *tv = it->second->Value();
++		//const Timbl::TargetValue *tv = it->Value();
+ 
+-		std::string tvs  = it->second->Value()->Name();
+-		double      wght = it->second->Weight();
++		std::string tvs  = it->Value()->Name();
++		double      wght = it->Weight();
+ 
+ 		if ( verbose > 1 ) {
+ 		  l.log(tvs+": "+to_str(wght));
+@@ -1942,8 +1942,8 @@ int server_sc( Logfile& l, Config& c ) {
+ 		  // 20100111: freq voorspelde woord : te voorspellen woord > 1
+ 		  //             uit de distr          target
+ 
+-		  std::string tvs  = it->second->Value()->Name();
+-		  double      wght = it->second->Weight();
++		  std::string tvs  = it->Value()->Name();
++		  double      wght = it->Weight();
+ 		  int ld = lev_distance( target, tvs, mld, true );
+ 
+ 		  if ( verbose > 1 ) {
+@@ -2308,10 +2308,10 @@ int server_sc_nf( Logfile& l, Config& c
+ 	  Timbl::ValueDistribution::dist_iterator it = vd->begin();
+ 	  if ( cnt < max_distr ) {
+ 	    while ( it != vd->end() ) {
+-	      //const Timbl::TargetValue *tv = it->second->Value();
++	      //const Timbl::TargetValue *tv = it->Value();
+ 
+-	      std::string tvs  = it->second->Value()->Name();
+-	      double      wght = it->second->Weight();
++	      std::string tvs  = it->Value()->Name();
++	      double      wght = it->Weight();
+ 
+ 	      if ( verbose > 1 ) {
+ 			l.log(tvs+": "+to_str(wght));
+@@ -2345,8 +2345,8 @@ int server_sc_nf( Logfile& l, Config& c
+ 			// 20100111: freq voorspelde woord : te voorspellen woord > 1
+ 			//             uit de distr          target
+ 
+-			std::string tvs  = it->second->Value()->Name();
+-			double      wght = it->second->Weight();
++			std::string tvs  = it->Value()->Name();
++			double      wght = it->Weight();
+ 			int ld = lev_distance( target, tvs, mld, true );
+ 
+ 			if ( verbose > 1 ) {
+@@ -2880,10 +2880,10 @@ int mcorrect( Logfile& l, Config& c ) {
+ 		// Check if target word is in the distribution.
+ 		//
+ 		while ( it != vd->end() ) {
+-		  //const Timbl::TargetValue *tv = it->second->Value();
++		  //const Timbl::TargetValue *tv = it->Value();
+ 
+-		  std::string tvs  = it->second->Value()->Name();
+-		  double      wght = it->second->Weight();
++		  std::string tvs  = it->Value()->Name();
++		  double      wght = it->Weight();
+ 
+ 		  // Prob. of this item in distribution.
+ 		  //
+@@ -3415,10 +3415,10 @@ int cmcorrect( Logfile& l, Config& c ) {
+ 	// Check if target word is in the distribution.
+ 	//
+ 	while ( it != vd->end() ) {
+-	  //const Timbl::TargetValue *tv = it->second->Value();
++	  //const Timbl::TargetValue *tv = it->Value();
+ 
+-	  std::string tvs  = it->second->Value()->Name();
+-	  double      wght = it->second->Weight();
++	  std::string tvs  = it->Value()->Name();
++	  double      wght = it->Weight();
+ 
+ 	  // Prob. of this item in distribution.
+ 	  //
+@@ -3587,8 +3587,8 @@ double filter_dist( const Timbl::ValueDi
+   Timbl::ValueDistribution::dist_iterator it = vd->begin();
+ 
+   while ( it != vd->end() ) { // loop over distribution
+-    std::string tvs  = it->second->Value()->Name(); // element in distribution
+-    double      wght = it->second->Weight(); // frequency of distr. element
++    std::string tvs  = it->Value()->Name(); // element in distribution
++    double      wght = it->Weight(); // frequency of distr. element
+ 
+     for ( const auto& si : a_set ) { //should be outer
+       if ( si == tvs ) {
+@@ -3614,8 +3614,8 @@ double copy_dist( const Timbl::ValueDist
+   Timbl::ValueDistribution::dist_iterator it = vd->begin();
+ 
+   while ( it != vd->end() ) { // loop over distribution
+-    std::string tvs  = it->second->Value()->Name(); // element in distribution
+-    double      wght = it->second->Weight(); // frequency of distr. element
++    std::string tvs  = it->Value()->Name(); // element in distribution
++    double      wght = it->Weight(); // frequency of distr. element
+ 
+     distr_elem *d = new distr_elem(tvs, wght, 0); //last index?
+     distr_vec.push_back( d );
+@@ -4024,10 +4024,10 @@ int sml( Logfile& l, Config& c ) {
+ 	// Check if target word is in the distribution.
+ 	//
+ 	while ( it != vd->end() ) {
+-	  //const Timbl::TargetValue *tv = it->second->Value();
++	  //const Timbl::TargetValue *tv = it->Value();
+ 
+-	  std::string tvs  = it->second->Value()->Name();
+-	  double      wght = it->second->Weight();
++	  std::string tvs  = it->Value()->Name();
++	  double      wght = it->Weight();
+ 
+ 	  // Prob. of this item in distribution.
+ 	  //
+--- origsrc/wopr-1.42/src/prededit.cc	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/src/prededit.cc	2026-11-16 00:42:36.321437600 +0000
+@@ -868,8 +868,8 @@ void generate_next( Timbl::TimblAPI* My_
+   Timbl::ValueDistribution::dist_iterator it = vd->begin();
+   while ( it != vd->end() ) {
+ 
+-    std::string tvs  = it->second->Value()->Name();
+-    double      wght = it->second->Weight(); // absolute frequency.
++    std::string tvs  = it->Value()->Name();
++    double      wght = it->Weight(); // absolute frequency.
+ 
+     t_distr_elem  d;
+     d.name   = tvs;
+--- origsrc/wopr-1.42/src/runrunrun.cc	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/src/runrunrun.cc	2026-11-16 00:42:36.323452400 +0000
+@@ -1244,14 +1244,14 @@ int window_line(Logfile& l, Config& c) {
+ 	while ( it != vd->end() ){
+ 	  //Timbl::Vfield *foo = it->second;
+ 	  //const Timbl::TargetValue *bar = foo->Value();
+-	  std::string quux = it->second->Value()->Name(); //bar->Name();
++	  std::string quux = it->Value()->Name(); //bar->Name();
+ 	  if ( quux == a_word ) {
+ 	    std::cout << "Found a_word.\n";
+-	    std::cout << it->second->Value() << ": "
+-		      << it->second->Weight() << std::endl;
++	    std::cout << it->Value() << ": "
++		      << it->Weight() << std::endl;
+ 	  }
+ 	  ++it;
+-	  const Timbl::TargetValue *tarv = it->second->Value();
++	  const Timbl::TargetValue *tarv = it->Value();
+ 
+ 	  if ( --count == 0 ) {
+ 	    it = vd->end();
+@@ -3194,9 +3194,9 @@ int pplx( Logfile& l, Config& c ) {
+ 	if ( cnt < 25 ) {
+ 	  it = vd->begin();
+ 	  while ( it != vd->end() ) {
+-	    //std::cout << cnt << " " << it->second->Value() << ":  "
+-	    //	       << it->second->Weight() << std::endl;
+-	    std::cout << it->second << ' ';
++	    //std::cout << cnt << " " << it->Value() << ":  "
++	    //	       << it->Weight() << std::endl;
++	    std::cout << *it << ' ';
+ 	    ++it;
+ 	  }
+ 	  std::cout << std::endl;
+@@ -3720,7 +3720,7 @@ int pplx_simple( Logfile& l, Config& c )
+       for ( int i = 0; i < cache_size; i++ ) {
+ 	if ( distr_cache.at(i).cnt == cnt ) {
+ 	  if ( distr_cache.at(i).sum_freqs == distr_count ) {
+-	    if ( distr_cache.at(i).first == it->second->Value()->Name() ) {
++	    if ( distr_cache.at(i).first == it->Value()->Name() ) {
+ 	      cache_idx = i; // it's cached already!
+ 	      cd = &distr_cache.at(i);
+ 	      break;
+@@ -3731,10 +3731,10 @@ int pplx_simple( Logfile& l, Config& c )
+       if ( (cache_size > 0 ) && (cache_idx == -1) ) { // It should be cached, if not present.
+ 	if ( (cnt > cache_threshold) && (cnt > lowest_cache) ) {
+ 	  cd = &distr_cache.at( cache_size-1 ); // the lowest.
+-	  l.log( "New cache: "+to_str(cnt)+" replacing: "+to_str(cd->cnt)+" ("+cd->first+"/"+it->second->Value()->Name()+")" );
++	  l.log( "New cache: "+to_str(cnt)+" replacing: "+to_str(cd->cnt)+" ("+cd->first+"/"+it->Value()->Name()+")" );
+ 	  cd->cnt = cnt;
+ 	  cd->sum_freqs  = distr_count;
+-	  cd->first = it->second->Value()->Name();
++	  cd->first = it->Value()->Name();
+ 	  (cd->distr_vec).clear();
+ 	}
+       }
+@@ -3781,8 +3781,8 @@ int pplx_simple( Logfile& l, Config& c )
+ 		std::map<long, long, std::greater<long> > dfreqs;
+ 		while ( it != vd->end() ) {
+ 
+-		  std::string tvs  = it->second->Value()->Name();
+-		  double      wght = it->second->Weight(); // absolute frequency.
++		  std::string tvs  = it->Value()->Name();
++		  double      wght = it->Weight(); // absolute frequency.
+ 
+ 		  dfreqs[wght] += 1;
+ 
+@@ -3807,10 +3807,10 @@ int pplx_simple( Logfile& l, Config& c )
+ 		long classification_freq = 0;
+ 		std::map<long, long, std::greater<long> > dfreqs;
+ 		while ( it != vd->end() ) {
+-		  //const Timbl::TargetValue *tv = it->second->Value();
++		  //const Timbl::TargetValue *tv = it->Value();
+ 
+-		  std::string tvs  = it->second->Value()->Name();
+-		  double      wght = it->second->Weight(); // absolute frequency.
++		  std::string tvs  = it->Value()->Name();
++		  double      wght = it->Weight(); // absolute frequency.
+ 
+ 		  dfreqs[wght] += 1;
+ 
+--- origsrc/wopr-1.42/src/server.cc	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/src/server.cc	2026-11-16 00:42:36.323452400 +0000
+@@ -554,8 +554,8 @@ int parse_distribution( const Timbl::Val
+ 
+   while ( it != vd->end() ) {
+ 
+-    std::string tvs  = it->second->Value()->Name();
+-    double      wght = it->second->Weight();
++    std::string tvs  = it->Value()->Name();
++    double      wght = it->Weight();
+ 
+     // Prob. of this item in distribution.
+     //
+@@ -1061,8 +1061,8 @@ int server4( Logfile& l, Config& c) {
+ 	      Timbl::ValueDistribution::dist_iterator it = vd->begin();
+ 	      while ( it != vd->end() ) {
+ 
+-		std::string tvs  = it->second->Value()->Name();
+-		double      wght = it->second->Weight(); // absolute frequency.
++		std::string tvs  = it->Value()->Name();
++		double      wght = it->Weight(); // absolute frequency.
+ 
+ 		if ( tvs == target ) { // The correct answer was in the distribution!
+ 		  target_freq = wght;
+@@ -1426,9 +1426,9 @@ int xmlserver(Logfile& l, Config& c) {
+ 	    Timbl::ValueDistribution::dist_iterator it = vd->begin();
+ 	    while ( it != vd->end() ) {
+ 
+-	      std::string tvs  = it->second->Value()->Name();
++	      std::string tvs  = it->Value()->Name();
+ 	      if ( tvs == target ) { // The correct answer was in the distribution!
+-		target_freq = it->second->Weight(); // absolute frequency.
++		target_freq = it->Weight(); // absolute frequency.
+ 		if ( verbose > 1 ) {
+ 		  l.log( "Timbl answer in distr. "+ to_str(target_freq)+"/"+to_str(distr_count) );
+ 		}
+@@ -1791,8 +1791,8 @@ int mbmt(Logfile& l, Config& c) {
+ 	      Timbl::ValueDistribution::dist_iterator it = vd->begin();
+ 	      while ( it != vd->end() ) {
+ 
+-		std::string tvs  = it->second->Value()->Name();
+-		double      wght = it->second->Weight(); // absolute frequency.
++		std::string tvs  = it->Value()->Name();
++		double      wght = it->Weight(); // absolute frequency.
+ 
+ 		if ( tvs == target ) { // The correct answer was in the distribution!
+ 		  target_freq = wght;
+@@ -2298,8 +2298,8 @@ int dist_to_xml( const Timbl::ValueDistr
+ 
+   while ( it != vd->end() ) {
+ 
+-    std::string tvs  = it->second->Value()->Name();
+-    double      wght = it->second->Weight();
++    std::string tvs  = it->Value()->Name();
++    double      wght = it->Weight();
+ 
+     distr_elem  d;
+     d.name   = tvs;
+--- origsrc/wopr-1.42/src/wex.cc	2020-04-15 12:25:49.000000000 +0000
++++ src/wopr-1.42/src/wex.cc	2026-11-16 00:42:36.325472600 +0000
+@@ -548,8 +548,8 @@ int multi_dist( Logfile& l, Config& c )
+ 
+       Timbl::ValueDistribution::dist_iterator it = vd->begin();
+       while ( it != vd->end() ) {
+-	std::string tvs  = it->second->Value()->Name();
+-	long        wght = it->second->Weight(); // absolute frequency.
++	std::string tvs  = it->Value()->Name();
++	long        wght = it->Weight(); // absolute frequency.
+ 	double      p    = (double)wght / (double)distr_count;
+ 
+ 	combined_distr[tvs] += (p * classifier_weight); // multiply with weight

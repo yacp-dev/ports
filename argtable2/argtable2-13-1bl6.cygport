@@ -1,5 +1,8 @@
 HOMEPAGE="https://sourceforge.net/projects/argtable/"
 SRC_URI="mirror://sourceforge/argtable/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/a/argtable2/13-4/debian/patches/implicit-declaration.diff
+"
 
 CATEGORY="Libs"
 SUMMARY="ANSI C command line parser"
@@ -16,6 +19,12 @@ the command line syntax."
 LICENSE="LGPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
 LICENSE_URI="COPYING"
+
+# arg_date.c calls bzero() without including <string.h>, which declares
+# __memset_ichk that strings.h's fortified bzero() expands to. Defining
+# _GNU_SOURCE too, since -include string.h fixes the feature macros before
+# arg_date.c's own _XOPEN_SOURCE defines, which strptime() needs.
+CFLAGS+=" -D_GNU_SOURCE -include string.h"
 
 DIFF_EXCLUDES="
 	argtable2.*

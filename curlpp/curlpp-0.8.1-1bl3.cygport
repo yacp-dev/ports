@@ -14,9 +14,15 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="doc/LICENSE"
 
-BUILD_REQUIRES="libcurl-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
 
 DOCS="
 	Readme.md

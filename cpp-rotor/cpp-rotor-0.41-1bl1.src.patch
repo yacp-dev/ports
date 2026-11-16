@@ -1,0 +1,56 @@
+--- origsrc/cpp-rotor-0.41/CMakeLists.txt	2026-05-18 19:21:19.000000000 +0000
++++ src/cpp-rotor-0.41/CMakeLists.txt	2026-11-16 14:32:30.234542800 +0000
+@@ -99,6 +99,10 @@ set_target_properties(rotor PROPERTIES
+     CXX_STANDARD_REQUIRED YES
+     CXX_EXTENSIONS NO
+ )
++if (CYGWIN)
++    set_target_properties(rotor PROPERTIES SOVERSION "${CMAKE_PROJECT_VERSION_MAJOR}")
++endif()
++
+ add_library(rotor::core ALIAS rotor)
+ list(APPEND ROTOR_TARGETS_TO_INSTALL rotor)
+ 
+@@ -202,6 +206,9 @@ if (ROTOR_BUILD_ASIO)
+             $<$<PLATFORM_ID:Windows>:ws2_32>
+     )
+     add_library(rotor::asio ALIAS rotor_asio)
++    if (CYGWIN)
++        set_target_properties(rotor_asio PROPERTIES SOVERSION "${CMAKE_PROJECT_VERSION_MAJOR}")
++    endif()
+ 
+     install(
+         TARGETS rotor_asio
+@@ -243,6 +250,9 @@ if (ROTOR_BUILD_WX)
+     target_compile_definitions(rotor_wx PUBLIC ${wxWidgets_DEFINITIONS})
+ 
+     add_library(rotor::wx ALIAS rotor_wx)
++    if (CYGWIN)
++        set_target_properties(rotor_wx PROPERTIES SOVERSION "${CMAKE_PROJECT_VERSION_MAJOR}")
++    endif()
+ 
+     install(
+         TARGETS rotor_wx
+@@ -276,8 +286,11 @@ if (ROTOR_BUILD_EV)
+     target_sources(rotor_ev PRIVATE ${EV_SOURCES})
+ 
+     target_include_directories(rotor_ev PUBLIC ${LIBEV_INCLUDE_DIRS})
+-    target_link_libraries(rotor_ev PUBLIC rotor libev::libev)
++    target_link_libraries(rotor_ev PUBLIC rotor ${LIBEV_LIBRARY})
+     add_library(rotor::ev ALIAS rotor_ev)
++    if (CYGWIN)
++        set_target_properties(rotor_ev PROPERTIES SOVERSION "${CMAKE_PROJECT_VERSION_MAJOR}")
++    endif()
+ 
+     install(
+         TARGETS rotor_ev
+@@ -345,6 +358,9 @@ if (ROTOR_BUILD_THREAD)
+     target_sources(rotor_thread PRIVATE ${THREAD_SOURCES})
+     target_link_libraries(rotor_thread PUBLIC rotor Threads::Threads)
+     add_library(rotor::thread ALIAS rotor_thread)
++    if (CYGWIN)
++        set_target_properties(rotor_thread PROPERTIES SOVERSION "${CMAKE_PROJECT_VERSION_MAJOR}")
++    endif()
+ 
+     install(
+         TARGETS rotor_thread

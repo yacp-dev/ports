@@ -1,5 +1,5 @@
---- origsrc/tree-sitter-typescript-0.23.2/CMakeLists.txt	2024-11-11 11:32:53.000000000 +0900
-+++ src/tree-sitter-typescript-0.23.2/CMakeLists.txt	2024-11-12 17:00:33.490056900 +0900
+--- origsrc/tree-sitter-typescript-0.23.2/CMakeLists.txt	2024-11-11 02:32:53.000000000 +0000
++++ src/tree-sitter-typescript-0.23.2/CMakeLists.txt	2026-11-16 08:15:59.393301900 +0000
 @@ -20,13 +20,14 @@ find_program(TREE_SITTER_CLI tree-sitter
  include(GNUInstallDirs)
  

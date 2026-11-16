@@ -1,5 +1,5 @@
---- origsrc/bamf-0.5.6/lib/libbamf/Makefile.am	2022-02-17 22:41:04.359525900 +0900
-+++ src/bamf-0.5.6/lib/libbamf/Makefile.am	2022-04-28 11:06:08.929044700 +0900
+--- origsrc/bamf-0.5.6/lib/libbamf/Makefile.am	2022-02-17 13:41:04.359525900 +0000
++++ src/bamf-0.5.6/lib/libbamf/Makefile.am	2026-11-16 10:10:59.383812600 +0000
 @@ -55,6 +55,7 @@ libbamf_la_CFLAGS = \
  	$(NULL)
  

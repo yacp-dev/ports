@@ -3,9 +3,13 @@ SRC_URI="https://launchpad.net/${PN}/${PV[1]}.${PV[2]}/${PV}/+download/${P}.tar.
 
 CATEGORY="Libs"
 SUMMARY="Window matching library"
-DESCRIPTION="Removes the headache of applications matching into a simple DBus daemon and c
-wrapper library. Currently features application matching at amazing levels of
-accuracy (covering nearly every corner case)."
+DESCRIPTION="Removes the headache of applications matching into a simple DBus
+daemon and c wrapper library. Currently features application matching at amazing
+levels of accuracy (covering nearly every corner case)."
+
+LICENSE="GPL-3.0-only AND (LGPL-3.0-only OR LGPL-2.1-only)"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only AND (LGPL-3.0-only OR LGPL-2.1-only)"
+LICENSE_URI="COPYING"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -14,7 +18,21 @@ src_patch_hook()
 	gtkdocize
 }
 
-BUILD_REQUIRES="libgdk_pixbuf2.0-devel libglib2.0-devel libgtk3-devel libgtop2.0-devel libstartup-notification1-devel libwnck3-devel libX11-devel python39-lxml"
+BUILD_REQUIRES="
+	gobject-introspection
+	gtk-doc
+	libgdk_pixbuf2.0-devel
+	libgirepository1.0-devel
+	libglib2.0-devel
+	libgtk3-devel
+	libgtop2.0-devel
+	libstartup-notification1-devel
+	libwnck3-devel
+	libX11-devel
+	python3-devel
+	python312-lxml
+	vala
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode
@@ -35,7 +53,7 @@ bamf_CONTENTS="
 	usr/share/upstart
 "
 libbamf3_2_CONTENTS="
-	usr/bin
+	usr/bin/cygbamf3-2.dll
 "
 libbamf3_devel_CONTENTS="
 	usr/include

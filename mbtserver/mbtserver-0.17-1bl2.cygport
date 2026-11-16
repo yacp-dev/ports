@@ -9,7 +9,17 @@ LICENSE="GPL-3.0-only"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libicu-devel libmbt-devel libticcutils-devel libtimbl-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	libicu-devel
+	libmbt-devel
+	libticcutils-devel
+	libtimbl-devel
+"
+
+DOCS="
+	README.md
+"
 
 DIFF_EXCLUDES="
 	*.m4
@@ -34,3 +44,9 @@ libmbtserver_devel_CONTENTS="
 mbtserver_SUMMARY="${SUMMARY} (utilities)"
 libmbtserver2_SUMMARY="${SUMMARY} (runtime)"
 libmbtserver_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/src/.libs:${PATH} verbose ./src/${PN}.exe --help
+}

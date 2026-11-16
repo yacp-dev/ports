@@ -3,32 +3,33 @@ toad
 Collection of tools to generate datafiles for Frog
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libfrog3-0.34-1bl1
-  libgcc1-12.4.0-3
-  libicu74-74.2-1
-  libmbt2-3.11-1bl1
-  libstdc++6-12.4.0-3
-  libticcutils10-0.36-1bl1
-  libtimbl7-6.10-1bl1
-  libucto6-0.35-1bl1
+  cygwin-3.6.12-1
+  libfrog3-0.35.1-1bl1
+  libgcc1-14.4.0-1
+  libicu76-76.1-2
+  libmbt2-3.13-1bl1
+  libstdc++6-14.4.0-1
+  libticcutils10-0.38-1bl2
+  libtimbl8-7.0-1bl2
+  libucto6-0.37-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libfrog-devel-0.34-1bl1
-  libicu-devel-74.2-1
-  libmbt-devel-3.11-1bl1
-  libticcutils-devel-0.36-1bl1
-  libtimbl-devel-6.10-1bl1
-  libtool-2.5.3-1
-  libucto-devel-0.35-1bl1
+  autoconf-20260320-3
+  autoconf-archive-2026.11.11-1
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libfolia-devel-2.22-1bl2
+  libfrog-devel-0.35.1-1bl1
+  libicu-devel-76.1-2
+  libmbt-devel-3.13-1bl1
+  libmbtserver-devel-0.17-1bl2
+  libticcutils-devel-0.38-1bl2
+  libtimbl-devel-7.0-1bl2
+  libtool-2.6.2-1
+  libucto-devel-0.37-1bl1
   make-4.4.1-2
 
 Canonical website:
@@ -77,6 +78,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.9-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.9-1bl1 -----
 Version bump.

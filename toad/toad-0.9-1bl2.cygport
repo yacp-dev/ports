@@ -9,7 +9,17 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libfrog-devel libicu-devel libmbt-devel libticcutils-devel libtimbl-devel libucto-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	libfolia-devel
+	libfrog-devel
+	libicu-devel
+	libmbt-devel
+	libmbtserver-devel
+	libticcutils-devel
+	libtimbl-devel
+	libucto-devel
+"
 
 DOCS="
 	README.*
@@ -18,3 +28,8 @@ DOCS="
 DIFF_EXCLUDES="
 	*.m4
 "
+
+src_test() {
+	cd ${B}/src
+	verbose ./froggen.exe --version
+}

@@ -3,58 +3,59 @@ cpp-rotor
 Event loop friendly C++ actor micro-framework, supervisable
 
 Runtime requirements:
-  cygwin-3.3.4-2
+  cygwin-3.6.12-1
   libboost_system1.66-1.66.0-1
   libev4-4.33-1
-  libgcc1-11.3.0-1
-  librotor0-0.23-1bl1
-  librotor_asio0-0.23-1bl1
-  librotor_ev0-0.23-1bl1
-  librotor_thread0-0.23-1bl1
-  librotor_wx0-0.23-1bl1
-  libstdc++6-11.3.0-1
+  libgcc1-14.4.0-1
+  librotor0-0.41-1bl1
+  librotor_asio0-0.41-1bl1
+  librotor_ev0-0.41-1bl1
+  librotor_thread0-0.41-1bl1
+  librotor_wx0-0.41-1bl1
+  libstdc++6-14.4.0-1
   libwx_baseu3.0_0-3.0.5.1-2
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cmake-3.20.0-1
-  cygport-0.35.0-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libCatch2-devel-3.16.1-1bl2
   libboost-devel-1.66.0-1
   libev-devel-4.33-1
   libwx_baseu3.0-devel-3.0.5.1-2
-  ninja-1.10.2-1
+  libwx_gtk3u3.0-devel-3.0.5.1-2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/basiliscos/cpp-rotor
 
 Canonical download:
-  https://github.com/basiliscos/cpp-rotor/archive/refs/tags/v0.23.tar.gz
+  https://github.com/basiliscos/cpp-rotor/archive/refs/tags/v0.41.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack cpp-rotor-0.23-X-src.tar.xz
+  1. unpack cpp-rotor-0.41-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./cpp-rotor-0.23-X.cygport all
+        % cygport ./cpp-rotor-0.41-X.cygport all
 
 This will create:
-  /usr/src/cpp-rotor-0.23-X-src.tar.xz
-  /usr/src/cpp-rotor-0.23-X.tar.xz
-  /usr/src/librotor0-0.23-X.tar.xz
-  /usr/src/librotor-devel-0.23-X.tar.xz
-  /usr/src/librotor_asio0-0.23-X.tar.xz
-  /usr/src/librotor_asio-devel-0.23-X.tar.xz
-  /usr/src/librotor_ev0-0.23-X.tar.xz
-  /usr/src/librotor_ev-devel-0.23-X.tar.xz
-  /usr/src/librotor_thread0-0.23-X.tar.xz
-  /usr/src/librotor_thread-devel-0.23-X.tar.xz
-  /usr/src/librotor_wx0-0.23-X.tar.xz
-  /usr/src/librotor_wx-devel-0.23-X.tar.xz
+  /usr/src/cpp-rotor-0.41-X-src.tar.xz
+  /usr/src/cpp-rotor-0.41-X.tar.xz
+  /usr/src/librotor0-0.41-X.tar.xz
+  /usr/src/librotor-devel-0.41-X.tar.xz
+  /usr/src/librotor_asio0-0.41-X.tar.xz
+  /usr/src/librotor_asio-devel-0.41-X.tar.xz
+  /usr/src/librotor_ev0-0.41-X.tar.xz
+  /usr/src/librotor_ev-devel-0.41-X.tar.xz
+  /usr/src/librotor_thread0-0.41-X.tar.xz
+  /usr/src/librotor_thread-devel-0.41-X.tar.xz
+  /usr/src/librotor_wx0-0.41-X.tar.xz
+  /usr/src/librotor_wx-devel-0.41-X.tar.xz
 
 -------------------------------------------
 
@@ -82,7 +83,9 @@ Files included in the binary package:
   /usr/include/rotor/forward.hpp
   /usr/include/rotor/handler.h
   /usr/include/rotor/message.h
+  /usr/include/rotor/message_stringifier.h
   /usr/include/rotor/messages.hpp
+  /usr/include/rotor/misc/default_stringifier.h
   /usr/include/rotor/plugin/address_maker.h
   /usr/include/rotor/plugin/child_manager.h
   /usr/include/rotor/plugin/delivery.h
@@ -110,7 +113,7 @@ Files included in the binary package:
   /usr/include/rotor/timer_handler.hpp
   /usr/lib/cmake/rotor/rotor-config-version.cmake
   /usr/lib/cmake/rotor/rotor-config.cmake
-  /usr/lib/cmake/rotor/rotor-shared-targets-release.cmake
+  /usr/lib/cmake/rotor/rotor-shared-targets-relwithdebinfo.cmake
   /usr/lib/cmake/rotor/rotor-shared-targets.cmake
   /usr/lib/librotor.dll.a
 
@@ -161,6 +164,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.41-1bl1 -----
+Version bump.
 
 ----- version 0.23-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

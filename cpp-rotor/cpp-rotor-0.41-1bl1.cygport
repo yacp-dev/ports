@@ -5,16 +5,28 @@ CATEGORY="Libs"
 SUMMARY="Event loop friendly C++ actor micro framework"
 DESCRIPTION="Event loop friendly C++ actor micro-framework, supervisable"
 
-BUILD_REQUIRES="libboost-devel libev-devel libwx_baseu3.0-devel"
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libboost-devel
+	libCatch2-devel
+	libev-devel
+	libwx_baseu3.0-devel
+	libwx_gtk3u3.0-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
-	-DBUILD_BOOST_ASIO:BOOL=ON
-	-DBUILD_EV:BOOL=ON
-	-DBUILD_EXAMPLES:BOOL=ON
-	-DBUILD_WX:BOOL=ON
-	-Drotor_SHARED_LIBS:BOOL=ON
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DROTOR_BUILD_ASIO:BOOL=ON
+	-DROTOR_BUILD_EV:BOOL=ON
+	-DROTOR_BUILD_EXAMPLES:BOOL=ON
+	-DROTOR_BUILD_TESTS:BOOL=ON
+	-DROTOR_BUILD_WX:BOOL=ON
+	-DwxWidgets_CONFIG_OPTIONS:STRING=--prefix=/usr
 "
 
 src_test()
@@ -58,6 +70,7 @@ librotor_devel_CONTENTS="
 	usr/include/rotor/request.hpp
 	usr/include/rotor/timer_handler.hpp
 	usr/include/rotor/detail
+	usr/include/rotor/misc
 	usr/include/rotor/plugin
 	usr/lib/cmake
 	usr/lib/librotor.dll.a

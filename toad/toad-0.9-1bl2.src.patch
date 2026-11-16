@@ -1,5 +1,5 @@
---- origsrc/toad-0.9/src/Makefile.am	2024-12-16 19:41:41.000000000 +0900
-+++ src/toad-0.9/src/Makefile.am	2025-01-19 16:03:23.860290200 +0900
+--- origsrc/toad-0.9/src/Makefile.am	2024-12-16 10:41:41.000000000 +0000
++++ src/toad-0.9/src/Makefile.am	2026-11-16 05:41:50.580711800 +0000
 @@ -1,5 +1,5 @@
 -AM_CPPFLAGS = -I@top_srcdir@/include
 -AM_CXXFLAGS = -DSYSCONF_PATH=\"$(datadir)\" -std=c++17 -g -O3 -W -Wall -pedantic

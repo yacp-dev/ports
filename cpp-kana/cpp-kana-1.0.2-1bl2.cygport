@@ -17,6 +17,12 @@ CYGCMAKE_ARGS="
 	-DSOVERSION:STRING=${PV[1]}
 "
 
+src_test()
+{
+	cd ${B}/bin
+	verbose ./Test.exe
+}
+
 PKG_NAMES="
 	cpp-kana
 	libcpp-kana${PV[1]}

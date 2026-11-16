@@ -41,6 +41,13 @@ src_install()
 	doman ${PN}.1
 }
 
+src_test()
+{
+	cd ${B}
+	verbose test "$(./${PN}.exe -version)" = "${PN} version ${PV}"
+	verbose ./${PN}.exe -help
+}
+
 DOCS="
 	CHANGES.txt
 	COPYING.LESSER

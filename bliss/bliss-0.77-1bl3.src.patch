@@ -1,5 +1,5 @@
---- origsrc/bliss-0.77/CMakeLists.txt	2026-06-19 19:32:18.572839500 +0900
-+++ src/bliss-0.77/CMakeLists.txt	2026-06-19 20:24:49.095019800 +0900
+--- origsrc/bliss-0.77/CMakeLists.txt	2026-11-16 12:04:32.503896100 +0000
++++ src/bliss-0.77/CMakeLists.txt	2026-11-16 12:04:32.743009400 +0000
 @@ -54,13 +54,13 @@ set_property(TARGET bliss PROPERTY POSIT
  if(USE_GMP)
    target_link_libraries(bliss ${GMP_LIBRARIES})
@@ -29,8 +29,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/b/libbliss-cxx.pc.in ${CMAKE_BINARY_DIR}/libbliss-cxx.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libbliss-cxx.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/bliss-0.77/b/libbliss-cxx.pc.in	2026-06-19 19:32:18.078164400 +0900
-+++ src/bliss-0.77/b/libbliss-cxx.pc.in	2026-06-19 20:25:03.025342700 +0900
+--- origsrc/bliss-0.77/b/libbliss-cxx.pc.in	2026-11-16 12:04:32.357147500 +0000
++++ src/bliss-0.77/b/libbliss-cxx.pc.in	2026-11-16 12:04:32.743835700 +0000
 @@ -8,5 +8,5 @@ Description: library to compute graph au
  Requires: gmp
  Version: @PACKAGE_VERSION@

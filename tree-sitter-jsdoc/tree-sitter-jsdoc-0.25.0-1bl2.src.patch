@@ -1,5 +1,5 @@
---- origsrc/tree-sitter-jsdoc-0.25.0/CMakeLists.txt	2025-09-13 13:24:14.000000000 +0900
-+++ src/tree-sitter-jsdoc-0.25.0/CMakeLists.txt	2025-09-13 18:27:30.639452100 +0900
+--- origsrc/tree-sitter-jsdoc-0.25.0/CMakeLists.txt	2025-09-13 04:24:14.000000000 +0000
++++ src/tree-sitter-jsdoc-0.25.0/CMakeLists.txt	2026-11-16 04:16:47.477693600 +0000
 @@ -19,12 +19,14 @@ include(GNUInstallDirs)
  
  find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")

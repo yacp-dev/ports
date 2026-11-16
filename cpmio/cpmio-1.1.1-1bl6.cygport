@@ -1,7 +1,7 @@
 HOMEPAGE="https://www.seasip.info/Unix/Zxcc/"
 SRC_URI=https://web.archive.org/web/20150609093614/http://www.seasip.demon.co.uk/Unix/Zxcc/${P}.tar.gz
 PATCH_URI="
-	https://git.pld-linux.org/?p=packages/${PN}.git;a=blob_plain;f=${PN}-shared.patch;hb=HEAD#/${PN}-shared.patch
+	https://raw.githubusercontent.com/pld-linux/${PN}/ed84b2062cedf7976f995f844408cb7ccf180506/${PN}-shared.patch
 "
 
 CATEGORY="Libs"
@@ -13,7 +13,10 @@ LICENSE="LGPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
 LICENSE_URI="COPYING.LIB"
 
-BUILD_REQUIRES="libncurses-devel libreadline-devel"
+BUILD_REQUIRES="
+	libncurses-devel
+	libreadline-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()

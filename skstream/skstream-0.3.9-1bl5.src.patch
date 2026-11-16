@@ -1,5 +1,5 @@
---- origsrc/skstream-0.3.9/configure.ac	2012-11-07 08:37:03.000000000 +0900
-+++ src/skstream-0.3.9/configure.ac	2025-01-16 23:25:53.360904400 +0900
+--- origsrc/skstream-0.3.9/configure.ac	2012-11-06 23:37:03.000000000 +0000
++++ src/skstream-0.3.9/configure.ac	2026-11-16 00:06:30.947667800 +0000
 @@ -81,6 +81,9 @@ SKSTREAM_SOCKET_TYPE=int;
  SKSTREAM_SOCKET_HEADER="#include <unistd.h>"
  AC_TRY_COMPILE([#include <ws2tcpip.h>],
@@ -40,8 +40,8 @@
      closesocket(0);
  ],
  [
---- origsrc/skstream-0.3.9/skstream/Makefile.am	2012-11-07 08:37:03.000000000 +0900
-+++ src/skstream-0.3.9/skstream/Makefile.am	2025-01-16 23:23:38.217823500 +0900
+--- origsrc/skstream-0.3.9/skstream/Makefile.am	2012-11-06 23:37:03.000000000 +0000
++++ src/skstream-0.3.9/skstream/Makefile.am	2026-11-16 00:06:30.949690700 +0000
 @@ -1,7 +1,7 @@
  AM_CPPFLAGS = -I$(top_srcdir) -I$(top_builddir)
  

@@ -1,0 +1,63 @@
+tree-sitter-batch
+------------------------------------------
+Windows Batch/CMD grammar for tree-sitter
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libtree-sitter-batch-devel-0.11.1-1bl1
+  libtree-sitter-batch15.0-0.11.1-1bl1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/wharflab/tree-sitter-batch
+
+Canonical download:
+  https://github.com/wharflab/tree-sitter-batch/archive/refs/tags/v0.11.1.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack tree-sitter-batch-0.11.1-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./tree-sitter-batch-0.11.1-X.cygport all
+
+This will create:
+  /usr/src/tree-sitter-batch-0.11.1-X-src.tar.xz
+  /usr/src/tree-sitter-batch-0.11.1-X.tar.xz
+  /usr/src/libtree-sitter-batch15.0-0.11.1-X.tar.xz
+  /usr/src/libtree-sitter-batch-devel-0.11.1-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(tree-sitter-batch)
+  /usr/share/doc/Cygwin/tree-sitter-batch.README
+  /usr/share/doc/tree-sitter-batch/LICENSE
+  /usr/share/doc/tree-sitter-batch/README.md
+  /usr/share/tree-sitter/queries/batch/highlights.scm
+
+(libtree-sitter-batch15.0)
+  /usr/bin/cygtree-sitter-batch-15.0.dll
+
+(libtree-sitter-batch-devel)
+  /usr/include/tree_sitter/tree-sitter-batch.h
+  /usr/lib/libtree-sitter-batch.dll.a
+  /usr/lib/pkgconfig/tree-sitter-batch.pc
+
+------------------
+
+Port Notes:
+
+----- version 0.11.1-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

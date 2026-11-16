@@ -1,0 +1,31 @@
+HOMEPAGE="https://github.com/wharflab/${PN}"
+SRC_URI="https://github.com/wharflab/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Windows Batch/CMD grammar for tree-sitter"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+inherit cmake
+
+PKG_NAMES="
+	tree-sitter-batch
+	libtree-sitter-batch15.0
+	libtree-sitter-batch-devel
+"
+tree_sitter_batch_CONTENTS="
+	usr/share
+"
+libtree_sitter_batch15_0_CONTENTS="
+	usr/bin/cyg*-15.0.dll
+"
+libtree_sitter_batch_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+tree_sitter_batch_SUMMARY="${SUMMARY} (licensing & readmes)"
+libtree_sitter_batch15_0_SUMMARY="${SUMMARY} (runtime)"
+libtree_sitter_batch_devel_SUMMARY="${SUMMARY} (development)"

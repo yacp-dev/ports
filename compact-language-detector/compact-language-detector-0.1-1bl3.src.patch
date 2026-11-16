@@ -1,5 +1,5 @@
---- origsrc/compact-language-detector-0.1/Makefile.am	2012-05-23 19:33:00.000000000 +0900
-+++ src/compact-language-detector-0.1/Makefile.am	2015-03-22 23:53:33.356315700 +0900
+--- origsrc/compact-language-detector-0.1/Makefile.am	2012-05-23 10:33:00.000000000 +0000
++++ src/compact-language-detector-0.1/Makefile.am	2026-11-16 12:53:36.703322600 +0000
 @@ -12,8 +12,8 @@ pkgconfig_DATA = cld.pc
  check_PROGRAMS = basic_test
  
@@ -11,8 +11,8 @@
  
  TESTS = basic_test
  
---- origsrc/compact-language-detector-0.1/src/Makefile.am	2012-05-21 21:13:38.000000000 +0900
-+++ src/compact-language-detector-0.1/src/Makefile.am	2015-03-22 23:53:33.356315700 +0900
+--- origsrc/compact-language-detector-0.1/src/Makefile.am	2012-05-21 12:13:38.000000000 +0000
++++ src/compact-language-detector-0.1/src/Makefile.am	2026-11-16 12:53:36.703322600 +0000
 @@ -25,7 +25,7 @@ libcld_la_SOURCES = encodings/compact_la
          languages/internal/languages.cc
  
@@ -22,8 +22,8 @@
  # libcld_la_LDADD =
  #libcld_includedir = $(includedir)/cld-$(CLD_API_VERSION)/
  
---- origsrc/compact-language-detector-0.1/src/base/build_config.h	2012-05-21 21:13:38.000000000 +0900
-+++ src/compact-language-detector-0.1/src/base/build_config.h	2015-03-22 23:53:33.379753200 +0900
+--- origsrc/compact-language-detector-0.1/src/base/build_config.h	2012-05-21 12:13:38.000000000 +0000
++++ src/compact-language-detector-0.1/src/base/build_config.h	2026-11-16 12:53:36.705344000 +0000
 @@ -41,6 +41,9 @@
  #elif defined(__sun)
  #define OS_SOLARIS 1

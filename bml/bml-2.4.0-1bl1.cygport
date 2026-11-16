@@ -13,7 +13,14 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE.md"
 
+BUILD_REQUIRES="
+	gcc-fortran
+	liblapack-devel
+"
+
 inherit cmake
+
+export CFLAGS="${CFLAGS} -D_GNU_SOURCE"
 
 CYGCMAKE_ARGS="
 	-DBML_TESTING:BOOL=ON
@@ -34,7 +41,7 @@ PKG_NAMES="
 bml_CONTENTS="
 	usr/share
 "
-libbml2_3_0_CONTENTS="
+libbml2_4_0_CONTENTS="
 	usr/bin/cyg*-${PV}.dll
 "
 libbml_devel_CONTENTS="
@@ -43,5 +50,5 @@ libbml_devel_CONTENTS="
 	usr/lib
 "
 bml_SUMMARY="${SUMMARY} (licensing & readmes)"
-libbml2_3_0_SUMMARY="${SUMMARY} (runtime)"
+libbml2_4_0_SUMMARY="${SUMMARY} (runtime)"
 libbml_devel_SUMMARY="${SUMMARY} (development)"

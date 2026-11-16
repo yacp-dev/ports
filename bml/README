@@ -7,47 +7,46 @@ and FORTRAN. The current status of this library allows us to use two different
 formats for representing matrix data: dense and ELLPACK.
 
 Runtime requirements:
-  cygwin-3.5.0-0.348.g25d65d6ec053
-  cygwin-devel-3.5.0-0.348.g25d65d6ec053
-  libbml-devel-2.3.0-1bl1
-  libbml2.3.0-2.3.0-1bl1
-  libgcc1-11.4.0-1
-  libgfortran5-11.4.0-1
-  libgomp1-11.4.0-1
-  liblapack0-3.11.0-2
-  libopenblas-0.3.23-1
-  pkg-config-1.9.5-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libbml-devel-2.4.0-1bl1
+  libbml2.4.0-2.4.0-1bl1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libgomp1-14.4.0-1
+  liblapack0-3.12.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.40-1
-  cmake-3.25.3-1
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-fortran-11.4.0-1
-  gcc-g++-11.4.0-1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  liblapack-devel-3.12.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/lanl/bml
 
 Canonical download:
-  https://github.com/lanl/bml/archive/v2.3.0.tar.gz
+  https://github.com/lanl/bml/archive/v2.4.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack bml-2.3.0-X-src.tar.xz
+  1. unpack bml-2.4.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./bml-2.3.0-X.cygport all
+        % cygport ./bml-2.4.0-X.cygport all
 
 This will create:
-  /usr/src/bml-2.3.0-X-src.tar.xz
-  /usr/src/bml-2.3.0-X.tar.xz
-  /usr/src/libbml2.3.0-2.3.0-X.tar.xz
-  /usr/src/libbml-devel-2.3.0-X.tar.xz
+  /usr/src/bml-2.4.0-X-src.tar.xz
+  /usr/src/bml-2.4.0-X.tar.xz
+  /usr/src/libbml2.4.0-2.4.0-X.tar.xz
+  /usr/src/libbml-devel-2.4.0-X.tar.xz
 
 -------------------------------------------
 
@@ -58,9 +57,9 @@ Files included in the binary package:
   /usr/share/doc/bml/LICENSE.md
   /usr/share/doc/bml/README.rst
 
-(libbml2.3.0)
-  /usr/bin/cygbml-2.3.0.dll
-  /usr/bin/cygbml_fortran-2.3.0.dll
+(libbml2.4.0)
+  /usr/bin/cygbml-2.4.0.dll
+  /usr/bin/cygbml_fortran-2.4.0.dll
 
 (libbml-devel)
   /usr/bin/bml-version.exe
@@ -77,6 +76,7 @@ Files included in the binary package:
   /usr/include/bml_copy_m.mod
   /usr/include/bml_diagonalize.h
   /usr/include/bml_diagonalize_m.mod
+  /usr/include/bml_domain.h
   /usr/include/bml_element_multiply.h
   /usr/include/bml_elemental.h
   /usr/include/bml_elemental_m.mod
@@ -129,7 +129,7 @@ Files included in the binary package:
   /usr/include/bml_utilities_single_real_m.mod
   /usr/lib/cmake/BML/BMLConfig.cmake
   /usr/lib/cmake/BML/BMLConfigVersion.cmake
-  /usr/lib/cmake/BML/BML_Targets-release.cmake
+  /usr/lib/cmake/BML/BML_Targets-relwithdebinfo.cmake
   /usr/lib/cmake/BML/BML_Targets.cmake
   /usr/lib/libbml.dll.a
   /usr/lib/libbml_fortran.dll.a
@@ -138,6 +138,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.4.0-1bl1 -----
+Version bump.
 
 ----- version 2.3.0-1bl1 -----
 Version bump.

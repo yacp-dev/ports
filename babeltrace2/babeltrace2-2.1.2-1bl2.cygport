@@ -1,5 +1,9 @@
 HOMEPAGE="https://babeltrace.org/"
 SRC_URI="https://www.efficios.com/files/babeltrace/${P}.tar.bz2"
+PATCH_URI="
+	https://sources.debian.org/data/main/b/babeltrace2/2.1.2-2.1/debian/patches/0001-bt2-replace-removed-Python-2-C-API-macros-for-SWIG-4.patch
+	https://src.fedoraproject.org/rpms/babeltrace2/raw/b61f2126f428321366e0d8fea82b225015b988c3/f/0001-Fix-bt2.TraceCollectionMessageIterator-avoid-circula.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Open-source trace manipulation toolkit"
@@ -8,11 +12,17 @@ Format (CTF), a very versatile trace format followed by various tracers and
 tools such as LTTng and barectf. The Babeltrace 2 library and its Python
 bindings can read and write CTF traces."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND LGPL-2.1-only AND CC-BY-SA-4.0"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND LGPL-2.1-only AND CC-BY-SA-4.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="asciidoc libglib2.0-devel python39-devel swig xmlto"
+BUILD_REQUIRES="
+	asciidoc
+	libglib2.0-devel
+	python3-devel
+	swig
+	xmlto
+"
 
 CYGCONF_ARGS="
 	--disable-Werror
@@ -21,11 +31,17 @@ CYGCONF_ARGS="
 	--enable-python-plugins
 "
 
+DOCS="
+	LICENSES/CC-BY-SA-4.0.txt
+	LICENSES/LGPL-2.1-only.txt
+	LICENSES/MIT.txt
+"
+
 PKG_NAMES="
 	babeltrace2
 	libbabeltrace2_0
 	libbabeltrace2-devel
-	python39-babeltrace2
+	python312-babeltrace2
 "
 babeltrace2_CONTENTS="
 	usr/bin/*.exe
@@ -40,10 +56,10 @@ libbabeltrace2_devel_CONTENTS="
 	usr/lib/lib*.dll.a
 	usr/lib/pkgconfig
 "
-python39_babeltrace2_CONTENTS="
-	usr/lib/python3.9
+python312_babeltrace2_CONTENTS="
+	usr/lib/python3.12
 "
 babeltrace2_SUMMARY="${SUMMARY} (utilities)"
 libbabeltrace2_0_SUMMARY="${SUMMARY} (runtime)"
 libbabeltrace2_devel_SUMMARY="${SUMMARY} (development)"
-python39_babeltrace2_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_babeltrace2_SUMMARY="${SUMMARY} (python312 bindings)"

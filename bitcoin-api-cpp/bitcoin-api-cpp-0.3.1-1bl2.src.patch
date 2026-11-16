@@ -1,5 +1,5 @@
---- origsrc/bitcoin-api-cpp-0.3.1/CMakeLists.txt	2017-12-15 04:46:06.000000000 +0900
-+++ src/bitcoin-api-cpp-0.3.1/CMakeLists.txt	2020-01-30 17:55:15.666805000 +0900
+--- origsrc/bitcoin-api-cpp-0.3.1/CMakeLists.txt	2017-12-14 19:46:06.000000000 +0000
++++ src/bitcoin-api-cpp-0.3.1/CMakeLists.txt	2026-11-16 12:42:30.801303100 +0000
 @@ -3,13 +3,10 @@ PROJECT(libbitcoin-api-cpp)
  
  set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
@@ -27,8 +27,8 @@
 +SET(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/bitcoin-api-cpp.pc.in ${CMAKE_BINARY_DIR}/bitcoin-api-cpp.pc @ONLY)
 +INSTALL(FILES ${CMAKE_BINARY_DIR}/bitcoin-api-cpp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/bitcoin-api-cpp-0.3.1/bitcoin-api-cpp.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/bitcoin-api-cpp-0.3.1/bitcoin-api-cpp.pc.in	2020-01-30 17:58:56.082221300 +0900
+--- origsrc/bitcoin-api-cpp-0.3.1/bitcoin-api-cpp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/bitcoin-api-cpp-0.3.1/bitcoin-api-cpp.pc.in	2026-11-16 12:42:30.801303100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -40,8 +40,8 @@
 +Version: @MAJOR_VERSION@.@MINOR_VERSION@.@PATCH_VERSION@
 +Libs: -L${libdir} -lbitcoinapi
 +Cflags: -I${includedir}
---- origsrc/bitcoin-api-cpp-0.3.1/src/bitcoinapi/CMakeLists.txt	2017-12-15 04:46:06.000000000 +0900
-+++ src/bitcoin-api-cpp-0.3.1/src/bitcoinapi/CMakeLists.txt	2020-01-30 17:40:50.571188200 +0900
+--- origsrc/bitcoin-api-cpp-0.3.1/src/bitcoinapi/CMakeLists.txt	2017-12-14 19:46:06.000000000 +0000
++++ src/bitcoin-api-cpp-0.3.1/src/bitcoinapi/CMakeLists.txt	2026-11-16 12:42:30.803315200 +0000
 @@ -8,10 +8,14 @@ FILE(GLOB bitcoinapi_source ${CMAKE_CURR
  
  # Set target libraries
@@ -109,8 +109,8 @@
              LIBRARY DESTINATION lib
              ARCHIVE DESTINATION lib)
 +endif()
---- origsrc/bitcoin-api-cpp-0.3.1/src/bitcoinapi/bitcoinapi.cpp	2017-12-15 04:46:06.000000000 +0900
-+++ src/bitcoin-api-cpp-0.3.1/src/bitcoinapi/bitcoinapi.cpp	2020-01-30 17:49:25.141990000 +0900
+--- origsrc/bitcoin-api-cpp-0.3.1/src/bitcoinapi/bitcoinapi.cpp	2017-12-14 19:46:06.000000000 +0000
++++ src/bitcoin-api-cpp-0.3.1/src/bitcoinapi/bitcoinapi.cpp	2026-11-16 12:42:30.803315200 +0000
 @@ -12,6 +12,7 @@
  
  #include <string>
@@ -119,8 +119,8 @@
  
  #include <jsonrpccpp/client.h>
  #include <jsonrpccpp/client/connectors/httpclient.h>
---- origsrc/bitcoin-api-cpp-0.3.1/src/bitcoinapi/exception.h	2017-12-15 04:46:06.000000000 +0900
-+++ src/bitcoin-api-cpp-0.3.1/src/bitcoinapi/exception.h	2020-01-30 17:45:08.449761300 +0900
+--- origsrc/bitcoin-api-cpp-0.3.1/src/bitcoinapi/exception.h	2017-12-14 19:46:06.000000000 +0000
++++ src/bitcoin-api-cpp-0.3.1/src/bitcoinapi/exception.h	2026-11-16 12:42:30.805079000 +0000
 @@ -13,7 +13,7 @@
  #include <string>
  #include <sstream>
@@ -130,8 +130,8 @@
  #include <json/json.h>
  #include <json/reader.h>
  #include <json/value.h>
---- origsrc/bitcoin-api-cpp-0.3.1/src/bitcoinapi/types.h	2017-12-15 04:46:06.000000000 +0900
-+++ src/bitcoin-api-cpp-0.3.1/src/bitcoinapi/types.h	2020-01-30 17:44:37.586627600 +0900
+--- origsrc/bitcoin-api-cpp-0.3.1/src/bitcoinapi/types.h	2017-12-14 19:46:06.000000000 +0000
++++ src/bitcoin-api-cpp-0.3.1/src/bitcoinapi/types.h	2026-11-16 12:42:30.805079000 +0000
 @@ -13,7 +13,7 @@
  #include <string>
  #include <vector>
@@ -141,8 +141,8 @@
  #include <json/json.h>
  #else
  #include <jsoncpp/json/json.h>
---- origsrc/bitcoin-api-cpp-0.3.1/src/test/CMakeLists.txt	2017-12-15 04:46:06.000000000 +0900
-+++ src/bitcoin-api-cpp-0.3.1/src/test/CMakeLists.txt	2020-01-30 18:03:57.237080200 +0900
+--- origsrc/bitcoin-api-cpp-0.3.1/src/test/CMakeLists.txt	2017-12-14 19:46:06.000000000 +0000
++++ src/bitcoin-api-cpp-0.3.1/src/test/CMakeLists.txt	2026-11-16 12:42:30.807101500 +0000
 @@ -1,6 +1,3 @@
 -# Set compiler settings
 -SET(CMAKE_CXX_FLAGS "-std=c++11 -g -Wall")

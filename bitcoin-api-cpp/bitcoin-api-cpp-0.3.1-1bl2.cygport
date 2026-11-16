@@ -8,12 +8,24 @@ daemon. It allows developers to communicate with the Bitcoin daemon without
 the need to pack and unpack JSON-RPC messages and thus simplifies the
 interaction with it."
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="README.md"
+
+BUILD_REQUIRES="
+	libboost-devel
+	libcurl-devel
+	libjsoncpp-devel
+	libjsonrpccpp-devel
+"
+
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 src_test()
@@ -32,7 +44,7 @@ bitcoin_api_cpp_CONTENTS="
 	usr/share
 "
 libbitcoinapi0_CONTENTS="
-	usr/bin
+	usr/bin/cygbitcoinapi-0.dll
 "
 libbitcoinapi_devel_CONTENTS="
 	usr/include

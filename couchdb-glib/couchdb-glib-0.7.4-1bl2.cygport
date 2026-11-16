@@ -6,11 +6,14 @@ CATEGORY="Libs"
 SUMMARY="GLib-based library to allow access to CouchDB"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="LGPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
+LICENSE="LGPL-2.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later AND MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	gnome-common
+	gobject-introspection
+	libgirepository1.0-devel
 	libglib2.0-devel
 	libgnome-keyring-devel
 	libjson-glib1.0-devel
@@ -20,7 +23,7 @@ BUILD_REQUIRES="
 	libuuid-devel
 "
 
-export CFLAGS="${CFLAGS} -I/usr/lib/openssl-1.0/include"
+export CFLAGS="${CFLAGS} -I/usr/lib/openssl-1.0/include -Wno-error=incompatible-pointer-types"
 export LDFLAGS="${LDFLAGS} -L/usr/lib/openssl-1.0/lib"
 
 CYGCONF_ARGS="

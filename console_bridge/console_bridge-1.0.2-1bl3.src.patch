@@ -1,5 +1,5 @@
---- origsrc/console_bridge-1.0.2/CMakeLists.txt	2022-03-10 15:43:47.000000000 +0900
-+++ src/console_bridge-1.0.2/CMakeLists.txt	2024-09-08 18:35:31.073297200 +0900
+--- origsrc/console_bridge-1.0.2/CMakeLists.txt	2022-03-10 06:43:47.000000000 +0000
++++ src/console_bridge-1.0.2/CMakeLists.txt	2026-11-16 12:53:29.897736100 +0000
 @@ -26,7 +26,7 @@ if (HAS_VISIBILITY)
    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden")
  endif()
@@ -18,8 +18,8 @@
  else()
    set(CMAKE_CONFIG_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/)
  endif()
---- origsrc/console_bridge-1.0.2/test/CMakeLists.txt	2022-03-10 15:43:47.000000000 +0900
-+++ src/console_bridge-1.0.2/test/CMakeLists.txt	2024-09-08 18:35:31.073297200 +0900
+--- origsrc/console_bridge-1.0.2/test/CMakeLists.txt	2022-03-10 06:43:47.000000000 +0000
++++ src/console_bridge-1.0.2/test/CMakeLists.txt	2026-11-16 12:53:29.899745300 +0000
 @@ -1,19 +1,22 @@
 -link_directories(
 -  ${PROJECT_BINARY_DIR}/test

@@ -4,32 +4,31 @@ Simple library to do http requests asynchronously via CURL in C++. (Eventually
 as coroutines, once all the compilers I need to support support them.)
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libcoeurl-devel-0.3.2-1bl1
-  libcoeurl0.3-0.3.2-1bl1
-  libcurl-devel-8.19.0-1
-  libcurl4-8.19.0-1
-  libevent-devel-2.1.12-1
-  libevent2.1_7-2.1.12-1
-  libfmt12-12.1.0-1bl1
-  libgcc1-13.4.0-1
-  libspdlog-devel-1.17.0-1bl1
-  libspdlog1.17-1.17.0-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libcoeurl-devel-0.3.2-1bl2
+  libcoeurl0.3-0.3.2-1bl2
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libevent-devel-2.1.13-1
+  libevent2.1_7-2.1.13-1
+  libfmt12-12.2.1-1bl1
+  libgcc1-14.4.0-1
+  libspdlog-devel-1.17.0-1bl2
+  libspdlog1.17-1.17.0-1bl2
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cygport-0.37.7-1
-  doctest-2.4.12-1bl1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libcurl-devel-8.19.0-1
-  libevent-devel-2.1.12-1
-  libfmt-devel-12.1.0-1bl1
-  libspdlog-devel-1.17.0-1bl1
-  meson-1.6.1-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  doctest-2.5.3-1bl1
+  gcc-g++-14.4.0-1
+  libcurl-devel-8.23.0-1
+  libevent-devel-2.1.13-1
+  libfmt-devel-12.2.1-1bl1
+  libspdlog-devel-1.17.0-1bl2
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -76,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.3.2-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.3.2-1bl1 -----
 Version bump.

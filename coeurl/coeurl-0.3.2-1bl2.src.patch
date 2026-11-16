@@ -1,5 +1,5 @@
---- origsrc/coeurl-v0.3.2/lib/request.cpp	2026-02-28 10:03:15.000000000 +0900
-+++ src/coeurl-v0.3.2/lib/request.cpp	2026-03-16 10:34:38.498820000 +0900
+--- origsrc/coeurl-v0.3.2/lib/request.cpp	2026-02-28 01:03:15.000000000 +0000
++++ src/coeurl-v0.3.2/lib/request.cpp	2026-11-16 12:42:01.457971400 +0000
 @@ -2,10 +2,12 @@
  
  #include "coeurl/client.hpp"

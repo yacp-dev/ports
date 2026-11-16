@@ -11,7 +11,9 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libbz2-devel"
+BUILD_REQUIRES="
+	libbz2-devel
+"
 
 DIFF_EXCLUDES="
 	*.m4

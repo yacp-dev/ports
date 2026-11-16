@@ -19,12 +19,28 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="doxygen frogdata graphviz libfolia-devel libicu-devel libmbt-devel libreadline-devel libticcutils-devel libtimbl-devel libucto-devel libxml2-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	doxygen
+	frogdata
+	graphviz
+	libexttextcat2.0-devel
+	libfolia-devel
+	libicu-devel
+	libmbt-devel
+	libreadline-devel
+	libticcutils-devel
+	libtimbl-devel
+	libucto-devel
+	libxml2-devel
+	uctodata
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 DOCS="
 	docs/*.pdf
+	README.md
 "
 
 DIFF_EXCLUDES="
@@ -50,3 +66,6 @@ libfrog_devel_CONTENTS="
 frog_SUMMARY="${SUMMARY} (utilities)"
 libfrog3_SUMMARY="${SUMMARY} (runtime)"
 libfrog_devel_SUMMARY="${SUMMARY} (development)"
+frog_REQUIRES="
+	uctodata
+"

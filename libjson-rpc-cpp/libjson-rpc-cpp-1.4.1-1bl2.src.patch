@@ -1,0 +1,43 @@
+--- origsrc/libjson-rpc-cpp-1.4.1/CMakeLists.txt	2021-11-26 10:35:41.000000000 +0000
++++ src/libjson-rpc-cpp-1.4.1/CMakeLists.txt	2026-11-16 12:13:54.308837200 +0000
+@@ -16,11 +16,6 @@ project(libjson-rpc-cpp)
+ cmake_policy(SET CMP0007 NEW)
+ cmake_policy(SET CMP0012 NEW)
+ 
+-if (${CMAKE_MAJOR_VERSION} GREATER 2)
+-    # old policy do not use MACOSX_RPATH
+-    cmake_policy(SET CMP0042 OLD)
+-endif()
+-
+ set(MAJOR_VERSION 1)
+ set(MINOR_VERSION 4)
+ set(PATCH_VERSION 1)
+@@ -136,7 +131,11 @@ add_custom_target(
+ # CMake package
+ set(package_name "libjson-rpc-cpp")
+ include(CMakePackageConfigHelpers)
+-set(config_install_destination ${CMAKE_INSTALL_LIBDIR}/${package_name}/cmake)
++if (CYGWIN)
++    set(config_install_destination ${CMAKE_INSTALL_LIBDIR}/cmake/${package_name})
++else()
++    set(config_install_destination ${CMAKE_INSTALL_LIBDIR}/${package_name}/cmake)
++endif()
+ configure_package_config_file(
+ 	cmake/${package_name}Config.cmake.in ${package_name}Config.cmake
+ 	INSTALL_DESTINATION ${config_install_destination}
+--- origsrc/libjson-rpc-cpp-1.4.1/src/test/test_stubgenerator.cpp	2021-11-26 10:35:41.000000000 +0000
++++ src/libjson-rpc-cpp-1.4.1/src/test/test_stubgenerator.cpp	2026-11-16 12:13:54.310605100 +0000
+@@ -20,6 +20,13 @@
+ 
+ #include <sstream>
+ 
++#if defined(stdout)
++#undef stdout
++#endif
++#if defined(stderr)
++#undef stderr
++#endif
++
+ using namespace jsonrpc;
+ using namespace std;
+ 

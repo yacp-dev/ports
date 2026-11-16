@@ -8,7 +8,16 @@ Linux and MacOS (or any other UNIX derivate). It is fully JSON-RPC 2.0
 compatible (JSON-RPC 2.0) and provides additional features, such as generic
 authentication mechanisms."
 
-BUILD_REQUIRES="libargtable2-devel libcurl-devel libjsoncpp-devel libmicrohttpd-devel"
+LICENSE="MIT AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND Zlib"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	libargtable2-devel
+	libcurl-devel
+	libjsoncpp-devel
+	libmicrohttpd-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -18,6 +27,8 @@ CYGCMAKE_GENERATOR="Unix Makefiles"
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DCOMPILE_EXAMPLES:BOOL=OFF
 	-DREDIS_CLIENT:BOOL=OFF
 	-DREDIS_SERVER:BOOL=OFF
 	-DWITH_COVERAGE:BOOL=OFF
@@ -25,6 +36,7 @@ CYGCMAKE_ARGS="
 
 DOCS="
 	*.md
+	LICENSE.txt
 "
 
 PKG_NAMES="
@@ -37,7 +49,10 @@ libjson_rpc_cpp_CONTENTS="
 	usr/share
 "
 libjsonrpccpp1_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygjsonrpccpp-client-1.dll
+	usr/bin/cygjsonrpccpp-common-1.dll
+	usr/bin/cygjsonrpccpp-server-1.dll
+	usr/bin/cygjsonrpccpp-stub-1.dll
 "
 libjsonrpccpp_devel_CONTENTS="
 	usr/include

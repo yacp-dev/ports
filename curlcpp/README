@@ -3,24 +3,23 @@ curlcpp
 An object-oriented C++ wrapper for cURL tool
 
 Runtime requirements:
-  cygwin-3.5.0-0.356.g9e329b544ac0
-  libcurl-devel-8.2.0-1
-  libcurl4-8.2.0-1
-  libcurlcpp-devel-3.1-1bl1
-  libcurlcpp3-3.1-1bl1
-  libgcc1-11.4.0-1
-  libstdc++6-11.4.0-1
-  pkg-config-1.9.5-1
+  cygwin-3.6.12-1
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libcurlcpp-devel-3.1-1bl2
+  libcurlcpp3-3.1-1bl2
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.40-1
-  cmake-3.25.3-1
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libcurl-devel-8.2.0-1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libcurl-devel-8.23.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/JosephP91/curlcpp
@@ -79,7 +78,7 @@ Files included in the binary package:
   /usr/include/curlcpp/curl_share.h
   /usr/include/curlcpp/curl_utility.h
   /usr/lib/cmake/curlcpp/curlcppConfig.cmake
-  /usr/lib/cmake/curlcpp/curlcppTargets-release.cmake
+  /usr/lib/cmake/curlcpp/curlcppTargets-relwithdebinfo.cmake
   /usr/lib/cmake/curlcpp/curlcppTargets.cmake
   /usr/lib/libcurlcpp.dll.a
   /usr/lib/pkgconfig/curlcpp.pc
@@ -87,6 +86,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.1-1bl1 -----
 Version bump.

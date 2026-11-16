@@ -1,5 +1,17 @@
---- origsrc/curlcpp-3.1/src/CMakeLists.txt	2023-04-18 04:48:59.000000000 +0900
-+++ src/curlcpp-3.1/src/CMakeLists.txt	2023-07-27 23:39:18.800354700 +0900
+--- origsrc/curlcpp-3.1/include/curl_easy.h	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/include/curl_easy.h	2026-11-16 21:47:33.047752500 +0000
+@@ -358,7 +358,9 @@ namespace curl  {
+ 
+         /* Renamed / obsoleted since 7.37 */
+ #if defined(LIBCURL_VERSION_NUM) && LIBCURL_VERSION_NUM > 0x072500
++#if LIBCURL_VERSION_NUM < 0x081100
+         CURLCPP_DEFINE_OPTION(CURLOPT_OBSOLETE72, long); /* OBSOLETE, do not use! */
++#endif
+ #else
+         CURLCPP_DEFINE_OPTION(CURLOPT_CLOSEPOLICY, long);
+ #endif
+--- origsrc/curlcpp-3.1/src/CMakeLists.txt	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/src/CMakeLists.txt	2026-11-16 21:47:33.049766700 +0000
 @@ -104,6 +104,10 @@ if(IPO_SUPPORTED AND CMAKE_BUILD_TYPE ST
      set_target_properties(curlcpp PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
  endif()
@@ -17,8 +29,8 @@
      ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 -    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 +    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
---- origsrc/curlcpp-3.1/test/cookie.cpp	2023-04-18 04:48:59.000000000 +0900
-+++ src/curlcpp-3.1/test/cookie.cpp	2023-07-27 23:39:18.800354700 +0900
+--- origsrc/curlcpp-3.1/test/cookie.cpp	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/test/cookie.cpp	2026-11-16 21:47:33.051531900 +0000
 @@ -1,10 +1,10 @@
  #include <iostream>
  
@@ -35,8 +47,8 @@
  
  using std::ostringstream;
  
---- origsrc/curlcpp-3.1/test/custom_request.cpp	2023-04-18 04:48:59.000000000 +0900
-+++ src/curlcpp-3.1/test/custom_request.cpp	2023-07-27 23:39:18.800354700 +0900
+--- origsrc/curlcpp-3.1/test/custom_request.cpp	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/test/custom_request.cpp	2026-11-16 21:47:33.051531900 +0000
 @@ -1,6 +1,6 @@
 -#include "curlcpp/curl_easy.h"
 -#include "curlcpp/curl_form.h"
@@ -47,16 +59,16 @@
  
  using curl::curl_easy;
  using curl::curl_easy_exception;
---- origsrc/curlcpp-3.1/test/easy.cpp	2023-04-18 04:48:59.000000000 +0900
-+++ src/curlcpp-3.1/test/easy.cpp	2023-07-27 23:39:18.800354700 +0900
+--- origsrc/curlcpp-3.1/test/easy.cpp	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/test/easy.cpp	2026-11-16 21:47:33.055574300 +0000
 @@ -1,4 +1,4 @@
 -#include "curlcpp/curl_easy.h"
 +#include "curl_easy.h"
  
  using curl::curl_easy;
  using curl::curl_easy_exception;
---- origsrc/curlcpp-3.1/test/easy_info.cpp	2023-04-18 04:48:59.000000000 +0900
-+++ src/curlcpp-3.1/test/easy_info.cpp	2023-07-27 23:39:18.800354700 +0900
+--- origsrc/curlcpp-3.1/test/easy_info.cpp	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/test/easy_info.cpp	2026-11-16 21:47:33.053548500 +0000
 @@ -1,6 +1,6 @@
 -#include "curlcpp/curl_easy.h"
 -#include "curlcpp/curl_ios.h"
@@ -67,8 +79,8 @@
  
  using std::ostringstream;
  
---- origsrc/curlcpp-3.1/test/header.cpp	2023-04-18 04:48:59.000000000 +0900
-+++ src/curlcpp-3.1/test/header.cpp	2023-07-27 23:39:18.800354700 +0900
+--- origsrc/curlcpp-3.1/test/header.cpp	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/test/header.cpp	2026-11-16 21:47:33.055574300 +0000
 @@ -1,6 +1,6 @@
 -#include "curlcpp/curl_easy.h"
 -#include "curlcpp/curl_form.h"
@@ -79,8 +91,8 @@
  
  using curl::curl_easy;
  using curl::curl_easy_exception;
---- origsrc/curlcpp-3.1/test/multi.cpp	2023-04-18 04:48:59.000000000 +0900
-+++ src/curlcpp-3.1/test/multi.cpp	2023-07-27 23:39:18.800354700 +0900
+--- origsrc/curlcpp-3.1/test/multi.cpp	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/test/multi.cpp	2026-11-16 21:47:33.057591700 +0000
 @@ -1,9 +1,9 @@
  #include <iostream>
  #include <ostream>
@@ -94,8 +106,8 @@
  
  using curl::curl_easy;
  using curl::curl_multi;
---- origsrc/curlcpp-3.1/test/output_variable.cpp	2023-04-18 04:48:59.000000000 +0900
-+++ src/curlcpp-3.1/test/output_variable.cpp	2023-07-27 23:39:18.800354700 +0900
+--- origsrc/curlcpp-3.1/test/output_variable.cpp	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/test/output_variable.cpp	2026-11-16 21:47:33.057591700 +0000
 @@ -1,10 +1,10 @@
  #include <iostream>
  #include <ostream>
@@ -111,8 +123,8 @@
  
  using std::cout;
  using std::endl;
---- origsrc/curlcpp-3.1/test/recv_header.cpp	2023-04-18 04:48:59.000000000 +0900
-+++ src/curlcpp-3.1/test/recv_header.cpp	2023-07-27 23:39:18.800354700 +0900
+--- origsrc/curlcpp-3.1/test/recv_header.cpp	2023-04-17 19:48:59.000000000 +0000
++++ src/curlcpp-3.1/test/recv_header.cpp	2026-11-16 21:47:33.059608800 +0000
 @@ -1,5 +1,5 @@
 -#include "curlcpp/curl_easy.h"
 -#include "curlcpp/curl_form.h"

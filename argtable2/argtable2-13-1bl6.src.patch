@@ -1,5 +1,5 @@
---- origsrc/argtable2-13/src/Makefile.am	2011-01-10 19:52:22.000000000 +0900
-+++ src/argtable2-13/src/Makefile.am	2025-01-19 18:25:32.220657000 +0900
+--- origsrc/argtable2-13/src/Makefile.am	2011-01-10 10:52:22.000000000 +0000
++++ src/argtable2-13/src/Makefile.am	2026-11-16 11:27:15.749820600 +0000
 @@ -18,7 +18,7 @@ libargtable2_la_SOURCES = argtable2.c ar
  # argtable-2.11 is 1:6:1 (minor tweaks to makefiles, src code is identical to argtable-2.8)
  # argtable-2.12 is 1:7:1 (added support for parsing hex,octal,binary integer formats)

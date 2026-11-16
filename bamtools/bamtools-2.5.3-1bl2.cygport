@@ -10,7 +10,10 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libjsoncpp-devel zlib-devel"
+BUILD_REQUIRES="
+	libjsoncpp-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

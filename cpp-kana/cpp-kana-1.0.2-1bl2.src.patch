@@ -1,5 +1,5 @@
---- origsrc/cpp-kana-1.0.2/CMakeLists.txt	2025-09-29 22:40:54.000000000 +0900
-+++ src/cpp-kana-1.0.2/CMakeLists.txt	2026-05-30 11:25:00.639513700 +0900
+--- origsrc/cpp-kana-1.0.2/CMakeLists.txt	2025-09-29 13:40:54.000000000 +0000
++++ src/cpp-kana-1.0.2/CMakeLists.txt	2026-11-16 15:18:22.082689200 +0000
 @@ -2,7 +2,7 @@
  # Project
  # ----------------------------------
@@ -34,8 +34,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/cpp-kana.pc.in ${CMAKE_BINARY_DIR}/cpp-kana.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/cpp-kana.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/cpp-kana-1.0.2/cpp-kana.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/cpp-kana-1.0.2/cpp-kana.pc.in	2026-05-30 11:24:52.380106000 +0900
+--- origsrc/cpp-kana-1.0.2/cpp-kana.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/cpp-kana-1.0.2/cpp-kana.pc.in	2026-11-16 15:18:22.082689200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -47,8 +47,8 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lcpp-kana
 +Cflags: -I${includedir}
---- origsrc/cpp-kana-1.0.2/tests/main.cpp	2025-09-29 22:40:54.000000000 +0900
-+++ src/cpp-kana-1.0.2/tests/main.cpp	2026-05-30 10:38:26.528679500 +0900
+--- origsrc/cpp-kana-1.0.2/tests/main.cpp	2025-09-29 13:40:54.000000000 +0000
++++ src/cpp-kana-1.0.2/tests/main.cpp	2026-11-16 15:18:22.082689200 +0000
 @@ -1,6 +1,6 @@
  #include <iostream>
  

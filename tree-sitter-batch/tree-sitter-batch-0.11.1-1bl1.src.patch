@@ -1,0 +1,18 @@
+--- origsrc/tree-sitter-batch-0.11.1/CMakeLists.txt	2026-04-21 11:36:15.000000000 +0000
++++ src/tree-sitter-batch-0.11.1/CMakeLists.txt	2026-11-16 08:31:48.558535000 +0000
+@@ -19,6 +19,7 @@ include(GNUInstallDirs)
+ 
+ find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")
+ 
++if(NOT TREE_SITTER_CLI STREQUAL "TREE_SITTER_CLI-NOTFOUND")
+ add_custom_command(OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/src/grammar.json"
+                           "${CMAKE_CURRENT_SOURCE_DIR}/src/node-types.json"
+                    DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/grammar.js"
+@@ -35,6 +36,7 @@ add_custom_command(OUTPUT "${CMAKE_CURRE
+                             --abi=${TREE_SITTER_ABI_VERSION}
+                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+                    COMMENT "Generating parser.c")
++endif()
+ 
+ add_library(tree-sitter-batch src/parser.c)
+ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/scanner.c)

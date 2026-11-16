@@ -1,5 +1,5 @@
---- origsrc/d0_blind_id-1.0/Makefile.am	2025-03-16 18:29:31.560310200 +0900
-+++ src/d0_blind_id-1.0/Makefile.am	2025-03-16 18:29:53.266405900 +0900
+--- origsrc/d0_blind_id-1.0/Makefile.am	2026-11-16 21:47:07.651831700 +0000
++++ src/d0_blind_id-1.0/Makefile.am	2026-11-16 21:47:07.953457400 +0000
 @@ -29,7 +29,7 @@ libd0_blind_id_la_SOURCES += d0_bignum-g
  endif
  endif
@@ -18,8 +18,8 @@
  libd0_rijndael_la_CFLAGS = -fvisibility=hidden -Wold-style-definition -Wstrict-prototypes -Wsign-compare -Wdeclaration-after-statement
  library_include_HEADERS += d0_rijndael.h
  pkgconfig_HEADERS += d0_rijndael.pc
---- origsrc/d0_blind_id-1.0/configure.ac	2025-03-16 18:29:31.742253400 +0900
-+++ src/d0_blind_id-1.0/configure.ac	2025-03-16 18:29:39.758948500 +0900
+--- origsrc/d0_blind_id-1.0/configure.ac	2026-11-16 21:47:07.726088100 +0000
++++ src/d0_blind_id-1.0/configure.ac	2026-11-16 21:47:07.955467900 +0000
 @@ -1,4 +1,4 @@
 -AC_INIT([d0_blind_id],[0.5],[divVerent@xonotic.org])
 +AC_INIT([d0_blind_id],[1.0],[divVerent@xonotic.org])

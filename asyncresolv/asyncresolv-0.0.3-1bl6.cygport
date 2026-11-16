@@ -7,8 +7,8 @@ DESCRIPTION="AsyncResolv is an asynchronous DNS query library written in C++.Res
 capable of most rfc1035 resource records parsing, supports queries over UDP
 and over TCP (if UDP failed)"
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND LGPL-2.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.0-only"
 LICENSE_URI="COPYING"
 
 CYGPORT_USE_UNSTABLE_API=1
@@ -18,6 +18,17 @@ src_patch_hook()
 	rm -f aclocal.m4 configure
 	find . -name Makefile.in | xargs rm -f
 }
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/src/.libs:${PATH}
+	verbose examples/dnslookup/dnslookup --help
+}
+
+DOCS="
+	COPYING.LIB
+"
 
 HTMLDOCS="
 	doc/index.html

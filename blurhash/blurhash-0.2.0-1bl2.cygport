@@ -10,7 +10,9 @@ LICENSE="BSL-1.0"
 LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="doctest"
+BUILD_REQUIRES="
+	doctest
+"
 
 export CXXFLAGS="${CXXFLAGS} -D_GNU_SOURCE -fpermissive"
 
@@ -36,7 +38,7 @@ blurhash_CONTENTS="
 	usr/share
 "
 libblurhash0_2_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygblurhash-0.2.dll
 "
 libblurhash_devel_CONTENTS="
 	usr/include

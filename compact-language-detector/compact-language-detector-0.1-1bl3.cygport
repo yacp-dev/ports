@@ -1,5 +1,5 @@
-HOMEPAGE="https://code.google.com/p/chromium-${PN}/"
-SRC_URI="https://chromium-${PN}.googlecode.com/files/${P}.tar.gz"
+HOMEPAGE="https://code.google.com/archive/p/chromium-${PN}/"
+SRC_URI="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/chromium-${PN}/${P}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="C++ library and Python bindings for detecting language from UTF8 text, extracted from the Chromium browser"
@@ -7,6 +7,13 @@ DESCRIPTION="This is a straight port from the CLD (Compact Language Detector) li
 embedded in Google's Chromium browser. The library detects the language from
 provided UTF8 text (plain text or HTML). It's implemented in C++, with very
 basic Python bindings."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="COPYING"
+
+# GCC 14 defaults to C++17, where the generated tables narrow -1.. into uint8
+export CXXFLAGS="${CXXFLAGS} -Wno-narrowing"
 
 PKG_NAMES="
 	${PN}
@@ -17,7 +24,7 @@ compact_language_detector_CONTENTS="
 	usr/share
 "
 libcld0_CONTENTS="
-	usr/bin
+	usr/bin/cygcld-0.dll
 "
 libcld_devel_CONTENTS="
 	usr/include

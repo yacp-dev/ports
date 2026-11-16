@@ -6,27 +6,27 @@ provided UTF8 text (plain text or HTML). It's implemented in C++, with very
 basic Python bindings.
 
 Runtime requirements:
-  cygwin-1.7.35-1
-  libcld0-0.1-1bl2
-  libgcc1-4.9.2-3
-  libstdc++6-4.9.2-3
+  cygwin-3.6.12-1
+  libcld0-0.1-1bl3
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-1
-  cygport-0.18.1-1
-  gcc-core-4.9.2-3
-  gcc-g++-4.9.2-3
-  libtool-2.4.6-1
-  make-4.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
-  https://code.google.com/p/chromium-compact-language-detector/
+  https://code.google.com/archive/p/chromium-compact-language-detector/
 
 Canonical download:
-  https://chromium-compact-language-detector.googlecode.com/files/compact-language-detector-0.1.tar.gz
+  https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/chromium-compact-language-detector/compact-language-detector-0.1.tar.gz
 
 -------------------------------------------
 
@@ -81,9 +81,11 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 0.1-1bl3 -----
+Rebuild with gcc-14.4.0
+
 ----- version 0.1-1bl2 -----
 Rebuild on x86_64
 
 ----- version 0.1-1bl1 -----
 Initial release for Cygwin-1.7 by fd0 <http://fd0.hatenablog.jp/>
-

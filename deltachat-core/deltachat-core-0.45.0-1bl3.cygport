@@ -5,11 +5,17 @@ CATEGORY="Libs"
 SUMMARY="Delta Chat Core Library"
 DESCRIPTION="Delta.Chat C-Library with e2e chat-over-email functionality"
 
-LICENSE="MPL-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0"
+LICENSE="MPL-2.0 AND MIT AND BSD-2-Clause AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0 AND MIT AND BSD-2-Clause AND Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libetpan-devel libsasl2-devel libsqlite3-devel libssl-devel zlib-devel"
+BUILD_REQUIRES="
+	libetpan-devel
+	libsasl2-devel
+	libsqlite3-devel
+	libssl-devel
+	zlib-devel
+"
 
 inherit meson
 

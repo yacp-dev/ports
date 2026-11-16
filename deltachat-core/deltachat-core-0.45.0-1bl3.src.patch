@@ -1,5 +1,5 @@
---- origsrc/deltachat-core-0.45.0/meson.build	2019-06-27 08:38:04.000000000 +0900
-+++ src/deltachat-core-0.45.0/meson.build	2024-09-25 11:19:14.707345000 +0900
+--- origsrc/deltachat-core-0.45.0/meson.build	2019-06-26 23:38:04.000000000 +0000
++++ src/deltachat-core-0.45.0/meson.build	2026-11-16 22:46:47.938411800 +0000
 @@ -1,7 +1,7 @@
  project(
    'deltachat-core', 'c',

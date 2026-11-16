@@ -3,16 +3,16 @@ couchdb-glib
 GLib-based library to allow access to CouchDB
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  girepository-Couchdb1.0-0.7.4-1bl1
-  girepository-GLib2.0-1.86.0-1
+  cygwin-3.6.12-1
+  girepository-Couchdb1.0-0.7.4-1bl2
+  girepository-GLib2.0-1.86.0-2
   girepository-Json1.0-1.4.2-1
-  libcouchdb-glib1.0-devel-0.7.4-1bl1
-  libcouchdb-glib1.0_2-0.7.4-1bl1
-  libdesktopcouch-glib1.0-devel-0.7.4-1bl1
-  libdesktopcouch-glib1.0_2-0.7.4-1bl1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
+  libcouchdb-glib1.0-devel-0.7.4-1bl2
+  libcouchdb-glib1.0_2-0.7.4-1bl2
+  libdesktopcouch-glib1.0-devel-0.7.4-1bl2
+  libdesktopcouch-glib1.0_2-0.7.4-1bl2
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
   libgnome-keyring0-3.12.0-2
   libjson-glib1.0-devel-1.4.2-1
   libjson-glib1.0_0-1.4.2-1
@@ -20,23 +20,25 @@ Runtime requirements:
   libsoup2.4_1-2.60.3-1
   libssl1.0-1.0.2u+za-1
   libuuid1-2.40.2-2
-  pkg-config-2.5.1-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.5-1
-  gcc-core-13.4.0-1
-  gobject-introspection-1.86.0-1
-  libglib2.0-devel-2.87.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gnome-common-3.18.0-1
+  gobject-introspection-1.86.0-2
+  libgirepository1.0-devel-1.86.0-2
+  libglib2.0-devel-2.90.1-1
   libgnome-keyring-devel-3.12.0-2
   libjson-glib1.0-devel-1.4.2-1
   libsoup-gnome2.4-devel-2.60.3-1
   libsoup2.4-devel-2.60.3-1
   libssl1.0-devel-1.0.2u+za-1
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   libuuid-devel-2.40.2-2
   make-4.4.1-2
 
@@ -44,7 +46,7 @@ Canonical website:
   https://launchpad.net/couchdb-glib
 
 Canonical download:
-  mirror://gnome/sources/couchdb-glib/0.7/couchdb-glib-0.7.4.tar.bz2
+  git://git.gnome.org/couchdb-glib
 
 -------------------------------------------
 
@@ -120,6 +122,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.7.4-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.7.4-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

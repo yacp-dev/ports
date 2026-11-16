@@ -1,5 +1,5 @@
---- origsrc/couchdb-glib-0.7.4/couchdb-glib/Makefile.am	2011-01-19 22:02:49.000000000 +0900
-+++ src/couchdb-glib-0.7.4/couchdb-glib/Makefile.am	2025-12-28 20:56:40.043392800 +0900
+--- origsrc/couchdb-glib-0.7.4/couchdb-glib/Makefile.am	2011-01-19 13:02:49.000000000 +0000
++++ src/couchdb-glib-0.7.4/couchdb-glib/Makefile.am	2026-11-16 13:40:43.421553600 +0000
 @@ -74,7 +74,7 @@ libcouchdb_glib_1_0_la_LIBADD =		\
  	$(OAUTH_LIBS)			\
  	-luuid
@@ -9,8 +9,8 @@
  	-version-info $(LIBCOUCHDBGLIB_CURRENT):$(LIBCOUCHDBGLIB_REVISION):$(LIBCOUCHDBGLIB_AGE)
  
  hdir = $(includedir)/couchdb-glib-1.0
---- origsrc/couchdb-glib-0.7.4/couchdb-glib/couchdb-marshal.c	2011-08-23 00:52:33.000000000 +0900
-+++ src/couchdb-glib-0.7.4/couchdb-glib/couchdb-marshal.c	2025-12-28 20:16:14.710927800 +0900
+--- origsrc/couchdb-glib-0.7.4/couchdb-glib/couchdb-marshal.c	2011-08-22 15:52:33.000000000 +0000
++++ src/couchdb-glib-0.7.4/couchdb-glib/couchdb-marshal.c	2026-11-16 13:40:43.423083200 +0000
 @@ -1,10 +1,9 @@
 -
 -#include	<glib-object.h>
@@ -86,8 +86,8 @@
  
    g_return_if_fail (n_param_values == 3);
  
---- origsrc/couchdb-glib-0.7.4/couchdb-glib/xmalloc.h	2010-04-13 16:51:24.000000000 +0900
-+++ src/couchdb-glib-0.7.4/couchdb-glib/xmalloc.h	2025-12-28 20:22:26.627250700 +0900
+--- origsrc/couchdb-glib-0.7.4/couchdb-glib/xmalloc.h	2010-04-13 07:51:24.000000000 +0000
++++ src/couchdb-glib-0.7.4/couchdb-glib/xmalloc.h	2026-11-16 13:40:43.423083200 +0000
 @@ -5,8 +5,10 @@ void *xcalloc (size_t n, size_t s);
  void *xrealloc (void *p, size_t n);
  char *xstrdup (const char *p);
@@ -99,8 +99,8 @@
  FILE *popen(const char *command, const char *type);
  int pclose(FILE *stream);
 +#endif
---- origsrc/couchdb-glib-0.7.4/desktopcouch-glib/Makefile.am	2011-07-22 18:00:51.000000000 +0900
-+++ src/couchdb-glib-0.7.4/desktopcouch-glib/Makefile.am	2025-12-28 21:05:17.903673300 +0900
+--- origsrc/couchdb-glib-0.7.4/desktopcouch-glib/Makefile.am	2011-07-22 09:00:51.000000000 +0000
++++ src/couchdb-glib-0.7.4/desktopcouch-glib/Makefile.am	2026-11-16 13:40:43.424851100 +0000
 @@ -22,7 +22,7 @@ libdesktopcouch_glib_1_0_la_LIBADD =
  	$(COUCHDB_GLIB_LIBS)					\
  	$(DESKTOPCOUCH_GLIB_LIBS)
@@ -119,8 +119,8 @@
  INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir) --includedir=$(top_builddir)/couchdb-glib
  
  if HAVE_INTROSPECTION
---- origsrc/couchdb-glib-0.7.4/tests/test-couchdb-glib.c	2011-03-25 00:42:20.000000000 +0900
-+++ src/couchdb-glib-0.7.4/tests/test-couchdb-glib.c	2025-12-28 21:07:13.234716300 +0900
+--- origsrc/couchdb-glib-0.7.4/tests/test-couchdb-glib.c	2011-03-24 15:42:20.000000000 +0000
++++ src/couchdb-glib-0.7.4/tests/test-couchdb-glib.c	2026-11-16 13:40:43.426873600 +0000
 @@ -275,7 +275,6 @@ int
  main (int argc, char *argv[])
  {
@@ -129,8 +129,8 @@
  	g_test_init (&argc, &argv, NULL);
  
  	/* Initialize data needed for all tests */
---- origsrc/couchdb-glib-0.7.4/tests/test-desktopcouch-glib.c	2011-04-01 23:27:45.000000000 +0900
-+++ src/couchdb-glib-0.7.4/tests/test-desktopcouch-glib.c	2025-12-28 21:08:09.720363500 +0900
+--- origsrc/couchdb-glib-0.7.4/tests/test-desktopcouch-glib.c	2011-04-01 14:27:45.000000000 +0000
++++ src/couchdb-glib-0.7.4/tests/test-desktopcouch-glib.c	2026-11-16 13:40:43.427667600 +0000
 @@ -45,9 +45,6 @@ test_connect_thread (void)
  {
  	GThread *thread;
@@ -149,8 +149,8 @@
  	g_test_init (&argc, &argv, NULL);
  
  	g_test_add_func ("/testdesktopcouchglib/Connect", test_connect_desktopcouch);
---- origsrc/couchdb-glib-0.7.4/tests/test-list-databases.c	2011-03-25 00:41:06.000000000 +0900
-+++ src/couchdb-glib-0.7.4/tests/test-list-databases.c	2025-12-28 21:10:10.315561000 +0900
+--- origsrc/couchdb-glib-0.7.4/tests/test-list-databases.c	2011-03-24 15:41:06.000000000 +0000
++++ src/couchdb-glib-0.7.4/tests/test-list-databases.c	2026-11-16 13:40:43.428894700 +0000
 @@ -30,7 +30,6 @@ main (int argc, char *argv[])
  
  
@@ -159,8 +159,8 @@
  
  	/* Initialize Couchdb */
  	couchdb =  argc > 1 ? couchdb_session_new (argv[1]) : couchdb_session_new (NULL);
---- origsrc/couchdb-glib-0.7.4/tests/test-oauth.c	2011-02-08 01:04:26.000000000 +0900
-+++ src/couchdb-glib-0.7.4/tests/test-oauth.c	2025-12-28 21:10:50.403360100 +0900
+--- origsrc/couchdb-glib-0.7.4/tests/test-oauth.c	2011-02-07 16:04:26.000000000 +0000
++++ src/couchdb-glib-0.7.4/tests/test-oauth.c	2026-11-16 13:40:43.429695300 +0000
 @@ -110,7 +110,6 @@ main (int argc, char *argv[])
  
  	/* Now connecting to Couchdb with this OAuth stuff */

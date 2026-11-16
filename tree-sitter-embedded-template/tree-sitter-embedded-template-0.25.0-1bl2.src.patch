@@ -1,5 +1,5 @@
---- origsrc/tree-sitter-embedded-template-0.25.0/CMakeLists.txt	2025-08-29 09:40:04.000000000 +0900
-+++ src/tree-sitter-embedded-template-0.25.0/CMakeLists.txt	2026-02-05 22:25:17.815529400 +0900
+--- origsrc/tree-sitter-embedded-template-0.25.0/CMakeLists.txt	2025-08-29 00:40:04.000000000 +0000
++++ src/tree-sitter-embedded-template-0.25.0/CMakeLists.txt	2026-11-16 04:09:56.204755800 +0000
 @@ -19,12 +19,14 @@ include(GNUInstallDirs)
  
  find_program(TREE_SITTER_CLI tree-sitter DOC "Tree-sitter CLI")

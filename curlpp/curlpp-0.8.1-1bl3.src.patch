@@ -1,5 +1,5 @@
---- origsrc/curlpp-0.8.1/CMakeLists.txt	2017-03-07 17:02:24.000000000 +0900
-+++ src/curlpp-0.8.1/CMakeLists.txt	2025-01-16 17:26:11.413018100 +0900
+--- origsrc/curlpp-0.8.1/CMakeLists.txt	2017-03-07 08:02:24.000000000 +0000
++++ src/curlpp-0.8.1/CMakeLists.txt	2026-11-16 21:43:40.337354100 +0000
 @@ -87,26 +87,11 @@ add_library(${PROJECT_NAME} SHARED ${Hea
  target_link_libraries(${PROJECT_NAME} ${CURL_LIBRARIES} ${CONAN_LIBS})
  set_target_properties(${PROJECT_NAME} PROPERTIES SOVERSION 1 VERSION 1.0.0)
@@ -28,8 +28,8 @@
          RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
          LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
          ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
---- origsrc/curlpp-0.8.1/extras/curlpp.pc.in	2025-01-16 17:25:13.192797400 +0900
-+++ src/curlpp-0.8.1/extras/curlpp.pc.in	2025-01-16 17:37:39.900037800 +0900
+--- origsrc/curlpp-0.8.1/extras/curlpp.pc.in	2026-11-16 21:43:39.897143700 +0000
++++ src/curlpp-0.8.1/extras/curlpp.pc.in	2026-11-16 21:43:40.337354100 +0000
 @@ -6,7 +6,7 @@ libdir=${exec_prefix}/@libdir@
  
  Name: curlpp

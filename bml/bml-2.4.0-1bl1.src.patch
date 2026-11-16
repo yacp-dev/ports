@@ -1,5 +1,5 @@
---- origsrc/bml-2.3.0/CMakeLists.txt	2023-04-13 02:56:39.000000000 +0900
-+++ src/bml-2.3.0/CMakeLists.txt	2023-07-25 14:15:43.786417600 +0900
+--- origsrc/bml-2.4.0/CMakeLists.txt	2023-09-22 15:44:15.000000000 +0000
++++ src/bml-2.4.0/CMakeLists.txt	2026-11-16 12:12:54.785264600 +0000
 @@ -744,6 +744,11 @@ string(REPLACE ";" " " LINKLINE "${LINK_
  string(STRIP "${LINKLINE}" LINKLINE)
  message(STATUS "Link flags: '${LINKLINE}'")
@@ -12,8 +12,8 @@
  add_subdirectory(src)
  
  configure_file(src/bml.pc.in bml.pc)
---- origsrc/bml-2.3.0/src/C-interface/bml_logger.c	2023-04-13 02:56:39.000000000 +0900
-+++ src/bml-2.3.0/src/C-interface/bml_logger.c	2023-07-25 14:15:29.641473200 +0900
+--- origsrc/bml-2.4.0/src/C-interface/bml_logger.c	2023-09-22 15:44:15.000000000 +0000
++++ src/bml-2.4.0/src/C-interface/bml_logger.c	2026-11-16 12:12:54.785264600 +0000
 @@ -1,6 +1,8 @@
  #include "bml_logger.h"
  
@@ -39,9 +39,9 @@
  }
  
  /** Log a message.
---- origsrc/bml-2.3.0/src/CMakeLists.txt	2023-04-13 02:56:39.000000000 +0900
-+++ src/bml-2.3.0/src/CMakeLists.txt	2023-07-25 14:20:17.766159300 +0900
-@@ -97,6 +97,7 @@ if(OPENMP_FOUND)
+--- origsrc/bml-2.4.0/src/CMakeLists.txt	2023-09-22 15:44:15.000000000 +0000
++++ src/bml-2.4.0/src/CMakeLists.txt	2026-11-16 12:12:54.787276800 +0000
+@@ -89,6 +89,7 @@ if(OPENMP_FOUND)
  endif()
  
  install(TARGETS bml bml_fortran EXPORT BML_Targets
@@ -49,8 +49,8 @@
    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
  install(EXPORT BML_Targets FILE BML_Targets.cmake NAMESPACE BML:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/BML)
---- origsrc/bml-2.3.0/tests/C-tests/CMakeLists.txt	2023-04-13 02:56:39.000000000 +0900
-+++ src/bml-2.3.0/tests/C-tests/CMakeLists.txt	2023-07-25 14:21:57.894749300 +0900
+--- origsrc/bml-2.4.0/tests/C-tests/CMakeLists.txt	2023-09-22 15:44:15.000000000 +0000
++++ src/bml-2.4.0/tests/C-tests/CMakeLists.txt	2026-11-16 12:12:54.787276800 +0000
 @@ -63,6 +63,7 @@ else()
      $<TARGET_OBJECTS:bmltests-single_real>
      $<TARGET_OBJECTS:bmltests-double_real>)

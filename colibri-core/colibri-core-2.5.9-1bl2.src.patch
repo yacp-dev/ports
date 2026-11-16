@@ -1,5 +1,5 @@
---- origsrc/colibri-core-2.5.9/src/Makefile.am	2023-07-03 18:52:48.000000000 +0900
-+++ src/colibri-core-2.5.9/src/Makefile.am	2023-07-27 13:57:03.379864300 +0900
+--- origsrc/colibri-core-2.5.9/src/Makefile.am	2023-07-03 09:52:48.000000000 +0000
++++ src/colibri-core-2.5.9/src/Makefile.am	2026-11-16 13:17:38.147146400 +0000
 @@ -1,6 +1,6 @@
  AM_CXXFLAGS = -Wall -O3 -std=c++11 -Wno-vla -fPIC
  AM_CPPFLAGS = -I@top_srcdir@/include

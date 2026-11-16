@@ -6,9 +6,9 @@ SUMMARY="Simple non-comformant XML parsing library"
 DESCRIPTION="In the year 2000, I was studying about XML, and I started to feel the need to
 write a library which can parse XML documents. Therefore I wrote one."
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
-# LICENSE_URI=""
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
 
 PKG_NAMES="
 	${PN}

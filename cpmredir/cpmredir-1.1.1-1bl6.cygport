@@ -1,7 +1,7 @@
 HOMEPAGE="https://www.seasip.info/Unix/Zxcc/"
 SRC_URI="https://web.archive.org/web/20150609093555/http://www.seasip.demon.co.uk/Unix/Zxcc/${P}.tar.gz"
 PATCH_URI="
-	https://git.pld-linux.org/?p=packages/${PN}.git;a=blob_plain;f=${PN}-shared.patch;hb=HEAD#/${PN}-shared.patch
+	https://raw.githubusercontent.com/pld-linux/${PN}/2690d132da122bcf939af272920dbac1f0cd530d/${PN}-shared.patch#/${PN}-shared.patch
 "
 
 CATEGORY="Libs"

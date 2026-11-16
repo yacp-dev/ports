@@ -1,5 +1,5 @@
---- origsrc/cpmredir-1.1.1/Makefile.am	2001-07-07 21:44:45.000000000 +0900
-+++ src/cpmredir-1.1.1/Makefile.am	2025-08-05 19:13:00.278385500 +0900
+--- origsrc/cpmredir-1.1.1/Makefile.am	2001-07-07 12:44:45.000000000 +0000
++++ src/cpmredir-1.1.1/Makefile.am	2026-11-16 14:14:40.370461800 +0000
 @@ -4,3 +4,6 @@ SUBDIRS= . include lib
  
  EXTRA_DIST= $(srcdir)/config/* $(srcdir)/doc/* $(srcdir)/Z80/*
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/cpmredir-1.1.1/configure.in	2025-08-05 19:01:21.878805900 +0900
-+++ src/cpmredir-1.1.1/configure.in	2025-08-05 19:13:35.179493900 +0900
+--- origsrc/cpmredir-1.1.1/configure.in	2026-11-16 14:14:40.033306300 +0000
++++ src/cpmredir-1.1.1/configure.in	2026-11-16 14:14:40.370461800 +0000
 @@ -1,9 +1,9 @@
  dnl Process this file with autoconf to produce a configure script.
 -AC_INIT(lib/cpmredir.c)
@@ -39,8 +39,8 @@
  
 -AC_OUTPUT(Makefile include/Makefile lib/Makefile)
 +AC_OUTPUT(cpmredir.pc Makefile include/Makefile lib/Makefile)
---- origsrc/cpmredir-1.1.1/cpmredir.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/cpmredir-1.1.1/cpmredir.pc.in	2025-08-05 19:13:00.208939800 +0900
+--- origsrc/cpmredir-1.1.1/cpmredir.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/cpmredir-1.1.1/cpmredir.pc.in	2026-11-16 14:14:40.372471700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -52,8 +52,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lcpmredir
 +Cflags: -I${includedir}
---- origsrc/cpmredir-1.1.1/lib/Makefile.am	2025-08-05 19:01:21.866383000 +0900
-+++ src/cpmredir-1.1.1/lib/Makefile.am	2025-08-05 19:02:38.226082000 +0900
+--- origsrc/cpmredir-1.1.1/lib/Makefile.am	2026-11-16 14:14:40.031297000 +0000
++++ src/cpmredir-1.1.1/lib/Makefile.am	2026-11-16 14:14:40.373480300 +0000
 @@ -6,3 +6,4 @@ lib_LTLIBRARIES=libcpmredir.la
  libcpmredir_la_SOURCES = cpmdrv.c   cpmint.h	  cpmredir.c  util.c \
  		   cpmglob.c  cpmparse.c  drdos.c     xlt.c

@@ -1,0 +1,26 @@
+Make ICU's default codepage UTF-8 on Cygwin, where it is ASCII whatever the
+locale: the tests compare UnicodeStrings with their UTF-8 string literals
+(converted with the default codepage), so every non-ASCII one failed.
+
+--- a/src/foliatest.cxx
++++ b/src/foliatest.cxx
+@@ -38,6 +38,7 @@
+ #include <filesystem>
+ #include <stdexcept>
+ #include <unicode/unistr.h>
++#include <unicode/ucnv.h>
+ #include "libxml/tree.h"
+ #include "ticcutils/StringOps.h"
+ #include "ticcutils/PrettyPrint.h"
+@@ -1431,6 +1432,11 @@
+ #endif
+ 
+ int main( int argc, char* argv[] ){
++#ifdef __CYGWIN__
++  // ICU's default codepage is ASCII there, whatever the locale, and the tests
++  // convert their UTF-8 literals to UnicodeStrings with the default codepage.
++  ucnv_setDefaultName( "UTF-8" );
++#endif
+   try {
+     TiCC::CL_Options Opts( "hVe:",
+ 			   "expect:,help,version,dir:");

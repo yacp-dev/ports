@@ -1,26 +1,25 @@
 bliss
 ------------------------------------------
-bliss is an open-source tool for computing canonical labelings and
-automorphism groups of graphs. Its algorithms are described in the following
-papers, please cite them if you use bliss in your research or software tools.
+bliss is an open-source tool for computing canonical labelings and automorphism
+groups of graphs. Its algorithms are described in the following papers, please
+cite them if you use bliss in your research or software tools.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libbliss-devel-0.77-1bl2
-  libbliss0-0.77-1bl2
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libbliss-devel-0.77-1bl3
+  libbliss0-0.77-1bl3
+  libgcc1-14.4.0-1
   libgmp-devel-6.3.0-1
   libgmp10-6.3.0-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46.1-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libgmp-devel-6.3.0-1
   ninja-1.13.2-1
 
@@ -82,6 +81,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.77-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.77-1bl2 -----
 Rebuild with gcc-13.4.0

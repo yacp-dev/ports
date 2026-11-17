@@ -5,28 +5,30 @@ memcached server (https://memcached.org/). It has been designed to be light on
 memory usage, thread safe, and provide full access to server side methods.
 
 Runtime requirements:
-  cygwin-3.6.11-1
+  cygwin-3.6.12-1
   libevent2.1_7-2.1.13-1
   libgcc1-14.4.0-1
-  libhashkit2-1.1.4-1bl4
-  libmemcached-devel-1.1.4-1bl4
-  libmemcached11-1.1.4-1bl4
-  libmemcachedprotocol0-1.1.4-1bl4
-  libmemcachedutil-devel-1.1.4-1bl4
-  libmemcachedutil2-1.1.4-1bl4
+  libhashkit-devel-1.2.0-1bl1
+  libhashkit2-1.2.0-1bl1
+  libmemcached-devel-1.2.0-1bl1
+  libmemcached11-1.2.0-1bl1
+  libmemcachedprotocol0-1.2.0-1bl1
+  libmemcachedutil-devel-1.2.0-1bl1
+  libmemcachedutil2-1.2.0-1bl1
   libsasl2-devel-2.1.27-1
   libsasl2_3-2.1.27-1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.9-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   bison-3.8.2-1
-  cmake-4.4.4-1
-  cygport-0.37.10-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   flex-2.6.4-2
   gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libevent-devel-2.1.13-1
   libsasl2-devel-2.1.27-1
   memcached-1.6.45-1bl1
@@ -36,28 +38,28 @@ Canonical website:
   https://github.com/awesomized/libmemcached/
 
 Canonical download:
-  https://github.com/awesomized/libmemcached/archive/refs/tags/1.1.4.tar.gz
+  https://github.com/awesomized/libmemcached/archive/refs/tags/1.2.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmemcached-1.1.4-X-src.tar.xz
+  1. unpack libmemcached-1.2.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmemcached-1.1.4-X.cygport all
+        % cygport ./libmemcached-1.2.0-X.cygport all
 
 This will create:
-  /usr/src/libmemcached-1.1.4-X-src.tar.xz
-  /usr/src/libmemcached-1.1.4-X.tar.xz
-  /usr/src/libmemcached11-1.1.4-X.tar.xz
-  /usr/src/libmemcached-devel-1.1.4-X.tar.xz
-  /usr/src/libmemcachedprotocol0-1.1.4-X.tar.xz
-  /usr/src/libmemcachedprotocol-devel-1.1.4-X.tar.xz
-  /usr/src/libmemcachedutil2-1.1.4-X.tar.xz
-  /usr/src/libmemcachedutil-devel-1.1.4-X.tar.xz
-  /usr/src/libhashkit2-1.1.4-X.tar.xz
-  /usr/src/libhashkit-devel-1.1.4-X.tar.xz
+  /usr/src/libmemcached-1.2.0-X-src.tar.xz
+  /usr/src/libmemcached-1.2.0-X.tar.xz
+  /usr/src/libmemcached11-1.2.0-X.tar.xz
+  /usr/src/libmemcached-devel-1.2.0-X.tar.xz
+  /usr/src/libmemcachedprotocol0-1.2.0-X.tar.xz
+  /usr/src/libmemcachedprotocol-devel-1.2.0-X.tar.xz
+  /usr/src/libmemcachedutil2-1.2.0-X.tar.xz
+  /usr/src/libmemcachedutil-devel-1.2.0-X.tar.xz
+  /usr/src/libhashkit2-1.2.0-X.tar.xz
+  /usr/src/libhashkit-devel-1.2.0-X.tar.xz
 
 -------------------------------------------
 
@@ -87,6 +89,7 @@ Files included in the binary package:
   /usr/share/doc/libmemcached/ChangeLog-0.md
   /usr/share/doc/libmemcached/ChangeLog-1.0.md
   /usr/share/doc/libmemcached/ChangeLog-1.1.md
+  /usr/share/doc/libmemcached/ChangeLog-1.2.md
   /usr/share/doc/libmemcached/ChangeLog.md
   /usr/share/doc/libmemcached/LICENSE
   /usr/share/doc/libmemcached/NEWS
@@ -118,6 +121,7 @@ Files included in the binary package:
   /usr/include/libmemcached-1.0/fetch.h
   /usr/include/libmemcached-1.0/flush.h
   /usr/include/libmemcached-1.0/flush_buffers.h
+  /usr/include/libmemcached-1.0/gat.h
   /usr/include/libmemcached-1.0/get.h
   /usr/include/libmemcached-1.0/hash.h
   /usr/include/libmemcached-1.0/limits.h
@@ -224,6 +228,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.0-1bl1 -----
+Version bump.
 
 ----- version 1.1.4-1bl4 -----
 Add libhashkit-devel to libmemcached-devel REQUIRES

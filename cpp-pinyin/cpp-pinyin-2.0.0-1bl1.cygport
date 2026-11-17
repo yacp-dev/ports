@@ -1,0 +1,50 @@
+HOMEPAGE="https://github.com/wolfgitpr/${PN}"
+SRC_URI="https://github.com/wolfgitpr/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Lightweight Chinese/Cantonese to Pinyin library"
+DESCRIPTION="cpp-pinyin is a lightweight Chinese/Cantonese to Pinyin library."
+
+LICENSE="Apache-2.0 AND CC-BY-SA-4.0 AND CC-BY-SA-3.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND CC-BY-SA-4.0 AND CC-BY-SA-3.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	git
+	python3
+"
+
+DIFF_EXCLUDES="version.props"
+
+inherit cmake
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+CYGCMAKE_ARGS="
+	-DCPP_PINYIN2_BUILD_TESTS=ON
+"
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/bin:${PATH} ninja_test
+}
+
+PKG_NAMES="
+	cpp-pinyin
+	libcpp-pinyin2_2
+	libcpp-pinyin2-devel
+"
+cpp_pinyin_CONTENTS="
+	usr/share
+"
+libcpp_pinyin2_2_CONTENTS="
+	usr/bin/cygcpp-pinyin2-2.dll
+"
+libcpp_pinyin2_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+cpp_pinyin_SUMMARY="${SUMMARY} (licensing & readmes)"
+libcpp_pinyin2_2_SUMMARY="${SUMMARY} (runtime)"
+libcpp_pinyin2_devel_SUMMARY="${SUMMARY} (development)"

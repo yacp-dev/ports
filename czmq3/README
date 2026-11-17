@@ -1,0 +1,114 @@
+czmq3
+------------------------------------------
+CZMQ - High-level C Binding for ZeroMQ. This is the 3.x API, which czmq 4.x no
+longer provides (zctx, zauth, zsocket, ...). It installs beside czmq: headers
+in /usr/include/czmq3, libczmq3.pc and libczmq3.dll.a.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libczmq3-3.0.2-1bl1
+  libczmq3-devel-3.0.2-1bl1
+  libzmq5-4.3.5-1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  libzmq-devel-4.3.5-1
+  make-4.4.1-2
+
+Canonical website:
+  https://czmq.zeromq.org/
+
+Canonical download:
+  https://github.com/zeromq/czmq/archive/v3.0.2.tar.gz#/czmq-3.0.2.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack czmq3-3.0.2-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./czmq3-3.0.2-X.cygport all
+
+This will create:
+  /usr/src/czmq3-3.0.2-X-src.tar.xz
+  /usr/src/czmq3-3.0.2-X.tar.xz
+  /usr/src/libczmq3-3.0.2-X.tar.xz
+  /usr/src/libczmq3-devel-3.0.2-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(czmq3)
+  /usr/bin/makecert3.exe
+  /usr/share/doc/Cygwin/czmq3.README
+  /usr/share/doc/czmq3/AUTHORS
+  /usr/share/doc/czmq3/LICENSE
+  /usr/share/doc/czmq3/NEWS
+  /usr/share/doc/czmq3/README.md
+  /usr/share/doc/czmq3/README.txt
+
+(libczmq3)
+  /usr/bin/cygczmq-3.dll
+
+(libczmq3-devel)
+  /usr/include/czmq3/czmq.h
+  /usr/include/czmq3/czmq_library.h
+  /usr/include/czmq3/czmq_prelude.h
+  /usr/include/czmq3/zactor.h
+  /usr/include/czmq3/zarmour.h
+  /usr/include/czmq3/zauth.h
+  /usr/include/czmq3/zauth_v2.h
+  /usr/include/czmq3/zbeacon.h
+  /usr/include/czmq3/zbeacon_v2.h
+  /usr/include/czmq3/zcert.h
+  /usr/include/czmq3/zcertstore.h
+  /usr/include/czmq3/zchunk.h
+  /usr/include/czmq3/zclock.h
+  /usr/include/czmq3/zconfig.h
+  /usr/include/czmq3/zctx.h
+  /usr/include/czmq3/zdigest.h
+  /usr/include/czmq3/zdir.h
+  /usr/include/czmq3/zdir_patch.h
+  /usr/include/czmq3/zfile.h
+  /usr/include/czmq3/zframe.h
+  /usr/include/czmq3/zgossip.h
+  /usr/include/czmq3/zhash.h
+  /usr/include/czmq3/zhashx.h
+  /usr/include/czmq3/ziflist.h
+  /usr/include/czmq3/zlist.h
+  /usr/include/czmq3/zlistx.h
+  /usr/include/czmq3/zloop.h
+  /usr/include/czmq3/zmonitor.h
+  /usr/include/czmq3/zmonitor_v2.h
+  /usr/include/czmq3/zmsg.h
+  /usr/include/czmq3/zmutex.h
+  /usr/include/czmq3/zpoller.h
+  /usr/include/czmq3/zproxy.h
+  /usr/include/czmq3/zproxy_v2.h
+  /usr/include/czmq3/zrex.h
+  /usr/include/czmq3/zsock.h
+  /usr/include/czmq3/zsock_option.h
+  /usr/include/czmq3/zsocket.h
+  /usr/include/czmq3/zsockopt.h
+  /usr/include/czmq3/zstr.h
+  /usr/include/czmq3/zsys.h
+  /usr/include/czmq3/zthread.h
+  /usr/include/czmq3/zuuid.h
+  /usr/lib/libczmq3.dll.a
+  /usr/lib/pkgconfig/libczmq3.pc
+
+------------------
+
+Port Notes:
+
+----- version 3.0.2-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

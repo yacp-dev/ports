@@ -1,0 +1,73 @@
+--- origsrc/czmq-3.0.2/src/Makemodule.am	2015-06-08 07:29:29.000000000 +0000
++++ src/czmq-3.0.2/src/Makemodule.am	2026-11-17 01:23:09.553024600 +0000
+@@ -126,8 +126,7 @@ endif
+ 
+ if ON_CYGWIN
+ src_libczmq_la_LDFLAGS += \
+-    -no-undefined \
+-    -avoid-version
++    -no-undefined
+ endif
+ 
+ src_libczmq_la_LIBADD = ${project_libs}
+--- origsrc/czmq-3.0.2/src/zarmour.c	2015-06-08 07:29:29.000000000 +0000
++++ src/czmq-3.0.2/src/zarmour.c	2026-11-17 01:23:09.553024600 +0000
+@@ -422,6 +422,9 @@ s_z85_decode (const char *data, size_t *
+     assert (length % 5 == 0);
+     *size = 4 * length / 5 + 1;
+     byte *bytes = (byte *) zmalloc (*size);
++    //  libzmq >= 4.3 rejects an empty string, which is a valid (empty) Z85 input
++    if (length == 0)
++        return bytes;
+     uint8_t *result = zmq_z85_decode (bytes, (char *) data);
+     if (result == NULL) {
+         free (bytes);
+--- origsrc/czmq-3.0.2/src/zauth.c	2015-06-08 07:29:29.000000000 +0000
++++ src/czmq-3.0.2/src/zauth.c	2026-11-17 01:23:09.555036600 +0000
+@@ -462,6 +462,10 @@ s_can_connect (zsock_t **server, zsock_t
+     int rc = zsock_connect (*client, "tcp://127.0.0.1:%d", port_nbr);
+     assert (rc == 0);
+ 
++    //  A PUSH socket blocks while it has no peer. libzmq >= 4.2 only attaches
++    //  the peer once the handshake (ZAP) has passed, so a denied client
++    //  would block this send forever.
++    zsock_set_sndtimeo (*server, 200);
+     zstr_send (*server, "Hello, World");
+     zpoller_t *poller = zpoller_new (*client, NULL);
+     assert (poller);
+--- origsrc/czmq-3.0.2/src/zauth_v2.c	2015-06-08 07:29:29.000000000 +0000
++++ src/czmq-3.0.2/src/zauth_v2.c	2026-11-17 01:23:09.555036600 +0000
+@@ -615,6 +615,8 @@ s_can_connect (zctx_t *ctx, void **serve
+     assert (port_nbr > 0);
+     int rc = zsocket_connect (*client, "tcp://127.0.0.1:%d", port_nbr);
+     assert (rc == 0);
++    //  A PUSH socket blocks while it has no peer; see zauth.c
++    zsocket_set_sndtimeo (*server, 200);
+     zstr_send (*server, "Hello, World");
+     zpoller_t *poller = zpoller_new (*client, NULL);
+     bool success = (zpoller_wait (poller, 200) == *client);
+--- origsrc/czmq-3.0.2/src/zbeacon.c	2015-06-08 07:29:29.000000000 +0000
++++ src/czmq-3.0.2/src/zbeacon.c	2026-11-17 01:23:09.556475600 +0000
+@@ -129,7 +129,9 @@ s_self_prepare_udp (self_t *self)
+         //  Bind to the port on all interfaces
+ #if (defined (__WINDOWS__))
+         inaddr_t sockaddr = address;
+-#elif (defined (__APPLE__))
++#elif (defined (__APPLE__) || defined (__CYGWIN__))
++        //  Windows cannot bind to a broadcast address (EADDRNOTAVAIL), so on
++        //  Cygwin bind to INADDR_ANY, as czmq 4.x does
+         inaddr_t sockaddr = self->broadcast;
+         sockaddr.sin_addr.s_addr = htons (INADDR_ANY);
+ #else
+--- origsrc/czmq-3.0.2/src/zbeacon_v2.c	2015-06-08 07:29:29.000000000 +0000
++++ src/czmq-3.0.2/src/zbeacon_v2.c	2026-11-17 01:23:09.556475600 +0000
+@@ -315,7 +315,8 @@ s_agent_new (void *pipe, int port_nbr)
+     //  Bind to the port on all interfaces
+ #if (defined (__WINDOWS__))
+     inaddr_t sockaddr = self->address;
+-#elif (defined (__APPLE__))
++#elif (defined (__APPLE__) || defined (__CYGWIN__))
++    //  Windows cannot bind to a broadcast address (EADDRNOTAVAIL); see zbeacon.c
+     inaddr_t sockaddr = self->broadcast;
+     sockaddr.sin_addr.s_addr = htons (INADDR_ANY);
+ #else

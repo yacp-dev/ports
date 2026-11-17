@@ -1,5 +1,6 @@
 HOMEPAGE="https://gitlab.com/menelkir/${PN}"
-SRC_URI="https://gitlab.com/menelkir/${PN}/-/archive/${PV}/${P}.tar.bz2"
+SRC_URI="https://gitlab.com/menelkir/${PN}/-/archive/${PV}a/${P}a.tar.bz2"
+SRC_DIR="${P}a"
 
 CATEGORY="Libs"
 SUMMARY="Small library for display text and graphics on a Logitech G15 keyboard"
@@ -10,7 +11,10 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libfreetype-devel libg15-devel"
+BUILD_REQUIRES="
+	libfreetype-devel
+	libg15-devel
+"
 
 CYGCONF_ARGS="
 	--enable-ttf
@@ -35,3 +39,10 @@ libg15render_devel_CONTENTS="
 libg15render_SUMMARY="${SUMMARY} (licensing & readmes)"
 libg15render3_SUMMARY="${SUMMARY} (runtime)"
 libg15render_devel_SUMMARY="${SUMMARY} (development)"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/\[3\.0\.4\]/[${PV}]/" configure.ac
+}

@@ -1,9 +1,6 @@
 HOMEPAGE="https://github.com/fedora-modularity/${PN}"
 SRC_URI="https://github.com/fedora-modularity/${PN}/archive/refs/tags/${P}.tar.gz"
 SRC_DIR="${PN}-${P}"
-PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/2.15.0-1/debian/patches/typos.patch
-"
 
 CATEGORY="Libs"
 SUMMARY="C Library for manipulating module metadata files"
@@ -17,15 +14,15 @@ BUILD_REQUIRES="
 	gobject-introspection
 	libglib2.0-devel
 	libyaml-devel
-	python-gi-devel
-	python39-gi
+	python3-devel
+	python312-gi
 	rpm-devel
 "
 
 inherit meson
 
 CYGMESON_ARGS="
-	-Dpython_name=python3.9
+	-Dpython_name=python3.12
 	-Dwith_docs=false
 "
 
@@ -34,7 +31,7 @@ PKG_NAMES="
 	libmodulemd2
 	libmodulemd-devel
 	girepository-Modulemd2.0
-	python39-libmodulemd
+	python312-libmodulemd
 "
 libmodulemd_CONTENTS="
 	usr/bin/*.exe
@@ -53,11 +50,11 @@ girepository_Modulemd2_0_CONTENTS="
 	usr/lib/girepository-1.0
 	usr/share/gir-1.0
 "
-python39_libmodulemd_CONTENTS="
-	usr/lib/python3.9
+python312_libmodulemd_CONTENTS="
+	usr/lib/python3.12
 "
 libmodulemd_SUMMARY="${SUMMARY} (utilities)"
 libmodulemd2_SUMMARY="${SUMMARY} (runtime)"
 libmodulemd_devel_SUMMARY="${SUMMARY} (development)"
 girepository_Modulemd2_0_SUMMARY="${SUMMARY} (GObject Introspection data)"
-python39_libmodulemd_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_libmodulemd_SUMMARY="${SUMMARY} (python312 bindings)"

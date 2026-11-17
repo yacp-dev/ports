@@ -1,0 +1,85 @@
+HOMEPAGE="https://github.com/bulletphysics/bullet3"
+SRC_URI="https://github.com/bulletphysics/bullet3/archive/${PV}.tar.gz"
+SRC_DIR="bullet3-${PV}"
+
+CATEGORY="Games"
+SUMMARY="Professional free 3D Game Multiphysics Library"
+DESCRIPTION="Bullet 3D Real-Time Multiphysics Library provides state of the art collision
+detection, soft body and rigid body dynamics."
+
+LICENSE="Zlib AND BSD-3-Clause AND MIT AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Zlib AND BSD-3-Clause AND MIT AND Apache-2.0"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	python3-devel
+	python312-numpy
+"
+
+export CXXFLAGS="${CXXFLAGS} -fpermissive"
+export CFLAGS="${CFLAGS} -Wno-error=incompatible-pointer-types"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_BULLET2_DEMOS:BOOL=ON
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DBUILD_PYBULLET:BOOL=ON
+	-DBUILD_PYBULLET_NUMPY:BOOL=ON
+	-DBUILD_UNIT_TESTS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DINSTALL_EXTRA_LIBS:BOOL=ON 
+	-DINSTALL_LIBS:BOOL=ON
+	-DUSE_DOUBLE_PRECISION:BOOL=ON
+"
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	cd ${S}
+	newdoc Extras/VHACD/LICENSE.txt LICENSE.VHACD.txt
+	newdoc examples/ThirdPartyLibs/enet/LICENSE.txt LICENSE.enet.txt
+	newdoc examples/ThirdPartyLibs/glad/LICENSE.txt LICENSE.glad.txt
+
+	verbose rm -f ${D}/usr/lib/python3.12/site-packages/libpybullet.dll.a
+
+	# clsocket is bundled and compiled into BulletRobotics; nothing links the library
+	verbose rm -f ${D}/usr/lib/libclsocket.a
+	verbose rm -f ${D}/usr/include/{ActiveSocket,Host,PassiveSocket,SimpleSocket,StatTimer}.h
+}
+
+src_test()
+{
+	cd ${B}
+	# the test executables link the DLLs in the build tree, spread over many directories
+	local dlldirs=$(find ${B} -name "cyg*.dll" -printf "%h\n" | sort -u | tr "\n" ":")
+	PATH=${dlldirs}${PATH} ninja_test
+}
+
+PKG_NAMES="
+	${PN}
+	lib${PN}${PV}
+	lib${PN}-devel
+	python312-${PN}
+"
+bullet_CONTENTS="
+	usr/share
+"
+libbullet3_25_CONTENTS="
+	usr/bin/cyg*-3.25.dll
+"
+libbullet_devel_CONTENTS="
+	usr/include
+	usr/lib/*.dll.a
+	usr/lib/cmake
+	usr/lib/pkgconfig
+"
+python312_bullet_CONTENTS="
+	usr/lib/python3.12
+"
+bullet_SUMMARY="${SUMMARY} (licensing & readmes)"
+libbullet3_25_SUMMARY="${SUMMARY} (runtime)"
+libbullet_devel_SUMMARY="${SUMMARY} (development)"
+python312_bullet_SUMMARY="${SUMMARY} (python312 binding)"

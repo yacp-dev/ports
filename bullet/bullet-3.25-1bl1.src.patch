@@ -1,0 +1,176 @@
+--- origsrc/bullet3-3.25/Extras/BulletRobotics/CMakeLists.txt	2022-09-25 03:00:36.000000000 +0000
++++ src/bullet3-3.25/Extras/BulletRobotics/CMakeLists.txt	2026-11-17 01:13:34.452084600 +0000
+@@ -294,6 +294,7 @@ INSTALL (
+ 
+ 	INSTALL(TARGETS
+ 		BulletRobotics
++		RUNTIME DESTINATION bin
+ 		LIBRARY DESTINATION lib${LIB_SUFFIX}
+ 		ARCHIVE DESTINATION lib${LIB_SUFFIX}
+ 	)
+--- origsrc/bullet3-3.25/Extras/BulletRoboticsGUI/CMakeLists.txt	2022-09-25 03:00:36.000000000 +0000
++++ src/bullet3-3.25/Extras/BulletRoboticsGUI/CMakeLists.txt	2026-11-17 01:13:34.452084600 +0000
+@@ -173,6 +173,7 @@ ENDIF (BUILD_SHARED_LIBS)
+ 
+ 	INSTALL(TARGETS
+ 		BulletRoboticsGUI
++		RUNTIME DESTINATION bin
+ 		LIBRARY DESTINATION lib${LIB_SUFFIX}
+ 		ARCHIVE DESTINATION lib${LIB_SUFFIX}
+ 	)
+--- origsrc/bullet3-3.25/Extras/VHACD/inc/vhacdMutex.h	2022-09-25 03:00:36.000000000 +0000
++++ src/bullet3-3.25/Extras/VHACD/inc/vhacdMutex.h	2026-11-17 01:13:34.454093900 +0000
+@@ -65,7 +65,7 @@
+ #define __stdcall
+ #endif
+ 
+-#if defined(__APPLE__) || defined(__linux__)
++#if defined(__APPLE__) || defined(__linux__) || defined(__CYGWIN__)
+ #include <pthread.h>
+ #endif
+ 
+@@ -91,7 +91,7 @@ public:
+ 	{
+ #if defined(WIN32) || defined(_XBOX)
+ 		InitializeCriticalSection(&m_mutex);
+-#elif defined(__APPLE__) || defined(__linux__)
++#elif defined(__APPLE__) || defined(__linux__) || defined(__CYGWIN__)
+ 		pthread_mutexattr_t mutexAttr;  // Mutex Attribute
+ 		VHACD_VERIFY(pthread_mutexattr_init(&mutexAttr) == 0);
+ 		VHACD_VERIFY(pthread_mutexattr_settype(&mutexAttr, PTHREAD_MUTEX_RECURSIVE_NP) == 0);
+@@ -103,7 +103,7 @@ public:
+ 	{
+ #if defined(WIN32) || defined(_XBOX)
+ 		DeleteCriticalSection(&m_mutex);
+-#elif defined(__APPLE__) || defined(__linux__)
++#elif defined(__APPLE__) || defined(__linux__) || defined(__CYGWIN__)
+ 		VHACD_VERIFY(pthread_mutex_destroy(&m_mutex) == 0);
+ #endif
+ 	}
+@@ -111,7 +111,7 @@ public:
+ 	{
+ #if defined(WIN32) || defined(_XBOX)
+ 		EnterCriticalSection(&m_mutex);
+-#elif defined(__APPLE__) || defined(__linux__)
++#elif defined(__APPLE__) || defined(__linux__) || defined(__CYGWIN__)
+ 		VHACD_VERIFY(pthread_mutex_lock(&m_mutex) == 0);
+ #endif
+ 	}
+@@ -122,7 +122,7 @@ public:
+ 		//assert(("TryEnterCriticalSection seems to not work on XP???", 0));
+ 		bRet = TryEnterCriticalSection(&m_mutex) ? true : false;
+ 		return bRet;
+-#elif defined(__APPLE__) || defined(__linux__)
++#elif defined(__APPLE__) || defined(__linux__) || defined(__CYGWIN__)
+ 		int result = pthread_mutex_trylock(&m_mutex);
+ 		return (result == 0);
+ #endif
+@@ -132,7 +132,7 @@ public:
+ 	{
+ #if defined(WIN32) || defined(_XBOX)
+ 		LeaveCriticalSection(&m_mutex);
+-#elif defined(__APPLE__) || defined(__linux__)
++#elif defined(__APPLE__) || defined(__linux__) || defined(__CYGWIN__)
+ 		VHACD_VERIFY(pthread_mutex_unlock(&m_mutex) == 0);
+ #endif
+ 	}
+@@ -140,7 +140,7 @@ public:
+ private:
+ #if defined(WIN32) || defined(_XBOX)
+ 	CRITICAL_SECTION m_mutex;
+-#elif defined(__APPLE__) || defined(__linux__)
++#elif defined(__APPLE__) || defined(__linux__) || defined(__CYGWIN__)
+ 	pthread_mutex_t m_mutex;
+ #endif
+ };
+--- origsrc/bullet3-3.25/examples/OpenGLWindow/CMakeLists.txt	2022-09-25 03:00:36.000000000 +0000
++++ src/bullet3-3.25/examples/OpenGLWindow/CMakeLists.txt	2026-11-17 01:13:34.448063200 +0000
+@@ -54,7 +54,8 @@ ENDIF(BUILD_EGL)
+ SET(OpenGLWindow_SRCS ${OpenGLWindow_SRCS}  ${BULLET_PHYSICS_SOURCE_DIR}/examples/ThirdPartyLibs/stb_image/stb_image_write.cpp)
+ 
+ 
+-ADD_LIBRARY(OpenGLWindow ${OpenGLWindow_SRCS} ${OpenGLWindow_HDRS})
++# only the examples and the demos use it: link it statically and do not install it
++ADD_LIBRARY(OpenGLWindow STATIC ${OpenGLWindow_SRCS} ${OpenGLWindow_HDRS})
+ if (UNIX AND NOT APPLE)
+   target_link_libraries(OpenGLWindow ${DL})
+ elseif (APPLE)
+@@ -73,8 +74,3 @@ if (BUILD_SHARED_LIBS)
+ endif()
+ 
+ #target_link_libraries(OpenGLWindow ${OPENGL_gl_LIBRARY})
+-
+-INSTALL(TARGETS OpenGLWindow
+-        RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib${LIB_SUFFIX}
+-        ARCHIVE DESTINATION lib${LIB_SUFFIX})
+--- origsrc/bullet3-3.25/examples/OpenGLWindow/X11OpenGLWindow.cpp	2022-09-25 03:00:36.000000000 +0000
++++ src/bullet3-3.25/examples/OpenGLWindow/X11OpenGLWindow.cpp	2026-11-17 01:13:34.448063200 +0000
+@@ -566,7 +566,7 @@ void X11OpenGLWindow::enableOpenGL()
+ 	//Access pthreads as a workaround for a bug in Linux/Ubuntu
+ 	//See https://bugs.launchpad.net/ubuntu/+source/nvidia-graphics-drivers-319/+bug/1248642
+ 
+-#if !defined(__NetBSD__) && !defined(__ANDROID__)
++#if !defined(__NetBSD__) && !defined(__ANDROID__) && !defined(__CYGWIN__)
+ 	int i = pthread_getconcurrency();
+ 	printf("pthread_getconcurrency()=%d\n", i);
+ #endif
+--- origsrc/bullet3-3.25/examples/ThirdPartyLibs/BussIK/CMakeLists.txt	2022-09-25 03:00:36.000000000 +0000
++++ src/bullet3-3.25/examples/ThirdPartyLibs/BussIK/CMakeLists.txt	2026-11-17 01:13:34.450074200 +0000
+@@ -7,9 +7,5 @@ INCLUDE_DIRECTORIES(
+ FILE(GLOB BussIK_SRCS "*.cpp" )
+ FILE(GLOB BussIK_HDRS "*.h" )
+ 
+-ADD_LIBRARY(BussIK ${BussIK_SRCS} ${BussIK_HDRS})
+-
+-INSTALL(TARGETS BussIK
+-        RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib${LIB_SUFFIX}
+-        ARCHIVE DESTINATION lib${LIB_SUFFIX})
++# only the examples, the demos and the tests use it: link it statically and do not install it
++ADD_LIBRARY(BussIK STATIC ${BussIK_SRCS} ${BussIK_HDRS})
+--- origsrc/bullet3-3.25/examples/ThirdPartyLibs/Gwen/CMakeLists.txt	2022-09-25 03:00:36.000000000 +0000
++++ src/bullet3-3.25/examples/ThirdPartyLibs/Gwen/CMakeLists.txt	2026-11-17 01:13:34.452084600 +0000
+@@ -20,15 +20,11 @@ ADD_DEFINITIONS( -DGLEW_STATIC -DGWEN_CO
+ FILE(GLOB gwen_SRCS "*.cpp" "Controls/*.cpp" "Controls/Dialog/*.cpp" "Controls/Dialogs/*.cpp" "Controls/Layout/*.cpp" "Controls/Property/*.cpp" "Input/*.cpp" "Platforms/*.cpp" "Renderers/*.cpp" "Skins/*.cpp")
+ FILE(GLOB gwen_HDRS "*.h" "Controls/*.h" "Controls/Dialog/*.h" "Controls/Dialogs/*.h" "Controls/Layout/*.h" "Controls/Property/*.h" "Input/*.h" "Platforms/*.h" "Renderers/*.h" "Skins/*.h")
+ 
+-ADD_LIBRARY(gwen ${gwen_SRCS} ${gwen_HDRS})
++# only the examples and the demos use it: link it statically and do not install it
++ADD_LIBRARY(gwen STATIC ${gwen_SRCS} ${gwen_HDRS})
+ IF (BUILD_SHARED_LIBS)
+ IF(WIN32 OR APPLE)
+   target_link_libraries(gwen ${OPENGL_gl_LIBRARY})
+ ENDIF()
+ ENDIF()
+ 
+-
+-INSTALL(TARGETS gwen
+-        RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib${LIB_SUFFIX}
+-        ARCHIVE DESTINATION lib${LIB_SUFFIX})
+--- origsrc/bullet3-3.25/examples/pybullet/CMakeLists.txt	2022-09-25 03:00:36.000000000 +0000
++++ src/bullet3-3.25/examples/pybullet/CMakeLists.txt	2026-11-17 01:13:34.450074200 +0000
+@@ -60,8 +60,11 @@ ADD_LIBRARY(pybullet SHARED ${pybullet_S
+ SET_TARGET_PROPERTIES(pybullet PROPERTIES PREFIX "")
+ SET_TARGET_PROPERTIES(pybullet PROPERTIES POSTFIX "")
+ 
+-SET_TARGET_PROPERTIES(pybullet PROPERTIES VERSION ${BULLET_VERSION})
+-SET_TARGET_PROPERTIES(pybullet PROPERTIES SOVERSION ${BULLET_VERSION})
++IF(NOT CYGWIN)
++  # Python imports pybullet.dll, so a Cygwin module carries no version suffix
++  SET_TARGET_PROPERTIES(pybullet PROPERTIES VERSION ${BULLET_VERSION})
++  SET_TARGET_PROPERTIES(pybullet PROPERTIES SOVERSION ${BULLET_VERSION})
++ENDIF()
+ SET_TARGET_PROPERTIES(pybullet PROPERTIES DEBUG_POSTFIX "_d")
+ 
+ 
+@@ -81,7 +84,7 @@ ENDIF()
+ 
+ TARGET_LINK_LIBRARIES(pybullet BulletRoboticsGUI BulletExampleBrowserLib BulletRobotics BulletFileLoader BulletWorldImporter BulletSoftBody BulletDynamics BulletCollision BulletInverseDynamicsUtils BulletInverseDynamics LinearMath OpenGLWindow gwen BussIK Bullet3Common)
+ 
+-IF (WIN32)
++IF (WIN32 OR CYGWIN)
+   TARGET_LINK_LIBRARIES(pybullet ${PYTHON_LIBRARIES})
+ ELSEIF (APPLE)
+   SET_TARGET_PROPERTIES(pybullet PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")

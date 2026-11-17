@@ -1,6 +1,5 @@
 HOMEPAGE="https://github.com/rscada/${PN}"
-GIT_URI="https://github.com/rscada/${PN}.git"
-GIT_REV="7d4e89f6eeaf2000157b952e000f297c052ce18f"
+SRC_URI="https://github.com/rscada/${PN}/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Meter-bus library and utility programs"
@@ -10,11 +9,8 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-inherit git
-
 DIFF_EXCLUDES="
-	libltdl
-	*.m4
+	test
 "
 
 PKG_NAMES="
@@ -36,3 +32,11 @@ libmbus_devel_CONTENTS="
 libmbus_SUMMARY="${SUMMARY} (utilities)"
 libmbus0_SUMMARY="${SUMMARY} (runtime)"
 libmbus_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test() {
+	cd ${B}
+	verbose make -C test LDFLAGS="-L${B}/mbus/.libs" mbus_parse_hex.exe
+	export PATH=${B}/mbus/.libs:${PATH}
+	cd ${S}/test
+	verbose sh generate-xml.sh test-frames ${B}/test/mbus_parse_hex.exe
+}

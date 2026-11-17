@@ -3,42 +3,42 @@ libmbus
 libmbus is an open source library for the M-bus (Meter-Bus) protocol.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  cygwin-devel-3.6.1-1
-  libmbus-devel-0.9.0+git20250205-1bl1
-  libmbus0-0.9.0+git20250205-1bl1
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libmbus-devel-0.10.5-1bl1
+  libmbus0-0.10.5-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/rscada/libmbus
 
 Canonical download:
-  https://github.com/rscada/libmbus.git
+  https://github.com/rscada/libmbus/archive/refs/tags/0.10.5.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmbus-0.9.0+git20250205-X-src.tar.xz
+  1. unpack libmbus-0.10.5-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmbus-0.9.0+git20250205-X.cygport all
+        % cygport ./libmbus-0.10.5-X.cygport all
 
 This will create:
-  /usr/src/libmbus-0.9.0+git20250205-X-src.tar.xz
-  /usr/src/libmbus-0.9.0+git20250205-X.tar.xz
-  /usr/src/libmbus0-0.9.0+git20250205-X.tar.xz
-  /usr/src/libmbus-devel-0.9.0+git20250205-X.tar.xz
+  /usr/src/libmbus-0.10.5-X-src.tar.xz
+  /usr/src/libmbus-0.10.5-X.tar.xz
+  /usr/src/libmbus0-0.10.5-X.tar.xz
+  /usr/src/libmbus-devel-0.10.5-X.tar.xz
 
 -------------------------------------------
 
@@ -94,6 +94,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.10.5-1bl1 -----
+Version bump.
 
 ----- version 0.9.0+git20250205-1bl1 -----
 Version bump.

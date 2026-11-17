@@ -1,40 +1,43 @@
 icecast
 ------------------------------------------
 Icecast is a streaming media server which currently supports Ogg (Vorbis and
-Theora), Opus, WebM and MP3 audio streams.
-It can be used to create an Internet radio station or a privately running
-jukebox and many things in between. It is very versatile in that new formats
-can be added relatively easily and supports open standards for commuincation
-and interaction.
+Theora), Opus, WebM and MP3 audio streams. It can be used to create an Internet
+radio station or a privately running jukebox and many things in between. It is
+very versatile in that new formats can be added relatively easily and supports
+open standards for commuincation and interaction.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libcurl4-8.15.0-1
-  libkate1-0.4.1-2
-  libogg0-1.3.4-1
+  cygwin-3.6.12-1
+  libcurl4-8.23.0-1
+  libigloo0-0.9.5-1bl2
+  libmaxminddb0-1.3.2-1
+  libogg0-1.3.6-1
+  librhash0-1.4.6-1
   libspeex1-1.2.1-1
-  libssl3-3.0.17-1
-  libtheora0-1.1.1-2
+  libssl3-3.5.9-1
+  libtheora1-1.2.0-2
   libvorbis0-1.3.7-1
-  libxml2-2.10.4-2
-  libxslt-1.1.29-1
+  libxml2_2-2.13.9-3
+  libxslt-1.1.43-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  libcurl-devel-8.15.0-1
-  libkate-devel-0.4.1-2
-  libogg-devel-1.3.4-1
-  libssl-devel-3.0.17-1
-  libtheora-devel-1.1.1-2
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcurl-devel-8.23.0-1
+  libigloo-devel-0.9.5-1bl2
+  libmaxminddb-devel-1.3.2-1
+  libogg-devel-1.3.6-1
+  librhash-devel-1.4.6-1
+  libssl-devel-3.5.9-1
+  libtheora-devel-1.2.0-2
+  libtool-2.6.2-1
   libvorbis-devel-1.3.7-1
-  libxml2-devel-2.10.4-2
-  libxslt-devel-1.1.29-1
+  libxml2-devel-2.13.9-3
+  libxslt-devel-1.1.43-1
   make-4.4.1-2
   speex-devel-1.2.1-1
 
@@ -42,20 +45,20 @@ Canonical website:
   https://www.icecast.org/
 
 Canonical download:
-  https://downloads.xiph.org/releases/icecast/icecast-2.4.4.tar.gz
+  https://downloads.xiph.org/releases/icecast/icecast-2.5.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack icecast-2.4.4-X-src.tar.xz
+  1. unpack icecast-2.5.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./icecast-2.4.4-X.cygport all
+        % cygport ./icecast-2.5.0-X.cygport all
 
 This will create:
-  /usr/src/icecast-2.4.4-X-src.tar.xz
-  /usr/src/icecast-2.4.4-X.tar.xz
+  /usr/src/icecast-2.5.0-X-src.tar.xz
+  /usr/src/icecast-2.5.0-X.tar.xz
 
 -------------------------------------------
 
@@ -68,70 +71,83 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/icecast.README
   /usr/share/doc/icecast/AUTHORS
   /usr/share/doc/icecast/COPYING
+  /usr/share/doc/icecast/COPYING.LGPL-2.0
   /usr/share/doc/icecast/ChangeLog
   /usr/share/doc/icecast/HACKING
   /usr/share/doc/icecast/NEWS
-  /usr/share/doc/icecast/README
-  /usr/share/doc/icecast/TODO
-  /usr/share/doc/icecast/admin-interface.html
-  /usr/share/doc/icecast/assets/css/style.css
-  /usr/share/doc/icecast/assets/font/FiraMono-Bold.eot
-  /usr/share/doc/icecast/assets/font/FiraMono-Bold.woff
-  /usr/share/doc/icecast/assets/font/FiraMono-Regular.eot
-  /usr/share/doc/icecast/assets/font/FiraMono-Regular.woff
-  /usr/share/doc/icecast/assets/font/FiraSans-Bold.eot
-  /usr/share/doc/icecast/assets/font/FiraSans-Bold.woff
-  /usr/share/doc/icecast/assets/font/FiraSans-BoldItalic.eot
-  /usr/share/doc/icecast/assets/font/FiraSans-BoldItalic.woff
-  /usr/share/doc/icecast/assets/font/FiraSans-Italic.eot
-  /usr/share/doc/icecast/assets/font/FiraSans-Italic.woff
-  /usr/share/doc/icecast/assets/font/FiraSans-Regular.eot
-  /usr/share/doc/icecast/assets/font/FiraSans-Regular.woff
-  /usr/share/doc/icecast/assets/img/xiph-community.svg
-  /usr/share/doc/icecast/auth.html
-  /usr/share/doc/icecast/basic-setup.html
-  /usr/share/doc/icecast/changes.html
-  /usr/share/doc/icecast/config-file.html
-  /usr/share/doc/icecast/faq.html
-  /usr/share/doc/icecast/glossary.html
-  /usr/share/doc/icecast/img/listener_auth1.png
-  /usr/share/doc/icecast/img/listener_auth2.png
-  /usr/share/doc/icecast/img/listener_auth3.png
-  /usr/share/doc/icecast/img/masterslave.png
-  /usr/share/doc/icecast/img/relay.png
+  /usr/share/doc/icecast/README.md
+  /usr/share/doc/icecast/admin_interface/index.html
+  /usr/share/doc/icecast/auth/index.html
+  /usr/share/doc/icecast/basic_setup/index.html
+  /usr/share/doc/icecast/config_file/index.html
+  /usr/share/doc/icecast/css/highlight.css
+  /usr/share/doc/icecast/css/theme.css
+  /usr/share/doc/icecast/css/theme_extra.css
+  /usr/share/doc/icecast/fonts/fontawesome-webfont.eot
+  /usr/share/doc/icecast/fonts/fontawesome-webfont.svg
+  /usr/share/doc/icecast/fonts/fontawesome-webfont.ttf
+  /usr/share/doc/icecast/fonts/fontawesome-webfont.woff
+  /usr/share/doc/icecast/img/Icecast_shema.svg
+  /usr/share/doc/icecast/img/favicon.ico
   /usr/share/doc/icecast/index.html
-  /usr/share/doc/icecast/introduction.html
-  /usr/share/doc/icecast/relaying.html
-  /usr/share/doc/icecast/server-stats.html
-  /usr/share/doc/icecast/win32.html
-  /usr/share/doc/icecast/yp.html
+  /usr/share/doc/icecast/js/highlight.pack.js
+  /usr/share/doc/icecast/js/jquery-2.1.1.min.js
+  /usr/share/doc/icecast/js/modernizr-2.8.3.min.js
+  /usr/share/doc/icecast/js/theme.js
+  /usr/share/doc/icecast/relaying/index.html
+  /usr/share/doc/icecast/server_stats/index.html
+  /usr/share/doc/icecast/win32/index.html
+  /usr/share/doc/icecast/yp/index.html
+  /usr/share/icecast/admin/dashboard.xsl
+  /usr/share/icecast/admin/error-html.xsl
+  /usr/share/icecast/admin/error-plaintext.xsl
+  /usr/share/icecast/admin/fallbacks.xsl
+  /usr/share/icecast/admin/includes/authlist.xsl
+  /usr/share/icecast/admin/includes/confirm.xsl
+  /usr/share/icecast/admin/includes/footer.xsl
+  /usr/share/icecast/admin/includes/head.xsl
+  /usr/share/icecast/admin/includes/header.xsl
+  /usr/share/icecast/admin/includes/mountnav.xsl
+  /usr/share/icecast/admin/includes/page.xsl
+  /usr/share/icecast/admin/includes/player.xsl
+  /usr/share/icecast/admin/includes/playlist.xsl
+  /usr/share/icecast/admin/includes/web-page.xsl
   /usr/share/icecast/admin/listclients.xsl
+  /usr/share/icecast/admin/listensocketlist.xsl
   /usr/share/icecast/admin/listmounts.xsl
   /usr/share/icecast/admin/manageauth.xsl
   /usr/share/icecast/admin/moveclients.xsl
   /usr/share/icecast/admin/response.xsl
+  /usr/share/icecast/admin/showlog.xsl
   /usr/share/icecast/admin/stats.xsl
+  /usr/share/icecast/admin/ui/confirmdeleteuser.xsl
+  /usr/share/icecast/admin/ui/confirmkillclient.xsl
+  /usr/share/icecast/admin/ui/confirmkilldumpfile.xsl
+  /usr/share/icecast/admin/ui/confirmkillsource.xsl
   /usr/share/icecast/admin/updatemetadata.xsl
   /usr/share/icecast/admin/vclt.xsl
+  /usr/share/icecast/admin/version.xsl
   /usr/share/icecast/admin/xspf.xsl
   /usr/share/icecast/doc/icecast.xml.dist
   /usr/share/icecast/doc/icecast_minimal.xml.dist
   /usr/share/icecast/doc/icecast_shoutcast_compat.xml.dist
-  /usr/share/icecast/doc/icecast_urlauth.xml.dist
+  /usr/share/icecast/report-db.xml
+  /usr/share/icecast/web/assets/css/style.css
+  /usr/share/icecast/web/assets/img/icecast.png
   /usr/share/icecast/web/auth.xsl
-  /usr/share/icecast/web/icecast.png
-  /usr/share/icecast/web/key.png
+  /usr/share/icecast/web/favicon.ico
   /usr/share/icecast/web/server_version.xsl
   /usr/share/icecast/web/status-json.xsl
   /usr/share/icecast/web/status.xsl
   /usr/share/icecast/web/status3.xsl
-  /usr/share/icecast/web/style.css
-  /usr/share/icecast/web/tunein.png
   /usr/share/icecast/web/xml2json.xslt
 
 ------------------
 
 Port Notes:
+
+----- version 2.5.0-1bl1 -----
+Version bump.
 
 ----- version 2.4.4-1bl3 -----
 Rebuild with gcc-13.4.0

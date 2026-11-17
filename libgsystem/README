@@ -4,46 +4,49 @@ LibGSystem is a GIO-based library, targeted primarily for use by operating
 system components.
 
 Runtime requirements:
-  cygwin-3.6.0-0.212.g6af8fea4bbad
-  girepository-GLib2.0-1.54.1-4
-  libglib2.0-devel-2.64.6-1
-  libglib2.0_0-2.64.6-1
-  libgsystem-devel-2014.1-1bl3
-  libgsystem0-2014.1-1bl3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  girepository-GLib2.0-1.86.0-2
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libgsystem-devel-2015.2-1bl1
+  libgsystem0-2015.2-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gobject-introspection-1.54.1-4
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gnome-common-3.18.0-1
+  gobject-introspection-1.86.0-2
+  gtk-doc-1.37.0-1
+  libglib2.0-devel-2.90.1-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://wiki.gnome.org/Projects/LibGSystem
 
 Canonical download:
-  mirror://gnome/sources/libgsystem/2014.1/libgsystem-2014.1.tar.xz
+  git://git.gnome.org/libgsystem
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libgsystem-2014.1-X-src.tar.xz
+  1. unpack libgsystem-2015.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libgsystem-2014.1-X.cygport all
+        % cygport ./libgsystem-2015.2-X.cygport all
 
 This will create:
-  /usr/src/libgsystem-2014.1-X-src.tar.xz
-  /usr/src/libgsystem-2014.1-X.tar.xz
-  /usr/src/libgsystem0-2014.1-X.tar.xz
-  /usr/src/libgsystem-devel-2014.1-X.tar.xz
-  /usr/src/girepository-GSystem1.0-2014.1-X.tar.xz
+  /usr/src/libgsystem-2015.2-X-src.tar.xz
+  /usr/src/libgsystem-2015.2-X.tar.xz
+  /usr/src/libgsystem0-2015.2-X.tar.xz
+  /usr/src/libgsystem-devel-2015.2-X.tar.xz
+  /usr/src/girepository-GSystem1.0-2015.2-X.tar.xz
 
 -------------------------------------------
 
@@ -59,6 +62,7 @@ Files included in the binary package:
 
 (libgsystem-devel)
   /usr/include/libgsystem/gsystem-console.h
+  /usr/include/libgsystem/gsystem-errors.h
   /usr/include/libgsystem/gsystem-file-utils.h
   /usr/include/libgsystem/gsystem-glib-compat.h
   /usr/include/libgsystem/gsystem-local-alloc.h
@@ -77,6 +81,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2015.2-1bl1 -----
+Version bump.
 
 ----- version 2014.1-1bl3 -----
 Rebuild with gcc-12.4.0

@@ -1,0 +1,89 @@
+Cygwin: libglnx's libcontainer (sys/prctl.h, Linux namespaces) is Linux-only and
+libgsystem does not use it; its -lattr is not needed. Cygwin has no
+sendfile() or _IOW, and its unistd.h lacks TEMP_FAILURE_RETRY, so define
+replacements; copy_bytes() takes its read()/write() fallback. gio.h does not
+include gfiledescriptorbased.h any more. Drop -Werror=declaration-after-statement:
+it also applies to the C file g-ir-scanner generates, which mixes declarations
+and code.
+
+--- a/configure.ac
++++ b/configure.ac
+@@ -19,8 +19,7 @@
+ 		-Werror=implicit-function-declaration \
+ 		-Werror=pointer-arith -Werror=init-self -Werror=format=2 \
+ 		-Werror=format-security \
+-		-Werror=missing-include-dirs -Werror=aggregate-return \
+-		-Werror=declaration-after-statement"
++		-Werror=missing-include-dirs -Werror=aggregate-return"
+ fi
+ changequote([,])dnl
+ AC_SUBST(WARN_CFLAGS)
+--- a/libglnx/glnx-fdio.c
++++ b/libglnx/glnx-fdio.c
+@@ -28,11 +28,28 @@
+ #include <stdint.h>
+ #include <stdbool.h>
+ #include <sys/ioctl.h>
+-#include <sys/sendfile.h>
+ #include <errno.h>
++#ifdef __CYGWIN__
++/* Cygwin has no sendfile(); copy_bytes() falls back to read()/write() */
++#define sendfile(out, in, offset, count) (errno = ENOSYS, -1)
++#else
++#include <sys/sendfile.h>
++#endif
+ /* See linux.git/fs/btrfs/ioctl.h */
+ #define BTRFS_IOCTL_MAGIC 0x94
++#ifdef _IOW
+ #define BTRFS_IOC_CLONE _IOW(BTRFS_IOCTL_MAGIC, 9, int)
++#else
++/* Cygwin has no _IOW; the value is _IOW(0x94, 9, int) on Linux */
++#define BTRFS_IOC_CLONE 0x40049409
++#endif
++#ifndef TEMP_FAILURE_RETRY
++#define TEMP_FAILURE_RETRY(expression) \
++  ({ long int __result; \
++     do __result = (long int) (expression); \
++     while (__result == -1L && errno == EINTR); \
++     __result; })
++#endif
+ 
+ #include <glnx-fdio.h>
+ #include <glnx-dirfd.h>
+--- a/libglnx/libglnx.h
++++ b/libglnx/libglnx.h
+@@ -30,7 +30,6 @@
+ #include <glnx-dirfd.h>
+ #include <glnx-shutil.h>
+ #include <glnx-xattrs.h>
+-#include <glnx-libcontainer.h>
+ #include <glnx-console.h>
+ #include <glnx-fdio.h>
+ 
+--- a/libglnx/Makefile-libglnx.am
++++ b/libglnx/Makefile-libglnx.am
+@@ -30,8 +30,6 @@
+ 	$(libglnx_srcpath)/glnx-dirfd.c \
+ 	$(libglnx_srcpath)/glnx-fdio.h \
+ 	$(libglnx_srcpath)/glnx-fdio.c \
+-	$(libglnx_srcpath)/glnx-libcontainer.h \
+-	$(libglnx_srcpath)/glnx-libcontainer.c \
+ 	$(libglnx_srcpath)/glnx-xattrs.h \
+ 	$(libglnx_srcpath)/glnx-xattrs.c \
+ 	$(libglnx_srcpath)/glnx-shutil.h \
+@@ -41,4 +39,4 @@
+ 
+ libglnx_la_CFLAGS = $(AM_CFLAGS) $(libglnx_cflags)
+ libglnx_la_LDFLAGS = -avoid-version -Bsymbolic-functions -export-symbols-regex "^glnx_" -no-undefined -export-dynamic 
+-libglnx_la_LIBADD = $(libglnx_libs) -lattr
++libglnx_la_LIBADD = $(libglnx_libs)
+--- a/src/gsystem-file-utils.h	2026-11-17 22:45:19.672191697 +0900
++++ b/src/gsystem-file-utils.h	2026-11-17 22:45:19.731125409 +0900
+@@ -22,6 +22,7 @@
+ #define __GSYSTEM_FILE_UTILS_H__
+ 
+ #include <gio/gio.h>
++#include <gio/gfiledescriptorbased.h>
+ #include <sys/stat.h>
+ #include <dirent.h>
+ 

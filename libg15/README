@@ -4,21 +4,21 @@ Library to handle the LCD and extra keys on the Logitech G15 Gaming Keyboard
 and similar devices
 
 Runtime requirements:
-  cygwin-3.4.10-1
-  libg15-devel-3.0.7-1bl1
-  libg15_3-3.0.7-1bl1
+  cygwin-3.6.12-1
+  libg15-devel-3.0.7-1bl2
+  libg15_3-3.0.7-1bl2
   libusb-devel-1.2.6.0-2
   libusb0-1.2.6.0-2
-  pkg-config-2.1.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.7-1
-  gcc-core-11.4.0-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   libusb-devel-1.2.6.0-2
   make-4.4.1-2
 
@@ -26,7 +26,7 @@ Canonical website:
   https://gitlab.com/menelkir/libg15
 
 Canonical download:
-  https://gitlab.com/menelkir/libg15/-/archive/3.0.7/libg15-3.0.7.tar.bz2
+  https://gitlab.com/menelkir/libg15/-/archive/3.0.7a/libg15-3.0.7a.tar.bz2
 
 -------------------------------------------
 
@@ -67,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0.7-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.0.7-1bl1 -----
 Version bump.

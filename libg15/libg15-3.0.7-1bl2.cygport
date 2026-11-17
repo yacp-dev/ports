@@ -1,5 +1,6 @@
 HOMEPAGE="https://gitlab.com/menelkir/${PN}"
-SRC_URI="https://gitlab.com/menelkir/${PN}/-/archive/${PV}/${P}.tar.bz2"
+SRC_URI="https://gitlab.com/menelkir/${PN}/-/archive/${PV}a/${P}a.tar.bz2"
+SRC_DIR="${P}a"
 
 CATEGORY="Libs"
 SUMMARY="Library to handle the LCD and extra keys on the Logitech G15 Gaming Keyboard and similar devices"
@@ -10,7 +11,9 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libusb-devel"
+BUILD_REQUIRES="
+	libusb-devel
+"
 
 DOCS="
 	README.rst

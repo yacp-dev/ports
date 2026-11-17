@@ -6,82 +6,80 @@ libraries.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libavcodec61-7.1-1
-  libavformat61-7.1-1
-  libavutil59-7.1-1
-  libcairo2-1.17.4-1
-  libfreerdp2_2-2.0.0-0.6.rc2
-  libgcrypt20-1.11.0-1
-  libglib2.0_0-2.64.6-1
-  libguac-terminal0-1.5.5-1bl1
-  libguac24-1.5.5-1bl1
-  libjpeg8-3.0.3-1
-  libpango1.0_0-1.54.0-1
-  libpng16-1.6.42-1
+  cygwin-3.6.12-1
+  libavcodec63-9.0.2-3
+  libavformat63-9.0.2-3
+  libavutil61-9.0.2-3
+  libcairo2-1.18.6-1
+  libgcc1-14.4.0-1
+  libgcrypt20-1.12.4-1
+  libglib2.0_0-2.90.1-1
+  libguac-terminal2-1.6.0-1bl1
+  libguac25-1.6.0-1bl1
+  libjpeg8-3.2.0-1
+  libpango1.0_0-1.58.2-1
+  libpng16-1.6.59-1
   libpulse0-17.0-4
   libssh2_1-1.11.0-1
-  libssl3-3.0.15-1
-  libswscale8-7.1-1
-  libtelnet2-0.23-1bl2
-  libuuid1-2.39.3-2
+  libssl3-3.5.9-1
+  libswscale10-9.0.2-3
+  libtelnet2-0.23-1bl3
+  libuuid1-2.40.2-2
   libvncserver1-0.9.11-1
-  libwebp7-1.4.0-1
-  libwebsockets19-4.3.3-1bl1
-  libwinpr2_2-2.0.0-0.6.rc2
+  libwebp7-1.6.0-1
+  libwebsockets23-5.1.0-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libavcodec-devel-7.1-1
-  libavformat-devel-7.1-1
-  libavutil-devel-7.1-1
-  libcairo-devel-1.17.4-1
-  libfreerdp2-devel-2.0.0-0.6.rc2
-  libgcrypt-devel-1.11.0-1
-  libglib2.0-devel-2.64.6-1
-  libjpeg-devel-3.0.3-1
-  libpango1.0-devel-1.54.0-1
-  libpng-devel-1.6.42-1
+  CUnit-2.1.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libavcodec-devel-9.0.2-3
+  libavformat-devel-9.0.2-3
+  libavutil-devel-9.0.2-3
+  libcairo-devel-1.18.6-1
+  libgcrypt-devel-1.12.4-1
+  libglib2.0-devel-2.90.1-1
+  libjpeg-devel-3.2.0-1
+  libpango1.0-devel-1.58.2-1
+  libpng-devel-1.6.59-1
   libpulse-devel-17.0-4
   libssh2-devel-1.11.0-1
-  libssl-devel-3.0.15-1
-  libswscale-devel-7.1-1
-  libtelnet-devel-0.23-1bl2
-  libtool-2.5.3-1
-  libuuid-devel-2.39.3-2
+  libssl-devel-3.5.9-1
+  libswscale-devel-9.0.2-3
+  libtelnet-devel-0.23-1bl3
+  libtool-2.6.2-1
+  libuuid-devel-2.40.2-2
   libvncserver-devel-0.9.11-1
-  libwebp-devel-1.4.0-1
-  libwebsockets-devel-4.3.3-1bl1
-  libwinpr2-devel-2.0.0-0.6.rc2
+  libwebp-devel-1.6.0-1
+  libwebsockets-devel-5.1.0-1bl1
   make-4.4.1-2
 
 Canonical website:
   https://guacamole.apache.org/
 
 Canonical download:
-  https://github.com/apache/guacamole-server/archive/refs/tags/1.5.5.tar.gz
+  https://github.com/apache/guacamole-server/archive/refs/tags/1.6.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack guacamole-server-1.5.5-X-src.tar.xz
+  1. unpack guacamole-server-1.6.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./guacamole-server-1.5.5-X.cygport all
+        % cygport ./guacamole-server-1.6.0-X.cygport all
 
 This will create:
-  /usr/src/guacamole-server-1.5.5-X-src.tar.xz
-  /usr/src/guacamole-server-1.5.5-X.tar.xz
-  /usr/src/libguac24-1.5.5-X.tar.xz
-  /usr/src/libguac-devel-1.5.5-X.tar.xz
-  /usr/src/libguac-terminal0-1.5.5-X.tar.xz
-  /usr/src/libguac-terminal-devel-1.5.5-X.tar.xz
+  /usr/src/guacamole-server-1.6.0-X-src.tar.xz
+  /usr/src/guacamole-server-1.6.0-X.tar.xz
+  /usr/src/libguac25-1.6.0-X.tar.xz
+  /usr/src/libguac-devel-1.6.0-X.tar.xz
+  /usr/src/libguac-terminal2-1.6.0-X.tar.xz
+  /usr/src/libguac-terminal-devel-1.6.0-X.tar.xz
 
 -------------------------------------------
 
@@ -101,20 +99,18 @@ Files included in the binary package:
   /usr/share/man/man5/guacd.conf.5.gz
   /usr/share/man/man8/guacd.8.gz
 
-(libguac24)
-  /usr/bin/cygguac-24.dll
+(libguac25)
+  /usr/bin/cygguac-25.dll
   /usr/lib/cygguac-client-kubernetes.dll
-  /usr/lib/cygguac-client-rdp.dll
   /usr/lib/cygguac-client-ssh.dll
   /usr/lib/cygguac-client-telnet.dll
   /usr/lib/cygguac-client-vnc.dll
-  /usr/lib/freerdp2/cygguac-common-svc-client.dll
-  /usr/lib/freerdp2/cygguacai-client.dll
 
 (libguac-devel)
   /usr/include/guacamole/argv-constants.h
   /usr/include/guacamole/argv-fntypes.h
   /usr/include/guacamole/argv.h
+  /usr/include/guacamole/assert.h
   /usr/include/guacamole/audio-fntypes.h
   /usr/include/guacamole/audio-types.h
   /usr/include/guacamole/audio.h
@@ -122,9 +118,17 @@ Files included in the binary package:
   /usr/include/guacamole/client-fntypes.h
   /usr/include/guacamole/client-types.h
   /usr/include/guacamole/client.h
+  /usr/include/guacamole/display-constants.h
+  /usr/include/guacamole/display-types.h
+  /usr/include/guacamole/display.h
   /usr/include/guacamole/error-types.h
   /usr/include/guacamole/error.h
+  /usr/include/guacamole/fifo-constants.h
+  /usr/include/guacamole/fifo-types.h
+  /usr/include/guacamole/fifo.h
   /usr/include/guacamole/fips.h
+  /usr/include/guacamole/flag-types.h
+  /usr/include/guacamole/flag.h
   /usr/include/guacamole/hash.h
   /usr/include/guacamole/layer-types.h
   /usr/include/guacamole/layer.h
@@ -143,6 +147,8 @@ Files included in the binary package:
   /usr/include/guacamole/protocol-types.h
   /usr/include/guacamole/protocol.h
   /usr/include/guacamole/recording.h
+  /usr/include/guacamole/rect-types.h
+  /usr/include/guacamole/rect.h
   /usr/include/guacamole/rwlock.h
   /usr/include/guacamole/socket-constants.h
   /usr/include/guacamole/socket-fntypes.h
@@ -152,6 +158,7 @@ Files included in the binary package:
   /usr/include/guacamole/stream-types.h
   /usr/include/guacamole/stream.h
   /usr/include/guacamole/string.h
+  /usr/include/guacamole/tcp.h
   /usr/include/guacamole/timestamp-types.h
   /usr/include/guacamole/timestamp.h
   /usr/include/guacamole/unicode.h
@@ -163,8 +170,8 @@ Files included in the binary package:
   /usr/include/guacamole/wol.h
   /usr/lib/libguac.dll.a
 
-(libguac-terminal0)
-  /usr/bin/cygguac-terminal-0.dll
+(libguac-terminal2)
+  /usr/bin/cygguac-terminal-2.dll
 
 (libguac-terminal-devel)
   /usr/include/guacamole/terminal/terminal.h
@@ -173,6 +180,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6.0-1bl1 -----
+Version bump.
 
 ----- version 1.5.5-1bl1 -----
 Version bump.

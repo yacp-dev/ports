@@ -1,5 +1,8 @@
 HOMEPAGE="https://liballeg.org/"
 SRC_URI="https://github.com/liballeg/${PN}5/releases/download/${PV}/${P}.7z"
+PATCH_URI="
+	allegro-5.2.11.3-interface-include-dirs.patch
+"
 SRC_DIR=${PN}
 
 CATEGORY="Libs"

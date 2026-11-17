@@ -22,7 +22,7 @@ Runtime requirements:
   libXrandr2-1.5.5-1
   libXss-devel-1.2.5-1
   libXss1-1.2.5-1
-  liballegro5.2-5.2.11.3-1bl2
+  liballegro5.2-5.2.11.3-1bl3
   libdumb-devel-2.0.3-1bl3
   libdumb2-2.0.3-1bl3
   libfreetype-devel-2.13.3-1
@@ -272,6 +272,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.2.11.3-1bl3 -----
+Fix AllegroTargets.cmake
 
 ----- version 5.2.11.3-1bl2 -----
 Rebuild with gcc-14.4.0

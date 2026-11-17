@@ -1,0 +1,17 @@
+Quote the BUILD_INTERFACE generator expression of the allegro target's
+INTERFACE_INCLUDE_DIRECTORIES.  Unquoted, the ';' splits it, and CMake exports
+the build tree's source directory into AllegroTargets.cmake, so every
+find_package(Allegro) of an installed copy fails with 'includes non-existent
+path'.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1046,7 +1046,7 @@
+         "${PLATFORM_LIBS}"
+         )
+     target_include_directories(allegro INTERFACE
+-        $<BUILD_INTERFACE:include;${PROJECT_BINARY_DIR}/include>
++        "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include;${PROJECT_BINARY_DIR}/include>"
+         )
+ endif(NOT WANT_MONOLITH)
+ 

@@ -1,0 +1,46 @@
+--- origsrc/radcli-2.0.2/lib/ip_util.c	2026-11-15 07:35:26.000000000 +0000
++++ src/radcli-2.0.2/lib/ip_util.c	2026-11-17 18:06:20.931277500 +0000
+@@ -47,6 +47,13 @@ struct addrinfo *rc_getaddrinfo (char co
+ 		service = "radius-acct";
+  
+ 	err = getaddrinfo(host, service, &hints, &res);
++#ifdef __CYGWIN__
++	/* Windows' services file names the accounting port "radacct", not
++	 * "radius-acct", so fall back to the port number. */
++	if (err == EAI_SERVICE && service != NULL)
++		err = getaddrinfo(host, (flags & PW_AI_AUTH) ? "1812" : "1813",
++				  &hints, &res);
++#endif
+ 	if (err != 0) {
+ 		rc_log(LOG_ERR, "rc_getaddrinfo: %s: %s", host ? host : "(null)", gai_strerror(err));
+  		return NULL;
+--- origsrc/radcli-2.0.2/tests/session-timeout.c	2026-11-15 07:35:26.000000000 +0000
++++ src/radcli-2.0.2/tests/session-timeout.c	2026-11-17 18:06:20.933292800 +0000
+@@ -69,7 +69,9 @@
+ #include <time.h>
+ #include <arpa/inet.h>
+ #include <sys/socket.h>
++#ifndef __CYGWIN__
+ #include <sys/syscall.h>
++#endif
+ #include <unistd.h>
+ 
+ /* Longest a radcli_ctx_dispatch() call may take in stall mode. */
+@@ -101,6 +103,9 @@ static double now_ms(void)
+ 	return ts.tv_sec * 1000.0 + ts.tv_nsec / 1e6;
+ }
+ 
++/* Cygwin has no syscall(), and a DLL's sendmsg() call is not resolved
++ * to this executable's definition anyway. */
++#ifndef __CYGWIN__
+ /* Replaces libc's, for the sends GnuTLS makes. */
+ ssize_t sendmsg(int fd, const struct msghdr *msg, int flags)
+ {
+@@ -113,6 +118,7 @@ ssize_t sendmsg(int fd, const struct msg
+ 		first_send_ms = now_ms();
+ 	return syscall(SYS_sendmsg, fd, msg, flags);
+ }
++#endif
+ 
+ static radcli_request *new_request(radcli_ctx *ctx)
+ {

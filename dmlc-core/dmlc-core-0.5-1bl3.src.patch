@@ -1,5 +1,5 @@
---- origsrc/dmlc-core-0.5/CMakeLists.txt	2021-04-14 23:06:33.000000000 +0900
-+++ src/dmlc-core-0.5/CMakeLists.txt	2024-09-25 12:42:43.566561000 +0900
+--- origsrc/dmlc-core-0.5/CMakeLists.txt	2021-04-14 14:06:33.000000000 +0000
++++ src/dmlc-core-0.5/CMakeLists.txt	2026-11-17 06:16:24.557130300 +0000
 @@ -1,6 +1,6 @@
  cmake_minimum_required(VERSION 3.2)
  
@@ -40,8 +40,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/dmlc-core.pc.in ${CMAKE_BINARY_DIR}/dmlc-core.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/dmlc-core.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/dmlc-core-0.5/dmlc-core.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/dmlc-core-0.5/dmlc-core.pc.in	2024-09-25 12:42:04.687042200 +0900
+--- origsrc/dmlc-core-0.5/dmlc-core.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/dmlc-core-0.5/dmlc-core.pc.in	2026-11-17 06:16:24.557130300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

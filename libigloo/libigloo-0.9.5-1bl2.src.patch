@@ -1,5 +1,5 @@
---- origsrc/libigloo-0.9.5/Makefile.am	2024-02-08 16:52:50.000000000 +0900
-+++ src/libigloo-0.9.5/Makefile.am	2026-01-22 20:27:34.223654900 +0900
+--- origsrc/libigloo-0.9.5/Makefile.am	2024-02-08 07:52:50.000000000 +0000
++++ src/libigloo-0.9.5/Makefile.am	2026-11-17 12:35:18.673832200 +0000
 @@ -19,6 +19,8 @@ libigloo_la_SOURCES = \
      src/uuid.c \
      src/private.h

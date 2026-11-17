@@ -5,64 +5,65 @@ the protocol handshakes and detail from the user code driving the server.
 
 Runtime requirements:
   cygwin-3.6.12-1
-  libavcodec63-9.0.2-2
-  libavformat63-9.0.2-2
-  libavutil61-9.0.2-2
+  libavcodec63-9.0.2-3
+  libavformat63-9.0.2-3
+  libavutil61-9.0.2-3
   libbrotlidec1-1.2.1-1
   libbrotlienc1-1.2.1-1
   libdbus1_3-1.16.2-1
   libevent2.1_7-2.1.13-1
   libglib2.0_0-2.90.1-1
   libssl3-3.5.9-1
-  libswresample7-9.0.2-2
-  libswscale10-9.0.2-2
+  libswresample7-9.0.2-3
+  libswscale10-9.0.2-3
+  libuv-devel-1.53.0-1
   libuv1-1.53.0-1
-  libwebsockets-devel-5.0.0-1bl1
-  libwebsockets22-5.0.0-1bl1
-  pkg-config-3.0.9-1
-  zlib0-1.3.2-1
+  libwebsockets-devel-5.1.0-1bl1
+  libwebsockets23-5.1.0-1bl1
+  pkg-config-3.0.10-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.4.4-1
-  cygport-0.37.11-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
-  libavcodec-devel-9.0.2-2
-  libavformat-devel-9.0.2-2
-  libavutil-devel-9.0.2-2
+  libavcodec-devel-9.0.2-3
+  libavformat-devel-9.0.2-3
+  libavutil-devel-9.0.2-3
   libbrotli-devel-1.2.1-1
   libdbus1-devel-1.16.2-1
   libevent-devel-2.1.13-1
   libglib2.0-devel-2.90.1-1
   libsqlite3-devel-3.49.1-1
   libssl-devel-3.5.9-1
-  libswresample-devel-9.0.2-2
-  libswscale-devel-9.0.2-2
+  libswresample-devel-9.0.2-3
+  libswscale-devel-9.0.2-3
   libuv-devel-1.53.0-1
   ninja-1.13.2-1
-  zlib-devel-1.3.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/warmcat/libwebsockets
 
 Canonical download:
-  https://github.com/warmcat/libwebsockets/archive/refs/tags/v5.0.0.tar.gz
+  https://github.com/warmcat/libwebsockets/archive/refs/tags/v5.1.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libwebsockets-5.0.0-X-src.tar.xz
+  1. unpack libwebsockets-5.1.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libwebsockets-5.0.0-X.cygport all
+        % cygport ./libwebsockets-5.1.0-X.cygport all
 
 This will create:
-  /usr/src/libwebsockets-5.0.0-X-src.tar.xz
-  /usr/src/libwebsockets-5.0.0-X.tar.xz
-  /usr/src/libwebsockets22-5.0.0-X.tar.xz
-  /usr/src/libwebsockets-devel-5.0.0-X.tar.xz
+  /usr/src/libwebsockets-5.1.0-X-src.tar.xz
+  /usr/src/libwebsockets-5.1.0-X.tar.xz
+  /usr/src/libwebsockets23-5.1.0-X.tar.xz
+  /usr/src/libwebsockets-devel-5.1.0-X.tar.xz
 
 -------------------------------------------
 
@@ -86,6 +87,7 @@ Files included in the binary package:
   /usr/share/doc/libwebsockets/README.coding.md
   /usr/share/doc/libwebsockets/README.content-security-policy.md
   /usr/share/doc/libwebsockets/README.contributing.md
+  /usr/share/doc/libwebsockets/README.coverage.md
   /usr/share/doc/libwebsockets/README.crypto-apis.md
   /usr/share/doc/libwebsockets/README.crypto-dnssec.md
   /usr/share/doc/libwebsockets/README.ctest.md
@@ -97,6 +99,7 @@ Files included in the binary package:
   /usr/share/doc/libwebsockets/README.event-loops-intro.md
   /usr/share/doc/libwebsockets/README.example-and-plugin-build.md
   /usr/share/doc/libwebsockets/README.fault-injection.md
+  /usr/share/doc/libwebsockets/README.gif-decoder.md
   /usr/share/doc/libwebsockets/README.h2-long-poll.md
   /usr/share/doc/libwebsockets/README.html-parser.md
   /usr/share/doc/libwebsockets/README.http-cache.md
@@ -108,6 +111,7 @@ Files included in the binary package:
   /usr/share/doc/libwebsockets/README.jwt.md
   /usr/share/doc/libwebsockets/README.libressl.md
   /usr/share/doc/libwebsockets/README.lifecycle.md
+  /usr/share/doc/libwebsockets/README.log-ship.md
   /usr/share/doc/libwebsockets/README.logging.md
   /usr/share/doc/libwebsockets/README.lws_backtrace.md
   /usr/share/doc/libwebsockets/README.lws_cache.md
@@ -123,6 +127,7 @@ Files included in the binary package:
   /usr/share/doc/libwebsockets/README.lws_sul.md
   /usr/share/doc/libwebsockets/README.lws_system.md
   /usr/share/doc/libwebsockets/README.lwsws.md
+  /usr/share/doc/libwebsockets/README.markdown-renderer.md
   /usr/share/doc/libwebsockets/README.md
   /usr/share/doc/libwebsockets/README.plugin-acme.md
   /usr/share/doc/libwebsockets/README.plugin-sshd-base.md
@@ -134,15 +139,23 @@ Files included in the binary package:
   /usr/share/doc/libwebsockets/README.quic.md
   /usr/share/doc/libwebsockets/README.release-policy.md
   /usr/share/doc/libwebsockets/README.routing.md
+  /usr/share/doc/libwebsockets/README.sans-io-port.md
+  /usr/share/doc/libwebsockets/README.sans-io-split.md
   /usr/share/doc/libwebsockets/README.secure-streams.md
   /usr/share/doc/libwebsockets/README.selfdns.org.md
+  /usr/share/doc/libwebsockets/README.service-isolation.md
+  /usr/share/doc/libwebsockets/README.smtp-client.md
   /usr/share/doc/libwebsockets/README.stdin.md
+  /usr/share/doc/libwebsockets/README.svg-renderer.md
+  /usr/share/doc/libwebsockets/README.syntax-highlight.md
+  /usr/share/doc/libwebsockets/README.sysinfo.md
   /usr/share/doc/libwebsockets/README.tcp_fastopen.md
   /usr/share/doc/libwebsockets/README.test-apps.md
   /usr/share/doc/libwebsockets/README.tls-sessions.md
   /usr/share/doc/libwebsockets/README.udp.md
   /usr/share/doc/libwebsockets/README.unix-domain-reverse-proxy.md
   /usr/share/doc/libwebsockets/README.webtransport.md
+  /usr/share/doc/libwebsockets/README.wsi-state-machines.md
   /usr/share/doc/libwebsockets/mainpage.md
   /usr/share/libwebsockets-test-server/captcha-ratelimit/captcha-assets/captcha.css
   /usr/share/libwebsockets-test-server/captcha-ratelimit/captcha-assets/captcha.js
@@ -154,6 +167,9 @@ Files included in the binary package:
   /usr/share/libwebsockets-test-server/deaddrop/deaddrop.js
   /usr/share/libwebsockets-test-server/deaddrop/drop.svg
   /usr/share/libwebsockets-test-server/deaddrop/index.html
+  /usr/share/libwebsockets-test-server/lws-login/login-assets/index.html
+  /usr/share/libwebsockets-test-server/lws-login/login-assets/login.css
+  /usr/share/libwebsockets-test-server/lws-login/login-assets/login.js
   /usr/share/libwebsockets-test-server/plugins/cygprotocol_client_loopback_test.dll
   /usr/share/libwebsockets-test-server/plugins/cygprotocol_deaddrop.dll
   /usr/share/libwebsockets-test-server/plugins/cygprotocol_dumb_increment.dll
@@ -166,6 +182,7 @@ Files included in the binary package:
   /usr/share/libwebsockets-test-server/plugins/cygprotocol_lws_cert_dist_client.dll
   /usr/share/libwebsockets-test-server/plugins/cygprotocol_lws_cert_dist_server.dll
   /usr/share/libwebsockets-test-server/plugins/cygprotocol_lws_hls.dll
+  /usr/share/libwebsockets-test-server/plugins/cygprotocol_lws_login.dll
   /usr/share/libwebsockets-test-server/plugins/cygprotocol_lws_mirror.dll
   /usr/share/libwebsockets-test-server/plugins/cygprotocol_lws_oauth2_client.dll
   /usr/share/libwebsockets-test-server/plugins/cygprotocol_lws_oauth_preauth.dll
@@ -183,9 +200,23 @@ Files included in the binary package:
   /usr/share/libwebsockets-test-server/shared-world/dummy3.babylon
   /usr/share/libwebsockets-test-server/shared-world/index.html
   /usr/share/libwebsockets-test-server/shared-world/style.css
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Bold10.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Bold12.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Bold14.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Bold16.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Bold20.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Bold24.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Bold32.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Regular10.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Regular12.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Regular14.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Regular16.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Regular20.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Regular24.mcufont
+  /usr/share/libwebsockets/fonts/FiraSansCondensed-Regular32.mcufont
 
-(libwebsockets22)
-  /usr/bin/cygwebsockets-22.dll
+(libwebsockets23)
+  /usr/bin/cygwebsockets-23.dll
 
 (libwebsockets-devel)
   /usr/include/libwebsockets.h
@@ -207,6 +238,7 @@ Files included in the binary package:
   /usr/include/libwebsockets/lws-client.h
   /usr/include/libwebsockets/lws-conmon.h
   /usr/include/libwebsockets/lws-context-vhost.h
+  /usr/include/libwebsockets/lws-core.h
   /usr/include/libwebsockets/lws-cose.h
   /usr/include/libwebsockets/lws-dbus.h
   /usr/include/libwebsockets/lws-dht-dnssec.h
@@ -230,12 +262,16 @@ Files included in the binary package:
   /usr/include/libwebsockets/lws-genec.h
   /usr/include/libwebsockets/lws-genhash.h
   /usr/include/libwebsockets/lws-genrsa.h
+  /usr/include/libwebsockets/lws-gif.h
   /usr/include/libwebsockets/lws-gpio.h
+  /usr/include/libwebsockets/lws-hl.h
   /usr/include/libwebsockets/lws-html.h
   /usr/include/libwebsockets/lws-http.h
   /usr/include/libwebsockets/lws-i2c.h
   /usr/include/libwebsockets/lws-ili9341-spi.h
   /usr/include/libwebsockets/lws-interceptor.h
+  /usr/include/libwebsockets/lws-io-ops.h
+  /usr/include/libwebsockets/lws-io.h
   /usr/include/libwebsockets/lws-jose.h
   /usr/include/libwebsockets/lws-jpeg.h
   /usr/include/libwebsockets/lws-jrpc.h
@@ -247,9 +283,11 @@ Files included in the binary package:
   /usr/include/libwebsockets/lws-lecp.h
   /usr/include/libwebsockets/lws-led.h
   /usr/include/libwebsockets/lws-lejp.h
+  /usr/include/libwebsockets/lws-log-ship.h
   /usr/include/libwebsockets/lws-logs.h
   /usr/include/libwebsockets/lws-lwsac.h
   /usr/include/libwebsockets/lws-map.h
+  /usr/include/libwebsockets/lws-md.h
   /usr/include/libwebsockets/lws-metrics.h
   /usr/include/libwebsockets/lws-misc.h
   /usr/include/libwebsockets/lws-mnemonic.h
@@ -259,13 +297,16 @@ Files included in the binary package:
   /usr/include/libwebsockets/lws-optee.h
   /usr/include/libwebsockets/lws-ota.h
   /usr/include/libwebsockets/lws-protocols-plugins.h
+  /usr/include/libwebsockets/lws-proxy-v2.h
   /usr/include/libwebsockets/lws-purify.h
   /usr/include/libwebsockets/lws-pwm.h
   /usr/include/libwebsockets/lws-qpack.h
   /usr/include/libwebsockets/lws-quic.h
+  /usr/include/libwebsockets/lws-region.h
   /usr/include/libwebsockets/lws-retry.h
   /usr/include/libwebsockets/lws-ring.h
   /usr/include/libwebsockets/lws-rtp.h
+  /usr/include/libwebsockets/lws-sansio.h
   /usr/include/libwebsockets/lws-secure-streams-client.h
   /usr/include/libwebsockets/lws-secure-streams-policy.h
   /usr/include/libwebsockets/lws-secure-streams-serialization.h
@@ -276,6 +317,7 @@ Files included in the binary package:
   /usr/include/libwebsockets/lws-sha1-base64.h
   /usr/include/libwebsockets/lws-smd.h
   /usr/include/libwebsockets/lws-smtp-client.h
+  /usr/include/libwebsockets/lws-smtp.h
   /usr/include/libwebsockets/lws-spa.h
   /usr/include/libwebsockets/lws-spd1656-spi.h
   /usr/include/libwebsockets/lws-spi.h
@@ -286,8 +328,9 @@ Files included in the binary package:
   /usr/include/libwebsockets/lws-struct.h
   /usr/include/libwebsockets/lws-stub.h
   /usr/include/libwebsockets/lws-stun.h
+  /usr/include/libwebsockets/lws-svg.h
+  /usr/include/libwebsockets/lws-sysinfo.h
   /usr/include/libwebsockets/lws-system.h
-  /usr/include/libwebsockets/lws-test-sequencer.h
   /usr/include/libwebsockets/lws-threadpool.h
   /usr/include/libwebsockets/lws-timeout-timer.h
   /usr/include/libwebsockets/lws-tls-sessions.h
@@ -320,6 +363,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.1.0-1bl1 -----
+Version bump.
 
 ----- version 5.0.0-1bl1 -----
 Version bump.

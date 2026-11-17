@@ -94,6 +94,7 @@ liballegro_devel_REQUIRES="
 	libtheora-devel
 	libwebp-devel
 	libXcursor-devel
+	libXi-devel
 	libXinerama-devel
 	libXrandr-devel
 	libXss-devel

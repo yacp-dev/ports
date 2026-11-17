@@ -3,26 +3,26 @@ czmqpp
 C++ wrapper for czmq
 
 Runtime requirements:
-  cygwin-2.4.1-1
-  libczmq++-devel-1.1.0+git20150213-1bl1
-  libczmq++0-1.1.0+git20150213-1bl1
-  libczmq-devel-3.0.2-1bl2
-  libczmq3-3.0.2-1bl2
-  libgcc1-5.3.0-3
-  libssp0-5.3.0-3
-  libstdc++6-5.3.0-3
-  pkg-config-0.29-1
+  cygwin-3.6.12-1
+  libczmq++-devel-1.2.0+git20160505-1bl1
+  libczmq++0-1.2.0+git20160505-1bl1
+  libczmq3-3.0.2-1bl1
+  libczmq3-devel-3.0.2-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-4
-  cygport-0.21.1-1
-  gcc-core-5.3.0-3
-  gcc-g++-5.3.0-3
-  libtool-2.4.6-3
-  make-4.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libczmq3-devel-3.0.2-1bl1
+  libtool-2.6.2-1
+  libzmq-devel-4.3.5-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/zeromq/czmqpp
@@ -33,17 +33,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack czmqpp-1.1.0+git20150213-X-src.tar.xz
+  1. unpack czmqpp-1.2.0+git20160505-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./czmqpp-1.1.0+git20150213-X.cygport all
+        % cygport ./czmqpp-1.2.0+git20160505-X.cygport all
 
 This will create:
-  /usr/src/czmqpp-1.1.0+git20150213-X-src.tar.xz
-  /usr/src/czmqpp-1.1.0+git20150213-X.tar.xz
-  /usr/src/libczmq++0-1.1.0+git20150213-X.tar.xz
-  /usr/src/libczmq++-devel-1.1.0+git20150213-X.tar.xz
+  /usr/src/czmqpp-1.2.0+git20160505-X-src.tar.xz
+  /usr/src/czmqpp-1.2.0+git20160505-X.tar.xz
+  /usr/src/libczmq++0-1.2.0+git20160505-X.tar.xz
+  /usr/src/libczmq++-devel-1.2.0+git20160505-X.tar.xz
 
 -------------------------------------------
 
@@ -81,6 +81,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.0+git20160505-1bl1 -----
+Version bump.
 
 ----- version 1.1.0+git20150213-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

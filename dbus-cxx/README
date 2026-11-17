@@ -1,57 +1,58 @@
 dbus-cxx
 ------------------------------------------
-DBus-cxx is a C++ wrapper for DBus. DBus is a Linux-specific RPC(remote
-procedure call) and IPC(inter-process communications) mechanism.
+DBus-cxx is a C++ implementation of the DBus protocol. DBus is a Linux-specific
+RPC(remote procedure call) and IPC(inter-process communications) mechanism.
 
 Runtime requirements:
-  cygwin-3.1.7-1
-  libcppgenerate0-0.2-1bl2
-  libdbus-cxx-devel-0.12.0-1bl1
-  libdbus-cxx-glibmm-devel-0.12.0-1bl1
-  libdbus-cxx-glibmm1-0.12.0-1bl1
-  libdbus-cxx1-0.12.0-1bl1
-  libdbus1-devel-1.10.22-1
-  libdbus1_3-1.10.22-1
-  libexpat1-2.2.6-1
-  libgcc1-10.2.0-1
-  libglibmm2.4_1-2.54.1-2
-  libpopt0-1.16-2
-  libsigc2.0-devel-2.10.3-1
-  libsigc2.0_0-2.10.3-1
-  libstdc++6-10.2.0-1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libdbus-cxx-devel-2.6.2-1bl1
+  libdbus-cxx-glib2-2.6.2-1bl1
+  libdbus-cxx2-2.6.2-1bl1
+  libexpat1-2.10.0-1
+  libgcc1-14.4.0-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libpopt0-1.19-1
+  libsigc3.0-devel-3.0.3-1
+  libsigc3.0_0-3.0.3-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.34+1git.de9c1b7cfe-1
-  cmake-3.17.3-2
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  gcc-g++-10.2.0-1
-  ninja-1.10.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  dbus-x11-1.16.2-1
+  gcc-g++-14.4.0-1
+  libdbus1-devel-1.16.2-1
+  libexpat-devel-2.10.0-1
+  libglib2.0-devel-2.90.1-1
+  libpopt-devel-1.19-1
+  libsigc3.0-devel-3.0.3-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/dbus-cxx/dbus-cxx/
 
 Canonical download:
-  https://github.com/dbus-cxx/dbus-cxx/archive/0.12.0.tar.gz
+  https://github.com/dbus-cxx/dbus-cxx/archive/2.6.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack dbus-cxx-0.12.0-X-src.tar.xz
+  1. unpack dbus-cxx-2.6.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./dbus-cxx-0.12.0-X.cygport all
+        % cygport ./dbus-cxx-2.6.2-X.cygport all
 
 This will create:
-  /usr/src/dbus-cxx-0.12.0-X-src.tar.xz
-  /usr/src/dbus-cxx-0.12.0-X.tar.xz
-  /usr/src/libdbus-cxx1-0.12.0-X.tar.xz
-  /usr/src/libdbus-cxx-devel-0.12.0-X.tar.xz
-  /usr/src/libdbus-cxx-glibmm1-0.12.0-X.tar.xz
-  /usr/src/libdbus-cxx-glibmm-devel-0.12.0-X.tar.xz
+  /usr/src/dbus-cxx-2.6.2-X-src.tar.xz
+  /usr/src/dbus-cxx-2.6.2-X.tar.xz
+  /usr/src/libdbus-cxx2-2.6.2-X.tar.xz
+  /usr/src/libdbus-cxx-devel-2.6.2-X.tar.xz
+  /usr/src/libdbus-cxx-glib2-2.6.2-X.tar.xz
 
 -------------------------------------------
 
@@ -64,76 +65,90 @@ Files included in the binary package:
   /usr/share/doc/dbus-cxx/AUTHORS
   /usr/share/doc/dbus-cxx/COPYING
   /usr/share/doc/dbus-cxx/ChangeLog
+  /usr/share/doc/dbus-cxx/LICENSE
   /usr/share/doc/dbus-cxx/NEWS
   /usr/share/doc/dbus-cxx/README.md
   /usr/share/doc/dbus-cxx/TODO
 
-(libdbus-cxx1)
-  /usr/bin/cygdbus-cxx-1.dll
+(libdbus-cxx2)
+  /usr/bin/cygdbus-cxx-2.dll
 
 (libdbus-cxx-devel)
-  /usr/include/dbus-cxx-0.12/dbus-cxx.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/accumulators.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/callmessage.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/connection.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/dbus-cxx-config.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/dbus-cxx-private.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/dbus_signal.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/dispatcher.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/enums.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/error.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/errormessage.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/filedescriptor.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/forward_decls.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/headerlog.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/interface.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/interfaceproxy.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/message.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/messageappenditerator.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/messagefilter.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/messagehandler.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/messageiterator.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/method.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/method_impl.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/methodbase.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/methodproxy.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/methodproxybase.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/object.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/objectpathhandler.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/objectproxy.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/path.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/pendingcall.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/pointer.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/returnmessage.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/signal_base.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/signal_proxy.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/signal_proxy_base.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/signalmessage.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/signalreceiver.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/signature.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/signatureiterator.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/simplelogger.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/simplelogger_defs.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/timeout.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/types.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/utility.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/variant.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx/watch.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/callmessage.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/connection.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/daemon-proxy/DBusDaemonProxy.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/dbus-cxx-config.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/dbus-error.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/demangle.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/demarshaling.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/dispatcher.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/enums.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/error.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/errormessage.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/filedescriptor.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/headerlog.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/interface.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/interfaceproxy.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/marshaling.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/matchrule.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/message.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/messageappenditerator.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/messageiterator.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/methodbase.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/methodproxybase.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/multiplereturn.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/object.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/objectproxy.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/path.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/pendingcall.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/property.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/propertyproxy.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/returnmessage.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/sasl.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/sendmsgtransport.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/signal.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/signalbase.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/signalmessage.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/signalproxy.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/signature.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/signatureiterator.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/simplelogger.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/simplelogger_defs.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/simpletransport.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/standalonedispatcher.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/standard-interfaces/introspectableinterfaceproxy.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/standard-interfaces/objectmanagerproxy.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/standard-interfaces/peerinterfaceproxy.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/standard-interfaces/propertiesinterfaceproxy.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/threaddispatcher.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/transport.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/types.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/utility.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/validator.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/variant.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/variantappenditerator.h
+  /usr/include/dbus-cxx-2.0/dbus-cxx/variantiterator.h
+  /usr/include/dbus-cxx-glib-2.0/dbus-cxx-glib.h
+  /usr/include/dbus-cxx-glib-2.0/glibdispatcher.h
+  /usr/lib/cmake/dbus-cxx/dbus-cxxConfig.cmake
+  /usr/lib/cmake/dbus-cxx/dbus-cxxConfigVersion.cmake
+  /usr/lib/cmake/dbus-cxx/dbus-cxxTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/dbus-cxx/dbus-cxxTargets.cmake
+  /usr/lib/libdbus-cxx-glib.dll.a
   /usr/lib/libdbus-cxx.dll.a
-  /usr/lib/pkgconfig/dbus-cxx-1.0.pc
+  /usr/lib/pkgconfig/dbus-cxx-2.0.pc
+  /usr/lib/pkgconfig/dbus-cxx-glib-2.0.pc
 
-(libdbus-cxx-glibmm1)
-  /usr/bin/cygdbus-cxx-glibmm-1.dll
-
-(libdbus-cxx-glibmm-devel)
-  /usr/include/dbus-cxx-0.12/dbus-cxx-glibmm.h
-  /usr/include/dbus-cxx-0.12/dbus-cxx-glibmm/dispatcher.h
-  /usr/lib/libdbus-cxx-glibmm.dll.a
-  /usr/lib/pkgconfig/dbus-cxx-glibmm-1.0.pc
+(libdbus-cxx-glib2)
+  /usr/bin/cygdbus-cxx-glib-2.dll
 
 ------------------
 
 Port Notes:
+
+----- version 2.6.2-1bl1 -----
+Version bump.
 
 ----- version 0.12.0-1bl1 -----
 Version bump.

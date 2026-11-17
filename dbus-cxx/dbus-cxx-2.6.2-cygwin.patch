@@ -1,0 +1,84 @@
+Install the DLLs into bin (a RUNTIME destination is needed on Cygwin).
+
+Do not put dbus-cxx/ on the include path of the tools, tests and examples.
+Its signal.h shadows the system <signal.h>, which Cygwin's <pthread.h>
+includes, so no standard header compiles. The headers are found through
+the dbus-cxx target's include directories instead.
+
+diff --git a/dbus-cxx-glib/unit-tests/CMakeLists.txt b/dbus-cxx-glib/unit-tests/CMakeLists.txt
+index bc1c966..a627aff 100644
+--- a/dbus-cxx-glib/unit-tests/CMakeLists.txt
++++ b/dbus-cxx-glib/unit-tests/CMakeLists.txt
+@@ -20,9 +20,7 @@ set( TEST_LINK dbus-cxx dbus-cxx-glib PkgConfig::glib PkgConfig::sigc PkgConfig:
+ 
+ link_directories( ${CMAKE_BINARY_DIR} )
+ 
+-include_directories( ${CMAKE_SOURCE_DIR}/dbus-cxx
+-    ${CMAKE_BINARY_DIR}/dbus-cxx
+-    ${CMAKE_SOURCE_DIR}/dbus-cxx-glib )
++include_directories( ${CMAKE_SOURCE_DIR}/dbus-cxx-glib )
+ 
+ add_executable( test-glib-dispatcher test-glib-dispatcher.cpp calleeclass.cpp )
+ target_link_libraries( test-glib-dispatcher ${TEST_LINK} )
+diff --git a/tools/CMakeLists.txt b/tools/CMakeLists.txt
+index 85643d0..28dc663 100644
+--- a/tools/CMakeLists.txt
++++ b/tools/CMakeLists.txt
+@@ -13,9 +13,6 @@ set( TOOLS_LINK dbus-cxx PkgConfig::dbus PkgConfig::sigc PkgConfig::popt PkgConf
+ 
+ link_directories( ${CMAKE_BINARY_DIR} )
+ 
+-include_directories( ${CMAKE_SOURCE_DIR}/dbus-cxx
+-    ${CMAKE_BINARY_DIR}/dbus-cxx )
+-
+ add_executable( dbus-cxx-xml2cpp
+     xml2cpp.cpp
+     code-generator.cpp
+diff --git a/unit-tests/CMakeLists.txt b/unit-tests/CMakeLists.txt
+index 01a4d57..d9cd9c0 100644
+--- a/unit-tests/CMakeLists.txt
++++ b/unit-tests/CMakeLists.txt
+@@ -4,9 +4,6 @@ set( TEST_LINK dbus-cxx PkgConfig::sigc PkgConfig::expat ${LIBRT} )
+ 
+ link_directories( ${CMAKE_BINARY_DIR} )
+ 
+-include_directories( ${CMAKE_SOURCE_DIR}/dbus-cxx
+-    ${CMAKE_BINARY_DIR}/dbus-cxx )
+-
+ if( ENABLE_ROBUSTNESS_TESTS )
+     add_subdirectory( robustness-tests )
+ endif( ENABLE_ROBUSTNESS_TESTS )
+diff --git a/examples/examples-common.cmake b/examples/examples-common.cmake
+index 2e57cc3..af458aa 100644
+--- a/examples/examples-common.cmake
++++ b/examples/examples-common.cmake
+@@ -4,6 +4,3 @@ set( EXAMPLES_LINK dbus-cxx PkgConfig::sigc ${LIBRT} PkgConfig::dbus )
+ set( CMAKE_CXX_STANDARD 17 )
+ 
+ link_directories( ${CMAKE_BINARY_DIR} )
+-
+-include_directories( ${CMAKE_SOURCE_DIR}/dbus-cxx
+-    ${CMAKE_BINARY_DIR}/dbus-cxx )
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 75bc575..2c90e64 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -326,6 +326,7 @@ endif( ENABLE_UV_SUPPORT )
+ install( TARGETS dbus-cxx
+     COMPONENT dbus-cxx
+     EXPORT dbus-cxxTargets
++    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}" )
+ foreach(FILE ${DBUS_CXX_HEADERS} )
+diff --git a/dbus-cxx-glib/CMakeLists.txt b/dbus-cxx-glib/CMakeLists.txt
+index 87c245c..1cc7d1f 100644
+--- a/dbus-cxx-glib/CMakeLists.txt
++++ b/dbus-cxx-glib/CMakeLists.txt
+@@ -68,5 +68,6 @@ install( TARGETS dbus-cxx-glib
+     EXPORT dbus-cxxTargets
+     COMPONENT glib
+     PUBLIC_HEADER DESTINATION include/dbus-cxx-glib-${DBUS_CXX_INCLUDE_VERSION} COMPONENT glib
++    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT glib
+     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT glib
+     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT glib)

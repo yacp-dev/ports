@@ -7,67 +7,83 @@ generally abstracting away the underlying platform. However, Allegro is not a
 game engine: you are free to design and structure your program as you like.
 
 Runtime requirements:
-  cygwin-3.6.9-1
+  cygwin-3.6.12-1
+  flac-devel-1.5.0-1
   libFLAC14-1.5.0-1
   libGL1-23.3.6-1
-  libX11_6-1.8.12-1
+  libGLU-devel-9.0.3-1
+  libX11_6-1.8.13-1
+  libXcursor-devel-1.2.3-1
   libXcursor1-1.2.3-1
-  libXi6-1.8.2-1
-  libXinerama1-1.1.5-1
-  libXrandr2-1.5.4-1
+  libXi6-1.8.3-1
+  libXinerama-devel-1.1.6-1
+  libXinerama1-1.1.6-1
+  libXrandr-devel-1.5.5-1
+  libXrandr2-1.5.5-1
+  libXss-devel-1.2.5-1
   libXss1-1.2.5-1
-  liballegro5.2-5.2.11.3-1bl1
-  libdumb2-2.0.3-1bl2
+  liballegro5.2-5.2.11.3-1bl2
+  libdumb-devel-2.0.3-1bl3
+  libdumb2-2.0.3-1bl3
+  libfreetype-devel-2.13.3-1
   libfreetype6-2.13.3-1
-  libgcc1-13.4.0-1
-  libglib2.0_0-2.88.1-1
+  libgcc1-14.4.0-1
+  libglib2.0_0-2.90.1-1
   libgtk3_0-3.24.52-1
-  libjpeg8-3.1.4.1-1
+  libjpeg-devel-3.2.0-1
+  libjpeg8-3.2.0-1
   libogg0-1.3.6-1
+  libopenal-devel-1.25.2-1
   libopenal1-1.25.2-1
-  libopenmpt0-0.8.6-1
+  libopenmpt-devel-0.8.10-1
+  libopenmpt0-0.8.10-1
+  libopusfile-devel-0.12-1
   libopusfile0-0.12-1
-  libphysfs1-3.2.0-1bl2
-  libpng16-1.6.47-2
+  libphysfs-devel-3.2.0-1bl3
+  libphysfs1-3.2.0-1bl3
+  libpng16-1.6.59-1
   libpulse-simple0-17.0-4
   libpulse0-17.0-4
-  libtheoradec2-1.2.0-1
+  libtheora-devel-1.2.0-2
+  libtheoradec2-1.2.0-2
   libvorbis0-1.3.7-1
   libvorbisfile3-1.3.7-1
+  libwebp-devel-1.6.0-1
   libwebp7-1.6.0-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   flac-devel-1.5.0-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  gcc-core-14.4.0-1
   libGL-devel-23.3.6-1
-  libX11-devel-1.8.12-1
+  libGLU-devel-9.0.3-1
+  libX11-devel-1.8.13-1
   libXcursor-devel-1.2.3-1
-  libXi-devel-1.8.2-1
-  libXinerama-devel-1.1.5-1
-  libXrandr-devel-1.5.4-1
+  libXi-devel-1.8.3-1
+  libXinerama-devel-1.1.6-1
+  libXrandr-devel-1.5.5-1
   libXss-devel-1.2.5-1
-  libdumb-devel-2.0.3-1bl2
+  libdumb-devel-2.0.3-1bl3
   libfreetype-devel-2.13.3-1
-  libglib2.0-devel-2.88.1-1
+  libglib2.0-devel-2.90.1-1
   libgtk3-devel-3.24.52-1
-  libjpeg-devel-3.1.4.1-1
+  libjpeg-devel-3.2.0-1
   libogg-devel-1.3.6-1
   libopenal-devel-1.25.2-1
-  libopenmpt-devel-0.8.6-1
+  libopenmpt-devel-0.8.10-1
   libopusfile-devel-0.12-1
-  libphysfs-devel-3.2.0-1bl2
-  libpng-devel-1.6.47-2
+  libphysfs-devel-3.2.0-1bl3
+  libpng-devel-1.6.59-1
   libpulse-devel-17.0-4
-  libtheora-devel-1.2.0-1
+  libtheora-devel-1.2.0-2
   libvorbis-devel-1.3.7-1
   libwebp-devel-1.6.0-1
   ninja-1.13.2-1
+  p7zip-15.14.1-1
 
 Canonical website:
   https://liballeg.org/
@@ -224,7 +240,7 @@ Files included in the binary package:
   /usr/include/allegro5/utf8.h
   /usr/lib/cmake/allegro/AllegroConfig.cmake
   /usr/lib/cmake/allegro/AllegroConfigVersion.cmake
-  /usr/lib/cmake/allegro/AllegroTargets-release.cmake
+  /usr/lib/cmake/allegro/AllegroTargets-relwithdebinfo.cmake
   /usr/lib/cmake/allegro/AllegroTargets.cmake
   /usr/lib/liballegro.dll.a
   /usr/lib/liballegro_acodec.dll.a
@@ -256,6 +272,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.2.11.3-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 5.2.11.3-1bl1 -----
 Version bump.

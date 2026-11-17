@@ -10,8 +10,8 @@ accepting user input, loading data, drawing images, playing sounds, etc. and
 generally abstracting away the underlying platform. However, Allegro is not a
 game engine: you are free to design and structure your program as you like."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="Zlib AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: Zlib AND BSD-3-Clause"
 LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="
@@ -19,6 +19,7 @@ BUILD_REQUIRES="
 	libdumb-devel
 	libfreetype-devel
 	libGL-devel
+	libGLU-devel
 	libglib2.0-devel
 	libgtk3-devel
 	libjpeg-devel
@@ -38,6 +39,7 @@ BUILD_REQUIRES="
 	libXinerama-devel
 	libXrandr-devel
 	libXss-devel
+	p7zip
 "
 
 inherit cmake
@@ -67,7 +69,7 @@ allegro_CONTENTS="
 	usr/share
 "
 liballegro5_2_CONTENTS="
-	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
+	usr/bin/cyg*-5.2.dll
 "
 liballegro_devel_CONTENTS="
 	usr/include
@@ -76,3 +78,20 @@ liballegro_devel_CONTENTS="
 allegro_SUMMARY="${SUMMARY} (licensing & readmes)"
 liballegro5_2_SUMMARY="${SUMMARY} (runtime)"
 liballegro_devel_SUMMARY="${SUMMARY} (development)"
+liballegro_devel_REQUIRES="
+	flac-devel
+	libdumb-devel
+	libfreetype-devel
+	libGLU-devel
+	libjpeg-devel
+	libopenal-devel
+	libopenmpt-devel
+	libopusfile-devel
+	libphysfs-devel
+	libtheora-devel
+	libwebp-devel
+	libXcursor-devel
+	libXinerama-devel
+	libXrandr-devel
+	libXss-devel
+"

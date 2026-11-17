@@ -4,49 +4,49 @@ A DevTools proxy (WebKit Remote Debugging Protocol) for iOS devices (Safari
 Remote Web Inspector).
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libimobiledevice1.0_6-1.3.0-1bl3
-  libios_webkit_debug_proxy-devel-1.9.2-1bl1
-  libios_webkit_debug_proxy0-1.9.2-1bl1
-  libplist2.0_4-2.7.0-1bl1
-  libssl3-3.0.18-1
-  libusbmuxd2.0_7-2.1.1-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libimobiledevice1.0_6-1.4.0-1bl2
+  libios_webkit_debug_proxy-devel-1.9.3-1bl1
+  libios_webkit_debug_proxy0-1.9.3-1bl1
+  libplist2.0_12-2.8.1-1bl1
+  libssl3-3.5.9-1
+  libusbmuxd2.0_7-2.1.1-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libimobiledevice1.0-devel-1.3.0-1bl3
-  libplist2.0-devel-2.7.0-1bl1
-  libssl-devel-3.0.18-1
-  libtool-2.5.4-1
-  libusbmuxd2.0-devel-2.1.1-1bl1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libimobiledevice1.0-devel-1.4.0-1bl2
+  libplist2.0-devel-2.8.1-1bl1
+  libssl-devel-3.5.9-1
+  libtool-2.6.2-1
+  libusbmuxd2.0-devel-2.1.1-1bl2
   make-4.4.1-2
 
 Canonical website:
   https://github.com/google/ios-webkit-debug-proxy
 
 Canonical download:
-  https://github.com/google/ios-webkit-debug-proxy/archive/refs/tags/v1.9.2.tar.gz
+  https://github.com/google/ios-webkit-debug-proxy/archive/refs/tags/v1.9.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ios-webkit-debug-proxy-1.9.2-X-src.tar.xz
+  1. unpack ios-webkit-debug-proxy-1.9.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ios-webkit-debug-proxy-1.9.2-X.cygport all
+        % cygport ./ios-webkit-debug-proxy-1.9.3-X.cygport all
 
 This will create:
-  /usr/src/ios-webkit-debug-proxy-1.9.2-X-src.tar.xz
-  /usr/src/ios-webkit-debug-proxy-1.9.2-X.tar.xz
-  /usr/src/libios_webkit_debug_proxy0-1.9.2-X.tar.xz
-  /usr/src/libios_webkit_debug_proxy-devel-1.9.2-X.tar.xz
+  /usr/src/ios-webkit-debug-proxy-1.9.3-X-src.tar.xz
+  /usr/src/ios-webkit-debug-proxy-1.9.3-X.tar.xz
+  /usr/src/libios_webkit_debug_proxy0-1.9.3-X.tar.xz
+  /usr/src/libios_webkit_debug_proxy-devel-1.9.3-X.tar.xz
 
 -------------------------------------------
 
@@ -77,6 +77,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.9.3-1bl1 -----
+Version bump.
 
 ----- version 1.9.2-1bl1 -----
 Version bump.

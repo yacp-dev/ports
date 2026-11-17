@@ -1,0 +1,135 @@
+--- origsrc/libhttpserver-2.0.1/Makefile.am	2026-10-08 00:33:26.000000000 +0000
++++ src/libhttpserver-2.0.1/Makefile.am	2026-11-17 15:50:07.768188200 +0000
+@@ -609,7 +609,7 @@ clean-local:
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = libhttpserver.pc
+ 
+-cmakemoduledir = $(datadir)/cmake/Modules
++cmakemoduledir = $(libdir)/cmake/$(PACKAGE)
+ dist_cmakemodule_DATA = cmakemodule/FindLibHttpServer.cmake
+ 
+ include $(top_srcdir)/aminclude.am
+--- origsrc/libhttpserver-2.0.1/src/create_test_request.cpp	2026-10-08 00:33:26.000000000 +0000
++++ src/libhttpserver-2.0.1/src/create_test_request.cpp	2026-11-17 15:50:07.768188200 +0000
+@@ -70,9 +70,9 @@ http_request create_test_request::build(
+     for (auto& [key, values] : _args) {
+         auto it = req.impl_->unescaped_args.find(std::string_view(key));
+         if (it == req.impl_->unescaped_args.end()) {
+-            std::pmr::vector<std::pmr::string> empty(args_alloc);
++            std::pmr::vector<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>> empty(args_alloc);
+             auto inserted = req.impl_->unescaped_args.emplace(
+-                std::pmr::string(key.data(), key.size(), args_alloc),
++                std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>(key.data(), key.size(), args_alloc),
+                 std::move(empty));
+             it = inserted.first;
+         }
+--- origsrc/libhttpserver-2.0.1/src/detail/http_request_impl.cpp	2026-10-08 00:33:26.000000000 +0000
++++ src/libhttpserver-2.0.1/src/detail/http_request_impl.cpp	2026-11-17 15:50:07.770205700 +0000
+@@ -252,7 +252,7 @@ namespace {
+ 
+ // Type alias to avoid repeating the verbose map type in every helper
+ // signature and call site.
+-using args_map_t = std::pmr::map<std::pmr::string, std::pmr::vector<std::pmr::string>, http::arg_comparator>;  // NOLINT(whitespace/line_length)
++using args_map_t = std::pmr::map<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>, std::pmr::vector<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>>, http::arg_comparator>;  // NOLINT(whitespace/line_length)
+ 
+ // Helper: look up `key` via heterogeneous string_view (no alloc), and
+ // insert a pmr::string key + an empty vector if missing. All allocations
+@@ -266,15 +266,15 @@ using args_map_t = std::pmr::map<std::pm
+ // key together with a pushed value). get_arg_flat()'s unguarded
+ // it->second[0] relies on this; the empty-vector skip in
+ // ensure_args_flat_view_cached() is defensive only.
+-inline std::pmr::vector<std::pmr::string>& find_or_insert_arg(
++inline std::pmr::vector<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>>& find_or_insert_arg(
+     args_map_t& args,
+     std::string_view key) {
+     auto pmr_alloc = args.get_allocator();
+     auto it = args.find(key);
+     if (it == args.end()) {
+-        std::pmr::vector<std::pmr::string> empty(pmr_alloc);
++        std::pmr::vector<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>> empty(pmr_alloc);
+         auto inserted = args.emplace(
+-            std::pmr::string(key.data(), key.size(), pmr_alloc),
++            std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>(key.data(), key.size(), pmr_alloc),
+             std::move(empty));
+         it = inserted.first;
+     }
+--- origsrc/libhttpserver-2.0.1/src/detail/http_request_impl_args.cpp	2026-10-08 00:33:26.000000000 +0000
++++ src/libhttpserver-2.0.1/src/detail/http_request_impl_args.cpp	2026-11-17 15:50:07.770205700 +0000
+@@ -81,7 +81,7 @@ namespace {
+ // reset_arena(). This is an accepted trade-off of the ABI-locked
+ // void(std::string&) signature; the arena is reset per request so
+ // the waste is bounded by the request's total value bytes.
+-inline void unescape_in_arena(std::pmr::string& value,
++inline void unescape_in_arena(std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>& value,
+                               unescaper_ptr user_fn) {
+     if (value.empty()) return;
+     if (user_fn == nullptr) {
+@@ -144,9 +144,9 @@ MHD_Result http_request_impl::build_requ
+     auto pmr_alloc = args.get_allocator();
+     auto it = existing_it;
+     if (it == args.end()) {
+-        std::pmr::vector<std::pmr::string> empty(pmr_alloc);
++        std::pmr::vector<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>> empty(pmr_alloc);
+         auto inserted = args.emplace(
+-            std::pmr::string(key_sv.data(), key_sv.size(), pmr_alloc),
++            std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>(key_sv.data(), key_sv.size(), pmr_alloc),
+             std::move(empty));
+         it = inserted.first;
+     }
+@@ -166,7 +166,7 @@ MHD_Result http_request_impl::build_requ
+ 
+     // cls is a pmr::string* into impl_->querystring; growth
+     // allocates from the per-connection arena.
+-    std::pmr::string* qs = static_cast<std::pmr::string*>(cls);
++    std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>* qs = static_cast<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>*>(cls);
+ 
+     std::string_view key = key_value;
+     std::string_view value = ((arg_value == nullptr) ? "" : arg_value);
+--- origsrc/libhttpserver-2.0.1/src/httpserver/detail/http_request_impl.hpp	2026-10-08 00:33:26.000000000 +0000
++++ src/libhttpserver-2.0.1/src/httpserver/detail/http_request_impl.hpp	2026-11-17 15:50:07.772217600 +0000
+@@ -165,15 +165,15 @@ class http_request_impl {
+     // unescaped-arg parsing) hit the per-connection arena instead of the
+     // global heap.
+ #ifdef HAVE_BAUTH
+-    mutable std::pmr::string username;
+-    mutable std::pmr::string password;
++    mutable std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>> username;
++    mutable std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>> password;
+ #endif  // HAVE_BAUTH
+-    mutable std::pmr::string querystring;
+-    mutable std::pmr::string requestor_ip;
++    mutable std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>> querystring;
++    mutable std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>> requestor_ip;
+ #ifdef HAVE_DAUTH
+-    mutable std::pmr::string digested_user;
++    mutable std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>> digested_user;
+ #endif  // HAVE_DAUTH
+-    mutable std::pmr::map<std::pmr::string, std::pmr::vector<std::pmr::string>,
++    mutable std::pmr::map<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>, std::pmr::vector<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>>,
+                           http::arg_comparator> unescaped_args;
+     mutable bool args_populated = false;
+     // Guard for the lazily-assembled querystring: once get_querystring()
+@@ -279,10 +279,10 @@ class http_request_impl {
+     // across platforms where time_t may be 32-bit (e.g. some Windows
+     // builds).
+     mutable bool client_cert_fields_cached = false;
+-    mutable std::pmr::string client_cert_dn;
+-    mutable std::pmr::string client_cert_issuer_dn;
+-    mutable std::pmr::string client_cert_cn;
+-    mutable std::pmr::string client_cert_fingerprint_sha256;
++    mutable std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>> client_cert_dn;
++    mutable std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>> client_cert_issuer_dn;
++    mutable std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>> client_cert_cn;
++    mutable std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>> client_cert_fingerprint_sha256;
+     mutable std::int64_t client_cert_not_before = -1;
+     mutable std::int64_t client_cert_not_after = -1;
+     mutable bool client_cert_verified = false;
+@@ -373,7 +373,7 @@ class http_request_impl {
+ struct arguments_accumulator {
+     unescaper_ptr unescaper = nullptr;
+     // Points at the impl's pmr-backed map.
+-    std::pmr::map<std::pmr::string, std::pmr::vector<std::pmr::string>,
++    std::pmr::map<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>, std::pmr::vector<std::basic_string<char, std::char_traits<char>, std::pmr::polymorphic_allocator<char>>>,
+                   http::arg_comparator>* arguments = nullptr;
+     // Per-request hard limits.
+     static constexpr std::size_t DEFAULT_MAX_ARGS_COUNT = 64;

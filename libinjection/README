@@ -3,40 +3,41 @@ libinjection
 SQL / SQLI tokenizer parser analyzer
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libinjection-devel-3.10.0-1bl2
-  libinjection3-3.10.0-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libinjection-devel-4.0.2-1bl1
+  libinjection4-4.0.2-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  lua-5.3.6-4
-  ninja-1.13.2-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
-  https://github.com/client9/libinjection
+  https://github.com/libinjection/libinjection
 
 Canonical download:
-  https://github.com/client9/libinjection/archive/refs/tags/v3.10.0.tar.gz
+  https://github.com/libinjection/libinjection/archive/refs/tags/v4.0.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libinjection-3.10.0-X-src.tar.xz
+  1. unpack libinjection-4.0.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libinjection-3.10.0-X.cygport all
+        % cygport ./libinjection-4.0.2-X.cygport all
 
 This will create:
-  /usr/src/libinjection-3.10.0-X-src.tar.xz
-  /usr/src/libinjection-3.10.0-X.tar.xz
-  /usr/src/libinjection3-3.10.0-X.tar.xz
-  /usr/src/libinjection-devel-3.10.0-X.tar.xz
+  /usr/src/libinjection-4.0.2-X-src.tar.xz
+  /usr/src/libinjection-4.0.2-X.tar.xz
+  /usr/src/libinjection4-4.0.2-X.tar.xz
+  /usr/src/libinjection-devel-4.0.2-X.tar.xz
 
 -------------------------------------------
 
@@ -48,25 +49,25 @@ Files included in the binary package:
   /usr/share/doc/libinjection/COPYING
   /usr/share/doc/libinjection/README.md
 
-(libinjection3)
-  /usr/bin/cyginjection-3.dll
+(libinjection4)
+  /usr/bin/cyginjection-4.dll
 
 (libinjection-devel)
   /usr/include/libinjection.h
+  /usr/include/libinjection_error.h
   /usr/include/libinjection_html5.h
   /usr/include/libinjection_sqli.h
   /usr/include/libinjection_sqli_data.h
   /usr/include/libinjection_xss.h
-  /usr/lib/cmake/libinjection/libinjectionConfig.cmake
-  /usr/lib/cmake/libinjection/libinjectionConfigVersion.cmake
-  /usr/lib/cmake/libinjection/libinjectionTargets-release.cmake
-  /usr/lib/cmake/libinjection/libinjectionTargets.cmake
   /usr/lib/libinjection.dll.a
-  /usr/lib/pkgconfig/injection.pc
+  /usr/lib/pkgconfig/libinjection.pc
 
 ------------------
 
 Port Notes:
+
+----- version 4.0.2-1bl1 -----
+Version bump.
 
 ----- version 3.10.0-1bl2 -----
 Rebuild with gcc-13.4.0

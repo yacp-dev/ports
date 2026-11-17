@@ -1,0 +1,56 @@
+HOMEPAGE="https://github.com/libinjection/${PN}"
+SRC_URI="https://github.com/libinjection/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="SQL / SQLI tokenizer parser analyzer"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="COPYING"
+
+inherit autotools
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	echo ${PV} > .tarball-version
+	# the $0 of AC_MSG_FAILURE in ax_compiler_version.m4 spells out _AX_COMPILER_VERSION_*
+	sed -i "/^AC_PREREQ/a m4_pattern_allow([^_AX_COMPILER_VERSION_])" configure.ac
+}
+
+# libtool refuses to build a shared library on Cygwin without -no-undefined,
+# which the configure tests can't take in LDFLAGS
+src_compile()
+{
+	cd ${S}
+	cygautoreconf
+	cd ${B}
+	lndirs
+	cygconf
+	cygmake LDFLAGS="${LDFLAGS} -no-undefined"
+}
+
+DOCS="
+	CHANGELOG.md
+"
+
+PKG_NAMES="
+	libinjection
+	libinjection${PV[1]}
+	libinjection-devel
+"
+libinjection_CONTENTS="
+	usr/share
+"
+libinjection4_CONTENTS="
+	usr/bin/cyg*-4.dll
+"
+libinjection_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+libinjection_SUMMARY="${SUMMARY} (licensing & readmes)"
+libinjection4_SUMMARY="${SUMMARY} (runtime)"
+libinjection_devel_SUMMARY="${SUMMARY} (development)"

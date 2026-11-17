@@ -12,7 +12,10 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libogg-devel"
+BUILD_REQUIRES="
+	libSDL-devel
+	libogg-devel
+"
 
 inherit git
 
@@ -38,3 +41,25 @@ libdaala_devel_CONTENTS="
 daala_SUMMARY="${SUMMARY} (licensing & readmes)"
 libdaala0_SUMMARY="${SUMMARY} (runtime)"
 libdaala_devel_SUMMARY="${SUMMARY} (development)"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	# update_version would generate this from git; the checkout has no
+	# usable history, so write it from ${PV}
+	printf 'AUTO_UPDATE=no\nPACKAGE_VERSION="%s"\n' "${PV}" > package_version
+}
+
+src_test() {
+	cd ${B}/examples
+	export PATH=${B}/src/.libs:${PATH}
+	# dump_video and player_example are placeholders that exit 0
+	verbose ./dump_video.exe
+	verbose ./player_example.exe
+	# encode one blank 64x64 frame and check the output is an Ogg stream
+	{ printf 'YUV4MPEG2 W64 H64 F30:1 Ip A1:1 C420jpeg\nFRAME\n'
+	  head -c 6144 /dev/zero; } > ${T}/in.y4m
+	verbose ./encoder_example.exe -o ${T}/out.ogg ${T}/in.y4m
+	test "$(head -c 4 ${T}/out.ogg)" = OggS
+}

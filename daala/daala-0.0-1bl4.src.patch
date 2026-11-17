@@ -1,0 +1,21 @@
+--- origsrc/daala/configure.ac	2026-11-17 07:10:00.000000000 +0000
++++ src/daala/configure.ac	2026-11-17 07:10:02.282849800 +0000
+@@ -42,7 +42,7 @@ AC_SUBST(OP_LT_REVISION)
+ AC_SUBST(OP_LT_AGE)
+ 
+ CC_CHECK_CFLAGS_APPEND(
+-  [-std=c89 -pedantic -Wall -Wextra -Wno-parentheses -Wno-long-long])
++  [-pedantic -Wall -Wextra -Wno-parentheses -Wno-long-long])
+ 
+ # Platform-specific tweaks
+ case $host in
+--- origsrc/daala/daala.pc.in	2026-11-17 07:10:00.000000000 +0000
++++ src/daala/daala.pc.in	2026-11-17 07:10:02.282849800 +0000
+@@ -10,6 +10,6 @@ Description: Daala encoding/decoding lib
+ Version: @PACKAGE_VERSION@
+ Requires.private: ogg >= 1.3
+ Conflicts:
+-Libs: -L${libdir} -ldaala
++Libs: -L${libdir} -ldaalabase -ldaalaenc -ldaaladec
+ Libs.private: @lrintf_lib@
+ Cflags: -I${includedir}/daala

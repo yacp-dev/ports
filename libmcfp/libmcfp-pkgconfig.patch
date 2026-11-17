@@ -1,0 +1,33 @@
+Install libmcfp.pc, which upstream does not provide.
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c8ea1ba..7ce33c0 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -173,6 +173,10 @@ install(FILES
+     "${CMAKE_CURRENT_BINARY_DIR}/mcfp-config-version.cmake"
+     DESTINATION lib/cmake/mcfp)
+ 
++configure_file(cmake/mcfp.pc.in ${CMAKE_CURRENT_BINARY_DIR}/libmcfp.pc @ONLY)
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libmcfp.pc
++    DESTINATION lib/pkgconfig)
++
+ set(generator -G "${CMAKE_GENERATOR}")
+ 
+ if(CMAKE_GENERATOR_TOOLSET)
+diff --git a/b/cmake/mcfp.pc.in b/cmake/mcfp.pc.in
+new file mode 100644
+index 0000000..2349ac3
+--- /dev/null
++++ b/cmake/mcfp.pc.in
+@@ -0,0 +1,10 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=${prefix}/lib
++includedir=${prefix}/include
++
++Name: libmcfp
++Description: Library for parsing command line arguments and configuration files
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -lmcfp
++Cflags: -I${includedir}

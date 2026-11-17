@@ -1,0 +1,49 @@
+HOMEPAGE="https://github.com/mhekkel/${PN}"
+SRC_URI="https://github.com/mhekkel/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	libmcfp-pkgconfig.patch
+"
+
+CATEGORY="Libs"
+SUMMARY="Library for parsing command line arguments and configuration files"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="BSD-2-Clause AND CC0-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND CC0-1.0"
+LICENSE_URI="LICENSES/BSD-2-Clause.txt"
+
+BUILD_REQUIRES="
+	libCatch2-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DBUILD_TESTING:BOOL=ON
+"
+
+DOCS="
+	CHANGELOG.md
+	LICENSES/BSD-2-Clause.txt
+	LICENSES/CC0-1.0.txt
+"
+
+PKG_NAMES="
+	${PN}
+	${PN}2
+	${PN}-devel
+"
+libmcfp_CONTENTS="
+	usr/share
+"
+libmcfp2_CONTENTS="
+	usr/bin/cygmcfp-2.dll
+"
+libmcfp_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+libmcfp_SUMMARY="${SUMMARY} (licensing & readmes)"
+libmcfp2_SUMMARY="${SUMMARY} (runtime)"
+libmcfp_devel_SUMMARY="${SUMMARY} (development)"

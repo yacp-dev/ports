@@ -1,0 +1,72 @@
+HOMEPAGE="https://czmq.zeromq.org/"
+SRC_URI="https://github.com/zeromq/czmq/archive/v${PV}.tar.gz#/czmq-${PV}.tar.gz"
+SRC_DIR="czmq-${PV}"
+
+CATEGORY="Libs"
+SUMMARY="High-level C Binding for ZeroMQ (3.x API)"
+DESCRIPTION="CZMQ - High-level C Binding for ZeroMQ. This is the 3.x API, which
+czmq 4.x no longer provides (zctx, zauth, zsocket, ...). It installs beside
+czmq: headers in /usr/include/czmq3, libczmq3.pc and libczmq3.dll.a."
+
+LICENSE="MPL-2.0 AND BSD-3-Clause AND LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0 AND BSD-3-Clause AND LGPL-3.0-or-later"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libzmq-devel
+"
+
+# configure.ac adds -Werror to CPPFLAGS; O_BINARY is redefined by czmq_prelude.h
+export CFLAGS+=" -Wno-error"
+
+CYGCONF_ARGS="
+	--includedir=/usr/include/czmq3
+	--without-docs
+"
+
+# upstream check-local runs $(srcdir)/src/czmq_selftest, which is not where an
+# out-of-tree build puts it, and without the .exe suffix
+src_test()
+{
+	cd ${B}
+	verbose make src/czmq_selftest.exe
+	verbose timeout 500 ./libtool --mode=execute ./src/czmq_selftest.exe -v
+}
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	# Install beside czmq 4.x: rename what has the same name there.
+	# the .la still names libczmq.dll.a, which cygport then reports missing
+	verbose rm -f ${D}/usr/lib/libczmq.la
+	verbose mv ${D}/usr/lib/libczmq.dll.a ${D}/usr/lib/libczmq3.dll.a
+	verbose mv ${D}/usr/lib/pkgconfig/libczmq.pc ${D}/usr/lib/pkgconfig/libczmq3.pc
+	verbose sed -i -e 's/^Name: libczmq$/Name: libczmq3/' \
+		-e 's/-lczmq$/-lczmq3/' ${D}/usr/lib/pkgconfig/libczmq3.pc
+	verbose mv ${D}/usr/bin/makecert.exe ${D}/usr/bin/makecert3.exe
+
+	cd ${S}
+	dodoc README.md
+}
+
+PKG_NAMES="
+	${PN}
+	libczmq3
+	libczmq3-devel
+"
+czmq3_CONTENTS="
+	usr/bin/*.exe
+	usr/share/doc
+"
+libczmq3_CONTENTS="
+	usr/bin/cygczmq-3.dll
+"
+libczmq3_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+czmq3_SUMMARY="${SUMMARY} (utilities)"
+libczmq3_SUMMARY="${SUMMARY} (runtime)"
+libczmq3_devel_SUMMARY="${SUMMARY} (development)"

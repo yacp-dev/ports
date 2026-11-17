@@ -5,44 +5,45 @@ plugins that can be used with a variety of video editing and processing
 software.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libcairo2-1.18.4-1
-  libgavl1-1.4.0-1bl1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libcairo2-1.18.6-1
+  libgavl1-1.4.0-1bl2
+  libgcc1-14.4.0-1
   libopencv3.4-3.4.1-3
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.5-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libcairo-devel-1.18.4-1
-  libgavl-devel-1.4.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libcairo-devel-1.18.6-1
+  libgavl-devel-1.4.0-1bl2
   libopencv-devel-3.4.1-3
+  make-4.4.1-2
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/dyne/frei0r
 
 Canonical download:
-  https://github.com/dyne/frei0r/archive/refs/tags/v2.5.1.tar.gz
+  https://github.com/dyne/frei0r/archive/refs/tags/v3.7.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack frei0r-2.5.1-X-src.tar.xz
+  1. unpack frei0r-3.7.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./frei0r-2.5.1-X.cygport all
+        % cygport ./frei0r-3.7.1-X.cygport all
 
 This will create:
-  /usr/src/frei0r-2.5.1-X-src.tar.xz
-  /usr/src/frei0r-2.5.1-X.tar.xz
+  /usr/src/frei0r-3.7.1-X-src.tar.xz
+  /usr/src/frei0r-3.7.1-X.tar.xz
 
 -------------------------------------------
 
@@ -52,11 +53,13 @@ Files included in the binary package:
   /usr/include/frei0r.h
   /usr/include/frei0r.hpp
   /usr/include/frei0r/blur.h
+  /usr/include/frei0r/bundle.h
   /usr/include/frei0r/cairo.h
   /usr/include/frei0r/cfc.h
   /usr/include/frei0r/colorspace.h
   /usr/include/frei0r/math.h
   /usr/lib/frei0r-1/3dflippo.dll
+  /usr/lib/frei0r-1/3dperspective.dll
   /usr/lib/frei0r-1/B.dll
   /usr/lib/frei0r-1/G.dll
   /usr/lib/frei0r-1/IIRblur.dll
@@ -87,12 +90,14 @@ Files included in the binary package:
   /usr/lib/frei0r-1/cairoblend.dll
   /usr/lib/frei0r-1/cairogradient.dll
   /usr/lib/frei0r-1/cairoimagegrid.dll
+  /usr/lib/frei0r-1/camerashake.dll
   /usr/lib/frei0r-1/cartoon.dll
   /usr/lib/frei0r-1/cluster.dll
   /usr/lib/frei0r-1/colgate.dll
   /usr/lib/frei0r-1/color_only.dll
   /usr/lib/frei0r-1/coloradj_RGB.dll
   /usr/lib/frei0r-1/colordistance.dll
+  /usr/lib/frei0r-1/colorenhance.dll
   /usr/lib/frei0r-1/colorhalftone.dll
   /usr/lib/frei0r-1/colorize.dll
   /usr/lib/frei0r-1/colortap.dll
@@ -118,6 +123,7 @@ Files included in the binary package:
   /usr/lib/frei0r-1/facebl0r.dll
   /usr/lib/frei0r-1/facedetect.dll
   /usr/lib/frei0r-1/filmgrain.dll
+  /usr/lib/frei0r-1/flarefx.dll
   /usr/lib/frei0r-1/flippo.dll
   /usr/lib/frei0r-1/gamma.dll
   /usr/lib/frei0r-1/gateweave.dll
@@ -126,6 +132,7 @@ Files included in the binary package:
   /usr/lib/frei0r-1/grain_extract.dll
   /usr/lib/frei0r-1/grain_merge.dll
   /usr/lib/frei0r-1/hardlight.dll
+  /usr/lib/frei0r-1/harris0r.dll
   /usr/lib/frei0r-1/heatmap0r.dll
   /usr/lib/frei0r-1/hue.dll
   /usr/lib/frei0r-1/hueshift0r.dll
@@ -145,6 +152,7 @@ Files included in the binary package:
   /usr/lib/frei0r-1/measure_pr0file.dll
   /usr/lib/frei0r-1/medians.dll
   /usr/lib/frei0r-1/mirr0r.dll
+  /usr/lib/frei0r-1/motiondiff0r.dll
   /usr/lib/frei0r-1/multiply.dll
   /usr/lib/frei0r-1/ndvi.dll
   /usr/lib/frei0r-1/nervous.dll
@@ -157,6 +165,7 @@ Files included in the binary package:
   /usr/lib/frei0r-1/partik0l.dll
   /usr/lib/frei0r-1/perspective.dll
   /usr/lib/frei0r-1/pixeliz0r.dll
+  /usr/lib/frei0r-1/pixels0rt.dll
   /usr/lib/frei0r-1/pixs0r.dll
   /usr/lib/frei0r-1/plasma.dll
   /usr/lib/frei0r-1/posterize.dll
@@ -171,6 +180,7 @@ Files included in the binary package:
   /usr/lib/frei0r-1/scanline0r.dll
   /usr/lib/frei0r-1/screen.dll
   /usr/lib/frei0r-1/select0r.dll
+  /usr/lib/frei0r-1/shake0scillate.dll
   /usr/lib/frei0r-1/sharpness.dll
   /usr/lib/frei0r-1/sigmoidaltransfer.dll
   /usr/lib/frei0r-1/sleid0r_push-down.dll
@@ -189,12 +199,14 @@ Files included in the binary package:
   /usr/lib/frei0r-1/sleid0r_wipe-rect.dll
   /usr/lib/frei0r-1/sleid0r_wipe-right.dll
   /usr/lib/frei0r-1/sleid0r_wipe-up.dll
+  /usr/lib/frei0r-1/slitscan0r.dll
   /usr/lib/frei0r-1/sobel.dll
   /usr/lib/frei0r-1/softglow.dll
   /usr/lib/frei0r-1/softlight.dll
   /usr/lib/frei0r-1/sopsat.dll
   /usr/lib/frei0r-1/spillsupress.dll
   /usr/lib/frei0r-1/squareblur.dll
+  /usr/lib/frei0r-1/squigglevision.dll
   /usr/lib/frei0r-1/subtract.dll
   /usr/lib/frei0r-1/tehroxx0r.dll
   /usr/lib/frei0r-1/test_pat_B.dll
@@ -215,6 +227,8 @@ Files included in the binary package:
   /usr/lib/frei0r-1/vectorscope.dll
   /usr/lib/frei0r-1/vertigo.dll
   /usr/lib/frei0r-1/vignette.dll
+  /usr/lib/frei0r-1/water.dll
+  /usr/lib/frei0r-1/whirlpinch0r.dll
   /usr/lib/frei0r-1/xfade0r.dll
   /usr/lib/pkgconfig/frei0r.pc
   /usr/share/doc/Cygwin/frei0r.README
@@ -226,6 +240,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.7.1-1bl1 -----
+Version bump.
 
 ----- version 2.5.1-1bl1 -----
 Version bump.

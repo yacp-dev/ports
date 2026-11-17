@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: yxml
+Description: Small, fast and mostly-correct XML parser
+Version: @VERSION@
+Libs: -L${libdir} -lyxml
+Cflags: -I${includedir}

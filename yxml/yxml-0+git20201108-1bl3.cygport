@@ -1,5 +1,6 @@
 HOMEPAGE="https://dev.yorhel.nl/${PN}"
 GIT_URI="git://g.blicky.net/${PN}.git"
+GIT_REV="66507906673bc6159d5d620414479954c9c21c24"
 
 CATEGORY="Libs"
 SUMMARY="Small, fast and mostly-correct XML parser"
@@ -11,24 +12,12 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
+inherit cmake
 inherit git
 
-src_test()
-{
-	cd ${B}
-	cygmake check
-	pushd test
-		for x in ${S}/test/*.xml ${S}/test/*.out ${S}/test/test.sh
-		do
-			ln -fs ${x} .
-		done
-		./test.sh
-		rm *.xml *.out *.test test.sh
-	popd
-}
-
-DIFF_EXCLUDES="
-	Makefile
+SRC_URI+="
+	CMakeLists.txt
+	yxml.pc.in
 "
 
 PKG_NAMES="

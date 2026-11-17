@@ -5,11 +5,6 @@ SRC_URI="
 	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}.xml
 	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/status3.xsl
 "
-PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}2/${PV}-4/debian/patches/1000-build-with-wolfssl.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}2/${PV}-4/debian/patches/2001-xslt-migrate.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-Respect-a-default-cipher-list-defined-by-the-SSL-lib.patch
-"
 
 CATEGORY="Audio"
 SUMMARY="Free server software for streaming multimedia"
@@ -20,14 +15,16 @@ jukebox and many things in between. It is very versatile in that new formats
 can be added relatively easily and supports open standards for commuincation
 and interaction."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-only AND LGPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-only AND LGPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	libcurl-devel
-	libkate-devel
+	libigloo-devel
+	libmaxminddb-devel
 	libogg-devel
+	librhash-devel
 	libssl-devel
 	libtheora-devel
 	libvorbis-devel
@@ -58,4 +55,8 @@ src_install()
 	doins ${PN}.xml
 	insinto /usr/share/${PN}/web
 	doins status3.xsl
+
+	# Its src/common/* libraries are LGPL; COPYING is the GPL text
+	insinto /usr/share/doc/${PN}
+	newins src/common/thread/COPYING COPYING.LGPL-2.0
 }

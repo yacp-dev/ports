@@ -1,6 +1,17 @@
 inherit gnome2
 
+# The submodule libglnx, at the commit v${PV} pins; the GitLab archive omits it.
+LIBGLNX_REV="e72bbdebb03f5d39c7f32869299ca4284786344c"
+
 HOMEPAGE="https://wiki.gnome.org/Projects/LibGSystem"
+SRC_URI="
+	https://gitlab.gnome.org/Archive/${PN}/-/archive/v${PV}/${PN}-v${PV}.tar.gz
+	https://gitlab.gnome.org/GNOME/libglnx/-/archive/${LIBGLNX_REV}/libglnx-${LIBGLNX_REV}.tar.gz
+"
+PATCH_URI="
+	libgsystem-cygwin.patch
+"
+SRC_DIR="${PN}-v${PV}"
 
 CATEGORY="Libs"
 SUMMARY="GIO-based library with Unix/Linux specific API"
@@ -10,6 +21,20 @@ system components."
 LICENSE="LGPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
 LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	gnome-common
+	gobject-introspection
+	gtk-doc
+	libglib2.0-devel
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	verbose rmdir ${origsrcdir}/${SRC_DIR}/libglnx
+	verbose mv ${origsrcdir}/libglnx-${LIBGLNX_REV} ${origsrcdir}/${SRC_DIR}/libglnx
+}
 
 PKG_NAMES="
 	${PN}

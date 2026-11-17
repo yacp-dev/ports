@@ -1,5 +1,5 @@
---- origsrc/libg15render-3.0.4/Makefile.am	2021-06-18 07:14:14.000000000 +0900
-+++ src/libg15render-3.0.4/Makefile.am	2024-01-02 02:27:52.851240800 +0900
+--- origsrc/libg15render-3.0.5a/Makefile.am	2024-05-27 14:32:59.000000000 +0000
++++ src/libg15render-3.0.5a/Makefile.am	2026-11-17 15:34:17.949956500 +0000
 @@ -3,13 +3,15 @@ AM_CFLAGS=@CFLAGS@
  lib_LTLIBRARIES = libg15render.la
  libg15render_la_SOURCES = libg15render.h text.c pixel.c screen.c font_6x4.c font_7x5.c font_8x8.c
@@ -18,16 +18,16 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libg15render-3.0.4/configure.ac	2021-06-18 07:14:14.000000000 +0900
-+++ src/libg15render-3.0.4/configure.ac	2024-01-02 02:27:52.866865000 +0900
-@@ -48,4 +48,5 @@ AC_CHECK_FUNCS([memset])
+--- origsrc/libg15render-3.0.5a/configure.ac	2026-11-17 15:34:17.648937200 +0000
++++ src/libg15render-3.0.5a/configure.ac	2026-11-17 15:34:17.949956500 +0000
+@@ -70,4 +70,5 @@ AC_CHECK_FUNCS([memset])
  
  AC_SUBST(FTLIB)
  AC_CONFIG_FILES([Makefile])
 +AC_CONFIG_FILES([libg15render.pc])
  AC_OUTPUT
---- origsrc/libg15render-3.0.4/libg15render.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libg15render-3.0.4/libg15render.pc.in	2024-01-02 02:30:17.607860700 +0900
+--- origsrc/libg15render-3.0.5a/libg15render.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libg15render-3.0.5a/libg15render.pc.in	2026-11-17 15:34:17.951965600 +0000
 @@ -0,0 +1,11 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

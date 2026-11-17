@@ -1,5 +1,5 @@
---- origsrc/guacamole-server-1.5.5/README-unit-testing.md	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/README-unit-testing.md	2024-10-10 00:17:10.640951000 +0900
+--- origsrc/guacamole-server-1.6.0/README-unit-testing.md	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/README-unit-testing.md	2026-11-17 14:35:21.422952800 +0000
 @@ -46,7 +46,7 @@ modified to contain a sections like the
          ...all source files...
  
@@ -9,29 +9,38 @@
          ...other flags...
  
      test_myproj_LDADD = \
---- origsrc/guacamole-server-1.5.5/configure.ac	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/configure.ac	2024-10-10 00:17:10.640951000 +0900
+--- origsrc/guacamole-server-1.6.0/configure.ac	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/configure.ac	2026-11-17 14:35:21.422952800 +0000
 @@ -20,7 +20,7 @@
  AC_PREREQ([2.61])
- AC_INIT([guacamole-server], [1.5.5])
+ AC_INIT([guacamole-server], [1.6.0])
  AC_CONFIG_AUX_DIR([build-aux])
 -AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 +AM_INIT_AUTOMAKE([-Wall  foreign subdir-objects])
  AM_SILENT_RULES([yes])
  
  LT_PREREQ([2.2])
-@@ -670,7 +670,7 @@ if test "x$with_rdp" != "xno"
- then
-     have_freerdp2=yes
+@@ -741,7 +741,7 @@ then
+     freerdp_version="(2.x)"
+     have_freerdp=yes
      PKG_CHECK_MODULES([RDP], [freerdp2 freerdp-client2 winpr2],
 -                      [CPPFLAGS="${RDP_CFLAGS} -Werror $CPPFLAGS"]
 +                      [CPPFLAGS="${RDP_CFLAGS}  $CPPFLAGS"]
-                       [AS_IF([test "x${FREERDP2_PLUGIN_DIR}" = "x"],
-                              [FREERDP2_PLUGIN_DIR="`$PKG_CONFIG --variable=libdir freerdp2`/freerdp2"])],
+                       [AS_IF([test "x${FREERDP_PLUGIN_DIR}" = "x"],
+                              [FREERDP_PLUGIN_DIR="`$PKG_CONFIG --variable=libdir freerdp2`/freerdp2"])],
+                       [freerdp_version=
+@@ -753,7 +753,7 @@ then
+     freerdp_version="(3.x)"
+     have_freerdp=yes
+     PKG_CHECK_MODULES([RDP], [freerdp3 freerdp-client3 winpr3],
+-                      [CPPFLAGS="${RDP_CFLAGS} -Werror $CPPFLAGS"]
++                      [CPPFLAGS="${RDP_CFLAGS}  $CPPFLAGS"]
+                       [AS_IF([test "x${FREERDP_PLUGIN_DIR}" = "x"],
+                              [FREERDP_PLUGIN_DIR="`$PKG_CONFIG --variable=libdir freerdp3`/freerdp3"])],
                        [AC_MSG_WARN([
---- origsrc/guacamole-server-1.5.5/src/common/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/common/Makefile.am	2024-10-10 00:17:10.649427600 +0900
-@@ -63,7 +63,7 @@ libguac_common_la_SOURCES = \
+--- origsrc/guacamole-server-1.6.0/src/common/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/common/Makefile.am	2026-11-17 14:35:21.424451000 +0000
+@@ -61,7 +61,7 @@ libguac_common_la_SOURCES = \
      surface.c
  
  libguac_common_la_CFLAGS =  \
@@ -40,8 +49,8 @@
      @LIBGUAC_INCLUDE@
  
  libguac_common_la_LIBADD = \
---- origsrc/guacamole-server-1.5.5/src/common/tests/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/common/tests/Makefile.am	2024-10-10 00:17:10.656289200 +0900
+--- origsrc/guacamole-server-1.6.0/src/common/tests/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/common/tests/Makefile.am	2026-11-17 14:35:21.424962200 +0000
 @@ -49,7 +49,7 @@ test_common_SOURCES =          \
      string/split.c
  
@@ -51,8 +60,17 @@
      @COMMON_INCLUDE@        \
      @LIBGUAC_INCLUDE@
  
---- origsrc/guacamole-server-1.5.5/src/common-ssh/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/common-ssh/Makefile.am	2024-10-10 00:17:10.695685100 +0900
+@@ -66,7 +66,7 @@ GEN_RUNNER = $(top_srcdir)/util/generate
+ CLEANFILES = _generated_runner.c
+ 
+ _generated_runner.c: $(test_common_SOURCES)
+-	$(AM_V_GEN) $(GEN_RUNNER) $(test_common_SOURCES) > $@
++	$(AM_V_GEN) $(GEN_RUNNER) $(foreach f,$(test_common_SOURCES),$(srcdir)/$(f)) > $@
+ 
+ nodist_test_common_SOURCES = \
+     _generated_runner.c
+--- origsrc/guacamole-server-1.6.0/src/common-ssh/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/common-ssh/Makefile.am	2026-11-17 14:35:21.424962200 +0000
 @@ -44,7 +44,7 @@ noinst_HEADERS =            \
      common-ssh/user.h
  
@@ -62,8 +80,8 @@
      @COMMON_INCLUDE@           \
      @LIBGUAC_INCLUDE@
  
---- origsrc/guacamole-server-1.5.5/src/common-ssh/tests/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/common-ssh/tests/Makefile.am	2024-10-10 00:17:10.695685100 +0900
+--- origsrc/guacamole-server-1.6.0/src/common-ssh/tests/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/common-ssh/tests/Makefile.am	2026-11-17 14:35:21.424962200 +0000
 @@ -37,7 +37,7 @@ test_common_ssh_SOURCES = \
      sftp/normalize_path.c
  
@@ -73,8 +91,17 @@
      @COMMON_INCLUDE@        \
      @COMMON_SSH_INCLUDE@    \
      @LIBGUAC_INCLUDE@
---- origsrc/guacamole-server-1.5.5/src/guacd/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/guacd/Makefile.am	2024-10-10 00:51:45.600450700 +0900
+@@ -56,7 +56,7 @@ GEN_RUNNER = $(top_srcdir)/util/generate
+ CLEANFILES = _generated_runner.c
+ 
+ _generated_runner.c: $(test_common_ssh_SOURCES)
+-	$(AM_V_GEN) $(GEN_RUNNER) $(test_common_ssh_SOURCES) > $@
++	$(AM_V_GEN) $(GEN_RUNNER) $(foreach f,$(test_common_ssh_SOURCES),$(srcdir)/$(f)) > $@
+ 
+ nodist_test_common_ssh_SOURCES = \
+     _generated_runner.c
+--- origsrc/guacamole-server-1.6.0/src/guacd/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/guacd/Makefile.am	2026-11-17 14:35:21.426757400 +0000
 @@ -54,7 +54,7 @@ guacd_SOURCES =  \
      proc-map.c
  
@@ -96,8 +123,8 @@
  endif
  
  # Systemd service
---- origsrc/guacamole-server-1.5.5/src/guacenc/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/guacenc/Makefile.am	2024-10-10 00:17:10.692864800 +0900
+--- origsrc/guacamole-server-1.6.0/src/guacenc/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/guacenc/Makefile.am	2026-11-17 14:35:21.426757400 +0000
 @@ -88,7 +88,7 @@ noinst_HEADERS  += webp.h
  endif
  
@@ -107,8 +134,8 @@
      @AVCODEC_CFLAGS@        \
      @AVFORMAT_CFLAGS@       \
      @AVUTIL_CFLAGS@         \
---- origsrc/guacamole-server-1.5.5/src/guaclog/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/guaclog/Makefile.am	2024-10-10 00:17:10.692864800 +0900
+--- origsrc/guacamole-server-1.6.0/src/guaclog/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/guaclog/Makefile.am	2026-11-17 14:35:21.426757400 +0000
 @@ -48,7 +48,7 @@ guaclog_SOURCES =     \
      state.c
  
@@ -118,9 +145,9 @@
      @LIBGUAC_INCLUDE@
  
  guaclog_LDADD =     \
---- origsrc/guacamole-server-1.5.5/src/libguac/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/libguac/Makefile.am	2024-10-10 00:17:10.672505600 +0900
-@@ -157,7 +157,7 @@ libguacinc_HEADERS += guacamole/socket-w
+--- origsrc/guacamole-server-1.6.0/src/libguac/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/libguac/Makefile.am	2026-11-17 14:35:21.428217300 +0000
+@@ -188,7 +188,7 @@ libguacinc_HEADERS += guacamole/socket-w
  endif
  
  libguac_la_CFLAGS = \
@@ -128,9 +155,9 @@
 +     -Wall -pedantic
  
  libguac_la_LDFLAGS =     \
-     -version-info 24:0:0 \
---- origsrc/guacamole-server-1.5.5/src/libguac/guacamole/plugin-constants.h	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/libguac/guacamole/plugin-constants.h	2024-10-10 09:53:11.218035700 +0900
+     -version-info 25:0:0 \
+--- origsrc/guacamole-server-1.6.0/src/libguac/guacamole/plugin-constants.h	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/libguac/guacamole/plugin-constants.h	2026-11-17 14:35:21.428764500 +0000
 @@ -29,12 +29,20 @@
  /**
   * String prefix which begins the library filename of all client plugins.
@@ -152,9 +179,9 @@
  
  /**
   * The maximum number of characters (COUNTING NULL TERMINATOR) to allow
---- origsrc/guacamole-server-1.5.5/src/libguac/tests/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/libguac/tests/Makefile.am	2024-10-10 00:17:10.676497600 +0900
-@@ -69,7 +69,7 @@ test_libguac_SOURCES =               \
+--- origsrc/guacamole-server-1.6.0/src/libguac/tests/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/libguac/tests/Makefile.am	2026-11-17 14:35:21.428764500 +0000
+@@ -76,7 +76,7 @@ test_libguac_SOURCES =               \
      unicode/write.c
  
  test_libguac_CFLAGS =       \
@@ -163,8 +190,17 @@
      @LIBGUAC_INCLUDE@
  
  test_libguac_LDADD = \
---- origsrc/guacamole-server-1.5.5/src/protocols/kubernetes/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/protocols/kubernetes/Makefile.am	2024-10-10 09:54:42.290611100 +0900
+@@ -91,7 +91,7 @@ GEN_RUNNER = $(top_srcdir)/util/generate
+ CLEANFILES = _generated_runner.c
+ 
+ _generated_runner.c: $(test_libguac_SOURCES)
+-	$(AM_V_GEN) $(GEN_RUNNER) $(test_libguac_SOURCES) > $@
++	$(AM_V_GEN) $(GEN_RUNNER) $(foreach f,$(test_libguac_SOURCES),$(srcdir)/$(f)) > $@
+ 
+ nodist_test_libguac_SOURCES = \
+     _generated_runner.c
+--- origsrc/guacamole-server-1.6.0/src/protocols/kubernetes/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/protocols/kubernetes/Makefile.am	2026-11-17 14:35:21.430223400 +0000
 @@ -56,7 +56,7 @@ noinst_HEADERS = \
      user.h
  
@@ -185,8 +221,8 @@
      @PTHREAD_LIBS@                     \
      @SSL_LIBS@                         \
      @WEBSOCKETS_LIBS@
---- origsrc/guacamole-server-1.5.5/src/protocols/kubernetes/tests/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/protocols/kubernetes/tests/Makefile.am	2024-10-10 00:17:10.687882900 +0900
+--- origsrc/guacamole-server-1.6.0/src/protocols/kubernetes/tests/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/protocols/kubernetes/tests/Makefile.am	2026-11-17 14:35:21.430770600 +0000
 @@ -38,7 +38,7 @@ test_kubernetes_SOURCES = \
      url/escape.c
  
@@ -196,9 +232,18 @@
      @LIBGUAC_CLIENT_KUBERNETES_INCLUDE@ \
      @LIBGUAC_INCLUDE@
  
---- origsrc/guacamole-server-1.5.5/src/protocols/rdp/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/protocols/rdp/Makefile.am	2024-10-10 09:54:40.366109300 +0900
-@@ -132,14 +132,14 @@ noinst_HEADERS =
+@@ -54,7 +54,7 @@ GEN_RUNNER = $(top_srcdir)/util/generate
+ CLEANFILES = _generated_runner.c
+ 
+ _generated_runner.c: $(test_kubernetes_SOURCES)
+-	$(AM_V_GEN) $(GEN_RUNNER) $(test_kubernetes_SOURCES) > $@
++	$(AM_V_GEN) $(GEN_RUNNER) $(foreach f,$(test_kubernetes_SOURCES),$(srcdir)/$(f)) > $@
+ 
+ nodist_test_kubernetes_SOURCES = \
+     _generated_runner.c
+--- origsrc/guacamole-server-1.6.0/src/protocols/rdp/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/protocols/rdp/Makefile.am	2026-11-17 14:35:21.430770600 +0000
+@@ -131,14 +131,14 @@ noinst_HEADERS =
      user.h
  
  libguac_client_rdp_la_CFLAGS = \
@@ -216,7 +261,7 @@
      @CAIRO_LIBS@                \
      @PTHREAD_LIBS@              \
      @RDP_LIBS@
-@@ -166,11 +166,11 @@ libguac_common_svc_client_la_SOURCES =
+@@ -165,11 +165,11 @@ libguac_common_svc_client_la_SOURCES =
      plugins/guac-common-svc/guac-common-svc.c
  
  libguac_common_svc_client_la_CFLAGS = \
@@ -230,7 +275,7 @@
      -module -avoid-version -shared     \
      @RDP_LIBS@
  
-@@ -188,13 +188,13 @@ libguacai_client_la_SOURCES =
+@@ -187,13 +187,13 @@ libguacai_client_la_SOURCES =
      plugins/ptr-string.c
  
  libguacai_client_la_CFLAGS = \
@@ -246,8 +291,8 @@
      -module -avoid-version -shared \
      @PTHREAD_LIBS@                 \
      @RDP_LIBS@
---- origsrc/guacamole-server-1.5.5/src/protocols/rdp/tests/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/protocols/rdp/tests/Makefile.am	2024-10-10 00:17:10.681872000 +0900
+--- origsrc/guacamole-server-1.6.0/src/protocols/rdp/tests/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/protocols/rdp/tests/Makefile.am	2026-11-17 14:35:21.430770600 +0000
 @@ -38,7 +38,7 @@ test_rdp_SOURCES =      \
      fs/normalize_path.c
  
@@ -257,8 +302,17 @@
      @LIBGUAC_CLIENT_RDP_INCLUDE@ \
      @LIBGUAC_INCLUDE@
  
---- origsrc/guacamole-server-1.5.5/src/protocols/ssh/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/protocols/ssh/Makefile.am	2024-10-10 09:54:40.365105900 +0900
+@@ -55,7 +55,7 @@ GEN_RUNNER = $(top_srcdir)/util/generate
+ CLEANFILES = _generated_runner.c
+ 
+ _generated_runner.c: $(test_rdp_SOURCES)
+-	$(AM_V_GEN) $(GEN_RUNNER) $(test_rdp_SOURCES) > $@
++	$(AM_V_GEN) $(GEN_RUNNER) $(foreach f,$(test_rdp_SOURCES),$(srcdir)/$(f)) > $@
+ 
+ nodist_test_rdp_SOURCES = \
+     _generated_runner.c
+--- origsrc/guacamole-server-1.6.0/src/protocols/ssh/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/protocols/ssh/Makefile.am	2026-11-17 14:35:21.432229200 +0000
 @@ -59,7 +59,7 @@ noinst_HEADERS += ssh_agent.h
  endif
  
@@ -279,8 +333,8 @@
      @PTHREAD_LIBS@              \
      @SSH_LIBS@                  \
      @SSL_LIBS@
---- origsrc/guacamole-server-1.5.5/src/protocols/telnet/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/protocols/telnet/Makefile.am	2024-10-10 09:54:40.362143800 +0900
+--- origsrc/guacamole-server-1.6.0/src/protocols/telnet/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/protocols/telnet/Makefile.am	2026-11-17 14:35:21.433022300 +0000
 @@ -49,7 +49,7 @@ noinst_HEADERS = \
      user.h
  
@@ -301,8 +355,8 @@
      @PTHREAD_LIBS@                 \
      @TELNET_LIBS@
  
---- origsrc/guacamole-server-1.5.5/src/protocols/vnc/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/protocols/vnc/Makefile.am	2024-10-10 09:54:40.362143800 +0900
+--- origsrc/guacamole-server-1.6.0/src/protocols/vnc/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/protocols/vnc/Makefile.am	2026-11-17 14:35:21.433022300 +0000
 @@ -55,18 +55,18 @@ noinst_HEADERS =      \
      vnc.h
  
@@ -326,8 +380,8 @@
      @COMMON_LTLIB@             \
      @LIBGUAC_LTLIB@
  
---- origsrc/guacamole-server-1.5.5/src/pulse/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/pulse/Makefile.am	2024-10-10 00:17:10.672505600 +0900
+--- origsrc/guacamole-server-1.6.0/src/pulse/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/pulse/Makefile.am	2026-11-17 14:35:21.433979600 +0000
 @@ -35,7 +35,7 @@ libguac_pulse_la_SOURCES = \
      pulse.c
  
@@ -337,8 +391,8 @@
      @LIBGUAC_INCLUDE@
  
  libguac_pulse_la_LIBADD = \
---- origsrc/guacamole-server-1.5.5/src/terminal/Makefile.am	2024-03-15 01:44:29.000000000 +0900
-+++ src/guacamole-server-1.5.5/src/terminal/Makefile.am	2024-10-10 00:17:10.656289200 +0900
+--- origsrc/guacamole-server-1.6.0/src/terminal/Makefile.am	2025-06-19 19:32:22.000000000 +0000
++++ src/guacamole-server-1.6.0/src/terminal/Makefile.am	2026-11-17 14:35:21.433979600 +0000
 @@ -66,7 +66,7 @@ libguac_terminal_la_SOURCES =   \
      xparsecolor.c
  

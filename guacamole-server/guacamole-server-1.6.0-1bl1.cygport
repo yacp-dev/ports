@@ -11,20 +11,41 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libavcodec-devel libavformat-devel libavutil-devel libcairo-devel libfreerdp2-devel libgcrypt-devel libglib2.0-devel libjpeg-devel libpango1.0-devel libpng-devel libpulse-devel libssh2-devel libssl-devel libswscale-devel libtelnet-devel libuuid-devel libvncserver-devel libwebp-devel libwebsockets-devel libwinpr2-devel"
+BUILD_REQUIRES="
+	CUnit
+	libavcodec-devel
+	libavformat-devel
+	libavutil-devel
+	libcairo-devel
+	libgcrypt-devel
+	libglib2.0-devel
+	libjpeg-devel
+	libpango1.0-devel
+	libpng-devel
+	libpulse-devel
+	libssh2-devel
+	libssl-devel
+	libswscale-devel
+	libtelnet-devel
+	libuuid-devel
+	libvncserver-devel
+	libwebp-devel
+	libwebsockets-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 CYGCONF_ARGS="
 	--with-init-dir=/etc/rc.d/init.d
+	--without-rdp
 	--with-winsock=no
 "
 
 PKG_NAMES="
 	${PN}
-	libguac24
+	libguac25
 	libguac-devel
-	libguac-terminal0
+	libguac-terminal2
 	libguac-terminal-devel
 "
 guacamole_server_CONTENTS="
@@ -33,25 +54,24 @@ guacamole_server_CONTENTS="
 	usr/sbin
 	usr/share
 "
-libguac24_CONTENTS="
-	usr/bin/cygguac-24.dll
+libguac25_CONTENTS="
+	usr/bin/cygguac-25.dll
 	usr/lib/cygguac-client-*.dll
-	usr/lib/freerdp2/*.dll
 "
 libguac_devel_CONTENTS="
 	usr/include/guacamole/*.h
 	usr/include/guacamole/private/*.h
 	usr/lib/libguac.dll.a
 "
-libguac_terminal0_CONTENTS="
-	usr/bin/cygguac-terminal-0.dll
+libguac_terminal2_CONTENTS="
+	usr/bin/cygguac-terminal-2.dll
 "
 libguac_terminal_devel_CONTENTS="
 	usr/include/guacamole/terminal/terminal.h
 	usr/lib/libguac-terminal.dll.a
 "
 guacamole_server_SUMMARY="${SUMMARY} (utilities)"
-libguac24_SUMMARY="${SUMMARY} (runtime)"
+libguac25_SUMMARY="${SUMMARY} (runtime)"
 libguac_devel_SUMMARY="${SUMMARY} (development)"
-libguac_terminal0_SUMMARY="${SUMMARY} (runtime /terminal)"
+libguac_terminal2_SUMMARY="${SUMMARY} (runtime /terminal)"
 libguac_terminal_devel_SUMMARY="${SUMMARY} (development / terminal)"

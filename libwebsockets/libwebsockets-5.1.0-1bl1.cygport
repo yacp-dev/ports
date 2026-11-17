@@ -89,20 +89,20 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	${PN}
-	${PN}22
+	${PN}23
 	${PN}-devel
 "
 libwebsockets_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libwebsockets22_CONTENTS="
-	usr/bin/cyg*-22.dll
+libwebsockets23_CONTENTS="
+	usr/bin/cyg*-23.dll
 "
 libwebsockets_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libwebsockets_SUMMARY="${SUMMARY} (utilities)"
-libwebsockets22_SUMMARY="${SUMMARY} (runtime)"
+libwebsockets23_SUMMARY="${SUMMARY} (runtime)"
 libwebsockets_devel_SUMMARY="${SUMMARY} (development)"

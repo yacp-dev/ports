@@ -1,5 +1,5 @@
---- origsrc/ios-webkit-debug-proxy-1.9.2/Makefile.am	2025-07-01 01:24:40.000000000 +0900
-+++ src/ios-webkit-debug-proxy-1.9.2/Makefile.am	2026-01-12 23:45:36.466195400 +0900
+--- origsrc/ios-webkit-debug-proxy-1.9.3/Makefile.am	2026-11-09 23:30:39.000000000 +0000
++++ src/ios-webkit-debug-proxy-1.9.3/Makefile.am	2026-11-17 12:43:13.328916700 +0000
 @@ -3,3 +3,6 @@
  
  AUTOMAKE_OPTIONS = foreign
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = ios-webkit-debug-proxy.pc
---- origsrc/ios-webkit-debug-proxy-1.9.2/configure.ac	2025-07-01 01:24:40.000000000 +0900
-+++ src/ios-webkit-debug-proxy-1.9.2/configure.ac	2026-01-12 23:45:36.468203900 +0900
+--- origsrc/ios-webkit-debug-proxy-1.9.3/configure.ac	2026-11-09 23:30:39.000000000 +0000
++++ src/ios-webkit-debug-proxy-1.9.3/configure.ac	2026-11-17 12:43:13.325623700 +0000
 @@ -20,13 +20,7 @@ PKG_CHECK_MODULES(libimobiledevice, libi
  PKG_CHECK_MODULES(libplist, libplist-2.0 >= 2.2.0)
  PKG_CHECK_MODULES(libusbmuxd, libusbmuxd-2.0 >= 2.0.0)
@@ -40,8 +40,8 @@
 -
 +AC_CONFIG_FILES([ios-webkit-debug-proxy.pc])
  AC_OUTPUT
---- origsrc/ios-webkit-debug-proxy-1.9.2/examples/Makefile.am	2025-07-01 01:24:40.000000000 +0900
-+++ src/ios-webkit-debug-proxy-1.9.2/examples/Makefile.am	2026-01-12 23:45:36.470205000 +0900
+--- origsrc/ios-webkit-debug-proxy-1.9.3/examples/Makefile.am	2026-11-09 23:30:39.000000000 +0000
++++ src/ios-webkit-debug-proxy-1.9.3/examples/Makefile.am	2026-11-17 12:43:13.327010400 +0000
 @@ -22,13 +22,7 @@ ws_echo2_SOURCES = ws_echo2.c \
      socket_manager.h \
      hash_table.h \
@@ -78,8 +78,8 @@
 -    ../src/device_listener.o \
 -    ../src/hash_table.o
 +dl_client_LDADD = $(top_builddir)/src/libios_webkit_debug_proxy.la
---- origsrc/ios-webkit-debug-proxy-1.9.2/ios-webkit-debug-proxy.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/ios-webkit-debug-proxy-1.9.2/ios-webkit-debug-proxy.pc.in	2026-01-12 23:45:36.471204000 +0900
+--- origsrc/ios-webkit-debug-proxy-1.9.3/ios-webkit-debug-proxy.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/ios-webkit-debug-proxy-1.9.3/ios-webkit-debug-proxy.pc.in	2026-11-17 12:43:13.327010400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -91,8 +91,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lios_webkit_debug_proxy
 +Cflags: -I${includedir}
---- origsrc/ios-webkit-debug-proxy-1.9.2/src/Makefile.am	2025-07-01 01:24:40.000000000 +0900
-+++ src/ios-webkit-debug-proxy-1.9.2/src/Makefile.am	2026-01-12 23:54:10.028366900 +0900
+--- origsrc/ios-webkit-debug-proxy-1.9.3/src/Makefile.am	2026-11-09 23:30:39.000000000 +0000
++++ src/ios-webkit-debug-proxy-1.9.3/src/Makefile.am	2026-11-17 12:43:13.328916700 +0000
 @@ -8,8 +8,8 @@ AM_LDFLAGS = $(libimobiledevice_LIBS) $(
  
  lib_LTLIBRARIES = libios_webkit_debug_proxy.la
@@ -104,7 +104,7 @@
      base64.c base64.h \
      char_buffer.c char_buffer.h \
      device_listener.c device_listener.h \
-@@ -25,19 +25,7 @@ libios_webkit_debug_proxy_la_SOURCES = i
+@@ -25,22 +25,10 @@ libios_webkit_debug_proxy_la_SOURCES = i
      websocket.c websocket.h
  
  bin_PROGRAMS = ios_webkit_debug_proxy
@@ -126,3 +126,6 @@
  ios_webkit_debug_proxy_CFLAGS = $(AM_CFLAGS)
  ios_webkit_debug_proxy_LDFLAGS = $(AM_LDFLAGS)
 +ios_webkit_debug_proxy_LDADD = libios_webkit_debug_proxy.la
+ 
+ check_PROGRAMS = websocket_test
+ TESTS = websocket_test

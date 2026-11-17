@@ -1,13 +1,25 @@
 HOMEPAGE="https://github.com/zeromq/${PN}"
 GIT_URI="https://github.com/zeromq/${PN}.git"
+GIT_REV="a3c38eb6e3018887a8ecabc77f3029f7edb7b2d0"
 
 CATEGORY="Libs"
 SUMMARY="C++ wrapper for czmq"
 DESCRIPTION="${SUMMARY}"
 
-inherit git
+LICENSE="AGPL-3.0-or-later AND LicenseRef-czmqpp-exception"
+LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later AND LicenseRef-czmqpp-exception"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libczmq3-devel
+	libzmq-devel
+"
 
 export CPPFLAGS="-DLIBCZMQPP_EXPORTS"
+
+inherit git
+
+DOCS="COPYING LICENSE"
 
 PKG_NAMES="
 	${PN}
@@ -18,7 +30,7 @@ czmqpp_CONTENTS="
 	usr/share
 "
 libczmq__0_CONTENTS="
-	usr/bin
+	usr/bin/cygczmq++-0.dll
 "
 libczmq___devel_CONTENTS="
 	usr/include

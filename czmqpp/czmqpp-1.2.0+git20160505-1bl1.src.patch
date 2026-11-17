@@ -1,0 +1,33 @@
+--- origsrc/czmqpp/Makefile.am	2026-11-17 11:32:37.000000000 +0000
++++ src/czmqpp/Makefile.am	2026-11-17 11:32:38.493337600 +0000
+@@ -42,6 +42,8 @@ src_libczmq___la_SOURCES = \
+     src/message.cpp \
+     src/socket.cpp \
+     src/thread.cpp
++src_libczmq___la_LDFLAGS = -no-undefined
++src_libczmq___la_LIBADD = -lssp $(libczmq_LIBS)
+ 
+ #
+ # examples
+--- origsrc/czmqpp/configure.ac	2026-11-17 11:32:37.000000000 +0000
++++ src/czmqpp/configure.ac	2026-11-17 11:32:38.493337600 +0000
+@@ -33,7 +33,7 @@ AC_SUBST([pkgconfigdir])
+ 
+ # Require libczmq package min version.
+ #------------------------------------------------------------------------------
+-PKG_CHECK_MODULES([libczmq], [libczmq])
++PKG_CHECK_MODULES([libczmq], [libczmq3])
+ 
+ # Set warning levels.
+ #------------------------------------------------------------------------------
+--- origsrc/czmqpp/libczmq++.pc.in	2026-11-17 11:32:37.000000000 +0000
++++ src/czmqpp/libczmq++.pc.in	2026-11-17 11:32:38.495093600 +0000
+@@ -7,7 +7,7 @@ Name: libczmq++
+ Description:  Object helpers for czmq.
+ URL: https://github.com/zeromq/czmqpp
+ Version: @PACKAGE_VERSION@
+-Requires: libczmq
++Requires: libczmq3
+ Cflags: -I${includedir} -std=c++11
+ Libs: -lczmq++
+ 

@@ -1,0 +1,6 @@
+--- origsrc/libhomfly-1.04/test/run_tests	2026-03-26 14:14:40.000000000 +0000
++++ src/libhomfly-1.04/test/run_tests	2026-11-17 13:34:45.835702600 +0000
+@@ -1,2 +1,2 @@
+ #!/bin/sh
+-./test_example data.txt
++./test_example ${srcdir}/data.txt

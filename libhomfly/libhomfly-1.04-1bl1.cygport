@@ -34,3 +34,10 @@ libhomfly_devel_CONTENTS="
 libhomfly_SUMMARY="${SUMMARY} (licensing & readmes)"
 libhomfly0_SUMMARY="${SUMMARY} (runtime)"
 libhomfly_devel_SUMMARY="${SUMMARY} (development)"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/\[1\.03\]/[${PV}]/" configure.ac
+}

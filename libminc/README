@@ -10,48 +10,52 @@ environment : they are simple and powerful and make no attempt to provide a
 pretty interface to users.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libgcc1-12.4.0-3
-  libhdf5_200-1.12.3-1
-  libminc5.3.0-2.4.06-1bl3
-  libnetcdf19-4.9.2-1
-  libnifti2-2.0.0-1bl4
-  libstdc++6-12.4.0-3
-  zlib0-1.3.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libhdf5-devel-2.2.0-1
+  libhdf5_320-2.2.0-1
+  libminc5.3.0-2.5.0-1bl1
+  libnetcdf-devel-4.10.1-1
+  libnetcdf22-4.10.1-1
+  libnifti2-3.0.1-1bl1
+  libstdc++6-14.4.0-1
+  libznz3-3.0.1-1bl1
+  zlib-devel-1.4-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libhdf5-devel-1.12.3-1
-  libnetcdf-devel-4.9.2-1
-  libnifti-devel-2.0.0-1bl4
-  ninja-1.12.0-1
-  zlib-devel-1.3.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libhdf5-devel-2.2.0-1
+  libnetcdf-devel-4.10.1-1
+  libnifti-devel-3.0.1-1bl1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/BIC-MNI/libminc
 
 Canonical download:
-  https://github.com/BIC-MNI/libminc/archive/refs/tags/release-2.4.06.tar.gz
+  https://github.com/BIC-MNI/libminc/archive/refs/tags/release-2.5.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libminc-2.4.06-X-src.tar.xz
+  1. unpack libminc-2.5.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libminc-2.4.06-X.cygport all
+        % cygport ./libminc-2.5.0-X.cygport all
 
 This will create:
-  /usr/src/libminc-2.4.06-X-src.tar.xz
-  /usr/src/libminc-2.4.06-X.tar.xz
-  /usr/src/libminc5.3.0-2.4.06-X.tar.xz
-  /usr/src/libminc-devel-2.4.06-X.tar.xz
+  /usr/src/libminc-2.5.0-X-src.tar.xz
+  /usr/src/libminc-2.5.0-X.tar.xz
+  /usr/src/libminc5.3.0-2.5.0-X.tar.xz
+  /usr/src/libminc-devel-2.5.0-X.tar.xz
 
 -------------------------------------------
 
@@ -111,6 +115,9 @@ Files included in the binary package:
   /usr/include/libminc/volume_io/volume.h
   /usr/include/libminc/volume_io/volume_cache.h
   /usr/include/libminc/voxel_loop.h
+  /usr/lib/cmake/LIBMINC/FindNETCDF.cmake
+  /usr/lib/cmake/LIBMINC/LIBMINC-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/LIBMINC/LIBMINC-targets.cmake
   /usr/lib/cmake/LIBMINC/LIBMINCConfig.cmake
   /usr/lib/cmake/LIBMINC/UseLIBMINC.cmake
   /usr/lib/libminc2.dll.a
@@ -119,6 +126,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.5.0-1bl1 -----
+Version bump.
 
 ----- version 2.4.06-1bl3 -----
 Fix LIBMINCConfig.cmake

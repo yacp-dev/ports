@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/BIC-MNI/${PN}"
 SRC_URI="https://github.com/BIC-MNI/${PN}/archive/refs/tags/release-${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/libm/libminc/2.5.0-4/debian/patches/0002-initialize_arrays_in_tests.patch
+"
 SRC_DIR="${PN}-release-${PV}"
 
 CATEGORY="Libs"
@@ -13,15 +16,21 @@ libraries and tools are designed for use in a medical-imaging research
 environment : they are simple and powerful and make no attempt to provide a
 pretty interface to users."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="LicenseRef-MINC"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-MINC"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libhdf5-devel libnetcdf-devel libnifti-devel zlib-devel"
+BUILD_REQUIRES="
+	libhdf5-devel
+	libnetcdf-devel
+	libnifti-devel
+	zlib-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_INSTALL_INCLUDEDIR:PATH=include/libminc
 	-DLIBMINC_BUILD_EZMINC_EXAMPLES:BOOL=ON
 	-DLIBMINC_BUILD_SHARED_LIBS:BOOL=ON
 	-DLIBMINC_MINC1_SUPPORT:BOOL=ON
@@ -55,3 +64,5 @@ libminc_devel_CONTENTS="
 libminc_SUMMARY="${SUMMARY} (licensing & readmes)"
 libminc5_3_0_SUMMARY="${SUMMARY} (runtime)"
 libminc_devel_SUMMARY="${SUMMARY} (development)"
+
+libminc_devel_REQUIRES="libhdf5-devel libnetcdf-devel zlib-devel"

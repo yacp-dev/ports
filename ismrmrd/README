@@ -9,51 +9,59 @@ of the ISMRM Sedona 2013 workshop. Please see the ISMRMRD Documentation for
 more information.
 
 Runtime requirements:
-  cygwin-3.3.4-2
+  cygwin-3.6.12-1
+  hdf5-2.2.0-1
+  libaec-devel-1.1.8-1
   libboost_program_options1.66-1.66.0-1
-  libfftw3_3-3.3.10-1
-  libgcc1-11.3.0-1
-  libhdf5_200-1.12.1-1
-  libismrmrd-devel-1.8.0-1bl1
-  libismrmrd1.8-1.8.0-1bl1
+  libfftw3_3-3.3.11-1
+  libgcc1-14.4.0-1
+  libhdf5-devel-2.2.0-1
+  libhdf5_320-2.2.0-1
+  libismrmrd-devel-1.15.0-1bl1
+  libismrmrd1.15-1.15.0-1bl1
+  libpugixml-devel-1.9-1
   libpugixml1-1.9-1
-  libstdc++6-11.3.0-1
-  pkg-config-1.8.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
+  zlib-devel-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cmake-3.20.0-1
-  cygport-0.35.0-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  hdf5-2.2.0-1
+  libaec-devel-1.1.8-1
   libboost-devel-1.66.0-1
-  libfftw3-devel-3.3.10-1
-  libhdf5-devel-1.12.1-1
+  libfftw3-devel-3.3.11-1
+  libhdf5-devel-2.2.0-1
   libpugixml-devel-1.9-1
-  ninja-1.10.2-1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/ismrmrd/ismrmrd
 
 Canonical download:
-  https://github.com/ismrmrd/ismrmrd/archive/refs/tags/v1.8.0.tar.gz
+  https://github.com/ismrmrd/ismrmrd/archive/refs/tags/v1.15.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ismrmrd-1.8.0-X-src.tar.xz
+  1. unpack ismrmrd-1.15.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ismrmrd-1.8.0-X.cygport all
+        % cygport ./ismrmrd-1.15.0-X.cygport all
 
 This will create:
-  /usr/src/ismrmrd-1.8.0-X-src.tar.xz
-  /usr/src/ismrmrd-1.8.0-X.tar.xz
-  /usr/src/libismrmrd1.8-1.8.0-X.tar.xz
-  /usr/src/libismrmrd-devel-1.8.0-X.tar.xz
-  /usr/src/matlab-ismrmrd-1.8.0-X.tar.xz
+  /usr/src/ismrmrd-1.15.0-X-src.tar.xz
+  /usr/src/ismrmrd-1.15.0-X.tar.xz
+  /usr/src/libismrmrd1.15-1.15.0-X.tar.xz
+  /usr/src/libismrmrd-devel-1.15.0-X.tar.xz
+  /usr/src/matlab-ismrmrd-1.15.0-X.tar.xz
 
 -------------------------------------------
 
@@ -62,29 +70,35 @@ Files included in the binary package:
 (ismrmrd)
   /usr/bin/ismrmrd_c_example.exe
   /usr/bin/ismrmrd_generate_cartesian_shepp_logan.exe
+  /usr/bin/ismrmrd_hdf5_to_stream.exe
   /usr/bin/ismrmrd_info.exe
   /usr/bin/ismrmrd_read_timing_test.exe
   /usr/bin/ismrmrd_recon_cartesian_2d.exe
+  /usr/bin/ismrmrd_stream_recon_cartesian_2d.exe
+  /usr/bin/ismrmrd_stream_to_hdf5.exe
   /usr/bin/ismrmrd_test_xml.exe
   /usr/share/doc/Cygwin/ismrmrd.README
   /usr/share/doc/ismrmrd/LICENSE
   /usr/share/doc/ismrmrd/README.md
   /usr/share/ismrmrd/schema/ismrmrd.xsd
 
-(libismrmrd1.8)
-  /usr/bin/cygismrmrd-1.8.dll
+(libismrmrd1.15)
+  /usr/bin/cygismrmrd-1.15.dll
 
 (libismrmrd-devel)
+  /usr/include/ismrmrd/cpp98.h
   /usr/include/ismrmrd/dataset.h
   /usr/include/ismrmrd/export.h
   /usr/include/ismrmrd/ismrmrd.h
   /usr/include/ismrmrd/meta.h
+  /usr/include/ismrmrd/serialization.h
+  /usr/include/ismrmrd/serialization_iostream.h
   /usr/include/ismrmrd/version.h
   /usr/include/ismrmrd/waveform.h
   /usr/include/ismrmrd/xml.h
   /usr/lib/cmake/ISMRMRD/ISMRMRDConfig.cmake
   /usr/lib/cmake/ISMRMRD/ISMRMRDConfigVersion.cmake
-  /usr/lib/cmake/ISMRMRD/ISMRMRDTargets-release.cmake
+  /usr/lib/cmake/ISMRMRD/ISMRMRDTargets-relwithdebinfo.cmake
   /usr/lib/cmake/ISMRMRD/ISMRMRDTargets.cmake
   /usr/lib/libismrmrd.dll.a
   /usr/lib/pkgconfig/ismrmrd.pc
@@ -115,6 +129,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.15.0-1bl1 -----
+Version bump.
 
 ----- version 1.8.0-1bl1 -----
 Version bump.

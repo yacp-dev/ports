@@ -11,7 +11,19 @@ reconstruct images from the data. This standard was developed by a
 subcommittee of the ISMRM Sedona 2013 workshop. Please see the ISMRMRD
 Documentation for more information."
 
-BUILD_REQUIRES="libboost-devel libfftw3-devel libhdf5-devel libpugixml-devel"
+LICENSE="LicenseRef-ismrmrd"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-ismrmrd"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	hdf5
+	libaec-devel
+	libboost-devel
+	libfftw3-devel
+	libhdf5-devel
+	libpugixml-devel
+	zlib-devel
+"
 
 inherit cmake
 
@@ -36,8 +48,8 @@ ismrmrd_CONTENTS="
 	usr/share/doc
 	usr/share/${PN}/schema
 "
-libismrmrd1_8_CONTENTS="
-	usr/bin/*.dll
+libismrmrd1_15_CONTENTS="
+	usr/bin/cygismrmrd-1.15.dll
 "
 libismrmrd_devel_CONTENTS="
 	usr/include
@@ -47,6 +59,13 @@ matlab_ismrmrd_CONTENTS="
 	usr/share/${PN}/matlab
 "
 ismrmrd_SUMMARY="${SUMMARY} (utilities)"
-libismrmrd1_8_SUMMARY="${SUMMARY} (runtime)"
+libismrmrd1_15_SUMMARY="${SUMMARY} (runtime)"
 libismrmrd_devel_SUMMARY="${SUMMARY} (development)"
 matlab_ismrmrd_SUMMARY="${SUMMARY} (matlab bindings)"
+libismrmrd_devel_REQUIRES="
+	hdf5
+	libaec-devel
+	libhdf5-devel
+	libpugixml-devel
+	zlib-devel
+"

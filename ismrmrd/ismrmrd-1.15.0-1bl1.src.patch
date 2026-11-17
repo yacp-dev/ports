@@ -1,0 +1,81 @@
+--- origsrc/ismrmrd-1.15.0/CMakeLists.txt	2026-01-27 00:38:57.000000000 +0000
++++ src/ismrmrd-1.15.0/CMakeLists.txt	2026-11-17 13:34:29.323717200 +0000
+@@ -162,7 +162,7 @@ else()
+ endif()
+ 
+ # Find Boost for tests and utilities
+-find_package(Boost CONFIG COMPONENTS filesystem random program_options unit_test_framework)
++find_package(Boost COMPONENTS filesystem random program_options unit_test_framework)
+ find_package(pugixml CONFIG REQUIRED)
+ find_package(FFTW COMPONENTS FLOAT_LIB)
+ 
+@@ -190,7 +190,7 @@ endif ()
+ 
+ # Generate the version.h header file
+ find_package(Git)
+-if (GIT_FOUND)
++if (GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
+     execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse HEAD WORKING_DIRECTORY
+             ${CMAKE_SOURCE_DIR} OUTPUT_VARIABLE ISMRMRD_GIT_SHA1 ERROR_VARIABLE ISMRMRD_GIT_STDERR)
+     string(STRIP "${ISMRMRD_GIT_SHA1}" ISMRMRD_GIT_SHA1)
+@@ -245,7 +245,11 @@ if (BUILD_STATIC)
+   set(ISMRMRD_PUGIXML_LIBRARIES pugixml::static)
+   add_library(ismrmrd STATIC ${ISMRMRD_TARGET_SOURCES})
+ else()
+-  set(ISMRMRD_PUGIXML_LIBRARIES pugixml::shared)
++  if (TARGET pugixml::shared)
++    set(ISMRMRD_PUGIXML_LIBRARIES pugixml::shared)
++  else()
++    set(ISMRMRD_PUGIXML_LIBRARIES pugixml)
++  endif()
+   add_library(ismrmrd SHARED ${ISMRMRD_TARGET_SOURCES})
+ endif()
+ 
+@@ -385,3 +389,12 @@ if(CPACK_GENERATOR)
+   set(CPACK_PROJECT_CONFIG_FILE ${ISMRMRD_CPACK_CFG_FILE})
+   include(CPack)
+ endif()
++
++if (CYGWIN)
++  set(prefix ${CMAKE_INSTALL_PREFIX})
++  set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++  set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++  set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++  configure_file(${CMAKE_SOURCE_DIR}/ismrmrd.pc.in ${CMAKE_BINARY_DIR}/ismrmrd.pc @ONLY)
++  install(FILES ${CMAKE_BINARY_DIR}/ismrmrd.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
++endif()
+--- origsrc/ismrmrd-1.15.0/ismrmrd.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/ismrmrd-1.15.0/ismrmrd.pc.in	2026-11-17 13:34:29.325728400 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: ismrmrd
++Description: ISMRM Raw Data Format
++Version: @ISMRMRD_VERSION_STRING@
++Libs: -L${libdir} -lismrmrd
++Cflags: -I${includedir}
+--- origsrc/ismrmrd-1.15.0/utilities/ismrmrd_hdf5_to_stream.cpp	2026-01-27 00:38:57.000000000 +0000
++++ src/ismrmrd-1.15.0/utilities/ismrmrd_hdf5_to_stream.cpp	2026-11-17 13:34:29.325728400 +0000
+@@ -151,7 +151,7 @@ int main(int argc, char **argv) {
+     try {
+         po::store(po::parse_command_line(argc, argv, desc), vm);
+         po::notify(vm);
+-    } catch (boost::wrapexcept<po::required_option> &e) {
++    } catch (po::required_option &e) {
+         std::cerr << "Error: " << e.what() << std::endl;
+         std::cerr << desc << std::endl;
+         return 1;
+--- origsrc/ismrmrd-1.15.0/utilities/ismrmrd_stream_to_hdf5.cpp	2026-01-27 00:38:57.000000000 +0000
++++ src/ismrmrd-1.15.0/utilities/ismrmrd_stream_to_hdf5.cpp	2026-11-17 13:34:29.327743200 +0000
+@@ -163,7 +163,7 @@ int main(int argc, char **argv) {
+     try {
+         po::store(po::parse_command_line(argc, argv, desc), vm);
+         po::notify(vm);
+-    } catch (boost::wrapexcept<po::required_option> &e) {
++    } catch (po::required_option &e) {
+         std::cerr << "Error: " << e.what() << std::endl;
+         std::cerr << desc << std::endl;
+         return 1;

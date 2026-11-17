@@ -1,0 +1,84 @@
+HOMEPAGE="https://github.com/${PN}/${PN}/"
+SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz"
+PATCH_URI="
+	dbus-cxx-2.6.2-cygwin.patch
+"
+
+CATEGORY="Libs"
+SUMMARY="C++ wrapper for dbus"
+DESCRIPTION="DBus-cxx is a C++ implementation of the DBus protocol. DBus is a
+Linux-specific RPC(remote procedure call) and IPC(inter-process communications)
+mechanism."
+
+LICENSE="(LGPL-3.0-or-later OR BSD-3-Clause) AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: (LGPL-3.0-or-later OR BSD-3-Clause) AND Apache-2.0"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	dbus-x11
+	libdbus1-devel
+	libexpat-devel
+	libglib2.0-devel
+	libpopt-devel
+	libsigc3.0-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+export CXXFLAGS="${CXXFLAGS} -Wno-error=return-type -include algorithm"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_TESTING:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DENABLE_EXAMPLES:BOOL=ON
+	-DENABLE_GLIB_SUPPORT:BOOL=ON
+	-DENABLE_TOOLS:BOOL=ON
+"
+
+DOCS="tools/libcppgenerate/LICENSE"
+DIFF_EXCLUDES="debug"
+
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	cygcmake
+	PATH=${B}:${B}/dbus-cxx-glib:${B}/tools:${PATH} cygninja
+}
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${B}/dbus-cxx-glib:${PATH} ninja_test
+}
+
+PKG_NAMES="
+	${PN}
+	lib${PN}2
+	lib${PN}-devel
+	lib${PN}-glib2
+"
+dbus_cxx_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libdbus_cxx2_CONTENTS="
+	usr/bin/cyg${PN}-2.dll
+"
+libdbus_cxx_devel_CONTENTS="
+	usr/include/${PN}-2.0
+	usr/include/${PN}-glib-2.0
+	usr/lib/lib${PN}.dll.a
+	usr/lib/lib${PN}-glib.dll.a
+	usr/lib/cmake/${PN}
+	usr/lib/pkgconfig/${PN}-2.0.pc
+	usr/lib/pkgconfig/${PN}-glib-2.0.pc
+"
+libdbus_cxx_glib2_CONTENTS="
+	usr/bin/cyg${PN}-glib-2.dll
+"
+dbus_cxx_SUMMARY="${SUMMARY} (utilities)"
+libdbus_cxx2_SUMMARY="${SUMMARY} (runtime)"
+libdbus_cxx_devel_SUMMARY="${SUMMARY} (development)"
+libdbus_cxx_glib2_SUMMARY="${SUMMARY} (runtime / glib)"

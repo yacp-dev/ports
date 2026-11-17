@@ -1,5 +1,5 @@
---- origsrc/libmbus/Makefile.am	2025-05-03 16:03:30.000000000 +0900
-+++ src/libmbus/Makefile.am	2025-05-03 16:05:06.536795900 +0900
+--- origsrc/libmbus-0.10.5/Makefile.am	2026-11-13 18:10:19.000000000 +0000
++++ src/libmbus-0.10.5/Makefile.am	2026-11-17 18:18:33.134980900 +0000
 @@ -8,7 +8,7 @@ pkgconfigdir = $(libdir)/pkgconfig
  pkgconfig_DATA = libmbus.pc
  
@@ -15,8 +15,8 @@
  ACLOCAL		= aclocal -I .
 -ACLOCAL_AMFLAGS = -Werror -I m4
 +ACLOCAL_AMFLAGS = -I m4
---- origsrc/libmbus/mbus/Makefile.am	2025-05-03 16:03:30.000000000 +0900
-+++ src/libmbus/mbus/Makefile.am	2025-05-03 16:03:34.671590200 +0900
+--- origsrc/libmbus-0.10.5/mbus/Makefile.am	2026-11-13 18:10:19.000000000 +0000
++++ src/libmbus-0.10.5/mbus/Makefile.am	2026-11-17 18:18:33.143057000 +0000
 @@ -17,4 +17,4 @@ include_HEADERS = mbus.h mbus-protocol.h
  
  lib_LTLIBRARIES	   = libmbus.la

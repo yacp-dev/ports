@@ -1,6 +1,6 @@
---- origsrc/hidapi-hidapi-0.15.0/libusb/CMakeLists.txt	2025-05-18 18:25:13.000000000 +0000
-+++ src/hidapi-hidapi-0.15.0/libusb/CMakeLists.txt	2026-10-24 11:53:18.897031700 +0000
-@@ -98,7 +98,7 @@ add_library(hidapi-libusb ALIAS hidapi_l
+--- origsrc/hidapi-hidapi-0.16.0/libusb/CMakeLists.txt	2026-11-15 21:12:48.000000000 +0000
++++ src/hidapi-hidapi-0.16.0/libusb/CMakeLists.txt	2026-11-17 12:26:55.212134800 +0000
+@@ -101,7 +101,7 @@ add_library(hidapi-libusb ALIAS hidapi_l
  
  if(HIDAPI_INSTALL_TARGETS)
      install(TARGETS hidapi_libusb EXPORT hidapi

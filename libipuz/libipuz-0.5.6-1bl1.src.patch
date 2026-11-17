@@ -1,5 +1,5 @@
---- origsrc/libipuz-0.5.5/libipuz/meson.build	2026-07-06 05:02:12.000000000 +0000
-+++ src/libipuz-0.5.5/libipuz/meson.build	2026-10-19 14:16:21.510638800 +0000
+--- origsrc/libipuz-0.5.6/libipuz/meson.build	2026-07-06 05:02:12.000000000 +0000
++++ src/libipuz-0.5.6/libipuz/meson.build	2026-10-19 14:16:21.510638800 +0000
 @@ -98,7 +98,7 @@ libipuz_deps = [
  
  subdir('rust')
@@ -9,8 +9,8 @@
    libipuz_sources + enum_sources + libipuz_private_headers + libipuz_private_sources,
    dependencies: libipuz_deps,
    link_with: ipuz_rust_lib,
---- origsrc/libipuz-0.5.5/libipuz/rust/Cargo.lock	2026-07-06 05:02:12.000000000 +0000
-+++ src/libipuz-0.5.5/libipuz/rust/Cargo.lock	2026-10-19 14:16:21.510638800 +0000
+--- origsrc/libipuz-0.5.6/libipuz/rust/Cargo.lock	2026-07-06 05:02:12.000000000 +0000
++++ src/libipuz-0.5.6/libipuz/rust/Cargo.lock	2026-10-19 14:16:21.510638800 +0000
 @@ -10,9 +10,9 @@ checksum = "1b8e56985ec62d17e9c1001dc89c
  
  [[package]]

@@ -10,10 +10,16 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libmicrohttpd-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+	libmicrohttpd-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 export CXXFLAGS="${CXXFLAGS} -fpermissive"
+
+# cygport check takes about 35 minutes to compile and run the test suite
+YACP_CHECK_TIMEOUT_MINUTES=45
 
 DOCS="
 	*.md
@@ -21,19 +27,20 @@ DOCS="
 
 PKG_NAMES="
 	${PN}
-	${PN}0
+	${PN}2
 	${PN}-devel
 "
 libhttpserver_CONTENTS="
-	usr/share
+	usr/share/doc
 "
-libhttpserver0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libhttpserver2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libhttpserver_devel_CONTENTS="
 	usr/include
 	usr/lib
+	usr/share/man/man3
 "
 libhttpserver_SUMMARY="${SUMMARY} (licensing & readmes)"
-libhttpserver0_SUMMARY="${SUMMARY} (runtime)"
+libhttpserver2_SUMMARY="${SUMMARY} (runtime)"
 libhttpserver_devel_SUMMARY="${SUMMARY} (development)"

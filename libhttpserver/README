@@ -4,47 +4,48 @@ libhttpserver is a small C++ library for embedding RESTful HTTP server
 functionality into applications.
 
 Runtime requirements:
-  cygwin-3.5.0-0.388.g1a646ad7970a
-  libgcc1-11.4.0-1
-  libhttpserver-devel-0.19.0-1bl1
-  libhttpserver0-0.19.0-1bl1
-  libmicrohttpd-devel-0.9.77-1bl1
-  libmicrohttpd12-0.9.77-1bl1
-  libstdc++6-11.4.0-1
-  pkg-config-2.0.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libgnutls30-3.8.13-1
+  libhttpserver-devel-2.0.1-1bl1
+  libhttpserver2-2.0.1-1bl1
+  libmicrohttpd-devel-1.0.10-1bl1
+  libmicrohttpd12-1.0.10-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libmicrohttpd-devel-0.9.77-1bl1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libcurl-devel-8.23.0-1
+  libmicrohttpd-devel-1.0.10-1bl1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/etr/libhttpserver
 
 Canonical download:
-  https://github.com/etr/libhttpserver/archive/refs/tags/0.19.0.tar.gz
+  https://github.com/etr/libhttpserver/archive/refs/tags/2.0.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libhttpserver-0.19.0-X-src.tar.xz
+  1. unpack libhttpserver-2.0.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libhttpserver-0.19.0-X.cygport all
+        % cygport ./libhttpserver-2.0.1-X.cygport all
 
 This will create:
-  /usr/src/libhttpserver-0.19.0-X-src.tar.xz
-  /usr/src/libhttpserver-0.19.0-X.tar.xz
-  /usr/src/libhttpserver0-0.19.0-X.tar.xz
-  /usr/src/libhttpserver-devel-0.19.0-X.tar.xz
+  /usr/src/libhttpserver-2.0.1-X-src.tar.xz
+  /usr/src/libhttpserver-2.0.1-X.tar.xz
+  /usr/src/libhttpserver2-2.0.1-X.tar.xz
+  /usr/src/libhttpserver-devel-2.0.1-X.tar.xz
 
 -------------------------------------------
 
@@ -59,34 +60,53 @@ Files included in the binary package:
   /usr/share/doc/libhttpserver/LICENSE
   /usr/share/doc/libhttpserver/PULL_REQUEST_TEMPLATE.md
   /usr/share/doc/libhttpserver/README.md
+  /usr/share/doc/libhttpserver/RELEASE_NOTES.md
+  /usr/share/doc/libhttpserver/SECURITY.md
 
-(libhttpserver0)
-  /usr/bin/cyghttpserver-0.dll
+(libhttpserver2)
+  /usr/bin/cyghttpserver-2.dll
 
 (libhttpserver-devel)
   /usr/include/httpserver.hpp
-  /usr/include/httpserver/basic_auth_fail_response.hpp
+  /usr/include/httpserver/body_kind.hpp
+  /usr/include/httpserver/constants.hpp
+  /usr/include/httpserver/cookie.hpp
+  /usr/include/httpserver/create_test_request.hpp
   /usr/include/httpserver/create_webserver.hpp
-  /usr/include/httpserver/deferred_response.hpp
-  /usr/include/httpserver/details/http_endpoint.hpp
-  /usr/include/httpserver/digest_auth_fail_response.hpp
+  /usr/include/httpserver/create_webserver_setters.hpp
+  /usr/include/httpserver/feature_unavailable.hpp
   /usr/include/httpserver/file_info.hpp
-  /usr/include/httpserver/file_response.hpp
+  /usr/include/httpserver/hook_action.hpp
+  /usr/include/httpserver/hook_context.hpp
+  /usr/include/httpserver/hook_handle.hpp
+  /usr/include/httpserver/hook_phase.hpp
   /usr/include/httpserver/http_arg_value.hpp
+  /usr/include/httpserver/http_method.hpp
   /usr/include/httpserver/http_request.hpp
   /usr/include/httpserver/http_resource.hpp
   /usr/include/httpserver/http_response.hpp
   /usr/include/httpserver/http_utils.hpp
-  /usr/include/httpserver/string_response.hpp
+  /usr/include/httpserver/http_utils_helpers.hpp
+  /usr/include/httpserver/iovec_entry.hpp
+  /usr/include/httpserver/ip_representation.hpp
   /usr/include/httpserver/webserver.hpp
+  /usr/include/httpserver/webserver_hooks.hpp
+  /usr/include/httpserver/webserver_routes.hpp
+  /usr/include/httpserver/webserver_runtime.hpp
+  /usr/include/httpserver/webserver_websocket.hpp
+  /usr/include/httpserver/websocket_handler.hpp
   /usr/include/httpserverpp
   /usr/lib/cmake/libhttpserver/FindLibHttpServer.cmake
   /usr/lib/libhttpserver.dll.a
   /usr/lib/pkgconfig/libhttpserver.pc
+  /usr/share/man/man3/libhttpserver.3.gz
 
 ------------------
 
 Port Notes:
+
+----- version 2.0.1-1bl1 -----
+Version bump.
 
 ----- version 0.19.0-1bl1 -----
 Version bump.

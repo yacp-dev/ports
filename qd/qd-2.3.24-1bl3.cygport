@@ -1,11 +1,11 @@
 HOMEPAGE="https://github.com/BL-highprecision/QD"
 SRC_URI="https://github.com/BL-highprecision/QD/archive/refs/tags/v${PV}.tar.gz"
-SRC_DIR="QD-${PV}"
 PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/2.3.23%2Bdfsg.1-1.1/debian/patches/missing-changelog.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-lto.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-intrinsic.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/64a92bb4b6a318596968fb01344724061cc31a53/f/${PN}-lto.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/64a92bb4b6a318596968fb01344724061cc31a53/f/${PN}-intrinsic.patch
 "
+SRC_DIR="QD-${PV}"
 
 CATEGORY="Math"
 SUMMARY="C++/Fortran-90 double-double and quad-double package"
@@ -16,9 +16,13 @@ digits).  Due to features such as operator and function overloading, these
 facilities can be utilized with only minor modifications to conventional C++
 and Fortran-90 programs."
 
-LICENSE="BSD-3-Clause-LBNL"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause-LBNL"
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	gcc-fortran
+"
 
 src_test()
 {
@@ -27,6 +31,7 @@ src_test()
 }
 
 DOCS="
+	LICENSE
 	b/ChangeLog
 "
 

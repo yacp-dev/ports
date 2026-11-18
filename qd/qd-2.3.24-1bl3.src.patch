@@ -1,5 +1,5 @@
---- origsrc/QD-2.3.24/Makefile.am	2025-03-01 15:35:04.000000000 +0900
-+++ src/QD-2.3.24/Makefile.am	2026-01-07 13:41:52.873460500 +0900
+--- origsrc/QD-2.3.24/Makefile.am	2025-03-01 06:35:04.000000000 +0000
++++ src/QD-2.3.24/Makefile.am	2026-11-18 12:36:35.234967900 +0000
 @@ -4,8 +4,8 @@ SUBDIRS = src include tests fortran
  pkgconfigdir = $(libdir)/pkgconfig
  pkgconfig_DATA = qd.pc
@@ -25,8 +25,8 @@
  
  cpp-demo:
  	$(MAKE) -C tests demo
---- origsrc/QD-2.3.24/fortran/Makefile.am	2025-03-01 15:35:04.000000000 +0900
-+++ src/QD-2.3.24/fortran/Makefile.am	2026-01-07 13:35:31.603201100 +0900
+--- origsrc/QD-2.3.24/fortran/Makefile.am	2025-03-01 06:35:04.000000000 +0000
++++ src/QD-2.3.24/fortran/Makefile.am	2026-11-18 12:36:35.234967900 +0000
 @@ -14,11 +14,10 @@ QDMOD=qdmodule.$(module_ext)
  DDMOD=ddmodule.$(module_ext)
  endif
@@ -41,8 +41,8 @@
  ddmod.lo: $(DDEXT) ddext.lo
  qdmod.lo: ddmod.lo $(DDMOD) qdext.lo
  $(QDMOD): qdmod.lo $(DDMOD)
---- origsrc/QD-2.3.24/src/Makefile.am	2025-03-01 15:35:04.000000000 +0900
-+++ src/QD-2.3.24/src/Makefile.am	2026-01-07 13:35:31.612760300 +0900
+--- origsrc/QD-2.3.24/src/Makefile.am	2025-03-01 06:35:04.000000000 +0000
++++ src/QD-2.3.24/src/Makefile.am	2026-11-18 12:36:35.234967900 +0000
 @@ -4,6 +4,7 @@ SRC = c_dd.cpp c_qd.cpp dd_real.cpp dd_c
  lib_LTLIBRARIES = libqd.la
  
@@ -51,8 +51,8 @@
  
  AM_CPPFLAGS = -I$(top_builddir) -I$(top_builddir)/include -I$(top_srcdir)/include
  
---- origsrc/QD-2.3.24/tests/Makefile.am	2025-03-01 15:35:04.000000000 +0900
-+++ src/QD-2.3.24/tests/Makefile.am	2026-01-07 13:35:31.614784400 +0900
+--- origsrc/QD-2.3.24/tests/Makefile.am	2025-03-01 06:35:04.000000000 +0000
++++ src/QD-2.3.24/tests/Makefile.am	2026-11-18 12:36:35.236990300 +0000
 @@ -16,7 +16,6 @@ AM_FFLAGS = $(AM_FCFLAGS)
  f_test_SOURCES = f_test.f
  f_test_LINK=$(CXXLINK)
@@ -61,8 +61,8 @@
                 $(LDADD) $(top_builddir)/src/libqd.la $(FCLIBS)
  endif
  
---- origsrc/QD-2.3.24/tests/f_test.f	2025-03-01 15:35:04.000000000 +0900
-+++ src/QD-2.3.24/tests/f_test.f	2026-01-07 13:35:31.616795700 +0900
+--- origsrc/QD-2.3.24/tests/f_test.f	2025-03-01 06:35:04.000000000 +0000
++++ src/QD-2.3.24/tests/f_test.f	2026-11-18 12:36:35.236990300 +0000
 @@ -28,3 +28,6 @@ subroutine f_main
    call f_fpu_fix_end (old_cw)
  end

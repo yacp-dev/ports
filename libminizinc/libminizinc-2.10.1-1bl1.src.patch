@@ -1,6 +1,6 @@
---- origsrc/libminizinc-2.9.3/CMakeLists.txt	2025-05-23 13:29:36.000000000 +0900
-+++ src/libminizinc-2.9.3/CMakeLists.txt	2025-06-24 17:54:43.361859700 +0900
-@@ -103,3 +103,10 @@ include(cmake/support/config_output.cmak
+--- origsrc/libminizinc-2.10.1/CMakeLists.txt	2026-08-30 23:54:04.000000000 +0000
++++ src/libminizinc-2.10.1/CMakeLists.txt	2026-11-18 00:34:10.318704700 +0000
+@@ -105,3 +105,10 @@ include(cmake/support/config_output.cmak
  # -------------------------------------------------------------------------------------------------------------------
  #  -- Support Actions
  include(cmake/support/format.cmake)
@@ -11,9 +11,9 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libminizinc.pc.in ${CMAKE_BINARY_DIR}/libminizinc.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libminizinc.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libminizinc-2.9.3/cmake/support/compiler_setup.cmake	2025-05-23 13:29:36.000000000 +0900
-+++ src/libminizinc-2.9.3/cmake/support/compiler_setup.cmake	2025-06-24 17:54:43.361859700 +0900
-@@ -44,20 +44,22 @@ int main (int argc, char* argv[])
+--- origsrc/libminizinc-2.10.1/cmake/support/compiler_setup.cmake	2026-08-30 23:54:04.000000000 +0000
++++ src/libminizinc-2.10.1/cmake/support/compiler_setup.cmake	2026-11-18 00:34:10.319334600 +0000
+@@ -42,17 +42,19 @@ int main (int argc, char* argv[])
  }
  " HAS_PIDPATH)
  
@@ -46,13 +46,10 @@
 +    return 0;
 +  }" HAS_GETFILEATTRIBUTES)
 +endif()
+--- origsrc/libminizinc-2.10.1/cmake/targets/libmzn.cmake	2026-08-30 23:54:04.000000000 +0000
++++ src/libminizinc-2.10.1/cmake/targets/libmzn.cmake	2026-11-18 00:34:10.321345200 +0000
+@@ -132,6 +132,10 @@ endif()
  
- check_cxx_source_compiles("
- #include <string.h>
---- origsrc/libminizinc-2.9.3/cmake/targets/libmzn.cmake	2025-05-23 13:29:36.000000000 +0900
-+++ src/libminizinc-2.9.3/cmake/targets/libmzn.cmake	2025-06-24 17:54:43.361859700 +0900
-@@ -129,6 +129,10 @@ add_library(mzn
- )
  target_link_libraries(mzn ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
  
 +if (CYGWIN)
@@ -62,9 +59,9 @@
  ### Add Solver Interfaces to the MiniZinc library when available
  include(cmake/targets/libminizinc_atlantis.cmake)
  include(cmake/targets/libminizinc_chuffed.cmake)
---- origsrc/libminizinc-2.9.3/lib/model.cpp	2025-05-23 13:29:36.000000000 +0900
-+++ src/libminizinc-2.9.3/lib/model.cpp	2025-06-24 17:54:43.361859700 +0900
-@@ -205,7 +205,7 @@ bool can_increment_type(const Type& t, P
+--- origsrc/libminizinc-2.10.1/lib/model.cpp	2026-08-30 23:54:04.000000000 +0000
++++ src/libminizinc-2.10.1/lib/model.cpp	2026-11-18 00:34:10.322730900 +0000
+@@ -204,7 +204,7 @@ bool can_increment_type(const Type& t, P
        return t.st() == Type::ST_PLAIN || t.bt() != Type::BT_INT;
      case PBT_BIF:
        return t.bt() != Type::BT_FLOAT;
@@ -73,8 +70,8 @@
        return false;
    }
    throw InternalError("Invalid BaseType");
---- origsrc/libminizinc-2.9.3/libminizinc.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libminizinc-2.9.3/libminizinc.pc.in	2025-06-24 17:54:43.361859700 +0900
+--- origsrc/libminizinc-2.10.1/libminizinc.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libminizinc-2.10.1/libminizinc.pc.in	2026-11-18 00:34:10.323355700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

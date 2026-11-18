@@ -7,44 +7,45 @@ the higher-level language Zinc. We hope it will be adopted as a standard by the
 Constraint Programming community.
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libgcc1-12.4.0-3
-  libmzn-devel-2.9.3-1bl1
-  libmzn2-2.9.3-1bl1
-  libstdc++6-12.4.0-3
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libintl8-0.26-1
+  libmzn-devel-2.10.1-1bl1
+  libmzn2-2.10.1-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
+  binutils-2.47-1
   bison-3.8.2-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   flex-2.6.4-2
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.1-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://www.minizinc.org/
 
 Canonical download:
-  https://github.com/MiniZinc/libminizinc/archive/refs/tags/2.9.3.tar.gz
+  https://github.com/MiniZinc/libminizinc/archive/refs/tags/2.10.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libminizinc-2.9.3-X-src.tar.xz
+  1. unpack libminizinc-2.10.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libminizinc-2.9.3-X.cygport all
+        % cygport ./libminizinc-2.10.1-X.cygport all
 
 This will create:
-  /usr/src/libminizinc-2.9.3-X-src.tar.xz
-  /usr/src/libminizinc-2.9.3-X.tar.xz
-  /usr/src/libmzn2-2.9.3-X.tar.xz
-  /usr/src/libmzn-devel-2.9.3-X.tar.xz
+  /usr/src/libminizinc-2.10.1-X-src.tar.xz
+  /usr/src/libminizinc-2.10.1-X.tar.xz
+  /usr/src/libmzn2-2.10.1-X.tar.xz
+  /usr/src/libmzn-devel-2.10.1-X.tar.xz
 
 -------------------------------------------
 
@@ -163,7 +164,9 @@ Files included in the binary package:
   /usr/share/minizinc/linear/subcircuit_wDummy.mzn
   /usr/share/minizinc/std/all_different.mzn
   /usr/share/minizinc/std/all_different_except.mzn
+  /usr/share/minizinc/std/all_different_except.mzn.deprecated.mzn
   /usr/share/minizinc/std/all_different_except_0.mzn
+  /usr/share/minizinc/std/all_different_except_0.mzn.deprecated.mzn
   /usr/share/minizinc/std/all_different_int.mzn
   /usr/share/minizinc/std/all_different_int.mzn.deprecated.mzn
   /usr/share/minizinc/std/all_different_set.mzn
@@ -234,6 +237,9 @@ Files included in the binary package:
   /usr/share/minizinc/std/cumulative.mzn
   /usr/share/minizinc/std/cumulative_opt.mzn
   /usr/share/minizinc/std/cumulatives.mzn
+  /usr/share/minizinc/std/cumulatives.mzn.deprecated.mzn
+  /usr/share/minizinc/std/cumulatives_opt.mzn
+  /usr/share/minizinc/std/cumulatives_opt.mzn.deprecated.mzn
   /usr/share/minizinc/std/dag.mzn
   /usr/share/minizinc/std/decreasing.mzn
   /usr/share/minizinc/std/decreasing_bool.mzn
@@ -271,6 +277,11 @@ Files included in the binary package:
   /usr/share/minizinc/std/exactly_set.mzn
   /usr/share/minizinc/std/experimental.mzn
   /usr/share/minizinc/std/experimental/all.mzn
+  /usr/share/minizinc/std/experimental/assume.mzn
+  /usr/share/minizinc/std/experimental/assume/fzn_assume.mzn
+  /usr/share/minizinc/std/experimental/blackbox.mzn
+  /usr/share/minizinc/std/experimental/blackbox/fzn_blackbox.mzn
+  /usr/share/minizinc/std/experimental/blackbox/fzn_blackbox_bounds.mzn
   /usr/share/minizinc/std/experimental/on_restart.mzn
   /usr/share/minizinc/std/experimental/on_restart/fzn_on_restart_complete.mzn
   /usr/share/minizinc/std/experimental/on_restart/fzn_on_restart_last_val_bool.mzn
@@ -342,9 +353,12 @@ Files included in the binary package:
   /usr/share/minizinc/std/fzn_at_most_set_reif.mzn
   /usr/share/minizinc/std/fzn_bin_packing.mzn
   /usr/share/minizinc/std/fzn_bin_packing_capa.mzn
+  /usr/share/minizinc/std/fzn_bin_packing_capa_opt.mzn
   /usr/share/minizinc/std/fzn_bin_packing_capa_reif.mzn
   /usr/share/minizinc/std/fzn_bin_packing_load.mzn
+  /usr/share/minizinc/std/fzn_bin_packing_load_opt.mzn
   /usr/share/minizinc/std/fzn_bin_packing_load_reif.mzn
+  /usr/share/minizinc/std/fzn_bin_packing_opt.mzn
   /usr/share/minizinc/std/fzn_bin_packing_reif.mzn
   /usr/share/minizinc/std/fzn_bounded_dpath_enum.mzn
   /usr/share/minizinc/std/fzn_bounded_dpath_enum_reif.mzn
@@ -365,29 +379,101 @@ Files included in the binary package:
   /usr/share/minizinc/std/fzn_cost_regular.mzn
   /usr/share/minizinc/std/fzn_cost_regular_reif.mzn
   /usr/share/minizinc/std/fzn_count_eq.mzn
+  /usr/share/minizinc/std/fzn_count_eq_bool.mzn
+  /usr/share/minizinc/std/fzn_count_eq_bool_par.mzn
+  /usr/share/minizinc/std/fzn_count_eq_bool_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_eq_bool_reif.mzn
+  /usr/share/minizinc/std/fzn_count_eq_float.mzn
+  /usr/share/minizinc/std/fzn_count_eq_float_par.mzn
+  /usr/share/minizinc/std/fzn_count_eq_float_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_eq_float_reif.mzn
   /usr/share/minizinc/std/fzn_count_eq_par.mzn
   /usr/share/minizinc/std/fzn_count_eq_par_reif.mzn
   /usr/share/minizinc/std/fzn_count_eq_reif.mzn
+  /usr/share/minizinc/std/fzn_count_eq_set.mzn
+  /usr/share/minizinc/std/fzn_count_eq_set_par.mzn
+  /usr/share/minizinc/std/fzn_count_eq_set_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_eq_set_reif.mzn
   /usr/share/minizinc/std/fzn_count_geq.mzn
+  /usr/share/minizinc/std/fzn_count_geq_bool.mzn
+  /usr/share/minizinc/std/fzn_count_geq_bool_par.mzn
+  /usr/share/minizinc/std/fzn_count_geq_bool_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_geq_bool_reif.mzn
+  /usr/share/minizinc/std/fzn_count_geq_float.mzn
+  /usr/share/minizinc/std/fzn_count_geq_float_par.mzn
+  /usr/share/minizinc/std/fzn_count_geq_float_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_geq_float_reif.mzn
   /usr/share/minizinc/std/fzn_count_geq_par.mzn
   /usr/share/minizinc/std/fzn_count_geq_par_reif.mzn
   /usr/share/minizinc/std/fzn_count_geq_reif.mzn
+  /usr/share/minizinc/std/fzn_count_geq_set.mzn
+  /usr/share/minizinc/std/fzn_count_geq_set_par.mzn
+  /usr/share/minizinc/std/fzn_count_geq_set_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_geq_set_reif.mzn
   /usr/share/minizinc/std/fzn_count_gt.mzn
+  /usr/share/minizinc/std/fzn_count_gt_bool.mzn
+  /usr/share/minizinc/std/fzn_count_gt_bool_par.mzn
+  /usr/share/minizinc/std/fzn_count_gt_bool_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_gt_bool_reif.mzn
+  /usr/share/minizinc/std/fzn_count_gt_float.mzn
+  /usr/share/minizinc/std/fzn_count_gt_float_par.mzn
+  /usr/share/minizinc/std/fzn_count_gt_float_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_gt_float_reif.mzn
   /usr/share/minizinc/std/fzn_count_gt_par.mzn
   /usr/share/minizinc/std/fzn_count_gt_par_reif.mzn
   /usr/share/minizinc/std/fzn_count_gt_reif.mzn
+  /usr/share/minizinc/std/fzn_count_gt_set.mzn
+  /usr/share/minizinc/std/fzn_count_gt_set_par.mzn
+  /usr/share/minizinc/std/fzn_count_gt_set_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_gt_set_reif.mzn
   /usr/share/minizinc/std/fzn_count_leq.mzn
+  /usr/share/minizinc/std/fzn_count_leq_bool.mzn
+  /usr/share/minizinc/std/fzn_count_leq_bool_par.mzn
+  /usr/share/minizinc/std/fzn_count_leq_bool_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_leq_bool_reif.mzn
+  /usr/share/minizinc/std/fzn_count_leq_float.mzn
+  /usr/share/minizinc/std/fzn_count_leq_float_par.mzn
+  /usr/share/minizinc/std/fzn_count_leq_float_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_leq_float_reif.mzn
   /usr/share/minizinc/std/fzn_count_leq_par.mzn
   /usr/share/minizinc/std/fzn_count_leq_par_reif.mzn
   /usr/share/minizinc/std/fzn_count_leq_reif.mzn
+  /usr/share/minizinc/std/fzn_count_leq_set.mzn
+  /usr/share/minizinc/std/fzn_count_leq_set_par.mzn
+  /usr/share/minizinc/std/fzn_count_leq_set_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_leq_set_reif.mzn
   /usr/share/minizinc/std/fzn_count_lt.mzn
+  /usr/share/minizinc/std/fzn_count_lt_bool.mzn
+  /usr/share/minizinc/std/fzn_count_lt_bool_par.mzn
+  /usr/share/minizinc/std/fzn_count_lt_bool_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_lt_bool_reif.mzn
+  /usr/share/minizinc/std/fzn_count_lt_float.mzn
+  /usr/share/minizinc/std/fzn_count_lt_float_par.mzn
+  /usr/share/minizinc/std/fzn_count_lt_float_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_lt_float_reif.mzn
   /usr/share/minizinc/std/fzn_count_lt_par.mzn
   /usr/share/minizinc/std/fzn_count_lt_par_reif.mzn
   /usr/share/minizinc/std/fzn_count_lt_reif.mzn
+  /usr/share/minizinc/std/fzn_count_lt_set.mzn
+  /usr/share/minizinc/std/fzn_count_lt_set_par.mzn
+  /usr/share/minizinc/std/fzn_count_lt_set_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_lt_set_reif.mzn
   /usr/share/minizinc/std/fzn_count_neq.mzn
+  /usr/share/minizinc/std/fzn_count_neq_bool.mzn
+  /usr/share/minizinc/std/fzn_count_neq_bool_par.mzn
+  /usr/share/minizinc/std/fzn_count_neq_bool_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_neq_bool_reif.mzn
+  /usr/share/minizinc/std/fzn_count_neq_float.mzn
+  /usr/share/minizinc/std/fzn_count_neq_float_par.mzn
+  /usr/share/minizinc/std/fzn_count_neq_float_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_neq_float_reif.mzn
   /usr/share/minizinc/std/fzn_count_neq_par.mzn
   /usr/share/minizinc/std/fzn_count_neq_par_reif.mzn
   /usr/share/minizinc/std/fzn_count_neq_reif.mzn
+  /usr/share/minizinc/std/fzn_count_neq_set.mzn
+  /usr/share/minizinc/std/fzn_count_neq_set_par.mzn
+  /usr/share/minizinc/std/fzn_count_neq_set_par_reif.mzn
+  /usr/share/minizinc/std/fzn_count_neq_set_reif.mzn
   /usr/share/minizinc/std/fzn_cumulative.mzn
   /usr/share/minizinc/std/fzn_cumulative_opt.mzn
   /usr/share/minizinc/std/fzn_cumulative_opt_decomp.mzn
@@ -395,6 +481,7 @@ Files included in the binary package:
   /usr/share/minizinc/std/fzn_cumulative_reif.mzn
   /usr/share/minizinc/std/fzn_cumulatives.mzn
   /usr/share/minizinc/std/fzn_cumulatives_decomp.mzn
+  /usr/share/minizinc/std/fzn_cumulatives_opt.mzn
   /usr/share/minizinc/std/fzn_dag.mzn
   /usr/share/minizinc/std/fzn_dag_reif.mzn
   /usr/share/minizinc/std/fzn_dconnected.mzn
@@ -587,6 +674,8 @@ Files included in the binary package:
   /usr/share/minizinc/std/fzn_seq_precede_chain_set_reif.mzn
   /usr/share/minizinc/std/fzn_set_member.mzn
   /usr/share/minizinc/std/fzn_set_member_reif.mzn
+  /usr/share/minizinc/std/fzn_sliding_among_bool.mzn
+  /usr/share/minizinc/std/fzn_sliding_among_int.mzn
   /usr/share/minizinc/std/fzn_sliding_sum.mzn
   /usr/share/minizinc/std/fzn_sliding_sum_reif.mzn
   /usr/share/minizinc/std/fzn_sort.mzn
@@ -761,6 +850,7 @@ Files included in the binary package:
   /usr/share/minizinc/std/roots_fn.mzn
   /usr/share/minizinc/std/seq_precede_chain.mzn
   /usr/share/minizinc/std/set_member.mzn
+  /usr/share/minizinc/std/sliding_among.mzn
   /usr/share/minizinc/std/sliding_sum.mzn
   /usr/share/minizinc/std/solver_redefinitions.mzn
   /usr/share/minizinc/std/sort.mzn
@@ -821,16 +911,12 @@ Files included in the binary package:
 
 (libmzn-devel)
   /usr/include/minizinc/MIPdomains.hh
-  /usr/include/minizinc/_thirdparty/b64/ccommon.h
-  /usr/include/minizinc/_thirdparty/b64/cdecode.h
-  /usr/include/minizinc/_thirdparty/b64/cencode.h
-  /usr/include/minizinc/_thirdparty/b64/decode.h
-  /usr/include/minizinc/_thirdparty/b64/encode.h
   /usr/include/minizinc/_thirdparty/cplex_interface.h
   /usr/include/minizinc/_thirdparty/gurobi_interface.h
   /usr/include/minizinc/_thirdparty/highs_interface.h
   /usr/include/minizinc/_thirdparty/miniz.h
   /usr/include/minizinc/_thirdparty/scip_interface.h
+  /usr/include/minizinc/_thirdparty/tree_sitter/api.h
   /usr/include/minizinc/_thirdparty/xpress_interface.h
   /usr/include/minizinc/algorithms/min_cut.h
   /usr/include/minizinc/ast.hh
@@ -840,6 +926,7 @@ Files included in the binary package:
   /usr/include/minizinc/astmap.hh
   /usr/include/minizinc/aststring.hh
   /usr/include/minizinc/astvec.hh
+  /usr/include/minizinc/blackbox.hh
   /usr/include/minizinc/builtins.hh
   /usr/include/minizinc/chain_compressor.hh
   /usr/include/minizinc/config.hh
@@ -876,40 +963,27 @@ Files included in the binary package:
   /usr/include/minizinc/solver_instance.hh
   /usr/include/minizinc/solver_instance_base.hh
   /usr/include/minizinc/solver_instance_defs.hh
-  /usr/include/minizinc/solvers/MIP/MIP_cplex_solverfactory.hh
   /usr/include/minizinc/solvers/MIP/MIP_cplex_wrap.hh
-  /usr/include/minizinc/solvers/MIP/MIP_gurobi_solverfactory.hh
   /usr/include/minizinc/solvers/MIP/MIP_gurobi_wrap.hh
-  /usr/include/minizinc/solvers/MIP/MIP_highs_solverfactory.hh
   /usr/include/minizinc/solvers/MIP/MIP_highs_wrap.hh
-  /usr/include/minizinc/solvers/MIP/MIP_osicbc_solverfactory.hh
   /usr/include/minizinc/solvers/MIP/MIP_osicbc_wrap.hh
-  /usr/include/minizinc/solvers/MIP/MIP_scip_solverfactory.hh
   /usr/include/minizinc/solvers/MIP/MIP_scip_wrap.hh
   /usr/include/minizinc/solvers/MIP/MIP_solverinstance.hh
   /usr/include/minizinc/solvers/MIP/MIP_solverinstance.hpp
   /usr/include/minizinc/solvers/MIP/MIP_wrap.hh
-  /usr/include/minizinc/solvers/MIP/MIP_xpress_solverfactory.hh
   /usr/include/minizinc/solvers/MIP/MIP_xpress_wrap.hh
-  /usr/include/minizinc/solvers/atlantis_solverfactory.hh
   /usr/include/minizinc/solvers/atlantis_solverinstance.hh
-  /usr/include/minizinc/solvers/chuffed_solverfactory.hh
   /usr/include/minizinc/solvers/chuffed_solverinstance.hh
-  /usr/include/minizinc/solvers/fzn_solverfactory.hh
   /usr/include/minizinc/solvers/fzn_solverinstance.hh
   /usr/include/minizinc/solvers/geas/geas_constraints.hh
-  /usr/include/minizinc/solvers/geas_solverfactory.hh
   /usr/include/minizinc/solvers/geas_solverinstance.hh
   /usr/include/minizinc/solvers/gecode/fzn_space.hh
   /usr/include/minizinc/solvers/gecode/gecode_constraints.hh
-  /usr/include/minizinc/solvers/gecode_solverfactory.hh
   /usr/include/minizinc/solvers/gecode_solverinstance.hh
-  /usr/include/minizinc/solvers/mzn_solverfactory.hh
   /usr/include/minizinc/solvers/mzn_solverinstance.hh
   /usr/include/minizinc/solvers/nl/nl_components.hh
   /usr/include/minizinc/solvers/nl/nl_file.hh
   /usr/include/minizinc/solvers/nl/nl_solreader.hh
-  /usr/include/minizinc/solvers/nl/nl_solverfactory.hh
   /usr/include/minizinc/solvers/nl/nl_solverinstance.hh
   /usr/include/minizinc/stackdump.hh
   /usr/include/minizinc/statistics.hh
@@ -919,12 +993,11 @@ Files included in the binary package:
   /usr/include/minizinc/type.hh
   /usr/include/minizinc/typecheck.hh
   /usr/include/minizinc/utils.hh
-  /usr/include/minizinc/utils_savestream.hh
   /usr/include/minizinc/values.hh
   /usr/include/minizinc/warning.hh
   /usr/lib/cmake/libminizinc/libminizincConfig.cmake
   /usr/lib/cmake/libminizinc/libminizincConfigVersion.cmake
-  /usr/lib/cmake/libminizinc/libminizincTargets-release.cmake
+  /usr/lib/cmake/libminizinc/libminizincTargets-relwithdebinfo.cmake
   /usr/lib/cmake/libminizinc/libminizincTargets.cmake
   /usr/lib/libmzn.dll.a
   /usr/lib/pkgconfig/libminizinc.pc
@@ -932,6 +1005,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.10.1-1bl1 -----
+Version bump.
 
 ----- version 2.9.3-1bl1 -----
 Version bump.

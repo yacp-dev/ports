@@ -1,0 +1,64 @@
+--- origsrc/suzume-0.9.15/CMakeLists.txt	2026-11-08 08:33:02.000000000 +0000
++++ src/suzume-0.9.15/CMakeLists.txt	2026-11-18 22:36:13.779903700 +0000
+@@ -254,10 +254,7 @@ if(SUZUME_INSTALL AND NOT BUILD_WASM)
+   set(SUZUME_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/suzume")
+ 
+   # The static library is always installed; the shared library when it is built.
+-  set(SUZUME_INSTALL_TARGETS suzume)
+-  if(TARGET suzume_shared)
+-    list(APPEND SUZUME_INSTALL_TARGETS suzume_shared)
+-  endif()
++  set(SUZUME_INSTALL_TARGETS suzume_shared)
+ 
+   install(TARGETS ${SUZUME_INSTALL_TARGETS}
+     EXPORT suzumeTargets
+--- origsrc/suzume-0.9.15/src/CMakeLists.txt	2026-11-08 08:33:02.000000000 +0000
++++ src/suzume-0.9.15/src/CMakeLists.txt	2026-11-18 22:36:13.781914900 +0000
+@@ -80,7 +80,7 @@ set(SUZUME_PUBLIC_INCLUDES
+ 
+ # Static library — always built. Self-contained; the canonical target for
+ # embedded/static integration.
+-add_library(suzume STATIC ${SUZUME_TOP_SOURCES} ${SUZUME_OBJECTS})
++add_library(suzume STATIC EXCLUDE_FROM_ALL ${SUZUME_TOP_SOURCES} ${SUZUME_OBJECTS})
+ target_include_directories(suzume PUBLIC ${SUZUME_PUBLIC_INCLUDES})
+ # Static consumers must see SUZUME_STATIC so the C ABI header emits no
+ # dllimport/dllexport decoration.
+--- origsrc/suzume-0.9.15/tests/CMakeLists.txt	2026-11-08 08:33:02.000000000 +0000
++++ src/suzume-0.9.15/tests/CMakeLists.txt	2026-11-18 22:36:13.781914900 +0000
+@@ -1,15 +1,7 @@
+ # Tests CMakeLists.txt
+ 
+ # Fetch Google Test
+-include(FetchContent)
+-FetchContent_Declare(
+-  googletest
+-  GIT_REPOSITORY https://github.com/google/googletest.git
+-  GIT_TAG v1.18.0
+-)
+-# For Windows: Prevent overriding the parent project's compiler/linker settings
+-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+-FetchContent_MakeAvailable(googletest)
++find_package(GTest REQUIRED)
+ 
+ # Enable testing
+ enable_testing()
+@@ -138,7 +130,7 @@ target_include_directories(suzume_test P
+ 
+ # Link libraries
+ target_link_libraries(suzume_test PRIVATE
+-  suzume
++  suzume_shared
+   GTest::gtest_main
+ )
+ 
+--- origsrc/suzume-0.9.15/tools/cli/CMakeLists.txt	2026-11-08 08:33:02.000000000 +0000
++++ src/suzume-0.9.15/tools/cli/CMakeLists.txt	2026-11-18 22:36:13.783930800 +0000
+@@ -23,7 +23,7 @@ target_include_directories(suzume-cli PR
+ )
+ 
+ target_link_libraries(suzume-cli PRIVATE
+-  suzume
++  suzume_shared
+ )
+ 
+ # Set output directory

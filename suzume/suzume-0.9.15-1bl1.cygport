@@ -1,0 +1,76 @@
+HOMEPAGE="https://github.com/libraz/${PN}"
+SRC_URI="https://github.com/libraz/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Lightweight Japanese morphological analyzer"
+DESCRIPTION="Suzume is a lightweight Japanese tokenizer that returns
+part-of-speech tags and lemmas, with the dictionaries built in. It provides a C
+ABI shared library, a header-only C++ wrapper and a developer command-line
+tool."
+
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgtest-devel
+	python3
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED:BOOL=ON
+"
+
+# The compiled dictionaries (data/*.dic) are written into the source tree
+DIFF_EXCLUDES="
+	core.dic
+	user.dic
+"
+
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	export CXXFLAGS="${CXXFLAGS} -D_GNU_SOURCE"
+	cygcmake
+	cygninja
+	cygninja build-dict
+}
+
+# ctest starts the test binary once per test case (9854 cases, each loading
+# the dictionaries, ~0.5s apiece), so run the binary once for the whole suite
+src_test()
+{
+	cd ${S}
+	PATH=${B}/bin:${PATH} ${B}/bin/suzume_test
+	cd ${B}
+	PATH=${B}/bin:${PATH} ctest -R native_cli_contract --output-on-failure
+}
+
+DOCS="
+	LICENSE
+	README.md
+"
+
+PKG_NAMES="
+	${PN}
+	lib${PN}0
+	lib${PN}-devel
+"
+suzume_CONTENTS="
+	usr/bin/*.exe
+	usr/share/doc
+"
+libsuzume0_CONTENTS="
+	usr/bin/cygsuzume-0.dll
+	usr/share/suzume
+"
+libsuzume_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+suzume_SUMMARY="${SUMMARY} (command-line tool)"
+libsuzume0_SUMMARY="${SUMMARY} (runtime)"
+libsuzume_devel_SUMMARY="${SUMMARY} (development)"

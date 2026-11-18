@@ -1,0 +1,22 @@
+Don't start the jobserver by default on Cygwin.
+
+b starts a FIFO jobserver unless told otherwise, and the monitor thread then
+calls ioctl(FIONREAD) on it. On Cygwin that fails with ENOTTY, which aborts b
+with std::ios_base::failure ("Inappropriate ioctl for device") as soon as it
+runs with more than one job. Default to no jobserver on Cygwin; an explicit
+--jobserver fifo still asks for one.
+
+--- a/build2/b/b.cxx
++++ b/build2/b/b.cxx
+@@ -506,7 +506,10 @@
+       }
+       else
+       {
+-#ifndef _WIN32
++        // The jobserver monitor needs ioctl(FIONREAD) on the FIFO, which
++        // fails with ENOTTY on Cygwin, so don't start one by default there.
++        //
++#if !defined(_WIN32) && !defined(__CYGWIN__)
+         type = "fifo";
+ #else
+         type = nullptr;

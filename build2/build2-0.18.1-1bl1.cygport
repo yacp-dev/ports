@@ -1,0 +1,89 @@
+HOMEPAGE="https://build2.org/"
+SRC_URI="https://download.build2.org/${PV}/build2-toolchain-${PV}.tar.xz"
+PATCH_URI="
+	build2-0.18.1-fdterm-cygwin.patch
+	build2-0.18.1-uuid-cygwin.patch
+	build2-0.18.1-jobserver-cygwin.patch
+"
+SRC_DIR="${PN}-toolchain-${PV}"
+
+CATEGORY="Devel"
+SUMMARY="C++ build toolchain (build2, bpkg, bdep)"
+DESCRIPTION="The build2 toolchain: the build2 build system, the bpkg package
+manager and the bdep project dependency manager for C++ projects."
+
+LICENSE="MIT AND BSD-3-Clause AND BSD-2-Clause AND ISC AND blessing"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSD-3-Clause AND BSD-2-Clause AND ISC AND blessing"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libcurl-devel
+	libssl-devel
+"
+
+DOCS="
+	libbutl/COPYRIGHT
+"
+
+PKG_NAMES="
+	${PN}
+	lib${PN}-${PV[1]}.${PV[2]}
+	lib${PN}-devel
+"
+build2_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libbuild2_0_18_CONTENTS="
+	usr/bin/cyg*-0.18.dll
+"
+libbuild2_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+build2_SUMMARY="${SUMMARY} (tools)"
+libbuild2_0_18_SUMMARY="${SUMMARY} (runtime)"
+libbuild2_devel_SUMMARY="${SUMMARY} (development)"
+
+# The toolchain is self-hosted and bootstraps from the tarball without
+# network access (build.sh --local); it installs as part of that, so the
+# whole build runs in src_install, into ${D}.
+src_compile()
+{
+	:
+}
+
+src_install()
+{
+	cd ${S}
+
+	# The build uses -std=c++1y, which defines __STRICT_ANSI__ and hides
+	# POSIX declarations (sigaction, strptime, setenv, ...) on Cygwin, and
+	# build.sh offers no way to pass preprocessor options to every stage,
+	# so wrap the compiler. FIONREAD is only in <asm/socket.h> on Cygwin,
+	# which <sys/ioctl.h> doesn't include, so pull in <sys/socket.h> too.
+	# build2 derives the C compiler from the C++ one by name (g++ -> gcc),
+	# so wrap both.
+	verbose mkdir -p ${T}/bin
+	for cc in g++ gcc
+	do
+		cat > ${T}/bin/${cc} <<-EOT
+			#!/bin/sh
+			exec /usr/bin/${cc} -D_GNU_SOURCE -include sys/socket.h "\$@"
+		EOT
+		verbose chmod +x ${T}/bin/${cc}
+	done
+
+	# The installed b needs its shared libraries (libbuild2-*.so, libbutl-*.so)
+	# in ${D}/usr/lib, which the Cygwin loader only finds through PATH.
+	export PATH=${D}/usr/lib:${PATH}
+
+	# libbuild2-kconfig (GPL-2.0-only) isn't installed: its module doesn't
+	# load on Cygwin (dlopen: Permission denied).
+	verbose ./build.sh --local --modules autoconf \
+		--install-dir ${D}/usr \
+		--sudo false \
+		--jobs $(nproc) \
+		--verbose 3 \
+		${T}/bin/g++
+}

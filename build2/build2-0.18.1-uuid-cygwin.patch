@@ -1,0 +1,68 @@
+Add a UUID generator for Cygwin to libbutl.
+
+libbutl has no uuid_system_generator for Cygwin (uuid-linux.cxx dlopen()s
+libuuid.so.1, which Cygwin lacks), so linking b failed with an undefined
+reference to butl::uuid_system_generator::generate(). Generate a random
+(version 4) UUID from getentropy() instead.
+
+--- a/libbutl/libbutl/buildfile	2026-11-18 12:48:52.063748268 +0900
++++ b/libbutl/libbutl/buildfile	2026-11-18 12:48:52.249794295 +0900
+@@ -41,6 +41,7 @@
+ lib{butl}: cxx{uuid-windows}: include = $windows
+ lib{butl}: cxx{uuid-freebsd}: include = ($tsys == 'freebsd' || $tsys == 'netbsd')
+ lib{butl}: cxx{uuid-openbsd}: include = ($tsys == 'openbsd')
++lib{butl}: cxx{uuid-cygwin}:   include = ($tsys == 'cygwin')
+ 
+ # GCC prior to version 6 has flaky `#pragma GCC diagnostic` so we have to
+ # disable certain warnings outright.
+--- /dev/null	2026-11-18 12:48:52.052103000 +0900
++++ b/libbutl/libbutl/uuid-cygwin.cxx	2026-11-18 12:48:52.070405632 +0900
+@@ -0,0 +1,48 @@
++// file      : libbutl/uuid-cygwin.cxx -*- C++ -*-
++// license   : MIT; see accompanying LICENSE file
++
++#ifndef BUILD2_BOOTSTRAP
++
++#include <libbutl/uuid.hxx>
++
++#include <errno.h>
++#include <unistd.h> // getentropy()
++
++#include <cstdint>
++#include <system_error>
++
++using namespace std;
++
++namespace butl
++{
++  // Cygwin has no uuid_generate() without libuuid, so generate a random
++  // (version 4) UUID from the system entropy source.
++  //
++  void uuid_system_generator::
++  initialize ()
++  {
++  }
++
++  void uuid_system_generator::
++  terminate ()
++  {
++  }
++
++  uuid uuid_system_generator::
++  generate (bool)
++  {
++    uint8_t d[16];
++
++    if (getentropy (d, sizeof (d)) != 0)
++      throw system_error (errno,
++                          system_category (),
++                          "unable to generate random UUID");
++
++    d[6] = (d[6] & 0x0f) | 0x40; // Version 4.
++    d[8] = (d[8] & 0x3f) | 0x80; // Variant DCE.
++
++    return uuid (d);
++  }
++}
++
++#endif // BUILD2_BOOTSTRAP

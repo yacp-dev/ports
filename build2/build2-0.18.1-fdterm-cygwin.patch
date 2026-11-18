@@ -1,0 +1,35 @@
+Do not trust errno after isatty() on Cygwin.
+
+Cygwin's isatty() returns 0 for a descriptor that is not a terminal (a pipe
+or file) without setting ENOTTY: errno is left unset or holds the result of an
+unrelated internal lookup (ENOENT), so fdterm() threw std::ios_base::failure
+at the start of b-boot. Treat everything but EBADF as "not a terminal".
+
+--- a/libbutl/libbutl/fdstream.cxx	2026-11-18 13:43:09.043471080 +0900
++++ b/libbutl/libbutl/fdstream.cxx	2026-11-18 13:43:09.222732020 +0900
+@@ -1474,11 +1474,25 @@
+   bool
+   fdterm (int fd)
+   {
++#ifdef __CYGWIN__
++    errno = 0;
++#endif
++
+     int r (isatty (fd));
+ 
+     if (r == 1)
+       return true;
+ 
++#ifdef __CYGWIN__
++    // Cygwin's isatty() doesn't report a descriptor that is not a terminal
++    // (a pipe, for example) with ENOTTY: errno is left unset or holds the
++    // result of an unrelated internal lookup (ENOENT). Only EBADF is a real
++    // error.
++    //
++    if (errno != EBADF)
++      return false;
++#endif
++
+     // POSIX specifies ENOTTY errno code for an indication that the descriptor
+     // doesn't refer to a terminal. However, both Linux and FreeBSD man pages
+     // also mention EINVAL for this case.

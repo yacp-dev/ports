@@ -1,5 +1,5 @@
---- origsrc/armsd-1.2.0/Makefile.in	2016-03-14 18:19:53.000000000 +0900
-+++ src/armsd-1.2.0/Makefile.in	2024-10-05 13:31:28.024553000 +0900
+--- origsrc/armsd-1.2.0/Makefile.in	2016-03-14 09:19:53.000000000 +0000
++++ src/armsd-1.2.0/Makefile.in	2026-11-18 15:18:52.702028300 +0000
 @@ -10,7 +10,7 @@ localstatedir=@localstatedir@
  cachedir=${localstatedir}/armsd
  exampledir=${datadir}/armsd

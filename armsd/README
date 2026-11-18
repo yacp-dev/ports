@@ -4,16 +4,19 @@ ARMS service daemon for Unix
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libarms0-6.40-1bl1
+  cygwin-3.6.12-1
+  libarms0-6.50-1bl2
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libarms-devel-6.40-1bl1
+  autoconf-20260320-3
+  binutils-2.47-1
+  check-0.15.2-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libarms-devel-6.50-1bl2
+  libexpat-devel-2.10.0-1
+  libssl-devel-3.5.9-1
   make-4.4.1-2
 
 Canonical website:
@@ -62,6 +65,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.2.0-1bl1 -----
 Version bump.

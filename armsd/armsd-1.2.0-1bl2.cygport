@@ -9,7 +9,12 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libarms-devel"
+BUILD_REQUIRES="
+	libarms-devel
+	libexpat-devel
+	libssl-devel
+	check
+"
 
 WANT_AUTOCONF=2.5
 AUTOCONF_VERSION=2.5

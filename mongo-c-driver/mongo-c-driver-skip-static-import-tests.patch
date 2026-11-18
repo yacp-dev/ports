@@ -1,0 +1,58 @@
+Don't register the static pkg-config import tests when no static
+library is installed.
+
+The tests search for bson2-static.pc and mongoc2-static.pc, which are
+only installed with ENABLE_STATIC, but import-tests.cmake adds them
+whenever BUILD_TESTING is on.
+
+--- a/src/libmongoc/tests/import-tests.cmake
++++ b/src/libmongoc/tests/import-tests.cmake
+@@ -123,14 +123,16 @@
+       "EXPECT_BSON_VERSION=${mongo-c-driver_VERSION_FULL}"
+ )
+ 
+-add_test_cmake_project(
+-   mongoc/pkg-config/bson-import-static src/libmongoc/tests/pkg-config-import
+-   INSTALL_PARENT
+-   SETTINGS
+-      PKG_CONFIG_SEARCH=bson${PROJECT_VERSION_MAJOR}-static
+-      "EXPECT_BSON_VERSION=${mongo-c-driver_VERSION_FULL}"
+-      EXPECT_BSON_STATIC=1
+-)
++if (MONGOC_ENABLE_STATIC_INSTALL)
++   add_test_cmake_project(
++      mongoc/pkg-config/bson-import-static src/libmongoc/tests/pkg-config-import
++      INSTALL_PARENT
++      SETTINGS
++         PKG_CONFIG_SEARCH=bson${PROJECT_VERSION_MAJOR}-static
++         "EXPECT_BSON_VERSION=${mongo-c-driver_VERSION_FULL}"
++         EXPECT_BSON_STATIC=1
++   )
++endif ()
+ 
+ add_test_cmake_project(
+    mongoc/pkg-config/mongoc-import-shared src/libmongoc/tests/pkg-config-import
+@@ -140,12 +142,14 @@
+       "EXPECT_MONGOC_VERSION=${mongo-c-driver_VERSION_FULL}"
+ )
+ 
+-add_test_cmake_project(
+-   mongoc/pkg-config/mongoc-import-static src/libmongoc/tests/pkg-config-import
+-   INSTALL_PARENT
+-   SETTINGS
+-      PKG_CONFIG_SEARCH=mongoc${PROJECT_VERSION_MAJOR}-static
+-      "EXPECT_MONGOC_VERSION=${mongo-c-driver_VERSION_FULL}"
+-      EXPECT_BSON_STATIC=1
+-      EXPECT_MONGOC_STATIC=1
+-)
++if (MONGOC_ENABLE_STATIC_INSTALL)
++   add_test_cmake_project(
++      mongoc/pkg-config/mongoc-import-static src/libmongoc/tests/pkg-config-import
++      INSTALL_PARENT
++      SETTINGS
++         PKG_CONFIG_SEARCH=mongoc${PROJECT_VERSION_MAJOR}-static
++         "EXPECT_MONGOC_VERSION=${mongo-c-driver_VERSION_FULL}"
++         EXPECT_BSON_STATIC=1
++         EXPECT_MONGOC_STATIC=1
++   )
++endif ()

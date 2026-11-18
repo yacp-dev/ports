@@ -1,5 +1,5 @@
---- origsrc/zydis-4.1.1/CMakeLists.txt	2025-02-16 09:15:00.000000000 +0900
-+++ src/zydis-4.1.1/CMakeLists.txt	2025-09-09 08:38:22.932305800 +0900
+--- origsrc/zydis-4.1.1/CMakeLists.txt	2025-02-16 00:15:00.000000000 +0000
++++ src/zydis-4.1.1/CMakeLists.txt	2026-11-18 00:25:12.456394800 +0000
 @@ -561,3 +561,10 @@ if (ZYDIS_BUILD_TESTS)
          )
      endif ()
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/zydis.pc.in ${CMAKE_BINARY_DIR}/zydis.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/zydis.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/zydis-4.1.1/examples/ZydisPerfTest.c	2025-02-16 09:15:00.000000000 +0900
-+++ src/zydis-4.1.1/examples/ZydisPerfTest.c	2025-09-09 08:38:22.945367100 +0900
+--- origsrc/zydis-4.1.1/examples/ZydisPerfTest.c	2025-02-16 00:15:00.000000000 +0000
++++ src/zydis-4.1.1/examples/ZydisPerfTest.c	2026-11-18 00:25:12.456394800 +0000
 @@ -37,7 +37,7 @@
  #   include <windows.h>
  #elif defined(ZYAN_APPLE)
@@ -31,8 +31,8 @@
  
  struct timeval t1;
  
---- origsrc/zydis-4.1.1/zydis.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/zydis-4.1.1/zydis.pc.in	2025-09-09 08:38:22.948158500 +0900
+--- origsrc/zydis-4.1.1/zydis.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/zydis-4.1.1/zydis.pc.in	2026-11-18 00:25:12.458421100 +0000
 @@ -0,0 +1,11 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

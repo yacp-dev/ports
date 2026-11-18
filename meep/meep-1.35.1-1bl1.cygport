@@ -1,0 +1,79 @@
+HOMEPAGE="https://github.com/NanoComp/${PN}/"
+SRC_URI="https://github.com/NanoComp/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Simulation software to model electromagnetic systems"
+DESCRIPTION="Meep (or MEEP) is a free finite-difference time-domain (FDTD) simulation
+software package developed at MIT to model electromagnetic systems."
+
+LICENSE="GPL-2.0-or-later AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	autoconf-archive
+	gcc-fortran
+	libctl-devel
+	libfftw3-devel
+	libGDSII-devel
+	libgmp-devel
+	libgsl-devel
+	libguile3.0-devel
+	libharminv-devel
+	libhdf5-devel
+	liblapack-devel
+	libmpb-devel
+	python3-devel
+	python312-numpy
+	swig
+	zlib-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+export PYTHON=python3
+
+CYGCONF_ARGS="
+	--enable-maintainer-mode
+"
+
+src_test()
+{
+	cd ${B}
+	# python/meep was assembled with .pyd copies of the modules during compile
+	verbose rm -rf python/meep
+	# the extension modules load the in-tree DLLs
+	export PATH=${B}/src/.libs:${B}/libpympb/.libs:${PATH}
+	cygmake -k check PYPATH_CONV=echo PYPATH_SEP=: PYMODULE_EXT=.dll
+}
+
+PKG_NAMES="
+	${PN}
+	lib${PN}39
+	libpympb39
+	python312-${PN}
+	lib${PN}-devel
+"
+meep_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libmeep39_CONTENTS="
+	usr/bin/cygmeep-39.dll
+"
+libpympb39_CONTENTS="
+	usr/bin/cygpympb-39.dll
+"
+python312_meep_CONTENTS="
+	usr/lib/python3.12
+"
+libmeep_devel_CONTENTS="
+	usr/include
+	usr/lib/*.a
+	usr/lib/pkgconfig
+"
+meep_SUMMARY="${SUMMARY} (utilities)"
+libmeep39_SUMMARY="${SUMMARY} (runtime)"
+libpympb39_SUMMARY="${SUMMARY} (MPB interface runtime)"
+python312_meep_SUMMARY="${SUMMARY} (python312 binding)"
+libmeep_devel_SUMMARY="${SUMMARY} (development)"
+python312_meep_REQUIRES="python312-matplotlib python312-numpy"

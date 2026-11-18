@@ -8,13 +8,14 @@ accordance with the libva project. --enable-tests (default = no) provides a
 suite of unit-tests based on Google Test Framework. A driver implementation is
 necessary to properly operate."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="Apache-2.0 AND BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-3-Clause AND MIT"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
 	libdrm-devel
 	libgtest-devel
+	libgtest0
 	libva-devel
 	libva-drm-devel
 	libva-x11-devel

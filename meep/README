@@ -4,71 +4,85 @@ Meep (or MEEP) is a free finite-difference time-domain (FDTD) simulation
 software package developed at MIT to model electromagnetic systems.
 
 Runtime requirements:
-  cygwin-3.3.6-1
-  cygwin-devel-3.3.6-1
-  libGDSII0-0.21-1bl1
-  libctl7-4.5.1-1bl1
-  libfftw3-devel-3.3.10-1
-  libfftw3_3-3.3.10-1
-  libgcc1-11.3.0-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libGDSII0-0.21-1bl3
+  libctl7-4.7.1-1bl1
+  libfftw3-devel-3.3.11-1
+  libfftw3_3-3.3.11-1
+  libgcc1-14.4.0-1
   libgsl-devel-2.3-2
   libgsl19-2.3-2
-  libguile3.0_1-3.0.8-1
-  libharminv-devel-1.4.1-1bl2
-  libharminv3-1.4.1-1bl2
-  libhdf5-devel-1.12.2-1
-  libhdf5_200-1.12.2-1
-  liblapack-devel-3.10.1-1
-  liblapack0-3.10.1-1
-  libmeep-devel-1.25.0-1bl1
-  libmeep30-1.25.0-1bl1
-  libmpb-devel-1.11.1-1bl1
-  libmpb1-1.11.1-1bl1
-  libstdc++6-11.3.0-1
-  pkg-config-1.9.3-1
-  zlib-devel-1.2.13-1
+  libguile3.0_1-3.0.11-1
+  libharminv-devel-1.4.3-1bl1
+  libharminv3-1.4.3-1bl1
+  libhdf5-devel-2.2.0-1
+  libhdf5_320-2.2.0-1
+  libiconv-devel-1.19-2
+  libintl-devel-0.26-1
+  liblapack-devel-3.12.0-1
+  liblapack0-3.12.0-1
+  libmeep-devel-1.35.1-1bl1
+  libmeep39-1.35.1-1bl1
+  libmpb-devel-1.12.0-1bl2
+  libmpb6-1.12.0-1bl2
+  libpympb39-1.35.1-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
+  python312-3.12.12-1
+  python312-meep-1.35.1-1bl1
+  python312-numpy-2.5.4-1
+  zlib-devel-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.39-1
-  cygport-0.35.4-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libGDSII-devel-0.21-1bl1
-  libctl-devel-4.5.1-1bl1
-  libfftw3-devel-3.3.10-1
+  autoconf-20260320-3
+  autoconf-archive-2026.11.11-1
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libGDSII-devel-0.21-1bl3
+  libctl-devel-4.7.1-1bl1
+  libfftw3-devel-3.3.11-1
+  libgmp-devel-6.3.0-1
   libgsl-devel-2.3-2
-  libguile3.0-devel-3.0.8-1
-  libharminv-devel-1.4.1-1bl2
-  libhdf5-devel-1.12.2-1
-  liblapack-devel-3.10.1-1
-  libmpb-devel-1.11.1-1bl1
-  libtool-2.4.7-1
-  make-4.4-1
-  zlib-devel-1.2.13-1
+  libguile3.0-devel-3.0.11-1
+  libharminv-devel-1.4.3-1bl1
+  libhdf5-devel-2.2.0-1
+  liblapack-devel-3.12.0-1
+  libmpb-devel-1.12.0-1bl2
+  libtool-2.6.2-1
+  make-4.4.1-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  python312-numpy-2.5.4-1
+  swig-4.5.1-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/NanoComp/meep/
 
 Canonical download:
-  https://github.com/NanoComp/meep/archive/refs/tags/v1.25.0.tar.gz
+  https://github.com/NanoComp/meep/archive/refs/tags/v1.35.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack meep-1.25.0-X-src.tar.xz
+  1. unpack meep-1.35.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./meep-1.25.0-X.cygport all
+        % cygport ./meep-1.35.1-X.cygport all
 
 This will create:
-  /usr/src/meep-1.25.0-X-src.tar.xz
-  /usr/src/meep-1.25.0-X.tar.xz
-  /usr/src/libmeep30-1.25.0-X.tar.xz
-  /usr/src/libmeep-devel-1.25.0-X.tar.xz
+  /usr/src/meep-1.35.1-X-src.tar.xz
+  /usr/src/meep-1.35.1-X.tar.xz
+  /usr/src/libmeep39-1.35.1-X.tar.xz
+  /usr/src/libpympb39-1.35.1-X.tar.xz
+  /usr/src/python312-meep-1.35.1-X.tar.xz
+  /usr/src/libmeep-devel-1.35.1-X.tar.xz
 
 -------------------------------------------
 
@@ -78,7 +92,7 @@ Files included in the binary package:
   /usr/bin/meep.exe
   /usr/share/doc/Cygwin/meep.README
   /usr/share/doc/meep/AUTHORS
-  /usr/share/doc/meep/Copyright
+  /usr/share/doc/meep/COPYRIGHT
   /usr/share/doc/meep/LICENSE
   /usr/share/doc/meep/NEWS.md
   /usr/share/doc/meep/README.md
@@ -88,8 +102,107 @@ Files included in the binary package:
   /usr/share/meep/meep-enums.scm
   /usr/share/meep/meep.scm
 
-(libmeep30)
-  /usr/bin/cygmeep-30.dll
+(libmeep39)
+  /usr/bin/cygmeep-39.dll
+
+(libpympb39)
+  /usr/bin/cygpympb-39.dll
+
+(python312-meep)
+  /usr/lib/python3.12/site-packages/meep/__init__.py
+  /usr/lib/python3.12/site-packages/meep/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/binary_partition_utils.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/binary_partition_utils.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/binary_partition_utils.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/chunk_balancer.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/chunk_balancer.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/chunk_balancer.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/geom.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/geom.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/geom.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/materials.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/materials.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/materials.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/simulation.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/simulation.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/simulation.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/source.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/source.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/source.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/timing_measurements.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/timing_measurements.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/timing_measurements.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/verbosity_mgr.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/verbosity_mgr.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/verbosity_mgr.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/visualization.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/visualization.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/__pycache__/visualization.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/_meep.dll
+  /usr/lib/python3.12/site-packages/meep/adjoint/__init__.py
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/basis.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/basis.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/basis.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/connectivity.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/connectivity.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/connectivity.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/filter_source.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/filter_source.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/filter_source.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/filters.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/filters.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/filters.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/objective.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/objective.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/objective.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/optimization_problem.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/optimization_problem.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/optimization_problem.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/unfilter_design.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/unfilter_design.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/unfilter_design.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/utils.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/utils.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/utils.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/wrapper.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/wrapper.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/__pycache__/wrapper.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/adjoint/basis.py
+  /usr/lib/python3.12/site-packages/meep/adjoint/connectivity.py
+  /usr/lib/python3.12/site-packages/meep/adjoint/filter_source.py
+  /usr/lib/python3.12/site-packages/meep/adjoint/filters.py
+  /usr/lib/python3.12/site-packages/meep/adjoint/objective.py
+  /usr/lib/python3.12/site-packages/meep/adjoint/optimization_problem.py
+  /usr/lib/python3.12/site-packages/meep/adjoint/unfilter_design.py
+  /usr/lib/python3.12/site-packages/meep/adjoint/utils.py
+  /usr/lib/python3.12/site-packages/meep/adjoint/wrapper.py
+  /usr/lib/python3.12/site-packages/meep/binary_partition_utils.py
+  /usr/lib/python3.12/site-packages/meep/chunk_balancer.py
+  /usr/lib/python3.12/site-packages/meep/geom.py
+  /usr/lib/python3.12/site-packages/meep/materials.py
+  /usr/lib/python3.12/site-packages/meep/mpb/__init__.py
+  /usr/lib/python3.12/site-packages/meep/mpb/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/mpb/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/mpb/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/mpb/__pycache__/mpb_data.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/mpb/__pycache__/mpb_data.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/mpb/__pycache__/mpb_data.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/mpb/__pycache__/solver.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/meep/mpb/__pycache__/solver.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/meep/mpb/__pycache__/solver.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/meep/mpb/_mpb.dll
+  /usr/lib/python3.12/site-packages/meep/mpb/mpb_data.py
+  /usr/lib/python3.12/site-packages/meep/mpb/solver.py
+  /usr/lib/python3.12/site-packages/meep/simulation.py
+  /usr/lib/python3.12/site-packages/meep/source.py
+  /usr/lib/python3.12/site-packages/meep/timing_measurements.py
+  /usr/lib/python3.12/site-packages/meep/verbosity_mgr.py
+  /usr/lib/python3.12/site-packages/meep/visualization.py
 
 (libmeep-devel)
   /usr/include/meep.hpp
@@ -98,13 +211,18 @@ Files included in the binary package:
   /usr/include/meep/meep-config.h
   /usr/include/meep/meepgeom.hpp
   /usr/include/meep/mympi.hpp
+  /usr/include/meep/pympb.hpp
   /usr/include/meep/vec.hpp
   /usr/lib/libmeep.dll.a
+  /usr/lib/libpympb.dll.a
   /usr/lib/pkgconfig/meep.pc
 
 ------------------
 
 Port Notes:
+
+----- version 1.35.1-1bl1 -----
+Version bump.
 
 ----- version 1.25.0-1bl1 -----
 Version bump.

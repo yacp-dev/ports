@@ -1,5 +1,5 @@
---- origsrc/imgui-1.91.4/CMakeLists.txt	2024-10-25 06:58:24.891017200 +0900
-+++ src/imgui-1.91.4/CMakeLists.txt	2024-10-25 10:44:24.745828400 +0900
+--- origsrc/imgui-1.93.0/CMakeLists.txt	2026-11-18 00:30:04.979524800 +0000
++++ src/imgui-1.93.0/CMakeLists.txt	2026-11-18 00:30:05.685766000 +0000
 @@ -32,7 +32,7 @@ target_compile_features(${PROJECT_NAME}
  
  if(IMGUI_BUILD_ALLEGRO5_BINDING)
@@ -63,8 +63,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/imgui.pc.in ${CMAKE_BINARY_DIR}/imgui.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/imgui.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/imgui-1.91.4/imgui.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/imgui-1.91.4/imgui.pc.in	2024-10-25 10:44:34.936943900 +0900
+--- origsrc/imgui-1.93.0/imgui.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/imgui-1.93.0/imgui.pc.in	2026-11-18 00:30:05.685766000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

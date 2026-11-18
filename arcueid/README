@@ -3,28 +3,27 @@ arcueid
 This is Arcueid, an implementation of Paul Graham's Arc dialect of Lisp in C.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  cygwin-devel-3.6.4-1
-  libarcueid-devel-0.1.2-1bl3
-  libarcueid0-0.1.2-1bl3
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libarcueid-devel-0.1.2-1bl4
+  libarcueid0-0.1.2-1bl4
+  libgcc1-14.4.0-1
   libgmp-devel-6.3.0-1
   libgmp10-6.3.0-1
   libreadline8-8.3-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.44-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
   check-0.15.2-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   libgmp-devel-6.3.0-1
   libreadline-devel-8.3-1
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -73,6 +72,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1.2-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1.2-1bl3 -----
 Rebuild with gcc-13.4.0

@@ -5,15 +5,31 @@ CATEGORY="Interpreters"
 SUMMARY="C interpreter for Paul Graham's Arc dialect of Lisp"
 DESCRIPTION="This is Arcueid, an implementation of Paul Graham's Arc dialect of Lisp in C."
 
-LICENSE="LGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE="LGPL-3.0-or-later AND GPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later AND GPL-3.0-or-later AND MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="check libgmp-devel libreadline-devel"
+BUILD_REQUIRES="
+	check
+	libgmp-devel
+	libreadline-devel
+"
+
+# The source uses unprototyped function pointers, invalid in C23 (GCC default)
+CFLAGS+=" -std=gnu17"
 
 CYGCONF_ARGS="
 	--enable-unit-tests
 "
+
+src_test() {
+	cd ${B}
+	# the tests open ./rfile.txt, ./arc.arc and ./check_arc.c and write under tmp/,
+	# which only exist in the source tree
+	verbose cp ${S}/test/rfile.txt ${S}/test/arc.arc ${S}/test/check_arc.c test/
+	verbose mkdir -p test/tmp
+	cygtest
+}
 
 PKG_NAMES="
 	arcueid

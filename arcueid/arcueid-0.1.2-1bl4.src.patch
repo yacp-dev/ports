@@ -1,5 +1,5 @@
---- origsrc/arcueid-0.1.2/configure.in	2013-05-14 09:43:52.000000000 +0900
-+++ src/arcueid-0.1.2/configure.in	2025-08-03 09:59:30.395730900 +0900
+--- origsrc/arcueid-0.1.2/configure.in	2013-05-14 00:43:52.000000000 +0000
++++ src/arcueid-0.1.2/configure.in	2026-11-18 23:26:41.713213300 +0000
 @@ -19,7 +19,7 @@ AC_PREREQ(2.61)
  AC_INIT([Arcueid], [0.1.2], [dido@imperium.ph])
  AC_CONFIG_SRCDIR([src/alloc.c])
@@ -17,8 +17,8 @@
    if test "$GMP_LIBS" != ""; then
      MP_HEADER="#include <gmp.h>"
      MP_TYPE="typedef mpz_t bignum_t;"
---- origsrc/arcueid-0.1.2/src/Makefile.am	2013-05-14 09:43:52.000000000 +0900
-+++ src/arcueid-0.1.2/src/Makefile.am	2025-08-03 09:59:30.395730900 +0900
+--- origsrc/arcueid-0.1.2/src/Makefile.am	2013-05-14 00:43:52.000000000 +0000
++++ src/arcueid-0.1.2/src/Makefile.am	2026-11-18 23:26:41.713213300 +0000
 @@ -17,13 +17,14 @@
  #
  lib_LTLIBRARIES = libarcueid.la
@@ -41,8 +41,19 @@
  arcueid_CFLAGS = -DPKGDATA=\"$(pkgdatadir)\"
 -arcueid_LDADD = $(LIBOBJS) @LIBARCUEID_LIBS@ @RLLIBS@
 +arcueid_LDADD = libarcueid.la $(LIBOBJS) @LIBARCUEID_LIBS@ @RLLIBS@
---- origsrc/arcueid-0.1.2/src/fileio.c	2013-05-14 09:43:52.000000000 +0900
-+++ src/arcueid-0.1.2/src/fileio.c	2025-08-03 09:59:30.427149700 +0900
+--- origsrc/arcueid-0.1.2/src/compiler.c	2013-05-14 00:43:52.000000000 +0000
++++ src/arcueid-0.1.2/src/compiler.c	2026-11-18 23:26:41.715226400 +0000
+@@ -35,7 +35,7 @@ static value get_lineno(arc *c, value ob
+ 
+ /* Given a symbol op, return the macro corresponding to it, if any.  If
+    it is not a macro, return nil. */
+-static int ismacro(arc *c, value op)
++static value ismacro(arc *c, value op)
+ {
+   while (arc_type(c, op = arc_hash_lookup(c, c->genv, op)) == T_SYMBOL)
+     ;
+--- origsrc/arcueid-0.1.2/src/fileio.c	2013-05-14 00:43:52.000000000 +0000
++++ src/arcueid-0.1.2/src/fileio.c	2026-11-18 23:26:41.717241900 +0000
 @@ -108,6 +108,7 @@ static AFFDEF(fio_ready)
  
    for (;;) {
@@ -59,8 +70,8 @@
      /* No buffered data available. See if the underlying file descriptor
         is readable. */
      FD_ZERO(&rfds);
---- origsrc/arcueid-0.1.2/src/repl.c	2013-05-14 09:43:52.000000000 +0900
-+++ src/arcueid-0.1.2/src/repl.c	2025-08-03 09:59:30.431178600 +0900
+--- origsrc/arcueid-0.1.2/src/repl.c	2013-05-14 00:43:52.000000000 +0000
++++ src/arcueid-0.1.2/src/repl.c	2026-11-18 23:26:41.717241900 +0000
 @@ -128,6 +128,7 @@ static int stdin_ready(arc *c)
    struct timeval tv;
    int retval, check;

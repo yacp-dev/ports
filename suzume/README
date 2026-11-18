@@ -1,0 +1,76 @@
+suzume
+------------------------------------------
+Suzume is a lightweight Japanese tokenizer that returns part-of-speech tags and
+lemmas, with the dictionaries built in. It provides a C ABI shared library, a
+header-only C++ wrapper and a developer command-line tool.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libsuzume-devel-0.9.15-1bl1
+  libsuzume0-0.9.15-1bl1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
+  python3-3.12.12-1
+
+Canonical website:
+  https://github.com/libraz/suzume
+
+Canonical download:
+  https://github.com/libraz/suzume/archive/refs/tags/v0.9.15.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack suzume-0.9.15-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./suzume-0.9.15-X.cygport all
+
+This will create:
+  /usr/src/suzume-0.9.15-X-src.tar.xz
+  /usr/src/suzume-0.9.15-X.tar.xz
+  /usr/src/libsuzume0-0.9.15-X.tar.xz
+  /usr/src/libsuzume-devel-0.9.15-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(suzume)
+  /usr/bin/suzume-cli.exe
+  /usr/share/doc/Cygwin/suzume.README
+  /usr/share/doc/suzume/LICENSE
+  /usr/share/doc/suzume/README.md
+
+(libsuzume0)
+  /usr/bin/cygsuzume-0.dll
+  /usr/share/suzume/core.dic
+  /usr/share/suzume/user.dic
+
+(libsuzume-devel)
+  /usr/include/suzume/suzume.hpp
+  /usr/include/suzume/suzume_c.h
+  /usr/lib/cmake/suzume/suzumeConfig.cmake
+  /usr/lib/cmake/suzume/suzumeConfigVersion.cmake
+  /usr/lib/cmake/suzume/suzumeTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/suzume/suzumeTargets.cmake
+  /usr/lib/libsuzume.dll.a
+  /usr/lib/pkgconfig/suzume.pc
+
+------------------
+
+Port Notes:
+
+----- version 0.9.15-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

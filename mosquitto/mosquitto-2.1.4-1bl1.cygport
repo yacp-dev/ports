@@ -1,8 +1,5 @@
 HOMEPAGE="https://github.com/eclipse-mosquitto/${PN}/"
 SRC_URI="https://github.com/eclipse-mosquitto/${PN}/archive/refs/tags/v${PV}.tar.gz"
-PATCH_URI="
-	https://sources.debian.org/data/main/m/mosquitto/2.1.2-3/debian/patches/3547.patch
-"
 
 CATEGORY="Net"
 SUMMARY="Open source MQTT broker"
@@ -19,9 +16,11 @@ BUILD_REQUIRES="
 	CUnit
 	libcares-devel
 	libcjson-devel
+	libcjson_utils-devel
 	libedit-devel
 	libgmock-devel
 	libgtest-devel
+	libsqlite3-devel
 	libssl-devel
 	libwrap-devel
 "
@@ -31,7 +30,7 @@ CYGCMAKE_ARGS="
 	-DWITH_DOCS:BOOL=OFF
 	-DUSE_LIBWRAP:BOOL=ON
 	-DWITH_BUNDLED_DEPS:BOOL=ON
-	-DWITH_PLUGINS:BOOL=OFF
+	-DWITH_PLUGINS:BOOL=ON
 	-DWITH_SRV:BOOL=ON
 	-DWITH_WEBSOCKETS:BOOL=ON
 "
@@ -59,6 +58,7 @@ PKG_NAMES="
 mosquitto_CONTENTS="
 	etc
 	usr/bin/*.exe
+	usr/lib/${PN}_*.dll
 	usr/sbin
 	usr/share/doc
 "

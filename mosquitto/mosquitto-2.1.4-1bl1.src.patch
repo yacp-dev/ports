@@ -1,5 +1,5 @@
---- origsrc/mosquitto-2.1.2/apps/db_dump/db_dump.c	2026-02-09 09:29:02.000000000 +0000
-+++ src/mosquitto-2.1.2/apps/db_dump/db_dump.c	2026-10-27 05:35:35.044879400 +0000
+--- origsrc/mosquitto-2.1.4/apps/db_dump/db_dump.c	2026-11-17 13:53:22.000000000 +0000
++++ src/mosquitto-2.1.4/apps/db_dump/db_dump.c	2026-11-18 23:20:16.589963300 +0000
 @@ -16,6 +16,9 @@ Contributors:
     Roger Light - initial implementation and documentation.
  */
@@ -10,9 +10,9 @@
  #include <assert.h>
  #include <errno.h>
  #include <fcntl.h>
---- origsrc/mosquitto-2.1.2/src/conf.c	2026-02-09 09:29:02.000000000 +0000
-+++ src/mosquitto-2.1.2/src/conf.c	2026-10-27 05:35:35.046889900 +0000
-@@ -1822,7 +1822,7 @@ static int config__read_file_core(struct
+--- origsrc/mosquitto-2.1.4/src/conf.c	2026-11-17 13:53:22.000000000 +0000
++++ src/mosquitto-2.1.4/src/conf.c	2026-11-18 23:20:16.591978400 +0000
+@@ -1823,7 +1823,7 @@ static int config__read_file_core(struct
  					if(conf__parse_string(&token, "http_dir", &cur_listener->http_dir, &saveptr)){
  						return MOSQ_ERR_INVAL;
  					}
@@ -21,8 +21,8 @@
  					char *http_dir_canonical = _fullpath(NULL, cur_listener->http_dir, 0);
  					const char sep = '\\';
  #else
---- origsrc/mosquitto-2.1.2/test/CMakeLists.txt	2026-02-09 09:29:02.000000000 +0000
-+++ src/mosquitto-2.1.2/test/CMakeLists.txt	2026-10-27 05:35:35.046889900 +0000
+--- origsrc/mosquitto-2.1.4/test/CMakeLists.txt	2026-11-17 13:53:22.000000000 +0000
++++ src/mosquitto-2.1.4/test/CMakeLists.txt	2026-11-18 23:20:16.591978400 +0000
 @@ -1,4 +1,7 @@
 -add_subdirectory(mock)
 +# The mocks interpose C functions with dlsym(RTLD_NEXT), which Cygwin lacks.
@@ -30,11 +30,11 @@
 +	add_subdirectory(mock)
 +endif()
  
- add_subdirectory(apps)
- add_subdirectory(broker)
---- origsrc/mosquitto-2.1.2/test/apps/ctrl/CMakeLists.txt	2026-02-09 09:29:02.000000000 +0000
-+++ src/mosquitto-2.1.2/test/apps/ctrl/CMakeLists.txt	2026-10-27 05:35:35.048899500 +0000
-@@ -20,7 +20,7 @@ endforeach()
+ if(WITH_APPS)
+ 	add_subdirectory(apps)
+--- origsrc/mosquitto-2.1.4/test/apps/ctrl/CMakeLists.txt	2026-11-17 13:53:22.000000000 +0000
++++ src/mosquitto-2.1.4/test/apps/ctrl/CMakeLists.txt	2026-11-18 23:20:16.593998500 +0000
+@@ -11,7 +11,7 @@ check_for_missing_tests(PY_TEST_NAMES)
  
  
  function(add_ctrl_shell_test TEST_NAME)
@@ -43,7 +43,7 @@
  		return()
  	endif()
  	add_executable(${TEST_NAME}
-@@ -55,7 +55,7 @@ function(add_ctrl_shell_test TEST_NAME)
+@@ -46,7 +46,7 @@ function(add_ctrl_shell_test TEST_NAME)
  endfunction()
  
  function(add_ctrl_shell_test_real_editline TEST_NAME)

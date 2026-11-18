@@ -1,9 +1,9 @@
 HOMEPAGE="https://github.com/Yubico/${PN}"
 SRC_URI="https://github.com/Yubico/${PN}/archive/refs/tags/${P}.tar.gz"
-SRC_DIR="${PN}-${P}"
 PATCH_URI="
 	https://raw.githubusercontent.com/haikuports/haikuports/master/app-crypt/libu2f_host/patches/libu2f_host-1.1.10.patchset
 "
+SRC_DIR="${PN}-${P}"
 
 CATEGORY="Libs"
 SUMMARY="Yubico Universal 2nd Factor (U2F) Host C Library"
@@ -16,6 +16,8 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gengetopt
+	help2man
 	libhidapi-devel
 	libjson-c-devel
 "

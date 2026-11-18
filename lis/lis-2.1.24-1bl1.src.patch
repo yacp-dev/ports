@@ -1,15 +1,15 @@
---- origsrc/lis-2.1.23/Makefile.am	2026-10-21 01:38:53.000000000 +0000
-+++ src/lis-2.1.23/Makefile.am	2026-11-09 20:51:39.504078100 +0000
-@@ -648,3 +648,6 @@ man_MANS =   doc/man/man1/lsolve.1 \
+--- origsrc/lis-2.1.24/Makefile.am	2026-11-17 09:54:53.000000000 +0000
++++ src/lis-2.1.24/Makefile.am	2026-11-18 12:22:53.794965400 +0000
+@@ -652,3 +652,6 @@ man_MANS =   doc/man/man1/lsolve.1 \
  ACLOCAL_AMFLAGS = -I m4
  
  AUTOMAKE_OPTIONS = dist-zip
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/lis-2.1.23/configure.ac	2026-11-05 09:38:45.000000000 +0000
-+++ src/lis-2.1.23/configure.ac	2026-11-09 20:51:39.504078100 +0000
-@@ -1321,7 +1321,7 @@ LIBS="-lm $LIBS"
+--- origsrc/lis-2.1.24/configure.ac	2026-11-17 09:56:34.000000000 +0000
++++ src/lis-2.1.24/configure.ac	2026-11-18 12:22:53.794965400 +0000
+@@ -1333,7 +1333,7 @@ LIBS="-lm $LIBS"
  
  # Output
  
@@ -18,8 +18,8 @@
                   src/Makefile
                   src/vector/Makefile
                   src/matrix/Makefile
---- origsrc/lis-2.1.23/lis.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/lis-2.1.23/lis.pc.in	2026-11-09 20:51:39.506091100 +0000
+--- origsrc/lis-2.1.24/lis.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/lis-2.1.24/lis.pc.in	2026-11-18 12:22:53.794965400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -31,8 +31,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -llis
 +Cflags: -I${includedir}
---- origsrc/lis-2.1.23/src/Makefile.am	2026-10-21 01:38:53.000000000 +0000
-+++ src/lis-2.1.23/src/Makefile.am	2026-11-09 20:51:39.506091100 +0000
+--- origsrc/lis-2.1.24/src/Makefile.am	2026-10-21 01:38:53.000000000 +0000
++++ src/lis-2.1.24/src/Makefile.am	2026-11-18 12:22:53.796984800 +0000
 @@ -19,11 +19,12 @@ liblis@LIBSUFFIX@_la_LIBADD = array/liba
                     system/libsystem.la \
                     vector/libvector.la
@@ -49,8 +49,8 @@
  endif
  liblis@LIBSUFFIX@_la_SOURCES = 
 +liblis@LIBSUFFIX@_la_LDFLAGS = -no-undefined
---- origsrc/lis-2.1.23/src/fortran/amg/lis_m_count_time_mod.F90	2026-10-21 01:38:53.000000000 +0000
-+++ src/lis-2.1.23/src/fortran/amg/lis_m_count_time_mod.F90	2026-11-09 20:51:39.507849900 +0000
+--- origsrc/lis-2.1.24/src/fortran/amg/lis_m_count_time_mod.F90	2026-10-21 01:38:53.000000000 +0000
++++ src/lis-2.1.24/src/fortran/amg/lis_m_count_time_mod.F90	2026-11-18 12:22:53.796984800 +0000
 @@ -47,6 +47,7 @@ contains
      INTEGER(kind=kint) :: ierr, NPROCS, i, num_of_kinds
      REAL   (kind=kreal), SAVE :: time_table(TIME_KINDS), start_table(TIME_KINDS)
@@ -75,8 +75,8 @@
         ELSE
            WRITE(*,*) "timer error...:", time_kind, start_table(time_kind)
            STOP "timer error!!"
---- origsrc/lis-2.1.23/src/solver/lis_solver_fgcrodr.c	2026-10-25 01:12:05.000000000 +0000
-+++ src/lis-2.1.23/src/solver/lis_solver_fgcrodr.c	2026-11-09 20:51:39.509864600 +0000
+--- origsrc/lis-2.1.24/src/solver/lis_solver_fgcrodr.c	2026-11-17 09:54:53.000000000 +0000
++++ src/lis-2.1.24/src/solver/lis_solver_fgcrodr.c	2026-11-18 12:22:53.799010500 +0000
 @@ -15,6 +15,14 @@
  #endif
  #endif
@@ -91,20 +91,20 @@
 +
  #include <math.h>
  #include <string.h>
- 
---- origsrc/lis-2.1.23/test/Makefile.am	2026-11-05 09:37:33.000000000 +0000
-+++ src/lis-2.1.23/test/Makefile.am	2026-11-09 20:51:39.509864600 +0000
+ #include <stdio.h>
+--- origsrc/lis-2.1.24/test/Makefile.am	2026-11-17 09:54:53.000000000 +0000
++++ src/lis-2.1.24/test/Makefile.am	2026-11-18 12:22:53.801037500 +0000
 @@ -5,7 +5,7 @@ AM_LDFLAGS = $(AMDEFS)
  
- EXTRA_DIST = defs test.sh testmat.mtx testmat2.mtx testmat3.mtx testmat4.mtx testmat0.mtx testvec0.mtx
+ EXTRA_DIST = gen_ilutp_fullfill_case.py gen_stokes_saddle.py benchilutp_rhs_100.mtx defs test.sh testmat.mtx testmat2.mtx testmat3.mtx testmat4.mtx testmat0.mtx testvec0.mtx
  
 -testdir = ${prefix}/share/examples/lis
 +testdir = $(libdir)/lis/examples
  
  test_DATA = testmat.mtx testmat2.mtx testmat3.mtx testmat4.mtx testmat0.mtx testvec0.mtx
  
---- origsrc/lis-2.1.23/test/test.sh	2026-10-21 01:38:53.000000000 +0000
-+++ src/lis-2.1.23/test/test.sh	2026-11-09 20:51:39.511878600 +0000
+--- origsrc/lis-2.1.24/test/test.sh	2026-10-21 01:38:53.000000000 +0000
++++ src/lis-2.1.24/test/test.sh	2026-11-18 12:22:53.803057100 +0000
 @@ -27,25 +27,25 @@ fi
  
  echo ' '

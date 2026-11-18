@@ -1,9 +1,9 @@
 HOMEPAGE="https://git.osgeo.org/gitea/rttopo/${PN}"
 SRC_URI="https://git.osgeo.org/gitea/rttopo/${PN}/archive/${P}.tar.gz"
-SRC_DIR="${PN}"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/librttopo_geos.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/e594c0547dbbe67ae4f62547f8ee5393408d497e/f/librttopo_geos.patch
 "
+SRC_DIR="${PN}"
 
 CATEGORY="Libs"
 SUMMARY="RT Topology Library"
@@ -15,7 +15,9 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libgeos-devel"
+BUILD_REQUIRES="
+	libgeos-devel
+"
 
 PKG_NAMES="
 	librttopo
@@ -26,7 +28,7 @@ librttopo_CONTENTS="
 	usr/share
 "
 librttopo1_CONTENTS="
-	usr/bin/cyg*-1.dll
+	usr/bin/cygrttopo-1.dll
 "
 librttopo_devel_CONTENTS="
 	usr/include

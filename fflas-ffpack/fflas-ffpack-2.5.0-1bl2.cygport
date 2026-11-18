@@ -1,0 +1,27 @@
+HOMEPAGE="https://github.com/linbox-team/${PN}/"
+SRC_URI="https://github.com/linbox-team/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Math"
+SUMMARY="Finite Field Linear Algebra Subroutines / Package"
+DESCRIPTION="The FFLAS-FFPACK library provides functionalities for dense linear
+algebra over word size prime finite field."
+
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="COPYING.LESSER"
+
+BUILD_REQUIRES="
+	libgivaro-devel
+	liblapack-devel
+"
+
+CYGCONF_ARGS="
+	--with-blas-libs=-lblas
+"
+
+# cygport check takes ~68 min to compile and run the test suite
+YACP_CHECK_TIMEOUT_MINUTES=80
+
+DOCS="
+	COPYING.LESSER
+"

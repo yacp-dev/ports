@@ -1,0 +1,104 @@
+HOMEPAGE="https://github.com/rizinorg/${PN}"
+SRC_URI="
+	https://github.com/rizinorg/${PN}/archive/refs/tags/v${PV}.tar.gz
+	https://github.com/BLAKE2/BLAKE2/archive/ed1974ea83433eba7b2d95c5dcd9ac33cb847913.tar.gz
+	https://github.com/rizinorg/rizin-grammar-c/archive/6a9d542145c2c783230ee4f9006bb81e3fbea635.tar.gz
+	https://github.com/rizinorg/softfloat/archive/537d18e71a51aea70f6b54334854f7014c6458c7.tar.gz
+"
+
+CATEGORY="Security"
+SUMMARY="UNIX-like reverse engineering framework and command-line toolset"
+DESCRIPTION="Rizin is a fork of the radare2 reverse engineering framework with a focus on
+usability, working features and code cleanliness."
+
+LICENSE="GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND CC0-1.0 AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND LGPL-3.0-or-later AND MIT AND CC0-1.0 AND BSD-3-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	file-devel
+	libblake3-devel
+	libcapstone-devel
+	libdemangle-devel
+	liblz4-devel
+	liblzma-devel
+	libmspack-devel
+	libpcre2-devel
+	libssl-devel
+	libtree-sitter-c-devel
+	libtree-sitter-devel
+	libxxhash-devel
+	libyxml-devel
+	libZydis-devel
+	libzip-devel
+	libzstd-devel
+	zlib-devel
+"
+
+inherit meson
+
+CYGMESON_ARGS="
+	-Duse_sys_blake3=enabled
+	-Duse_sys_capstone=enabled
+	-Duse_sys_magic=enabled
+	-Duse_sys_libdemangle=enabled
+	-Duse_sys_libmspack=enabled
+	-Duse_sys_libzip=enabled
+	-Duse_sys_libzip_openssl=true
+	-Duse_sys_lz4=enabled
+	-Duse_sys_lzma=enabled
+	-Duse_sys_openssl=enabled
+	-Duse_sys_pcre2=enabled
+	-Duse_sys_tree_sitter=enabled
+	-Duse_sys_xxhash=enabled
+	-Duse_sys_yxml=enabled
+	-Duse_sys_zydis=enabled
+	-Duse_sys_zlib=enabled
+	-Duse_sys_libzstd=enabled
+"
+
+DOCS="
+	subprojects/blake2/COPYING.BLAKE2
+	subprojects/rizin-grammar-c/LICENSE.grammar-c
+	subprojects/softfloat/LICENSE.softfloat
+	subprojects/rzspp/LICENSE
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	# rizin 0.9 requires the BLAKE2 reference code and has no system option;
+	# its wrap downloads it, so unpack it where the wrap would; same for rizin-grammar-c and softfloat
+	cd ${origsrcdir}/${SRC_DIR}/subprojects
+	rm -rf blake2
+	cp -a ${origsrcdir}/BLAKE2-ed1974ea83433eba7b2d95c5dcd9ac33cb847913 blake2
+	cp packagefiles/blake2/meson.build blake2/
+	mv blake2/COPYING blake2/COPYING.BLAKE2
+	rm -rf rizin-grammar-c
+	cp -a ${origsrcdir}/rizin-grammar-c-6a9d542145c2c783230ee4f9006bb81e3fbea635 rizin-grammar-c
+	cp packagefiles/rizin-grammar-c/meson.build rizin-grammar-c/
+	mv rizin-grammar-c/LICENSE rizin-grammar-c/LICENSE.grammar-c
+	rm -rf softfloat
+	cp -a ${origsrcdir}/softfloat-537d18e71a51aea70f6b54334854f7014c6458c7 softfloat
+	mv softfloat/LICENSE softfloat/LICENSE.softfloat
+}
+
+PKG_NAMES="
+	rizin
+	librz${PV[1]}.${PV[2]}
+	librz-devel
+"
+rizin_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+librz0_9_CONTENTS="
+	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
+"
+librz_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+rizin_SUMMARY="${SUMMARY} (utilities)"
+librz0_9_SUMMARY="${SUMMARY} (runtime)"
+librz_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,0 +1,94 @@
+--- origsrc/rizin-0.9.1/librz/debug/meson.build	2026-06-28 17:25:19.000000000 +0000
++++ src/rizin-0.9.1/librz/debug/meson.build	2026-11-17 17:56:40.677783940 +0000
+@@ -7,7 +7,7 @@ debug_plugins_list = [
+   'winkd',
+ ]
+ 
+-if get_option('use_gpl')
++if get_option('use_gpl') and host_machine.system() != 'cygwin'
+   debug_plugins_list += 'qnx'
+ endif
+ 
+@@ -71,7 +71,7 @@ rz_debug_deps = [
+   platform_deps
+ ]
+ 
+-if get_option('use_gpl')
++if get_option('use_gpl') and host_machine.system() != 'cygwin'
+   rz_debug_deps += dependency('rzqnx')
+   rz_debug_sources += 'p/debug_qnx.c'
+ endif
+--- origsrc/rizin-0.9.1/librz/include/rz_types.h	2026-06-28 17:25:19.000000000 +0000
++++ src/rizin-0.9.1/librz/include/rz_types.h	2026-11-17 17:56:19.557720118 +0000
+@@ -143,6 +143,10 @@ extern "C" {
+ #undef __BSD__
+ #endif
+ 
++#if defined(__CYGWIN__)
++#define __UNIX__ 1
++#endif
++
+ #if defined(__APPLE__) && ((__arm__ || __arm64__ || __aarch64__) && IS_IOS)
+ #define TARGET_OS_IPHONE 1
+ #else
+--- origsrc/rizin-0.9.1/meson_options.txt	2026-06-28 17:25:19.000000000 +0000
++++ src/rizin-0.9.1/meson_options.txt	2026-11-17 17:56:40.677638066 +0000
+@@ -28,11 +28,13 @@ option('use_sys_libzip', type: 'feature'
+ option('use_sys_libzip_openssl', type: 'boolean', value: false, description: 'Whether to use or not system openssl dependency to build libzip')
+ option('use_sys_zlib', type: 'feature', value: 'disabled')
+ option('use_sys_lz4', type: 'feature', value: 'disabled')
++option('use_sys_yxml', type: 'feature', value: 'disabled')
+ option('use_sys_libzstd', type: 'feature', value: 'disabled')
+ option('use_lzma', type: 'boolean', value: true, description: 'If true, liblzma is used to provide extra features (e.g. .gnu_debugdata parser)')
+ option('use_zlib', type: 'boolean', value: true, description: 'If true, zlib is used to provide extra features (e.g. project compression/decompression, etc.)')
+ option('use_sys_lzma', type: 'feature', value: 'disabled')
+ option('use_sys_xxhash', type: 'feature', value: 'disabled')
++option('use_sys_libdemangle', type: 'feature', value: 'disabled')
+ option('use_sys_openssl', type: 'feature', value: 'disabled')
+ option('use_sys_libmspack', type: 'feature', value: 'disabled')
+ option('use_sys_tree_sitter', type: 'feature', value: 'disabled')
+--- origsrc/rizin-0.9.1/meson.build	2026-06-28 17:25:19.000000000 +0000
++++ src/rizin-0.9.1/meson.build	2026-11-17 17:57:03.515833485 +0000
+@@ -362,8 +362,15 @@ libdemangle_options = [
+   'use_swift_demangler=false',
+ ]
+ 
+-libdemangle_proj = subproject('libdemangle', default_options: libdemangle_options)
+-libdemangle_dep = libdemangle_proj.get_variable('libdemangle_dep')
++sys_libdemangle_opt = get_option('use_sys_libdemangle')
++libdemangle_dep = dependency('libdemangle', required: false, static: is_static_build)
++if not libdemangle_dep.found() and not sys_libdemangle_opt.disabled()
++  libdemangle_dep = cc.find_library('demangle', required: sys_libdemangle_opt, static: is_static_build)
++endif
++if not libdemangle_dep.found()
++  libdemangle_proj = subproject('libdemangle', default_options: libdemangle_options)
++  libdemangle_dep = libdemangle_proj.get_variable('libdemangle_dep')
++endif
+ 
+ blake2_dep = dependency('libblake2', fallback: ['blake2', 'libblake2_dep'])
+ 
+@@ -794,8 +801,11 @@ if r.returncode() == 1 and get_option('s
+   error(subproject_clean_error_msg)
+ endif
+ 
+-yxml_proj = subproject('yxml', default_options: ['default_library=static'])
+-yxml_dep = yxml_proj.get_variable('yxml_dep')
++yxml_dep = dependency('yxml', required: get_option('use_sys_yxml'), static: is_static_build)
++if not yxml_dep.found()
++  yxml_proj = subproject('yxml', default_options: ['default_library=static'])
++  yxml_dep = yxml_proj.get_variable('yxml_dep')
++endif
+ 
+ # handle rzheap dependency
+ rzheap_proj = subproject('rzheap', default_options: ['default_library=static'])
+--- origsrc/rizin-0.9.1/subprojects/rzspp/spp.h	2026-06-28 17:25:19.000000000 +0000
++++ src/rizin-0.9.1/subprojects/rzspp/spp.h	2026-11-17 17:56:19.560185136 +0000
+@@ -38,7 +38,7 @@
+   #define __BSD__ 1
+   #define __UNIX__ 1
+ #endif
+-#if __WIN32__ || __CYGWIN__ || MINGW32
++#if __WIN32__ || MINGW32
+   #define __addr_t_defined
+   #include <windows.h>
+ #endif

@@ -4,20 +4,20 @@ Bitpeer is an experimental Bitcoin relay server. Its event-driven architecture
 makes it extremely fast, and it was designed to be very lightweight.
 
 Runtime requirements:
-  cygwin-3.3.4-2
-  libevent2.1_7-2.1.12-1
-  libssl1.1-1.1.1o-1
+  cygwin-3.6.12-1
+  libevent2.1_7-2.1.13-1
+  libssl3-3.5.9-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.38-1
-  cygport-0.35.0-1
-  gcc-core-11.3.0-1
-  libevent-devel-2.1.12-1
-  libssl-devel-1.1.1o-1
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libevent-devel-2.1.13-1
+  libssl-devel-3.5.9-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/TvdW/bitpeer
@@ -51,6 +51,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.3+git20130505-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2.3+git20130505-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

@@ -12,11 +12,18 @@ outputs optimized vertex buffers that you can render anytime in your
 3D-pipeline enabled application. It is fast, portable, renderer agnostic and
 self-contained (no external dependencies)."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND Unlicense"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND Unlicense"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="liballegro-devel libfreetype-devel libGL-devel libglfw-devel libglut-devel libSDL2-devel"
+BUILD_REQUIRES="
+	liballegro-devel
+	libfreetype-devel
+	libGL-devel
+	libglfw-devel
+	libglut-devel
+	libSDL2-devel
+"
 
 inherit cmake
 

@@ -1,5 +1,5 @@
-HOMEPAGE="https://github.com/yahoojapan/NGT"
-SRC_URI="https://github.com/yahoojapan/NGT/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/NGT-labs/NGT"
+SRC_URI="https://github.com/NGT-labs/NGT/archive/refs/tags/v${PV}.tar.gz"
 SRC_DIR="NGT-${PV}"
 
 CATEGORY="Math"
@@ -30,6 +30,14 @@ src_install()
 	dodoc assets/*
 	docinto tests/ann-benchmarks-results
 	dodoc tests/ann-benchmarks-results/*
+}
+
+src_test()
+{
+	cd ${B}
+	# upstream has no test suite; check that the command starts
+	# (the in-tree DLL is not on PATH; no arguments prints the usage and exits 0)
+	PATH=${B}/lib/NGT:${PATH} verbose ./bin/ngt/ngt.exe
 }
 
 DOCS="

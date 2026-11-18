@@ -9,11 +9,16 @@ it can be mapped onto existing solvers easily and consistently. It is a subset
 of the higher-level language Zinc. We hope it will be adopted as a standard by
 the Constraint Programming community."
 
-LICENSE="MPL-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0"
+LICENSE="MPL-2.0 AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0 AND MIT"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="bison flex"
+BUILD_REQUIRES="
+	bison
+	flex
+"
+
+export CXXFLAGS="${CXXFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
@@ -24,6 +29,11 @@ CYGCMAKE_ARGS="
 DOCS="
 	changes.rst
 "
+
+src_test() {
+	cd ${B}
+	PATH=${B}:${PATH} verbose ./minizinc.exe --version
+}
 
 PKG_NAMES="
 	${PN}
@@ -44,3 +54,4 @@ libmzn_devel_CONTENTS="
 libminizinc_SUMMARY="${SUMMARY} (utilities)"
 libmzn2_SUMMARY="${SUMMARY} (runtime)"
 libmzn_devel_SUMMARY="${SUMMARY} (development)"
+libmzn_devel_REQUIRES="libminizinc"

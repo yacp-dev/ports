@@ -75,15 +75,41 @@ src_install()
 	done
 
 	# The installed b needs its shared libraries (libbuild2-*.so, libbutl-*.so)
-	# in ${D}/usr/lib, which the Cygwin loader only finds through PATH.
-	export PATH=${D}/usr/lib:${PATH}
+	# in ${D}/usr/lib, which the Cygwin loader only finds through PATH, and
+	# we run b ourselves below.
+	export PATH=${D}/usr/bin:${D}/usr/lib:${PATH}
 
 	# libbuild2-kconfig (GPL-2.0-only) isn't installed: its module doesn't
-	# load on Cygwin (dlopen: Permission denied).
+	# load on Cygwin (see below).
+	#
+	# The Windows loader can't follow Cygwin symlinks, and b loads a module
+	# (libbuild2-autoconf-0.18.so) through one, which fails with "Permission
+	# denied". build.sh's last step, loading the modules, hits this, so let
+	# it finish, replace the .so symlinks with copies (which is also what the
+	# package needs, the same loader running on the user's machine), and
+	# repeat that step.
+	rc=0
 	verbose ./build.sh --local --modules autoconf \
 		--install-dir ${D}/usr \
 		--sudo false \
 		--jobs $(nproc) \
 		--verbose 3 \
-		${T}/bin/g++
+		${T}/bin/g++ || rc=$?
+
+	cd ${D}/usr/lib
+	for f in *.so
+	do
+		[ -L ${f} ] || continue
+		t=$(readlink -f ${f})
+		verbose rm ${f}
+		verbose cp ${t} ${f}
+	done
+
+	cd ${S}
+	verbose b --verbose 3 noop: tests/libbuild2-autoconf-tests/ || {
+		verbose ls -l ${D}/usr/lib || true
+		verbose ldd ${D}/usr/lib/libbuild2-autoconf-0.18.so || true
+		false
+	}
+	[ ${rc} -eq 0 ] || echo "build.sh exited with ${rc} before the module check"
 }

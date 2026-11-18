@@ -8,9 +8,23 @@ DESCRIPTION="Artifastring (artificial fast string) is a highly optimized physica
 simulation of string quartet instruments (violins, violas, and cellos) for
 sound synthesis."
 
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	eigen3
+	libfftw3-devel
+	python3-devel
+	python312-numpy
+	swig
+"
+
 CYGCONF_ARGS="
 	--with-swig
 "
+# numpy 2 moved its headers from numpy/core to numpy/_core
+export CPPFLAGS="${CPPFLAGS} -I/usr/lib/python3.12/site-packages/numpy/_core/include"
 
 PKG_NAMES="
 	${PN}
@@ -24,7 +38,8 @@ artifastring_CONTENTS="
 	usr/share/doc
 "
 libartifastring0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygartifastring-0.dll
+	usr/bin/cygmonowav-0.dll
 "
 libartifastring_devel_CONTENTS="
 	usr/include
@@ -39,3 +54,9 @@ artifastring_SUMMARY="${SUMMARY} (utilities)"
 libartifastring0_SUMMARY="${SUMMARY} (runtime)"
 libartifastring_devel_SUMMARY="${SUMMARY} (development)"
 python_artifastring_SUMMARY="${SUMMARY} (python bindings)"
+
+src_test()
+{
+	cd ${B}
+	verbose ./actions2wav.exe | verbose grep "^Usage: ./action2wav FILENAME.action"
+}

@@ -1,33 +1,39 @@
 artifastring
 ------------------------------------------
-Artifastring (artificial fast string) is a highly optimized physical
-simulation of string quartet instruments (violins, violas, and cellos) for
-sound synthesis.
+Artifastring (artificial fast string) is a highly optimized physical simulation
+of string quartet instruments (violins, violas, and cellos) for sound
+synthesis.
 
 Runtime requirements:
-  cygwin-2.0.1-1
-  cygwin-devel-2.0.1-1
-  libartifastring-devel-2.4-1bl1
-  libartifastring0-2.4-1bl1
-  libfftw3-devel-3.3.4-1
-  libfftw3_3-3.3.4-1
-  libgcc1-4.9.2-3
-  libstdc++6-4.9.2-3
-  python-2.7.8-1
-  python-artifastring-2.4-1bl1
-  python-numpy-1.7.2-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libartifastring-devel-2.4-1bl2
+  libartifastring0-2.4-1bl2
+  libfftw3-devel-3.3.11-1
+  libfftw3_3-3.3.11-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
+  python-artifastring-2.4-1bl2
+  python3-3.12.12-1
+  python312-3.12.12-1
+  python312-numpy-2.5.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-1
-  cmake-3.1.2-1
-  cygport-0.18.1-1
-  gcc-core-4.9.2-3
-  gcc-g++-4.9.2-3
-  libtool-2.4.6-1
-  make-4.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  eigen3-3.4.0-1
+  gcc-g++-14.4.0-1
+  libfftw3-devel-3.3.11-1
+  libtool-2.6.2-1
+  make-4.4.1-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  python312-numpy-2.5.4-1
+  swig-4.5.1-1
 
 Canonical website:
   https://github.com/gperciva/artifastring
@@ -99,45 +105,57 @@ Files included in the binary package:
   /usr/lib/pkgconfig/monowav.pc
 
 (python-artifastring)
-  /usr/lib/python2.7/site-packages/_actions_file.dll
-  /usr/lib/python2.7/site-packages/_artifastring_instrument.dll
-  /usr/lib/python2.7/site-packages/_midi_pos.dll
-  /usr/lib/python2.7/site-packages/_monowav.dll
-  /usr/lib/python2.7/site-packages/actions_file.py
-  /usr/lib/python2.7/site-packages/actions_file.pyc
-  /usr/lib/python2.7/site-packages/actions_file.pyo
-  /usr/lib/python2.7/site-packages/artifastring_instrument.py
-  /usr/lib/python2.7/site-packages/artifastring_instrument.pyc
-  /usr/lib/python2.7/site-packages/artifastring_instrument.pyo
-  /usr/lib/python2.7/site-packages/artifastring_interactive.py
-  /usr/lib/python2.7/site-packages/artifastring_interactive.pyc
-  /usr/lib/python2.7/site-packages/artifastring_interactive.pyo
-  /usr/lib/python2.7/site-packages/artifastring_osc.py
-  /usr/lib/python2.7/site-packages/artifastring_osc.pyc
-  /usr/lib/python2.7/site-packages/artifastring_osc.pyo
-  /usr/lib/python2.7/site-packages/artifastring_process.py
-  /usr/lib/python2.7/site-packages/artifastring_process.pyc
-  /usr/lib/python2.7/site-packages/artifastring_process.pyo
-  /usr/lib/python2.7/site-packages/enum.py
-  /usr/lib/python2.7/site-packages/enum.pyc
-  /usr/lib/python2.7/site-packages/enum.pyo
-  /usr/lib/python2.7/site-packages/midi_pos.py
-  /usr/lib/python2.7/site-packages/midi_pos.pyc
-  /usr/lib/python2.7/site-packages/midi_pos.pyo
-  /usr/lib/python2.7/site-packages/monowav.py
-  /usr/lib/python2.7/site-packages/monowav.pyc
-  /usr/lib/python2.7/site-packages/monowav.pyo
-  /usr/lib/python2.7/site-packages/quality_judgements.py
-  /usr/lib/python2.7/site-packages/quality_judgements.pyc
-  /usr/lib/python2.7/site-packages/quality_judgements.pyo
-  /usr/lib/python2.7/site-packages/tuning_pitch.py
-  /usr/lib/python2.7/site-packages/tuning_pitch.pyc
-  /usr/lib/python2.7/site-packages/tuning_pitch.pyo
+  /usr/lib/python3.12/site-packages/__pycache__/actions_file.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/actions_file.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/actions_file.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_instrument.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_instrument.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_instrument.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_interactive.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_interactive.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_interactive.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_osc.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_osc.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_osc.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_process.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_process.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/artifastring_process.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/enum.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/enum.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/enum.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/midi_pos.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/midi_pos.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/midi_pos.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/monowav.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/monowav.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/monowav.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/quality_judgements.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/quality_judgements.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/quality_judgements.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/tuning_pitch.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/tuning_pitch.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/tuning_pitch.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/_actions_file.dll
+  /usr/lib/python3.12/site-packages/_artifastring_instrument.dll
+  /usr/lib/python3.12/site-packages/_midi_pos.dll
+  /usr/lib/python3.12/site-packages/_monowav.dll
+  /usr/lib/python3.12/site-packages/actions_file.py
+  /usr/lib/python3.12/site-packages/artifastring_instrument.py
+  /usr/lib/python3.12/site-packages/artifastring_interactive.py
+  /usr/lib/python3.12/site-packages/artifastring_osc.py
+  /usr/lib/python3.12/site-packages/artifastring_process.py
+  /usr/lib/python3.12/site-packages/enum.py
+  /usr/lib/python3.12/site-packages/midi_pos.py
+  /usr/lib/python3.12/site-packages/monowav.py
+  /usr/lib/python3.12/site-packages/quality_judgements.py
+  /usr/lib/python3.12/site-packages/tuning_pitch.py
 
 ------------------
 
 Port Notes:
 
+----- version 2.4-1bl2 -----
+Rebuild with gcc-14.4.0
+
 ----- version 2.4-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>
-

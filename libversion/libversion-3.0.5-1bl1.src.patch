@@ -1,5 +1,5 @@
---- origsrc/libversion-3.0.4/libversion/CMakeLists.txt	2025-10-07 05:27:38.000000000 +0900
-+++ src/libversion-3.0.4/libversion/CMakeLists.txt	2026-01-22 21:34:15.875353900 +0900
+--- origsrc/libversion-3.0.5/libversion/CMakeLists.txt	2026-11-01 23:22:39.000000000 +0000
++++ src/libversion-3.0.5/libversion/CMakeLists.txt	2026-11-18 11:00:56.431427300 +0000
 @@ -40,22 +40,6 @@ if(WIN32)
  	set_target_properties(libversion PROPERTIES OUTPUT_NAME libversion)
  endif()

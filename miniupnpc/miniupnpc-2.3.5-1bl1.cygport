@@ -37,7 +37,7 @@ PKG_NAMES="
 miniupnpc_CONTENTS="
 	usr/bin/*.exe
 	usr/bin/*.sh
-	usr/share
+	usr/share/doc
 "
 libminiupnpc21_CONTENTS="
 	usr/bin/cyg*-21.dll
@@ -45,6 +45,7 @@ libminiupnpc21_CONTENTS="
 libminiupnpc_devel_CONTENTS="
 	usr/include
 	usr/lib
+	usr/share/man/man3
 "
 miniupnpc_SUMMARY="${SUMMARY} (utilities)"
 libminiupnpc21_SUMMARY="${SUMMARY} (runtime)"

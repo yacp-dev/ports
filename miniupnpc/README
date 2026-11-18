@@ -3,16 +3,16 @@ miniupnpc
 UPnP IGD control point
 
 Runtime requirements:
-  cygwin-3.6.11-1
-  libminiupnpc-devel-2.3.3-1bl2
-  libminiupnpc21-2.3.3-1bl2
-  pkg-config-3.0.9-1
+  cygwin-3.6.12-1
+  libminiupnpc-devel-2.3.5-1bl1
+  libminiupnpc21-2.3.5-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.4.4-1
-  cygport-0.37.11-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
   ninja-1.13.2-1
 
@@ -20,22 +20,22 @@ Canonical website:
   https://github.com/miniupnp/miniupnp
 
 Canonical download:
-  https://github.com/miniupnp/miniupnp/archive/refs/tags/miniupnpc_2_3_3.tar.gz
+  https://github.com/miniupnp/miniupnp/archive/refs/tags/miniupnpc_2_3_5.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack miniupnpc-2.3.3-X-src.tar.xz
+  1. unpack miniupnpc-2.3.5-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./miniupnpc-2.3.3-X.cygport all
+        % cygport ./miniupnpc-2.3.5-X.cygport all
 
 This will create:
-  /usr/src/miniupnpc-2.3.3-X-src.tar.xz
-  /usr/src/miniupnpc-2.3.3-X.tar.xz
-  /usr/src/libminiupnpc21-2.3.3-X.tar.xz
-  /usr/src/libminiupnpc-devel-2.3.3-X.tar.xz
+  /usr/src/miniupnpc-2.3.5-X-src.tar.xz
+  /usr/src/miniupnpc-2.3.5-X.tar.xz
+  /usr/src/libminiupnpc21-2.3.5-X.tar.xz
+  /usr/src/libminiupnpc-devel-2.3.5-X.tar.xz
 
 -------------------------------------------
 
@@ -49,7 +49,6 @@ Files included in the binary package:
   /usr/share/doc/miniupnpc/Changelog.txt
   /usr/share/doc/miniupnpc/LICENSE
   /usr/share/doc/miniupnpc/README
-  /usr/share/man/man3/miniupnpc.3.gz
 
 (libminiupnpc21)
   /usr/bin/cygminiupnpc-21.dll
@@ -70,10 +69,14 @@ Files included in the binary package:
   /usr/lib/cmake/miniupnpc/miniupnpc-config.cmake
   /usr/lib/libminiupnpc.dll.a
   /usr/lib/pkgconfig/miniupnpc.pc
+  /usr/share/man/man3/miniupnpc.3.gz
 
 ------------------
 
 Port Notes:
+
+----- version 2.3.5-1bl1 -----
+Version bump.
 
 ----- version 2.3.3-1bl2 -----
 Rebuild with gcc-14.4.0

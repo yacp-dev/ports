@@ -6,48 +6,50 @@ suite of unit-tests based on Google Test Framework. A driver implementation is
 necessary to properly operate.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libX11_6-1.8.12-1
-  libdrm2-2.4.131-1bl1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  libva-drm2-2.23.0-1bl1
-  libva-x11_2-2.23.0-1bl1
-  libva2-2.23.0-1bl1
+  cygwin-3.6.12-1
+  libX11_6-1.8.13-1
+  libdrm2-2.4.134-1bl2
+  libgcc1-14.4.0-1
+  libgtest0-1.18.0-1bl1
+  libstdc++6-14.4.0-1
+  libva-drm2-2.24.1-1bl1
+  libva-x11_2-2.24.1-1bl1
+  libva2-2.24.1-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libX11-devel-1.8.12-1
-  libdrm-devel-2.4.131-1bl1
-  libgtest-devel-1.17.0-1bl1
-  libva-devel-2.23.0-1bl1
-  libva-drm-devel-2.23.0-1bl1
-  libva-x11-devel-2.23.0-1bl1
-  meson-1.4.2-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libX11-devel-1.8.13-1
+  libdrm-devel-2.4.134-1bl2
+  libgtest-devel-1.18.0-1bl1
+  libgtest0-1.18.0-1bl1
+  libva-devel-2.24.1-1bl1
+  libva-drm-devel-2.24.1-1bl1
+  libva-x11-devel-2.24.1-1bl1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/intel/libva-utils
 
 Canonical download:
-  https://github.com/intel/libva-utils/archive/refs/tags/2.23.0.tar.gz
+  https://github.com/intel/libva-utils/archive/refs/tags/2.24.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libva-utils-2.23.0-X-src.tar.xz
+  1. unpack libva-utils-2.24.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libva-utils-2.23.0-X.cygport all
+        % cygport ./libva-utils-2.24.0-X.cygport all
 
 This will create:
-  /usr/src/libva-utils-2.23.0-X-src.tar.xz
-  /usr/src/libva-utils-2.23.0-X.tar.xz
+  /usr/src/libva-utils-2.24.0-X-src.tar.xz
+  /usr/src/libva-utils-2.24.0-X.tar.xz
 
 -------------------------------------------
 
@@ -89,6 +91,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.24.0-1bl1 -----
+Version bump.
 
 ----- version 2.23.0-1bl1 -----
 Version bump.

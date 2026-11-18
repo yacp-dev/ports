@@ -1,6 +1,6 @@
---- origsrc/libsemigroups-3.6.1/Makefile.am	2026-05-17 12:58:52.000000000 +0000
-+++ src/libsemigroups-3.6.1/Makefile.am	2026-10-19 10:57:40.684244800 +0000
-@@ -23,8 +23,10 @@ endif
+--- origsrc/libsemigroups-3.6.2/Makefile.am	2026-11-12 14:23:58.000000000 +0000
++++ src/libsemigroups-3.6.2/Makefile.am	2026-11-18 12:23:14.806220100 +0000
+@@ -26,8 +26,10 @@ endif
  if LIBSEMIGROUPS_HPCOMBI_ENABLED
  AM_CXXFLAGS += $(HPCOMBI_CXXFLAGS)
  endif

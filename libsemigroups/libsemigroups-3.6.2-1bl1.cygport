@@ -7,8 +7,8 @@ DESCRIPTION="libsemigroups is a C++ library for semigroups and monoids; it is pa
 on Algorithms for computing finite semigroups, Expository Slides, and
 Semigroupe 2.01 by Jean-Eric Pin."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND MIT AND MPL-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND MIT AND MPL-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -27,6 +27,18 @@ CYGCONF_ARGS="
 	--enable-maintainer-mode
 	--with-external-fmt
 "
+
+# The 82 test sources are built into one test_all binary, which took 84
+# minutes on the runner just to build; the default 10 timed out
+YACP_CHECK_TIMEOUT_MINUTES=180
+
+# tests/test-main.hpp uses __FILE__ as a Catch2 tag, which Catch2 rejects
+# when it starts with '/', as cygport's -ffile-prefix-map makes it
+src_test()
+{
+	cd ${B}
+	cygmake "CXXFLAGS=${CXXFLAGS} -ffile-prefix-map=${S}/tests=tests" check
+}
 
 PKG_NAMES="
 	${PN}

@@ -3,51 +3,51 @@ libxmlb
 Library to help create and query binary XML blobs
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.12-1
   girepository-GLib2.0-1.86.0-2
-  libglib2.0-devel-2.88.3-1
-  libglib2.0_0-2.88.3-1
-  liblzma-devel-5.8.3-1
-  liblzma5-5.8.3-1
-  libxmlb-devel-0.3.29-1bl1
-  libxmlb2-0.3.29-1bl1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  liblzma-devel-5.8.4-1
+  liblzma5-5.8.4-1
+  libxmlb-devel-0.3.30-1bl1
+  libxmlb2-0.3.30-1bl1
   libzstd-devel-1.5.7-1
   libzstd1-1.5.7-1
-  pkg-config-3.0.5-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.12-1
   gcc-core-14.4.0-1
   gobject-introspection-1.86.0-2
-  libglib2.0-devel-2.88.3-1
-  liblzma-devel-5.8.3-1
+  libglib2.0-devel-2.90.1-1
+  liblzma-devel-5.8.4-1
   libzstd-devel-1.5.7-1
-  meson-1.8.5-1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/hughsie/libxmlb
 
 Canonical download:
-  https://github.com/hughsie/libxmlb/archive/refs/tags/0.3.29.tar.gz
+  https://github.com/hughsie/libxmlb/archive/refs/tags/0.3.30.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libxmlb-0.3.29-X-src.tar.xz
+  1. unpack libxmlb-0.3.30-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libxmlb-0.3.29-X.cygport all
+        % cygport ./libxmlb-0.3.30-X.cygport all
 
 This will create:
-  /usr/src/libxmlb-0.3.29-X-src.tar.xz
-  /usr/src/libxmlb-0.3.29-X.tar.xz
-  /usr/src/libxmlb2-0.3.29-X.tar.xz
-  /usr/src/libxmlb-devel-0.3.29-X.tar.xz
-  /usr/src/girepository-Xmlb2.0-0.3.29-X.tar.xz
+  /usr/src/libxmlb-0.3.30-X-src.tar.xz
+  /usr/src/libxmlb-0.3.30-X.tar.xz
+  /usr/src/libxmlb2-0.3.30-X.tar.xz
+  /usr/src/libxmlb-devel-0.3.30-X.tar.xz
+  /usr/src/girepository-Xmlb2.0-0.3.30-X.tar.xz
 
 -------------------------------------------
 
@@ -106,6 +106,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.3.30-1bl1 -----
+Version bump.
 
 ----- version 0.3.29-1bl1 -----
 Version bump.

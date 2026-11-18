@@ -1,5 +1,5 @@
---- origsrc/oatpp-zlib-1.3.0/cmake/module-config.cmake.in	2021-10-25 09:25:06.000000000 +0900
-+++ src/oatpp-zlib-1.3.0/cmake/module-config.cmake.in	2024-09-25 16:41:38.760352100 +0900
+--- origsrc/oatpp-zlib-1.3.0/cmake/module-config.cmake.in	2021-10-25 00:25:06.000000000 +0000
++++ src/oatpp-zlib-1.3.0/cmake/module-config.cmake.in	2026-11-18 23:37:59.524952100 +0000
 @@ -4,8 +4,8 @@ if(NOT TARGET oatpp::@OATPP_MODULE_NAME@
      include("${CMAKE_CURRENT_LIST_DIR}/@OATPP_MODULE_NAME@Targets.cmake")
  endif()
@@ -12,8 +12,8 @@
  set(@OATPP_MODULE_NAME@_LIBRARIES @OATPP_MODULE_LIBRARIES@)
 -set(OATPP_BASE_DIR "${PACKAGE_PREFIX_DIR}/include/oatpp-@OATPP_MODULE_VERSION@/")
 +set(OATPP_BASE_DIR "${PACKAGE_PREFIX_DIR}/include/oatpp/")
---- origsrc/oatpp-zlib-1.3.0/cmake/module-install.cmake	2021-10-25 09:25:06.000000000 +0900
-+++ src/oatpp-zlib-1.3.0/cmake/module-install.cmake	2024-09-25 16:41:38.775974900 +0900
+--- origsrc/oatpp-zlib-1.3.0/cmake/module-install.cmake	2021-10-25 00:25:06.000000000 +0000
++++ src/oatpp-zlib-1.3.0/cmake/module-install.cmake	2026-11-18 23:37:59.524952100 +0000
 @@ -59,21 +59,21 @@ endforeach()
  
  install(TARGETS ${OATPP_THIS_MODULE_TARGETS}
@@ -59,8 +59,8 @@
 +            "${CMAKE_INSTALL_LIBDIR}/cmake/${OATPP_MODULE_NAME}"
  )
 \ No newline at end of file
---- origsrc/oatpp-zlib-1.3.0/src/CMakeLists.txt	2021-10-25 09:25:06.000000000 +0900
-+++ src/oatpp-zlib-1.3.0/src/CMakeLists.txt	2024-09-25 16:42:06.302659800 +0900
+--- origsrc/oatpp-zlib-1.3.0/src/CMakeLists.txt	2021-10-25 00:25:06.000000000 +0000
++++ src/oatpp-zlib-1.3.0/src/CMakeLists.txt	2026-11-18 23:37:59.526960800 +0000
 @@ -12,6 +12,10 @@ set_target_properties(${OATPP_THIS_MODUL
          CXX_STANDARD_REQUIRED ON
  )

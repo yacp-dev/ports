@@ -1,0 +1,10 @@
+--- origsrc/tci/CMakeLists.txt	2026-11-19 10:45:02.000000000 +0000
++++ src/tci/CMakeLists.txt	2026-11-19 10:45:03.863497000 +0000
+@@ -516,6 +516,7 @@ if (ENABLE_SHARED)
+     add_library(TCI::tci ALIAS tci)
+     target_link_libraries(tci PUBLIC ${PUBLIC_LIBS} PRIVATE ${PRIVATE_LIBS})
+     set_target_properties(tci PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
++    set_target_properties(tci PROPERTIES SOVERSION 0)
+     list(APPEND TCI_TARGETS tci)
+     target_include_directories(tci PUBLIC
+         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>

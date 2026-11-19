@@ -7,42 +7,40 @@ Communicators may be split into smaller sub-communicators for hierarchical
 parallelism, with independent synchronization and communication.
 
 Runtime requirements:
-  cygwin-3.1.7-1
-  libgomp1-10.2.0-1
-  libtci-devel-1.0+git20200409-1bl1
-  libtci0-1.0+git20200409-1bl1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libgomp1-14.4.0-1
+  libtci-devel-1.0+git20260806-1bl1
+  libtci0-1.0+git20260806-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-11-1
-  binutils-2.35.2-1
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  libtool-2.4.6-7
-  make-4.3-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/devinamatthews/tci
+  https://github.com/MatthewsResearchGroup/tci
 
 Canonical download:
-  git://github.com/devinamatthews/tci.git
+  https://github.com/MatthewsResearchGroup/tci.git
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack tci-1.0+git20200409-X-src.tar.xz
+  1. unpack tci-1.0+git20260806-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./tci-1.0+git20200409-X.cygport all
+        % cygport ./tci-1.0+git20260806-X.cygport all
 
 This will create:
-  /usr/src/tci-1.0+git20200409-X-src.tar.xz
-  /usr/src/tci-1.0+git20200409-X.tar.xz
-  /usr/src/libtci0-1.0+git20200409-X.tar.xz
-  /usr/src/libtci-devel-1.0+git20200409-X.tar.xz
+  /usr/src/tci-1.0+git20260806-X-src.tar.xz
+  /usr/src/tci-1.0+git20260806-X.tar.xz
+  /usr/src/libtci0-1.0+git20260806-X.tar.xz
+  /usr/src/libtci-devel-1.0+git20260806-X.tar.xz
 
 -------------------------------------------
 
@@ -58,24 +56,37 @@ Files included in the binary package:
 
 (libtci-devel)
   /usr/include/tci.h
+  /usr/include/tci.hpp
   /usr/include/tci/barrier.h
+  /usr/include/tci/barrier.hpp
   /usr/include/tci/communicator.h
+  /usr/include/tci/communicator.hpp
   /usr/include/tci/context.h
   /usr/include/tci/mutex.h
+  /usr/include/tci/mutex.hpp
   /usr/include/tci/parallel.h
+  /usr/include/tci/parallel.hpp
   /usr/include/tci/pipeline.h
   /usr/include/tci/slot.h
+  /usr/include/tci/slot.hpp
   /usr/include/tci/task_set.h
   /usr/include/tci/tci_config.h
-  /usr/include/tci/tci_global.h
   /usr/include/tci/work_item.h
+  /usr/include/tci/work_item.hpp
   /usr/include/tci/yield.h
+  /usr/lib/cmake/TCI/TCIConfig.cmake
+  /usr/lib/cmake/TCI/TCIConfigVersion.cmake
+  /usr/lib/cmake/TCI/TCITargets-relwithdebinfo.cmake
+  /usr/lib/cmake/TCI/TCITargets.cmake
   /usr/lib/libtci.dll.a
   /usr/lib/pkgconfig/tci.pc
 
 ------------------
 
 Port Notes:
+
+----- version 1.0+git20260806-1bl1 -----
+Version bump.
 
 ----- version 1.0+git20200409-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

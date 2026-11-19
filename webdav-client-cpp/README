@@ -3,25 +3,25 @@ webdav-client-cpp
 C++ WebDAV Client provides easy and convenient to work with WebDAV-servers
 
 Runtime requirements:
-  cygwin-3.3.2-1
-  libcurl4-7.80.0-1
-  libgcc1-11.2.0-1
+  cygwin-3.6.12-1
+  libcurl4-8.23.0-1
+  libgcc1-14.4.0-1
   libpugixml1-1.9-1
-  libstdc++6-11.2.0-1
-  libwdc-devel-1.1.5-1bl1
-  libwdc1-1.1.5-1bl1
-  pkg-config-1.6.3-1
+  libstdc++6-14.4.0-1
+  libwdc-devel-1.1.5-1bl2
+  libwdc1-1.1.5-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-2
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
-  libcurl-devel-7.80.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libboost-devel-1.66.0-1
+  libcurl-devel-8.23.0-1
   libpugixml-devel-1.9-1
-  ninja-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/CloudPolis/webdav-client-cpp
@@ -62,7 +62,7 @@ Files included in the binary package:
   /usr/include/webdav/client.hpp
   /usr/lib/cmake/WDC/WDCConfig.cmake
   /usr/lib/cmake/WDC/WDCConfigVersion.cmake
-  /usr/lib/cmake/WDC/WDCTargets-release.cmake
+  /usr/lib/cmake/WDC/WDCTargets-relwithdebinfo.cmake
   /usr/lib/cmake/WDC/WDCTargets.cmake
   /usr/lib/libwdc.dll.a
   /usr/lib/pkgconfig/webdav-client-cpp.pc
@@ -70,6 +70,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.1.5-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

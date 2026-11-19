@@ -8,11 +8,15 @@ in high dimensional spaces. It contains a collection of algorithms we found to
 work best for nearest neighbor search and a system for automatically choosing
 the best algorithm and optimum parameters depending on the dataset."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libhdf5-devel liblz4-devel"
+BUILD_REQUIRES="
+	libgtest-devel
+	libhdf5-devel
+	liblz4-devel
+"
 
 inherit cmake
 
@@ -22,6 +26,7 @@ CYGCMAKE_ARGS="
 	-DBUILD_CUDA_LIB:BOOL=OFF
 	-DBUILD_DOC:BOOL=OFF
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 PKG_NAMES="
@@ -34,7 +39,7 @@ flann_CONTENTS="
 	usr/share
 "
 libflann1_9_CONTENTS="
-	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
+	usr/bin/cyg*-1.9.dll
 "
 libflann_devel_CONTENTS="
 	usr/include

@@ -6,27 +6,28 @@ work best for nearest neighbor search and a system for automatically choosing
 the best algorithm and optimum parameters depending on the dataset.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libflann-devel-1.9.2-1bl2
-  libflann1.9-1.9.2-1bl2
-  libgcc1-12.4.0-3
-  libgomp1-12.4.0-3
-  libhdf5_200-1.12.3-1
+  cygwin-3.6.12-1
+  libflann-devel-1.9.2-1bl3
+  libflann1.9-1.9.2-1bl3
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libhdf5_320-2.2.0-1
   liblz4-devel-1.9.4-1
   liblz4_1-1.9.4-1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libhdf5-devel-1.12.3-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  libhdf5-devel-2.2.0-1
   liblz4-devel-1.9.4-1
-  ninja-1.12.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/flann-lib/flann/
@@ -114,7 +115,7 @@ Files included in the binary package:
   /usr/include/flann/util/timer.h
   /usr/lib/cmake/flann/flann-config-version.cmake
   /usr/lib/cmake/flann/flann-config.cmake
-  /usr/lib/cmake/flann/flann-targets-release.cmake
+  /usr/lib/cmake/flann/flann-targets-relwithdebinfo.cmake
   /usr/lib/cmake/flann/flann-targets.cmake
   /usr/lib/libflann.dll.a
   /usr/lib/libflann_cpp.dll.a
@@ -123,6 +124,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.9.2-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.9.2-1bl2 -----
 Fix flann.pc

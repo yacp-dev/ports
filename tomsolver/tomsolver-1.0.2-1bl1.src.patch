@@ -1,5 +1,5 @@
---- origsrc/tomsolver-1.0.1/CMakeLists.txt	2024-12-15 14:49:39.000000000 +0900
-+++ src/tomsolver-1.0.1/CMakeLists.txt	2025-03-11 16:20:38.515910500 +0900
+--- origsrc/tomsolver-1.0.2/CMakeLists.txt	2026-11-01 08:03:15.000000000 +0000
++++ src/tomsolver-1.0.2/CMakeLists.txt	2026-11-19 10:35:15.751131800 +0000
 @@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
  if(MSVC)
  	add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
@@ -60,8 +60,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/tomsolver.pc.in ${CMAKE_BINARY_DIR}/tomsolver.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/tomsolver.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/tomsolver-1.0.1/single/test/CMakeLists.txt	2024-12-15 14:49:39.000000000 +0900
-+++ src/tomsolver-1.0.1/single/test/CMakeLists.txt	2025-03-11 16:12:53.432311300 +0900
+--- origsrc/tomsolver-1.0.2/single/test/CMakeLists.txt	2026-11-01 08:03:15.000000000 +0000
++++ src/tomsolver-1.0.2/single/test/CMakeLists.txt	2026-11-19 10:35:15.753146700 +0000
 @@ -12,7 +12,9 @@ target_include_directories(TomSolverSing
  
  target_link_libraries(TomSolverSingleTest PUBLIC
@@ -74,8 +74,8 @@
 \ No newline at end of file
 +# gtest_discover_tests(TomSolverSingleTest)
 +add_test(NAME TomSolverSingleTest COMMAND TomSolverSingleTest)
---- origsrc/tomsolver-1.0.1/tests/CMakeLists.txt	2024-12-15 14:49:39.000000000 +0900
-+++ src/tomsolver-1.0.1/tests/CMakeLists.txt	2025-03-11 16:12:11.344369500 +0900
+--- origsrc/tomsolver-1.0.2/tests/CMakeLists.txt	2026-11-01 08:03:15.000000000 +0000
++++ src/tomsolver-1.0.2/tests/CMakeLists.txt	2026-11-19 10:35:15.753146700 +0000
 @@ -13,7 +13,9 @@ target_include_directories(tomsolver_tes
  target_link_libraries(tomsolver_tests PUBLIC
      tomsolver
@@ -88,10 +88,10 @@
 \ No newline at end of file
 +# gtest_discover_tests(tomsolver_tests)
 +add_test(NAME tomsolver_tests COMMAND tomsolver_tests)
---- origsrc/tomsolver-1.0.1/tests/functions_test.cpp	2024-12-15 14:49:39.000000000 +0900
-+++ src/tomsolver-1.0.1/tests/functions_test.cpp	2025-03-11 15:55:47.999541400 +0900
-@@ -9,6 +9,8 @@
- 
+--- origsrc/tomsolver-1.0.2/tests/functions_test.cpp	2026-11-01 08:03:15.000000000 +0000
++++ src/tomsolver-1.0.2/tests/functions_test.cpp	2026-11-19 10:35:15.755160000 +0000
+@@ -10,6 +10,8 @@
+ #include <chrono>
  #include <random>
  
 +#include <chrono>
@@ -99,10 +99,10 @@
  #undef max
  #undef min
  
---- origsrc/tomsolver-1.0.1/tests/parse_test.cpp	2024-12-15 14:49:39.000000000 +0900
-+++ src/tomsolver-1.0.1/tests/parse_test.cpp	2025-03-11 15:58:26.001672000 +0900
-@@ -8,6 +8,8 @@
- 
+--- origsrc/tomsolver-1.0.2/tests/parse_test.cpp	2026-11-01 08:03:15.000000000 +0000
++++ src/tomsolver-1.0.2/tests/parse_test.cpp	2026-11-19 10:35:15.755160000 +0000
+@@ -9,6 +9,8 @@
+ #include <chrono>
  #include <random>
  
 +#include <chrono>
@@ -110,10 +110,10 @@
  using namespace tomsolver;
  
  using std::cout;
---- origsrc/tomsolver-1.0.1/tests/random_test.cpp	2024-12-15 14:49:39.000000000 +0900
-+++ src/tomsolver-1.0.1/tests/random_test.cpp	2025-03-11 15:56:36.102458200 +0900
+--- origsrc/tomsolver-1.0.2/tests/random_test.cpp	2026-11-01 08:03:15.000000000 +0000
++++ src/tomsolver-1.0.2/tests/random_test.cpp	2026-11-19 10:35:15.757173700 +0000
 @@ -8,6 +8,8 @@
- 
+ #include <chrono>
  #include <random>
  
 +#include <chrono>
@@ -121,8 +121,8 @@
  using namespace tomsolver;
  
  using std::cout;
---- origsrc/tomsolver-1.0.1/tomsolver.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/tomsolver-1.0.1/tomsolver.pc.in	2025-03-11 16:23:40.622714700 +0900
+--- origsrc/tomsolver-1.0.2/tomsolver.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/tomsolver-1.0.2/tomsolver.pc.in	2026-11-19 10:35:15.757173700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

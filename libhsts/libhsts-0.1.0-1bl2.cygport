@@ -7,6 +7,19 @@ SUMMARY="C library to access the HSTS preload list"
 DESCRIPTION="The HSTS preload list is a list of domains that support HTTPS.
 The list is compiled by Google and is utilised by Chrome, Firefox and others."
 
+LICENSE="MIT AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	autoconf-archive
+	gettext-devel
+"
+
+DOCS="
+	src/LICENSE.chromium
+"
+
 DIFF_EXCLUDES="
 	hsts.json
 "
@@ -21,7 +34,7 @@ libhsts_CONTENTS="
 	usr/share
 "
 libhsts0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyghsts-0.dll
 "
 libhsts_devel_CONTENTS="
 	usr/include
@@ -30,3 +43,14 @@ libhsts_devel_CONTENTS="
 libhsts_SUMMARY="${SUMMARY} (utilities)"
 libhsts0_SUMMARY="${SUMMARY} (runtime)"
 libhsts_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test() {
+	local status=0
+	cd ${B}
+	# tests/Makefile.am writes the dafsa files to the build directory, but
+	# test-hsts reads them from $(srcdir) (an out-of-tree build)
+	verbose cp tests/hsts.dafsa tests/hsts_ascii.dafsa ${S}/tests/
+	cygtest || status=$?
+	verbose rm -f ${S}/tests/hsts.dafsa ${S}/tests/hsts_ascii.dafsa
+	return ${status}
+}

@@ -5,49 +5,51 @@ C++ Driver for MongoDB
 Runtime requirements:
   bash-5.2.21-1
   cygwin-3.6.12-1
-  libbson2_2-2.5.7-1bl2
-  libbsoncxx1-devel-4.6.1-1bl1
-  libbsoncxx1_1-4.6.1-1bl1
+  libbson2-devel-2.5.8-1bl1
+  libbson2_2-2.5.8-1bl1
+  libbsoncxx1-devel-4.6.2-1bl1
+  libbsoncxx1_1-4.6.2-1bl1
   libgcc1-14.4.0-1
-  libmongoc2_2-2.5.7-1bl2
-  libmongocxx1-devel-4.6.1-1bl1
-  libmongocxx1_1-4.6.1-1bl1
+  libmongoc2-devel-2.5.8-1bl1
+  libmongoc2_2-2.5.8-1bl1
+  libmongocxx1-devel-4.6.2-1bl1
+  libmongocxx1_1-4.6.2-1bl1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.9-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.4.4-1
-  cygport-0.37.11-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   gcc-g++-14.4.0-1
-  libCatch2-devel-3.16.1-1bl1
-  libbson2-devel-2.5.7-1bl2
-  libmongoc2-devel-2.5.7-1bl2
+  libCatch2-devel-3.16.1-1bl2
+  libbson2-devel-2.5.8-1bl1
+  libmongoc2-devel-2.5.8-1bl1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/mongodb/mongo-cxx-driver
 
 Canonical download:
-  https://github.com/mongodb/mongo-cxx-driver/archive/refs/tags/r4.6.1.tar.gz
+  https://github.com/mongodb/mongo-cxx-driver/archive/refs/tags/r4.6.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mongo-cxx-driver-4.6.1-X-src.tar.xz
+  1. unpack mongo-cxx-driver-4.6.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mongo-cxx-driver-4.6.1-X.cygport all
+        % cygport ./mongo-cxx-driver-4.6.2-X.cygport all
 
 This will create:
-  /usr/src/mongo-cxx-driver-4.6.1-X-src.tar.xz
-  /usr/src/mongo-cxx-driver-4.6.1-X.tar.xz
-  /usr/src/libmongocxx1_1-4.6.1-X.tar.xz
-  /usr/src/libmongocxx1-devel-4.6.1-X.tar.xz
-  /usr/src/libbsoncxx1_1-4.6.1-X.tar.xz
-  /usr/src/libbsoncxx1-devel-4.6.1-X.tar.xz
+  /usr/src/mongo-cxx-driver-4.6.2-X-src.tar.xz
+  /usr/src/mongo-cxx-driver-4.6.2-X.tar.xz
+  /usr/src/libmongocxx1_1-4.6.2-X.tar.xz
+  /usr/src/libmongocxx1-devel-4.6.2-X.tar.xz
+  /usr/src/libbsoncxx1_1-4.6.2-X.tar.xz
+  /usr/src/libbsoncxx1-devel-4.6.2-X.tar.xz
 
 -------------------------------------------
 
@@ -443,10 +445,10 @@ Files included in the binary package:
   /usr/include/mongocxx/v_noabi/mongocxx/write_concern.hpp
   /usr/include/mongocxx/v_noabi/mongocxx/write_type-fwd.hpp
   /usr/include/mongocxx/v_noabi/mongocxx/write_type.hpp
-  /usr/lib/cmake/mongocxx-4.6.1/mongocxxConfig.cmake
-  /usr/lib/cmake/mongocxx-4.6.1/mongocxxConfigVersion.cmake
-  /usr/lib/cmake/mongocxx-4.6.1/mongocxx_targets-relwithdebinfo.cmake
-  /usr/lib/cmake/mongocxx-4.6.1/mongocxx_targets.cmake
+  /usr/lib/cmake/mongocxx-4.6.2/mongocxxConfig.cmake
+  /usr/lib/cmake/mongocxx-4.6.2/mongocxxConfigVersion.cmake
+  /usr/lib/cmake/mongocxx-4.6.2/mongocxx_targets-relwithdebinfo.cmake
+  /usr/lib/cmake/mongocxx-4.6.2/mongocxx_targets.cmake
   /usr/lib/libmongocxx1.dll.a
   /usr/lib/pkgconfig/libmongocxx1.pc
 
@@ -592,16 +594,19 @@ Files included in the binary package:
   /usr/include/bsoncxx/v_noabi/bsoncxx/vector/iterators.hpp
   /usr/include/bsoncxx/v_noabi/bsoncxx/view_or_value-fwd.hpp
   /usr/include/bsoncxx/v_noabi/bsoncxx/view_or_value.hpp
-  /usr/lib/cmake/bsoncxx-4.6.1/bsoncxxConfig.cmake
-  /usr/lib/cmake/bsoncxx-4.6.1/bsoncxxConfigVersion.cmake
-  /usr/lib/cmake/bsoncxx-4.6.1/bsoncxx_targets-relwithdebinfo.cmake
-  /usr/lib/cmake/bsoncxx-4.6.1/bsoncxx_targets.cmake
+  /usr/lib/cmake/bsoncxx-4.6.2/bsoncxxConfig.cmake
+  /usr/lib/cmake/bsoncxx-4.6.2/bsoncxxConfigVersion.cmake
+  /usr/lib/cmake/bsoncxx-4.6.2/bsoncxx_targets-relwithdebinfo.cmake
+  /usr/lib/cmake/bsoncxx-4.6.2/bsoncxx_targets.cmake
   /usr/lib/libbsoncxx1.dll.a
   /usr/lib/pkgconfig/libbsoncxx1.pc
 
 ------------------
 
 Port Notes:
+
+----- version 4.6.2-1bl1 -----
+Version bump.
 
 ----- version 4.6.1-1bl1 -----
 Version bump.

@@ -24,6 +24,10 @@ CYGCMAKE_ARGS="
 	-DENABLE_TESTS:BOOL=ON
 "
 
+# the test suite takes about 17 minutes on the runner (the spec tests
+# wait for a MongoDB server that isn't there)
+YACP_CHECK_TIMEOUT_MINUTES=25
+
 src_test()
 {
 	cd ${B}

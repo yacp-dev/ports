@@ -1,0 +1,101 @@
+--- origsrc/ferite-1.1.17/LICENSE.ferite-xml	1970-01-01 00:00:00.000000000 +0000
++++ src/ferite-1.1.17/LICENSE.ferite-xml	2026-11-19 13:26:09.127096800 +0000
+@@ -0,0 +1,24 @@
++The following license applies to the XML module (modules/xml/sax_handlers.c,
++tree_handlers.c, tree_handlers.h, xpath_handlers.h) of ferite:
++
++Copyright (C) 2000-2003 Chris Ross and various contributors
++Copyright (C) 1999-2000 Chris Ross
++Copyright (C) 2004 Christian M. Stamgren
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to
++deal in the Software without restriction, including without limitation the
++rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
++sell copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in
++all copies of the Software, its documentation and marketing & publicity
++materials, and acknowledgment shall be given in the documentation, materials
++and software packages that this Software was used.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
++THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
++IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+--- origsrc/ferite-1.1.17/include/ferite/ferror.h	2009-07-15 17:21:33.000000000 +0000
++++ src/ferite-1.1.17/include/ferite/ferror.h	2026-11-19 13:26:09.125075200 +0000
+@@ -43,6 +43,7 @@ FERITE_API void ferite_raise_script_erro
+ FERITE_API void ferite_vwarning(FeriteScript *script, char *errormsg, va_list *ap );
+ FERITE_API FeriteVariable *ferite_generate_backtrace( FeriteScript *script, int skip_first );
+ FERITE_API void ferite_error( FeriteScript *script, int err, char *errormsg, ... );
++FERITE_API void ferite_verror( FeriteScript *script, int err, char *errormsg, va_list *ap );
+ FERITE_API void ferite_vwarning(FeriteScript *script, char *errormsg, va_list *ap );
+ FERITE_API void ferite_warning( FeriteScript *script, char *errormsg, ... );
+ FERITE_API void ferite_set_error( FeriteScript *script, int num, char *fmt, ... );
+--- origsrc/ferite-1.1.17/libs/aphex/include/aphex.h	2009-07-15 17:21:33.000000000 +0000
++++ src/ferite-1.1.17/libs/aphex/include/aphex.h	2026-11-19 13:26:09.125075200 +0000
+@@ -138,6 +138,7 @@ APHEX_API void *aphex_malloc( size_t siz
+ APHEX_API void *aphex_realloc( void *old, size_t new );
+ APHEX_API void *aphex_calloc( size_t size, size_t block );
+ APHEX_API void  aphex_free( void * ptr );
++APHEX_API char *aphex_strdup( char *original );
+ 
+ /* Disk Stuff */
+ 
+--- origsrc/ferite-1.1.17/modules/regexp/regexp.fec	2009-07-15 17:21:34.000000000 +0000
++++ src/ferite-1.1.17/modules/regexp/regexp.fec	2026-11-19 13:26:09.129118200 +0000
+@@ -427,7 +427,11 @@ class Regexp {
+ 		}
+ 		
+ 		/* get the number of subparts */
+-		captured_str_cnt = pcre_info( rgx->compiled_re, NULL, NULL ) + 1;
++		{
++			int capture_count = 0;
++			pcre_fullinfo( rgx->compiled_re, NULL, PCRE_INFO_CAPTURECOUNT, &capture_count );
++			captured_str_cnt = capture_count + 1;
++		}
+ 		/* create an offset array */
+ 		size_offsets = (int)(captured_str_cnt * 3);
+ 		offsets = (int *)fmalloc(size_offsets * sizeof(int));
+--- origsrc/ferite-1.1.17/modules/regexp/regexp_Regexp.c	2009-07-17 06:59:19.000000000 +0000
++++ src/ferite-1.1.17/modules/regexp/regexp_Regexp.c	2026-11-19 13:26:09.127096800 +0000
+@@ -88,7 +88,11 @@ FE_NATIVE_FUNCTION( ferite_regexp_Regexp
+ 		}
+ 		
+ 		/* get the number of subparts */
+-		captured_str_cnt = pcre_info( rgx->compiled_re, NULL, NULL ) + 1;
++		{
++			int capture_count = 0;
++			pcre_fullinfo( rgx->compiled_re, NULL, PCRE_INFO_CAPTURECOUNT, &capture_count );
++			captured_str_cnt = capture_count + 1;
++		}
+ 		/* create an offset array */
+ 		size_offsets = (int)(captured_str_cnt * 3);
+ 		offsets = (int *)fmalloc(size_offsets * sizeof(int));
+--- origsrc/ferite-1.1.17/modules/stream/Makefile.am	2009-07-15 17:21:34.000000000 +0000
++++ src/ferite-1.1.17/modules/stream/Makefile.am	2026-11-19 13:26:09.129118200 +0000
+@@ -35,8 +35,8 @@ pkgdir           = @FE_NATIVE_LIBRARY_PA
+ pkg_LTLIBRARIES  = stream.la
+ 
+ stream_la_SOURCES    = stream_core.c stream_misc.c stream_Stream.c stream_Stream_Stream.c stream_Stream_StdioStream.c stream_Stream_StringStream.c stream_Stream_PointerObject.c stream_header.h  util_stream.c util_stream.h 
+-stream_la_LDFLAGS    = -no-undefined -module -avoid-version  -L. -lferitestream
+-stream_la_LIBADD     =
++stream_la_LDFLAGS    = -no-undefined -module -avoid-version
++stream_la_LIBADD     = libferitestream.la
+ 
+ stream_core.c: @MODULE_SRC_PREFIX@/stream/stream.fec
+ 	@BUILDER@ -m stream @MODULE_SRC_PREFIX@/stream/stream.fec
+--- origsrc/ferite-1.1.17/modules/xml/sax_handlers.c	2009-07-15 17:21:35.000000000 +0000
++++ src/ferite-1.1.17/modules/xml/sax_handlers.c	2026-11-19 13:26:09.129118200 +0000
+@@ -260,7 +260,7 @@ void sax_fatalError (void *ctxt, const c
+     va_list ap;
+ 
+     va_start( ap, msg );
+-    ferite_verror( sr->script, (char *)msg, &ap );
++    ferite_verror( sr->script, 0, (char *)msg, &ap );
+     va_end( ap );
+ }
+ 

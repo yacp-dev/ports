@@ -7,7 +7,25 @@ DESCRIPTION="ferite is a modern, lighweight, portable, threadsafe scripting engi
 language that is very easy to pick up and leverage for any task. It's been 
 designed for rapid deployment in other programs as well as stand alone use."
 
-BUILD_REQUIRES="libgc-devel libpcre-devel libxml2-devel"
+LICENSE="BSD-3-Clause AND LicenseRef-ferite-xml"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND LicenseRef-ferite-xml"
+LICENSE_URI="LICENSE"
+
+DOCS="
+	LICENSE.ferite-xml
+"
+
+BUILD_REQUIRES="
+	libgc-devel
+	libpcre-devel
+	libxml2-devel
+"
+
+# ferite uses K&R-style empty prototypes (feplex() etc.), which C23 reads as
+# (void); build as C17. GCC 14+ also makes incompatible-pointer-types an
+# error, and ferite passes a typed finalizer to GC_register_finalizer_no_order().
+# date.fec calls strptime(), which is only declared with _GNU_SOURCE here.
+CFLAGS+=" -std=gnu17 -Wno-error=incompatible-pointer-types -D_GNU_SOURCE"
 
 src_test()
 {
@@ -30,7 +48,7 @@ ferite_CONTENTS="
 	usr/share/man/man1/${PN}*
 "
 libferite1_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-1.dll
 "
 libferite_devel_CONTENTS="
 	usr/bin/${PN}-config

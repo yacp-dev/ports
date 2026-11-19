@@ -1,5 +1,5 @@
---- origsrc/terminal-pong-1.0.0/src/ncurses.cpp	2020-06-04 03:40:27.000000000 +0900
-+++ src/terminal-pong-1.0.0/src/ncurses.cpp	2025-05-14 19:50:06.092867800 +0900
+--- origsrc/terminal-pong-1.0.0/src/ncurses.cpp	2020-06-03 18:40:27.000000000 +0000
++++ src/terminal-pong-1.0.0/src/ncurses.cpp	2026-11-19 13:41:47.069977600 +0000
 @@ -34,12 +34,12 @@ void ncurses::erase() { ::erase(); }
  void ncurses::drawBox(ncurses::window_t *win) { box(win, 0, 0); };
  

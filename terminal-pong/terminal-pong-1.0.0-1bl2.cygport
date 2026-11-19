@@ -5,13 +5,20 @@ CATEGORY="Games"
 SUMMARY="Classic ping-pong game written in c++17 and played in terminal"
 DESCRIPTION="${SUMMARY}"
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
-# LICENSE_URI=""
+LICENSE="LicenseRef-terminal-pong"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-terminal-pong"
 
-BUIILD_REQUIRES="libncurses-devel"
+BUILD_REQUIRES="
+	libncurses-devel
+"
 
 inherit cmake
+
+src_test()
+{
+	cd ${B}
+	verbose ./pong.exe --version
+}
 
 src_install()
 {

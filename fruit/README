@@ -9,21 +9,21 @@ possible to create an injector, that provides an instance of the interfaces
 exposed by the component.
 
 Runtime requirements:
-  cygwin-3.4.6-1
-  libfruit-devel-3.7.1-1bl1
-  libfruit3-3.7.1-1bl1
-  libgcc1-11.3.0-1
-  libstdc++6-11.3.0-1
-  pkg-config-1.9.5-1
+  cygwin-3.6.12-1
+  libfruit-devel-3.7.1-1bl2
+  libfruit3-3.7.1-1bl2
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.40-1
-  cmake-3.25.3-1
-  cygport-0.36.4-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libboost-devel-1.66.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/google/fruit
@@ -157,6 +157,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.7.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.7.1-1bl1 -----
 Version bump.

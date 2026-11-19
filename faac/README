@@ -3,39 +3,39 @@ faac
 FAAC is an MPEG-4 and MPEG-2 AAC encoder.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libfaac-devel-1.50-1bl1
-  libfaac0-1.50-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libfaac-devel-2.2-1bl1
+  libfaac2-2.2-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  meson-1.7.2-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/knik0/faac
 
 Canonical download:
-  https://github.com/knik0/faac/archive/refs/tags/faac-1.50.tar.gz
+  https://github.com/knik0/faac/archive/refs/tags/faac-2.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack faac-1.50-X-src.tar.xz
+  1. unpack faac-2.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./faac-1.50-X.cygport all
+        % cygport ./faac-2.2-X.cygport all
 
 This will create:
-  /usr/src/faac-1.50-X-src.tar.xz
-  /usr/src/faac-1.50-X.tar.xz
-  /usr/src/libfaac0-1.50-X.tar.xz
-  /usr/src/libfaac-devel-1.50-X.tar.xz
+  /usr/src/faac-2.2-X-src.tar.xz
+  /usr/src/faac-2.2-X.tar.xz
+  /usr/src/libfaac2-2.2-X.tar.xz
+  /usr/src/libfaac-devel-2.2-X.tar.xz
 
 -------------------------------------------
 
@@ -48,22 +48,24 @@ Files included in the binary package:
   /usr/share/doc/faac/COPYING
   /usr/share/doc/faac/ChangeLog
   /usr/share/doc/faac/NEWS
-  /usr/share/doc/faac/README
+  /usr/share/doc/faac/README.md
   /usr/share/doc/faac/TODO
   /usr/share/man/man1/faac.1.gz
 
-(libfaac0)
-  /usr/bin/cygfaac-0.dll
+(libfaac2)
+  /usr/bin/cygfaac-2.dll
 
 (libfaac-devel)
   /usr/include/faac.h
-  /usr/include/faaccfg.h
   /usr/lib/libfaac.dll.a
   /usr/lib/pkgconfig/faac.pc
 
 ------------------
 
 Port Notes:
+
+----- version 2.2-1bl1 -----
+Version bump.
 
 ----- version 1.50-1bl1 -----
 Version bump.

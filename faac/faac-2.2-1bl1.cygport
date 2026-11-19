@@ -6,8 +6,8 @@ CATEGORY="Audio"
 SUMMARY="MPEG-4 and MPEG-2 AAC encoder"
 DESCRIPTION="FAAC is an MPEG-4 and MPEG-2 AAC encoder."
 
-LICENSE="LGPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 inherit meson
@@ -19,25 +19,25 @@ CYGMESON_ARGS="
 src_test()
 {
 	cd ${S}/_build.${CHOST}/libfaac
-	verbose ../frontend/${PN}.exe -h
+	verbose ../frontend/${PN}.exe --license
 }
 
 PKG_NAMES="
 	${PN}
-	lib${PN}0
+	lib${PN}2
 	lib${PN}-devel
 "
 faac_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libfaac0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libfaac2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libfaac_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 faac_SUMMARY="${SUMMARY} (utilities)"
-libfaac0_SUMMARY="${SUMMARY} (runtime)"
+libfaac2_SUMMARY="${SUMMARY} (runtime)"
 libfaac_devel_SUMMARY="${SUMMARY} (development)"

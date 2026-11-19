@@ -1,0 +1,11 @@
+--- origsrc/falco-2.0.3/src/contaminant_set.cpp	2026-09-27 19:45:07.000000000 +0000
++++ src/falco-2.0.3/src/contaminant_set.cpp	2026-11-19 12:48:29.601102100 +0000
+@@ -223,7 +223,7 @@ load_contaminants(const std::string &fil
+ contaminant_set::get_name(const std::int64_t contam_idx)
+   -> const std::string & {
+   using std::string_literals::operator""s;
+-  static constexpr auto no_hit_label = "No Hit"s;
++  static const auto no_hit_label = "No Hit"s;
+   const auto &contaminants = instance().contaminants;
+   if (contam_idx < 0 || contam_idx >= std::ssize(contaminants))
+     return no_hit_label;

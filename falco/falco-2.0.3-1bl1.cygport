@@ -1,0 +1,33 @@
+HOMEPAGE="https://github.com/smithlabcode/${PN}"
+SRC_URI="https://github.com/smithlabcode/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Science"
+SUMMARY="C++ implementation of FastQC for quality control of sequencing data"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="MIT AND GPL-3.0-only AND BSD-3-Clause AND BSL-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND GPL-3.0-only AND BSD-3-Clause AND BSL-1.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libdeflate-devel
+	libhts-devel
+	samtools
+	zlib-devel
+"
+
+# CMAKE_CXX_EXTENSIONS is off (-std=c++23), which hides fileno() and friends
+export CXXFLAGS="${CXXFLAGS} -D_GNU_SOURCE"
+
+inherit cmake
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	# the bundled libraries' license texts are all named LICENSE
+	cd ${S}
+	newdoc src/CLI11/LICENSE LICENSE.CLI11
+	newdoc src/boost/LICENSE LICENSE.boost
+}

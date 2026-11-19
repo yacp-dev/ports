@@ -1,0 +1,15 @@
+Befriend the ElementWrapper in the anonymous namespace, not a new
+pbc::ElementWrapper template, so that its constructor can read
+Pairing::pairing_ (GCC rejects it as private otherwise).
+
+--- a/include/pbcxx.h
++++ b/include/pbcxx.h
+@@ -382,7 +382,7 @@
+  */
+ class Pairing {
+   template <__element_initializer_t init, class Derived>
+-  friend class ElementWrapper;
++  friend class ::pbc::ElementWrapper;
+ 
+  private:
+   // Just like elements, this needs to be mutable as PBC doesn't use const.

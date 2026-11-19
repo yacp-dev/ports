@@ -1,5 +1,8 @@
 HOMEPAGE="https://crypto.stanford.edu/${PN}/"
 SRC_URI="https://crypto.stanford.edu/${PN}/files/${P}.tar.gz"
+PATCH_URI="
+	pbc-friend-anon-ns.patch
+"
 
 CATEGORY="Security"
 SUMMARY="Pairing-Based Cryptography Library"
@@ -10,7 +13,13 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libgmp-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	bison
+	flex
+	libgtest-devel
+	libgmp-devel
+"
 
 DIFF_EXCLUDES="
 	*.c
@@ -35,3 +44,11 @@ libpbc_devel_CONTENTS="
 pbc_SUMMARY="${SUMMARY} (licensing & readmes)"
 libpbc1_SUMMARY="${SUMMARY} (runtime)"
 libpbc_devel_SUMMARY="${SUMMARY} (development)"
+
+# pbcxx.h includes <pbc/pbc.h>, which only exists once installed; the tests
+# look it up relative to the build directory.
+src_test() {
+	cd ${B}
+	verbose cp ${S}/include/*.h ${B}/pbc/
+	cygtest
+}

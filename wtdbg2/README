@@ -8,19 +8,20 @@ speed tens of times faster than CANU and FALCON while producing contigs of
 comparable base accuracy.
 
 Runtime requirements:
-  bash-4.4.12-3
-  cygwin-3.1.7-1
-  libgcc1-10.2.0-1
-  perl-5.30.3-1
-  perl_base-5.30.3-1
-  zlib0-1.2.11-1
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  perl-5.44.0-1
+  perl_base-5.44.0-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.34+1git.de9c1b7cfe-1
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  make-4.3-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  make-4.4.1-2
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/ruanjue/wtdbg2
@@ -84,6 +85,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.5-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

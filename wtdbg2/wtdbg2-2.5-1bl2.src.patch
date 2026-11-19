@@ -1,0 +1,11 @@
+--- origsrc/wtdbg2-2.5/Makefile	2026-11-19 21:43:29.373122800 +0000
++++ src/wtdbg2-2.5/Makefile	2026-11-19 21:43:29.731929600 +0000
+@@ -14,6 +14,8 @@ else
+ CFLAGS+=-g3 -W -Wall -Wno-unused-but-set-variable -O4 -DVERSION="$(VERSION)" -DRELEASE="$(RELEASE)" -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -mpopcnt -msse4.2
+ endif
+ 
++CFLAGS+=-D__HEADER_NO_EXECINFO
++
+ GLIBS=-lm -lrt -lpthread -lz $(LDFLAGS)
+ GENERIC_SRC=mem_share.h chararray.h sort.h list.h pgzf.h sort.h list.h dna.h thread.h filereader.h filewriter.h bitvec.h bit2vec.h bitsvec.h hashset.h
+ 

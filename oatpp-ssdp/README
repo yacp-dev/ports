@@ -3,21 +3,20 @@ oatpp-ssdp
 Oat++ extension module to work with SSDP protocol
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libgcc1-12.4.0-3
-  liboatpp-ssdp1-1.3.0-1bl1
-  liboatpp1-1.3.0-1bl2
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  liboatpp-ssdp1-1.3.0-1bl2
+  liboatpp1-1.3.1-1bl2
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  liboatpp-devel-1.3.0-1bl2
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  liboatpp-devel-1.3.1-1bl2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/oatpp/oatpp-ssdp
@@ -60,13 +59,16 @@ Files included in the binary package:
   /usr/include/oatpp-ssdp/oatpp-ssdp/UdpStream.hpp
   /usr/lib/cmake/oatpp-ssdp/oatpp-ssdpConfig.cmake
   /usr/lib/cmake/oatpp-ssdp/oatpp-ssdpConfigVersion.cmake
-  /usr/lib/cmake/oatpp-ssdp/oatpp-ssdpTargets-release.cmake
+  /usr/lib/cmake/oatpp-ssdp/oatpp-ssdpTargets-relwithdebinfo.cmake
   /usr/lib/cmake/oatpp-ssdp/oatpp-ssdpTargets.cmake
   /usr/lib/liboatpp-ssdp.dll.a
 
 ------------------
 
 Port Notes:
+
+----- version 1.3.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.3.0-1bl1 -----
 Version bump.

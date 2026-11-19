@@ -1,5 +1,5 @@
---- origsrc/flann-1.9.2/cmake/flann.pc.in	2021-04-12 16:15:28.000000000 +0900
-+++ src/flann-1.9.2/cmake/flann.pc.in	2024-10-18 15:10:55.237878400 +0900
+--- origsrc/flann-1.9.2/cmake/flann.pc.in	2021-04-12 07:15:28.000000000 +0000
++++ src/flann-1.9.2/cmake/flann.pc.in	2026-11-19 04:37:26.353257300 +0000
 @@ -8,6 +8,6 @@ Name: @PROJECT_NAME@
  Description: @PKG_DESC@
  Version: @FLANN_VERSION@
@@ -8,8 +8,8 @@
 +Libs: -L${libdir} -l@LZ4_LIBRARIES@ -lflann -lflann_cpp
  Cflags: -I${includedir}
  
---- origsrc/flann-1.9.2/src/cpp/CMakeLists.txt	2021-04-12 16:15:28.000000000 +0900
-+++ src/flann-1.9.2/src/cpp/CMakeLists.txt	2024-10-18 14:20:45.308117900 +0900
+--- origsrc/flann-1.9.2/src/cpp/CMakeLists.txt	2021-04-12 07:15:28.000000000 +0000
++++ src/flann-1.9.2/src/cpp/CMakeLists.txt	2026-11-19 04:37:26.353257300 +0000
 @@ -8,13 +8,6 @@ file(GLOB_RECURSE C_SOURCES flann.cpp)
  file(GLOB_RECURSE CPP_SOURCES flann_cpp.cpp)
  file(GLOB_RECURSE CU_SOURCES *.cu)

@@ -1,0 +1,107 @@
+--- origsrc/tlog-15/Makefile.am	2026-11-09 16:05:31.000000000 +0000
++++ src/tlog-15/Makefile.am	2026-11-19 10:33:39.210653500 +0000
+@@ -28,3 +28,6 @@ dist_noinst_DATA = tlog.spec
+ clean-local:
+ 	find '$(top_builddir)' -name '*.gcno' -delete -or -name '*.gcda' -delete
+ 	-rm -rf clang_output_*
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/tlog-15/configure.ac	2026-11-09 16:05:31.000000000 +0000
++++ src/tlog-15/configure.ac	2026-11-19 10:33:39.208644500 +0000
+@@ -107,7 +107,7 @@ LIBCURL_CHECK_CONFIG([yes], [7.15.4], ,
+                      AC_MSG_ERROR([libcurl not found]))
+ 
+ # Output
+-AC_CONFIG_FILES([Makefile
++AC_CONFIG_FILES([tlog.pc Makefile
+                  m4/Makefile
+                  m4/tlog/Makefile
+                  include/Makefile
+--- origsrc/tlog-15/include/tlog/misc.h	2026-11-09 16:05:31.000000000 +0000
++++ src/tlog-15/include/tlog/misc.h	2026-11-19 10:33:39.208644500 +0000
+@@ -34,6 +34,11 @@
+ #include <tlog/errs.h>
+ #include <tlog/grc.h>
+ 
++#if defined(__CYGWIN__)
++#define setresgid(rgid, egid, sgid) (-1)
++#define setresuid(ruid, euid, suid) (-1)
++#endif
++
+ /** Tlog version and license information */
+ extern const char *tlog_version;
+ 
+--- origsrc/tlog-15/include/tlog/pkt.h	2026-11-09 16:05:31.000000000 +0000
++++ src/tlog-15/include/tlog/pkt.h	2026-11-19 10:33:39.208644500 +0000
+@@ -33,6 +33,7 @@
+ #include <stdbool.h>
+ #include <stdint.h>
+ #include <stdlib.h>
++#include <sys/time.h>
+ 
+ /** Packet type */
+ enum tlog_pkt_type {
+--- origsrc/tlog-15/include/tlog/timestr.h	2026-11-09 16:05:31.000000000 +0000
++++ src/tlog-15/include/tlog/timestr.h	2026-11-19 10:33:39.208644500 +0000
+@@ -30,6 +30,7 @@
+ 
+ #include <stdlib.h>
+ #include <stdbool.h>
++#include <sys/time.h>
+ 
+ /** The timestamp string parser state */
+ struct tlog_timestr_parser {
+--- origsrc/tlog-15/lib/tlog/Makefile.am	2026-11-09 16:05:31.000000000 +0000
++++ src/tlog-15/lib/tlog/Makefile.am	2026-11-19 10:33:39.210653500 +0000
+@@ -159,3 +159,5 @@ libtlog_la_LIBADD = \
+     -lutil \
+     -lrt \
+     -lm
++
++libtlog_la_LDFLAGS = -no-undefined
+--- origsrc/tlog-15/lib/tlog/grc.c	2026-11-09 16:05:31.000000000 +0000
++++ src/tlog-15/lib/tlog/grc.c	2026-11-19 10:33:39.210653500 +0000
+@@ -81,8 +81,14 @@ tlog_grc_range_gai_strerror(int rc)
+ const struct tlog_grc_range tlog_grc_range_gai = {
+     .min        = 10000,
+     .max        = 19999,
++#ifdef __CYGWIN__
++    /* EAI_* codes are positive on Cygwin */
++    .add        = 10000,
++    .mul        = 1,
++#else
+     .add        = -10000,
+     .mul        = -1,
++#endif
+     .strerror   = tlog_grc_range_gai_strerror
+ };
+ 
+--- origsrc/tlog-15/src/tltest/tltest-grc.c	2026-11-09 16:05:31.000000000 +0000
++++ src/tlog-15/src/tltest/tltest-grc.c	2026-11-19 10:33:39.212660000 +0000
+@@ -50,7 +50,11 @@ main(void)
+ 
+ #define native_from(x)  (x)
+ #define errno_from(x)   (-(x) - 10000)
++#ifdef __CYGWIN__
++#define gai_from(x)     ((x) + 10000)
++#else
+ #define gai_from(x)    (-(x) + 10000)
++#endif
+ #define json_from(x)    ((x) + 20000)
+ #define curl_from(x)    ((x) + 30000)
+ 
+--- origsrc/tlog-15/tlog.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/tlog-15/tlog.pc.in	2026-11-19 10:33:39.212660000 +0000
+@@ -0,0 +1,11 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: tlog
++Description: Terminal I/O logger
++Version: @VERSION@
++Libs: -L${libdir} -ltlog
++Cflags: -I${includedir}
++Requires.private: json-c libcurl

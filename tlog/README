@@ -5,48 +5,47 @@ centralized user session recording. At the moment it is not ready for
 production and is to be considered development preview quality.
 
 Runtime requirements:
-  cygwin-3.5.0-1
-  libcurl-devel-8.6.0-1
-  libcurl4-8.6.0-1
-  libjson-c-devel-0.17-1
-  libjson-c5-0.17-1
-  libtlog-devel-14-1bl1
-  libtlog0-14-1bl1
-  pkg-config-2.1.1-1
+  cygwin-3.6.12-1
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libjson-c-devel-0.19-1
+  libjson-c5-0.19-1
+  libtlog-devel-15-1bl1
+  libtlog0-15-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2023.02.20-1
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.8-1
-  gcc-core-11.4.0-1
-  libcurl-devel-8.6.0-1
-  libjson-c-devel-0.17-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcurl-devel-8.23.0-1
+  libjson-c-devel-0.19-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/Scribery/tlog
 
 Canonical download:
-  https://github.com/Scribery/tlog/archive/refs/tags/v14.tar.gz
+  https://github.com/Scribery/tlog/archive/refs/tags/v15.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack tlog-14-X-src.tar.xz
+  1. unpack tlog-15-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./tlog-14-X.cygport all
+        % cygport ./tlog-15-X.cygport all
 
 This will create:
-  /usr/src/tlog-14-X-src.tar.xz
-  /usr/src/tlog-14-X.tar.xz
-  /usr/src/libtlog0-14-X.tar.xz
-  /usr/src/libtlog-devel-14-X.tar.xz
+  /usr/src/tlog-15-X-src.tar.xz
+  /usr/src/tlog-15-X.tar.xz
+  /usr/src/libtlog0-15-X.tar.xz
+  /usr/src/libtlog-devel-15-X.tar.xz
 
 -------------------------------------------
 
@@ -143,6 +142,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 15-1bl1 -----
+Version bump.
 
 ----- version 14-1bl1 -----
 Version bump.

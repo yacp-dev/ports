@@ -11,7 +11,10 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libcurl-devel libjson-c-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+	libjson-c-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -DO_ASYNC=0"
 

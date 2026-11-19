@@ -1,5 +1,9 @@
 HOMEPAGE="https://github.com/ruanjue/${PN}"
 SRC_URI="https://github.com/ruanjue/${PN}/archive/v${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/w/wtdbg2/2.5-11/debian/patches/hardening.patch
+	https://sources.debian.org/data/main/w/wtdbg2/2.5-11/debian/patches/gcc-15.patch
+"
 
 CATEGORY="Science"
 SUMMARY="Fuzzy Bruijn graph (FBG) approach to long noisy reads assembly"
@@ -10,11 +14,25 @@ Wtdbg2 is able to assemble the human and even the 32Gb Axolotl genome at a
 speed tens of times faster than CANU and FALCON while producing contigs of
 comparable base accuracy."
 
+LICENSE="GPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MIT"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	zlib-devel
+"
+
 src_compile()
 {
 	cd ${B}
 	lndirs
 	cygmake
+}
+
+src_test()
+{
+	cd ${B}
+	verbose ./wtdbg2.exe --version
 }
 
 src_install()

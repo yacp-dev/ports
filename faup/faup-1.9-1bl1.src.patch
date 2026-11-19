@@ -1,0 +1,51 @@
+--- origsrc/faup-1.9/CMakeLists.txt	2026-11-16 09:13:16.000000000 +0000
++++ src/faup-1.9/CMakeLists.txt	2026-11-19 12:50:53.354652700 +0000
+@@ -203,3 +203,10 @@ add_subdirectory(doc)
+ add_subdirectory(src)
+ 
+ include(CMakePackage.txt)
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/faup.pc.in ${CMAKE_BINARY_DIR}/faup.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/faup.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/faup-1.9/faup.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/faup-1.9/faup.pc.in	2026-11-19 12:50:53.355478500 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: faup
++Description: Fast URL decoder library
++Version: @FAUP_VERSION@
++Libs: -L${libdir} -lfaupl
++Cflags: -I${includedir}
+--- origsrc/faup-1.9/src/lib/CMakeLists.txt	2026-11-16 09:13:16.000000000 +0000
++++ src/faup-1.9/src/lib/CMakeLists.txt	2026-11-19 12:50:53.356465300 +0000
+@@ -107,9 +107,8 @@ add_library(faupl SHARED ${FAUP_LIB_SRC_
+ set_target_properties(faupl PROPERTIES SOVERSION 1)
+ target_link_libraries(faupl ${FAUP_LINK_LIBRARIES})
+ 
+-# On Windows the DLL is a RUNTIME artifact: keep it next to the Unix libraries (lib/)
+ install(TARGETS faupl
+-	RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Libraries
++	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT Libraries
+ 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Libraries
+ 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Libraries)
+ install(FILES ${FAUP_LIB_HDR_FILES} DESTINATION include/faup COMPONENT Headers)
+--- origsrc/faup-1.9/src/tools/shell.c	2026-11-16 09:13:16.000000000 +0000
++++ src/faup-1.9/src/tools/shell.c	2026-11-19 12:50:53.356465300 +0000
+@@ -6,7 +6,9 @@
+ #include <time.h>
+ 
+ #include <sys/errno.h>
++#if !defined(__CYGWIN__)
+ #include <sys/syscall.h>
++#endif
+ 
+ #include <faup/datadir.h>
+ #include <faup/modules.h>

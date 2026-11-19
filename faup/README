@@ -3,43 +3,41 @@ faup
 Fast URL decoder library
 
 Runtime requirements:
-  cygwin-3.6.2-1
-  libfaupl-devel-1.5-1bl1
-  libfaupl1-1.5-1bl1
+  cygwin-3.6.12-1
+  libfaupl-devel-1.9-1bl1
+  libfaupl1-1.9-1bl1
   liblua5.3-5.3.6-4
-  pkg-config-2.4.3-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   liblua-devel-5.3.6-4
-  lua-5.3.6-4
-  ninja-1.12.1-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/stricaud/faup
 
 Canonical download:
-  https://github.com/stricaud/faup/archive/refs/tags/v1.5.tar.gz
+  https://github.com/stricaud/faup/archive/refs/tags/v1.9.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack faup-1.5-X-src.tar.xz
+  1. unpack faup-1.9-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./faup-1.5-X.cygport all
+        % cygport ./faup-1.9-X.cygport all
 
 This will create:
-  /usr/src/faup-1.5-X-src.tar.xz
-  /usr/src/faup-1.5-X.tar.xz
-  /usr/src/libfaupl1-1.5-X.tar.xz
-  /usr/src/libfaupl-devel-1.5-X.tar.xz
+  /usr/src/faup-1.9-X-src.tar.xz
+  /usr/src/faup-1.9-X.tar.xz
+  /usr/src/libfaupl1-1.9-X.tar.xz
+  /usr/src/libfaupl-devel-1.9-X.tar.xz
 
 -------------------------------------------
 
@@ -52,6 +50,7 @@ Files included in the binary package:
   /usr/share/doc/faup/README.md
   /usr/share/faup/README.txt
   /usr/share/faup/modules_available/emulation_ie.lua
+  /usr/share/faup/modules_available/ipv4toint.lua
   /usr/share/faup/modules_available/printcsv.lua
   /usr/share/faup/modules_available/redis-url-threatintel.lua
   /usr/share/faup/modules_available/uppercase.lua
@@ -74,7 +73,6 @@ Files included in the binary package:
   /usr/include/faup/modules.h
   /usr/include/faup/options.h
   /usr/include/faup/output.h
-  /usr/include/faup/parson.h
   /usr/include/faup/portable.h
   /usr/include/faup/return-codes.h
   /usr/include/faup/scheme-codes.h
@@ -92,6 +90,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.9-1bl1 -----
+Version bump.
 
 ----- version 1.5-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

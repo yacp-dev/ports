@@ -4,20 +4,22 @@ The HSTS preload list is a list of domains that support HTTPS. The list is
 compiled by Google and is utilised by Chrome, Firefox and others.
 
 Runtime requirements:
-  cygwin-3.3.4-2
-  libhsts-devel-0.1.0-1bl1
-  libhsts0-0.1.0-1bl1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libhsts-devel-0.1.0-1bl2
+  libhsts0-0.1.0-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.37-2
-  cygport-0.34.1-1
-  gcc-core-11.2.0-1
-  libtool-2.4.6-8
-  make-4.3-1
+  autoconf-20260320-3
+  autoconf-archive-2026.11.11-1
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://gitlab.com/rockdaboot/libhsts
@@ -49,6 +51,7 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/libhsts.README
   /usr/share/doc/libhsts/AUTHORS
   /usr/share/doc/libhsts/LICENSE
+  /usr/share/doc/libhsts/LICENSE.chromium
   /usr/share/doc/libhsts/NEWS
   /usr/share/doc/libhsts/README.md
 
@@ -63,6 +66,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

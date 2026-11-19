@@ -1,5 +1,6 @@
-HOMEPAGE="https://github.com/devinamatthews/${PN}"
-GIT_URI="git://github.com/devinamatthews/${PN}.git"
+HOMEPAGE="https://github.com/MatthewsResearchGroup/${PN}"
+GIT_URI="https://github.com/MatthewsResearchGroup/${PN}.git"
+GIT_REV="6d2172f9f40237d05c59ecbe90820c732afcc5f1"
 
 CATEGORY="Libs"
 SUMMARY="Thread Control Interface"
@@ -9,10 +10,18 @@ through a handle (the communicator) to a shared state object (the context).
 Communicators may be split into smaller sub-communicators for hierarchical
 parallelism, with independent synchronization and communication."
 
-inherit git
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
 
-CYGCONF_ARGS="
-	--enable-maintainer-mode
+inherit git cmake
+
+CYGCMAKE_ARGS="
+	-DINSTALL_PREFIX:PATH=/usr
+"
+
+DOCS="
+	README.md
 "
 
 PKG_NAMES="
@@ -24,7 +33,7 @@ tci_CONTENTS="
 	usr/share
 "
 libtci0_CONTENTS="
-	usr/bin
+	usr/bin/cygtci-0.dll
 "
 libtci_devel_CONTENTS="
 	usr/include

@@ -1,5 +1,5 @@
---- origsrc/fastrpc-8.2.8/src/frpcconnector.cc	2025-11-27 01:59:29.000000000 +0900
-+++ src/fastrpc-8.2.8/src/frpcconnector.cc	2026-07-03 21:12:30.225561100 +0900
+--- origsrc/fastrpc-8.2.14/src/frpcconnector.cc	2026-10-07 15:04:53.000000000 +0000
++++ src/fastrpc-8.2.14/src/frpcconnector.cc	2026-11-19 11:40:07.286100200 +0000
 @@ -35,6 +35,7 @@
  
  #include <sys/types.h>
@@ -70,8 +70,8 @@
  }
  
  SimpleConnector_t::~SimpleConnector_t() {}
---- origsrc/fastrpc-8.2.8/test/marshallers.cc	2025-11-27 01:59:29.000000000 +0900
-+++ src/fastrpc-8.2.8/test/marshallers.cc	2026-07-03 21:22:24.985035300 +0900
+--- origsrc/fastrpc-8.2.14/test/marshallers.cc	2026-10-07 15:04:53.000000000 +0000
++++ src/fastrpc-8.2.14/test/marshallers.cc	2026-11-19 11:40:07.288119900 +0000
 @@ -765,7 +765,7 @@ void runTests(const TestSettings_t &ts)
  
  int main(int argc, const char *argv[]) {

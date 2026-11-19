@@ -1,5 +1,5 @@
---- origsrc/oatpp-postgresql-1.3.0/cmake/module-config.cmake.in	2021-11-16 10:54:46.000000000 +0900
-+++ src/oatpp-postgresql-1.3.0/cmake/module-config.cmake.in	2024-09-25 18:01:53.551609300 +0900
+--- origsrc/oatpp-postgresql-1.3.0/cmake/module-config.cmake.in	2021-11-16 01:54:46.000000000 +0000
++++ src/oatpp-postgresql-1.3.0/cmake/module-config.cmake.in	2026-11-19 04:24:47.677617200 +0000
 @@ -4,8 +4,8 @@ if(NOT TARGET oatpp::@OATPP_MODULE_NAME@
      include("${CMAKE_CURRENT_LIST_DIR}/@OATPP_MODULE_NAME@Targets.cmake")
  endif()
@@ -12,8 +12,8 @@
  set(@OATPP_MODULE_NAME@_LIBRARIES @OATPP_MODULE_LIBRARIES@)
 -set(OATPP_BASE_DIR "${PACKAGE_PREFIX_DIR}/include/oatpp-@OATPP_MODULE_VERSION@/")
 +set(OATPP_BASE_DIR "${PACKAGE_PREFIX_DIR}/include/oatpp/")
---- origsrc/oatpp-postgresql-1.3.0/cmake/module-install.cmake	2021-11-16 10:54:46.000000000 +0900
-+++ src/oatpp-postgresql-1.3.0/cmake/module-install.cmake	2024-09-25 18:01:53.551609300 +0900
+--- origsrc/oatpp-postgresql-1.3.0/cmake/module-install.cmake	2021-11-16 01:54:46.000000000 +0000
++++ src/oatpp-postgresql-1.3.0/cmake/module-install.cmake	2026-11-19 04:24:47.679103600 +0000
 @@ -59,21 +59,21 @@ endforeach()
  
  install(TARGETS ${OATPP_THIS_MODULE_TARGETS}
@@ -59,8 +59,8 @@
 +            "${CMAKE_INSTALL_LIBDIR}/cmake/${OATPP_MODULE_NAME}"
  )
 \ No newline at end of file
---- origsrc/oatpp-postgresql-1.3.0/src/CMakeLists.txt	2021-11-16 10:54:46.000000000 +0900
-+++ src/oatpp-postgresql-1.3.0/src/CMakeLists.txt	2024-09-25 18:02:13.304645400 +0900
+--- origsrc/oatpp-postgresql-1.3.0/src/CMakeLists.txt	2021-11-16 01:54:46.000000000 +0000
++++ src/oatpp-postgresql-1.3.0/src/CMakeLists.txt	2026-11-19 04:24:47.680378200 +0000
 @@ -32,6 +32,10 @@ set_target_properties(${OATPP_THIS_MODUL
          CXX_STANDARD_REQUIRED ON
  )

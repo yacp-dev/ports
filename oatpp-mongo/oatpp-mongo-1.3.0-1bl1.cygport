@@ -1,0 +1,49 @@
+HOMEPAGE="https://github.com/oatpp/${PN}"
+SRC_URI="https://github.com/oatpp/${PN}/archive/refs/tags/${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="MongoDB driver and BSON support for oatpp"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libbsoncxx1-devel
+	liboatpp-devel
+	libmongocxx1-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DSOVERSION:STRING=${PV[1]}
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/src:${PATH} ninja_test
+}
+
+PKG_NAMES="
+	oatpp-mongo
+	liboatpp-mongo1
+	liboatpp-mongo-devel
+"
+oatpp_mongo_CONTENTS="
+	usr/share
+"
+liboatpp_mongo1_CONTENTS="
+	usr/bin/cyg*-1.dll
+"
+liboatpp_mongo_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+oatpp_mongo_SUMMARY="${SUMMARY} (licensing & readmes)"
+liboatpp_mongo1_SUMMARY="${SUMMARY} (runtime)"
+liboatpp_mongo_devel_SUMMARY="${SUMMARY} (development)"

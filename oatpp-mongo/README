@@ -1,0 +1,83 @@
+oatpp-mongo
+------------------------------------------
+MongoDB driver and BSON support for oatpp
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  liboatpp-mongo1-1.3.0-1bl1
+  liboatpp1-1.3.1-1bl2
+  libstdc++6-14.4.0-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libbsoncxx1-devel-4.6.1-1bl1
+  libmongocxx1-devel-4.6.1-1bl1
+  liboatpp-devel-1.3.1-1bl2
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/oatpp/oatpp-mongo
+
+Canonical download:
+  https://github.com/oatpp/oatpp-mongo/archive/refs/tags/1.3.0.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack oatpp-mongo-1.3.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./oatpp-mongo-1.3.0-X.cygport all
+
+This will create:
+  /usr/src/oatpp-mongo-1.3.0-X-src.tar.xz
+  /usr/src/oatpp-mongo-1.3.0-X.tar.xz
+  /usr/src/liboatpp-mongo1-1.3.0-X.tar.xz
+  /usr/src/liboatpp-mongo-devel-1.3.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(oatpp-mongo)
+  /usr/share/doc/Cygwin/oatpp-mongo.README
+  /usr/share/doc/oatpp-mongo/LICENSE
+  /usr/share/doc/oatpp-mongo/README.md
+
+(liboatpp-mongo1)
+  /usr/bin/cygoatpp-mongo-1.dll
+
+(liboatpp-mongo-devel)
+  /usr/include/oatpp-mongo/oatpp-mongo/bson/Types.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/bson/Utils.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/bson/mapping/Deserializer.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/bson/mapping/ObjectMapper.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/bson/mapping/Serializer.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/bson/type/ObjectId.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/driver/command/Command.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/driver/command/Delete.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/driver/command/Find.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/driver/command/Insert.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/driver/command/Miscellaneous.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/driver/command/Update.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/driver/wire/Connection.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/driver/wire/Message.hpp
+  /usr/include/oatpp-mongo/oatpp-mongo/driver/wire/OpMsg.hpp
+  /usr/lib/cmake/oatpp-mongo/oatpp-mongoConfig.cmake
+  /usr/lib/cmake/oatpp-mongo/oatpp-mongoConfigVersion.cmake
+  /usr/lib/cmake/oatpp-mongo/oatpp-mongoTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/oatpp-mongo/oatpp-mongoTargets.cmake
+  /usr/lib/liboatpp-mongo.dll.a
+
+------------------
+
+Port Notes:
+
+----- version 1.3.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

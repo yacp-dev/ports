@@ -5,20 +5,21 @@ simple API for the storage and fast matching of ASCII, Extended ASCII, and
 32-bit wide token strings.
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  libfsmtrie-devel-2.0.0-1bl1
-  libfsmtrie3-2.0.0-1bl1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libfsmtrie-devel-2.0.0-1bl2
+  libfsmtrie3-2.0.0-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-11-1
-  binutils-2.37-2
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  libtool-2.4.6-7
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  check-0.15.2-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/farsightsec/fsmtrie
@@ -47,7 +48,7 @@ Files included in the binary package:
 
 (fsmtrie)
   /usr/share/doc/Cygwin/fsmtrie.README
-  /usr/share/doc/fsmtrie/Copyright
+  /usr/share/doc/fsmtrie/COPYRIGHT
   /usr/share/doc/fsmtrie/LICENSE
   /usr/share/doc/fsmtrie/README.md
 
@@ -63,6 +64,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.0.0-1bl1 -----
 Version bump.

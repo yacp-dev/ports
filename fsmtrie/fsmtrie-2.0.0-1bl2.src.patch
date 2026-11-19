@@ -1,5 +1,5 @@
---- origsrc/fsmtrie-2.0.0/Makefile.am	2021-08-19 06:14:10.000000000 +0900
-+++ src/fsmtrie-2.0.0/Makefile.am	2021-10-10 13:30:24.522597200 +0900
+--- origsrc/fsmtrie-2.0.0/Makefile.am	2021-08-18 21:14:10.000000000 +0000
++++ src/fsmtrie-2.0.0/Makefile.am	2026-11-19 13:41:50.740544800 +0000
 @@ -82,7 +82,7 @@ fsmtrie_libfsmtrie_la_LIBADD          =
  #
  #    https://www.gnu.org/software/libtool/manual/libtool.html#Versioning

@@ -5,12 +5,21 @@ CATEGORY="Libs"
 SUMMARY="C++ WebDAV Client provides easy and convenient to work with WebDAV-servers"
 DESCRIPTION="${SUMMARY}"
 
-BUILD_REQUIRES="libcurl-devel libpugixml-devel"
+LICENSE="curl"
+LICENSE_SPDX="SPDX-License-Identifier: curl"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libboost-devel
+	libcurl-devel
+	libpugixml-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DHUNTER_ENABLED:BOOL=OFF
 	-DSOVERSION:STRING=${PV[1]}
 "
@@ -24,7 +33,7 @@ webdav_client_cpp_CONTENTS="
 	usr/share
 "
 libwdc1_CONTENTS="
-	usr/bin
+	usr/bin/cygwdc-1.dll
 "
 libwdc_devel_CONTENTS="
 	usr/include

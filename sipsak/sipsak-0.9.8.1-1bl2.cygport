@@ -1,0 +1,24 @@
+HOMEPAGE="https://github.com/nils-ohlmeier/${PN}"
+SRC_URI="https://github.com/nils-ohlmeier/${PN}/archive/refs/tags/${PV}.tar.gz"
+
+CATEGORY="Net"
+SUMMARY="SIP swiss army knife"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	check
+	libcares-devel
+	libgnutls-devel
+"
+
+# md5.c uses K&R function definitions, which C23 no longer accepts
+export CFLAGS="${CFLAGS} -std=gnu17"
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+CYGCONF_ARGS="
+	--enable-maintainer-mode
+"

@@ -4,23 +4,22 @@ This submodule provides secure server and client connection providers for oatpp
 applications. Based on OpenSSL.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libgcc1-12.4.0-3
-  liboatpp-openssl1-1.3.0-1bl1
-  liboatpp1-1.3.0-1bl1
-  libssl3-3.0.15-1
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  liboatpp-openssl1-1.3.0-1bl2
+  liboatpp1-1.3.1-1bl2
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  liboatpp-devel-1.3.0-1bl1
-  libssl-devel-3.0.15-1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  liboatpp-devel-1.3.1-1bl2
+  libssl-devel-3.5.9-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/oatpp/oatpp-openssl
@@ -66,13 +65,16 @@ Files included in the binary package:
   /usr/include/oatpp-openssl/oatpp-openssl/server/ConnectionProvider.hpp
   /usr/lib/cmake/oatpp-openssl/oatpp-opensslConfig.cmake
   /usr/lib/cmake/oatpp-openssl/oatpp-opensslConfigVersion.cmake
-  /usr/lib/cmake/oatpp-openssl/oatpp-opensslTargets-release.cmake
+  /usr/lib/cmake/oatpp-openssl/oatpp-opensslTargets-relwithdebinfo.cmake
   /usr/lib/cmake/oatpp-openssl/oatpp-opensslTargets.cmake
   /usr/lib/liboatpp-openssl.dll.a
 
 ------------------
 
 Port Notes:
+
+----- version 1.3.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.3.0-1bl1 -----
 Version bump.

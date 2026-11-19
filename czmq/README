@@ -6,8 +6,8 @@ Runtime requirements:
   cygwin-3.6.12-1
   libcurl-devel-8.23.0-1
   libcurl4-8.23.0-1
-  libczmq-devel-4.2.1-1bl2
-  libczmq4-4.2.1-1bl2
+  libczmq-devel-4.2.1-1bl3
+  libczmq4-4.2.1-1bl3
   liblz4-devel-1.9.4-1
   liblz4_1-1.9.4-1
   libmicrohttpd-devel-1.0.10-1bl1
@@ -21,7 +21,7 @@ Runtime requirements:
 Build requirements:
 (besides corresponding -devel packages)
   autoconf-20260320-3
-  automake-20260320-2
+  automake-20261107-1
   binutils-2.47-1
   cygport-0.37.12-1
   gcc-core-14.4.0-1
@@ -157,6 +157,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.2.1-1bl3 -----
+Fix zsys_init abort under fortify
 
 ----- version 4.2.1-1bl2 -----
 Rebuild with gcc-14.4.0

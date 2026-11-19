@@ -1,5 +1,5 @@
---- origsrc/libexosip2-5.3.0/Makefile.am	2020-08-24 21:38:28.000000000 +0900
-+++ src/libexosip2-5.3.0/Makefile.am	2024-09-20 00:01:12.860997500 +0900
+--- origsrc/libexosip2-5.3.0/Makefile.am	2020-08-24 12:38:28.000000000 +0000
++++ src/libexosip2-5.3.0/Makefile.am	2026-11-19 21:50:44.441301900 +0000
 @@ -20,3 +20,6 @@ indent:
  	rm -rf $(top_srcdir)/*/*/*.h~
  	rm -rf $(top_srcdir)/*/*.h~
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libexosip2-5.3.0/configure.ac	2021-11-23 00:15:14.000000000 +0900
-+++ src/libexosip2-5.3.0/configure.ac	2024-09-20 00:01:12.860997500 +0900
+--- origsrc/libexosip2-5.3.0/configure.ac	2021-11-22 15:15:14.000000000 +0000
++++ src/libexosip2-5.3.0/configure.ac	2026-11-19 21:50:44.443323100 +0000
 @@ -361,7 +361,7 @@ if test "x$enable_srvrec" = "xyes" ; the
    AC_DEFINE([SRV_RECORD], [1], [Defined to 1 if compiled with NAPTR and SRV support.])
  fi
@@ -18,8 +18,8 @@
   scripts/Makefile
   platform/Makefile
   platform/vsnet/Makefile
---- origsrc/libexosip2-5.3.0/libexosip2.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libexosip2-5.3.0/libexosip2.pc.in	2024-09-20 00:01:12.860997500 +0900
+--- origsrc/libexosip2-5.3.0/libexosip2.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libexosip2-5.3.0/libexosip2.pc.in	2026-11-19 21:50:44.443323100 +0000
 @@ -0,0 +1,12 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

@@ -3,31 +3,28 @@ zyre
 Zyre provides reliable group messaging over local area networks.
 
 Runtime requirements:
-  cygwin-3.3.2-1
-  libczmq-devel-4.2.1-1bl1
-  libczmq4-4.2.1-1bl1
-  libzmq-devel-4.2.3-1
-  libzmq5-4.2.3-1
-  libzyre-devel-2.0.1-1bl1
-  libzyre2-2.0.1-1bl1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libczmq-devel-4.2.1-1bl3
+  libczmq4-4.2.1-1bl3
+  libzmq-devel-4.3.5-1
+  libzmq5-4.3.5-1
+  libzyre-devel-2.0.1-1bl2
+  libzyre2-2.0.1-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  asciidoc-9.0.5-1
-  autoconf-13-1
-  automake-11-1
-  binutils-2.37-2
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
-  libczmq-devel-4.2.1-1bl1
-  libtool-2.4.6-8
-  libzmq-devel-4.2.3-1
-  lua-5.3.6-4
-  make-4.3-1
-  ruby-2.6.4-1
+  asciidoc-10.2.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libczmq-devel-4.2.1-1bl3
+  libtool-2.6.2-1
+  libzmq-devel-4.3.5-1
+  make-4.4.1-2
+  xmlto-0.0.29-1
 
 Canonical website:
   https://github.com/zeromq/zyre
@@ -61,7 +58,6 @@ Files included in the binary package:
   /usr/share/doc/zyre/LICENSE
   /usr/share/doc/zyre/NEWS
   /usr/share/doc/zyre/README.md
-  /usr/share/doc/zyre/readme.txt
   /usr/share/man/man1/zpinger.1.gz
   /usr/share/man/man7/zyre.7.gz
   /usr/share/zproject/zyre/python_cffi.slurp
@@ -83,6 +79,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.0.1-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

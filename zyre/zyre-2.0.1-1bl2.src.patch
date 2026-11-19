@@ -1,5 +1,5 @@
---- origsrc/zyre-2.0.1/src/Makemodule.am	2021-01-24 19:33:38.000000000 +0900
-+++ src/zyre-2.0.1/src/Makemodule.am	2021-11-22 19:24:16.126222000 +0900
+--- origsrc/zyre-2.0.1/src/Makemodule.am	2021-01-24 10:33:38.000000000 +0000
++++ src/zyre-2.0.1/src/Makemodule.am	2026-11-19 23:43:36.229916300 +0000
 @@ -41,8 +41,7 @@ endif
  
  if ON_CYGWIN

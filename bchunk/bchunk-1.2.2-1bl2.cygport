@@ -1,0 +1,38 @@
+HOMEPAGE="http://he.fi/${PN}/"
+SRC_URI="http://he.fi/${PN}/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/b/bchunk/1.2.2-2/debian/patches/great#/${P}-cflags.patch
+	https://sources.debian.org/data/main/b/bchunk/1.2.2-2/debian/patches/add-cpp-flags#/${P}-cppflags.patch
+"
+
+CATEGORY="Audio"
+SUMMARY="Convert CD images from .bin/.cue to .iso/.cdr"
+DESCRIPTION="binchunker converts a CD image in a '.bin / .cue' format (sometimes
+'.raw / .cue') to a set of .iso and .cdr tracks. The bin/cue format is used by
+some popular non-Unix cd-writing software, but is not supported on most other CD
+burning programs. A lot of CD/VCD images distributed on the Internet are in
+BIN/CUE format, I've been told."
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+src_compile()
+{
+	cd ${B}
+	lndirs
+	cygmake
+}
+
+src_test()
+{
+	cd ${B}
+	verbose ./${PN}.exe --version
+}
+
+src_install()
+{
+	cd ${B}
+	dobin ${PN}.exe
+	doman ${PN}.1
+}

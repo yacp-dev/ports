@@ -1,5 +1,5 @@
---- origsrc/kakasi-2.3.6/Makefile.am	2004-03-02 15:01:31.000000000 +0900
-+++ src/kakasi-2.3.6/Makefile.am	2021-11-27 11:06:48.438122600 +0900
+--- origsrc/kakasi-2.3.6/Makefile.am	2004-03-02 06:01:31.000000000 +0000
++++ src/kakasi-2.3.6/Makefile.am	2026-11-19 22:15:31.317482900 +0000
 @@ -16,8 +16,8 @@ SUBDIRS = src lib man tests
  CLEANFILES = kanwadict
  
@@ -18,8 +18,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/kakasi-2.3.6/configure.in	2014-03-18 15:53:13.000000000 +0900
-+++ src/kakasi-2.3.6/configure.in	2021-11-27 11:06:48.438122600 +0900
+--- origsrc/kakasi-2.3.6/configure.in	2026-11-19 22:15:31.089444300 +0000
++++ src/kakasi-2.3.6/configure.in	2026-11-19 22:15:31.317482900 +0000
 @@ -100,7 +100,7 @@ KAKASI_CHECK_CFLAGS([-pedantic])
  KAKASI_CHECK_CFLAGS([-Wno-unused-result])
  
@@ -29,8 +29,8 @@
  	   lib/Makefile
  	   lib/makefile.msc
  	   man/Makefile
---- origsrc/kakasi-2.3.6/kakasi.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/kakasi-2.3.6/kakasi.pc.in	2021-11-27 11:06:48.341153400 +0900
+--- origsrc/kakasi-2.3.6/kakasi.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/kakasi-2.3.6/kakasi.pc.in	2026-11-19 22:15:31.318997000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -42,8 +42,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lkakasi
 +Cflags: -I${includedir}
---- origsrc/kakasi-2.3.6/lib/Makefile.am	2010-12-17 11:58:52.000000000 +0900
-+++ src/kakasi-2.3.6/lib/Makefile.am	2021-11-27 10:21:55.319162000 +0900
+--- origsrc/kakasi-2.3.6/lib/Makefile.am	2010-12-17 02:58:52.000000000 +0000
++++ src/kakasi-2.3.6/lib/Makefile.am	2026-11-19 22:15:31.319495000 +0000
 @@ -6,13 +6,13 @@ dictdir = $(pkgdatadir)
  DEFS = -DLIBRARY -DHAVE_CONFIG_H \
         -DKANWADICT=\"$(dictdir)/kanwadict\" \
@@ -60,8 +60,8 @@
  	-version-info 3:0:1  -export-dynamic
  
  include_HEADERS = libkakasi.h
---- origsrc/kakasi-2.3.6/tests/kakasi-8	2014-01-28 16:03:35.000000000 +0900
-+++ src/kakasi-2.3.6/tests/kakasi-8	2021-11-27 10:59:04.318167000 +0900
+--- origsrc/kakasi-2.3.6/tests/kakasi-8	2014-01-28 07:03:35.000000000 +0000
++++ src/kakasi-2.3.6/tests/kakasi-8	2026-11-19 22:15:31.319495000 +0000
 @@ -7,11 +7,11 @@
  LOG=`pwd`/test-log
  echo '  *** starting ' $0 >> $LOG

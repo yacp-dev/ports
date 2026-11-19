@@ -1,12 +1,24 @@
 HOMEPAGE="http://kakasi.namazu.org/index.html.ja"
 SRC_URI="http://kakasi.namazu.org/stable/${P}.tar.xz"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/kakasi/raw/9f3117c316a0137347ff06302752f3e2ee34d358/f/kakasi-configure-c99.patch
+"
 
 CATEGORY="Text"
 SUMMARY="Kanji Kana Simple Inverter"
 DESCRIPTION="KAKASI is the language processing filter to convert Kanji characters to
 Hiragana, Katakana or Romaji(1) and may be helpful to read Japanese documents."
 
-BUILD_REQUIRES="libiconv-devel"
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	gettext-devel
+	libiconv-devel
+"
+
+CFLAGS+=" -std=gnu17"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode
@@ -46,7 +58,7 @@ kakasi_CONTENTS="
 	usr/share/man/man1/${PN}.1*
 "
 libkakasi2_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygkakasi-2.dll
 "
 libkakasi_devel_CONTENTS="
 	usr/bin/*-config

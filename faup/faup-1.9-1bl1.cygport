@@ -5,20 +5,26 @@ CATEGORY="Libs"
 SUMMARY="Fast URL decoder library"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="WTFPL"
-LICENSE_SPDX="SPDX-License-Identifier: WTFPL"
+LICENSE="WTFPL AND MIT AND BSD-2-Clause AND LGPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: WTFPL AND MIT AND BSD-2-Clause AND LGPL-2.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="liblua-devel"
+BUILD_REQUIRES="
+	liblua-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
+CYGCMAKE_ARGS="
+	-DLUA=ON
+"
+
 src_test()
 {
 	cd ${B}
-	PATH=${B}/src/lib:${PATH} ninja_test
+	FAUP_DATA_DIR=${S}/src/data/ PATH=${B}/src/lib:${PATH} ninja_test
 }
 
 PKG_NAMES="

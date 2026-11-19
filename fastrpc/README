@@ -1,48 +1,47 @@
 fastrpc
 ------------------------------------------
-FastRPC is a XML-RPC based protocol that uses binary data serialization
-format. Includes C++ and Python implementations and a console client.
+FastRPC is a XML-RPC based protocol that uses binary data serialization format.
+Includes C++ and Python implementations and a console client.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libfastrpc-devel-8.2.8-1bl1
-  libfastrpc13-8.2.8-1bl1
+  cygwin-3.6.12-1
+  libfastrpc-devel-8.2.14-1bl1
+  libfastrpc13-8.2.14-1bl1
   libgcc1-14.4.0-1
   libstdc++6-14.4.0-1
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-2.5.1-1
+  libxml2-devel-2.13.9-3
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46.1-1
-  cygport-0.37.7-1
-  gcc-core-14.4.0-1
+  binutils-2.47-1
+  cygport-0.37.12-1
   gcc-g++-14.4.0-1
-  libxml2-devel-2.10.4-2
-  meson-1.8.5-1
+  libxml2-devel-2.13.9-3
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/seznam/fastrpc
 
 Canonical download:
-  https://github.com/seznam/fastrpc/archive/refs/tags/v8.2.8.tar.gz
+  https://github.com/seznam/fastrpc/archive/refs/tags/v8.2.14.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack fastrpc-8.2.8-X-src.tar.xz
+  1. unpack fastrpc-8.2.14-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./fastrpc-8.2.8-X.cygport all
+        % cygport ./fastrpc-8.2.14-X.cygport all
 
 This will create:
-  /usr/src/fastrpc-8.2.8-X-src.tar.xz
-  /usr/src/fastrpc-8.2.8-X.tar.xz
-  /usr/src/libfastrpc13-8.2.8-X.tar.xz
-  /usr/src/libfastrpc-devel-8.2.8-X.tar.xz
+  /usr/src/fastrpc-8.2.14-X-src.tar.xz
+  /usr/src/fastrpc-8.2.14-X.tar.xz
+  /usr/src/libfastrpc13-8.2.14-X.tar.xz
+  /usr/src/libfastrpc-devel-8.2.14-X.tar.xz
 
 -------------------------------------------
 
@@ -121,6 +120,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 8.2.14-1bl1 -----
+Version bump.
 
 ----- version 8.2.8-1bl1 -----
 Version bump.

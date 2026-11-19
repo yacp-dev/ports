@@ -11,13 +11,19 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libopenmpi-devel"
+BUILD_REQUIRES="
+	gcc-fortran
+	libevent-devel
+	libhwloc-devel
+	libopenmpi-devel
+	zlib-devel
+"
 
 inherit meson
 
 src_install() {
 	cd ${S}
-	ninja_install -C ${CHOST}
+	ninja_install -C _build.${CHOST}
 
 	cd ${D}/usr/include
 	rm *.dat *.dd *json *.o *.symbols

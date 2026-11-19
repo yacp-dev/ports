@@ -6,12 +6,24 @@ SUMMARY="Core C++ library for data structures, algorithms, and utilities"
 DESCRIPTION="The pbcopper library provides a suite of data structures, algorithms, and
 utilities for PacBio C++ applications."
 
+LICENSE="BSD-3-Clause-Clear AND MIT AND Zlib AND CC0-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause-Clear AND MIT AND Zlib AND CC0-1.0"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	libboost-devel
+	libgtest-devel
+"
+
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit meson
 
 DOCS="
 	CHANGELOG.md
+	LICENSE.txt
+	src/third-party/base64/LICENSE
+	third-party/simde/COPYING
 "
 
 PKG_NAMES="
@@ -22,13 +34,13 @@ PKG_NAMES="
 pbcopper_CONTENTS="
 	usr/share
 "
-libpbcopper1_9_3_CONTENTS="
-	usr/bin
+libpbcopper2_3_0_CONTENTS="
+	usr/bin/cygpbcopper-2.3.0.dll
 "
 libpbcopper_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 pbcopper_SUMMARY="${SUMMARY} (licensing & readmes)"
-libpbcopper1_9_3_SUMMARY="${SUMMARY} (runtime)"
+libpbcopper2_3_0_SUMMARY="${SUMMARY} (runtime)"
 libpbcopper_devel_SUMMARY="${SUMMARY} (development)"

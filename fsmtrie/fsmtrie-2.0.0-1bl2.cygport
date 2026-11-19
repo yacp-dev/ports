@@ -3,9 +3,17 @@ SRC_URI="https://github.com/farsightsec/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Fast string matching trie library"
-DESCRIPTION="This is the Fast String Matcher Trie project. This C-based library provides a
-simple API for the storage and fast matching of ASCII, Extended ASCII, and
-32-bit wide token strings."
+DESCRIPTION="This is the Fast String Matcher Trie project. This C-based library
+provides a simple API for the storage and fast matching of ASCII, Extended
+ASCII, and 32-bit wide token strings."
+
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	check
+"
 
 PKG_NAMES="
 	fsmtrie
@@ -16,7 +24,7 @@ fsmtrie_CONTENTS="
 	usr/share
 "
 libfsmtrie3_CONTENTS="
-	usr/bin
+	usr/bin/cygfsmtrie-3.dll
 "
 libfsmtrie_devel_CONTENTS="
 	usr/include

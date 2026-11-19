@@ -1,0 +1,29 @@
+HOMEPAGE="https://sourceforge.net/projects/dvd/files/${PN}/"
+SRC_URI="mirror://sourceforge/dvd/${P}.tar.gz"
+PATCH_URI="
+	https://aur.archlinux.org/cgit/aur.git/plain/dvdread.patch?h=${PN}&id=f88cfb5879bce8a588c66c4830a6322a0f4d93f5
+"
+
+CATEGORY="Utils"
+SUMMARY="Dump iFO data from dvd disk"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libdvdread-devel
+"
+
+src_test()
+{
+	cd ${B}/src
+	# no arguments: prints the usage to stderr and exits with 1
+	local out status=0
+	out=$(verbose ./ifo_dump.exe 2>&1) || status=$?
+	echo "${out}"
+	[ ${status} -eq 1 ] || error "expected exit status 1, got ${status}"
+	echo "${out}" | grep -q 'Usage: .* <dvd path> <title number>' ||
+		error "usage not printed"
+}

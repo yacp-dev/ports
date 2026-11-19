@@ -1,6 +1,6 @@
---- origsrc/pbc-0.5.14/Makefile.am	2013-06-15 12:43:00.000000000 +0900
-+++ src/pbc-0.5.14/Makefile.am	2023-10-07 10:21:06.661370600 +0900
-@@ -41,7 +41,7 @@ include/pbc_singular.h \
+--- origsrc/pbc-1.0.0/Makefile.am	2025-06-11 05:45:18.000000000 +0000
++++ src/pbc-1.0.0/Makefile.am	2026-11-19 07:39:36.379198800 +0000
+@@ -44,7 +44,7 @@ include/pbc_singular.h \
  include/pbc_test.h \
  include/pbc_utils.h
  
@@ -9,10 +9,14 @@
  libpbc_la_SOURCES = arith/field.c arith/z.c \
  	arith/naivefp.c arith/fastfp.c \
  	arith/fp.c arith/fasterfp.c arith/montfp.c \
-@@ -66,23 +66,26 @@ LDADD = libpbc.la -lgmp -lm
- noinst_PROGRAMS = pbc/pbc benchmark/benchmark benchmark/timersa benchmark/ellnet
- noinst_PROGRAMS += guru/fp_test guru/quadratic_test guru/poly_test guru/prodpairing_test
+@@ -71,44 +71,43 @@ noinst_PROGRAMS += guru/fp_test guru/qua
  noinst_PROGRAMS += guru/ternary_extension_field_test guru/eta_T_3_test
+ if ENABLE_CXX
+ noinst_PROGRAMS += benchmark/benchmark_cxx
+-benchmark_benchmark_cxx_CPPFLAGS = -I include
++benchmark_benchmark_cxx_CPPFLAGS = -I$(top_srcdir)/include
+ benchmark_benchmark_cxx_SOURCES = benchmark/benchmark_cxx.cc
+ endif
 -pbc_pbc_CPPFLAGS = -I include
 +pbc_pbc_CPPFLAGS = -I$(top_srcdir)/include
  pbc_pbc_SOURCES = pbc/parser.tab.c pbc/lex.yy.c pbc/pbc.c pbc/pbc_getline.c misc/darray.c misc/symtab.c
@@ -43,21 +47,43 @@
 -guru_eta_T_3_test_CPPFLAGS = -I include
 +guru_eta_T_3_test_CPPFLAGS = -I$(top_srcdir)/include
  guru_eta_T_3_test_SOURCES = guru/eta_T_3_test.c
+ 
+-check_LTLIBRARIES = libgtest.la
+-libgtest_la_SOURCES = googletest/googletest/src/gtest-all.cc
+-libgtest_la_CPPFLAGS = -Igoogletest/googletest/include -Igoogletest/googletest -pthread
+-
+ check_PROGRAMS = gtest pbc_test
+ 
+ gtest_SOURCES = unittests/gtest.cpp
+-gtest_LDADD = libgtest.la
++gtest_LDADD = -lgtest
+ gtest_LDFLAGS = -pthread
+-gtest_CPPFLAGS = -Igoogletest/googletest/include -Igoogletest/googletest -pthread
++gtest_CPPFLAGS = -pthread
+ 
+ pbc_test_SOURCES = unittests/pbc_test.cpp
+-pbc_test_LDADD = libgtest.la libpbc.la -lgmp -lm
++pbc_test_LDADD = libpbc.la -lgtest -lgmp -lm
+ pbc_test_LDFLAGS = -pthread
+-pbc_test_CPPFLAGS = -Igoogletest/googletest/include -Igoogletest/googletest -I include -pthread
++pbc_test_CPPFLAGS = -I$(top_srcdir)/include -pthread
+ 
+ TESTS = gtest pbc_test
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/pbc-0.5.14/configure.ac	2013-06-15 12:43:00.000000000 +0900
-+++ src/pbc-0.5.14/configure.ac	2023-10-07 10:21:06.661370600 +0900
-@@ -166,6 +166,7 @@ AC_FUNC_REALLOC
- AC_CHECK_FUNCS([floor gettimeofday memmove memset pow sqrt strchr strdup])
+--- origsrc/pbc-1.0.0/configure.ac	2025-06-11 05:45:18.000000000 +0000
++++ src/pbc-1.0.0/configure.ac	2026-11-19 07:39:36.377191000 +0000
+@@ -182,6 +182,7 @@ fi
+ AM_CONDITIONAL(ENABLE_CXX, test $enable_cxx = yes)
  
  AC_CONFIG_FILES([Makefile example/Makefile gen/Makefile])
 +AC_CONFIG_FILES([pbc.pc])
  AC_OUTPUT
  
  echo -ne "\n"
---- origsrc/pbc-0.5.14/example/Makefile.am	2013-06-15 12:43:00.000000000 +0900
-+++ src/pbc-0.5.14/example/Makefile.am	2023-10-07 10:21:06.661370600 +0900
+--- origsrc/pbc-1.0.0/example/Makefile.am	2025-06-11 05:45:18.000000000 +0000
++++ src/pbc-1.0.0/example/Makefile.am	2026-11-19 07:39:36.377191000 +0000
 @@ -2,7 +2,7 @@ CLEANFILES = *~
  maintainer-clean-local:
  	-rm -rf Makefile.in
@@ -67,8 +93,8 @@
  LDADD = ../libpbc.la -lgmp
  
  noinst_PROGRAMS = bls hess joux paterson yuanli zhangkim zss
---- origsrc/pbc-0.5.14/gen/Makefile.am	2013-06-15 12:43:00.000000000 +0900
-+++ src/pbc-0.5.14/gen/Makefile.am	2023-10-07 10:21:06.661370600 +0900
+--- origsrc/pbc-1.0.0/gen/Makefile.am	2025-06-11 05:45:18.000000000 +0000
++++ src/pbc-1.0.0/gen/Makefile.am	2026-11-19 07:39:36.379198800 +0000
 @@ -2,7 +2,7 @@ CLEANFILES = *~
  maintainer-clean-local:
  	-rm -rf Makefile.in
@@ -78,8 +104,8 @@
  LDADD = ../libpbc.la -lgmp
  
  noinst_PROGRAMS = gena1param genaparam gendparam geneparam genfparam gengparam hilbertpoly listmnt listfreeman
---- origsrc/pbc-0.5.14/pbc.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/pbc-0.5.14/pbc.pc.in	2023-10-07 10:21:06.661370600 +0900
+--- origsrc/pbc-1.0.0/pbc.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/pbc-1.0.0/pbc.pc.in	2026-11-19 07:39:36.379198800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

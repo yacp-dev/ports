@@ -3,23 +3,22 @@ oatpp-curl
 RequestExecutor for oatpp's ApiClient based on libcurl
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libcurl4-8.10.1-1
-  libgcc1-12.4.0-3
-  liboatpp-curl1-1.3.0-1bl1
-  liboatpp1-1.3.0-1bl1
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libcurl4-8.23.0-1
+  libgcc1-14.4.0-1
+  liboatpp-curl1-1.3.0-1bl2
+  liboatpp1-1.3.1-1bl2
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libcurl-devel-8.10.1-1
-  liboatpp-devel-1.3.0-1bl1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libcurl-devel-8.23.0-1
+  liboatpp-devel-1.3.1-1bl2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/oatpp/oatpp-curl
@@ -65,13 +64,16 @@ Files included in the binary package:
   /usr/include/oatpp-curl/oatpp-curl/io/CurlHeadersReader.hpp
   /usr/lib/cmake/oatpp-curl/oatpp-curlConfig.cmake
   /usr/lib/cmake/oatpp-curl/oatpp-curlConfigVersion.cmake
-  /usr/lib/cmake/oatpp-curl/oatpp-curlTargets-release.cmake
+  /usr/lib/cmake/oatpp-curl/oatpp-curlTargets-relwithdebinfo.cmake
   /usr/lib/cmake/oatpp-curl/oatpp-curlTargets.cmake
   /usr/lib/liboatpp-curl.dll.a
 
 ------------------
 
 Port Notes:
+
+----- version 1.3.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.3.0-1bl1 -----
 Version bump.

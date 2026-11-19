@@ -9,6 +9,10 @@ of human-vs-human, human-vs-computer, and computer-vs-computer play. It uses a
 alpha–beta, and the static evaluation function considers material, mobility,
 and motif features."
 
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="COPYING"
+
 src_test()
 {
 	cd ${B}

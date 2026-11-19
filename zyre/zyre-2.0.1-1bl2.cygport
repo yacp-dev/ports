@@ -5,7 +5,16 @@ CATEGORY="Libs"
 SUMMARY="Local Area Clustering for Peer-to-Peer Applications"
 DESCRIPTION="Zyre provides reliable group messaging over local area networks."
 
-BUILD_REQUIRES="libczmq-devel libzmq-devel"
+LICENSE="MPL-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	asciidoc
+	libczmq-devel
+	libzmq-devel
+	xmlto
+"
 
 PKG_NAMES="
 	zyre
@@ -19,7 +28,7 @@ zyre_CONTENTS="
 	usr/share/zproject
 "
 libzyre2_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygzyre-2.dll
 "
 libzyre_devel_CONTENTS="
 	usr/include

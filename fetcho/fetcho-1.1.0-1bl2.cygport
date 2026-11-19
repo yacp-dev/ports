@@ -9,13 +9,15 @@ LICENSE="MPL-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libprocps-devel"
+BUILD_REQUIRES="
+	libproc2-devel
+"
 
 src_compile()
 {
 	cd ${B}
 	lndirs
-	cygmake build RELEASE=1
+	cygmake build RELEASE=1 LDLIBS=-lproc2
 }
 
 src_test()

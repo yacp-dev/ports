@@ -1,0 +1,45 @@
+--- origsrc/fetcho-1.1.0/src/main.cpp	2023-06-23 03:02:46.000000000 +0000
++++ src/fetcho-1.1.0/src/main.cpp	2026-11-19 12:48:09.776853500 +0000
+@@ -1,4 +1,4 @@
+-#include <proc/sysinfo.h>
++#include <libproc2/meminfo.h>
+ #include <pwd.h>
+ #include <sys/sysinfo.h>
+ #include <sys/utsname.h>
+@@ -87,9 +87,17 @@ std::string getDesktopEnvironment() {
+     }
+ }
+ 
++static unsigned long getMemInfoKiB(enum meminfo_item item) {
++    struct meminfo_info* info = nullptr;
++    if (procps_meminfo_new(&info) < 0) return 0;
++    struct meminfo_result* result = procps_meminfo_get(info, item);
++    unsigned long value = result ? result->result.ul_int : 0;
++    procps_meminfo_unref(&info);
++    return value;
++}
++
+ std::string getMemory() {
+-    meminfo();
+-    unsigned long totalMemKibibytes = kb_main_total;
++    unsigned long totalMemKibibytes = getMemInfoKiB(MEMINFO_MEM_TOTAL);
+     double totalMemBytes = totalMemKibibytes * 1024;
+     double totalMemMebibytes = totalMemKibibytes / 1024;
+ 
+@@ -120,7 +128,7 @@ std::string getMemory() {
+         totalDecimalPlaces = 1;
+     }
+ 
+-    double usedMemKibibytes = kb_main_used;
++    double usedMemKibibytes = getMemInfoKiB(MEMINFO_MEM_USED);
+     double usedMemBytes = usedMemKibibytes * 1024;
+     double usedMemMebibytes = usedMemKibibytes / 1024;
+     double usedMemGibibytes = usedMemMebibytes / 1000;
+@@ -181,7 +189,6 @@ std::vector<std::string> getOptions() {
+ }
+ 
+ int main() {
+-    meminfo();
+     struct utsname un;
+     uname(&un);
+ 

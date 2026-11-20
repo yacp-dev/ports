@@ -5,22 +5,22 @@ available) which converts a plain text (ASCII, ISO 8859-1 or UTF-8) file (e. g.
 an ebook) to Morse code MP3 or OGG audio files.
 
 Runtime requirements:
-  cygwin-3.6.0-0.212.g6af8fea4bbad
-  libintl8-0.22.5-1
+  cygwin-3.6.12-1
+  libintl8-0.26-1
   libmp3lame0-3.100-1
-  libogg0-1.3.4-1
+  libogg0-1.3.6-1
   libvorbis0-1.3.7-1
   libvorbisenc2-1.3.7-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gettext-devel-0.22.5-1
-  libintl-devel-0.22.5-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  libintl-devel-0.26-1
   libmp3lame-devel-3.100-1
-  libogg-devel-1.3.4-1
+  libogg-devel-1.3.6-1
   libvorbis-devel-1.3.7-1
   make-4.4.1-2
 
@@ -62,6 +62,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.8.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.8.5-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

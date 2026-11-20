@@ -1,0 +1,44 @@
+--- origsrc/foma/foma/CMakeLists.txt	2026-11-20 22:32:42.000000000 +0000
++++ src/foma/foma/CMakeLists.txt	2026-11-20 22:32:43.743013100 +0000
+@@ -136,10 +136,6 @@ set(SOURCES
+ 	${BISON_Bregex_OUTPUTS}
+ 	)
+ 
+-add_library(foma-static STATIC ${SOURCES})
+-target_link_libraries(foma-static PUBLIC ${ZLIB_LIBS})
+-set_target_properties(foma-static PROPERTIES ARCHIVE_OUTPUT_NAME foma)
+-
+ if(FOMA_BUILD_SHARED)
+ 	add_library(foma-shared SHARED ${SOURCES})
+ 	target_link_libraries(foma-shared PRIVATE ${ZLIB_LIBS})
+@@ -183,26 +179,23 @@ if(EMSCRIPTEN)
+ else()
+     # Regular foma-bin target
+     add_executable(foma-bin foma.c stack.c iface.c ${FLEX_Finterface_OUTPUTS})
+-    target_link_libraries(foma-bin PRIVATE foma-static ${READLINE_LIBRARIES} ${GETOPT_LIB})
++    target_link_libraries(foma-bin PRIVATE foma-shared ${READLINE_LIBRARIES} ${GETOPT_LIB} ${ZLIB_LIBS})
+     target_link_directories(foma-bin PRIVATE ${READLINE_LIBRARY_DIRS})
+     set_target_properties(foma-bin PROPERTIES RUNTIME_OUTPUT_NAME foma)
+ 
+ 	add_executable(flookup flookup.c)
+-	target_link_libraries(flookup PRIVATE foma-static ${GETOPT_LIB})
++	target_link_libraries(flookup PRIVATE foma-shared ${GETOPT_LIB})
+ 	if(WIN32)
+ 		target_link_libraries(flookup PRIVATE ws2_32)
+ 	endif()
+ 	install(TARGETS flookup RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+ 
+ 	add_executable(cgflookup cgflookup.c)
+-	target_link_libraries(cgflookup PRIVATE foma-static ${GETOPT_LIB})
++	target_link_libraries(cgflookup PRIVATE foma-shared ${GETOPT_LIB})
+ 
+ 	configure_file(libfoma.pc.in libfoma.pc @ONLY)
+ 
+-	set(FOMA_INSTALL_LIB_TARGETS foma-static)
+-	if(FOMA_BUILD_SHARED)
+-		list(APPEND FOMA_INSTALL_LIB_TARGETS foma-shared)
+-	endif()
++	set(FOMA_INSTALL_LIB_TARGETS foma-shared)
+ 
+ 	# Install
+ 	install(TARGETS ${FOMA_INSTALL_LIB_TARGETS} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

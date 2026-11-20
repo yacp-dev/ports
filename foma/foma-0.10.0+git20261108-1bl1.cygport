@@ -1,6 +1,6 @@
 HOMEPAGE="https://github.com/mhulden/${PN}"
 GIT_URI="https://github.com/mhulden/${PN}.git"
-GIT_REV="a2d32b383de9b7c312171a8e31443a7ff5aa741d"
+GIT_REV="80b8d6574fe95626b5e33f2227df042dc32b2390"
 
 CATEGORY="Libs"
 SUMMARY="Multi-purpose finite-state toolkit"
@@ -10,7 +10,12 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="${PN}/COPYING"
 
-BUILD_REQUIRES="libreadline-devel zlib-devel"
+BUILD_REQUIRES="
+	bison
+	flex
+	libreadline-devel
+	zlib-devel
+"
 
 inherit cmake
 inherit git

@@ -1,5 +1,5 @@
---- origsrc/duo_unix-duo_unix-2.3.0/lib/Makefile.am	2026-08-12 12:32:46.000000000 +0000
-+++ src/duo_unix-duo_unix-2.3.0/lib/Makefile.am	2026-11-14 06:34:35.052791100 +0000
+--- origsrc/duo_unix-duo_unix-2.4.0/lib/Makefile.am	2026-11-16 16:49:14.000000000 +0000
++++ src/duo_unix-duo_unix-2.4.0/lib/Makefile.am	2026-11-20 16:34:48.650832500 +0000
 @@ -9,12 +9,12 @@
  
  AM_CPPFLAGS = -I$(top_srcdir)/compat @OPENSSL_INCLUDES@
@@ -15,9 +15,9 @@
  # http://sourceware.org/autobook/autobook/autobook_91.html
  libduo_la_LDFLAGS = -no-undefined -version-info 3:0:0 -export-symbols-regex '^duo_'
  
---- origsrc/duo_unix-duo_unix-2.3.0/lib/util.h	2026-08-12 12:32:46.000000000 +0000
-+++ src/duo_unix-duo_unix-2.3.0/lib/util.h	2026-11-14 06:34:35.054303000 +0000
-@@ -75,6 +75,8 @@ int duo_common_ini_handler(
+--- origsrc/duo_unix-duo_unix-2.4.0/lib/util.h	2026-11-16 16:49:14.000000000 +0000
++++ src/duo_unix-duo_unix-2.4.0/lib/util.h	2026-11-20 16:34:48.652847200 +0000
+@@ -91,6 +91,8 @@ int duo_common_ini_handler(
      const char *val
  );
  

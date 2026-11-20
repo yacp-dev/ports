@@ -30,7 +30,7 @@ PKG_NAMES="
 	${PN}
 	lib${PN}0
 	lib${PN}-devel
-	python-${PN}
+	python312-${PN}
 "
 artifastring_CONTENTS="
 	usr/bin/*.exe
@@ -46,14 +46,14 @@ libartifastring_devel_CONTENTS="
 	usr/lib/lib*
 	usr/lib/pkgconfig
 "
-python_artifastring_CONTENTS="
-	usr/lib/python*
+python312_artifastring_CONTENTS="
+	usr/lib/python3.12
 "
 
 artifastring_SUMMARY="${SUMMARY} (utilities)"
 libartifastring0_SUMMARY="${SUMMARY} (runtime)"
 libartifastring_devel_SUMMARY="${SUMMARY} (development)"
-python_artifastring_SUMMARY="${SUMMARY} (python bindings)"
+python312_artifastring_SUMMARY="${SUMMARY} (python312 bindings)"
 
 src_test()
 {

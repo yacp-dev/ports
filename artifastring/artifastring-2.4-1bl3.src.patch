@@ -1,5 +1,5 @@
 --- origsrc/artifastring-release-2.4/Makefile.am	2013-05-31 06:21:51.000000000 +0000
-+++ src/artifastring-release-2.4/Makefile.am	2026-11-18 22:23:42.792646800 +0000
++++ src/artifastring-release-2.4/Makefile.am	2026-11-20 00:38:16.986032400 +0000
 @@ -7,7 +7,7 @@ else
  if IS_DARWIN
  AM_CXXFLAGS = -I$(srcdir)/otherlibs/ -fPIC -O3 -mtune=native -DNDEBUG
@@ -76,7 +76,7 @@
 -
 -
 --- origsrc/artifastring-release-2.4/configure.ac	2013-05-31 06:21:51.000000000 +0000
-+++ src/artifastring-release-2.4/configure.ac	2026-11-18 22:23:42.794947300 +0000
++++ src/artifastring-release-2.4/configure.ac	2026-11-20 00:38:16.986032400 +0000
 @@ -10,9 +10,8 @@ AC_CONFIG_HEADERS([config.h])
  AC_CONFIG_FILES([Makefile artifastring.pc monowav.pc doc/doxyfile])
  
@@ -102,7 +102,7 @@
  AC_ARG_ENABLE([debug],
    [AS_HELP_STRING(--enable-debug,[Compile with debug support])],
 --- origsrc/artifastring-release-2.4/interactive/artifastring_osc.py	2013-05-31 06:21:51.000000000 +0000
-+++ src/artifastring-release-2.4/interactive/artifastring_osc.py	2026-11-18 22:23:42.796450100 +0000
++++ src/artifastring-release-2.4/interactive/artifastring_osc.py	2026-11-20 00:38:16.986032400 +0000
 @@ -52,8 +52,8 @@ class ArtifastringOsc(artifastring_inter
                  self.server = liblo.Server(3123)
              else:
@@ -151,7 +151,7 @@
                  self.set_message(text + "             ")
              self.params.force = Fb
 --- origsrc/artifastring-release-2.4/interactive/play-file.py	2013-05-31 06:21:51.000000000 +0000
-+++ src/artifastring-release-2.4/interactive/play-file.py	2026-11-18 22:23:42.796967000 +0000
++++ src/artifastring-release-2.4/interactive/play-file.py	2026-11-20 00:38:16.988039500 +0000
 @@ -36,7 +36,7 @@ def actions(violin, params):
          # do nothing -- it's a "wait" command
          pass
@@ -171,7 +171,7 @@
  
  def main():
 --- origsrc/artifastring-release-2.4/swig/numpy.i	2013-05-31 06:21:51.000000000 +0000
-+++ src/artifastring-release-2.4/swig/numpy.i	2026-11-18 22:23:42.803001100 +0000
++++ src/artifastring-release-2.4/swig/numpy.i	2026-11-20 00:38:16.991800800 +0000
 @@ -1,16 +1,62 @@
  /* -*- C -*-  (not really, but good for syntax highlighting) */
 +

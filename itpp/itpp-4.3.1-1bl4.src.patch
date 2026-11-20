@@ -1,5 +1,5 @@
---- origsrc/itpp-4.3.1/CMakeLists.txt	2024-12-01 01:18:13.010488400 +0900
-+++ src/itpp-4.3.1/CMakeLists.txt	2024-12-01 13:52:05.635251600 +0900
+--- origsrc/itpp-4.3.1/CMakeLists.txt	2026-11-20 22:50:02.761290800 +0000
++++ src/itpp-4.3.1/CMakeLists.txt	2026-11-20 22:50:03.702460900 +0000
 @@ -222,6 +222,7 @@ option(OLD_TESTS "Building old unit test
  if (OLD_TESTS)
    add_subdirectory ( tests )
@@ -9,8 +9,8 @@
 +if (GTEST_DIR OR GTEST_FOUND)
    add_subdirectory (gtests)
  endif()
---- origsrc/itpp-4.3.1/gtests/CMakeLists.txt	2013-07-06 18:11:56.000000000 +0900
-+++ src/itpp-4.3.1/gtests/CMakeLists.txt	2024-12-01 14:23:37.387881300 +0900
+--- origsrc/itpp-4.3.1/gtests/CMakeLists.txt	2013-07-06 09:11:56.000000000 +0000
++++ src/itpp-4.3.1/gtests/CMakeLists.txt	2026-11-20 22:50:03.702883300 +0000
 @@ -29,7 +29,12 @@ file ( GLOB ITPP_TEST_SRCS *.cpp )
  
  include_directories ( ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${GTEST_DIR} ${GTEST_DIR}/include )
@@ -24,8 +24,8 @@
  foreach (FILE ${ITPP_TEST_SRCS})
    get_filename_component ( target ${FILE} NAME_WE )
    if (target MATCHES "^fastica")
---- origsrc/itpp-4.3.1/gtests/vec_test.cpp	2013-07-06 18:11:56.000000000 +0900
-+++ src/itpp-4.3.1/gtests/vec_test.cpp	2024-12-01 14:19:21.596471100 +0900
+--- origsrc/itpp-4.3.1/gtests/vec_test.cpp	2013-07-06 09:11:56.000000000 +0000
++++ src/itpp-4.3.1/gtests/vec_test.cpp	2026-11-20 22:50:03.704481100 +0000
 @@ -276,13 +276,13 @@ void common_operators(const bvec &a, con
  
    a2 = a;

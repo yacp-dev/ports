@@ -9,27 +9,26 @@ or SciPy.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.5.4-1
-  libfftw3_3-3.3.10-1
-  libgcc1-12.4.0-3
-  libgomp1-12.4.0-3
-  libitpp-devel-4.3.1-1bl3
-  libitpp8-4.3.1-1bl3
+  cygwin-3.6.12-1
+  libfftw3_3-3.3.11-1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libitpp-devel-4.3.1-1bl4
+  libitpp8-4.3.1-1bl4
   liblapack0-3.12.0-1
-  libopenblas-0.3.26-1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libfftw3-devel-3.3.10-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libfftw3-devel-3.3.11-1
+  libgtest-devel-1.18.0-1bl1
   liblapack-devel-3.12.0-1
-  ninja-1.12.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://sourceforge.net/projects/itpp/
@@ -208,6 +207,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.3.1-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 4.3.1-1bl3 -----
 Rebuild with gcc-12.4.0

@@ -1,11 +1,11 @@
 HOMEPAGE="https://www.gnu.org/software/${PN}/"
 SRC_URI="mirror://gnu/${PN}/CSSC-${PV}.tar.gz"
-SRC_DIR="CSSC-${PV}"
 PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/07-tmprace-sccsdiff
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-1/debian/patches/yes-errors
 	https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-vcs/${PN}/files/${P}-m4.patch
 "
+SRC_DIR="CSSC-${PV}"
 
 CATEGORY="Devel"
 SUMMARY="GNU Project's replacement for SCCS"
@@ -14,8 +14,8 @@ tools which is provided with most commercial versions of Unix. The purpose
 behind CSSC is to provide a work-alike for SCCS which can be used on the
 various Free versions of Unix."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND BSD-3-Clause"
 LICENSE_URI="COPYING"
 
 CYGCONF_ARGS="

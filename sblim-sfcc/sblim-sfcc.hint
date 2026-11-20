@@ -1,7 +1,0 @@
-category: Libs
-requires: cygwin libcimcclient0
-sdesc: "Small Footprint CIM Client (licensing & readmes)"
-ldesc: "SFCC is a CIM client for C that can directly access SFCB. You can use
-SFCC to CIM-enable your programs. It will work with any CIMOM that supports
-CIM-XML; however, SFCB can take advantage of the LocalConnect interface for
-improved performance (no XML encoding/decoding overhead)."

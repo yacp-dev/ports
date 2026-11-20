@@ -1,0 +1,19 @@
+--- origsrc/sblim-sfcc-2.2.8/backend/cimxml/indicationlistener.c	2026-11-20 03:04:00.135591300 +0000
++++ src/sblim-sfcc-2.2.8/backend/cimxml/indicationlistener.c	2026-11-20 03:04:00.492898700 +0000
+@@ -25,6 +25,7 @@
+ 
+ #include <pthread.h>
+ #include <sys/socket.h>
++#include <sys/select.h>
+ #include <netinet/in.h>
+ #include <fcntl.h>
+ #include <errno.h>
+@@ -36,7 +37,7 @@ static int do_listen=1;
+ #define hdrBufsize 5000
+ #define hdrLimmit 5000
+ 
+-#ifdef __APPLE__
++#if defined(__APPLE__) || defined(__CYGWIN__)
+ # define __SOCKADDR_ARG   struct sockaddr *__restrict
+ #endif
+ 

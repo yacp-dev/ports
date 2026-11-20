@@ -1,0 +1,76 @@
+HOMEPAGE="https://sourceforge.net/projects/sblim/"
+SRC_URI="mirror://sourceforge/sblim/${P}.tar.bz2"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/sblim-sfcc/raw/8a496997bc1c7f2edb376f0541ffee4a9bcf5638/f/c99.patch
+	https://src.fedoraproject.org/rpms/sblim-sfcc/raw/8a496997bc1c7f2edb376f0541ffee4a9bcf5638/f/c89.patch
+	https://src.fedoraproject.org/rpms/sblim-sfcc/raw/8a496997bc1c7f2edb376f0541ffee4a9bcf5638/f/sblim-sfcc-2.2.8-fix-clone-stack-exhaust.patch
+	https://src.fedoraproject.org/rpms/sblim-sfcc/raw/8a496997bc1c7f2edb376f0541ffee4a9bcf5638/f/sblim-sfcc-2.2.8-fix-method-buffer-overflow.patch
+	https://src.fedoraproject.org/rpms/sblim-sfcc/raw/8a496997bc1c7f2edb376f0541ffee4a9bcf5638/f/sblim-sfcc-2.2.8-fix-namespace-buffer-overflow.patch
+	https://src.fedoraproject.org/rpms/sblim-sfcc/raw/8a496997bc1c7f2edb376f0541ffee4a9bcf5638/f/sblim-sfcc-2.2.8-fix-readdata-missing-eof.patch
+"
+
+CATEGORY="Libs"
+SUMMARY="Small Footprint CIM Client library"
+DESCRIPTION="SFCC is a CIM client for C that can directly access SFCB. You can
+use SFCC to CIM-enable your programs. It will work with any CIMOM
+that supports CIM-XML; however, SFCB can take advantage of the
+LocalConnect interface for improved performance (no XML
+encoding/decoding overhead)."
+
+LICENSE="EPL-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: EPL-1.0"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libcurl-devel
+"
+
+CYGCONF_ARGS="
+	--disable-static
+"
+
+# libtool refuses to build a shared library on Cygwin without -no-undefined,
+# which the source's LDFLAGS don't pass.
+src_compile()
+{
+	cd ${B}
+	lndirs
+	cygconf
+	cygmake LDFLAGS="${LDFLAGS} -no-undefined"
+}
+
+# Upstream installs README, AUTHORS and COPYING into /usr/share/doc/sfcc-${PV},
+# which cygport installs itself into /usr/share/doc/${PN}.
+src_install()
+{
+	cd ${B}
+	cyginstall
+	verbose rm -rf ${D}/usr/share/doc/sfcc-${PV}
+}
+
+DOCS="
+	ChangeLog
+	NEWS
+"
+
+PKG_NAMES="
+	sblim-sfcc
+	libcimcclient0
+	libcimcclient-devel
+"
+sblim_sfcc_CONTENTS="
+	usr/share/doc
+"
+libcimcclient0_CONTENTS="
+	usr/bin/cygcimcclient-0.dll
+	usr/bin/cygcmpisfcc-1.dll
+	usr/bin/cygcimcClientXML-0.dll
+"
+libcimcclient_devel_CONTENTS="
+	usr/include
+	usr/lib
+	usr/share/man/man3
+"
+sblim_sfcc_SUMMARY="${SUMMARY} (licensing & readmes)"
+libcimcclient0_SUMMARY="${SUMMARY} (runtime)"
+libcimcclient_devel_SUMMARY="${SUMMARY} (development)"

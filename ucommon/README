@@ -10,31 +10,29 @@ overhead of the standard C++ library and other similar class frameworks.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.5.4-1
-  cygwin-devel-3.5.4-1
-  libcommoncpp-devel-7.0.0-1bl4
-  libcommoncpp8-7.0.0-1bl4
-  libgcc1-12.4.0-3
-  libgnutls-devel-3.8.6-1
-  libgnutls30-3.8.6-1
-  libintl-devel-0.22.5-1
-  libintl8-0.22.5-1
-  libstdc++6-12.4.0-3
-  libucommon-devel-7.0.0-1bl4
-  libucommon8-7.0.0-1bl4
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libcommoncpp-devel-7.0.0-1bl5
+  libcommoncpp8-7.0.0-1bl5
+  libgcc1-14.4.0-1
+  libgnutls-devel-3.8.13-1
+  libgnutls30-3.8.13-1
+  libintl8-0.26-1
+  libstdc++6-14.4.0-1
+  libucommon-devel-7.0.0-1bl5
+  libucommon8-7.0.0-1bl5
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libgnutls-devel-3.8.6-1
-  libintl-devel-0.22.5-1
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libgnutls-devel-3.8.13-1
+  libintl-devel-0.26-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -78,7 +76,6 @@ Files included in the binary package:
   /usr/share/doc/ucommon/AUTHORS
   /usr/share/doc/ucommon/COPYING
   /usr/share/doc/ucommon/COPYING.LESSER
-  /usr/share/doc/ucommon/COPYING.temp
   /usr/share/doc/ucommon/COPYRIGHT
   /usr/share/doc/ucommon/ChangeLog
   /usr/share/doc/ucommon/NEWS
@@ -178,6 +175,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 7.0.0-1bl5 -----
+Rebuild with gcc-14.4.0
 
 ----- version 7.0.0-1bl4 -----
 Rebuild with gcc-12.4.0

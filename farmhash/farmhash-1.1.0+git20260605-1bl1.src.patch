@@ -1,5 +1,5 @@
---- origsrc/farmhash/Makefile.am	2021-09-18 04:10:30.000000000 +0900
-+++ src/farmhash/Makefile.am	2021-09-18 04:10:35.093120000 +0900
+--- origsrc/farmhash/Makefile.am	2026-11-20 22:14:53.000000000 +0000
++++ src/farmhash/Makefile.am	2026-11-20 22:14:54.696821600 +0000
 @@ -1,4 +1,7 @@
  ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = src
@@ -9,8 +9,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/farmhash/configure.ac	2021-09-18 04:10:30.000000000 +0900
-+++ src/farmhash/configure.ac	2021-09-18 04:10:35.098120300 +0900
+--- origsrc/farmhash/configure.ac	2026-11-20 22:14:53.000000000 +0000
++++ src/farmhash/configure.ac	2026-11-20 22:14:54.696821600 +0000
 @@ -14,7 +14,7 @@ AM_INIT_AUTOMAKE([1.10 no-define foreign
  LT_PREREQ([2.2])
  LT_INIT
@@ -20,8 +20,8 @@
                   src/Makefile])
  AC_CONFIG_SRCDIR([src/farmhash.h])
  AC_CONFIG_MACRO_DIR([m4])
---- origsrc/farmhash/farmhash.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/farmhash/farmhash.pc.in	2021-09-18 04:10:35.101128100 +0900
+--- origsrc/farmhash/farmhash.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/farmhash/farmhash.pc.in	2026-11-20 22:14:54.696821600 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -33,8 +33,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lfarmhash
 +Cflags: -I${includedir}
---- origsrc/farmhash/src/Makefile.am	2021-09-18 04:10:30.000000000 +0900
-+++ src/farmhash/src/Makefile.am	2021-09-18 04:10:35.114147700 +0900
+--- origsrc/farmhash/src/Makefile.am	2026-11-20 22:14:53.000000000 +0000
++++ src/farmhash/src/Makefile.am	2026-11-20 22:14:54.700853700 +0000
 @@ -1,6 +1,7 @@
  # library
  lib_LTLIBRARIES = libfarmhash.la
@@ -43,9 +43,9 @@
  include_HEADERS = farmhash.h
  
  # test
---- origsrc/farmhash/src/farmhash.cc	2021-09-18 04:10:30.000000000 +0900
-+++ src/farmhash/src/farmhash.cc	2021-09-18 04:17:41.419358400 +0900
-@@ -1993,6 +1993,10 @@ static const int kDataSize = 1 << 20;
+--- origsrc/farmhash/src/farmhash.cc	2026-11-20 22:14:53.000000000 +0000
++++ src/farmhash/src/farmhash.cc	2026-11-20 22:14:54.700853700 +0000
+@@ -1992,6 +1992,10 @@ static const int kDataSize = 1 << 20;
  static const int kTestSize = 300;
  #define kSeed128 Uint128(kSeed0, kSeed1)
  

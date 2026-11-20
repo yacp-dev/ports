@@ -1,10 +1,15 @@
 HOMEPAGE="https://github.com/google/${PN}"
 GIT_URI="https://github.com/google/${PN}.git"
+GIT_REV="9d99331eb762e9ee22fd97d15a594525ad98310a"
 
 CATEGORY="Libs"
 SUMMARY="The FarmHash family of hash functions"
-DESCRIPTION="FarmHash is a successor to CityHash, and includes many of the same tricks and
-techniques, several of them taken from Austin Appleby's MurmurHash."
+DESCRIPTION="FarmHash is a successor to CityHash, and includes many of the same
+tricks and techniques, several of them taken from Austin Appleby's MurmurHash."
+
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="COPYING"
 
 inherit git
 
@@ -21,7 +26,7 @@ farmhash_CONTENTS="
 	usr/share
 "
 libfarmhash0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 libfarmhash_devel_CONTENTS="
 	usr/include

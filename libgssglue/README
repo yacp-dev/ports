@@ -5,20 +5,20 @@ itself; instead it calls routines in other libraries, depending on the
 mechanism and system configuration.
 
 Runtime requirements:
-  cygwin-3.5.0-1
-  cygwin-devel-3.5.0-1
-  libgssglue-devel-0.9-1bl1
-  libgssglue1-0.9-1bl1
-  pkg-config-2.1.1-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libgssglue-devel-0.9-1bl2
+  libgssglue1-0.9-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.8-1
-  gcc-core-11.4.0-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -66,6 +66,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.9-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.9-1bl1 -----
 Version bump.

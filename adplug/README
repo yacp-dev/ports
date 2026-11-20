@@ -6,26 +6,26 @@ the AdLib (OPL2/3) audio board, on top of an OPL2/3 emulator or by using the
 real hardware. No OPL2/3 chips are required for playback.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libadplug-devel-2.4-1bl1
-  libadplug2.4_0-2.4-1bl1
+  cygwin-3.6.12-1
+  libadplug-devel-2.4-1bl2
+  libadplug2.4_0-2.4-1bl2
   libbinio-devel-1.4-1
   libbinio1-1.4-1
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  pkg-config-2.4.3-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  autoconf-20260320-3
+  autoconf-archive-2026.11.11-1
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libbinio-devel-1.4-1
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -159,6 +159,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.4-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.4-1bl1 -----
 Version bump.

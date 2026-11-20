@@ -20,7 +20,7 @@ libltc_CONTENTS="
 	usr/share/doc
 "
 libltc11_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-11.dll
 "
 libltc_devel_CONTENTS="
 	usr/include

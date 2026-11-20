@@ -8,14 +8,15 @@ analysis and generation of words. Analysis is the process of splitting a word
 like cats into its lemma cat and the grammatical information <n><pl>.
 Generation is the opposite process."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	libboost-devel
 	libicu-devel
 	libxml2-devel
-	python39-devel
+	python3-devel
 	swig
 	utf8cpp-devel
 "
@@ -32,7 +33,7 @@ PKG_NAMES="
 	${PN}
 	lib${PN}3
 	lib${PN}-devel
-	python39-lttoolbox
+	python312-lttoolbox
 "
 lttoolbox_CONTENTS="
 	usr/bin/*.exe
@@ -47,10 +48,10 @@ liblttoolbox_devel_CONTENTS="
 	usr/lib/lib*.dll.a
 	usr/lib/pkgconfig
 "
-python39_lttoolbox_CONTENTS="
-	usr/lib/python3.9
+python312_lttoolbox_CONTENTS="
+	usr/lib/python3.12
 "
 lttoolbox_SUMMARY="${SUMMARY} (utilities)"
 liblttoolbox3_SUMMARY="${SUMMARY} (runtime)"
 liblttoolbox_devel_SUMMARY="${SUMMARY} (development)"
-python39_lttoolbox_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_lttoolbox_SUMMARY="${SUMMARY} (python312 bindings)"

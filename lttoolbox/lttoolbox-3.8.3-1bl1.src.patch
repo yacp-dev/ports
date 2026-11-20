@@ -1,8 +1,0 @@
---- origsrc/lttoolbox-3.8.3/CMakeLists.txt	2026-05-08 02:02:21.000000000 +0900
-+++ src/lttoolbox-3.8.3/CMakeLists.txt	2026-06-11 20:21:28.748029800 +0900
-@@ -1,5 +1,4 @@
- cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
--cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
- project(lttoolbox
- 	VERSION 3.8.3
- 	LANGUAGES CXX C

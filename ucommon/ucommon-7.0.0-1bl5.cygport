@@ -16,13 +16,22 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libgnutls-devel libintl-devel"
+BUILD_REQUIRES="
+	libgnutls-devel
+	libintl-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 CYGCONF_ARGS="
 	--with-pkg-config
 "
+
+src_test() {
+	cd ${B}
+	cp ${S}/test/keydata.conf test/
+	cygmake check TESTS="ucommonLinked ucommonSocket ucommonStrings ucommonThreads ucommonMemory ucommonKeydata ucommonUnicode ucommonDatetime ucommonShell ucommonDigest ucommonCipher"
+}
 
 DOCS="
 	COPYING.*

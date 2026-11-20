@@ -1,5 +1,5 @@
---- origsrc/ucommon-7.0.0/Makefile.am	2015-08-30 07:29:15.000000000 +0900
-+++ src/ucommon-7.0.0/Makefile.am	2025-01-15 11:04:27.602953700 +0900
+--- origsrc/ucommon-7.0.0/Makefile.am	2015-08-29 22:29:15.000000000 +0000
++++ src/ucommon-7.0.0/Makefile.am	2026-11-20 16:05:22.705497800 +0000
 @@ -29,7 +29,7 @@ pkgconfig_DATA = ucommon.pc @COMPAT_PC@
  scriptdir = $(bindir)
  script_SCRIPTS = ucommon-config @COMPAT_CONFIG@
@@ -9,8 +9,8 @@
  cmake_DATA = cmake/CapeConfig.cmake cmake/CapeMakeTargets.cmake
  
  man_MANS = ucommon-config.1 commoncpp-config.1
---- origsrc/ucommon-7.0.0/commoncpp/Makefile.am	2015-10-11 11:32:36.000000000 +0900
-+++ src/ucommon-7.0.0/commoncpp/Makefile.am	2025-01-15 11:04:27.602953700 +0900
+--- origsrc/ucommon-7.0.0/commoncpp/Makefile.am	2015-10-11 02:32:36.000000000 +0000
++++ src/ucommon-7.0.0/commoncpp/Makefile.am	2026-11-20 16:05:22.705497800 +0000
 @@ -15,7 +15,7 @@ AM_CXXFLAGS = -I$(top_srcdir)/inc $(UCOM
  
  lib_LTLIBRARIES = libcommoncpp.la
@@ -20,8 +20,8 @@
  libcommoncpp_la_SOURCES = strchar.cpp slog.cpp exception.cpp thread.cpp \
  	address.cpp socket.cpp tcp.cpp udp.cpp dccp.cpp applog.cpp mime.cpp \
  	process.cpp serial.cpp tokenizer.cpp file.cpp dso.cpp linked.cpp \
---- origsrc/ucommon-7.0.0/commoncpp/persist.cpp	2015-10-11 11:32:36.000000000 +0900
-+++ src/ucommon-7.0.0/commoncpp/persist.cpp	2025-01-15 12:12:42.800666700 +0900
+--- origsrc/ucommon-7.0.0/commoncpp/persist.cpp	2015-10-11 02:32:36.000000000 +0000
++++ src/ucommon-7.0.0/commoncpp/persist.cpp	2026-11-20 16:05:22.707519700 +0000
 @@ -114,7 +114,7 @@ TypeManager::registration::~registration
      TypeManager::remove(myName.c_str());
  }
@@ -110,8 +110,8 @@
  {
    uint32_t len = 0;
    read(len);
---- origsrc/ucommon-7.0.0/commoncpp/udp.cpp	2015-11-03 17:30:33.000000000 +0900
-+++ src/ucommon-7.0.0/commoncpp/udp.cpp	2025-01-15 11:04:27.602953700 +0900
+--- origsrc/ucommon-7.0.0/commoncpp/udp.cpp	2015-11-03 08:30:33.000000000 +0000
++++ src/ucommon-7.0.0/commoncpp/udp.cpp	2026-11-20 16:05:22.707519700 +0000
 @@ -317,7 +317,7 @@ Socket::Error UDPSocket::join(const ucom
  Socket::Error UDPSocket::getInterfaceIndex(const char *DeviceName,int& InterfaceIndex)
  {
@@ -121,8 +121,8 @@
  
      struct ip_mreqn  mreqn;
      struct ifreq       m_ifreq;
---- origsrc/ucommon-7.0.0/configure.ac	2015-11-08 03:15:59.000000000 +0900
-+++ src/ucommon-7.0.0/configure.ac	2025-01-15 11:04:27.602953700 +0900
+--- origsrc/ucommon-7.0.0/configure.ac	2015-11-07 18:15:59.000000000 +0000
++++ src/ucommon-7.0.0/configure.ac	2026-11-20 16:05:22.709542000 +0000
 @@ -59,6 +59,7 @@ have_gettext="no"
  socket_lib=""
  posix4_lib=""
@@ -238,8 +238,8 @@
      UCOMMON_LINKED="$UCOMMON_LINKED -no-undefined"
      UCOMMON_LIBS="$UCOMMON_LIBS -no-undefined"
      ;;
---- origsrc/ucommon-7.0.0/corelib/Makefile.am	2015-10-21 23:04:40.000000000 +0900
-+++ src/ucommon-7.0.0/corelib/Makefile.am	2025-01-15 11:04:27.602953700 +0900
+--- origsrc/ucommon-7.0.0/corelib/Makefile.am	2015-10-21 14:04:40.000000000 +0000
++++ src/ucommon-7.0.0/corelib/Makefile.am	2026-11-20 16:05:22.709542000 +0000
 @@ -15,7 +15,7 @@ AM_CXXFLAGS = -I$(top_srcdir)/inc $(UCOM
  
  lib_LTLIBRARIES = libucommon.la 
@@ -249,8 +249,8 @@
  libucommon_la_SOURCES = object.cpp linked.cpp string.cpp mapped.cpp \
  	counter.cpp timer.cpp memory.cpp socket.cpp access.cpp \
  	thread.cpp fsys.cpp cpr.cpp reuse.cpp stream.cpp \
---- origsrc/ucommon-7.0.0/gnutls/Makefile.am	2015-12-13 20:28:25.000000000 +0900
-+++ src/ucommon-7.0.0/gnutls/Makefile.am	2025-01-15 11:04:27.602953700 +0900
+--- origsrc/ucommon-7.0.0/gnutls/Makefile.am	2015-12-13 11:28:25.000000000 +0000
++++ src/ucommon-7.0.0/gnutls/Makefile.am	2026-11-20 16:05:22.711562900 +0000
 @@ -17,7 +17,7 @@ noinst_HEADERS = local.h
  
  lib_LTLIBRARIES = libusecure.la
@@ -260,8 +260,8 @@
  libusecure_la_SOURCES = secure.cpp digest.cpp random.cpp cipher.cpp \
  	hmac.cpp sstream.cpp ../nossl/common.cpp
  
---- origsrc/ucommon-7.0.0/inc/commoncpp/persist.h	2015-10-11 11:32:36.000000000 +0900
-+++ src/ucommon-7.0.0/inc/commoncpp/persist.h	2025-01-15 12:12:20.699660800 +0900
+--- origsrc/ucommon-7.0.0/inc/commoncpp/persist.h	2015-10-11 02:32:36.000000000 +0000
++++ src/ucommon-7.0.0/inc/commoncpp/persist.h	2026-11-20 16:05:22.713577000 +0000
 @@ -46,7 +46,7 @@ public:
      PersistException(const std::string& reason);
      const std::string& getString() const;
@@ -544,8 +544,8 @@
  {
      ar >> ob.first >> ob.second;
      return ar;
---- origsrc/ucommon-7.0.0/inc/ucommon/generics.h	2015-11-08 03:15:59.000000000 +0900
-+++ src/ucommon-7.0.0/inc/ucommon/generics.h	2025-01-15 12:00:37.718611500 +0900
+--- origsrc/ucommon-7.0.0/inc/ucommon/generics.h	2015-11-07 18:15:59.000000000 +0000
++++ src/ucommon-7.0.0/inc/ucommon/generics.h	2026-11-20 16:05:22.713577000 +0000
 @@ -33,7 +33,7 @@
  #include <cstring>
  #include <stdexcept>
@@ -555,8 +555,8 @@
  #define THROW(x)    throw x
  #define THROWS(x)   throw(x)
  #define THROWS_ANY  throw()
---- origsrc/ucommon-7.0.0/inc/ucommon/platform.h	2015-11-08 03:15:59.000000000 +0900
-+++ src/ucommon-7.0.0/inc/ucommon/platform.h	2025-01-15 11:04:27.602953700 +0900
+--- origsrc/ucommon-7.0.0/inc/ucommon/platform.h	2015-11-07 18:15:59.000000000 +0000
++++ src/ucommon-7.0.0/inc/ucommon/platform.h	2026-11-20 16:05:22.715598500 +0000
 @@ -294,7 +294,9 @@ typedef size_t socksize_t;
  
  #else
@@ -567,8 +567,8 @@
  #define __LOCAL     __attribute__ ((visibility("hidden")))
  #define __SHARED    __attribute__ ((visibility("default")))
  #endif
---- origsrc/ucommon-7.0.0/inc/ucommon/temporary.h	2015-10-21 23:04:40.000000000 +0900
-+++ src/ucommon-7.0.0/inc/ucommon/temporary.h	2025-01-15 12:00:01.924323300 +0900
+--- origsrc/ucommon-7.0.0/inc/ucommon/temporary.h	2015-10-21 14:04:40.000000000 +0000
++++ src/ucommon-7.0.0/inc/ucommon/temporary.h	2026-11-20 16:05:22.715598500 +0000
 @@ -53,7 +53,7 @@
  #include <cstring>
  #include <stdexcept>

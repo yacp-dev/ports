@@ -1,5 +1,5 @@
---- origsrc/libfishsound-1.0.1/configure.ac	2025-02-15 16:49:54.000000000 +0900
-+++ src/libfishsound-1.0.1/configure.ac	2025-03-08 13:28:37.665521200 +0900
+--- origsrc/libfishsound-1.0.1/configure.ac	2025-02-15 07:49:54.000000000 +0000
++++ src/libfishsound-1.0.1/configure.ac	2026-11-20 16:12:44.822906100 +0000
 @@ -48,9 +48,14 @@ AC_CHECK_TYPES([uintptr_t])
  AC_CHECK_PROG(HAVE_PKG_CONFIG, pkg-config, yes)
  PKG_PROG_PKG_CONFIG
@@ -16,8 +16,8 @@
  if test $HAVE_DOXYGEN = "false"; then
               AC_MSG_WARN([*** doxygen not found, docs will not be built])
  fi
---- origsrc/libfishsound-1.0.1/src/examples/Makefile.am	2025-02-15 16:49:54.000000000 +0900
-+++ src/libfishsound-1.0.1/src/examples/Makefile.am	2025-03-08 13:32:29.201114500 +0900
+--- origsrc/libfishsound-1.0.1/src/examples/Makefile.am	2025-02-15 07:49:54.000000000 +0000
++++ src/libfishsound-1.0.1/src/examples/Makefile.am	2026-11-20 16:12:44.824915500 +0000
 @@ -25,8 +25,8 @@ endif
  endif
  
@@ -29,8 +29,8 @@
  
  fishsound_identify_SOURCES = fishsound-identify.c
  fishsound_identify_LDADD = $(FISHSOUND_LIBS) $(OGGZ_LIBS)
---- origsrc/libfishsound-1.0.1/src/libfishsound/Makefile.am	2025-02-15 16:49:54.000000000 +0900
-+++ src/libfishsound-1.0.1/src/libfishsound/Makefile.am	2025-03-08 13:27:33.823232600 +0900
+--- origsrc/libfishsound-1.0.1/src/libfishsound/Makefile.am	2025-02-15 07:49:54.000000000 +0000
++++ src/libfishsound-1.0.1/src/libfishsound/Makefile.am	2026-11-20 16:12:44.824915500 +0000
 @@ -29,5 +29,5 @@ libfishsound_la_SOURCES = \
  	flac.c \
  	fs_vector.c

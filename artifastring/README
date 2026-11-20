@@ -7,16 +7,16 @@ synthesis.
 Runtime requirements:
   cygwin-3.6.12-1
   cygwin-devel-3.6.12-1
-  libartifastring-devel-2.4-1bl2
-  libartifastring0-2.4-1bl2
+  libartifastring-devel-2.4-1bl3
+  libartifastring0-2.4-1bl3
   libfftw3-devel-3.3.11-1
   libfftw3_3-3.3.11-1
   libgcc1-14.4.0-1
   libstdc++6-14.4.0-1
   pkg-config-3.0.10-1
-  python-artifastring-2.4-1bl2
   python3-3.12.12-1
   python312-3.12.12-1
+  python312-artifastring-2.4-1bl3
   python312-numpy-2.5.4-1
 
 Build requirements:
@@ -55,7 +55,7 @@ This will create:
   /usr/src/artifastring-2.4-X.tar.xz
   /usr/src/libartifastring0-2.4-X.tar.xz
   /usr/src/libartifastring-devel-2.4-X.tar.xz
-  /usr/src/python-artifastring-2.4-X.tar.xz
+  /usr/src/python312-artifastring-2.4-X.tar.xz
 
 -------------------------------------------
 
@@ -104,7 +104,7 @@ Files included in the binary package:
   /usr/lib/pkgconfig/artifastring.pc
   /usr/lib/pkgconfig/monowav.pc
 
-(python-artifastring)
+(python312-artifastring)
   /usr/lib/python3.12/site-packages/__pycache__/actions_file.cpython-312.opt-1.pyc
   /usr/lib/python3.12/site-packages/__pycache__/actions_file.cpython-312.opt-2.pyc
   /usr/lib/python3.12/site-packages/__pycache__/actions_file.cpython-312.pyc
@@ -153,6 +153,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.4-1bl3 -----
+Rename python-artifastring to python312-artifastring
 
 ----- version 2.4-1bl2 -----
 Rebuild with gcc-14.4.0

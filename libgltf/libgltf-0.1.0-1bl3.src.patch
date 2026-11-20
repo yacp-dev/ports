@@ -1,5 +1,5 @@
---- origsrc/libgltf-0.1.0/configure.ac	2025-01-27 08:21:54.721057300 +0900
-+++ src/libgltf-0.1.0/configure.ac	2025-01-27 08:23:43.169095800 +0900
+--- origsrc/libgltf-0.1.0/configure.ac	2026-11-20 23:30:16.669271900 +0000
++++ src/libgltf-0.1.0/configure.ac	2026-11-20 23:30:16.926364600 +0000
 @@ -174,8 +174,6 @@ AC_SUBST(DEBUG_CXXFLAGS)
  # ==========
  # Unit tests

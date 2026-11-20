@@ -3,27 +3,30 @@ libgltf
 LIBGLTF is a C++ library for rendering OpenGL models stored in glTF format.
 
 Runtime requirements:
-  cygwin-3.5.6-1
+  cygwin-3.6.12-1
   libepoxy-devel-1.4.3-1
   libepoxy0-1.4.3-1
-  libgcc1-12.4.0-3
-  libgltf0.1-devel-0.1.0-1bl2
-  libgltf0.1_1-0.1.0-1bl2
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  libgcc1-14.4.0-1
+  libgltf0.1-devel-0.1.0-1bl3
+  libgltf0.1_1-0.1.0-1bl3
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  glm-devel-0.9.9.5-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cppunit-1.13.2-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  glm-devel-1.0.3-1
+  libGL-devel-23.3.6-1
+  libX11-devel-1.8.13-1
   libboost-devel-1.66.0-1
   libepoxy-devel-1.4.3-1
-  libtool-2.5.4-1
+  libpng-devel-1.6.59-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -72,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1.0-1bl2 -----
 Rebuild with gcc-12.4.0

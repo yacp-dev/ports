@@ -5,40 +5,41 @@ enables to exchange structured objects between many languages like JSON. But
 unlike JSON, it is very fast and small.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libmsgpack-c-devel-6.1.0-1bl1
-  libmsgpack-c2-6.1.0-1bl1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libmsgpack-c-devel-7.0.2-1bl1
+  libmsgpack-c2-7.0.2-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://msgpack.org/
 
 Canonical download:
-  https://github.com/msgpack/msgpack-c/archive/refs/tags/c-6.1.0.tar.gz
+  https://github.com/msgpack/msgpack-c/archive/refs/tags/c-7.0.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack msgpack-6.1.0-X-src.tar.xz
+  1. unpack msgpack-7.0.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./msgpack-6.1.0-X.cygport all
+        % cygport ./msgpack-7.0.2-X.cygport all
 
 This will create:
-  /usr/src/msgpack-6.1.0-X-src.tar.xz
-  /usr/src/msgpack-6.1.0-X.tar.xz
-  /usr/src/libmsgpack-c2-6.1.0-X.tar.xz
-  /usr/src/libmsgpack-c-devel-6.1.0-X.tar.xz
+  /usr/src/msgpack-7.0.2-X-src.tar.xz
+  /usr/src/msgpack-7.0.2-X.tar.xz
+  /usr/src/libmsgpack-c2-7.0.2-X.tar.xz
+  /usr/src/libmsgpack-c-devel-7.0.2-X.tar.xz
 
 -------------------------------------------
 
@@ -77,7 +78,7 @@ Files included in the binary package:
   /usr/include/msgpack/zone.h
   /usr/lib/cmake/msgpack-c/msgpack-c-config-version.cmake
   /usr/lib/cmake/msgpack-c/msgpack-c-config.cmake
-  /usr/lib/cmake/msgpack-c/msgpack-c-targets-release.cmake
+  /usr/lib/cmake/msgpack-c/msgpack-c-targets-relwithdebinfo.cmake
   /usr/lib/cmake/msgpack-c/msgpack-c-targets.cmake
   /usr/lib/libmsgpack-c.dll.a
   /usr/lib/pkgconfig/msgpack-c.pc
@@ -85,6 +86,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 7.0.2-1bl1 -----
+Version bump.
 
 ----- version 6.1.0-1bl1 -----
 Version bump.

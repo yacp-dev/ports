@@ -13,6 +13,11 @@ LICENSE="BSL-1.0"
 LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
 LICENSE_URI="LICENSE_1_0.txt"
 
+BUILD_REQUIRES="
+	libgtest-devel
+	zlib-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
@@ -25,6 +30,12 @@ DOCS="
 	CHANGELOG.md
 	LICENSE_1_0.txt
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${PATH} ninja_test
+}
 
 PKG_NAMES="
 	${PN}

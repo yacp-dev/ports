@@ -5,21 +5,21 @@ Manchester-Biphase encoded audio signal. The audio signal is commonly recorded
 on a VTR track or other storage media.
 
 Runtime requirements:
-  cygwin-3.3.6-1
-  cygwin-devel-3.3.6-1
-  libltc-devel-1.3.2-1bl1
-  libltc11-1.3.2-1bl1
-  pkg-config-1.9.3-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libltc-devel-1.3.2-1bl2
+  libltc11-1.3.2-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.39-1
-  cygport-0.35.4-1
-  gcc-core-11.3.0-1
-  libtool-2.4.7-1
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/x42/libltc
@@ -65,6 +65,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.3.2-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.3.2-1bl1 -----
 Version bump.

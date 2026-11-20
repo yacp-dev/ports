@@ -1,0 +1,11 @@
+--- origsrc/CSSC-1.4.1/unit-tests/test_encoding2.cc	2019-05-07 11:40:13.000000000 +0000
++++ src/CSSC-1.4.1/unit-tests/test_encoding2.cc	2026-11-20 21:57:44.774567842 +0000
+@@ -32,7 +32,7 @@ TEST(EncodingTest, ShortInput)
+   // Hence we had a problem if the input was only 2 bytes (specificaly
+   // a branch on uninitialised data detected by valgrind).
+   char *in = (char*)malloc(3);
+-  char out[6];
++  char out[16];
+ 
+   in[0] = '%';
+   in[1] = 'A';

@@ -1,0 +1,63 @@
+--- origsrc/lttoolbox-3.8.3/CMakeLists.txt	2026-05-07 17:02:21.000000000 +0000
++++ src/lttoolbox-3.8.3/CMakeLists.txt	2026-11-20 22:22:48.242278000 +0000
+@@ -1,5 +1,4 @@
+ cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+-cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
+ project(lttoolbox
+ 	VERSION 3.8.3
+ 	LANGUAGES CXX C
+@@ -43,7 +42,7 @@ else()
+ 	include(CheckCCompilerFlag)
+ 	include(CheckCXXCompilerFlag)
+ 
+-	foreach(flag "-Wno-unused-result" "-flto")
++	foreach(flag "-Wno-unused-result")
+ 		string(REGEX REPLACE "[^A-Za-z0-9]" "-" _flag ${flag})
+ 		CHECK_CXX_COMPILER_FLAG(${flag} COMPILER_SUPPORTS_${_flag})
+ 		if(COMPILER_SUPPORTS_${_flag})
+--- origsrc/lttoolbox-3.8.3/lttoolbox/cli.cc	2026-05-07 17:02:21.000000000 +0000
++++ src/lttoolbox-3.8.3/lttoolbox/cli.cc	2026-11-20 22:22:48.244037200 +0000
+@@ -124,7 +124,7 @@ void CLI::parse_args(int argc, char* arg
+   prog_name = basename(argv[0]);
+   std::string arg_str;
+ #if HAVE_GETOPT_LONG
+-  std::vector<struct option> long_options(options.size());
++  std::vector<struct option> long_options(options.size() + 1);
+   int option_index = 0;
+ #endif
+   for (size_t i = 0; i < options.size(); i++) {
+--- origsrc/lttoolbox-3.8.3/lttoolbox/fst_processor.cc	2026-05-07 17:02:21.000000000 +0000
++++ src/lttoolbox-3.8.3/lttoolbox/fst_processor.cc	2026-11-20 22:22:48.244037200 +0000
+@@ -255,6 +255,8 @@ FSTProcessor::readTMAnalysis(InputFile&
+   if(input.eof())
+   {
+     return 0;
++  } else if(val == U_EOF) {
++    val = 0;
+   }
+ 
+   if(escaped_chars.find(val) != escaped_chars.end() || u_isdigit(val))
+@@ -798,6 +800,7 @@ FSTProcessor::analysis(InputFile& input,
+   if(getNullFlush())
+   {
+     analysis_wrapper_null_flush(input, output);
++    return;
+   }
+ 
+   bool last_incond = false;
+@@ -1102,6 +1105,7 @@ FSTProcessor::tm_wrapper_null_flush(Inpu
+     tm_analysis(input, output, tm_mode);
+     u_fputc('\0', output);
+     u_fflush(output);
++    while (!input_buffer.isEmpty()) input_buffer.next();
+   }
+ }
+ 
+@@ -1112,6 +1116,7 @@ FSTProcessor::tm_analysis(InputFile& inp
+   if(getNullFlush())
+   {
+     tm_wrapper_null_flush(input, output, tm_mode);
++    return;
+   }
+ 
+   State current_state = initial_state;

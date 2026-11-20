@@ -6,30 +6,31 @@ like cats into its lemma cat and the grammatical information <n><pl>.
 Generation is the opposite process.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
   libicu76-76.1-2
-  liblttoolbox-devel-3.8.3-1bl1
-  liblttoolbox3-3.8.3-1bl1
-  libstdc++6-13.4.0-1
-  libxml2-2.10.4-2
-  pkg-config-2.5.1-1
-  python39-3.9.16-1
+  libintl8-0.26-1
+  liblttoolbox-devel-3.8.3-1bl2
+  liblttoolbox3-3.8.3-1bl2
+  libstdc++6-14.4.0-1
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.10-1
+  python312-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libboost-devel-1.66.0-1
   libicu-devel-76.1-2
-  libxml2-devel-2.10.4-2
+  libxml2-devel-2.13.9-3
   ninja-1.13.2-1
-  python39-3.9.16-1
-  python39-devel-3.9.16-1
-  swig-4.4.1-1
-  utf8cpp-devel-4.1.1-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  swig-4.5.1-1
+  utf8cpp-devel-5.0.0-1
 
 Canonical website:
   https://github.com/apertium/lttoolbox
@@ -51,7 +52,7 @@ This will create:
   /usr/src/lttoolbox-3.8.3-X.tar.xz
   /usr/src/liblttoolbox3-3.8.3-X.tar.xz
   /usr/src/liblttoolbox-devel-3.8.3-X.tar.xz
-  /usr/src/python39-lttoolbox-3.8.3-X.tar.xz
+  /usr/src/python312-lttoolbox-3.8.3-X.tar.xz
 
 -------------------------------------------
 
@@ -138,20 +139,23 @@ Files included in the binary package:
   /usr/lib/liblttoolbox.dll.a
   /usr/lib/pkgconfig/lttoolbox.pc
 
-(python39-lttoolbox)
-  /usr/lib/python3.9/site-packages/__pycache__/lttoolbox.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/lttoolbox.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/lttoolbox.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/_lttoolbox.cpython-39-x86_64-cygwin.dll
-  /usr/lib/python3.9/site-packages/lttoolbox-3.8.3-py3.9.egg-info/PKG-INFO
-  /usr/lib/python3.9/site-packages/lttoolbox-3.8.3-py3.9.egg-info/SOURCES.txt
-  /usr/lib/python3.9/site-packages/lttoolbox-3.8.3-py3.9.egg-info/dependency_links.txt
-  /usr/lib/python3.9/site-packages/lttoolbox-3.8.3-py3.9.egg-info/top_level.txt
-  /usr/lib/python3.9/site-packages/lttoolbox.py
+(python312-lttoolbox)
+  /usr/lib/python3.12/site-packages/__pycache__/lttoolbox.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/lttoolbox.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/lttoolbox.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/_lttoolbox.cpython-312-x86_64-cygwin.dll
+  /usr/lib/python3.12/site-packages/lttoolbox-3.8.3-py3.12.egg-info/PKG-INFO
+  /usr/lib/python3.12/site-packages/lttoolbox-3.8.3-py3.12.egg-info/SOURCES.txt
+  /usr/lib/python3.12/site-packages/lttoolbox-3.8.3-py3.12.egg-info/dependency_links.txt
+  /usr/lib/python3.12/site-packages/lttoolbox-3.8.3-py3.12.egg-info/top_level.txt
+  /usr/lib/python3.12/site-packages/lttoolbox.py
 
 ------------------
 
 Port Notes:
+
+----- version 3.8.3-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.8.3-1bl1 -----
 Version bump.

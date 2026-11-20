@@ -6,42 +6,39 @@ however, SFCB can take advantage of the LocalConnect interface for improved
 performance (no XML encoding/decoding overhead).
 
 Runtime requirements:
-  cygwin-1.7.17-1
-  libcurl-devel-7.29.0-1
-  libcurl4-7.29.0-1
-  libgcc1-4.5.3-3
+  cygwin-3.6.12-1
+  libcimcclient0-2.2.8-1bl1
+  libcurl4-8.23.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-10-1
-  automake-7-1
-  binutils-2.23.51-1
-  cygport-0.11.3-1
-  gawk-4.0.1-1
-  gcc4-core-4.5.3-3
-  libtool-2.4-1
-  make-3.82.90-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcurl-devel-8.23.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
-  http://sourceforge.net/apps/mediawiki/sblim/index.php?title=Sfcc
+  https://sourceforge.net/projects/sblim/
 
 Canonical download:
-  mirror://sourceforge/sblim/sblim-sfcc-2.2.5.tar.bz2
+  mirror://sourceforge/sblim/sblim-sfcc-2.2.8.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  unpack sblim-sfcc-2.2.5-X-src.tar.bz2
-    if you use setup to install this src package, it will be
-         unpacked under /usr/src automatically
-  cd /usr/src
-  cygport ./sblim-sfcc-2.2.5-X.cygport all
+  1. unpack sblim-sfcc-2.2.8-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./sblim-sfcc-2.2.8-X.cygport all
 
 This will create:
-  /usr/src/sblim-sfcc-2.2.5-X-src.tar.bz2
-  /usr/src/sblim-sfcc-2.2.5-X.tar.bz2
-  /usr/src/libcimcclient0-2.2.5-X.tar.bz2
-  /usr/src/libcimcclient-devel-2.2.5-X.tar.bz2
+  /usr/src/sblim-sfcc-2.2.8-X-src.tar.xz
+  /usr/src/sblim-sfcc-2.2.8-X.tar.xz
+  /usr/src/libcimcclient0-2.2.8-X.tar.xz
+  /usr/src/libcimcclient-devel-2.2.8-X.tar.xz
 
 -------------------------------------------
 
@@ -70,11 +67,8 @@ Files included in the binary package:
   /usr/include/cimc/cimcdt.h
   /usr/include/cimc/cimcft.h
   /usr/lib/libcimcClientXML.dll.a
-  /usr/lib/libcimcClientXML.la
   /usr/lib/libcimcclient.dll.a
-  /usr/lib/libcimcclient.la
   /usr/lib/libcmpisfcc.dll.a
-  /usr/lib/libcmpisfcc.la
   /usr/share/man/man3/CMCIClient.3.gz
   /usr/share/man/man3/CMCIClientFT.associatorNames.3.gz
   /usr/share/man/man3/CMCIClientFT.associators.3.gz
@@ -107,6 +101,5 @@ Files included in the binary package:
 
 Port Notes:
 
------ version 2.2.5-1bl1 -----
-Initial release for Cygwin-1.7 by fd0 <http://fd0.hatenablog.jp/>
-
+----- version 2.2.8-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

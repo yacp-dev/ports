@@ -3,32 +3,31 @@ stoken
 RSA SecurID-compatible software token for Linux/UNIX systems
 
 Runtime requirements:
-  cygwin-3.6.0-0.212.g6af8fea4bbad
-  libcairo2-1.17.4-1
-  libglib2.0_0-2.64.6-1
-  libgtk3_0-3.24.43-1
-  libstoken-devel-0.93-1bl1
-  libstoken1-0.93-1bl1
-  libtomcrypt-devel-1.18.2-1bl2
-  libtomcrypt1-1.18.2-1bl2
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libcairo2-1.18.6-1
+  libglib2.0_0-2.90.1-1
+  libgtk3_0-3.24.52-1
+  libstoken-devel-0.93-1bl2
+  libstoken1-0.93-1bl2
+  libtomcrypt-devel-1.18.2-1bl3
+  libtomcrypt1-1.18.2-1bl3
+  libxml2-devel-2.13.9-3
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libcairo-devel-1.17.4-1
-  libglib2.0-devel-2.64.6-1
-  libgtk3-devel-3.24.43-1
-  libtomcrypt-devel-1.18.2-1bl2
-  libtool-2.5.3-1
-  libxml2-devel-2.10.4-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libcairo-devel-1.18.6-1
+  libglib2.0-devel-2.90.1-1
+  libgtk3-devel-3.24.52-1
+  libtomcrypt-devel-1.18.2-1bl3
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-3
   make-4.4.1-2
 
 Canonical website:
@@ -87,6 +86,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.93-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.93-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

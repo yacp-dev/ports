@@ -9,7 +9,13 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING.LIB"
 
-BUILD_REQUIRES="libcairo-devel libglib2.0-devel libgtk3-devel libtomcrypt-devel libxml2-devel"
+BUILD_REQUIRES="
+	libcairo-devel
+	libglib2.0-devel
+	libgtk3-devel
+	libtomcrypt-devel
+	libxml2-devel
+"
 
 PKG_NAMES="
 	stoken

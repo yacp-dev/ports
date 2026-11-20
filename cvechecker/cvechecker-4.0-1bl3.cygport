@@ -1,9 +1,9 @@
 HOMEPAGE="https://github.com/sjvermeu/${PN}"
 SRC_URI="https://github.com/sjvermeu/${PN}/archive/refs/tags/${P}.tar.gz"
-SRC_DIR="${PN}-${P}"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-c99.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/d025b04da9886d61273e78efdfa43cacedc11cb5/f/${PN}-c99.patch
 "
+SRC_DIR="${PN}-${P}"
 
 CATEGORY="Security"
 SUMMARY="Command-line utility to scan the system and report on potential vulnerabilities, based on public CVE data"
@@ -17,10 +17,11 @@ coverage."
 
 LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
-LICENSE_URI="COPYING"
+LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	libargp-devel
+	libbsd-devel
 	libconfig-devel
 	libmariadb-devel
 	libsqlite3-devel
@@ -32,3 +33,10 @@ CYGCONF_ARGS="
 	--enable-mysql
 	--enable-sqlite3
 "
+
+src_test()
+{
+	cd ${B}
+	export CVECHECKER_CONFFILE=${B}/conf/cvechecker.conf
+	verbose ./src/${PN}.exe --version
+}

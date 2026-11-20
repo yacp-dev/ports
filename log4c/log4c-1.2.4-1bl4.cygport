@@ -1,5 +1,9 @@
 HOMEPAGE="https://sourceforge.net/projects/${PN}/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/l/log4c/1.2.4-6/debian/patches/12_format.diff
+	https://src.fedoraproject.org/rpms/log4c/raw/c0547f1ca7d66a89c2ab37d002398a15b10072eb/f/reinit.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Logging for C Library"
@@ -7,17 +11,26 @@ DESCRIPTION="Log4c is a C language library for flexible logging to files, syslog
 destinations. It is modeled after the Log for Java library (log4j), staying as
 close to their API as is reasonable."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libexpat-devel"
-
-export CFLAGS="${CFLAGS//-Werror=format-security/}"
+BUILD_REQUIRES="
+	libexpat-devel
+"
 
 CYGCONF_ARGS="
 	--enable-test
 "
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	docinto sample
+	dodoc ${D}/etc/log4crc.sample
+	verbose rm -rf ${D}/etc
+}
 
 PKG_NAMES="
 	${PN}
@@ -28,7 +41,6 @@ log4c_CONTENTS="
 	usr/share/doc
 "
 liblog4c3_CONTENTS="
-	etc
 	usr/bin/cyg*-3.dll
 "
 liblog4c_devel_CONTENTS="

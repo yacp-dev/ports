@@ -5,25 +5,22 @@ destinations. It is modeled after the Log for Java library (log4j), staying as
 close to their API as is reasonable.
 
 Runtime requirements:
-  bash-5.2.15-3
-  cygwin-3.5.0-0.438.g322c7150b25e
-  libexpat1-2.5.0-1
-  liblog4c-devel-1.2.4-1bl3
-  liblog4c3-1.2.4-1bl3
-  pkg-config-2.0.3-1
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libexpat1-2.10.0-1
+  liblog4c-devel-1.2.4-1bl4
+  liblog4c3-1.2.4-1bl4
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  bison-3.8.2-1
-  cygport-0.36.6-1
-  flex-2.6.4-2
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libexpat-devel-2.5.0-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libexpat-devel-2.10.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -59,9 +56,9 @@ Files included in the binary package:
   /usr/share/doc/log4c/NEWS
   /usr/share/doc/log4c/README
   /usr/share/doc/log4c/TODO
+  /usr/share/doc/log4c/sample/log4crc.sample
 
 (liblog4c3)
-  /etc/log4crc.sample
   /usr/bin/cyglog4c-3.dll
 
 (liblog4c-devel)
@@ -100,6 +97,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.4-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.2.4-1bl3 -----
 Rebuild with gcc-11.4.0

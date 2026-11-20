@@ -7,7 +7,16 @@ DESCRIPTION="Communi is a cross-platform IRC framework written with Qt. Communi 
 set of tools for enabling IRC connectivity in Qt-based C++ and QML
 applications."
 
-BUILD_REQUIRES="libQt5Core-devel libQt5Quick-devel libuchardet-devel"
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libGL-devel
+	libQt5Core-devel
+	libQt5Quick-devel
+	libuchardet-devel
+"
 
 inherit qt5-qmake
 
@@ -30,7 +39,7 @@ libcommuni_CONTENTS="
 	usr/share/doc
 "
 libcommuni3_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-3.dll
 "
 libcommuni_devel_CONTENTS="
 	usr/include

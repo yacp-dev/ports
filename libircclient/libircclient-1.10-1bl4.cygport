@@ -1,5 +1,10 @@
 HOMEPAGE="https://www.ulduzsoft.com/${PN}/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/libi/libircclient/1.10-1/debian/patches/fix-ipv6-socaddr.patch
+	https://src.fedoraproject.org/rpms/libircclient/raw/dec492fa80a1e900916c72031ccb16c02519a479/f/libircclient-rfc.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/0ad96e879b651cc7e8214159d5841d6b633bef8a/net-libs/libircclient/files/libircclient-1.10-openssl.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Small but powerful library implementing the client-server IRC protocol"
@@ -8,11 +13,13 @@ client IRC protocol. It is designed to be small, fast, portable and compatible
 with the RFC standards as well as non-standard but popular features. It is
 perfect for building the IRC clients and bots."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="LGPL-2.0-or-later OR LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later OR LGPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libssl-devel"
+BUILD_REQUIRES="
+	libssl-devel
+"
 
 CYGCONF_ARGS="
 	--enable-ipv6
@@ -22,6 +29,15 @@ CYGCONF_ARGS="
 DIFF_EXCLUDES="
 	Makefile
 "
+
+src_test()
+{
+	cd ${B}/examples
+	local rc=0 out
+	out=$(PATH=${B}/src/.libs:${PATH} ./irctest.exe 2>&1) || rc=$?
+	echo "${out}"
+	[ ${rc} -eq 1 ] && echo "${out}" | grep -q '^Usage: '
+}
 
 PKG_NAMES="
 	${PN}

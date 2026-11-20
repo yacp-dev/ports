@@ -5,24 +5,24 @@ set of tools for enabling IRC connectivity in Qt-based C++ and QML
 applications.
 
 Runtime requirements:
-  cygwin-3.3.5-1
+  cygwin-3.6.12-1
   libQt5Core5-5.9.4-2
   libQt5Quick5-5.9.4-1
-  libcommuni3-3.7.0-1bl1
-  libgcc1-11.3.0-1
-  libstdc++6-11.3.0-1
-  libuchardet0-0.0.6-1
+  libcommuni3-3.7.0-1bl2
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libuchardet0-0.0.8-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cygport-0.35.0-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libGL-devel-23.3.6-1
   libQt5Core-devel-5.9.4-2
   libQt5Quick-devel-5.9.4-1
-  libuchardet-devel-0.0.6-1
-  make-4.3-1
+  libuchardet-devel-0.0.8-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/communi/libcommuni
@@ -118,6 +118,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.7.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.7.0-1bl1 -----
 Version bump.

@@ -1,0 +1,53 @@
+crcpp
+------------------------------------------
+CRC++ is a portable and lightweight C++ CRC library.
+
+Runtime requirements:
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/d-bahr/CRCpp
+
+Canonical download:
+  https://github.com/d-bahr/CRCpp/archive/refs/tags/release-1.2.3.0.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack crcpp-1.2.3.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./crcpp-1.2.3.0-X.cygport all
+
+This will create:
+  /usr/src/crcpp-1.2.3.0-X-src.tar.xz
+  /usr/src/crcpp-1.2.3.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(crcpp)
+  /usr/include/CRC.h
+  /usr/lib/cmake/crcpp/CRCppConfig.cmake
+  /usr/lib/cmake/crcpp/CRCppConfigVersion.cmake
+  /usr/lib/cmake/crcpp/CRCppTargets.cmake
+  /usr/lib/cps/CRCpp.cps
+  /usr/lib/pkgconfig/CRCpp.pc
+  /usr/share/doc/Cygwin/crcpp.README
+  /usr/share/doc/crcpp/LICENSE
+  /usr/share/doc/crcpp/README.md
+
+------------------
+
+Port Notes:
+
+----- version 1.2.3.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

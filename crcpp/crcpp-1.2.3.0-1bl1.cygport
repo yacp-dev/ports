@@ -1,0 +1,29 @@
+HOMEPAGE="https://github.com/d-bahr/CRCpp"
+SRC_URI="https://github.com/d-bahr/CRCpp/archive/refs/tags/release-${PV}.tar.gz"
+SRC_DIR="CRCpp-release-${PV}"
+
+CATEGORY="Devel"
+SUMMARY="Easy to use and fast C++ CRC library"
+DESCRIPTION="CRC++ is a portable and lightweight C++ CRC library."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_INSTALL_DATADIR:PATH=lib
+"
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	sed -i -e 's|prefix=${pcfiledir}/../..|prefix=/usr|' ${D}/usr/lib/pkgconfig/CRCpp.pc
+}
+
+DOCS="
+	README.md
+"

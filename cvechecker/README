@@ -4,28 +4,28 @@ The goal of cvechecker is to report about possible vulnerabilities on your
 system, by scanning a list of installed software and matching results with the
 CVE database. This is not a bullet-proof method and you will have many false
 positives (ie: vulnerability is fixed with a revision-release, but the tool
-isn't able to detect the revision itself), yet it is still better than
-nothing, especially if you are running a distribution with little security
-coverage.
+isn't able to detect the revision itself), yet it is still better than nothing,
+especially if you are running a distribution with little security coverage.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.9-1
+  cygwin-3.6.12-1
   libargp-20250917-2
-  libconfig15-1.8.2-1bl1
-  libmariadb3-3.0.9-1
+  libconfig15-1.8.3-1bl1
+  libmariadb3-3.3.19-1
   libsqlite3_0-3.49.1-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  automake-20250528-1
-  binutils-2.46.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
   libargp-devel-20250917-2
-  libconfig-devel-1.8.2-1bl1
-  libmariadb-devel-3.0.9-1
+  libbsd-devel-0.12.2-5
+  libconfig-devel-1.8.3-1bl1
+  libmariadb-devel-3.3.19-1
   libsqlite3-devel-3.49.1-1
   make-4.4.1-2
 
@@ -80,6 +80,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 4.0-1bl2 -----
 Rebuild for libconfig

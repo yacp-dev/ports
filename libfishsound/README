@@ -4,28 +4,28 @@ libfishsound provides a simple programming interface for decoding and encoding
 audio data using the Xiph.org codecs (FLAC, Speex and Vorbis).
 
 Runtime requirements:
-  cygwin-3.5.7-1
-  libFLAC12-1.4.3-1
-  libfishsound-devel-1.0.1-1bl1
-  libfishsound1-1.0.1-1bl1
-  liboggz2-1.1.1-1bl1
+  cygwin-3.6.12-1
+  libFLAC14-1.5.0-1
+  libfishsound-devel-1.0.1-1bl2
+  libfishsound1-1.0.1-1bl2
+  liboggz2-1.1.3-1bl2
   libsndfile1-1.2.2-2
   libspeex1-1.2.1-1
   libvorbis0-1.3.7-1
   libvorbisenc2-1.3.7-1
-  pkg-config-2.3.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  flac-devel-1.4.3-1
-  gcc-core-12.4.0-3
-  liboggz-devel-1.1.1-1bl1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  flac-devel-1.5.0-1
+  gcc-core-14.4.0-1
+  liboggz-devel-1.1.3-1bl2
   libsndfile-devel-1.2.2-2
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   libvorbis-devel-1.3.7-1
   make-4.4.1-2
   speex-devel-1.2.1-1
@@ -85,6 +85,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.1-1bl1 -----
 Version bump.

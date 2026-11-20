@@ -10,7 +10,13 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="flac-devel liboggz-devel libsndfile-devel libvorbis-devel speex-devel"
+BUILD_REQUIRES="
+	flac-devel
+	liboggz-devel
+	libsndfile-devel
+	libvorbis-devel
+	speex-devel
+"
 
 PKG_NAMES="
 	${PN}

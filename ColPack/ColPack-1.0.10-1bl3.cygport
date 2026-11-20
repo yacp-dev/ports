@@ -29,6 +29,14 @@ DIFF_EXCLUDES="
 	Makefile
 "
 
+src_test()
+{
+	cd ${B}
+	ln -sf ${S}/Graphs .
+	cygtest
+	rm -f Graphs
+}
+
 PKG_NAMES="
 	${PN}
 	lib${PN}0

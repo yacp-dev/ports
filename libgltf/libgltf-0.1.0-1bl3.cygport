@@ -12,7 +12,15 @@ LICENSE="MPL-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: MPL-2.0"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="glm-devel libboost-devel libepoxy-devel"
+BUILD_REQUIRES="
+	cppunit
+	glm-devel
+	libboost-devel
+	libepoxy-devel
+	libGL-devel
+	libpng-devel
+	libX11-devel
+"
 
 CYGCONF_ARGS="
 	--enable-tests=yes

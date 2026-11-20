@@ -1,5 +1,5 @@
---- origsrc/libgssglue-libgssglue-0.9/src/g_initialize.c	2024-02-01 03:29:23.000000000 +0900
-+++ src/libgssglue-libgssglue-0.9/src/g_initialize.c	2024-02-14 20:46:48.925965100 +0900
+--- origsrc/libgssglue-libgssglue-0.9/src/g_initialize.c	2024-01-31 18:29:23.000000000 +0000
++++ src/libgssglue-libgssglue-0.9/src/g_initialize.c	2026-11-20 15:40:24.092260500 +0000
 @@ -69,7 +69,7 @@
  static void     solaris_initialize(void);
  #endif				/* USE_SOLARIS_SHARED_LIBRARIES */

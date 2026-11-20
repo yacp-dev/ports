@@ -5,15 +5,22 @@ CATEGORY="Libs"
 SUMMARY="Industry-standard navigation-mesh toolset for games"
 DESCRIPTION="Recast is state of the art navigation mesh construction toolset for games."
 
-LICENSE="Zlib"
-LICENSE_SPDX="SPDX-License-Identifier: Zlib"
+LICENSE="Zlib AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: Zlib AND MIT"
 LICENSE_URI="License.txt"
 
-BUILD_REQUIRES="libGL-devel libGLU-devel libSDL2-devel"
+BUILD_REQUIRES="
+	libGL-devel
+	libGLU-devel
+	libSDL2-devel
+"
+
+export CXXFLAGS="${CXXFLAGS} -include cstring"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DBUILD_SHARED_LIBS:BOOL=ON
 "
 

@@ -3,28 +3,27 @@ recastnavigation
 Recast is state of the art navigation mesh construction toolset for games.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libGL1-19.1.6-1
-  libGLU1-9.0.2-1
-  libSDL2_2.0_0-2.30.8-1
-  libgcc1-12.4.0-3
-  librecastnavigation-devel-1.6.0-1bl1
-  librecastnavigation1-1.6.0-1bl1
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libGL1-23.3.6-1
+  libGLU1-9.0.3-1
+  libSDL2_2.0_0-2.32.74-1
+  libgcc1-14.4.0-1
+  librecastnavigation-devel-1.6.0-1bl2
+  librecastnavigation1-1.6.0-1bl2
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libGL-devel-19.1.6-1
-  libGLU-devel-9.0.2-1
-  libSDL2-devel-2.30.8-1
-  lua-5.3.6-4
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libGL-devel-23.3.6-1
+  libGLU-devel-9.0.3-1
+  libSDL2-devel-2.32.74-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/recastnavigation/recastnavigation
@@ -98,7 +97,7 @@ Files included in the binary package:
   /usr/include/recastnavigation/version.h
   /usr/lib/cmake/recastnavigation/recastnavigation-config-version.cmake
   /usr/lib/cmake/recastnavigation/recastnavigation-config.cmake
-  /usr/lib/cmake/recastnavigation/recastnavigation-targets-release.cmake
+  /usr/lib/cmake/recastnavigation/recastnavigation-targets-relwithdebinfo.cmake
   /usr/lib/cmake/recastnavigation/recastnavigation-targets.cmake
   /usr/lib/libDebugUtils.dll.a
   /usr/lib/libDetour.dll.a
@@ -110,6 +109,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.6.0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

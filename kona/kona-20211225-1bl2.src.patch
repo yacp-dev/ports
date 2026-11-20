@@ -1,5 +1,5 @@
---- origsrc/kona-Win64-20211225/Makefile	2021-12-17 03:43:18.000000000 +0900
-+++ src/kona-Win64-20211225/Makefile	2022-07-01 22:57:42.944976900 +0900
+--- origsrc/kona-Win64-20211225/Makefile	2021-12-16 18:43:18.000000000 +0000
++++ src/kona-Win64-20211225/Makefile	2026-11-20 22:34:30.880446500 +0000
 @@ -83,7 +83,7 @@ OBJS= src/0.o src/bswap.o src/c.o src/ge
  PRODFLAGS = -O3
  endif

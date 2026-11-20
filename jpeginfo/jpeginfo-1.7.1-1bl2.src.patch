@@ -1,5 +1,5 @@
---- origsrc/jpeginfo-1.7.1/configure.in	2023-10-30 03:59:53.000000000 +0900
-+++ src/jpeginfo-1.7.1/configure.in	2023-11-19 15:16:05.695959200 +0900
+--- origsrc/jpeginfo-1.7.1/configure.in	2023-10-29 18:59:53.000000000 +0000
++++ src/jpeginfo-1.7.1/configure.in	2026-11-20 15:44:17.480148400 +0000
 @@ -8,8 +8,6 @@ AC_CONFIG_AUX_DIR(tools)
  
  

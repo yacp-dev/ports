@@ -13,6 +13,7 @@ LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
 	cppunit
+	hdf5
 	libaec-devel
 	libboost-devel
 	libhdf5-devel

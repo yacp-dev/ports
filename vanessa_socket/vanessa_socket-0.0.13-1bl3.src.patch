@@ -1,5 +1,5 @@
---- origsrc/vanessa_socket-0.0.13/libvanessa_socket/Makefile.am	2014-09-11 10:23:01.000000000 +0900
-+++ src/vanessa_socket-0.0.13/libvanessa_socket/Makefile.am	2025-01-03 21:16:14.068114300 +0900
+--- origsrc/vanessa_socket-0.0.13/libvanessa_socket/Makefile.am	2014-09-11 01:23:01.000000000 +0000
++++ src/vanessa_socket-0.0.13/libvanessa_socket/Makefile.am	2026-11-21 02:08:00.817931400 +0000
 @@ -36,6 +36,6 @@ vanessa_socket_pipe.c \
  vanessa_socket_server.c \
  unused.h
@@ -8,8 +8,8 @@
 +libvanessa_socket_la_LDFLAGS    = -version-info 3:0:1 -no-undefined
  
  libvanessa_socket_la_LIBADD = @extra_libs@ -lvanessa_logger
---- origsrc/vanessa_socket-0.0.13/vanessa-socket.pc.in	2014-09-11 10:23:01.000000000 +0900
-+++ src/vanessa_socket-0.0.13/vanessa-socket.pc.in	2025-01-03 21:27:52.213106000 +0900
+--- origsrc/vanessa_socket-0.0.13/vanessa-socket.pc.in	2014-09-11 01:23:01.000000000 +0000
++++ src/vanessa_socket-0.0.13/vanessa-socket.pc.in	2026-11-21 02:08:00.818697700 +0000
 @@ -6,5 +6,5 @@ includedir=@includedir@
  Name: Vanessa Socket
  Description: Library to simplify TCP socket operations

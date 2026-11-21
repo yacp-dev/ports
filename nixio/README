@@ -1,0 +1,141 @@
+nixio
+------------------------------------------
+C++ library for storing scientific data in the NIX data model.
+
+Runtime requirements:
+  cygwin-3.4.10-1
+  libboost_filesystem1.66-1.66.0-1
+  libboost_program_options1.66-1.66.0-1
+  libboost_regex1.66-1.66.0-1
+  libboost_system1.66-1.66.0-1
+  libgcc1-11.4.0-1
+  libhdf5_200-1.12.2-1
+  libnixio-devel-1.5.0+git20230213-1bl1
+  libnixio1-1.5.0+git20230213-1bl1
+  libstdc++6-11.4.0-1
+  pkg-config-2.1.0-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.41-3
+  cmake-3.25.3-1
+  cygport-0.36.7-1
+  gcc-core-11.4.0-1
+  gcc-g++-11.4.0-1
+  libboost-devel-1.66.0-1
+  libhdf5-devel-1.12.2-1
+  ninja-1.11.1-1
+
+Canonical website:
+  https://g-node.github.io/nixio/
+
+Canonical download:
+  https://github.com/G-Node/nixio/archive/1.5.0+git20230213.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack nixio-1.5.0+git20230213-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./nixio-1.5.0+git20230213-X.cygport all
+
+This will create:
+  /usr/src/nixio-1.5.0+git20230213-X-src.tar.xz
+  /usr/src/nixio-1.5.0+git20230213-X.tar.xz
+  /usr/src/libnixio1-1.5.0+git20230213-X.tar.xz
+  /usr/src/libnixio-devel-1.5.0+git20230213-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(nixio)
+  /usr/bin/nixio-tool.exe
+  /usr/share/doc/Cygwin/nixio.README
+  /usr/share/doc/nixio/CONTRIBUTING.md
+  /usr/share/doc/nixio/GSoC.md
+  /usr/share/doc/nixio/LICENSE
+  /usr/share/doc/nixio/README.md
+
+(libnixio1)
+  /usr/bin/cygnixio-1.dll
+
+(libnixio-devel)
+  /usr/include/nixio.hpp
+  /usr/include/nixio/Block.hpp
+  /usr/include/nixio/Compression.hpp
+  /usr/include/nixio/DataArray.hpp
+  /usr/include/nixio/DataSet.hpp
+  /usr/include/nixio/DataType.hpp
+  /usr/include/nixio/DataView.hpp
+  /usr/include/nixio/Dimensions.hpp
+  /usr/include/nixio/Exception.hpp
+  /usr/include/nixio/Feature.hpp
+  /usr/include/nixio/File.hpp
+  /usr/include/nixio/Group.hpp
+  /usr/include/nixio/Hydra.hpp
+  /usr/include/nixio/Identity.hpp
+  /usr/include/nixio/MultiTag.hpp
+  /usr/include/nixio/NDArray.hpp
+  /usr/include/nixio/NDSize.hpp
+  /usr/include/nixio/None.hpp
+  /usr/include/nixio/ObjectType.hpp
+  /usr/include/nixio/Platform.hpp
+  /usr/include/nixio/Property.hpp
+  /usr/include/nixio/Section.hpp
+  /usr/include/nixio/Source.hpp
+  /usr/include/nixio/Tag.hpp
+  /usr/include/nixio/Value.hpp
+  /usr/include/nixio/Variant.hpp
+  /usr/include/nixio/Version.hpp
+  /usr/include/nixio/base/Entity.hpp
+  /usr/include/nixio/base/EntityWithMetadata.hpp
+  /usr/include/nixio/base/EntityWithSources.hpp
+  /usr/include/nixio/base/IBaseTag.hpp
+  /usr/include/nixio/base/IBlock.hpp
+  /usr/include/nixio/base/IDataArray.hpp
+  /usr/include/nixio/base/IDimensions.hpp
+  /usr/include/nixio/base/IEntity.hpp
+  /usr/include/nixio/base/IEntityWithMetadata.hpp
+  /usr/include/nixio/base/IEntityWithSources.hpp
+  /usr/include/nixio/base/IFeature.hpp
+  /usr/include/nixio/base/IFile.hpp
+  /usr/include/nixio/base/IGroup.hpp
+  /usr/include/nixio/base/IMultiTag.hpp
+  /usr/include/nixio/base/INamedEntity.hpp
+  /usr/include/nixio/base/IProperty.hpp
+  /usr/include/nixio/base/ISection.hpp
+  /usr/include/nixio/base/ISource.hpp
+  /usr/include/nixio/base/ITag.hpp
+  /usr/include/nixio/base/ImplContainer.hpp
+  /usr/include/nixio/base/NamedEntity.hpp
+  /usr/include/nixio/base/types.hpp
+  /usr/include/nixio/hydra/multiArray.hpp
+  /usr/include/nixio/nixioversion.hpp
+  /usr/include/nixio/types.hpp
+  /usr/include/nixio/util/dataAccess.hpp
+  /usr/include/nixio/util/filter.hpp
+  /usr/include/nixio/util/util.hpp
+  /usr/include/nixio/valid/checks.hpp
+  /usr/include/nixio/valid/conditions.hpp
+  /usr/include/nixio/valid/helper.hpp
+  /usr/include/nixio/valid/result.hpp
+  /usr/include/nixio/valid/validate.hpp
+  /usr/include/nixio/valid/validator.hpp
+  /usr/lib/libnixio.dll.a
+  /usr/lib/pkgconfig/nixio.pc
+
+------------------
+
+Port Notes:
+
+----- version 1.5.0+git20230213-1bl1 -----
+Version bump.
+
+----- version 1.4.4-1bl1 -----
+Version bump.
+
+----- version 1.4.3-1bl1 -----
+Initial release by fd0 <https://github.com/fd00/>

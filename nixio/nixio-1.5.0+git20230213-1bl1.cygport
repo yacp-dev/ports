@@ -1,0 +1,52 @@
+HOMEPAGE="https://g-node.github.io/nix/"
+GIT_URI="https://github.com/G-Node/nix.git"
+GIT_REV="44feb93aba4e899acc3d4b22b2c255a39c7d953a"
+inherit cmake git
+
+CATEGORY="Science"
+SUMMARY="Neuroscience information exchange format"
+DESCRIPTION="C++ library for storing scientific data in the NIX data model."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	cppunit
+	hdf5
+	libaec-devel
+	libboost-devel
+	libhdf5-devel
+	zlib-devel
+"
+
+src_test()
+{
+	cd ${B}
+	ninja_test
+}
+
+DOCS="
+	CONTRIBUTING.md
+	GSoC.md
+	LICENSE.h5py
+"
+
+PKG_NAMES="
+	nixio
+	libnixio1
+	libnixio-devel
+"
+nixio_CONTENTS="
+	usr/share
+"
+libnixio1_CONTENTS="
+	usr/bin/cygnixio-1.dll
+"
+libnixio_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+nixio_SUMMARY="${SUMMARY} (licensing & readmes)"
+libnixio1_SUMMARY="${SUMMARY} (runtime)"
+libnixio_devel_SUMMARY="${SUMMARY} (development)"

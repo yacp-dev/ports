@@ -7,52 +7,55 @@ The current implementation provides solutions to several variants of SLAM and
 BA.
 
 Runtime requirements:
-  cygwin-3.2.0-1
-  libGL1-19.1.6-1
-  libGLU1-9.0.2-1
-  libcamd2-2.4.6-1
-  libcholmod3-3.0.14-1
-  libcxsparse3-3.2.0-1
-  libg2o0-20201223-1bl1
-  libgcc1-11.2.0-1
-  libstdc++6-11.2.0-1
+  cygwin-3.6.12-1
+  eigen3-3.4.0-1
+  libGL1-23.3.6-1
+  libGLU-devel-9.0.3-1
+  libGLU1-9.0.3-1
+  libcamd3-3.3.3-1
+  libcholmod5-5.3.0-1
+  libcxsparse-devel-4.4.1-1
+  libcxsparse4-4.4.1-1
+  libg2o0.1-20241228-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.37-1
-  bison-3.7.6-1
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  flex-2.6.4-2
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
-  libGL-devel-19.1.6-1
-  libGLU-devel-9.0.2-1
-  libcamd-devel-2.4.6-1
-  libcholmod-devel-3.0.14-1
-  libcxsparse-devel-3.2.0-1
-  ninja-1.10.2-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  eigen3-3.4.0-1
+  gcc-g++-14.4.0-1
+  libGL-devel-23.3.6-1
+  libGLU-devel-9.0.3-1
+  libcamd-devel-3.3.3-1
+  libcholmod-devel-5.3.0-1
+  libcxsparse-devel-4.4.1-1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/RainerKuemmerle/g2o
 
 Canonical download:
-  https://github.com/RainerKuemmerle/g2o/archive/20201223_git.tar.gz
+  https://github.com/RainerKuemmerle/g2o/archive/20241228_git.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack g2o-20201223-X-src.tar.xz
+  1. unpack g2o-20241228-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./g2o-20201223-X.cygport all
+        % cygport ./g2o-20241228-X.cygport all
 
 This will create:
-  /usr/src/g2o-20201223-X-src.tar.xz
-  /usr/src/g2o-20201223-X.tar.xz
-  /usr/src/libg2o0-20201223-X.tar.xz
-  /usr/src/libg2o-devel-20201223-X.tar.xz
+  /usr/src/g2o-20241228-X-src.tar.xz
+  /usr/src/g2o-20241228-X.tar.xz
+  /usr/src/libg2o0.1-20241228-X.tar.xz
+  /usr/src/libg2o-devel-20241228-X.tar.xz
 
 -------------------------------------------
 
@@ -60,45 +63,50 @@ Files included in the binary package:
 
 (g2o)
   /usr/bin/g2o.exe
-  /usr/bin/g2o_anonymize_observations.exe
   /usr/bin/g2o_incremental.exe
   /usr/bin/g2o_online.exe
   /usr/bin/g2o_simulator2d.exe
   /usr/bin/g2o_simulator3d.exe
   /usr/share/doc/Cygwin/g2o.README
+  /usr/share/doc/g2o/COPYING
+  /usr/share/doc/g2o/LICENSE
   /usr/share/doc/g2o/README.md
+  /usr/share/doc/g2o/license-bsd.txt
+  /usr/share/doc/g2o/license-gpl.txt
+  /usr/share/doc/g2o/license-lgpl.txt
 
-(libg2o0)
-  /usr/bin/cygg2o_cli-0.dll
-  /usr/bin/cygg2o_core-0.dll
-  /usr/bin/cygg2o_csparse_extension-0.dll
-  /usr/bin/cygg2o_ext_freeglut_minimal-0.dll
-  /usr/bin/cygg2o_hierarchical-0.dll
-  /usr/bin/cygg2o_incremental-0.dll
-  /usr/bin/cygg2o_interactive-0.dll
-  /usr/bin/cygg2o_interface-0.dll
-  /usr/bin/cygg2o_opengl_helper-0.dll
-  /usr/bin/cygg2o_parser-0.dll
-  /usr/bin/cygg2o_simulator-0.dll
-  /usr/bin/cygg2o_solver_cholmod-0.dll
-  /usr/bin/cygg2o_solver_csparse-0.dll
-  /usr/bin/cygg2o_solver_dense-0.dll
-  /usr/bin/cygg2o_solver_eigen-0.dll
-  /usr/bin/cygg2o_solver_pcg-0.dll
-  /usr/bin/cygg2o_solver_slam2d_linear-0.dll
-  /usr/bin/cygg2o_solver_structure_only-0.dll
-  /usr/bin/cygg2o_stuff-0.dll
-  /usr/bin/cygg2o_types_data-0.dll
-  /usr/bin/cygg2o_types_icp-0.dll
-  /usr/bin/cygg2o_types_sba-0.dll
-  /usr/bin/cygg2o_types_sclam2d-0.dll
-  /usr/bin/cygg2o_types_sim3-0.dll
-  /usr/bin/cygg2o_types_slam2d-0.dll
-  /usr/bin/cygg2o_types_slam2d_addons-0.dll
-  /usr/bin/cygg2o_types_slam3d-0.dll
-  /usr/bin/cygg2o_types_slam3d_addons-0.dll
+(libg2o0.1)
+  /usr/bin/cygg2o_cli-0.1.dll
+  /usr/bin/cygg2o_core-0.1.dll
+  /usr/bin/cygg2o_csparse_extension-0.1.dll
+  /usr/bin/cygg2o_ext_freeglut_minimal-0.1.dll
+  /usr/bin/cygg2o_hierarchical-0.1.dll
+  /usr/bin/cygg2o_incremental-0.1.dll
+  /usr/bin/cygg2o_interactive-0.1.dll
+  /usr/bin/cygg2o_interface-0.1.dll
+  /usr/bin/cygg2o_opengl_helper-0.1.dll
+  /usr/bin/cygg2o_parser-0.1.dll
+  /usr/bin/cygg2o_simulator-0.1.dll
+  /usr/bin/cygg2o_solver_cholmod-0.1.dll
+  /usr/bin/cygg2o_solver_csparse-0.1.dll
+  /usr/bin/cygg2o_solver_dense-0.1.dll
+  /usr/bin/cygg2o_solver_eigen-0.1.dll
+  /usr/bin/cygg2o_solver_pcg-0.1.dll
+  /usr/bin/cygg2o_solver_slam2d_linear-0.1.dll
+  /usr/bin/cygg2o_solver_structure_only-0.1.dll
+  /usr/bin/cygg2o_stuff-0.1.dll
+  /usr/bin/cygg2o_types_data-0.1.dll
+  /usr/bin/cygg2o_types_icp-0.1.dll
+  /usr/bin/cygg2o_types_sba-0.1.dll
+  /usr/bin/cygg2o_types_sclam2d-0.1.dll
+  /usr/bin/cygg2o_types_sim3-0.1.dll
+  /usr/bin/cygg2o_types_slam2d-0.1.dll
+  /usr/bin/cygg2o_types_slam2d_addons-0.1.dll
+  /usr/bin/cygg2o_types_slam3d-0.1.dll
+  /usr/bin/cygg2o_types_slam3d_addons-0.1.dll
 
 (libg2o-devel)
+  /usr/include/g2o/EXTERNAL/freeglut/freeglut_minimal.h
   /usr/include/g2o/apps/g2o_cli/dl_wrapper.h
   /usr/include/g2o/apps/g2o_cli/g2o_cli_api.h
   /usr/include/g2o/apps/g2o_cli/g2o_common.h
@@ -135,15 +143,29 @@ Files included in the binary package:
   /usr/include/g2o/apps/g2o_simulator/simulator3d.h
   /usr/include/g2o/apps/g2o_simulator/simulator3d_base.h
   /usr/include/g2o/apps/g2o_simulator/simutils.h
+  /usr/include/g2o/autodiff/array_selector.h
+  /usr/include/g2o/autodiff/autodiff.h
+  /usr/include/g2o/autodiff/disable_warnings.h
+  /usr/include/g2o/autodiff/eigen.h
+  /usr/include/g2o/autodiff/fixed_array.h
+  /usr/include/g2o/autodiff/integer_sequence_algorithm.h
+  /usr/include/g2o/autodiff/jet.h
+  /usr/include/g2o/autodiff/memory.h
+  /usr/include/g2o/autodiff/parameter_dims.h
+  /usr/include/g2o/autodiff/reenable_warnings.h
+  /usr/include/g2o/autodiff/types.h
+  /usr/include/g2o/autodiff/variadic_evaluate.h
   /usr/include/g2o/config.h
+  /usr/include/g2o/core/auto_differentiation.h
   /usr/include/g2o/core/base_binary_edge.h
-  /usr/include/g2o/core/base_binary_edge.hpp
   /usr/include/g2o/core/base_dynamic_vertex.h
   /usr/include/g2o/core/base_edge.h
+  /usr/include/g2o/core/base_fixed_sized_edge.h
+  /usr/include/g2o/core/base_fixed_sized_edge.hpp
   /usr/include/g2o/core/base_multi_edge.h
-  /usr/include/g2o/core/base_multi_edge.hpp
   /usr/include/g2o/core/base_unary_edge.h
-  /usr/include/g2o/core/base_unary_edge.hpp
+  /usr/include/g2o/core/base_variable_sized_edge.h
+  /usr/include/g2o/core/base_variable_sized_edge.hpp
   /usr/include/g2o/core/base_vertex.h
   /usr/include/g2o/core/base_vertex.hpp
   /usr/include/g2o/core/batch_stats.h
@@ -207,11 +229,11 @@ Files included in the binary package:
   /usr/include/g2o/examples/interactive_slam/slam_parser/parser/position.hh
   /usr/include/g2o/examples/interactive_slam/slam_parser/parser/scanner.h
   /usr/include/g2o/examples/interactive_slam/slam_parser/parser/slam_context.h
-  /usr/include/g2o/examples/interactive_slam/slam_parser/parser/stack.hh
-  /usr/include/g2o/freeglut/freeglut_minimal.h
+  /usr/include/g2o/solvers/cholmod/cholmod_wrapper.h
   /usr/include/g2o/solvers/cholmod/linear_solver_cholmod.h
   /usr/include/g2o/solvers/csparse/csparse_extension.h
   /usr/include/g2o/solvers/csparse/csparse_helper.h
+  /usr/include/g2o/solvers/csparse/csparse_wrapper.h
   /usr/include/g2o/solvers/csparse/g2o_csparse_api.h
   /usr/include/g2o/solvers/csparse/g2o_csparse_extension_api.h
   /usr/include/g2o/solvers/csparse/linear_solver_csparse.h
@@ -226,18 +248,19 @@ Files included in the binary package:
   /usr/include/g2o/stuff/command_args.h
   /usr/include/g2o/stuff/filesys_tools.h
   /usr/include/g2o/stuff/g2o_stuff_api.h
+  /usr/include/g2o/stuff/logger.h
+  /usr/include/g2o/stuff/logger_format.h
   /usr/include/g2o/stuff/macros.h
   /usr/include/g2o/stuff/misc.h
   /usr/include/g2o/stuff/opengl_primitives.h
   /usr/include/g2o/stuff/opengl_wrapper.h
-  /usr/include/g2o/stuff/os_specific.h
   /usr/include/g2o/stuff/property.h
   /usr/include/g2o/stuff/sampler.h
-  /usr/include/g2o/stuff/scoped_pointer.h
   /usr/include/g2o/stuff/sparse_helper.h
   /usr/include/g2o/stuff/string_tools.h
   /usr/include/g2o/stuff/tictoc.h
   /usr/include/g2o/stuff/timeutil.h
+  /usr/include/g2o/stuff/tuple_tools.h
   /usr/include/g2o/stuff/unscented.h
   /usr/include/g2o/types/data/data_queue.h
   /usr/include/g2o/types/data/g2o_types_data_api.h
@@ -250,10 +273,27 @@ Files included in the binary package:
   /usr/include/g2o/types/data/vertex_tag.h
   /usr/include/g2o/types/icp/g2o_types_icp_api.h
   /usr/include/g2o/types/icp/types_icp.h
+  /usr/include/g2o/types/sba/edge_project_p2mc.h
+  /usr/include/g2o/types/sba/edge_project_p2sc.h
+  /usr/include/g2o/types/sba/edge_project_psi2uv.h
+  /usr/include/g2o/types/sba/edge_project_stereo_xyz.h
+  /usr/include/g2o/types/sba/edge_project_stereo_xyz_onlypose.h
+  /usr/include/g2o/types/sba/edge_project_xyz.h
+  /usr/include/g2o/types/sba/edge_project_xyz2uv.h
+  /usr/include/g2o/types/sba/edge_project_xyz2uvu.h
+  /usr/include/g2o/types/sba/edge_project_xyz_onlypose.h
+  /usr/include/g2o/types/sba/edge_sba_cam.h
+  /usr/include/g2o/types/sba/edge_sba_scale.h
+  /usr/include/g2o/types/sba/edge_se3_expmap.h
   /usr/include/g2o/types/sba/g2o_types_sba_api.h
+  /usr/include/g2o/types/sba/parameter_cameraparameters.h
+  /usr/include/g2o/types/sba/sba_utils.h
   /usr/include/g2o/types/sba/sbacam.h
   /usr/include/g2o/types/sba/types_sba.h
   /usr/include/g2o/types/sba/types_six_dof_expmap.h
+  /usr/include/g2o/types/sba/vertex_cam.h
+  /usr/include/g2o/types/sba/vertex_intrinsics.h
+  /usr/include/g2o/types/sba/vertex_se3_expmap.h
   /usr/include/g2o/types/sclam2d/edge_se2_odom_differential_calib.h
   /usr/include/g2o/types/sclam2d/edge_se2_sensor_calib.h
   /usr/include/g2o/types/sclam2d/g2o_types_sclam2d_api.h
@@ -328,7 +368,7 @@ Files included in the binary package:
   /usr/include/g2o/types/slam3d_addons/vertex_se3_euler.h
   /usr/lib/cmake/g2o/g2oConfig.cmake
   /usr/lib/cmake/g2o/g2oConfigVersion.cmake
-  /usr/lib/cmake/g2o/g2oTargets-release.cmake
+  /usr/lib/cmake/g2o/g2oTargets-relwithdebinfo.cmake
   /usr/lib/cmake/g2o/g2oTargets.cmake
   /usr/lib/libg2o_cli.dll.a
   /usr/lib/libg2o_core.dll.a
@@ -362,6 +402,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 20241228-1bl1 -----
+Version bump.
 
 ----- version 20201223-1bl1 -----
 Version bump.

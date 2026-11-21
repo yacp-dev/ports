@@ -10,15 +10,24 @@ pipe, a user space programme that listens for TCP/IP connections on port on
 the local host and when a client connects makes a connection to a TCP/IP port,
 possibly on another host."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="GPL-2.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libvanessa_logger-devel"
+BUILD_REQUIRES="
+	libpopt-devel
+	libvanessa_logger-devel
+"
 
 DIFF_EXCLUDES="
 	libltdl
 "
+
+src_test()
+{
+	cd ${B}/vanessa_socket_pipe
+	PATH=${B}/libvanessa_socket/.libs:${PATH} verbose ./vanessa_socket_pipe.exe --help
+}
 
 PKG_NAMES="
 	${PN}

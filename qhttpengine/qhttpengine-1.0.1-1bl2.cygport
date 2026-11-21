@@ -5,7 +5,16 @@ CATEGORY="Net"
 SUMMARY="HTTP server for Qt applications"
 DESCRIPTION="Simple set of classes for developing HTTP server applications in Qt."
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	libQt5Core-devel
+"
+
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DBUILD_EXAMPLES:BOOL=ON
 	-DBUILD_TESTS:BOOL=ON
 "
@@ -15,7 +24,7 @@ inherit cmake
 src_test()
 {
 	cd ${B}
-	PATH=${B}/src:${PATH} cygtest
+	PATH=${B}/src:${PATH} ninja_test
 }
 
 PKG_NAMES="
@@ -28,7 +37,7 @@ qhttpengine_CONTENTS="
 	usr/share
 "
 libqhttpengine1_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-1.dll
 "
 libqhttpengine_devel_CONTENTS="
 	usr/include

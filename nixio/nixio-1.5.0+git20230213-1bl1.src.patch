@@ -1,0 +1,20 @@
+--- origsrc/nix/CMakeLists.txt	2023-02-12 17:56:36.000000000 +0100
++++ src/nix/CMakeLists.txt	2026-11-22 05:00:00.000000000 +0900
+@@ -224,6 +224,7 @@
+ # Install
+ 
+ install(TARGETS nixio
++        RUNTIME DESTINATION bin
+         LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+         ARCHIVE DESTINATION ${LIB_INSTALL_DIR}
+         FRAMEWORK DESTINATION "/Library/Frameworks")
+--- origsrc/nix/nixio.pc.in	2023-02-12 17:56:36.000000000 +0100
++++ src/nix/nixio.pc.in	2026-11-22 05:00:00.000000000 +0900
+@@ -5,5 +5,5 @@
+ 
+ Name: nixio
+ Description: IO-library for nix datafiles
+-Version: ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}
++Version: @VERSION_FULL@
+ Libs: -L${libdir} -lnixio
+ Cflags: -I${includedir}/nixio-1.0

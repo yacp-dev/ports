@@ -53,3 +53,8 @@ libambit_devel_CONTENTS="
 ambit_SUMMARY="${SUMMARY} (licensing & readmes)"
 libambit0_SUMMARY="${SUMMARY} (runtime)"
 libambit_devel_SUMMARY="${SUMMARY} (development)"
+
+libambit_devel_REQUIRES="
+	libhdf5-devel
+	liblapack-devel
+"

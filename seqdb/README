@@ -6,28 +6,28 @@ and the Life Technologies Ion Torrent PGM.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libblosc1-1.21.6-1bl1
-  libgcc1-12.4.0-3
-  libgomp1-12.4.0-3
-  libhdf5-devel-1.12.3-1
-  libhdf5_200-1.12.3-1
-  libseqdb-devel-0.2.1-1bl2
-  libseqdb0-0.2.1-1bl2
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libblosc1-1.21.7-1bl1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libhdf5-devel-2.2.0-1
+  libhdf5_320-2.2.0-1
+  libseqdb-devel-0.2.1-1bl3
+  libseqdb0-0.2.1-1bl3
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libblosc-devel-1.21.6-1bl1
-  libhdf5-devel-1.12.3-1
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libblosc-devel-1.21.7-1bl1
+  libhdf5-devel-2.2.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -84,6 +84,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.1-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2.1-1bl2 -----
 Rebuild for libhdf5

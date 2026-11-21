@@ -1,5 +1,5 @@
---- origsrc/seqdb-0.2.1/configure.ac	2014-01-10 22:33:41.000000000 +0900
-+++ src/seqdb-0.2.1/configure.ac	2024-10-14 16:50:06.749363000 +0900
+--- origsrc/seqdb-0.2.1/configure.ac	2014-01-10 13:33:41.000000000 +0000
++++ src/seqdb-0.2.1/configure.ac	2026-11-21 22:31:56.724390300 +0000
 @@ -8,14 +8,6 @@ AM_SILENT_RULES([yes])
  
  AC_CANONICAL_HOST
@@ -39,8 +39,8 @@
  # Checks for header files.
  
  # Checks for typedefs, structures, and compiler characteristics.
---- origsrc/seqdb-0.2.1/src/Makefile.am	2014-01-10 10:11:02.000000000 +0900
-+++ src/seqdb-0.2.1/src/Makefile.am	2024-10-14 16:41:49.042851300 +0900
+--- origsrc/seqdb-0.2.1/src/Makefile.am	2014-01-10 01:11:02.000000000 +0000
++++ src/seqdb-0.2.1/src/Makefile.am	2026-11-21 22:31:56.726411300 +0000
 @@ -4,9 +4,13 @@ lib_LTLIBRARIES = libseqdb.la
  
  libseqdb_la_SOURCES = \
@@ -57,8 +57,8 @@
  
  # programs
  
---- origsrc/seqdb-0.2.1/src/blosc_filter.c	2014-01-10 10:11:02.000000000 +0900
-+++ src/seqdb-0.2.1/src/blosc_filter.c	2024-10-14 16:34:21.197776700 +0900
+--- origsrc/seqdb-0.2.1/src/blosc_filter.c	2014-01-10 01:11:02.000000000 +0000
++++ src/seqdb-0.2.1/src/blosc_filter.c	2026-11-21 22:31:56.726411300 +0000
 @@ -16,7 +16,7 @@
  #include <string.h>
  #include <errno.h>
@@ -68,8 +68,8 @@
  #include "blosc_filter.h"
  
  #if H5Epush_vers == 2
---- origsrc/seqdb-0.2.1/src/h5seqdb.cpp	2014-01-10 22:33:41.000000000 +0900
-+++ src/seqdb-0.2.1/src/h5seqdb.cpp	2024-10-14 16:34:07.898681200 +0900
+--- origsrc/seqdb-0.2.1/src/h5seqdb.cpp	2014-01-10 13:33:41.000000000 +0000
++++ src/seqdb-0.2.1/src/h5seqdb.cpp	2026-11-21 22:31:56.728441900 +0000
 @@ -28,7 +28,7 @@
  #include <string.h>
  #include <algorithm>

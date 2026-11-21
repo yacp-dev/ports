@@ -1,5 +1,5 @@
---- origsrc/Field3D-1.7.3/CMakeLists.txt	2020-03-12 00:54:36.000000000 +0900
-+++ src/Field3D-1.7.3/CMakeLists.txt	2024-10-15 09:49:25.773433500 +0900
+--- origsrc/Field3D-1.7.3/CMakeLists.txt	2020-03-11 15:54:36.000000000 +0000
++++ src/Field3D-1.7.3/CMakeLists.txt	2026-11-21 20:51:43.517281600 +0000
 @@ -51,6 +51,9 @@ ENDIF ()
  
  FIND_PACKAGE (ILMBase)
@@ -73,8 +73,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/Field3D.pc.in ${CMAKE_BINARY_DIR}/Field3D.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/Field3D.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/Field3D-1.7.3/Field3D.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/Field3D-1.7.3/Field3D.pc.in	2024-10-15 09:16:31.157106900 +0900
+--- origsrc/Field3D-1.7.3/Field3D.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/Field3D-1.7.3/Field3D.pc.in	2026-11-21 20:51:43.519297300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -86,8 +86,8 @@
 +Version: @FIELD3D_VERSION@
 +Libs: -L${libdir} -lField3D
 +Cflags: -I${includedir}
---- origsrc/Field3D-1.7.3/src/Field3DFileHDF5.cpp	2020-03-12 00:54:36.000000000 +0900
-+++ src/Field3D-1.7.3/src/Field3DFileHDF5.cpp	2024-10-15 09:33:40.824524800 +0900
+--- origsrc/Field3D-1.7.3/src/Field3DFileHDF5.cpp	2020-03-11 15:54:36.000000000 +0000
++++ src/Field3D-1.7.3/src/Field3DFileHDF5.cpp	2026-11-21 20:51:43.519297300 +0000
 @@ -1133,9 +1133,9 @@ herr_t parsePartitions(hid_t loc_id, con
    GlobalLock lock(g_hdf5Mutex);
  

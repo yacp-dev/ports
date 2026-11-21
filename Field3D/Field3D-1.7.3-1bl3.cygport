@@ -11,11 +11,17 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libboost-devel libhdf5-devel libopenexr-devel zlib-devel"
+BUILD_REQUIRES="
+	libboost-devel
+	libhdf5-devel
+	libopenexr-devel
+	zlib-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DINSTALL_DOCS:BOOL=OFF
 "
 

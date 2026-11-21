@@ -1,5 +1,5 @@
---- origsrc/csol-1.6.0/CMakeLists.txt	2023-03-09 04:17:52.000000000 +0900
-+++ src/csol-1.6.0/CMakeLists.txt	2023-03-25 17:56:34.210260900 +0900
+--- origsrc/csol-1.6.0/CMakeLists.txt	2023-03-08 19:17:52.000000000 +0000
++++ src/csol-1.6.0/CMakeLists.txt	2026-11-21 07:01:00.912913600 +0000
 @@ -8,6 +8,7 @@ set(CMAKE_C_FLAGS "--std=c89 -Wall -peda
  configure_file(csolrc csolrc COPYONLY)
  file(COPY games DESTINATION .)

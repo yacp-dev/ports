@@ -3,17 +3,17 @@ csol
 A small collection of solitaire games implemented in C using ncurses.
 
 Runtime requirements:
-  cygwin-3.4.6-1
-  libncursesw10-6.4-3.20230114
+  cygwin-3.6.12-1
+  libncursesw10-6.5+20240427-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.40-1
-  cmake-3.23.2-1
-  cygport-0.36.1-1
-  gcc-core-11.3.0-1
-  libncurses-devel-6.4-3.20230114
-  make-4.4.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libncurses-devel-6.5+20240427-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/nielssp/csol
@@ -69,6 +69,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.6.0-1bl1 -----
 Version bump.

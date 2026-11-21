@@ -9,11 +9,17 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libncurses-devel"
-
-CYGCMAKE_GENERATOR="Unix Makefiles"
+BUILD_REQUIRES="
+	libncurses-devel
+"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
+CYGCMAKE_GENERATOR="Unix Makefiles"
 
 src_test()
 {

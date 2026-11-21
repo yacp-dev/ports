@@ -3,15 +3,15 @@ zps
 Small utility for listing and reaping zombie processes
 
 Runtime requirements:
-  cygwin-3.5.0-1
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.42-1
-  cmake-3.25.3-1
-  cygport-0.36.8-1
-  gcc-core-11.4.0-1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/orhun/zps
@@ -46,6 +46,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.0.0-1bl1 -----
 Version bump.

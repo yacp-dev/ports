@@ -1,0 +1,110 @@
+toml11
+------------------------------------------
+toml11 is a C++11 (or later) header-only toml parser/serializer library for
+C++11/14/17/20/23.
+
+Runtime requirements:
+
+Build requirements:
+(besides corresponding -devel packages)
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  doctest-2.5.3-1bl1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/ToruNiina/toml11
+
+Canonical download:
+  https://github.com/ToruNiina/toml11/archive/refs/tags/v4.4.0.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack toml11-4.4.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./toml11-4.4.0-X.cygport all
+
+This will create:
+  /usr/src/toml11-4.4.0-X-src.tar.xz
+  /usr/src/toml11-4.4.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(toml11)
+  /usr/include/toml.hpp
+  /usr/include/toml11/color.hpp
+  /usr/include/toml11/comments.hpp
+  /usr/include/toml11/compat.hpp
+  /usr/include/toml11/context.hpp
+  /usr/include/toml11/conversion.hpp
+  /usr/include/toml11/datetime.hpp
+  /usr/include/toml11/error_info.hpp
+  /usr/include/toml11/exception.hpp
+  /usr/include/toml11/find.hpp
+  /usr/include/toml11/format.hpp
+  /usr/include/toml11/from.hpp
+  /usr/include/toml11/fwd/color_fwd.hpp
+  /usr/include/toml11/fwd/comments_fwd.hpp
+  /usr/include/toml11/fwd/datetime_fwd.hpp
+  /usr/include/toml11/fwd/error_info_fwd.hpp
+  /usr/include/toml11/fwd/format_fwd.hpp
+  /usr/include/toml11/fwd/literal_fwd.hpp
+  /usr/include/toml11/fwd/location_fwd.hpp
+  /usr/include/toml11/fwd/region_fwd.hpp
+  /usr/include/toml11/fwd/scanner_fwd.hpp
+  /usr/include/toml11/fwd/source_location_fwd.hpp
+  /usr/include/toml11/fwd/syntax_fwd.hpp
+  /usr/include/toml11/fwd/value_t_fwd.hpp
+  /usr/include/toml11/get.hpp
+  /usr/include/toml11/impl/color_impl.hpp
+  /usr/include/toml11/impl/comments_impl.hpp
+  /usr/include/toml11/impl/datetime_impl.hpp
+  /usr/include/toml11/impl/error_info_impl.hpp
+  /usr/include/toml11/impl/format_impl.hpp
+  /usr/include/toml11/impl/literal_impl.hpp
+  /usr/include/toml11/impl/location_impl.hpp
+  /usr/include/toml11/impl/region_impl.hpp
+  /usr/include/toml11/impl/scanner_impl.hpp
+  /usr/include/toml11/impl/source_location_impl.hpp
+  /usr/include/toml11/impl/syntax_impl.hpp
+  /usr/include/toml11/impl/value_t_impl.hpp
+  /usr/include/toml11/into.hpp
+  /usr/include/toml11/literal.hpp
+  /usr/include/toml11/location.hpp
+  /usr/include/toml11/ordered_map.hpp
+  /usr/include/toml11/parser.hpp
+  /usr/include/toml11/region.hpp
+  /usr/include/toml11/result.hpp
+  /usr/include/toml11/scanner.hpp
+  /usr/include/toml11/serializer.hpp
+  /usr/include/toml11/skip.hpp
+  /usr/include/toml11/source_location.hpp
+  /usr/include/toml11/spec.hpp
+  /usr/include/toml11/storage.hpp
+  /usr/include/toml11/syntax.hpp
+  /usr/include/toml11/traits.hpp
+  /usr/include/toml11/types.hpp
+  /usr/include/toml11/utility.hpp
+  /usr/include/toml11/value.hpp
+  /usr/include/toml11/value_t.hpp
+  /usr/include/toml11/version.hpp
+  /usr/include/toml11/visit.hpp
+  /usr/lib/cmake/toml11/toml11Config.cmake
+  /usr/lib/cmake/toml11/toml11ConfigVersion.cmake
+  /usr/lib/cmake/toml11/toml11Targets.cmake
+  /usr/share/doc/Cygwin/toml11.README
+  /usr/share/doc/toml11/LICENSE
+  /usr/share/doc/toml11/README.md
+  /usr/share/doc/toml11/README_ja.md
+
+------------------
+
+Port Notes:
+
+----- version 4.4.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

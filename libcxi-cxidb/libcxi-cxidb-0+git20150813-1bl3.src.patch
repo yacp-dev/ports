@@ -1,0 +1,184 @@
+--- origsrc/libcxi/CMakeLists.txt	2026-11-21 19:58:33.000000000 +0000
++++ src/libcxi/CMakeLists.txt	2026-11-21 19:58:34.304494100 +0000
+@@ -1,17 +1,20 @@
+ cmake_minimum_required(VERSION 2.8)
+-
+ PROJECT(libcxi)
+ 
+ if(CMAKE_COMPILER_IS_GNUCC)
+-        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -std=c99 -W")
++        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -std=gnu99 -W")
+ endif(CMAKE_COMPILER_IS_GNUCC)
+ 
+ set(CMAKE_C_FLAGS_DEBUG "-DCXI_DEBUG")
+ 
+ find_package(HDF5 REQUIRED)
+ include_directories(${HDF5_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/include)
+-add_library(cxi SHARED src/cxi.c include/cxi.h)
+-target_link_libraries(cxi ${HDF5_LIBRARIES})
++add_library(cxi-cxidb SHARED src/cxi.c include/cxi.h)
++target_link_libraries(cxi-cxidb ${HDF5_LIBRARIES})
++
++if (DEFINED SOVERSION)
++        set_target_properties(cxi-cxidb PROPERTIES SOVERSION "${SOVERSION}")
++endif()
+ 
+ add_executable(simple EXCLUDE_FROM_ALL src/cxi.c tests/simple.c)
+ target_link_libraries(simple ${HDF5_LIBRARIES})
+@@ -19,25 +22,33 @@ target_link_libraries(simple ${HDF5_LIBR
+ add_executable(writer EXCLUDE_FROM_ALL src/cxi.c tests/writer.c)
+ target_link_libraries(writer ${HDF5_LIBRARIES})
+ 
+-add_executable(typical_reader  src/cxi.c examples/typical_reader.c)
+-target_link_libraries(typical_reader ${HDF5_LIBRARIES})
++add_executable(typical_reader examples/typical_reader.c)
++target_link_libraries(typical_reader cxi-cxidb ${HDF5_LIBRARIES})
+ 
+-add_executable(typical_writer  src/cxi.c examples/typical_writer.c)
+-target_link_libraries(typical_writer ${HDF5_LIBRARIES})
++add_executable(typical_writer examples/typical_writer.c)
++target_link_libraries(typical_writer cxi-cxidb ${HDF5_LIBRARIES})
+ 
+-add_executable(minimal_reader  src/cxi.c examples/minimal_reader.c)
+-target_link_libraries(minimal_reader ${HDF5_LIBRARIES})
++add_executable(minimal_reader examples/minimal_reader.c)
++target_link_libraries(minimal_reader cxi-cxidb ${HDF5_LIBRARIES})
+ 
+-add_executable(minimal_writer  src/cxi.c examples/minimal_writer.c)
+-target_link_libraries(minimal_writer ${HDF5_LIBRARIES})
++add_executable(minimal_writer examples/minimal_writer.c)
++target_link_libraries(minimal_writer cxi-cxidb ${HDF5_LIBRARIES})
+ 
+ 
+ enable_testing()
+ add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
+ add_test(simple simple ${CMAKE_SOURCE_DIR}/data/typical_raw.cxi)
+-
+ add_test(writer writer ${CMAKE_SOURCE_DIR}/data/dummy.cxi)
+ add_dependencies(check simple writer)
+ 
+ 
+ 
++install(FILES include/cxi.h DESTINATION include)
++install(TARGETS cxi-cxidb RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/libcxi-cxidb.pc.in ${CMAKE_BINARY_DIR}/libcxi-cxidb.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/libcxi-cxidb.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/libcxi/libcxi-cxidb.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libcxi/libcxi-cxidb.pc.in	2026-11-21 19:58:34.304494100 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libcxi-cxidb
++Description: Library to help read and write CXI files
++Version: @VERSION@
++Libs: -L${libdir} -lcxi-cxidb
++Cflags: -I${includedir}
+--- origsrc/libcxi/src/cxi.c	2026-11-21 19:58:33.000000000 +0000
++++ src/libcxi/src/cxi.c	2026-11-21 19:58:34.306507200 +0000
+@@ -1,3 +1,4 @@
++#define _GNU_SOURCE
+ #include <stdlib.h>
+ #include <string.h>
+ #include <ctype.h>
+@@ -296,15 +297,13 @@ CXI_Data * cxi_open_data(CXI_Data_Refere
+   if(H5Lexists(data->handle,"data",H5P_DEFAULT)){
+     data->data = calloc(sizeof(CXI_Dataset_Reference),1);
+     data->data->parent_handle = data->handle;
+-    data->data->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(data->data->group_name,"data");          
++    data->data->group_name = strdup("data");          
+   }
+ 
+   if(H5Lexists(data->handle,"errors",H5P_DEFAULT)){
+     data->errors = calloc(sizeof(CXI_Dataset_Reference),1);
+     data->errors->parent_handle = data->handle;
+-    data->errors->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(data->errors->group_name,"errors");          
++    data->errors->group_name = strdup("errors");          
+   }
+   return data;
+ }
+@@ -715,36 +714,31 @@ CXI_Detector * cxi_open_detector(CXI_Det
+   if(H5Lexists(detector->handle,"data",H5P_DEFAULT)){
+     detector->data = calloc(sizeof(CXI_Dataset_Reference),1);
+     detector->data->parent_handle = detector->handle;
+-    detector->data->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(detector->data->group_name,"data");          
++    detector->data->group_name = strdup("data");          
+   }
+   if(H5Lexists(detector->handle,"data_dark",H5P_DEFAULT)){
+     detector->data_dark = calloc(sizeof(CXI_Dataset_Reference),1);
+     detector->data_dark->parent_handle = detector->handle;
+-    detector->data_dark->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(detector->data_dark->group_name,"data_dark");          
++    detector->data_dark->group_name = strdup("data_dark");          
+   }
+ 
+   if(H5Lexists(detector->handle,"data_white",H5P_DEFAULT)){
+     detector->data_white = calloc(sizeof(CXI_Dataset_Reference),1);
+     detector->data_white->parent_handle = detector->handle;
+-    detector->data_white->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(detector->data_white->group_name,"data_white");          
++    detector->data_white->group_name = strdup("data_white");          
+   }
+ 
+   if(H5Lexists(detector->handle,"data_error",H5P_DEFAULT)){
+     detector->data_error = calloc(sizeof(CXI_Dataset_Reference),1);
+     detector->data_error->parent_handle = detector->handle;
+-    detector->data_error->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(detector->data_error->group_name,"data_error");          
++    detector->data_error->group_name = strdup("data_error");          
+   }
+ 
+ 
+   if(H5Lexists(detector->handle,"mask",H5P_DEFAULT)){
+     detector->mask = calloc(sizeof(CXI_Dataset_Reference),1);
+     detector->mask->parent_handle = detector->handle;
+-    detector->mask->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(detector->mask->group_name,"mask");      
++    detector->mask->group_name = strdup("mask");      
+     
+   }
+ 
+@@ -912,23 +906,20 @@ CXI_Image * cxi_open_image(CXI_Image_Ref
+   if(H5Lexists(image->handle,"data",H5P_DEFAULT)){
+     image->data = calloc(sizeof(CXI_Dataset_Reference),1);
+     image->data->parent_handle = image->handle;
+-    image->data->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(image->data->group_name,"data");          
++    image->data->group_name = strdup("data");          
+   }
+ 
+   if(H5Lexists(image->handle,"data_error",H5P_DEFAULT)){
+     image->data_error = calloc(sizeof(CXI_Dataset_Reference),1);
+     image->data_error->parent_handle = image->handle;
+-    image->data_error->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(image->data_error->group_name,"data_error");          
++    image->data_error->group_name = strdup("data_error");          
+   }
+ 
+ 
+   if(H5Lexists(image->handle,"mask",H5P_DEFAULT)){
+     image->mask = calloc(sizeof(CXI_Dataset_Reference),1);
+     image->mask->parent_handle = image->handle;
+-    image->mask->group_name = malloc(sizeof(char)*(strlen(buffer)+1));
+-    strcpy(image->mask->group_name,"mask");      
++    image->mask->group_name = strdup("mask");      
+     
+   }
+ 
+--- origsrc/libcxi/tests/writer.c	2026-11-21 19:58:33.000000000 +0000
++++ src/libcxi/tests/writer.c	2026-11-21 19:58:34.308520400 +0000
+@@ -1,3 +1,4 @@
++#define _GNU_SOURCE
+ #include <stdlib.h>
+ #include <string.h>
+ #include <cxi.h>

@@ -1,0 +1,76 @@
+libcxi-cxidb
+------------------------------------------
+Library to help read and write CXI files
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libcxi-cxidb-devel-0+git20150813-1bl3
+  libcxi-cxidb0-0+git20150813-1bl3
+  libhdf5_320-2.2.0-1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  hdf5-2.2.0-1
+  libaec-devel-1.1.8-1
+  libhdf5-devel-2.2.0-1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
+
+Canonical website:
+  https://github.com/cxidb/libcxi
+
+Canonical download:
+  https://github.com/cxidb/libcxi.git
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack libcxi-cxidb-0+git20150813-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./libcxi-cxidb-0+git20150813-X.cygport all
+
+This will create:
+  /usr/src/libcxi-cxidb-0+git20150813-X-src.tar.xz
+  /usr/src/libcxi-cxidb-0+git20150813-X.tar.xz
+  /usr/src/libcxi-cxidb0-0+git20150813-X.tar.xz
+  /usr/src/libcxi-cxidb-devel-0+git20150813-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(libcxi-cxidb)
+  /usr/share/doc/Cygwin/libcxi-cxidb.README
+  /usr/share/doc/libcxi-cxidb/LICENSE
+  /usr/share/doc/libcxi-cxidb/README.md
+
+(libcxi-cxidb0)
+  /usr/bin/cygcxi-cxidb-0.dll
+
+(libcxi-cxidb-devel)
+  /usr/include/cxi.h
+  /usr/lib/libcxi-cxidb.dll.a
+  /usr/lib/pkgconfig/libcxi-cxidb.pc
+
+------------------
+
+Port Notes:
+
+----- version 0+git20150813-1bl3 -----
+Rebuild with gcc-14.4.0
+
+----- version 0+git20150813-1bl2 -----
+Rebuild for libhdf5
+
+----- version 0+git20150813-1bl1 -----
+Version bump.
+
+----- version 0+git20140130-1bl1 -----
+Initial release by fd0 <https://github.com/fd00/>

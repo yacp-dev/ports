@@ -1,0 +1,61 @@
+HOMEPAGE="https://github.com/dials/cbflib"
+SRC_URI="https://github.com/dials/${PN}/archive/refs/tags/CBFlib-${PV}.tar.gz"
+SRC_DIR="${PN}-CBFlib-${PV}"
+
+CATEGORY="Science"
+SUMMARY="Library providing a simple mechanism for accessing CBF files and imgCIF files"
+DESCRIPTION="CBFLIB is a library of ANSI-C functions providing a simple mechanism for
+accessing Crystallographic Binary Files (CBF files) and Image-supporting CIF
+(imgCIF) files. The CBFLIB API is loosely based on the CIFPARSE API for mmCIF
+files."
+
+LICENSE="GPL-2.0-or-later OR LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later OR LGPL-2.1-or-later"
+LICENSE_URI="CBFlib_NOTICES.txt"
+
+BUILD_REQUIRES="
+	gcc-fortran
+	hdf5
+	libCQRlib-devel
+	libaec-devel
+	libhdf5-devel
+	libtiff-devel
+"
+
+export CFLAGS="${CFLAGS//-Werror=format-security/}"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCBF_DATA_INPUT=none
+	-DCBF_DATA_OUTPUT=none
+	-DCBF_WITH_CQRLIB=OFF
+	-DCBF_WITH_HDF5=OFF
+	-DCBF_WITH_LIBTIFF=OFF
+"
+
+DOCS="
+	CBFlib_NOTICES.txt
+	ChangeLog.md
+	SECURITY.md
+"
+
+PKG_NAMES="
+	${PN}
+	libcbf2
+	libcbf-devel
+"
+cbflib_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libcbf2_CONTENTS="
+	usr/bin/cyg*-2.dll
+"
+libcbf_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+cbflib_SUMMARY="${SUMMARY} (utilities)"
+libcbf2_SUMMARY="${SUMMARY} (runtime)"
+libcbf_devel_SUMMARY="${SUMMARY} (development)"

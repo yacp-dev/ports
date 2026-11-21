@@ -1,4 +1,4 @@
-CBFlib
+cbflib
 ------------------------------------------
 CBFLIB is a library of ANSI-C functions providing a simple mechanism for
 accessing Crystallographic Binary Files (CBF files) and Image-supporting CIF
@@ -6,54 +6,56 @@ accessing Crystallographic Binary Files (CBF files) and Image-supporting CIF
 files.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libcbf3.0.1-0.9.7-1bl1
-  libgcc1-12.4.0-3
-  libgfortran5-12.4.0-3
-  libhdf5_200-1.12.3-1
-  libpcreposix0-8.45-1
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libCQRlib2-1.1.4-1bl2
+  libcbf2-0.9.8-1bl1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libhdf5_320-2.2.0-1
+  libstdc++6-14.4.0-1
+  libtiff7-4.7.2-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  bison-3.8.2-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-fortran-12.4.0-3
-  gcc-g++-12.4.0-3
-  libhdf5-devel-1.12.3-1
-  libpcre-devel-8.45-1
-  libtool-2.4.7-1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  gcc-g++-14.4.0-1
+  hdf5-2.2.0-1
+  libCQRlib-devel-1.1.4-1bl2
+  libaec-devel-1.1.8-1
+  libhdf5-devel-2.2.0-1
+  libtiff-devel-4.7.2-1
+  ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/yayahjb/cbflib
+  https://github.com/dials/cbflib
 
 Canonical download:
-  https://github.com/yayahjb/cbflib/archive/refs/tags/CBFlib-0.9.7.tar.gz
+  https://github.com/dials/cbflib/archive/refs/tags/CBFlib-0.9.8.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack CBFlib-0.9.7-X-src.tar.xz
+  1. unpack cbflib-0.9.8-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./CBFlib-0.9.7-X.cygport all
+        % cygport ./cbflib-0.9.8-X.cygport all
 
 This will create:
-  /usr/src/CBFlib-0.9.7-X-src.tar.xz
-  /usr/src/CBFlib-0.9.7-X.tar.xz
-  /usr/src/libcbf3.0.1-0.9.7-X.tar.xz
-  /usr/src/libcbf-devel-0.9.7-X.tar.xz
+  /usr/src/cbflib-0.9.8-X-src.tar.xz
+  /usr/src/cbflib-0.9.8-X.tar.xz
+  /usr/src/libcbf2-0.9.8-X.tar.xz
+  /usr/src/libcbf-devel-0.9.8-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
-(CBFlib)
+(cbflib)
   /usr/bin/adscimg2cbf.exe
   /usr/bin/cbf2adscimg.exe
   /usr/bin/cbf2nexus.exe
@@ -70,18 +72,22 @@ Files included in the binary package:
   /usr/bin/sequence_match.exe
   /usr/bin/testcell.exe
   /usr/bin/tiff2cbf.exe
-  /usr/share/doc/CBFlib/README
-  /usr/share/doc/Cygwin/CBFlib.README
+  /usr/share/doc/Cygwin/cbflib.README
+  /usr/share/doc/cbflib/CBFlib_NOTICES.txt
+  /usr/share/doc/cbflib/ChangeLog.md
+  /usr/share/doc/cbflib/README
+  /usr/share/doc/cbflib/SECURITY.md
 
-(libcbf3.0.1)
-  /usr/bin/cygcbf-3.0.1.dll
-  /usr/bin/cygfcb-3.0.1.dll
-  /usr/bin/cygimg-3.0.1.dll
+(libcbf2)
+  /usr/bin/cygcbf-2.dll
+  /usr/bin/cygfcb-2.dll
+  /usr/bin/cygimg-2.dll
 
 (libcbf-devel)
   /usr/include/cbflib/cbf.h
   /usr/include/cbflib/cbf_airy_disk.h
   /usr/include/cbflib/cbf_alloc.h
+  /usr/include/cbflib/cbf_array2minicbf.h
   /usr/include/cbflib/cbf_ascii.h
   /usr/include/cbflib/cbf_binary.h
   /usr/include/cbflib/cbf_byte_offset.h
@@ -121,6 +127,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.9.8-1bl1 -----
+Version bump.
 
 ----- version 0.9.7-1bl1 -----
 Version bump.

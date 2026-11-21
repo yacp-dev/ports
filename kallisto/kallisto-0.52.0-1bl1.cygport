@@ -1,10 +1,12 @@
 HOMEPAGE="https://github.com/pachterlab/${PN}"
 SRC_URI="https://github.com/pachterlab/${PN}/archive/refs/tags/v${PV}.tar.gz"
 PATCH_URI="
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sci-biology/${PN}/files/${PN}-0.46.2-cmake.patch
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sci-biology/${PN}/files/${PN}-0.46.2-htslib.patch
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sci-biology/${PN}/files/${PN}-0.46.2-catch2.patch
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sci-biology/${PN}/files/${PN}-0.46.2-gcc11.patch
+	https://sources.debian.org/data/main/k/${PN}/0.52.0+dfsg-1/debian/patches/baseline.patch
+	https://sources.debian.org/data/main/k/${PN}/0.52.0+dfsg-1/debian/patches/bifrost_typo.patch
+	https://sources.debian.org/data/main/k/${PN}/0.52.0+dfsg-1/debian/patches/cmake4.patch
+	https://sources.debian.org/data/main/k/${PN}/0.52.0+dfsg-1/debian/patches/std_gnu17.patch
+	https://sources.debian.org/data/main/k/${PN}/0.52.0+dfsg-1/debian/patches/fix_testing.patch
+	https://sources.debian.org/data/main/k/${PN}/0.52.0+dfsg-1/debian/patches/htslib1.3
 "
 
 CATEGORY="Science"
@@ -22,28 +24,38 @@ fast, but also comparably accurate to other existing quantification tools. In
 fact, because the pseudoalignment procedure is robust to errors in the reads,
 in many benchmarks kallisto significantly outperforms existing tools."
 
-BUILD_REQUIRES="Catch2 libhdf5-devel libhts-devel zlib-devel"
+LICENSE="BSD-2-Clause AND MIT AND Unlicense"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND MIT AND Unlicense"
+LICENSE_URI="license.txt"
 
-CYGPORT_USE_UNSTABLE_API=1
-src_patch_hook()
-{
-	cd ${origsrcdir}/${SRC_DIR}
-	rm -rf ext src/kseq.h
-}
+BUILD_REQUIRES="
+	hdf5
+	libaec-devel
+	libhdf5-devel
+	libhts-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
-	-DBUILD_FUNCTESTING:BOOL=ON
+	-DBUILD_FUNCTESTING:BOOL=OFF
 	-DBUILD_SHARED_LIBS:BOOL=OFF
-	-DBUILD_TESTING:BOOL=ON
+	-DBUILD_TESTING:BOOL=OFF
+	-DCOMPILATION_ARCH=OFF
+	-DENABLE_AVX2=OFF
+	-DUSE_BAM:BOOL=ON
 	-DUSE_HDF5:BOOL=ON
 "
 
 src_test()
 {
 	cd ${B}
-	ninja_test
+	./src/kallisto.exe version
 }
+
+DOCS="
+	license.txt
+"

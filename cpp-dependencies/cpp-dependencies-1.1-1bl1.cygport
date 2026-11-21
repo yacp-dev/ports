@@ -1,0 +1,27 @@
+HOMEPAGE="https://github.com/tomtom-international/${PN}"
+SRC_URI="https://github.com/tomtom-international/${PN}/archive/refs/tags/${PV}.tar.gz"
+
+CATEGORY="Devel"
+SUMMARY="Tool to check C++ #include dependencies"
+DESCRIPTION="Tool to check C++ #include dependencies (dependency graphs created
+in .dot format)"
+
+LICENSE="Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libboost-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DHAS_MEMRCHR:BOOL=OFF
+	-DWITH_BOOST:BOOL=ON
+"
+
+DOCS="
+	NOTICE
+"

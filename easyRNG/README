@@ -4,24 +4,24 @@ A lightweight and easy-to-use library that wraps C++11's random number
 generators, making them available from C and Fortran.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libeasyRNG-devel-1.2-1bl2
-  libeasyRNG0-1.2-1bl2
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libeasyRNG-devel-1.2-1bl3
+  libeasyRNG0-1.2-1bl3
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-fortran-13.4.0-1
-  gcc-g++-13.4.0-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  gcc-g++-14.4.0-1
+  libgsl-devel-2.3-2
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -67,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.2-1bl2 -----
 Rebuild with gcc-13.4.0

@@ -11,6 +11,11 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	gcc-fortran
+	libgsl-devel
+"
+
 PKG_NAMES="
 	easyRNG
 	libeasyRNG0

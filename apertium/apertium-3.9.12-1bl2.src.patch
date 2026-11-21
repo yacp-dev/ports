@@ -1,5 +1,5 @@
---- origsrc/apertium-3.9.12/Makefile.am	2025-03-26 18:26:26.000000000 +0900
-+++ src/apertium-3.9.12/Makefile.am	2025-05-25 02:14:39.711533900 +0900
+--- origsrc/apertium-3.9.12/Makefile.am	2025-03-26 09:26:26.000000000 +0000
++++ src/apertium-3.9.12/Makefile.am	2026-11-21 02:45:59.218980900 +0000
 @@ -19,7 +19,7 @@ EXTRA_DIST=autogen.sh README-MODES apert
  
  install-data-local:
@@ -9,8 +9,8 @@
  
  # just a synonym:
  test: check
---- origsrc/apertium-3.9.12/apertium/Makefile.am	2025-03-26 18:26:26.000000000 +0900
-+++ src/apertium-3.9.12/apertium/Makefile.am	2025-05-25 02:21:53.621427600 +0900
+--- origsrc/apertium-3.9.12/apertium/Makefile.am	2025-03-26 09:26:26.000000000 +0000
++++ src/apertium-3.9.12/apertium/Makefile.am	2026-11-21 02:45:59.220740700 +0000
 @@ -160,7 +160,7 @@ GENERATEDSCRIPTS = apertium-gen-deformat
  
  lib_LTLIBRARIES = libapertium.la
@@ -360,8 +360,8 @@
  	@chmod a+x $@
  
  man_MANS=apertium.1 apertium-deshtml.1 apertium-desrtf.1 apertium-destxt.1 \
---- origsrc/apertium-3.9.12/configure.ac	2025-03-26 18:26:26.000000000 +0900
-+++ src/apertium-3.9.12/configure.ac	2025-05-25 02:22:34.955397900 +0900
+--- origsrc/apertium-3.9.12/configure.ac	2025-03-26 09:26:26.000000000 +0000
++++ src/apertium-3.9.12/configure.ac	2026-11-21 02:45:59.220740700 +0000
 @@ -78,7 +78,9 @@ AC_C_BIGENDIAN
  AC_LANG(C++)
  AC_HEADER_STDC
@@ -382,8 +382,8 @@
  #AS_IF([test x$version_type = xwindows], [AC_DEFINE(HAVE_GETOPT_LONG,0)], [])
  
  # Checks for highest supported C++ standard
---- origsrc/apertium-3.9.12/python/Makefile.am	2025-03-26 18:26:26.000000000 +0900
-+++ src/apertium-3.9.12/python/Makefile.am	2025-05-25 02:22:55.924983200 +0900
+--- origsrc/apertium-3.9.12/python/Makefile.am	2025-03-26 09:26:26.000000000 +0000
++++ src/apertium-3.9.12/python/Makefile.am	2026-11-21 02:45:59.220740700 +0000
 @@ -2,7 +2,7 @@ SWIG_INTERFACE = apertium_core.i
  
  BUILT_SOURCES = %_wrap.cpp
@@ -393,8 +393,8 @@
  	$(PYTHON) setup.py build
  
  install-exec-local:
---- origsrc/apertium-3.9.12/python/setup.py.in	2025-03-26 18:26:26.000000000 +0900
-+++ src/apertium-3.9.12/python/setup.py.in	2025-05-25 02:24:24.353049600 +0900
+--- origsrc/apertium-3.9.12/python/setup.py.in	2025-03-26 09:26:26.000000000 +0000
++++ src/apertium-3.9.12/python/setup.py.in	2026-11-21 02:45:59.222762400 +0000
 @@ -7,7 +7,7 @@ from distutils.core import Extension, se
  from sys import platform
  
@@ -424,8 +424,8 @@
  )
  
  setup(
---- origsrc/apertium-3.9.12/tests/tagger/Makefile.am	2025-03-26 18:26:26.000000000 +0900
-+++ src/apertium-3.9.12/tests/tagger/Makefile.am	2025-05-25 02:24:39.655306500 +0900
+--- origsrc/apertium-3.9.12/tests/tagger/Makefile.am	2025-03-26 09:26:26.000000000 +0000
++++ src/apertium-3.9.12/tests/tagger/Makefile.am	2026-11-21 02:45:59.222762400 +0000
 @@ -14,4 +14,4 @@ apertiumlib = $(prefix)/lib
  apertiumsysconf = $(prefix)/etc/apertium
  

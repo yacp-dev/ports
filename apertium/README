@@ -6,35 +6,40 @@ related-language pairs but expanded to deal with more divergent language pairs
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.1-1
-  libapertium-devel-3.9.12-1bl1
-  libapertium3-3.9.12-1bl1
-  libgcc1-12.4.0-3
+  cygwin-3.6.12-1
+  libapertium-devel-3.9.12-1bl2
+  libapertium3-3.9.12-1bl2
+  libgcc1-14.4.0-1
   libicu76-76.1-2
-  liblttoolbox3-3.8.0-1bl1
-  libstdc++6-12.4.0-3
-  libxml2-2.10.4-2
-  pkg-config-2.4.3-1
-  python39-3.9.18-2
+  libintl8-0.26-1
+  liblttoolbox3-3.8.3-1bl2
+  libstdc++6-14.4.0-1
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.10-1
+  python3-3.12.12-1
+  python312-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
   flex-2.6.4-2
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  gcc-g++-14.4.0-1
+  libboost-devel-1.66.0-1
   libicu-devel-76.1-2
-  liblttoolbox-devel-3.8.0-1bl1
-  libtool-2.5.4-1
-  libxml2-devel-2.10.4-2
+  liblttoolbox-devel-3.8.3-1bl2
+  libtool-2.6.2-1
+  libxml2-2.13.9-3
+  libxml2-devel-2.13.9-3
+  libxslt-1.1.43-1
   make-4.4.1-2
-  python39-3.9.18-2
-  python39-devel-3.9.18-2
-  utf8cpp-devel-4.0.6-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  python3-setuptools-84.2.1-1
+  swig-4.5.1-1
+  utf8cpp-devel-5.0.0-1
 
 Canonical website:
   https://github.com/apertium/apertium
@@ -56,7 +61,7 @@ This will create:
   /usr/src/apertium-3.9.12-X.tar.xz
   /usr/src/libapertium3-3.9.12-X.tar.xz
   /usr/src/libapertium-devel-3.9.12-X.tar.xz
-  /usr/src/python39-apertium-3.9.12-X.tar.xz
+  /usr/src/python312-apertium-3.9.12-X.tar.xz
 
 -------------------------------------------
 
@@ -163,7 +168,6 @@ Files included in the binary package:
   /usr/share/doc/apertium/ChangeLog
   /usr/share/doc/apertium/NEWS
   /usr/share/doc/apertium/README
-  /usr/share/doc/apertium/README.md
   /usr/share/man/man1/apertium-compile-caps.1.gz
   /usr/share/man/man1/apertium-deshtml-alt.1.gz
   /usr/share/man/man1/apertium-deshtml.1.gz
@@ -299,16 +303,19 @@ Files included in the binary package:
   /usr/lib/pkgconfig/apertium.pc
   /usr/share/aclocal/apertium.m4
 
-(python39-apertium)
-  /usr/lib/python3.9/site-packages/_apertium_core.cpython-39-x86_64-cygwin.dll
-  /usr/lib/python3.9/site-packages/apertium-3.9.12-py3.9.egg-info/PKG-INFO
-  /usr/lib/python3.9/site-packages/apertium-3.9.12-py3.9.egg-info/SOURCES.txt
-  /usr/lib/python3.9/site-packages/apertium-3.9.12-py3.9.egg-info/dependency_links.txt
-  /usr/lib/python3.9/site-packages/apertium-3.9.12-py3.9.egg-info/top_level.txt
+(python312-apertium)
+  /usr/lib/python3.12/site-packages/_apertium_core.cpython-312-x86_64-cygwin.dll
+  /usr/lib/python3.12/site-packages/apertium-3.9.12-py3.12.egg-info/PKG-INFO
+  /usr/lib/python3.12/site-packages/apertium-3.9.12-py3.12.egg-info/SOURCES.txt
+  /usr/lib/python3.12/site-packages/apertium-3.9.12-py3.12.egg-info/dependency_links.txt
+  /usr/lib/python3.12/site-packages/apertium-3.9.12-py3.12.egg-info/top_level.txt
 
 ------------------
 
 Port Notes:
+
+----- version 3.9.12-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.9.12-1bl1 -----
 Version bump.

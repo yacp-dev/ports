@@ -11,7 +11,19 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="utf8cpp-devel libicu-devel liblttoolbox-devel libxml2-devel python39-devel"
+BUILD_REQUIRES="
+	flex
+	libboost-devel
+	libicu-devel
+	liblttoolbox-devel
+	libxml2
+	libxml2-devel
+	libxslt
+	python3-devel
+	python3-setuptools
+	swig
+	utf8cpp-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -I/usr/include/utf8cpp"
 export PYTHON=python3
@@ -29,7 +41,7 @@ PKG_NAMES="
 	${PN}
 	lib${PN}3
 	lib${PN}-devel
-	python39-apertium
+	python312-apertium
 "
 apertium_CONTENTS="
 	usr/bin/${PN}*
@@ -46,10 +58,10 @@ libapertium_devel_CONTENTS="
 	usr/lib/pkgconfig
 	usr/share/aclocal
 "
-python39_apertium_CONTENTS="
-	usr/lib/python3.9
+python312_apertium_CONTENTS="
+	usr/lib/python3.12
 "
 apertium_SUMMARY="${SUMMARY} (utilities)"
 libapertium3_SUMMARY="${SUMMARY} (runtime)"
 libapertium_devel_SUMMARY="${SUMMARY} (development)"
-python39_apertium_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_apertium_SUMMARY="${SUMMARY} (python312 bindings)"

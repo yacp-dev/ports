@@ -1,5 +1,5 @@
-HOMEPAGE="http://${PN}.org/"
-SRC_URI="http://${PN}.org/${P}.tar.gz"
+HOMEPAGE="https://github.com/ceres-solver/${PN}"
+SRC_URI="https://github.com/ceres-solver/${PN}/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Math"
 SUMMARY="Nonlinear Least Squares Minimizer"
@@ -8,6 +8,21 @@ across science and engineering - from fitting curves in statistics, to
 constructing 3D models from photographs in computer vision. Ceres Solver is a
 portable C++ library that allows for modeling and solving large complicated
 nonlinear least squares problems."
+
+LICENSE="BSD-3-Clause AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND Apache-2.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	eigen3
+	libcholmod-devel
+	libcxsparse-devel
+	libgflags-devel
+	libglog-devel
+	liblapack-devel
+	libspqr-devel
+	libsuitesparseconfig-devel
+"
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
@@ -21,25 +36,21 @@ src_test()
 	ctest
 }
 
-DOCS="
-	VERSION
-"
-
 PKG_NAMES="
 	${PN}
-	libceres1
+	libceres4
 	libceres-devel
 "
 ceres_solver_CONTENTS="
 	usr/share
 "
-libceres1_CONTENTS="
-	usr/bin
+libceres4_CONTENTS="
+	usr/bin/cyg*-4.dll
 "
 libceres_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 ceres_solver_SUMMARY="${SUMMARY} (licensing & readmes)"
-libceres1_SUMMARY="${SUMMARY} (runtime)"
+libceres4_SUMMARY="${SUMMARY} (runtime)"
 libceres_devel_SUMMARY="${SUMMARY} (development)"

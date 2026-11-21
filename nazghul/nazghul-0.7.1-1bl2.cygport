@@ -1,0 +1,55 @@
+HOMEPAGE="https://sourceforge.net/projects/nazghul/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+
+CATEGORY="Games"
+SUMMARY="Computer role-playing game (CRPG) engine with game called HaximA"
+DESCRIPTION="Computer role-playing game (CRPG) engine with game called HaximA"
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libpng-devel
+	libSDL-devel
+	libSDL_image-devel
+	libSDL_mixer-devel
+"
+
+CFLAGS="${CFLAGS} -include math.h"
+CXXFLAGS="${CXXFLAGS} -include math.h"
+
+CYGCONF_ARGS="--enable-maintainer-mode"
+
+src_test()
+{
+	cd ${B}/src
+	verbose ./nazghul.exe -v
+}
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	cd ${S}
+	docinto engine_extension_and_design
+	dodoc doc/engine_extension_and_design/*
+	docinto world_building
+	dodoc doc/world_building/*
+	doicon icons/haxima.png
+	make_desktop_entry haxima.sh HaximA haxima
+}
+
+DOCS="
+	doc/GAME_RULES
+	doc/GHULSCRIPT
+	doc/MAP_HACKERS_GUIDE
+	doc/USERS_GUIDE
+"
+HTMLDOCS="
+	doc/null.gif
+	doc/users_guide.html
+"
+
+DIFF_EXCLUDES="Makefile"

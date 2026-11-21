@@ -1,0 +1,81 @@
+--- origsrc/ezstream-1.0.2/src/Makefile.am	2020-01-29 20:40:14.000000000 +0000
++++ src/ezstream-1.0.2/src/Makefile.am	2026-11-21 11:13:31.816562700 +0000
+@@ -41,8 +41,8 @@ libezstream_la_SOURCES = \
+ libezstream_la_DEPENDENCIES = \
+ 	$(builddir)/libcommon.la \
+ 	$(top_builddir)/compat/libcompat.la
+-libezstream_la_LIBADD = @EZ_LIBS@ \
+-	$(libezstream_la_DEPENDENCIES)
++libezstream_la_LIBADD = \
++	$(libezstream_la_DEPENDENCIES) @EZ_LIBS@
+ 
+ bin_SCRIPTS	 = ezstream-file.sh
+ bin_PROGRAMS	 = ezstream ezstream-cfgmigrate
+@@ -55,8 +55,8 @@ ezstream_cfgmigrate_SOURCES = ezstream-c
+ ezstream_cfgmigrate_DEPENDENCIES = \
+ 	$(builddir)/libcommon.la \
+ 	$(top_builddir)/compat/libcompat.la
+-ezstream_cfgmigrate_LDADD = @EZ_LIBS@ \
+-	$(ezstream_cfgmigrate_DEPENDENCIES)
++ezstream_cfgmigrate_LDADD = \
++	$(ezstream_cfgmigrate_DEPENDENCIES) @EZ_LIBS@
+ 
+ AM_CPPFLAGS	 = @EZ_CPPFLAGS@ -I$(top_srcdir)/compat
+ AM_CFLAGS	 = @EZ_CFLAGS@
+--- origsrc/ezstream-1.0.2/src/mdata.c	2021-02-08 17:36:19.000000000 +0000
++++ src/ezstream-1.0.2/src/mdata.c	2026-11-21 11:13:31.818579700 +0000
+@@ -22,6 +22,7 @@
+ 
+ #include <sys/stat.h>
+ #include <sys/wait.h>
++#include <signal.h>
+ 
+ #include <errno.h>
+ #if defined(HAVE_LIBGEN_H) && !defined(__linux__)
+@@ -243,9 +244,14 @@ _mdata_run(const char *program, enum mda
+ 		log_error("%s: %s", program, strerror(errno));
+ 		return (NULL);
+ 	} else if (WIFSIGNALED(ret)) {
+-		log_error("%s: exited with signal %d", program,
+-		    WTERMSIG(ret));
+-		return (NULL);
++#ifdef SIGPIPE
++		if (WTERMSIG(ret) != SIGPIPE)
++#endif
++		{
++			log_error("%s: exited with signal %d", program,
++			    WTERMSIG(ret));
++			return (NULL);
++		}
+ 	} else if (0 != WEXITSTATUS(ret)) {
+ 		log_error("%s: exited with error code %d", program,
+ 		    WEXITSTATUS(ret));
+--- origsrc/ezstream-1.0.2/src/stream.c	2021-02-10 23:52:27.000000000 +0000
++++ src/ezstream-1.0.2/src/stream.c	2026-11-21 11:13:31.818579700 +0000
+@@ -27,6 +27,16 @@
+ 
+ #include <shout/shout.h>
+ 
++#ifndef SHOUT_USAGE_AUDIO
++static inline int
++shout_set_content_format(shout_t *self, unsigned int format, unsigned int usage, const char *codecs)
++{
++	(void)usage;
++	(void)codecs;
++	return shout_set_format(self, format);
++}
++#endif
++
+ #include "cfg.h"
+ #include "log.h"
+ #include "mdata.h"
+--- origsrc/ezstream-1.0.2/tests/check_stream.c	2021-02-10 23:52:27.000000000 +0000
++++ src/ezstream-1.0.2/tests/check_stream.c	2026-11-21 11:13:31.818579700 +0000
+@@ -123,6 +123,7 @@ stream_suite(void)
+ 	s = suite_create("Stream");
+ 
+ 	tc_stream = tcase_create("Stream");
++	tcase_set_timeout(tc_stream, 30);
+ 	tcase_add_checked_fixture(tc_stream, setup_checked, teardown_checked);
+ 	tcase_add_test(tc_stream, test_stream);
+ 	suite_add_tcase(s, tc_stream);

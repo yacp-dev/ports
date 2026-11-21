@@ -16,6 +16,7 @@ inherit cmake
 inherit git
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DSOVERSION:STRING=${PV[1]}
 "
 

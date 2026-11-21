@@ -4,27 +4,29 @@ Library containing code to manipulate mmCIF and PDB files
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.10-1
-  libcifpp-devel-10.0.4-1bl1
-  libcifpp10-10.0.4-1bl1
+  cygwin-3.6.12-1
+  libcifpp-devel-10.0.4-1bl2
+  libcifpp10-10.0.4-1bl2
   libgcc1-14.4.0-1
-  libpcre2_8_0-10.47-1
+  libpcre2_8_0-10.49-1
+  libsqlite3-devel-3.49.1-1
   libsqlite3_0-3.49.1-1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.4-2
-  zlib0-1.3.2-1
+  pkg-config-3.0.10-1
+  zlib-devel-1.4-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-14.4.0-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
   gcc-g++-14.4.0-1
-  libpcre2-devel-10.47-1
+  libCatch2-devel-3.16.1-1bl2
+  libpcre2-devel-10.49-1
   libsqlite3-devel-3.49.1-1
   ninja-1.13.2-1
-  zlib-devel-1.3.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/PDB-REDO/libcifpp
@@ -94,7 +96,7 @@ Files included in the binary package:
   /usr/include/cif++/validate.hpp
   /usr/lib/cmake/cifpp/cifpp-config-version.cmake
   /usr/lib/cmake/cifpp/cifpp-config.cmake
-  /usr/lib/cmake/cifpp/cifpp-targets-release.cmake
+  /usr/lib/cmake/cifpp/cifpp-targets-relwithdebinfo.cmake
   /usr/lib/cmake/cifpp/cifpp-targets.cmake
   /usr/lib/libcifpp.dll.a
   /usr/lib/pkgconfig/libcifpp.pc
@@ -102,6 +104,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 10.0.4-1bl2 -----
+Pass -DCMAKE_SHARED_LINKER_FLAGS:STRING=-Wl,--export-all-symbols to export all symbols
 
 ----- version 10.0.4-1bl1 -----
 Version bump.

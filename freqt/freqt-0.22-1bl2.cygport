@@ -10,6 +10,10 @@ less than N trees, where N is a user given threshold usually called minimum
 support. FREQT efficiently enumerates frequent sub-trees using right-most
 expansion."
 
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
 src_compile()
 {
 	cd ${B}

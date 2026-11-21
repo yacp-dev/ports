@@ -1,0 +1,20 @@
+--- origsrc/freqt-0.22/freqt.cpp	2003-09-08 19:46:44.000000000 +0000
++++ src/freqt-0.22/freqt.cpp	2026-11-21 13:28:21.457166000 +0000
+@@ -247,7 +247,7 @@ private:
+ 	for (int l = start; l != -1; l = transaction[id][l].sibling) {
+ 	  std::string item = prefix + " " + transaction[id][l].val;
+ 	  projected_t &tmp = candidate[item];
+-	  tmp.locations.push_back (std::make_pair <unsigned int, int> (id, l));
++	  tmp.locations.push_back (std::make_pair(id, l));
+ 	  tmp.depth = newdepth;
+ 	}
+ 
+@@ -293,7 +293,7 @@ public:
+     std::map <std::string, projected_t> freq1;
+     for (unsigned int i = 0; i < transaction.size(); ++i) 
+       for (unsigned int j = 0; j < transaction[i].size(); ++j) 
+-	freq1[transaction[i][j].val].locations.push_back (std::make_pair <unsigned int, int> (i, j));
++	freq1[transaction[i][j].val].locations.push_back (std::make_pair(i, j));
+ 
+     prune (freq1);
+      

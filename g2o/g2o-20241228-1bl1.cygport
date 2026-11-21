@@ -10,7 +10,20 @@ problems and a new problem typically can be specified in a few lines of code.
 The current implementation provides solutions to several variants of SLAM and
 BA."
 
-BUILD_REQUIRES="libcamd-devel libcholmod-devel libcxsparse-devel libGL-devel libGLU-devel"
+LICENSE="Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-3.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND GPL-3.0-or-later AND LGPL-2.1-or-later AND LGPL-3.0-or-later AND MIT"
+LICENSE_URI="doc/license-bsd.txt"
+
+BUILD_REQUIRES="
+	eigen3
+	libcamd-devel
+	libcholmod-devel
+	libcxsparse-devel
+	libGL-devel
+	libGLU-devel
+	libgmock-devel
+	libgtest-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -18,13 +31,22 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_UNITTESTS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
-src_test()
+src_install()
 {
 	cd ${B}
-	ninja_test
+	ninja_install
+
+	verbose rm -f ${D}/usr/include/g2o/autodiff/LICENSE
 }
+
+DOCS="
+	doc/license-*.txt
+	g2o/autodiff/LICENSE
+	g2o/EXTERNAL/freeglut/COPYING
+"
 
 DIFF_EXCLUDES="
 	lib
@@ -32,20 +54,26 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	g2o
-	libg2o0
+	libg2o0.1
 	libg2o-devel
 "
 g2o_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libg2o0_CONTENTS="
-	usr/bin/*.dll
+libg2o0_1_CONTENTS="
+	usr/bin/cyg*-0.1.dll
 "
 libg2o_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 g2o_SUMMARY="${SUMMARY} (utilities)"
-libg2o0_SUMMARY="${SUMMARY} (runtime)"
+libg2o0_1_SUMMARY="${SUMMARY} (runtime)"
 libg2o_devel_SUMMARY="${SUMMARY} (development)"
+
+libg2o_devel_REQUIRES="
+	eigen3
+	libcxsparse-devel
+	libGLU-devel
+"

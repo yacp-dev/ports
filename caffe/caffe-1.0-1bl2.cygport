@@ -5,8 +5,8 @@ SRC_URI="
 "
 PATCH_URI="
 	https://github.com/BVLC/${PN}/commit/1b317bab3f6413a1b5d87c9d3a300d785a4173f9.patch
+	https://github.com/BVLC/${PN}/commit/7f503bd9a19758a173064e299ab9d4cac65ed60f.patch
 "
-
 CATEGORY="Libs"
 SUMMARY="Fast open framework for deep learning"
 DESCRIPTION="Caffe is a deep learning framework made with expression, speed, and modularity
@@ -17,9 +17,24 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libboost-devel libgflags-devel libglog-devel libhdf5-devel liblapack-devel libleveldb-devel liblmdb-devel libopencv-devel libprotobuf-devel"
+BUILD_REQUIRES="
+	hdf5
+	libaec-devel
+	libboost-devel
+	libgflags-devel
+	libglog-devel
+	libhdf5-devel
+	liblapack-devel
+	libleveldb-devel
+	liblmdb-devel
+	libopencv-devel
+	libprotobuf-devel
+	libsnappy-devel
+	zlib-devel
+"
 
 export LDFLAGS="${LDFLAGS} -Wl,--allow-multiple-definition"
+export CXXFLAGS="${CXXFLAGS} -DGLOG_USE_GLOG_EXPORT"
 
 inherit cmake
 
@@ -29,6 +44,7 @@ CYGCMAKE_ARGS="
 	-DBUILD_matlab:BOOL=OFF
 	-DBUILD_python:BOOL=OFF
 	-DBUILD_python_layer:BOOL=OFF
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DCPU_ONLY:BOOL=ON
 "
 
@@ -47,7 +63,7 @@ caffe_CONTENTS="
 	usr/share
 "
 libcaffe1_0_0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-1.0.0.dll
 "
 libcaffe_devel_CONTENTS="
 	usr/include
@@ -57,3 +73,18 @@ libcaffe_devel_CONTENTS="
 caffe_SUMMARY="${SUMMARY} (utilities)"
 libcaffe1_0_0_SUMMARY="${SUMMARY} (runtime)"
 libcaffe_devel_SUMMARY="${SUMMARY} (development)"
+libcaffe_devel_REQUIRES="
+	libboost-devel
+	libgflags-devel
+	libglog-devel
+	liblapack-devel
+	libleveldb-devel
+	liblmdb-devel
+	libopencv-devel
+	libprotobuf-devel
+"
+
+src_test() {
+	cd ${B}
+	PATH="${B}/bin:${PATH}" cygninja runtest
+}

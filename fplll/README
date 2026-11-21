@@ -1,42 +1,40 @@
 fplll
 ------------------------------------------
 fplll contains several algorithms on lattices that rely on floating-point
-computations. This includes implementations of the floating-point LLL
-reduction algorithm, offering different speed/guarantees ratios. It contains a
-wrapper choosing the estimated best sequence of variants in order to provide a
+computations. This includes implementations of the floating-point LLL reduction
+algorithm, offering different speed/guarantees ratios. It contains a wrapper
+choosing the estimated best sequence of variants in order to provide a
 guaranteed output as fast as possible. In the case of the wrapper, the
 succession of variants is oblivious to the user. It also includes a rigorous
-floating-point implementation of the Kannan-Fincke-Pohst algorithm that finds
-a shortest non-zero lattice vector.
+floating-point implementation of the Kannan-Fincke-Pohst algorithm that finds a
+shortest non-zero lattice vector.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  cygwin-devel-3.6.5-1
-  libfplll-devel-5.5.0-1bl1
-  libfplll9-5.5.0-1bl1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libfplll-devel-5.5.0-1bl2
+  libfplll9-5.5.0-1bl2
+  libgcc1-14.4.0-1
   libgmp-devel-6.3.0-1
   libgmp10-6.3.0-1
   libmpfr-devel-4.2.2-1
   libmpfr6-4.2.2-1
-  libqd-devel-2.3.24-1bl2
-  libqd0-2.3.24-1bl2
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libqd-devel-2.3.24-1bl3
+  libqd0-2.3.24-1bl3
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libgmp-devel-6.3.0-1
   libmpfr-devel-4.2.2-1
-  libqd-devel-2.3.24-1bl2
-  libtool-2.5.4-1
+  libqd-devel-2.3.24-1bl3
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -130,6 +128,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.5.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 5.5.0-1bl1 -----
 Version bump.

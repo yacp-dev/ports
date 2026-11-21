@@ -4,9 +4,28 @@ SRC_URI="https://downloads.xiph.org/releases/${PN}/${P}.tar.gz"
 CATEGORY="Audio"
 SUMMARY="Command line source client for Icecast media streaming servers"
 DESCRIPTION="Ezstream is a command line source client for Icecast media streaming servers.
-It began as the successor of the old "shout" utility, and has since gained a
+It began as the successor of the old shout utility, and has since gained a
 lot of useful features."
+
+LICENSE="GPL-2.0-only AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-only AND ISC"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	check
+	gettext-devel
+	libiconv-devel
+	libshout-devel
+	libtag_c-devel
+	libxml2-devel
+"
 
 CYGCONF_ARGS="
   --enable-maintainer-mode
 "
+
+src_test()
+{
+	cd ${B}
+	CK_DEFAULT_TIMEOUT=30 cygtest
+}

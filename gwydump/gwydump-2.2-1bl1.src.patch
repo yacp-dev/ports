@@ -1,0 +1,11 @@
+--- origsrc/gwydump-2.2/Makefile	2026-04-28 07:45:25.000000000 +0000
++++ src/gwydump-2.2/Makefile	2026-11-21 14:50:47.168458600 +0000
+@@ -18,7 +18,7 @@ GLIB = glib-2.0
+ 
+ DEPS_CFLAGS := $(shell $(PKGCONFIG) $(GLIB) --cflags)
+ DEPS_LDFLAGS := $(shell $(PKGCONFIG) $(GLIB) --libs)
+-EXTRA_CFLAGS = -Wall -W -O2 -static -DVERSION=\"$(VERSION)\" -DPACKAGE=\"$(PACKAGE)\"
++EXTRA_CFLAGS = -Wall -W -O2 -DVERSION=\"$(VERSION)\" -DPACKAGE=\"$(PACKAGE)\"
+ EXTRA_LDFLAGS =
+ OBJECTS = $(SOURCES:.c=.o)
+ 

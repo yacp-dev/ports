@@ -7,13 +7,31 @@ SUMMARY="Cross-platform reimplementation of engine for the classic Bullfrog game
 DESCRIPTION="FreeSynd is a cross-platform, GPLed reimplementation of engine for the classic
 Bullfrog game, Syndicate."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libpng-devel libSDL2-devel libSDL2_image-devel libSDL2_mixer-devel"
+BUILD_REQUIRES="
+	cli11
+	crcpp
+	libADLMIDI-devel
+	libCatch2-devel
+	libpng-devel
+	libSDL2-devel
+	libSDL2_image-devel
+	libSDL2_mixer-devel
+	utf8cpp-devel
+"
 
 inherit cmake
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	doman ${S}/docs/freesynd.6
+}
 
 DIFF_EXCLUDES="
 	version.h

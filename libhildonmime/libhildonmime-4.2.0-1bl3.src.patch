@@ -1,0 +1,86 @@
+--- origsrc/libhildonmime-4.2.0/configure.ac	2023-10-07 10:33:10.000000000 +0000
++++ src/libhildonmime-4.2.0/configure.ac	2026-11-21 23:37:19.707271300 +0000
+@@ -1,7 +1,7 @@
+ dnl Process this file with autoconf to produce a configure script.
+ AC_PREREQ(2.52)
+  
+-AC_INIT(libhildonmime, 2.2.0)
++AC_INIT(libhildonmime, 4.2.0)
+ AC_CONFIG_SRCDIR(libhildonmime/hildon-uri.c)
+ AM_INIT_AUTOMAKE
+ 
+--- origsrc/libhildonmime-4.2.0/libhildonmime/Makefile.am	2023-10-07 10:33:10.000000000 +0000
++++ src/libhildonmime-4.2.0/libhildonmime/Makefile.am	2026-11-21 23:37:19.708259300 +0000
+@@ -7,7 +7,7 @@ AM_CPPFLAGS = $(WARN_CFLAGS)
+ 
+ lib_LTLIBRARIES = libhildonmime.la
+ 
+-libhildonmime_la_LDFLAGS = -version-info $(LIBHILDONMIME_VERSION_INFO)
++libhildonmime_la_LDFLAGS = -no-undefined -version-info $(LIBHILDONMIME_VERSION_INFO)
+ libhildonmime_la_CFLAGS = $(LIBHILDONMIME_CFLAGS)
+ libhildonmime_la_LIBADD = $(LIBHILDONMIME_LIBS)
+ 
+--- origsrc/libhildonmime-4.2.0/tests/test-all.c	2023-10-07 10:33:10.000000000 +0000
++++ src/libhildonmime-4.2.0/tests/test-all.c	2026-11-21 23:37:19.708259300 +0000
+@@ -247,7 +247,7 @@ test_failure_conditions (void)
+ 	GSList        *actions;
+ 	HildonURIAction *action;
+ 	const gchar   *str;
+-	gboolean       bool;
++	gboolean       ret;
+ 
+ 	print_header ("Testing failure conditions");
+ 
+@@ -292,11 +292,11 @@ test_failure_conditions (void)
+ 	assert_expr (str == NULL);
+ 
+ 	/* Default actions */
+-	bool = hildon_uri_is_default_action (NULL, NULL);
+-	assert_bool (bool == FALSE);
++	ret = hildon_uri_is_default_action (NULL, NULL);
++	assert_bool (ret == FALSE);
+ 
+-	bool = hildon_uri_is_default_action_by_uri (NULL, NULL, NULL);
+-	assert_bool (bool == FALSE);
++	ret = hildon_uri_is_default_action_by_uri (NULL, NULL, NULL);
++	assert_bool (ret == FALSE);
+ 
+ 	action = hildon_uri_get_default_action (NULL, NULL);
+ 	assert_expr (action == NULL);
+@@ -310,24 +310,24 @@ test_failure_conditions (void)
+ 	action = hildon_uri_get_default_action_by_uri ("foo", NULL);
+ 	assert_expr (action == NULL);
+ 
+-	bool = hildon_uri_set_default_action (NULL, NULL, NULL);
+-	assert_bool (bool == FALSE);
++	ret = hildon_uri_set_default_action (NULL, NULL, NULL);
++	assert_bool (ret == FALSE);
+ 
+-	bool = hildon_uri_set_default_action ("", NULL, NULL);
+-	assert_bool (bool == FALSE);
++	ret = hildon_uri_set_default_action ("", NULL, NULL);
++	assert_bool (ret == FALSE);
+ 
+-	bool = hildon_uri_set_default_action_by_uri (NULL, NULL, NULL);
+-	assert_bool (bool == FALSE);
++	ret = hildon_uri_set_default_action_by_uri (NULL, NULL, NULL);
++	assert_bool (ret == FALSE);
+ 
+-	bool = hildon_uri_set_default_action_by_uri ("foo", NULL, NULL);
+-	assert_bool (bool == FALSE);
++	ret = hildon_uri_set_default_action_by_uri ("foo", NULL, NULL);
++	assert_bool (ret == FALSE);
+ 
+ 	/* Open URI */
+-	bool = hildon_uri_open (NULL, NULL, NULL);
+-	assert_bool (bool == FALSE);
++	ret = hildon_uri_open (NULL, NULL, NULL);
++	assert_bool (ret == FALSE);
+ 
+-	bool = hildon_uri_open ("foo", NULL, NULL);
+-	assert_bool (bool == FALSE);
++	ret = hildon_uri_open ("foo", NULL, NULL);
++	assert_bool (ret == FALSE);
+ }
+ 
+ static void

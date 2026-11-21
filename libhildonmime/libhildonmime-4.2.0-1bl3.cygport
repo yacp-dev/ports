@@ -5,17 +5,19 @@ CATEGORY="Libs"
 SUMMARY="Library for activating an application to handle a certain mime type"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.0-or-later AND LGPL-2.1-or-later"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
-	libdbus1-devel
+	gtk-doc
+	libdbus-glib_1-devel
 	libglib2.0-devel
 	libxml2-devel
 "
 
 CYGCONF_ARGS="
+	--disable-gtk-doc
 	--enable-maintainer-mode
 	--with-compile-warnings=no
 "

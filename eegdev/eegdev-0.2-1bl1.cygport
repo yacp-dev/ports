@@ -1,0 +1,64 @@
+HOMEPAGE="https://sourceforge.net/projects/eegdev/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
+PATCH_URI="
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-12/debian/patches/fix-biosemi-on-bigendian.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-12/debian/patches/fix-racecond-in-biosemi-tests.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-12/debian/patches/fix-biosemi-close-hangups.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-12/debian/patches/fix-bison-grammar-file.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-12/debian/patches/include-config_h.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-12/debian/patches/fix-unaligned-memory-access.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-12/debian/patches/fix-autoconf-FTBFS.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-12/debian/patches/work-around-flex-bug.patch
+"
+
+CATEGORY="Libs"
+SUMMARY="Library to acquire data from EEG and biosignal acquisition systems"
+DESCRIPTION="eegdev is a library that provides an interface for accessing
+various EEG (and other biosignals) acquisition systems in a unified way. The
+interface has been designed in order to be both flexible and efficient. The
+device specific part is implemented by the means of plugins which makes adding
+new device backend fairly easy even if the library does not support them yet
+officially."
+
+LICENSE="LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	bison
+	flex
+	libexpat-devel
+	libusb1.0-devel
+	libxdffileio-devel
+"
+
+DOCS="
+	README*
+"
+
+DIFF_EXCLUDES="
+	*.m4
+"
+
+PKG_NAMES="
+	eegdev
+	libeegdev0
+	libeegdev-devel
+"
+eegdev_CONTENTS="
+	usr/lib/${PN}/*.dll
+	usr/share/doc
+	usr/share/man/man5
+"
+libeegdev0_CONTENTS="
+	usr/bin/cygeegdev-0.dll
+"
+libeegdev_devel_CONTENTS="
+	usr/include
+	usr/lib/libeegdev.dll.a
+	usr/lib/pkgconfig
+	usr/share/man/man3
+"
+eegdev_SUMMARY="${SUMMARY} (licensing & readmes)"
+libeegdev0_SUMMARY="${SUMMARY} (runtime)"
+libeegdev_devel_SUMMARY="${SUMMARY} (development)"

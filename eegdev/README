@@ -1,0 +1,110 @@
+eegdev
+------------------------------------------
+eegdev is a library that provides an interface for accessing various EEG (and
+other biosignals) acquisition systems in a unified way. The interface has been
+designed in order to be both flexible and efficient. The device specific part
+is implemented by the means of plugins which makes adding new device backend
+fairly easy even if the library does not support them yet officially.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libeegdev-devel-0.2-1bl1
+  libeegdev0-0.2-1bl1
+  libexpat1-2.10.0-1
+  libusb1.0-1.0.21-1
+  libusb1.0-devel-1.0.21-1
+  libxdffileio-devel-0.3-1bl4
+  libxdffileio0-0.3-1bl4
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  bison-3.8.2-1
+  cygport-0.37.12-1
+  flex-2.6.4-2
+  gcc-core-14.4.0-1
+  libexpat-devel-2.10.0-1
+  libtool-2.6.2-1
+  libusb1.0-devel-1.0.21-1
+  libxdffileio-devel-0.3-1bl4
+  make-4.4.1-2
+
+Canonical website:
+  https://sourceforge.net/projects/eegdev/
+
+Canonical download:
+  mirror://sourceforge/eegdev/eegdev-0.2.tar.bz2
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack eegdev-0.2-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./eegdev-0.2-X.cygport all
+
+This will create:
+  /usr/src/eegdev-0.2-X-src.tar.xz
+  /usr/src/eegdev-0.2-X.tar.xz
+  /usr/src/libeegdev0-0.2-X.tar.xz
+  /usr/src/libeegdev-devel-0.2-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(eegdev)
+  /usr/lib/eegdev/biosemi.dll
+  /usr/lib/eegdev/datafile.dll
+  /usr/lib/eegdev/tobiia.dll
+  /usr/share/doc/Cygwin/eegdev.README
+  /usr/share/doc/eegdev/AUTHORS
+  /usr/share/doc/eegdev/COPYING
+  /usr/share/doc/eegdev/ChangeLog
+  /usr/share/doc/eegdev/NEWS
+  /usr/share/doc/eegdev/README
+  /usr/share/doc/eegdev/README_build
+  /usr/share/doc/eegdev/examples/README
+  /usr/share/doc/eegdev/examples/library-usage/acquisition.c
+  /usr/share/doc/eegdev/examples/library-usage/acquisition.h
+  /usr/share/doc/eegdev/examples/library-usage/eegdev_acq.c
+  /usr/share/doc/eegdev/examples/library-usage/recinxdf.c
+  /usr/share/doc/eegdev/examples/plugin/Makefile
+  /usr/share/doc/eegdev/examples/plugin/README
+  /usr/share/doc/eegdev/examples/plugin/saw.c
+  /usr/share/man/man5/eegdev-biosemi.5.gz
+  /usr/share/man/man5/eegdev-datafile.5.gz
+  /usr/share/man/man5/eegdev-open-options.5.gz
+  /usr/share/man/man5/eegdev-tobiia.5.gz
+
+(libeegdev0)
+  /usr/bin/cygeegdev-0.dll
+
+(libeegdev-devel)
+  /usr/include/eegdev-pluginapi.h
+  /usr/include/eegdev.h
+  /usr/lib/libeegdev.dll.a
+  /usr/lib/pkgconfig/eegdev.pc
+  /usr/share/man/man3/egd_acq_setup.3.gz
+  /usr/share/man/man3/egd_channel_info.3.gz
+  /usr/share/man/man3/egd_close.3.gz
+  /usr/share/man/man3/egd_get_available.3.gz
+  /usr/share/man/man3/egd_get_cap.3.gz
+  /usr/share/man/man3/egd_get_data.3.gz
+  /usr/share/man/man3/egd_get_numch.3.gz
+  /usr/share/man/man3/egd_open.3.gz
+  /usr/share/man/man3/egd_sensor_name.3.gz
+  /usr/share/man/man3/egd_sensor_type.3.gz
+  /usr/share/man/man3/egd_start.3.gz
+  /usr/share/man/man3/egd_stop.3.gz
+
+------------------
+
+Port Notes:
+
+----- version 0.2-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

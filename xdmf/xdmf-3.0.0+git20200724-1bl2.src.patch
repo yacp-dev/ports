@@ -1,0 +1,96 @@
+--- origsrc/xdmf/CMake/TestingSuite/AddTestsC.cmake	2026-11-21 15:46:11.000000000 +0000
++++ src/xdmf/CMake/TestingSuite/AddTestsC.cmake	2026-11-21 15:46:14.434693700 +0000
+@@ -76,10 +76,10 @@ MACRO(ADD_TEST_C executable)
+ 
+     SET_CORE("${c_binary_dir}")
+     ADD_TEST(C${is_core}_${executable}${dup} ${CMAKE_COMMAND}
+-            -D "EXECUTABLE=${executable}${dup}"
++            -D "EXECUTABLE=${CMAKE_BINARY_DIR}/bin/${executable}${dup}${CMAKE_EXECUTABLE_SUFFIX}"
+             -D "ARGUMENTS=${arguments}"
+             -D "LDPATH=${c_ldpath}"
+-            -D "PATH=${c_path}"
++            -D "PATH=${CMAKE_BINARY_DIR}/bin${sep}${c_path}"
+             -D "SEPARATOR=${sep}"
+             -P "${c_binary_dir}/TestDriverC.cmake"
+     )
+--- origsrc/xdmf/CMake/TestingSuite/AddTestsCxx.cmake	2026-11-21 15:46:11.000000000 +0000
++++ src/xdmf/CMake/TestingSuite/AddTestsCxx.cmake	2026-11-21 15:46:14.434693700 +0000
+@@ -80,10 +80,10 @@ MACRO(ADD_TEST_CXX executable)
+ 
+     SET_CORE("${cxx_binary_dir}")
+     ADD_TEST(Cxx${is_core}_${executable}${dup} ${CMAKE_COMMAND}
+-            -D "EXECUTABLE=${executable}${dup}"
++            -D "EXECUTABLE=${CMAKE_BINARY_DIR}/bin/${executable}${dup}${CMAKE_EXECUTABLE_SUFFIX}"
+             -D "ARGUMENTS=${arguments}"
+             -D "LDPATH=${cxx_ldpath}"
+-            -D "PATH=${cxx_path}"
++            -D "PATH=${CMAKE_BINARY_DIR}/bin${sep}${cxx_path}"
+             -D "SEPARATOR=${sep}"
+             -P "${cxx_binary_dir}/TestDriverCxx.cmake"
+     )
+--- origsrc/xdmf/core/XdmfHDF5Controller.hpp	2026-11-21 15:46:12.000000000 +0000
++++ src/xdmf/core/XdmfHDF5Controller.hpp	2026-11-21 15:46:14.436712000 +0000
+@@ -28,15 +28,6 @@
+ #include "XdmfCore.hpp"
+ #include "XdmfHeavyDataController.hpp"
+ 
+-// So that hdf5 does not need to be included in the header files
+-// It would add a dependancy to programs that use Xdmf
+-#ifndef _H5Ipublic_H
+-  #ifndef XDMF_HID_T
+-  #define XDMF_HID_T
+-    typedef int hid_t;
+-  #endif
+-#endif
+-
+ #ifdef __cplusplus
+ 
+ #include <map>
+--- origsrc/xdmf/core/XdmfHDF5Writer.hpp	2026-11-21 15:46:12.000000000 +0000
++++ src/xdmf/core/XdmfHDF5Writer.hpp	2026-11-21 15:46:14.436712000 +0000
+@@ -29,14 +29,7 @@
+ #include "XdmfHeavyDataWriter.hpp"
+ #include "XdmfHeavyDataController.hpp"
+ 
+-// So that hdf5 does not need to be included in the header files
+-// It would add a dependancy to programs that use Xdmf
+-#ifndef _H5Ipublic_H
+-  #ifndef XDMF_HID_T
+-  #define XDMF_HID_T
+-    typedef int hid_t;
+-  #endif
+-#endif
++#include <H5Ipublic.h>
+ 
+ #ifdef __cplusplus
+ 
+--- origsrc/xdmf/tests/C/CMakeLists.txt	2026-11-21 15:46:12.000000000 +0000
++++ src/xdmf/tests/C/CMakeLists.txt	2026-11-21 15:46:14.438735400 +0000
+@@ -3,7 +3,11 @@ include(AddTestsC)
+ 
+ # Add any dependencies that the cxx core tests may need
+ # Note: The tests already depend on their own file
+-ADD_TEST_C_DEPENDENCIES("Xdmf")
++if (TIFF_FOUND)
++  ADD_TEST_C_DEPENDENCIES("Xdmf;tiff")
++else()
++  ADD_TEST_C_DEPENDENCIES("Xdmf")
++endif()
+ 
+ # Add any ldpath directories that the cxx tests may need
+ ADD_TEST_C_LDPATH("${CMAKE_BINARY_DIR}")
+--- origsrc/xdmf/tests/Cxx/CMakeLists.txt	2026-11-21 15:46:12.000000000 +0000
++++ src/xdmf/tests/Cxx/CMakeLists.txt	2026-11-21 15:46:14.438735400 +0000
+@@ -3,7 +3,11 @@ include(AddTestsCxx)
+ 
+ # Add any dependencies that the cxx tests may need
+ # Note: The tests already depend on their own file
+-ADD_TEST_CXX_DEPENDENCIES("Xdmf")
++if (TIFF_FOUND)
++  ADD_TEST_CXX_DEPENDENCIES("Xdmf;tiff")
++else()
++  ADD_TEST_CXX_DEPENDENCIES("Xdmf")
++endif()
+ 
+ # Add any cxx tests here:
+ # Note: We don't want to use a foreach loop to test the files incase we

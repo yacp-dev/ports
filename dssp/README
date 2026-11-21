@@ -3,43 +3,45 @@ dssp
 Create DSSP files
 
 Runtime requirements:
-  cygwin-3.1.7-1
-  libboost_iostreams1.66-1.66.0-1
-  libboost_program_options1.66-1.66.0-1
-  libboost_system1.66-1.66.0-1
-  libboost_test1.66-1.66.0-1
-  libboost_thread1.66-1.66.0-1
-  libgcc1-10.2.0-1
-  libstdc++6-10.2.0-1
+  cygwin-3.6.12-1
+  libcifpp10-10.0.4-1bl2
+  libgcc1-14.4.0-1
+  libmcfp2-2.1.1-1bl1
+  libstdc++6-14.4.0-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-11-1
-  binutils-2.34+1git.de9c1b7cfe-1
-  cygport-0.34.0-1
-  gcc-core-10.2.0-1
-  gcc-g++-10.2.0-1
-  make-4.3-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libCatch2-devel-3.16.1-1bl2
+  libcifpp-10.0.4-1bl2
+  libcifpp-devel-10.0.4-1bl2
+  libmcfp-devel-2.1.1-1bl1
+  libsqlite3-devel-3.49.1-1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
-  https://github.com/cmbi/dssp
+  https://github.com/PDB-REDO/dssp
 
 Canonical download:
-  https://github.com/cmbi/dssp/archive/3.1.4.tar.gz
+  https://github.com/PDB-REDO/dssp/archive/refs/tags/v4.6.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack dssp-3.1.4-X-src.tar.xz
+  1. unpack dssp-4.6.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./dssp-3.1.4-X.cygport all
+        % cygport ./dssp-4.6.1-X.cygport all
 
 This will create:
-  /usr/src/dssp-3.1.4-X-src.tar.xz
-  /usr/src/dssp-3.1.4-X.tar.xz
+  /usr/src/dssp-4.6.1-X-src.tar.xz
+  /usr/src/dssp-4.6.1-X.tar.xz
 
 -------------------------------------------
 
@@ -47,17 +49,19 @@ Files included in the binary package:
 
 (dssp)
   /usr/bin/mkdssp.exe
-  /usr/bin/test_readpdb.exe
   /usr/share/doc/Cygwin/dssp.README
-  /usr/share/doc/dssp/COPYING
-  /usr/share/doc/dssp/LICENSE_1_0.txt
+  /usr/share/doc/dssp/LICENSE
   /usr/share/doc/dssp/README.md
-  /usr/share/doc/dssp/changelog.dssp
+  /usr/share/doc/dssp/changelog
+  /usr/share/libcifpp/dssp-extension.dic
   /usr/share/man/man1/mkdssp.1.gz
 
 ------------------
 
 Port Notes:
+
+----- version 4.6.1-1bl1 -----
+Version bump.
 
 ----- version 3.1.4-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

@@ -1,0 +1,37 @@
+--- origsrc/dssp-4.6.1/test/unit-test-dssp.cpp	2026-04-14 10:28:11.000000000 +0000
++++ src/dssp-4.6.1/test/unit-test-dssp.cpp	2026-11-21 06:36:35.250131200 +0000
+@@ -64,13 +64,13 @@ int main(int argc, char *argv[])
+ 	// Build a new parser on top of Catch2's
+ 	using namespace Catch::Clara;
+ 
+-	std::filesystem::path rsrc_dir;
++	std::string data_dir, rsrc_dir;
+ 
+ 	auto cli = session.cli()                                // Get Catch2's command line parser
+-	           | Opt(gTestDir, "data-dir")                  // bind variable to a new option, with a hint string
++	           | Opt(data_dir, "data-dir")                  // bind variable to a new option, with a hint string
+ 	                 ["-D"]["--data-dir"]                   // the option names it will respond to
+ 	           | Opt(rsrc_dir, "rsrc-dir")                  // bind variable to a new option, with a hint string
+-	                 ["-D"]["--rsrc-dir"]                   // the option names it will respond to
++	                 ["-R"]["--rsrc-dir"]                   // the option names it will respond to
+ 	           ("The directory containing the data files"); // description string for the help output
+ 
+ 	// Now pass the new composite back to Catch2 so it uses that
+@@ -81,10 +81,16 @@ int main(int argc, char *argv[])
+ 	if (returnCode != 0) // Indicates a command line error
+ 		return returnCode;
+ 
++	if (not data_dir.empty())
++		gTestDir = data_dir;
++
+ 	if (not rsrc_dir.empty() and std::filesystem::exists(rsrc_dir))
+ 		cif::add_data_directory(rsrc_dir);
+ 
+-	cif::add_data_directory(gTestDir / "libdssp" / "mmcif_pdbx");
++	if (std::filesystem::exists(gTestDir / "libdssp" / "mmcif_pdbx"))
++		cif::add_data_directory(gTestDir / "libdssp" / "mmcif_pdbx");
++	if (std::filesystem::exists(gTestDir / ".." / "libdssp" / "mmcif_pdbx"))
++		cif::add_data_directory(gTestDir / ".." / "libdssp" / "mmcif_pdbx");
+ 
+ 	cif::add_file_resource("components.cif", gTestDir / "minimal-components.cif");
+ 

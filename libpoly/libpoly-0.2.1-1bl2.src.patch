@@ -1,5 +1,5 @@
---- origsrc/libpoly-0.2.1/src/CMakeLists.txt	2025-12-02 16:37:26.000000000 +0900
-+++ src/libpoly-0.2.1/src/CMakeLists.txt	2026-01-20 10:38:18.323235200 +0900
+--- origsrc/libpoly-0.2.1/src/CMakeLists.txt	2025-12-02 07:37:26.000000000 +0000
++++ src/libpoly-0.2.1/src/CMakeLists.txt	2026-11-21 00:34:16.543996700 +0000
 @@ -97,8 +97,8 @@ target_link_libraries(polyxx poly ${GMP_
  # cmake complains if the RUNTIME DESTINATION bin is missing
  #

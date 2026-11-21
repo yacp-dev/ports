@@ -8,13 +8,13 @@ are symbolic reasoning engines, such as SMT solvers, that need to reason about
 polynomial constraints. It is research software under development, so the
 features and the API might change rapidly."
 
-LICENSE="LGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE="LGPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later AND MIT"
 LICENSE_URI="LICENCE"
 
 BUILD_REQUIRES="
 	libgmp-devel
-	python39-devel
+	python3-devel
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"

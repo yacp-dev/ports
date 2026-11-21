@@ -1,14 +1,5 @@
---- origsrc/astrochem-0.9/Makefile.am	2021-10-22 05:34:59.000000000 +0900
-+++ src/astrochem-0.9/Makefile.am	2024-12-25 13:10:49.194000600 +0900
-@@ -22,3 +22,6 @@ ACLOCAL_AMFLAGS = -I m4
- SUBDIRS = src doc tests python networks
- 
- EXTRA_DIST = AUTHORS.md CONTRIBUTING.md COPYING.md INSTALL.md README.md
-+
-+pkgconfigdir = $(libdir)/pkgconfig
-+pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/astrochem-0.9/astrochem.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/astrochem-0.9/astrochem.pc.in	2024-12-25 13:10:49.162750700 +0900
+--- origsrc/astrochem-0.10/astrochem.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/astrochem-0.10/astrochem.pc.in	2026-11-21 20:18:18.238709766 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -20,9 +11,17 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lastrochem
 +Cflags: -I${includedir}
---- origsrc/astrochem-0.9/configure.ac	2021-10-22 05:34:59.000000000 +0900
-+++ src/astrochem-0.9/configure.ac	2024-12-25 13:10:49.211002300 +0900
-@@ -130,6 +130,7 @@ AC_CONFIG_FILES([Makefile
+--- origsrc/astrochem-0.10/configure.ac	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/configure.ac	2026-11-21 20:30:38.831077147 +0000
+@@ -25,6 +25,7 @@ AM_INIT_AUTOMAKE([foreign])
+ AC_CONFIG_SRCDIR([config.h.in])
+ AC_CONFIG_HEADER([config.h])
+ AC_CONFIG_MACRO_DIR([m4])
++m4_pattern_allow([^AX_LIB_HDF5$])
+ 
+ # Set package options
+ AC_ARG_ENABLE([openmp],	AC_HELP_STRING([--enable-openmp], [enable openmp (default is no)]))
+@@ -130,6 +131,7 @@ AC_CONFIG_FILES([Makefile
  		 tests/benchmark_openmp.py
  		 tests/Makefile])
  
@@ -30,8 +29,17 @@
  AC_OUTPUT
  
  # Print configuration summary
---- origsrc/astrochem-0.9/python/libpyastrochem/Makefile.am	2021-10-22 05:34:59.000000000 +0900
-+++ src/astrochem-0.9/python/libpyastrochem/Makefile.am	2024-12-25 13:24:33.272663900 +0900
+--- origsrc/astrochem-0.10/Makefile.am	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/Makefile.am	2026-11-21 20:18:18.238479892 +0000
+@@ -22,3 +22,6 @@ ACLOCAL_AMFLAGS = -I m4
+ SUBDIRS = src doc tests python networks
+ 
+ EXTRA_DIST = AUTHORS.md CONTRIBUTING.md COPYING.md INSTALL.md README.md
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/astrochem-0.10/python/libpyastrochem/Makefile.am	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/python/libpyastrochem/Makefile.am	2026-11-21 20:18:18.239153971 +0000
 @@ -29,7 +29,7 @@ pkgpyexec_LTLIBRARIES = libpyastrochem.l
  libpyastrochem_la_SOURCES = libpyastrochem.pyx
  libpyastrochem_la_CFLAGS = $(PYTHON_CPPFLAGS) $(CYTHON_CFLAGS)
@@ -41,8 +49,24 @@
  
  endif
  
---- origsrc/astrochem-0.9/src/Makefile.am	2021-10-22 05:34:59.000000000 +0900
-+++ src/astrochem-0.9/src/Makefile.am	2024-12-25 12:57:52.744054900 +0900
+--- origsrc/astrochem-0.10/src/chmconvert.py.in	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/src/chmconvert.py.in	2026-11-21 20:18:18.239627592 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env @PYTHON@
++#!@PYTHON@
+ #
+ #  chmconvert - Convert chemical networks into .chm format
+ #
+--- origsrc/astrochem-0.10/src/converttolegacy.py.in	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/src/converttolegacy.py.in	2026-11-21 20:18:18.239862466 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env @PYTHON@
++#!@PYTHON@
+ #
+ #  converttolegacy - Plot the abundances computed by Astrochem
+ #
+--- origsrc/astrochem-0.10/src/Makefile.am	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/src/Makefile.am	2026-11-21 20:18:18.239396886 +0000
 @@ -24,13 +24,13 @@ AM_CFLAGS += ${OPENMP_CFLAGS} -Wall
  
  lib_LTLIBRARIES = libastrochem.la
@@ -59,24 +83,8 @@
  
  astrochem_SOURCES = astrochem.c 
  astrochem_CFLAGS = ${HDF5_CFLAGS} ${AM_CFLAGS}
---- origsrc/astrochem-0.9/src/chmconvert.py.in	2021-10-22 05:34:59.000000000 +0900
-+++ src/astrochem-0.9/src/chmconvert.py.in	2024-12-25 13:25:07.463681200 +0900
-@@ -1,4 +1,4 @@
--#!/usr/bin/env @PYTHON@
-+#!@PYTHON@
- #
- #  chmconvert - Convert chemical networks into .chm format
- #
---- origsrc/astrochem-0.9/src/converttolegacy.py.in	2021-10-22 05:34:59.000000000 +0900
-+++ src/astrochem-0.9/src/converttolegacy.py.in	2024-12-25 13:25:13.244376400 +0900
-@@ -1,4 +1,4 @@
--#!/usr/bin/env @PYTHON@
-+#!@PYTHON@
- #
- #  converttolegacy - Plot the abundances computed by Astrochem
- #
---- origsrc/astrochem-0.9/tests/Makefile.am	2021-10-22 05:34:59.000000000 +0900
-+++ src/astrochem-0.9/tests/Makefile.am	2024-12-25 13:00:41.560228400 +0900
+--- origsrc/astrochem-0.10/tests/Makefile.am	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/tests/Makefile.am	2026-11-21 20:18:18.240097214 +0000
 @@ -23,7 +23,7 @@ TESTS = input_test source_test source_dy
  
  check_PROGRAMS = input_test source_test source_dyn_test network_test rate_test abundances_test solver_test

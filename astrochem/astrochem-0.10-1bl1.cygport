@@ -27,7 +27,13 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING.md"
 
-BUILD_REQUIRES="libhdf5-devel libsundials-devel python39-devel"
+BUILD_REQUIRES="
+	libhdf5-devel
+	libsundials-devel
+	python3-cython
+	python3-devel
+	python3-numpy
+"
 
 src_test()
 {
@@ -39,7 +45,7 @@ PKG_NAMES="
 	astrochem
 	libastrochem0
 	libastrochem-devel
-	python39-${PN}
+	python312-${PN}
 "
 astrochem_CONTENTS="
 	usr/bin/*.exe
@@ -55,10 +61,10 @@ libastrochem_devel_CONTENTS="
 	usr/lib/lib*.dll.a
 	usr/lib/pkgconfig
 "
-python39_astrochem_CONTENTS="
-	usr/lib/python3.9
+python312_astrochem_CONTENTS="
+	usr/lib/python3.12
 "
 astrochem_SUMMARY="${SUMMARY} (licensing & readmes)"
 libastrochem0_SUMMARY="${SUMMARY} (runtime)"
 libastrochem_devel_SUMMARY="${SUMMARY} (development)"
-python39_astrochem_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_astrochem_SUMMARY="${SUMMARY} (python312 bindings)"

@@ -21,52 +21,58 @@ source code is distributed under the terms of the GNU General Public License
 (GPL).
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libastrochem-devel-0.9-1bl1
-  libastrochem0-0.9-1bl1
-  libhdf5_200-1.12.3-1
-  libsundials_cvode5-5.8.0-1
-  libsundials_nvector5-5.8.0-1
-  pkg-config-2.3.0-1
-  python39-3.9.18-2
-  python39-numpy-1.21.4-1
+  cygwin-3.6.12-1
+  libastrochem-devel-0.10-1bl1
+  libastrochem0-0.10-1bl1
+  libhdf5_320-2.2.0-1
+  libsundials_core7-7.2.1-1
+  libsundials_cvode7-7.2.1-1
+  libsundials_nvector7-7.2.1-1
+  libsundials_sunlinsol5-7.2.1-1
+  libsundials_sunmatrix5-7.2.1-1
+  pkg-config-3.0.10-1
+  python3-3.12.12-1
+  python312-3.12.12-1
+  python312-numpy-2.5.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libhdf5-devel-1.12.3-1
-  libsundials-devel-5.8.0-1
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  hdf5-2.2.0-1
+  libhdf5-devel-2.2.0-1
+  libsundials-devel-7.2.1-1
+  libtool-2.6.2-1
   make-4.4.1-2
-  python39-3.9.18-2
-  python39-devel-3.9.18-2
+  python3-3.12.12-1
+  python3-cython-3.3.0-1
+  python3-devel-3.12.12-1
+  python3-numpy-2.5.4-1
 
 Canonical website:
   https://github.com/smaret/astrochem
 
 Canonical download:
-  https://github.com/smaret/astrochem/archive/refs/tags/v0.9.tar.gz
+  https://github.com/smaret/astrochem/archive/refs/tags/v0.10.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack astrochem-0.9-X-src.tar.xz
+  1. unpack astrochem-0.10-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./astrochem-0.9-X.cygport all
+        % cygport ./astrochem-0.10-X.cygport all
 
 This will create:
-  /usr/src/astrochem-0.9-X-src.tar.xz
-  /usr/src/astrochem-0.9-X.tar.xz
-  /usr/src/libastrochem0-0.9-X.tar.xz
-  /usr/src/libastrochem-devel-0.9-X.tar.xz
-  /usr/src/python39-astrochem-0.9-X.tar.xz
+  /usr/src/astrochem-0.10-X-src.tar.xz
+  /usr/src/astrochem-0.10-X.tar.xz
+  /usr/src/libastrochem0-0.10-X.tar.xz
+  /usr/src/libastrochem-devel-0.10-X.tar.xz
+  /usr/src/python312-astrochem-0.10-X.tar.xz
 
 -------------------------------------------
 
@@ -94,24 +100,28 @@ Files included in the binary package:
   /usr/lib/libastrochem.dll.a
   /usr/lib/pkgconfig/astrochem.pc
 
-(python39-astrochem)
-  /usr/lib/python3.9/site-packages/astrochem/__init__.py
-  /usr/lib/python3.9/site-packages/astrochem/__pycache__/__init__.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/astrochem/__pycache__/__init__.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/astrochem/__pycache__/__init__.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/astrochem/__pycache__/tools.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/astrochem/__pycache__/tools.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/astrochem/__pycache__/tools.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/astrochem/__pycache__/wrapper.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/astrochem/__pycache__/wrapper.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/astrochem/__pycache__/wrapper.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/astrochem/cygpyastrochem.dll
-  /usr/lib/python3.9/site-packages/astrochem/tools.py
-  /usr/lib/python3.9/site-packages/astrochem/wrapper.py
+(python312-astrochem)
+  /usr/lib/python3.12/site-packages/astrochem/__init__.py
+  /usr/lib/python3.12/site-packages/astrochem/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/astrochem/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/astrochem/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/astrochem/__pycache__/tools.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/astrochem/__pycache__/tools.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/astrochem/__pycache__/tools.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/astrochem/__pycache__/wrapper.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/astrochem/__pycache__/wrapper.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/astrochem/__pycache__/wrapper.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/astrochem/cygpyastrochem.dll
+  /usr/lib/python3.12/site-packages/astrochem/libpyastrochem.dll
+  /usr/lib/python3.12/site-packages/astrochem/tools.py
+  /usr/lib/python3.12/site-packages/astrochem/wrapper.py
 
 ------------------
 
 Port Notes:
+
+----- version 0.10-1bl1 -----
+Version bump.
 
 ----- version 0.9-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

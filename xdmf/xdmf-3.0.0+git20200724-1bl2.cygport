@@ -1,5 +1,6 @@
-HOMEPAGE="https://xdmf.org/index.php/Main_Page"
+HOMEPAGE="https://xdmf.org/"
 GIT_URI="https://gitlab.kitware.com/xdmf/xdmf.git"
+GIT_REV="04a84bab0eb1568e0f1a27c8fb60c6931efda003"
 
 CATEGORY="Science"
 SUMMARY="eXtensible Data Model and Format"
@@ -10,17 +11,26 @@ format used by HPC codes to take advantage of widely used visualization
 programs like ParaView, to a mechanism for performing coupled calculations
 using multiple, previously stand alone codes."
 
-LICENSE="BSD-4-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-4-Clause"
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="Copyright.txt"
 
-BUILD_REQUIRES="libhdf5-devel libtiff-devel libxml2-devel"
+BUILD_REQUIRES="
+	hdf5
+	libaec-devel
+	libboost-devel
+	libhdf5-devel
+	libtiff-devel
+	libxml2-devel
+	zlib-devel
+"
 
 inherit cmake
 inherit git
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DXDMF_BUILD_TESTING:BOOL=ON
 	-DXDMF_BUILD_UTILS:BOOL=ON
 "

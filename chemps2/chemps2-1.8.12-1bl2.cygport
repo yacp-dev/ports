@@ -1,5 +1,6 @@
-HOMEPAGE="https://github.com/SebWouters/${PN}"
-SRC_URI="https://github.com/SebWouters/${PN}/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/SebWouters/CheMPS2"
+SRC_URI="https://github.com/SebWouters/CheMPS2/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="CheMPS2-${PV}"
 
 CATEGORY="Science"
 SUMMARY="Spin-adapted implementation of DMRG for ab initio quantum chemistry"
@@ -11,19 +12,33 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libhdf5-devel liblapack-devel"
+BUILD_REQUIRES="
+	libhdf5-devel
+	liblapack-devel
+"
 
 inherit cmake
 
+# upstream adds -flto to its compiler flags; on Cygwin that leaves every
+# export of cygchemps2-3.dll marked DATA in the import library, so the
+# executables linked against it die at startup with
+# "Invalid relocation ... doesn't fit into 32 bits".
+CFLAGS+=" -fno-lto"
+CXXFLAGS+=" -fno-lto"
+
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM=3.5
 	-DSHARED_ONLY:BOOL=ON
-	-DCMAKECONFIG_INSTALL_DIR:STRING=/usr/lib/cmake/${PN}
+	-DCMAKECONFIG_INSTALL_DIR:STRING=/usr/lib/cmake/CheMPS2
 "
+
+# ctest takes ~11-12 minutes on CI runners
+YACP_CHECK_TIMEOUT_MINUTES=20
 
 src_test()
 {
 	cd ${B}
-	PATH=${B}/${PN}:${PATH} ctest
+	PATH=${B}/CheMPS2:${PATH} ctest
 }
 
 src_install()
@@ -45,17 +60,17 @@ PKG_NAMES="
 	libchemps2_3
 	libchemps2-devel
 "
-CheMPS2_CONTENTS="
+chemps2_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
 libchemps2_3_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-3.dll
 "
 libchemps2_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
-CheMPS2_SUMMARY="${SUMMARY} (utilities)"
+chemps2_SUMMARY="${SUMMARY} (utilities)"
 libchemps2_3_SUMMARY="${SUMMARY} (runtime)"
 libchemps2_devel_SUMMARY="${SUMMARY} (development)"

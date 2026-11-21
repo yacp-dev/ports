@@ -1,5 +1,9 @@
 HOMEPAGE="https://github.com/interkosmos/${PN}"
-SRC_URI="https://github.com/interkosmos/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_URI="
+	https://github.com/interkosmos/${PN}/archive/refs/tags/${PV}.tar.gz
+	CMakeLists.txt
+	${PN}.pc.in
+"
 
 CATEGORY="Libs"
 SUMMARY="Fortran 2018 interface bindings to PCRE2"
@@ -10,6 +14,7 @@ LICENSE_SPDX="SPDX-License-Identifier: ISC"
 LICENSE_URI="LICENCE"
 
 BUILD_REQUIRES="
+	gcc-fortran
 	libpcre2-devel
 "
 

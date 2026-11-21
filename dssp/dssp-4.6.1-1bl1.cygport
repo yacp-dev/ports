@@ -1,0 +1,29 @@
+HOMEPAGE="https://github.com/PDB-REDO/${PN}"
+SRC_URI="https://github.com/PDB-REDO/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Science"
+SUMMARY="Create DSSP files"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libCatch2-devel
+	libcifpp
+	libcifpp-devel
+	libmcfp-devel
+	libsqlite3-devel
+	zlib-devel
+"
+
+inherit cmake
+
+DOCS="
+	changelog
+"
+
+DIFF_EXCLUDES="
+	revision.hpp
+"

@@ -1,5 +1,5 @@
---- origsrc/g2o-20201223_git/EXTERNAL/freeglut/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/EXTERNAL/freeglut/CMakeLists.txt	2021-08-27 10:00:29.819603800 +0900
+--- origsrc/g2o-20241228_git/EXTERNAL/freeglut/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/EXTERNAL/freeglut/CMakeLists.txt	2021-08-27 10:00:29.819603800 +0900
 @@ -11,6 +11,10 @@ if (APPLE)
    set_target_properties(freeglut_minimal PROPERTIES INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
  endif()
@@ -11,8 +11,8 @@
  install(TARGETS freeglut_minimal
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/apps/g2o_cli/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/apps/g2o_cli/CMakeLists.txt	2021-08-26 21:53:13.900366800 +0900
+--- origsrc/g2o-20241228_git/g2o/apps/g2o_cli/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/apps/g2o_cli/CMakeLists.txt	2021-08-26 21:53:13.900366800 +0900
 @@ -17,6 +17,10 @@ if(UNIX)
    target_link_libraries(g2o_cli_library ${CMAKE_DL_LIBS})
  endif(UNIX)
@@ -24,8 +24,8 @@
  add_executable(g2o_cli_application
    g2o.cpp)
  
---- origsrc/g2o-20201223_git/g2o/apps/g2o_hierarchical/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/apps/g2o_hierarchical/CMakeLists.txt	2021-08-26 21:54:28.268781100 +0900
+--- origsrc/g2o-20241228_git/g2o/apps/g2o_hierarchical/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/apps/g2o_hierarchical/CMakeLists.txt	2021-08-26 21:54:28.268781100 +0900
 @@ -26,6 +26,10 @@ target_link_libraries(g2o_hierarchical_l
  add_executable(g2o_hierarchical_application
    g2o_hierarchical.cpp)
@@ -37,8 +37,8 @@
  target_link_libraries(g2o_hierarchical_application g2o_hierarchical_library g2o_cli_library types_slam3d ) #types_slam3d_new
  
  set_target_properties(g2o_hierarchical_application PROPERTIES OUTPUT_NAME g2o_hierarchical${EXE_POSTFIX})
---- origsrc/g2o-20201223_git/g2o/apps/g2o_simulator/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/apps/g2o_simulator/CMakeLists.txt	2021-08-26 21:54:52.940707600 +0900
+--- origsrc/g2o-20241228_git/g2o/apps/g2o_simulator/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/apps/g2o_simulator/CMakeLists.txt	2021-08-26 21:54:52.940707600 +0900
 @@ -31,6 +31,10 @@ endif()
  
  target_link_libraries(g2o_simulator_library types_slam3d_addons types_slam3d types_slam2d_addons types_slam2d  core)
@@ -50,8 +50,8 @@
  add_executable(g2o_simulator2d_application
    test_simulator2d.cpp
  )
---- origsrc/g2o-20201223_git/g2o/apps/g2o_viewer/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/apps/g2o_viewer/CMakeLists.txt	2021-08-26 21:55:19.009379100 +0900
+--- origsrc/g2o-20241228_git/g2o/apps/g2o_viewer/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/apps/g2o_viewer/CMakeLists.txt	2021-08-26 21:55:19.009379100 +0900
 @@ -27,6 +27,10 @@ if (APPLE)
    set_target_properties(viewer_library PROPERTIES INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
  endif()
@@ -63,8 +63,8 @@
  add_executable(g2o_viewer
    g2o_viewer.cpp
  )
---- origsrc/g2o-20201223_git/g2o/core/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/core/CMakeLists.txt	2021-08-26 21:56:03.703569100 +0900
+--- origsrc/g2o-20241228_git/g2o/core/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/core/CMakeLists.txt	2021-08-26 21:56:03.703569100 +0900
 @@ -47,6 +47,10 @@ if (APPLE)
    set_target_properties(core PROPERTIES INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
  endif()
@@ -76,8 +76,8 @@
  install(TARGETS core
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/examples/interactive_slam/g2o_incremental/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/examples/interactive_slam/g2o_incremental/CMakeLists.txt	2021-08-27 10:18:02.916751800 +0900
+--- origsrc/g2o-20241228_git/g2o/examples/interactive_slam/g2o_incremental/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/examples/interactive_slam/g2o_incremental/CMakeLists.txt	2021-08-27 10:18:02.916751800 +0900
 @@ -7,6 +7,10 @@ include_directories(${CMAKE_CURRENT_SOUR
  set_target_properties(g2o_incremental_library PROPERTIES OUTPUT_NAME ${LIB_PREFIX}incremental)
  target_link_libraries(g2o_incremental_library g2o_interactive_library solver_cholmod ${CAMD_LIBRARY})
@@ -89,8 +89,8 @@
  add_executable(g2o_incremental_application g2o_incremental.cpp)
  target_link_libraries(g2o_incremental_application g2o_incremental_library)
  set_target_properties(g2o_incremental_application PROPERTIES OUTPUT_NAME g2o_incremental${EXE_POSTFIX})
---- origsrc/g2o-20201223_git/g2o/examples/interactive_slam/g2o_incremental/graph_optimizer_sparse_incremental.h	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/examples/interactive_slam/g2o_incremental/graph_optimizer_sparse_incremental.h	2021-08-26 18:48:47.729430200 +0900
+--- origsrc/g2o-20241228_git/g2o/examples/interactive_slam/g2o_incremental/graph_optimizer_sparse_incremental.h	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/examples/interactive_slam/g2o_incremental/graph_optimizer_sparse_incremental.h	2021-08-26 18:48:47.729430200 +0900
 @@ -23,6 +23,10 @@
  
  #include "linear_solver_cholmod_online.h"
@@ -102,8 +102,8 @@
  namespace g2o {
  
    struct CholmodExt;
---- origsrc/g2o-20201223_git/g2o/examples/interactive_slam/g2o_interactive/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/examples/interactive_slam/g2o_interactive/CMakeLists.txt	2021-08-27 10:17:39.245110100 +0900
+--- origsrc/g2o-20241228_git/g2o/examples/interactive_slam/g2o_interactive/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/examples/interactive_slam/g2o_interactive/CMakeLists.txt	2021-08-27 10:17:39.245110100 +0900
 @@ -9,6 +9,10 @@ include_directories(${CMAKE_CURRENT_SOUR
  set_target_properties(g2o_interactive_library PROPERTIES OUTPUT_NAME ${LIB_PREFIX}interactive)
  target_link_libraries(g2o_interactive_library core types_slam2d types_slam3d solver_cholmod parser_library interface_library)
@@ -115,8 +115,8 @@
  add_executable(g2o_online_application g2o_online.cpp)
  target_link_libraries(g2o_online_application g2o_interactive_library)
  set_target_properties(g2o_online_application PROPERTIES OUTPUT_NAME g2o_online${EXE_POSTFIX})
---- origsrc/g2o-20201223_git/g2o/examples/interactive_slam/slam_parser/interface/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/examples/interactive_slam/slam_parser/interface/CMakeLists.txt	2021-08-27 10:16:09.816406500 +0900
+--- origsrc/g2o-20241228_git/g2o/examples/interactive_slam/slam_parser/interface/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/examples/interactive_slam/slam_parser/interface/CMakeLists.txt	2021-08-27 10:16:09.816406500 +0900
 @@ -21,6 +21,10 @@ include_directories(${CMAKE_CURRENT_SOUR
  set_target_properties(interface_library PROPERTIES OUTPUT_NAME ${LIB_PREFIX}interface)
  target_link_libraries(interface_library parser_library)
@@ -128,8 +128,8 @@
  install(TARGETS interface_library
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
    LIBRARY DESTINATION ${LIBRARY_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/examples/interactive_slam/slam_parser/parser/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/examples/interactive_slam/slam_parser/parser/CMakeLists.txt	2021-08-27 10:15:38.606630500 +0900
+--- origsrc/g2o-20241228_git/g2o/examples/interactive_slam/slam_parser/parser/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/examples/interactive_slam/slam_parser/parser/CMakeLists.txt	2021-08-27 10:15:38.606630500 +0900
 @@ -23,6 +23,10 @@ include_directories(${CMAKE_CURRENT_SOUR
  
  set_target_properties(parser_library PROPERTIES OUTPUT_NAME ${LIB_PREFIX}parser)
@@ -141,8 +141,8 @@
  #add_executable(test_slam_parser test_slam_parser.cpp)
  #target_link_libraries(test_slam_parser parser_library)
  #set_target_properties(test_slam_parser PROPERTIES OUTPUT_NAME test_slam_parser${EXE_POSTFIX})
---- origsrc/g2o-20201223_git/g2o/solvers/cholmod/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/solvers/cholmod/CMakeLists.txt	2021-08-26 22:10:50.972281400 +0900
+--- origsrc/g2o-20241228_git/g2o/solvers/cholmod/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/solvers/cholmod/CMakeLists.txt	2021-08-26 22:10:50.972281400 +0900
 @@ -20,6 +20,10 @@ endif()
  add_definitions(${BLAS_DEFINITIONS} ${LAPACK_DEFINITIONS})
  target_link_libraries(solver_cholmod ${CHOLMOD_LIBRARIES} ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES} core)
@@ -154,8 +154,8 @@
  install(TARGETS solver_cholmod
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/solvers/csparse/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/solvers/csparse/CMakeLists.txt	2021-08-26 22:11:53.301236600 +0900
+--- origsrc/g2o-20241228_git/g2o/solvers/csparse/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/solvers/csparse/CMakeLists.txt	2021-08-26 22:11:53.301236600 +0900
 @@ -18,6 +18,10 @@ target_include_directories(csparse_exten
    $<INSTALL_INTERFACE:include/g2o/solvers/csparse>)
  target_link_libraries(csparse_extension PUBLIC stuff ${CSPARSE_LIBRARY} ${G2O_EIGEN3_EIGEN_TARGET})
@@ -178,8 +178,8 @@
  install(TARGETS solver_csparse csparse_extension
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/solvers/dense/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/solvers/dense/CMakeLists.txt	2021-08-26 22:12:19.501123100 +0900
+--- origsrc/g2o-20241228_git/g2o/solvers/dense/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/solvers/dense/CMakeLists.txt	2021-08-26 22:12:19.501123100 +0900
 @@ -9,6 +9,10 @@ endif()
  
  target_link_libraries(solver_dense core)
@@ -191,8 +191,8 @@
  install(TARGETS solver_dense
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/solvers/eigen/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/solvers/eigen/CMakeLists.txt	2021-08-26 22:12:46.817814500 +0900
+--- origsrc/g2o-20241228_git/g2o/solvers/eigen/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/solvers/eigen/CMakeLists.txt	2021-08-26 22:12:46.817814500 +0900
 @@ -8,6 +8,10 @@ if (APPLE)
  endif()
  target_link_libraries(solver_eigen core)
@@ -204,8 +204,8 @@
  install(TARGETS solver_eigen
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/solvers/pcg/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/solvers/pcg/CMakeLists.txt	2021-08-26 22:13:15.155495800 +0900
+--- origsrc/g2o-20241228_git/g2o/solvers/pcg/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/solvers/pcg/CMakeLists.txt	2021-08-26 22:13:15.155495800 +0900
 @@ -15,6 +15,10 @@ target_include_directories(solver_pcg PU
    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
    $<INSTALL_INTERFACE:include/g2o/solvers/pcg>)
@@ -217,8 +217,8 @@
  install(TARGETS solver_pcg
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/solvers/slam2d_linear/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/solvers/slam2d_linear/CMakeLists.txt	2021-08-26 22:13:35.611025900 +0900
+--- origsrc/g2o-20241228_git/g2o/solvers/slam2d_linear/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/solvers/slam2d_linear/CMakeLists.txt	2021-08-26 22:13:35.611025900 +0900
 @@ -15,6 +15,10 @@ endif()
  
  target_link_libraries(solver_slam2d_linear solver_eigen types_slam2d)
@@ -230,8 +230,8 @@
  install(TARGETS solver_slam2d_linear
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/solvers/structure_only/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/solvers/structure_only/CMakeLists.txt	2021-08-26 22:13:56.407675400 +0900
+--- origsrc/g2o-20241228_git/g2o/solvers/structure_only/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/solvers/structure_only/CMakeLists.txt	2021-08-26 22:13:56.407675400 +0900
 @@ -10,6 +10,10 @@ endif()
  
  target_link_libraries(solver_structure_only core)
@@ -243,8 +243,8 @@
  install(TARGETS solver_structure_only
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/stuff/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/stuff/CMakeLists.txt	2021-08-27 10:02:40.919834700 +0900
+--- origsrc/g2o-20241228_git/g2o/stuff/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/stuff/CMakeLists.txt	2021-08-27 10:02:40.919834700 +0900
 @@ -17,6 +17,10 @@ if (APPLE)
    set_target_properties(stuff PROPERTIES INSTALL_NAME_DIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
  endif()
@@ -268,8 +268,8 @@
    install(TARGETS opengl_helper
      EXPORT ${G2O_TARGETS_EXPORT_NAME}
      RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/types/data/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/types/data/CMakeLists.txt	2021-08-26 22:14:52.379407600 +0900
+--- origsrc/g2o-20241228_git/g2o/types/data/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/types/data/CMakeLists.txt	2021-08-26 22:14:52.379407600 +0900
 @@ -21,6 +21,10 @@ if(G2O_HAVE_OPENGL)
    target_link_libraries(types_data freeglut_minimal opengl_helper)
  endif()
@@ -281,8 +281,8 @@
  install(TARGETS types_data
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/types/icp/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/types/icp/CMakeLists.txt	2021-08-26 22:15:13.095195700 +0900
+--- origsrc/g2o-20241228_git/g2o/types/icp/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/types/icp/CMakeLists.txt	2021-08-26 22:15:13.095195700 +0900
 @@ -9,6 +9,10 @@ if (APPLE)
  endif()
  target_link_libraries(types_icp types_sba types_slam3d)
@@ -294,8 +294,8 @@
  install(TARGETS types_icp
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/types/sba/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/types/sba/CMakeLists.txt	2021-08-26 22:15:31.857796700 +0900
+--- origsrc/g2o-20241228_git/g2o/types/sba/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/types/sba/CMakeLists.txt	2021-08-26 22:15:31.857796700 +0900
 @@ -10,6 +10,10 @@ if (APPLE)
  endif()
  target_link_libraries(types_sba core types_slam3d)
@@ -307,8 +307,8 @@
  install(TARGETS types_sba
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/types/sclam2d/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/types/sclam2d/CMakeLists.txt	2021-08-26 22:15:50.930249800 +0900
+--- origsrc/g2o-20241228_git/g2o/types/sclam2d/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/types/sclam2d/CMakeLists.txt	2021-08-26 22:15:50.930249800 +0900
 @@ -16,6 +16,10 @@ if(G2O_HAVE_OPENGL)
    target_link_libraries(types_sclam2d ${OPENGL_gl_LIBRARY})
  endif()
@@ -320,8 +320,8 @@
  install(TARGETS types_sclam2d
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/types/sim3/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/types/sim3/CMakeLists.txt	2021-08-26 22:16:09.939775600 +0900
+--- origsrc/g2o-20241228_git/g2o/types/sim3/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/types/sim3/CMakeLists.txt	2021-08-26 22:16:09.939775600 +0900
 @@ -9,6 +9,10 @@ if (APPLE)
  endif()
  target_link_libraries(types_sim3 PUBLIC types_sba)
@@ -333,8 +333,8 @@
  install(TARGETS types_sim3
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/types/slam2d/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/types/slam2d/CMakeLists.txt	2021-08-26 22:16:29.432361200 +0900
+--- origsrc/g2o-20241228_git/g2o/types/slam2d/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/types/slam2d/CMakeLists.txt	2021-08-26 22:16:29.432361200 +0900
 @@ -26,6 +26,10 @@ if(G2O_HAVE_OPENGL)
    target_link_libraries(types_slam2d opengl_helper ${OPENGL_gl_LIBRARY} )
  endif()
@@ -346,8 +346,8 @@
  install(TARGETS types_slam2d
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/types/slam2d_addons/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/types/slam2d_addons/CMakeLists.txt	2021-08-26 22:16:49.030984700 +0900
+--- origsrc/g2o-20241228_git/g2o/types/slam2d_addons/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/types/slam2d_addons/CMakeLists.txt	2021-08-26 22:16:49.030984700 +0900
 @@ -21,6 +21,10 @@ if(G2O_HAVE_OPENGL)
    target_link_libraries(types_slam2d_addons ${OPENGL_gl_LIBRARY})
  endif()
@@ -359,8 +359,8 @@
  install(TARGETS types_slam2d_addons
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/types/slam3d/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/types/slam3d/CMakeLists.txt	2021-08-26 22:17:07.954577100 +0900
+--- origsrc/g2o-20241228_git/g2o/types/slam3d/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/types/slam3d/CMakeLists.txt	2021-08-26 22:17:07.954577100 +0900
 @@ -49,6 +49,10 @@ if(G2O_HAVE_OPENGL)
    target_link_libraries(types_slam3d opengl_helper ${OPENGL_gl_LIBRARY} )
  endif()
@@ -372,8 +372,8 @@
  install(TARGETS types_slam3d
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/g2o/types/slam3d_addons/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/g2o/types/slam3d_addons/CMakeLists.txt	2021-08-26 22:17:26.931138800 +0900
+--- origsrc/g2o-20241228_git/g2o/types/slam3d_addons/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/g2o/types/slam3d_addons/CMakeLists.txt	2021-08-26 22:17:26.931138800 +0900
 @@ -26,6 +26,10 @@ if(G2O_HAVE_OPENGL)
    target_link_libraries(types_slam3d_addons ${OPENGL_gl_LIBRARY} )
  endif()
@@ -385,8 +385,8 @@
  install(TARGETS types_slam3d_addons
    EXPORT ${G2O_TARGETS_EXPORT_NAME}
    RUNTIME DESTINATION ${RUNTIME_DESTINATION}
---- origsrc/g2o-20201223_git/unit_test/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
-+++ src/g2o-20201223_git/unit_test/CMakeLists.txt	2021-08-26 12:11:32.049487200 +0900
+--- origsrc/g2o-20241228_git/unit_test/CMakeLists.txt	2020-12-23 09:17:04.000000000 +0900
++++ src/g2o-20241228_git/unit_test/CMakeLists.txt	2021-08-26 12:11:32.049487200 +0900
 @@ -1,17 +1,20 @@
  # download and compile gtest library
  # Download and unpack googletest at configure time

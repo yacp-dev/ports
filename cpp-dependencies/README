@@ -1,0 +1,57 @@
+cpp-dependencies
+------------------------------------------
+Tool to check C++ #include dependencies (dependency graphs created in .dot
+format)
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libboost_filesystem1.66-1.66.0-1
+  libboost_system1.66-1.66.0-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libboost-devel-1.66.0-1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/tomtom-international/cpp-dependencies
+
+Canonical download:
+  https://github.com/tomtom-international/cpp-dependencies/archive/refs/tags/1.1.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack cpp-dependencies-1.1-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./cpp-dependencies-1.1-X.cygport all
+
+This will create:
+  /usr/src/cpp-dependencies-1.1-X-src.tar.xz
+  /usr/src/cpp-dependencies-1.1-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(cpp-dependencies)
+  /usr/bin/cpp-dependencies.exe
+  /usr/share/doc/Cygwin/cpp-dependencies.README
+  /usr/share/doc/cpp-dependencies/LICENSE
+  /usr/share/doc/cpp-dependencies/NOTICE
+  /usr/share/doc/cpp-dependencies/README.md
+
+------------------
+
+Port Notes:
+
+----- version 1.1-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

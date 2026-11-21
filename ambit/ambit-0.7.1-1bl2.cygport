@@ -10,7 +10,10 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING.LESSER"
 
-BUILD_REQUIRES="libhdf5-devel liblapack-devel"
+BUILD_REQUIRES="
+	libhdf5-devel
+	liblapack-devel
+"
 
 inherit cmake
 
@@ -28,6 +31,7 @@ src_test()
 }
 
 DOCS="
+	COPYING
 	COPYING.LESSER
 "
 
@@ -49,3 +53,8 @@ libambit_devel_CONTENTS="
 ambit_SUMMARY="${SUMMARY} (licensing & readmes)"
 libambit0_SUMMARY="${SUMMARY} (runtime)"
 libambit_devel_SUMMARY="${SUMMARY} (development)"
+
+libambit_devel_REQUIRES="
+	libhdf5-devel
+	liblapack-devel
+"

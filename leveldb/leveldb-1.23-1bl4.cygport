@@ -1,8 +1,9 @@
 HOMEPAGE="https://github.com/google/${PN}"
 SRC_URI="https://github.com/google/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/0001-Allow-leveldbjni-build.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/0004-bloom_test-failure-on-big-endian-archs.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/85537f6cb6eb2f706479c246f0ddfd09a14bcc61/f/0001-Allow-leveldbjni-build.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/85537f6cb6eb2f706479c246f0ddfd09a14bcc61/f/0004-bloom_test-failure-on-big-endian-archs.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/85537f6cb6eb2f706479c246f0ddfd09a14bcc61/f/0006-revert-no-rtti.patch
 "
 
 CATEGORY="Database"
@@ -14,7 +15,13 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libbenchmark-devel libgtest-devel libsnappy-devel libtcmalloc-devel"
+BUILD_REQUIRES="
+	libbenchmark-devel
+	libgmock-devel
+	libgtest-devel
+	libsnappy-devel
+	libtcmalloc-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

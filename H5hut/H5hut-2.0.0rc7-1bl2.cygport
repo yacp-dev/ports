@@ -1,16 +1,20 @@
-HOMEPAGE="https://gitlab.psi.ch/${PN}/src"
-SRC_URI="https://gitlab.psi.ch/${PN}/src/-/archive/${P}/src-${P}.tar.bz2"
-SRC_DIR="src-${P}"
+HOMEPAGE="https://github.com/H5hut/H5hut"
+SRC_URI="https://github.com/H5hut/H5hut/archive/refs/tags/${P}.tar.gz"
+SRC_DIR="${PN}-${P}"
 
 CATEGORY="Libs"
 SUMMARY="HDF5 Utility Toolkit"
 DESCRIPTION="High-Performance I/O Library for Particle-based Simulations"
 
-LICENSE="BSD-3-Clause-LBNL"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause-LBNL"
+LICENSE="BSD-3-Clause-LBNL AND BSD-4-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause-LBNL AND BSD-4-Clause"
 LICENSE_URI="license.txt"
 
-BUILD_REQUIRES="libhdf5-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	gcc-fortran
+	libhdf5-devel
+"
 
 CYGCONF_ARGS="
 	--enable-experimental

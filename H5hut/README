@@ -3,28 +3,27 @@ H5hut
 High-Performance I/O Library for Particle-based Simulations
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libH5hut2-2.0.0rc7-1bl1
-  libhdf5_200-1.12.3-1
+  cygwin-3.6.12-1
+  libH5hut2-2.0.0rc7-1bl2
+  libhdf5_320-2.2.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2023.02.20-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libhdf5-devel-1.12.3-1
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  autoconf-archive-2026.11.11-1
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libhdf5-devel-2.2.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
-  https://gitlab.psi.ch/H5hut/src
+  https://github.com/H5hut/H5hut
 
 Canonical download:
-  https://gitlab.psi.ch/H5hut/src/-/archive/H5hut-2.0.0rc7/src-H5hut-2.0.0rc7.tar.bz2
+  https://github.com/H5hut/H5hut/archive/refs/tags/H5hut-2.0.0rc7.tar.gz
 
 -------------------------------------------
 
@@ -117,6 +116,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.0.0rc7-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.0.0rc7-1bl1 -----
 Version bump.

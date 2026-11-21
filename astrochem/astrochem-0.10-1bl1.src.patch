@@ -1,0 +1,174 @@
+--- origsrc/astrochem-0.10/Makefile.am	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/Makefile.am	2026-11-21 21:59:34.504215500 +0000
+@@ -19,6 +19,9 @@
+ 
+ ACLOCAL_AMFLAGS = -I m4
+ 
+-SUBDIRS = src doc tests python networks
++SUBDIRS = src doc python networks tests
+ 
+ EXTRA_DIST = AUTHORS.md CONTRIBUTING.md COPYING.md INSTALL.md README.md
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/astrochem-0.10/astrochem.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/astrochem-0.10/astrochem.pc.in	2026-11-21 21:59:34.504215500 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: astrochem
++Description: Code to compute the abundances of chemical species in the interstellar medium
++Version: @VERSION@
++Libs: -L${libdir} -lastrochem
++Cflags: -I${includedir}
+--- origsrc/astrochem-0.10/configure.ac	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/configure.ac	2026-11-21 21:59:34.506224800 +0000
+@@ -25,6 +25,7 @@ AM_INIT_AUTOMAKE([foreign])
+ AC_CONFIG_SRCDIR([config.h.in])
+ AC_CONFIG_HEADER([config.h])
+ AC_CONFIG_MACRO_DIR([m4])
++m4_pattern_allow([^AX_LIB_HDF5$])
+ 
+ # Set package options
+ AC_ARG_ENABLE([openmp],	AC_HELP_STRING([--enable-openmp], [enable openmp (default is no)]))
+@@ -130,6 +131,7 @@ AC_CONFIG_FILES([Makefile
+ 		 tests/benchmark_openmp.py
+ 		 tests/Makefile])
+ 
++AC_CONFIG_FILES([astrochem.pc])
+ AC_OUTPUT
+ 
+ # Print configuration summary
+--- origsrc/astrochem-0.10/m4/ax_lib_hdf5.m4	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/m4/ax_lib_hdf5.m4	2026-11-21 21:59:34.506224800 +0000
+@@ -200,7 +200,7 @@ HDF5 support is being disabled (equivale
+         dnl (3) Look for "AM_NAME:" tags
+         dnl
+         HDF5_tmp_flags=$(eval $H5CC -showconfig \
+-            | $GREP 'FLAGS\|Extra libraries:' \
++            | $GREP 'FLAGS:' | $SED -e 's/;/ /g' \
+             | $AWK -F: '{printf("%s "), $[]2}' )
+ 
+         dnl Find the installation directory and append include/
+--- origsrc/astrochem-0.10/python/libpyastrochem/Makefile.am	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/python/libpyastrochem/Makefile.am	2026-11-21 21:59:34.507978600 +0000
+@@ -28,9 +28,19 @@ CYTHON_LDFLAGS = -pthread -fPIC -fwrapv
+ pkgpyexec_LTLIBRARIES = libpyastrochem.la
+ libpyastrochem_la_SOURCES = libpyastrochem.pyx
+ libpyastrochem_la_CFLAGS = $(PYTHON_CPPFLAGS) $(CYTHON_CFLAGS)
+-libpyastrochem_la_LIBADD = $(top_builddir)/src/libastrochem.la
+-libpyastrochem_la_LDFLAGS = $(CYTHON_LDFLAGS) $(PYTHON_LDFLAGS)  -version-info 0:0:0 -module
++libpyastrochem_la_LIBADD = $(top_builddir)/src/libastrochem.la $(PYTHON_LIBS)
++libpyastrochem_la_LDFLAGS = -no-undefined $(CYTHON_LDFLAGS) $(PYTHON_LDFLAGS) -avoid-version -module
+ 
+ endif
+ 
+ CLEANFILES = *.c
++
++all-local:
++	@if test -f .libs/cygpyastrochem.dll; then \
++		cp -f .libs/cygpyastrochem.dll .libs/libpyastrochem.dll; \
++	fi
++
++install-exec-hook:
++	@if test -f $(DESTDIR)$(pkgpyexecdir)/cygpyastrochem.dll; then \
++		cp -f $(DESTDIR)$(pkgpyexecdir)/cygpyastrochem.dll $(DESTDIR)$(pkgpyexecdir)/libpyastrochem.dll; \
++	fi
+--- origsrc/astrochem-0.10/src/Makefile.am	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/src/Makefile.am	2026-11-21 21:59:34.507978600 +0000
+@@ -24,19 +24,19 @@ AM_CFLAGS += ${OPENMP_CFLAGS} -Wall
+ 
+ lib_LTLIBRARIES = libastrochem.la
+ libastrochem_la_SOURCES = network.c rates.c solve.c input.c
+-libastrochem_la_LDFLAGS = -version-info 0:0:0 -lsundials_nvecserial -lsundials_cvode -lm
++libastrochem_la_LDFLAGS = -no-undefined -version-info 0:0:0 -lsundials_core -lsundials_sunmatrixdense -lsundials_sunlinsoldense -lsundials_nvecserial -lsundials_cvode -lm
+ include_HEADERS = libastrochem.h
+ noinst_HEADERS = astrochem.h input.h libastrochem.h network.h rates.h	\
+ 	solve.h
+ 
+ bin_PROGRAMS = astrochem
+-bin_SCRIPTS = chmconvert converttolegacy
++bin_SCRIPTS = chmconvert$(EXEEXT) converttolegacy$(EXEEXT)
+ 
+ astrochem_SOURCES = astrochem.c 
+ astrochem_CFLAGS = ${HDF5_CFLAGS} ${AM_CFLAGS}
+ astrochem_CPPFLAGS = ${HDF5_CPPFLAGS} ${AM_CPPFLAGS}
+ astrochem_LDFLAGS = ${HDF5_LDFLAGS} ${AM_LDFLAGS}
+-astrochem_LDADD = libastrochem.la ${HDF5_LIBS} ${AM_LDFLAGS} -lsundials_nvecserial -lsundials_cvode -lm
++astrochem_LDADD = libastrochem.la ${HDF5_LIBS} ${AM_LDFLAGS} -lsundials_core -lsundials_sunmatrixdense -lsundials_sunlinsoldense -lsundials_nvecserial -lsundials_cvode -lm
+ 
+ chmconvert$(EXEEXT): chmconvert.py
+ 	cp $? $@
+--- origsrc/astrochem-0.10/src/chmconvert.py.in	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/src/chmconvert.py.in	2026-11-21 21:59:34.507978600 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env @PYTHON@
++#!@PYTHON@
+ #
+ #  chmconvert - Convert chemical networks into .chm format
+ #
+--- origsrc/astrochem-0.10/src/converttolegacy.py.in	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/src/converttolegacy.py.in	2026-11-21 21:59:34.509988100 +0000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env @PYTHON@
++#!@PYTHON@
+ #
+ #  converttolegacy - Plot the abundances computed by Astrochem
+ #
+--- origsrc/astrochem-0.10/tests/Makefile.am	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/tests/Makefile.am	2026-11-21 21:59:34.509988100 +0000
+@@ -23,16 +23,16 @@ TESTS = input_test source_test source_dy
+ 
+ check_PROGRAMS = input_test source_test source_dyn_test network_test rate_test abundances_test solver_test
+ 
+-check_SCRIPTS = python_lib_test python_tools_test astrochem_test
++check_SCRIPTS = python_lib_test$(EXEEXT) python_tools_test$(EXEEXT) astrochem_test$(EXEEXT)
+ 
+ input_test_SOURCES = input_test.c
+-input_test_LDADD = $(top_builddir)/src/input.o $(top_builddir)/src/libastrochem.la
++input_test_LDADD = $(top_builddir)/src/libastrochem.la
+ 
+ source_test_SOURCES = source_test.c
+-source_test_LDADD = $(top_builddir)/src/libastrochem.la  $(top_builddir)/src/input.o
++source_test_LDADD = $(top_builddir)/src/libastrochem.la
+ 
+ source_dyn_test_SOURCES = source_dyn_test.c
+-source_dyn_test_LDADD = $(top_builddir)/src/libastrochem.la $(top_builddir)/src/input.o
++source_dyn_test_LDADD = $(top_builddir)/src/libastrochem.la
+ 
+ network_test_SOURCES = network_test.c
+ network_test_LDADD = $(top_builddir)/src/libastrochem.la
+@@ -50,7 +50,7 @@ astrochem_test$(EXEEXT): astrochem_test.
+ 	cp $? $@
+ 	chmod a+x $@
+ 
+-python_lib_test$(EXEXT): python_lib_test.py
++python_lib_test$(EXEEXT): python_lib_test.py
+ 	echo $(top_builddir)/libtool --mode=execute -dlopen $(top_builddir)/src/libastrochem.la @PYTHON@ python_lib_test.py > $@
+ 	chmod a+x $@
+ 
+--- origsrc/astrochem-0.10/tests/astrochem_test.py.in	2025-03-07 15:15:25.000000000 +0000
++++ src/astrochem-0.10/tests/astrochem_test.py.in	2026-11-21 21:59:34.509988100 +0000
+@@ -30,7 +30,7 @@ import tools
+ 
+ input_ini = """[files]
+ source = source.mdl
+-chem = @abs_top_srcdir@/networks/osu2009.chm
++chem = @abs_top_builddir@/networks/osu2009.chm
+ # Physical paramaters
+ [phys]
+ chi = 1.0
+@@ -86,6 +86,10 @@ class TestSequenceFunctions(unittest.Tes
+         args = ['@abs_top_builddir@/src/astrochem', './input.ini']
+         subprocess.check_call(args)
+         filename =  "astrochem_output.h5"
++        try:
++            import h5py
++        except ImportError:
++            self.skipTest("h5py not installed")
+         original_species = ["CO","C(+)","C","e(-)","OH","H3O(+)"]
+         abun = []
+         species = tools.listspecies(filename);

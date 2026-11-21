@@ -1,0 +1,36 @@
+HOMEPAGE="https://github.com/nathanweeks/exonerate"
+SRC_URI="https://github.com/nathanweeks/exonerate/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Science"
+SUMMARY="Generic tool for biological sequence comparison"
+DESCRIPTION="Exonerate is a generic tool for sequence alignment, allowing rapid
+comparison of biological sequences using many alignment models."
+
+LICENSE="GPL-3.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libglib2.0-devel
+"
+
+CYGCONF_ARGS="
+	--disable-dependency-tracking
+"
+
+src_compile()
+{
+	cd ${S}
+	cygautoreconf
+	cd ${B}
+	lndirs
+	cygconf
+	cygmake -j1
+}
+
+src_test()
+{
+	cd ${B}
+	cygmake -j1 check
+}
+

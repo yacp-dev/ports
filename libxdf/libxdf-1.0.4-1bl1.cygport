@@ -1,0 +1,51 @@
+HOMEPAGE="https://github.com/xdf-modules/libxdf"
+SRC_URI="https://github.com/xdf-modules/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="C++ library for loading multimodal, multi-rate signals stored in XDF files"
+DESCRIPTION="LibXDF is a cross-platform C++ library for loading multimodal
+signals stored in XDF (Extensible Data Format) files. It is used in the
+biosignal viewing application SigViewer and the LSL application XDFStreamer and
+can also be integrated into other C++ applications."
+
+LICENSE="BSD-2-Clause AND LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND LGPL-3.0-or-later"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libpugixml-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+"
+
+DOCS="
+	CHANGELOG.md
+	README.md
+	THIRD-PARTY-NOTICES.md
+"
+
+PKG_NAMES="
+	libxdf
+	libxdf0
+	libxdf-devel
+"
+libxdf_CONTENTS="
+	usr/share/doc
+"
+libxdf0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libxdf_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+libxdf_SUMMARY="${SUMMARY} (licensing & readmes)"
+libxdf0_SUMMARY="${SUMMARY} (runtime)"
+libxdf_devel_SUMMARY="${SUMMARY} (development)"
+libxdf_devel_REQUIRES="
+	libpugixml-devel
+"

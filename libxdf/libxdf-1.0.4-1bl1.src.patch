@@ -1,0 +1,69 @@
+--- origsrc/libxdf-1.0.4/CMakeLists.txt	2026-07-20 07:53:24.000000000 +0000
++++ src/libxdf-1.0.4/CMakeLists.txt	2026-11-21 11:27:31.797041100 +0000
+@@ -8,6 +8,7 @@ project(
+     HOMEPAGE_URL https://xdf-modules.github.io/libxdf/
+ )
+ 
++option(BUILD_SHARED_LIBS "Build shared libraries" ON)
+ option(XDF_NO_SYSTEM_PUGIXML "Force use of bundled pugixml" OFF)
+ 
+ set(
+@@ -30,7 +31,7 @@ set(
+ 
+ add_library(xdf ${SOURCES})
+ 
+-find_package(pugixml 1.9 QUIET)
++find_package(pugixml QUIET)
+ if(TARGET pugixml AND NOT XDF_NO_SYSTEM_PUGIXML)
+     message(STATUS "Using system pugixml")
+     target_link_libraries(xdf PRIVATE pugixml)
+@@ -47,6 +48,14 @@ endif()
+ 
+ target_compile_features(xdf PUBLIC cxx_std_20)
+ set_target_properties(xdf PROPERTIES OUTPUT_NAME xdf PUBLIC_HEADER xdf.h)
++if (DEFINED SOVERSION)
++    set_target_properties(xdf PROPERTIES SOVERSION "${SOVERSION}")
++else()
++    set_target_properties(xdf PROPERTIES SOVERSION 0)
++endif()
++if (CYGWIN)
++    set_target_properties(xdf PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS ON)
++endif()
+ target_include_directories(
+     xdf PUBLIC
+     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+@@ -67,6 +76,7 @@ write_basic_package_version_file(
+ install(
+     TARGETS xdf
+     EXPORT "${PROJECT_NAME}Targets"
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+@@ -92,6 +102,13 @@ install(
+     DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/${PROJECT_NAME}
+ )
+ 
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_LIBDIR})
++set(includedir ${CMAKE_INSTALL_INCLUDEDIR})
++configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libxdf.pc.in ${CMAKE_CURRENT_BINARY_DIR}/libxdf.pc @ONLY)
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libxdf.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
++
+ set(CPACK_PACKAGE_CONTACT "yida.lin@outlook.com")
+ if(APPLE)
+     set(CPACK_GENERATOR TBZ2)
+--- origsrc/libxdf-1.0.4/libxdf.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libxdf-1.0.4/libxdf.pc.in	2026-11-21 11:27:31.797041100 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libxdf
++Description: C++ library for loading multimodal, multi-rate signals stored in XDF files
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -lxdf
++Cflags: -I${includedir}

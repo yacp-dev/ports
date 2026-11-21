@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: cqrlib
+Description: ANSI C API for quaternion arithmetic and rotation
+Version: @VERSION@
+Libs: -L${libdir} -lCQRlib
+Cflags: -I${includedir}

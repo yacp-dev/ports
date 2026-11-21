@@ -1,0 +1,87 @@
+exonerate
+------------------------------------------
+Exonerate is a generic tool for sequence alignment, allowing rapid comparison
+of biological sequences using many alignment models.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libglib2.0_0-2.90.1-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libglib2.0-devel-2.90.1-1
+  make-4.4.1-2
+
+Canonical website:
+  https://github.com/nathanweeks/exonerate
+
+Canonical download:
+  https://github.com/nathanweeks/exonerate/archive/refs/tags/v2.4.0.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack exonerate-2.4.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./exonerate-2.4.0-X.cygport all
+
+This will create:
+  /usr/src/exonerate-2.4.0-X-src.tar.xz
+  /usr/src/exonerate-2.4.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(exonerate)
+  /usr/bin/esd2esi.exe
+  /usr/bin/exonerate-server.exe
+  /usr/bin/exonerate.exe
+  /usr/bin/fasta2esd.exe
+  /usr/bin/fastaannotatecdna.exe
+  /usr/bin/fastachecksum.exe
+  /usr/bin/fastaclean.exe
+  /usr/bin/fastaclip.exe
+  /usr/bin/fastacomposition.exe
+  /usr/bin/fastadiff.exe
+  /usr/bin/fastaexplode.exe
+  /usr/bin/fastafetch.exe
+  /usr/bin/fastahardmask.exe
+  /usr/bin/fastaindex.exe
+  /usr/bin/fastalength.exe
+  /usr/bin/fastanrdb.exe
+  /usr/bin/fastaoverlap.exe
+  /usr/bin/fastareformat.exe
+  /usr/bin/fastaremove.exe
+  /usr/bin/fastarevcomp.exe
+  /usr/bin/fastasoftmask.exe
+  /usr/bin/fastasort.exe
+  /usr/bin/fastasplit.exe
+  /usr/bin/fastasubseq.exe
+  /usr/bin/fastatranslate.exe
+  /usr/bin/fastavalidcds.exe
+  /usr/bin/ipcress.exe
+  /usr/share/doc/Cygwin/exonerate.README
+  /usr/share/doc/exonerate/AUTHORS
+  /usr/share/doc/exonerate/COPYING
+  /usr/share/doc/exonerate/ChangeLog
+  /usr/share/doc/exonerate/README
+  /usr/share/doc/exonerate/TODO
+  /usr/share/man/man1/exonerate-server.1.gz
+  /usr/share/man/man1/exonerate.1.gz
+  /usr/share/man/man1/fastautils.1.gz
+  /usr/share/man/man1/ipcress.1.gz
+
+------------------
+
+Port Notes:
+
+----- version 2.4.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

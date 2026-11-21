@@ -1,0 +1,31 @@
+--- origsrc/exonerate-2.4.0/configure.in	2013-01-07 22:14:14.000000000 +0000
++++ src/exonerate-2.4.0/configure.in	2026-11-21 14:15:02.511827000 +0000
+@@ -300,7 +300,7 @@ if test "$enable_pthreads" = yes; then
+     CFLAGS="$CFLAGS -DUSE_PTHREADS"
+     # for g_thread_init()
+     g_thread_init_ldflags=`pkg-config --libs gthread-2.0`
+-    LDFLAGS="$LDFLAGS $g_thread_init_ldflags -lpthread"
++    LIBS="$LIBS $g_thread_init_ldflags -lpthread"
+ elif test "$enable_pthreads" = no; then
+     echo "Not using pthreads"
+ else
+--- origsrc/exonerate-2.4.0/src/program/Makefile.am	2013-01-07 22:14:14.000000000 +0000
++++ src/exonerate-2.4.0/src/program/Makefile.am	2026-11-21 14:15:02.513852400 +0000
+@@ -67,7 +67,7 @@ C4_OBJECTS = $(top_srcdir)/src/c4/c4.o
+ EXTRA_exonerate_SOURCES = c4_model_archive.a c4_model_archive.h
+ 
+ BUILT_SOURCES = c4_model_archive.a
+-BOOTSTRAPPER = $(top_srcdir)/src/model/bootstrapper
++BOOTSTRAPPER = $(top_builddir)/src/model/bootstrapper$(EXEEXT)
+ c4_model_archive.h: $(BOOTSTRAPPER)
+ 	$(BOOTSTRAPPER) --compiled no
+ c4_model_archive.a: $(BOOTSTRAPPER)
+--- origsrc/exonerate-2.4.0/src/util/Makefile.am	2013-01-07 22:14:14.000000000 +0000
++++ src/exonerate-2.4.0/src/util/Makefile.am	2026-11-21 14:15:02.513852400 +0000
+@@ -1,5 +1,5 @@
+ 
+-bin_PROGRAMS = @installed_util_list@
++bin_PROGRAMS = $(EXTRA_PROGRAMS)
+ 
+ EXTRA_PROGRAMS = fastaclean fastaclip fastachecksum fastacomposition \
+                fastadiff fastaexplode fastafetch fastahardmask \

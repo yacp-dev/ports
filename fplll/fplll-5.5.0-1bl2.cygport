@@ -16,8 +16,8 @@ succession of variants is oblivious to the user. It also includes a rigorous
 floating-point implementation of the Kannan-Fincke-Pohst algorithm that finds
 a shortest non-zero lattice vector."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND MIT"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="

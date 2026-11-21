@@ -1,5 +1,5 @@
---- origsrc/fplll-5.5.0/fplll/Makefile.am	2024-11-12 18:49:46.000000000 +0900
-+++ src/fplll-5.5.0/fplll/Makefile.am	2026-01-07 14:46:15.357192500 +0900
+--- origsrc/fplll-5.5.0/fplll/Makefile.am	2024-11-12 09:49:46.000000000 +0000
++++ src/fplll-5.5.0/fplll/Makefile.am	2026-11-21 05:57:10.705296400 +0000
 @@ -2,7 +2,7 @@ include_fpllldir=$(includedir)/fplll
  TOPSRCDIR = $(srcdir)/..
  strategydir = $(pkgdatadir)/strategies
@@ -9,8 +9,8 @@
  EXTRA_DIST = io/json.hpp ballvol.const factorial.const
  
  CLEANFILES = *.gcov .libs/*.gcda .libs/*.gcno *.gcno *.gcda */*.gcno */*.gcda
---- origsrc/fplll-5.5.0/fplll/enum/enumerate_base.h	2024-11-12 18:49:46.000000000 +0900
-+++ src/fplll-5.5.0/fplll/enum/enumerate_base.h	2026-01-07 14:46:00.540161200 +0900
+--- origsrc/fplll-5.5.0/fplll/enum/enumerate_base.h	2024-11-12 09:49:46.000000000 +0000
++++ src/fplll-5.5.0/fplll/enum/enumerate_base.h	2026-11-21 05:57:10.706535400 +0000
 @@ -19,7 +19,7 @@
  #ifndef FPLLL_ENUMERATE_BASE_H
  #define FPLLL_ENUMERATE_BASE_H

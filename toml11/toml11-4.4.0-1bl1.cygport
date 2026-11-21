@@ -1,0 +1,33 @@
+HOMEPAGE="https://github.com/ToruNiina/toml11"
+SRC_URI="https://github.com/ToruNiina/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/t/${PN}/${PV}-2/debian/patches/include_doctest_from_external_dependency.patch
+"
+SRC_DIR="${PN}-${PV}"
+
+CATEGORY="Devel"
+SUMMARY="TOML for Modern C++"
+DESCRIPTION="toml11 is a C++11 (or later) header-only toml parser/serializer
+library for C++11/14/17/20/23."
+
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	doctest
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DTOML11_BUILD_EXAMPLES:BOOL=OFF
+	-DTOML11_BUILD_TESTS:BOOL=ON
+	-DTOML11_INSTALL:BOOL=ON
+"
+
+DOCS="
+	README*.md
+"

@@ -1,0 +1,37 @@
+--- origsrc/xmimsim-8.1/src/Makefile.am	2020-02-24 10:07:05.000000000 +0000
++++ src/xmimsim-8.1/src/Makefile.am	2026-11-21 16:54:57.160603200 +0000
+@@ -91,10 +91,11 @@ libxmimsim_la_FCFLAGS = @OPENMP_FCFLAGS@
+ 			@xraylib_f2003_CFLAGS@ \
+ 			-DXMIMSIM_HDF5_DEFAULT=\"$(datadir)/xmimsim/xmimsimdata.h5\"
+ 
+-libxmimsim_la_LDFLAGS = -version-info @LIB_CURRENT@:@LIB_REVISION@:@LIB_AGE@ @LDFLAGS_XMIMSIM_LIB@
++libxmimsim_la_LDFLAGS = -no-undefined -version-info @LIB_CURRENT@:@LIB_REVISION@:@LIB_AGE@ @LDFLAGS_XMIMSIM_LIB@
+ libxmimsim_la_LIBADD = 	@HDF5_LIBS@ \
+ 			@PTHREAD_LIBS@ \
+ 			@xslt_LIBS@ \
++			@xraylib_LIBS@ \
+ 			@xraylib_f2003_LIBS@ \
+ 			@fgsl_LIBS@ \
+ 			@easyRNG_LIBS@ \
+@@ -111,9 +112,9 @@ if ENABLE_OPENCL
+ plugin_LTLIBRARIES += xmimsim-cl.la
+ xmimsim_cl_la_CFLAGS = @WSTRICT_CFLAGS@
+ xmimsim_cl_la_CPPFLAGS = -I${top_srcdir}/include -I${top_builddir}/include @CPPFLAGS_CL@ @gmodule_CFLAGS@ @glib2_CFLAGS@ $(AM_CPPFLAGS)
+-xmimsim_cl_la_LIBADD = @LIBS_CL@ libxmimsim.la
++xmimsim_cl_la_LIBADD = @LIBS_CL@ libxmimsim.la @glib2_LIBS@
+ xmimsim_cl_la_SOURCES = xmi_solid_angle_cl.c
+-xmimsim_cl_la_LDFLAGS = -module $(LDFLAGS_XMIMSIM_CL) -avoid-version -shared
++xmimsim_cl_la_LDFLAGS = -no-undefined -module $(LDFLAGS_XMIMSIM_CL) -avoid-version -shared
+ if ENABLE_MAC_APP
+ xmimsim_cl_la_LDFLAGS += -Wl,-headerpad_max_install_names
+ endif
+--- origsrc/xmimsim-8.1/tests/libxmimsim-test.c	2019-12-12 14:58:26.000000000 +0000
++++ src/xmimsim-8.1/tests/libxmimsim-test.c	2026-11-21 16:54:57.160603200 +0000
+@@ -31,6 +31,7 @@ along with this program.  If not, see <h
+ #include <stdlib.h>
+ #include <assert.h>
+ #include <libxml/xpath.h>
++#include <libxml/globals.h>
+ 
+ #if !GLIB_CHECK_VERSION (2, 35, 3)
+ #include <glib-object.h>

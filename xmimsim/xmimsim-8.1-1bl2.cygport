@@ -1,5 +1,5 @@
 HOMEPAGE="https://github.com/tschoonj/${PN}"
-SRC_URI="https://xmi-msim.tomschoonjans.eu/${P}.tar.gz"
+SRC_URI="https://github.com/tschoonj/${PN}/releases/download/XMI-MSIM-${PV}/${P}.tar.gz"
 
 CATEGORY="Science"
 SUMMARY="Monte Carlo simulation of X-ray fluorescence spectrometers"
@@ -9,11 +9,35 @@ simulations. It comes with a fully functional graphical user interface in
 order to make it as user friendly as possible. Considerable effort has been
 taken to ensure easy installation on all major platforms."
 
-BUILD_REQUIRES="libOpenCL-devel libeasyRNG-devel libglib2.0-devel libhdf5-devel libsoup2.4-devel libxml2 libxml2-devel libxrl-devel libxrlf03-devel libxslt-devel"
+LICENSE="GPL-3.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND LGPL-2.1-or-later"
+LICENSE_URI="License.rtf"
 
-PKG_IGNORE="
-	usr/lib/xmimsim/xmimsim-cl.dll.a
+BUILD_REQUIRES="
+	gcc-fortran
+	girepository-x11
+	gobject-introspection
+	hdf5
+	libOpenCL-devel
+	libeasyRNG-devel
+	libgirepository1.0-devel
+	libglib2.0-devel
+	libhdf5-devel
+	libsoup2.4-devel
+	libxml2
+	libxml2-devel
+	libxrl-devel
+	libxrlf03-devel
+	libxslt-devel
 "
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	rm -f ${D}/usr/lib/xmimsim/xmimsim-cl.dll.a
+}
 
 PKG_NAMES="
 	xmimsim
@@ -28,7 +52,7 @@ xmimsim_CONTENTS="
 	usr/share/${PN}
 "
 libxmimsim0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-0.dll
 "
 libxmimsim_devel_CONTENTS="
 	usr/include

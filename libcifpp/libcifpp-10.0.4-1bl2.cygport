@@ -10,6 +10,7 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	libCatch2-devel
 	libpcre2-devel
 	libsqlite3-devel
 	zlib-devel
@@ -20,8 +21,16 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_EXAMPLES:BOOL=OFF
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DBUILD_TESTING:BOOL=OFF
+	-DBUILD_TESTING:BOOL=ON
+	-DCMAKE_SHARED_LINKER_FLAGS:STRING=-Wl,--export-all-symbols
+	-DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS:BOOL=ON
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${PATH} ninja_test
+}
 
 src_install()
 {
@@ -59,3 +68,8 @@ libcifpp_devel_CONTENTS="
 libcifpp_SUMMARY="${SUMMARY} (licensing & readmes)"
 libcifpp10_SUMMARY="${SUMMARY} (runtime)"
 libcifpp_devel_SUMMARY="${SUMMARY} (development)"
+
+libcifpp_devel_REQUIRES="
+	libsqlite3-devel
+	zlib-devel
+"

@@ -1,13 +1,13 @@
---- origsrc/easyRNG-easyRNG-1.2/Makefile.am	2020-02-07 19:50:18.000000000 +0900
-+++ src/easyRNG-easyRNG-1.2/Makefile.am	2026-01-03 09:48:08.617505600 +0900
+--- origsrc/easyRNG-easyRNG-1.2/Makefile.am	2020-02-07 10:50:18.000000000 +0000
++++ src/easyRNG-easyRNG-1.2/Makefile.am	2026-11-21 15:13:37.400122600 +0000
 @@ -1,4 +1,4 @@
 -SUBDIRS = src tests docs
 +SUBDIRS = src tests # docs
  ACLOCAL_AMFLAGS = -I m4
  
  pkgconfigdir = $(libdir)/pkgconfig
---- origsrc/easyRNG-easyRNG-1.2/src/Makefile.am	2020-02-07 19:50:18.000000000 +0900
-+++ src/easyRNG-easyRNG-1.2/src/Makefile.am	2026-01-03 09:48:08.617505600 +0900
+--- origsrc/easyRNG-easyRNG-1.2/src/Makefile.am	2020-02-07 10:50:18.000000000 +0000
++++ src/easyRNG-easyRNG-1.2/src/Makefile.am	2026-11-21 15:13:37.400122600 +0000
 @@ -5,7 +5,7 @@ easyRNGincludedir = $(includedir)/easyRN
  easyRNGinclude_HEADERS = easy_rng.h easy_randist.h
  

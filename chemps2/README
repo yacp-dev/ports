@@ -1,30 +1,29 @@
-CheMPS2
+chemps2
 ------------------------------------------
 CheMPS2 is a scientific library which contains a spin-adapted implementation of
 the density matrix renormalization group (DMRG) for ab initio quantum
 chemistry.
 
 Runtime requirements:
-  cygwin-3.3.5-1
-  libchemps2_3-1.8.12-1bl1
-  libgcc1-11.3.0-1
-  libgomp1-11.3.0-1
-  libhdf5_200-1.12.2-1
-  liblapack0-3.10.1-1
-  libopenblas-0.3.20-1
-  libstdc++6-11.3.0-1
-  pkg-config-1.8.0-1
+  cygwin-3.6.12-1
+  libchemps2-devel-1.8.12-1bl2
+  libchemps2_3-1.8.12-1bl2
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libhdf5_320-2.2.0-1
+  liblapack0-3.12.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cmake-3.23.2-1
-  cygport-0.35.2-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libhdf5-devel-1.12.2-1
-  liblapack-devel-3.10.1-1
-  ninja-1.11.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libhdf5-devel-2.2.0-1
+  liblapack-devel-3.12.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/SebWouters/CheMPS2
@@ -35,15 +34,15 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack CheMPS2-1.8.12-X-src.tar.xz
+  1. unpack chemps2-1.8.12-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./CheMPS2-1.8.12-X.cygport all
+        % cygport ./chemps2-1.8.12-X.cygport all
 
 This will create:
-  /usr/src/CheMPS2-1.8.12-X-src.tar.xz
-  /usr/src/CheMPS2-1.8.12-X.tar.xz
+  /usr/src/chemps2-1.8.12-X-src.tar.xz
+  /usr/src/chemps2-1.8.12-X.tar.xz
   /usr/src/libchemps2_3-1.8.12-X.tar.xz
   /usr/src/libchemps2-devel-1.8.12-X.tar.xz
 
@@ -51,14 +50,14 @@ This will create:
 
 Files included in the binary package:
 
-(CheMPS2)
+(chemps2)
   /usr/bin/chemps2.exe
-  /usr/share/doc/CheMPS2/CHANGELOG.md
-  /usr/share/doc/CheMPS2/CheMPS2logo.pdf
-  /usr/share/doc/CheMPS2/FILES.md
-  /usr/share/doc/CheMPS2/LICENSE
-  /usr/share/doc/CheMPS2/README.md
-  /usr/share/doc/Cygwin/CheMPS2.README
+  /usr/share/doc/Cygwin/chemps2.README
+  /usr/share/doc/chemps2/CHANGELOG.md
+  /usr/share/doc/chemps2/CheMPS2logo.pdf
+  /usr/share/doc/chemps2/FILES.md
+  /usr/share/doc/chemps2/LICENSE
+  /usr/share/doc/chemps2/README.md
   /usr/share/man/man1/chemps2.1.gz
 
 (libchemps2_3)
@@ -117,7 +116,7 @@ Files included in the binary package:
   /usr/include/chemps2/Wigner.h
   /usr/lib/cmake/CheMPS2/CheMPS2Config.cmake
   /usr/lib/cmake/CheMPS2/CheMPS2ConfigVersion.cmake
-  /usr/lib/cmake/CheMPS2/CheMPS2Targets-shared-release.cmake
+  /usr/lib/cmake/CheMPS2/CheMPS2Targets-shared-relwithdebinfo.cmake
   /usr/lib/cmake/CheMPS2/CheMPS2Targets-shared.cmake
   /usr/lib/cmake/CheMPS2/FindTargetHDF5.cmake
   /usr/lib/libchemps2.dll.a
@@ -126,6 +125,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.8.12-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.8.12-1bl1 -----
 Version bump.

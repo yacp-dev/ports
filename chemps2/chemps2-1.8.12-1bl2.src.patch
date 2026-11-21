@@ -1,5 +1,5 @@
---- origsrc/CheMPS2-1.8.12/CMakeLists.txt	2022-03-10 06:16:09.000000000 +0900
-+++ src/CheMPS2-1.8.12/CMakeLists.txt	2022-07-27 14:41:17.606831400 +0900
+--- origsrc/CheMPS2-1.8.12/CMakeLists.txt	2022-03-09 21:16:09.000000000 +0000
++++ src/CheMPS2-1.8.12/CMakeLists.txt	2026-11-21 10:48:04.260646700 +0000
 @@ -150,7 +150,7 @@ endif()
  # <<<  Export config  >>>
  
@@ -19,8 +19,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/CheMPS2.pc.in ${CMAKE_BINARY_DIR}/CheMPS2.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/CheMPS2.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/CheMPS2-1.8.12/CheMPS2/CMakeLists.txt	2022-03-10 06:16:09.000000000 +0900
-+++ src/CheMPS2-1.8.12/CheMPS2/CMakeLists.txt	2022-07-27 14:40:43.229855700 +0900
+--- origsrc/CheMPS2-1.8.12/CheMPS2/CMakeLists.txt	2022-03-09 21:16:09.000000000 +0000
++++ src/CheMPS2-1.8.12/CheMPS2/CMakeLists.txt	2026-11-21 10:48:04.262664100 +0000
 @@ -105,7 +105,7 @@ set_target_properties      (chemps2-bin
  if (NOT STATIC_ONLY)
      install (TARGETS chemps2-shared chemps2-bin
@@ -39,8 +39,8 @@
  if (NOT STATIC_ONLY)
      install (EXPORT "${PROJECT_NAME}Targets-shared"
                       NAMESPACE "${PROJECT_NAME}::"
---- origsrc/CheMPS2-1.8.12/CheMPS2.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/CheMPS2-1.8.12/CheMPS2.pc.in	2022-07-27 14:22:15.659935700 +0900
+--- origsrc/CheMPS2-1.8.12/CheMPS2.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/CheMPS2-1.8.12/CheMPS2.pc.in	2026-11-21 10:48:04.262664100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -50,5 +50,5 @@
 +Name: CheMPS2
 +Description: Spin-adapted implementation of DMRG for ab initio quantum chemistry
 +Version: @CheMPS2_MMP_VERSION@
-+Libs: -L${libdir} -lCheMPS2
++Libs: -L${libdir} -lchemps2
 +Cflags: -I${includedir}/chemps2

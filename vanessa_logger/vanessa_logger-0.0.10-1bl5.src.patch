@@ -1,13 +1,13 @@
---- origsrc/vanessa_logger-0.0.10/libvanessa_logger/Makefile.am	2010-07-24 15:22:18.000000000 +0900
-+++ src/vanessa_logger-0.0.10/libvanessa_logger/Makefile.am	2025-01-03 17:00:42.117284700 +0900
+--- origsrc/vanessa_logger-0.0.10/libvanessa_logger/Makefile.am	2010-07-24 06:22:18.000000000 +0000
++++ src/vanessa_logger-0.0.10/libvanessa_logger/Makefile.am	2026-11-21 00:59:34.932077300 +0000
 @@ -31,4 +31,4 @@ libvanessa_logger_la_SOURCES = \
  vanessa_logger.h \
  vanessa_logger.c
  
 -libvanessa_logger_la_LDFLAGS    = -version-info 0:5:0
 +libvanessa_logger_la_LDFLAGS    = -no-undefined -version-info 0:5:0
---- origsrc/vanessa_logger-0.0.10/vanessa-logger.pc.in	2010-07-24 14:24:39.000000000 +0900
-+++ src/vanessa_logger-0.0.10/vanessa-logger.pc.in	2025-01-03 17:06:01.621096300 +0900
+--- origsrc/vanessa_logger-0.0.10/vanessa-logger.pc.in	2010-07-24 05:24:39.000000000 +0000
++++ src/vanessa_logger-0.0.10/vanessa-logger.pc.in	2026-11-21 00:59:34.932077300 +0000
 @@ -6,5 +6,5 @@ includedir=@includedir@
  Name: Vanessa Logger
  Description: Generic Logging Library

@@ -13,19 +13,19 @@ inherit cmake
 
 PKG_NAMES="
 	tree-sitter-c-sharp
-	libtree-sitter-c-sharp14.0
+	libtree-sitter-c-sharp15.0
 	libtree-sitter-c-sharp-devel
 "
 tree_sitter_c_sharp_CONTENTS="
 	usr/share
 "
-libtree_sitter_c_sharp14_0_CONTENTS="
-	usr/bin/cyg*-14.0.dll
+libtree_sitter_c_sharp15_0_CONTENTS="
+	usr/bin/cyg*-15.0.dll
 "
 libtree_sitter_c_sharp_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 tree_sitter_c_sharp_SUMMARY="${SUMMARY} (licensing & readmes)"
-libtree_sitter_c_sharp14_0_SUMMARY="${SUMMARY} (runtime)"
+libtree_sitter_c_sharp15_0_SUMMARY="${SUMMARY} (runtime)"
 libtree_sitter_c_sharp_devel_SUMMARY="${SUMMARY} (development)"

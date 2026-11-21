@@ -1,0 +1,73 @@
+--- origsrc/Freesynd-0.9-Source/engine/CMakeLists.txt	2025-11-13 20:07:46.000000000 +0000
++++ src/Freesynd-0.9-Source/engine/CMakeLists.txt	2026-11-21 00:23:37.523604400 +0000
+@@ -93,8 +93,8 @@ add_library(Freesynd::Engine ALIAS fs_en
+ # We need this directory, and users of our library will need it too
+ target_include_directories(fs_engine PUBLIC include)
+ 
+-target_link_libraries(fs_engine PRIVATE freesynd_warnings Freesynd::Utils PNG::PNG CLI11::CLI11 utf8cpp)
+-target_link_libraries(fs_engine INTERFACE CLI11::CLI11 utf8cpp)
++target_link_libraries(fs_engine PRIVATE freesynd_warnings Freesynd::Utils PNG::PNG CLI11::CLI11 utf8cpp::utf8cpp)
++target_link_libraries(fs_engine INTERFACE CLI11::CLI11 utf8cpp::utf8cpp)
+ 
+ # The USE_SYSTEM_SDL option enables the creation of the fs_engine_sdl
+ # library. If not on, there will be an error as there is not other implementation
+@@ -127,7 +127,7 @@ if (USE_SYSTEM_SDL)
+     target_include_directories(fs_engine_sdl PRIVATE include)
+ 
+     target_link_libraries(fs_engine_sdl PUBLIC SDL2::Main SDL2::Image Freesynd::Utils)
+-    target_link_libraries(fs_engine_sdl PRIVATE freesynd_warnings utf8cpp)
++    target_link_libraries(fs_engine_sdl PRIVATE freesynd_warnings utf8cpp::utf8cpp)
+ 
+     target_link_libraries(fs_engine PRIVATE Freesynd::Engine::Sdl)
+ endif()
+--- origsrc/Freesynd-0.9-Source/engine/extern/CMakeLists.txt	2025-11-13 20:07:46.000000000 +0000
++++ src/Freesynd-0.9-Source/engine/extern/CMakeLists.txt	2026-11-21 00:23:37.524838200 +0000
+@@ -20,17 +20,10 @@
+ # Note that headers are optional, and do not affect add_library, but they will not
+ # show up in IDEs unless they are listed in add_library.
+ 
+-include(FetchContent)
+-
+-FetchContent_Declare(
+-  libAdl
+-  GIT_REPOSITORY https://github.com/Wohlstand/libADLMIDI.git
+-  # We use the version in the main branch because release 1.5.1
+-  # does not build on MacOS
+-  GIT_TAG        2b350f9ef5fa7bafd90b8ce3beb2a77c1e87af25 # release-1.6.1
+-)
+-
+-set(USE_JAVA_EMULATOR OFF CACHE INTERNAL "Turn off JAva Emulator")
+-set(WITH_MUS_SUPPORT OFF CACHE INTERNAL "Turn off Mus Support")
+-
+-FetchContent_MakeAvailable(libAdl)
+\ No newline at end of file
++find_package(libADLMIDI REQUIRED)
++if(NOT TARGET ADLMIDI)
++    add_library(ADLMIDI INTERFACE IMPORTED)
++    set_target_properties(ADLMIDI PROPERTIES
++        INTERFACE_LINK_LIBRARIES libADLMIDI::ADLMIDI
++    )
++endif()
+\ No newline at end of file
+--- origsrc/Freesynd-0.9-Source/engine/src/system/sdl/system_sdl.cpp	2025-05-11 13:57:01.000000000 +0000
++++ src/Freesynd-0.9-Source/engine/src/system/sdl/system_sdl.cpp	2026-11-21 00:23:37.525622900 +0000
+@@ -161,7 +161,7 @@ void SystemSDL::showError(const char *er
+                                 "Error in Freesynd",
+                                 errorMsg,
+                                 pWindow_);
+-    FSERR(Log::k_FLG_IO, "SystemSDL", "showError", (errorMsg));
++    FSERR(Log::k_FLG_IO, "SystemSDL", "showError", ("%s", errorMsg));
+ }
+ 
+ /*!
+--- origsrc/Freesynd-0.9-Source/utils/CMakeLists.txt	2025-11-13 20:07:46.000000000 +0000
++++ src/Freesynd-0.9-Source/utils/CMakeLists.txt	2026-11-21 00:23:37.526865200 +0000
+@@ -48,7 +48,7 @@ add_library(Freesynd::Utils ALIAS fs_uti
+ 
+ find_package(CRCpp REQUIRED)
+ 
+-target_link_libraries (fs_utils PRIVATE freesynd_warnings crcpp::crcpp)
++target_link_libraries (fs_utils PRIVATE freesynd_warnings CRCpp::CRCpp)
+ 
+ # We need this directory, and users of our library will need it too (ie PUBLIC)
+ target_include_directories(fs_utils PUBLIC include)

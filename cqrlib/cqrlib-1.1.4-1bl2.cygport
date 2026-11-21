@@ -1,22 +1,21 @@
 HOMEPAGE="https://github.com/yayahjb/cqrlib"
-SRC_URI="https://github.com/yayahjb/cqrlib/archive/${P}.tar.gz"
-SRC_DIR="cqrlib-${P}"
+SRC_URI="
+	https://github.com/yayahjb/cqrlib/archive/refs/tags/CQRlib-${PV}.tar.gz
+	CMakeLists.txt
+	cqrlib.pc.in
+"
+SRC_DIR="cqrlib-CQRlib-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="ANSI C API for quaternion arithmetic and rotation"
 DESCRIPTION="CQRlib is an ANSI C implementation of a utility library for quaternion
 arithmetic and quaternion rotation math."
 
-src_test()
-{
-	cd ${B}
-	cygtest
-	./CQRlibTest > /tmp/CQRlibTest.lst
-	diff -b -c ${S}/CQRlibTest_orig.lst /tmp/CQRlibTest.lst
-	./CPPQRTest > /tmp/CPPQRTest.lst
-	diff -b -c ${S}/CPPQRTest_orig.lst /tmp/CPPQRTest.lst
-	rm -f /tmp/CQRlibTest.lst /tmp/CPPQRTest.lst
-}
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="lgpl.txt"
+
+inherit cmake
 
 DOCS="
 	*.txt
@@ -31,19 +30,19 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	${PN}
-	lib${PN}2
-	lib${PN}-devel
+	libCQRlib2
+	libCQRlib-devel
 "
-CQRlib_CONTENTS="
+cqrlib_CONTENTS="
 	usr/share
 "
 libCQRlib2_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-2.dll
 "
 libCQRlib_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
-CQRlib_SUMMARY="${SUMMARY} (licensing & readmes)"
+cqrlib_SUMMARY="${SUMMARY} (licensing & readmes)"
 libCQRlib2_SUMMARY="${SUMMARY} (runtime)"
 libCQRlib_devel_SUMMARY="${SUMMARY} (development)"

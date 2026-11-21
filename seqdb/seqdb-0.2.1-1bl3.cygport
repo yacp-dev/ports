@@ -11,11 +11,20 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSES/SEQDB.txt"
 
-BUILD_REQUIRES="libblosc-devel libhdf5-devel"
+BUILD_REQUIRES="
+	libblosc-devel
+	libhdf5-devel
+"
 
 DIFF_EXCLUDES="
 	scripts
 "
+
+src_test()
+{
+	cd ${B}
+	verbose ./src/${PN}-compress.exe --version
+}
 
 PKG_NAMES="
 	seqdb

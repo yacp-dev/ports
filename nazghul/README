@@ -1,33 +1,32 @@
 nazghul
 ------------------------------------------
-Nazghul is a computer role-playing game (CRPG) engine. Here's what it looks
-like when played. Obviously, the emphasis is not on graphics or first-person
-squad-based stealth action. If you like roguelikes or the top-down, 2d,
-turn-based CRPG's that disappeared in the early 90's then this is for you.
+Computer role-playing game (CRPG) engine with game called HaximA
 
 Runtime requirements:
-  cygwin-1.7.11-1
-  libgcc1-4.5.3-3
-  libpng14-1.4.8-1
-  libSDL1.2_0-1.2.14-2
-  libSDL_image1.2_0-1.2.10-2
-  libSDL_mixer1.2_0-1.2.11-1
-  libstdc++6-4.5.3-3
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libSDL1.2_0-1.2.15-3
+  libSDL_image1.2_0-1.2.12-6
+  libSDL_mixer1.2_0-1.2.12-4
+  libgcc1-14.4.0-1
+  libpng16-1.6.59-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-10-1
-  automake-4-10
-  binutils-2.22.51-1
-  cygport-0.10.9-1
-  gawk-4.0.0-1
-  gcc4-core-4.5.3-3
-  gcc4-g++-4.5.3-3
-  libtool-2.4-1
-  make-3.82.90-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libSDL-devel-1.2.15-3
+  libSDL_image-devel-1.2.12-6
+  libSDL_mixer-devel-1.2.12-4
+  libpng-devel-1.6.59-1
+  make-4.4.1-2
 
 Canonical website:
-  http://myweb.cableone.net/gmcnutt/nazghul.html
+  https://sourceforge.net/projects/nazghul/
 
 Canonical download:
   mirror://sourceforge/nazghul/nazghul-0.7.1.tar.gz
@@ -35,15 +34,15 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack nazghul-0.7.1-X-src.tar.bz2
-    if you use setup to install this src package, it will be
-	 unpacked under /usr/src automatically
-  cd /usr/src
-  cygport ./nazghul-0.7.1-X.cygport all
+  1. unpack nazghul-0.7.1-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./nazghul-0.7.1-X.cygport all
 
 This will create:
-  /usr/src/nazghul-0.7.1-X-src.tar.bz2
-  /usr/src/nazghul-0.7.1-X.tar.bz2
+  /usr/src/nazghul-0.7.1-X-src.tar.xz
+  /usr/src/nazghul-0.7.1-X.tar.xz
 
 -------------------------------------------
 
@@ -327,6 +326,7 @@ Files included in the binary package:
   /usr/share/nazghul/haxima/rune.png
   /usr/share/nazghul/haxima/runes.scm
   /usr/share/nazghul/haxima/runestones.png
+  /usr/share/nazghul/haxima/saved-games.scm
   /usr/share/nazghul/haxima/scrolls.png
   /usr/share/nazghul/haxima/scrolls.scm
   /usr/share/nazghul/haxima/selene.scm
@@ -361,6 +361,8 @@ Files included in the binary package:
   /usr/share/nazghul/haxima/tblit.scm
   /usr/share/nazghul/haxima/terrain-to-ptype.scm
   /usr/share/nazghul/haxima/terrains.scm
+  /usr/share/nazghul/haxima/test.scm
+  /usr/share/nazghul/haxima/test.scm.png
   /usr/share/nazghul/haxima/tetzl.scm
   /usr/share/nazghul/haxima/the-man.scm
   /usr/share/nazghul/haxima/thiefs_den.scm
@@ -409,9 +411,11 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 0.7.1-1bl2 -----
+Rebuild with gcc-14.4.0
+
 ----- version 0.7.1-1bl1 -----
 Version bump.
 
 ----- version 0.7.0-1bl1 -----
 Initial release for Cygwin-1.7 by fd0 <http://d.hatena.ne.jp/fd0>
-

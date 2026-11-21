@@ -1,0 +1,86 @@
+--- origsrc/nazghul-0.7.1/src/Party.cpp	2021-02-14 17:48:27.000000000 +0000
++++ src/nazghul-0.7.1/src/Party.cpp	2026-11-21 04:58:50.576554300 +0000
+@@ -1061,7 +1061,7 @@ Object *Party::getSpeaker()
+ 
+                 statlist[list_sz].sprite = member->getSprite();
+                 snprintf(statlist[list_sz].line1, STAT_LIST_CHARS_PER_LINE,
+-                         member->getName());
++                         "%s", member->getName());
+                 statlist[list_sz].data = member;
+                 list_sz++;
+         }
+--- origsrc/nazghul-0.7.1/src/kern.c	2021-04-26 21:32:24.000000000 +0000
++++ src/nazghul-0.7.1/src/kern.c	2026-11-21 04:58:50.578573800 +0000
+@@ -9730,7 +9730,7 @@ KERN_API_CALL(kern_screen_print)
+                 int n = 0;
+ 
+                 if (scm_is_str(sc, val)) {
+-                        n = snprintf(ptr, room, scm_str_val(sc, val));
++                        n = snprintf(ptr, room, "%s", scm_str_val(sc, val));
+                 } else if (scm_is_int(sc, val)) {
+                         n = snprintf(ptr, room, "%ld", scm_int_val(sc, val));
+                 } else if (scm_is_real(sc, val)) {
+--- origsrc/nazghul-0.7.1/src/menus.c	2021-04-30 18:13:01.000000000 +0000
++++ src/nazghul-0.7.1/src/menus.c	2026-11-21 04:58:50.580592200 +0000
+@@ -1006,7 +1006,7 @@ char * save_game_menu(void)
+         menubufptr = menubuf;
+ 
+         /* The first entry is always the New Save Game option. */
+-        sprintf(menubufptr, MENU_NEW_GAME_STR);
++        sprintf(menubufptr, "%s", MENU_NEW_GAME_STR);
+         data.hotkeys[i] = 'n';
+         menu[i++] = menubufptr;
+         menubufptr += linew+1;
+--- origsrc/nazghul-0.7.1/src/scheme.c	2021-02-11 17:01:16.000000000 +0000
++++ src/nazghul-0.7.1/src/scheme.c	2026-11-21 04:58:50.582618300 +0000
+@@ -5156,7 +5156,7 @@ void celldump(scheme * sc, pointer pp)
+ 
+                 /* type */
+                 for (i = 0; i < T_LAST_SYSTEM_TYPE && i != type(pp); i++) ;
+-                bptr += sprintf(bptr, typestr[i]);
++                bptr += sprintf(bptr, "%s", typestr[i]);
+                 *bptr++ = ' ';
+ 
+                 /* flags */
+@@ -5198,7 +5198,7 @@ void celldump(scheme * sc, pointer pp)
+         strbuf[sizeof (strbuf) - 1] = 0;
+ 
+         /*putstr(sc, strbuf); */
+-        fprintf(stderr, strbuf);
++        fprintf(stderr, "%s", strbuf);
+         fflush(NULL);
+ }
+ 
+--- origsrc/nazghul-0.7.1/src/scheme.h	2021-01-21 14:01:22.000000000 +0000
++++ src/nazghul-0.7.1/src/scheme.h	2026-11-21 04:58:50.584644400 +0000
+@@ -16,7 +16,7 @@
+ 
+ #ifndef _MSC_VER 
+ # define USE_STRCASECMP 1 
+-# ifndef WIN32 /* needed for Cygwin */
++# if !defined(WIN32) && !defined(__CYGWIN__)
+ #  define USE_STRLWR 1 
+ # else
+ #  define USE_STRLWR 0
+--- origsrc/nazghul-0.7.1/worlds/haxima-1.002/Makefile.am	2021-01-21 14:01:22.000000000 +0000
++++ src/nazghul-0.7.1/worlds/haxima-1.002/Makefile.am	2026-11-21 04:58:50.584644400 +0000
+@@ -7,8 +7,7 @@ haxima.sh: Makefile
+ 	echo '#!/bin/sh' > $@ 
+ 	echo '"@bindir@/nazghul" -I "@datadir@/nazghul/haxima" -G "$$HOME/.haxima" "$$@"' >> $@
+ 
+-haxima_DATA = $(wildcard *.scm) $(wildcard *.png) $(wildcard *.wav)
++haxima_DATA = $(notdir $(wildcard $(srcdir)/*.scm $(srcdir)/*.png $(srcdir)/*.wav))
+ 
+ EXTRA_DIST = $(haxima_DATA)
+ MAINTAINERCLEANFILES = Makefile.in
+-
+--- origsrc/nazghul-0.7.1/worlds/haxima-1.002/music/Makefile.am	2021-01-21 14:01:22.000000000 +0000
++++ src/nazghul-0.7.1/worlds/haxima-1.002/music/Makefile.am	2026-11-21 04:58:50.586421000 +0000
+@@ -1,6 +1,6 @@
+ musicdir = $(datadir)/nazghul/haxima/music
+ 
+-music_DATA = credits.txt $(wildcard *.mid) $(wildcard *.scm) $(wildcard *.ogg)
++music_DATA = credits.txt $(notdir $(wildcard $(srcdir)/*.mid $(srcdir)/*.scm $(srcdir)/*.ogg))
+ 
+ EXTRA_DIST = $(music_DATA)
+ 

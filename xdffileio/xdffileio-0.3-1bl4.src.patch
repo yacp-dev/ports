@@ -1,5 +1,5 @@
---- origsrc/xdffileio-xdffileio-0.3/Makefile.am	2012-05-01 15:47:27.000000000 +0900
-+++ src/xdffileio-xdffileio-0.3/Makefile.am	2025-08-19 17:56:32.118712100 +0900
+--- origsrc/xdffileio-xdffileio-0.3/Makefile.am	2012-05-01 06:47:27.000000000 +0000
++++ src/xdffileio-xdffileio-0.3/Makefile.am	2026-11-21 10:53:37.764062800 +0000
 @@ -1,5 +1,5 @@
  ACLOCAL_AMFLAGS=-I m4
 -SUBDIRS = lib src doc tests
@@ -7,8 +7,8 @@
  
  EXTRA_DIST=autogen.sh m4/gnulib-cache.m4
  doc_DATA = AUTHORS NEWS README COPYING
---- origsrc/xdffileio-xdffileio-0.3/configure.ac	2025-08-19 17:56:30.747276000 +0900
-+++ src/xdffileio-xdffileio-0.3/configure.ac	2025-08-19 17:56:32.118712100 +0900
+--- origsrc/xdffileio-xdffileio-0.3/configure.ac	2026-11-21 10:53:37.494493800 +0000
++++ src/xdffileio-xdffileio-0.3/configure.ac	2026-11-21 10:53:37.764062800 +0000
 @@ -34,7 +34,6 @@ AM_PROG_CC_C_O
  
  LT_INIT([win32-dll disable-static])
@@ -31,8 +31,8 @@
            (If gcc is used, add -ffloat-store to compiler flags)"
  fi
 -
---- origsrc/xdffileio-xdffileio-0.3/src/Makefile.am	2012-05-01 15:47:27.000000000 +0900
-+++ src/xdffileio-xdffileio-0.3/src/Makefile.am	2025-08-19 17:56:32.121946900 +0900
+--- origsrc/xdffileio-xdffileio-0.3/src/Makefile.am	2012-05-01 06:47:27.000000000 +0000
++++ src/xdffileio-xdffileio-0.3/src/Makefile.am	2026-11-21 10:53:37.765978400 +0000
 @@ -13,7 +13,7 @@ libxdffileio_la_SOURCES = xdffile.h xdff
  AM_CPPFLAGS=-I../lib -I$(top_srcdir)/lib
  libxdffileio_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined \
@@ -42,8 +42,8 @@
  
  pkgconfigdir = $(libdir)/pkgconfig
  pkgconfig_DATA = xdffileio.pc
---- origsrc/xdffileio-xdffileio-0.3/src/xdfconfig.c	2012-05-01 15:47:27.000000000 +0900
-+++ src/xdffileio-xdffileio-0.3/src/xdfconfig.c	2025-08-19 17:56:32.123968800 +0900
+--- origsrc/xdffileio-xdffileio-0.3/src/xdfconfig.c	2012-05-01 06:47:27.000000000 +0000
++++ src/xdffileio-xdffileio-0.3/src/xdfconfig.c	2026-11-21 10:53:37.765978400 +0000
 @@ -29,7 +29,9 @@
  #include <sys/stat.h>
  #include <fcntl.h>

@@ -1,21 +1,21 @@
 HOMEPAGE="https://archiveweb.epfl.ch/cnbi.epfl.ch/index.html%3Fp=222.html"
 SRC_URI="https://github.com/nbourdau/${PN}/archive/refs/tags/${P}.tar.gz"
-SRC_DIR="${PN}-${P}"
 PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-4/debian/patches/serial-tests.patch
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-4/debian/patches/configure.ac.patch
 "
+SRC_DIR="${PN}-${P}"
 
 CATEGORY="Libs"
 SUMMARY="Library to read/write EEG data file formats"
-DESCRIPTION="This library provides a unified interface to read/write EEG file format in
-realtime. It has been designed to provide a consistent and common interface to
-all supported file formats while minimizing the CPU cost on the main loop. It
-thus performs all the expensive operation (scaling, data convertion and file
-operation) in a separated thread."
+DESCRIPTION="This library provides a unified interface to read/write EEG file
+format in realtime. It has been designed to provide a consistent and common
+interface to all supported file formats while minimizing the CPU cost on the
+main loop. It thus performs all the expensive operation (scaling, data
+convertion and file operation) in a separated thread."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
 PKG_NAMES="

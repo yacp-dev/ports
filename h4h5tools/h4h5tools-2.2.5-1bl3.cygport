@@ -12,9 +12,14 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libhdf4-devel libhdf5-devel"
+BUILD_REQUIRES="
+	hdf5
+	libhdf4-devel
+	libhdf5-devel
+"
 
-export CPPFLAGS="-DHDstrdup=strdup"
+# HDF4 4.4 no longer pulls in stdlib.h/string.h through hdf.h
+export CPPFLAGS="-DHDstrdup=strdup -include stdlib.h -include string.h"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode

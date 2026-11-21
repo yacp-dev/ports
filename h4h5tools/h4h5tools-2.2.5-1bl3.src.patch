@@ -1,5 +1,5 @@
---- origsrc/h4h5tools-2.2.5/Makefile.am	2020-03-10 23:33:18.000000000 +0900
-+++ src/h4h5tools-2.2.5/Makefile.am	2024-10-16 02:29:58.720212700 +0900
+--- origsrc/h4h5tools-2.2.5/Makefile.am	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/Makefile.am	2026-11-21 07:35:55.323552700 +0000
 @@ -16,3 +16,6 @@
  #############################################################################
  
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = h4toh5.pc
---- origsrc/h4h5tools-2.2.5/configure.ac	2024-10-16 02:20:38.253983500 +0900
-+++ src/h4h5tools-2.2.5/configure.ac	2024-10-16 02:30:47.844829500 +0900
+--- origsrc/h4h5tools-2.2.5/configure.ac	2026-11-21 07:35:54.412589700 +0000
++++ src/h4h5tools-2.2.5/configure.ac	2026-11-21 07:35:55.317715200 +0000
 @@ -28,7 +28,7 @@ AC_CONFIG_SRCDIR([lib/src/h4toh5main.c])
  AC_CONFIG_AUX_DIR([bin])
  AM_INIT_AUTOMAKE([foreign])
@@ -26,8 +26,8 @@
  AC_OUTPUT
  no_create=$saved_no_create
  
---- origsrc/h4h5tools-2.2.5/h4toh5.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/h4h5tools-2.2.5/h4toh5.pc.in	2024-10-16 02:31:00.297348500 +0900
+--- origsrc/h4h5tools-2.2.5/h4toh5.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/h4h5tools-2.2.5/h4toh5.pc.in	2026-11-21 07:35:55.319494200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -39,8 +39,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lh4toh5
 +Cflags: -I${includedir}
---- origsrc/h4h5tools-2.2.5/lib/examples/Makefile.am	2020-03-10 23:33:18.000000000 +0900
-+++ src/h4h5tools-2.2.5/lib/examples/Makefile.am	2024-10-16 02:20:40.628987700 +0900
+--- origsrc/h4h5tools-2.2.5/lib/examples/Makefile.am	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/lib/examples/Makefile.am	2026-11-21 07:35:55.319494200 +0000
 @@ -26,8 +26,8 @@ AM_CPPFLAGS+=-I$(top_builddir)/lib/src
  noinst_PROGRAMS = h4toh5example
  
@@ -52,8 +52,8 @@
  
  
  
---- origsrc/h4h5tools-2.2.5/lib/src/Makefile.am	2020-03-10 23:33:18.000000000 +0900
-+++ src/h4h5tools-2.2.5/lib/src/Makefile.am	2024-10-16 02:20:40.644617100 +0900
+--- origsrc/h4h5tools-2.2.5/lib/src/Makefile.am	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/lib/src/Makefile.am	2026-11-21 07:35:55.321523300 +0000
 @@ -13,13 +13,15 @@
  
  AM_CPPFLAGS=-I$(top_builddir)/lib/src
@@ -71,9 +71,51 @@
  include_HEADERS = $(CHEADERS)
  
 +libh4toh5_la_LDFLAGS = -no-undefined 
-+libh4toh5_la_LIBADD = -ldf -lmfhdf -lhdf5_hl
---- origsrc/h4h5tools-2.2.5/lib/test/Makefile.am	2020-03-10 23:33:18.000000000 +0900
-+++ src/h4h5tools-2.2.5/lib/test/Makefile.am	2024-10-16 02:20:40.644617100 +0900
++libh4toh5_la_LIBADD = -lhdf -lmfhdf -lhdf5_hl
+--- origsrc/h4h5tools-2.2.5/lib/src/h4toh5apicompatible.h	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/lib/src/h4toh5apicompatible.h	2026-11-21 07:35:55.321523300 +0000
+@@ -54,5 +54,39 @@
+     
+ #endif
+ 
++/* HDF4 4.4 dropped Vgetnamelen()/Vgetclassnamelen() and gave Vgetname()/
++   Vgetclass() a size_t *buf_size argument. Emulate the old API on top of it. */
++#ifndef H4H5_VGET_COMPAT
++#define H4H5_VGET_COMPAT
++static inline int h4h5_vget_len(int32 id, uint16 *len, int cls)
++{
++    size_t n = 0;
++    int    r = cls ? Vgetclass(id, NULL, &n) : Vgetname(id, NULL, &n);
++    if (r != FAIL)
++        *len = (uint16)n;
++    return r;
++}
++static inline int h4h5_vgetname(int32 id, char *buf)
++{
++    size_t n = 0;
++    if (Vgetname(id, NULL, &n) == FAIL)
++        return FAIL;
++    n++;
++    return Vgetname(id, buf, &n);
++}
++static inline int h4h5_vgetclass(int32 id, char *buf)
++{
++    size_t n = 0;
++    if (Vgetclass(id, NULL, &n) == FAIL)
++        return FAIL;
++    n++;
++    return Vgetclass(id, buf, &n);
++}
++#define Vgetnamelen(id, lenp) h4h5_vget_len((id), (lenp), 0)
++#define Vgetclassnamelen(id, lenp) h4h5_vget_len((id), (lenp), 1)
++#define Vgetname(id, buf) h4h5_vgetname((id), (buf))
++#define Vgetclass(id, buf) h4h5_vgetclass((id), (buf))
++#endif
++
+ #endif
+ 
+--- origsrc/h4h5tools-2.2.5/lib/test/Makefile.am	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/lib/test/Makefile.am	2026-11-21 07:35:55.323552700 +0000
 @@ -22,73 +22,73 @@ noinst_PROGRAMS = h4toh5test h4h5apitest
  
  ## Information for building the "h4toh5test" program
@@ -176,21 +218,22 @@
  
  #############################################################################
  ##                              Testing                                    ##
---- origsrc/h4h5tools-2.2.5/utils/h4toh5/Makefile.am	2020-03-10 23:33:18.000000000 +0900
-+++ src/h4h5tools-2.2.5/utils/h4toh5/Makefile.am	2024-10-16 02:20:40.644617100 +0900
-@@ -22,8 +22,8 @@ check_PROGRAMS = h4toh5test
+--- origsrc/h4h5tools-2.2.5/utils/h4toh5/Makefile.am	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/utils/h4toh5/Makefile.am	2026-11-21 07:35:55.325584200 +0000
+@@ -22,8 +22,9 @@ check_PROGRAMS = h4toh5test
                                                                                  
  ## Information for building the "h4toh5test" program
  h4toh5_SOURCES = h4toh5main.c
 -h4toh5_LDADD = ../../lib/src/libh4toh5.a
 -h4toh5_DEPENDENCIES = ../../lib/src/libh4toh5.a
-+h4toh5_LDADD = ../../lib/src/libh4toh5.la -ldf
++h4toh5_LDADD = ../../lib/src/libh4toh5.la -lhdf
 +h4toh5_DEPENDENCIES = ../../lib/src/libh4toh5.la
++h4toh5test_LDADD = -lhdf -lmfhdf
                                                                                  
  #############################################################################
  ##                   Testing -- Here there be dragons.                     ##
---- origsrc/h4h5tools-2.2.5/utils/h4toh5/h4toh5main.c	2020-03-10 23:33:18.000000000 +0900
-+++ src/h4h5tools-2.2.5/utils/h4toh5/h4toh5main.c	2024-10-16 02:25:16.305474400 +0900
+--- origsrc/h4h5tools-2.2.5/utils/h4toh5/h4toh5main.c	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/utils/h4toh5/h4toh5main.c	2026-11-21 07:35:55.325584200 +0000
 @@ -42,7 +42,7 @@ Author:  Kent Yang(myang6@hdfgroup.org)
  #include <strings.h>
  #include <string.h>
@@ -200,18 +243,18 @@
  
  /**
  * @brief no comment!
---- origsrc/h4h5tools-2.2.5/utils/h5toh4/Makefile.am	2020-03-10 23:33:18.000000000 +0900
-+++ src/h4h5tools-2.2.5/utils/h5toh4/Makefile.am	2024-10-16 02:20:40.644617100 +0900
+--- origsrc/h4h5tools-2.2.5/utils/h5toh4/Makefile.am	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/utils/h5toh4/Makefile.am	2026-11-21 07:35:55.329641800 +0000
 @@ -20,6 +20,7 @@ AM_CPPFLAGS = -I$(top_builddir)/lib/src/
                                                                                  
  ## Information for building the "h5toh4" program
  h5toh4_SOURCES = h5toh4.c
-+h5toh4_LDADD = -ldf -lmfhdf
++h5toh4_LDADD = -lhdf -lmfhdf
                                                                                  
  #############################################################################
  ##                   Testing -- Here there be dragons.                     ##
---- origsrc/h4h5tools-2.2.5/utils/h5toh4/h5toh4.c	2020-03-10 23:33:18.000000000 +0900
-+++ src/h4h5tools-2.2.5/utils/h5toh4/h5toh4.c	2024-10-16 02:20:40.644617100 +0900
+--- origsrc/h4h5tools-2.2.5/utils/h5toh4/h5toh4.c	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/utils/h5toh4/h5toh4.c	2026-11-21 07:35:55.327613200 +0000
 @@ -302,7 +302,7 @@ main(int argc, char *argv[])
    {
      (void) fprintf(stderr, err1, argc);
@@ -242,3 +285,45 @@
          return EXIT_FAILURE;
      }
    }
+--- origsrc/h4h5tools-2.2.5/utils/h5toh4/h5toh4apicompatible.h	2020-03-10 14:33:18.000000000 +0000
++++ src/h4h5tools-2.2.5/utils/h5toh4/h5toh4apicompatible.h	2026-11-21 07:35:55.329641800 +0000
+@@ -54,5 +54,39 @@
+ 
+ #endif
+ 
++/* HDF4 4.4 dropped Vgetnamelen()/Vgetclassnamelen() and gave Vgetname()/
++   Vgetclass() a size_t *buf_size argument. Emulate the old API on top of it. */
++#ifndef H4H5_VGET_COMPAT
++#define H4H5_VGET_COMPAT
++static inline int h4h5_vget_len(int32 id, uint16 *len, int cls)
++{
++    size_t n = 0;
++    int    r = cls ? Vgetclass(id, NULL, &n) : Vgetname(id, NULL, &n);
++    if (r != FAIL)
++        *len = (uint16)n;
++    return r;
++}
++static inline int h4h5_vgetname(int32 id, char *buf)
++{
++    size_t n = 0;
++    if (Vgetname(id, NULL, &n) == FAIL)
++        return FAIL;
++    n++;
++    return Vgetname(id, buf, &n);
++}
++static inline int h4h5_vgetclass(int32 id, char *buf)
++{
++    size_t n = 0;
++    if (Vgetclass(id, NULL, &n) == FAIL)
++        return FAIL;
++    n++;
++    return Vgetclass(id, buf, &n);
++}
++#define Vgetnamelen(id, lenp) h4h5_vget_len((id), (lenp), 0)
++#define Vgetclassnamelen(id, lenp) h4h5_vget_len((id), (lenp), 1)
++#define Vgetname(id, buf) h4h5_vgetname((id), (buf))
++#define Vgetclass(id, buf) h4h5_vgetclass((id), (buf))
++#endif
++
+ #endif
+ 

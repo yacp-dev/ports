@@ -1,6 +1,6 @@
---- origsrc/leveldb-1.23/CMakeLists.txt	2021-02-24 05:54:37.000000000 +0900
-+++ src/leveldb-1.23/CMakeLists.txt	2024-10-29 22:50:40.874278000 +0900
-@@ -289,27 +289,31 @@ target_link_libraries(leveldbutil leveld
+--- origsrc/leveldb-1.23/CMakeLists.txt	2026-11-21 09:58:33.667530000 +0000
++++ src/leveldb-1.23/CMakeLists.txt	2026-11-21 09:58:33.932718900 +0000
+@@ -285,27 +285,31 @@ target_link_libraries(leveldbutil leveld
  if(LEVELDB_BUILD_TESTS)
    enable_testing()
  
@@ -53,7 +53,7 @@
  
    function(leveldb_test test_file)
      get_filename_component(test_target_name "${test_file}" NAME_WE)
-@@ -468,6 +472,7 @@ if(LEVELDB_INSTALL)
+@@ -464,6 +468,7 @@ if(LEVELDB_INSTALL)
        "${LEVELDB_PUBLIC_INCLUDE_DIR}/table_builder.h"
        "${LEVELDB_PUBLIC_INCLUDE_DIR}/table.h"
        "${LEVELDB_PUBLIC_INCLUDE_DIR}/write_batch.h"
@@ -61,7 +61,7 @@
      DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/leveldb"
    )
  
-@@ -493,3 +498,10 @@ if(LEVELDB_INSTALL)
+@@ -489,3 +494,10 @@ if(LEVELDB_INSTALL)
      DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
    )
  endif(LEVELDB_INSTALL)
@@ -72,8 +72,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/leveldb.pc.in ${CMAKE_BINARY_DIR}/leveldb.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/leveldb.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/leveldb-1.23/leveldb.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/leveldb-1.23/leveldb.pc.in	2024-10-29 22:49:55.760506200 +0900
+--- origsrc/leveldb-1.23/leveldb.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/leveldb-1.23/leveldb.pc.in	2026-11-21 09:58:33.934486100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -82,6 +82,6 @@
 +
 +Name: leveldb
 +Description: Fast and lightweight key/value database library by Google
-+Version: @PROJECT_VERSION@
++Version: @PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@
 +Libs: -L${libdir} -lleveldb
 +Cflags: -I${includedir}

@@ -3,28 +3,29 @@ libhildonmime
 Library for activating an application to handle a certain mime type
 
 Runtime requirements:
-  cygwin-3.6.5-1
+  cygwin-3.6.12-1
   libdbus-glib_1-devel-0.108-1
   libdbus1_3-1.16.2-1
-  libglib2.0-devel-2.86.2-1
-  libglib2.0_0-2.86.2-1
-  libhildonmime-devel-4.2.0-1bl2
-  libhildonmime0-4.2.0-1bl2
-  libintl8-0.22.5-1
-  libxml2-2.10.4-2
-  pkg-config-2.5.1-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libhildonmime-devel-4.2.0-1bl3
+  libhildonmime0-4.2.0-1bl3
+  libintl8-0.26-1
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.3-1
-  gcc-core-13.4.0-1
-  libdbus1-devel-1.16.2-1
-  libglib2.0-devel-2.86.2-1
-  libtool-2.5.4-1
-  libxml2-devel-2.10.4-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gtk-doc-1.37.0-1
+  libdbus-glib_1-devel-0.108-1
+  libglib2.0-devel-2.90.1-1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-3
   make-4.4.1-2
 
 Canonical website:
@@ -76,6 +77,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.2.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 4.2.0-1bl2 -----
 Rebuild with gcc-13.4.0

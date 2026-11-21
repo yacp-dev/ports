@@ -1,5 +1,5 @@
---- origsrc/src-H5hut-2.0.0rc7/src/Fortran/Makefile.am	2024-10-02 21:58:27.000000000 +0900
-+++ src/src-H5hut-2.0.0rc7/src/Fortran/Makefile.am	2024-10-15 09:59:07.528570000 +0900
+--- origsrc/H5hut-H5hut-2.0.0rc7/src/Fortran/Makefile.am	2024-10-02 12:58:27.000000000 +0000
++++ src/H5hut-H5hut-2.0.0rc7/src/Fortran/Makefile.am	2026-11-21 13:32:22.650317700 +0000
 @@ -45,7 +45,8 @@ libH5hutF_la_SOURCES =		\
  libH5hutF_la_DEPENDENCIES =	\
  	$(top_srcdir)/src/include/H5hut.f
@@ -10,14 +10,14 @@
  
  $(top_srcdir)/src/include/H5hut.f: $(F90_FILES)
  	awk '/INTEGER\*8 :: /{print "       " $$0}' $^ >$@
---- origsrc/src-H5hut-2.0.0rc7/src/Makefile.am	2024-10-02 21:58:27.000000000 +0900
-+++ src/src-H5hut-2.0.0rc7/src/Makefile.am	2024-10-15 09:59:07.528570000 +0900
+--- origsrc/H5hut-H5hut-2.0.0rc7/src/Makefile.am	2024-10-02 12:58:27.000000000 +0000
++++ src/H5hut-H5hut-2.0.0rc7/src/Makefile.am	2026-11-21 13:32:22.719023000 +0000
 @@ -1,2 +1,2 @@
  
 -SUBDIRS = Fortran h5core C include Python
 +SUBDIRS = h5core Fortran C include Python
---- origsrc/src-H5hut-2.0.0rc7/src/h5core/Makefile.am	2024-10-02 21:58:27.000000000 +0900
-+++ src/src-H5hut-2.0.0rc7/src/h5core/Makefile.am	2024-10-15 09:59:07.528570000 +0900
+--- origsrc/H5hut-H5hut-2.0.0rc7/src/h5core/Makefile.am	2024-10-02 12:58:27.000000000 +0000
++++ src/H5hut-H5hut-2.0.0rc7/src/h5core/Makefile.am	2026-11-21 13:32:22.721031000 +0000
 @@ -99,7 +99,7 @@ libH5hut_la_SOURCES +=				\
  
  libH5hut_la_DEPENDENCIES = $(EXTRA_HEADERS)

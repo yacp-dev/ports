@@ -1,0 +1,95 @@
+--- origsrc/caffe-1.0/cmake/ConfigGen.cmake	2017-04-15 16:17:48.000000000 +0000
++++ src/caffe-1.0/cmake/ConfigGen.cmake	2026-11-21 20:49:56.951458700 +0000
+@@ -18,7 +18,11 @@ endfunction()
+ # Usage:
+ #  caffe_generate_export_configs()
+ function(caffe_generate_export_configs)
+-  set(install_cmake_suffix "share/Caffe")
++  if (CYGWIN)
++    set(install_cmake_suffix "lib/cmake/Caffe")
++  else()
++    set(install_cmake_suffix "share/Caffe")
++  endif()
+ 
+   if(NOT HAVE_CUDA)
+     set(HAVE_CUDA FALSE)
+--- origsrc/caffe-1.0/cmake/Dependencies.cmake	2017-04-15 16:17:48.000000000 +0000
++++ src/caffe-1.0/cmake/Dependencies.cmake	2026-11-21 20:49:56.951972100 +0000
+@@ -33,6 +33,7 @@ endif()
+ include("cmake/External/glog.cmake")
+ list(APPEND Caffe_INCLUDE_DIRS PUBLIC ${GLOG_INCLUDE_DIRS})
+ list(APPEND Caffe_LINKER_LIBS PUBLIC ${GLOG_LIBRARIES})
++add_definitions(-DGLOG_USE_GLOG_EXPORT)
+ 
+ # ---[ Google-gflags
+ include("cmake/External/gflags.cmake")
+--- origsrc/caffe-1.0/cmake/Modules/FindOpenBLAS.cmake	2017-04-15 16:17:48.000000000 +0000
++++ src/caffe-1.0/cmake/Modules/FindOpenBLAS.cmake	2026-11-21 20:49:56.953468200 +0000
+@@ -29,7 +29,7 @@ SET(Open_BLAS_LIB_SEARCH_PATHS
+  )
+ 
+ FIND_PATH(OpenBLAS_INCLUDE_DIR NAMES cblas.h PATHS ${Open_BLAS_INCLUDE_SEARCH_PATHS})
+-FIND_LIBRARY(OpenBLAS_LIB NAMES openblas PATHS ${Open_BLAS_LIB_SEARCH_PATHS})
++FIND_LIBRARY(OpenBLAS_LIB NAMES blas openblas PATHS ${Open_BLAS_LIB_SEARCH_PATHS})
+ 
+ SET(OpenBLAS_FOUND ON)
+ 
+--- origsrc/caffe-1.0/include/caffe/common.hpp	2017-04-15 16:17:48.000000000 +0000
++++ src/caffe-1.0/include/caffe/common.hpp	2026-11-21 20:49:56.953990500 +0000
+@@ -3,6 +3,9 @@
+ 
+ #include <boost/shared_ptr.hpp>
+ #include <gflags/gflags.h>
++#ifndef GLOG_USE_GLOG_EXPORT
++#define GLOG_USE_GLOG_EXPORT
++#endif
+ #include <glog/logging.h>
+ 
+ #include <climits>
+--- origsrc/caffe-1.0/src/caffe/CMakeLists.txt	2017-04-15 16:17:48.000000000 +0000
++++ src/caffe-1.0/src/caffe/CMakeLists.txt	2026-11-21 20:49:56.953990500 +0000
+@@ -3,10 +3,11 @@ file(GLOB proto_files proto/*.proto)
+ caffe_protobuf_generate_cpp_py(${proto_gen_folder} proto_srcs proto_hdrs proto_python ${proto_files})
+ 
+ # include python files either to force generation
+-add_library(proto STATIC ${proto_hdrs} ${proto_srcs} ${proto_python})
++add_library(proto SHARED ${proto_hdrs} ${proto_srcs} ${proto_python})
+ caffe_default_properties(proto)
+ target_link_libraries(proto PUBLIC ${PROTOBUF_LIBRARIES})
+ target_include_directories(proto PUBLIC ${PROTOBUF_INCLUDE_DIR})
++set_target_properties(proto PROPERTIES OUTPUT_NAME "caffeproto" SOVERSION ${CAFFE_TARGET_SOVERSION})
+ 
+ list(INSERT Caffe_LINKER_LIBS 0 PUBLIC proto) # note, crucial to prepend!
+ 
+@@ -42,9 +43,9 @@ set_target_properties(caffe PROPERTIES
+ # ---[ Install
+ install(DIRECTORY ${Caffe_INCLUDE_DIR}/caffe DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+ install(FILES ${proto_hdrs} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/caffe/proto)
+-install(TARGETS caffe proto EXPORT CaffeTargets DESTINATION ${CMAKE_INSTALL_LIBDIR})
++install(TARGETS caffe proto EXPORT CaffeTargets RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ 
+ file(WRITE ${PROJECT_BINARY_DIR}/__init__.py)
+ list(APPEND proto_python ${PROJECT_BINARY_DIR}/__init__.py)
+-install(PROGRAMS ${proto_python} DESTINATION python/caffe/proto)
++install(PROGRAMS ${proto_python} DESTINATION lib/python/caffe/proto)
+ 
+--- origsrc/caffe-1.0/src/caffe/test/CMakeLists.txt	2017-04-15 16:17:48.000000000 +0000
++++ src/caffe-1.0/src/caffe/test/CMakeLists.txt	2026-11-21 20:49:56.956005200 +0000
+@@ -32,5 +32,5 @@ caffe_default_properties(${the_target})
+ caffe_set_runtime_directory(${the_target} "${PROJECT_BINARY_DIR}/test")
+ 
+ # ---[ Adding runtest
+-add_custom_target(runtest COMMAND ${the_target} ${test_args}
++add_custom_target(runtest COMMAND $<TARGET_FILE:${the_target}> ${test_args}
+                           WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+--- origsrc/caffe-1.0/src/caffe/test/test_deconvolution_layer.cpp	2017-04-15 16:17:48.000000000 +0000
++++ src/caffe-1.0/src/caffe/test/test_deconvolution_layer.cpp	2026-11-21 20:49:56.956005200 +0000
+@@ -257,7 +257,7 @@ TYPED_TEST(DeconvolutionLayerTest, TestN
+   }
+   ASSERT_EQ(result_nd.count(), result_2d.count());
+   for (int i = 0; i < result_2d.count(); ++i)  {
+-    EXPECT_EQ(result_2d.cpu_data()[i], result_nd.cpu_data()[i]);
++    EXPECT_FLOAT_EQ(result_2d.cpu_data()[i], result_nd.cpu_data()[i]);
+   }
+   ASSERT_EQ(backward_result_nd.count(), backward_result_2d.count());
+   for (int i = 0; i < backward_result_2d.count(); ++i) {

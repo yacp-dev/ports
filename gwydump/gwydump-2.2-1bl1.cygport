@@ -14,13 +14,21 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libglib2.0-devel"
+BUILD_REQUIRES="
+	libglib2.0-devel
+"
 
 src_compile()
 {
 	cd ${B}
 	lndirs
 	cygmake
+}
+
+src_test()
+{
+	cd ${B}
+	verbose ./${PN}.exe --version
 }
 
 src_install()

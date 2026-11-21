@@ -1,0 +1,58 @@
+HOMEPAGE="https://github.com/cxidb/libcxi"
+GIT_URI="https://github.com/cxidb/libcxi.git"
+GIT_REV="20d44e0d68df36214b166642daf6d8af47930b7d"
+
+CATEGORY="Libs"
+SUMMARY="Library to help read and write CXI files"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	hdf5
+	libaec-devel
+	libhdf5-devel
+	zlib-devel
+"
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DSOVERSION:STRING=0
+	-DVERSION:STRING=0
+"
+
+inherit cmake
+inherit git
+
+SRC_DIR="libcxi"
+
+src_test()
+{
+	cd ${B}
+	cygninja check
+}
+
+DIFF_EXCLUDES="
+	dummy.cxi
+"
+
+PKG_NAMES="
+	${PN}
+	${PN}0
+	${PN}-devel
+"
+libcxi_cxidb_CONTENTS="
+	usr/share
+"
+libcxi_cxidb0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libcxi_cxidb_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+libcxi_cxidb_SUMMARY="${SUMMARY} (licensing & readmes)"
+libcxi_cxidb0_SUMMARY="${SUMMARY} (runtime)"
+libcxi_cxidb_devel_SUMMARY="${SUMMARY} (development)"

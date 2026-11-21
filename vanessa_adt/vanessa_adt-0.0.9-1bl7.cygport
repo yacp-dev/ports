@@ -10,7 +10,9 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libvanessa_logger-devel"
+BUILD_REQUIRES="
+	libvanessa_logger-devel
+"
 
 DIFF_EXCLUDES="
 	libltdl

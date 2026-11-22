@@ -15,14 +15,14 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE.txt"
 
 BUILD_REQUIRES="
-	libdatrie-devel
 	libgsl-devel
 	libqes-devel
+	python3-numpy
+	zlib-devel
 "
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DAXE_VERSION:STRING=${PV}
-	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "

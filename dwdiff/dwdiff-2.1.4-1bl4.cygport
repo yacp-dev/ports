@@ -16,7 +16,12 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libiconv-devel libicu-devel libintl-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libiconv-devel
+	libicu-devel
+	libintl-devel
+"
 
 src_compile()
 {
@@ -30,7 +35,7 @@ src_compile()
 src_test()
 {
 	cd ${B}
-	./dwdiff Makefile.in Makefile
+	verbose ./${PN} --version
 }
 
 src_install()

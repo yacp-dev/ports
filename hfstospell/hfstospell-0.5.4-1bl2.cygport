@@ -11,7 +11,14 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libarchive-devel libglibmm2.4-devel libicu-devel libxml++2.6-devel"
+BUILD_REQUIRES="
+	libarchive-devel
+	libglib2.0-devel
+	libglibmm2.4-devel
+	libicu-devel
+	libsigc2.0-devel
+	libxml++2.6-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

@@ -4,30 +4,30 @@ This is a minimal hfst optimized lookup format based spell checker library and
 a demonstrational implementation of command line based spell checker.
 
 Runtime requirements:
-  cygwin-3.5.0-1
-  libarchive13-3.7.2-2
-  libgcc1-11.4.0-1
+  cygwin-3.6.12-1
+  libarchive13-3.8.11-1
+  libgcc1-14.4.0-1
   libglibmm2.4_1-2.54.1-2
-  libhfstospell-devel-0.5.4-1bl1
-  libhfstospell11-0.5.4-1bl1
-  libicu74-74.2-1
-  libstdc++6-11.4.0-1
+  libhfstospell-devel-0.5.4-1bl2
+  libhfstospell11-0.5.4-1bl2
+  libicu76-76.1-2
+  libstdc++6-14.4.0-1
   libxml++2.6_2-2.40.1-1
-  pkg-config-2.1.1-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2023.02.20-1
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.8-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libarchive-devel-3.7.2-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libarchive-devel-3.8.11-1
+  libglib2.0-devel-2.90.1-1
   libglibmm2.4-devel-2.54.1-2
-  libicu-devel-74.2-1
-  libtool-2.4.7-1
+  libicu-devel-76.1-2
+  libsigc2.0-devel-2.12.1-1
+  libtool-2.6.2-1
   libxml++2.6-devel-2.40.1-1
   make-4.4.1-2
 
@@ -85,6 +85,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.4-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.5.4-1bl1 -----
 Version bump.

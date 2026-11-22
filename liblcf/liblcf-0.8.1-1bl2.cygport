@@ -6,13 +6,18 @@ SUMMARY="Library to handle RPG Maker 2000/2003 and EasyRPG projects"
 DESCRIPTION="liblcf is a library to handle RPG Maker 2000 and 2003 game data.
 It can read and write LCF and XML files."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libexpat-devel libicu-devel libinih-devel"
+BUILD_REQUIRES="
+	libexpat-devel
+	libicu-devel
+	libinih-devel
+"
 
-export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -I./src"
+export LIBS="${LIBS} -licuuc"
 
 DIFF_EXCLUDES="
 	*.m4

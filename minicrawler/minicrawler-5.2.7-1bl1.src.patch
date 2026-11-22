@@ -1,9 +1,10 @@
---- origsrc/minicrawler-5.2.6/Makefile.am	2023-06-30 18:48:35.000000000 +0900
-+++ src/minicrawler-5.2.6/Makefile.am	2024-05-01 16:12:04.732232300 +0900
+--- origsrc/minicrawler-5.2.7/Makefile.am	2025-02-26 00:36:17.000000000 +0000
++++ src/minicrawler-5.2.7/Makefile.am	2026-11-22 13:21:53.260089300 +0000
 @@ -1,23 +1,25 @@
  ## No default includes
  DEFAULT_INCLUDES = 
- AM_CXXFLAGS = -std=c++14
+-AM_CXXFLAGS = -std=c++14
++AM_CXXFLAGS = -std=c++17
 +AM_CPPFLAGS = -I$(top_builddir)/src -I$(top_builddir)/src/h
  
  minicrawlerincludedir = $(includedir)/libminicrawler-@MINICRAWLER_API_VERSION@/minicrawler
@@ -38,20 +39,22 @@
  
  check_PROGRAMS = test/url
  
---- origsrc/minicrawler-5.2.6/configure.ac	2023-06-30 18:48:35.000000000 +0900
-+++ src/minicrawler-5.2.6/configure.ac	2024-05-01 12:00:30.257145700 +0900
-@@ -41,7 +41,9 @@ AC_CHECK_LIB([icuuc], [uidna_nameToASCII
-                             AC_CHECK_LIB([icuuc], [uidna_nameToASCII_70], [],
-                                 AC_CHECK_LIB([icuuc], [uidna_nameToASCII_71], [],
+--- origsrc/minicrawler-5.2.7/configure.ac	2025-02-26 00:36:17.000000000 +0000
++++ src/minicrawler-5.2.7/configure.ac	2026-11-22 13:21:53.258078400 +0000
+@@ -43,7 +43,11 @@ AC_CHECK_LIB([icuuc], [uidna_nameToASCII
                                      AC_CHECK_LIB([icuuc], [uidna_nameToASCII_72], [],
--                                        AC_MSG_WARN([Unable to find libicuuc library! apt install libicu-dev!])
-+                                        AC_CHECK_LIB([icuuc], [uidna_nameToASCII_74], [],
-+                                            AC_MSG_WARN([Unable to find libicuuc library! apt install libicu-dev!])
-+                                        )
+                                         AC_CHECK_LIB([icuuc], [uidna_nameToASCII_73], [],
+                                             AC_CHECK_LIB([icuuc], [uidna_nameToASCII_74], [],
+-                                                AC_MSG_WARN([Unable to find libicuuc library! apt install libicu-dev!])
++                                                AC_CHECK_LIB([icuuc], [uidna_nameToASCII_75], [],
++                                                    AC_CHECK_LIB([icuuc], [uidna_nameToASCII_76], [],
++                                                        AC_MSG_WARN([Unable to find libicuuc library! apt install libicu-dev!])
++                                                    )
++                                                )
+                                             )
+                                         )
                                      )
-                                 )
-                             )
-@@ -52,8 +54,11 @@ AC_CHECK_LIB([icuuc], [uidna_nameToASCII
+@@ -56,8 +60,11 @@ AC_CHECK_LIB([icuuc], [uidna_nameToASCII
          )
      )
  )
@@ -65,7 +68,7 @@
  AC_ARG_WITH([ssl],
  			[AS_HELP_STRING([--without-ssl], [disable support for https])],
  			[],
-@@ -112,6 +117,8 @@ AC_ARG_WITH([debug],
+@@ -116,6 +123,8 @@ AC_ARG_WITH([debug],
  AS_IF([test "x$want_debug" != xno],
  			[AC_DEFINE([HAVE_DEBUG], [1], [Build with debug])])
  
@@ -74,3 +77,28 @@
  # Checks for header files.
  AC_CHECK_HEADERS([limits.h sys/types.h sys/select.h])
  ##AC_CHECK_HEADERS([arpa/inet.h fcntl.h netdb.h stddef.h stdlib.h string.h sys/socket.h unistd.h])
+--- origsrc/minicrawler-5.2.7/src/malloc.c	2025-02-26 00:36:17.000000000 +0000
++++ src/minicrawler-5.2.7/src/malloc.c	2026-11-22 13:21:53.260089300 +0000
+@@ -3,7 +3,7 @@
+ 
+ #include <sys/types.h>
+ 
+-void *malloc ();
++#include <stdlib.h>
+ 
+ /* Allocate an N-byte block of memory from the heap.
+ If N is zero, allocate a 1-byte block.  */
+--- origsrc/minicrawler-5.2.7/test/run	2025-02-26 00:36:17.000000000 +0000
++++ src/minicrawler-5.2.7/test/run	2026-11-22 13:21:53.262098700 +0000
+@@ -6,8 +6,10 @@ $data = array_values((array)array_filter
+ 	return is_array($a);
+ }));
+ echo '1..' . count($data) . "\n";
++$builddir = getenv('builddir') ?: '.';
++$url_bin = file_exists("$builddir/test/url.exe") ? "$builddir/test/url.exe" : (file_exists("$builddir/test/url") ? "$builddir/test/url" : (file_exists('./test/url.exe') ? './test/url.exe' : (file_exists('./test/url') ? './test/url' : __DIR__ . '/url')));
+ foreach ($data as $i => $case) {
+-	$result = shell_exec(__DIR__ . '/url ' . escapeshellarg($case['input']) . ($case['base'] ? ' ' . escapeshellarg($case['base']) : '') . ' 2> /dev/null');
++	$result = shell_exec($url_bin . ' ' . escapeshellarg($case['input']) . ($case['base'] ? ' ' . escapeshellarg($case['base']) : '') . ' 2> /dev/null');
+ 	$result = json_decode($result, true);
+ 	unset($case['origin']);
+ 	if ($result == $case) {

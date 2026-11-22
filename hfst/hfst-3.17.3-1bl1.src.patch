@@ -1,0 +1,308 @@
+--- origsrc/hfst-3.17.3/libhfst/src/Makefile.am	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/libhfst/src/Makefile.am	2026-11-22 22:37:48.328293800 +0000
+@@ -14,7 +14,7 @@ AUTOMAKE_OPTIONS=subdir-objects
+ lib_LTLIBRARIES = libhfst.la
+ 
+ AM_CXXFLAGS=-Wno-deprecated -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare -g
+-AM_CPPFLAGS = -I${top_srcdir}/libhfst/src
++AM_CPPFLAGS = -I$(builddir)/implementations -I${top_srcdir}/libhfst/src
+ 
+ # HFST bridge specific stuff
+ HFST_SRCS=HfstApply.cc HfstInputStream.cc HfstTransducer.cc HfstOutputStream.cc\
+--- origsrc/hfst-3.17.3/libhfst/src/implementations/Makefile.am	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/libhfst/src/implementations/Makefile.am	2026-11-22 22:37:48.326674800 +0000
+@@ -27,7 +27,7 @@ IMPLEMENTATION_SRCS=ConvertTransducerFor
+ 
+ AM_CXXFLAGS=-Wno-deprecated -g
+ 
+-AM_CPPFLAGS = -I${top_srcdir}/libhfst/src -I${top_srcdir}/back-ends ${ICU_CPPFLAGS}
++AM_CPPFLAGS = -I$(top_srcdir) -I${top_srcdir}/libhfst/src -I${top_srcdir}/back-ends ${ICU_CPPFLAGS}
+ 
+ # the bridges
+ if WANT_SFST
+--- origsrc/hfst-3.17.3/libhfst/src/parsers/htwolcpre1-parser.yy	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/libhfst/src/parsers/htwolcpre1-parser.yy	2026-11-22 22:37:48.328293800 +0000
+@@ -57,6 +57,10 @@
+ namespace hfst {
+   namespace twolcpre1 {
+ 
++    void set_input(std::istream & istr)
++    {
++      htwolcpre1_input_reader.set_input(istr);
++    }
+     void set_input(std::istream & istr, const std::string& filename)
+     {
+       htwolcpre1_input_reader.set_input(istr, filename);
+--- origsrc/hfst-3.17.3/libhfst/src/parsers/htwolcpre2-parser.yy	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/libhfst/src/parsers/htwolcpre2-parser.yy	2026-11-22 22:37:48.328293800 +0000
+@@ -45,6 +45,10 @@
+ 
+ namespace hfst { namespace twolcpre2 {
+ 
++  void set_input(std::istream & istr)
++  {
++    htwolcpre2_input_reader.set_input(istr);
++  }
+   void set_input(std::istream & istr, const std::string& filename)
+   {
+     htwolcpre2_input_reader.set_input(istr, filename);
+--- origsrc/hfst-3.17.3/libhfst/src/parsers/htwolcpre3-parser.yy	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/libhfst/src/parsers/htwolcpre3-parser.yy	2026-11-22 22:37:48.330301800 +0000
+@@ -101,6 +101,10 @@ namespace hfst {
+ 
+ namespace hfst { namespace twolcpre3 {
+ 
++  void set_input(std::istream & istr)
++  {
++    htwolcpre3_input_reader.set_input(istr);
++  }
+   void set_input(std::istream & istr, const std::string& filename)
+   {
+     htwolcpre3_input_reader.set_input(istr);
+--- origsrc/hfst-3.17.3/man/Makefile.am	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/man/Makefile.am	2026-11-22 22:37:48.330301800 +0000
+@@ -58,8 +58,7 @@ endif
+ 
+ aliases= hfst-determinise.1 hfst-expand.1 hfst-intersect.1 hfst-minimise.1 \
+ 	 hfst-minus.1 hfst-sfstpl2fst.1 hfst-summarise.1 hfst-union.1 hfst-proc.1 \
+-	 hfst-optimised-lookup.1 \
+-	 hfst-proc2.1 hfst-tokenise.1
++	 hfst-optimised-lookup.1
+ 
+ dist_man1_MANS=$(hfst_tools) $(hfst_xfst) $(hfst_apertium_proc) \
+ 	$(hfst_tag_and_reweight) $(hfst_train_tagger) $(hfst_train_tagger_subprograms) $(hfst_twolc) \
+--- origsrc/hfst-3.17.3/test/libhfst/Makefile.am	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/test/libhfst/Makefile.am	2026-11-22 22:37:48.330301800 +0000
+@@ -1,6 +1,6 @@
+ ## Process this file with automake to produce Makefile.in
+ LDADD = ../../libhfst/src/libhfst.la
+-AM_CPPFLAGS = -I$(top_srcdir)/libhfst/src/ -I. -g
++AM_CPPFLAGS = -I$(top_builddir)/libhfst/src/implementations -I$(top_srcdir)/libhfst/src/ -I. -g
+ 
+ AM_CPPFLAGS += -I${top_srcdir}/back-ends
+ 
+--- origsrc/hfst-3.17.3/tools/src/Makefile.am	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/tools/src/Makefile.am	2026-11-22 22:37:48.334316900 +0000
+@@ -18,7 +18,7 @@
+ SUBDIRS=hfst-proc hfst-twolc hfst-tagger parsers
+ AUTOMAKE_OPTIONS=std-options subdir-objects
+ LDADD = $(top_builddir)/libhfst/src/libhfst.la $(ICU_LIBS)
+-AM_CPPFLAGS = -I${top_srcdir}/libhfst/src -I${top_srcdir}/libhfst/src/parsers -I${top_srcdir}/tools/src/parsers -Wno-sign-compare ${ICU_CPPFLAGS}
++AM_CPPFLAGS = -I$(top_builddir)/libhfst/src/implementations -I${top_srcdir}/libhfst/src -I${top_srcdir}/libhfst/src/parsers -I${top_srcdir}/tools/src/parsers -Wno-sign-compare ${ICU_CPPFLAGS}
+ AM_CXXFLAGS = -Wno-deprecated -Wno-sign-compare
+ 
+ # sort alphabetically:
+--- origsrc/hfst-3.17.3/tools/src/hfst-tagger/src/Makefile.am	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/tools/src/hfst-tagger/src/Makefile.am	2026-11-22 22:37:48.332310200 +0000
+@@ -14,7 +14,7 @@ EXTRA_DIST=hfst-train-tagger.sh hfst-tra
+ 
+ BUILD_MODEL_SRC=$(srcdir)/build_model_src
+ USE_MODEL_SRC=$(srcdir)/use_model_src
+-AM_CPPFLAGS=-I${top_srcdir}/libhfst/src -Wno-sign-compare -Wno-unused-parameter
++AM_CPPFLAGS = -I$(top_srcdir)/tools/src -I$(top_builddir)/libhfst/src/implementations -I${top_srcdir}/libhfst/src -Wno-sign-compare -Wno-unused-parameter
+ LDADD = $(top_builddir)/libhfst/src/libhfst.la
+ 
+ if WANT_TRAIN_TAGGER
+@@ -90,52 +90,52 @@ check_PROGRAMS=FstBuilder LexicalModelBu
+ 
+ FstBuilder_SOURCES=$(BUILD_MODEL_SRC)/FstBuilder.cc
+ FstBuilder_LDADD=$(BUILD_MODEL_SRC)/string_handling.o $(BUILD_MODEL_SRC)/FstBuilder.o \
+-                 $(top_srcdir)/libhfst/src/libhfst.la
++                 $(top_builddir)/libhfst/src/libhfst.la
+ FstBuilder_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ LexicalModelBuilder_SOURCES=$(BUILD_MODEL_SRC)/LexicalModelBuilder.cc
+ LexicalModelBuilder_LDADD=$(BUILD_MODEL_SRC)/string_handling.o $(BUILD_MODEL_SRC)/FstBuilder.o $(BUILD_MODEL_SRC)/ModelBuilder.o \
+ 			  $(BUILD_MODEL_SRC)/WeightedStringVectorCollection.o \
+ 	                  $(BUILD_MODEL_SRC)/LexicalModelBuilder.o \
+-                          $(top_srcdir)/libhfst/src/libhfst.la
++                          $(top_builddir)/libhfst/src/libhfst.la
+ LexicalModelBuilder_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ SequenceModelBuilder_SOURCES=$(BUILD_MODEL_SRC)/SequenceModelBuilder.cc
+ SequenceModelBuilder_LDADD=$(BUILD_MODEL_SRC)/string_handling.o $(BUILD_MODEL_SRC)/FstBuilder.o $(BUILD_MODEL_SRC)/ModelBuilder.o \
+ 			  $(BUILD_MODEL_SRC)/WeightedStringVectorCollection.o \
+ 	                  $(BUILD_MODEL_SRC)/SequenceModelBuilder.o \
+-                          $(top_srcdir)/libhfst/src/libhfst.la
++                          $(top_builddir)/libhfst/src/libhfst.la
+ SequenceModelBuilder_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ ModelBuilder_SOURCES=$(BUILD_MODEL_SRC)/ModelBuilder.cc
+ ModelBuilder_LDADD=$(BUILD_MODEL_SRC)/string_handling.o $(BUILD_MODEL_SRC)/FstBuilder.o $(BUILD_MODEL_SRC)/ModelBuilder.o \
+ 		   $(BUILD_MODEL_SRC)/WeightedStringVectorCollection.o \
+-                   $(top_srcdir)/libhfst/src/libhfst.la
++                   $(top_builddir)/libhfst/src/libhfst.la
+ ModelBuilder_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ WeightedStringVectorCollection_SOURCES=\
+ 	$(BUILD_MODEL_SRC)/WeightedStringVectorCollection.cc
+ WeightedStringVectorCollection_LDADD=$(BUILD_MODEL_SRC)/string_handling.o \
+ 	$(BUILD_MODEL_SRC)/WeightedStringVectorCollection.o \
+-	$(top_srcdir)/libhfst/src/libhfst.la
++	$(top_builddir)/libhfst/src/libhfst.la
+ WeightedStringVectorCollection_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ TaggerBuilder_SOURCES=$(BUILD_MODEL_SRC)/TaggerBuilder.cc
+ TaggerBuilder_LDADD=$(BUILD_MODEL_SRC)/string_handling.o $(BUILD_MODEL_SRC)/TaggerBuilder.o \
+ 	$(BUILD_MODEL_SRC)/LexicalModelBuilder.o $(BUILD_MODEL_SRC)/SequenceModelBuilder.o \
+ 	$(BUILD_MODEL_SRC)/WeightedStringVectorCollection.o $(BUILD_MODEL_SRC)/ModelBuilder.o $(BUILD_MODEL_SRC)/FstBuilder.o \
+-	$(top_srcdir)/libhfst/src/libhfst.la
++	$(top_builddir)/libhfst/src/libhfst.la
+ TaggerBuilder_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ string_handling_SOURCES=$(BUILD_MODEL_SRC)/string_handling.cc
+ 
+-string_handling_LDADD=$(BUILD_MODEL_SRC)/string_handling.o $(top_srcdir)/libhfst/src/libhfst.la \
++string_handling_LDADD=$(BUILD_MODEL_SRC)/string_handling.o $(top_builddir)/libhfst/src/libhfst.la \
+ 		      unit_test_aux.o
+ string_handling_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ AcyclicAutomaton_SOURCES=$(USE_MODEL_SRC)/AcyclicAutomaton.cc
+ 
+-AcyclicAutomaton_LDADD=$(USE_MODEL_SRC)/AcyclicAutomaton.o $(top_srcdir)/libhfst/src/libhfst.la\
++AcyclicAutomaton_LDADD=$(USE_MODEL_SRC)/AcyclicAutomaton.o $(top_builddir)/libhfst/src/libhfst.la\
+ 		       $(USE_MODEL_SRC)/SequenceModelComponent.o unit_test_aux.o
+ AcyclicAutomaton_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+@@ -143,19 +143,19 @@ DelayedSequenceModelComponent_SOURCES= \
+                        $(USE_MODEL_SRC)/DelayedSequenceModelComponent.cc
+ 
+ DelayedSequenceModelComponent_LDADD=$(USE_MODEL_SRC)/DelayedSequenceModelComponent.o \
+-                       $(top_srcdir)/libhfst/src/libhfst.la \
++                       $(top_builddir)/libhfst/src/libhfst.la \
+ 		       $(USE_MODEL_SRC)/SequenceModelComponent.o unit_test_aux.o
+ DelayedSequenceModelComponent_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ NewLexicalModel_SOURCES=$(USE_MODEL_SRC)/NewLexicalModel.cc
+ 
+-NewLexicalModel_LDADD=$(USE_MODEL_SRC)/NewLexicalModel.o $(top_srcdir)/libhfst/src/libhfst.la \
++NewLexicalModel_LDADD=$(USE_MODEL_SRC)/NewLexicalModel.o $(top_builddir)/libhfst/src/libhfst.la \
+ 		      unit_test_aux.o
+ NewLexicalModel_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ SentenceTagger_SOURCES=$(USE_MODEL_SRC)/SentenceTagger.cc
+ 
+-SentenceTagger_LDADD=$(USE_MODEL_SRC)/SentenceTagger.o $(top_srcdir)/libhfst/src/libhfst.la \
++SentenceTagger_LDADD=$(USE_MODEL_SRC)/SentenceTagger.o $(top_builddir)/libhfst/src/libhfst.la \
+ 		     $(USE_MODEL_SRC)/DelayedSequenceModelComponent.o $(USE_MODEL_SRC)/SequenceModelComponent.o \
+ 		     $(USE_MODEL_SRC)/SentenceTransducer.o $(USE_MODEL_SRC)/NewLexicalModel.o \
+                      $(USE_MODEL_SRC)/SequenceModelComponentPair.o unit_test_aux.o \
+@@ -166,28 +166,28 @@ SentenceTagger_CXXFLAGS=-DMAIN_TEST -Wno
+ SentenceTransducer_SOURCES=$(USE_MODEL_SRC)/SentenceTransducer.cc
+ 
+ SentenceTransducer_LDADD=$(USE_MODEL_SRC)/SentenceTransducer.o \
+-                       $(top_srcdir)/libhfst/src/libhfst.la \
++                       $(top_builddir)/libhfst/src/libhfst.la \
+ 		       $(USE_MODEL_SRC)/SequenceModelComponent.o unit_test_aux.o
+ SentenceTransducer_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ SequenceModelComponent_SOURCES=$(USE_MODEL_SRC)/SequenceModelComponent.cc\
+ 			       unit_test_aux.cc
+ SequenceModelComponent_LDADD=$(USE_MODEL_SRC)/SequenceModelComponent.o \
+-                             $(top_srcdir)/libhfst/src/libhfst.la
++                             $(top_builddir)/libhfst/src/libhfst.la
+ SequenceModelComponent_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ SequenceModelComponentPair_SOURCES= \
+                                 $(USE_MODEL_SRC)/SequenceModelComponentPair.cc
+ 
+ SequenceModelComponentPair_LDADD=$(USE_MODEL_SRC)/SequenceModelComponentPair.o \
+-                                 $(top_srcdir)/libhfst/src/libhfst.la \
++                                 $(top_builddir)/libhfst/src/libhfst.la \
+                                  $(USE_MODEL_SRC)/DelayedSequenceModelComponent.o \
+ 				 $(USE_MODEL_SRC)/SequenceModelComponent.o unit_test_aux.o
+ SequenceModelComponentPair_CXXFLAGS=-DMAIN_TEST -Wno-deprecated
+ 
+ SequenceTagger_SOURCES=$(USE_MODEL_SRC)/SequenceTagger.cc
+ 
+-SequenceTagger_LDADD=$(USE_MODEL_SRC)/SequenceTagger.o $(top_srcdir)/libhfst/src/libhfst.la\
++SequenceTagger_LDADD=$(USE_MODEL_SRC)/SequenceTagger.o $(top_builddir)/libhfst/src/libhfst.la\
+ 		     $(USE_MODEL_SRC)/SequenceModelComponent.o $(USE_MODEL_SRC)/SentenceTransducer.o \
+                      unit_test_aux.o $(USE_MODEL_SRC)/AcyclicAutomaton.o \
+                      $(USE_MODEL_SRC)/SequenceModelComponentPair.o \
+--- origsrc/hfst-3.17.3/tools/src/hfst-tagger/src/build_model_src/tagger_aux.py	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/tools/src/hfst-tagger/src/build_model_src/tagger_aux.py	2026-11-22 22:37:48.332310200 +0000
+@@ -212,7 +212,7 @@ def print_conditional_penalties(pair_cou
+         for count in object_counter.itervalues():
+             max_object_count = max(max_object_count, count)
+ 
+-        print "PENALTY_WEIGHT=" + str(get_penalty(1, max_object_count + 1))
++        print("PENALTY_WEIGHT=" + str(get_penalty(1, max_object_count + 1)))
+ 
+     for pair, penalty in penalty_map.iteritems():
+         if type(pair[0]) == type(u"") or type(pair[0]) == type(""):
+@@ -234,13 +234,13 @@ def print_conditional_penalties(pair_cou
+                 s = string.join([p[0] + appended_suffix,
+                                  p[1],
+                                  str(penalty)],"\t")
+-                print s.encode("utf-8")
++                print(s.encode("utf-8"))
+             else:
+                 
+                 s = string.join([p[1] + appended_suffix,
+                                  p[0],
+                                  str(penalty)],"\t")
+-                print s.encode("utf-8")
++                print(s.encode("utf-8"))
+         else:
+             for entry in pair[0]:
+                 e = list(entry)
+@@ -256,9 +256,9 @@ def print_conditional_penalties(pair_cou
+                     pass
+                 
+                 s = e[0] + "\t" + e[1] + "\t"
+-                print s.encode("utf-8"),
++                print(s.encode("utf-8")),
+ 
+-            print penalty
++            print(penalty)
+ 
+ def print_penalties(object_counter, total_count, appended_suffix):
+ 
+@@ -274,4 +274,4 @@ def print_penalties(object_counter, tota
+ 
+         s = o + appended_suffix + "T\t" + str(penalty)
+ 
+-        print s.encode("utf-8")
++        print(s.encode("utf-8"))
+--- origsrc/hfst-3.17.3/tools/src/hfst-twolc/src/Makefile.am	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/tools/src/hfst-twolc/src/Makefile.am	2026-11-22 22:37:48.332310200 +0000
+@@ -8,7 +8,7 @@ else
+   bin_SCRIPTS=
+ endif
+ 
+-AM_CPPFLAGS = -I${top_srcdir}/libhfst/src -I${top_srcdir}/libhfst/src/parsers
++AM_CPPFLAGS = -I$(top_builddir)/libhfst/src/implementations -I${top_srcdir}/libhfst/src -I${top_srcdir}/libhfst/src/parsers
+ LDADD = $(top_builddir)/libhfst/src/libhfst.la $(ICU_LIBS)
+ 
+ # the preprocessor scripts do not support options per se, so we whitelist
+--- origsrc/hfst-3.17.3/tools/src/parsers/test/test.sh	2026-08-24 15:35:08.000000000 +0000
++++ src/hfst-3.17.3/tools/src/parsers/test/test.sh	2026-11-22 22:37:48.334316900 +0000
+@@ -263,15 +263,15 @@ do
+     do
+     for testfile in test_overlap test_sublanguage # the function to be tested
+     do
+-        if ! (${LS} $testfile$testcase.xfst > /dev/null 2> /dev/null); then
++        if ! (${LS} ${srcdir}/$testfile$testcase.xfst > /dev/null 2> /dev/null); then
+         echo "skipping missing test for "$testfile$testcase"..."
+         continue
+         fi
+-        if ! (${CAT} $testfile$testcase.xfst | ../hfst-xfst --pipe-mode=input -s -f $format | ${TR} -d '\r' > tmp); then
++        if ! (${CAT} ${srcdir}/$testfile$testcase.xfst | ../hfst-xfst --pipe-mode=input -s -f $format | ${TR} -d '\r' > tmp); then
+         echo "ERROR: in compiling "$testfile$testcase.xfst
+         exit 1;
+         fi
+-        if ! ($DIFF tmp "test"$testcase.output); then
++        if ! ($DIFF tmp ${srcdir}/"test"$testcase.output); then
+         echo "ERROR: in testing "$testfile$testcase.xfst
+         exit 1;
+         fi
+@@ -280,7 +280,7 @@ do
+ 
+     for file in quit-on-fail.xfst assert.xfst
+     do
+-        if (${CAT} $file | ../hfst-xfst --pipe-mode=input -s -f $format > tmp 2> /dev/null); then
++        if (${CAT} ${srcdir}/$file | ../hfst-xfst --pipe-mode=input -s -f $format > tmp 2> /dev/null); then
+             echo "ERROR: in compiling "$file
+             exit 1;
+         fi

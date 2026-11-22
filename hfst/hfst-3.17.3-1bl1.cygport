@@ -7,11 +7,20 @@ DESCRIPTION="This package contains a bridging library for multiple FST libraries
 toolkits and set of tools for processing of finite-state automate especially
 for linguistic systems."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="Apache-2.0 AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND GPL-2.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libfoma-devel libfst-devel libicu-devel libreadline-devel"
+BUILD_REQUIRES="
+	bison
+	flex
+	libfoma-devel
+	libfst-devel
+	libicu-devel
+	libreadline-devel
+	python3-devel
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -43,38 +52,38 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	${PN}
-	lib${PN}55
+	lib${PN}57
 	lib${PN}-devel
-	lib${PN}_c0
+	lib${PN}_c57
 	lib${PN}_c-devel
-	python39-${PN}
+	python312-${PN}
 "
 hfst_CONTENTS="
 	usr/bin/h*
 	usr/share
 "
-libhfst55_CONTENTS="
-	usr/bin/cyghfst-55.dll
+libhfst57_CONTENTS="
+	usr/bin/cyghfst-57.dll
 "
 libhfst_devel_CONTENTS="
 	usr/include/hfst/[A-Zhips]*
 	usr/lib/libhfst.dll.a
 	usr/lib/pkgconfig/hfst.pc
 "
-libhfst_c0_CONTENTS="
-	usr/bin/cyghfst_c-0.dll
+libhfst_c57_CONTENTS="
+	usr/bin/cyghfst_c-57.dll
 "
 libhfst_c_devel_CONTENTS="
 	usr/include/hfst/libhfst_c.h
 	usr/lib/libhfst_c.dll.a
 	usr/lib/pkgconfig/hfst_c.pc
 "
-python39_hfst_CONTENTS="
-	usr/lib/python3.9
+python312_hfst_CONTENTS="
+	usr/lib/python3.12
 "
 hfst_SUMMARY="${SUMMARY} (utilities)"
-libhfst55_SUMMARY="${SUMMARY} (runtime)"
+libhfst57_SUMMARY="${SUMMARY} (runtime)"
 libhfst_devel_SUMMARY="${SUMMARY} (development)"
-libhfst_c0_SUMMARY="${SUMMARY} (runtime / c)"
+libhfst_c57_SUMMARY="${SUMMARY} (runtime / c)"
 libhfst_c_devel_SUMMARY="${SUMMARY} (development / c)"
-python39_hfst_SUMMARY="${SUMMARY} (python39 bindings)"
+python312_hfst_SUMMARY="${SUMMARY} (python312 bindings)"

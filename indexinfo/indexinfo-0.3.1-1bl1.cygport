@@ -1,0 +1,39 @@
+HOMEPAGE="https://codeberg.org/bapt/indexinfo"
+SRC_URI="https://codeberg.org/bapt/${PN}/archive/${PV}.tar.gz"
+SRC_DIR="${PN}"
+
+CATEGORY="Text"
+SUMMARY="Utility to regenerate the GNU info page index"
+DESCRIPTION="Small utility designed to regenerate the GNU info page indexes."
+
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	zlib-devel
+"
+
+src_compile()
+{
+	cd ${B}
+	lndirs
+	cygmake
+}
+
+src_test()
+{
+	cd ${B}
+	verbose ./${PN}.exe || [ $? -eq 1 ]
+}
+
+src_install()
+{
+	cd ${B}
+	dobin ${PN}.exe
+}
+
+DOCS="
+	COPYING
+	README.md
+"

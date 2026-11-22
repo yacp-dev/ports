@@ -6,63 +6,65 @@ for linguistic systems.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.5.7-1
-  libfoma0-0.10.0+git20240713-1bl1
-  libfst26-1.8.3-1bl1
-  libgcc1-12.4.0-3
-  libhfst-devel-3.16.2-1bl1
-  libhfst55-3.16.2-1bl1
-  libhfst_c-devel-3.16.2-1bl1
-  libhfst_c0-3.16.2-1bl1
-  libicu74-74.2-1
-  libreadline7-8.2-2
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
-  python39-3.9.18-2
-  python39-hfst-3.16.2-1bl1
+  cygwin-3.6.12-1
+  libfoma0-0.10.0+git20261108-1bl1
+  libfst27-1.8.5-1bl1
+  libgcc1-14.4.0-1
+  libhfst-devel-3.17.3-1bl1
+  libhfst57-3.17.3-1bl1
+  libhfst_c-devel-3.17.3-1bl1
+  libhfst_c57-3.17.3-1bl1
+  libicu76-76.1-2
+  libintl8-0.26-1
+  libreadline8-8.3-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.11-1
+  python3-3.12.12-1
+  python312-3.12.12-1
+  python312-hfst-3.17.3-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
   bison-3.8.2-1
-  cygport-0.36.9-1
+  cygport-0.37.13-1
   flex-2.6.4-2
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libfoma-devel-0.10.0+git20240713-1bl1
-  libfst-devel-1.8.3-1bl1
-  libicu-devel-74.2-1
-  libreadline-devel-8.2-2
-  libtool-2.5.4-1
+  gcc-g++-14.4.0-1
+  libfoma-devel-0.10.0+git20261108-1bl1
+  libfst-devel-1.8.5-1bl1
+  libicu-devel-76.1-2
+  libreadline-devel-8.3-1
+  libtool-2.6.2-1
   make-4.4.1-2
-  python39-3.9.18-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/hfst/hfst
 
 Canonical download:
-  https://github.com/hfst/hfst/archive/refs/tags/v3.16.2.tar.gz
+  https://github.com/hfst/hfst/archive/refs/tags/v3.17.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack hfst-3.16.2-X-src.tar.xz
+  1. unpack hfst-3.17.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./hfst-3.16.2-X.cygport all
+        % cygport ./hfst-3.17.3-X.cygport all
 
 This will create:
-  /usr/src/hfst-3.16.2-X-src.tar.xz
-  /usr/src/hfst-3.16.2-X.tar.xz
-  /usr/src/libhfst55-3.16.2-X.tar.xz
-  /usr/src/libhfst-devel-3.16.2-X.tar.xz
-  /usr/src/libhfst_c0-3.16.2-X.tar.xz
-  /usr/src/libhfst_c-devel-3.16.2-X.tar.xz
-  /usr/src/python39-hfst-3.16.2-X.tar.xz
+  /usr/src/hfst-3.17.3-X-src.tar.xz
+  /usr/src/hfst-3.17.3-X.tar.xz
+  /usr/src/libhfst57-3.17.3-X.tar.xz
+  /usr/src/libhfst-devel-3.17.3-X.tar.xz
+  /usr/src/libhfst_c57-3.17.3-X.tar.xz
+  /usr/src/libhfst_c-devel-3.17.3-X.tar.xz
+  /usr/src/python312-hfst-3.17.3-X.tar.xz
 
 -------------------------------------------
 
@@ -163,7 +165,6 @@ Files included in the binary package:
   /usr/share/doc/hfst/HACKING
   /usr/share/doc/hfst/NEWS
   /usr/share/doc/hfst/README
-  /usr/share/doc/hfst/README.rst
   /usr/share/doc/hfst/THANKS
   /usr/share/man/man1/hfst-affix-guessify.1.gz
   /usr/share/man/man1/hfst-apertium-proc.1.gz
@@ -237,8 +238,8 @@ Files included in the binary package:
   /usr/share/man/man1/htwolcpre2.1.gz
   /usr/share/man/man1/htwolcpre3.1.gz
 
-(libhfst55)
-  /usr/bin/cyghfst-55.dll
+(libhfst57)
+  /usr/bin/cyghfst-57.dll
 
 (libhfst-devel)
   /usr/include/hfst/ComposeIntersectFst.h
@@ -354,27 +355,30 @@ Files included in the binary package:
   /usr/lib/libhfst.dll.a
   /usr/lib/pkgconfig/hfst.pc
 
-(libhfst_c0)
-  /usr/bin/cyghfst_c-0.dll
+(libhfst_c57)
+  /usr/bin/cyghfst_c-57.dll
 
 (libhfst_c-devel)
   /usr/include/hfst/libhfst_c.h
   /usr/lib/libhfst_c.dll.a
   /usr/lib/pkgconfig/hfst_c.pc
 
-(python39-hfst)
-  /usr/lib/python3.9/site-packages/__pycache__/hfst_tagger_compute_data_statistics.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/hfst_tagger_compute_data_statistics.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/hfst_tagger_compute_data_statistics.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/tagger_aux.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/tagger_aux.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/tagger_aux.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/hfst_tagger_compute_data_statistics.py
-  /usr/lib/python3.9/site-packages/tagger_aux.py
+(python312-hfst)
+  /usr/lib/python3.12/site-packages/__pycache__/hfst_tagger_compute_data_statistics.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/hfst_tagger_compute_data_statistics.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/hfst_tagger_compute_data_statistics.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/tagger_aux.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/tagger_aux.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/tagger_aux.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/hfst_tagger_compute_data_statistics.py
+  /usr/lib/python3.12/site-packages/tagger_aux.py
 
 ------------------
 
 Port Notes:
+
+----- version 3.17.3-1bl1 -----
+Version bump.
 
 ----- version 3.16.2-1bl1 -----
 Version bump.

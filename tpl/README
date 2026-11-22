@@ -3,21 +3,20 @@ tpl
 Small binary serialization library
 
 Runtime requirements:
-  cygwin-3.4.6-1
-  libtpl-devel-1.6.1-1bl1
-  libtpl0-1.6.1-1bl1
-  pkg-config-1.9.4-1
+  cygwin-3.6.12-1
+  libtpl-devel-1.6.1-1bl2
+  libtpl0-1.6.1-1bl2
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.40-1
-  cygport-0.36.1-1
-  gcc-core-11.3.0-1
-  gcc-g++-11.3.0-1
-  libtool-2.4.7-1
-  make-4.4.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/troydhanson/tpl
@@ -48,7 +47,6 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/tpl.README
   /usr/share/doc/tpl/LICENSE
   /usr/share/doc/tpl/README
-  /usr/share/doc/tpl/readme.md
 
 (libtpl0)
   /usr/bin/cygtpl-0.dll
@@ -61,6 +59,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.6.1-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

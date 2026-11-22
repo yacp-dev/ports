@@ -1,0 +1,26 @@
+--- origsrc/libeno/meson.build	2020-10-21 09:31:33.000000000 +0000
++++ src/libeno/meson.build	2026-11-22 06:53:27.827191400 +0000
+@@ -24,13 +24,22 @@ lib_eno = library(
+   'lib/query.c',
+   'lib/read.c',
+   'lib/resolve.c',
+-  dependencies : dependency('icu-io'),
++  dependencies : [
++    dependency('icu-i18n'),
++    dependency('icu-io'),
++    dependency('icu-uc')
++  ],
+   include_directories : inc_eno,
+   install : true,
+   soversion : '0',
+   version : meson.project_version()
+ )
+ 
++pkg = import('pkgconfig')
++pkg.generate(lib_eno,
++  description: 'C reference parsing library for eno notation'
++)
++
+ install_headers('include/eno.h')
+ 
+ test_examples = executable(

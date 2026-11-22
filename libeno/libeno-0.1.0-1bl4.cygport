@@ -10,7 +10,9 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="LICENSE.txt"
 
-BUILD_REQUIRES="libicu-devel"
+BUILD_REQUIRES="
+	libicu-devel
+"
 
 inherit meson
 

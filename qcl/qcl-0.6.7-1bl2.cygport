@@ -1,5 +1,5 @@
-HOMEPAGE="http://tph.tuwien.ac.at/~oemer/${PN}.html"
-SRC_URI="http://tph.tuwien.ac.at/~oemer/tgz/${P}.tgz"
+HOMEPAGE="https://tph.itp.tuwien.ac.at/~oemer/${PN}.html"
+SRC_URI="https://tph.itp.tuwien.ac.at/~oemer/tgz/${P}.tgz"
 PATCH_URI="
 	https://aur.archlinux.org/cgit/aur.git/plain/makefile.patch?h=${PN}
 "
@@ -18,11 +18,23 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="flex libplotter-devel libreadline-devel"
+BUILD_REQUIRES="
+	flex
+	libplotter-devel
+	libreadline-devel
+	libX11-devel
+	libXt-devel
+"
 
 src_compile()
 {
 	cd ${B}
 	lndirs
 	cygmake
+}
+
+src_test()
+{
+	cd ${B}
+	verbose ./${PN}.exe --version
 }

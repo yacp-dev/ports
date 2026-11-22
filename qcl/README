@@ -9,29 +9,29 @@ classical programming languages, as well as the rather physical terminology in
 most of the available literature.
 
 Runtime requirements:
-  cygwin-3.5.0-0.394.g90d3b16d2b93
-  libgcc1-11.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
   libplotter2-2.6-5
-  libreadline7-8.2-2
-  libstdc++6-11.4.0-1
+  libreadline8-8.3-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-3
-  bison-3.8.2-1
-  cygport-0.36.6-1
+  binutils-2.47-1
+  cygport-0.37.12-1
   flex-2.6.4-2
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
+  gcc-core-14.4.0-1
+  libX11-devel-1.8.13-1
+  libXt-devel-1.3.1-1
   libplotter-devel-2.6-5
-  libreadline-devel-8.2-2
+  libreadline-devel-8.3-1
   make-4.4.1-2
 
 Canonical website:
-  http://tph.tuwien.ac.at/~oemer/qcl.html
+  https://tph.itp.tuwien.ac.at/~oemer/qcl.html
 
 Canonical download:
-  http://tph.tuwien.ac.at/~oemer/tgz/qcl-0.6.7.tgz
+  https://tph.itp.tuwien.ac.at/~oemer/tgz/qcl-0.6.7.tgz
 
 -------------------------------------------
 
@@ -70,6 +70,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.6.7-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.6.7-1bl1 -----
 Version bump.

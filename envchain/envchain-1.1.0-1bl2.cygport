@@ -10,7 +10,11 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libglib2.0-devel libreadline-devel libsecret1-devel"
+BUILD_REQUIRES="
+	libglib2.0-devel
+	libreadline-devel
+	libsecret1-devel
+"
 
 src_compile()
 {
@@ -23,4 +27,13 @@ src_install()
 {
 	cd ${B}
 	dobin ${PN}.exe
+}
+
+src_test()
+{
+	cd ${B}
+	local rc=0
+	verbose ./${PN}.exe 2>${T}/usage.txt || rc=$?
+	verbose test ${rc} -eq 2
+	verbose grep -q '^Usage:' ${T}/usage.txt
 }

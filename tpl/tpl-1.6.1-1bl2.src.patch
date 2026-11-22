@@ -1,13 +1,13 @@
---- origsrc/tpl-1.6.1/Makefile.am	2014-02-21 02:50:53.000000000 +0900
-+++ src/tpl-1.6.1/Makefile.am	2023-04-06 17:38:54.165596600 +0900
+--- origsrc/tpl-1.6.1/Makefile.am	2014-02-20 17:50:53.000000000 +0000
++++ src/tpl-1.6.1/Makefile.am	2026-11-22 12:36:39.903568800 +0000
 @@ -1,2 +1,5 @@
  SUBDIRS = src 
  EXTRA_DIST = LICENSE tests lang doc 
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = tpl.pc
---- origsrc/tpl-1.6.1/configure.ac	2014-02-21 02:50:53.000000000 +0900
-+++ src/tpl-1.6.1/configure.ac	2023-04-06 17:35:38.610811800 +0900
+--- origsrc/tpl-1.6.1/configure.ac	2014-02-20 17:50:53.000000000 +0000
++++ src/tpl-1.6.1/configure.ac	2026-11-22 12:36:39.903568800 +0000
 @@ -1,6 +1,6 @@
  AC_PREREQ(2.59)
  
@@ -31,8 +31,8 @@
 +AC_CONFIG_FILES([tpl.pc])
  AC_OUTPUT
  
---- origsrc/tpl-1.6.1/tpl.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/tpl-1.6.1/tpl.pc.in	2023-04-06 17:35:38.524876600 +0900
+--- origsrc/tpl-1.6.1/tpl.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/tpl-1.6.1/tpl.pc.in	2026-11-22 12:36:39.903568800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

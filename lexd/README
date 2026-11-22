@@ -5,26 +5,24 @@ produces transducers in ATT format which are equivalent to those produced using
 the overgenerate-and-constrain approach with hfst-twolc.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libgcc1-12.4.0-3
-  libicu74-74.2-1
-  liblttoolbox3-3.8.0-1bl1
-  libstdc++6-12.4.0-3
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libicu76-76.1-2
+  liblttoolbox3-3.8.3-1bl2
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libicu-devel-74.2-1
-  liblttoolbox-devel-3.8.0-1bl1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libicu-devel-76.1-2
+  liblttoolbox-devel-3.8.3-1bl2
   make-4.4.1-2
-  utf8cpp-devel-4.0.6-1
+  utf8cpp-devel-5.0.0-1
 
 Canonical website:
   https://github.com/apertium/lexd
@@ -62,6 +60,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.3.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.3.5-1bl1 -----
 Version bump.

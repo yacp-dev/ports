@@ -10,11 +10,20 @@ cookied and more. It is designed to handle many request in parallel in a
 single thread. It multiplexes connections, running the read/write
 communication asynchronously."
 
-LICENSE="AGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later"
+LICENSE="AGPL-3.0-or-later AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later AND Zlib"
 LICENSE_URI="license.txt"
 
-BUILD_REQUIRES="libcares-devel libiconv-devel libicu-devel libnghttp2-devel libssl-devel libtpl-devel zlib-devel"
+BUILD_REQUIRES="
+	libcares-devel
+	libiconv-devel
+	libicu-devel
+	libnghttp2-devel
+	libssl-devel
+	libtpl-devel
+	php
+	zlib-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -22,9 +31,12 @@ DOCS="
 	license.txt
 "
 
-PKG_IGNORE="
-	usr/share/doc/minicrawler-5/README.md
-"
+src_install() {
+	cd ${B}
+	cyginstall
+
+	rm -rf ${D}/usr/share/doc/${PN}-*
+}
 
 PKG_NAMES="
 	${PN}

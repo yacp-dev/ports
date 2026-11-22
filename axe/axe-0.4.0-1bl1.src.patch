@@ -1,12 +1,11 @@
---- origsrc/axe-0.3.3/CMakeLists.txt	2018-04-16 19:36:39.000000000 +0900
-+++ src/axe-0.3.3/CMakeLists.txt	2025-12-12 19:25:10.343913800 +0900
-@@ -48,9 +48,21 @@ SET(AXEWRN "${AXEWRN} -Wall -Wextra -Wpe
+--- origsrc/axe-0.4.0/CMakeLists.txt	2026-10-14 01:41:23.000000000 +0000
++++ src/axe-0.4.0/CMakeLists.txt	2026-11-22 04:30:29.626845400 +0000
+@@ -55,19 +55,31 @@ SET(AXEWRN "${AXEWRN} -Wall -Wextra -Wpe
  SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11")
  SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${AXEWRN}")
  
 +INCLUDE(FindPkgConfig)
 +PKG_CHECK_MODULES(LIBQES libqes)
-+PKG_CHECK_MODULES(DATRIE datrie-0.2)
 +
 +IF (LIBQES_FOUND)
 +    INCLUDE_DIRECTORIES(${LIBQES_INCLUDE_DIRS})
@@ -23,7 +22,11 @@
                      ${PROJECT_SOURCE_DIR}/src/gsl)
  LINK_DIRECTORIES(${CMAKE_BINARY_DIR}/lib)
  
-@@ -60,7 +72,6 @@ CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/src/a
++SET(CMAKE_C_STANDARD_LIBRARIES "${CMAKE_C_STANDARD_LIBRARIES} ${ZLIB_LIBRARIES}")
++
+ INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR})
+ 
+ CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/src/axe_config.h.in
                 ${CMAKE_BINARY_DIR}/axe_config.h)
  
  SET(LIBQES_AS_SUBMODULE True)  # stop libqes installing itself
@@ -31,23 +34,11 @@
  ADD_SUBDIRECTORY(docs)
  ADD_SUBDIRECTORY(tests)
  ADD_SUBDIRECTORY(src)
---- origsrc/axe-0.3.3/docs/CMakeLists.txt	2018-04-16 19:36:39.000000000 +0900
-+++ src/axe-0.3.3/docs/CMakeLists.txt	2025-12-12 19:26:55.387721700 +0900
-@@ -1,5 +1,5 @@
- FIND_PROGRAM(SPHINXBUILD sphinx-build)
--IF(SPHINXBUILD)
-+IF(BUILD_DOCS AND SPHINXBUILD)
-     SET(ALLSPHINXOPTS -q -D latex_paper_size=a4)
-     ADD_CUSTOM_TARGET(doc_html
-         COMMAND ${SPHINXBUILD} -b html ${ALLSPHINXOPTS} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_BINARY_DIR}/doc/html
---- origsrc/axe-0.3.3/src/CMakeLists.txt	2018-04-16 19:36:39.000000000 +0900
-+++ src/axe-0.3.3/src/CMakeLists.txt	2025-12-12 19:25:10.353036200 +0900
-@@ -16,15 +16,24 @@
- # Axe library (libaxe.a)
- FILE(GLOB DATRIE_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/datrie/*.c)
+--- origsrc/axe-0.4.0/src/CMakeLists.txt	2026-10-14 01:41:23.000000000 +0000
++++ src/axe-0.4.0/src/CMakeLists.txt	2026-11-22 04:30:29.626845400 +0000
+@@ -18,13 +18,15 @@ FILE(GLOB DATRIE_SRCS ${CMAKE_CURRENT_SO
  FILE(GLOB GSL_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/gsl/*.c)
--SET(AXELIB_SRCS ${DATRIE_SRCS} axe.c)
-+SET(AXELIB_SRCS axe.c)
+ SET(AXELIB_SRCS ${DATRIE_SRCS} axe.c)
  
 -IF (NOT GSL_FOUND)
 +IF (GSL_FOUND)
@@ -57,21 +48,14 @@
      SET(AXELIB_SRCS ${AXELIB_SRCS} ${GSL_SRCS})
  ENDIF()
  
-+IF (DATRIE_FOUND)
-+    SET(AXE_DEP_LIBS ${AXE_DEP_LIBS} ${DATRIE_LIBRARIES})
-+ELSE()
-+    MESSAGE(STATUS "Using bundled DATRIE sources")
-+    SET(AXELIB_SRCS ${AXELIB_SRCS} ${DATRIE_SRCS})
-+ENDIF()
-+
  ADD_LIBRARY(axelib STATIC ${AXELIB_SRCS})
 -TARGET_LINK_LIBRARIES(axelib qes_static ${AXE_DEP_LIBS})
 +TARGET_LINK_LIBRARIES(axelib ${AXE_DEP_LIBS})
  SET_TARGET_PROPERTIES(axelib PROPERTIES OUTPUT_NAME axe)
  
  # Executable
---- origsrc/axe-0.3.3/tests/CMakeLists.txt	2018-04-16 19:36:39.000000000 +0900
-+++ src/axe-0.3.3/tests/CMakeLists.txt	2025-12-12 19:25:10.353036200 +0900
+--- origsrc/axe-0.4.0/tests/CMakeLists.txt	2026-10-14 01:41:23.000000000 +0000
++++ src/axe-0.4.0/tests/CMakeLists.txt	2026-11-22 04:30:29.628862600 +0000
 @@ -1,7 +1,7 @@
  INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/tinytest)
  

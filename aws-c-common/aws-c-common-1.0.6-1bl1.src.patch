@@ -1,5 +1,5 @@
---- origsrc/aws-c-common-1.0.5/CMakeLists.txt	2026-10-27 20:50:05.000000000 +0000
-+++ src/aws-c-common-1.0.5/CMakeLists.txt	2026-11-12 11:14:17.303268100 +0000
+--- origsrc/aws-c-common-1.0.6/CMakeLists.txt	2026-11-21 01:09:49.000000000 +0000
++++ src/aws-c-common-1.0.6/CMakeLists.txt	2026-11-22 01:50:02.983193700 +0000
 @@ -304,7 +304,7 @@ else()
  endif()
  
@@ -20,8 +20,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/aws-c-common.pc.in ${CMAKE_BINARY_DIR}/aws-c-common.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/aws-c-common.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/aws-c-common-1.0.5/aws-c-common.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/aws-c-common-1.0.5/aws-c-common.pc.in	2026-11-12 11:14:17.303268100 +0000
+--- origsrc/aws-c-common-1.0.6/aws-c-common.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/aws-c-common-1.0.6/aws-c-common.pc.in	2026-11-22 01:50:02.983193700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -33,8 +33,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -laws-c-common
 +Cflags: -I${includedir}
---- origsrc/aws-c-common-1.0.5/cmake/aws-c-common-config.cmake	2026-10-27 20:50:05.000000000 +0000
-+++ src/aws-c-common-1.0.5/cmake/aws-c-common-config.cmake	2026-11-12 11:14:17.305277500 +0000
+--- origsrc/aws-c-common-1.0.6/cmake/aws-c-common-config.cmake	2026-11-21 01:09:49.000000000 +0000
++++ src/aws-c-common-1.0.6/cmake/aws-c-common-config.cmake	2026-11-22 01:50:02.984953900 +0000
 @@ -7,21 +7,4 @@ if(WIN32 OR UNIX OR APPLE)
      find_package(Threads REQUIRED)
  endif()

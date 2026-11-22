@@ -3,38 +3,40 @@ libhildon
 Hildon is an application framework for Linux operating system mobile devices.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libX11_6-1.8.10-1
-  libatk1.0_0-2.38.0-2
+  cygwin-3.6.12-1
+  libX11_6-1.8.13-1
+  libatk1.0_0-2.62.1-1
   libcanberra0-0.30-2
   libgconf2_4-3.2.6-3
   libgdk_pixbuf2.0_0-2.36.11-1
-  libglib2.0_0-2.86.2-1
+  libglib2.0_0-2.90.1-1
   libgtk2.0-devel-2.24.33-1
   libgtk2.0_0-2.24.33-1
-  libhildon1-devel-2.2.30-1bl1
-  libhildon1_0-2.2.30-1bl1
-  libintl8-0.22.5-1
-  libpango1.0_0-1.57.0-1
-  pkg-config-2.5.1-1
+  libhildon1-devel-2.2.30-1bl2
+  libhildon1_0-2.2.30-1bl2
+  libintl8-0.26-1
+  libpango1.0_0-1.58.2-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.3-1
-  gcc-core-13.4.0-1
-  libX11-devel-1.8.10-1
-  libatk1.0-devel-2.38.0-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  gtk-doc-1.37.0-1
+  libX11-devel-1.8.13-1
+  libatk1.0-devel-2.62.1-1
   libcanberra-devel-0.30-2
   libgconf2-devel-3.2.6-3
   libgdk_pixbuf2.0-devel-2.36.11-1
-  libglib2.0-devel-2.86.2-1
+  libglib2.0-devel-2.90.1-1
   libgtk2.0-devel-2.24.33-1
-  libintl-devel-0.22.5-1
-  libpango1.0-devel-1.57.0-1
-  libtool-2.5.4-1
+  libintl-devel-0.26-1
+  libpango1.0-devel-1.58.2-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -70,6 +72,7 @@ Files included in the binary package:
   /usr/share/doc/libhildon/HACKING
   /usr/share/doc/libhildon/NEWS
   /usr/share/doc/libhildon/README
+  /usr/share/locale/en_GB/LC_MESSAGES/hildon-libs.mo
 
 (libhildon1_0)
   /usr/bin/cyghildon-1-0.dll
@@ -146,6 +149,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.2.30-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.2.30-1bl1 -----
 Version bump.

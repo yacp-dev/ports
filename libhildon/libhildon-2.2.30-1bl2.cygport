@@ -10,6 +10,8 @@ LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gettext-devel
+	gtk-doc
 	libatk1.0-devel
 	libcanberra-devel
 	libgconf2-devel

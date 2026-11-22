@@ -1,0 +1,161 @@
+--- origsrc/libhildon-2.2.30/configure.ac	2025-11-13 01:01:50.000000000 +0000
++++ src/libhildon-2.2.30/configure.ac	2026-11-22 01:29:00.903341500 +0000
+@@ -1,4 +1,4 @@
+-AC_INIT([Hildon gtk widgets], [2.2.24], [hildon-devel@garage.maemo.org], [hildon])
++AC_INIT([Hildon gtk widgets], [2.2.30], [hildon-devel@garage.maemo.org], [hildon])
+ AC_CANONICAL_SYSTEM
+ 
+ AM_CONFIG_HEADER(config.h)
+--- origsrc/libhildon-2.2.30/hildon/Makefile.am	2025-11-13 01:01:50.000000000 +0000
++++ src/libhildon-2.2.30/hildon/Makefile.am	2026-11-22 01:29:00.905352400 +0000
+@@ -1,5 +1,6 @@
+ INCLUDES 	= -DG_LOG_DOMAIN=\"hildon-@API_VERSION_MAJOR@\" \
+-		  -DLOCALEDIR=\"$(localedir)\"
++		  -DLOCALEDIR=\"$(localedir)\" \
++		  -I$(top_srcdir)
+ 
+ CLEANFILES = \
+ 		hildon-enum-types.c 				\
+@@ -11,7 +12,7 @@ EXTRA_DIST = hildon-marshalers.list
+ 
+ lib_LTLIBRARIES = libhildon-@API_VERSION_MAJOR@.la
+ 
+-libhildon_@API_VERSION_MAJOR@_la_LDFLAGS = $(HILDON_WIDGETS_LT_LDFLAGS)
++libhildon_@API_VERSION_MAJOR@_la_LDFLAGS = -no-undefined $(HILDON_WIDGETS_LT_LDFLAGS)
+ 
+ libhildon_@API_VERSION_MAJOR@_la_LIBADD = \
+ 		$(GTK_LIBS) 			\
+@@ -241,8 +242,8 @@ hildon-enum-types.c: @REBUILD@ $(libhild
+ 	$(libhildon_$(API_VERSION_MAJOR)_public_headers)) > $@
+ 
+ hildon-marshalers.h: hildon-marshalers.list
+-	glib-genmarshal --prefix _hildon_marshal --header hildon-marshalers.list >hildon-marshalers.h
++	glib-genmarshal --prefix _hildon_marshal --header $(srcdir)/hildon-marshalers.list >hildon-marshalers.h
+ 
+ hildon-marshalers.c: hildon-marshalers.list hildon-marshalers.h
+ 	echo '#include "hildon-marshalers.h"' >hildon-marshalers.c
+-	glib-genmarshal --prefix _hildon_marshal --body hildon-marshalers.list >>hildon-marshalers.c
++	glib-genmarshal --prefix _hildon_marshal --body $(srcdir)/hildon-marshalers.list >>hildon-marshalers.c
+--- origsrc/libhildon-2.2.30/hildon/hildon-calendar.c	2025-11-13 01:01:50.000000000 +0000
++++ src/libhildon-2.2.30/hildon/hildon-calendar.c	2026-11-22 01:29:00.907364900 +0000
+@@ -92,7 +92,7 @@ typedef unsigned long
+ 
+ typedef signed long                             Z_long;
+ 
+-typedef enum                                    { false = FALSE , true = TRUE } boolean;
++typedef gboolean                                boolean;
+ 
+ #define                                         and &&      /* logical (boolean) operators: lower case */
+ 
+@@ -986,8 +986,13 @@ hildon_calendar_init
+     else if (strcmp (year_before, "calendar:MY") != 0)
+         g_warning ("Whoever translated calendar:MY did so wrongly.\n");
+ #endif
++#if defined(_NL_TIME_FIRST_WEEKDAY)
+     langinfo = nl_langinfo (_NL_TIME_FIRST_WEEKDAY);
+     first_weekday = langinfo[0];
++#else
++    first_weekday = 1;
++#endif
++#if defined(_NL_TIME_WEEK_1STDAY)
+     langinfo = nl_langinfo (_NL_TIME_WEEK_1STDAY);
+     week_origin = GPOINTER_TO_UINT (langinfo);
+     if (week_origin == 19971130)
+@@ -1006,6 +1011,7 @@ hildon_calendar_init
+         g_date_free (date);
+     }
+     else
++#endif
+     {
+         g_warning ("Invalid value set for _NL_TIME_WEEK_1STDAY"); 
+         week_1stday = G_DATE_SUNDAY;
+--- origsrc/libhildon-2.2.30/hildon/hildon-date-selector.c	2025-11-13 01:01:50.000000000 +0000
++++ src/libhildon-2.2.30/hildon/hildon-date-selector.c	2026-11-22 01:29:00.907364900 +0000
+@@ -139,8 +139,7 @@ typedef unsigned long N_long;
+ 
+ typedef signed long Z_long;
+ 
+-typedef enum
+-{ false = FALSE, true = TRUE } boolean;
++typedef gboolean boolean;
+ 
+ #define                                         and &&  /* logical (boolean) operators: lower case */
+ 
+--- origsrc/libhildon-2.2.30/hildon/hildon-text-view.c	2025-11-13 01:01:50.000000000 +0000
++++ src/libhildon-2.2.30/hildon/hildon-text-view.c	2026-11-22 01:29:00.909375400 +0000
+@@ -52,6 +52,10 @@
+ #include                                        "hildon-text-view.h"
+ #include <math.h>
+ 
++#ifndef MAEMO_GTK
++#include                                        "maemo-gtk-compat.h"
++#endif
++
+ #define HILDON_TEXT_VIEW_DRAG_THRESHOLD 16.0
+ 
+ G_DEFINE_TYPE                                   (HildonTextView, hildon_text_view, GTK_TYPE_TEXT_VIEW);
+--- origsrc/libhildon-2.2.30/hildon/hildon-weekday-picker.c	2025-11-13 01:01:50.000000000 +0000
++++ src/libhildon-2.2.30/hildon/hildon-weekday-picker.c	2026-11-22 01:29:00.909375400 +0000
+@@ -212,8 +212,11 @@ hildon_weekday_picker_init
+     sgroup = gtk_size_group_new (GTK_SIZE_GROUP_BOTH);
+ 
+     /* Check our first weekday */
++#if defined(_NL_TIME_FIRST_WEEKDAY)
+     day = *nl_langinfo (_NL_TIME_FIRST_WEEKDAY); 
+-
++#else
++    day = 1;
++#endif
+ 
+     /* Shift the days by one. This is done because GDateWeekday 
+      * starts with Monday(1) and langinfo's first day is Sunday */
+--- origsrc/libhildon-2.2.30/hildon/maemo-gtk-compat.c	2025-11-13 01:01:50.000000000 +0000
++++ src/libhildon-2.2.30/hildon/maemo-gtk-compat.c	2026-11-22 01:29:00.911386200 +0000
+@@ -22,6 +22,7 @@
+ 
+ #ifndef MAEMO_GTK
+ #include <gtk/gtk.h>
++#include "maemo-gtk-compat.h"
+ 
+ void
+ hildon_gtk_entry_set_placeholder_text           (GtkEntry    *entry,
+@@ -31,7 +32,7 @@ hildon_gtk_entry_set_placeholder_text
+ }
+ 
+ void
+-hildon_gtk_text_view_set_placeholder_text       (GtkEntry    *text_view,
++hildon_gtk_text_view_set_placeholder_text       (GtkTextView *text_view,
+                                                  const gchar *text)
+ {
+     g_warning ("hildon_gtk_text_view_set_placeholder_text unsupported");
+--- origsrc/libhildon-2.2.30/hildon/maemo-gtk-compat.h	2025-11-13 01:01:50.000000000 +0000
++++ src/libhildon-2.2.30/hildon/maemo-gtk-compat.h	2026-11-22 01:29:00.911386200 +0000
+@@ -80,7 +80,7 @@ hildon_gtk_entry_set_placeholder_text
+                                                  const gchar *text);
+ 
+ void
+-hildon_gtk_text_view_set_placeholder_text       (GtkEntry    *text_view,
++hildon_gtk_text_view_set_placeholder_text       (GtkTextView *text_view,
+                                                  const gchar *text);
+ 
+ #endif
+--- origsrc/libhildon-2.2.30/po/Makefile.am	2025-11-13 01:01:50.000000000 +0000
++++ src/libhildon-2.2.30/po/Makefile.am	2026-11-22 01:29:00.913396700 +0000
+@@ -8,7 +8,7 @@ MAINTAINERCLEANFILES 			= Makefile.in PO
+ MO_FILE                                 = $(PACKAGE)-libs
+ 
+ %.mo: %.po
+-	msgfmt --statistics -v -o$(top_builddir)/po/$@ $(srcdir)/$<
++	msgfmt --statistics -v -o $@ $<
+ 
+ all: $(foreach mo,$(languages),$(mo).mo)
+ 
+@@ -22,7 +22,7 @@ merge:
+ 
+ install-data-local: all
+ 	for mo in $(languages); do \
+-		$(mkinstalldirs) $(DESTDIR)$(localedir)/$$mo/LC_MESSAGES; \
++		$(MKDIR_P) $(DESTDIR)$(localedir)/$$mo/LC_MESSAGES; \
+ 		$(INSTALL_DATA) $(top_builddir)/po/$$mo.mo $(DESTDIR)$(localedir)/$$mo/LC_MESSAGES/$(MO_FILE).mo; \
+ 	done
+ 

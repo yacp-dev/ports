@@ -1,0 +1,109 @@
+--- origsrc/ccglue-0.6.0/src/c_glue.cpp	2012-06-10 05:33:13.000000000 +0000
++++ src/ccglue-0.6.0/src/c_glue.cpp	2026-11-22 23:38:46.567134000 +0000
+@@ -77,6 +77,7 @@ RC_t process_cscope_files_to_build_sym_t
+ 
+     sym_scanner.initialize_rules();
+     process_files_with_reader(rdr, a_sym_table, cscope_files, sym_scanner);
++    return RC_SUCCESS;
+ }
+ 
+ RC_t process_cscope_files_to_build_xrefs (sym_table& a_sym_table,
+@@ -87,5 +88,6 @@ RC_t process_cscope_files_to_build_xrefs
+ 
+     xref_scanner.initialize_rules();
+     process_files_with_reader(rdr, a_sym_table, cscope_files, xref_scanner);
++    return RC_SUCCESS;
+ }
+ 
+--- origsrc/ccglue-0.6.0/src/digraph.cpp	2012-06-10 16:45:56.000000000 +0000
++++ src/ccglue-0.6.0/src/digraph.cpp	2026-11-22 23:38:46.567134000 +0000
+@@ -187,6 +187,7 @@ int digraph_compress_buf::sync()
+         s_buf.sputc(traits_type::to_char_type(tmp_char));
+         tmp_char = '\0';
+     }
++    return 0;
+ }
+ 
+ digraph_compress_buf::int_type 
+--- origsrc/ccglue-0.6.0/src/indexed_fstream.h	2012-06-10 05:33:13.000000000 +0000
++++ src/ccglue-0.6.0/src/indexed_fstream.h	2026-11-22 23:38:46.569155300 +0000
+@@ -77,6 +77,16 @@ class indexed_ifstream_vector {
+                         return (*this);
+                     }
+ 
++                    iterator& operator--(int) {
++                        m_current_rec_num--;
++                        return (*this);
++                    }
++
++                    iterator& operator--() {
++                        m_current_rec_num--;
++                        return (*this);
++                    }
++
+                     iterator& operator=(const iterator& rhs) {
+                         m_idx_ifs_vec = rhs.m_idx_ifs_vec;
+                         m_current_rec_num = rhs.m_current_rec_num;
+@@ -115,6 +125,10 @@ class indexed_ifstream_vector {
+                         this->m_current_rec_num += n;
+                         return (*this);
+                     }
++                    iterator& operator-=(const difference_type& n) {
++                        this->m_current_rec_num -= n;
++                        return (*this);
++                    }
+             };
+ 
+         iterator begin();
+--- origsrc/ccglue-0.6.0/src/indexed_fstream.hpp	2012-06-10 05:33:13.000000000 +0000
++++ src/ccglue-0.6.0/src/indexed_fstream.hpp	2026-11-22 23:38:46.569155300 +0000
+@@ -67,6 +67,7 @@ bounded_streambuf::bounded_streambuf(std
+ int bounded_streambuf::setbound (int numc) 
+ {
+     m_bound = numc;
++    return 0;
+ }
+ 
+ 
+--- origsrc/ccglue-0.6.0/src/options.cpp	2012-06-10 05:33:13.000000000 +0000
++++ src/ccglue-0.6.0/src/options.cpp	2026-11-22 23:38:46.569155300 +0000
+@@ -90,6 +90,6 @@ int ccglue_parse_command_line_options (i
+     /* Parse our arguments; every option seen by parse_opt will
+        be reflected in arguments. */
+     parse_options (argc, argv, opts);
+-
++    return 0;
+ }
+ 
+--- origsrc/ccglue-0.6.0/src/sym_mgr.cpp	2012-06-10 05:33:13.000000000 +0000
++++ src/ccglue-0.6.0/src/sym_mgr.cpp	2026-11-22 23:38:46.571180900 +0000
+@@ -73,7 +73,7 @@ bool sym_table::add_sym (sym_entry* a_sy
+ 
+ sym_entry* sym_table::lookup (const std::string& sym_name)
+ {
+-    lookup(sym_name.c_str());
++    return lookup(sym_name.c_str());
+ }
+ 
+ sym_entry* sym_table::lookup (const char *sym_name) 
+--- origsrc/ccglue-0.6.0/src/tag_db.h	2012-06-10 05:33:13.000000000 +0000
++++ src/ccglue-0.6.0/src/tag_db.h	2026-11-22 23:38:46.571180900 +0000
+@@ -359,6 +359,7 @@ bool tag::process_decoded_token (int tok
+         break;
+     }
+     last_token_id = token_id;
++    return true;
+ }
+ 
+ const std::list<tag_xref_data>&   tag::get_parent_list() const
+--- origsrc/ccglue-0.6.0/src/tracer_options.cpp	2012-06-10 05:33:13.000000000 +0000
++++ src/ccglue-0.6.0/src/tracer_options.cpp	2026-11-22 23:38:46.573206600 +0000
+@@ -92,7 +92,7 @@ int ccglue_tracer_parse_command_line_opt
+     /* Parse our arguments; every option seen by parse_opt will
+        be reflected in arguments. */
+     parse_options (argc, argv, opts);
+-
++    return 0;
+ }
+ 
+ 

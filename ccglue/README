@@ -5,22 +5,21 @@ generate cross-reference tag files that can be interfaced with the Vim CCTree
 plugin
 
 Runtime requirements:
-  cygwin-1.7.33-1
-  libgcc1-4.9.2-1
-  libstdc++6-4.9.2-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.24.51-6
-  cygport-0.17.1-1
-  gcc-core-4.9.2-1
-  gcc-g++-4.9.2-1
-  make-4.0-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  make-4.4.1-2
 
 Canonical website:
-  http://ccglue.sf.net/
+  https://ccglue.sourceforge.net/
 
 Canonical download:
   mirror://sourceforge/ccglue/ccglue-release-0.6.0.tar.bz2
@@ -28,11 +27,11 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack ccglue-0.6.0-X-src.tar.xz
-    if you use setup to install this src package, it will be
-        unpacked under /usr/src automatically
-  cd /usr/src
-  cygport ./ccglue-0.6.0-X.cygport all
+  1. unpack ccglue-0.6.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./ccglue-0.6.0-X.cygport all
 
 This will create:
   /usr/src/ccglue-0.6.0-X-src.tar.xz
@@ -60,6 +59,9 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 0.6.0-1bl2 -----
+Rebuild with gcc-14.4.0
+
 ----- version 0.6.0-1bl1 -----
 Version bump.
 
@@ -68,4 +70,3 @@ Version bump.
 
 ----- version 0.2.0-1bl1 -----
 Initial release for Cygwin-1.7 by fd0 <http://d.hatena.ne.jp/fd0>
-

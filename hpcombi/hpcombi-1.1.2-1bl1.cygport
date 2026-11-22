@@ -1,0 +1,42 @@
+HOMEPAGE="https://github.com/libsemigroups/HPCombi"
+SRC_URI="https://github.com/libsemigroups/HPCombi/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="HPCombi-${PV}"
+
+CATEGORY="Math"
+SUMMARY="High Performance Combinatorics in C++ using vector instructions"
+DESCRIPTION="HPCombi is a C++17 header-only library using the SSE and AVX
+instruction sets, and some equivalents, for very fast manipulation of
+combinatorial objects such as transformations, permutations, and boolean
+matrices of small size."
+
+LICENSE="GPL-3.0-or-later AND MIT AND CC0-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MIT AND CC0-1.0"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libCatch2-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_TESTING:BOOL=ON
+	-DHPCOMBI_DISABLE_MARCH_NATIVE:BOOL=ON
+"
+
+DIFF_EXCLUDES="
+	doc.html
+	HPCOMBI_VERSION
+	hpcombi.pc
+"
+
+src_install() {
+	cd ${B}
+	ninja_install
+
+	rm -rf ${D}/usr/share/${PN}
+}
+
+DOCS="
+	README.md
+"

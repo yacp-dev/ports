@@ -1,5 +1,5 @@
---- origsrc/qcl-0.6.7/options.h	2014-03-27 22:24:43.000000000 +0900
-+++ src/qcl-0.6.7/options.h	2023-08-24 14:53:12.125184200 +0900
+--- origsrc/qcl-0.6.7/options.h	2014-03-27 13:24:43.000000000 +0000
++++ src/qcl-0.6.7/options.h	2026-11-22 04:28:42.905113700 +0000
 @@ -70,8 +70,10 @@ warranty of merchantability or fitness f
  extern const OutputFormat *format;
  extern ofstream *file;
@@ -11,8 +11,8 @@
  
  void printusage(char *name);
  void evalopt(int c,const char *optarg);
---- origsrc/qcl-0.6.7/qcl.cc	2014-03-27 22:24:43.000000000 +0900
-+++ src/qcl-0.6.7/qcl.cc	2023-08-24 14:55:38.499341800 +0900
+--- origsrc/qcl-0.6.7/qcl.cc	2014-03-27 13:24:43.000000000 +0000
++++ src/qcl-0.6.7/qcl.cc	2026-11-22 04:28:42.905113700 +0000
 @@ -25,8 +25,10 @@ warranty of merchantability or fitness f
  #include <unistd.h>
  #include <getopt.h>

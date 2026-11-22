@@ -1,25 +1,25 @@
 monotonic_clock
 ------------------------------------------
-Provides access to a clock that always increases at the same rate.
-Unlike the system time (e.g. gettimeofday()) this will never decrease.
-
-However, if there's no monotonic clock on your system then this library will
-fall back to gettimeofday().
+Provides access to a clock that always increases at the same rate. Unlike the
+system time (e.g. gettimeofday()) this will never decrease. However, if there's
+no monotonic clock on your system then this library will fall back to
+gettimeofday().
 
 Runtime requirements:
-  cygwin-2.4.1-1
-  libmonotonic_clock-devel-0.01+git20150416-1bl1
-  libmonotonic_clock0.01_0-0.01+git20150416-1bl1
+  cygwin-3.6.12-1
+  libmonotonic_clock-devel-0.01+git20191122-1bl1
+  libmonotonic_clock0.01_0-0.01+git20191122-1bl1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-4
-  cygport-0.20.2-1
-  gcc-core-4.9.3-1
-  libtool-2.4.6-2
-  make-4.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/ThomasHabets/monotonic_clock
@@ -30,17 +30,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack monotonic_clock-0.01+git20150416-X-src.tar.xz
+  1. unpack monotonic_clock-0.01+git20191122-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./monotonic_clock-0.01+git20150416-X.cygport all
+        % cygport ./monotonic_clock-0.01+git20191122-X.cygport all
 
 This will create:
-  /usr/src/monotonic_clock-0.01+git20150416-X-src.tar.xz
-  /usr/src/monotonic_clock-0.01+git20150416-X.tar.xz
-  /usr/src/libmonotonic_clock0.01_0-0.01+git20150416-X.tar.xz
-  /usr/src/libmonotonic_clock-devel-0.01+git20150416-X.tar.xz
+  /usr/src/monotonic_clock-0.01+git20191122-X-src.tar.xz
+  /usr/src/monotonic_clock-0.01+git20191122-X.tar.xz
+  /usr/src/libmonotonic_clock0.01_0-0.01+git20191122-X.tar.xz
+  /usr/src/libmonotonic_clock-devel-0.01+git20191122-X.tar.xz
 
 -------------------------------------------
 
@@ -62,6 +62,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.01+git20191122-1bl1 -----
+Version bump.
 
 ----- version 0.01+git20150416-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

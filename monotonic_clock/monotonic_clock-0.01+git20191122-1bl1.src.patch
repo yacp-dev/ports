@@ -1,0 +1,11 @@
+--- origsrc/monotonic_clock/Makefile.am	2026-11-22 11:52:00.000000000 +0000
++++ src/monotonic_clock/Makefile.am	2026-11-22 11:52:01.391040500 +0000
+@@ -8,7 +8,7 @@ AM_CFLAGS=-I$(top_srcdir)/include @AM_CF
+ # library
+ lib_LTLIBRARIES=libmonotonic_clock.la
+ libmonotonic_clock_la_SOURCES=src/monotonic_common.c
+-libmonotonic_clock_la_LDFLAGS = -version-info 0:0:0 -release 0.01
++libmonotonic_clock_la_LDFLAGS = -no-undefined -version-info 0:0:0 -release 0.01
+ 
+ library_includedir=$(includedir)
+ library_include_HEADERS = include/monotonic_clock.h

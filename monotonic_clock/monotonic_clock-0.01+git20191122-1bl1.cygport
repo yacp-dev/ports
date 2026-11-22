@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/ThomasHabets/${PN}"
 GIT_URI="https://github.com/ThomasHabets/${PN}.git"
+GIT_REV="20b16818951d6a22a8904bf2a8f490b09ec5335b"
 
 CATEGORY="Libs"
 SUMMARY="Portable C library for getting monotonic time"
@@ -9,6 +10,10 @@ Unlike the system time (e.g. gettimeofday()) this will never decrease.
 However, if there's no monotonic clock on your system then this library will
 fall back to gettimeofday()."
 
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
 inherit git
 
 PKG_NAMES="
@@ -17,10 +22,10 @@ PKG_NAMES="
 	lib${PN}-devel
 "
 monotonic_clock_CONTENTS="
-	usr/share
+	usr/share/doc
 "
 libmonotonic_clock0_01_0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0-01-0.dll
 "
 libmonotonic_clock_devel_CONTENTS="
 	usr/include

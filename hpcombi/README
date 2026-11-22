@@ -1,0 +1,91 @@
+hpcombi
+------------------------------------------
+HPCombi is a C++17 header-only library using the SSE and AVX instruction sets,
+and some equivalents, for very fast manipulation of combinatorial objects such
+as transformations, permutations, and boolean matrices of small size.
+
+Runtime requirements:
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  libCatch2-devel-3.16.1-1bl2
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/libsemigroups/HPCombi
+
+Canonical download:
+  https://github.com/libsemigroups/HPCombi/archive/refs/tags/v1.1.2.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack hpcombi-1.1.2-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./hpcombi-1.1.2-X.cygport all
+
+This will create:
+  /usr/src/hpcombi-1.1.2-X-src.tar.xz
+  /usr/src/hpcombi-1.1.2-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(hpcombi)
+  /usr/include/hpcombi/arch.hpp
+  /usr/include/hpcombi/bmat16.hpp
+  /usr/include/hpcombi/bmat16_impl.hpp
+  /usr/include/hpcombi/bmat8.hpp
+  /usr/include/hpcombi/bmat8_impl.hpp
+  /usr/include/hpcombi/builder.hpp
+  /usr/include/hpcombi/debug.hpp
+  /usr/include/hpcombi/epu8.hpp
+  /usr/include/hpcombi/epu8_impl.hpp
+  /usr/include/hpcombi/hpcombi.hpp
+  /usr/include/hpcombi/perm16.hpp
+  /usr/include/hpcombi/perm16_impl.hpp
+  /usr/include/hpcombi/perm_generic.hpp
+  /usr/include/hpcombi/perm_generic_impl.hpp
+  /usr/include/hpcombi/power.hpp
+  /usr/include/hpcombi/simde-0.8.2/arm/neon.h
+  /usr/include/hpcombi/simde-0.8.2/arm/sve.h
+  /usr/include/hpcombi/simde-0.8.2/mips/msa.h
+  /usr/include/hpcombi/simde-0.8.2/wasm/relaxed-simd.h
+  /usr/include/hpcombi/simde-0.8.2/wasm/simd128.h
+  /usr/include/hpcombi/simde-0.8.2/x86/aes.h
+  /usr/include/hpcombi/simde-0.8.2/x86/avx.h
+  /usr/include/hpcombi/simde-0.8.2/x86/avx2.h
+  /usr/include/hpcombi/simde-0.8.2/x86/avx512.h
+  /usr/include/hpcombi/simde-0.8.2/x86/clmul.h
+  /usr/include/hpcombi/simde-0.8.2/x86/f16c.h
+  /usr/include/hpcombi/simde-0.8.2/x86/fma.h
+  /usr/include/hpcombi/simde-0.8.2/x86/gfni.h
+  /usr/include/hpcombi/simde-0.8.2/x86/mmx.h
+  /usr/include/hpcombi/simde-0.8.2/x86/sse.h
+  /usr/include/hpcombi/simde-0.8.2/x86/sse2.h
+  /usr/include/hpcombi/simde-0.8.2/x86/sse3.h
+  /usr/include/hpcombi/simde-0.8.2/x86/sse4.1.h
+  /usr/include/hpcombi/simde-0.8.2/x86/sse4.2.h
+  /usr/include/hpcombi/simde-0.8.2/x86/ssse3.h
+  /usr/include/hpcombi/simde-0.8.2/x86/svml.h
+  /usr/include/hpcombi/simde-0.8.2/x86/xop.h
+  /usr/include/hpcombi/vect16.hpp
+  /usr/include/hpcombi/vect_generic.hpp
+  /usr/lib/pkgconfig/hpcombi.pc
+  /usr/share/doc/Cygwin/hpcombi.README
+  /usr/share/doc/hpcombi/LICENSE
+  /usr/share/doc/hpcombi/README.md
+  /usr/share/doc/hpcombi/TODO.txt
+
+------------------
+
+Port Notes:
+
+----- version 1.1.2-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

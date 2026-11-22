@@ -1,0 +1,11 @@
+--- origsrc/getfem-5.5/src/Makefile.am	2026-06-01 07:24:53.000000000 +0000
++++ src/getfem-5.5/src/Makefile.am	2026-11-22 02:47:47.404095500 +0000
+@@ -246,7 +246,7 @@ SRC =
+ 
+ lib_LTLIBRARIES = libgetfem.la
+ libgetfem_la_SOURCES = $(SRC)
+-libgetfem_la_LDFLAGS = ${LIBTOOL_VERSION_INFO}
++libgetfem_la_LDFLAGS = -no-undefined ${LIBTOOL_VERSION_INFO}
+ libgetfem_la_LIBADD = @SUPERLU_LIBS@ @MUMPS_LIBS@
+ AM_CPPFLAGS = -I$(top_srcdir)/src -I../src -I$(top_srcdir)
+ 

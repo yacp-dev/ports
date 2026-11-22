@@ -1,0 +1,52 @@
+HOMEPAGE="https://www.nongnu.org/libtranslate/"
+SRC_URI="mirror://savannah/${PN}/${P}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Natural language translation library"
+DESCRIPTION="Libtranslate is a library for translating text and web pages
+between natural languages. Its modular infrastructure allows to implement new
+translation services separately from the core library."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	gtk-doc
+	intltool
+	libglib2.0-devel
+	libsoup2.4-devel
+	libxml2-devel
+"
+
+CYGCONF_ARGS="
+	--disable-gtk-doc
+	--disable-talkfilters
+"
+
+PKG_NAMES="
+	${PN}
+	${PN}0
+	${PN}-devel
+"
+libtranslate_CONTENTS="
+	usr/bin/*.exe
+	usr/share/doc
+	usr/share/${PN}
+	usr/share/locale
+	usr/share/man/man1
+	usr/share/man/man5
+"
+libtranslate0_CONTENTS="
+	usr/bin/cygtranslate-0.dll
+	usr/lib/${PN}/modules/*.dll
+"
+libtranslate_devel_CONTENTS="
+	usr/include
+	usr/lib/libtranslate.dll.a
+	usr/lib/pkgconfig
+	usr/share/gtk-doc
+"
+libtranslate_SUMMARY="${SUMMARY} (utilities)"
+libtranslate0_SUMMARY="${SUMMARY} (runtime)"
+libtranslate_devel_SUMMARY="${SUMMARY} (development)"

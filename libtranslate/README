@@ -1,0 +1,111 @@
+libtranslate
+------------------------------------------
+Libtranslate is a library for translating text and web pages between natural
+languages. Its modular infrastructure allows to implement new translation
+services separately from the core library.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libintl8-0.26-1
+  libsoup2.4_1-2.60.3-1
+  libtranslate-devel-0.99-1bl1
+  libtranslate0-0.99-1bl1
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gtk-doc-1.37.0-1
+  intltool-0.51.0-1
+  libglib2.0-devel-2.90.1-1
+  libsoup2.4-devel-2.60.3-1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-3
+  make-4.4.1-2
+
+Canonical website:
+  https://www.nongnu.org/libtranslate/
+
+Canonical download:
+  mirror://savannah/libtranslate/libtranslate-0.99.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack libtranslate-0.99-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./libtranslate-0.99-X.cygport all
+
+This will create:
+  /usr/src/libtranslate-0.99-X-src.tar.xz
+  /usr/src/libtranslate-0.99-X.tar.xz
+  /usr/src/libtranslate0-0.99-X.tar.xz
+  /usr/src/libtranslate-devel-0.99-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(libtranslate)
+  /usr/bin/translate.exe
+  /usr/share/doc/Cygwin/libtranslate.README
+  /usr/share/doc/libtranslate/AUTHORS
+  /usr/share/doc/libtranslate/COPYING
+  /usr/share/doc/libtranslate/NEWS
+  /usr/share/doc/libtranslate/README
+  /usr/share/libtranslate/services.dtd
+  /usr/share/libtranslate/services.xml
+  /usr/share/locale/fr/LC_MESSAGES/libtranslate.mo
+  /usr/share/man/man1/translate.1.gz
+  /usr/share/man/man5/services.xml.5.gz
+
+(libtranslate0)
+  /usr/bin/cygtranslate-0.dll
+  /usr/lib/libtranslate/modules/generic.dll
+
+(libtranslate-devel)
+  /usr/include/libtranslate/translate-common.h
+  /usr/include/libtranslate/translate-pair.h
+  /usr/include/libtranslate/translate-service.h
+  /usr/include/libtranslate/translate-session.h
+  /usr/include/libtranslate/translate-util.h
+  /usr/include/libtranslate/translate.h
+  /usr/lib/libtranslate.dll.a
+  /usr/lib/pkgconfig/libtranslate.pc
+  /usr/share/gtk-doc/html/libtranslate/TranslatePair.html
+  /usr/share/gtk-doc/html/libtranslate/TranslateService.html
+  /usr/share/gtk-doc/html/libtranslate/TranslateSession.html
+  /usr/share/gtk-doc/html/libtranslate/api-reference.html
+  /usr/share/gtk-doc/html/libtranslate/ch01s02.html
+  /usr/share/gtk-doc/html/libtranslate/ch02s02.html
+  /usr/share/gtk-doc/html/libtranslate/compiling-modules.html
+  /usr/share/gtk-doc/html/libtranslate/home.png
+  /usr/share/gtk-doc/html/libtranslate/index.html
+  /usr/share/gtk-doc/html/libtranslate/index.sgml
+  /usr/share/gtk-doc/html/libtranslate/ix01.html
+  /usr/share/gtk-doc/html/libtranslate/left.png
+  /usr/share/gtk-doc/html/libtranslate/libtranslate-translate-common.html
+  /usr/share/gtk-doc/html/libtranslate/libtranslate-translate-util.html
+  /usr/share/gtk-doc/html/libtranslate/libtranslate-translate.html
+  /usr/share/gtk-doc/html/libtranslate/libtranslate.devhelp
+  /usr/share/gtk-doc/html/libtranslate/overview.html
+  /usr/share/gtk-doc/html/libtranslate/rfc3066-builtin.html
+  /usr/share/gtk-doc/html/libtranslate/right.png
+  /usr/share/gtk-doc/html/libtranslate/tutorials.html
+  /usr/share/gtk-doc/html/libtranslate/up.png
+
+------------------
+
+Port Notes:
+
+----- version 0.99-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

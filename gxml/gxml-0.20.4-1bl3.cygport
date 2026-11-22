@@ -11,10 +11,14 @@ LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gettext-devel
+	girepository-x11
+	gobject-introspection
 	libgee0.8-devel
 	libglib2.0-devel
 	libintl-devel
 	libxml2-devel
+	vala
 "
 
 inherit meson

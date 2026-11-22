@@ -4,33 +4,35 @@ GXml provides a GObject API for manipulating XML and a Serializable framework
 from GObject to XML.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  girepository-GLib2.0-1.86.0-1
+  cygwin-3.6.12-1
+  girepository-GLib2.0-1.86.0-2
   girepository-Gee0.8-0.20.1-1
-  girepository-x11-1.86.0-1
+  girepository-x11-1.86.0-2
   libgee0.8-devel-0.20.1-1
   libgee0.8_2-0.20.1-1
-  libglib2.0-devel-2.87.0-1
-  libglib2.0_0-2.87.0-1
-  libgxml0.20-devel-0.20.4-1bl2
-  libgxml0.20_2-0.20.4-1bl2
-  libintl8-0.22.5-1
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-2.5.1-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libgxml0.20-devel-0.20.4-1bl3
+  libgxml0.20_2-0.20.4-1bl3
+  libintl8-0.26-1
+  libxml2-devel-2.13.9-3
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.11-1
   vala-gee0.8-0.20.1-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.4-1
-  gcc-core-13.4.0-1
-  gobject-introspection-1.86.0-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  girepository-x11-1.86.0-2
+  gobject-introspection-1.86.0-2
   libgee0.8-devel-0.20.1-1
-  libglib2.0-devel-2.87.0-1
-  libintl-devel-0.22.5-1
-  libxml2-devel-2.10.4-2
-  meson-1.4.2-1
+  libglib2.0-devel-2.90.1-1
+  libintl-devel-0.26-1
+  libxml2-devel-2.13.9-3
+  meson-1.10.2-1
   ninja-1.13.2-1
   vala-0.56.18-1
 
@@ -110,6 +112,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.20.4-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.20.4-1bl2 -----
 Fix package name

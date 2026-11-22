@@ -1,0 +1,22 @@
+--- origsrc/gdome2-0.8.1/libgdome/Makefile.am	2002-07-16 14:15:56.000000000 +0000
++++ src/gdome2-0.8.1/libgdome/Makefile.am	2026-11-22 21:47:20.141532500 +0000
+@@ -36,7 +36,7 @@ libgdome_la_LIBADD = 						\
+         $(GLIB_LIBS)                                            \
+ 	$(NULL)
+         
+-libgdome_la_LDFLAGS = -version-info @GDOME_VERSION_INFO@
++libgdome_la_LDFLAGS = -no-undefined -version-info @GDOME_VERSION_INFO@
+ 
+ # what is this include dir ?
+ libgdomeincdir = $(includedir)/libgdome
+--- origsrc/gdome2-0.8.1/libgdome/gdomecore/gdome-xml-documentt.c	2026-11-22 21:47:19.384202600 +0000
++++ src/gdome2-0.8.1/libgdome/gdomecore/gdome-xml-documentt.c	2026-11-22 21:47:20.141532500 +0000
+@@ -342,7 +342,7 @@ gdome_xml_dt_internalSubset (GdomeDocume
+ 	}
+ 	xmlNodeDumpOutput (out_buff, NULL, (xmlNode *)is, 0, 0, NULL);
+ 	xmlOutputBufferFlush(out_buff);
+-	ret = g_strndup (xmlBufContent(out_buff), xmlBufUse(out_buff));
++	ret = g_strndup ((const gchar *)xmlOutputBufferGetContent(out_buff), xmlOutputBufferGetSize(out_buff));
+ 	(void)xmlOutputBufferClose(out_buff);
+ 
+ 	return gdome_xml_str_mkref_own (ret);

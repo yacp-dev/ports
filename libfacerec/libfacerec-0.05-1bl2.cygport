@@ -10,9 +10,14 @@ yourself, you have everything to get started. Note: Make sure to work on a
 recent OpenCV revision, if you want to be compatible with the very latest
 libfacerec version."
 
+BUILD_REQUIRES="
+	libopencv-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DENABLE_TESTS:BOOL=ON
 	-DENABLE_SAMPLES:BOOL=ON
@@ -28,7 +33,7 @@ libfacerec_CONTENTS="
 	usr/share
 "
 libopencv_facerec0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygopencv_facerec-0.dll
 "
 libopencv_facerec_devel_CONTENTS="
 	usr/include

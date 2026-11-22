@@ -1,6 +1,16 @@
---- origsrc/libfacerec-0.05/CMakeLists.txt	2012-08-06 07:36:13.000000000 +0900
-+++ src/libfacerec-0.05/CMakeLists.txt	2015-01-03 19:51:30.481188300 +0900
-@@ -56,16 +56,28 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/sa
+--- origsrc/libfacerec-0.05/CMakeLists.txt	2012-08-05 22:36:13.000000000 +0000
++++ src/libfacerec-0.05/CMakeLists.txt	2026-11-22 22:17:42.614186782 +0000
+@@ -41,8 +41,7 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/te
+ 	# link to opencv_ts, as it is not in OpenCV_LIBS for OpenCV 2.3.1 
+ 	target_link_libraries(${the_test_target} ${the_library} opencv_core opencv_ts)
+ 	enable_testing()
+-	get_target_property(LOC ${the_test_target} LOCATION)
+-	add_test(${the_test_target} "${LOC}")
++	add_test(NAME ${the_test_target} COMMAND ${the_test_target})
+ endif()
+ 
+ #---------------------------------
+@@ -56,16 +55,28 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/sa
  	# probably there's a simpler way to link against multiple executables...
  	add_executable(facerec_demo samples/facerec_demo.cpp)
  	target_link_libraries(facerec_demo ${the_library} opencv_core opencv_imgproc opencv_highgui)

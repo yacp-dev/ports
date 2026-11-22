@@ -7,33 +7,32 @@ Sloot (Tilburg University), and is currently maintained and continued by
 Martijn van der Klis (Utrecht University).
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libfolia21-2.20-1bl1
-  libfrog3-0.33-1bl1
-  libgcc1-12.4.0-3
-  libgomp1-12.4.0-3
-  libicu74-74.2-1
-  libstdc++6-12.4.0-3
-  libticcutils9-0.34-1bl2
-  libtimbl7-6.9-1bl2
-  libxml2-2.10.4-2
+  cygwin-3.6.12-1
+  libfolia22-2.22-1bl2
+  libfrog3-0.35.1-1bl1
+  libgcc1-14.4.0-1
+  libgomp1-14.4.0-1
+  libicu76-76.1-2
+  libstdc++6-14.4.0-1
+  libticcutils10-0.38-1bl2
+  libtimbl8-7.0-1bl2
+  libxml2_2-2.13.9-3
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  flex-2.6.4-2
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libfolia-devel-2.20-1bl1
-  libfrog-devel-0.33-1bl1
-  libicu-devel-74.2-1
-  libticcutils-devel-0.34-1bl2
-  libtimbl-devel-6.9-1bl2
-  libtool-2.4.7-1
-  libxml2-devel-2.10.4-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libfolia-devel-2.22-1bl2
+  libfrog-devel-0.35.1-1bl1
+  libicu-devel-76.1-2
+  libticcutils-devel-0.38-1bl2
+  libtimbl-devel-7.0-1bl2
+  libtool-2.6.2-1
+  libucto-devel-0.37-1bl1
+  libxml2-devel-2.13.9-3
   make-4.4.1-2
 
 Canonical website:
@@ -54,6 +53,8 @@ Build instructions:
 This will create:
   /usr/src/tscan-0.10.0-X-src.tar.xz
   /usr/src/tscan-0.10.0-X.tar.xz
+  /usr/src/tscan-data-0.10.0-X.tar.xz
+  /usr/src/tscan-data-sonar-0.10.0-X.tar.xz
 
 -------------------------------------------
 
@@ -66,12 +67,9 @@ Files included in the binary package:
   /usr/share/doc/tscan/COPYING
   /usr/share/doc/tscan/NEWS
   /usr/share/doc/tscan/README
-  /usr/share/doc/tscan/README.md
   /usr/share/man/man1/tscan.1.gz
-  /usr/share/tscan/SoNaR500.withoutnames_wordfreqlist20000.freq
-  /usr/share/tscan/SoNaR500.wordfreqlist20000.freq
-  /usr/share/tscan/SoNaR500.wordfreqlist_lemma.freq
-  /usr/share/tscan/SoNaR500.wordfreqlist_words.freq
+
+(tscan-data)
   /usr/share/tscan/adjs_semtype.data
   /usr/share/tscan/adverbs.data
   /usr/share/tscan/afkortingen.lst
@@ -103,9 +101,18 @@ Files included in the binary package:
   /usr/share/tscan/verbs_semtype.data
   /usr/share/tscan/voorzetseluitdrukkingen.txt
 
+(tscan-data-sonar)
+  /usr/share/tscan/SoNaR500.withoutnames_wordfreqlist20000.freq
+  /usr/share/tscan/SoNaR500.wordfreqlist20000.freq
+  /usr/share/tscan/SoNaR500.wordfreqlist_lemma.freq
+  /usr/share/tscan/SoNaR500.wordfreqlist_words.freq
+
 ------------------
 
 Port Notes:
+
+----- version 0.10.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.10.0-1bl1 -----
 Version bump.

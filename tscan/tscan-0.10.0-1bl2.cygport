@@ -13,7 +13,15 @@ LICENSE="AGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libfolia-devel libfrog-devel libicu-devel libticcutils-devel libtimbl-devel libxml2-devel"
+BUILD_REQUIRES="
+	libfolia-devel
+	libfrog-devel
+	libicu-devel
+	libticcutils-devel
+	libtimbl-devel
+	libucto-devel
+	libxml2-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -47,4 +55,28 @@ src_install()
 
 DIFF_EXCLUDES="
 	m4
+"
+
+PKG_NAMES="
+	${PN}
+	${PN}-data
+	${PN}-data-sonar
+"
+tscan_CONTENTS="
+	usr/bin
+	usr/share/doc
+	usr/share/man
+"
+tscan_data_CONTENTS="
+	usr/share/tscan/[a-z]*
+"
+tscan_data_sonar_CONTENTS="
+	usr/share/tscan/SoNaR500*
+"
+tscan_SUMMARY="${SUMMARY} (utilities)"
+tscan_data_SUMMARY="${SUMMARY} (general data)"
+tscan_data_sonar_SUMMARY="${SUMMARY} (SoNaR data)"
+tscan_REQUIRES="
+	${PN}-data
+	${PN}-data-sonar
 "

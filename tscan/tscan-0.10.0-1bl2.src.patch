@@ -1,0 +1,40 @@
+--- origsrc/tscan-0.10.0/src/Makefile.am	2024-06-19 13:35:15.000000000 +0000
++++ src/tscan-0.10.0/src/Makefile.am	2026-11-22 11:43:18.580574000 +0000
+@@ -2,7 +2,7 @@
+ # $URL$
+ 
+ AM_CPPFLAGS = -I@top_srcdir@/include
+-AM_CXXFLAGS = -std=c++0x
++AM_CXXFLAGS = -std=c++17
+ 
+ bin_PROGRAMS = tscan
+ 
+--- origsrc/tscan-0.10.0/src/tscan.cxx	2024-06-19 13:35:15.000000000 +0000
++++ src/tscan-0.10.0/src/tscan.cxx	2026-11-22 11:43:18.580574000 +0000
+@@ -1315,7 +1315,7 @@ string lemmatize( const string &word ) {
+     folia::Document *doc;
+     doc = new folia::Document();
+     try {
+-      doc->readFromString( result );
++      doc->read_from_string( result );
+       return doc->words()[0]->lemma();
+     }
+     catch ( std::exception &e ) {
+@@ -1997,7 +1997,7 @@ void orderWopr( const string &type, cons
+ #endif
+     folia::Document doc;
+     try {
+-      doc.readFromString( result );
++      doc.read_from_string( result );
+ #ifdef DEBUG_WOPR
+       cerr << "finished parsing" << endl;
+ #endif
+@@ -3209,7 +3209,7 @@ folia::Document *getFrogResult( istream
+ #endif
+     doc = new folia::Document();
+     try {
+-      doc->readFromString( result );
++      doc->read_from_string( result );
+ #ifdef DEBUG_FROG
+       cerr << "finished" << endl;
+ #endif

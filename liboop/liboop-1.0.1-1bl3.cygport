@@ -1,5 +1,8 @@
 HOMEPAGE="https://www.lysator.liu.se/${PN}/"
 SRC_URI="https://ftp.lysator.liu.se/pub/${PN}/${P}.tar.gz"
+PATCH_URI="
+	https://raw.githubusercontent.com/pld-linux/liboop/157e2cf36262019620b83c65dad96c2faf2b77e2/liboop-build.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Low-level event loop management library"
@@ -15,7 +18,11 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libglib2.0-devel libreadline-devel tcl-devel"
+BUILD_REQUIRES="
+	libglib2.0-devel
+	libreadline-devel
+	tcl-devel
+"
 
 PKG_NAMES="
 	${PN}

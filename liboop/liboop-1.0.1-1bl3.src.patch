@@ -1,6 +1,6 @@
---- origsrc/liboop-1.0.1/Makefile.am	2016-11-15 05:20:35.000000000 +0900
-+++ src/liboop-1.0.1/Makefile.am	2025-01-29 17:47:40.255068200 +0900
-@@ -11,41 +11,43 @@ lib_LTLIBRARIES = liboop.la @LIBOOP_LIBS
+--- origsrc/liboop-1.0.1/Makefile.am	2026-11-22 04:08:06.043380300 +0000
++++ src/liboop-1.0.1/Makefile.am	2026-11-22 04:08:06.351039900 +0000
+@@ -11,41 +11,43 @@ lib_LTLIBRARIES = liboop.la $(LIBOOP_LIB
  EXTRA_LTLIBRARIES = liboop-adns.la liboop-glib2.la liboop-glib.la liboop-tcl.la liboop-www.la liboop-rl.la
  
  pkgconfigdir = $(libdir)/pkgconfig
@@ -56,8 +56,8 @@
  
  noinst_PROGRAMS = test-oop
  
---- origsrc/liboop-1.0.1/configure.ac	2016-11-15 05:20:35.000000000 +0900
-+++ src/liboop-1.0.1/configure.ac	2025-01-29 18:23:01.226139900 +0900
+--- origsrc/liboop-1.0.1/configure.ac	2016-11-14 20:20:35.000000000 +0000
++++ src/liboop-1.0.1/configure.ac	2026-11-22 04:08:06.353053800 +0000
 @@ -31,6 +31,7 @@ AC_CHECK_HEADERS(poll.h sys/select.h sys
  
  if test xno != x$with_adns; then
@@ -133,8 +133,8 @@
 -AC_OUTPUT([Makefile liboop.pc liboop-glib2.pc])
 +AC_SUBST(LIBOOP_DATA)
 +AC_OUTPUT([Makefile liboop.pc liboop-glib2.pc liboop-rl.pc liboop-tcl.pc])
---- origsrc/liboop-1.0.1/liboop-rl.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/liboop-1.0.1/liboop-rl.pc.in	2025-01-29 17:13:45.684502200 +0900
+--- origsrc/liboop-1.0.1/liboop-rl.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/liboop-1.0.1/liboop-rl.pc.in	2026-11-22 04:08:06.353053800 +0000
 @@ -0,0 +1,11 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -147,8 +147,8 @@
 +Requires: liboop = @VERSION@ readline
 +Libs: -L${libdir} -loop-rl
 +Cflags: -I${includedir}
---- origsrc/liboop-1.0.1/liboop-tcl.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/liboop-1.0.1/liboop-tcl.pc.in	2025-01-29 17:15:04.571612500 +0900
+--- origsrc/liboop-1.0.1/liboop-tcl.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/liboop-1.0.1/liboop-tcl.pc.in	2026-11-22 04:08:06.355067100 +0000
 @@ -0,0 +1,11 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

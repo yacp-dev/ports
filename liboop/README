@@ -8,34 +8,34 @@ signals. Since processes use these mechanisms for almost all external
 communication, liboop can be used as the basis for almost any application.
 
 Runtime requirements:
-  cygwin-3.5.6-1
-  cygwin-devel-3.5.6-1
-  libglib2.0-devel-2.64.6-1
-  libglib2.0_0-2.64.6-1
-  liboop-devel-1.0.1-1bl2
-  liboop-glib2-devel-1.0.1-1bl2
-  liboop-glib2_0-1.0.1-1bl2
-  liboop-rl-devel-1.0.1-1bl2
-  liboop-rl0-1.0.1-1bl2
-  liboop-tcl-devel-1.0.1-1bl2
-  liboop-tcl0-1.0.1-1bl2
-  liboop4-1.0.1-1bl2
-  libreadline-devel-8.2-2
-  libreadline7-8.2-2
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  liboop-devel-1.0.1-1bl3
+  liboop-glib2-devel-1.0.1-1bl3
+  liboop-glib2_0-1.0.1-1bl3
+  liboop-rl-devel-1.0.1-1bl3
+  liboop-rl0-1.0.1-1bl3
+  liboop-tcl-devel-1.0.1-1bl3
+  liboop-tcl0-1.0.1-1bl3
+  liboop4-1.0.1-1bl3
+  libreadline-devel-8.3-1
+  libreadline8-8.3-1
+  pkg-config-3.0.10-1
   tcl-8.6.12-1
   tcl-devel-8.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libglib2.0-devel-2.64.6-1
-  libreadline-devel-8.2-2
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libglib2.0-devel-2.90.1-1
+  libreadline-devel-8.3-1
+  libtool-2.6.2-1
   make-4.4.1-2
   tcl-devel-8.6.12-1
 
@@ -110,6 +110,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.1-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.1-1bl2 -----
 Rebuild with gcc-12.4.0

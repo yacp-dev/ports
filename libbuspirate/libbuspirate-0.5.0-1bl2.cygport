@@ -3,10 +3,13 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="C library to talk with the bus pirate hardware"
-DESCRIPTION="The libbuspirate is a C library to talk with the bus pirate hardware
-(http://dangerousprototypes.com/docs/Bus_Pirate) in raw, binary scripting
-mode. The libbuspirate allows to quickly write a short C program to test
-interfacing with your favorite hardware."
+DESCRIPTION="The libbuspirate is a C library to talk with the bus pirate
+hardware in raw, binary scripting mode. The libbuspirate allows to quickly
+write a short C program to test interfacing with your favorite hardware."
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
 
 PKG_NAMES="
 	libbuspirate
@@ -18,7 +21,7 @@ libbuspirate_CONTENTS="
 	usr/share
 "
 libbuspirate0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygbuspirate-0.dll
 "
 libbuspirate_devel_CONTENTS="
 	usr/include

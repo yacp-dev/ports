@@ -1,0 +1,353 @@
+--- origsrc/gwyddion-3.12/Makefile.am	2026-07-20 11:50:37.000000000 +0000
++++ src/gwyddion-3.12/Makefile.am	2026-11-22 06:21:32.291695900 +0000
+@@ -14,8 +14,11 @@ SUBDIRS = \
+ 	data \
+ 	utils \
+ 	thumbnailer \
+-	python \
+-	devel-docs
++	python
++
++if ENABLE_GTK_DOC
++SUBDIRS += devel-docs
++endif
+ 
+ EXTRA_DIST = \
+ 	autogen.sh \
+--- origsrc/gwyddion-3.12/configure.ac	2026-08-31 14:58:52.000000000 +0000
++++ src/gwyddion-3.12/configure.ac	2026-11-22 06:21:32.291695900 +0000
+@@ -82,6 +82,7 @@ AC_SUBST(LIBRARY_RELEASE)
+ # Compilers, linkers, etc.
+ AC_CANONICAL_HOST
+ AC_PROG_CC
++CPPFLAGS="-I\$(top_builddir) $CPPFLAGS"
+ AC_MSG_CHECKING([for C standard])
+ AC_MSG_RESULT([$ac_prog_cc_stdc])
+ case "$ac_prog_cc_stdc" in
+--- origsrc/gwyddion-3.12/data/Makefile.am	2025-06-26 09:02:17.000000000 +0000
++++ src/gwyddion-3.12/data/Makefile.am	2026-11-22 06:21:32.293108000 +0000
+@@ -92,21 +92,21 @@ endif
+ # unexpanded ${prefix} in the desktop file.
+ # Depend on Makefile, this may run this rule perhaps too often but ensures
+ # the paths are updated every time they should.
+-gwyddion3.desktop: gwyddion3.desktop.in $(srcdir)/gwyddion3.xml Makefile
++gwyddion3.desktop: $(srcdir)/gwyddion3.desktop.in $(srcdir)/gwyddion3.xml Makefile
+ 	$(AM_V_GEN)x=`$(SED) -e '/^<mime-type/ s/.*<mime-type type="\(.*\)">.*/\1;/' -e t -e d <$(srcdir)/gwyddion3.xml | tr -d '\n'` \
+ 	&& $(SED) -e "s#@MIME_TYPE_LIST@#$$x#" \
+ 	  -e 's#[@]datadir[@]#$(datadir)#' \
+-	  <gwyddion3.desktop.in >gwyddion3.desktop
++	  < $(srcdir)/gwyddion3.desktop.in >gwyddion3.desktop
+ 
+ # Generate gwyddion3.thumbnailer from gwyddion3.xml to keep the file format list
+ # in sync.
+-gwyddion3.thumbnailer: gwyddion3.thumbnailer.in $(srcdir)/gwyddion3.xml
++gwyddion3.thumbnailer: $(srcdir)/gwyddion3.thumbnailer.in $(srcdir)/gwyddion3.xml
+ 	$(AM_V_GEN)x=`$(SED) -e '/^<mime-type/ s/.*<mime-type type="\(.*\)">.*/\1;/' -e t -e d <$(srcdir)/gwyddion3.xml | tr -d '\n'` \
+ 	&& $(SED) \
+ 	     -e "s#@MIME_TYPE_LIST@#$$x#" \
+ 	     -e "s#[@]EXEEXT[@]#$(EXEEXT)#" \
+ 	     -e "s#[@]bindir[@]#$(bindir)#" \
+-	     <gwyddion3.thumbnailer.in >gwyddion3.thumbnailer
++	     < $(srcdir)/gwyddion3.thumbnailer.in >gwyddion3.thumbnailer
+ 
+ # Desktop file installation
+ # FIXME: Maybe not according to current standards
+--- origsrc/gwyddion-3.12/libgwyapp/Makefile.am	2026-08-27 10:31:55.000000000 +0000
++++ src/gwyddion-3.12/libgwyapp/Makefile.am	2026-11-22 06:21:32.293108000 +0000
+@@ -72,12 +72,11 @@ lib_LTLIBRARIES = libgwyapp3.la
+ pkgconfigdata_DATA = libgwyapp3.pc
+ 
+ if OS_MSWIN
+-no_undefined = -no-undefined
+-export_symbols = -export-symbols libgwyapp3.def
+ win32_libs = -lole32
+-libgwyapp3_la_DEPENDENCIES = libgwyapp3.def
+ endif
+ 
++no_undefined = -no-undefined
++
+ # Must init
+ EXTRA_DIST = libgwyapp3.pc.in
+ CLEANFILES = libgwyapp3.def $(dist_gir_DATA) $(typelib_DATA)
+--- origsrc/gwyddion-3.12/libgwyddion/Makefile.am	2026-08-10 18:35:23.000000000 +0000
++++ src/gwyddion-3.12/libgwyddion/Makefile.am	2026-11-22 06:21:32.295904700 +0000
+@@ -102,11 +102,7 @@ lib_LTLIBRARIES = libgwyddion3.la
+ 
+ pkgconfigdata_DATA = libgwyddion3.pc
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-export_symbols = -export-symbols libgwyddion3.def
+-libgwyddion3_la_DEPENDENCIES = libgwyddion3.def
+-endif
+ 
+ # Must init
+ EXTRA_DIST = version.h.in libgwyddion3.pc.in
+--- origsrc/gwyddion-3.12/libgwyui/Makefile.am	2026-08-05 06:32:19.000000000 +0000
++++ src/gwyddion-3.12/libgwyui/Makefile.am	2026-11-22 06:21:32.295904700 +0000
+@@ -81,11 +81,7 @@ lib_LTLIBRARIES = libgwyui3.la
+ 
+ pkgconfigdata_DATA = libgwyui3.pc
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-export_symbols = -export-symbols libgwyui3.def
+-libgwyui3_la_DEPENDENCIES = libgwyui3.def
+-endif
+ 
+ # Must init
+ EXTRA_DIST = libgwyui3.pc.in
+--- origsrc/gwyddion-3.12/m4/gwy-hdf5.m4	2026-08-19 18:15:07.000000000 +0000
++++ src/gwyddion-3.12/m4/gwy-hdf5.m4	2026-11-22 06:21:32.297930800 +0000
+@@ -138,7 +138,9 @@ HDF5 support is being disabled (equivale
+             dnl
+             HDF5_tmp_flags=$(eval $H5CC -showconfig \
+                 | $GREP 'FLAGS\|Extra libraries:' \
+-                | $AWK -F: '{printf("%s "), $[]2}' )
++                | $AWK -F: '{printf("%s "), $[]2}' \
++                | tr ';' ' ' \
++                | sed -e 's/-lcygsz[[^[:space:]]]*/-lsz/g' -e 's/-lcygaec[[^[:space:]]]*/-laec/g' )
+ 
+             dnl Find the installation directory and append include/
+             HDF5_tmp_inst=$(eval $H5CC -showconfig \
+--- origsrc/gwyddion-3.12/modules/cmap/Makefile.am	2026-08-28 10:47:46.000000000 +0000
++++ src/gwyddion-3.12/modules/cmap/Makefile.am	2026-11-22 06:21:32.297930800 +0000
+@@ -45,16 +45,14 @@ cmap_LTLIBRARIES = \
+ EXTRA_DIST = \
+ 	$(disabled_sources)
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ if MODULE_DEPENDENCIES
+ module_libadd = \
+ 	$(top_builddir)/libgwyapp/libgwyapp3.la \
+ 	$(top_builddir)/libgwyddion/libgwyddion3.la \
+ 	$(top_builddir)/libgwyui/libgwyui3.la \
+-	@GTK_LIBS@ @LIBM@
++	@GTK_LIBS@ @LIBM@ @FFTW3_LIBS@
+ else
+ module_libadd = @LIBM@
+ endif
+--- origsrc/gwyddion-3.12/modules/file/Makefile.am	2026-05-05 16:33:51.000000000 +0000
++++ src/gwyddion-3.12/modules/file/Makefile.am	2026-11-22 06:21:32.299957500 +0000
+@@ -87,8 +87,8 @@ spmxfile_la_LIBADD  = @ZIP_LIBS@
+ 
+ zonfile_module     = zonfile.la
+ zonfile_la_SOURCES = zonfile.c $(gwyzip_headers)
+-zonfile_la_CFLAGS  = $(AM_CFLAGS) @ZIP_CFLAGS@
+-zonfile_la_LIBADD  = @ZIP_LIBS@
++zonfile_la_CFLAGS  = $(AM_CFLAGS) @ZIP_CFLAGS@ @ZSTD_CFLAGS@
++zonfile_la_LIBADD  = @ZIP_LIBS@ @ZSTD_LIBS@
+ else
+ nanoobserver_module =
+ nanoscantech_module =
+@@ -340,9 +340,7 @@ EXTRA_DIST = \
+ 	$(disabled_sources) \
+ 	1CHECKLIST
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ AM_CPPFLAGS = -I$(top_srcdir) -DG_LOG_DOMAIN=\"Gwy-Module\"
+ AM_CFLAGS = @GTK_CFLAGS@ @COMMON_CFLAGS@
+@@ -354,7 +352,7 @@ module_libadd = \
+ 	$(top_builddir)/libgwyapp/libgwyapp3.la \
+ 	$(top_builddir)/libgwyddion/libgwyddion3.la \
+ 	$(top_builddir)/libgwyui/libgwyui3.la \
+-	@GTK_LIBS@ @LIBM@
++	@GTK_LIBS@ @LIBM@ @FFTW3_LIBS@
+ else
+ module_libadd = @LIBM@
+ endif
+--- origsrc/gwyddion-3.12/modules/file/hdf5/Makefile.am	2026-04-02 14:16:20.000000000 +0000
++++ src/gwyddion-3.12/modules/file/hdf5/Makefile.am	2026-11-22 06:21:32.301159500 +0000
+@@ -59,9 +59,7 @@ noinst_HEADERS = \
+ 
+ EXTRA_DIST = $(disabled_sources)
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ AM_CPPFLAGS = -I$(top_srcdir) -I$(srcdir)/.. -DG_LOG_DOMAIN=\"Gwy-Module\"
+ AM_CFLAGS = @GTK_CFLAGS@ @COMMON_CFLAGS@
+@@ -70,7 +68,6 @@ AM_LDFLAGS = -avoid-version -module $(no
+ if MODULE_DEPENDENCIES
+ module_libadd = \
+ 	$(top_builddir)/libgwyapp/libgwyapp3.la \
+-	$(top_builddir)/libdraw/libgwydraw3.la \
+ 	$(top_builddir)/libgwyddion/libgwyddion3.la \
+ 	$(top_builddir)/libgwyui/libgwyui3.la \
+ 	@GTK_LIBS@ @LIBM@
+--- origsrc/gwyddion-3.12/modules/graph/Makefile.am	2025-05-09 16:34:48.000000000 +0000
++++ src/gwyddion-3.12/modules/graph/Makefile.am	2026-11-22 06:21:32.301984400 +0000
+@@ -43,9 +43,7 @@ endif
+ graph_LTLIBRARIES = \
+ 	$(graph_modules)
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ EXTRA_DIST = \
+ 	$(disabled_sources)
+@@ -55,7 +53,7 @@ module_libadd = \
+ 	$(top_builddir)/libgwyapp/libgwyapp3.la \
+ 	$(top_builddir)/libgwyddion/libgwyddion3.la \
+ 	$(top_builddir)/libgwyui/libgwyui3.la \
+-	@GTK_LIBS@ @LIBM@
++	@GTK_LIBS@ @LIBM@ @FFTW3_LIBS@
+ else
+ module_libadd = @LIBM@
+ endif
+--- origsrc/gwyddion-3.12/modules/image/Makefile.am	2026-08-24 07:40:10.000000000 +0000
++++ src/gwyddion-3.12/modules/image/Makefile.am	2026-11-22 06:21:32.303171500 +0000
+@@ -155,16 +155,14 @@ image_LTLIBRARIES = \
+ EXTRA_DIST = \
+ 	$(disabled_sources)
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ if MODULE_DEPENDENCIES
+ module_libadd = \
+ 	$(top_builddir)/libgwyapp/libgwyapp3.la \
+ 	$(top_builddir)/libgwyddion/libgwyddion3.la \
+ 	$(top_builddir)/libgwyui/libgwyui3.la \
+-	@EPOXY_LIBS@ @GTK_LIBS@ @LIBM@
++	@EPOXY_LIBS@ @GTK_LIBS@ @LIBM@ @FFTW3_LIBS@
+ else
+ module_libadd = @EPOXY_LIBS@ @LIBM@
+ endif
+--- origsrc/gwyddion-3.12/modules/image/ddd.c	2026-08-20 11:42:03.000000000 +0000
++++ src/gwyddion-3.12/modules/image/ddd.c	2026-11-22 06:21:32.304010100 +0000
+@@ -16,11 +16,12 @@
+  */
+ 
+ #include "config.h"
+-#ifdef HAVE_EPOXY
+ #include <glib/gi18n-lib.h>
+ #include <gtk/gtk.h>
+-#include <epoxy/gl.h>
+ #include <gwy.h>
++
++#ifdef HAVE_EPOXY
++#include <epoxy/gl.h>
+ #include "../preview.h"
+ 
+ #define RUN_MODES GWY_RUN_INTERACTIVE
+@@ -1304,6 +1305,8 @@ sanitize_params(GwyParams *params)
+ 
+ #else
+ 
++static gboolean module_register(void);
++
+ static GwyModuleInfo module_info = {
+     GWY_MODULE_ABI_VERSION,
+     &module_register,
+--- origsrc/gwyddion-3.12/modules/synth/Makefile.am	2026-06-25 13:32:45.000000000 +0000
++++ src/gwyddion-3.12/modules/synth/Makefile.am	2026-11-22 06:21:32.305187600 +0000
+@@ -53,16 +53,14 @@ synth_LTLIBRARIES = \
+ EXTRA_DIST = \
+ 	$(disabled_sources)
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ if MODULE_DEPENDENCIES
+ module_libadd = \
+ 	$(top_builddir)/libgwyapp/libgwyapp3.la \
+ 	$(top_builddir)/libgwyddion/libgwyddion3.la \
+ 	$(top_builddir)/libgwyui/libgwyui3.la \
+-	@GTK_LIBS@ @LIBM@
++	@GTK_LIBS@ @LIBM@ @FFTW3_LIBS@
+ else
+ module_libadd = @LIBM@
+ endif
+--- origsrc/gwyddion-3.12/modules/tool/Makefile.am	2026-08-28 13:36:53.000000000 +0000
++++ src/gwyddion-3.12/modules/tool/Makefile.am	2026-11-22 06:21:32.306036300 +0000
+@@ -41,16 +41,14 @@ endif
+ tool_LTLIBRARIES = \
+ 	$(tool_modules)
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ if MODULE_DEPENDENCIES
+ module_libadd = \
+ 	$(top_builddir)/libgwyapp/libgwyapp3.la \
+ 	$(top_builddir)/libgwyddion/libgwyddion3.la \
+ 	$(top_builddir)/libgwyui/libgwyui3.la \
+-	@GTK_LIBS@ @LIBM@
++	@GTK_LIBS@ @LIBM@ @FFTW3_LIBS@
+ else
+ module_libadd = @LIBM@
+ endif
+--- origsrc/gwyddion-3.12/modules/volume/Makefile.am	2026-08-28 10:47:46.000000000 +0000
++++ src/gwyddion-3.12/modules/volume/Makefile.am	2026-11-22 06:21:32.307203400 +0000
+@@ -60,16 +60,14 @@ volume_LTLIBRARIES = \
+ EXTRA_DIST = \
+ 	$(disabled_sources)
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ if MODULE_DEPENDENCIES
+ module_libadd = \
+ 	$(top_builddir)/libgwyapp/libgwyapp3.la \
+ 	$(top_builddir)/libgwyddion/libgwyddion3.la \
+ 	$(top_builddir)/libgwyui/libgwyui3.la \
+-	@GTK_LIBS@ @LIBM@
++	@GTK_LIBS@ @LIBM@ @FFTW3_LIBS@
+ else
+ module_libadd = @LIBM@
+ endif
+--- origsrc/gwyddion-3.12/modules/xyz/Makefile.am	2026-08-28 10:47:46.000000000 +0000
++++ src/gwyddion-3.12/modules/xyz/Makefile.am	2026-11-22 06:21:32.308062700 +0000
+@@ -41,16 +41,14 @@ xyz_LTLIBRARIES = \
+ EXTRA_DIST = \
+ 	$(disabled_sources)
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ if MODULE_DEPENDENCIES
+ module_libadd = \
+ 	$(top_builddir)/libgwyapp/libgwyapp3.la \
+ 	$(top_builddir)/libgwyddion/libgwyddion3.la \
+ 	$(top_builddir)/libgwyui/libgwyui3.la \
+-	@GTK_LIBS@ @LIBM@
++	@GTK_LIBS@ @LIBM@ @FFTW3_LIBS@
+ else
+ module_libadd = @LIBM@
+ endif
+--- origsrc/gwyddion-3.12/thumbnailer/Makefile.am	2025-05-09 16:34:48.000000000 +0000
++++ src/gwyddion-3.12/thumbnailer/Makefile.am	2026-11-22 06:21:32.308961900 +0000
+@@ -4,9 +4,7 @@ libgwyddion = $(top_builddir)/libgwyddio
+ libgwyui = $(top_builddir)/libgwyui/libgwyui3.la
+ libgwyapp = $(top_builddir)/libgwyapp/libgwyapp3.la
+ 
+-if OS_MSWIN
+ no_undefined = -no-undefined
+-endif
+ 
+ bin_PROGRAMS = gwyddion3-thumbnailer
+ man1_MANS = gwyddion3-thumbnailer.1
+--- origsrc/gwyddion-3.12/utils/Makefile.am	2026-04-06 09:23:20.000000000 +0000
++++ src/gwyddion-3.12/utils/Makefile.am	2026-11-22 06:21:32.308961900 +0000
+@@ -38,7 +38,6 @@ AM_CFLAGS = @GTK_CFLAGS@ @COMMON_CFLAGS@
+ 
+ dump_modules_LDADD = @GTK_LIBS@ @BASIC_LIBS@ \
+ 	$(libgwyapp) \
+-	$(libgwymodule) \
+ 	$(libgwyui) \
+ 	$(libgwyddion)
+ 

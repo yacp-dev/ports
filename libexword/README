@@ -4,25 +4,25 @@ libexword is a library that implements the low-level OBEX commands used to
 communicate Casio EX-word dictionaries.
 
 Runtime requirements:
-  cygwin-3.6.0-0.212.g6af8fea4bbad
-  libexword-devel-1.0.1-1bl2
-  libexword1-1.0.1-1bl2
-  libiconv2-1.17-1
-  libreadline7-8.2-2
+  cygwin-3.6.12-1
+  libexword-devel-1.0.1-1bl3
+  libexword1-1.0.1-1bl3
+  libiconv2-1.19-2
+  libreadline8-8.3-1
   libusb1.0-1.0.21-1
   libusb1.0-devel-1.0.21-1
-  pkg-config-2.3.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libiconv-devel-1.17-1
-  libreadline-devel-8.2-2
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libiconv-devel-1.19-2
+  libreadline-devel-8.3-1
+  libtool-2.6.2-1
   libusb1.0-devel-1.0.21-1
   make-4.4.1-2
 
@@ -59,7 +59,6 @@ Files included in the binary package:
   /usr/share/doc/libexword/README
   /usr/share/doc/libexword/models.txt
   /usr/share/doc/libexword/protocol.txt
-  /usr/share/exword/models.txt
 
 (libexword1)
   /usr/bin/cygexword-1.dll
@@ -72,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.1-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.1-1bl2 -----
 Rebuild with gcc-12.4.0

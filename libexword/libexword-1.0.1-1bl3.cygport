@@ -7,16 +7,23 @@ SUMMARY="Library for transfering files over USB to casio EX-word electronic dict
 DESCRIPTION="libexword is a library that implements the low-level OBEX commands used to
 communicate Casio EX-word dictionaries."
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
-# LICENSE_URI=""
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
 
-BUILD_REQUIRES="libiconv-devel libreadline-devel libusb1.0-devel"
+BUILD_REQUIRES="
+	libiconv-devel
+	libreadline-devel
+	libusb1.0-devel
+"
 
 DOCS="
 	models.txt
 	protocol.txt
 "
+
+# gcc 14 made implicit function declarations an error; the source relies on them
+export CFLAGS="${CFLAGS} -Wno-error=implicit-function-declaration"
 
 PKG_NAMES="
 	${PN}
@@ -37,3 +44,18 @@ libexword_devel_CONTENTS="
 libexword_SUMMARY="${SUMMARY} (utilities)"
 libexword1_SUMMARY="${SUMMARY} (runtime)"
 libexword_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test() {
+	# no upstream tests: check the interactive shell starts and exits
+	cd ${B}/src
+	export PATH=${B}/src/.libs:${PATH}
+	verbose bash -c 'echo exit | timeout 60 ./exword.exe | grep -q "^Exword dictionary tool\."'
+}
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	# upstream installs models.txt again, which DOCS already provides
+	verbose rm -rf ${D}/usr/share/exword
+}

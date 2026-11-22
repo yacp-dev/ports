@@ -1,5 +1,5 @@
---- origsrc/libexword-rel1.0.1/configure.ac	2011-05-31 05:49:04.000000000 +0900
-+++ src/libexword-rel1.0.1/configure.ac	2024-10-24 11:32:13.136553400 +0900
+--- origsrc/libexword-rel1.0.1/configure.ac	2011-05-30 20:49:04.000000000 +0000
++++ src/libexword-rel1.0.1/configure.ac	2026-11-22 05:41:09.658252000 +0000
 @@ -2,13 +2,14 @@
  # Process this file with autoconf to produce a configure script.
  
@@ -26,8 +26,8 @@
    *-*-mingw32*)
  	EXTRA_LIBS="-lws2_32 -lshlwapi"
  	EXTRA_LDFLAGS="-no-undefined"
---- origsrc/libexword-rel1.0.1/docs/Makefile.am	2011-05-31 05:49:04.000000000 +0900
-+++ src/libexword-rel1.0.1/docs/Makefile.am	2024-10-24 11:25:40.527727300 +0900
+--- origsrc/libexword-rel1.0.1/docs/Makefile.am	2011-05-30 20:49:04.000000000 +0000
++++ src/libexword-rel1.0.1/docs/Makefile.am	2026-11-22 05:41:09.660271200 +0000
 @@ -5,7 +5,7 @@ endif
  
  Doxygen:

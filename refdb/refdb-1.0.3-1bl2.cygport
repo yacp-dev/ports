@@ -19,7 +19,15 @@ src_patch_hook()
 	echo "${PV}" > svn_dist_version
 }
 
-BUILD_REQUIRES="libdbi-devel libexpat-devel libiconv-devel libreadline-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libdbi-devel
+	libexpat-devel
+	libiconv-devel
+	libreadline-devel
+"
+
+export CFLAGS="${CFLAGS} -std=gnu17 -Wno-error=incompatible-pointer-types -Wno-error=implicit-function-declaration"
 
 CYGCONF_ARGS="
 	--disable-docs

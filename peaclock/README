@@ -3,20 +3,19 @@ peaclock
 Responsive and customizable clock, timer, and stopwatch for the terminal
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libgcc1-11.4.0-1
-  libicu74-74.2-1
-  libstdc++6-11.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libicu76-76.1-2
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.42-1
-  cmake-3.28.3-1
-  cygport-0.36.8-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
-  libicu-devel-74.2-1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  libicu-devel-76.1-2
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/octobanana/peaclock
@@ -51,6 +50,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.4.3-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.4.3-1bl3 -----
 Rebuild for libicu

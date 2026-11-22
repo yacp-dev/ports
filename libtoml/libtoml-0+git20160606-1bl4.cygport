@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/ajwans/${PN}"
 GIT_URI="https://github.com/ajwans/${PN}.git"
+GIT_REV="03e8a3ab1d4d014e63a2befe8a48e74783a81521"
 PATCH_URI="
 	https://aur.archlinux.org/cgit/aur.git/plain/libtoml-cmake-install.patch?h=libtoml-git
 "
@@ -12,12 +13,20 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libicu-devel"
+BUILD_REQUIRES="
+	CUnit
+	libicu-devel
+	ragel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+CFLAGS+=" -D_GNU_SOURCE"
 
 inherit cmake
 inherit git
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DSOVERSION:STRING=0
 	-DVERSION:STRING=0
 "
@@ -37,7 +46,7 @@ libtoml_CONTENTS="
 	usr/share
 "
 libtoml0_CONTENTS="
-	usr/bin/*-0.dll
+	usr/bin/cyg*-0.dll
 "
 libtoml_devel_CONTENTS="
 	usr/include

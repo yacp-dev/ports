@@ -1,0 +1,23 @@
+--- origsrc/indexinfo/Makefile	2017-11-05 20:38:31.000000000 +0000
++++ src/indexinfo/Makefile	2026-11-22 01:55:12.728573700 +0000
+@@ -5,7 +5,7 @@ OBJS=	${SRCS:.c=.o}
+ PREFIX?=	/usr/local
+ PACKAGE_NAME=	indexinfo
+ PACKAGE_VERSION=	0.3.1
+-CFLAGS+=	-DPACKAGE_NAME=\"${PACKAGE_NAME}\" \
++override CFLAGS+=	-DPACKAGE_NAME=\"${PACKAGE_NAME}\" \
+ 		-DPACKAGE_VERSION=\"${PACKAGE_VERSION}\" \
+ 		-D_BSD_SOURCE
+ 
+--- origsrc/indexinfo/indexinfo.c	2017-11-05 20:38:31.000000000 +0000
++++ src/indexinfo/indexinfo.c	2026-11-22 01:55:12.730587300 +0000
+@@ -211,6 +211,9 @@ parse_info_dir(int fd)
+ #ifdef __linux__
+ 		if (_D_EXACT_NAMLEN(dp) < 5)
+ 			continue;
++#elif defined(__CYGWIN__)
++		if (strlen(dp->d_name) < 5)
++			continue;
+ #else
+ 		if (dp->d_namlen < 5)
+ 			continue;

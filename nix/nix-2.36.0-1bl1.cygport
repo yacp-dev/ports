@@ -1,0 +1,85 @@
+HOMEPAGE="https://nixos.org/"
+SRC_URI="https://github.com/NixOS/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_DIR="${PN}-${PV}"
+
+CATEGORY="Devel"
+SUMMARY="Purely functional package manager"
+DESCRIPTION="Nix is a purely functional package manager. It treats packages
+like values in a purely functional programming language such as Haskell — they
+are built by functions that have no side effects, and they never change after
+they have been built."
+
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	bison
+	flex
+	libarchive-devel
+	libblake3-devel
+	libboost-devel
+	libbrotli-devel
+	libcpuid-devel
+	libcurl-devel
+	libgc-devel
+	libgit2-devel
+	libmimalloc-devel
+	libreadline-devel
+	libsodium-devel
+	libsqlite3-devel
+	libssl-devel
+	libzstd-devel
+	lowdown
+	ninja
+	nlohmann_json
+	toml11
+	zlib-devel
+"
+
+inherit meson
+
+CYGMESON_ARGS="
+	-Dbenchmarks=false
+	-Ddoc-gen=false
+	-Dfunctional-tests=false
+	-Dfuzzers=false
+	-Djson-schema-checks=false
+	-Dunit-tests=false
+	-Dlibcmd:readline-flavor=readline
+	-Dlibexpr:gc=enabled
+	-Dlibstore:s3-aws-auth=disabled
+	-Dlibstore:seccomp-sandboxing=disabled
+	-Dlibutil:cpuid=enabled
+	-Dnix:mimalloc=enabled
+"
+
+DOCS="
+	COPYING
+	README.md
+"
+
+PKG_NAMES="
+	${PN}
+	lib${PN}${PV}
+	lib${PN}-devel
+"
+nix_CONTENTS="
+	etc
+	usr/bin/*.exe
+	usr/libexec
+	usr/share/bash-completion
+	usr/share/doc
+	usr/share/fish
+	usr/share/zsh
+"
+libnix2_36_0_CONTENTS="
+	usr/bin/cyg*-${PV}.dll
+"
+libnix_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+nix_SUMMARY="${SUMMARY} (utilities)"
+libnix2_36_0_SUMMARY="${SUMMARY} (runtime)"
+libnix_devel_SUMMARY="${SUMMARY} (development)"

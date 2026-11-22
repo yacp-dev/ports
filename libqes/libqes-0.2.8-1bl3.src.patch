@@ -1,5 +1,5 @@
---- origsrc/libqes-0.2.8/CMakeLists.txt	2017-02-07 13:03:15.000000000 +0900
-+++ src/libqes-0.2.8/CMakeLists.txt	2024-11-18 21:20:19.249070500 +0900
+--- origsrc/libqes-0.2.8/CMakeLists.txt	2017-02-07 04:03:15.000000000 +0000
++++ src/libqes-0.2.8/CMakeLists.txt	2026-11-22 02:05:55.035587400 +0000
 @@ -162,3 +162,10 @@ ADD_SUBDIRECTORY(src)
  if (NOT LIBQES_IS_SUBPROJECT)
      ADD_SUBDIRECTORY(test)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include/libqes)
 +configure_file(${CMAKE_SOURCE_DIR}/libqes.pc.in ${CMAKE_BINARY_DIR}/libqes.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libqes.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libqes-0.2.8/libqes.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libqes-0.2.8/libqes.pc.in	2024-11-18 21:12:02.133022600 +0900
+--- origsrc/libqes-0.2.8/libqes.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libqes-0.2.8/libqes.pc.in	2026-11-22 02:05:55.035587400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,8 +24,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lqes
 +Cflags: -I${includedir}
---- origsrc/libqes-0.2.8/src/CMakeLists.txt	2017-02-07 13:03:15.000000000 +0900
-+++ src/libqes-0.2.8/src/CMakeLists.txt	2024-11-18 21:20:11.749093700 +0900
+--- origsrc/libqes-0.2.8/src/CMakeLists.txt	2017-02-07 04:03:15.000000000 +0000
++++ src/libqes-0.2.8/src/CMakeLists.txt	2026-11-22 02:05:55.037599900 +0000
 @@ -2,19 +2,24 @@ file(GLOB LIBQES_SOURCES qes_*.c)
  
  # Targets

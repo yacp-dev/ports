@@ -11,7 +11,9 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="zlib-devel"
+BUILD_REQUIRES="
+	zlib-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -24,6 +26,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DVERSION:STRING=${PV}
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 PKG_NAMES="

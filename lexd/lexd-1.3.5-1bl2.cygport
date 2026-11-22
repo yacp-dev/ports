@@ -11,7 +11,11 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libicu-devel liblttoolbox-devel utf8cpp-devel"
+BUILD_REQUIRES="
+	libicu-devel
+	liblttoolbox-devel
+	utf8cpp-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -I/usr/include/utf8cpp"
 

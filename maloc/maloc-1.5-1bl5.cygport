@@ -23,7 +23,10 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="doc/LGPL.txt"
 
-BUILD_REQUIRES="libreadline-devel libtirpc-devel"
+BUILD_REQUIRES="
+	libreadline-devel
+	libtirpc-devel
+"
 
 export CFLAGS="${CFLAGS} `pkg-config --cflags libtirpc`"
 export LIBS="${LIBS} `pkg-config --libs libtirpc`"

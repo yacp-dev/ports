@@ -1,5 +1,5 @@
---- origsrc/maloc/Makefile.am	2010-08-10 04:01:25.000000000 +0900
-+++ src/maloc/Makefile.am	2024-12-04 09:41:03.471693900 +0900
+--- origsrc/maloc/Makefile.am	2010-08-09 19:01:25.000000000 +0000
++++ src/maloc/Makefile.am	2026-11-22 04:52:26.374980700 +0000
 @@ -37,6 +37,9 @@ SUFFIXES = .y .l .H .h .m .C .cc .c .f .
  always_built_SUBDIRS = src doc
  SUBDIRS = $(always_built_SUBDIRS) .
@@ -10,8 +10,8 @@
  dox:
  	cd ${top_srcdir}/doc/doxygen; make
  
---- origsrc/maloc/configure.ac	2010-12-03 05:22:07.000000000 +0900
-+++ src/maloc/configure.ac	2024-12-04 09:54:00.986742400 +0900
+--- origsrc/maloc/configure.ac	2010-12-02 20:22:07.000000000 +0000
++++ src/maloc/configure.ac	2026-11-22 04:52:26.374980700 +0000
 @@ -97,7 +97,7 @@ dnl 0. autoconf initialization
  dnl ##########################################################################
  
@@ -27,8 +27,8 @@
      doc/doxygen/Makefile
 +    maloc.pc
  ])
---- origsrc/maloc/maloc.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/maloc/maloc.pc.in	2024-12-04 09:41:03.487299600 +0900
+--- origsrc/maloc/maloc.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/maloc/maloc.pc.in	2026-11-22 04:52:26.376733900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -40,8 +40,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lmaloc
 +Cflags: -I${includedir}
---- origsrc/maloc/src/aaa_lib/Makefile.am	2024-12-04 09:41:00.205050200 +0900
-+++ src/maloc/src/aaa_lib/Makefile.am	2024-12-04 09:41:03.487299600 +0900
+--- origsrc/maloc/src/aaa_lib/Makefile.am	2026-11-22 04:52:25.946855400 +0000
++++ src/maloc/src/aaa_lib/Makefile.am	2026-11-22 04:52:26.376733900 +0000
 @@ -55,9 +55,9 @@ lib_LTLIBRARIES = libmaloc.la ${LIBEFENC
  libmaloc_la_SOURCES =
  libmaloc_la_LIBADD  = ${BASE_LIBS} ${VSYS_LIBS} ${VSH_LIBS} ${PSH_LIBS}

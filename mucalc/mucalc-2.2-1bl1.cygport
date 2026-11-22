@@ -13,7 +13,10 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libmuparser-devel libreadline-devel"
+BUILD_REQUIRES="
+	libmuparser-devel
+	libreadline-devel
+"
 
 inherit cmake
 

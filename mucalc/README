@@ -7,41 +7,40 @@ with tab-completion and persistent history using GNU readline. The evaluation
 of expressions is handled by the muParser math parser library.
 
 Runtime requirements:
-  cygwin-3.5.0-0.466.g41e13e4d9d73
-  libgcc1-11.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
   libmuparser2-2.2.5-1
-  libreadline7-8.2-2
-  libstdc++6-11.4.0-1
+  libreadline8-8.3-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-3
-  cmake-3.25.3-1
-  cygport-0.36.7-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
   libmuparser-devel-2.2.5-1
-  libreadline-devel-8.2-2
-  ninja-1.11.1-1
+  libreadline-devel-8.3-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://marlam.de/mucalc/
 
 Canonical download:
-  https://marlam.de/mucalc/releases/mucalc-2.1.tar.gz
+  https://marlam.de/mucalc/releases/mucalc-2.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mucalc-2.1-X-src.tar.xz
+  1. unpack mucalc-2.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mucalc-2.1-X.cygport all
+        % cygport ./mucalc-2.2-X.cygport all
 
 This will create:
-  /usr/src/mucalc-2.1-X-src.tar.xz
-  /usr/src/mucalc-2.1-X.tar.xz
+  /usr/src/mucalc-2.2-X-src.tar.xz
+  /usr/src/mucalc-2.2-X.tar.xz
 
 -------------------------------------------
 
@@ -56,6 +55,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.2-1bl1 -----
+Version bump.
 
 ----- version 2.1-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

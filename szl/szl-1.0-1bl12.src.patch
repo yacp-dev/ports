@@ -1,5 +1,5 @@
---- origsrc/szl-1.0/configure.ac	2010-08-16 07:04:18.000000000 +0900
-+++ src/szl-1.0/configure.ac	2024-09-20 12:29:24.834289000 +0900
+--- origsrc/szl-1.0/configure.ac	2010-08-15 22:04:18.000000000 +0000
++++ src/szl-1.0/configure.ac	2026-11-22 11:38:04.884357600 +0000
 @@ -39,6 +39,8 @@ AS_IF([test "x${ac_cv_env_CXXFLAGS_set}"
    AC_MSG_RESULT([use user-supplied: $CXXFLAGS])
  ])
@@ -9,8 +9,8 @@
  AC_SUBST(SZL_OPT_FLAG)
  
  AC_PROG_LN_S
---- origsrc/szl-1.0/src/Makefile.am	2010-08-16 07:04:17.000000000 +0900
-+++ src/szl-1.0/src/Makefile.am	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/Makefile.am	2010-08-15 22:04:17.000000000 +0000
++++ src/szl-1.0/src/Makefile.am	2026-11-22 11:38:04.884357600 +0000
 @@ -250,12 +250,13 @@ libengine_la_SOURCES = \
  
  ##### Libraries to install
@@ -54,8 +54,8 @@
  
  ##### The szl program
  
---- origsrc/szl-1.0/src/emitters/szlunique.cc	2010-08-16 07:04:17.000000000 +0900
-+++ src/szl-1.0/src/emitters/szlunique.cc	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/emitters/szlunique.cc	2010-08-15 22:04:17.000000000 +0000
++++ src/szl-1.0/src/emitters/szlunique.cc	2026-11-22 11:38:04.886370800 +0000
 @@ -189,6 +189,7 @@ int SzlUnique::SzlUniqueEntry::AddHash(H
      exists_.insert(hash);
      return 0;
@@ -64,8 +64,8 @@
  }
  
  // Move an element up the heap to its proper position.
---- origsrc/szl-1.0/src/emitters/tests/szlquantile_unittest.cc	2010-08-16 07:04:16.000000000 +0900
-+++ src/szl-1.0/src/emitters/tests/szlquantile_unittest.cc	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/emitters/tests/szlquantile_unittest.cc	2010-08-15 22:04:16.000000000 +0000
++++ src/szl-1.0/src/emitters/tests/szlquantile_unittest.cc	2026-11-22 11:38:04.886370800 +0000
 @@ -233,7 +233,7 @@ bool SzlQuantileTest::CheckCorrectness(i
    // within the tolerable range. The ideal index
    // we are expecting is calculated as next_rank.
@@ -75,8 +75,8 @@
      dec.Init(rvec[i].data(), rvec[i].size());
      dec.GetString(&vstr);
      CHECK_EQ(sscanf(vstr.c_str(), "xx-%d", &index), 1);
---- origsrc/szl-1.0/src/engine/code.cc	2010-08-16 07:04:14.000000000 +0900
-+++ src/szl-1.0/src/engine/code.cc	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/engine/code.cc	2010-08-15 22:04:14.000000000 +0000
++++ src/szl-1.0/src/engine/code.cc	2026-11-22 11:38:04.888383100 +0000
 @@ -18,6 +18,7 @@
  #include <string>
  #include <errno.h>
@@ -85,8 +85,8 @@
  
  #include "engine/globals.h"
  #include "public/logging.h"
---- origsrc/szl-1.0/src/engine/form.cc	2010-08-16 07:04:13.000000000 +0900
-+++ src/szl-1.0/src/engine/form.cc	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/engine/form.cc	2010-08-15 22:04:13.000000000 +0000
++++ src/szl-1.0/src/engine/form.cc	2026-11-22 11:38:04.888383100 +0000
 @@ -801,8 +801,7 @@ bool ArrayForm::IsEqual(Val* v1, Val* v2
  
  Val* ArrayForm::Cmp(Val* v1, Val* v2) const {
@@ -107,8 +107,8 @@
    TupleVal* t1 = v1->as_tuple();
    TupleVal* t2 = v2->as_tuple();
    assert(t1->type()->IsEqual(t2->type(), false));  // ignore proto info
---- origsrc/szl-1.0/src/engine/protocolbuffers.cc	2010-08-16 07:04:13.000000000 +0900
-+++ src/szl-1.0/src/engine/protocolbuffers.cc	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/engine/protocolbuffers.cc	2010-08-15 22:04:13.000000000 +0000
++++ src/szl-1.0/src/engine/protocolbuffers.cc	2026-11-22 11:38:04.890395300 +0000
 @@ -20,7 +20,9 @@
  #include "google/protobuf/io/coded_stream.h"
  #include "google/protobuf/io/zero_copy_stream_impl.h"
@@ -119,8 +119,8 @@
  
  #include "engine/globals.h"
  #include "public/commandlineflags.h"
---- origsrc/szl-1.0/src/engine/scanner.h	2010-08-16 07:04:13.000000000 +0900
-+++ src/szl-1.0/src/engine/scanner.h	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/engine/scanner.h	2010-08-15 22:04:13.000000000 +0000
++++ src/szl-1.0/src/engine/scanner.h	2026-11-22 11:38:04.890395300 +0000
 @@ -14,6 +14,7 @@
  // ------------------------------------------------------------------------
  
@@ -129,8 +129,8 @@
  
  namespace sawzall {
  
---- origsrc/szl-1.0/src/engine/symboltable.cc	2010-08-16 07:04:14.000000000 +0900
-+++ src/szl-1.0/src/engine/symboltable.cc	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/engine/symboltable.cc	2010-08-15 22:04:14.000000000 +0000
++++ src/szl-1.0/src/engine/symboltable.cc	2026-11-22 11:38:04.892408000 +0000
 @@ -44,7 +44,7 @@ namespace sawzall {
  // ------------------------------------------------------------------------------
  // Implementation of SymbolTable
@@ -140,8 +140,8 @@
  
  List<TableType*>* SymbolTable::table_types_ = NULL;
  TableType* SymbolTable::collection_type_ = NULL;
---- origsrc/szl-1.0/src/protoc_plugin/linked_ptr.h	2010-08-16 07:03:37.000000000 +0900
-+++ src/szl-1.0/src/protoc_plugin/linked_ptr.h	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/protoc_plugin/linked_ptr.h	2010-08-15 22:03:37.000000000 +0000
++++ src/szl-1.0/src/protoc_plugin/linked_ptr.h	2026-11-22 11:38:04.892408000 +0000
 @@ -48,6 +48,9 @@
  #ifndef _LINKED_PTR_H__
  #define _LINKED_PTR_H__
@@ -152,8 +152,8 @@
  
  // This is used internally by all instances of linked_ptr<>.  It needs to be
  // a non-template class because different types of linked_ptr<> can refer to
---- origsrc/szl-1.0/src/protoc_plugin/szl_generator.h	2010-08-16 07:29:52.000000000 +0900
-+++ src/szl-1.0/src/protoc_plugin/szl_generator.h	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/protoc_plugin/szl_generator.h	2010-08-15 22:29:52.000000000 +0000
++++ src/szl-1.0/src/protoc_plugin/szl_generator.h	2026-11-22 11:38:04.894420700 +0000
 @@ -20,8 +20,14 @@
  #include <set>
  #include <string>
@@ -169,8 +169,8 @@
  namespace google {
  namespace protobuf {
  
---- origsrc/szl-1.0/src/protoc_plugin/topologicalsorter-inl.h	2010-08-16 07:03:37.000000000 +0900
-+++ src/szl-1.0/src/protoc_plugin/topologicalsorter-inl.h	2024-09-20 12:29:24.849918100 +0900
+--- origsrc/szl-1.0/src/protoc_plugin/topologicalsorter-inl.h	2010-08-15 22:03:37.000000000 +0000
++++ src/szl-1.0/src/protoc_plugin/topologicalsorter-inl.h	2026-11-22 11:38:04.895201900 +0000
 @@ -24,6 +24,10 @@
  #include <queue>
  #include <vector>
@@ -182,8 +182,8 @@
  #include "protoc_plugin/topologicalsorter.h"
  
  
---- origsrc/szl-1.0/src/public/porting.h	2010-08-16 07:04:17.000000000 +0900
-+++ src/szl-1.0/src/public/porting.h	2024-09-20 12:29:24.865547600 +0900
+--- origsrc/szl-1.0/src/public/porting.h	2010-08-15 22:04:17.000000000 +0000
++++ src/szl-1.0/src/public/porting.h	2026-11-22 11:38:04.896179000 +0000
 @@ -48,7 +48,9 @@ typedef uint64_t uint64;
  
  typedef signed char schar;
@@ -194,8 +194,8 @@
  typedef long sword_t;
  typedef unsigned long uword_t;
  
---- origsrc/szl-1.0/src/utilities/port_ieee.h	2010-08-16 07:04:16.000000000 +0900
-+++ src/szl-1.0/src/utilities/port_ieee.h	2024-09-20 12:29:24.865547600 +0900
+--- origsrc/szl-1.0/src/utilities/port_ieee.h	2010-08-15 22:04:16.000000000 +0000
++++ src/szl-1.0/src/utilities/port_ieee.h	2026-11-22 11:38:04.896179000 +0000
 @@ -14,7 +14,7 @@
  // ------------------------------------------------------------------------
  
@@ -205,8 +205,8 @@
  #include <ieeefp.h>
  #elif defined(OS_MACOSX)
  #include <machine/endian.h>
---- origsrc/szl-1.0/src/utilities/random_base.cc	2010-08-16 07:04:15.000000000 +0900
-+++ src/szl-1.0/src/utilities/random_base.cc	2024-09-20 12:29:24.865547600 +0900
+--- origsrc/szl-1.0/src/utilities/random_base.cc	2010-08-15 22:04:15.000000000 +0000
++++ src/szl-1.0/src/utilities/random_base.cc	2026-11-22 11:38:04.898191500 +0000
 @@ -18,6 +18,7 @@
  #include <string>
  #include <memory.h>

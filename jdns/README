@@ -5,24 +5,24 @@ record type (notably SRV), as well as Multicast DNS queries and advertising.
 Multicast support is based on Jeremie Miller's 'mdnsd' implementation.
 
 Runtime requirements:
-  cygwin-3.6.9-1
+  cygwin-3.6.12-1
   libQt5Core-devel-5.9.4-2
   libQt5Core5-5.9.4-2
-  libgcc1-13.4.0-1
-  libjdns-devel-2.0.6-1bl2
-  libjdns2-2.0.6-1bl2
-  libqjdns-devel-2.0.6-1bl2
-  libqjdns2-2.0.6-1bl2
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  libgcc1-14.4.0-1
+  libjdns-devel-3.1.3-1bl1
+  libjdns3-3.1.3-1bl1
+  libqjdns-devel-3.1.3-1bl1
+  libqjdns3-3.1.3-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
   ninja-1.13.2-1
 
@@ -30,24 +30,24 @@ Canonical website:
   https://github.com/psi-im/jdns
 
 Canonical download:
-  https://github.com/psi-im/jdns/archive/refs/tags/v2.0.6.tar.gz
+  https://github.com/psi-im/jdns/archive/refs/tags/v3.1.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack jdns-2.0.6-X-src.tar.xz
+  1. unpack jdns-3.1.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./jdns-2.0.6-X.cygport all
+        % cygport ./jdns-3.1.3-X.cygport all
 
 This will create:
-  /usr/src/jdns-2.0.6-X-src.tar.xz
-  /usr/src/jdns-2.0.6-X.tar.xz
-  /usr/src/libjdns2-2.0.6-X.tar.xz
-  /usr/src/libjdns-devel-2.0.6-X.tar.xz
-  /usr/src/libqjdns2-2.0.6-X.tar.xz
-  /usr/src/libqjdns-devel-2.0.6-X.tar.xz
+  /usr/src/jdns-3.1.3-X-src.tar.xz
+  /usr/src/jdns-3.1.3-X.tar.xz
+  /usr/src/libjdns3-3.1.3-X.tar.xz
+  /usr/src/libjdns-devel-3.1.3-X.tar.xz
+  /usr/src/libqjdns3-3.1.3-X.tar.xz
+  /usr/src/libqjdns-devel-3.1.3-X.tar.xz
 
 -------------------------------------------
 
@@ -60,28 +60,33 @@ Files included in the binary package:
   /usr/share/doc/jdns/README.md
   /usr/share/doc/jdns/TODO
 
-(libjdns2)
-  /usr/bin/cygjdns-2.dll
+(libjdns3)
+  /usr/bin/cygjdns-3.dll
 
 (libjdns-devel)
   /usr/include/jdns/jdns.h
   /usr/include/jdns/jdns_export.h
   /usr/lib/cmake/jdns/JDnsConfig.cmake
   /usr/lib/cmake/jdns/JDnsConfigVersion.cmake
-  /usr/lib/cmake/jdns/JDnsTargets-release.cmake
+  /usr/lib/cmake/jdns/JDnsTargets-relwithdebinfo.cmake
   /usr/lib/cmake/jdns/JDnsTargets.cmake
   /usr/lib/libjdns.dll.a
   /usr/lib/pkgconfig/jdns.pc
 
-(libqjdns2)
-  /usr/bin/cygqjdns-2.dll
+(libqjdns3)
+  /usr/bin/cygqjdns-3.dll
 
 (libqjdns-devel)
   /usr/include/jdns/qjdns.h
+  /usr/include/jdns/qjdns_externaltransport.h
+  /usr/include/jdns/qjdns_httptransport.h
+  /usr/include/jdns/qjdns_querytransport.h
+  /usr/include/jdns/qjdns_tcptransport.h
+  /usr/include/jdns/qjdnsmulticast.h
   /usr/include/jdns/qjdnsshared.h
   /usr/lib/cmake/qjdns/QJDnsConfig.cmake
   /usr/lib/cmake/qjdns/QJDnsConfigVersion.cmake
-  /usr/lib/cmake/qjdns/QJDnsTargets-release.cmake
+  /usr/lib/cmake/qjdns/QJDnsTargets-relwithdebinfo.cmake
   /usr/lib/cmake/qjdns/QJDnsTargets.cmake
   /usr/lib/libqjdns.dll.a
   /usr/lib/pkgconfig/qjdns.pc
@@ -89,6 +94,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.1.3-1bl1 -----
+Version bump.
 
 ----- version 2.0.6-1bl2 -----
 Rebuild with gcc-13.4.0

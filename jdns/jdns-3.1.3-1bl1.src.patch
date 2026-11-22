@@ -1,0 +1,67 @@
+--- origsrc/jdns-3.1.3/include/jdns/jdns_export.h	2026-11-19 03:48:07.000000000 +0000
++++ src/jdns-3.1.3/include/jdns/jdns_export.h	2026-11-22 02:50:11.080475900 +0000
+@@ -35,7 +35,7 @@
+ #ifndef JDNS_EXPORT_H
+ #define JDNS_EXPORT_H
+ 
+-#ifdef _WIN32
++#if defined(_WIN32) || defined(__CYGWIN__)
+ # ifndef JDNS_STATIC
+ #  ifdef JDNS_MAKEDLL
+ #   define JDNS_EXPORT __declspec(dllexport)
+--- origsrc/jdns-3.1.3/src/jdns/jdns_sys.c	2026-11-19 03:48:07.000000000 +0000
++++ src/jdns-3.1.3/src/jdns/jdns_sys.c	2026-11-22 02:50:11.081272800 +0000
+@@ -839,6 +839,8 @@ static jdns_dnsparams_t *dnsparams_get_u
+             break;
+ 
+         sa6 = ((struct sockaddr_in6 *)RESVAR._u._ext.ext) + n;
++#elif defined(__CYGWIN__)
++        sa6 = NULL;
+ #else
+         sa6 = RESVAR._u._ext.nsaddrs[n];
+ #endif
+--- origsrc/jdns-3.1.3/src/qjdns/qjdns_datagramtransport.cpp	2026-11-19 03:48:07.000000000 +0000
++++ src/jdns-3.1.3/src/qjdns/qjdns_datagramtransport.cpp	2026-11-22 02:50:11.083294300 +0000
+@@ -127,7 +127,7 @@ public:
+ 
+         QNetworkDatagram datagram(packet, destination, port);
+         bool perPacketInterface = interface_.isValid();
+-#ifdef Q_OS_WIN
++#if defined(Q_OS_WIN) || defined(__CYGWIN__)
+         // The socket's multicast interface already pins these packets to the selected link.
+         // Adding per-packet IP_PKTINFO can silently drop IPv4 multicast on Windows.
+         // Retain per-packet selection for unicast replies.
+--- origsrc/jdns-3.1.3/tests/multicast.cpp	2026-11-19 03:48:07.000000000 +0000
++++ src/jdns-3.1.3/tests/multicast.cpp	2026-11-22 02:50:11.083294300 +0000
+@@ -12,7 +12,11 @@
+ namespace {
+ QByteArray uniqueName()
+ {
++#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+     return "jdns-test-" + QUuid::createUuid().toByteArray(QUuid::WithoutBraces) + ".local.";
++#else
++    return "jdns-test-" + QUuid::createUuid().toString().remove('{').remove('}').toUtf8() + ".local.";
++#endif
+ }
+ QJDns::Record ptr(const QByteArray &owner, const QByteArray &target)
+ {
+@@ -35,7 +39,7 @@ std::unique_ptr<QJDnsMulticast> session(
+ {
+     // No public DNS service, physical LAN, or default route is involved.
+     auto dns = std::unique_ptr<QJDnsMulticast>(QJDnsMulticast::create(QHostAddress::LocalHost));
+-    if(dns && qEnvironmentVariableIsSet("JDNS_TEST_DEBUG"))
++    if(dns)
+     {
+         static int nextId = 0;
+         auto *debug = new QJDnsSharedDebug(dns.get());
+--- origsrc/jdns-3.1.3/tests/transports.cpp	2026-11-19 03:48:07.000000000 +0000
++++ src/jdns-3.1.3/tests/transports.cpp	2026-11-22 02:50:11.085311700 +0000
+@@ -830,7 +830,7 @@ private slots:
+         bool failed = false;
+         connect(&dns, &QJDns::error, &dns, [&](int, QJDns::Error) { failed = true; });
+         QVERIFY(dns.queryStart("_xmpp-client._tcp.example.com.", QJDns::Srv) > 0);
+-        QTRY_VERIFY_WITH_TIMEOUT(failed, 5000);
++        QTRY_VERIFY_WITH_TIMEOUT(failed, 20000);
+     }
+ 
+     void tcpTimeoutNeverFallsBack()

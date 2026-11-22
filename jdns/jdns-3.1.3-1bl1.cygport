@@ -18,22 +18,24 @@ BUILD_REQUIRES="
 inherit cmake
 
 CYGCMAKE_ARGS="
-	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DJDNS_BUILD_TESTS:BOOL=ON
+	-DJDNS_QT_MAJOR_VERSION:STRING=5
 "
 
 PKG_NAMES="
 	jdns
-	libjdns2
+	libjdns3
 	libjdns-devel
-	libqjdns2
+	libqjdns3
 	libqjdns-devel
 "
 jdns_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libjdns2_CONTENTS="
-	usr/bin/cygjdns-2.dll
+libjdns3_CONTENTS="
+	usr/bin/cygjdns-3.dll
 "
 libjdns_devel_CONTENTS="
 	usr/include/jdns/jdns*
@@ -41,8 +43,8 @@ libjdns_devel_CONTENTS="
 	usr/lib/libjdns.dll.a
 	usr/lib/pkgconfig/jdns.pc
 "
-libqjdns2_CONTENTS="
-	usr/bin/cygqjdns-2.dll
+libqjdns3_CONTENTS="
+	usr/bin/cygqjdns-3.dll
 "
 libqjdns_devel_CONTENTS="
 	usr/include/jdns/qjdns*
@@ -51,7 +53,7 @@ libqjdns_devel_CONTENTS="
 	usr/lib/pkgconfig/qjdns.pc
 "
 jdns_SUMMARY="${SUMMARY} (utilities)"
-libjdns2_SUMMARY="${SUMMARY} (runtime)"
+libjdns3_SUMMARY="${SUMMARY} (runtime)"
 libjdns_devel_SUMMARY="${SUMMARY} (development)"
-libqjdns2_SUMMARY="${SUMMARY} (runtime / qt)"
+libqjdns3_SUMMARY="${SUMMARY} (runtime / qt)"
 libqjdns_devel_SUMMARY="${SUMMARY} (development / qt)"

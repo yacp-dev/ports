@@ -1,4 +1,4 @@
-HOMEPAGE="http://${PN}.sf.net/"
+HOMEPAGE="https://${PN}.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${PN}-release-${PV}.tar.bz2"
 
 CATEGORY="Devel"
@@ -6,6 +6,16 @@ SUMMARY="Ctags-cscope glue"
 DESCRIPTION="ccglue is intended to be the interfacing app between cscope and ctags. It can
 generate cross-reference tag files that can be interfaced with the Vim CCTree
 plugin"
+
+LICENSE="GPL-3.0-or-later AND BSL-1.0 AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND BSL-1.0 AND MIT"
+LICENSE_URI="COPYING"
+
+src_test()
+{
+	cd ${B}/src
+	verbose ./${PN}.exe --version
+}
 
 DIFF_EXCLUDES="
 	Makefile

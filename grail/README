@@ -1,0 +1,87 @@
+grail
+------------------------------------------
+Grail consists of an interface and tools for handling gesture recognition and
+gesture instantiation.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libX11_6-1.8.13-1
+  libXext6-1.3.7-1
+  libXi6-1.8.3-1
+  libframe6-2.5.0-1bl1
+  libgcc1-14.4.0-1
+  libgrail-devel-3.1.1-1bl1
+  libgrail6-3.1.1-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libX11-devel-1.8.13-1
+  libXext-devel-1.3.7-1
+  libXi-devel-1.8.3-1
+  libframe-devel-2.5.0-1bl1
+  libtool-2.6.2-1
+  make-4.4.1-2
+  xorgproto-2025.1-1
+
+Canonical website:
+  https://launchpad.net/grail
+
+Canonical download:
+  https://launchpad.net/grail/trunk/3.1.1/+download/grail-3.1.1.tar.bz2
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack grail-3.1.1-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./grail-3.1.1-X.cygport all
+
+This will create:
+  /usr/src/grail-3.1.1-X-src.tar.xz
+  /usr/src/grail-3.1.1-X.tar.xz
+  /usr/src/libgrail6-3.1.1-X.tar.xz
+  /usr/src/libgrail-devel-3.1.1-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(grail)
+  /usr/bin/grail-test-3-1.exe
+  /usr/bin/grail-test-atomic.exe
+  /usr/bin/grail-test-edge.exe
+  /usr/bin/grail-test-propagation.exe
+  /usr/share/doc/Cygwin/grail.README
+  /usr/share/doc/grail/AUTHORS
+  /usr/share/doc/grail/COPYING
+  /usr/share/doc/grail/COPYING.GPL3
+  /usr/share/doc/grail/README
+  /usr/share/man/man1/grail-test-3-1.1.gz
+  /usr/share/man/man1/grail-test-atomic.1.gz
+  /usr/share/man/man1/grail-test-edge.1.gz
+  /usr/share/man/man1/grail-test-propagation.1.gz
+
+(libgrail6)
+  /usr/bin/cyggrail-6.dll
+
+(libgrail-devel)
+  /usr/include/oif/grail.h
+  /usr/lib/libgrail.dll.a
+  /usr/lib/pkgconfig/grail.pc
+
+------------------
+
+Port Notes:
+
+----- version 3.1.1-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

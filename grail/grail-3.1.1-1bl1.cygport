@@ -1,0 +1,50 @@
+HOMEPAGE="https://launchpad.net/grail"
+SRC_URI="https://launchpad.net/grail/trunk/3.1.1/+download/grail-3.1.1.tar.bz2"
+
+CATEGORY="Libs"
+SUMMARY="Gesture Recognition And Instantiation Library"
+DESCRIPTION="Grail consists of an interface and tools for handling gesture
+recognition and gesture instantiation."
+
+LICENSE="GPL-3.0-only AND LGPL-3.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only AND LGPL-3.0-only"
+LICENSE_URI="COPYING.GPL3"
+
+BUILD_REQUIRES="
+	libX11-devel
+	libXext-devel
+	libXi-devel
+	libframe-devel
+	xorgproto
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+DIFF_EXCLUDES="
+	pkg.m4
+"
+
+DOCS="
+	COPYING.GPL3
+"
+
+PKG_NAMES="
+	grail
+	libgrail6
+	libgrail-devel
+"
+grail_CONTENTS="
+	usr/bin/*.exe
+	usr/share/doc
+	usr/share/man/man1
+"
+libgrail6_CONTENTS="
+	usr/bin/cyg*-6.dll
+"
+libgrail_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+grail_SUMMARY="${SUMMARY} (utilities)"
+libgrail6_SUMMARY="${SUMMARY} (runtime)"
+libgrail_devel_SUMMARY="${SUMMARY} (development)"

@@ -9,14 +9,20 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libgeos-devel libreadline-devel libsqlite3-devel"
+BUILD_REQUIRES="
+	libgeos-devel
+	libreadline-devel
+	libsqlite3-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DGPKG_GEOS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
-# -DGPKG_TEST:BOOL=ON : Need ruby
+# -DGPKG_TEST:BOOL=ON : The tests need the bundled sqlite (sqlite_shared) and read LOCATION,
+#   which this recipe drops / CMake 4 forbids
 
 PKG_NAMES="
 	${PN}

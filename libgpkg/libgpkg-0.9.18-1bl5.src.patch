@@ -1,5 +1,5 @@
---- origsrc/libgpkg-0.9.18/CMakeLists.txt	2014-06-20 22:33:46.000000000 +0900
-+++ src/libgpkg-0.9.18/CMakeLists.txt	2025-01-01 09:32:07.964805400 +0900
+--- origsrc/libgpkg-0.9.18/CMakeLists.txt	2014-06-20 13:33:46.000000000 +0000
++++ src/libgpkg-0.9.18/CMakeLists.txt	2026-11-22 05:36:57.402367700 +0000
 @@ -44,9 +44,16 @@ endif()
  
  add_subdirectory( gpkg )
@@ -18,8 +18,8 @@
 +set(VERSION ${gpkg_BUILD_VERSION})
 +configure_file(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}.pc.in ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libgpkg-0.9.18/gpkg/CMakeLists.txt	2014-06-20 22:33:46.000000000 +0900
-+++ src/libgpkg-0.9.18/gpkg/CMakeLists.txt	2025-01-01 09:31:22.077623900 +0900
+--- origsrc/libgpkg-0.9.18/gpkg/CMakeLists.txt	2014-06-20 13:33:46.000000000 +0000
++++ src/libgpkg-0.9.18/gpkg/CMakeLists.txt	2026-11-22 05:36:57.403156500 +0000
 @@ -53,13 +53,6 @@ if( GPKG_GEOS )
  endif()
  
@@ -67,8 +67,8 @@
    install( FILES gpkg.h DESTINATION include )
  endif()
 \ No newline at end of file
---- origsrc/libgpkg-0.9.18/gpkg/cmake/FindGEOS.cmake	2014-06-20 22:33:46.000000000 +0900
-+++ src/libgpkg-0.9.18/gpkg/cmake/FindGEOS.cmake	2025-01-01 09:31:22.077623900 +0900
+--- origsrc/libgpkg-0.9.18/gpkg/cmake/FindGEOS.cmake	2014-06-20 13:33:46.000000000 +0000
++++ src/libgpkg-0.9.18/gpkg/cmake/FindGEOS.cmake	2026-11-22 05:36:57.405177300 +0000
 @@ -138,9 +138,9 @@ ELSE(WIN32)
          ## split off the name
          ## use regular expression to match wildcard equivalent "-l*<endchar>"
@@ -91,8 +91,8 @@
          ELSE (APPLE)
            SET(GEOS_LIBRARY ${GEOS_LINK_DIRECTORIES}/lib${GEOS_LIB_NAME}.so CACHE STRING INTERNAL)
          ENDIF (APPLE)
---- origsrc/libgpkg-0.9.18/libgpkg.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libgpkg-0.9.18/libgpkg.pc.in	2025-01-01 09:31:22.077623900 +0900
+--- origsrc/libgpkg-0.9.18/libgpkg.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libgpkg-0.9.18/libgpkg.pc.in	2026-11-22 05:36:57.405177300 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -104,8 +104,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lgpkg
 +Cflags: -I${includedir}
---- origsrc/libgpkg-0.9.18/shell/CMakeLists.txt	2014-06-20 22:33:46.000000000 +0900
-+++ src/libgpkg-0.9.18/shell/CMakeLists.txt	2025-01-01 09:31:22.077623900 +0900
+--- origsrc/libgpkg-0.9.18/shell/CMakeLists.txt	2014-06-20 13:33:46.000000000 +0000
++++ src/libgpkg-0.9.18/shell/CMakeLists.txt	2026-11-22 05:36:57.406392000 +0000
 @@ -9,8 +9,8 @@ find_package( Readline )
  #
  add_executable( gpkg_shell shell.c )

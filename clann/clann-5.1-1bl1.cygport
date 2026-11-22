@@ -1,6 +1,5 @@
 HOMEPAGE="https://github.com/ChrisCreevey/${PN}"
-SRC_URI="https://github.com/ChrisCreevey/${PN}/archive/refs/tags/194f8aa.tar.gz"
-SRC_DIR="${PN}-194f8aa"
+SRC_URI="https://github.com/ChrisCreevey/${PN}/archive/refs/tags/V${PV}.tar.gz"
 
 CATEGORY="Science"
 SUMMARY="Constructing consensus trees and supertrees from multiple source trees"
@@ -23,7 +22,16 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING.txt"
 
-BUILD_REQUIRES="libreadline-devel"
+BUILD_REQUIRES="
+	libreadline-devel
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	sed -i -e "/^AC_INIT/s/\[5\.0\.0\]/[${PV}]/" configure.ac
+}
 
 src_test()
 {
@@ -38,5 +46,5 @@ src_test()
 }
 
 DOCS="
-	Docs/*
+	*.md
 "

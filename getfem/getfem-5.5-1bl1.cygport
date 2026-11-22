@@ -1,0 +1,74 @@
+HOMEPAGE="https://getfem.org/"
+SRC_URI="mirror://savannah/${PN}/stable/${P}.tar.gz"
+
+CATEGORY="Science"
+SUMMARY="Generic and transparent finite element library"
+DESCRIPTION="GetFEM is an open source library based on collaborative
+development. It aims to offer the most flexible framework for solving
+potentially coupled systems of linear and nonlinear partial differential
+equations with the finite element method. It works in arbitrary dimension and
+allows to couple 1D, 2D and 3D problems."
+
+LICENSE="LGPL-3.0-or-later WITH GCC-exception-3.1 AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later WITH GCC-exception-3.1 AND BSD-3-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	gcc-fortran
+	liblapack-devel
+	libqhull-devel
+	libsuperlu-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+CYGCONF_ARGS="
+	--disable-matlab
+	--disable-octave
+	--disable-python
+	--disable-scilab
+"
+
+DIFF_EXCLUDES="
+	builder_gateway_c.sce
+	getfem_arch_config.h
+	gmm_arch_config.h
+"
+
+# cygport check takes about 41 minutes (compiling and running tests)
+YACP_CHECK_TIMEOUT_MINUTES=55
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	verbose rm -rf ${D}/usr/getfem_toolbox
+}
+
+DOCS="
+	GNU_FDL_V3
+	GNU_GCC_RUNTIME_EXCEPTION
+	GNU_GPL_V3
+	GNU_LGPL_V3
+"
+
+PKG_NAMES="
+	getfem
+	libgetfem5
+	libgetfem-devel
+"
+getfem_CONTENTS="
+	usr/share/doc
+"
+libgetfem5_CONTENTS="
+	usr/bin/cyggetfem-5.dll
+"
+libgetfem_devel_CONTENTS="
+	usr/bin/getfem-config
+	usr/include
+	usr/lib
+"
+getfem_SUMMARY="${SUMMARY} (licensing & readmes)"
+libgetfem5_SUMMARY="${SUMMARY} (runtime)"
+libgetfem_devel_SUMMARY="${SUMMARY} (development)"

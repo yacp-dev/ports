@@ -1,0 +1,231 @@
+getfem
+------------------------------------------
+GetFEM is an open source library based on collaborative development. It aims to
+offer the most flexible framework for solving potentially coupled systems of
+linear and nonlinear partial differential equations with the finite element
+method. It works in arbitrary dimension and allows to couple 1D, 2D and 3D
+problems.
+
+Runtime requirements:
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libgetfem5-5.5-1bl1
+  liblapack0-3.12.0-1
+  libqhull_8-2020.2-1
+  libstdc++6-14.4.0-1
+  libsuperlu7-7.0.1-1bl2
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-g++-14.4.0-1
+  liblapack-devel-3.12.0-1
+  libqhull-devel-2020.2-1
+  libsuperlu-devel-7.0.1-1bl2
+  libtool-2.6.2-1
+  make-4.4.1-2
+
+Canonical website:
+  https://getfem.org/
+
+Canonical download:
+  mirror://savannah/getfem/stable/getfem-5.5.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack getfem-5.5-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./getfem-5.5-X.cygport all
+
+This will create:
+  /usr/src/getfem-5.5-X-src.tar.xz
+  /usr/src/getfem-5.5-X.tar.xz
+  /usr/src/libgetfem5-5.5-X.tar.xz
+  /usr/src/libgetfem-devel-5.5-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(getfem)
+  /usr/share/doc/Cygwin/getfem.README
+  /usr/share/doc/getfem/AUTHORS
+  /usr/share/doc/getfem/COPYING
+  /usr/share/doc/getfem/ChangeLog
+  /usr/share/doc/getfem/GNU_FDL_V3
+  /usr/share/doc/getfem/GNU_GCC_RUNTIME_EXCEPTION
+  /usr/share/doc/getfem/GNU_GPL_V3
+  /usr/share/doc/getfem/GNU_LGPL_V3
+  /usr/share/doc/getfem/NEWS
+  /usr/share/doc/getfem/README
+
+(libgetfem5)
+  /usr/bin/cyggetfem-5.dll
+
+(libgetfem-devel)
+  /usr/bin/getfem-config
+  /usr/include/getfem/bgeot_comma_init.h
+  /usr/include/getfem/bgeot_config.h
+  /usr/include/getfem/bgeot_convex.h
+  /usr/include/getfem/bgeot_convex_ref.h
+  /usr/include/getfem/bgeot_convex_structure.h
+  /usr/include/getfem/bgeot_ftool.h
+  /usr/include/getfem/bgeot_geometric_trans.h
+  /usr/include/getfem/bgeot_geotrans_inv.h
+  /usr/include/getfem/bgeot_kdtree.h
+  /usr/include/getfem/bgeot_mesh.h
+  /usr/include/getfem/bgeot_mesh_structure.h
+  /usr/include/getfem/bgeot_node_tab.h
+  /usr/include/getfem/bgeot_permutations.h
+  /usr/include/getfem/bgeot_poly.h
+  /usr/include/getfem/bgeot_poly_composite.h
+  /usr/include/getfem/bgeot_rtree.h
+  /usr/include/getfem/bgeot_small_vector.h
+  /usr/include/getfem/bgeot_sparse_tensors.h
+  /usr/include/getfem/bgeot_tensor.h
+  /usr/include/getfem/bgeot_torus.h
+  /usr/include/getfem/dal_backtrace.h
+  /usr/include/getfem/dal_basic.h
+  /usr/include/getfem/dal_bit_vector.h
+  /usr/include/getfem/dal_config.h
+  /usr/include/getfem/dal_naming_system.h
+  /usr/include/getfem/dal_singleton.h
+  /usr/include/getfem/dal_static_stored_objects.h
+  /usr/include/getfem/dal_tas.h
+  /usr/include/getfem/dal_tree_sorted.h
+  /usr/include/getfem/getfem_HHO.h
+  /usr/include/getfem/getfem_Navier_Stokes.h
+  /usr/include/getfem/getfem_accumulated_distro.h
+  /usr/include/getfem/getfem_arch_config.h
+  /usr/include/getfem/getfem_assembling.h
+  /usr/include/getfem/getfem_assembling_tensors.h
+  /usr/include/getfem/getfem_config.h
+  /usr/include/getfem/getfem_contact_and_friction_common.h
+  /usr/include/getfem/getfem_contact_and_friction_integral.h
+  /usr/include/getfem/getfem_contact_and_friction_large_sliding.h
+  /usr/include/getfem/getfem_contact_and_friction_nodal.h
+  /usr/include/getfem/getfem_context.h
+  /usr/include/getfem/getfem_continuation.h
+  /usr/include/getfem/getfem_convect.h
+  /usr/include/getfem/getfem_copyable_ptr.h
+  /usr/include/getfem/getfem_crack_sif.h
+  /usr/include/getfem/getfem_deformable_mesh.h
+  /usr/include/getfem/getfem_derivatives.h
+  /usr/include/getfem/getfem_error_estimate.h
+  /usr/include/getfem/getfem_export.h
+  /usr/include/getfem/getfem_fem.h
+  /usr/include/getfem/getfem_fem_global_function.h
+  /usr/include/getfem/getfem_fem_level_set.h
+  /usr/include/getfem/getfem_fourth_order.h
+  /usr/include/getfem/getfem_generic_assembly.h
+  /usr/include/getfem/getfem_generic_assembly_compile_and_exec.h
+  /usr/include/getfem/getfem_generic_assembly_functions_and_operators.h
+  /usr/include/getfem/getfem_generic_assembly_semantic.h
+  /usr/include/getfem/getfem_generic_assembly_tree.h
+  /usr/include/getfem/getfem_global_function.h
+  /usr/include/getfem/getfem_im_data.h
+  /usr/include/getfem/getfem_im_list.h
+  /usr/include/getfem/getfem_import.h
+  /usr/include/getfem/getfem_integration.h
+  /usr/include/getfem/getfem_interpolated_fem.h
+  /usr/include/getfem/getfem_interpolation.h
+  /usr/include/getfem/getfem_level_set.h
+  /usr/include/getfem/getfem_level_set_contact.h
+  /usr/include/getfem/getfem_linearized_plates.h
+  /usr/include/getfem/getfem_locale.h
+  /usr/include/getfem/getfem_mat_elem.h
+  /usr/include/getfem/getfem_mat_elem_type.h
+  /usr/include/getfem/getfem_mesh.h
+  /usr/include/getfem/getfem_mesh_fem.h
+  /usr/include/getfem/getfem_mesh_fem_global_function.h
+  /usr/include/getfem/getfem_mesh_fem_level_set.h
+  /usr/include/getfem/getfem_mesh_fem_product.h
+  /usr/include/getfem/getfem_mesh_fem_sum.h
+  /usr/include/getfem/getfem_mesh_im.h
+  /usr/include/getfem/getfem_mesh_im_level_set.h
+  /usr/include/getfem/getfem_mesh_level_set.h
+  /usr/include/getfem/getfem_mesh_region.h
+  /usr/include/getfem/getfem_mesh_slice.h
+  /usr/include/getfem/getfem_mesh_slicers.h
+  /usr/include/getfem/getfem_mesher.h
+  /usr/include/getfem/getfem_model_solvers.h
+  /usr/include/getfem/getfem_models.h
+  /usr/include/getfem/getfem_nonlinear_elasticity.h
+  /usr/include/getfem/getfem_omp.h
+  /usr/include/getfem/getfem_partial_mesh_fem.h
+  /usr/include/getfem/getfem_plasticity.h
+  /usr/include/getfem/getfem_projected_fem.h
+  /usr/include/getfem/getfem_regular_meshes.h
+  /usr/include/getfem/getfem_torus.h
+  /usr/include/gmm/gmm.h
+  /usr/include/gmm/gmm_MUMPS_interface.h
+  /usr/include/gmm/gmm_algobase.h
+  /usr/include/gmm/gmm_arch_config.h
+  /usr/include/gmm/gmm_blas.h
+  /usr/include/gmm/gmm_blas_interface.h
+  /usr/include/gmm/gmm_condition_number.h
+  /usr/include/gmm/gmm_conjugated.h
+  /usr/include/gmm/gmm_def.h
+  /usr/include/gmm/gmm_dense_Householder.h
+  /usr/include/gmm/gmm_dense_lu.h
+  /usr/include/gmm/gmm_dense_matrix_functions.h
+  /usr/include/gmm/gmm_dense_qr.h
+  /usr/include/gmm/gmm_dense_sylvester.h
+  /usr/include/gmm/gmm_domain_decomp.h
+  /usr/include/gmm/gmm_except.h
+  /usr/include/gmm/gmm_feedback_management.h
+  /usr/include/gmm/gmm_inoutput.h
+  /usr/include/gmm/gmm_interface.h
+  /usr/include/gmm/gmm_interface_bgeot.h
+  /usr/include/gmm/gmm_iter.h
+  /usr/include/gmm/gmm_iter_solvers.h
+  /usr/include/gmm/gmm_kernel.h
+  /usr/include/gmm/gmm_lapack_interface.h
+  /usr/include/gmm/gmm_least_squares_cg.h
+  /usr/include/gmm/gmm_matrix.h
+  /usr/include/gmm/gmm_modified_gram_schmidt.h
+  /usr/include/gmm/gmm_opt.h
+  /usr/include/gmm/gmm_precond.h
+  /usr/include/gmm/gmm_precond_diagonal.h
+  /usr/include/gmm/gmm_precond_ildlt.h
+  /usr/include/gmm/gmm_precond_ildltt.h
+  /usr/include/gmm/gmm_precond_ilu.h
+  /usr/include/gmm/gmm_precond_ilut.h
+  /usr/include/gmm/gmm_precond_ilutp.h
+  /usr/include/gmm/gmm_precond_mr_approx_inverse.h
+  /usr/include/gmm/gmm_range_basis.h
+  /usr/include/gmm/gmm_real_part.h
+  /usr/include/gmm/gmm_ref.h
+  /usr/include/gmm/gmm_scaled.h
+  /usr/include/gmm/gmm_solver_Schwarz_additive.h
+  /usr/include/gmm/gmm_solver_bfgs.h
+  /usr/include/gmm/gmm_solver_bicgstab.h
+  /usr/include/gmm/gmm_solver_cg.h
+  /usr/include/gmm/gmm_solver_constrained_cg.h
+  /usr/include/gmm/gmm_solver_gmres.h
+  /usr/include/gmm/gmm_solver_idgmres.h
+  /usr/include/gmm/gmm_solver_qmr.h
+  /usr/include/gmm/gmm_std.h
+  /usr/include/gmm/gmm_sub_index.h
+  /usr/include/gmm/gmm_sub_matrix.h
+  /usr/include/gmm/gmm_sub_vector.h
+  /usr/include/gmm/gmm_superlu_interface.h
+  /usr/include/gmm/gmm_transposed.h
+  /usr/include/gmm/gmm_tri_solve.h
+  /usr/include/gmm/gmm_vector.h
+  /usr/include/gmm/gmm_vector_to_matrix.h
+  /usr/lib/libgetfem.dll.a
+
+------------------
+
+Port Notes:
+
+----- version 5.5-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

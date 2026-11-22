@@ -1,0 +1,71 @@
+HOMEPAGE="https://registro.br/tecnologia/provedores-de-hospedagem/epp/"
+SRC_URI="https://ftp.registro.br/pub/${PN}/${P}.tar.gz"
+PATCH_URI="
+	libepp-nicbr-1.20-session-test-templates.patch
+"
+
+CATEGORY="Libs"
+SUMMARY="Partially implementation of the Extensible Provisioning Protocol"
+DESCRIPTION="This is the LIBEPP-NICBR C++ library that partially implements the Extensible
+Provisioning Protocol (EPP), as described in the Internet Drafts RFC3730bis to
+RFC3734bis and RFC3735."
+
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	cppunit
+	libreadline-devel
+	libssl-devel
+	libxerces-c-devel
+"
+
+# compiling and running the unit tests takes about 9 minutes on the CI runner
+YACP_CHECK_TIMEOUT_MINUTES=15
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+PKG_NAMES="
+	${PN}
+	${PN}${PV}_0
+	${PN}${PV}-devel
+"
+libepp_nicbr_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libepp_nicbr1_20_0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libepp_nicbr1_20_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+libepp_nicbr_SUMMARY="${SUMMARY} (utilities)"
+libepp_nicbr1_20_0_SUMMARY="${SUMMARY} (runtime)"
+libepp_nicbr1_20_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test()
+{
+	cd ${B}/unit_test
+	# the test clients read the ports the servers write and ../docs, and the
+	# servers read their certificates and data from the current directory
+	cygmake check TESTS=
+	verbose cp -f ${S}/unit_test/{client.pem,root.pem,server.pem,SessionTestServer.data} .
+	verbose ln -sfn ${S}/docs ${B}/docs
+	local server status=0 i
+	for server in TransportTLSTestServer TransportExceptionTestServer SessionTestServer
+	do
+		./${server}.exe &
+	done
+	for i in $(seq 30)
+	do
+		[ -f TransportTLSTestServer.port -a -f TransportExceptionTestServer.port \
+		  -a -f SessionTestServer.port ] && break
+		sleep 1
+	done
+	verbose ./CppUnitTest.exe || status=$?
+	wait
+	return ${status}
+}

@@ -3,29 +3,31 @@ libtranslit
 Transliteration library with multiple backends
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  girepository-GLib2.0-1.54.1-4
-  libglib2.0-devel-2.64.6-1
-  libglib2.0_0-2.64.6-1
-  libicu74-74.2-1
+  cygwin-3.6.12-1
+  girepository-GLib2.0-1.86.0-2
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libicu76-76.1-2
   libm17n0-1.7.0-1
-  libtranslit-devel-0.0.3-1bl8
-  libtranslit0-0.0.3-1bl8
-  pkg-config-2.2.0-1
+  libtranslit-devel-0.0.3-1bl9
+  libtranslit0-0.0.3-1bl9
+  pkg-config-3.0.10-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.8-1
-  gcc-core-11.4.0-1
-  gobject-introspection-1.54.1-4
-  libglib2.0-devel-2.64.6-1
-  libicu-devel-74.2-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gobject-introspection-1.86.0-2
+  gtk-doc-1.37.0-1
+  libglib2.0-devel-2.90.1-1
+  libicu-devel-76.1-2
   libm17n-devel-1.7.0-1
-  libtool-2.4.7-1
+  libtool-2.6.2-1
   make-4.4.1-2
+  vala-0.56.18-1
 
 Canonical website:
   https://github.com/ueno/libtranslit
@@ -87,6 +89,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.0.3-1bl9 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.0.3-1bl8 -----
 Rebuild for libicu

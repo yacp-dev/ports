@@ -17,7 +17,14 @@ src_patch_hook()
 	gtkdocize
 }
 
-BUILD_REQUIRES="libglib2.0-devel libicu-devel libm17n-devel"
+BUILD_REQUIRES="
+	gobject-introspection
+	gtk-doc
+	libglib2.0-devel
+	libicu-devel
+	libm17n-devel
+	vala
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode

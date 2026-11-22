@@ -1,0 +1,68 @@
+HOMEPAGE="https://launchpad.net/geis"
+SRC_URI="https://launchpad.net/geis/trunk/${PV}/+download/${P}.tar.xz"
+
+CATEGORY="Libs"
+SUMMARY="Gesture Engine Interface and Support"
+DESCRIPTION="GEIS is a library for applications and toolkit programmers which
+provides a consistent platform independent interface for any system-wide input
+gesture recognition mechanism."
+
+LICENSE="GPL-3.0-only AND LGPL-3.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only AND LGPL-3.0-only"
+LICENSE_URI="COPYING.GPL"
+
+BUILD_REQUIRES="
+	check
+	libX11-devel
+	libXext-devel
+	libXi-devel
+	libdbus1-devel
+	libframe-devel
+	libgrail-devel
+	libxcb-devel
+	python3-devel
+	xorg-server-devel
+	xorgproto
+"
+
+CYGCONF_ARGS="
+	--disable-integration-tests
+"
+
+DIFF_EXCLUDES="
+	pkg.m4
+"
+
+DOCS="
+	AUTHORS
+	COPYING.GPL
+	README
+"
+
+PKG_NAMES="
+	geis
+	libgeis1
+	libgeis-devel
+	python3-geis
+"
+geis_CONTENTS="
+	usr/bin/*.exe
+	usr/bin/geisview
+	usr/bin/pygeis
+	usr/share
+"
+libgeis1_CONTENTS="
+	usr/bin/cyg*-1.dll
+"
+libgeis_devel_CONTENTS="
+	usr/include
+	usr/lib/lib*
+	usr/lib/pkgconfig
+"
+python3_geis_CONTENTS="
+	usr/lib/python3*
+"
+geis_SUMMARY="${SUMMARY} (utilities)"
+libgeis1_SUMMARY="${SUMMARY} (runtime)"
+libgeis_devel_SUMMARY="${SUMMARY} (development)"
+python3_geis_SUMMARY="${SUMMARY} (Python 3 bindings)"

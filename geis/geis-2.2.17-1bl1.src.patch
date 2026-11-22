@@ -1,0 +1,741 @@
+--- origsrc/geis-2.2.17/configure.ac	2015-06-18 01:52:44.000000000 +0000
++++ src/geis-2.2.17/configure.ac	2026-11-22 03:11:03.220076100 +0000
+@@ -65,7 +65,7 @@ fi
+ AC_DEFINE([GEIS_UNUSED],[__attribute__((unused))],[symbol is unused])
+ 
+ AC_SUBST(AM_CFLAGS,
+-         "-Wall -Wextra -Werror -pedantic -std=iso9899:1999 -D_GNU_SOURCE=1")
++         "-Wall -Wextra -std=gnu99 -D_GNU_SOURCE=1")
+ 
+ # Check for TDD tools
+ PKG_CHECK_MODULES([CHECK], [check >= 0.9.8],
+--- origsrc/geis-2.2.17/libgeis/Makefile.am	2013-05-29 11:24:59.000000000 +0000
++++ src/geis-2.2.17/libgeis/Makefile.am	2026-11-22 03:11:03.222868000 +0000
+@@ -23,6 +23,7 @@ version_script = $(srcdir)/libgeis.ver
+ SUBDIRS = backend server
+ 
+ lib_LTLIBRARIES = libgeis.la
++noinst_LTLIBRARIES = libgeis_internal.la
+ 
+ nobase_include_HEADERS = geis/geisimpl.h
+ 
+@@ -51,6 +52,10 @@ libgeis_la_SOURCES = \
+ 	geis_touch.h                geis_touch.c \
+ 	geis_v1.c                   geis.c
+ 
++libgeis_internal_la_SOURCES = $(libgeis_la_SOURCES)
++libgeis_internal_la_CPPFLAGS = $(libgeis_la_CPPFLAGS)
++libgeis_internal_la_LIBADD = $(libgeis_la_LIBADD)
++
+ libgeis_la_CPPFLAGS = \
+ 	-fvisibility=hidden \
+ 	-DGEIS_BUILDING_DSO=1 \
+@@ -63,10 +68,10 @@ libgeis_la_CPPFLAGS = \
+ 	$(GRAIL_CFLAGS) 
+ 
+ libgeis_la_LDFLAGS = \
+-	-Wl,-z,defs -Wl,--as-needed \
++	-no-undefined -Wl,--as-needed \
+ 	-version-info 4:0:3 \
+ 	-Wl,--version-script=$(version_script) \
+-	-lm
++	-lpthread -lm
+ 
+ libgeis_la_LIBADD = \
+ 	${builddir}/backend/test_fixture/libgeis-test-fixture.la \
+--- origsrc/geis-2.2.17/libgeis/geis/geisimpl.h	2013-05-29 11:24:59.000000000 +0000
++++ src/geis-2.2.17/libgeis/geis/geisimpl.h	2026-11-22 03:11:03.220850200 +0000
+@@ -23,7 +23,7 @@
+ #include <stdlib.h>
+ 
+ /* Provide some cross-platform symbol export decorations. */
+-#if defined _WIN32 || defined __CYGWIN__
++#if defined _WIN32 && !defined __CYGWIN__
+   #define GEIS_HELPER_DSO_IMPORT __declspec(dllimport)
+   #define GEIS_HELPER_DSO_EXPORT __declspec(dllexport)
+   #define GEIS_HELPER_DSO_LOCAL
+--- origsrc/geis-2.2.17/libgeis/geis_backend_multiplexor.c	2015-06-09 15:02:44.000000000 +0000
++++ src/geis-2.2.17/libgeis/geis_backend_multiplexor.c	2026-11-22 03:11:03.222223900 +0000
+@@ -25,7 +25,12 @@
+ #include "geis_logging.h"
+ #include <stdlib.h>
+ #include <string.h>
++#if defined(__CYGWIN__)
++#include <pthread.h>
++#include <poll.h>
++#else
+ #include <sys/epoll.h>
++#endif
+ #include <unistd.h>
+ 
+ 
+@@ -48,12 +53,124 @@ typedef struct CallbackInfoBag
+ } *CallbackInfoBag;
+ 
+ 
++#if defined(__CYGWIN__)
++struct _GeisBackendMultiplexor
++{
++  int             notify_pipe[2];
++  int             control_pipe[2];
++  pthread_t       thread;
++  pthread_mutex_t lock;
++  int             running;
++  int             notified;
++  int             mx_max_events_per_pump;
++  CallbackInfoBag mx_callback_infos;
++};
++
++static void*
++_mx_thread_func(void *arg)
++{
++  GeisBackendMultiplexor mx = (GeisBackendMultiplexor)arg;
++
++  while (1)
++  {
++    pthread_mutex_lock(&mx->lock);
++    if (!mx->running)
++    {
++      pthread_mutex_unlock(&mx->lock);
++      break;
++    }
++
++    int wait_all = !mx->notified;
++    int count = 1;
++    if (wait_all)
++    {
++      for (CallbackInfo c = mx->mx_callback_infos->front; c; c = c->next)
++      {
++        count++;
++      }
++    }
++
++    struct pollfd *pfds = calloc(count, sizeof(struct pollfd));
++    if (!pfds)
++    {
++      pthread_mutex_unlock(&mx->lock);
++      break;
++    }
++
++    pfds[0].fd = mx->control_pipe[0];
++    pfds[0].events = POLLIN;
++
++    if (wait_all)
++    {
++      int idx = 1;
++      for (CallbackInfo c = mx->mx_callback_infos->front; c; c = c->next, idx++)
++      {
++        pfds[idx].fd = c->fd;
++        pfds[idx].events = 0;
++        if (c->activity & GEIS_BE_MX_READ_AVAILABLE)  pfds[idx].events |= POLLIN;
++        if (c->activity & GEIS_BE_MX_WRITE_AVAILABLE) pfds[idx].events |= POLLOUT;
++      }
++    }
++    pthread_mutex_unlock(&mx->lock);
++
++    int ret = poll(pfds, count, -1);
++
++    pthread_mutex_lock(&mx->lock);
++    if (!mx->running)
++    {
++      free(pfds);
++      pthread_mutex_unlock(&mx->lock);
++      break;
++    }
++
++    if (ret > 0)
++    {
++      if (pfds[0].revents & POLLIN)
++      {
++        char buf[64];
++        while (read(mx->control_pipe[0], buf, sizeof(buf)) > 0) {}
++        mx->notified = 0;
++      }
++
++      if (wait_all)
++      {
++        int has_events = 0;
++        for (int i = 1; i < count; ++i)
++        {
++          if (pfds[i].revents & (POLLIN | POLLOUT | POLLERR | POLLHUP))
++          {
++            has_events = 1;
++            break;
++          }
++        }
++        if (has_events && !mx->notified)
++        {
++          char b = 1;
++          (void)write(mx->notify_pipe[1], &b, 1);
++          mx->notified = 1;
++        }
++      }
++    }
++    pthread_mutex_unlock(&mx->lock);
++    free(pfds);
++  }
++  return NULL;
++}
++
++static void
++_mx_wake_thread(GeisBackendMultiplexor mx)
++{
++  char b = 1;
++  (void)write(mx->control_pipe[1], &b, 1);
++}
++#else
+ struct _GeisBackendMultiplexor
+ {
+   int             mx_fd;
+   int             mx_max_events_per_pump;
+   CallbackInfoBag mx_callback_infos;
+ };
++#endif
+ 
+ 
+ /*
+@@ -215,30 +332,58 @@ geis_backend_multiplexor_new()
+   if (!mx)
+   {
+     geis_error("failed to allocate backend multiplexor");
++    return NULL;
+   }
+-  else
++
++#if defined(__CYGWIN__)
++  if (pipe(mx->notify_pipe) < 0 || pipe(mx->control_pipe) < 0)
+   {
+-    mx->mx_fd = epoll_create(5);
+-    if (mx->mx_fd < 0)
+-    {
+-      geis_error("error %d creating backend multiplexor: %s",
+-                 errno, strerror(errno));
+-      goto unwind_mx;
+-    }
+-    if (fcntl(mx->mx_fd, F_SETFD, FD_CLOEXEC) < 0)
+-    {
+-      geis_error("error %d setting close-on-exec flag: %s",
+-                 errno, strerror(errno));
+-    }
++    geis_error("failed to create pipes for backend multiplexor");
++    free(mx);
++    return NULL;
++  }
++  fcntl(mx->notify_pipe[0], F_SETFL, O_NONBLOCK);
++  fcntl(mx->notify_pipe[1], F_SETFL, O_NONBLOCK);
++  fcntl(mx->control_pipe[0], F_SETFL, O_NONBLOCK);
++  fcntl(mx->control_pipe[1], F_SETFL, O_NONBLOCK);
++  pthread_mutex_init(&mx->lock, NULL);
++  mx->running = 1;
++  mx->notified = 0;
++  mx->mx_max_events_per_pump = GEIS_BE_MX_DEFAULT_EVENTS_PER_PUMP;
++  mx->mx_callback_infos = _callback_info_bag_new();
++  if (!mx->mx_callback_infos)
++  {
++    close(mx->notify_pipe[0]);
++    close(mx->notify_pipe[1]);
++    close(mx->control_pipe[0]);
++    close(mx->control_pipe[1]);
++    pthread_mutex_destroy(&mx->lock);
++    free(mx);
++    return NULL;
++  }
++  pthread_create(&mx->thread, NULL, _mx_thread_func, mx);
++  return mx;
++#else
++  mx->mx_fd = epoll_create(5);
++  if (mx->mx_fd < 0)
++  {
++    geis_error("error %d creating backend multiplexor: %s",
++               errno, strerror(errno));
++    goto unwind_mx;
++  }
++  if (fcntl(mx->mx_fd, F_SETFD, FD_CLOEXEC) < 0)
++  {
++    geis_error("error %d setting close-on-exec flag: %s",
++               errno, strerror(errno));
++  }
+ 
+-    mx->mx_max_events_per_pump = GEIS_BE_MX_DEFAULT_EVENTS_PER_PUMP;
++  mx->mx_max_events_per_pump = GEIS_BE_MX_DEFAULT_EVENTS_PER_PUMP;
+ 
+-    mx->mx_callback_infos = _callback_info_bag_new();
+-    if (!mx->mx_callback_infos)
+-    {
+-      geis_error("failed to allocate backend multiplexor callback_infos");
+-      goto unwind_epoll;
+-    }
++  mx->mx_callback_infos = _callback_info_bag_new();
++  if (!mx->mx_callback_infos)
++  {
++    geis_error("failed to allocate backend multiplexor callback_infos");
++    goto unwind_epoll;
+   }
+   goto final_exit;
+ 
+@@ -249,6 +394,7 @@ unwind_mx:
+   mx = NULL;
+ final_exit:
+   return mx;
++#endif
+ }
+ 
+ 
+@@ -258,12 +404,28 @@ final_exit:
+ void
+ geis_backend_multiplexor_delete(GeisBackendMultiplexor mx)
+ {
++#if defined(__CYGWIN__)
++  pthread_mutex_lock(&mx->lock);
++  mx->running = 0;
++  pthread_mutex_unlock(&mx->lock);
++  _mx_wake_thread(mx);
++  pthread_join(mx->thread, NULL);
++  close(mx->notify_pipe[0]);
++  close(mx->notify_pipe[1]);
++  close(mx->control_pipe[0]);
++  close(mx->control_pipe[1]);
++  pthread_mutex_destroy(&mx->lock);
++  _callback_info_bag_delete(mx->mx_callback_infos);
++  free(mx);
++#else
+   _callback_info_bag_delete(mx->mx_callback_infos);
+   close(mx->mx_fd);
+   free(mx);
++#endif
+ }
+ 
+ 
++#if !defined(__CYGWIN__)
+ static uint32_t
+ _epoll_events_from_activity(GeisBackendMultiplexorActivity activity)
+ {
+@@ -272,6 +434,7 @@ _epoll_events_from_activity(GeisBackendM
+   if (activity & GEIS_BE_MX_WRITE_AVAILABLE) events |= EPOLLOUT;
+   return events;
+ }
++#endif
+ 
+ 
+ /*
+@@ -284,6 +447,16 @@ geis_backend_multiplexor_add_fd(GeisBack
+                                 GeisBackendFdEventCallback      callback,
+                                 void                           *context)
+ {
++#if defined(__CYGWIN__)
++  pthread_mutex_lock(&mx->lock);
++  _callback_info_bag_alloc(mx->mx_callback_infos,
++                           fd,
++                           activity,
++                           callback,
++                           context);
++  pthread_mutex_unlock(&mx->lock);
++  _mx_wake_thread(mx);
++#else
+   CallbackInfo callback_info = _callback_info_bag_alloc(mx->mx_callback_infos,
+                                                         fd,
+                                                         activity,
+@@ -300,6 +473,7 @@ geis_backend_multiplexor_add_fd(GeisBack
+     geis_error("error %d multiplexing fd %d: %s",
+                errno, fd, strerror(errno));
+   }
++#endif
+ }
+ 
+ 
+@@ -311,6 +485,16 @@ geis_backend_multiplexor_modify_fd(GeisB
+                                    int                             fd,
+                                    GeisBackendMultiplexorActivity  activity)
+ {
++#if defined(__CYGWIN__)
++  pthread_mutex_lock(&mx->lock);
++  CallbackInfo callback_info = _callback_info_bag_find_by_fd(mx->mx_callback_infos, fd);
++  if (callback_info)
++  {
++    callback_info->activity = activity;
++  }
++  pthread_mutex_unlock(&mx->lock);
++  _mx_wake_thread(mx);
++#else
+   int status;
+   struct epoll_event ev;
+   CallbackInfo callback_info;
+@@ -326,6 +510,7 @@ geis_backend_multiplexor_modify_fd(GeisB
+     geis_error("error %d remultiplexing fd %d: %s",
+                errno, fd, strerror(errno));
+   }
++#endif
+ }
+ 
+ 
+@@ -337,6 +522,12 @@ geis_backend_multiplexor_modify_fd(GeisB
+ void
+ geis_backend_multiplexor_remove_fd(GeisBackendMultiplexor mx, int fd)
+ {
++#if defined(__CYGWIN__)
++  pthread_mutex_lock(&mx->lock);
++  _callback_info_bag_release(mx->mx_callback_infos, fd);
++  pthread_mutex_unlock(&mx->lock);
++  _mx_wake_thread(mx);
++#else
+   _callback_info_bag_release(mx->mx_callback_infos, fd);
+   int status = epoll_ctl(mx->mx_fd, EPOLL_CTL_DEL, fd, NULL);
+   if (status < 0)
+@@ -344,6 +535,7 @@ geis_backend_multiplexor_remove_fd(GeisB
+     geis_error("error %d demultiplexing fd %d: %s",
+                errno, fd, strerror(errno));
+   }
++#endif
+ }
+ 
+ 
+@@ -353,7 +545,11 @@ geis_backend_multiplexor_remove_fd(GeisB
+ int
+ geis_backend_multiplexor_fd(GeisBackendMultiplexor mx)
+ {
++#if defined(__CYGWIN__)
++  return mx->notify_pipe[0];
++#else
+   return mx->mx_fd;
++#endif
+ }
+ 
+ 
+@@ -384,6 +580,109 @@ geis_backend_multiplexor_set_max_events_
+ GeisStatus
+ geis_backend_multiplexor_pump(GeisBackendMultiplexor mx)
+ {
++#if defined(__CYGWIN__)
++  GeisStatus status = GEIS_STATUS_UNKNOWN_ERROR;
++  int processed_event_count = 0;
++  int available_event_count = 0;
++  char buf[64];
++
++  while (read(mx->notify_pipe[0], buf, sizeof(buf)) > 0) {}
++
++  while (processed_event_count < mx->mx_max_events_per_pump)
++  {
++    pthread_mutex_lock(&mx->lock);
++    int count = 0;
++    for (CallbackInfo c = mx->mx_callback_infos->front; c; c = c->next)
++    {
++      count++;
++    }
++    if (count == 0)
++    {
++      pthread_mutex_unlock(&mx->lock);
++      break;
++    }
++
++    struct pollfd *pfds = calloc(count, sizeof(struct pollfd));
++    if (!pfds)
++    {
++      pthread_mutex_unlock(&mx->lock);
++      status = GEIS_STATUS_UNKNOWN_ERROR;
++      goto pump_done;
++    }
++
++    int idx = 0;
++    for (CallbackInfo c = mx->mx_callback_infos->front; c; c = c->next, idx++)
++    {
++      pfds[idx].fd = c->fd;
++      pfds[idx].events = 0;
++      if (c->activity & GEIS_BE_MX_READ_AVAILABLE)  pfds[idx].events |= POLLIN;
++      if (c->activity & GEIS_BE_MX_WRITE_AVAILABLE) pfds[idx].events |= POLLOUT;
++    }
++    pthread_mutex_unlock(&mx->lock);
++
++    int ret = poll(pfds, count, 0);
++    if (ret < 0)
++    {
++      free(pfds);
++      if (errno == EINTR)
++      {
++        continue;
++      }
++      geis_error("error %d in poll: %s", errno, strerror(errno));
++      status = GEIS_STATUS_UNKNOWN_ERROR;
++      goto pump_done;
++    }
++    if (ret == 0)
++    {
++      free(pfds);
++      available_event_count = 0;
++      break;
++    }
++
++    available_event_count = ret;
++    for (int i = 0; i < count && processed_event_count < mx->mx_max_events_per_pump; ++i)
++    {
++      if (pfds[i].revents & (POLLIN | POLLOUT | POLLERR | POLLHUP))
++      {
++        GeisBackendMultiplexorActivity flags = 0;
++        if (pfds[i].revents & POLLIN)  flags |= GEIS_BE_MX_READ_AVAILABLE;
++        if (pfds[i].revents & POLLOUT) flags |= GEIS_BE_MX_WRITE_AVAILABLE;
++        if (pfds[i].revents & POLLHUP) flags |= GEIS_BE_MX_HANGUP_DETECTED;
++        if (pfds[i].revents & POLLERR) flags |= GEIS_BE_MX_ERROR_DETECTED;
++
++        pthread_mutex_lock(&mx->lock);
++        CallbackInfo cb = _callback_info_bag_find_by_fd(mx->mx_callback_infos, pfds[i].fd);
++        if (cb && cb->callback)
++        {
++          GeisBackendFdEventCallback callback = cb->callback;
++          void *context = cb->context;
++          int fd = pfds[i].fd;
++          pthread_mutex_unlock(&mx->lock);
++
++          geis_debug("activity 0x%x on fd %d callback_info=%p", pfds[i].revents, fd, (void *)cb);
++          callback(fd, flags, context);
++          ++processed_event_count;
++        }
++        else
++        {
++          pthread_mutex_unlock(&mx->lock);
++        }
++      }
++    }
++    free(pfds);
++  }
++
++  while (read(mx->notify_pipe[0], buf, sizeof(buf)) > 0) {}
++  _mx_wake_thread(mx);
++
++  if (available_event_count && processed_event_count >= mx->mx_max_events_per_pump)
++    status = GEIS_STATUS_CONTINUE;
++  else
++    status = GEIS_STATUS_SUCCESS;
++
++pump_done:
++  return status;
++#else
+   GeisStatus status = GEIS_STATUS_UNKNOWN_ERROR;
+   int processed_event_count = 0;
+   int available_event_count = 1;
+@@ -420,5 +719,6 @@ geis_backend_multiplexor_pump(GeisBacken
+ 
+ error_exit:
+   return status;
++#endif
+ }
+ 
+--- origsrc/geis-2.2.17/libgeis/geis_subscription.c	2013-05-29 11:24:59.000000000 +0000
++++ src/geis-2.2.17/libgeis/geis_subscription.c	2026-11-22 03:11:03.222868000 +0000
+@@ -238,8 +238,10 @@ geis_subscription_bag_empty(GeisSubBag b
+   for (i = 0; i < bag->sub_store_size; ++i)
+   {
+     if (bag->sub_store[i])
++    {
+       _subscription_unref(bag->sub_store[i]);
+       bag->sub_store[i] = NULL;
++    }
+   }
+ }
+ 
+--- origsrc/geis-2.2.17/libgeis/geis_v1.c	2013-05-29 11:24:59.000000000 +0000
++++ src/geis-2.2.17/libgeis/geis_v1.c	2026-11-22 03:11:03.222868000 +0000
+@@ -610,7 +610,7 @@ _v1_subscribe_device(GeisInstance instan
+                      const char **gesture_list)
+ {
+   GeisStatus result = GEIS_UNKNOWN_ERROR;
+-  if (gesture_list == GEIS_ALL_GESTURES)
++  if (gesture_list[0][0] == GEIS_ALL_GESTURES)
+   {
+     geis_debug("subscribing device %d for all gestures", device_id);
+   }
+@@ -757,7 +757,7 @@ geis_unsubscribe(GeisInstance     instan
+                  GeisGestureType *gesture_list)
+ {
+   GeisStatus status = GEIS_STATUS_NOT_SUPPORTED;
+-  if (gesture_list == GEIS_ALL_GESTURES)
++  if (gesture_list[0] == GEIS_ALL_GESTURES)
+   {
+     status = geis_subscription_deactivate(instance->subscription);
+   }
+--- origsrc/geis-2.2.17/python/Makefile.am	2013-05-29 11:24:59.000000000 +0000
++++ src/geis-2.2.17/python/Makefile.am	2026-11-22 03:11:03.224230200 +0000
+@@ -38,7 +38,7 @@ _geis_bindings_la_CFLAGS = \
+ 	$(PYTHON_CFLAGS)
+ 
+ _geis_bindings_la_LDFLAGS = \
+-	-module -avoid-version \
++	-no-undefined -module -avoid-version \
+ 	-export-symbols-regex PyInit__geis_bindings \
+ 	$(top_builddir)/libgeis/libgeis.la \
+ 	$(PYTHON_LIBS)
+--- origsrc/geis-2.2.17/testsuite/libgeis/Makefile.am	2013-11-23 02:05:49.000000000 +0000
++++ src/geis-2.2.17/testsuite/libgeis/Makefile.am	2026-11-22 03:11:03.226896100 +0000
+@@ -66,11 +66,11 @@ check_geis2_internals_CPPFLAGS = \
+ 	$(CHECK_CFLAGS)
+ 
+ # 
+-# Link against the (non-distributed) static libgeis to pick up the
++# Link against the convenience libgeis to pick up the
+ # internal symbols.
+ #
+ check_geis2_internals_LDADD = \
+-	$(top_builddir)/libgeis/.libs/libgeis.a \
++	$(top_builddir)/libgeis/libgeis_internal.la \
+ 	$(DBUS_LIBS) \
+ 	$(GRAIL_LIBS) \
+ 	$(X11XCB_LIBS) \
+--- origsrc/geis-2.2.17/testsuite/libgeis/check_geis_private.c	2013-05-29 11:24:59.000000000 +0000
++++ src/geis-2.2.17/testsuite/libgeis/check_geis_private.c	2026-11-22 03:11:03.224879000 +0000
+@@ -14,7 +14,7 @@
+ 
+ 
+ /* fixtures */
+-Geis g_geis;
++static Geis g_geis;
+ 
+ static void
+ construct_geis()
+--- origsrc/geis-2.2.17/testsuite/libgeis/check_select_devices.c	2013-05-29 11:24:59.000000000 +0000
++++ src/geis-2.2.17/testsuite/libgeis/check_select_devices.c	2026-11-22 03:11:03.225980900 +0000
+@@ -11,7 +11,7 @@
+ static const char* device_1_name = "device 1";
+ 
+ /* fixtures */
+-Geis g_geis;
++static Geis g_geis;
+ 
+ static void
+ construct_geis()
+--- origsrc/geis-2.2.17/testsuite/libgeis/check_timer.c	2013-05-29 11:24:59.000000000 +0000
++++ src/geis-2.2.17/testsuite/libgeis/check_timer.c	2026-11-22 03:11:03.226447300 +0000
+@@ -8,7 +8,12 @@
+ #include "geis_timer.h"
+ #include "geis_test_api.h"
+ #include <stdio.h>
++#if defined(__CYGWIN__)
++#include <sys/socket.h>
++#include <fcntl.h>
++#else
+ #include <sys/eventfd.h>
++#endif
+ #include <sys/select.h>
+ #include <unistd.h>
+ 
+@@ -42,8 +47,20 @@ _timer_callback(GeisTimer timer CK_ATTRI
+ START_TEST(timer_expire)
+ {
+   int timer_fired = 0;
++#if defined(__CYGWIN__)
++  int sv[2];
++  if (socketpair(AF_UNIX, SOCK_STREAM, 0, sv) == -1) {
++    fail_if(1, "error in socketpair");
++  }
++  fcntl(sv[0], F_SETFL, O_NONBLOCK);
++  fcntl(sv[1], F_SETFL, O_NONBLOCK);
++  int efd = sv[0];
++  int write_efd = sv[1];
++  GeisTimer timer = geis_timer_new(g_geis, _timer_callback, &write_efd);
++#else
+   int efd = eventfd(0, EFD_CLOEXEC | EFD_NONBLOCK);
+   GeisTimer timer = geis_timer_new(g_geis, _timer_callback, &efd);
++#endif
+   geis_timer_start(timer, 100);
+ 
+   while (1)
+@@ -83,6 +100,9 @@ START_TEST(timer_expire)
+ 
+   geis_timer_delete(timer);
+   close(efd);
++#if defined(__CYGWIN__)
++  close(write_efd);
++#endif
+ 
+   fail_unless(timer_fired, "timer did not fire");
+ }
+@@ -95,8 +115,20 @@ START_TEST(timer_cancel)
+   static const int microseconds_per_millisecond = 1000;
+   int timer_cancelled = 0;
+   int timer_fired = 0;
++#if defined(__CYGWIN__)
++  int sv[2];
++  if (socketpair(AF_UNIX, SOCK_STREAM, 0, sv) == -1) {
++    fail_if(1, "error in socketpair");
++  }
++  fcntl(sv[0], F_SETFL, O_NONBLOCK);
++  fcntl(sv[1], F_SETFL, O_NONBLOCK);
++  int efd = sv[0];
++  int write_efd = sv[1];
++  GeisTimer timer = geis_timer_new(g_geis, _timer_callback, &write_efd);
++#else
+   int efd = eventfd(0, EFD_CLOEXEC | EFD_NONBLOCK);
+   GeisTimer timer = geis_timer_new(g_geis, _timer_callback, &efd);
++#endif
+   geis_timer_start(timer, timer_timeout);
+ 
+   while (1)
+@@ -139,6 +171,9 @@ START_TEST(timer_cancel)
+ 
+   geis_timer_delete(timer);
+   close(efd);
++#if defined(__CYGWIN__)
++  close(write_efd);
++#endif
+ 
+   fail_if(timer_fired, "timer fired after cancellation");
+ }
+--- origsrc/geis-2.2.17/testsuite/x11_mocks/x11_mocks.c	2015-06-09 15:02:44.000000000 +0000
++++ src/geis-2.2.17/testsuite/x11_mocks/x11_mocks.c	2026-11-22 03:11:03.226896100 +0000
+@@ -4,7 +4,13 @@
+ 
+ #include "x11_mocks.h"
+ 
++#if defined(__CYGWIN__)
++#include <sys/socket.h>
++#include <fcntl.h>
++static int xmock_write_fd = -1;
++#else
+ #include <sys/eventfd.h>
++#endif
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
+@@ -66,7 +72,12 @@ void xmock_add_to_event_queue(const XEve
+   }
+ 
+   static const uint64_t num = 1;
++#if defined(__CYGWIN__)
++  int write_target = (xmock_write_fd != -1) ? xmock_write_fd : xmock_display->fd;
++  if (write(write_target, &num, sizeof(num)) != sizeof(num))
++#else
+   if (write(xmock_display->fd, &num, sizeof(num)) != sizeof(num))
++#endif
+   {
+     fprintf(stderr, "ERROR: failed to update eventfd instance,\n");
+     exit(1);
+@@ -79,7 +90,19 @@ Display *XOpenDisplay(_Xconst char *disp
+   (void)display_name;
+ 
+   Display *display = (Display*)calloc(1, sizeof(Display));
++#if defined(__CYGWIN__)
++  int sv[2];
++  if (socketpair(AF_UNIX, SOCK_STREAM, 0, sv) == -1) {
++    fprintf(stderr, "ERROR: failed to create socketpair\n");
++    exit(1);
++  }
++  fcntl(sv[0], F_SETFL, O_NONBLOCK);
++  fcntl(sv[1], F_SETFL, O_NONBLOCK);
++  display->fd = sv[0];
++  xmock_write_fd = sv[1];
++#else
+   display->fd = eventfd(0, EFD_NONBLOCK);
++#endif
+   display->default_screen = 0;
+   display->nscreens = 1;
+   display->screens = (Screen*)calloc(1, sizeof(Screen));
+@@ -95,6 +118,12 @@ int XCloseDisplay(Display *display)
+   XMOCK_PRINT_FUNCTION;
+ 
+   close(display->fd);
++#if defined(__CYGWIN__)
++  if (xmock_write_fd != -1) {
++    close(xmock_write_fd);
++    xmock_write_fd = -1;
++  }
++#endif
+   free(display->screens);
+   free(display);
+ 

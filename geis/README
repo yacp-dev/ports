@@ -1,0 +1,143 @@
+geis
+------------------------------------------
+GEIS is a library for applications and toolkit programmers which provides a
+consistent platform independent interface for any system-wide input gesture
+recognition mechanism.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libX11_6-1.8.13-1
+  libXext6-1.3.7-1
+  libXi6-1.8.3-1
+  libdbus1_3-1.16.2-1
+  libframe6-2.5.0-1bl1
+  libgeis-devel-2.2.17-1bl1
+  libgeis1-2.2.17-1bl1
+  libgrail6-3.1.1-1bl1
+  libxcb1-1.17.0-2
+  pkg-config-3.0.10-1
+  python3-3.12.12-1
+  python3-geis-2.2.17-1bl1
+  python312-3.12.12-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  check-0.15.2-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  libX11-devel-1.8.13-1
+  libXext-devel-1.3.7-1
+  libXi-devel-1.8.3-1
+  libdbus1-devel-1.16.2-1
+  libframe-devel-2.5.0-1bl1
+  libgrail-devel-3.1.1-1bl1
+  libtool-2.6.2-1
+  libxcb-devel-1.17.0-2
+  make-4.4.1-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  xorg-server-devel-21.1.25-1
+  xorgproto-2025.1-1
+
+Canonical website:
+  https://launchpad.net/geis
+
+Canonical download:
+  https://launchpad.net/geis/trunk/2.2.17/+download/geis-2.2.17.tar.xz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack geis-2.2.17-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./geis-2.2.17-X.cygport all
+
+This will create:
+  /usr/src/geis-2.2.17-X-src.tar.xz
+  /usr/src/geis-2.2.17-X.tar.xz
+  /usr/src/libgeis1-2.2.17-X.tar.xz
+  /usr/src/libgeis-devel-2.2.17-X.tar.xz
+  /usr/src/python3-geis-2.2.17-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(geis)
+  /usr/bin/geistest.exe
+  /usr/bin/geisview
+  /usr/bin/pygeis
+  /usr/share/applications/geisview.desktop
+  /usr/share/doc/Cygwin/geis.README
+  /usr/share/doc/geis/AUTHORS
+  /usr/share/doc/geis/COPYING
+  /usr/share/doc/geis/COPYING.GPL
+  /usr/share/doc/geis/ChangeLog
+  /usr/share/doc/geis/Doxyfile
+  /usr/share/doc/geis/NEWS
+  /usr/share/doc/geis/README
+  /usr/share/doc/geis/geisspec-1.0.asc
+  /usr/share/doc/geis/geisspec-docbook.xml
+  /usr/share/geisview/filter_definition.ui
+  /usr/share/geisview/filter_list.ui
+  /usr/share/geisview/geisview.ui
+  /usr/share/man/man1/geistest.1.gz
+  /usr/share/man/man1/geisview.1.gz
+  /usr/share/man/man1/pygeis.1.gz
+  /usr/share/pixmaps/geisview32x32.xpm
+
+(libgeis1)
+  /usr/bin/cyggeis-1.dll
+
+(libgeis-devel)
+  /usr/include/geis/geis.h
+  /usr/include/geis/geisimpl.h
+  /usr/lib/libgeis.dll.a
+  /usr/lib/pkgconfig/libgeis.pc
+
+(python3-geis)
+  /usr/lib/python3.12/site-packages/_geis_bindings.dll
+  /usr/lib/python3.12/site-packages/geis/__init__.py
+  /usr/lib/python3.12/site-packages/geis/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/geis/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/geis/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/geis/__pycache__/geis_v2.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/geis/__pycache__/geis_v2.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/geis/__pycache__/geis_v2.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/geis/geis_v2.py
+  /usr/lib/python3.12/site-packages/geisview/__init__.py
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/__init__.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/classview.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/classview.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/classview.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/defaults.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/defaults.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/defaults.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/deviceview.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/deviceview.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/deviceview.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/filter_definition.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/filter_definition.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/filter_definition.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/filter_list.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/filter_list.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/geisview/__pycache__/filter_list.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/geisview/classview.py
+  /usr/lib/python3.12/site-packages/geisview/defaults.py
+  /usr/lib/python3.12/site-packages/geisview/deviceview.py
+  /usr/lib/python3.12/site-packages/geisview/filter_definition.py
+  /usr/lib/python3.12/site-packages/geisview/filter_list.py
+
+------------------
+
+Port Notes:
+
+----- version 2.2.17-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

@@ -1,0 +1,92 @@
+HOMEPAGE="https://${PN}.net/"
+SRC_URI="mirror://sourceforge/${PN}/${PN}-3/${PV}/${P}.tar.xz"
+
+CATEGORY="X11"
+SUMMARY="Modular program for SPM (scanning probe microscopy) data visualization and analysis"
+DESCRIPTION="Gwyddion is a modular program for SPM (scanning probe microscopy) data
+visualization and analysis. Primarily it is intended for the analysis of
+height fields obtained by scanning probe microscopy techniques (AFM, MFM, STM,
+SNOM/NSOM) and it supports a lot of SPM data formats. However, it can be used
+for general height field and (greyscale) image processing, for instance for
+the analysis of profilometry data or thickness maps from imaging
+spectrophotometry."
+
+LICENSE="GPL-2.0-or-later AND BSD-4-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND BSD-4-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	gettext-devel
+	gobject-introspection
+	hdf5
+	libaec-devel
+	libbz2-devel
+	libcairo-devel
+	libcfitsio-devel
+	libfftw3-devel
+	libgdk_pixbuf2.0-devel
+	libgirepository1.0-devel
+	libglib2.0-devel
+	libgtk3-devel
+	libhdf5-devel
+	libintl-devel
+	libjson-glib1.0-devel
+	libopenexr-devel
+	libpango1.0-devel
+	libpng-devel
+	libwebp-devel
+	libxml2-devel
+	libzip-devel
+	libzstd-devel
+	python3-devel
+	zlib-devel
+"
+
+export PYTHON=python3
+
+CYGCONF_ARGS="
+	--disable-dependency-tracking
+	--disable-desktop-file-update
+	--enable-maintainer-mode
+"
+
+PKG_NAMES="
+	${PN}
+	lib${PN}3.12
+	lib${PN}-devel
+	girepository-Gwyddion3_12
+	python312-${PN}
+"
+gwyddion_CONTENTS="
+	usr/bin/*.exe
+	usr/lib/${PN}3/modules/*/*.dll
+	usr/share/applications
+	usr/share/doc
+	usr/share/${PN}3
+	usr/share/locale
+	usr/share/man/man1
+	usr/share/metainfo
+	usr/share/mime
+	usr/share/thumbnailers
+"
+libgwyddion3_12_CONTENTS="
+	usr/bin/cyg*-3-12.dll
+"
+libgwyddion_devel_CONTENTS="
+	usr/include
+	usr/lib/${PN}3/include
+	usr/lib/lib*.dll.a
+	usr/lib/pkgconfig
+"
+girepository_Gwyddion3_12_CONTENTS="
+	usr/lib/girepository-1.0
+	usr/share/gir-1.0
+"
+python312_gwyddion_CONTENTS="
+	usr/lib/python3.12/site-packages
+"
+gwyddion_SUMMARY="${SUMMARY} (utilities)"
+libgwyddion3_12_SUMMARY="${SUMMARY} (runtime)"
+libgwyddion_devel_SUMMARY="${SUMMARY} (development)"
+girepository_Gwyddion3_12_SUMMARY="${SUMMARY} (GObject Introspection data)"
+python312_gwyddion_SUMMARY="${SUMMARY} (python312 bindings)"

@@ -1,5 +1,5 @@
---- origsrc/safexcore/CMakeLists.txt	2021-10-02 15:25:40.000000000 +0900
-+++ src/safexcore/CMakeLists.txt	2021-10-02 15:30:14.199102000 +0900
+--- origsrc/safexcore/CMakeLists.txt	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/CMakeLists.txt	2026-11-22 21:15:00.162298100 +0000
 @@ -331,7 +331,7 @@ if (DATABASE STREQUAL "lmdb")
    add_definitions("-DDEFAULT_DB_TYPE=\"lmdb\"")
  elseif (DATABASE STREQUAL "berkeleydb")
@@ -18,6 +18,15 @@
    set(DEFAULT_STACK_TRACE OFF)
    set(LIBUNWIND_LIBRARIES "")
  elseif (DEPENDS AND NOT LINUX)
+@@ -406,7 +406,7 @@ if (CMAKE_SYSTEM_NAME MATCHES "(SunOS|So
+ endif ()
+ 
+ if (APPLE AND NOT IOS)
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=x86-64 -fvisibility=default -std=c++11")
++  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=x86-64 -fvisibility=default")
+   if (NOT OpenSSL_DIR)
+       EXECUTE_PROCESS(COMMAND brew --prefix openssl
+         OUTPUT_VARIABLE OPENSSL_ROOT_DIR
 @@ -496,7 +496,7 @@ else()
      set(ARCH_FLAG "-march=${ARCH}")
    endif()
@@ -36,8 +45,17 @@
      set(C_SECURITY_FLAGS "${C_SECURITY_FLAGS} -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1")
      set(CXX_SECURITY_FLAGS "${CXX_SECURITY_FLAGS} -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1")
    endif()
---- origsrc/safexcore/external/CMakeLists.txt	2021-10-02 15:25:40.000000000 +0900
-+++ src/safexcore/external/CMakeLists.txt	2021-10-02 15:30:14.202253600 +0900
+@@ -623,7 +623,7 @@ else()
+   endif()
+ 
+   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -D_GNU_SOURCE ${MINGW_FLAG} ${STATIC_ASSERT_FLAG} ${WARNINGS} ${C_WARNINGS} ${ARCH_FLAG} ${COVERAGE_FLAGS} ${PIC_FLAG} ${C_SECURITY_FLAGS}")
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -D_GNU_SOURCE ${MINGW_FLAG} ${STATIC_ASSERT_CPP_FLAG} ${WARNINGS} ${CXX_WARNINGS} ${ARCH_FLAG} ${COVERAGE_FLAGS} ${PIC_FLAG} ${CXX_SECURITY_FLAGS}")
++  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_GNU_SOURCE ${MINGW_FLAG} ${STATIC_ASSERT_CPP_FLAG} ${WARNINGS} ${CXX_WARNINGS} ${ARCH_FLAG} ${COVERAGE_FLAGS} ${PIC_FLAG} ${CXX_SECURITY_FLAGS}")
+   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LD_SECURITY_FLAGS}")
+ 
+   # With GCC 6.1.1 the compiled binary malfunctions due to aliasing. Until that
+--- origsrc/safexcore/external/CMakeLists.txt	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/external/CMakeLists.txt	2026-11-22 21:15:00.162684800 +0000
 @@ -38,18 +38,22 @@
  
  find_package(Miniupnpc REQUIRED)
@@ -81,8 +99,8 @@
 +if (NOT RANDOMX_FOUND)
 +  add_subdirectory(randomx EXCLUDE_FROM_ALL)
 +endif()
---- origsrc/safexcore/external/db_drivers/CMakeLists.txt	2021-10-02 15:25:40.000000000 +0900
-+++ src/safexcore/external/db_drivers/CMakeLists.txt	2021-10-02 15:30:14.206110600 +0900
+--- origsrc/safexcore/external/db_drivers/CMakeLists.txt	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/external/db_drivers/CMakeLists.txt	2026-11-22 21:15:00.164309700 +0000
 @@ -30,7 +30,9 @@
  
  # We aren't even going to check the system for an installed LMDB driver, as it is too
@@ -95,8 +113,8 @@
 +endif()
  set(LMDB_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/liblmdb" CACHE STRING "LMDB Include path")
  set(LMDB_LIBRARY "lmdb" CACHE STRING "LMDB Library name")
---- origsrc/safexcore/external/easylogging++/easylogging++.h	2021-10-02 15:25:40.000000000 +0900
-+++ src/safexcore/external/easylogging++/easylogging++.h	2021-10-02 15:30:14.216091400 +0900
+--- origsrc/safexcore/external/easylogging++/easylogging++.h	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/external/easylogging++/easylogging++.h	2026-11-22 21:15:00.164692800 +0000
 @@ -200,7 +200,7 @@ ELPP_INTERNAL_DEBUGGING_OUT_INFO << ELPP
  #  define ELPP_INTERNAL_INFO(lvl, msg)
  #endif  // (defined(ELPP_DEBUG_INFO))
@@ -106,8 +124,8 @@
  #    define ELPP_STACKTRACE 1
  #  else
  #    define ELPP_STACKTRACE 0
---- origsrc/safexcore/src/crypto/slow-hash.c	2021-10-02 15:25:41.000000000 +0900
-+++ src/safexcore/src/crypto/slow-hash.c	2021-10-02 15:30:14.220050100 +0900
+--- origsrc/safexcore/src/crypto/slow-hash.c	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/src/crypto/slow-hash.c	2026-11-22 21:15:00.166331000 +0000
 @@ -623,7 +623,7 @@ void cn_slow_hash_allocate_state(void)
                                          MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
  #else
@@ -117,8 +135,8 @@
      hp_state = mmap(0, MEMORY, PROT_READ | PROT_WRITE,
                      MAP_PRIVATE | MAP_ANON, 0, 0);
  #else
---- origsrc/safexcore/src/daemon/CMakeLists.txt	2021-10-02 15:25:41.000000000 +0900
-+++ src/safexcore/src/daemon/CMakeLists.txt	2021-10-02 15:30:14.241090800 +0900
+--- origsrc/safexcore/src/daemon/CMakeLists.txt	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/src/daemon/CMakeLists.txt	2026-11-22 21:15:00.166700000 +0000
 @@ -105,6 +105,7 @@ target_link_libraries(daemon
      ${CMAKE_THREAD_LIBS_INIT}
      ${ZMQ_LIB}
@@ -127,8 +145,38 @@
      ${EXTRA_LIBRARIES})
  set_property(TARGET daemon
    PROPERTY
---- origsrc/safexcore/tests/core_proxy/CMakeLists.txt	2021-10-02 15:25:42.000000000 +0900
-+++ src/safexcore/tests/core_proxy/CMakeLists.txt	2021-10-03 00:39:49.233834300 +0900
+--- origsrc/safexcore/src/device/device_ledger.cpp	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/src/device/device_ledger.cpp	2026-11-22 21:15:00.168344000 +0000
+@@ -35,6 +35,7 @@
+ #include "cryptonote_basic/account.h"
+ #include "cryptonote_basic/subaddress_index.h"
+ 
++#include <mutex>
+ #include <boost/thread/locks.hpp> 
+ #include <boost/thread/lock_guard.hpp>
+ 
+@@ -240,7 +241,7 @@ namespace hw {
+     //automatic lock one more level on device ensuring the current thread is allowed to use it
+     #define AUTO_LOCK_CMD() \
+       /* lock both mutexes without deadlock*/ \
+-      boost::lock(device_locker, command_locker); \
++      std::lock(device_locker, command_locker); \
+       /* make sure both already-locked mutexes are unlocked at the end of scope */ \
+       boost::lock_guard<boost::recursive_mutex> lock1(device_locker, boost::adopt_lock); \
+       boost::lock_guard<boost::mutex> lock2(command_locker, boost::adopt_lock)
+--- origsrc/safexcore/src/serialization/binary_archive.h	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/src/serialization/binary_archive.h	2026-11-22 21:15:00.168707300 +0000
+@@ -100,7 +100,7 @@ struct binary_archive<false> : public bi
+ {
+ 
+   explicit binary_archive(stream_type &s) : base_type(s) {
+-    stream_type::streampos pos = stream_.tellg();
++    std::streampos pos = stream_.tellg();
+     stream_.seekg(0, std::ios_base::end);
+     eof_pos_ = stream_.tellg();
+     stream_.seekg(pos);
+--- origsrc/safexcore/tests/core_proxy/CMakeLists.txt	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/tests/core_proxy/CMakeLists.txt	2026-11-22 21:15:00.169922800 +0000
 @@ -45,6 +45,7 @@ target_link_libraries(core_proxy
      version
      epee
@@ -137,8 +185,8 @@
      ${EXTRA_LIBRARIES})
  set_property(TARGET core_proxy
    PROPERTY
---- origsrc/safexcore/tests/unit_tests/CMakeLists.txt	2021-10-02 15:25:42.000000000 +0900
-+++ src/safexcore/tests/unit_tests/CMakeLists.txt	2021-10-03 07:09:53.011221600 +0900
+--- origsrc/safexcore/tests/unit_tests/CMakeLists.txt	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/tests/unit_tests/CMakeLists.txt	2026-11-22 21:15:00.170715300 +0000
 @@ -106,6 +106,7 @@ target_link_libraries(unit_tests
      ${Boost_THREAD_LIBRARY}
      ${GTEST_LIBRARIES}
@@ -147,3 +195,34 @@
      ${EXTRA_LIBRARIES})
  set_property(TARGET unit_tests
    PROPERTY
+--- origsrc/safexcore/tests/unit_tests/epee_utils.cpp	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/tests/unit_tests/epee_utils.cpp	2026-11-22 21:15:00.171222000 +0000
+@@ -38,6 +38,7 @@
+ #include <iterator>
+ #include <string>
+ #include <sstream>
++#include <iomanip>
+ #include <vector>
+ 
+ #ifndef _WIN32
+--- origsrc/safexcore/tests/unit_tests/memwipe.cpp	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/tests/unit_tests/memwipe.cpp	2026-11-22 21:15:00.171729800 +0000
+@@ -31,6 +31,7 @@
+ #include "gtest/gtest.h"
+ 
+ #include <stdint.h>
++#include <iomanip>
+ #include "misc_log_ex.h"
+ #include "memwipe.h"
+ 
+--- origsrc/safexcore/translations/CMakeLists.txt	2026-11-22 21:14:16.000000000 +0000
++++ src/safexcore/translations/CMakeLists.txt	2026-11-22 21:15:00.171729800 +0000
+@@ -28,7 +28,7 @@
+ #
+ # Parts of this file are originally copyright (c) 2017-2018 The Monero Project
+ 
+-cmake_minimum_required(VERSION 2.8.7)
++cmake_minimum_required(VERSION 3.5)
+ 
+ project(translations)
+ 

@@ -1,0 +1,18 @@
+Pass the templates directory to Session as templates_dir, not as encoding.
+
+The test gave "../docs/templates" as the third argument, which is the
+encoding, so the templates were read from the installed TEMPLATESDIR and
+the test could only pass after make install.
+
+--- a/unit_test/SessionTestClient.cpp
++++ b/unit_test/SessionTestClient.cpp
+@@ -60,7 +60,8 @@
+ 		fclose(fd);
+ 		const string server = "localhost";
+ 		// Session
+-		_session = unique_ptr<Session>(new Session(server, port, 
++		_session = unique_ptr<Session>(new Session(server, port,
++		                                         "ISO-8859-1",
+ 		                                         "../docs/templates"));
+ 		_session->enable_xml_validation("../docs/schemas");
+ 

@@ -1,5 +1,5 @@
---- origsrc/libepp-nicbr-1.20/Makefile.am	2024-12-20 02:17:22.000000000 +0900
-+++ src/libepp-nicbr-1.20/Makefile.am	2025-01-05 17:27:44.505755200 +0900
+--- origsrc/libepp-nicbr-1.20/Makefile.am	2024-12-19 17:17:22.000000000 +0000
++++ src/libepp-nicbr-1.20/Makefile.am	2026-11-22 07:11:51.220348700 +0000
 @@ -27,15 +27,15 @@ SUBDIRS = lib $(SHEPP_DIR) unit_test
  DIST_SUBDIRS = lib src/shepp unit_test
  
@@ -25,8 +25,8 @@
  
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libepp-nicbr-1.20/configure.ac	2024-12-20 02:17:22.000000000 +0900
-+++ src/libepp-nicbr-1.20/configure.ac	2025-01-05 17:26:29.574941600 +0900
+--- origsrc/libepp-nicbr-1.20/configure.ac	2024-12-19 17:17:22.000000000 +0000
++++ src/libepp-nicbr-1.20/configure.ac	2026-11-22 07:11:51.220781600 +0000
 @@ -26,7 +26,7 @@
  AC_INIT(libepp-nicbr, 1.20) 
  
@@ -183,8 +183,8 @@
  AC_CONFIG_FILES(Makefile lib/Makefile src/shepp/Makefile unit_test/Makefile)
 +AC_CONFIG_FILES([libepp-nicbr.pc])
  AC_OUTPUT
---- origsrc/libepp-nicbr-1.20/lib/Makefile.am	2024-12-20 02:17:22.000000000 +0900
-+++ src/libepp-nicbr-1.20/lib/Makefile.am	2025-01-05 16:48:06.337361100 +0900
+--- origsrc/libepp-nicbr-1.20/lib/Makefile.am	2024-12-19 17:17:22.000000000 +0000
++++ src/libepp-nicbr-1.20/lib/Makefile.am	2026-11-22 07:11:51.220781600 +0000
 @@ -23,9 +23,9 @@
   ##
  ## $Id$ ## 
@@ -205,8 +205,8 @@
 +libepp_nicbr_1_20_la_CPPFLAGS = -I $(top_srcdir)/include
 +libepp_nicbr_1_20_la_LDFLAGS = -no-undefined
 +libepp_nicbr_1_20_la_LIBADD = $(OPENSSL_LIBS) $(XERCES_LIBS)
---- origsrc/libepp-nicbr-1.20/libepp-nicbr.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libepp-nicbr-1.20/libepp-nicbr.pc.in	2025-01-05 17:27:59.625377300 +0900
+--- origsrc/libepp-nicbr-1.20/libepp-nicbr.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libepp-nicbr-1.20/libepp-nicbr.pc.in	2026-11-22 07:11:51.222795000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -218,16 +218,16 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lepp-nicbr-@VERSION@
 +Cflags: -I${includedir}
---- origsrc/libepp-nicbr-1.20/src/shepp/Makefile.am	2024-12-20 02:17:22.000000000 +0900
-+++ src/libepp-nicbr-1.20/src/shepp/Makefile.am	2025-01-05 16:48:48.871356600 +0900
+--- origsrc/libepp-nicbr-1.20/src/shepp/Makefile.am	2024-12-19 17:17:22.000000000 +0000
++++ src/libepp-nicbr-1.20/src/shepp/Makefile.am	2026-11-22 07:11:51.222795000 +0000
 @@ -43,4 +43,4 @@ shepp_SOURCES = shepp.cpp \
  	SheppObjSet.H \
  	SheppPrint.H \
  	SheppStrUtil.H
 -shepp_LDADD = $(top_srcdir)/lib/libepp-nicbr-1.20.a -lxerces-c -lcrypto -lssl
 +shepp_LDADD = $(top_builddir)/lib/libepp-nicbr-1.20.la $(READLINE_LIBS) $(OPENSSL_LIBS) $(XERCES_LIBS)
---- origsrc/libepp-nicbr-1.20/unit_test/Makefile.am	2024-12-20 02:17:22.000000000 +0900
-+++ src/libepp-nicbr-1.20/unit_test/Makefile.am	2025-01-05 16:49:45.689146200 +0900
+--- origsrc/libepp-nicbr-1.20/unit_test/Makefile.am	2024-12-19 17:17:22.000000000 +0000
++++ src/libepp-nicbr-1.20/unit_test/Makefile.am	2026-11-22 07:11:51.224808100 +0000
 @@ -31,13 +31,13 @@ check_PROGRAMS = TransportTLSTestServer
  	SessionTestServer CppUnitTest
  

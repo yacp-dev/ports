@@ -1,16 +1,20 @@
-HOMEPAGE="https://github.com/psychoschlumpf/${PN}"
-SRC_URI="https://github.com/psychoschlumpf/${PN}/archive/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/larsuhartmann/${PN}"
+SRC_URI="https://github.com/larsuhartmann/${PN}/archive/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Fast and portable library offering functionality for doing package management in a Gentoo system"
 DESCRIPTION="LibPortage is a fast and portable library offering functionality for doing
 package management in a Gentoo system. This includes ebuilds, binpkgs and
 managing a portage-compatible configuration. The library will provide all the
-functions one may need to write a drop-in replacement for Portage in C.
+functions one may need to write a drop-in replacement for Portage in C."
 
-As a side effect of our effort to implement all portage features, there are
-also a few documents we (the developers) wrote for ourselves to cover some of
-Gentoo's internals which might be useful for external devs as well."
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libarchive-devel
+"
 
 PKG_NAMES="
 	${PN}
@@ -21,7 +25,7 @@ libportage_CONTENTS="
 	usr/share
 "
 libportage0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 libportage_devel_CONTENTS="
 	usr/include

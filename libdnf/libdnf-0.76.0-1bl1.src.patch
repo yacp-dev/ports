@@ -1,0 +1,87 @@
+--- origsrc/libdnf-0.76.0/bindings/python/CMakeLists.txt	2026-09-16 19:04:24.000000000 +0000
++++ src/libdnf-0.76.0/bindings/python/CMakeLists.txt	2026-11-22 02:43:01.267506654 +0000
+@@ -26,7 +26,7 @@ function(libdnf_swig_module name)
+         swig_link_libraries(${name} ${lib})
+     endforeach()
+ 
+-    install(TARGETS _${name} LIBRARY DESTINATION ${PYTHON_INSTALL_DIR}/libdnf)
++    install(TARGETS _${name} DESTINATION ${PYTHON_INSTALL_DIR}/libdnf)
+     install(FILES ${CMAKE_BINARY_DIR}/bindings/python/${name}.py DESTINATION ${PYTHON_INSTALL_DIR}/libdnf)
+ endfunction()
+ 
+--- origsrc/libdnf-0.76.0/CMakeLists.txt	2026-09-16 19:04:24.000000000 +0000
++++ src/libdnf-0.76.0/CMakeLists.txt	2026-11-22 02:42:41.464271181 +0000
+@@ -20,6 +20,7 @@ endif()
+ # On Ubuntu et al. CMake is configured differently and needs to be told where to find libsolv,
+ # otherwise the build fails
+ LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/share/cmake/libsolv/")
++LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/share/cmake/Modules/")
+ 
+ 
+ # print exact name and version of the compiled project
+@@ -58,6 +59,7 @@ endif()
+ 
+ 
+ # build dependencies
++find_package(Intl REQUIRED)
+ find_package(LibSolv 0.7.21 REQUIRED COMPONENTS ext)
+ 
+ 
+--- origsrc/libdnf-0.76.0/libdnf/CMakeLists.txt	2026-09-16 19:04:24.000000000 +0000
++++ src/libdnf-0.76.0/libdnf/CMakeLists.txt	2026-11-22 02:42:52.095990207 +0000
+@@ -81,6 +81,7 @@ target_link_libraries(libdnf
+     ${JSONC_LIBRARIES}
+     ${LIBMODULEMD_LIBRARIES}
+     ${SMARTCOLS_LIBRARIES}
++    ${Intl_LIBRARIES}
+ )
+ 
+ if(ENABLE_RHSM_SUPPORT)
+@@ -140,5 +141,5 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR
+ )
+ install(FILES ${LIBDNF_headers} DESTINATION include/libdnf)
+ install(FILES ${LIBHAWKEY_headers} DESTINATION include/libdnf)
+-install(TARGETS libdnf LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
++install(TARGETS libdnf RUNTIME DESTINATION bin ARCHIVE DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR} LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
+ install(FILES "README.plugins" DESTINATION "${CMAKE_INSTALL_FULL_LIBDIR}/libdnf/plugins" RENAME "README")
+--- origsrc/libdnf-0.76.0/libdnf/hy-iutil.cpp	2026-09-16 19:04:24.000000000 +0000
++++ src/libdnf-0.76.0/libdnf/hy-iutil.cpp	2026-11-22 02:55:08.179947510 +0000
+@@ -22,7 +22,7 @@
+ #include <errno.h>
+ #include <dirent.h>
+ #include <fcntl.h>
+-#ifdef __APPLE__
++#if defined(__APPLE__) || defined(__CYGWIN__)
+ #include <limits.h>
+ #else
+ #include <linux/limits.h>
+--- origsrc/libdnf-0.76.0/libdnf/hy-util.cpp	2026-09-16 19:04:24.000000000 +0000
++++ src/libdnf-0.76.0/libdnf/hy-util.cpp	2026-11-22 02:55:08.207289056 +0000
+@@ -25,7 +25,7 @@
+ #include <sys/utsname.h>
+ #include <sys/stat.h>
+ 
+-#ifdef __APPLE__
++#if defined(__APPLE__) || defined(__CYGWIN__)
+ typedef int auxv_t;
+ #ifndef AT_HWCAP2
+ #define AT_HWCAP2 26
+--- origsrc/libdnf-0.76.0/python/hawkey/CMakeLists.txt	2026-09-16 19:04:24.000000000 +0000
++++ src/libdnf-0.76.0/python/hawkey/CMakeLists.txt	2026-11-22 02:43:01.287681168 +0000
+@@ -48,7 +48,7 @@ target_link_libraries(_hawkeymodule libd
+ target_link_libraries(_hawkeymodule ${PYTHON_LIBRARY})
+ 
+ install(FILES __init__.py DESTINATION ${PYTHON_INSTALL_DIR}/hawkey)
+-install(TARGETS _hawkeymodule LIBRARY DESTINATION ${PYTHON_INSTALL_DIR}/hawkey)
++install(TARGETS _hawkeymodule DESTINATION ${PYTHON_INSTALL_DIR}/hawkey)
+ 
+ IF (WITH_TESTS)
+ add_subdirectory(tests)
+--- origsrc/libdnf-0.76.0/python/hawkey/tests/module/CMakeLists.txt	2026-09-16 19:04:24.000000000 +0000
++++ src/libdnf-0.76.0/python/hawkey/tests/module/CMakeLists.txt	2026-11-22 02:43:01.306518017 +0000
+@@ -35,4 +35,4 @@ add_custom_command(TARGET testmodule
+ )
+ 
+ install(FILES __init__.py DESTINATION ${PYTHON_INSTALL_DIR}/hawkey/test)
+-install(TARGETS testmodule LIBRARY DESTINATION ${PYTHON_INSTALL_DIR}/hawkey/test)
++install(TARGETS testmodule DESTINATION ${PYTHON_INSTALL_DIR}/hawkey/test)

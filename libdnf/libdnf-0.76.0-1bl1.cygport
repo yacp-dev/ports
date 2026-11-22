@@ -1,0 +1,67 @@
+HOMEPAGE="https://github.com/rpm-software-management/libdnf"
+SRC_URI="https://github.com/rpm-software-management/${PN}/archive/refs/tags/${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Library providing simplified C and Python API to libsolv"
+DESCRIPTION="A Library providing simplified C and Python API to libsolv."
+
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	check
+	cppunit
+	gettext-devel
+	libglib2.0-devel
+	libjson-c-devel
+	libmodulemd-devel
+	librepo-devel
+	libsmartcols-devel
+	libsolv-devel
+	libsqlite3-devel
+	libzck-devel
+	python3-devel
+	rpm-devel
+	swig
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DPYTHON_DESIRED:STRING=3
+	-DWITH_GTKDOC:BOOL=OFF
+	-DWITH_HTML:BOOL=OFF
+	-DWITH_MAN:BOOL=OFF
+"
+
+DOCS="
+	AUTHORS
+	README.md
+"
+
+PKG_NAMES="
+	libdnf
+	libdnf2
+	libdnf-devel
+	python312-libdnf
+"
+libdnf_CONTENTS="
+	usr/lib/libdnf
+	usr/share/locale
+"
+libdnf2_CONTENTS="
+	usr/bin/cygdnf-2.dll
+"
+libdnf_devel_CONTENTS="
+	usr/include
+	usr/lib/libdnf.dll.a
+	usr/lib/pkgconfig
+"
+python312_libdnf_CONTENTS="
+	usr/lib/python3.12
+"
+libdnf_SUMMARY="${SUMMARY} (plugins)"
+libdnf2_SUMMARY="${SUMMARY} (runtime)"
+libdnf_devel_SUMMARY="${SUMMARY} (development)"
+python312_libdnf_SUMMARY="${SUMMARY} (python312 bindings)"

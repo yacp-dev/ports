@@ -4,25 +4,25 @@ DOM C library developped for the Gnome project
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.9-1
-  libgdome-devel-0.8.1-1bl3
-  libgdome0-0.8.1-1bl3
-  libglib2.0-devel-2.88.1-1
-  libglib2.0_0-2.88.1-1
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgdome-devel-0.8.1-1bl4
+  libgdome0-0.8.1-1bl4
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libxml2-devel-2.13.9-3
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  automake-20250528-1
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  libglib2.0-devel-2.88.1-1
-  libtool-2.5.4-1
-  libxml2-devel-2.10.4-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libglib2.0-devel-2.90.1-1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-3
   make-4.4.1-2
 
 Canonical website:
@@ -81,6 +81,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.8.1-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.8.1-1bl3 -----
 Rebuild with gcc-13.4.0

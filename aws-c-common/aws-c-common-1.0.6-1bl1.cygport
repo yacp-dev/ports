@@ -6,8 +6,8 @@ SUMMARY="Core c99 package for AWS SDK for C"
 DESCRIPTION="Core c99 package for AWS SDK for C. Includes cross-platform primitives,
 configuration, data structures, and error handling."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND MIT AND (GPL-2.0-only OR BSD-3-Clause)"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND MIT AND (GPL-2.0-only OR BSD-3-Clause)"
 LICENSE_URI="LICENSE"
 
 inherit cmake
@@ -25,6 +25,7 @@ src_test()
 
 DOCS="
 	CONTRIBUTING.md
+	THIRD-PARTY-LICENSES.txt
 "
 
 DIFF_EXCLUDES="

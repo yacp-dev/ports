@@ -5,8 +5,8 @@ configuration, data structures, and error handling.
 
 Runtime requirements:
   cygwin-3.6.12-1
-  libaws-c-common-devel-1.0.5-1bl1
-  libaws-c-common1.0-1.0.5-1bl1
+  libaws-c-common-devel-1.0.6-1bl1
+  libaws-c-common1.0-1.0.6-1bl1
   libgcc1-14.4.0-1
   pkg-config-3.0.10-1
 
@@ -22,22 +22,22 @@ Canonical website:
   https://github.com/awslabs/aws-c-common
 
 Canonical download:
-  https://github.com/awslabs/aws-c-common/archive/refs/tags/v1.0.5.tar.gz
+  https://github.com/awslabs/aws-c-common/archive/refs/tags/v1.0.6.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack aws-c-common-1.0.5-X-src.tar.xz
+  1. unpack aws-c-common-1.0.6-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./aws-c-common-1.0.5-X.cygport all
+        % cygport ./aws-c-common-1.0.6-X.cygport all
 
 This will create:
-  /usr/src/aws-c-common-1.0.5-X-src.tar.xz
-  /usr/src/aws-c-common-1.0.5-X.tar.xz
-  /usr/src/libaws-c-common1.0-1.0.5-X.tar.xz
-  /usr/src/libaws-c-common-devel-1.0.5-X.tar.xz
+  /usr/src/aws-c-common-1.0.6-X-src.tar.xz
+  /usr/src/aws-c-common-1.0.6-X.tar.xz
+  /usr/src/libaws-c-common1.0-1.0.6-X.tar.xz
+  /usr/src/libaws-c-common-devel-1.0.6-X.tar.xz
 
 -------------------------------------------
 
@@ -49,6 +49,7 @@ Files included in the binary package:
   /usr/share/doc/aws-c-common/LICENSE
   /usr/share/doc/aws-c-common/NOTICE
   /usr/share/doc/aws-c-common/README.md
+  /usr/share/doc/aws-c-common/THIRD-PARTY-LICENSES.txt
 
 (libaws-c-common1.0)
   /usr/bin/cygaws-c-common-1.0.dll
@@ -161,6 +162,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.6-1bl1 -----
+Version bump.
 
 ----- version 1.0.5-1bl1 -----
 Version bump.

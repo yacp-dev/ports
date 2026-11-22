@@ -6,29 +6,28 @@ portable and known to run on Linux, Free/NetBSD, OSX, Solaris, and
 Windows/Cygwin.
 
 Runtime requirements:
-  bash-4.4.12-3
-  cygwin-3.3.6-1
+  bash-5.2.21-1
+  cygwin-3.6.12-1
   libdbi1-0.9.0-1
-  libexpat1-2.4.1-1
-  libiconv2-1.17-1
-  libreadline7-8.1-2
-  perl-5.32.1-2
-  perl-XML-Parser-2.46-3
-  perl-libwww-perl-6.67-1
-  perl_base-5.32.1-2
+  libexpat1-2.10.0-1
+  libiconv2-1.19-2
+  libreadline8-8.3-1
+  perl-5.44.0-1
+  perl_base-5.44.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.39-1
-  cygport-0.35.2-1
-  gcc-core-11.3.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
   libdbi-devel-0.9.0-1
-  libexpat-devel-2.4.1-1
-  libiconv-devel-1.17-1
-  libreadline-devel-8.1-2
-  make-4.3-1
+  libexpat-devel-2.10.0-1
+  libiconv-devel-1.19-2
+  libreadline-devel-8.3-1
+  make-4.4.1-2
 
 Canonical website:
   https://sourceforge.net/projects/refdb/
@@ -271,6 +270,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.3-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.3-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

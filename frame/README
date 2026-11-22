@@ -1,0 +1,82 @@
+frame
+------------------------------------------
+Frame handles the buildup and synchronization of a set of simultaneous touches.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libX11_6-1.8.13-1
+  libXi6-1.8.3-1
+  libframe-devel-2.5.0-1bl1
+  libframe6-2.5.0-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.10-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  asciidoc-10.2.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.12-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libX11-devel-1.8.13-1
+  libXext-devel-1.3.7-1
+  libXi-devel-1.8.3-1
+  libtool-2.6.2-1
+  make-4.4.1-2
+  xorg-server-devel-21.1.25-1
+  xorgproto-2025.1-1
+
+Canonical website:
+  https://launchpad.net/frame
+
+Canonical download:
+  https://launchpad.net/frame/trunk/v2.5.0/+download/frame-2.5.0.tar.xz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack frame-2.5.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./frame-2.5.0-X.cygport all
+
+This will create:
+  /usr/src/frame-2.5.0-X-src.tar.xz
+  /usr/src/frame-2.5.0-X.tar.xz
+  /usr/src/libframe6-2.5.0-X.tar.xz
+  /usr/src/libframe-devel-2.5.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(frame)
+  /usr/bin/frame-test-x11.exe
+  /usr/share/doc/Cygwin/frame.README
+  /usr/share/doc/frame/COPYING
+  /usr/share/doc/frame/COPYING.GPL3
+  /usr/share/doc/frame/README
+  /usr/share/man/man1/frame-test-x11.1.gz
+
+(libframe6)
+  /usr/bin/cygframe-6.dll
+
+(libframe-devel)
+  /usr/include/oif/frame.h
+  /usr/include/oif/frame_backend.h
+  /usr/include/oif/frame_internal.h
+  /usr/include/oif/frame_x11.h
+  /usr/lib/libframe.dll.a
+  /usr/lib/pkgconfig/frame-x11.pc
+  /usr/lib/pkgconfig/frame.pc
+
+------------------
+
+Port Notes:
+
+----- version 2.5.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

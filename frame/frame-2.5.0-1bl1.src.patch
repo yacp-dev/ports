@@ -1,0 +1,182 @@
+--- origsrc/frame-2.5.0/configure.ac	2013-02-08 19:05:24.000000000 +0000
++++ src/frame-2.5.0/configure.ac	2026-11-22 01:07:53.923357700 +0000
+@@ -125,7 +125,7 @@ AC_CHECK_DECL(__clang__, CXX_LIBS="-lstd
+ AC_SUBST(CXX_LIBS)
+ AC_LANG_POP(C++)
+ 
+-AC_SUBST(WARNING_CPPFLAGS, "-Wall -Werror")
++AC_SUBST(WARNING_CPPFLAGS, "-Wall")
+ AC_SUBST(C11_CFLAGS, "-std=c1x")
+ AC_SUBST(CXX11_CXXFLAGS, "-std=c++0x")
+ AC_SUBST(VISIBILITY_CFLAGS, "-fvisibility=hidden")
+--- origsrc/frame-2.5.0/src/Makefile.am	2013-02-08 19:05:24.000000000 +0000
++++ src/frame-2.5.0/src/Makefile.am	2026-11-22 01:07:53.927387500 +0000
+@@ -3,8 +3,8 @@ version_script = $(srcdir)/libframe.ver
+ lib_LTLIBRARIES = libframe.la
+ 
+ libframe_la_LDFLAGS = \
+-	-version-info @LIB_VERSION@ \
+-	-Wl,-z,defs -Wl,--as-needed \
++	-no-undefined -version-info @LIB_VERSION@ \
++	-Wl,--as-needed \
+ 	-Wl,--version-script=$(version_script)
+ 
+ libframe_la_LIBADD = \
+--- origsrc/frame-2.5.0/src/handle.cpp	2013-02-08 19:05:24.000000000 +0000
++++ src/frame-2.5.0/src/handle.cpp	2026-11-22 01:07:53.925371600 +0000
+@@ -22,7 +22,11 @@
+ 
+ #include <errno.h>
+ #include <stdio.h>
++#if defined(__CYGWIN__)
++#include <fcntl.h>
++#else
+ #include <sys/eventfd.h>
++#endif
+ #include <unistd.h>
+ 
+ #include <stdexcept>
+@@ -32,20 +36,41 @@
+ namespace oif {
+ namespace frame {
+ 
+-UFHandle::UFHandle() : event_fd_(-1), event_queue_() {
++UFHandle::UFHandle() : event_fd_(-1),
++#if defined(__CYGWIN__)
++  write_fd_(-1),
++#endif
++  event_queue_() {
++#if defined(__CYGWIN__)
++  int p[2];
++  if (pipe(p) == -1) {
++    fprintf(stderr, "Error: failed to create pipe instance\n");
++    throw std::runtime_error("Failed to create pipe instance");
++  }
++  fcntl(p[0], F_SETFL, O_NONBLOCK);
++  fcntl(p[1], F_SETFL, O_NONBLOCK);
++  event_fd_ = p[0];
++  write_fd_ = p[1];
++#else
+   event_fd_ = eventfd(0, EFD_NONBLOCK);
+   if (event_fd_ == -1) {
+     fprintf(stderr, "Error: failed to create eventfd instance\n");
+     throw std::runtime_error("Failed to create eventfd instance");
+   }
++#endif
+ }
+ 
+ void UFHandle::EnqueueEvent(UFEvent* event) {
+   static const uint64_t num = 1;
+ 
+   event_queue_.push(event);
++#if defined(__CYGWIN__)
++  if (write(write_fd_, &num, sizeof(num)) != sizeof(num))
++    fprintf(stderr, "Warning: failed to update event pipe instance\n");
++#else
+   if (write(event_fd_, &num, sizeof(num)) != sizeof(num))
+     fprintf(stderr, "Warning: failed to update eventfd instance\n");
++#endif
+ }
+ 
+ UFStatus UFHandle::GetEvent(::UFEvent* event) {
+@@ -68,6 +93,12 @@ UFHandle::~UFHandle() {
+     event_queue_.front()->Unref();
+     event_queue_.pop();
+   }
++#if defined(__CYGWIN__)
++  if (event_fd_ != -1)
++    close(event_fd_);
++  if (write_fd_ != -1)
++    close(write_fd_);
++#endif
+ }
+ 
+ } // namespace frame
+--- origsrc/frame-2.5.0/src/handle.h	2013-02-08 19:05:24.000000000 +0000
++++ src/frame-2.5.0/src/handle.h	2026-11-22 01:07:53.925371600 +0000
+@@ -51,6 +51,9 @@ class UFHandle : public UFHandle_ {
+ 
+  private:
+   int event_fd_;
++#if defined(__CYGWIN__)
++  int write_fd_;
++#endif
+   std::queue<UFEvent*> event_queue_;
+ };
+ 
+--- origsrc/frame-2.5.0/test/x11_mocks/x11_mocks.cpp	2013-02-08 19:05:24.000000000 +0000
++++ src/frame-2.5.0/test/x11_mocks/x11_mocks.cpp	2026-11-22 01:07:53.927387500 +0000
+@@ -4,7 +4,13 @@
+ 
+ #include "x11_mocks.h"
+ 
++#if defined(__CYGWIN__)
++#include <sys/socket.h>
++#include <fcntl.h>
++static int xmock_write_fd = -1;
++#else
+ #include <sys/eventfd.h>
++#endif
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
+@@ -68,7 +74,12 @@ void xmock_add_to_event_queue(const XEve
+   }
+ 
+   static const uint64_t num = 1;
++#if defined(__CYGWIN__)
++  int write_target = (xmock_write_fd != -1) ? xmock_write_fd : xmock_display->fd;
++  if (write(write_target, &num, sizeof(num)) != sizeof(num))
++#else
+   if (write(xmock_display->fd, &num, sizeof(num)) != sizeof(num))
++#endif
+   {
+     fprintf(stderr, "ERROR: failed to update eventfd instance,\n");
+     exit(1);
+@@ -100,7 +111,19 @@ Display *XOpenDisplay(_Xconst char *disp
+   (void)display_name;
+ 
+   Display *display = (Display*)calloc(1, sizeof(Display));
++#if defined(__CYGWIN__)
++  int sv[2];
++  if (socketpair(AF_UNIX, SOCK_STREAM, 0, sv) == -1) {
++    fprintf(stderr, "ERROR: failed to create socketpair\n");
++    exit(1);
++  }
++  fcntl(sv[0], F_SETFL, O_NONBLOCK);
++  fcntl(sv[1], F_SETFL, O_NONBLOCK);
++  display->fd = sv[0];
++  xmock_write_fd = sv[1];
++#else
+   display->fd = eventfd(0, EFD_NONBLOCK);
++#endif
+   display->default_screen = 0;
+   display->nscreens = 1;
+   display->screens = (Screen*)calloc(1, sizeof(Screen));
+@@ -115,6 +138,12 @@ int XCloseDisplay(Display *display)
+ {
+   XMOCK_PRINT_FUNCTION;
+ 
++#if defined(__CYGWIN__)
++  if (xmock_write_fd != -1) {
++    close(xmock_write_fd);
++    xmock_write_fd = -1;
++  }
++#endif
+   close(display->fd);
+   free(display->screens);
+   free(display);
+@@ -171,7 +200,6 @@ int XNextEvent(Display *display, XEvent
+   XMOCK_PRINT_FUNCTION;
+   (void)display;
+ 
+-
+   if (xmock_event_queue)
+   {
+     uint64_t num = 1;
+@@ -431,5 +459,3 @@ Atom XInternAtom(Display* display, _Xcon
+   abort();
+   return 1;
+ }
+-
+-

@@ -1,0 +1,51 @@
+HOMEPAGE="https://launchpad.net/frame"
+SRC_URI="https://launchpad.net/frame/trunk/v2.5.0/+download/frame-2.5.0.tar.xz"
+
+CATEGORY="Libs"
+SUMMARY="Touch Frame Library"
+DESCRIPTION="Frame handles the buildup and synchronization of a set of
+simultaneous touches."
+
+LICENSE="GPL-3.0-only AND LGPL-3.0-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-only AND LGPL-3.0-only"
+LICENSE_URI="COPYING.GPL3"
+
+BUILD_REQUIRES="
+	asciidoc
+	libX11-devel
+	libXext-devel
+	libXi-devel
+	xorg-server-devel
+	xorgproto
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+DIFF_EXCLUDES="
+	pkg.m4
+"
+
+DOCS="
+	COPYING.GPL3
+"
+
+PKG_NAMES="
+	frame
+	libframe6
+	libframe-devel
+"
+frame_CONTENTS="
+	usr/bin/*.exe
+	usr/share/doc
+	usr/share/man/man1
+"
+libframe6_CONTENTS="
+	usr/bin/cyg*-6.dll
+"
+libframe_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+frame_SUMMARY="${SUMMARY} (utilities)"
+libframe6_SUMMARY="${SUMMARY} (runtime)"
+libframe_devel_SUMMARY="${SUMMARY} (development)"

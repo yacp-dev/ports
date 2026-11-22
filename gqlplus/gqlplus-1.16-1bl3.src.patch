@@ -1,13 +1,13 @@
---- origsrc/gqlplus-1.16/configure.ac	2025-01-31 08:44:19.284434000 +0900
-+++ src/gqlplus-1.16/configure.ac	2025-01-31 08:44:55.389991000 +0900
+--- origsrc/gqlplus-1.16/configure.ac	2026-11-22 03:59:54.005308500 +0000
++++ src/gqlplus-1.16/configure.ac	2026-11-22 03:59:54.440285500 +0000
 @@ -1,4 +1,4 @@
 -AC_INIT([gqlplus], [1.14],kernel01@gmail.com)
 +AC_INIT([gqlplus], [1.16],kernel01@gmail.com)
  AC_CONFIG_SRCDIR([gqlplus.c])
  AM_INIT_AUTOMAKE
  AC_PROG_MAKE_SET
---- origsrc/gqlplus-1.16/gqlplus.c	2025-01-31 08:44:19.284434000 +0900
-+++ src/gqlplus-1.16/gqlplus.c	2025-01-31 08:45:16.479190300 +0900
+--- origsrc/gqlplus-1.16/gqlplus.c	2026-11-22 03:59:54.007324200 +0000
++++ src/gqlplus-1.16/gqlplus.c	2026-11-22 03:59:54.440801800 +0000
 @@ -459,7 +459,7 @@ Copyright (C) 2004 Ljubomir J. Buturovic
  #  define MAXPATHLEN 512
  #endif

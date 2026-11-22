@@ -3,7 +3,7 @@ safexcore
 Reference implementation of Safex Blockchain in C++
 
 Runtime requirements:
-  cygwin-3.2.0-1
+  cygwin-3.6.12-1
   libboost_chrono1.66-1.66.0-1
   libboost_filesystem1.66-1.66.0-1
   libboost_program_options1.66-1.66.0-1
@@ -11,62 +11,55 @@ Runtime requirements:
   libboost_serialization1.66-1.66.0-1
   libboost_system1.66-1.66.0-1
   libboost_thread1.66-1.66.0-1
-  libgcc1-11.2.0-1
+  libgcc1-14.4.0-1
   liblmdb0-0.9.19-1
-  libminiupnpc17-2.2.2-1bl1
-  libpcsclite1-1.9.1-1bl1
-  librandomx1-1.1.9-1bl1
-  libreadline7-8.1-2
-  libssl1.1-1.1.1f-1
-  libstdc++6-11.2.0-1
-  libunbound2-1.6.2-1
-  libzmq5-4.2.3-1
+  libminiupnpc21-2.3.5-1bl1
+  libpcsclite1-2.5.3-1bl1
+  librandomx0-1.2.3-1bl1
+  libreadline8-8.3-1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
+  libunbound8-1.26.2-1
+  libzmq5-4.3.5-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-11-1
-  binutils-2.37-2
-  bison-3.8.2-1
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  flex-2.6.4-2
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
-  gcc-objc-11.2.0-1
-  gcc-objc++-11.2.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cppzmq-4.11.0-1bl1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
+  libgtest-devel-1.18.0-1bl1
   liblmdb-devel-0.9.19-1
-  libminiupnpc-devel-2.2.2-1bl1
-  libpcsclite-devel-1.9.1-1bl1
-  libprotobuf-devel-3.17.3-1
-  librandomx-devel-1.1.9-1bl1
-  libreadline-devel-8.1-2
-  libssl-devel-1.1.1f-1
-  libtool-2.4.6-7
-  libunbound-devel-1.6.2-1
-  libzmq-devel-4.2.3-1
-  ninja-1.10.2-1
-  ruby-2.6.4-1
+  libminiupnpc-devel-2.3.5-1bl1
+  libpcsclite-devel-2.5.3-1bl1
+  librandomx-devel-1.2.3-1bl1
+  libreadline-devel-8.3-1
+  libssl-devel-3.5.9-1
+  libunbound-devel-1.26.2-1
+  libzmq-devel-4.3.5-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/safex/safexcore
 
 Canonical download:
-  git://github.com/safex/safexcore.git
+  https://github.com/safex/safexcore.git
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack safexcore-7.0.2-X-src.tar.xz
+  1. unpack safexcore-7.0.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./safexcore-7.0.2-X.cygport all
+        % cygport ./safexcore-7.0.3-X.cygport all
 
 This will create:
-  /usr/src/safexcore-7.0.2-X-src.tar.xz
-  /usr/src/safexcore-7.0.2-X.tar.xz
+  /usr/src/safexcore-7.0.3-X-src.tar.xz
+  /usr/src/safexcore-7.0.3-X.tar.xz
 
 -------------------------------------------
 
@@ -87,6 +80,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 7.0.3-1bl1 -----
+Version bump.
 
 ----- version 7.0.2-1bl1 -----
 Version bump.

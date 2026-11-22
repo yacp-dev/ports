@@ -1,0 +1,38 @@
+HOMEPAGE="https://github.com/safex/${PN}"
+GIT_URI="https://github.com/safex/${PN}.git"
+GIT_TAG="${PV}"
+
+CATEGORY="Security"
+SUMMARY="Reference implementation of Safex Blockchain in C++"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="BSD-3-Clause AND BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause AND MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgtest-devel
+	cppzmq
+	libboost-devel
+	liblmdb-devel
+	libminiupnpc-devel
+	libpcsclite-devel
+	librandomx-devel
+	libreadline-devel
+	libssl-devel
+	libunbound-devel
+	libzmq-devel
+"
+
+inherit cmake
+inherit git
+
+CYGCMAKE_ARGS="
+	-DBUILD_TESTS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DCMAKE_EXE_LINKER_FLAGS:STRING=-Wl,--stack,0x2000000
+"
+
+DIFF_EXCLUDES="
+    data
+"

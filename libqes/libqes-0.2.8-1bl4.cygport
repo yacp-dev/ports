@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/kdm9/${PN}"
 SRC_URI="https://github.com/kdm9/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/libq/libqes/0.2.8+ds-3/debian/patches/fix-revcomp.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Small C library, with a bioinformatic focus"

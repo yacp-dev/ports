@@ -6,8 +6,8 @@ API.
 
 Runtime requirements:
   cygwin-3.6.12-1
-  libqes-devel-0.2.8-1bl3
-  libqes0-0.2.8-1bl3
+  libqes-devel-0.2.8-1bl4
+  libqes0-0.2.8-1bl4
   pkg-config-3.0.10-1
   zlib0-1.4-1
 
@@ -75,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.8-1bl4 -----
+Fix revcomp
 
 ----- version 0.2.8-1bl3 -----
 Rebuild with gcc-14.4.0

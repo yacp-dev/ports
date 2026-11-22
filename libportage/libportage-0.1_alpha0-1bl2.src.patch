@@ -1,0 +1,176 @@
+--- origsrc/libportage-0.1_alpha0/Makefile.am	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/Makefile.am	2026-11-22 23:26:07.573640200 +0000
+@@ -2,3 +2,6 @@ include $(top_srcdir)/aminclude.am
+ 
+ SUBDIRS = replace src include test doc
+ EXTRA_DIST = doxygen.cfg
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/libportage-0.1_alpha0/configure.ac	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/configure.ac	2026-11-22 23:26:07.573640200 +0000
+@@ -1,6 +1,6 @@
+-AC_INIT([libportage], [HEAD], [libportage-bugs@lists.berlios.de])
++AC_INIT([libportage], [0.1_alpha0], [libportage-bugs@lists.berlios.de])
+ AC_CONFIG_AUX_DIR(config)
+-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
++AM_INIT_AUTOMAKE([-Wall foreign])
+ 
+ # checks for programs
+ AC_PROG_CC
+@@ -40,7 +40,7 @@ AM_CONDITIONAL(USE_VALGRIND, $USE_VALGRI
+ # other stuff
+ AC_CONFIG_HEADERS(config.h)
+ 
+-AC_CONFIG_FILES(Makefile replace/Makefile src/Makefile include/Makefile
++AC_CONFIG_FILES(libportage.pc Makefile replace/Makefile src/Makefile include/Makefile
+                 test/Makefile doc/Makefile)
+ 
+ # hack to transform replace lib list into libtool format.
+--- origsrc/libportage-0.1_alpha0/libportage.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libportage-0.1_alpha0/libportage.pc.in	2026-11-22 23:26:07.573640200 +0000
+@@ -0,0 +1,9 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++Name: libportage
++Description: Fast and portable library offering functionality for doing package management in a Gentoo system
++Version: @VERSION@
++Libs: -L${libdir} -lportage
++Cflags: -I${includedir}
+--- origsrc/libportage-0.1_alpha0/src/Makefile.am	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/src/Makefile.am	2026-11-22 23:26:07.577654800 +0000
+@@ -2,8 +2,8 @@ lib_LTLIBRARIES = libportage.la
+ 
+ libportage_la_SOURCES = liblpatom.c liblputil.c liblpxpak.c liblparchives.c   \
+ 			liblpversion.c
+-libportage_la_LIBADD = ../replace/libreplace.la
+-libportage_la_LDFLAGS = -larchive
++libportage_la_LIBADD = ../replace/libreplace.la -larchive
++libportage_la_LDFLAGS = -no-undefined
+ 
+ AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/replace
+ METASOURCES = AUTO
+--- origsrc/libportage-0.1_alpha0/src/liblpatom.c	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/src/liblpatom.c	2026-11-22 23:26:07.575648200 +0000
+@@ -30,7 +30,8 @@
+  *
+  * This makes sure, we have a Standard conformant environment.
+  */
+-#define _XOPEN_SOURCE   600
++#define _GNU_SOURCE
++#define _XOPEN_SOURCE   700
+ 
+ #if HAVE_CONFIG_H
+ # include <config.h>
+--- origsrc/libportage-0.1_alpha0/src/liblputil.c	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/src/liblputil.c	2026-11-22 23:26:07.575648200 +0000
+@@ -24,7 +24,8 @@
+  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  * POSSIBILITY OF SUCH DAMAGE.
+  */
+-#define _XOPEN_SOURCE   600
++#define _GNU_SOURCE
++#define _XOPEN_SOURCE   700
+ 
+ #if HAVE_CONFIG_H
+ # include <config.h>
+--- origsrc/libportage-0.1_alpha0/src/liblpversion.c	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/src/liblpversion.c	2026-11-22 23:26:07.575648200 +0000
+@@ -26,7 +26,8 @@
+  */
+ 
+ /** @brief Feature test macro for POSIX.1, POSIX.2, XPG4, SUSv2, SUSv3. */
+-#define _XOPEN_SOURCE   600
++#define _GNU_SOURCE
++#define _XOPEN_SOURCE   700
+ 
+ #if HAVE_CONFIG_H
+ # include <config.h>
+--- origsrc/libportage-0.1_alpha0/src/liblpxpak.c	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/src/liblpxpak.c	2026-11-22 23:26:07.575648200 +0000
+@@ -30,7 +30,8 @@
+  *
+  * This makes sure, we have a Standard conformant environment.
+  */
+-#define _XOPEN_SOURCE   600
++#define _GNU_SOURCE
++#define _XOPEN_SOURCE   700
+ 
+ #if HAVE_CONFIG_H
+ # include <config.h>
+--- origsrc/libportage-0.1_alpha0/test/01_lputil_int64len.c	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/test/01_lputil_int64len.c	2026-11-22 23:26:07.577654800 +0000
+@@ -31,6 +31,8 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ #include <limits.h>
++#include <stdint.h>
++#include <inttypes.h>
+ #include <string.h>
+ #include <stdbool.h>
+ 
+@@ -40,13 +42,13 @@ int main(void)
+ {
+      char s[MAXLEN];
+ 
+-     /* test if lputil_intlen can handle INT64_MIN */
+-     sprintf(s, "%d", INT64_MIN);
+-     if ( lputil_intlen(INT64_MIN) != strlen(s))
++     /* test if lputil_int64len can handle INT64_MIN */
++     sprintf(s, "%" PRId64, INT64_MIN);
++     if ( lputil_int64len(INT64_MIN) != strlen(s))
+           return EXIT_FAILURE;
+-     /* test if lputil_intlen can handle INT64_MAX */
+-     sprintf(s, "%d", INT64_MAX);
+-     if ( lputil_intlen(INT64_MAX) != strlen(s))
++     /* test if lputil_int64len can handle INT64_MAX */
++     sprintf(s, "%" PRId64, INT64_MAX);
++     if ( lputil_int64len(INT64_MAX) != strlen(s))
+           return EXIT_FAILURE;
+      
+      return EXIT_SUCCESS;
+--- origsrc/libportage-0.1_alpha0/test/01_lputil_splitstr.c	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/test/01_lputil_splitstr.c	2026-11-22 23:26:07.577654800 +0000
+@@ -71,7 +71,7 @@ int main(void)
+                     has_failed = true;
+                /* check if the joined string is the same as the one we
+                 * originally fed to lputil_splitstr() */
+-               if ( (join = lputil_joinstr(split, delim)) == NULL )
++               if ( (join = lputil_joinstr((const char **)split, delim)) == NULL )
+                     has_failed = true;
+                if ( strcmp(s, join) != 0 )
+                     has_failed = true;
+--- origsrc/libportage-0.1_alpha0/test/03_lpatom_parse.c	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/test/03_lpatom_parse.c	2026-11-22 23:26:07.577654800 +0000
+@@ -70,7 +70,7 @@ int main(void)
+                     printf("sa1: %s <> sa2: %s\n", sa1, sa2);
+                     has_failed = true;
+                } else if ( strcmp(sa1, s) != 0 ) {
+-                    printf("input: %s <> sa1: %s\n");
++                    printf("input: %s <> sa1: %s\n", s, sa1);
+                     has_failed = true;
+                }
+           }
+--- origsrc/libportage-0.1_alpha0/test/Makefile.am	2009-06-05 12:06:02.000000000 +0000
++++ src/libportage-0.1_alpha0/test/Makefile.am	2026-11-22 23:26:07.579660900 +0000
+@@ -9,8 +9,7 @@ TESTS = 01_lputil_intlen 01_lputil_int64
+ 
+ check_PROGRAMS = $(TESTS)
+ 
+-lp_objects = ../src/liblputil.o ../src/liblpatom.o ../src/liblpxpak.o	\
+-../src/liblparchives.o ../src/liblpversion.o
++lp_objects = $(top_builddir)/src/libportage.la
+ 
+ 01_lputil_intlen_SOURCES = 01_lputil_intlen.c
+ 01_lputil_intlen_LDFLAGS = $(all_libraries)
+@@ -40,7 +39,7 @@ lp_objects = ../src/liblputil.o ../src/l
+ 05_lparchives_LDFLAGS = $(all_libraries)
+ 05_lparchives_LDADD = $(lp_objects)
+ 
+-AM_CPPFLAGS = -I$(top_srcdir)/include
++AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_srcdir)/replace
+ 
+ EXTRA_DIST = valgrind-wrapper
+ 

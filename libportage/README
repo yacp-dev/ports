@@ -5,31 +5,29 @@ package management in a Gentoo system. This includes ebuilds, binpkgs and
 managing a portage-compatible configuration. The library will provide all the
 functions one may need to write a drop-in replacement for Portage in C.
 
-As a side effect of our effort to implement all portage features, there are
-also a few documents we (the developers) wrote for ourselves to cover some of
-Gentoo's internals which might be useful for external devs as well.
-
 Runtime requirements:
-  cygwin-2.0.1-1
-  libarchive13-3.1.2-2
-  libportage-devel-0.1_alpha0-1bl1
-  libportage0-0.1_alpha0-1bl1
+  cygwin-3.6.12-1
+  libarchive13-3.8.11-1
+  libportage-devel-0.1_alpha0-1bl2
+  libportage0-0.1_alpha0-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-1
-  cygport-0.18.1-1
-  gcc-core-4.9.2-3
-  libtool-2.4.6-1
-  make-4.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libarchive-devel-3.8.11-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
-  https://github.com/psychoschlumpf/libportage
+  https://github.com/larsuhartmann/libportage
 
 Canonical download:
-  https://github.com/psychoschlumpf/libportage/archive/v0.1_alpha0.tar.gz
+  https://github.com/larsuhartmann/libportage/archive/v0.1_alpha0.tar.gz
 
 -------------------------------------------
 
@@ -76,6 +74,8 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 0.1_alpha0-1bl2 -----
+Rebuild with gcc-14.4.0
+
 ----- version 0.1_alpha0-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>
-

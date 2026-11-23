@@ -14,7 +14,6 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
-	autoconf-archive
 	gettext-devel
 	libintl-devel
 	libncurses-devel
@@ -23,6 +22,13 @@ BUILD_REQUIRES="
 CYGCONF_ARGS="
 	--disable-docs
 "
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/m4_esyscmd_s(\\[build-aux\\/git-version-gen .version\\])/${PV}/" configure.ac
+}
 
 src_install()
 {

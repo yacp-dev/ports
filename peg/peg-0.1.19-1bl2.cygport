@@ -14,8 +14,8 @@ backtracking, provide ordered choice as a means for disambiguation, and can
 combine scanning (lexical analysis) and parsing (syntactic analysis) into a
 single activity."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="ICU"
+LICENSE_SPDX="SPDX-License-Identifier: ICU"
 LICENSE_URI="LICENSE.txt"
 
 src_compile()

@@ -6,22 +6,22 @@ essentially mirrors the traditional gethostbyname and getaddrinfo interfaces.
 All return values have been replaced by callbacks instead.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libdnsres-devel-0.1a-1bl5
-  libdnsres0-0.1a-1bl5
-  libevent-devel-2.1.12-1
-  libevent2.1_7-2.1.12-1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libdnsres-devel-0.1a-1bl6
+  libdnsres0-0.1a-1bl6
+  libevent-devel-2.1.13-1
+  libevent2.1_7-2.1.13-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libevent-devel-2.1.12-1
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libevent-devel-2.1.13-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -66,6 +66,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1a-1bl6 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1a-1bl5 -----
 Rebuild for libevent

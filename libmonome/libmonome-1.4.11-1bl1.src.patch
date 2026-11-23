@@ -1,0 +1,102 @@
+--- origsrc/libmonome-1.4.11/CMakeLists.txt	2026-08-27 17:14:33.000000000 +0000
++++ src/libmonome-1.4.11/CMakeLists.txt	2026-11-23 15:09:24.773154400 +0000
+@@ -26,7 +26,19 @@ set(libmonome_sources
+     src/proto/series.c
+     src/platform/embed.c)
+ 
++
+ set(libmonome_libs)
++set(libmonome_include_dirs)
++set(libmonome_defs EMBED_PROTOS)
++
++find_library(LO_LIBRARY lo)
++find_path(LO_INCLUDE_DIR lo/lo.h)
++if(LO_LIBRARY AND LO_INCLUDE_DIR)
++    list(APPEND libmonome_sources src/proto/osc.c)
++    list(APPEND libmonome_libs ${LO_LIBRARY})
++    list(APPEND libmonome_include_dirs ${LO_INCLUDE_DIR})
++    list(APPEND libmonome_defs BUILD_OSC_PROTO)
++endif()
+ 
+ if(LINUX)
+     include(FindPkgConfig)
+@@ -39,6 +51,13 @@ if(LINUX)
+     list(APPEND libmonome_libs PkgConfig::libudev)
+ endif()
+ 
++if(CYGWIN)
++    list(APPEND libmonome_sources
++        src/platform/linux_sysfs.c
++        src/platform/linux.c
++        src/platform/posix.c)
++endif()
++
+ if(APPLE)
+     list(APPEND libmonome_sources
+         src/platform/darwin.c
+@@ -50,22 +69,43 @@ if(WIN32)
+     list(APPEND libmonome_libs setupapi)
+ endif()
+ 
+-add_library(monome_static STATIC ${libmonome_sources})
+-set_target_properties(monome_static PROPERTIES OUTPUT_NAME "monome")
+-target_compile_definitions(monome_static PRIVATE EMBED_PROTOS)
+-target_include_directories(monome_static PRIVATE src/private)
+-target_include_directories(monome_static PUBLIC
+-      $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/public>
+-      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+-target_link_libraries(monome_static PRIVATE ${libmonome_libs})
+-
+ add_library(monome SHARED ${libmonome_sources})
+-target_compile_definitions(monome PRIVATE EMBED_PROTOS)
+-target_include_directories(monome PRIVATE src/private)
++target_compile_definitions(monome PRIVATE ${libmonome_defs})
++target_include_directories(monome PRIVATE src/private ${libmonome_include_dirs})
+ target_include_directories(monome PUBLIC
+       $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/public>
+       $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+ target_link_libraries(monome PRIVATE ${libmonome_libs})
++set_target_properties(monome PROPERTIES SOVERSION 1 VERSION ${PROJECT_VERSION})
++
++set(libmonome_pc_requires "")
++if(LO_LIBRARY AND LO_INCLUDE_DIR)
++    set(libmonome_pc_requires "Requires.private: liblo\n")
++endif()
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/libmonome.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: libmonome
++Description: Library for easy interaction with monome devices
++Version: ${PROJECT_VERSION}
++${libmonome_pc_requires}Libs: -L\${libdir} -lmonome
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libmonome.pc" DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
++
++if(LO_LIBRARY AND LO_INCLUDE_DIR)
++    add_executable(monomeserial src/monomeserial.c)
++    target_include_directories(monomeserial PRIVATE src/private)
++    target_compile_definitions(monomeserial PRIVATE VERSION="${PROJECT_VERSION}")
++    target_link_libraries(monomeserial PRIVATE monome ${LO_LIBRARY})
++    install(TARGETS monomeserial RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
++    string(TIMESTAMP MDOCDATE "%B %d, %Y")
++    configure_file(doc/monomeserial.in.1 ${CMAKE_CURRENT_BINARY_DIR}/monomeserial.1 @ONLY)
++    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/monomeserial.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
++endif()
+ 
+ if(BUILD_EXAMPLES)
+     add_subdirectory(examples)
+@@ -75,8 +115,9 @@ if(BUILD_PYTHON_EXTENSION)
+     add_subdirectory(bindings/python)
+ endif()
+ 
+-install(TARGETS monome_static monome EXPORT libmonomeConfig
++install(TARGETS monome EXPORT libmonomeConfig
+     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
++    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ install(EXPORT libmonomeConfig DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/libmonome NAMESPACE libmonome::)
+ install(DIRECTORY public/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})

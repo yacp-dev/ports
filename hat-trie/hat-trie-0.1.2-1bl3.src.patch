@@ -1,5 +1,5 @@
---- origsrc/hat-trie-0.1.2/src/Makefile.am	2017-06-19 11:16:29.000000000 +0900
-+++ src/hat-trie-0.1.2/src/Makefile.am	2025-06-15 19:09:17.604814000 +0900
+--- origsrc/hat-trie-0.1.2/src/Makefile.am	2017-06-19 02:16:29.000000000 +0000
++++ src/hat-trie-0.1.2/src/Makefile.am	2026-11-23 12:33:26.713179600 +0000
 @@ -6,6 +6,7 @@ libhat_trie_la_SOURCES = common.h \
                           hat-trie.h       hat-trie.c \
                           misc.h           misc.c \
@@ -8,8 +8,8 @@
  
  pkginclude_HEADERS = hat-trie.h ahtable.h common.h pstdint.h portable_endian.h
  
---- origsrc/hat-trie-0.1.2/test/Makefile.am	2017-06-19 11:16:29.000000000 +0900
-+++ src/hat-trie-0.1.2/test/Makefile.am	2025-06-15 19:09:17.604814000 +0900
+--- origsrc/hat-trie-0.1.2/test/Makefile.am	2017-06-19 02:16:29.000000000 +0000
++++ src/hat-trie-0.1.2/test/Makefile.am	2026-11-23 12:33:26.715197700 +0000
 @@ -4,12 +4,12 @@ check_PROGRAMS = check_ahtable check_hat
  
  check_ahtable_SOURCES  = check_ahtable.c str_map.c

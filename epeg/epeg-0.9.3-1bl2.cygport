@@ -8,11 +8,25 @@ overhead. It makes use of libjpeg features of being able to load an image by
 only decoding the DCT coefficients needed to reconstruct an image of the size
 desired."
 
-#LICENSE="Unknown"
-#LICENSE_SPDX="SPDX-License-Identifier: "
+LICENSE="LicenseRef-epeg"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-epeg"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libexif-devel libjpeg-devel"
+BUILD_REQUIRES="
+	libexif-devel
+	libjpeg-devel
+"
+
+DOCS="
+	COPYING-PLAIN
+	README.md
+"
+
+src_test()
+{
+	cd ${B}
+	verbose ./src/bin/${PN}.exe --version
+}
 
 PKG_NAMES="
 	${PN}

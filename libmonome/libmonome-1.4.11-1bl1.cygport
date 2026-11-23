@@ -6,22 +6,23 @@ SUMMARY="Library for easy interaction with monome devices"
 DESCRIPTION="libmonome is a library for easy interaction with monome devices. It currently
 runs on Linux (on which it is primarily developed), OpenBSD, and Darwin/OS X."
 
-BUILD_REQUIRES="liblo-devel python39"
+LICENSE="ISC"
+LICENSE_SPDX="SPDX-License-Identifier: ISC"
+LICENSE_URI="COPYRIGHT"
 
-inherit waf
-
-WAF_CONFIGURE_FLAGS="
-	--enable-embedded-protos
+BUILD_REQUIRES="
+	liblo-devel
 "
 
-src_install()
+inherit cmake
+
+src_test()
 {
 	cd ${B}
-	waf_install
-
-	cd ${D}
-	mv usr/lib/cygmonome-1.dll usr/bin/cygmonome-1.dll
-	mv usr/lib/monome.dll.a usr/lib/libmonome.dll.a
+	local status=0
+	verbose ./monomeserial.exe -h > usage.txt || status=$?
+	cat usage.txt
+	test ${status} -eq 1 && grep -q '^usage: ' usage.txt
 }
 
 PKG_NAMES="
@@ -34,7 +35,7 @@ libmonome_CONTENTS="
 	usr/share
 "
 libmonome1_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygmonome-1.dll
 "
 libmonome_devel_CONTENTS="
 	usr/include
@@ -43,3 +44,4 @@ libmonome_devel_CONTENTS="
 libmonome_SUMMARY="${SUMMARY} (licensing & readmes)"
 libmonome1_SUMMARY="${SUMMARY} (runtime)"
 libmonome_devel_SUMMARY="${SUMMARY} (development)"
+libmonome_devel_REQUIRES="liblo-devel"

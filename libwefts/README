@@ -3,34 +3,27 @@ libwefts
 Wefts++ is an high-level abstraction C++ threading library, which has also
 seamless integration with low level constructs when raw speed is needed.
 
-Wefts++ does not pretends to be a bleeding edge research library; what Wefts++
-wants to be is just a set of utility objects making multi-threading with C++
-easier, that will lay gracefully on your C++ application design.
-
-Wefts++ aims to help you develop C++ multi-threading application easily and
-swiftly. Thread programming is an art, and wefts is your paintbrush.
-
 Runtime requirements:
-  bash-4.3.33-1
-  cygwin-1.7.34-6
-  libgcc1-4.9.2-2
-  libstdc++6-4.9.2-2
-  libwefts-devel-0.99c-1bl4
-  libwefts2-0.99c-1bl4
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libwefts-devel-0.99c-1bl5
+  libwefts2-0.99c-1bl5
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-1
-  cygport-0.17.1-1
-  gcc-core-4.9.2-2
-  gcc-g++-4.9.2-2
-  libtool-2.4.6-1
-  make-4.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
-  http://wefts.sf.net/
+  https://wefts.sourceforge.net/
 
 Canonical download:
   mirror://sourceforge/wefts/libwefts-0.99c.tar.gz
@@ -108,6 +101,9 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 0.99c-1bl5 -----
+Rebuild with gcc-14.4.0
+
 ----- version 0.99c-1bl4 -----
 Rebuild on x86_64
 
@@ -119,4 +115,3 @@ Repackage for licensing & readmes
 
 ----- version 0.99c-1bl1 -----
 Initial release for Cygwin-1.7 by fd0 <http://d.hatena.ne.jp/fd0>
-

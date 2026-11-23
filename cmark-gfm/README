@@ -5,15 +5,15 @@ CommonMark, a rationalized version of Markdown syntax with a spec.
 
 Runtime requirements:
   cygwin-3.6.12-1
-  libcmark-gfm-devel-0.29.0.gfm.13-1bl2
-  libcmark-gfm0.29.0.gfm.13-0.29.0.gfm.13-1bl2
-  pkg-config-3.0.10-1
+  libcmark-gfm-devel-0.29.0.gfm.14-1bl1
+  libcmark-gfm0.29.0.gfm.14-0.29.0.gfm.14-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   cmake-4.4.5-1
-  cygport-0.37.12-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   ninja-1.13.2-1
 
@@ -21,22 +21,22 @@ Canonical website:
   https://github.com/github/cmark-gfm
 
 Canonical download:
-  https://github.com/github/cmark-gfm/archive/refs/tags/0.29.0.gfm.13.tar.gz
+  https://github.com/github/cmark-gfm/archive/refs/tags/0.29.0.gfm.14.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack cmark-gfm-0.29.0.gfm.13-X-src.tar.xz
+  1. unpack cmark-gfm-0.29.0.gfm.14-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./cmark-gfm-0.29.0.gfm.13-X.cygport all
+        % cygport ./cmark-gfm-0.29.0.gfm.14-X.cygport all
 
 This will create:
-  /usr/src/cmark-gfm-0.29.0.gfm.13-X-src.tar.xz
-  /usr/src/cmark-gfm-0.29.0.gfm.13-X.tar.xz
-  /usr/src/libcmark-gfm0.29.0.gfm.13-0.29.0.gfm.13-X.tar.xz
-  /usr/src/libcmark-gfm-devel-0.29.0.gfm.13-X.tar.xz
+  /usr/src/cmark-gfm-0.29.0.gfm.14-X-src.tar.xz
+  /usr/src/cmark-gfm-0.29.0.gfm.14-X.tar.xz
+  /usr/src/libcmark-gfm0.29.0.gfm.14-0.29.0.gfm.14-X.tar.xz
+  /usr/src/libcmark-gfm-devel-0.29.0.gfm.14-X.tar.xz
 
 -------------------------------------------
 
@@ -48,11 +48,10 @@ Files included in the binary package:
   /usr/share/doc/cmark-gfm/COPYING
   /usr/share/doc/cmark-gfm/README.md
   /usr/share/man/man1/cmark-gfm.1.gz
-  /usr/share/man/man3/cmark-gfm.3.gz
 
-(libcmark-gfm0.29.0.gfm.13)
-  /usr/bin/cygcmark-gfm-0.29.0.gfm.13.dll
-  /usr/bin/cygcmark-gfm-extensions-0.29.0.gfm.13.dll
+(libcmark-gfm0.29.0.gfm.14)
+  /usr/bin/cygcmark-gfm-0.29.0.gfm.14.dll
+  /usr/bin/cygcmark-gfm-extensions-0.29.0.gfm.14.dll
 
 (libcmark-gfm-devel)
   /usr/include/cmark-gfm-core-extensions.h
@@ -67,10 +66,14 @@ Files included in the binary package:
   /usr/lib/libcmark-gfm-extensions.dll.a
   /usr/lib/libcmark-gfm.dll.a
   /usr/lib/pkgconfig/libcmark-gfm.pc
+  /usr/share/man/man3/cmark-gfm.3.gz
 
 ------------------
 
 Port Notes:
+
+----- version 0.29.0.gfm.14-1bl1 -----
+Version bump.
 
 ----- version 0.29.0.gfm.13-1bl2 -----
 Rebuild with gcc-14.4.0

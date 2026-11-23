@@ -1,0 +1,22 @@
+Adapt xsimd_extension.hpp to xsimd 13 and later: xsimd::generic was renamed
+to xsimd::common, and the architectures no longer have a version().
+
+--- a/src/common/helpers/xsimd_extension.hpp
++++ b/src/common/helpers/xsimd_extension.hpp
+@@ -6,15 +6,12 @@
+   // quoting issues
+   using avx2_fma = fma3<avx2>;
+ 
+-  // a version of generic which works with xsimd::dispatch
+-  struct generic_for_dispatch : generic {
++  // a version of common which works with xsimd::dispatch
++  struct generic_for_dispatch : common {
+     static constexpr bool supported() noexcept { return true; }
+     static constexpr bool available() noexcept { return true; }
+     static constexpr bool requires_alignment() noexcept { return false; }
+-    static constexpr unsigned version() noexcept {
+-      return generic::version(0, 0, 0);
+-    }
+     static constexpr std::size_t alignment() noexcept { return 0; }
+     static constexpr char const* name() noexcept {
+       return "generic_for_dispatch";

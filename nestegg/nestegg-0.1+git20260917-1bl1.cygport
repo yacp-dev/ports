@@ -1,15 +1,28 @@
-HOMEPAGE="https://github.com/kinetiknz/${PN}"
-GIT_URI="https://github.com/kinetiknz/${PN}.git"
+HOMEPAGE="https://github.com/mozilla/${PN}"
+GIT_URI="https://github.com/mozilla/${PN}.git"
+GIT_REV="767aab25013acefbdcc6d68a2a7a2c9081303e3f"
 
 CATEGORY="Libs"
 SUMMARY="WebM demuxer"
 DESCRIPTION="nestegg is a WebM demuxer library."
+
+LICENSE="ISC"
+LICENSE_SPDX="SPDX-License-Identifier: ISC"
+LICENSE_URI="LICENSE"
 
 inherit git
 
 CYGCONF_ARGS="
 	--disable-doc
 "
+
+src_install()
+{
+	cd ${B}
+	cyginstall
+
+	sed -i -e "s|^Version: .*|Version: ${PV%%+*}|" ${D}/usr/lib/pkgconfig/nestegg.pc
+}
 
 DOCS="
 	README.md
@@ -24,7 +37,7 @@ nestegg_CONTENTS="
 	usr/share
 "
 libnestegg0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 libnestegg_devel_CONTENTS="
 	usr/include

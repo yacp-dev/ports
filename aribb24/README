@@ -4,22 +4,22 @@ library for ARIB STD-B24, decoding JIS 8 bit characters and parsing MPEG-TS
 stream
 
 Runtime requirements:
-  cygwin-3.4.3-1
-  libaribb24-devel-1.0.4-1bl1
-  libaribb24_0-1.0.4-1bl1
-  libpng16-1.6.37-1
-  pkg-config-1.9.3-1
+  cygwin-3.6.12-1
+  libaribb24-devel-1.0.4-1bl2
+  libaribb24_0-1.0.4-1bl2
+  libpng16-1.6.59-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.39-1
-  cygport-0.35.5-1
-  gcc-core-11.3.0-1
-  libpng-devel-1.6.37-1
-  libtool-2.4.7-1
-  make-4.4-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libpng-devel-1.6.59-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://code.videolan.org/jeeb/aribb24
@@ -65,6 +65,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.4-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.4-1bl1 -----
 Version bump.

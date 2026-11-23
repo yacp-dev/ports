@@ -1,5 +1,5 @@
---- origsrc/libwefts-0.99c/Makefile.am	2004-04-11 05:14:07.000000000 +0900
-+++ src/libwefts-0.99c/Makefile.am	2015-02-21 11:56:19.312588400 +0900
+--- origsrc/libwefts-0.99c/Makefile.am	2004-04-10 20:14:07.000000000 +0000
++++ src/libwefts-0.99c/Makefile.am	2026-11-23 01:52:05.940078300 +0000
 @@ -21,5 +21,8 @@ EXTRA_DIST = \
  
  
@@ -10,8 +10,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = libwefts.pc
---- origsrc/libwefts-0.99c/configure.in	2004-04-11 05:04:09.000000000 +0900
-+++ src/libwefts-0.99c/configure.in	2015-02-21 11:55:58.437588400 +0900
+--- origsrc/libwefts-0.99c/configure.in	2004-04-10 20:04:09.000000000 +0000
++++ src/libwefts-0.99c/configure.in	2026-11-23 01:52:05.932246600 +0000
 @@ -9,13 +9,13 @@ dnl--------------------------------
  dnl Begin of script
  dnl
@@ -36,20 +36,63 @@
  AC_PROG_CXX
  AC_PROG_INSTALL
  AC_PROG_LN_S
+@@ -166,9 +165,9 @@ AC_SUBST(VERSION)
+ AC_SUBST(SYSTEM_DEFINE)
+ 
+ if test x$enable_debug = xyes; then
+-   CXXFLAGS="-g -DREENTRANT -DDEBUG"
++   CXXFLAGS="$CXXFLAGS -g -DREENTRANT -DDEBUG"
+ else
+-   CXXFLAGS="-O2 -DREENTRANT"
++   CXXFLAGS="$CXXFLAGS -O2 -DREENTRANT"
+ fi
+ 
+ dnl--------------------------------
 @@ -182,4 +181,4 @@ dnl--------------------------------
  dnl OUTPUT
  dnl
  
 -AC_OUTPUT(wefts.spec wefts-conf Makefile include/Makefile ltlib/Makefile testsuite/Makefile tests/Makefile src/Makefile doc/Makefile)
 +AC_OUTPUT(wefts.spec wefts-conf Makefile include/Makefile ltlib/Makefile testsuite/Makefile tests/Makefile src/Makefile doc/Makefile libwefts.pc)
---- origsrc/libwefts-0.99c/include/Makefile.am	2004-03-28 03:15:32.000000000 +0900
-+++ src/libwefts-0.99c/include/Makefile.am	2015-02-21 11:50:07.575283700 +0900
+--- origsrc/libwefts-0.99c/include/Makefile.am	2004-03-27 18:15:32.000000000 +0000
++++ src/libwefts-0.99c/include/Makefile.am	2026-11-23 01:52:05.934271900 +0000
 @@ -1,3 +1,2 @@
 -INCLUDES = 
  METASOURCES = AUTO
  include_HEADERS = wefts_barrier.h wefts_cleancond.h wefts_cleanup.h wefts_coffee_base.h wefts_coffee_unix.h wefts_coffee_win.h wefts_cond.h wefts_counter.h wefts_critical.h wefts_error.h wefts_fastcond.h wefts.h wefts_moaning.h wefts_mutex.h wefts_os_base.h wefts_os.h wefts_os_pthread.h wefts_os_windows.h wefts_queue.h wefts_rcond.h wefts_referenced.h wefts_ringbuffer.h wefts_rmutex.h wefts_rrwmutex.h wefts_rwmutex.h wefts_semaphore.h wefts_sleep.h wefts_specific.h wefts_stack.h wefts_subscription.h wefts_thread.h wefts_xmutex.h wefts_proc_pthread.h
---- origsrc/libwefts-0.99c/include/wefts_ringbuffer.h	2004-03-29 06:45:40.000000000 +0900
-+++ src/libwefts-0.99c/include/wefts_ringbuffer.h	2015-02-21 11:43:12.420986900 +0900
+--- origsrc/libwefts-0.99c/include/wefts_os_pthread.h	2004-03-28 21:45:40.000000000 +0000
++++ src/libwefts-0.99c/include/wefts_os_pthread.h	2026-11-23 01:52:05.936042400 +0000
+@@ -214,7 +214,7 @@ public:
+             pthread_equal( other->m_thid, m_thid ) );
+    }
+ 
+-   virtual bool setCurrent() { m_thid = pthread_self(); m_valid=true;}
++   virtual bool setCurrent() { m_thid = pthread_self(); m_valid=true; return true; }
+ 
+    virtual void invalidate() { m_valid = false; }
+ };
+--- origsrc/libwefts-0.99c/include/wefts_queue.h	2004-04-05 12:42:06.000000000 +0000
++++ src/libwefts-0.99c/include/wefts_queue.h	2026-11-23 01:52:05.936042400 +0000
+@@ -164,7 +164,7 @@ public:
+ 
+    bool empty() const
+    {
+-      Queue<T> const *Self = const_cast<Queue<T> const *>(this);
++      Queue<T> *Self = const_cast<Queue<T> *>(this);
+       Self->m_cond.lock();
+       bool res = m_list.empty();
+       Self->m_cond.unlock();
+--- origsrc/libwefts-0.99c/include/wefts_ringbuffer.h	2004-03-28 21:45:40.000000000 +0000
++++ src/libwefts-0.99c/include/wefts_ringbuffer.h	2026-11-23 01:52:05.938061100 +0000
+@@ -206,7 +206,7 @@ public:
+    ~RingBuffer() { delete m_buffer; }
+ 
+    /** Returns the allocated size of the ringbuffer */
+-   unsigned long size() const { m_size; }
++   unsigned long size() const { return m_size; }
+ 
+    /** Free elements in the buffer.
+       If writers and readers are running this number normally does not make 
 @@ -226,9 +226,9 @@ public:
  
        m_mutex.lock();
@@ -62,8 +105,8 @@
        m_mutex.unlock();
  
        return ret;
---- origsrc/libwefts-0.99c/libwefts.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libwefts-0.99c/libwefts.pc.in	2015-02-21 11:55:45.862393100 +0900
+--- origsrc/libwefts-0.99c/libwefts.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libwefts-0.99c/libwefts.pc.in	2026-11-23 01:52:05.938061100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -75,8 +118,8 @@
 +Version: 0.99c
 +Libs: -L${libdir} -lwefts
 +Cflags: -I${includedir}
---- origsrc/libwefts-0.99c/ltlib/Makefile.am	2004-03-21 07:45:24.000000000 +0900
-+++ src/libwefts-0.99c/ltlib/Makefile.am	2015-02-21 11:50:24.423916600 +0900
+--- origsrc/libwefts-0.99c/ltlib/Makefile.am	2004-03-20 22:45:24.000000000 +0000
++++ src/libwefts-0.99c/ltlib/Makefile.am	2026-11-23 01:52:05.938061100 +0000
 @@ -15,7 +15,7 @@ include_HEADERS = ../include/wefts.h ../
  
  if BUILD_LT
@@ -92,8 +135,8 @@
  
 -INCLUDES = -I../include
 +AM_CPPFLAGS = -I$(top_srcdir)/include
---- origsrc/libwefts-0.99c/src/Makefile.am	2004-03-28 06:11:57.000000000 +0900
-+++ src/libwefts-0.99c/src/Makefile.am	2015-02-21 11:44:58.791104100 +0900
+--- origsrc/libwefts-0.99c/src/Makefile.am	2004-03-27 21:11:57.000000000 +0000
++++ src/libwefts-0.99c/src/Makefile.am	2026-11-23 01:52:05.940078300 +0000
 @@ -1,4 +1,6 @@
 -INCLUDES = -I$(top_srcdir)/include
 +if !BUILD_LT
@@ -102,8 +145,8 @@
  lib_LIBRARIES =  libwefts.a
  libwefts_a_SOURCES = wefts_barrier.cpp wefts_cleancond.cpp wefts_coffee_unix.cpp wefts_coffee_win.cpp wefts_counter.cpp wefts_critical.cpp wefts_error.cpp wefts_moaning.cpp wefts_os_pthread.cpp wefts_os_windows.cpp wefts_proc_pthread.cpp wefts_rrwmutex.cpp wefts_rwmutex.cpp wefts_semaphore.cpp wefts_subscription.cpp wefts_thread.cpp wefts_xmutex.cpp
 +endif
---- origsrc/libwefts-0.99c/src/wefts_os_pthread.cpp	2004-03-29 06:45:40.000000000 +0900
-+++ src/libwefts-0.99c/src/wefts_os_pthread.cpp	2015-02-21 11:43:12.436611900 +0900
+--- origsrc/libwefts-0.99c/src/wefts_os_pthread.cpp	2004-03-28 21:45:40.000000000 +0000
++++ src/libwefts-0.99c/src/wefts_os_pthread.cpp	2026-11-23 01:52:05.942096400 +0000
 @@ -20,6 +20,8 @@
  
  #include <wefts_os.h>
@@ -113,8 +156,8 @@
  
  /** \file
     Pthread OS layer implementation static routines.
---- origsrc/libwefts-0.99c/src/wefts_proc_pthread.cpp	2004-04-01 14:05:26.000000000 +0900
-+++ src/libwefts-0.99c/src/wefts_proc_pthread.cpp	2015-02-21 11:43:12.436611900 +0900
+--- origsrc/libwefts-0.99c/src/wefts_proc_pthread.cpp	2004-04-01 05:05:26.000000000 +0000
++++ src/libwefts-0.99c/src/wefts_proc_pthread.cpp	2026-11-23 01:52:05.942096400 +0000
 @@ -30,6 +30,9 @@
  #include <errno.h>
  #include <sys/select.h>
@@ -125,8 +168,8 @@
  #include <wefts_proc_pthread.h>
  #include <wefts_thread.h>
  
---- origsrc/libwefts-0.99c/tests/Makefile.am	2004-03-28 17:28:10.000000000 +0900
-+++ src/libwefts-0.99c/tests/Makefile.am	2015-02-21 11:45:26.558682200 +0900
+--- origsrc/libwefts-0.99c/tests/Makefile.am	2004-03-28 08:28:10.000000000 +0000
++++ src/libwefts-0.99c/tests/Makefile.am	2026-11-23 01:52:05.944115200 +0000
 @@ -43,94 +43,104 @@ noinst_PROGRAMS = \
     testxmutex
  
@@ -255,8 +298,8 @@
  
 -INCLUDES = -I$(top_srcdir)/include
 +AM_CPPFLAGS = -I$(top_srcdir)/include
---- origsrc/libwefts-0.99c/tests/test.cpp	2003-12-14 18:19:14.000000000 +0900
-+++ src/libwefts-0.99c/tests/test.cpp	2015-02-21 11:43:12.436611900 +0900
+--- origsrc/libwefts-0.99c/tests/test.cpp	2003-12-14 09:19:14.000000000 +0000
++++ src/libwefts-0.99c/tests/test.cpp	2026-11-23 01:52:05.944115200 +0000
 @@ -20,6 +20,7 @@
  
  #include <iostream>
@@ -265,8 +308,8 @@
  #include <wefts.h>
  
  using namespace Wefts;
---- origsrc/libwefts-0.99c/tests/testcritical.cpp	2004-03-28 17:28:10.000000000 +0900
-+++ src/libwefts-0.99c/tests/testcritical.cpp	2015-02-21 11:43:12.452236900 +0900
+--- origsrc/libwefts-0.99c/tests/testcritical.cpp	2004-03-28 08:28:10.000000000 +0000
++++ src/libwefts-0.99c/tests/testcritical.cpp	2026-11-23 01:52:05.946132700 +0000
 @@ -19,6 +19,7 @@
  ***************************************************************************/
  
@@ -275,8 +318,8 @@
  #include <iostream>
  
  using namespace Wefts;
---- origsrc/libwefts-0.99c/tests/testmoan.cpp	2004-03-13 23:31:24.000000000 +0900
-+++ src/libwefts-0.99c/tests/testmoan.cpp	2015-02-21 11:43:12.452236900 +0900
+--- origsrc/libwefts-0.99c/tests/testmoan.cpp	2004-03-13 14:31:24.000000000 +0000
++++ src/libwefts-0.99c/tests/testmoan.cpp	2026-11-23 01:52:05.946132700 +0000
 @@ -18,6 +18,7 @@
  *   (at your option) any later version.                                   *
  ***************************************************************************/
@@ -285,8 +328,8 @@
  #include <iostream>
  #include <wefts.h>
  
---- origsrc/libwefts-0.99c/tests/testpromote.cpp	2004-03-10 23:57:05.000000000 +0900
-+++ src/libwefts-0.99c/tests/testpromote.cpp	2015-02-21 11:43:12.467861900 +0900
+--- origsrc/libwefts-0.99c/tests/testpromote.cpp	2004-03-10 14:57:05.000000000 +0000
++++ src/libwefts-0.99c/tests/testpromote.cpp	2026-11-23 01:52:05.948150900 +0000
 @@ -18,6 +18,7 @@
  *   (at your option) any later version.                                   *
  ***************************************************************************/
@@ -295,8 +338,8 @@
  #include <iostream>
  #include <wefts.h>
  
---- origsrc/libwefts-0.99c/tests/testqueue.cpp	2004-03-10 23:57:05.000000000 +0900
-+++ src/libwefts-0.99c/tests/testqueue.cpp	2015-02-21 11:43:12.467861900 +0900
+--- origsrc/libwefts-0.99c/tests/testqueue.cpp	2004-03-10 14:57:05.000000000 +0000
++++ src/libwefts-0.99c/tests/testqueue.cpp	2026-11-23 01:52:05.948150900 +0000
 @@ -18,6 +18,7 @@
  *   (at your option) any later version.                                   *
  ***************************************************************************/
@@ -305,8 +348,8 @@
  #include <iostream>
  #include <wefts.h>
  
---- origsrc/libwefts-0.99c/tests/teststack.cpp	2004-03-10 23:57:05.000000000 +0900
-+++ src/libwefts-0.99c/tests/teststack.cpp	2015-02-21 11:43:12.467861900 +0900
+--- origsrc/libwefts-0.99c/tests/teststack.cpp	2004-03-10 14:57:05.000000000 +0000
++++ src/libwefts-0.99c/tests/teststack.cpp	2026-11-23 01:52:05.950169300 +0000
 @@ -18,6 +18,7 @@
  *   (at your option) any later version.                                   *
  ***************************************************************************/
@@ -315,8 +358,8 @@
  #include <iostream>
  #include <wefts.h>
  
---- origsrc/libwefts-0.99c/testsuite/Makefile.am	2004-03-29 06:37:18.000000000 +0900
-+++ src/libwefts-0.99c/testsuite/Makefile.am	2015-02-21 11:45:41.045010300 +0900
+--- origsrc/libwefts-0.99c/testsuite/Makefile.am	2004-03-28 21:37:18.000000000 +0000
++++ src/libwefts-0.99c/testsuite/Makefile.am	2026-11-23 01:52:05.950169300 +0000
 @@ -15,7 +15,7 @@ EXTRA_DIST = wefts_testsuite.dsp
  if BUILD_SUITE
  noinst_PROGRAMS = testsuite subproc
@@ -326,3 +369,25 @@
  noinst_HEADERS =  testsuite.h
  testsuite_SOURCES = main.cpp testsuite.cpp ts_cancel.cpp ts_cond.cpp ts_moaning.cpp ts_rmutex.cpp ts_thread.cpp ts_process.cpp
  testsuite_LDADD = $(top_builddir)/src/libwefts.a $(top_builddir)/lib/libwefts.a
+--- origsrc/libwefts-0.99c/wefts-conf.in	2004-03-28 08:28:10.000000000 +0000
++++ src/libwefts-0.99c/wefts-conf.in	2026-11-23 01:52:05.952448200 +0000
+@@ -43,13 +43,13 @@ WEFTSLIB="-lwefts"
+ 
+ while [ -n "$*" ]; do
+    case "$1" in
+-      "-c"| "--cflags") echo "-I@prefix@@includedir@ -DREENTRANT @SYSTEM_DEFINE@" ;;
+-      "--cflags-only-I") echo "-I@prefix@@includedir@" ;;
++      "-c"| "--cflags") echo "-I@includedir@ -DREENTRANT @SYSTEM_DEFINE@" ;;
++      "--cflags-only-I") echo "-I@includedir@" ;;
+       "--cflags-only-other") echo "-DREENTRANT @SYSTEM_DEFINE@" ;;
+-      "-s" | "--static" ) WEFTSLIB="@prefix@@libdir@/libwefts.a" ;;
+-      "-l"| "--libs") echo "-L@prefix@@libdir@ $WEFTSLIB @LIBS@ -lstdc++" ;;
+-      "--libs-only-L") echo "-L@prefix@@libdir@" ;;
+-      "-p" | "--ldpath") echo "@prefix@@libdir@" ;;
++      "-s" | "--static" ) WEFTSLIB="@libdir@/libwefts.a" ;;
++      "-l"| "--libs") echo "-L@libdir@ $WEFTSLIB @LIBS@ -lstdc++" ;;
++      "--libs-only-L") echo "-L@libdir@" ;;
++      "-p" | "--ldpath") echo "@libdir@" ;;
+       "--libs-only-l") echo "$WEFTSLIB @LIBS@ -lstdc++" ;;
+       "-h" | "--help" | *)
+          usage

@@ -1,17 +1,16 @@
-HOMEPAGE="http://wefts.sf.net/"
+HOMEPAGE="https://wefts.sourceforge.net/"
 SRC_URI="mirror://sourceforge/wefts/${P}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="C++ high-level yet efficent multithreading library"
 DESCRIPTION="Wefts++ is an high-level abstraction C++ threading library, which has also
-seamless integration with low level constructs when raw speed is needed.
+seamless integration with low level constructs when raw speed is needed."
 
-Wefts++ does not pretends to be a bleeding edge research library; what Wefts++
-wants to be is just a set of utility objects making multi-threading with C++
-easier, that will lay gracefully on your C++ application design.
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="COPYING"
 
-Wefts++ aims to help you develop C++ multi-threading application easily and
-swiftly. Thread programming is an art, and wefts is your paintbrush."
+export CXXFLAGS="${CXXFLAGS} -std=gnu++14 -Wno-error=return-type"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -44,7 +43,7 @@ libwefts_CONTENTS="
 	usr/share
 "
 libwefts2_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-2.dll
 "
 libwefts_devel_CONTENTS="
 	usr/bin/wefts-conf

@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/bbuchfink/${PN}/"
 SRC_URI="https://github.com/bbuchfink/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://aur.archlinux.org/cgit/aur.git/plain/fix_crash.patch?h=diamond&id=983066af9195730607e5a0f580c9c82faeb98c1f
+"
 
 CATEGORY="Science"
 SUMMARY="Accelerated BLAST compatible local sequence aligner"
@@ -9,8 +12,8 @@ suitable for protein-protein search as well as DNA-protein search on short
 reads and longer sequences including contigs and assemblies, providing a
 speedup of BLAST ranging up to x20,000."
 
-LICENSE="GPL-3.0-or-later AND Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND Apache-2.0"
+LICENSE="GPL-3.0-or-later AND Apache-2.0 AND BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND Apache-2.0 AND BSD-2-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

@@ -1,10 +1,9 @@
 HOMEPAGE="https://github.com/ggml-org/${PN}"
 SRC_URI="https://github.com/ggml-org/${PN}/archive/refs/tags/v${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.28.0-1/debian/patches/cmake-Add-option-to-install-tests.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.28.0-1/debian/patches/Downgrade-ROCm-dependency-to-5.5.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.28.0-1/debian/patches/Use-only-CPU-backend-in-build-time-tests.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.28.0-1/debian/patches/Take-over-some-tests-from-llama.cpp.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.0.0-1~exp5/debian/patches/cmake-Add-option-to-install-tests.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.0.0-1~exp5/debian/patches/Use-only-CPU-backend-in-build-time-tests.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.0.0-1~exp5/debian/patches/Take-over-some-tests-from-llama.cpp.patch
 "
 
 CATEGORY="Libs"
@@ -37,19 +36,19 @@ DOCS="
 
 PKG_NAMES="
 	ggml
-	libggml0
+	libggml1
 	libggml-devel
 "
 ggml_CONTENTS="
 	usr/share
 "
-libggml0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libggml1_CONTENTS="
+	usr/bin/cyg*-1.dll
 "
 libggml_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 ggml_SUMMARY="${SUMMARY} (licensing & readmes)"
-libggml0_SUMMARY="${SUMMARY} (runtime)"
+libggml1_SUMMARY="${SUMMARY} (runtime)"
 libggml_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,5 +1,5 @@
---- origsrc/libwibble-1.1/configure.ac	2013-10-22 19:53:18.000000000 +0900
-+++ src/libwibble-1.1/configure.ac	2026-02-18 05:41:39.218256500 +0900
+--- origsrc/libwibble-1.1/configure.ac	2013-10-22 10:53:18.000000000 +0000
++++ src/libwibble-1.1/configure.ac	2026-11-23 00:57:23.656023800 +0000
 @@ -14,7 +14,7 @@ AC_ARG_ENABLE(docs,
  AM_CONDITIONAL(DO_DOCS, test x$docs = xtrue)
  
@@ -9,8 +9,8 @@
  
  dnl To use subdirs
  AC_PROG_MAKE_SET
---- origsrc/libwibble-1.1/wibble/Makefile.am	2013-10-21 02:26:23.000000000 +0900
-+++ src/libwibble-1.1/wibble/Makefile.am	2026-02-18 05:41:39.223617800 +0900
+--- origsrc/libwibble-1.1/wibble/Makefile.am	2013-10-20 17:26:23.000000000 +0000
++++ src/libwibble-1.1/wibble/Makefile.am	2026-11-23 00:57:23.656804500 +0000
 @@ -127,7 +127,7 @@ libwibble_la_SOURCES = \
      net/http.cpp
  
@@ -20,8 +20,8 @@
  
  EXTRA_DIST = README libwibble.m4 libwibble.pc.in \
      amorph.test.h \
---- origsrc/libwibble-1.1/wibble/commandline/core.h	2008-10-15 23:55:30.000000000 +0900
-+++ src/libwibble-1.1/wibble/commandline/core.h	2026-02-18 06:10:45.940671900 +0900
+--- origsrc/libwibble-1.1/wibble/commandline/core.h	2008-10-15 14:55:30.000000000 +0000
++++ src/libwibble-1.1/wibble/commandline/core.h	2026-11-23 00:57:23.657777200 +0000
 @@ -14,12 +14,12 @@ class BadOption : public Consistency
  	std::string m_error;
  
@@ -39,8 +39,8 @@
  
  };
  }
---- origsrc/libwibble-1.1/wibble/exception.cpp	2010-10-31 00:10:53.000000000 +0900
-+++ src/libwibble-1.1/wibble/exception.cpp	2026-02-18 06:10:45.936472800 +0900
+--- origsrc/libwibble-1.1/wibble/exception.cpp	2010-10-30 15:10:53.000000000 +0000
++++ src/libwibble-1.1/wibble/exception.cpp	2026-11-23 00:57:23.657777200 +0000
 @@ -29,7 +29,7 @@
  #include <sstream>
  #include <iostream>
@@ -86,8 +86,8 @@
  {
  	return strerror(m_errno);
  }
---- origsrc/libwibble-1.1/wibble/exception.h	2013-10-21 01:52:20.000000000 +0900
-+++ src/libwibble-1.1/wibble/exception.h	2026-02-18 06:10:45.936472800 +0900
+--- origsrc/libwibble-1.1/wibble/exception.h	2013-10-20 16:52:20.000000000 +0000
++++ src/libwibble-1.1/wibble/exception.h	2026-11-23 00:57:23.659785600 +0000
 @@ -139,19 +139,19 @@ protected:
  	std::vector<std::string> m_context;
  
@@ -351,8 +351,8 @@
  };
  
  }
---- origsrc/libwibble-1.1/wibble/exception.tcc	2008-10-15 23:54:33.000000000 +0900
-+++ src/libwibble-1.1/wibble/exception.tcc	2026-02-18 06:10:45.938648600 +0900
+--- origsrc/libwibble-1.1/wibble/exception.tcc	2008-10-15 14:54:33.000000000 +0000
++++ src/libwibble-1.1/wibble/exception.tcc	2026-11-23 00:57:23.659785600 +0000
 @@ -26,7 +26,7 @@ namespace wibble {
  namespace exception {
  
@@ -362,8 +362,8 @@
  {
  	std::stringstream str;
  	str << m_var_desc << "(" << m_val << ") out of range (" <<
---- origsrc/libwibble-1.1/wibble/net/http.cpp	2013-10-21 01:52:20.000000000 +0900
-+++ src/libwibble-1.1/wibble/net/http.cpp	2026-02-18 06:10:45.940671900 +0900
+--- origsrc/libwibble-1.1/wibble/net/http.cpp	2013-10-20 16:52:20.000000000 +0000
++++ src/libwibble-1.1/wibble/net/http.cpp	2026-11-23 00:57:23.659785600 +0000
 @@ -35,7 +35,7 @@ namespace wibble {
  namespace net {
  namespace http {
@@ -373,8 +373,8 @@
  {
      if (!msg.empty()) return msg.c_str();
      return desc.c_str();
---- origsrc/libwibble-1.1/wibble/net/http.h	2010-12-04 01:22:19.000000000 +0900
-+++ src/libwibble-1.1/wibble/net/http.h	2026-02-18 06:10:45.936472800 +0900
+--- origsrc/libwibble-1.1/wibble/net/http.h	2010-12-03 16:22:19.000000000 +0000
++++ src/libwibble-1.1/wibble/net/http.h	2026-11-23 00:57:23.661793800 +0000
 @@ -44,9 +44,9 @@ struct error : public std::exception
          : code(code), desc(desc) {}
      error(int code, const std::string& desc, const std::string& msg)
@@ -387,8 +387,8 @@
  
      virtual void send(Request& req);
  };
---- origsrc/libwibble-1.1/wibble/parse.h	2013-10-21 02:56:02.000000000 +0900
-+++ src/libwibble-1.1/wibble/parse.h	2026-02-18 06:10:45.940671900 +0900
+--- origsrc/libwibble-1.1/wibble/parse.h	2013-10-20 17:56:02.000000000 +0000
++++ src/libwibble-1.1/wibble/parse.h	2026-11-23 00:57:23.661793800 +0000
 @@ -226,7 +226,7 @@ struct ParseContext
              position = pos;
              type = t;
@@ -398,8 +398,8 @@
      };
  
      std::priority_queue< Fail > failures;
---- origsrc/libwibble-1.1/wibble/regexp.cpp	2008-10-15 23:53:54.000000000 +0900
-+++ src/libwibble-1.1/wibble/regexp.cpp	2026-02-18 06:10:45.936472800 +0900
+--- origsrc/libwibble-1.1/wibble/regexp.cpp	2008-10-15 14:53:54.000000000 +0000
++++ src/libwibble-1.1/wibble/regexp.cpp	2026-11-23 00:57:23.661793800 +0000
 @@ -29,7 +29,7 @@ namespace exception {
  ////// wibble::exception::Regexp
  
@@ -469,8 +469,8 @@
  {
  	if (idx > nmatch)
  		throw wibble::exception::ValOutOfRange<int>("index", idx, 0, nmatch, "getting submatch of regexp");
---- origsrc/libwibble-1.1/wibble/regexp.h	2008-10-15 23:53:53.000000000 +0900
-+++ src/libwibble-1.1/wibble/regexp.h	2026-02-18 06:10:45.925628600 +0900
+--- origsrc/libwibble-1.1/wibble/regexp.h	2008-10-15 14:53:53.000000000 +0000
++++ src/libwibble-1.1/wibble/regexp.h	2026-11-23 00:57:23.663801200 +0000
 @@ -38,14 +38,14 @@ protected:
  
  public:
@@ -526,8 +526,8 @@
  		: Regexp(expr, match_count, flags | REG_EXTENDED) {}
  };
  
---- origsrc/libwibble-1.1/wibble/sys/buffer.cpp	2013-10-02 08:34:50.000000000 +0900
-+++ src/libwibble-1.1/wibble/sys/buffer.cpp	2026-02-18 06:10:45.944703400 +0900
+--- origsrc/libwibble-1.1/wibble/sys/buffer.cpp	2013-10-01 23:34:50.000000000 +0000
++++ src/libwibble-1.1/wibble/sys/buffer.cpp	2026-11-23 00:57:23.663801200 +0000
 @@ -76,7 +76,7 @@ void Buffer::Data::resize(size_t size)
  }
  
@@ -546,8 +546,8 @@
  {
  	if (_size < d._size)
  		return true;
---- origsrc/libwibble-1.1/wibble/sys/buffer.h	2013-10-22 19:52:16.000000000 +0900
-+++ src/libwibble-1.1/wibble/sys/buffer.h	2026-02-18 06:10:45.942686300 +0900
+--- origsrc/libwibble-1.1/wibble/sys/buffer.h	2013-10-22 10:52:16.000000000 +0000
++++ src/libwibble-1.1/wibble/sys/buffer.h	2026-11-23 00:57:23.665809700 +0000
 @@ -41,7 +41,7 @@ public:
  		void* _data;
  
@@ -642,8 +642,8 @@
  	{
  		if (item == 0 && buf.item == 0)
  			return false;
---- origsrc/libwibble-1.1/wibble/sys/filelock.h	2013-10-21 07:29:57.000000000 +0900
-+++ src/libwibble-1.1/wibble/sys/filelock.h	2026-02-18 05:41:39.223617800 +0900
+--- origsrc/libwibble-1.1/wibble/sys/filelock.h	2013-10-20 22:29:57.000000000 +0000
++++ src/libwibble-1.1/wibble/sys/filelock.h	2026-11-23 00:57:23.666583800 +0000
 @@ -5,6 +5,7 @@
  
  #ifdef POSIX
@@ -652,8 +652,8 @@
  #include <fcntl.h>
  
  namespace wibble {
---- origsrc/libwibble-1.1/wibble/sys/mutex.h	2013-10-21 01:52:20.000000000 +0900
-+++ src/libwibble-1.1/wibble/sys/mutex.h	2026-02-18 05:41:39.228868900 +0900
+--- origsrc/libwibble-1.1/wibble/sys/mutex.h	2013-10-20 16:52:20.000000000 +0000
++++ src/libwibble-1.1/wibble/sys/mutex.h	2026-11-23 00:57:23.666583800 +0000
 @@ -64,13 +64,13 @@ public:
              pthread_mutexattr_t attr;
              pthread_mutexattr_init( &attr );
@@ -670,8 +670,8 @@
                  pthread_mutexattr_settype( &attr, PTHREAD_MUTEX_ERRORCHECK_NP );
  #endif
              }
---- origsrc/libwibble-1.1/wibble/sys/netbuffer.h	2013-10-21 01:52:20.000000000 +0900
-+++ src/libwibble-1.1/wibble/sys/netbuffer.h	2026-02-18 06:10:45.936472800 +0900
+--- origsrc/libwibble-1.1/wibble/sys/netbuffer.h	2013-10-20 16:52:20.000000000 +0000
++++ src/libwibble-1.1/wibble/sys/netbuffer.h	2026-11-23 00:57:23.667817400 +0000
 @@ -42,15 +42,15 @@ public:
  	size_t cursor;
  	
@@ -779,8 +779,8 @@
  	{
  		if (cursor + t >= size())
  			throw wibble::exception::Consistency("reading from buffer", "tried to skip past the end of the buffer");
---- origsrc/libwibble-1.1/wibble/sys/process.cpp	2013-10-21 01:52:20.000000000 +0900
-+++ src/libwibble-1.1/wibble/sys/process.cpp	2026-02-18 05:41:39.228868900 +0900
+--- origsrc/libwibble-1.1/wibble/sys/process.cpp	2013-10-20 16:52:20.000000000 +0000
++++ src/libwibble-1.1/wibble/sys/process.cpp	2026-11-23 00:57:23.668604400 +0000
 @@ -271,10 +271,14 @@ static string describe_rlimit_res_t(int
  		case RLIMIT_DATA: return "max data size";
  		case RLIMIT_STACK: return "max stack size";

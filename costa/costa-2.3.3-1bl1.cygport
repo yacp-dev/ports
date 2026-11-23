@@ -8,13 +8,18 @@ DESCRIPTION="COSTA is a communication-optimal, highly-optimised algorithm for da
 redistribution accross multiple processors, using MPI and OpenMP and offering
 the possibility to transpose and scale some or all data."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	cxxopts
+	libevent-devel
+	libgtest-devel
+	libhwloc-devel
 	libopenmpi-devel
 	libscalapack-devel
+	zlib-devel
 "
 
 inherit cmake
@@ -56,3 +61,9 @@ libcosta_devel_CONTENTS="
 costa_SUMMARY="${SUMMARY} (utilities)"
 libcosta2_SUMMARY="${SUMMARY} (runtime)"
 libcosta_devel_SUMMARY="${SUMMARY} (development)"
+libcosta_devel_REQUIRES="
+	libevent-devel
+	libhwloc-devel
+	libscalapack-devel
+	zlib-devel
+"

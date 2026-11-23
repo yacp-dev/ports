@@ -6,10 +6,21 @@ SUMMARY="libeastwood game data library"
 DESCRIPTION="This library provides support for handling wsa, shp, icn, cps, pal, adl, voc,
 pak++ data files used in ie. Westwood games."
 
+LICENSE="GPL-3.0-or-later AND GPL-2.0-or-later AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND GPL-2.0-or-later AND LGPL-2.1-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libSDL-devel
+	libSDL_mixer-devel
+	libsamplerate-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
-	-DLIBEASTWOOD_BUILD_PYTHON:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+	-DLIBEASTWOOD_BUILD_PYTHON:BOOL=OFF
 "
 
 DOCS="
@@ -23,13 +34,13 @@ PKG_NAMES="
 	libeastwood
 	libeastwood1.0.0
 	libeastwood-devel
-	python27-libeastwood
 "
 libeastwood_CONTENTS="
 	usr/share
 "
 libeastwood1_0_0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygeastwood-1.0.0.dll
+	usr/bin/cygSDL_eastwood-1.0.0.dll
 "
 libeastwood_devel_CONTENTS="
 	usr/include
@@ -37,11 +48,6 @@ libeastwood_devel_CONTENTS="
 	usr/lib/lib*.dll.a
 	usr/lib/pkgconfig
 "
-python27_libeastwood_CONTENTS="
-	usr/bin/eastwood
-	usr/lib/python*
-"
 libeastwood_SUMMARY="${SUMMARY} (licensing & readmes)"
 libeastwood1_0_0_SUMMARY="${SUMMARY} (runtime)"
 libeastwood_devel_SUMMARY="${SUMMARY} (development)"
-python27_libeastwood_SUMMARY="${SUMMARY} (python27 bindings)"

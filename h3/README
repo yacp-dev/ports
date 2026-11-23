@@ -5,17 +5,17 @@ H3 is a geospatial indexing system using a hexagonal grid that can be
 benefits of a hexagonal grid with S2's hierarchical subdivisions.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  cygwin-devel-3.6.10-1
-  libh3-devel-4.5.0-1bl1
-  libh3_1-4.5.0-1bl1
-  pkg-config-3.0.5-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libh3-devel-4.6.0-1bl1
+  libh3_1-4.6.0-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   ninja-1.13.2-1
 
@@ -23,22 +23,22 @@ Canonical website:
   https://github.com/uber/h3/
 
 Canonical download:
-  https://github.com/uber/h3/archive/refs/tags/v4.5.0.tar.gz
+  https://github.com/uber/h3/archive/refs/tags/v4.6.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack h3-4.5.0-X-src.tar.xz
+  1. unpack h3-4.6.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./h3-4.5.0-X.cygport all
+        % cygport ./h3-4.6.0-X.cygport all
 
 This will create:
-  /usr/src/h3-4.5.0-X-src.tar.xz
-  /usr/src/h3-4.5.0-X.tar.xz
-  /usr/src/libh3_1-4.5.0-X.tar.xz
-  /usr/src/libh3-devel-4.5.0-X.tar.xz
+  /usr/src/h3-4.6.0-X-src.tar.xz
+  /usr/src/h3-4.6.0-X.tar.xz
+  /usr/src/libh3_1-4.6.0-X.tar.xz
+  /usr/src/libh3-devel-4.6.0-X.tar.xz
 
 -------------------------------------------
 
@@ -72,7 +72,7 @@ Files included in the binary package:
   /usr/include/h3/h3api.h
   /usr/lib/cmake/h3/h3Config.cmake
   /usr/lib/cmake/h3/h3ConfigVersion.cmake
-  /usr/lib/cmake/h3/h3Targets-release.cmake
+  /usr/lib/cmake/h3/h3Targets-relwithdebinfo.cmake
   /usr/lib/cmake/h3/h3Targets.cmake
   /usr/lib/libh3.dll.a
   /usr/lib/pkgconfig/h3.pc
@@ -80,6 +80,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.6.0-1bl1 -----
+Version bump.
 
 ----- version 4.5.0-1bl1 -----
 Version bump.

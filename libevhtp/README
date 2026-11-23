@@ -5,26 +5,26 @@ reality of libevent's http interface is that it was created as a JIT server,
 meaning the developer never thought of it being used for creating a
 full-fledged HTTP service. Infact I am under the impression that the libevent
 http API was designed almost as an example of what you can do with libevent.
-It's not Apache in a box, but more and more developers are attempting to use
-it as so.
+It's not Apache in a box, but more and more developers are attempting to use it
+as so.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libevent2.1_7-2.1.12-1
-  libevhtp-devel-1.2.18-1bl4
-  libevhtp0-1.2.18-1bl4
-  libssl3-3.0.17-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libevent2.1_7-2.1.13-1
+  libevhtp-devel-1.2.18-1bl5
+  libevhtp0-1.2.18-1bl5
+  libssl3-3.5.9-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  libevent-devel-2.1.12-1
-  libssl-devel-3.0.17-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libevent-devel-2.1.13-1
+  libssl-devel-3.5.9-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/Yellow-Camper/libevhtp
@@ -71,7 +71,7 @@ Files included in the binary package:
   /usr/include/evhtp/thread.h
   /usr/lib/cmake/libevhtp/libevhtpConfig.cmake
   /usr/lib/cmake/libevhtp/libevhtpConfigVersion.cmake
-  /usr/lib/cmake/libevhtp/libevhtpTargets-release.cmake
+  /usr/lib/cmake/libevhtp/libevhtpTargets-relwithdebinfo.cmake
   /usr/lib/cmake/libevhtp/libevhtpTargets.cmake
   /usr/lib/libevhtp.dll.a
   /usr/lib/pkgconfig/evhtp.pc
@@ -79,6 +79,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.18-1bl5 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.2.18-1bl4 -----
 Rebuild with gcc-13.4.0

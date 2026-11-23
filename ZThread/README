@@ -6,22 +6,21 @@ thread wrapper.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.5.4-1
-  libZThread-devel-2.3.2-1bl3
-  libZThread2.3.2-2.3.2-1bl3
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libZThread-devel-2.3.2-1bl4
+  libZThread2.3.2-2.3.2-1bl4
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -118,6 +117,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.3.2-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.3.2-1bl3 -----
 Rebuild with gcc-12.4.0

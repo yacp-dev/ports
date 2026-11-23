@@ -10,7 +10,9 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libpng-devel"
+BUILD_REQUIRES="
+	libpng-devel
+"
 
 PKG_NAMES="
 	${PN}
@@ -21,7 +23,7 @@ aribb24_CONTENTS="
 	usr/share
 "
 libaribb24_0_CONTENTS="
-	usr/bin
+	usr/bin/cygaribb24-0.dll
 "
 libaribb24_devel_CONTENTS="
 	usr/include

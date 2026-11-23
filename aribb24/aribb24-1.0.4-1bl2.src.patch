@@ -1,5 +1,5 @@
---- origsrc/aribb24-v1.0.4/Makefile.am	2019-09-17 00:57:19.000000000 +0900
-+++ src/aribb24-v1.0.4/Makefile.am	2023-01-13 16:39:24.362189300 +0900
+--- origsrc/aribb24-v1.0.4/Makefile.am	2019-09-16 15:57:19.000000000 +0000
++++ src/aribb24-v1.0.4/Makefile.am	2026-11-23 03:49:33.293126900 +0000
 @@ -8,6 +8,7 @@ libaribb24_la_SOURCES = src/aribb24.c sr
  	src/decoder_macro.h
  libaribb24_la_LIBADD = $(PNG_LIBS)

@@ -9,11 +9,14 @@ Transport). EST is used to provision certificates from a CA or RA. EST is a
 replacement for SCEP, providing several security enhancements and support for
 ECC certificates."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND BSD-4-Clause AND MIT AND ISC"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-4-Clause AND MIT AND ISC"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libssl-devel"
+BUILD_REQUIRES="
+	libjsmn-devel
+	libssl-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -DDISABLE_BACKTRACE"
 
@@ -24,6 +27,20 @@ CYGCONF_ARGS="
 DOCS="
 	README.brski
 "
+
+# Upstream's test/UT needs CUnit, libcurl and local test servers, so only check
+# that the examples start and print their usage (both exit with 255 after it).
+src_test() {
+	cd ${B}
+	local rc=0
+	verbose ./example/client/estclient.exe -? > usage.txt || rc=$?
+	[ ${rc} -eq 255 ] || return 1
+	verbose grep -q '^Usage:' usage.txt || return 1
+	rc=0
+	verbose ./example/server/estserver.exe -h 2> usage.txt || rc=$?
+	[ ${rc} -eq 255 ] || return 1
+	verbose grep -q 'EST server options' usage.txt
+}
 
 PKG_NAMES="
 	${PN}

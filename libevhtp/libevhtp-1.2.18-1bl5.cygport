@@ -1,7 +1,8 @@
 HOMEPAGE="https://github.com/Yellow-Camper/${PN}"
 SRC_URI="https://github.com/Yellow-Camper/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/${PV}-2.1/debian/patches/144.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/${PV}-2.2/debian/patches/BigEndian-check.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/${PV}-2.2/debian/patches/144.patch
 "
 
 CATEGORY="Libs"
@@ -27,6 +28,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DEVHTP_DISABLE_REGEX:BOOL=ON
 "
 # EVHTP_DISABLE_REGEX : cygwin libonig-devel not include onigposix.h

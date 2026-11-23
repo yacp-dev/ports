@@ -5,26 +5,23 @@ Gigasampler files and DLS (Downloadable Sounds) Level 1/2 files. The source
 code package includes a couple of command line tools based on the library.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libakai-devel-4.6.0-1bl1
-  libakai0-4.6.0-1bl1
+  cygwin-3.6.12-1
+  libakai-devel-4.6.1-1bl1
+  libakai0-4.6.1-1bl1
   libgcc1-14.4.0-1
-  libgig-devel-4.6.0-1bl1
-  libgig14-4.6.0-1bl1
+  libgig-devel-4.6.1-1bl1
+  libgig14-4.6.1-1bl1
   libsndfile1-1.2.2-2
   libstdc++6-14.4.0-1
   libuuid1-2.40.2-2
-  pkg-config-3.0.5-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
+  autoconf-20260320-3
+  automake-20261107-1
   binutils-2.47-1
-  cppunit-1.13.2-1
-  cygport-0.37.7-1
-  gcc-core-14.4.0-1
+  cygport-0.37.13-1
   gcc-g++-14.4.0-1
   libsndfile-devel-1.2.2-2
   libtool-2.6.2-1
@@ -35,24 +32,24 @@ Canonical website:
   https://www.linuxsampler.org/libgig/
 
 Canonical download:
-  https://download.linuxsampler.org/packages/libgig-4.6.0.tar.bz2
+  https://download.linuxsampler.org/packages/libgig-4.6.1.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libgig-4.6.0-X-src.tar.xz
+  1. unpack libgig-4.6.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libgig-4.6.0-X.cygport all
+        % cygport ./libgig-4.6.1-X.cygport all
 
 This will create:
-  /usr/src/libgig-4.6.0-X-src.tar.xz
-  /usr/src/libgig-4.6.0-X.tar.xz
-  /usr/src/libgig14-4.6.0-X.tar.xz
-  /usr/src/libgig-devel-4.6.0-X.tar.xz
-  /usr/src/libakai0-4.6.0-X.tar.xz
-  /usr/src/libakai-devel-4.6.0-X.tar.xz
+  /usr/src/libgig-4.6.1-X-src.tar.xz
+  /usr/src/libgig-4.6.1-X.tar.xz
+  /usr/src/libgig14-4.6.1-X.tar.xz
+  /usr/src/libgig-devel-4.6.1-X.tar.xz
+  /usr/src/libakai0-4.6.1-X.tar.xz
+  /usr/src/libakai-devel-4.6.1-X.tar.xz
 
 -------------------------------------------
 
@@ -120,6 +117,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 4.6.1-1bl1 -----
+Version bump.
 
 ----- version 4.6.0-1bl1 -----
 Version bump.

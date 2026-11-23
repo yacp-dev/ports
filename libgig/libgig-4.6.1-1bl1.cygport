@@ -1,8 +1,8 @@
 HOMEPAGE="https://www.linuxsampler.org/${PN}/"
 SRC_URI="https://download.linuxsampler.org/packages/${P}.tar.bz2"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/4.5.2-2/debian/patches/01-Makefile.patch
-	https://sources.debian.org/data/main/${PN:0:4}/${PN}/4.5.2-2/debian/patches/05-fix-libdir.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/4.6.0-1/debian/patches/01-Makefile.patch
+	https://sources.debian.org/data/main/${PN:0:4}/${PN}/4.6.0-1/debian/patches/05-fix-libdir.patch
 "
 
 CATEGORY="Libs"
@@ -16,7 +16,6 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
-	cppunit
 	libsndfile-devel
 	libuuid-devel
 "

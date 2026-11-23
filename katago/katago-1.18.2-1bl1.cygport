@@ -1,10 +1,8 @@
-HOMEPAGE="https://github.com/lightvector/${PN}"
+HOMEPAGE="https://github.com/lightvector/KataGo"
 SRC_URI="
-	https://github.com/lightvector/${PN}/archive/refs/tags/v${PV}.tar.gz
-	https://github.com/lightvector/${PN}/releases/download/v1.4.5/g170e-b20c256x2-s5303129600-d1228401921.bin.gz
-	https://github.com/lightvector/${PN}/releases/download/v1.4.5/g170-b30c320x2-s4824661760-d1229536699.bin.gz
-	https://github.com/lightvector/${PN}/releases/download/v1.4.5/g170-b40c256x2-s5095420928-d1229425124.bin.gz
+	https://github.com/lightvector/KataGo/archive/refs/tags/v${PV}.tar.gz
 "
+SRC_DIR="KataGo-${PV}"
 
 CATEGORY="Science"
 SUMMARY="GTP engine and self-play learning in Go"
@@ -13,11 +11,15 @@ https://katagotraining.org/ for more details, to download the latest and
 strongest neural nets, or to learn how to contribute if you want to help
 KataGo improve further!"
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND Apache-2.0 AND BSD-3-Clause AND CC0-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND Apache-2.0 AND BSD-3-Clause AND CC0-1.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libOpenCL-devel libzip-devel zlib-devel"
+BUILD_REQUIRES="
+	libOpenCL-devel
+	libzip-devel
+	zlib-devel
+"
 
 inherit cmake
 
@@ -50,5 +52,7 @@ src_install()
 	cd ${S}/cpp
 	mkdir -p ${D}/usr/share/${PN}
 	cp -R configs ${D}/usr/share/${PN}
-	cp ${top}/*.bin.gz ${D}/usr/share/${PN}
+
+	verbose install -Dm644 ${S}/cpp/external/clblast/LICENSE \
+		${D}/usr/share/doc/${PN}/LICENSE.clblast
 }

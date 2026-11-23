@@ -1,0 +1,49 @@
+--- origsrc/libemu-1.0.5/configure.ac	2026-11-23 07:53:32.484732200 +0000
++++ src/libemu-1.0.5/configure.ac	2026-11-23 07:53:32.766132600 +0000
+@@ -18,6 +18,7 @@ AC_CANONICAL_HOST
+ AC_C_CONST
+ AC_C_BIGENDIAN
+ 
++pkgconfigdir="/usr/lib/pkgconfig"
+ dnl Check for some target-specific stuff
+ case "$host" in
+ *-*-freebsd*)
+--- origsrc/libemu-1.0.5/src/Makefile.am	2022-06-14 11:31:13.000000000 +0000
++++ src/libemu-1.0.5/src/Makefile.am	2026-11-23 07:53:32.768143600 +0000
+@@ -6,7 +6,7 @@ AUTOMAKE_OPTIONS = foreign subdir-object
+ 
+ 
+ 
+-AM_CFLAGS = -pipe -D _GNU_SOURCE -I../include -Werror -Wall -g
++AM_CFLAGS = -pipe -D _GNU_SOURCE -I$(top_srcdir)/include -Wall -g -I$(top_builddir)/src/environment/win32
+ 
+ lib_LTLIBRARIES = libemu.la
+ 
+--- origsrc/libemu-1.0.5/testsuite/Makefile.am	2022-06-14 11:31:13.000000000 +0000
++++ src/libemu-1.0.5/testsuite/Makefile.am	2026-11-23 07:53:32.768143600 +0000
+@@ -1,6 +1,6 @@
+ AUTOMAKE_OPTIONS = foreign
+ 
+-AM_CPPFLAGS = -I../include -I ../.. -Werror -Wall -g
++AM_CPPFLAGS = -I$(top_srcdir)/include -I ../.. -Werror -Wall -g
+ AM_LDFLAGS = -lemu -L../src 
+ 
+ bin_PROGRAMS = scprofiler
+--- origsrc/libemu-1.0.5/tools/Makefile.am	2022-06-14 11:31:13.000000000 +0000
++++ src/libemu-1.0.5/tools/Makefile.am	2026-11-23 07:53:32.768143600 +0000
+@@ -2,4 +2,4 @@
+ 
+ AUTOMAKE_OPTIONS = foreign
+ 
+-SUBDIRS = sctest
++# SUBDIRS = sctest
+--- origsrc/libemu-1.0.5/tools/sctest/Makefile.am	2022-06-14 11:31:13.000000000 +0000
++++ src/libemu-1.0.5/tools/sctest/Makefile.am	2026-11-23 07:53:32.768143600 +0000
+@@ -1,6 +1,6 @@
+ AUTOMAKE_OPTIONS = foreign
+ 
+-AM_CPPFLAGS = -I../../include -I ../../.. -Werror -Wall -g
++AM_CPPFLAGS = -I$(top_srcdir)/include -I ../../.. -Wall -g
+ AM_LDFLAGS = -lemu -L../../src 
+ 
+ 

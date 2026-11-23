@@ -6,21 +6,21 @@ numbers are supported, as well as a subset of trigonometric and statistics
 functions.
 
 Runtime requirements:
-  cygwin-3.6.11-1
-  libarmadillo-devel-15.6.2-1bl1
-  libarmadillo15-15.6.2-1bl1
+  cygwin-3.6.12-1
+  libarmadillo-devel-15.8.0-1bl1
+  libarmadillo15-15.8.0-1bl1
   libarpack0-3.9.1-1
   libgcc1-14.4.0-1
   liblapack0-3.12.0-1
   libopenblas-0.3.25-1
   libsuperlu7-7.0.1-1bl2
-  pkg-config-3.0.9-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.4.4-1
-  cygport-0.37.11-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
   gcc-g++-14.4.0-1
   libarpack-devel-3.9.1-1
   liblapack-devel-3.12.0-1
@@ -31,22 +31,22 @@ Canonical website:
   https://sourceforge.net/projects/arma/
 
 Canonical download:
-  mirror://sourceforge/arma/armadillo-15.6.2.tar.xz
+  mirror://sourceforge/arma/armadillo-15.8.0.tar.xz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack armadillo-15.6.2-X-src.tar.xz
+  1. unpack armadillo-15.8.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./armadillo-15.6.2-X.cygport all
+        % cygport ./armadillo-15.8.0-X.cygport all
 
 This will create:
-  /usr/src/armadillo-15.6.2-X-src.tar.xz
-  /usr/src/armadillo-15.6.2-X.tar.xz
-  /usr/src/libarmadillo15-15.6.2-X.tar.xz
-  /usr/src/libarmadillo-devel-15.6.2-X.tar.xz
+  /usr/src/armadillo-15.8.0-X-src.tar.xz
+  /usr/src/armadillo-15.8.0-X.tar.xz
+  /usr/src/libarmadillo15-15.8.0-X.tar.xz
+  /usr/src/libarmadillo-devel-15.8.0-X.tar.xz
 
 -------------------------------------------
 
@@ -288,6 +288,7 @@ Files included in the binary package:
   /usr/include/armadillo_bits/fn_shuffle.hpp
   /usr/include/armadillo_bits/fn_size.hpp
   /usr/include/armadillo_bits/fn_solve.hpp
+  /usr/include/armadillo_bits/fn_solve_lse.hpp
   /usr/include/armadillo_bits/fn_sort.hpp
   /usr/include/armadillo_bits/fn_sort_index.hpp
   /usr/include/armadillo_bits/fn_speye.hpp
@@ -624,6 +625,8 @@ Files included in the binary package:
   /usr/include/armadillo_bits/running_stat_meat.hpp
   /usr/include/armadillo_bits/running_stat_vec_bones.hpp
   /usr/include/armadillo_bits/running_stat_vec_meat.hpp
+  /usr/include/armadillo_bits/solve_factoriser_bones.hpp
+  /usr/include/armadillo_bits/solve_factoriser_meat.hpp
   /usr/include/armadillo_bits/sp_auxlib_bones.hpp
   /usr/include/armadillo_bits/sp_auxlib_meat.hpp
   /usr/include/armadillo_bits/span.hpp
@@ -671,6 +674,8 @@ Files included in the binary package:
   /usr/include/armadillo_bits/spop_repmat_meat.hpp
   /usr/include/armadillo_bits/spop_reverse_bones.hpp
   /usr/include/armadillo_bits/spop_reverse_meat.hpp
+  /usr/include/armadillo_bits/spop_spones_bones.hpp
+  /usr/include/armadillo_bits/spop_spones_meat.hpp
   /usr/include/armadillo_bits/spop_strans_bones.hpp
   /usr/include/armadillo_bits/spop_strans_meat.hpp
   /usr/include/armadillo_bits/spop_symmat_bones.hpp
@@ -731,6 +736,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 15.8.0-1bl1 -----
+Version bump.
 
 ----- version 15.6.2-1bl1 -----
 Version bump.

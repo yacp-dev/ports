@@ -11,6 +11,10 @@ LICENSE_URI="COPYING"
 
 inherit cmake
 
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
 src_compile()
 {
 	CYGCMAKE_SOURCE=${S}/src

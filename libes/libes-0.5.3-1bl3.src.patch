@@ -1,0 +1,10 @@
+--- origsrc/libes-0.5.3/src/lib/CMakeLists.txt	2014-05-05 14:57:29.000000000 +0000
++++ src/libes-0.5.3/src/lib/CMakeLists.txt	2026-11-23 07:40:49.168894400 +0000
+@@ -23,6 +23,6 @@ set_target_properties(es0
+ 
+ install(
+   TARGETS es0
+-  LIBRARY DESTINATION lib
++  RUNTIME DESTINATION bin
+   ARCHIVE DESTINATION lib
+ )

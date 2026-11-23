@@ -4,13 +4,13 @@ Jhead displays and manipulates the non-image portions of EXIF formatted JPEG
 images, such as the images produced by most digital cameras.
 
 Runtime requirements:
-  cygwin-3.5.0-0.374.g2e7332d6bd02
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-2
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
@@ -49,6 +49,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.08-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.08-1bl1 -----
 Version bump.

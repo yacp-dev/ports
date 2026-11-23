@@ -3,17 +3,18 @@ libdebian-installer
 Library of common debian-installer functions.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libdebian-installer-devel-0.128-1bl1
-  libdebian-installer4-0.128-1bl1
-  pkg-config-3.0.4-2
+  cygwin-3.6.12-1
+  libdebian-installer-devel-0.128-1bl2
+  libdebian-installer4-0.128-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  automake-20250528-1
+  autoconf-20260320-3
+  automake-20261107-1
   binutils-2.47-1
-  cygport-0.37.7-1
+  check-0.15.2-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   libtool-2.6.2-1
   make-4.4.1-2
@@ -85,6 +86,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.128-1bl2 -----
+Fix BUILD_REQUIRES
 
 ----- version 0.128-1bl1 -----
 Version bump.

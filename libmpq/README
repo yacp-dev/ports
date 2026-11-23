@@ -5,50 +5,47 @@ create or manipulate MoPaQ mpq archives.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.10-1
-  libbz2-devel-1.0.8-2
+  cygwin-3.6.12-1
   libbz2_1-1.0.8-2
-  libmpq-devel-0.4.2-1bl2
-  libmpq0-0.4.2-1bl2
-  pkg-config-2.5.1-1
-  python39-3.9.16-1
-  zlib-devel-1.3.2-1
-  zlib0-1.3.2-1
+  liblzma5-5.8.4-1
+  libmpq-devel-0.8.1-1bl1
+  libmpq4-0.8.1-1bl1
+  pkg-config-3.0.11-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-3
-  automake-20250528-1
-  binutils-2.46.1-1
-  cygport-0.37.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   libbz2-devel-1.0.8-2
-  libtool-2.5.4-1
+  liblzma-devel-5.8.4-1
+  libtool-2.6.2-1
   make-4.4.1-2
-  python39-3.9.16-1
-  zlib-devel-1.3.2-1
+  zlib-devel-1.4-1
 
 Canonical website:
-  https://github.com/ge0rg/libmpq
+  https://github.com/mbroemme/libmpq
 
 Canonical download:
-  https://github.com/ge0rg/libmpq/archive/refs/tags/libmpq-0.4.2.tar.gz
+  https://github.com/mbroemme/libmpq/archive/refs/tags/v0.8.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmpq-0.4.2-X-src.tar.xz
+  1. unpack libmpq-0.8.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmpq-0.4.2-X.cygport all
+        % cygport ./libmpq-0.8.1-X.cygport all
 
 This will create:
-  /usr/src/libmpq-0.4.2-X-src.tar.xz
-  /usr/src/libmpq-0.4.2-X.tar.xz
-  /usr/src/libmpq0-0.4.2-X.tar.xz
-  /usr/src/libmpq-devel-0.4.2-X.tar.xz
-  /usr/src/python39-libmpq-0.4.2-X.tar.xz
+  /usr/src/libmpq-0.8.1-X-src.tar.xz
+  /usr/src/libmpq-0.8.1-X.tar.xz
+  /usr/src/libmpq4-0.8.1-X.tar.xz
+  /usr/src/libmpq-devel-0.8.1-X.tar.xz
 
 -------------------------------------------
 
@@ -56,16 +53,12 @@ Files included in the binary package:
 
 (libmpq)
   /usr/share/doc/Cygwin/libmpq.README
-  /usr/share/doc/libmpq/AUTHORS
   /usr/share/doc/libmpq/COPYING
-  /usr/share/doc/libmpq/FAQ
-  /usr/share/doc/libmpq/NEWS
-  /usr/share/doc/libmpq/README
-  /usr/share/doc/libmpq/THANKS
-  /usr/share/doc/libmpq/TODO
+  /usr/share/doc/libmpq/COPYING.LESSER
+  /usr/share/doc/libmpq/README.md
 
-(libmpq0)
-  /usr/bin/cygmpq-0.dll
+(libmpq4)
+  /usr/bin/cygmpq-4.dll
 
 (libmpq-devel)
   /usr/bin/libmpq-config
@@ -74,43 +67,78 @@ Files included in the binary package:
   /usr/lib/pkgconfig/libmpq.pc
   /usr/share/man/man1/libmpq-config.1.gz
   /usr/share/man/man3/libmpq.3.gz
+  /usr/share/man/man3/libmpq__archive_add_data.3.gz
+  /usr/share/man/man3/libmpq__archive_add_path.3.gz
+  /usr/share/man/man3/libmpq__archive_attributes.3.gz
+  /usr/share/man/man3/libmpq__archive_clone.3.gz
   /usr/share/man/man3/libmpq__archive_close.3.gz
+  /usr/share/man/man3/libmpq__archive_compression_allowed.3.gz
+  /usr/share/man/man3/libmpq__archive_create.3.gz
+  /usr/share/man/man3/libmpq__archive_create_mpqe.3.gz
   /usr/share/man/man3/libmpq__archive_files.3.gz
   /usr/share/man/man3/libmpq__archive_offset.3.gz
   /usr/share/man/man3/libmpq__archive_open.3.gz
-  /usr/share/man/man3/libmpq__archive_packed_size.3.gz
-  /usr/share/man/man3/libmpq__archive_unpacked_size.3.gz
+  /usr/share/man/man3/libmpq__archive_open_io.3.gz
+  /usr/share/man/man3/libmpq__archive_open_mpqe.3.gz
+  /usr/share/man/man3/libmpq__archive_open_mpqe_io.3.gz
+  /usr/share/man/man3/libmpq__archive_sign.3.gz
+  /usr/share/man/man3/libmpq__archive_signatures.3.gz
+  /usr/share/man/man3/libmpq__archive_size_packed.3.gz
+  /usr/share/man/man3/libmpq__archive_size_unpacked.3.gz
+  /usr/share/man/man3/libmpq__archive_verify.3.gz
   /usr/share/man/man3/libmpq__archive_version.3.gz
-  /usr/share/man/man3/libmpq__block_close_offset.3.gz
-  /usr/share/man/man3/libmpq__block_offset.3.gz
-  /usr/share/man/man3/libmpq__block_open_offset.3.gz
-  /usr/share/man/man3/libmpq__block_packed_size.3.gz
+  /usr/share/man/man3/libmpq__block_compression.3.gz
   /usr/share/man/man3/libmpq__block_read.3.gz
-  /usr/share/man/man3/libmpq__block_seed.3.gz
-  /usr/share/man/man3/libmpq__block_unpacked_size.3.gz
+  /usr/share/man/man3/libmpq__block_size_packed.3.gz
+  /usr/share/man/man3/libmpq__block_size_unpacked.3.gz
+  /usr/share/man/man3/libmpq__block_verify.3.gz
+  /usr/share/man/man3/libmpq__file_attributes.3.gz
   /usr/share/man/man3/libmpq__file_blocks.3.gz
-  /usr/share/man/man3/libmpq__file_compressed.3.gz
-  /usr/share/man/man3/libmpq__file_encrypted.3.gz
-  /usr/share/man/man3/libmpq__file_imploded.3.gz
-  /usr/share/man/man3/libmpq__file_name.3.gz
+  /usr/share/man/man3/libmpq__file_flags.3.gz
+  /usr/share/man/man3/libmpq__file_hash.3.gz
   /usr/share/man/man3/libmpq__file_number.3.gz
+  /usr/share/man/man3/libmpq__file_number_from_hash.3.gz
   /usr/share/man/man3/libmpq__file_offset.3.gz
-  /usr/share/man/man3/libmpq__file_packed_size.3.gz
   /usr/share/man/man3/libmpq__file_read.3.gz
-  /usr/share/man/man3/libmpq__file_unpacked_size.3.gz
-  /usr/share/man/man3/libmpq__init.3.gz
-  /usr/share/man/man3/libmpq__shutdown.3.gz
+  /usr/share/man/man3/libmpq__file_size_packed.3.gz
+  /usr/share/man/man3/libmpq__file_size_unpacked.3.gz
+  /usr/share/man/man3/libmpq__file_verify.3.gz
+  /usr/share/man/man3/libmpq__patch_abort.3.gz
+  /usr/share/man/man3/libmpq__patch_begin.3.gz
+  /usr/share/man/man3/libmpq__patch_begin_mpqe.3.gz
+  /usr/share/man/man3/libmpq__patch_finish.3.gz
+  /usr/share/man/man3/libmpq__patch_remove.3.gz
+  /usr/share/man/man3/libmpq__patch_replace_data.3.gz
+  /usr/share/man/man3/libmpq__patch_replace_path.3.gz
+  /usr/share/man/man3/libmpq__patch_sign.3.gz
+  /usr/share/man/man3/libmpq__stream_close.3.gz
+  /usr/share/man/man3/libmpq__stream_open.3.gz
+  /usr/share/man/man3/libmpq__stream_open_name.3.gz
+  /usr/share/man/man3/libmpq__stream_read.3.gz
+  /usr/share/man/man3/libmpq__stream_seek.3.gz
+  /usr/share/man/man3/libmpq__stream_size.3.gz
+  /usr/share/man/man3/libmpq__stream_tell.3.gz
+  /usr/share/man/man3/libmpq__strerror.3.gz
+  /usr/share/man/man3/libmpq__update_abort.3.gz
+  /usr/share/man/man3/libmpq__update_begin.3.gz
+  /usr/share/man/man3/libmpq__update_begin_mpqe.3.gz
+  /usr/share/man/man3/libmpq__update_commit.3.gz
+  /usr/share/man/man3/libmpq__update_remove.3.gz
+  /usr/share/man/man3/libmpq__update_rename.3.gz
+  /usr/share/man/man3/libmpq__update_replace_data.3.gz
+  /usr/share/man/man3/libmpq__update_replace_path.3.gz
   /usr/share/man/man3/libmpq__version.3.gz
-
-(python39-libmpq)
-  /usr/lib/python3.9/site-packages/__pycache__/mpq.cpython-39.opt-1.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/mpq.cpython-39.opt-2.pyc
-  /usr/lib/python3.9/site-packages/__pycache__/mpq.cpython-39.pyc
-  /usr/lib/python3.9/site-packages/mpq.py
+  /usr/share/man/man3/libmpq__writer_begin.3.gz
+  /usr/share/man/man3/libmpq__writer_finish.3.gz
+  /usr/share/man/man3/libmpq__writer_timestamp.3.gz
+  /usr/share/man/man3/libmpq__writer_write.3.gz
 
 ------------------
 
 Port Notes:
+
+----- version 0.8.1-1bl1 -----
+Version bump.
 
 ----- version 0.4.2-1bl2 -----
 Rebuild with gcc-14.4.0

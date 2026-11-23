@@ -1,44 +1,43 @@
-HOMEPAGE="https://github.com/ge0rg/${PN}"
-SRC_URI="https://github.com/ge0rg/${PN}/archive/refs/tags/${P}.tar.gz"
-SRC_DIR="${PN}-${P}"
+HOMEPAGE="https://github.com/mbroemme/${PN}"
+SRC_URI="https://github.com/mbroemme/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Library for reading MPQ files"
 DESCRIPTION="libmpq is a library which can be easily used in own applications to extract,
 create or manipulate MoPaQ mpq archives."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
-LICENSE_URI="COPYING"
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="COPYING.LESSER"
 
 BUILD_REQUIRES="
 	libbz2-devel
+	liblzma-devel
 	zlib-devel
 "
-
+DOCS="
+	COPYING.LESSER
+	README.md
+"
 PKG_NAMES="
 	libmpq
-	libmpq0
+	libmpq4
 	libmpq-devel
-	python39-libmpq
 "
 libmpq_CONTENTS="
 	usr/share/doc
 "
-libmpq0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libmpq4_CONTENTS="
+	usr/bin/cyg*-4.dll
 "
 libmpq_devel_CONTENTS="
 	usr/bin/*-config
 	usr/include
 	usr/lib/lib*.dll.a
 	usr/lib/pkgconfig
-	usr/share/man
-"
-python39_libmpq_CONTENTS="
-	usr/lib/python3*
+	usr/share/man/man1
+	usr/share/man/man3
 "
 libmpq_SUMMARY="${SUMMARY} (licensing & readmes)"
-libmpq0_SUMMARY="${SUMMARY} (runtime)"
+libmpq4_SUMMARY="${SUMMARY} (runtime)"
 libmpq_devel_SUMMARY="${SUMMARY} (development)"
-python39_libmpq_SUMMARY="${SUMMARY} (python39 bindings)"

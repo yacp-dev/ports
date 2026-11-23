@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/garysb/${PN}"
 GIT_URI="https://github.com/garysb/${PN}.git"
+GIT_REV="a10f07a8da3f6294b8203fc69569b88769f3373e"
 
 CATEGORY="Libs"
 SUMMARY="Library for graphical effects or mathematical calculations"
@@ -11,6 +12,9 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 inherit git
+
+# The source uses unprototyped function pointers, invalid in C23 (GCC default)
+CFLAGS+=" -std=gnu17"
 
 DOCS="
 	CHANGELOG
@@ -25,7 +29,7 @@ libease_CONTENTS="
 	usr/share/doc
 "
 libease0_CONTENTS="
-	usr/bin
+	usr/bin/cygease-0.dll
 "
 libease_devel_CONTENTS="
 	usr/include

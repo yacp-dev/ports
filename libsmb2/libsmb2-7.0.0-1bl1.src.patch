@@ -1,0 +1,31 @@
+--- origsrc/libsmb2-libsmb2-7.0.0/configure.ac	2026-11-19 05:07:55.000000000 +0000
++++ src/libsmb2-libsmb2-7.0.0/configure.ac	2026-11-23 21:56:05.164224900 +0000
+@@ -109,7 +109,7 @@ case $host in
+     AC_CHECK_LIB([socket], [main], , [AC_MSG_ERROR([Can not find required library])])
+     AC_CHECK_LIB([nsl],    [main], , [AC_MSG_ERROR([Can not find required library])])
+     ;;
+-  *mingw32* | *cygwin* | *wince* | *mingwce*)
++  *mingw32* | *wince* | *mingwce*)
+     LIBSOCKET='-lws2_32'
+     SYS=mingw32
+     ;;
+--- origsrc/libsmb2-libsmb2-7.0.0/examples/Makefile.am	2026-11-19 05:07:55.000000000 +0000
++++ src/libsmb2-libsmb2-7.0.0/examples/Makefile.am	2026-11-23 21:56:05.164764500 +0000
+@@ -1,7 +1,6 @@
+-noinst_PROGRAMS = smb2-cat-async smb2-cat-sync \
++bin_PROGRAMS = smb2-cat-async smb2-cat-sync \
+ 	smb2-ftruncate-sync \
+ 	smb2-ls-async \
+-	smb2-ls-epoll \
+ 	smb2-put-async \
+ 	smb2-put-sync \
+ 	smb2-raw-fsstat-async \
+@@ -22,7 +21,7 @@ noinst_PROGRAMS = smb2-cat-async smb2-ca
+ 	smb2-set-security-info \
+ 	smb2-compound
+ 
+-noinst_PROGRAMS += smb2-share-enum
++bin_PROGRAMS += smb2-share-enum
+ 
+ AM_CPPFLAGS = \
+ 	-I$(abs_top_srcdir)/include \

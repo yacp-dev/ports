@@ -8,7 +8,13 @@ initio effective core potentials, using a mixture of generated, recursive code
 and Gauss-Chebyshev quadrature. It is designed to be standalone and generic,
 and is now in its first stable release."
 
-BUILD_REQUIRES="libcerf-devel libgtest-devel libpugixml-devel"
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgtest-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -17,18 +23,27 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DLIBECPINT_BUILD_DOCS:BOOL=OFF
-	-DLIBECPINT_USE_CERF:BOOL=ON
 "
+
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	cygcmake
+	# gtest_discover_tests runs the test executables at build time
+	PATH=${B}/src:${PATH} cygninja
+}
 
 src_test()
 {
 	cd ${B}
-	ninja_test
+	PATH=${B}/src:${PATH} ninja_test
 }
 
 DOCS="
 	CITATION
 	CODE_OF_CONDUCT.md
+	LICENSE
 "
 
 PKG_NAMES="
@@ -40,7 +55,7 @@ libecpint_CONTENTS="
 	usr/share
 "
 libecpint1_CONTENTS="
-	usr/bin
+	usr/bin/cygecpint-1.dll
 "
 libecpint_devel_CONTENTS="
 	usr/include

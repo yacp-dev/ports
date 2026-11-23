@@ -6,7 +6,20 @@ SUMMARY="Portable NetBSD-compatibility library"
 DESCRIPTION="libnbcompat is a portable NetBSD-compatibility library that supplies routines
 used by NetBSD bootstrap tools that are missing on other operating systems."
 
+LICENSE="BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause AND RSA-MD AND Beerware"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause AND BSD-4-Clause AND RSA-MD AND Beerware"
+LICENSE_URI="README"
+
 export CPPFLAGS="${CPPFLAGS} -D__USE_LINUX_IOCTL_DEFS"
+
+DOCS="
+	README
+	__fts13.c
+	engine.c
+	getopt_long.c
+	md5c.c
+	rmd160hl.c
+"
 
 PKG_NAMES="
 	libnbcompat
@@ -17,7 +30,7 @@ libnbcompat_CONTENTS="
 	usr/share
 "
 libnbcompat0_CONTENTS="
-	usr/bin
+	usr/bin/cygnbcompat-0.dll
 "
 libnbcompat_devel_CONTENTS="
 	usr/include

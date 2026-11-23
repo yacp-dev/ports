@@ -1,5 +1,5 @@
---- origsrc/libnbcompat-1.0.1/Makefile.am	2020-08-30 02:05:29.000000000 +0900
-+++ src/libnbcompat-1.0.1/Makefile.am	2021-12-04 18:57:51.923575100 +0900
+--- origsrc/libnbcompat-1.0.2/Makefile.am	2023-07-03 17:02:20.000000000 +0000
++++ src/libnbcompat-1.0.2/Makefile.am	2026-11-23 14:58:28.886918700 +0000
 @@ -8,7 +8,7 @@ EXTRA_DIST=			README
  
  lib_LTLIBRARIES=		libnbcompat.la
@@ -9,15 +9,15 @@
  
  AM_CFLAGS=			-Wall
  ACLOCAL_AMFLAGS=		-I m4
-@@ -115,3 +115,6 @@ nobase_include_HEADERS+=	nbcompat/db.h
+@@ -125,3 +125,6 @@ nobase_include_HEADERS+=	nbcompat/db.h
  AM_CFLAGS+=			-D__DBINTERFACE_PRIVATE
  
  endif
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libnbcompat-1.0.1/configure.ac	2020-08-30 02:05:29.000000000 +0900
-+++ src/libnbcompat-1.0.1/configure.ac	2021-12-04 18:57:51.869715700 +0900
+--- origsrc/libnbcompat-1.0.2/configure.ac	2023-07-03 17:02:20.000000000 +0000
++++ src/libnbcompat-1.0.2/configure.ac	2026-11-23 14:58:28.888938000 +0000
 @@ -610,5 +610,5 @@ AH_BOTTOM([
  #endif /* <nbcompat/nbconfig.h> included */
  ])
@@ -25,8 +25,8 @@
 -AC_CONFIG_FILES([Makefile])
 +AC_CONFIG_FILES([libnbcompat.pc Makefile])
  AC_OUTPUT
---- origsrc/libnbcompat-1.0.1/lchflags.c	2020-08-30 02:05:29.000000000 +0900
-+++ src/libnbcompat-1.0.1/lchflags.c	2021-12-04 18:49:12.234857500 +0900
+--- origsrc/libnbcompat-1.0.2/lchflags.c	2023-07-03 17:02:20.000000000 +0000
++++ src/libnbcompat-1.0.2/lchflags.c	2026-11-23 14:58:28.888938000 +0000
 @@ -37,7 +37,7 @@
  #include <nbcompat/unistd.h>
  
@@ -36,8 +36,8 @@
  
  #include <sys/ioctl.h>
  #include <fcntl.h>
---- origsrc/libnbcompat-1.0.1/libnbcompat.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libnbcompat-1.0.1/libnbcompat.pc.in	2021-12-04 19:06:17.390812200 +0900
+--- origsrc/libnbcompat-1.0.2/libnbcompat.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libnbcompat-1.0.2/libnbcompat.pc.in	2026-11-23 14:58:28.888938000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

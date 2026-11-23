@@ -1,0 +1,42 @@
+HOMEPAGE="https://github.com/ashinn/chibi-scheme"
+SRC_URI="https://github.com/ashinn/chibi-scheme/archive/refs/tags/0.12.tar.gz"
+
+CATEGORY="Scheme"
+SUMMARY="Minimal R7RS Scheme implementation"
+DESCRIPTION="Chibi-Scheme is a very small library intended for use as an
+extension and scripting language in C programs. It aims for fast startup, a
+small footprint, and support for the R7RS standard."
+
+LICENSE="BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT"
+LICENSE_URI="COPYING"
+
+inherit cmake
+
+PKG_NAMES="
+	chibi-scheme
+	libchibi-scheme0
+	libchibi-scheme-devel
+"
+chibi_scheme_CONTENTS="
+	usr/bin/*.exe
+	usr/bin/chibi-doc
+	usr/bin/chibi-ffi
+	usr/bin/snow-chibi
+	usr/bin/snow-chibi.scm
+	usr/lib/chibi
+	usr/share
+"
+libchibi_scheme0_CONTENTS="
+	usr/bin/libchibi-scheme-0.dll
+"
+libchibi_scheme_devel_CONTENTS="
+	usr/include
+	usr/lib/cmake
+	usr/lib/libchibi-scheme.dll.a
+	usr/lib/pkgconfig
+"
+chibi_scheme_SUMMARY="${SUMMARY} (licensing & readmes)"
+libchibi_scheme0_SUMMARY="${SUMMARY} (runtime)"
+libchibi_scheme_devel_SUMMARY="${SUMMARY} (development)"
+libchibi_scheme_devel_REQUIRES="chibi-scheme"

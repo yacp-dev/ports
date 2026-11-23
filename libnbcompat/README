@@ -4,41 +4,41 @@ libnbcompat is a portable NetBSD-compatibility library that supplies routines
 used by NetBSD bootstrap tools that are missing on other operating systems.
 
 Runtime requirements:
-  cygwin-3.3.3-1
-  libnbcompat-devel-1.0.1-1bl1
-  libnbcompat0-1.0.1-1bl1
-  pkg-config-1.6.3-1
+  cygwin-3.6.12-1
+  libnbcompat-devel-1.0.2-1bl1
+  libnbcompat0-1.0.2-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-11-1
-  binutils-2.37-2
-  cygport-0.34.0-1
-  gcc-core-11.2.0-1
-  libtool-2.4.6-8
-  make-4.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/archiecobbs/libnbcompat
 
 Canonical download:
-  https://github.com/archiecobbs/libnbcompat/archive/refs/tags/1.0.1.tar.gz
+  https://github.com/archiecobbs/libnbcompat/archive/refs/tags/1.0.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libnbcompat-1.0.1-X-src.tar.xz
+  1. unpack libnbcompat-1.0.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libnbcompat-1.0.1-X.cygport all
+        % cygport ./libnbcompat-1.0.2-X.cygport all
 
 This will create:
-  /usr/src/libnbcompat-1.0.1-X-src.tar.xz
-  /usr/src/libnbcompat-1.0.1-X.tar.xz
-  /usr/src/libnbcompat0-1.0.1-X.tar.xz
-  /usr/src/libnbcompat-devel-1.0.1-X.tar.xz
+  /usr/src/libnbcompat-1.0.2-X-src.tar.xz
+  /usr/src/libnbcompat-1.0.2-X.tar.xz
+  /usr/src/libnbcompat0-1.0.2-X.tar.xz
+  /usr/src/libnbcompat-devel-1.0.2-X.tar.xz
 
 -------------------------------------------
 
@@ -48,6 +48,11 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/libnbcompat.README
   /usr/share/doc/libnbcompat/CHANGES
   /usr/share/doc/libnbcompat/README
+  /usr/share/doc/libnbcompat/__fts13.c
+  /usr/share/doc/libnbcompat/engine.c
+  /usr/share/doc/libnbcompat/getopt_long.c
+  /usr/share/doc/libnbcompat/md5c.c
+  /usr/share/doc/libnbcompat/rmd160hl.c
 
 (libnbcompat0)
   /usr/bin/cygnbcompat-0.dll
@@ -97,6 +102,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.2-1bl1 -----
+Version bump.
 
 ----- version 1.0.1-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

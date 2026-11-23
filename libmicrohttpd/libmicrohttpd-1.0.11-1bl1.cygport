@@ -1,5 +1,8 @@
 HOMEPAGE="https://www.gnu.org/software/${PN}/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/libm/libmicrohttpd/1.0.11-1/debian/patches/adjust-MHD_VERSION-to-match-release.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Lightweight library for embedding webserver in applications"

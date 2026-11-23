@@ -1,0 +1,14 @@
+--- origsrc/libmicrohttpd-1.0.11/src/microhttpd/mhd_panic_tripwire.h	2026-08-13 09:05:50.000000000 +0000
++++ src/libmicrohttpd-1.0.11/src/microhttpd/mhd_panic_tripwire.h	2026-11-23 14:38:22.471337000 +0000
+@@ -448,10 +448,7 @@ mhd_panic_tripwire_install (void)
+   if (NULL != MHD_set_panic_func)
+     MHD_set_panic_func (&mhd_panic_tripwire_panic_cb_,
+                         NULL);
+-#else  /* ! MHD_PANIC_TRIPWIRE_WEAK_ */
+-  MHD_set_panic_func (&mhd_panic_tripwire_panic_cb_,
+-                      NULL);
+-#endif /* ! MHD_PANIC_TRIPWIRE_WEAK_ */
++#endif /* MHD_PANIC_TRIPWIRE_WEAK_ */
+   if (! mhd_panic_tripwire_is_off_ (getenv ("MHD_TEST_PANIC_TRIPWIRE_ABRT")))
+     signal (SIGABRT,
+             &mhd_panic_tripwire_abrt_cb_);

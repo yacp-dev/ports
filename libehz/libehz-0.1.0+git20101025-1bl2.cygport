@@ -1,0 +1,18 @@
+HOMEPAGE="https://github.com/gonium/${PN}"
+GIT_URI="https://github.com/gonium/${PN}.git"
+GIT_REV="1da63e6094ea70db2e8d848dccfcd6f3e10cea53"
+
+CATEGORY="Utils"
+SUMMARY="Interface to eHZ electricity meters"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="LICENSE"
+
+inherit cmake
+inherit git
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"

@@ -3,19 +3,19 @@ cnats
 A C client for the NATS messaging system.
 
 Runtime requirements:
-  cygwin-3.6.11-1
-  libnats-devel-3.14.0-1bl1
-  libnats3.14-3.14.0-1bl1
+  cygwin-3.6.12-1
+  libnats-devel-3.15.0-1bl1
+  libnats3.15-3.15.0-1bl1
   libprotobuf-c1-1.5.2-1bl2
   libsodium26-1.0.20-1
   libssl3-3.5.9-1
-  pkg-config-3.0.9-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.4.4-1
-  cygport-0.37.11-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   libprotobuf-c-devel-1.5.2-1bl2
   libsodium-devel-1.0.20-1
@@ -26,22 +26,22 @@ Canonical website:
   https://github.com/nats-io/nats.c
 
 Canonical download:
-  https://github.com/nats-io/nats.c/archive/refs/tags/v3.14.0.tar.gz
+  https://github.com/nats-io/nats.c/archive/refs/tags/v3.15.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack cnats-3.14.0-X-src.tar.xz
+  1. unpack cnats-3.15.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./cnats-3.14.0-X.cygport all
+        % cygport ./cnats-3.15.0-X.cygport all
 
 This will create:
-  /usr/src/cnats-3.14.0-X-src.tar.xz
-  /usr/src/cnats-3.14.0-X.tar.xz
-  /usr/src/libnats3.14-3.14.0-X.tar.xz
-  /usr/src/libnats-devel-3.14.0-X.tar.xz
+  /usr/src/cnats-3.15.0-X-src.tar.xz
+  /usr/src/cnats-3.15.0-X.tar.xz
+  /usr/src/libnats3.15-3.15.0-X.tar.xz
+  /usr/src/libnats-devel-3.15.0-X.tar.xz
 
 -------------------------------------------
 
@@ -57,8 +57,8 @@ Files included in the binary package:
   /usr/share/doc/cnats/README.md
   /usr/share/doc/cnats/dependencies.md
 
-(libnats3.14)
-  /usr/bin/cygnats-3.14.dll
+(libnats3.15)
+  /usr/bin/cygnats-3.15.dll
 
 (libnats-devel)
   /usr/include/nats.h
@@ -76,6 +76,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.15.0-1bl1 -----
+Version bump.
 
 ----- version 3.14.0-1bl1 -----
 Version bump.

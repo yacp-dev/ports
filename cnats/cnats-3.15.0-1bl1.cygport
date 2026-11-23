@@ -51,13 +51,13 @@ PKG_NAMES="
 cnats_CONTENTS="
 	usr/share
 "
-libnats3_14_CONTENTS="
-	usr/bin/cyg*-${PV[1]}.${PV[2]}.dll
+libnats3_15_CONTENTS="
+	usr/bin/cyg*-3.15.dll
 "
 libnats_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 cnats_SUMMARY="${SUMMARY} (licensing & readmes)"
-libnats3_14_SUMMARY="${SUMMARY} (runtime)"
+libnats3_15_SUMMARY="${SUMMARY} (runtime)"
 libnats_devel_SUMMARY="${SUMMARY} (development)"

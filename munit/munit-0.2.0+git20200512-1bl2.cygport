@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/nemequ/${PN}"
 GIT_URI="https://github.com/nemequ/${PN}.git"
+GIT_REV="fbbdf1467eb0d04a6ee465def2e529e4c87f2118"
 
 CATEGORY="Libs"
 SUMMARY="Small testing framework for C"

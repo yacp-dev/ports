@@ -1,5 +1,5 @@
---- origsrc/munit/meson.build	2024-01-19 16:11:16.000000000 +0900
-+++ src/munit/meson.build	2024-01-19 16:15:54.738588300 +0900
+--- origsrc/munit/meson.build	2026-11-23 22:26:00.000000000 +0000
++++ src/munit/meson.build	2026-11-23 22:26:02.126082900 +0000
 @@ -11,7 +11,8 @@ root_include = include_directories('.')
  
  munit = library('munit',

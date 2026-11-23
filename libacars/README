@@ -4,18 +4,18 @@ Library for decoding various ACARS message payloads
 
 Runtime requirements:
   cygwin-3.6.12-1
-  libacars2-devel-2.2.1-1bl2
-  libacars2_2-2.2.1-1bl2
+  libacars2-devel-2.2.2-1bl1
+  libacars2_2-2.2.2-1bl1
   libjansson4-2.15.1-1
   libxml2_2-2.13.9-3
-  pkg-config-3.0.10-1
+  pkg-config-3.0.11-1
   zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   cmake-4.4.5-1
-  cygport-0.37.12-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   libjansson-devel-2.15.1-1
   libxml2-devel-2.13.9-3
@@ -26,22 +26,22 @@ Canonical website:
   https://github.com/szpajder/libacars
 
 Canonical download:
-  https://github.com/szpajder/libacars/archive/refs/tags/v2.2.1.tar.gz
+  https://github.com/szpajder/libacars/archive/refs/tags/v2.2.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libacars-2.2.1-X-src.tar.xz
+  1. unpack libacars-2.2.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libacars-2.2.1-X.cygport all
+        % cygport ./libacars-2.2.2-X.cygport all
 
 This will create:
-  /usr/src/libacars-2.2.1-X-src.tar.xz
-  /usr/src/libacars-2.2.1-X.tar.xz
-  /usr/src/libacars2_2-2.2.1-X.tar.xz
-  /usr/src/libacars2-devel-2.2.1-X.tar.xz
+  /usr/src/libacars-2.2.2-X-src.tar.xz
+  /usr/src/libacars-2.2.2-X.tar.xz
+  /usr/src/libacars2_2-2.2.2-X.tar.xz
+  /usr/src/libacars2-devel-2.2.2-X.tar.xz
 
 -------------------------------------------
 
@@ -332,6 +332,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.2.2-1bl1 -----
+Version bump.
 
 ----- version 2.2.1-1bl2 -----
 Rebuild with gcc-14.4.0

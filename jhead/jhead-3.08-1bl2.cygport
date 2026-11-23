@@ -6,9 +6,9 @@ SUMMARY="Exif Jpeg header manipulation tool"
 DESCRIPTION="Jhead displays and manipulates the non-image portions of EXIF formatted
 JPEG images, such as the images produced by most digital cameras."
 
-# LICENSE="Public domain"
-# LICENSE_SPDX="SPDX-License-Identifier: " 
-# LICENSE_URI=""
+LICENSE="LicenseRef-Public-Domain"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-Public-Domain"
+LICENSE_URI="readme.txt"
 
 src_compile()
 {

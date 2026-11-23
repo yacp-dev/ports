@@ -1,0 +1,76 @@
+--- origsrc/logog/CMakeLists.txt	2026-11-23 00:25:17.000000000 +0000
++++ src/logog/CMakeLists.txt	2026-11-23 00:25:19.207577400 +0000
+@@ -55,11 +55,11 @@ if(MSVC)
+   endif()
+ elseif(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+   # Warnings are errors; generate lots of warnings
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-variadic-macros -Wall -Werror -Wno-long-long")
++  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-variadic-macros -Wall -Wno-long-long")
+ endif()
+ 
+ include_directories( include )
+-add_library( logog
++add_library( logog SHARED
+ 	src/api.cpp 
+ 	src/checkpoint.cpp
+ 	src/formatter.cpp
+@@ -78,6 +78,9 @@ add_library( logog
+ )
+ 
+ set_target_properties(logog PROPERTIES DEBUG_POSTFIX "d")
++if(DEFINED SOVERSION)
++	set_target_properties(logog PROPERTIES SOVERSION ${SOVERSION})
++endif()
+ add_executable( test-logog test/test.cpp )
+ target_link_libraries( test-logog logog ${CMAKE_THREAD_LIBS_INIT})
+ if( LOGOG_USE_COTIRE )
+@@ -87,7 +90,7 @@ if( LOGOG_USE_COTIRE )
+ endif()
+ 
+ add_test( NAME test-harness COMMAND test-logog )
+-install(TARGETS logog ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
++install(TARGETS logog RUNTIME DESTINATION bin ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+ install(DIRECTORY include/ DESTINATION "${CMAKE_INSTALL_PREFIX}/include/logog"
+           FILES_MATCHING PATTERN "*.hpp")
+ 
+@@ -97,4 +100,14 @@ if( DOXYGEN_FOUND )
+ 	add_custom_target (doc ${DOXYGEN_EXECUTABLE} ${CMAKE_SOURCE_DIR}/doxyfile
+ 		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+ 		COMMENT "Generating source code documentation with Doxygen." VERBATIM)
+-endif() # DOXYGEN_FOUND
+\ No newline at end of file
++endif() # DOXYGEN_FOUND
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++if(NOT DEFINED VERSION)
++	set(VERSION "0")
++endif()
++configure_file(${CMAKE_SOURCE_DIR}/logog.pc.in ${CMAKE_BINARY_DIR}/logog.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/logog.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/logog/include/mutex.hpp	2026-11-23 00:25:17.000000000 +0000
++++ src/logog/include/mutex.hpp	2026-11-23 00:25:19.207577400 +0000
+@@ -25,7 +25,7 @@ namespace logog
+ #endif // LOGOG_FLAVOR_WINDOWS
+ 
+ #ifdef LOGOG_FLAVOR_POSIX
+-#define LOGOG_MUTEX(x)           pthread_mutex_t (x);
++#define LOGOG_MUTEX(x)           pthread_mutex_t x;
+ #define LOGOG_MUTEX_INIT(x)      pthread_mutex_init(x, 0)
+ #define LOGOG_MUTEX_DELETE(x)    pthread_mutex_destroy (x)
+ #define LOGOG_MUTEX_LOCK(x)      pthread_mutex_lock (x)
+--- origsrc/logog/logog.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/logog/logog.pc.in	2026-11-23 00:25:19.209602900 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: logog
++Description: Logger optimized for games
++Version: @VERSION@
++Libs: -L${libdir} -llogog
++Cflags: -I${includedir} -I${includedir}/logog

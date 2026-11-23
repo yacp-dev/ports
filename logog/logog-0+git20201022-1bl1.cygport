@@ -1,5 +1,6 @@
-HOMEPAGE="http://johnwbyrd.github.io/${PN}/"
+HOMEPAGE="https://github.com/johnwbyrd/logog"
 GIT_URI="https://github.com/johnwbyrd/${PN}.git"
+GIT_REV="c1b1e3393e1f563193c36d88a78c847bff59e84b"
 
 CATEGORY="Libs"
 SUMMARY="Logger optimized for games"
@@ -7,12 +8,23 @@ DESCRIPTION="Logog is a portable C++ library to facilitate logging of real-time 
 performance-oriented applications, such as games. It is especially appropriate
 for projects that have constrained memory and constrained CPU requirements."
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="doc/overview.dox"
+
+DOCS="
+	readme.markdown
+"
+
 inherit cmake
 inherit git
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DLOGOG_LEAK_DETECTION:BOOL=ON
 	-DLOGOG_UNIT_TESTING:BOOL=ON
+	-DSOVERSION:STRING=0
+	-DVERSION:STRING=0
 "
 
 PKG_NAMES="
@@ -24,7 +36,7 @@ logog_CONTENTS="
 	usr/share
 "
 liblogog0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 liblogog_devel_CONTENTS="
 	usr/include

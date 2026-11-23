@@ -29,6 +29,17 @@ CYGCMAKE_ARGS="
 	-DSPECBLEACH_BUILD_EXTRAS=ON
 "
 
+CYGPORT_USE_UNSTABLE_API=1
+
+# upstream's v0.4.2 tag still says 0.4.1 in CMakeLists.txt and the version header
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/VERSION 0\.4\.1 LANGUAGES/VERSION ${PV} LANGUAGES/" CMakeLists.txt
+	verbose sed -i -e "s/\"0\.4\.1\"/\"${PV}\"/" include/specbleach_version.h
+	verbose sed -i -e "s/SPECBLEACH_VERSION_PATCH 1/SPECBLEACH_VERSION_PATCH 2/" include/specbleach_version.h
+}
+
 src_install()
 {
 	cd ${B}

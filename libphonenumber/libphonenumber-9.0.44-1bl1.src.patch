@@ -1,5 +1,5 @@
---- origsrc/libphonenumber-9.0.43/cpp/CMakeLists.txt	2026-11-04 12:49:37.000000000 +0000
-+++ src/libphonenumber-9.0.43/cpp/CMakeLists.txt	2026-11-10 13:50:20.632902500 +0000
+--- origsrc/libphonenumber-9.0.44/cpp/CMakeLists.txt	2026-11-18 10:18:32.000000000 +0000
++++ src/libphonenumber-9.0.44/cpp/CMakeLists.txt	2026-11-23 14:28:27.889798700 +0000
 @@ -462,7 +462,7 @@ if (BUILD_STATIC_LIB)
  
    if (BUILD_GEOCODER)
@@ -68,8 +68,8 @@
    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
  
---- origsrc/libphonenumber-9.0.43/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-11-04 12:49:37.000000000 +0000
-+++ src/libphonenumber-9.0.43/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-11-10 13:50:20.634915700 +0000
+--- origsrc/libphonenumber-9.0.44/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-11-18 10:18:32.000000000 +0000
++++ src/libphonenumber-9.0.44/cpp/src/phonenumbers/geocoding/phonenumber_offline_geocoder.cc	2026-11-23 14:28:27.892079100 +0000
 @@ -77,7 +77,7 @@ void PhoneNumberOfflineGeocoder::Init(
  }
  
@@ -88,8 +88,8 @@
    const AreaCodeMap* const descriptions = GetPhonePrefixDescriptions(
        phone_prefix, lang, script, region);
    const char* description = descriptions ? descriptions->Lookup(number) : NULL;
---- origsrc/libphonenumber-9.0.43/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-11-04 12:49:37.000000000 +0000
-+++ src/libphonenumber-9.0.43/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-11-10 13:50:20.634915700 +0000
+--- origsrc/libphonenumber-9.0.44/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-11-18 10:18:32.000000000 +0000
++++ src/libphonenumber-9.0.44/cpp/src/phonenumbers/regexp_adapter_re2.cc	2026-11-23 14:28:27.892079100 +0000
 @@ -31,6 +31,8 @@
  namespace i18n {
  namespace phonenumbers {

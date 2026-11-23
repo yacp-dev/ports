@@ -1,11 +1,25 @@
 HOMEPAGE="https://github.com/dMaggot/${PN}"
 GIT_URI="https://github.com/dMaggot/${PN}.git"
+GIT_REV="d5003cbcb24b67484ec3ef2c35440dec08a3bcd6"
 
 CATEGORY="Libs"
 SUMMARY="Cross Correlation function for C using FFTW"
 DESCRIPTION="Library that provides a Cross Correlation function for C based on FFTW3."
 
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="README"
+
+BUILD_REQUIRES="
+	libfftw3-devel
+"
+
+inherit cmake
 inherit git
+
+SRC_URI+="
+	CMakeLists.txt
+"
 
 DIFF_EXCLUDES="
 	Makefile
@@ -20,7 +34,7 @@ libxcorr_CONTENTS="
 	usr/share
 "
 libxcorr0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 libxcorr_devel_CONTENTS="
 	usr/include

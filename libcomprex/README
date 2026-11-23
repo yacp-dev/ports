@@ -7,32 +7,32 @@ also open uncompressed files, making it a good replacement for the native file
 access functions.
 
 Runtime requirements:
-  bash-5.2.15-3
-  cygwin-3.5.0-0.438.g322c7150b25e
-  libbz2_1-1.0.8-1
-  libcomprex-devel-0.3.3-1bl4
-  libcomprex3-0.3.3-1bl4
-  libcurl4-8.3.0-1
-  libintl8-0.22-1
-  libltdl7-2.4.7-1
-  pkg-config-2.0.3-1
-  zlib0-1.3-1
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libbz2_1-1.0.8-2
+  libcomprex-devel-0.3.3-1bl5
+  libcomprex3-0.3.3-1bl5
+  libcurl4-8.23.0-1
+  libintl8-0.26-1
+  libltdl7-2.6.2-1
+  pkg-config-3.0.11-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  bison-3.8.2-1
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  gettext-devel-0.22-1
-  libbz2-devel-1.0.8-1
-  libcurl-devel-8.3.0-1
-  libintl-devel-0.22-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  intltool-0.51.0-1
+  libbz2-devel-1.0.8-2
+  libcurl-devel-8.23.0-1
+  libintl-devel-0.26-1
+  libtool-2.6.2-1
   make-4.4.1-2
-  zlib-devel-1.3-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://gnupdate.sourceforge.net/components/libcomprex/
@@ -263,6 +263,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.3.3-1bl5 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.3.3-1bl4 -----
 Rebuild with gcc-11.4.0

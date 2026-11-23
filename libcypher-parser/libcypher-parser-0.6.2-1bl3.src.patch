@@ -1,5 +1,5 @@
---- origsrc/libcypher-parser-0.6.2/lib/src/Makefile.am	2019-04-05 15:35:16.000000000 +0900
-+++ src/libcypher-parser-0.6.2/lib/src/Makefile.am	2024-09-21 19:25:37.135695900 +0900
+--- origsrc/libcypher-parser-0.6.2/lib/src/Makefile.am	2019-04-05 06:35:16.000000000 +0000
++++ src/libcypher-parser-0.6.2/lib/src/Makefile.am	2026-11-23 04:09:56.722450700 +0000
 @@ -150,7 +150,7 @@ libcypher_parser_la_LIBADD = $(PTHREAD_L
  #    increment age.
  # 4. If any interfaces have been removed or changed since the last public
@@ -9,8 +9,8 @@
  
  parser.c: parser_leg.c
  quick_parser.c: quick_parser_leg.c
---- origsrc/libcypher-parser-0.6.2/lib/test/Makefile.am	2019-04-05 15:35:16.000000000 +0900
-+++ src/libcypher-parser-0.6.2/lib/test/Makefile.am	2024-09-21 19:25:37.135695900 +0900
+--- origsrc/libcypher-parser-0.6.2/lib/test/Makefile.am	2019-04-05 06:35:16.000000000 +0000
++++ src/libcypher-parser-0.6.2/lib/test/Makefile.am	2026-11-23 04:09:56.722450700 +0000
 @@ -61,8 +61,8 @@ check_libcypher-parser_suite.c: ${check_
  	echo "    return s;"; \
  	echo "}") > $@
@@ -22,8 +22,8 @@
  check_libcypher_parser_LDADD = ../src/libcypher-parser.la @CHECK_LIBS@
  
  CLEANFILES = check_libcypher-parser_suite.c
---- origsrc/libcypher-parser-0.6.2/linter/src/Makefile.am	2019-04-05 15:35:16.000000000 +0900
-+++ src/libcypher-parser-0.6.2/linter/src/Makefile.am	2024-09-21 19:25:37.135695900 +0900
+--- origsrc/libcypher-parser-0.6.2/linter/src/Makefile.am	2019-04-05 06:35:16.000000000 +0000
++++ src/libcypher-parser-0.6.2/linter/src/Makefile.am	2026-11-23 04:09:56.724459100 +0000
 @@ -1,5 +1,5 @@
  bin_PROGRAMS = cypher-lint
  

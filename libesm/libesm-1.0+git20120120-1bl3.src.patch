@@ -1,5 +1,5 @@
---- origsrc/libesm/Makefile.am	2025-06-15 17:53:33.000000000 +0900
-+++ src/libesm/Makefile.am	2025-06-15 17:53:34.630672500 +0900
+--- origsrc/libesm/Makefile.am	2026-11-23 07:48:50.000000000 +0000
++++ src/libesm/Makefile.am	2026-11-23 07:48:52.088604100 +0000
 @@ -2,3 +2,6 @@ ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = src test
  EXTRA_DIST = autogen.sh
@@ -7,16 +7,16 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libesm/configure.ac	2025-06-15 17:53:33.000000000 +0900
-+++ src/libesm/configure.ac	2025-06-15 17:53:34.630672500 +0900
+--- origsrc/libesm/configure.ac	2026-11-23 07:48:50.000000000 +0000
++++ src/libesm/configure.ac	2026-11-23 07:48:52.090619200 +0000
 @@ -6,4 +6,4 @@ AM_INIT_AUTOMAKE([libesm], [1.0])
  AC_PROG_CC
  AC_PROG_LIBTOOL
  
 -AC_OUTPUT([Makefile src/Makefile test/Makefile])
 +AC_OUTPUT([libesm.pc Makefile src/Makefile test/Makefile])
---- origsrc/libesm/libesm.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libesm/libesm.pc.in	2025-06-15 17:53:34.630672500 +0900
+--- origsrc/libesm/libesm.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libesm/libesm.pc.in	2026-11-23 07:48:52.090619200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -28,8 +28,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lesm
 +Cflags: -I${includedir}
---- origsrc/libesm/src/Makefile.am	2025-06-15 17:53:33.000000000 +0900
-+++ src/libesm/src/Makefile.am	2025-06-15 17:53:34.646315000 +0900
+--- origsrc/libesm/src/Makefile.am	2026-11-23 07:48:50.000000000 +0000
++++ src/libesm/src/Makefile.am	2026-11-23 07:48:52.090619200 +0000
 @@ -1,8 +1,10 @@
 +AM_CPPFLAGS = -I$(top_srcdir)/src
  lib_LTLIBRARIES = libesm.la
@@ -41,8 +41,8 @@
 +libesm_la_LDFLAGS = -no-undefined
  libesm_la_includedir=$(includedir)/libesm
  libesm_la_include_HEADERS = libesm/aho_corasick.h
---- origsrc/libesm/test/Makefile.am	2025-06-15 17:53:33.000000000 +0900
-+++ src/libesm/test/Makefile.am	2025-06-15 17:53:34.646315000 +0900
+--- origsrc/libesm/test/Makefile.am	2026-11-23 07:48:50.000000000 +0000
++++ src/libesm/test/Makefile.am	2026-11-23 07:48:52.092634200 +0000
 @@ -1,3 +1,4 @@
 +AM_CPPFLAGS = -I$(top_srcdir)/src
  TESTS = run_tests

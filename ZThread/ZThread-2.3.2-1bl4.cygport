@@ -7,6 +7,7 @@ PATCH_URI="
 	https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-libs/zthread/files/zthread-2.3.2-gcc47.patch?id=fba65ffab4bf1f7310dc28f0249db4a234ff7f6c
 	https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-libs/zthread/files/zthread-2.3.2-clang.patch?id=fba65ffab4bf1f7310dc28f0249db4a234ff7f6c
 	https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-libs/zthread/files/zthread-2.3.2-configure-clang16.patch?id=fba65ffab4bf1f7310dc28f0249db4a234ff7f6c
+	https://sources.debian.org/data/main/z/zthreads/2.3.2-12/debian/patches/080_wrong-parameter-type.patch
 "
 
 CATEGORY="Libs"

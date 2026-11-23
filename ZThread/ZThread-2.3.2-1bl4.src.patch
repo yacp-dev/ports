@@ -1,5 +1,5 @@
---- origsrc/ZThread-2.3.2/Makefile.am	2024-11-24 14:45:28.980651100 +0900
-+++ src/ZThread-2.3.2/Makefile.am	2024-11-24 15:15:35.324125800 +0900
+--- origsrc/ZThread-2.3.2/Makefile.am	2026-11-23 06:13:24.644958800 +0000
++++ src/ZThread-2.3.2/Makefile.am	2026-11-23 06:13:25.549253900 +0000
 @@ -17,6 +17,8 @@
  ## WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  ## CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -25,8 +25,8 @@
 -
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = ZThread.pc
---- origsrc/ZThread-2.3.2/ZThread.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/ZThread-2.3.2/ZThread.pc.in	2024-11-24 15:04:08.102523500 +0900
+--- origsrc/ZThread-2.3.2/ZThread.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/ZThread-2.3.2/ZThread.pc.in	2026-11-23 06:13:25.549253900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -38,8 +38,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lZThread
 +Cflags: -I${includedir}
---- origsrc/ZThread-2.3.2/configure.ac	2024-11-24 14:45:28.980651100 +0900
-+++ src/ZThread-2.3.2/configure.ac	2024-11-24 15:04:08.174874400 +0900
+--- origsrc/ZThread-2.3.2/configure.ac	2026-11-23 06:13:24.644958800 +0000
++++ src/ZThread-2.3.2/configure.ac	2026-11-23 06:13:25.551274800 +0000
 @@ -19,7 +19,7 @@ dnl CONNECTION WITH THE SOFTWARE OR THE
  
  AC_REVISION($Revision: 1.14 $ZT_VERSION $)
@@ -64,8 +64,8 @@
  AC_CONFIG_FILES([Makefile src/Makefile share/zthread-config share/zthread.spec])
 +AC_CONFIG_FILES([ZThread.pc])
  AC_OUTPUT
---- origsrc/ZThread-2.3.2/share/atomic-gcc.m4	2005-03-13 10:47:02.000000000 +0900
-+++ src/ZThread-2.3.2/share/atomic-gcc.m4	2024-11-24 14:51:31.973352800 +0900
+--- origsrc/ZThread-2.3.2/share/atomic-gcc.m4	2005-03-13 01:47:02.000000000 +0000
++++ src/ZThread-2.3.2/share/atomic-gcc.m4	2026-11-23 06:13:25.551274800 +0000
 @@ -35,7 +35,7 @@ EOF
  
  atomic_gcc_explicit="no"
@@ -75,8 +75,8 @@
  [AC_ARG_ENABLE(atomic-gcc,
  	AC_HELP_STRING([--enable-atomic-gcc],
  		       [use gcc atomic instructions [default=no]]),
---- origsrc/ZThread-2.3.2/share/atomic-linux.m4	2005-03-13 10:47:13.000000000 +0900
-+++ src/ZThread-2.3.2/share/atomic-linux.m4	2024-11-24 14:51:46.150433400 +0900
+--- origsrc/ZThread-2.3.2/share/atomic-linux.m4	2005-03-13 01:47:13.000000000 +0000
++++ src/ZThread-2.3.2/share/atomic-linux.m4	2026-11-23 06:13:25.553052900 +0000
 @@ -39,7 +39,7 @@ EOF
  
  atomic_linux_explicit="no"
@@ -86,8 +86,8 @@
  [AC_ARG_ENABLE(atomic-linux,
  	AC_HELP_STRING([--enable-atomic-linux],
  		       [use linux atomic instructions [default=no]]),
---- origsrc/ZThread-2.3.2/share/ftime.m4	2005-03-13 10:47:24.000000000 +0900
-+++ src/ZThread-2.3.2/share/ftime.m4	2024-11-24 14:51:56.805397000 +0900
+--- origsrc/ZThread-2.3.2/share/ftime.m4	2005-03-13 01:47:24.000000000 +0000
++++ src/ZThread-2.3.2/share/ftime.m4	2026-11-23 06:13:25.553579700 +0000
 @@ -35,7 +35,7 @@ EOF
  
  have_ftime="detect"
@@ -97,8 +97,8 @@
  [
  
   AC_ARG_WITH(ftime,
---- origsrc/ZThread-2.3.2/src/Makefile.am	2024-11-24 14:45:28.980651100 +0900
-+++ src/ZThread-2.3.2/src/Makefile.am	2024-11-24 14:52:14.542085700 +0900
+--- origsrc/ZThread-2.3.2/src/Makefile.am	2026-11-23 06:13:24.644958800 +0000
++++ src/ZThread-2.3.2/src/Makefile.am	2026-11-23 06:13:25.553579700 +0000
 @@ -24,7 +24,7 @@ SUBDIRS=.
  lib_LTLIBRARIES = libZThread.la
  

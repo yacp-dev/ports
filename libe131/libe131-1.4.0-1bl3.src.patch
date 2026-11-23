@@ -1,5 +1,5 @@
---- origsrc/libe131-1.4.0/Makefile.am	2025-06-15 18:03:52.527799100 +0900
-+++ src/libe131-1.4.0/Makefile.am	2025-06-15 18:11:12.355280800 +0900
+--- origsrc/libe131-1.4.0/Makefile.am	2026-11-23 05:39:12.455185900 +0000
++++ src/libe131-1.4.0/Makefile.am	2026-11-23 05:39:12.692622100 +0000
 @@ -5,8 +5,11 @@ dist_doc_DATA = LICENSE README.md
  
  lib_LTLIBRARIES = libe131.la
@@ -13,16 +13,16 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libe131-1.4.0/configure.ac	2018-05-14 22:30:34.000000000 +0900
-+++ src/libe131-1.4.0/configure.ac	2025-06-15 18:11:12.355280800 +0900
+--- origsrc/libe131-1.4.0/configure.ac	2018-05-14 13:30:34.000000000 +0000
++++ src/libe131-1.4.0/configure.ac	2026-11-23 05:39:12.693124700 +0000
 @@ -37,4 +37,5 @@ AC_TYPE_UINT8_T
  AC_CHECK_FUNCS([gethostbyname memset socket])
  
  AC_CONFIG_FILES([Makefile])
 +AC_CONFIG_FILES([libe131.pc])
  AC_OUTPUT
---- origsrc/libe131-1.4.0/libe131.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libe131-1.4.0/libe131.pc.in	2025-06-15 18:11:12.323594900 +0900
+--- origsrc/libe131-1.4.0/libe131.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libe131-1.4.0/libe131.pc.in	2026-11-23 05:39:12.693124700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -34,8 +34,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -le131
 +Cflags: -I${includedir}
---- origsrc/libe131-1.4.0/src/e131.c	2018-05-14 22:30:34.000000000 +0900
-+++ src/libe131-1.4.0/src/e131.c	2025-06-15 18:08:44.406271900 +0900
+--- origsrc/libe131-1.4.0/src/e131.c	2018-05-14 13:30:34.000000000 +0000
++++ src/libe131-1.4.0/src/e131.c	2026-11-23 05:39:12.695148900 +0000
 @@ -102,6 +102,10 @@ int e131_dest_str(char *str, const e131_
  
  /* Join a socket file descriptor to an E1.31 multicast group using a universe */

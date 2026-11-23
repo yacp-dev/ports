@@ -1,0 +1,98 @@
+katago
+------------------------------------------
+KataGo has begun its first public distributed training run! See
+https://katagotraining.org/ for more details, to download the latest and
+strongest neural nets, or to learn how to contribute if you want to help KataGo
+improve further!
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libOpenCL1-2.3.5-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libzip5-1.5.1-1
+  zlib0-1.4-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libOpenCL-devel-2.3.5-1
+  libzip-devel-1.5.1-1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
+
+Canonical website:
+  https://github.com/lightvector/KataGo
+
+Canonical download:
+  https://github.com/lightvector/KataGo/archive/refs/tags/v1.18.2.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack katago-1.18.2-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./katago-1.18.2-X.cygport all
+
+This will create:
+  /usr/src/katago-1.18.2-X-src.tar.xz
+  /usr/src/katago-1.18.2-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(katago)
+  /usr/bin/katago.exe
+  /usr/share/doc/Cygwin/katago.README
+  /usr/share/doc/katago/CONTRIBUTORS
+  /usr/share/doc/katago/LICENSE
+  /usr/share/doc/katago/LICENSE.clblast
+  /usr/share/doc/katago/README.md
+  /usr/share/katago/configs/analysis_example.cfg
+  /usr/share/katago/configs/book/genbook7jp.cfg
+  /usr/share/katago/configs/book/genbook7tt.cfg
+  /usr/share/katago/configs/contribute_example.cfg
+  /usr/share/katago/configs/gtp_example.cfg
+  /usr/share/katago/configs/gtp_human5k_example.cfg
+  /usr/share/katago/configs/gtp_human9d_search_example.cfg
+  /usr/share/katago/configs/match_example.cfg
+  /usr/share/katago/configs/misc/datamining1.cfg
+  /usr/share/katago/configs/misc/datamining4.cfg
+  /usr/share/katago/configs/task_example.cfg
+  /usr/share/katago/configs/training/README.md
+  /usr/share/katago/configs/training/gatekeeper1.cfg
+  /usr/share/katago/configs/training/gatekeeper1_maxsize9.cfg
+  /usr/share/katago/configs/training/gatekeeper2a.cfg
+  /usr/share/katago/configs/training/gatekeeper2b.cfg
+  /usr/share/katago/configs/training/gatekeeper2bfaster.cfg
+  /usr/share/katago/configs/training/gatekeeper2c.cfg
+  /usr/share/katago/configs/training/selfplay1.cfg
+  /usr/share/katago/configs/training/selfplay1_maxsize9.cfg
+  /usr/share/katago/configs/training/selfplay2.cfg
+  /usr/share/katago/configs/training/selfplay8a.cfg
+  /usr/share/katago/configs/training/selfplay8b.cfg
+  /usr/share/katago/configs/training/selfplay8b20.cfg
+  /usr/share/katago/configs/training/selfplay8mainb18.cfg
+  /usr/share/katago/configs/training/selfplay8midrun.cfg
+
+------------------
+
+Port Notes:
+
+----- version 1.18.2-1bl1 -----
+Version bump.
+
+----- version 1.13.2-1bl1 -----
+Version bump.
+
+----- version 1.12.3-1bl1 -----
+Version bump.
+
+----- version 1.11.0-1bl1 -----
+Initial release by fd0 <https://github.com/fd00/>

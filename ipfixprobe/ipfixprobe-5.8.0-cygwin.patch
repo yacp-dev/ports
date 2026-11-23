@@ -1,0 +1,93 @@
+diff -ruN a/external/CMakeLists.txt b/external/CMakeLists.txt
+--- a/external/CMakeLists.txt	2026-11-23 22:40:12.415558448 +0900
++++ b/external/CMakeLists.txt	2026-11-23 22:40:12.720065190 +0900
+@@ -3,4 +3,6 @@
+ 
+ set(FETCHCONTENT_QUIET OFF)
+ 
+-include(telemetry.cmake)
++# Use the installed telemetry library, which is built without AppFs (FUSE)
++pkg_check_modules(TELEMETRY REQUIRED IMPORTED_TARGET GLOBAL telemetry)
++add_library(telemetry::telemetry ALIAS PkgConfig::TELEMETRY)
+diff -ruN a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
+--- a/src/core/CMakeLists.txt	2026-11-23 22:40:12.420379230 +0900
++++ b/src/core/CMakeLists.txt	2026-11-23 22:40:12.720292857 +0900
+@@ -29,7 +29,6 @@
+ target_link_libraries(ipfixprobe-core
+ 	pthread
+ 	telemetry::telemetry
+-	telemetry::appFs
+ 	atomic::atomic
+ 	unwind::unwind
+ 	${CMAKE_DL_LIBS}
+diff -ruN a/src/core/ipfixprobe.cpp b/src/core/ipfixprobe.cpp
+--- a/src/core/ipfixprobe.cpp	2026-11-23 22:40:12.420870771 +0900
++++ b/src/core/ipfixprobe.cpp	2026-11-23 23:04:16.542565434 +0900
+@@ -46,6 +46,10 @@
+ #include <signal.h>
+ #include <unistd.h>
+ 
++#if !defined(POLL_IN)
++#define POLL_IN POLLIN
++#endif
++
+ namespace ipxp {
+ 
+ volatile sig_atomic_t stop = 0;
+@@ -748,19 +752,11 @@
+ 			goto EXIT;
+ 		}
+ 		if (!parser.m_appfs_mount_point.empty()) {
+-			bool unmount_on_start = true;
+-			bool create_directory = true;
+-			conf.appFs = std::make_unique<telemetry::appFs::AppFsFuse>(
+-				conf.telemetry_root_node,
+-				parser.m_appfs_mount_point,
+-				unmount_on_start,
+-				create_directory);
+-			conf.appFs->start();
++			error("AppFs telemetry is not supported on this platform");
++			status = EXIT_FAILURE;
++			goto EXIT;
+ 		}
+ 		main_loop(conf);
+-		if (!parser.m_appfs_mount_point.empty()) {
+-			conf.appFs->stop();
+-		}
+ 	} catch (std::system_error& e) {
+ 		error(e.what());
+ 		status = EXIT_FAILURE;
+diff -ruN a/src/core/ipfixprobe.hpp b/src/core/ipfixprobe.hpp
+--- a/src/core/ipfixprobe.hpp	2026-11-23 22:40:12.423095808 +0900
++++ b/src/core/ipfixprobe.hpp	2026-11-23 22:40:12.720805064 +0900
+@@ -40,7 +40,6 @@
+ #include <string>
+ #include <thread>
+ 
+-#include <appFs.hpp>
+ #include <ipfixprobe/inputPlugin.hpp>
+ #include <ipfixprobe/options.hpp>
+ #include <ipfixprobe/outputPlugin.hpp>
+@@ -334,7 +333,6 @@
+ 	std::vector<std::future<WorkerResult>> output_fut;
+ 
+ 	std::shared_ptr<telemetry::Directory> telemetry_root_node;
+-	std::unique_ptr<telemetry::appFs::AppFsFuse> appFs;
+ 	telemetry::Holder holder;
+ 
+ 	size_t pkt_bufsize;
+diff -ruN a/src/core/stacktrace.cpp b/src/core/stacktrace.cpp
+--- a/src/core/stacktrace.cpp	2026-11-23 22:40:12.421736977 +0900
++++ b/src/core/stacktrace.cpp	2026-11-23 23:04:16.542171601 +0900
+@@ -29,7 +29,11 @@
+ #include "buildConfig.hpp"
+ 
+ #include <string.h>
++#if defined(__has_include)
++#if __has_include(<sys/syscall.h>)
+ #include <sys/syscall.h>
++#endif
++#endif
+ #include <sys/types.h>
+ #include <unistd.h>
+ 

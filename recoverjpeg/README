@@ -6,20 +6,19 @@ partition or if a device such as a digital camera memory card is bogus. You can
 also read the recoverjpeg story.
 
 Runtime requirements:
-  bash-5.2.15-3
-  cygwin-3.5.0-0.466.g41e13e4d9d73
-  libgcc1-11.4.0-1
-  libstdc++6-11.4.0-1
-  python39-3.9.16-1
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.7-1
-  gcc-core-11.4.0-1
-  gcc-g++-11.4.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
@@ -61,6 +60,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.6.3-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.6.3-1bl2 -----
 Rebuild with gcc-11.4.0

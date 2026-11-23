@@ -1,5 +1,8 @@
 HOMEPAGE="https://rfc1149.net/devel/${PN}.html"
 SRC_URI="https://rfc1149.net/download/${PN}/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/r/recoverjpeg/2.6.3-7/debian/patches/010_migrate-to-python3.patch
+"
 
 CATEGORY="Utils"
 SUMMARY="Recover lost JPEGs and MOV files on a bogus memory card or disk"

@@ -1,20 +1,20 @@
---- origsrc/libccontainer/examples/Makefile.am	2024-10-14 14:10:42.000000000 +0900
-+++ src/libccontainer/examples/Makefile.am	2024-10-14 14:10:43.574504900 +0900
+--- origsrc/libccontainer/examples/Makefile.am	2026-11-23 07:23:45.000000000 +0000
++++ src/libccontainer/examples/Makefile.am	2026-11-23 07:23:46.618241400 +0000
 @@ -1,8 +1,8 @@
  noinst_PROGRAMS = clist_example_basic clist_example_delete
  clist_example_basic_SOURCES = clist_basic.c
 -clist_example_basic_LDFLAGS = -lm -L../src -lccontainer
 -clist_example_basic_CFLAGS = -I/usr/include -I../src
-+clist_example_basic_LDFLAGS = -lm $(top_builddir)/src/libccontainer.la
++clist_example_basic_LDADD = -lm $(top_builddir)/src/libccontainer.la
 +clist_example_basic_CFLAGS = -I/usr/include -I$(top_srcdir)/src
  
  clist_example_delete_SOURCES = clist_delete.c
 -clist_example_delete_LDFLAGS = -lm -L../src -lccontainer
 -clist_example_delete_CFLAGS = -I/usr/include -I../src
-+clist_example_delete_LDFLAGS = -lm $(top_builddir)/src/libccontainer.la
++clist_example_delete_LDADD = -lm $(top_builddir)/src/libccontainer.la
 +clist_example_delete_CFLAGS = -I/usr/include -I$(top_srcdir)/src
---- origsrc/libccontainer/src/Makefile.am	2024-10-14 14:10:42.000000000 +0900
-+++ src/libccontainer/src/Makefile.am	2024-10-14 14:10:43.574504900 +0900
+--- origsrc/libccontainer/src/Makefile.am	2026-11-23 07:23:45.000000000 +0000
++++ src/libccontainer/src/Makefile.am	2026-11-23 07:23:46.618241400 +0000
 @@ -1,4 +1,4 @@
  lib_LTLIBRARIES = libccontainer.la
  libccontainer_la_SOURCES = chash.c clist.c cdynstorage.c circularbuf.c circularbuf.h cdynstorage.h clist.h chash.h clist_common.h
@@ -22,30 +22,30 @@
 -libccontainer_la_CFLAGS = ${CFLAGS} -D_GNU_SOURCE=1 -D_REENTRANT -I./ -Wall
 +libccontainer_la_LDFLAGS = -no-undefined ${LDFLAGS} -Wl,--export-dynamic -rdynamic -version-info 0:1:0
 +libccontainer_la_CFLAGS = ${CFLAGS} -D_GNU_SOURCE=1 -D_REENTRANT -I$(srcdir) -Wall
---- origsrc/libccontainer/tests/Makefile.am	2024-10-14 14:10:42.000000000 +0900
-+++ src/libccontainer/tests/Makefile.am	2024-10-14 14:10:43.574504900 +0900
+--- origsrc/libccontainer/tests/Makefile.am	2026-11-23 07:23:45.000000000 +0000
++++ src/libccontainer/tests/Makefile.am	2026-11-23 07:23:46.619997000 +0000
 @@ -1,16 +1,16 @@
  noinst_PROGRAMS = clisttest chashtest cdstest circbuftest
  clisttest_SOURCES = clist_tests.c
 -clisttest_LDFLAGS = -lcunit -lm -L../src -lccontainer
 -clisttest_CFLAGS = -I/usr/include -I../src
-+clisttest_LDFLAGS = $(CUNIT_LIBS) -lm $(top_builddir)/src/libccontainer.la
++clisttest_LDADD = -lcunit -lm $(top_builddir)/src/libccontainer.la
 +clisttest_CFLAGS = -I/usr/include -I$(top_srcdir)/src
  
  chashtest_SOURCES = chash_tests.c
 -chashtest_LDFLAGS = -lcunit -lm -L../src -lccontainer
 -chashtest_CFLAGS = -I/usr/include -I../src
-+chashtest_LDFLAGS = $(CUNIT_LIBS) -lm $(top_builddir)/src/libccontainer.la
++chashtest_LDADD = -lcunit -lm $(top_builddir)/src/libccontainer.la
 +chashtest_CFLAGS = -I/usr/include -I$(top_srcdir)/src
  
  cdstest_SOURCES = cdynstorage_tests.c
 -cdstest_LDFLAGS = -lcunit -lm -L../src -lccontainer
 -cdstest_CFLAGS = -I/usr/include -I../src
-+cdstest_LDFLAGS = $(CUNIT_LIBS) -lm $(top_builddir)/src/libccontainer.la
++cdstest_LDADD = -lcunit -lm $(top_builddir)/src/libccontainer.la
 +cdstest_CFLAGS = -I/usr/include -I$(top_srcdir)/src
  
  circbuftest_SOURCES = circbuf_tests.c
 -circbuftest_LDFLAGS = -lcunit -lm -L../src -lccontainer
 -circbuftest_CFLAGS = -I/usr/include -I../src
-+circbuftest_LDFLAGS = $(CUNIT_LIBS) -lm $(top_builddir)/src/libccontainer.la
++circbuftest_LDADD = -lcunit -lm $(top_builddir)/src/libccontainer.la
 +circbuftest_CFLAGS = -I/usr/include -I$(top_srcdir)/src

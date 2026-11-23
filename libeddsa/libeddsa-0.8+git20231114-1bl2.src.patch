@@ -1,5 +1,5 @@
---- origsrc/libeddsa/CMakeLists.txt	2026-06-26 06:32:56.000000000 +0900
-+++ src/libeddsa/CMakeLists.txt	2026-06-26 06:35:25.891924900 +0900
+--- origsrc/libeddsa/CMakeLists.txt	2026-11-23 07:01:28.000000000 +0000
++++ src/libeddsa/CMakeLists.txt	2026-11-23 07:01:30.276835600 +0000
 @@ -63,3 +63,10 @@ endif ()
  MESSAGE("bitness: " ${BITNESS})
  MESSAGE("cleanup stack: " ${USE_STACKCLEAN})
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libeddsa.pc.in ${CMAKE_BINARY_DIR}/libeddsa.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libeddsa.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libeddsa/libeddsa.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libeddsa/libeddsa.pc.in	2026-06-26 06:35:50.610744400 +0900
+--- origsrc/libeddsa/libeddsa.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libeddsa/libeddsa.pc.in	2026-11-23 07:01:30.278848500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

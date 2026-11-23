@@ -1,0 +1,48 @@
+--- origsrc/libecpint-1.1.0/CMakeLists.txt	2026-11-18 21:56:59.000000000 +0000
++++ src/libecpint-1.1.0/CMakeLists.txt	2026-11-23 07:19:39.480260600 +0000
+@@ -77,3 +77,17 @@ message(STATUS "Maximum angular momentum
+ message(STATUS "Radial factor cache per thread (MB): ${LIBECPINT_RADIAL_CACHE_MB}")
+ message(STATUS "Build tests                        : ${LIBECPINT_BUILD_TESTS}")
+ message("")
++
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/libecpint.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/lib
++includedir=\${prefix}/include
++
++Name: libecpint
++Description: C++ library for the efficient evaluation of integrals over effective core potentials
++Version: ${PROJECT_VERSION}
++Libs: -L\${libdir} -lecpint
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libecpint.pc" DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/libecpint-1.1.0/src/lib/bessel.cpp	2026-11-18 21:56:59.000000000 +0000
++++ src/libecpint-1.1.0/src/lib/bessel.cpp	2026-11-23 07:19:39.482278100 +0000
+@@ -31,6 +31,10 @@
+ 
+ #include "mathutil.hpp"
+ 
++#if defined(_N)
++#undef _N
++#endif
++
+ namespace libecpint {
+ 
+ // Constructor
+--- origsrc/libecpint-1.1.0/tests/units/mathutil/math.cpp	2026-11-18 21:56:59.000000000 +0000
++++ src/libecpint-1.1.0/tests/units/mathutil/math.cpp	2026-11-23 07:19:39.484036000 +0000
+@@ -18,7 +18,12 @@ TEST(MathUtil, Gamma) {
+   // by up to 4e-14, visible in on-centre type 2 integrals)
+   for (int i = 0; i < 30; i++) {
+     const double exact = std::tgamma(0.5 * (i + 1));
++#ifdef __CYGWIN__
++    // newlib's tgamma is only accurate to a few ulp (tgamma(8) = 5039.9999999999927)
++    EXPECT_NEAR(GAMMA[i], exact, 1e-14 * exact) << "i = " << i;
++#else
+     EXPECT_NEAR(GAMMA[i], exact, 1e-15 * exact) << "i = " << i;
++#endif
+   }
+   EXPECT_EQ(GAMMA[29], 8.7178291200e10);  // 14!, exact
+ }

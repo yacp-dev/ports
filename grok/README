@@ -3,38 +3,34 @@ grok
 Grok is a high performance open source JPEG 2000 codec.
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libgcc1-12.4.0-3
-  libgrokj2k-devel-15.0.0-1bl1
-  libgrokj2k1-15.0.0-1bl1
-  libhwy1-1.2.0-1bl1
-  libjpeg8-3.1.0-1
-  liblcms2_2-2.16-1
-  libpng16-1.6.47-2
-  libstdc++6-12.4.0-3
-  libtiff7-4.7.0-1
-  perl5_040
-  perl_base-5.40.2-1
-  pkg-config-2.4.3-1
+  cygwin-3.6.12-1
+  libfmt12-12.2.1-1bl1
+  libgcc1-14.4.0-1
+  libgrokj2k-devel-21.0.0-1bl1
+  libgrokj2k2-21.0.0-1bl1
+  libhwy1-1.4.0-1bl2
+  libjpeg8-3.2.0-1
+  liblcms2_2-2.19-1
+  libpng16-1.6.59-1
+  libstdc++6-14.4.0-1
+  libtiff7-4.7.2-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libfmt-devel-11.1.4-1bl1
-  libhwy-devel-1.2.0-1bl1
-  libjpeg-devel-3.1.0-1
-  liblcms2-devel-2.16-1
-  libpng-devel-1.6.47-2
-  libspdlog-devel-1.15.2-1bl1
-  libtiff-devel-4.7.0-1
-  libtool-2.5.4-1
-  ninja-1.12.1-1
-  perl-5.40.2-1
-  perl-Image-ExifTool-13.25-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libfmt-devel-12.2.1-1bl1
+  libhwy-devel-1.4.0-1bl2
+  libjpeg-devel-3.2.0-1
+  liblcms2-devel-2.19-1
+  libpng-devel-1.6.59-1
+  libtiff-devel-4.7.2-1
+  ninja-1.13.2-1
+  perl-5.44.0-1
+  perl-Image-ExifTool-13.550.0-1
 
 Canonical website:
   https://github.com/GrokImageCompression/grok
@@ -45,17 +41,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack grok-15.0.0-X-src.tar.xz
+  1. unpack grok-21.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./grok-15.0.0-X.cygport all
+        % cygport ./grok-21.0.0-X.cygport all
 
 This will create:
-  /usr/src/grok-15.0.0-X-src.tar.xz
-  /usr/src/grok-15.0.0-X.tar.xz
-  /usr/src/libgrokj2k1-15.0.0-X.tar.xz
-  /usr/src/libgrokj2k-devel-15.0.0-X.tar.xz
+  /usr/src/grok-21.0.0-X-src.tar.xz
+  /usr/src/grok-21.0.0-X.tar.xz
+  /usr/src/libgrokj2k2-21.0.0-X.tar.xz
+  /usr/src/libgrokj2k-devel-21.0.0-X.tar.xz
 
 -------------------------------------------
 
@@ -65,21 +61,29 @@ Files included in the binary package:
   /usr/bin/grk_compress.exe
   /usr/bin/grk_decompress.exe
   /usr/bin/grk_dump.exe
+  /usr/bin/grk_transcode.exe
   /usr/share/doc/Cygwin/grok.README
+  /usr/share/doc/grok/CLI11/LICENSE
   /usr/share/doc/grok/LICENSE
   /usr/share/doc/grok/README.md
+  /usr/share/doc/grok/spdlog/LICENSE
+  /usr/share/doc/grok/taskflow/LICENSE
 
-(libgrokj2k1)
-  /usr/bin/cyggrokj2k-1.dll
-  /usr/bin/cyggrokj2kcodec-1.dll
+(libgrokj2k2)
+  /usr/bin/cyggrokj2k-2.dll
+  /usr/bin/cyggrokj2kcodec-2.dll
 
 (libgrokj2k-devel)
-  /usr/include/grok-15.0/grk_config.h
-  /usr/include/grok-15.0/grok.h
-  /usr/include/grok-15.0/grok_codec.h
-  /usr/lib/cmake/grok-15.0/GrokConfig.cmake
-  /usr/lib/cmake/grok-15.0/GrokTargets-release.cmake
-  /usr/lib/cmake/grok-15.0/GrokTargets.cmake
+  /usr/include/grok-21.0/Messenger.h
+  /usr/include/grok-21.0/grk_config.h
+  /usr/include/grok-21.0/grok.h
+  /usr/include/grok-21.0/grok_codec.h
+  /usr/lib/cmake/grok-21.0/GrokConfig.cmake
+  /usr/lib/cmake/grok-21.0/GrokConfigVersion.cmake
+  /usr/lib/cmake/grok-21.0/GrokTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/grok-21.0/GrokTargets.cmake
+  /usr/lib/cmake/grok-21.0/GrokToolsTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/grok-21.0/GrokToolsTargets.cmake
   /usr/lib/libgrokj2k.dll.a
   /usr/lib/libgrokj2kcodec.dll.a
   /usr/lib/pkgconfig/libgrokj2k.pc
@@ -88,6 +92,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 21.0.0-1bl1 -----
+Version bump.
 
 ----- version 15.0.0-1bl1 -----
 Version bump.

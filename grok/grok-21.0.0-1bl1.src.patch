@@ -1,0 +1,95 @@
+--- origsrc/grok/examples/codec/CMakeLists.txt	2026-11-23 06:10:56.000000000 +0000
++++ src/grok/examples/codec/CMakeLists.txt	2026-11-23 06:11:52.191229300 +0000
+@@ -10,7 +10,7 @@ foreach(exe codec_decompress_from_file
+ )
+   add_executable(${exe} ${exe}.cpp)
+   target_compile_options(${exe} PRIVATE ${GROK_COMPILE_OPTIONS})
+-  if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
++  if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CYGWIN)
+ 	target_link_options(${exe}  PUBLIC "LINKER:-z,now")
+   endif()
+ 
+--- origsrc/grok/examples/core/CMakeLists.txt	2026-11-23 06:10:56.000000000 +0000
++++ src/grok/examples/core/CMakeLists.txt	2026-11-23 06:11:52.191229300 +0000
+@@ -13,7 +13,7 @@ foreach(exe core_decompress
+ )
+   add_executable(${exe} ${exe}.cpp ${common_SRCS})
+   target_compile_options(${exe} PRIVATE ${GROK_COMPILE_OPTIONS})
+-  if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
++  if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CYGWIN)
+ 	  target_link_options(${exe}  PUBLIC "LINKER:-z,now")
+   endif()
+ 
+--- origsrc/grok/src/bin/codec/CMakeLists.txt	2026-11-23 06:10:56.000000000 +0000
++++ src/grok/src/bin/codec/CMakeLists.txt	2026-11-23 06:11:52.193256500 +0000
+@@ -7,7 +7,7 @@ include_directories(
+ foreach(exe grk_decompress grk_compress grk_dump)
+   add_executable(${exe} ${exe}.cpp)
+   target_compile_options(${exe} PRIVATE ${GROK_COMPILE_OPTIONS})
+-  if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
++  if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CYGWIN)
+ 	target_link_options(${exe}  PUBLIC "LINKER:-z,now")
+   endif()
+ 
+@@ -30,7 +30,7 @@ endforeach()
+ # grk_transcode only needs the core library, not the codec library
+ add_executable(grk_transcode grk_transcode.cpp)
+ target_compile_options(grk_transcode PRIVATE ${GROK_COMPILE_OPTIONS})
+-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
++if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CYGWIN)
+   target_link_options(grk_transcode PUBLIC "LINKER:-z,now")
+ endif()
+ target_link_libraries(grk_transcode ${GROK_CORE_NAME})
+--- origsrc/grok/src/lib/codec/CMakeLists.txt	2026-11-23 06:10:56.000000000 +0000
++++ src/grok/src/lib/codec/CMakeLists.txt	2026-11-23 06:11:52.193256500 +0000
+@@ -80,7 +80,7 @@ set_target_properties(${GROK_CODEC_NAME}
+ target_compile_options(${GROK_CODEC_NAME} PRIVATE ${GROK_COMPILE_OPTIONS})
+ 
+ # hardening
+-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
++if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CYGWIN)
+ 	target_link_options(${GROK_CODEC_NAME} PRIVATE "LINKER:-z,now")
+ endif()
+ 
+--- origsrc/grok/src/lib/core/CMakeLists.txt	2026-11-23 06:10:56.000000000 +0000
++++ src/grok/src/lib/core/CMakeLists.txt	2026-11-23 06:11:52.195271400 +0000
+@@ -256,13 +256,18 @@ if (GRK_BUILD_PLUGIN_LOADER)
+     add_definitions(-DGRK_BUILD_PLUGIN_LOADER)
+ endif()
+ 
++find_package(PkgConfig REQUIRED)
++pkg_check_modules(HWY libhwy)
++
+ set(HWY_ENABLE_EXAMPLES OFF CACHE BOOL "Enable HWY examples")
+ set(HWY_ENABLE_CONTRIB OFF CACHE BOOL "Enable HWY contrib")
+ set(HWY_ENABLE_INSTALL OFF CACHE BOOL "Enable HWY install")
+ set(HWY_FORCE_STATIC_LIBS ON CACHE BOOL "Enable HWY force static libs")
+ set(INSTALL_GTEST OFF CACHE BOOL "Install GTest")
+ set(HWY_ENABLE_TESTS OFF CACHE BOOL "Disable tests")
+-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/highway EXCLUDE_FROM_ALL)
++if (NOT HWY_FOUND)
++  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/highway EXCLUDE_FROM_ALL)
++endif()
+ 
+ add_library(${GROK_CORE_NAME} ${GROK_LIBRARY_SRCS})
+ set_target_properties(${GROK_CORE_NAME} PROPERTIES ${GROK_LIBRARY_PROPERTIES})
+@@ -273,7 +278,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL Emscripte
+   target_compile_options(${exe} PUBLIC -matomics)
+ endif()
+ 
+-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
++if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CYGWIN)
+   target_link_options(${GROK_CORE_NAME} PRIVATE "LINKER:-z,now")
+ endif()
+ 
+--- origsrc/grok/src/lib/plugin/CMakeLists.txt	2026-11-23 06:10:56.000000000 +0000
++++ src/grok/src/lib/plugin/CMakeLists.txt	2026-11-23 06:11:52.197288300 +0000
+@@ -13,7 +13,7 @@ set(GROK_PLUGIN_SRCS
+ add_library(${GROK_PLUGIN_NAME} ${GROK_PLUGIN_SRCS})
+ 
+ set_target_properties(${GROK_PLUGIN_NAME} PROPERTIES ${GROK_LIBRARY_PROPERTIES})
+-if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
++if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CYGWIN)
+   target_link_options(${GROK_PLUGIN_NAME} PRIVATE "LINKER:-z,now")
+ endif()
+ 

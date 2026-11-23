@@ -6,11 +6,20 @@ CATEGORY="Libs"
 SUMMARY="JPEG 2000 codec"
 DESCRIPTION="Grok is a high performance open source JPEG 2000 codec."
 
-LICENSE="AGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later"
+LICENSE="AGPL-3.0-or-later AND BSD-2-Clause AND BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: AGPL-3.0-or-later AND BSD-2-Clause AND BSD-3-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libfmt-devel libhwy-devel libjpeg-devel liblcms2-devel libpng-devel libspdlog-devel libtiff-devel perl perl-Image-ExifTool"
+BUILD_REQUIRES="
+	libfmt-devel
+	libhwy-devel
+	libjpeg-devel
+	liblcms2-devel
+	libpng-devel
+	libtiff-devel
+	perl
+	perl-Image-ExifTool
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -23,6 +32,7 @@ CYGCMAKE_ARGS="
 	-DGRK_BUILD_LCMS2:BOOL=OFF
 	-DGRK_BUILD_LIBPNG:BOOL=OFF
 	-DGRK_BUILD_LIBTIFF:BOOL=OFF
+	-DSPDLOG_FMT_EXTERNAL:BOOL=ON
 "
 
 src_test()
@@ -31,22 +41,38 @@ src_test()
 	PATH=${B}/bin:${PATH} ninja_test
 }
 
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	# licenses of the vendored libraries compiled into the binaries
+	cd ${S}/src/include
+	docinto CLI11
+	dodoc CLI11/LICENSE
+	docinto spdlog
+	dodoc spdlog/LICENSE
+	docinto taskflow
+	dodoc taskflow/LICENSE
+}
+
 PKG_NAMES="
 	grok
-	libgrokj2k1
+	libgrokj2k2
 	libgrokj2k-devel
 "
 grok_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libgrokj2k1_CONTENTS="
-	usr/bin/cyg*-1.dll
+libgrokj2k2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libgrokj2k_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 grok_SUMMARY="${SUMMARY} (utilities)"
-libgrokj2k1_SUMMARY="${SUMMARY} (runtime)"
+libgrokj2k2_SUMMARY="${SUMMARY} (runtime)"
 libgrokj2k_devel_SUMMARY="${SUMMARY} (development)"
+libgrokj2k_devel_REQUIRES="grok"

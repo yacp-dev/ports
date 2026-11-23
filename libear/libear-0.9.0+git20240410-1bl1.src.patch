@@ -1,5 +1,5 @@
---- origsrc/libear/CMakeLists.txt	2023-11-19 13:13:32.000000000 +0900
-+++ src/libear/CMakeLists.txt	2023-11-19 13:25:53.215208600 +0900
+--- origsrc/libear/CMakeLists.txt	2026-11-23 06:03:20.000000000 +0000
++++ src/libear/CMakeLists.txt	2026-11-23 06:03:42.857308300 +0000
 @@ -125,3 +125,10 @@ if(EAR_PACKAGE_AND_INSTALL)
    )
    add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libear.pc.in ${CMAKE_BINARY_DIR}/libear.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libear.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libear/libear.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libear/libear.pc.in	2023-11-19 13:26:06.158216100 +0900
+--- origsrc/libear/libear.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libear/libear.pc.in	2026-11-23 06:03:42.859321100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

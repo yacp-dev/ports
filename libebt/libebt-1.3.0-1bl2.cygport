@@ -1,0 +1,15 @@
+HOMEPAGE="https://sourceforge.net/projects/libebt.berlios/"
+SRC_URI="mirror://sourceforge/libebt.berlios/${P}.tar.bz2"
+
+CATEGORY="Libs"
+SUMMARY="Pure C++ template library that provides a clean way of getting human-readable backtrace messages"
+DESCRIPTION="Pure C++ template library that provides a clean way of getting
+human-readable backtrace messages"
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENCE"
+
+DIFF_EXCLUDES="
+	${PN}_version.hh
+"

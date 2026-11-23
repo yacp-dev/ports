@@ -11,21 +11,20 @@ processors using any STFT-based algorithm such as de-crackle, de-click and
 other audio restoration algorithms.
 
 Runtime requirements:
-  cygwin-3.6.11-1
+  cygwin-3.6.12-1
   libsndfile1-1.2.2-2
-  libspecbleach-devel-0.4.1-1bl1
-  libspecbleach0-0.4.1-1bl1
-  libspecbleach_extras-devel-0.4.1-1bl1
-  libspecbleach_extras0-0.4.1-1bl1
-  pkg-config-3.0.9-1
+  libspecbleach-devel-0.4.2-1bl1
+  libspecbleach0-0.4.2-1bl1
+  libspecbleach_extras-devel-0.4.2-1bl1
+  libspecbleach_extras0-0.4.2-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.4.4-1
-  cygport-0.37.10-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
-  gcc-g++-14.4.0-1
   libsndfile-devel-1.2.2-2
   ninja-1.13.2-1
 
@@ -33,24 +32,24 @@ Canonical website:
   https://github.com/lucianodato/libspecbleach
 
 Canonical download:
-  https://github.com/lucianodato/libspecbleach/archive/refs/tags/v0.4.1.tar.gz
+  https://github.com/lucianodato/libspecbleach/archive/refs/tags/v0.4.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libspecbleach-0.4.1-X-src.tar.xz
+  1. unpack libspecbleach-0.4.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libspecbleach-0.4.1-X.cygport all
+        % cygport ./libspecbleach-0.4.2-X.cygport all
 
 This will create:
-  /usr/src/libspecbleach-0.4.1-X-src.tar.xz
-  /usr/src/libspecbleach-0.4.1-X.tar.xz
-  /usr/src/libspecbleach0-0.4.1-X.tar.xz
-  /usr/src/libspecbleach_extras0-0.4.1-X.tar.xz
-  /usr/src/libspecbleach-devel-0.4.1-X.tar.xz
-  /usr/src/libspecbleach_extras-devel-0.4.1-X.tar.xz
+  /usr/src/libspecbleach-0.4.2-X-src.tar.xz
+  /usr/src/libspecbleach-0.4.2-X.tar.xz
+  /usr/src/libspecbleach0-0.4.2-X.tar.xz
+  /usr/src/libspecbleach_extras0-0.4.2-X.tar.xz
+  /usr/src/libspecbleach-devel-0.4.2-X.tar.xz
+  /usr/src/libspecbleach_extras-devel-0.4.2-X.tar.xz
 
 -------------------------------------------
 
@@ -93,6 +92,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.4.2-1bl1 -----
+Version bump.
 
 ----- version 0.4.1-1bl1 -----
 Version bump.

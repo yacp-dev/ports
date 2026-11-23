@@ -6,24 +6,24 @@ only decoding the DCT coefficients needed to reconstruct an image of the size
 desired.
 
 Runtime requirements:
-  cygwin-3.5.0-0.357.ga13b0b7aea9d
-  libepeg-devel-0.9.3-1bl1
-  libepeg0-0.9.3-1bl1
-  libexif12-0.6.24-1
-  libjpeg-devel-2.1.5.1-1
-  libjpeg8-2.1.5.1-1
-  pkg-config-1.9.5-1
+  cygwin-3.6.12-1
+  libepeg-devel-0.9.3-1bl2
+  libepeg0-0.9.3-1bl2
+  libexif12-0.6.26-1
+  libjpeg-devel-3.2.0-1
+  libjpeg8-3.2.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.40-1
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  libexif-devel-0.6.24-1
-  libjpeg-devel-2.1.5.1-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libexif-devel-0.6.26-1
+  libjpeg-devel-3.2.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -56,6 +56,7 @@ Files included in the binary package:
   /usr/share/doc/Cygwin/epeg.README
   /usr/share/doc/epeg/AUTHORS
   /usr/share/doc/epeg/COPYING
+  /usr/share/doc/epeg/COPYING-PLAIN
   /usr/share/doc/epeg/README
   /usr/share/doc/epeg/README.md
 
@@ -70,6 +71,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.9.3-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.9.3-1bl1 -----
 Version bump.

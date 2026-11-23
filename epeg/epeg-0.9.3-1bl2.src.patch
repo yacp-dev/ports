@@ -1,5 +1,5 @@
---- origsrc/epeg-0.9.3/configure.ac	2023-04-05 13:41:48.000000000 +0900
-+++ src/epeg-0.9.3/configure.ac	2023-07-29 11:30:52.376241500 +0900
+--- origsrc/epeg-0.9.3/configure.ac	2023-04-05 04:41:48.000000000 +0000
++++ src/epeg-0.9.3/configure.ac	2026-11-23 04:02:09.321506200 +0000
 @@ -3,7 +3,7 @@ dnl Process this file with autoconf to p
  # get rid of that stupid cache mechanism
  rm -f config.cache
@@ -9,8 +9,8 @@
  AC_PREREQ(2.52)
  AC_CONFIG_SRCDIR(configure.ac)
  
---- origsrc/epeg-0.9.3/src/lib/Makefile.am	2023-04-05 13:41:48.000000000 +0900
-+++ src/epeg-0.9.3/src/lib/Makefile.am	2023-07-29 11:29:49.886374000 +0900
+--- origsrc/epeg-0.9.3/src/lib/Makefile.am	2023-04-05 04:41:48.000000000 +0000
++++ src/epeg-0.9.3/src/lib/Makefile.am	2026-11-23 04:02:09.323527200 +0000
 @@ -8,4 +8,4 @@ epeg_main.c \
  epeg_private.h
  

@@ -3,25 +3,25 @@ jcal
 Jalali calendar is a small and portable free software library to manipulate
 date and time in Jalali calendar system. It's written in C and has absolutely
 zero dependencies. It works on top of any POSIX.1-2001 (and later) compatible
-libc implementations. Jalali calendar provides an API similar to that of
-libc's timezone, date and time functions.
+libc implementations. Jalali calendar provides an API similar to that of libc's
+timezone, date and time functions.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libjalali-devel-0.5.1-1bl1
-  libjalali0-0.5.1-1bl1
+  cygwin-3.6.12-1
+  libjalali-devel-0.5.1-1bl2
+  libjalali0-0.5.1-1bl2
   libreadline8-8.3-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   libreadline-devel-8.3-1
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -104,6 +104,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.5.1-1bl1 -----
 Version bump.

@@ -31,6 +31,11 @@ src_compile()
 	cygmake
 }
 
+src_test()
+{
+	verbose ${B}/src/jdate.exe --version
+}
+
 PKG_NAMES="
 	${PN}
 	libjalali0

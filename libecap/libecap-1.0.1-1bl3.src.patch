@@ -1,5 +1,5 @@
---- origsrc/libecap-1.0.1/src/libecap/Makefile.am	2014-10-02 13:05:24.000000000 +0900
-+++ src/libecap-1.0.1/src/libecap/Makefile.am	2025-01-15 14:05:46.232166200 +0900
+--- origsrc/libecap-1.0.1/src/libecap/Makefile.am	2014-10-02 04:05:24.000000000 +0000
++++ src/libecap-1.0.1/src/libecap/Makefile.am	2026-11-23 06:37:43.293544500 +0000
 @@ -11,7 +11,7 @@ libecap_la_SOURCES =
  # Dummy C++ source to cause C++ linking.
  nodist_EXTRA_libecap_la_SOURCES = dummy4lib.cc

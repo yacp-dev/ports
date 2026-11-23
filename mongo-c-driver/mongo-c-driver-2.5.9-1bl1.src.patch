@@ -1,5 +1,5 @@
---- origsrc/mongo-c-driver-2.5.8/build/cmake/TestProject.cmake	2026-11-03 15:14:04.000000000 +0000
-+++ src/mongo-c-driver-2.5.8/build/cmake/TestProject.cmake	2026-11-18 13:39:31.150990400 +0000
+--- origsrc/mongo-c-driver-2.5.9/build/cmake/TestProject.cmake	2026-11-19 14:00:17.000000000 +0000
++++ src/mongo-c-driver-2.5.9/build/cmake/TestProject.cmake	2026-11-23 22:21:43.645821600 +0000
 @@ -250,8 +250,11 @@ function(__do_test_project)
      endif()
      message(STATUS "Project build completed")

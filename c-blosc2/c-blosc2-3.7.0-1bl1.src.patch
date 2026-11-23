@@ -1,0 +1,154 @@
+--- origsrc/c-blosc2-3.7.0/blosc/blosc2-stdio.c	2026-11-18 12:26:48.000000000 +0000
++++ src/c-blosc2-3.7.0/blosc/blosc2-stdio.c	2026-11-23 11:37:26.766991900 +0000
+@@ -499,6 +499,24 @@ void *blosc2_stdio_mmap_open(const char
+ #else
+   mmap_file->fd = fileno(mmap_file->file);
+ 
++#if defined(__CYGWIN__)
++  /* Cygwin cannot map beyond the end of a file and make the pages usable once the file is extended later. Extend it
++  to the mapping size now, as on Windows; destroy trims the padding again */
++  if ((mmap_file->access_flags & PROT_WRITE) && !mmap_file->is_memory_only &&
++      mmap_file->mapping_size > mmap_file->file_size) {
++    int64_t mapping_size_i64;
++    if (!blosc2_checked_size_to_i64(mmap_file->mapping_size, &mapping_size_i64) ||
++        ftruncate(mmap_file->fd, mapping_size_i64) < 0) {
++      BLOSC_TRACE_ERROR("Cannot extend the file %s to the mapping size (error: %s).", urlpath, strerror(errno));
++      fclose(mmap_file->file);
++      mmap_file->file = NULL;
++      free(mmap_file->urlpath);
++      mmap_file->urlpath = NULL;
++      return NULL;
++    }
++  }
++#endif
++
+   /* Offset where the mapping should start */
+   int64_t offset = 0;
+   mmap_file->addr = mmap(
+@@ -639,6 +657,8 @@ int64_t blosc2_stdio_mmap_write(const vo
+   if (mmap_file->file_size < new_size) {
+     mmap_file->file_size = new_size;
+ 
++#if !defined(__CYGWIN__)
++    /* On Cygwin the file is always as large as the mapping (extended on remap), so it is not touched here */
+     if (!mmap_file->is_memory_only) {
+       int64_t ftruncate_size;
+       if (!blosc2_checked_size_to_i64(new_size, &ftruncate_size)) {
+@@ -651,6 +671,7 @@ int64_t blosc2_stdio_mmap_write(const vo
+         return 0;
+       }
+     }
++#endif
+   }
+ 
+   if (mmap_file->mapping_size < mmap_file->file_size) {
+@@ -671,6 +692,16 @@ int64_t blosc2_stdio_mmap_write(const vo
+       "Please specify either a different mode or set initial_mapping_size to a large enough number.");
+       return 0;
+     }
++#if defined(__CYGWIN__)
++    if (!mmap_file->is_memory_only) {
++      int64_t new_mapping_size_i64;
++      if (!blosc2_checked_size_to_i64(new_mapping_size, &new_mapping_size_i64) ||
++          ftruncate(mmap_file->fd, new_mapping_size_i64) < 0) {
++        BLOSC_TRACE_ERROR("Cannot extend the file to %zu bytes (error: %s).", new_mapping_size, strerror(errno));
++        return 0;
++      }
++    }
++#endif
+     int64_t offset = 0;
+     char* new_address = mmap(
+       NULL,
+@@ -770,8 +801,8 @@ int blosc2_stdio_mmap_truncate(void *str
+     return 0;
+   }
+ 
+-#if defined(_WIN32)
+-  /* On Windows, we can truncate the file only at the end after we released the mapping */
++#if defined(_WIN32) || defined(__CYGWIN__)
++  /* On Windows and Cygwin, we can truncate the file only at the end after we released the mapping */
+   return 0;
+ #else
+   return ftruncate(mmap_file->fd, size);
+@@ -863,9 +894,30 @@ int blosc2_stdio_mmap_destroy(void* para
+     err = -1;
+   }
+ 
++#if defined(__CYGWIN__)
++  if ((mmap_file->access_flags & PROT_WRITE) && !mmap_file->is_memory_only && err == 0) {
++    /* The file was extended to mapping_size; trim that padding only if the physical size has not changed
++    (as in the Windows branch) */
++    struct stat st;
++    if (fstat(mmap_file->fd, &st) != 0) {
++      BLOSC_TRACE_ERROR("Cannot determine the memory-mapped file size (error: %s).", strerror(errno));
++      err = -1;
++    }
++    else if (st.st_size >= 0 && (uint64_t)st.st_size == mmap_file->mapping_size &&
++             mmap_file->mapping_size != mmap_file->file_size) {
++      int64_t file_size_i64;
++      if (!blosc2_checked_size_to_i64(mmap_file->file_size, &file_size_i64) ||
++          ftruncate(mmap_file->fd, file_size_i64) != 0) {
++        BLOSC_TRACE_ERROR("Cannot truncate the memory-mapped file (error: %s).", strerror(errno));
++        err = -1;
++      }
++    }
++  }
++#else
+   /* POSIX mappings do not pad the file. Writes and explicit truncation already
+      set its physical size; the cached file_size may be stale after external writes. */
+ #endif
++#endif
+ cleanup:
+   /* Also closes the HANDLE on Windows */
+   if (mmap_file->file != NULL && fclose(mmap_file->file) < 0) {
+--- origsrc/c-blosc2-3.7.0/blosc/prefetch.c	2026-11-18 12:26:48.000000000 +0000
++++ src/c-blosc2-3.7.0/blosc/prefetch.c	2026-11-23 11:37:26.769005600 +0000
+@@ -24,7 +24,7 @@
+   POSIX only (Linux, macOS, BSDs).  On Windows everything here is a no-op and reads work as without read-ahead.
+ */
+ 
+-#if !defined(_WIN32)
++#if !defined(_WIN32) && !defined(__CYGWIN__)
+ // Make mincore(), MAP_SHARED and F_RDADVISE visible despite -D_XOPEN_SOURCE=600 (as in frame.c and blosc2-stdio.c)
+ #if !defined(_GNU_SOURCE)
+ #define _GNU_SOURCE
+@@ -87,7 +87,7 @@ void prefetch_set_populate(int mode) {
+ }
+ 
+ 
+-#if defined(_WIN32)
++#if defined(_WIN32) || defined(__CYGWIN__)
+ 
+ bool prefetch_applies(const blosc2_frame_s *frame) {
+   BLOSC_UNUSED_PARAM(frame);
+--- origsrc/c-blosc2-3.7.0/tests/test_compact_tail_update.c	2026-11-18 12:26:48.000000000 +0000
++++ src/c-blosc2-3.7.0/tests/test_compact_tail_update.c	2026-11-23 11:37:26.769005600 +0000
+@@ -835,7 +835,7 @@ static char *check_mmap_destroy_external
+   /* POSIX keeps the physical file at 4 bytes; Windows pads it to mapping_size.
+      Check the appended bytes at their original offsets, including on Windows. */
+   const char *appended = "abcdefghijklmnop";
+-#if defined(_WIN32)
++#if defined(_WIN32) || defined(__CYGWIN__)
+   long append_offset = (long)mapping_size;
+ #else
+   long append_offset = 4;
+@@ -853,7 +853,7 @@ static char *check_mmap_destroy_external
+   fseek(fcheck, 0, SEEK_END);
+   long sz = ftell(fcheck);
+   long expected_size = append_offset + append_size;
+-#if defined(_WIN32)
++#if defined(_WIN32) || defined(__CYGWIN__)
+   /* With no external append, Windows should still remove its mapping padding. */
+   if (append_size == 0) expected_size = 4;
+ #endif
+--- origsrc/c-blosc2-3.7.0/tests/test_deferred_updates.c	2026-11-18 12:26:48.000000000 +0000
++++ src/c-blosc2-3.7.0/tests/test_deferred_updates.c	2026-11-23 11:37:26.771026200 +0000
+@@ -297,7 +297,7 @@ static char* random_sequences(const char
+     mu_assert("ERROR: end_updates failed", blosc2_schunk_end_updates(schunk) == 0);
+     mu_assert("ERROR: wrong data after the bracket", check_data(schunk, model, nchunks));
+     mu_assert("ERROR: payload not as long as without brackets", schunk->cbytes == twin->cbytes);
+-#if defined(_WIN32)
++#if defined(_WIN32) || defined(__CYGWIN__)
+     bool check_file_len = io_kind != 2;
+ #else
+     bool check_file_len = true;

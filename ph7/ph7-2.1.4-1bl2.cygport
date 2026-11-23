@@ -1,5 +1,8 @@
-HOMEPAGE="http://${PN}.symisc.net/"
-SRC_URI="http://www.symisc.net/downloads/${PN}-amalgamation-2001004.zip"
+HOMEPAGE="https://${PN}.symisc.net/"
+SRC_URI="
+	https://symisc.net/downloads/${PN}-amalgamation-2001004.zip
+	CMakeLists.txt
+"
 
 CATEGORY="Libs"
 SUMMARY="Embeddable PHP5 Engine"
@@ -7,21 +10,31 @@ DESCRIPTION="PH7 is a in-process software library that implements a highly-effic
 embeddable bytecode compiler and a virtual machine for the PHP programming
 language."
 
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="license.txt"
+
+DOCS="
+	license.txt
+"
+
 unzip()
 {
 	/usr/bin/unzip $* -d ${SRC_DIR}
 }
 
+inherit cmake
+
 PKG_NAMES="
 	${PN}
-	lib${PN}_0
+	lib${PN}_2
 	lib${PN}-devel
 "
 ph7_CONTENTS="
 	usr/share
 "
-libph7_0_CONTENTS="
-	usr/bin
+libph7_2_CONTENTS="
+	usr/bin/cyg*-2.dll
 "
 libph7_devel_CONTENTS="
 	usr/include
@@ -29,5 +42,5 @@ libph7_devel_CONTENTS="
 "
 
 ph7_SUMMARY="${SUMMARY} (licensing & readmes)"
-libph7_0_SUMMARY="${SUMMARY} (runtime)"
+libph7_2_SUMMARY="${SUMMARY} (runtime)"
 libph7_devel_SUMMARY="${SUMMARY} (development)"

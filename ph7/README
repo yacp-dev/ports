@@ -5,25 +5,24 @@ embeddable bytecode compiler and a virtual machine for the PHP programming
 language.
 
 Runtime requirements:
-  cygwin-1.7.34-6
-  libph7-devel-2.1.4-1bl1
-  libph7_0-2.1.4-1bl1
+  cygwin-3.6.12-1
+  libph7-devel-2.1.4-1bl2
+  libph7_2-2.1.4-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-1
-  cygport-0.17.1-1
-  gcc-core-4.9.2-2
-  libtool-2.4.6-1
-  make-4.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
-  http://ph7.symisc.net/
+  https://ph7.symisc.net/
 
 Canonical download:
-  http://www.symisc.net/downloads/ph7-amalgamation-2001004.zip
+  https://symisc.net/downloads/ph7-amalgamation-2001004.zip
 
 -------------------------------------------
 
@@ -37,7 +36,7 @@ Build instructions:
 This will create:
   /usr/src/ph7-2.1.4-X-src.tar.xz
   /usr/src/ph7-2.1.4-X.tar.xz
-  /usr/src/libph7_0-2.1.4-X.tar.xz
+  /usr/src/libph7_2-2.1.4-X.tar.xz
   /usr/src/libph7-devel-2.1.4-X.tar.xz
 
 -------------------------------------------
@@ -46,10 +45,10 @@ Files included in the binary package:
 
 (ph7)
   /usr/share/doc/Cygwin/ph7.README
-  /usr/share/doc/ph7/LICENSE.txt
+  /usr/share/doc/ph7/license.txt
 
-(libph7_0)
-  /usr/bin/cygph7-0.dll
+(libph7_2)
+  /usr/bin/cygph7-2.dll
 
 (libph7-devel)
   /usr/include/ph7.h
@@ -60,6 +59,8 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 2.1.4-1bl2 -----
+Rebuild with gcc-14.4.0
+
 ----- version 2.1.4-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>
-

@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/snegovick/${PN}"
 GIT_URI="https://github.com/snegovick/${PN}.git"
+GIT_REV="d31621923f15e3a76f6a1e921f8383232553afda"
 
 CATEGORY="Libs"
 SUMMARY="Various data structures in plain C"
@@ -9,10 +10,15 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	CUnit
+"
+
 inherit git
 
 CYGCONF_ARGS="
 	--includedir=/usr/include/${PN}
+	--enable-tests
 "
 
 DOCS="

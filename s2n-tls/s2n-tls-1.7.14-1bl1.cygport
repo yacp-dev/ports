@@ -1,25 +1,31 @@
-HOMEPAGE="https://github.com/aws/${PN}-tls"
-GIT_URI="https://github.com/aws/${PN}-tls.git"
+HOMEPAGE="https://github.com/aws/${PN}"
+GIT_URI="https://github.com/aws/${PN}.git"
 GIT_TAG="v${PV}"
 
 CATEGORY="Libs"
 SUMMARY="Implementation of the TLS/SSL protocols"
-DESCRIPTION="s2n is a C99 implementation of the TLS/SSL protocols that is designed to be
-simple, small, fast, and with security as a priority."
+DESCRIPTION="s2n-tls is a C99 implementation of the TLS/SSL protocols that is
+designed to be simple, small, fast, and with security as a priority."
 
 LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libssl-devel"
+BUILD_REQUIRES="
+	libssl-devel
+"
 
 inherit cmake
 inherit git
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DUNSAFE_TREAT_WARNINGS_AS_ERRORS:BOOL=OFF
 	-DVERSION:STRING=${PV}
 "
+
+# ctest takes ~27 minutes on CI runners
+YACP_CHECK_TIMEOUT_MINUTES=35
 
 src_test()
 {
@@ -41,10 +47,10 @@ src_install()
 
 PKG_NAMES="
 	${PN}
-	lib${PN}${PV[1]}
-	lib${PN}-devel
+	libs2n${PV[1]}
+	libs2n-devel
 "
-s2n_CONTENTS="
+s2n_tls_CONTENTS="
 	usr/share
 "
 libs2n1_CONTENTS="
@@ -54,6 +60,9 @@ libs2n_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
-s2n_SUMMARY="${SUMMARY} (licensing & readmes)"
+s2n_tls_SUMMARY="${SUMMARY} (licensing & readmes)"
 libs2n1_SUMMARY="${SUMMARY} (runtime)"
 libs2n_devel_SUMMARY="${SUMMARY} (development)"
+libs2n_devel_REQUIRES="
+	libssl-devel
+"

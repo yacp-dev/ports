@@ -1,0 +1,118 @@
+--- origsrc/s2n-tls/CMakeLists.txt	2026-11-23 09:48:58.000000000 +0000
++++ src/s2n-tls/CMakeLists.txt	2026-11-23 09:49:20.819436000 +0000
+@@ -153,9 +153,6 @@ target_compile_options(${PROJECT_NAME} P
+     -Wunused
+     -Wwrite-strings
+     
+-    # Assembler Options
+-    -Wa,--noexecstack
+-
+     # Suppressed Warnings
+     -Wno-deprecated-declarations
+     # GCC 4 fails to parse our macros with a "missing-braces" error
+@@ -164,6 +161,10 @@ target_compile_options(${PROJECT_NAME} P
+     -Wno-unknown-pragmas
+ )
+ 
++if (NOT CYGWIN)
++    target_compile_options(${PROJECT_NAME} PRIVATE -Wa,--noexecstack)
++endif()
++
+ if (S2N_WERROR_ALL)
+     target_compile_options(${PROJECT_NAME} PUBLIC -Werror)
+ elseif (UNSAFE_TREAT_WARNINGS_AS_ERRORS)
+@@ -184,7 +185,7 @@ if(S2N_LTO)
+     endif()
+ endif()
+ 
+-if(NOT APPLE AND NOT CMAKE_SYSTEM_NAME STREQUAL "AIX")
++if(NOT APPLE AND NOT CYGWIN AND NOT CMAKE_SYSTEM_NAME STREQUAL "AIX")
+     set(CMAKE_SHARED_LINKER_FLAGS -Wl,-z,noexecstack,-z,relro,-z,now)
+ endif()
+ 
+@@ -864,14 +865,28 @@ else()
+ endif()
+ 
+ install(EXPORT "${PROJECT_NAME}-targets"
+-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/${TARGET_DIR}"
++        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
+         NAMESPACE AWS::
+         COMPONENT Development)
+ 
+ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}-config.cmake"
+-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/"
++        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
+         COMPONENT Development)
+ 
+ install(FILES "cmake/modules/Findcrypto.cmake"
+-        DESTINATION "${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake/modules/"
++        DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}/modules"
+         COMPONENT Development)
++
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/s2n.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/lib
++includedir=\${prefix}/include
++
++Name: s2n
++Description: Implementation of the TLS/SSL protocols
++Version: ${VERSION}
++Libs: -L\${libdir} -ls2n
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/s2n.pc" DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/s2n-tls/cmake/modules/Findcrypto.cmake	2026-11-23 09:48:58.000000000 +0000
++++ src/s2n-tls/cmake/modules/Findcrypto.cmake	2026-11-23 09:49:20.820216500 +0000
+@@ -78,7 +78,7 @@ else()
+         )
+ 
+         find_library(crypto_SHARED_LIBRARY
+-            NAMES libcrypto.so libcrypto.dylib
++            NAMES libcrypto.dll.a libcrypto.so libcrypto.dylib
+             HINTS
+             "${CMAKE_PREFIX_PATH}"
+             "${CMAKE_INSTALL_PREFIX}"
+--- origsrc/s2n-tls/cmake/s2n-config.cmake	2026-11-23 09:48:58.000000000 +0000
++++ src/s2n-tls/cmake/s2n-config.cmake	2026-11-23 09:49:20.821450000 +0000
+@@ -8,19 +8,4 @@ endif()
+ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/modules")
+ find_dependency(crypto)
+ 
+-# Allow static or shared lib to be used.
+-# If both are installed, choose based on BUILD_SHARED_LIBS.
+-if (BUILD_SHARED_LIBS)
+-    if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/shared")
+-        include(${CMAKE_CURRENT_LIST_DIR}/shared/@PROJECT_NAME@-targets.cmake)
+-    else()
+-        include(${CMAKE_CURRENT_LIST_DIR}/static/@PROJECT_NAME@-targets.cmake)
+-    endif()
+-else()
+-    if (EXISTS "${CMAKE_CURRENT_LIST_DIR}/static")
+-        include(${CMAKE_CURRENT_LIST_DIR}/static/@PROJECT_NAME@-targets.cmake)
+-    else()
+-        include(${CMAKE_CURRENT_LIST_DIR}/shared/@PROJECT_NAME@-targets.cmake)
+-    endif()
+-endif()
+-
++include(${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@-targets.cmake)
+--- origsrc/s2n-tls/utils/s2n_socket.c	2026-11-23 09:49:02.000000000 +0000
++++ src/s2n-tls/utils/s2n_socket.c	2026-11-23 09:49:20.822241800 +0000
+@@ -84,7 +84,7 @@ int s2n_socket_write_snapshot(struct s2n
+ 
+ int s2n_socket_read_snapshot(struct s2n_connection *conn)
+ {
+-    #ifdef SO_RCVLOWAT
++    #if defined(SO_RCVLOWAT) && !defined(__CYGWIN__)
+     socklen_t watlen = sizeof(int);
+     POSIX_ENSURE_REF(conn);
+     struct s2n_socket_read_io_context *r_io_ctx = (struct s2n_socket_read_io_context *) conn->recv_io_context;
+@@ -117,7 +117,7 @@ int s2n_socket_write_restore(struct s2n_
+ 
+ int s2n_socket_read_restore(struct s2n_connection *conn)
+ {
+-    #ifdef SO_RCVLOWAT
++    #if defined(SO_RCVLOWAT) && !defined(__CYGWIN__)
+     POSIX_ENSURE_REF(conn);
+     struct s2n_socket_read_io_context *r_io_ctx = (struct s2n_socket_read_io_context *) conn->recv_io_context;
+     POSIX_ENSURE_REF(r_io_ctx);

@@ -1,5 +1,5 @@
---- origsrc/lepton/CMakeLists.txt	2025-02-07 16:13:59.000000000 +0900
-+++ src/lepton/CMakeLists.txt	2025-02-07 17:23:25.078233600 +0900
+--- origsrc/lepton/CMakeLists.txt	2026-11-23 05:21:44.000000000 +0000
++++ src/lepton/CMakeLists.txt	2026-11-23 05:21:58.058836800 +0000
 @@ -60,22 +60,18 @@ else()
    set(VECTOR_FLAGS "")
  endif()
@@ -87,8 +87,8 @@
  
  #add_executable(print-model
  #   src/vp8/util/debug.cc
---- origsrc/lepton/src/lepton/bitops.hh	2025-02-07 16:13:59.000000000 +0900
-+++ src/lepton/src/lepton/bitops.hh	2025-02-07 17:05:01.381447100 +0900
+--- origsrc/lepton/src/lepton/bitops.hh	2026-11-23 05:21:45.000000000 +0000
++++ src/lepton/src/lepton/bitops.hh	2026-11-23 05:21:58.060862600 +0000
 @@ -51,6 +51,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
  #define BTST_BUFF			1024 * 1024
  
@@ -97,8 +97,8 @@
  #include <functional>
  #include "../io/Reader.hh"
  #include "../io/ioutil.hh"
---- origsrc/lepton/src/vp8/decoder/boolreader.hh	2025-02-07 16:13:59.000000000 +0900
-+++ src/lepton/src/vp8/decoder/boolreader.hh	2025-02-07 17:04:01.171107200 +0900
+--- origsrc/lepton/src/vp8/decoder/boolreader.hh	2026-11-23 05:21:45.000000000 +0000
++++ src/lepton/src/vp8/decoder/boolreader.hh	2026-11-23 05:21:58.062890700 +0000
 @@ -28,6 +28,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIG
  #include <assert.h>
  #include <limits.h>
@@ -107,8 +107,8 @@
  #include "vpx_config.hh"
  #include "billing.hh"
  #include "../model/numeric.hh"
---- origsrc/lepton/src/vp8/util/memory.cc	2025-02-07 16:13:59.000000000 +0900
-+++ src/lepton/src/vp8/util/memory.cc	2025-02-07 17:17:02.676488100 +0900
+--- origsrc/lepton/src/vp8/util/memory.cc	2026-11-23 05:21:45.000000000 +0000
++++ src/lepton/src/vp8/util/memory.cc	2026-11-23 05:21:58.062890700 +0000
 @@ -169,7 +169,7 @@ bool g_use_seccomp =
      true
  #endif

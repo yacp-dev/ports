@@ -1,0 +1,13 @@
+structure s1 {
+    type fixed
+    output semicolon
+    record row {
+        field col1 2
+        field col2 4
+        field col3 8
+    }
+}
+output semicolon {
+    data "%t"
+    separator ";"
+}

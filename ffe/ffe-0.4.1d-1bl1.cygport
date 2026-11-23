@@ -1,0 +1,61 @@
+HOMEPAGE="https://github.com/igitur/ffe"
+SRC_URI="
+	https://github.com/igitur/ffe/archive/refs/tags/v${PV}.tar.gz
+	test-fixed-sep-config.fferc
+	test-fixed-sep-data.txt
+	test-fixed-sep-expect.txt
+"
+PATCH_URI="
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.3.9-4/debian/patches/01-spelling-error-edianness.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.3.9-4/debian/patches/gcc-15.patch
+"
+
+CATEGORY="Utils"
+SUMMARY="Flat file extractor"
+DESCRIPTION="Flat file extractor (ffe) can be used for parsing different flat file
+structures and printing them in different formats. ffe can also process fixed
+length binary files."
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libgcrypt-devel
+"
+
+# upstream left AC_INIT at 0.4.1a in the 0.4.1d release
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	sed -i "s/^AC_INIT(\[ffe\],\[[^]]*\]/AC_INIT([ffe],[${PV}]/" configure.ac
+}
+
+# Upstream has no tests: smoke test, then Debian's autopkgtest (fixed-separator)
+src_test()
+{
+	cd ${B}
+	verbose ./src/${PN}.exe -V
+
+	local t=$(mktemp -d)
+	local f
+	for f in config.fferc data.txt expect.txt
+	do
+		verbose cp ${top}/test-fixed-sep-${f} ${t}/${f}
+	done
+	cd ${t}
+	echo "ffe -c config.fferc -s s1 < data.txt > output.txt"
+	${B}/src/${PN}.exe -c config.fferc -s s1 < data.txt > output.txt
+	local rc=0
+	verbose diff -u expect.txt output.txt || rc=$?
+	cd ${B}
+	verbose rm -rf ${t}
+	return ${rc}
+}
+
+# generated at build time (doc/version.texi is stale upstream)
+DIFF_EXCLUDES="
+	stamp-vti
+	version.texi
+"

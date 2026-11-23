@@ -1,0 +1,104 @@
+--- origsrc/liberasurecode-1.8.0/erasurecode.pc.in	2026-04-14 15:53:55.000000000 +0000
++++ src/liberasurecode-1.8.0/erasurecode.pc.in	2026-11-23 08:10:02.970293500 +0000
+@@ -11,5 +11,5 @@ Version: @LIBERASURECODE_VERSION@
+ Requires:
+ Conflicts:
+ Libs: -L${libdir} -lerasurecode -ldl
+-Libs.private: @ERASURECODE_STATIC_LIBS@ -lz
++Libs.private: -lz
+ Cflags: -I${includedir}/ -I${includedir}/liberasurecode
+--- origsrc/liberasurecode-1.8.0/src/Makefile.am	2026-11-23 08:10:02.607805000 +0000
++++ src/liberasurecode-1.8.0/src/Makefile.am	2026-11-23 08:10:02.970293500 +0000
+@@ -41,7 +41,7 @@ liberasurecode_la_LIBADD = \
+ 		-lpthread -lm -lz @GCOV_LDFLAGS@
+ 
+ # Version format  (C - A).(A).(R) for C:R:A input
+-liberasurecode_la_LDFLAGS = -rpath '$(libdir)' -version-info @LIBERASURECODE_VERSION_INFO@
++liberasurecode_la_LDFLAGS = -no-undefined -rpath '$(libdir)' -version-info @LIBERASURECODE_VERSION_INFO@
+ 
+ MOSTLYCLEANFILES = *.gcda *.gcno *.gcov utils/chksum/*.gcda utils/chksum/*.gcno utils/chksum/*.gcov \
+                    backends/null/*.gcda backends/null/*.gcno backends/null/*.gcov  \
+--- origsrc/liberasurecode-1.8.0/src/backends/null/null.c	2026-04-14 15:53:55.000000000 +0000
++++ src/liberasurecode-1.8.0/src/backends/null/null.c	2026-11-23 08:10:02.972304500 +0000
+@@ -38,6 +38,8 @@
+ #define NULL_LIB_NAME "null"
+ #if defined(__MACOS__) || defined(__MACOSX__) || defined(__OSX__) || defined(__APPLE__)
+ #define NULL_SO_NAME "libnullcode" LIBERASURECODE_SO_SUFFIX ".dylib"
++#elif defined(__CYGWIN__)
++#define NULL_SO_NAME "cygnullcode" LIBERASURECODE_SO_SUFFIX "-1.dll"
+ #else
+ #define NULL_SO_NAME "libnullcode" LIBERASURECODE_SO_SUFFIX ".so.1"
+ #endif
+--- origsrc/liberasurecode-1.8.0/src/backends/rs_vand/liberasurecode_rs_vand.c	2026-04-14 15:53:55.000000000 +0000
++++ src/liberasurecode-1.8.0/src/backends/rs_vand/liberasurecode_rs_vand.c	2026-11-23 08:10:02.972304500 +0000
+@@ -39,6 +39,8 @@
+ #define LIBERASURECODE_RS_VAND_LIB_NAME "liberasurecode_rs_vand"
+ #if defined(__MACOS__) || defined(__MACOSX__) || defined(__OSX__) || defined(__APPLE__)
+ #define LIBERASURECODE_RS_VAND_SO_NAME "liberasurecode_rs_vand" LIBERASURECODE_SO_SUFFIX ".dylib"
++#elif defined(__CYGWIN__)
++#define LIBERASURECODE_RS_VAND_SO_NAME "cygerasurecode_rs_vand" LIBERASURECODE_SO_SUFFIX "-1.dll"
+ #else
+ #define LIBERASURECODE_RS_VAND_SO_NAME "liberasurecode_rs_vand" LIBERASURECODE_SO_SUFFIX ".so.1"
+ #endif
+--- origsrc/liberasurecode-1.8.0/src/backends/shss/shss.c	2026-04-14 15:53:55.000000000 +0000
++++ src/liberasurecode-1.8.0/src/backends/shss/shss.c	2026-11-23 08:10:02.974333000 +0000
+@@ -31,6 +31,7 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <alloca.h>
+ 
+ #include "erasurecode.h"
+ #include "erasurecode_helpers.h"
+@@ -62,6 +63,8 @@ struct shss_descriptor {
+ #define SHSS_LIB_NAME "shss"
+ #if defined(__MACOS__) || defined(__MACOSX__) || defined(__OSX__) || defined(__APPLE__)
+ #define SHSS_SO_NAME "libshss" LIBERASURECODE_SO_SUFFIX ".dylib"
++#elif defined(__CYGWIN__)
++#define SHSS_SO_NAME "cygshss" LIBERASURECODE_SO_SUFFIX "-1.dll"
+ #else
+ #define SHSS_SO_NAME "libshss" LIBERASURECODE_SO_SUFFIX ".so.1"
+ #endif
+--- origsrc/liberasurecode-1.8.0/src/backends/xor/flat_xor_hd.c	2026-04-14 15:53:55.000000000 +0000
++++ src/liberasurecode-1.8.0/src/backends/xor/flat_xor_hd.c	2026-11-23 08:10:02.974333000 +0000
+@@ -41,6 +41,8 @@
+ #define FLAT_XOR_LIB_NAME "flat_xor_hd"
+ #if defined(__MACOS__) || defined(__MACOSX__) || defined(__OSX__) || defined(__APPLE__)
+ #define FLAT_XOR_SO_NAME "libXorcode" LIBERASURECODE_SO_SUFFIX ".dylib"
++#elif defined(__CYGWIN__)
++#define FLAT_XOR_SO_NAME "cygXorcode" LIBERASURECODE_SO_SUFFIX "-1.dll"
+ #else
+ #define FLAT_XOR_SO_NAME "libXorcode" LIBERASURECODE_SO_SUFFIX ".so.1"
+ #endif
+--- origsrc/liberasurecode-1.8.0/src/builtin/null_code/Makefile.am	2026-04-14 15:53:55.000000000 +0000
++++ src/liberasurecode-1.8.0/src/builtin/null_code/Makefile.am	2026-11-23 08:10:02.974333000 +0000
+@@ -5,7 +5,7 @@ libnullcode_la_SOURCES = null_code.c
+ libnullcode_la_CPPFLAGS = -I$(top_srcdir)/include/null_code @GCOV_FLAGS@
+ 
+ # Version format  (C - A).(A).(R) for C:R:A input
+-libnullcode_la_LDFLAGS = @GCOV_LDFLAGS@ -rpath '$(libdir)' -version-info 1:1:0
++libnullcode_la_LDFLAGS = -no-undefined @GCOV_LDFLAGS@ -rpath '$(libdir)' -version-info 1:1:0
+ 
+ MOSTLYCLEANFILES = *.gcda *.gcno *.gcov
+ 
+--- origsrc/liberasurecode-1.8.0/src/builtin/rs_vand/Makefile.am	2026-04-14 15:53:55.000000000 +0000
++++ src/liberasurecode-1.8.0/src/builtin/rs_vand/Makefile.am	2026-11-23 08:10:02.976354800 +0000
+@@ -5,6 +5,6 @@ liberasurecode_rs_vand_la_SOURCES = rs_g
+ liberasurecode_rs_vand_la_CPPFLAGS = -I$(top_srcdir)/include/rs_vand @GCOV_FLAGS@
+ 
+ # Version format  (C - A).(A).(R) for C:R:A input
+-liberasurecode_rs_vand_la_LDFLAGS = @GCOV_LDFLAGS@ -rpath '$(libdir)' -version-info 1:1:0
++liberasurecode_rs_vand_la_LDFLAGS = -no-undefined @GCOV_LDFLAGS@ -rpath '$(libdir)' -version-info 1:1:0
+ 
+ MOSTLYCLEANFILES = *.gcda *.gcno *.gcov
+--- origsrc/liberasurecode-1.8.0/src/builtin/xor_codes/Makefile.am	2026-04-14 15:53:55.000000000 +0000
++++ src/liberasurecode-1.8.0/src/builtin/xor_codes/Makefile.am	2026-11-23 08:10:02.976354800 +0000
+@@ -5,7 +5,7 @@ libXorcode_la_SOURCES = xor_code.c xor_h
+ libXorcode_la_CPPFLAGS = -I$(top_srcdir)/include/xor_codes $(SIMD_FLAGS) @GCOV_FLAGS@
+ 
+ # Version format  (C - A).(A).(R) for C:R:A input
+-libXorcode_la_LDFLAGS = @GCOV_LDFLAGS@ -rpath '$(libdir)' -version-info 1:1:0
++libXorcode_la_LDFLAGS = -no-undefined @GCOV_LDFLAGS@ -rpath '$(libdir)' -version-info 1:1:0
+ 
+ MOSTLYCLEANFILES = *.gcda *.gcno *.gcov
+ 

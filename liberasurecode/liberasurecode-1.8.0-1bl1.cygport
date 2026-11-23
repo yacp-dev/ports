@@ -1,7 +1,7 @@
 HOMEPAGE="https://github.com/openstack/${PN}"
 SRC_URI="https://github.com/openstack/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}-1.0.5-docs.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/1601670a564b96ab3f89dfcaf8218e18cc255e4f/dev-libs/liberasurecode/files/liberasurecode-1.6.5-no-werror.patch
 "
 
 CATEGORY="Libs"
@@ -13,16 +13,23 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="zlib-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	zlib-devel
+"
 
 CYGCONF_ARGS="
 	--disable-doxygen
+	--disable-werror
 	--enable-maintainer-mode
 "
 
 src_test()
 {
 	cd ${B}
+	# tests linked with -static-libtool-libs get no libtool wrapper, so the
+	# in-tree DLLs must be on PATH for them to start
+	export PATH=${B}/src/.libs:${B}/src/builtin/null_code/.libs:${B}/src/builtin/xor_codes/.libs:${B}/src/builtin/rs_vand/.libs:${PATH}
 	cygmake test
 }
 

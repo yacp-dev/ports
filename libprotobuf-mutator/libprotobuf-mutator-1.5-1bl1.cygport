@@ -9,9 +9,18 @@ LICENSE="Apache-2.0"
 LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libprotobuf-devel"
+BUILD_REQUIRES="
+	libgmock-devel
+	libgtest-devel
+	libprotobuf-devel
+	zlib-devel
+"
 
 inherit cmake
+
+# gtest.pc adds -DGTEST_HAS_PTHREAD=1; without it the test code and the
+# gtest/gmock DLLs disagree on Mutex and friends, and EXPECT_CALL crashes.
+export CPPFLAGS="${CPPFLAGS} -DGTEST_HAS_PTHREAD=1"
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
@@ -22,7 +31,7 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	ninja_test
+	PATH=${B}/src:${B}/src/libfuzzer:${PATH} ninja_test
 }
 
 PKG_NAMES="
@@ -34,7 +43,8 @@ libprotobuf_mutator_CONTENTS="
 	usr/share
 "
 libprotobuf_mutator0_CONTENTS="
-	usr/bin
+	usr/bin/cygprotobuf-mutator-0.dll
+	usr/bin/cygprotobuf-mutator-libfuzzer-0.dll
 "
 libprotobuf_mutator_devel_CONTENTS="
 	usr/include
@@ -43,3 +53,4 @@ libprotobuf_mutator_devel_CONTENTS="
 libprotobuf_mutator_SUMMARY="${SUMMARY} (licensing & readmes)"
 libprotobuf_mutator0_SUMMARY="${SUMMARY} (runtime)"
 libprotobuf_mutator_devel_SUMMARY="${SUMMARY} (development)"
+libprotobuf_mutator_devel_REQUIRES="libprotobuf-devel"

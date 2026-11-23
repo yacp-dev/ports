@@ -1,5 +1,5 @@
---- origsrc/Celero-2.10.0/CMakeLists.txt	2026-03-16 23:15:40.000000000 +0900
-+++ src/Celero-2.10.0/CMakeLists.txt	2026-05-10 08:56:59.667327700 +0900
+--- origsrc/Celero-2.11.0/CMakeLists.txt	2026-11-19 14:28:21.000000000 +0000
++++ src/Celero-2.11.0/CMakeLists.txt	2026-11-23 10:50:11.289650400 +0000
 @@ -159,7 +159,7 @@ else()
  endif()
  
@@ -31,7 +31,7 @@
  )
  install(
  	EXPORT      celero-targets
-@@ -392,3 +397,10 @@ if(CELERODEVOPS_ENABLE_TSAN)
+@@ -347,3 +352,10 @@ if(CELERODEVOPS_ENABLE_TSAN)
      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fuse-ld=gold")
      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread")
  endif()
@@ -42,8 +42,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/celero.pc.in ${CMAKE_BINARY_DIR}/celero.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/celero.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/Celero-2.10.0/celero.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/Celero-2.10.0/celero.pc.in	2026-05-10 08:46:46.027783500 +0900
+--- origsrc/Celero-2.11.0/celero.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/Celero-2.11.0/celero.pc.in	2026-11-23 10:50:11.289650400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

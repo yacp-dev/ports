@@ -1,6 +1,5 @@
-HOMEPAGE="https://bitbucket.org/rpaulo/${PN}"
-SRC_URI="https://bitbucket.org/rpaulo/${PN}/get/${P}.tar.bz2"
-SRC_DIR="rpaulo-${PN}-c93bf0890c53"
+HOMEPAGE="https://github.com/rpaulo/${PN}"
+SRC_URI="https://github.com/rpaulo/${PN}/archive/refs/tags/v${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Library to interface with Programmable Realtime Units"
@@ -9,6 +8,12 @@ Currently only the Texas Instruments PRUs are supported. Those can be found in
 the AM18XX and AM33XX (BeagleBone Black) SoCs."
 
 inherit cmake
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook() {
+	cd ${origsrcdir}/${SRC_DIR}
+	echo "set(VERSION \"${PV}\")" >> CMakeLists.txt
+}
 
 PKG_NAMES="
 	${PN}
@@ -19,7 +24,7 @@ libpru_CONTENTS="
 	usr/share
 "
 libpru2_CONTENTS="
-	usr/bin
+	usr/bin/cygpru-2.dll
 "
 libpru_devel_CONTENTS="
 	usr/include

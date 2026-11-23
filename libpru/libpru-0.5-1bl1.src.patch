@@ -1,0 +1,45 @@
+--- origsrc/libpru-0.5/CMakeLists.txt	2026-11-23 14:56:09.883270568 +0000
++++ src/libpru-0.5/CMakeLists.txt	2026-11-23 14:56:18.190352878 +0000
+@@ -3,8 +3,16 @@ project(libpru)
+ add_library(pru SHARED pru.c ti-pru.c)
+ add_definitions(-I${CMAKE_SOURCE_DIR})
+ set_property(TARGET pru PROPERTY SOVERSION "2")
++if(NOT CYGWIN)
+ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Weverything -Werror -Wno-error=padded -fblocks")
+ target_link_libraries(pru pthread BlocksRuntime)
+-install(TARGETS pru DESTINATION lib)
++endif()
++install(TARGETS pru RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
+ install(FILES libpru.h DESTINATION include)
+ set(VERSION "0.5")
++SET(prefix ${CMAKE_INSTALL_PREFIX})
++SET(exec_prefix ${CMAKE_INSTALL_PREFIX})
++SET(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++SET(includedir ${CMAKE_INSTALL_PREFIX}/include)
++CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}.pc.in ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc @ONLY)
++INSTALL(FILES ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/libpru-0.5/libpru.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libpru-0.5/libpru.pc.in	2026-11-23 14:56:00.141084896 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libpru
++Description: Library to interface with Programmable Realtime Units
++Version: @VERSION@
++Libs: -L${libdir} -lpru
++Cflags: -I${includedir}
+--- origsrc/libpru-0.5/pru.c	2026-10-30 15:33:21.000000000 +0000
++++ src/libpru-0.5/pru.c	2026-11-23 14:56:00.140938812 +0000
+@@ -29,7 +29,9 @@
+ #include <fcntl.h>
+ #include <errno.h>
+ #include <unistd.h>
++#if !defined(__CYGWIN__)
+ #include <Block.h>
++#endif
+ #include <pthread.h>
+ 
+ #include <sys/types.h>

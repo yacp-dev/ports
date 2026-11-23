@@ -17,6 +17,7 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DENABLE_EXAMPLES:BOOL=ON
+	-DENABLE_NUGET:BOOL=OFF
 	-DENABLE_SSL:BOOL=ON
 "
 
@@ -30,9 +31,6 @@ PKG_NAMES="
 	libhiredis-devel
 	libhiredis_ssl${PV[1]}
 	libhiredis_ssl-devel
-"
-PKG_IGNORE="
-	usr/build/native/hiredis.targets
 "
 hiredis_CONTENTS="
 	usr/share/doc
@@ -66,3 +64,7 @@ libhiredis1_SUMMARY="${SUMMARY} (runtime)"
 libhiredis_devel_SUMMARY="${SUMMARY} (development)"
 libhiredis_ssl1_SUMMARY="${SUMMARY} (runtime / SSL)"
 libhiredis_ssl_devel_SUMMARY="${SUMMARY} (development / SSL)"
+
+libhiredis_ssl_devel_REQUIRES="
+	libssl-devel
+"

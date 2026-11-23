@@ -5,19 +5,19 @@ dependencies (beyond libc), is permissively licensed (MIT), and is easy to
 include into any project.
 
 Runtime requirements:
-  cygwin-3.4.10-1
-  libgcc1-11.4.0-1
-  libmunit-devel-0.2.0+git20200512-1bl1
-  libmunit0-0.2.0+git20200512-1bl1
-  pkg-config-2.1.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libmunit-devel-0.2.0+git20200512-1bl2
+  libmunit0-0.2.0+git20200512-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.41-3
-  cygport-0.36.7-1
-  gcc-core-11.4.0-1
-  meson-1.2.3-1
-  ninja-1.11.1-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  meson-1.10.2-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/nemequ/munit
@@ -60,6 +60,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.0+git20200512-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2.0+git20200512-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

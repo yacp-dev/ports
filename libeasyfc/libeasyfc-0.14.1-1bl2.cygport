@@ -11,7 +11,15 @@ LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libfontconfig-devel libfreetype-devel libglib2.0-devel libharfbuzz-devel libxml2-devel"
+BUILD_REQUIRES="
+	autoconf-archive
+	gobject-introspection
+	libfontconfig-devel
+	libfreetype-devel
+	libglib2.0-devel
+	libharfbuzz-devel
+	libxml2-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode

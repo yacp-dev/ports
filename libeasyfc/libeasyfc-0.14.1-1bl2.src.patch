@@ -1,5 +1,5 @@
---- origsrc/libeasyfc-0.14.1/libeasyfc/Makefile.am	2016-02-10 15:03:48.000000000 +0900
-+++ src/libeasyfc-0.14.1/libeasyfc/Makefile.am	2023-12-20 17:10:22.417683800 +0900
+--- origsrc/libeasyfc-0.14.1/libeasyfc/Makefile.am	2016-02-10 06:03:48.000000000 +0000
++++ src/libeasyfc-0.14.1/libeasyfc/Makefile.am	2026-11-23 06:21:11.484681200 +0000
 @@ -102,6 +102,7 @@ libeasyfc_la_CFLAGS =				\
  	-DG_LOG_DOMAIN="\"EasyFC\""		\
  	$(NULL)
@@ -8,8 +8,8 @@
  	$(LDFLAGS)						\
  	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)	\
  	$(NULL)
---- origsrc/libeasyfc-0.14.1/libeasyfc-gobject/Makefile.am	2018-02-16 12:14:25.000000000 +0900
-+++ src/libeasyfc-0.14.1/libeasyfc-gobject/Makefile.am	2023-12-20 17:10:44.845056000 +0900
+--- origsrc/libeasyfc-0.14.1/libeasyfc-gobject/Makefile.am	2018-02-16 03:14:25.000000000 +0000
++++ src/libeasyfc-0.14.1/libeasyfc-gobject/Makefile.am	2026-11-23 06:21:11.484681200 +0000
 @@ -112,6 +112,7 @@ libeasyfc_gobject_la_CFLAGS =				\
  	-DG_LOG_DOMAIN="\"EasyFC-GObject\""		\
  	$(NULL)

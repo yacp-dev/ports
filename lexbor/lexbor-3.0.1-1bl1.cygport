@@ -6,8 +6,8 @@ SUMMARY="HTML Renderer library"
 DESCRIPTION="The lexbor project is being developed using the C language, without
 dependencies."
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
 inherit cmake
@@ -20,24 +20,24 @@ CYGCMAKE_ARGS="
 src_test()
 {
 	cd ${B}
-	PATH=${B}/test:${PATH} ninja_test
+	PATH=${B}:${B}/test:${PATH} ninja_test
 }
 
 PKG_NAMES="
 	lexbor
-	liblexbor2
+	liblexbor3
 	liblexbor-devel
 "
 lexbor_CONTENTS="
 	usr/share
 "
-liblexbor2_CONTENTS="
-	usr/bin/cyg*-2.dll
+liblexbor3_CONTENTS="
+	usr/bin/cyg*-3.dll
 "
 liblexbor_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 lexbor_SUMMARY="${SUMMARY} (licensing & readmes)"
-liblexbor2_SUMMARY="${SUMMARY} (runtime)"
+liblexbor3_SUMMARY="${SUMMARY} (runtime)"
 liblexbor_devel_SUMMARY="${SUMMARY} (development)"

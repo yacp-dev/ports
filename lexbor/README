@@ -4,40 +4,39 @@ The lexbor project is being developed using the C language, without
 dependencies.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  liblexbor-devel-2.7.0-1bl1
-  liblexbor2-2.7.0-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  liblexbor-devel-3.0.1-1bl1
+  liblexbor3-3.0.1-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/lexbor/lexbor
 
 Canonical download:
-  https://github.com/lexbor/lexbor/archive/refs/tags/v2.7.0.tar.gz
+  https://github.com/lexbor/lexbor/archive/refs/tags/v3.0.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack lexbor-2.7.0-X-src.tar.xz
+  1. unpack lexbor-3.0.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./lexbor-2.7.0-X.cygport all
+        % cygport ./lexbor-3.0.1-X.cygport all
 
 This will create:
-  /usr/src/lexbor-2.7.0-X-src.tar.xz
-  /usr/src/lexbor-2.7.0-X.tar.xz
-  /usr/src/liblexbor2-2.7.0-X.tar.xz
-  /usr/src/liblexbor-devel-2.7.0-X.tar.xz
+  /usr/src/lexbor-3.0.1-X-src.tar.xz
+  /usr/src/lexbor-3.0.1-X.tar.xz
+  /usr/src/liblexbor3-3.0.1-X.tar.xz
+  /usr/src/liblexbor-devel-3.0.1-X.tar.xz
 
 -------------------------------------------
 
@@ -49,8 +48,8 @@ Files included in the binary package:
   /usr/share/doc/lexbor/NOTICE
   /usr/share/doc/lexbor/README.md
 
-(liblexbor2)
-  /usr/bin/cyglexbor-2.dll
+(liblexbor3)
+  /usr/bin/cyglexbor-3.dll
 
 (liblexbor-devel)
   /usr/include/lexbor/core/array.h
@@ -158,7 +157,12 @@ Files included in the binary package:
   /usr/include/lexbor/encoding/single.h
   /usr/include/lexbor/engine/base.h
   /usr/include/lexbor/engine/engine.h
+  /usr/include/lexbor/html/attribute_steps.h
+  /usr/include/lexbor/html/attribute_steps_res.h
   /usr/include/lexbor/html/base.h
+  /usr/include/lexbor/html/common.h
+  /usr/include/lexbor/html/element_steps.h
+  /usr/include/lexbor/html/element_steps_res.h
   /usr/include/lexbor/html/encoding.h
   /usr/include/lexbor/html/html.h
   /usr/include/lexbor/html/interface.h
@@ -241,6 +245,7 @@ Files included in the binary package:
   /usr/include/lexbor/html/node.h
   /usr/include/lexbor/html/parser.h
   /usr/include/lexbor/html/serialize.h
+  /usr/include/lexbor/html/serialize_ext.h
   /usr/include/lexbor/html/tag.h
   /usr/include/lexbor/html/tag_res.h
   /usr/include/lexbor/html/token.h
@@ -259,6 +264,7 @@ Files included in the binary package:
   /usr/include/lexbor/html/tree/error.h
   /usr/include/lexbor/html/tree/insertion_mode.h
   /usr/include/lexbor/html/tree/open_elements.h
+  /usr/include/lexbor/html/tree/open_elements_res.h
   /usr/include/lexbor/html/tree/template_insertion.h
   /usr/include/lexbor/html/tree_res.h
   /usr/include/lexbor/ns/base.h
@@ -269,14 +275,19 @@ Files included in the binary package:
   /usr/include/lexbor/punycode/punycode.h
   /usr/include/lexbor/selectors/base.h
   /usr/include/lexbor/selectors/selectors.h
+  /usr/include/lexbor/style/attribute_steps.h
+  /usr/include/lexbor/style/attribute_steps_res.h
   /usr/include/lexbor/style/base.h
   /usr/include/lexbor/style/dom/interfaces/document.h
   /usr/include/lexbor/style/dom/interfaces/element.h
-  /usr/include/lexbor/style/event.h
+  /usr/include/lexbor/style/element_steps.h
+  /usr/include/lexbor/style/element_steps_res.h
   /usr/include/lexbor/style/html/interfaces/document.h
   /usr/include/lexbor/style/html/interfaces/element.h
+  /usr/include/lexbor/style/html/interfaces/option_element.h
   /usr/include/lexbor/style/html/interfaces/style_element.h
   /usr/include/lexbor/style/style.h
+  /usr/include/lexbor/style/tree/open_elements_res.h
   /usr/include/lexbor/tag/base.h
   /usr/include/lexbor/tag/const.h
   /usr/include/lexbor/tag/res.h
@@ -293,7 +304,7 @@ Files included in the binary package:
   /usr/include/lexbor/utils/warc.h
   /usr/lib/cmake/lexbor/lexbor-config-version.cmake
   /usr/lib/cmake/lexbor/lexbor-config.cmake
-  /usr/lib/cmake/lexbor/lexbor-targets-release.cmake
+  /usr/lib/cmake/lexbor/lexbor-targets-relwithdebinfo.cmake
   /usr/lib/cmake/lexbor/lexbor-targets.cmake
   /usr/lib/liblexbor.dll.a
   /usr/lib/pkgconfig/lexbor.pc
@@ -301,6 +312,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0.1-1bl1 -----
+Version bump.
 
 ----- version 2.7.0-1bl1 -----
 Version bump.

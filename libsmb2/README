@@ -4,45 +4,44 @@ Libsmb2 is a userspace client library for accessing SMB2/SMB3 shares on a
 network.
 
 Runtime requirements:
-  cygwin-3.5.7-1
+  cygwin-3.6.12-1
   libgssapi_krb5_2-1.15.2-2
   libkrb5_3-1.15.2-2
-  libsmb2-devel-6.2-1bl1
-  libsmb2_6-6.2-1bl1
-  pkg-config-2.3.0-1
+  libsmb2-devel-7.0.0-1bl1
+  libsmb2_7-7.0.0-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   libkrb5-devel-1.15.2-2
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/sahlberg/libsmb2
 
 Canonical download:
-  https://github.com/sahlberg/libsmb2/archive/refs/tags/libsmb2-6.2.tar.gz
+  https://github.com/sahlberg/libsmb2/archive/refs/tags/libsmb2-7.0.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libsmb2-6.2-X-src.tar.xz
+  1. unpack libsmb2-7.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libsmb2-6.2-X.cygport all
+        % cygport ./libsmb2-7.0.0-X.cygport all
 
 This will create:
-  /usr/src/libsmb2-6.2-X-src.tar.xz
-  /usr/src/libsmb2-6.2-X.tar.xz
-  /usr/src/libsmb2_6-6.2-X.tar.xz
-  /usr/src/libsmb2-devel-6.2-X.tar.xz
+  /usr/src/libsmb2-7.0.0-X-src.tar.xz
+  /usr/src/libsmb2-7.0.0-X.tar.xz
+  /usr/src/libsmb2_7-7.0.0-X.tar.xz
+  /usr/src/libsmb2-devel-7.0.0-X.tar.xz
 
 -------------------------------------------
 
@@ -52,10 +51,13 @@ Files included in the binary package:
   /usr/bin/smb2-CMD-FIND.exe
   /usr/bin/smb2-cat-async.exe
   /usr/bin/smb2-cat-sync.exe
+  /usr/bin/smb2-compound.exe
+  /usr/bin/smb2-cp.exe
   /usr/bin/smb2-ftruncate-sync.exe
   /usr/bin/smb2-ls-async.exe
-  /usr/bin/smb2-lsa-lookupsids.exe
+  /usr/bin/smb2-ls.exe
   /usr/bin/smb2-lseek-sync.exe
+  /usr/bin/smb2-notify.exe
   /usr/bin/smb2-put-async.exe
   /usr/bin/smb2-put-sync.exe
   /usr/bin/smb2-raw-fsstat-async.exe
@@ -63,26 +65,28 @@ Files included in the binary package:
   /usr/bin/smb2-raw-stat-async.exe
   /usr/bin/smb2-readlink.exe
   /usr/bin/smb2-rename-sync.exe
+  /usr/bin/smb2-server-side-copy-sync.exe
   /usr/bin/smb2-server-sync.exe
+  /usr/bin/smb2-set-security-info.exe
+  /usr/bin/smb2-share-enum-sync.exe
   /usr/bin/smb2-share-enum.exe
-  /usr/bin/smb2-share-info.exe
   /usr/bin/smb2-stat-sync.exe
   /usr/bin/smb2-statvfs-sync.exe
+  /usr/bin/smb2-symlink-sync.exe
   /usr/bin/smb2-truncate-sync.exe
   /usr/share/doc/Cygwin/libsmb2.README
   /usr/share/doc/libsmb2/COPYING
   /usr/share/doc/libsmb2/README
 
-(libsmb2_6)
-  /usr/bin/cygsmb2-6.dll
+(libsmb2_7)
+  /usr/bin/cygsmb2-7.dll
 
 (libsmb2-devel)
-  /usr/include/smb2/libsmb2-dcerpc-lsa.h
-  /usr/include/smb2/libsmb2-dcerpc-srvsvc.h
-  /usr/include/smb2/libsmb2-dcerpc.h
   /usr/include/smb2/libsmb2-raw.h
+  /usr/include/smb2/libsmb2-share-enum.h
   /usr/include/smb2/libsmb2.h
   /usr/include/smb2/smb2-errors.h
+  /usr/include/smb2/smb2-ioctl.h
   /usr/include/smb2/smb2.h
   /usr/lib/libsmb2.dll.a
   /usr/lib/pkgconfig/libsmb2.pc
@@ -90,6 +94,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 7.0.0-1bl1 -----
+Version bump.
 
 ----- version 6.2-1bl1 -----
 Version bump.

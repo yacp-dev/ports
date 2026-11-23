@@ -7,32 +7,44 @@ SUMMARY="SMB2/3 userspace client"
 DESCRIPTION="Libsmb2 is a userspace client library for accessing SMB2/SMB3 shares on a
 network."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND GPL-3.0-or-later AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND GPL-3.0-or-later AND BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libkrb5-devel"
+BUILD_REQUIRES="
+	libkrb5-devel
+"
 
 CYGCONF_ARGS="
 	--enable-examples
 "
 
+src_test()
+{
+	cd ${B}/utils
+	export PATH=${B}/lib/.libs:${PATH}
+	local out status=0
+	out=$(verbose ./smb2-ls.exe invalid-url 2>&1) || status=$?
+	echo "${out}"
+	[ ${status} -eq 1 ] && echo "${out}" | grep -q "Failed to parse url"
+}
+
 PKG_NAMES="
 	libsmb2
-	libsmb2_6
+	libsmb2_7
 	libsmb2-devel
 "
 libsmb2_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libsmb2_6_CONTENTS="
-	usr/bin/cyg*-6.dll
+libsmb2_7_CONTENTS="
+	usr/bin/cyg*-7.dll
 "
 libsmb2_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libsmb2_SUMMARY="${SUMMARY} (utilities)"
-libsmb2_6_SUMMARY="${SUMMARY} (runtime)"
+libsmb2_7_SUMMARY="${SUMMARY} (runtime)"
 libsmb2_devel_SUMMARY="${SUMMARY} (development)"

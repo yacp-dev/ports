@@ -14,6 +14,11 @@ LICENSE_URI="LICENSE"
 inherit cmake
 inherit git
 
+SRC_URI+="
+	CMakeLists.txt
+	jsmn.pc.in
+"
+
 PKG_NAMES="
 	${PN}
 	lib${PN}0

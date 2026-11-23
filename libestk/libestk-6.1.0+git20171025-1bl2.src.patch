@@ -1,5 +1,5 @@
---- origsrc/libestk/CMakeLists.txt	2022-06-24 16:26:53.000000000 +0900
-+++ src/libestk/CMakeLists.txt	2022-06-24 16:42:11.359862300 +0900
+--- origsrc/libestk/CMakeLists.txt	2026-11-23 08:37:27.000000000 +0000
++++ src/libestk/CMakeLists.txt	2026-11-23 08:37:28.835376900 +0000
 @@ -24,11 +24,15 @@ set(ESTK estk${MAJOR})
  # Configuration
  # =============
@@ -32,7 +32,7 @@
  
  if(NOT ES_OPT_EMSCRIPTEN)
 -	target_link_libraries(${ESTK} m GLEW SDL2)
-+	target_link_libraries(${ESTK} m ${GLEW_LIBRARIES} SDL2)
++	target_link_libraries(${ESTK} m ${GLEW_LIBRARIES} GLESv2 SDL2)
  endif(NOT ES_OPT_EMSCRIPTEN)
  
  if(ES_OPT_AUDIO AND NOT ES_OPT_EMSCRIPTEN)
@@ -54,8 +54,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libestk.pc.in ${CMAKE_BINARY_DIR}/libestk.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libestk.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libestk/libestk.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libestk/libestk.pc.in	2022-06-24 16:43:00.041598700 +0900
+--- origsrc/libestk/libestk.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libestk/libestk.pc.in	2026-11-23 08:37:28.837389400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -67,3 +67,23 @@
 +Version: @MAJOR@.@MINOR@.@PATCH@
 +Libs: -L${libdir} -lestk6
 +Cflags: -I${includedir}
+--- origsrc/libestk/src/log.c	2026-11-23 08:37:27.000000000 +0000
++++ src/libestk/src/log.c	2026-11-23 08:37:28.837389400 +0000
+@@ -4,7 +4,7 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
+-#ifndef __WIN32__
++#if !defined(__WIN32__) || defined(__CYGWIN__)
+ #define COL_BASE "\033[0m"
+ #define COL_INFO "\033[94m"
+ #define COL_SUCC "\033[92m"
+@@ -25,7 +25,7 @@ static const char *get_prefix(int class)
+ 	static int atty = 0;
+ 
+ 	if (count++ == 0) {
+-#ifndef __WIN32__
++#if !defined(__WIN32__) || defined(__CYGWIN__)
+ #ifndef EMSCRIPTEN
+ 		atty = isatty(fileno(LOG_OUTPUT));
+ #endif

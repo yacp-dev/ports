@@ -2,7 +2,7 @@ HOMEPAGE="https://www.msoos.org/${PN}5/"
 # meelgroup's cadical and cadiback as of the release/v${PV} tag (CMakeLists.txt
 # fetches their master/main with git); built static and linked in, as Arch does
 CADICAL_REV="818c9562f114b315a9246ced943b66b60b38e8fb"
-CADIBACK_REV="445ddc2f2b5e54421af64e0652c2eb8444175322"
+CADIBACK_REV="802e1f6d34b6e613828e591a8359298cd99e6429"
 SRC_URI="
 	https://github.com/msoos/${PN}/archive/refs/tags/release/v${PV}.tar.gz
 	https://github.com/meelgroup/cadical/archive/${CADICAL_REV}.tar.gz
@@ -70,6 +70,24 @@ src_install()
 	dodoc LICENSE
 }
 
+src_test()
+{
+	cd ${B}
+	local dlldir=$(dirname $(find ${B} -name 'cygcryptominisat5-*.dll' | head -n1))
+	export PATH=${dlldir}:${PATH}
+	# upstream's tests need 'lit', which Cygwin lacks: smoke test only
+	verbose ./cryptominisat5.exe --version
+	printf 'p cnf 2 2\n1 2 0\n-1 0\n' > ${T}/sat.cnf
+	printf 'p cnf 1 2\n1 0\n-1 0\n' > ${T}/unsat.cnf
+	# exit status 10 = SATISFIABLE, 20 = UNSATISFIABLE
+	local status=0
+	verbose ./cryptominisat5.exe --verb 0 ${T}/sat.cnf || status=$?
+	[ ${status} -eq 10 ] || error "expected exit status 10, got ${status}"
+	status=0
+	verbose ./cryptominisat5.exe --verb 0 ${T}/unsat.cnf || status=$?
+	[ ${status} -eq 20 ] || error "expected exit status 20, got ${status}"
+}
+
 # CMake Error at tests/CMakeLists.txt:34 (message):
 #   Could not find 'lit' tool.  You need to install it by e.g.  'pip install
 #   lit' or 'python -m pip install lit'.  If it's already installed, set
@@ -92,8 +110,8 @@ cryptominisat_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libcryptominisat5_5_17_CONTENTS="
-	usr/bin/cyg*-5.17.dll
+libcryptominisat5_5_18_CONTENTS="
+	usr/bin/cyg*-5.18.dll
 "
 libcryptominisat5_devel_CONTENTS="
 	usr/include
@@ -102,5 +120,9 @@ libcryptominisat5_devel_CONTENTS="
 	usr/lib/pkgconfig
 "
 cryptominisat_SUMMARY="${SUMMARY} (utilities)"
-libcryptominisat5_5_17_SUMMARY="${SUMMARY} (runtime)"
+libcryptominisat5_5_18_SUMMARY="${SUMMARY} (runtime)"
 libcryptominisat5_devel_SUMMARY="${SUMMARY} (development)"
+
+libcryptominisat5_devel_REQUIRES="
+	libgmp-devel
+"

@@ -10,18 +10,17 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libgtest-devel
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DTESTING:BOOL=ON
 	-DSOVERSION:STRING=${PV[1]}
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
-
-src_test()
-{
-	cd ${B}
-	ctest
-}
 
 PKG_NAMES="
 	libecbor
@@ -40,5 +39,5 @@ libecbor_devel_CONTENTS="
 	usr/lib
 "
 libecbor_SUMMARY="${SUMMARY} (licensing & readmes)"
-libecbor0_SUMMARY="${SUMMARY} (runtime)"
+libecbor1_SUMMARY="${SUMMARY} (runtime)"
 libecbor_devel_SUMMARY="${SUMMARY} (development)"

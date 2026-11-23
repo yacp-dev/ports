@@ -57,7 +57,8 @@ pcsc_lite_CONTENTS="
 	usr/share/polkit-1/actions
 "
 libpcsclite1_CONTENTS="
-	usr/bin/cygpcsclite*-1.dll
+	usr/bin/cygpcsclite-1.dll
+	usr/bin/cygpcsclite_real-1.dll
 "
 libpcsclite_devel_CONTENTS="
 	usr/bin/pcsc-spy

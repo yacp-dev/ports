@@ -5,6 +5,23 @@ CATEGORY="Libs"
 SUMMARY="X86 emulation and shellcode detection"
 DESCRIPTION="${SUMMARY}"
 
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/\[0\.2\.0\]/[${PV}]/" configure.ac
+}
+
+src_test()
+{
+	cd ${B}/testsuite
+	export PATH=${B}/src/.libs:${PATH}
+	verbose ./testsuite.exe
+}
+
 PKG_NAMES="
 	${PN}
 	${PN}2
@@ -15,7 +32,7 @@ libemu_CONTENTS="
 	usr/share/doc
 "
 libemu2_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygemu-2.dll
 "
 libemu_devel_CONTENTS="
 	usr/include

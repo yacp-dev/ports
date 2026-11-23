@@ -9,6 +9,10 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="debian/copyright"
 
+BUILD_REQUIRES="
+	check
+"
+
 CYGCONF_ARGS="
 	--enable-maintainer-mode
 "

@@ -1,13 +1,13 @@
---- origsrc/libdebian-installer-0.128/configure.ac	2026-05-17 04:30:58.000000000 +0900
-+++ src/libdebian-installer-0.128/configure.ac	2026-07-30 07:57:35.261244700 +0900
+--- origsrc/libdebian-installer-0.128/configure.ac	2026-05-16 19:30:58.000000000 +0000
++++ src/libdebian-installer-0.128/configure.ac	2026-11-23 05:30:38.022697200 +0000
 @@ -1,4 +1,4 @@
 -AC_INIT([libdebian-installer],m4_esyscmd(dpkg-parsechangelog | perl -ne 'print $1 if m/^Version: (.*)$/;'))
 +AC_INIT([libdebian-installer],[0.128])
  AM_INIT_AUTOMAKE([])
  AM_MAINTAINER_MODE
  
---- origsrc/libdebian-installer-0.128/src/Makefile.am	2026-05-17 04:30:58.000000000 +0900
-+++ src/libdebian-installer-0.128/src/Makefile.am	2026-07-30 07:51:08.852064500 +0900
+--- origsrc/libdebian-installer-0.128/src/Makefile.am	2026-05-16 19:30:58.000000000 +0000
++++ src/libdebian-installer-0.128/src/Makefile.am	2026-11-23 05:30:38.022697200 +0000
 @@ -36,12 +36,12 @@ libdebian_installer_la_LIBADD = \
  libdebian_installer_extra_la_LIBADD = \
  	libdebian-installer.la
@@ -23,8 +23,8 @@
  	-version-number $(LIBRARY_VERSION_LIBTOOL) \
  	-Wl,--version-script=$(srcdir)/libdebian-installer-extra.ver \
  	-Wl,--no-undefined-version
---- origsrc/libdebian-installer-0.128/src/log.c	2026-05-17 04:30:58.000000000 +0900
-+++ src/libdebian-installer-0.128/src/log.c	2026-07-30 07:51:08.856095400 +0900
+--- origsrc/libdebian-installer-0.128/src/log.c	2026-05-16 19:30:58.000000000 +0000
++++ src/libdebian-installer-0.128/src/log.c	2026-11-23 05:30:38.024705000 +0000
 @@ -212,7 +212,9 @@ void di_log (di_log_level_flags log_leve
    va_end (args);
  }
@@ -35,8 +35,8 @@
  
  void di_vlog (di_log_level_flags log_level, const char *format, va_list args)
  {
---- origsrc/libdebian-installer-0.128/src/package_parser.c	2026-05-17 04:30:58.000000000 +0900
-+++ src/libdebian-installer-0.128/src/package_parser.c	2026-07-30 07:51:08.865898500 +0900
+--- origsrc/libdebian-installer-0.128/src/package_parser.c	2026-05-16 19:30:58.000000000 +0000
++++ src/libdebian-installer-0.128/src/package_parser.c	2026-11-23 05:30:38.024705000 +0000
 @@ -431,7 +431,9 @@ void di_package_parser_read_name_real_4_
    p->key.size = value->size;
  }
@@ -47,8 +47,8 @@
  
  void di_package_parser_read_priority (
    void **data,
---- origsrc/libdebian-installer-0.128/src/system/packages.c	2026-05-17 04:30:58.000000000 +0900
-+++ src/libdebian-installer-0.128/src/system/packages.c	2026-07-30 07:51:08.875315200 +0900
+--- origsrc/libdebian-installer-0.128/src/system/packages.c	2026-05-16 19:30:58.000000000 +0000
++++ src/libdebian-installer-0.128/src/system/packages.c	2026-11-23 05:30:38.024705000 +0000
 @@ -257,5 +257,7 @@ void di_system_packages_resolve_dependen
    di_system_packages_resolve_dependencies_mark_anna (packages, "unknown", uts.release);
  }
@@ -57,8 +57,8 @@
  __asm__ (".symver di_system_packages_resolve_dependencies_mark_kernel_real_4_2_unstable,di_system_packages_resolve_dependencies_mark_kernel@LIBDI_4.2_UNSTABLE");
 +#endif
  
---- origsrc/libdebian-installer-0.128/src/system/prebaseconfig.c	2026-05-17 04:30:58.000000000 +0900
-+++ src/libdebian-installer-0.128/src/system/prebaseconfig.c	2026-07-30 07:51:08.882314500 +0900
+--- origsrc/libdebian-installer-0.128/src/system/prebaseconfig.c	2026-05-16 19:30:58.000000000 +0000
++++ src/libdebian-installer-0.128/src/system/prebaseconfig.c	2026-11-23 05:30:38.026711500 +0000
 @@ -53,5 +53,7 @@ int di_system_prebaseconfig_append (cons
  
  int di_prebaseconfig_append (const char *udeb, const char *fmt, ...) __attribute__ ((alias("di_system_prebaseconfig_append")));

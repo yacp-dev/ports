@@ -14,7 +14,10 @@ LICENSE="BSL-1.0"
 LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
 LICENSE_URI="http://libe57.org/license.html"
 
-BUILD_REQUIRES="libboost-devel libxerces-c-devel"
+BUILD_REQUIRES="
+	libboost-devel
+	libxerces-c-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -Dlseek64=lseek"
 
@@ -24,6 +27,12 @@ CYGCMAKE_ARGS="
 	-DSOVERSION:STRING=${PV[1]}
 	-DVERSION:STRING=${PV}
 "
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${PATH} verbose ./e57unpack.exe --version
+}
 
 DOCS="
 	*.pdf

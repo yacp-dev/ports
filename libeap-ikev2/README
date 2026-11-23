@@ -1,27 +1,27 @@
 libeap-ikev2
 ------------------------------------------
-EAP-IKEv2 is an EAP authentication method based on the Internet Key
-Exchange Protocol version 2 (IKEv2). It provides mutual authentication
-and session key establishment between an EAP peer and an EAP server.
-It supports authentication techniques that are based on asymmetric key
-pairs, symmetric keys and passwords.
+EAP-IKEv2 is an EAP authentication method based on the Internet Key Exchange
+Protocol version 2 (IKEv2). It provides mutual authentication and session key
+establishment between an EAP peer and an EAP server. It supports authentication
+techniques that are based on asymmetric key pairs, symmetric keys and
+passwords.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libeap-ikev2-devel-0.2.1-1bl5
-  libeap-ikev2_0-0.2.1-1bl5
+  cygwin-3.6.12-1
+  libeap-ikev2-devel-0.2.1-1bl6
+  libeap-ikev2_0-0.2.1-1bl6
   libssl1.0-1.0.2u+za-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   libssl1.0-devel-1.0.2u+za-1
-  libtool-2.5.4-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -86,6 +86,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.1-1bl6 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2.1-1bl5 -----
 Rebuild with gcc-13.4.0

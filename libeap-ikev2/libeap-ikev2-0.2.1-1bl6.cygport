@@ -19,6 +19,9 @@ BUILD_REQUIRES="
 
 export CPPFLAGS="${CPPFLAGS} -I/usr/lib/openssl-1.0/include"
 export LDFLAGS="${LDFLAGS} -L/usr/lib/openssl-1.0/lib"
+# Upstream predates C23 (bool/true/false as keywords) and GCC 14's
+# incompatible-pointer-types error.
+export CFLAGS="${CFLAGS} -std=gnu17 -Wno-error=incompatible-pointer-types"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()

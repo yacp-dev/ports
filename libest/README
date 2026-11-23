@@ -6,21 +6,22 @@ replacement for SCEP, providing several security enhancements and support for
 ECC certificates.
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libest-devel-3.2.0-1bl2
-  libest3.2.0p-3.2.0-1bl2
-  libssl3-3.0.13-1
-  pkg-config-2.2.0-1
+  cygwin-3.6.12-1
+  libest-devel-3.2.0-1bl3
+  libest3.2.0p-3.2.0-1bl3
+  libssl3-3.5.9-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.9-1
-  gcc-core-11.4.0-1
-  libssl-devel-3.0.13-1
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libjsmn-devel-0+git20181002-1bl2
+  libssl-devel-3.5.9-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -72,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.2.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.2.0-1bl2 -----
 Rebuild for libssl

@@ -1,5 +1,5 @@
---- origsrc/libest-r3.2.0/Makefile.am	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/Makefile.am	2024-05-09 15:43:11.900329000 +0900
+--- origsrc/libest-r3.2.0/Makefile.am	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/Makefile.am	2026-11-23 09:05:52.609911700 +0000
 @@ -7,3 +7,6 @@ SUBDIRS = safe_c_stub src java/jni examp
  endif
  
@@ -7,17 +7,25 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libest-r3.2.0/configure.ac	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/configure.ac	2024-05-09 15:43:11.900329000 +0900
-@@ -198,5 +198,5 @@ AC_PREFIX_DEFAULT([/usr/local/est])
+--- origsrc/libest-r3.2.0/configure.ac	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/configure.ac	2026-11-23 09:05:52.611925500 +0000
+@@ -9,7 +9,6 @@ AC_CONFIG_SRCDIR(example/server/estserve
+ AC_CONFIG_SRCDIR(example/proxy/estproxy.c)
+ AC_CONFIG_MACRO_DIR([m4])
+ 
+-AM_INIT_AUTOMAKE
+ AM_MAINTAINER_MODE
+ AM_INIT_AUTOMAKE([subdir-objects])
+ 
+@@ -198,5 +197,5 @@ AC_PREFIX_DEFAULT([/usr/local/est])
  
  cp confdefs.h est_config.h
  
 -AC_CONFIG_FILES([Makefile version safe_c_stub/Makefile safe_c_stub/lib/Makefile java/jni/Makefile src/Makefile src/est/Makefile example/client/Makefile example/client-simple/Makefile example/client-brski/Makefile example/server/Makefile example/proxy/Makefile])
 +AC_CONFIG_FILES([libest.pc Makefile version safe_c_stub/Makefile safe_c_stub/lib/Makefile java/jni/Makefile src/Makefile src/est/Makefile example/client/Makefile example/client-simple/Makefile example/client-brski/Makefile example/server/Makefile example/proxy/Makefile])
  AC_OUTPUT
---- origsrc/libest-r3.2.0/example/client/estclient.c	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/example/client/estclient.c	2024-05-09 16:11:33.437470600 +0900
+--- origsrc/libest-r3.2.0/example/client/estclient.c	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/example/client/estclient.c	2026-11-23 09:05:52.613939200 +0000
 @@ -58,6 +58,8 @@ static CRITICAL_SECTION logger_critical_
  #define SLEEP(x) sleep(x)
  #endif 
@@ -27,8 +35,8 @@
  /*
   * Global variables to hold command line options
   */
---- origsrc/libest-r3.2.0/example/proxy/estproxy.c	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/example/proxy/estproxy.c	2024-05-09 16:13:22.275575300 +0900
+--- origsrc/libest-r3.2.0/example/proxy/estproxy.c	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/example/proxy/estproxy.c	2026-11-23 09:05:52.613939200 +0000
 @@ -59,6 +59,8 @@
  #define DEFAULT_ENHCD_CERT_PWD "cisco"
  #define DEFAULT_ENHCD_CERT_LOCAL_PKI_NID NID_commonName
@@ -38,8 +46,8 @@
  int coap_mode = 0;
  #if HAVE_LIBCOAP
  static int dtls_handshake_timeout = EST_DTLS_HANDSHAKE_TIMEOUT_DEF;
---- origsrc/libest-r3.2.0/example/server/estserver.c	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/example/server/estserver.c	2024-05-09 16:12:44.262940900 +0900
+--- origsrc/libest-r3.2.0/example/server/estserver.c	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/example/server/estserver.c	2026-11-23 09:05:52.615953100 +0000
 @@ -61,6 +61,8 @@
  #define DEFAULT_ENHCD_CERT_PWD "cisco"
  #define DEFAULT_ENHCD_CERT_LOCAL_PKI_NID NID_commonName
@@ -49,8 +57,8 @@
  /*
   * The OpenSSL CA needs this BIO to send errors too
   */
---- origsrc/libest-r3.2.0/example/util/utils.c	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/example/util/utils.c	2024-05-09 15:43:11.900329000 +0900
+--- origsrc/libest-r3.2.0/example/util/utils.c	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/example/util/utils.c	2026-11-23 09:05:52.617966300 +0000
 @@ -29,6 +29,7 @@
   * detail to the user regarding the cause of the
   * failure.
@@ -67,8 +75,8 @@
  
  /*
   * Reads a file into an unsigned char array.
---- origsrc/libest-r3.2.0/libest.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libest-r3.2.0/libest.pc.in	2024-05-09 15:43:11.900329000 +0900
+--- origsrc/libest-r3.2.0/libest.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libest-r3.2.0/libest.pc.in	2026-11-23 09:05:52.619981700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -80,8 +88,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lest
 +Cflags: -I${includedir}
---- origsrc/libest-r3.2.0/safe_c_stub/lib/Makefile.am	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/safe_c_stub/lib/Makefile.am	2024-05-09 15:43:11.900329000 +0900
+--- origsrc/libest-r3.2.0/safe_c_stub/lib/Makefile.am	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/safe_c_stub/lib/Makefile.am	2026-11-23 09:05:52.619981700 +0000
 @@ -7,14 +7,14 @@
  # used with safec
  #
@@ -100,8 +108,8 @@
  
  
  
---- origsrc/libest-r3.2.0/src/est/Makefile.am	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/src/est/Makefile.am	2024-05-09 15:45:41.549810700 +0900
+--- origsrc/libest-r3.2.0/src/est/Makefile.am	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/src/est/Makefile.am	2026-11-23 09:05:52.621995000 +0000
 @@ -1,29 +1,29 @@
  if ENABLE_CLIENT_ONLY 
  lib_LTLIBRARIES = libest_client.la
@@ -144,8 +152,8 @@
 -endif
 \ No newline at end of file
 +endif
---- origsrc/libest-r3.2.0/src/est/est_client.c	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/src/est/est_client.c	2024-05-09 16:05:48.945118700 +0900
+--- origsrc/libest-r3.2.0/src/est/est_client.c	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/src/est/est_client.c	2026-11-23 09:05:52.624019500 +0000
 @@ -53,6 +53,8 @@ WSADATA wsaData;
  #define SLEEP(x) sleep(x)
  #endif
@@ -155,8 +163,8 @@
  #define SSL_EXDATA_INDEX_INVALID -1
  
  int e_ctx_ssl_exdata_index = SSL_EXDATA_INDEX_INVALID;
---- origsrc/libest-r3.2.0/src/est/est_locl.h	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/src/est/est_locl.h	2024-05-09 15:43:11.915966900 +0900
+--- origsrc/libest-r3.2.0/src/est/est_locl.h	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/src/est/est_locl.h	2026-11-23 09:05:52.626308300 +0000
 @@ -590,7 +590,9 @@ typedef struct est_oid_list {
  /*
   * Index used to link the EST Ctx into the SSL structures
@@ -167,8 +175,8 @@
  
  LIBEST_TEST_API void est_log (EST_LOG_LEVEL lvl, char *format, ...);
  LIBEST_TEST_API void est_log_backtrace (void);
---- origsrc/libest-r3.2.0/src/est/est_server.c	2020-07-06 13:42:19.000000000 +0900
-+++ src/libest-r3.2.0/src/est/est_server.c	2024-05-09 16:06:33.811936100 +0900
+--- origsrc/libest-r3.2.0/src/est/est_server.c	2020-07-06 04:42:19.000000000 +0000
++++ src/libest-r3.2.0/src/est/est_server.c	2026-11-23 09:05:52.627800600 +0000
 @@ -31,6 +31,7 @@
  #include <openssl/cms.h>
  #include <openssl/bio.h>

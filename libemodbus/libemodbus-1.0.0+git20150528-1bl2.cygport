@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/snegovick/${PN}"
 GIT_URI="https://github.com/snegovick/${PN}.git"
+GIT_REV="6c222876a2642b454644b88fef0038cecfdef21a"
 
 CATEGORY="Libs"
 SUMMARY="Embedded modbus parsing library"
@@ -12,7 +13,10 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="CUnit libccontainer-devel"
+BUILD_REQUIRES="
+	CUnit
+	libccontainer-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -I/usr/include/libccontainer"
 

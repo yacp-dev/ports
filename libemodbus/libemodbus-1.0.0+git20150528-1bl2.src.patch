@@ -1,5 +1,5 @@
---- origsrc/libemodbus/Makefile.am	2024-10-24 15:53:11.000000000 +0900
-+++ src/libemodbus/Makefile.am	2024-10-24 16:24:30.402811500 +0900
+--- origsrc/libemodbus/Makefile.am	2026-11-23 07:44:34.000000000 +0000
++++ src/libemodbus/Makefile.am	2026-11-23 07:44:35.010708900 +0000
 @@ -10,4 +10,7 @@ SUBDIRS = src $(EXTRA)
  
  TESTS = tests/emodbus
@@ -9,8 +9,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libemodbus/configure.ac	2024-10-24 15:53:11.000000000 +0900
-+++ src/libemodbus/configure.ac	2024-10-24 16:24:30.418438100 +0900
+--- origsrc/libemodbus/configure.ac	2026-11-23 07:44:34.000000000 +0000
++++ src/libemodbus/configure.ac	2026-11-23 07:44:35.010708900 +0000
 @@ -36,11 +36,16 @@ AC_ARG_ENABLE([tests],
      AS_HELP_STRING([--disable-tests], [Disable tests building]))
  
@@ -28,8 +28,8 @@
 +AC_CONFIG_FILES([libemodbus.pc])
  AC_OUTPUT
  
---- origsrc/libemodbus/libemodbus.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libemodbus/libemodbus.pc.in	2024-10-24 16:24:30.387187800 +0900
+--- origsrc/libemodbus/libemodbus.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libemodbus/libemodbus.pc.in	2026-11-23 07:44:35.012241000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -41,8 +41,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lemodbus
 +Cflags: -I${includedir}
---- origsrc/libemodbus/src/Makefile.am	2024-10-24 15:53:11.000000000 +0900
-+++ src/libemodbus/src/Makefile.am	2024-10-24 15:53:12.357118500 +0900
+--- origsrc/libemodbus/src/Makefile.am	2026-11-23 07:44:34.000000000 +0000
++++ src/libemodbus/src/Makefile.am	2026-11-23 07:44:35.012241000 +0000
 @@ -1,4 +1,4 @@
  lib_LTLIBRARIES = libemodbus.la
  libemodbus_la_SOURCES = emodbus_parser.c emodbus_parser.h
@@ -50,8 +50,8 @@
 -libemodbus_la_CFLAGS = ${CFLAGS} ${CCONTAINER_CFLAGS} -D_GNU_SOURCE=1 -D_REENTRANT -I./ -Wall
 +libemodbus_la_LDFLAGS = -no-undefined ${LDFLAGS} ${CCONTAINER_LIBDIR} ${CCONTAINER_LIBS} -Wl,--export-dynamic -rdynamic -version-info 0:1:0
 +libemodbus_la_CFLAGS = ${CFLAGS} ${CCONTAINER_CFLAGS} -D_GNU_SOURCE=1 -D_REENTRANT -I$(srcdir) -Wall
---- origsrc/libemodbus/tests/Makefile.am	2024-10-24 15:53:11.000000000 +0900
-+++ src/libemodbus/tests/Makefile.am	2024-10-24 15:53:12.357118500 +0900
+--- origsrc/libemodbus/tests/Makefile.am	2026-11-23 07:44:34.000000000 +0000
++++ src/libemodbus/tests/Makefile.am	2026-11-23 07:44:35.013742000 +0000
 @@ -1,4 +1,4 @@
  bin_PROGRAMS = emodbus
  emodbus_SOURCES = emodbus_tests.c

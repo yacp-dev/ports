@@ -4,50 +4,49 @@ Developing consistent and meaningful benchmark results for code is a complex
 task. Measurement tools exist (Intel VTune Amplifier, SmartBear AQTime,
 Valgrind) external to applications, but they are sometimes expensive for small
 teams or cumbersome to utilize. This project, Celero, aims to be a small
-library which can be added to a C++ project and perform benchmarks on code in
-a way which is easy to reproduce, share, and compare among individual runs,
+library which can be added to a C++ project and perform benchmarks on code in a
+way which is easy to reproduce, share, and compare among individual runs,
 developers, or projects. Celero uses a framework similar to that of GoogleTest
 to make its API easier to use and integrate into a project. Make automated
 benchmarking as much a part of your development process as automated testing.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libcelero-devel-2.10.0-1bl1
-  libcelero2-2.10.0-1bl1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libcelero-devel-2.11.0-1bl1
+  libcelero2-2.11.0-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libgtest-devel-1.17.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/DigitalInBlue/Celero
 
 Canonical download:
-  https://github.com/DigitalInBlue/Celero/archive/refs/tags/v2.10.0.tar.gz
+  https://github.com/DigitalInBlue/Celero/archive/refs/tags/v2.11.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack celero-2.10.0-X-src.tar.xz
+  1. unpack celero-2.11.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./celero-2.10.0-X.cygport all
+        % cygport ./celero-2.11.0-X.cygport all
 
 This will create:
-  /usr/src/celero-2.10.0-X-src.tar.xz
-  /usr/src/celero-2.10.0-X.tar.xz
-  /usr/src/libcelero2-2.10.0-X.tar.xz
-  /usr/src/libcelero-devel-2.10.0-X.tar.xz
+  /usr/src/celero-2.11.0-X-src.tar.xz
+  /usr/src/celero-2.11.0-X.tar.xz
+  /usr/src/libcelero2-2.11.0-X.tar.xz
+  /usr/src/libcelero-devel-2.11.0-X.tar.xz
 
 -------------------------------------------
 
@@ -94,7 +93,7 @@ Files included in the binary package:
   /usr/include/celero/UserDefinedMeasurementTemplate.h
   /usr/include/celero/Utilities.h
   /usr/lib/cmake/celero/celero-config.cmake
-  /usr/lib/cmake/celero/celero-targets-release.cmake
+  /usr/lib/cmake/celero/celero-targets-relwithdebinfo.cmake
   /usr/lib/cmake/celero/celero-targets.cmake
   /usr/lib/libcelero.dll.a
   /usr/lib/pkgconfig/celero.pc
@@ -102,6 +101,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.11.0-1bl1 -----
+Version bump.
 
 ----- version 2.10.0-1bl1 -----
 Version bump.

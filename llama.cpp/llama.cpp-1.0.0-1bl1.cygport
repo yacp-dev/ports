@@ -47,22 +47,22 @@ src_install()
 
 PKG_NAMES="
 	llama.cpp
-	libllama0
+	libllama1
 	libllama-devel
 "
 llama_cpp_CONTENTS="
 	usr/bin/*.exe
-	usr/bin/cygllama-common-0.dll
+	usr/bin/cygllama-common-1.dll
 	usr/share
 "
-libllama0_CONTENTS="
-	usr/bin/cygllama-0.dll
-	usr/bin/cygmtmd-0.dll
+libllama1_CONTENTS="
+	usr/bin/cygllama-1.dll
+	usr/bin/cygmtmd-1.dll
 "
 libllama_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 llama_cpp_SUMMARY="${SUMMARY} (utilities)"
-libllama0_SUMMARY="${SUMMARY} (runtime)"
+libllama1_SUMMARY="${SUMMARY} (runtime)"
 libllama_devel_SUMMARY="${SUMMARY} (development)"

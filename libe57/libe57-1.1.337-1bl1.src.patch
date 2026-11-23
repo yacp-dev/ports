@@ -1,6 +1,6 @@
---- origsrc/libe57-1.1.335/CMakeLists.txt	2024-08-14 16:10:04.000000000 +0900
-+++ src/libe57-1.1.335/CMakeLists.txt	2025-03-23 17:20:16.951071500 +0900
-@@ -110,12 +110,12 @@ endif (NOT Xerces_FOUND)
+--- origsrc/libe57-1.1.337/CMakeLists.txt	2026-01-20 10:31:35.000000000 +0000
++++ src/libe57-1.1.337/CMakeLists.txt	2026-11-23 05:51:42.355865800 +0000
+@@ -111,12 +111,12 @@ endif (NOT Xerces_FOUND)
  set(XML_LIBRARIES ${Xerces_LIBRARY})
  set(XML_INCLUDE_DIRS ${Xerces_INCLUDE_DIR})
  
@@ -15,7 +15,7 @@
      add_definitions(-DWINDOWS)
  endif()
  
-@@ -146,7 +146,7 @@ link_directories(
+@@ -147,7 +147,7 @@ link_directories(
  # The reference implementation
  #
  
@@ -24,7 +24,7 @@
      src/refimpl/E57Foundation.cpp
      src/refimpl/E57FoundationImpl.cpp
      src/refimpl/E57FoundationImpl.h
-@@ -156,9 +156,13 @@ add_library( E57RefImpl STATIC
+@@ -157,9 +157,13 @@ add_library( E57RefImpl STATIC
      src/time_conversion/time_conversion.c
      include/E57Simple.h
  )
@@ -38,7 +38,7 @@
  
  #
  # Files for LAS format support
-@@ -282,7 +286,7 @@ install(
+@@ -283,7 +287,7 @@ install(
  install(
      FILES
          src/refimpl/E57RefImplConfig.cmake
@@ -47,7 +47,7 @@
  )
  
  #include (InstallRequiredSystemLibraries)
-@@ -296,3 +300,10 @@ set (CPACK_GENERATOR "ZIP")
+@@ -297,3 +301,10 @@ set (CPACK_GENERATOR "ZIP")
  set (CPACK_STRIP_FILES "TRUE")
  
  include (CPack)
@@ -58,8 +58,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libe57.pc.in ${CMAKE_BINARY_DIR}/libe57.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libe57.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libe57-1.1.335/libe57.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libe57-1.1.335/libe57.pc.in	2025-03-23 15:06:38.823513200 +0900
+--- origsrc/libe57-1.1.337/libe57.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libe57-1.1.337/libe57.pc.in	2026-11-23 05:51:42.356813900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -71,8 +71,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lE57RefImpl
 +Cflags: -I${includedir}/e57
---- origsrc/libe57-1.1.335/src/refimpl/E57FoundationImpl.cpp	2024-08-14 16:10:04.000000000 +0900
-+++ src/libe57-1.1.335/src/refimpl/E57FoundationImpl.cpp	2025-03-23 15:06:38.823513200 +0900
+--- origsrc/libe57-1.1.337/src/refimpl/E57FoundationImpl.cpp	2026-01-20 10:31:35.000000000 +0000
++++ src/libe57-1.1.337/src/refimpl/E57FoundationImpl.cpp	2026-11-23 05:51:42.358825000 +0000
 @@ -56,7 +56,9 @@
  #  include <sys/stat.h>
  #  include <unistd.h>

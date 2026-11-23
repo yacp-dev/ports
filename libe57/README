@@ -8,48 +8,48 @@ It is not expected to be the only implementation, and it is not intended to be
 the fastest possible implementation.
 
 Runtime requirements:
-  cygwin-3.6.0-1
+  cygwin-3.6.12-1
   libboost_filesystem1.66-1.66.0-1
   libboost_program_options1.66-1.66.0-1
   libboost_system1.66-1.66.0-1
-  libe57-devel-1.1.335-1bl1
-  libe57_1-1.1.335-1bl1
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
+  libe57-devel-1.1.337-1bl1
+  libe57_1-1.1.337-1bl1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
   libxerces-c31-3.1.4-1
-  pkg-config-2.3.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   libboost-devel-1.66.0-1
   libxerces-c-devel-3.1.4-1
-  ninja-1.12.1-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/hlrs-vis/libe57
 
 Canonical download:
-  https://github.com/hlrs-vis/libe57/archive/refs/tags/v1.1.335.tar.gz
+  https://github.com/hlrs-vis/libe57/archive/refs/tags/v1.1.337.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libe57-1.1.335-X-src.tar.xz
+  1. unpack libe57-1.1.337-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libe57-1.1.335-X.cygport all
+        % cygport ./libe57-1.1.337-X.cygport all
 
 This will create:
-  /usr/src/libe57-1.1.335-X-src.tar.xz
-  /usr/src/libe57-1.1.335-X.tar.xz
-  /usr/src/libe57_1-1.1.335-X.tar.xz
-  /usr/src/libe57-devel-1.1.335-X.tar.xz
+  /usr/src/libe57-1.1.337-X-src.tar.xz
+  /usr/src/libe57-1.1.337-X.tar.xz
+  /usr/src/libe57_1-1.1.337-X.tar.xz
+  /usr/src/libe57-devel-1.1.337-X.tar.xz
 
 -------------------------------------------
 
@@ -87,6 +87,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.337-1bl1 -----
+Version bump.
 
 ----- version 1.1.335-1bl1 -----
 Version bump.

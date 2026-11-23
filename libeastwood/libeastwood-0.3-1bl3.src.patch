@@ -1,5 +1,5 @@
---- origsrc/libeastwood-0.3/CMakeLists.txt	2009-10-13 18:47:00.000000000 +0900
-+++ src/libeastwood-0.3/CMakeLists.txt	2020-11-02 09:34:04.879730300 +0900
+--- origsrc/libeastwood-0.3/CMakeLists.txt	2009-10-13 09:47:00.000000000 +0000
++++ src/libeastwood-0.3/CMakeLists.txt	2026-11-23 06:46:36.110043600 +0000
 @@ -73,7 +73,11 @@ ENDIF(LIBEASTWOOD_BUILD_PYTHON)
  CONFIGURE_FILE(${LIBEASTWOOD_SOURCE_DIR}/libeastwood.pc.in ${LIBEASTWOOD_BINARY_DIR}/libeastwood.pc @ONLY)
  INSTALL( FILES ${LIBEASTWOOD_BINARY_DIR}/libeastwood.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig )
@@ -13,8 +13,8 @@
  
  ADD_SUBDIRECTORY( src )
  ADD_SUBDIRECTORY( include )
---- origsrc/libeastwood-0.3/include/eastwood/StdDef.h	2009-10-13 18:47:00.000000000 +0900
-+++ src/libeastwood-0.3/include/eastwood/StdDef.h	2020-11-02 09:11:35.386255800 +0900
+--- origsrc/libeastwood-0.3/include/eastwood/StdDef.h	2009-10-13 09:47:00.000000000 +0000
++++ src/libeastwood-0.3/include/eastwood/StdDef.h	2026-11-23 06:46:36.110043600 +0000
 @@ -10,6 +10,7 @@
  #include <cstdlib>
  #include <cstring>
@@ -23,8 +23,8 @@
  
  #ifdef _WIN32
  #include <tchar.h>
---- origsrc/libeastwood-0.3/libeastwood.pc.in	2009-10-13 18:47:00.000000000 +0900
-+++ src/libeastwood-0.3/libeastwood.pc.in	2020-11-02 09:07:48.089825700 +0900
+--- origsrc/libeastwood-0.3/libeastwood.pc.in	2009-10-13 09:47:00.000000000 +0000
++++ src/libeastwood-0.3/libeastwood.pc.in	2026-11-23 06:46:36.112072500 +0000
 @@ -1,6 +1,6 @@
  prefix=@CMAKE_INSTALL_PREFIX@
 -exec_prefix=@LIB_INSTALL_DIR@
@@ -34,8 +34,8 @@
  includedir=@CMAKE_INSTALL_PREFIX@/include
  
  Name: @PACKAGE@
---- origsrc/libeastwood-0.3/src/CMakeLists.txt	2009-10-13 18:47:00.000000000 +0900
-+++ src/libeastwood-0.3/src/CMakeLists.txt	2020-11-02 09:07:07.013544400 +0900
+--- origsrc/libeastwood-0.3/src/CMakeLists.txt	2009-10-13 09:47:00.000000000 +0000
++++ src/libeastwood-0.3/src/CMakeLists.txt	2026-11-23 06:46:36.112072500 +0000
 @@ -49,7 +49,7 @@ SET( SDL_LIBEASTWOOD_SRCS
  ADD_LIBRARY( eastwood SHARED ${LIBEASTWOOD_SRCS} )
  TARGET_LINK_LIBRARIES( eastwood ${LIBSAMPLERATE_LIBRARIES} )
@@ -53,8 +53,8 @@
 +INSTALL(TARGETS SDL_eastwood RUNTIME DESTINATION bin ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} )
  ENDIF(LIBEASTWOOD_BUILD_SDL)
  
---- origsrc/libeastwood-0.3/src/adl/fmopl.c	2009-10-13 18:47:00.000000000 +0900
-+++ src/libeastwood-0.3/src/adl/fmopl.c	2020-11-02 09:22:35.819901900 +0900
+--- origsrc/libeastwood-0.3/src/adl/fmopl.c	2009-10-13 09:47:00.000000000 +0000
++++ src/libeastwood-0.3/src/adl/fmopl.c	2026-11-23 06:46:36.112072500 +0000
 @@ -31,7 +31,11 @@
   * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
   */

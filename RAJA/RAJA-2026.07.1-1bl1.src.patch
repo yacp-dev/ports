@@ -1,0 +1,37 @@
+--- origsrc/RAJA/CMakeLists.txt	2026-11-23 23:10:09.000000000 +0000
++++ src/RAJA/CMakeLists.txt	2026-11-23 23:10:20.490115400 +0000
+@@ -295,12 +295,15 @@ blt_add_library(
+   DEPENDS_ON ${raja_depends} camp ${CMAKE_DL_LIBS}
+   DEFINES ${raja_defines})
+ 
++if (DEFINED SOVERSION)
++  set_target_properties(RAJA PROPERTIES SOVERSION "${SOVERSION}")
++endif()
+ 
+ install(TARGETS RAJA
+   EXPORT RAJATargets
+   ARCHIVE DESTINATION lib
+   LIBRARY DESTINATION lib
+-  RUNTIME DESTINATION lib
++  RUNTIME DESTINATION bin
+   )
+ 
+ install(EXPORT RAJATargets DESTINATION lib/cmake/raja)
+--- origsrc/RAJA/share/raja/pkg-config/RAJA.pc.in	2026-11-23 23:10:10.000000000 +0000
++++ src/RAJA/share/raja/pkg-config/RAJA.pc.in	2026-11-23 23:10:20.492130800 +0000
+@@ -4,5 +4,5 @@ includedir=@CMAKE_INSTALL_PREFIX@/includ
+ Name: @CMAKE_PROJECT_NAME@
+ Description: RAJA Portability Layer
+ Version: @RAJA_VERSION_MAJOR@.@RAJA_VERSION_MINOR@.@RAJA_VERSION_PATCHLEVEL@
+-Libs: -rdynamic ${libdir}/libRAJA.a  @PRIVATE_LIBS@
+-Cflags: @PC_C_FLAGS@ -I${includedir}
++Libs: -L${libdir} -lRAJA
++Cflags: -I${includedir}
+--- origsrc/RAJA/test/install/CMakeLists.txt	2026-11-23 23:10:10.000000000 +0000
++++ src/RAJA/test/install/CMakeLists.txt	2026-11-23 23:10:20.492130800 +0000
+@@ -15,4 +15,4 @@ configure_file(
+    using-with-cmake/CMakeLists.txt
+    using-with-cmake/using-with-cmake.cpp
+    ${PROJECT_BINARY_DIR}/examples/using-with-cmake/host-config.cmake
+-   DESTINATION examples/RAJA/using-with-cmake)
++   DESTINATION share/RAJA/examples/using-with-cmake)

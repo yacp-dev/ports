@@ -5,42 +5,47 @@ expected to run at constant tick intervals with smallest possible overhead and
 little or no support from the underlying run time environment.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libelperiodic-devel-1.4-1bl1
-  libelperiodic1-1.4-1bl1
-  libgcc1-12.4.0-3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libelperiodic-devel-1.5.2-1bl1
+  libelperiodic1-1.5.2-1bl1
+  libgcc1-14.4.0-1
+  pkg-config-3.0.11-1
+  python312-3.12.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  python312-setuptools-84.2.1-1
 
 Canonical website:
   https://github.com/sobomax/libelperiodic
 
 Canonical download:
-  https://github.com/sobomax/libelperiodic/archive/refs/tags/v1.4.tar.gz
+  https://github.com/sobomax/libelperiodic/archive/refs/tags/v1.5.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libelperiodic-1.4-X-src.tar.xz
+  1. unpack libelperiodic-1.5.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libelperiodic-1.4-X.cygport all
+        % cygport ./libelperiodic-1.5.2-X.cygport all
 
 This will create:
-  /usr/src/libelperiodic-1.4-X-src.tar.xz
-  /usr/src/libelperiodic-1.4-X.tar.xz
-  /usr/src/libelperiodic1-1.4-X.tar.xz
-  /usr/src/libelperiodic-devel-1.4-X.tar.xz
+  /usr/src/libelperiodic-1.5.2-X-src.tar.xz
+  /usr/src/libelperiodic-1.5.2-X.tar.xz
+  /usr/src/libelperiodic1-1.5.2-X.tar.xz
+  /usr/src/libelperiodic-devel-1.5.2-X.tar.xz
+  /usr/src/python312-libelperiodic-1.5.2-X.tar.xz
 
 -------------------------------------------
 
@@ -60,9 +65,27 @@ Files included in the binary package:
   /usr/lib/libelperiodic.dll.a
   /usr/lib/pkgconfig/libelperiodic.pc
 
+(python312-libelperiodic)
+  /usr/lib/python3.12/site-packages/ElPeriodic-1.5.2-py3.12.egg-info/PKG-INFO
+  /usr/lib/python3.12/site-packages/ElPeriodic-1.5.2-py3.12.egg-info/SOURCES.txt
+  /usr/lib/python3.12/site-packages/ElPeriodic-1.5.2-py3.12.egg-info/dependency_links.txt
+  /usr/lib/python3.12/site-packages/ElPeriodic-1.5.2-py3.12.egg-info/top_level.txt
+  /usr/lib/python3.12/site-packages/_elperiodic.cpython-312-x86_64-cygwin.dll
+  /usr/lib/python3.12/site-packages/elperiodic/ElPeriodic.py
+  /usr/lib/python3.12/site-packages/elperiodic/__init__.py
+  /usr/lib/python3.12/site-packages/elperiodic/__pycache__/ElPeriodic.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/elperiodic/__pycache__/ElPeriodic.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/elperiodic/__pycache__/ElPeriodic.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/elperiodic/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/elperiodic/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/elperiodic/__pycache__/__init__.cpython-312.pyc
+
 ------------------
 
 Port Notes:
+
+----- version 1.5.2-1bl1 -----
+Version bump.
 
 ----- version 1.4-1bl1 -----
 Version bump.

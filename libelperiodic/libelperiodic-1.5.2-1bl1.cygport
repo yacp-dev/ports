@@ -1,0 +1,87 @@
+HOMEPAGE="https://github.com/sobomax/${PN}"
+SRC_URI="https://github.com/sobomax/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Library to run frequent periodic tasks"
+DESCRIPTION="The libElPeriodic is designed to simplify writing control loops that are
+expected to run at constant tick intervals with smallest possible overhead and
+little or no support from the underlying run time environment."
+
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	python3-devel
+	python312-setuptools
+"
+
+export PYTHON=python3
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i \
+		-e "s/\[m4_esyscmd_s(\[git rev-parse --abbrev-ref HEAD\])\]/[${PV}]/" \
+		-e "s/^mydef_version=.*/mydef_version=\"${PV}\"/" \
+		configure.ac
+}
+
+CYGCONF_ARGS="
+	--enable-maintainer-mode
+"
+
+src_install()
+{
+	cd ${B}
+	# Makefile.am runs setup.py install outside ${S}, where it fails
+	# on its relative paths: skip it and run it from ${S} instead
+	cyginstall PYTHON=:
+	cd ${S}
+	verbose python3 setup.py install --prefix /usr --root ${D} \
+		--single-version-externally-managed
+}
+
+src_test()
+{
+	cd ${S}
+	# check runs before install: lay the bindings out as installed, from
+	# the python build tree (a copy, not a symlink: ElPeriodic.py finds
+	# _elperiodic via "..", which a symlink would resolve into ${S})
+	local pydir=${B}/pytest
+	verbose mkdir -p ${pydir}
+	verbose cp -r ${S}/python ${pydir}/elperiodic
+	verbose cp ${S}/build/lib.*/_elperiodic*.dll ${pydir}/
+	export PYTHONPATH=${pydir}
+	verbose python3 tests/t_ElPeriodic.py
+}
+
+DIFF_EXCLUDES="
+	*.py
+"
+
+PKG_NAMES="
+	libelperiodic
+	libelperiodic1
+	libelperiodic-devel
+	python312-libelperiodic
+"
+libelperiodic_CONTENTS="
+	usr/share
+"
+libelperiodic1_CONTENTS="
+	usr/bin/cyg*-1.dll
+"
+libelperiodic_devel_CONTENTS="
+	usr/include
+	usr/lib/lib*.dll.a
+	usr/lib/pkgconfig
+"
+python312_libelperiodic_CONTENTS="
+	usr/lib/python3.12
+"
+libelperiodic_SUMMARY="${SUMMARY} (licensing & readmes)"
+libelperiodic1_SUMMARY="${SUMMARY} (runtime)"
+libelperiodic_devel_SUMMARY="${SUMMARY} (development)"
+python312_libelperiodic_SUMMARY="${SUMMARY} (python312 bindings)"

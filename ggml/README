@@ -5,17 +5,17 @@ Tensor library for machine learning
 Runtime requirements:
   cygwin-3.6.12-1
   libgcc1-14.4.0-1
-  libggml-devel-0.29.0-1bl3
-  libggml0-0.29.0-1bl3
+  libggml-devel-1.0.0-1bl1
+  libggml1-1.0.0-1bl1
   libgomp1-14.4.0-1
   libstdc++6-14.4.0-1
-  pkg-config-3.0.10-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   cmake-4.4.5-1
-  cygport-0.37.12-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   ninja-1.13.2-1
@@ -24,22 +24,22 @@ Canonical website:
   https://github.com/ggml-org/ggml
 
 Canonical download:
-  https://github.com/ggml-org/ggml/archive/refs/tags/v0.29.0.tar.gz
+  https://github.com/ggml-org/ggml/archive/refs/tags/v1.0.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ggml-0.29.0-X-src.tar.xz
+  1. unpack ggml-1.0.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ggml-0.29.0-X.cygport all
+        % cygport ./ggml-1.0.0-X.cygport all
 
 This will create:
-  /usr/src/ggml-0.29.0-X-src.tar.xz
-  /usr/src/ggml-0.29.0-X.tar.xz
-  /usr/src/libggml0-0.29.0-X.tar.xz
-  /usr/src/libggml-devel-0.29.0-X.tar.xz
+  /usr/src/ggml-1.0.0-X-src.tar.xz
+  /usr/src/ggml-1.0.0-X.tar.xz
+  /usr/src/libggml1-1.0.0-X.tar.xz
+  /usr/src/libggml-devel-1.0.0-X.tar.xz
 
 -------------------------------------------
 
@@ -52,10 +52,10 @@ Files included in the binary package:
   /usr/share/doc/ggml/README.md
   /usr/share/doc/ggml/gguf.md
 
-(libggml0)
-  /usr/bin/cygggml-0.dll
-  /usr/bin/cygggml-base-0.dll
-  /usr/bin/cygggml-cpu-0.dll
+(libggml1)
+  /usr/bin/cygggml-1.dll
+  /usr/bin/cygggml-base-1.dll
+  /usr/bin/cygggml-cpu-1.dll
 
 (libggml-devel)
   /usr/include/ggml-alloc.h
@@ -86,6 +86,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.0-1bl1 -----
+Version bump.
 
 ----- version 0.29.0-1bl3 -----
 Fix AVX2 stack alignment

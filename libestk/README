@@ -4,26 +4,27 @@ LibESTK is a utility library ment to make OpenGL ES 2.0 operations easier to
 perform with fewer calls compared to the standard OpenGL library.
 
 Runtime requirements:
-  cygwin-3.3.5-1
-  libGL1-19.1.6-1
-  libSDL2_2.0_0-2.0.7-1
+  cygwin-3.6.12-1
+  libGLESv2_2-23.3.6-1
+  libSDL2_2.0_0-2.32.74-1
   libSDL2_image2.0_0-2.0.2-1
   libSDL2_mixer2.0_0-2.0.2-1
-  libestk6-devel-6.1.0+git20171025-1bl1
-  libestk6_6-6.1.0+git20171025-1bl1
-  pkg-config-1.8.0-1
+  libestk6-devel-6.1.0+git20171025-1bl2
+  libestk6_6-6.1.0+git20171025-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cmake-3.20.0-1
-  cygport-0.35.1-1
-  gcc-core-11.3.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libGLESv2-devel-23.3.6-1
   libGLEW-devel-2.1.0-1
-  libSDL2-devel-2.0.7-1
+  libSDL2-devel-2.32.74-1
   libSDL2_image-devel-2.0.2-1
   libSDL2_mixer-devel-2.0.2-1
-  ninja-1.11.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/carlmartus/libestk
@@ -66,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 6.1.0+git20171025-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 6.1.0+git20171025-1bl1 -----
 Version bump.

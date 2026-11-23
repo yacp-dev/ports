@@ -1,18 +1,34 @@
 HOMEPAGE="https://github.com/carlmartus/${PN}"
 GIT_URI="https://github.com/carlmartus/${PN}.git"
+GIT_REV="698c372927061741b30e2529901d66756ec042bd"
 
 CATEGORY="Libs"
 SUMMARY="OpenGL ES Toolkit"
 DESCRIPTION="LibESTK is a utility library ment to make OpenGL ES 2.0 operations easier to
 perform with fewer calls compared to the standard OpenGL library."
 
-BUILD_REQUIRES="libGLEW-devel libSDL2-devel libSDL2_image-devel libSDL2_mixer-devel"
+LICENSE="LicenseRef-libestk"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-libestk"
+LICENSE_URI="LICENSE.md"
+
+BUILD_REQUIRES="
+	libGLEW-devel
+	libGLESv2-devel
+	libSDL2-devel
+	libSDL2_image-devel
+	libSDL2_mixer-devel
+"
 
 inherit cmake
 inherit git
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
+DOCS="
+	LICENSE.md
 "
 
 PKG_NAMES="
@@ -24,7 +40,7 @@ libestk_CONTENTS="
 	usr/share
 "
 libestk6_6_CONTENTS="
-	usr/bin
+	usr/bin/cygestk6-6.dll
 "
 libestk6_devel_CONTENTS="
 	usr/include

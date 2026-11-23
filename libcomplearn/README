@@ -4,42 +4,40 @@ An open-source data mining package using data compression.
 
 Runtime requirements:
   check-0.15.2-1
-  cygwin-3.6.4-1
-  cygwin-devel-3.6.4-1
-  libbz2-devel-1.0.8-1
-  libbz2_1-1.0.8-1
-  libcomplearn-gomp-devel-1.1.7-1bl4
-  libcomplearn-gomp1-1.1.7-1bl4
-  libglib2.0-devel-2.85.3-1
-  libglib2.0_0-2.85.3-1
-  libgomp1-13.4.0-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libbz2-devel-1.0.8-2
+  libbz2_1-1.0.8-2
+  libcomplearn-gomp-devel-1.1.7-1bl5
+  libcomplearn-gomp1-1.1.7-1bl5
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libgomp1-14.4.0-1
   libgsl-devel-2.3-2
   libgsl19-2.3-2
-  libiconv-devel-1.17-1
-  libintl8-0.22.5-1
-  liblzma-devel-5.8.1-1
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  pkg-config-2.5.1-1
-  zlib-devel-1.3.1-1
+  libintl8-0.26-1
+  liblzma-devel-5.8.4-1
+  libxml2-devel-2.13.9-3
+  libxml2_2-2.13.9-3
+  pkg-config-3.0.11-1
+  zlib-devel-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
   check-0.15.2-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gettext-devel-0.22.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
   gob2-2.0.20-1
-  libbz2-devel-1.0.8-1
-  libglib2.0-devel-2.85.3-1
+  libbz2-devel-1.0.8-2
+  libglib2.0-devel-2.90.1-1
   libgsl-devel-2.3-2
-  libintl-devel-0.22.5-1
-  libtool-2.5.4-1
-  libxml2-devel-2.10.4-2
+  libintl-devel-0.26-1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-3
   make-4.4.1-2
 
 Canonical website:
@@ -127,6 +125,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.7-1bl5 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.1.7-1bl4 -----
 Rebuild with gcc-13.4.0

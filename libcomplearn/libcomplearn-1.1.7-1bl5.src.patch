@@ -1,5 +1,5 @@
---- origsrc/libcomplearn-1.1.7/configure.ac	2010-11-25 06:26:29.000000000 +0900
-+++ src/libcomplearn-1.1.7/configure.ac	2025-08-09 07:28:42.222039700 +0900
+--- origsrc/libcomplearn-1.1.7/configure.ac	2010-11-24 21:26:29.000000000 +0000
++++ src/libcomplearn-1.1.7/configure.ac	2026-11-23 03:33:51.102984700 +0000
 @@ -114,7 +114,7 @@ else
    GOMPFLAGS=""
  fi
@@ -9,8 +9,8 @@
    SONAMEOPTS=""
  else
    SONAMEOPTS="-Wl,-soname -Wl,libcomplearn${GOMPSTR}-1.0${shrext_cmds}.0"
---- origsrc/libcomplearn-1.1.7/src/Makefile.am	2010-01-11 10:14:37.000000000 +0900
-+++ src/libcomplearn-1.1.7/src/Makefile.am	2025-08-09 07:28:42.229929500 +0900
+--- origsrc/libcomplearn-1.1.7/src/Makefile.am	2010-01-11 01:14:37.000000000 +0000
++++ src/libcomplearn-1.1.7/src/Makefile.am	2026-11-23 03:33:51.111058500 +0000
 @@ -2,10 +2,10 @@
  bin_PROGRAMS = ncd anycompress anydecompress complearn-config
  
@@ -39,8 +39,8 @@
  libcomplearn_la_CPPFLAGS = $(GLOBCPPFLAGS)
  endif
  
---- origsrc/libcomplearn-1.1.7/src/anycompress.c	2010-01-11 09:03:47.000000000 +0900
-+++ src/libcomplearn-1.1.7/src/anycompress.c	2025-08-09 07:28:42.230939100 +0900
+--- origsrc/libcomplearn-1.1.7/src/anycompress.c	2010-01-11 00:03:47.000000000 +0000
++++ src/libcomplearn-1.1.7/src/anycompress.c	2026-11-23 03:33:51.105011300 +0000
 @@ -29,7 +29,6 @@ SUCH DAMAGE.
  #include <stdio.h>
  #include <stdlib.h>
@@ -49,8 +49,8 @@
  #include <getopt.h>
  #include <locale.h>
  #include <libintl.h>
---- origsrc/libcomplearn-1.1.7/src/anydecompress.c	2010-01-11 09:03:47.000000000 +0900
-+++ src/libcomplearn-1.1.7/src/anydecompress.c	2025-08-09 07:28:42.232948900 +0900
+--- origsrc/libcomplearn-1.1.7/src/anydecompress.c	2010-01-11 00:03:47.000000000 +0000
++++ src/libcomplearn-1.1.7/src/anydecompress.c	2026-11-23 03:33:51.105011300 +0000
 @@ -29,7 +29,7 @@ SUCH DAMAGE.
  #include <stdio.h>
  #include <string.h>
@@ -60,8 +60,8 @@
  #include <getopt.h>
  #include <locale.h>
  #include <libintl.h>
---- origsrc/libcomplearn-1.1.7/src/complearn-config.c.in	2010-01-11 09:03:47.000000000 +0900
-+++ src/libcomplearn-1.1.7/src/complearn-config.c.in	2025-08-09 07:28:42.232948900 +0900
+--- origsrc/libcomplearn-1.1.7/src/complearn-config.c.in	2010-01-11 00:03:47.000000000 +0000
++++ src/libcomplearn-1.1.7/src/complearn-config.c.in	2026-11-23 03:33:51.107032200 +0000
 @@ -12,6 +12,12 @@
  
  #define _(O) gettext(O)
@@ -88,8 +88,48 @@
          break;
        case 'c':
          printf("-I%s/include/complearn-1.0 %s\n", "@prefix@", "@PRIVATECFLAGS@");
---- origsrc/libcomplearn-1.1.7/tests/Makefile.am	2010-01-11 09:03:47.000000000 +0900
-+++ src/libcomplearn-1.1.7/tests/Makefile.am	2025-08-09 07:28:42.232948900 +0900
+--- origsrc/libcomplearn-1.1.7/src/complearn-environment.gob	2010-01-11 00:07:22.000000000 +0000
++++ src/libcomplearn-1.1.7/src/complearn-environment.gob	2026-11-23 03:33:51.109045800 +0000
+@@ -283,7 +283,7 @@ private void apply_config_file(const cha
+   if (!g_key_file_load_from_file(k, fname, 0, &err))
+     goto donenow;
+   g_notice(_("Reading config file %s."), fname);
+-  guint32 len;
++  gsize len;
+   groups = g_key_file_get_groups(k, &len);
+   for (i = 0; groups[i]; i += 1) {
+     if (strcmp(groups[i], PROJECTNAME) == 0)
+--- origsrc/libcomplearn-1.1.7/src/complearn-external-compressor.gob	2010-01-11 00:03:47.000000000 +0000
++++ src/libcomplearn-1.1.7/src/complearn-external-compressor.gob	2026-11-23 03:33:51.109045800 +0000
+@@ -109,13 +109,13 @@ class CompLearn:External:Compressor from
+     gstdin = g_io_channel_unix_new(pstdin);
+     gstdout = g_io_channel_unix_new(pstdout);
+     gstderr = g_io_channel_unix_new(pstderr);
+-    guint realwrite = 0;
++    gsize realwrite = 0;
+     GIOError gioerr;
+     gioerr = g_io_channel_write(gstdin, inp->str, inp->len, &realwrite);
+     if (gioerr == G_IO_ERROR_NONE) {
+   #define CHUNKSIZE 512
+       char dbuf[CHUNKSIZE];
+-      guint readlen;
++      gsize readlen;
+       int rv, status;
+       g_io_channel_close(gstdin);
+       GByteArray *result = g_byte_array_new();
+--- origsrc/libcomplearn-1.1.7/src/complearn-external-file-compressor.gob	2010-01-11 00:03:47.000000000 +0000
++++ src/libcomplearn-1.1.7/src/complearn-external-file-compressor.gob	2026-11-23 03:33:51.111058500 +0000
+@@ -76,7 +76,7 @@ public GString *transform_with_external_
+   GIOError gioerr;
+ #define CHUNKSIZE 512
+   unsigned char dbuf[CHUNKSIZE+1];
+-  guint readlen;
++  gsize readlen;
+   int rv, status;
+   g_io_channel_close(gstdin);
+   while (1) {
+--- origsrc/libcomplearn-1.1.7/tests/Makefile.am	2010-01-11 00:03:47.000000000 +0000
++++ src/libcomplearn-1.1.7/tests/Makefile.am	2026-11-23 03:33:51.113071000 +0000
 @@ -2,8 +2,14 @@
  if FOUND_CHECK
  TESTS = check_complearn
@@ -106,8 +146,8 @@
 -check_complearn_LDADD = @CHECK_LIBS@ -lcomplearn -L../src
 +check_complearn_LDADD = @CHECK_LIBS@ $(COMPLEARN_LIBS) -L../src
  endif
---- origsrc/libcomplearn-1.1.7/tests/check_ncd.c	2010-01-11 09:03:47.000000000 +0900
-+++ src/libcomplearn-1.1.7/tests/check_ncd.c	2025-08-09 15:40:33.216575900 +0900
+--- origsrc/libcomplearn-1.1.7/tests/check_ncd.c	2010-01-11 00:03:47.000000000 +0000
++++ src/libcomplearn-1.1.7/tests/check_ncd.c	2026-11-23 03:33:51.113071000 +0000
 @@ -23,6 +23,7 @@ START_TEST (test_complearn_ncd)
  END_TEST
  
@@ -124,8 +164,8 @@
  END_TEST
  
  Suite *
---- origsrc/libcomplearn-1.1.7/tests/check_util.c	2010-01-11 09:03:47.000000000 +0900
-+++ src/libcomplearn-1.1.7/tests/check_util.c	2025-08-09 15:41:13.862367700 +0900
+--- origsrc/libcomplearn-1.1.7/tests/check_util.c	2010-01-11 00:03:47.000000000 +0000
++++ src/libcomplearn-1.1.7/tests/check_util.c	2026-11-23 03:33:51.113071000 +0000
 @@ -5,6 +5,7 @@
  #include "../src/complearn/complearn.h"
  

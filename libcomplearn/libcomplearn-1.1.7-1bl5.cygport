@@ -9,7 +9,16 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="check libbz2-devel libglib2.0-devel libgsl-devel libintl-devel libxml2-devel gob2"
+BUILD_REQUIRES="
+	check
+	gettext-devel
+	libbz2-devel
+	libglib2.0-devel
+	libgsl-devel
+	libintl-devel
+	libxml2-devel
+	gob2
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode

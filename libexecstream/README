@@ -4,25 +4,25 @@ libexecstream is a C++ library that allows you to run a child process and have
 its input, output and error available as standard C++ streams.
 
 Runtime requirements:
-  cygwin-1.7.34-6
-  libexecstream-devel-0.3-1bl1
-  libexecstream0-0.3-1bl1
-  libgcc1-4.9.2-2
-  libstdc++6-4.9.2-2
+  cygwin-3.6.12-1
+  libexecstream-devel-0.3-1bl2
+  libexecstream0-0.3-1bl2
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-1
-  cygport-0.17.1-1
-  gcc-core-4.9.2-2
-  gcc-g++-4.9.2-2
-  libtool-2.4.5-1
-  make-4.0-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
-  http://libexecstream.sf.net/
+  https://libexecstream.sourceforge.net/
 
 Canonical download:
   mirror://sourceforge/libexecstream/libexecstream-0.3.tar.gz
@@ -49,6 +49,7 @@ Files included in the binary package:
 (libexecstream)
   /usr/share/doc/Cygwin/libexecstream.README
   /usr/share/doc/libexecstream/README
+  /usr/share/doc/libexecstream/license.html
 
 (libexecstream0)
   /usr/bin/cygexecstream-0.dll
@@ -62,6 +63,8 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 0.3-1bl2 -----
+Rebuild with gcc-14.4.0
+
 ----- version 0.3-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>
-

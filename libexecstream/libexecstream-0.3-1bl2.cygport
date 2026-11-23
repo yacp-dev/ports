@@ -1,4 +1,4 @@
-HOMEPAGE="http://${PN}.sf.net/"
+HOMEPAGE="https://${PN}.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 SRC_DIR="${PN}"
 
@@ -6,6 +6,10 @@ CATEGORY="Libs"
 SUMMARY="C++ library to run a child process with standard C++ streams"
 DESCRIPTION="libexecstream is a C++ library that allows you to run a child process and have
 its input, output and error available as standard C++ streams."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="doc/license.html"
 
 src_test()
 {
@@ -17,6 +21,10 @@ DIFF_EXCLUDES="
 	Makefile
 "
 
+DOCS="
+	doc/license.html
+"
+
 PKG_NAMES="
 	${PN}
 	${PN}0
@@ -26,7 +34,7 @@ libexecstream_CONTENTS="
 	usr/share
 "
 libexecstream0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 libexecstream_devel_CONTENTS="
 	usr/include

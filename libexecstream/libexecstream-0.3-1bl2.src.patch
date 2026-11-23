@@ -1,5 +1,5 @@
---- origsrc/libexecstream/Makefile.am	1970-01-01 09:00:00.000000000 +0900
-+++ src/libexecstream/Makefile.am	2015-02-16 10:06:38.005021500 +0900
+--- origsrc/libexecstream/Makefile.am	1970-01-01 00:00:00.000000000 +0000
++++ src/libexecstream/Makefile.am	2026-11-23 00:49:02.265545700 +0000
 @@ -0,0 +1,15 @@
 +
 +check_PROGRAMS = exec-stream-test
@@ -16,8 +16,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = libexecstream.pc
---- origsrc/libexecstream/configure.ac	1970-01-01 09:00:00.000000000 +0900
-+++ src/libexecstream/configure.ac	2015-02-16 10:06:20.458146500 +0900
+--- origsrc/libexecstream/configure.ac	1970-01-01 00:00:00.000000000 +0000
++++ src/libexecstream/configure.ac	2026-11-23 00:49:02.263528200 +0000
 @@ -0,0 +1,31 @@
 +#                                               -*- Autoconf -*-
 +# Process this file with autoconf to produce a configure script.
@@ -50,8 +50,8 @@
 +
 +AC_CONFIG_FILES([Makefile libexecstream.pc])
 +AC_OUTPUT
---- origsrc/libexecstream/libexecstream.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libexecstream/libexecstream.pc.in	2015-02-16 10:06:06.005021500 +0900
+--- origsrc/libexecstream/libexecstream.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libexecstream/libexecstream.pc.in	2026-11-23 00:49:02.265545700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -63,8 +63,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lexecstream
 +Cflags: -I${includedir}
---- origsrc/libexecstream/test/exec-stream-test.cpp	2004-04-12 05:17:24.000000000 +0900
-+++ src/libexecstream/test/exec-stream-test.cpp	2015-02-16 09:57:40.851265600 +0900
+--- origsrc/libexecstream/test/exec-stream-test.cpp	2004-04-11 20:17:24.000000000 +0000
++++ src/libexecstream/test/exec-stream-test.cpp	2026-11-23 00:49:02.265545700 +0000
 @@ -38,6 +38,10 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SU
  #include <stdlib.h>
  #include <ctype.h>
@@ -76,3 +76,21 @@
  #ifdef _WIN32
  
  #include <windows.h>
+@@ -258,7 +262,7 @@ int read_after_pause()
+     sleep( 10 );
+     std::string s;
+     std::cin>>s;
+-    if( s==random_string( 20000 ) ) {
++    if( s==random_string( 100000 ) ) {
+         std::cerr<<"OK";
+     }else {
+         std::cerr<<"ERROR";
+@@ -573,7 +577,7 @@ int main( int argc, char ** argv )
+             TEST_NAME( "child read after pause" );
+             exec_stream_t exec_stream;
+             exec_stream.set_wait_timeout( exec_stream_t::s_err, 15000 );
+-            std::string in_s=random_string( 20000 )+"\n";
++            std::string in_s=random_string( 100000 )+"\n";
+             
+             exec_stream.start( program, "child read-after-pause" );
+             exec_stream.in()<<in_s;

@@ -4,18 +4,18 @@ jsmn is a minimalistic library for parsing JSON data format. It can be easily
 used in small projects or can be integrated into embedded systems.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libjsmn-devel-0+git20181002-1bl1
-  libjsmn0-0+git20181002-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libjsmn-devel-0+git20181002-1bl2
+  libjsmn0-0+git20181002-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.1.3-1
-  cygport-0.37.3-1
-  gcc-core-13.4.0-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/zserge/jsmn
@@ -58,6 +58,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0+git20181002-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0+git20181002-1bl1 -----
 Version bump.

@@ -12,6 +12,10 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libcamp-devel
+"
+
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
 inherit cmake
@@ -56,3 +60,4 @@ libRAJA_devel_CONTENTS="
 RAJA_SUMMARY="${SUMMARY} (licensing & readmes)"
 libRAJA0_SUMMARY="${SUMMARY} (runtime)"
 libRAJA_devel_SUMMARY="${SUMMARY} (development)"
+libRAJA_devel_REQUIRES="libcamp-devel"

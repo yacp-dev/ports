@@ -1,0 +1,43 @@
+--- origsrc/libelperiodic-1.5.2/Makefile.am	2026-06-14 21:19:51.000000000 +0000
++++ src/libelperiodic-1.5.2/Makefile.am	2026-11-23 08:17:55.858055400 +0000
+@@ -22,3 +22,6 @@ uninstall-local:
+ 	cat $(DESTDIR)$(pkgpythondir)/install_files.txt | xargs rm -rf
+ 	rm -rf $(DESTDIR)$(pkgpythondir)
+ endif
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/libelperiodic-1.5.2/configure.ac	2026-11-23 08:17:55.501011000 +0000
++++ src/libelperiodic-1.5.2/configure.ac	2026-11-23 08:17:55.858055400 +0000
+@@ -79,4 +79,5 @@ then
+ fi
+ 
+ AC_CONFIG_FILES([Makefile src/Makefile])
++AC_CONFIG_FILES([libelperiodic.pc])
+ AC_OUTPUT
+--- origsrc/libelperiodic-1.5.2/libelperiodic.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libelperiodic-1.5.2/libelperiodic.pc.in	2026-11-23 08:17:55.860079100 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libelperiodic
++Description: Library to run frequent periodic tasks
++Version: @VERSION@
++Libs: -L${libdir} -lelperiodic
++Cflags: -I${includedir}
+--- origsrc/libelperiodic-1.5.2/src/Makefile.am	2026-06-14 21:19:51.000000000 +0000
++++ src/libelperiodic-1.5.2/src/Makefile.am	2026-11-23 08:17:55.860079100 +0000
+@@ -12,8 +12,8 @@ libelperiodic_la_SOURCES = periodic.c pr
+   prdic_sign_ctx.h prdic_sign_impl.h prdic_band.h src/prdic_inst.h \
+   src/prdic_time.h
+ libelperiodic_la_DEPENDENCIES = Symbol.map
+-libelperiodic_la_CFLAGS = -g3 -O0 -fPIC ${LTO_FLAG}
+-libelperiodic_la_LDFLAGS = ${LTO_FLAG} -version-info 1 -Wl,--version-script=$(srcdir)/Symbol.map -lm @RT_LIB@
++libelperiodic_la_CFLAGS = -fPIC ${LTO_FLAG}
++libelperiodic_la_LDFLAGS = -no-undefined ${LTO_FLAG} -version-info 1 -Wl,--version-script=$(srcdir)/Symbol.map -lm @RT_LIB@
+ 
+ if ENABLE_noinst
+ noinst_PROGRAMS = testskew

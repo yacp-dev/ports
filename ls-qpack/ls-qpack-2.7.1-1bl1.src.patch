@@ -1,5 +1,5 @@
---- origsrc/ls-qpack-2.7.0/CMakeLists.txt	2026-07-30 12:05:00.000000000 +0000
-+++ src/ls-qpack-2.7.0/CMakeLists.txt	2026-10-20 14:19:38.724375200 +0000
+--- origsrc/ls-qpack-2.7.1/CMakeLists.txt	2026-11-22 04:06:04.000000000 +0000
++++ src/ls-qpack-2.7.1/CMakeLists.txt	2026-11-23 15:29:44.008008700 +0000
 @@ -135,7 +135,8 @@ install(FILES "${CMAKE_CURRENT_BINARY_DI
  
  configure_file(ls-qpack-config.cmake.in ls-qpack-config.cmake @ONLY)
@@ -10,8 +10,8 @@
  install(FILES "${CMAKE_CURRENT_BINARY_DIR}/ls-qpack-config.cmake"
      DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ls-qpack)
  install(
---- origsrc/ls-qpack-2.7.0/lsqpack.pc.in	2026-07-30 12:05:00.000000000 +0000
-+++ src/ls-qpack-2.7.0/lsqpack.pc.in	2026-10-20 14:19:38.724890600 +0000
+--- origsrc/ls-qpack-2.7.1/lsqpack.pc.in	2026-11-22 04:06:04.000000000 +0000
++++ src/ls-qpack-2.7.1/lsqpack.pc.in	2026-11-23 15:29:44.008008700 +0000
 @@ -1,12 +1,12 @@
 -prefix="@CMAKE_INSTALL_PREFIX@"
 -exec_prefix="${prefix}"

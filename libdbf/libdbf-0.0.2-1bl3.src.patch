@@ -1,12 +1,12 @@
---- origsrc/libdbf-0.0.2/Makefile.am	2013-10-14 09:59:45.000000000 +0900
-+++ src/libdbf-0.0.2/Makefile.am	2025-08-11 21:47:04.397119500 +0900
+--- origsrc/libdbf-0.0.2/Makefile.am	2013-10-14 00:59:45.000000000 +0000
++++ src/libdbf-0.0.2/Makefile.am	2026-11-23 03:45:23.498620800 +0000
 @@ -13,4 +13,3 @@ pkgconfig_DATA = libdbf.pc
  
  rpm: $(distdir).tar.gz
  	rpm -ta $(distdir).tar.gz
 -
---- origsrc/libdbf-0.0.2/configure.in	2013-10-14 09:59:45.000000000 +0900
-+++ src/libdbf-0.0.2/configure.in	2025-08-11 22:21:45.262495200 +0900
+--- origsrc/libdbf-0.0.2/configure.in	2013-10-14 00:59:45.000000000 +0000
++++ src/libdbf-0.0.2/configure.in	2026-11-23 03:45:23.498620800 +0000
 @@ -1,7 +1,7 @@
  dnl Process this file with autoconf to produce a configure script.
 -AC_INIT(libdbf, 0.0.1)
@@ -35,8 +35,8 @@
  GETTEXT_PACKAGE=libdbf
  AC_SUBST(GETTEXT_PACKAGE, libdbf)
  AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", GETTEXT_PACKAGE)
---- origsrc/libdbf-0.0.2/src/Makefile.am	2013-10-14 09:59:45.000000000 +0900
-+++ src/libdbf-0.0.2/src/Makefile.am	2025-08-11 21:45:49.082321400 +0900
+--- origsrc/libdbf-0.0.2/src/Makefile.am	2013-10-14 00:59:45.000000000 +0000
++++ src/libdbf-0.0.2/src/Makefile.am	2026-11-23 03:45:23.500635600 +0000
 @@ -8,13 +8,12 @@ noinst_HEADERS = \
  
  lib_LTLIBRARIES = libdbf.la
@@ -53,3 +53,14 @@
  
  BUILD_LIBS = -lm
 -
+--- origsrc/libdbf-0.0.2/src/dbf.h	2013-10-14 00:59:45.000000000 +0000
++++ src/libdbf-0.0.2/src/dbf.h	2026-11-23 03:45:23.500635600 +0000
+@@ -71,7 +71,7 @@
+ /*
+  * special anubisnet and dbf includes
+  */
+-#include "endian.h"
++#include "dbf_endian.h"
+ 
+ //@{
+ /** These defines are used to distinguish between types in the dbf fields. */

@@ -8,7 +8,14 @@ computing exact solutions to dense systems of linear equations over the
 integers. IML is designed to be compiled with a CBLAS library
 (e.g., ATLAS/BLAS) and the GMP bignum library."
 
-BUILD_REQUIRES="libgmp-devel liblapack-devel"
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="src/iml.h"
+
+BUILD_REQUIRES="
+	libgmp-devel
+	liblapack-devel
+"
 
 DIFF_EXCLUDES="
 	config-h.in
@@ -23,7 +30,7 @@ iml_CONTENTS="
 	usr/share/doc
 "
 libiml0_CONTENTS="
-	usr/bin
+	usr/bin/cygiml-0.dll
 "
 libiml_devel_CONTENTS="
 	usr/include

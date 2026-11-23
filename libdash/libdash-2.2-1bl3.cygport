@@ -11,11 +11,15 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="${PN}/${PN}/license.txt"
 
-BUILD_REQUIRES="libcurl-devel libxml2-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+	libxml2-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DSOVERSION:STRING=${PV[1]}
 	-DVERSION:STRING=${PV}
 "

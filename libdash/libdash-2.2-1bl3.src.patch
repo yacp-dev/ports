@@ -1,5 +1,5 @@
---- origsrc/libdash-2.2/libdash/CMakeLists.txt	2013-04-03 18:40:41.000000000 +0900
-+++ src/libdash-2.2/libdash/CMakeLists.txt	2024-11-01 15:59:10.036221000 +0900
+--- origsrc/libdash-2.2/libdash/CMakeLists.txt	2013-04-03 09:40:41.000000000 +0000
++++ src/libdash-2.2/libdash/CMakeLists.txt	2026-11-23 05:06:56.190497700 +0000
 @@ -1,14 +1,15 @@
  cmake_minimum_required(VERSION 2.8)
  
@@ -24,8 +24,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libdash.pc.in ${CMAKE_BINARY_DIR}/libdash.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libdash.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libdash-2.2/libdash/libdash/CMakeLists.txt	2013-04-03 18:40:41.000000000 +0900
-+++ src/libdash-2.2/libdash/libdash/CMakeLists.txt	2024-11-01 16:00:02.303647000 +0900
+--- origsrc/libdash-2.2/libdash/libdash/CMakeLists.txt	2013-04-03 09:40:41.000000000 +0000
++++ src/libdash-2.2/libdash/libdash/CMakeLists.txt	2026-11-23 05:06:56.192510800 +0000
 @@ -6,9 +6,16 @@ find_package(CURL REQUIRED)
  
  
@@ -46,8 +46,8 @@
 +file(GLOB libdash_header include/*.h)
 +install(FILES ${libdash_header} DESTINATION include/libdash)
 +install(TARGETS dash RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
---- origsrc/libdash-2.2/libdash/libdash/include/libdash.h	2013-04-03 18:40:41.000000000 +0900
-+++ src/libdash-2.2/libdash/libdash/include/libdash.h	2024-11-01 15:57:36.157844800 +0900
+--- origsrc/libdash-2.2/libdash/libdash/include/libdash.h	2013-04-03 09:40:41.000000000 +0000
++++ src/libdash-2.2/libdash/libdash/include/libdash.h	2026-11-23 05:06:56.192816000 +0000
 @@ -18,7 +18,7 @@
  
  #include "config.h"
@@ -57,8 +57,8 @@
  #else
  #define __declspec(dllexport)
  #define __cdecl
---- origsrc/libdash-2.2/libdash/libdash.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libdash-2.2/libdash/libdash.pc.in	2024-11-01 15:57:36.157844800 +0900
+--- origsrc/libdash-2.2/libdash/libdash.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libdash-2.2/libdash/libdash.pc.in	2026-11-23 05:06:56.192816000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -70,8 +70,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -ldash
 +Cflags: -I${includedir}
---- origsrc/libdash-2.2/libdash/libdash_networkpart_test/CMakeLists.txt	2013-04-03 18:40:41.000000000 +0900
-+++ src/libdash-2.2/libdash/libdash_networkpart_test/CMakeLists.txt	2024-11-01 15:57:36.157844800 +0900
+--- origsrc/libdash-2.2/libdash/libdash_networkpart_test/CMakeLists.txt	2013-04-03 09:40:41.000000000 +0000
++++ src/libdash-2.2/libdash/libdash_networkpart_test/CMakeLists.txt	2026-11-23 05:06:56.194524900 +0000
 @@ -4,4 +4,6 @@ cmake_minimum_required(VERSION 2.8)
  file(GLOB_RECURSE networkpart_source *.cpp)
  

@@ -12,6 +12,9 @@ LICENSE_URI="COPYING"
 
 inherit git
 
+# test/run_tests.c is built with -std=c99 and uses asprintf()
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
 PKG_NAMES="
 	libesm
 	libesm0

@@ -1,6 +1,6 @@
 HOMEPAGE="https://github.com/thliebig/${PN}"
 GIT_URI="https://github.com/thliebig/${PN}.git"
-GIT_REV="5613f080c116d0ec0d5efa940022a2fa08539240"
+GIT_REV="4b9c845b449b520c4b8c5f23c74cd04820084f81"
 
 CATEGORY="Libs"
 SUMMARY="Function Parser for C++"

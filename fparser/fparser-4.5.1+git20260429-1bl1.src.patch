@@ -1,11 +1,15 @@
---- origsrc/fparser/CMakeLists.txt	2026-01-07 07:44:05.000000000 +0900
-+++ src/fparser/CMakeLists.txt	2026-01-07 07:44:42.459320500 +0900
-@@ -50,7 +50,13 @@ ADD_LIBRARY(fparser SHARED ${SOURCES})
+--- origsrc/fparser/CMakeLists.txt	2026-11-23 12:15:48.000000000 +0000
++++ src/fparser/CMakeLists.txt	2026-11-23 12:15:49.542281000 +0000
+@@ -50,7 +50,7 @@ ADD_LIBRARY(fparser SHARED ${SOURCES})
  
  set_target_properties(fparser PROPERTIES VERSION ${LIB_VERSION_STRING} SOVERSION ${LIB_VERSION_MAJOR})
  
--INSTALL(TARGETS fparser DESTINATION lib${LIB_SUFFIX})
-+INSTALL(TARGETS fparser RUNTIME DESTINATION bin ARCHIVE DESTINATION lib${LIB_SUFFIX})
+-if (WIN32)
++if (WIN32 OR CYGWIN)
+     INSTALL(TARGETS fparser RUNTIME DESTINATION bin ARCHIVE DESTINATION lib${LIB_SUFFIX})
+ else()
+     INSTALL(TARGETS fparser DESTINATION lib${LIB_SUFFIX})
+@@ -58,3 +58,10 @@ endif()
  
  INSTALL(FILES fparser.hh DESTINATION include)
  
@@ -15,8 +19,9 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/fparser.pc.in ${CMAKE_BINARY_DIR}/fparser.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/fparser.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/fparser/fparser.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/fparser/fparser.pc.in	2026-01-07 07:44:47.052287900 +0900
++
+--- origsrc/fparser/fparser.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/fparser/fparser.pc.in	2026-11-23 12:15:49.542281000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

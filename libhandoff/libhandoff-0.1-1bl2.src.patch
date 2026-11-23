@@ -1,5 +1,5 @@
---- origsrc/libhandoff-0.1/Makefile.am	2007-06-08 21:13:47.000000000 +0900
-+++ src/libhandoff-0.1/Makefile.am	2015-02-16 20:01:40.619477100 +0900
+--- origsrc/libhandoff-0.1/Makefile.am	2007-06-08 12:13:47.000000000 +0000
++++ src/libhandoff-0.1/Makefile.am	2026-11-23 01:08:13.467980100 +0000
 @@ -3,7 +3,7 @@ lib_LTLIBRARIES = libhandoff.la
  AM_CPPFLAGS = @DEPS_CFLAGS@ -DPACKAGE_LOCALE_DIR=\"@datadir@/locale/@PACKAGE_NAME@\"
  
@@ -9,8 +9,8 @@
  
  libhandoff_la_SOURCES = handoff.c handoff.h
  
---- origsrc/libhandoff-0.1/configure.ac	2007-06-08 21:13:05.000000000 +0900
-+++ src/libhandoff-0.1/configure.ac	2015-02-16 20:04:22.308528100 +0900
+--- origsrc/libhandoff-0.1/configure.ac	2007-06-08 12:13:05.000000000 +0000
++++ src/libhandoff-0.1/configure.ac	2026-11-23 01:08:13.469995600 +0000
 @@ -10,7 +10,7 @@ AM_INIT_AUTOMAKE([foreign dist-bzip2])
  AC_PROG_CC
  AC_PROG_LIBTOOL

@@ -3,27 +3,30 @@ libhandoff
 Facilitate limiting a program to a single instance per user
 
 Runtime requirements:
-  cygwin-1.7.34-6
-  libglib2.0-devel-2.42.1-1
-  libglib2.0_0-2.42.1-1
-  libhandoff-devel-0.1-1bl1
-  libhandoff0-0.1-1bl1
+  cygwin-3.6.12-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
+  libhandoff-devel-0.1-1bl2
+  libhandoff0-0.1-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-9-1
-  binutils-2.25-1
-  cygport-0.17.1-1
-  gcc-core-4.9.2-2
-  libtool-2.4.5-1
-  make-4.0-2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gtk-doc-1.37.0-1
+  libglib2.0-devel-2.90.1-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
-  http://gpe.linuxtogo.org/
+  https://web.archive.org/web/20171202030104/http://gpe.linuxtogo.org/
 
 Canonical download:
-  http://gpe.linuxtogo.org/download/source/libhandoff-0.1.tar.bz2
+  https://mucross.com/downloads/tonga-demo/sources/GPL/libhandoff/libhandoff-0.1.tar.bz2
 
 -------------------------------------------
 
@@ -60,6 +63,8 @@ Files included in the binary package:
 
 Port Notes:
 
+----- version 0.1-1bl2 -----
+Rebuild with gcc-14.4.0
+
 ----- version 0.1-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>
-

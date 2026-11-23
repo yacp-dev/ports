@@ -7,30 +7,29 @@ to values. Keys are stored in sorted order, with an index at the end of the
 file allowing keys to be located quickly.
 
 Runtime requirements:
-  cygwin-3.6.0-1
+  cygwin-3.6.12-1
   liblz4_1-1.9.4-1
-  libmtbl-devel-1.7.1-1bl1
-  libmtbl1-1.7.1-1bl1
-  libsnappy1-1.2.1-1
+  libmtbl-devel-1.7.1-1bl2
+  libmtbl1-1.7.1-1bl2
+  libsnappy1-1.3.1-1
   libzstd1-1.5.7-1
-  pkg-config-2.3.0-1
-  zlib0-1.3.1-1
+  pkg-config-3.0.11-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  asciidoc-10.2.0-1
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
+  asciidoc-10.2.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   liblz4-devel-1.9.4-1
-  libsnappy-devel-1.2.1-1
-  libtool-2.5.4-1
+  libsnappy-devel-1.3.1-1
+  libtool-2.6.2-1
   libzstd-devel-1.5.7-1
   make-4.4.1-2
-  zlib-devel-1.3.1-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/farsightsec/mtbl
@@ -96,6 +95,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.7.1-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.7.1-1bl1 -----
 Version bump.

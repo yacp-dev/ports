@@ -1,57 +1,42 @@
 libebt
 ------------------------------------------
-The libebt library provides a clean way of getting human-readable backtrace
-messages in C++. It uses the RAII (resource acquisition is initialisation)
-idiom to manage backtrace stack items without needing macros, control
-structures or an external debugger -- adding context to a function or block is
-done through a single simple variable declaration.
+Pure C++ template library that provides a clean way of getting human-readable
+backtrace messages
 
 Runtime requirements:
-  libZThread-devel-2.3.2-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-10-1
-  automake-7-1
-  binutils-2.22.51-2
-  cygport-0.11.3-1
-  gawk-4.0.1-1
-  gcc4-core-4.5.3-3
-  gcc4-g++-4.5.3-3
-  libtool-2.4-1
-  make-3.82.90-1
+  autoconf-20260320-3
+  automake-20261107-1
+  cygport-0.37.13-1
+  libtool-2.6.2-1
+  make-4.4.1-2
 
 Canonical website:
-  http://libebt.berlios.de/
+  https://sourceforge.net/projects/libebt.berlios/
 
 Canonical download:
-  mirror://berlios/libebt/libebt-1.3.0.tar.bz2
+  mirror://sourceforge/libebt.berlios/libebt-1.3.0.tar.bz2
 
 -------------------------------------------
 
 Build instructions:
-  unpack libebt-1.3.0-X-src.tar.bz2
-    if you use setup to install this src package, it will be
-         unpacked under /usr/src automatically
-  cd /usr/src
-  cygport ./libebt-1.3.0-X.cygport all
+  1. unpack libebt-1.3.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./libebt-1.3.0-X.cygport all
 
 This will create:
-  /usr/src/libebt-1.3.0-X-src.tar.bz2
-  /usr/src/libebt-1.3.0-X.tar.bz2
-  /usr/src/libebt-devel-1.3.0-X.tar.bz2
+  /usr/src/libebt-1.3.0-X-src.tar.xz
+  /usr/src/libebt-1.3.0-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (libebt)
-  /usr/share/doc/Cygwin/libebt.README
-  /usr/share/doc/libebt/ChangeLog
-  /usr/share/doc/libebt/LICENCE
-  /usr/share/doc/libebt/README
-
-(libebt-devel)
   /usr/include/libebt/libebt.hh
   /usr/include/libebt/libebt_backtracable.hh
   /usr/include/libebt/libebt_backtraceable.hh
@@ -63,11 +48,17 @@ Files included in the binary package:
   /usr/include/libebt/libebt_util.hh
   /usr/include/libebt/libebt_version.hh
   /usr/include/libebt/libebt_zthread_threads.hh
+  /usr/share/doc/Cygwin/libebt.README
+  /usr/share/doc/libebt/ChangeLog
+  /usr/share/doc/libebt/LICENCE
+  /usr/share/doc/libebt/README
 
 ------------------
 
 Port Notes:
 
+----- version 1.3.0-1bl2 -----
+Merge libebt-devel into libebt
+
 ----- version 1.3.0-1bl1 -----
 Initial release for Cygwin-1.7 by fd0 <http://fd0.hatenablog.jp/>
-

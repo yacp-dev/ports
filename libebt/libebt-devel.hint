@@ -1,9 +1,0 @@
-category: Libs
-requires: cygwin libZThread-devel
-external-source: libebt
-sdesc: "Pure C++ template library that provides a clean way of getting human-readable backtrace messages (development)"
-ldesc: "The libebt library provides a clean way of getting human-readable
-backtrace messages in C++. It uses the RAII (resource acquisition is
-initialisation) idiom to manage backtrace stack items without needing macros,
-control structures or an external debugger -- adding context to a function or
-block is done through a single simple variable declaration."

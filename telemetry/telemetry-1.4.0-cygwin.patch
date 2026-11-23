@@ -1,0 +1,83 @@
+Build without the FUSE-based AppFs, which needs libfuse3 (not available on Cygwin).
+Install the DLL to bin and the import library to lib, and use the system GoogleTest.
+Set the library SOVERSION from the SOVERSION variable when given.
+Generate and install telemetry.pc.
+
+diff -ruN a/cmake/dependencies.cmake b/cmake/dependencies.cmake
+--- a/cmake/dependencies.cmake
++++ b/cmake/dependencies.cmake
+@@ -1,5 +1,3 @@
+ # Project dependencies
+ find_package(PkgConfig REQUIRED)
+ find_package(Threads REQUIRED)
+-
+-pkg_check_modules(fuse REQUIRED IMPORTED_TARGET fuse3>=3.2.1)
+diff -ruN a/cmake/googletest.cmake b/cmake/googletest.cmake
+--- a/cmake/googletest.cmake
++++ b/cmake/googletest.cmake
+@@ -1,21 +1 @@
+-# Google Test library
+-#
+-# Google Test is a testing framework for C++ developed by Google.
+-#
+-# This CMake script integrates Google Test into the project, allowing easy usage.
+-# Usage example: target_link_libraries(my_target PRIVATE GTest::gtest_main)
+-
+-include(FetchContent)
+-
+-FetchContent_Declare(
+-	googletest
+-	GIT_REPOSITORY https://github.com/google/googletest.git
+-	GIT_TAG        v1.14.0
+-)
+-
+-# Library does not compile with -Wsign-conversion that we use in builds
+-string(REPLACE "-Wsign-conversion " " " CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ")
+-string(REPLACE "-Wsign-conversion " " " CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ")
+-string(REPLACE "-Wsign-conversion " " " CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
+-
+-FetchContent_MakeAvailable(googletest)
++find_package(GTest REQUIRED)
+diff -ruN a/src/CMakeLists.txt b/src/CMakeLists.txt
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -1,2 +1 @@
+ add_subdirectory(telemetry)
+-add_subdirectory(appFs)
+diff -ruN a/src/telemetry/CMakeLists.txt b/src/telemetry/CMakeLists.txt
+--- a/src/telemetry/CMakeLists.txt
++++ b/src/telemetry/CMakeLists.txt
+@@ -22,11 +22,31 @@
+ endif()
+ 
+ add_library(telemetry::telemetry ALIAS telemetry)
++if (DEFINED SOVERSION)
++	set_target_properties(telemetry PROPERTIES SOVERSION ${SOVERSION})
++endif()
+ target_include_directories(telemetry PUBLIC ${PROJECT_SOURCE_DIR}/include)
+ 
+ if (TELEMETRY_INSTALL_TARGETS)
+-	install(TARGETS telemetry LIBRARY DESTINATION ${INSTALL_DIR_LIB})
+-	install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION ${INSTALL_DIR_INCLUDE})
++	install(TARGETS telemetry RUNTIME DESTINATION ${INSTALL_DIR_BIN}
++		LIBRARY DESTINATION ${INSTALL_DIR_LIB}
++		ARCHIVE DESTINATION ${INSTALL_DIR_LIB})
++	install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION ${INSTALL_DIR_INCLUDE}
++		PATTERN "appFs.hpp" EXCLUDE)
++
++	file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/telemetry.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++libdir=\${prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: telemetry
++Description: C++ library for application telemetry exposed as a virtual file tree
++Version: ${PROJECT_VERSION}
++Libs: -L\${libdir} -ltelemetry
++Cflags: -I\${includedir}
++")
++	install(FILES "${CMAKE_CURRENT_BINARY_DIR}/telemetry.pc"
++		DESTINATION ${INSTALL_DIR_LIB}/pkgconfig)
+ endif()
+ 
+ if (TELEMETRY_ENABLE_TESTS)

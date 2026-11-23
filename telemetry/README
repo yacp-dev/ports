@@ -1,0 +1,76 @@
+telemetry
+------------------------------------------
+Telemetry is a C++ library for exposing application metrics, counters and state
+as a tree of virtual directories and files, with aggregation of values. The
+FUSE-based AppFs filesystem interface is not built.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libtelemetry-devel-1.4.0-1bl1
+  libtelemetry1-1.4.0-1bl1
+  pkg-config-3.0.11-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libgtest-devel-1.18.0-1bl1
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/CESNET/telemetry
+
+Canonical download:
+  https://github.com/CESNET/telemetry/archive/refs/tags/v1.4.0.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack telemetry-1.4.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./telemetry-1.4.0-X.cygport all
+
+This will create:
+  /usr/src/telemetry-1.4.0-X-src.tar.xz
+  /usr/src/telemetry-1.4.0-X.tar.xz
+  /usr/src/libtelemetry1-1.4.0-X.tar.xz
+  /usr/src/libtelemetry-devel-1.4.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(telemetry)
+  /usr/share/doc/Cygwin/telemetry.README
+  /usr/share/doc/telemetry/LICENSE
+  /usr/share/doc/telemetry/README.md
+
+(libtelemetry1)
+  /usr/bin/cygtelemetry-1.dll
+
+(libtelemetry-devel)
+  /usr/include/telemetry.hpp
+  /usr/include/telemetry/aggFile.hpp
+  /usr/include/telemetry/aggMethod.hpp
+  /usr/include/telemetry/content.hpp
+  /usr/include/telemetry/directory.hpp
+  /usr/include/telemetry/file.hpp
+  /usr/include/telemetry/holder.hpp
+  /usr/include/telemetry/node.hpp
+  /usr/include/telemetry/symlink.hpp
+  /usr/include/telemetry/utility.hpp
+  /usr/lib/libtelemetry.dll.a
+  /usr/lib/pkgconfig/telemetry.pc
+
+------------------
+
+Port Notes:
+
+----- version 1.4.0-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

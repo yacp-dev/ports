@@ -1,10 +1,18 @@
-HOMEPAGE="http://gpe.linuxtogo.org/"
-SRC_URI="http://gpe.linuxtogo.org/download/source/${P}.tar.bz2"
-PATCH_URI=""
+HOMEPAGE="https://web.archive.org/web/20171202030104/http://gpe.linuxtogo.org/"
+SRC_URI="https://mucross.com/downloads/tonga-demo/sources/GPL/libhandoff/${P}.tar.bz2"
 
 CATEGORY="Libs"
 SUMMARY="Facilitate limiting a program to a single instance per user"
 DESCRIPTION="${SUMMARY}"
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
+
+BUILD_REQUIRES="
+	gtk-doc
+	libglib2.0-devel
+"
 
 PKG_NAMES="
 	${PN}
@@ -15,7 +23,7 @@ libhandoff_CONTENTS="
 	usr/share
 "
 libhandoff0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 libhandoff_devel_CONTENTS="
 	usr/include

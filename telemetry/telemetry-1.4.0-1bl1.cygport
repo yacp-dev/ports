@@ -1,0 +1,51 @@
+HOMEPAGE="https://github.com/CESNET/telemetry"
+SRC_URI="https://github.com/CESNET/telemetry/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	telemetry-1.4.0-cygwin.patch
+"
+
+CATEGORY="Libs"
+SUMMARY="C++ library for application telemetry exposed as a virtual file tree"
+DESCRIPTION="Telemetry is a C++ library for exposing application metrics,
+counters and state as a tree of virtual directories and files, with aggregation
+of values. The FUSE-based AppFs filesystem interface is not built."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgtest-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DSOVERSION:STRING=${PV[1]}
+	-DTELEMETRY_BUILD_SHARED:BOOL=ON
+	-DTELEMETRY_ENABLE_TESTS:BOOL=ON
+	-DTELEMETRY_BUILD_EXAMPLES:BOOL=OFF
+"
+
+DOCS="
+	README.md
+"
+
+PKG_NAMES="
+	${PN}
+	lib${PN}${PV[1]}
+	lib${PN}-devel
+"
+telemetry_CONTENTS="
+	usr/share
+"
+libtelemetry1_CONTENTS="
+	usr/bin/cyg*-${PV[1]}.dll
+"
+libtelemetry_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+telemetry_SUMMARY="${SUMMARY} (licensing & readmes)"
+libtelemetry1_SUMMARY="${SUMMARY} (runtime)"
+libtelemetry_devel_SUMMARY="${SUMMARY} (development)"

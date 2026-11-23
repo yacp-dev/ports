@@ -4,24 +4,23 @@ libechonest is a collection of C++/Qt classes designed to make a developer's
 life easy when trying to use the APIs provided by The Echo Nest.
 
 Runtime requirements:
-  cygwin-3.5.4-1
+  cygwin-3.6.12-1
   libQt5Core-devel-5.9.4-2
   libQt5Core5-5.9.4-2
-  libechonest5-devel-2.3.1-1bl2
-  libechonest5_2.3-2.3.1-1bl2
-  libgcc1-12.4.0-3
-  libstdc++6-12.4.0-3
-  pkg-config-2.3.0-1
+  libechonest5-devel-2.3.1-1bl3
+  libechonest5_2.3-2.3.1-1bl3
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
   libQt5Core-devel-5.9.4-2
-  ninja-1.12.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/lfranchi/libechonest
@@ -82,6 +81,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.3.1-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.3.1-1bl2 -----
 Rebuild with gcc-12.4.0

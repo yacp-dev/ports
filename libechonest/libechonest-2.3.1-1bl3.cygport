@@ -6,11 +6,13 @@ SUMMARY="C++/Qt wrapper around the wonderful Echo Nest Api"
 DESCRIPTION="libechonest is a collection of C++/Qt classes designed to make a developer's
 life easy when trying to use the APIs provided by The Echo Nest."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libQt5Core-devel"
+BUILD_REQUIRES="
+	libQt5Core-devel
+"
 
 export CXXFLAGS="${CXXFLAGS} -std=c++14"
 
@@ -18,12 +20,15 @@ inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_WITH_QT4:BOOL=OFF
+	-DECHONEST_BUILD_TESTS:BOOL=OFF
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
+# The tests need the live developer.echonest.com API, which may no longer be
+# available, so they are not built (ECHONEST_BUILD_TESTS=OFF) and not run.
 src_test()
 {
-	cd ${B}
-	PATH=${B}/src:${PATH} ninja_test
+	:
 }
 
 PKG_NAMES="
@@ -43,4 +48,4 @@ libechonest5_devel_CONTENTS="
 "
 libechonest_SUMMARY="${SUMMARY} (licensing & readmes)"
 libechonest5_2_3_SUMMARY="${SUMMARY} (runtime)"
-libechonest_devel_SUMMARY="${SUMMARY} (development)"
+libechonest5_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,13 +1,13 @@
---- origsrc/libcineon/Makefile.am	2024-10-05 00:02:55.000000000 +0900
-+++ src/libcineon/Makefile.am	2024-10-05 00:02:56.594452300 +0900
+--- origsrc/libcineon/Makefile.am	2026-11-24 10:57:45.000000000 +0000
++++ src/libcineon/Makefile.am	2026-11-24 10:57:46.596765900 +0000
 @@ -3,3 +3,5 @@ SUBDIRS = libcineon tools
  
  ACLOCAL_AMFLAGS = -I m4
  
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libcineon/configure.ac	2024-10-05 00:02:55.000000000 +0900
-+++ src/libcineon/configure.ac	2024-10-05 00:02:56.594452300 +0900
+--- origsrc/libcineon/configure.ac	2026-11-24 10:57:45.000000000 +0000
++++ src/libcineon/configure.ac	2026-11-24 10:57:46.596765900 +0000
 @@ -16,7 +16,7 @@ AM_DISABLE_SHARED
  AM_PROG_LIBTOOL
  
@@ -32,8 +32,8 @@
  AC_MSG_RESULT([libcineon: build libtiff apps... "$have_libtiff"])
 -
 -
---- origsrc/libcineon/libcineon/CineonHeader.cpp	2024-10-05 00:02:55.000000000 +0900
-+++ src/libcineon/libcineon/CineonHeader.cpp	2024-10-05 00:02:56.594452300 +0900
+--- origsrc/libcineon/libcineon/CineonHeader.cpp	2026-11-24 10:57:45.000000000 +0000
++++ src/libcineon/libcineon/CineonHeader.cpp	2026-11-24 10:57:46.598780900 +0000
 @@ -364,7 +364,10 @@ void cineon::Header::Reset()
  	IndustryHeader::Reset();
  }
@@ -46,8 +46,8 @@
  
  int cineon::GenericHeader::ImageElementCount() const
  {
---- origsrc/libcineon/libcineon/Makefile.am	2024-10-05 00:02:55.000000000 +0900
-+++ src/libcineon/libcineon/Makefile.am	2024-10-05 00:02:56.610068600 +0900
+--- origsrc/libcineon/libcineon/Makefile.am	2026-11-24 10:57:45.000000000 +0000
++++ src/libcineon/libcineon/Makefile.am	2026-11-24 10:57:46.598780900 +0000
 @@ -1,7 +1,7 @@
  
 -lib_LIBRARIES = libcineon.a
@@ -66,8 +66,8 @@
  
  noinst_HEADERS = BaseTypeConverter.h \
  				 Codec.h \
---- origsrc/libcineon/libcineon.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libcineon/libcineon.pc.in	2024-10-05 00:02:56.610068600 +0900
+--- origsrc/libcineon/libcineon.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libcineon/libcineon.pc.in	2026-11-24 10:57:46.600795900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -79,8 +79,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lcineon
 +Cflags: -I${includedir}
---- origsrc/libcineon/tools/cineon2tiff/Makefile.am	2024-10-05 00:02:55.000000000 +0900
-+++ src/libcineon/tools/cineon2tiff/Makefile.am	2024-10-05 00:02:56.610068600 +0900
+--- origsrc/libcineon/tools/cineon2tiff/Makefile.am	2026-11-24 10:57:45.000000000 +0000
++++ src/libcineon/tools/cineon2tiff/Makefile.am	2026-11-24 10:57:46.600795900 +0000
 @@ -1,10 +1,10 @@
  
 -LIBCINEON = $(top_builddir)/libcineon/libcineon.a
@@ -95,8 +95,8 @@
 -cineon2tiff_LDADD = $(LIBCINEON) -ltiff
 +cineon2tiff_LDADD = $(LIBCINEON) $(TIFF_LIBS)
  
---- origsrc/libcineon/tools/cineonheader/Makefile.am	2024-10-05 00:02:55.000000000 +0900
-+++ src/libcineon/tools/cineonheader/Makefile.am	2024-10-05 00:02:56.610068600 +0900
+--- origsrc/libcineon/tools/cineonheader/Makefile.am	2026-11-24 10:57:45.000000000 +0000
++++ src/libcineon/tools/cineonheader/Makefile.am	2026-11-24 10:57:46.600795900 +0000
 @@ -1,7 +1,7 @@
  
 -LIBCINEON = $(top_builddir)/libcineon/libcineon.a

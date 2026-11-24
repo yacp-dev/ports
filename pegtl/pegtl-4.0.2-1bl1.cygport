@@ -1,0 +1,21 @@
+HOMEPAGE="https://github.com/taocpp/PEGTL"
+SRC_URI="https://github.com/taocpp/PEGTL/archive/refs/tags/${PV}.tar.gz"
+SRC_DIR="PEGTL-${PV}"
+
+CATEGORY="Devel"
+SUMMARY="Parsing Expression Grammar Template Library"
+DESCRIPTION="The Parsing Expression Grammar Template Library (PEGTL) is a
+zero-dependency C++ header-only parser combinator library for creating parsers
+according to a Parsing Expression Grammar (PEG)."
+
+LICENSE="BSL-1.0"
+LICENSE_SPDX="SPDX-License-Identifier: BSL-1.0"
+LICENSE_URI="LICENSE_1_0.txt"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DPEGTL_INSTALL_CMAKE_DIR:STRING=/usr/lib/cmake/${PN}
+	-DPEGTL_INSTALL_DOC_DIR:STRING=/usr/share/doc/${PN}
+	-DPEGTL_INSTALL_PKGCONFIG_DIR:STRING=/usr/lib/pkgconfig
+"

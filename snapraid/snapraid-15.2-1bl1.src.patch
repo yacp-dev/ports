@@ -1,0 +1,201 @@
+--- origsrc/snapraid-15.2/Makefile.am	2026-11-11 20:58:59.000000000 +0000
++++ src/snapraid-15.2/Makefile.am	2026-11-24 23:31:09.643940600 +0000
+@@ -1005,7 +1005,8 @@ endif # HAVE_POSIX
+ 	echo RUN > bench/disk1/RUN-CHMOD
+ if HAVE_POSIX
+ # Doesn't run this test as root because the root user override permissions
+-	if test "$$EUID" -ne 0; then \
++# On Cygwin an elevated administrator (group 544) reads through permissions too
++	if test "$$EUID" -ne 0 && ! { uname -s | grep -q CYGWIN && id -G | grep -qw 544; }; then \
+ 		$(FAILENV) $(SNAPRAID) $(CHECKFLAGS) -c $(CONF) --test-run "chmod a-r bench/disk1/RUN-CHMOD" --test-expect-failure sync; \
+ 	fi
+ endif # HAVE_POSIX
+@@ -1025,7 +1026,8 @@ endif # HAVE_POSIX
+ 	echo HASH > bench/disk1/HASH-CHMOD
+ if HAVE_POSIX
+ # Doesn't run this test as root because the root user override permissions
+-	if test "$$EUID" -ne 0; then \
++# On Cygwin an elevated administrator (group 544) reads through permissions too
++	if test "$$EUID" -ne 0 && ! { uname -s | grep -q CYGWIN && id -G | grep -qw 544; }; then \
+ 		$(FAILENV) $(SNAPRAID) $(CHECKFLAGS) -c $(CONF) --test-run "chmod a-r bench/disk1/HASH-CHMOD" --test-expect-failure -h sync; \
+ 	fi
+ endif # HAVE_POSIX
+--- origsrc/snapraid-15.2/cmdline/main.c	2026-11-11 20:58:59.000000000 +0000
++++ src/snapraid-15.2/cmdline/main.c	2026-11-24 23:31:09.640178500 +0000
+@@ -488,12 +488,17 @@ int main(int argc, char* argv[])
+ 			 * child_pid before the final waitpid() reap so the signal forwarder
+ 			 * never sends signals to a recycled PID.
+ 			 */
++#if defined(__CYGWIN__)
++			/* Cygwin has no waitid(): the child is reaped by waitpid() below */
++			int wret = 0;
++#else
+ 			siginfo_t info;
+ 			int wret;
+ 			do {
+ 				memset(&info, 0, sizeof(info));
+ 				wret = waitid(P_PID, (id_t)pid, &info, WEXITED | WNOWAIT);
+ 			} while (wret == -1 && errno == EINTR);
++#endif
+ 
+ 			if (wret == -1) {
+ 				/* LCOV_EXCL_START */
+--- origsrc/snapraid-15.2/cmdline/mkstream.c	2026-11-11 20:58:59.000000000 +0000
++++ src/snapraid-15.2/cmdline/mkstream.c	2026-11-24 23:31:09.642188200 +0000
+@@ -6,6 +6,9 @@
+ #include "stream.h"
+ #include "support.h"
+ 
++#if defined(STREAM_MAX)
++#undef STREAM_MAX
++#endif
+ #define STREAM_MAX 8
+ #define BUFFER_MAX 64
+ #define STR_MAX 128
+--- origsrc/snapraid-15.2/cmdline/snapraid.c	2026-11-11 20:58:59.000000000 +0000
++++ src/snapraid-15.2/cmdline/snapraid.c	2026-11-24 23:31:09.642188200 +0000
+@@ -118,12 +118,21 @@ void log_open(const char* file)
+ 	}
+ 
+ 	/* file mode */
++#if defined(__CYGWIN__)
++	/* on Cygwin "t" selects text mode, which writes CRLF line endings */
++	mode = "w";
++#else
+ 	mode = "wt";
++#endif
+ 	if (*file == '>') {
+ 		++file;
+ 
+ 		if (*file == '>') {
++#if defined(__CYGWIN__)
++			mode = "a";
++#else
+ 			mode = "at";
++#endif
+ 			++file;
+ 		}
+ 
+--- origsrc/snapraid-15.2/configure.ac	2026-11-11 20:58:59.000000000 +0000
++++ src/snapraid-15.2/configure.ac	2026-11-24 23:31:09.643940600 +0000
+@@ -42,7 +42,7 @@ AC_COMPILE_IFELSE([
+ 
+ # Check if we are targeting Windows
+ is_windows=no
+-AS_CASE([$host_os], [mingw*|msys*|cygwin*], [is_windows=yes])
++AS_CASE([$host_os], [mingw*|msys*], [is_windows=yes])
+ AM_CONDITIONAL([HOST_WINDOWS], [test "x$is_windows" = "xyes"])
+ 
+ # Check for Windows-specific tools only if on Windows
+--- origsrc/snapraid-15.2/os/unix.c	2026-11-11 20:58:59.000000000 +0000
++++ src/snapraid-15.2/os/unix.c	2026-11-24 23:31:09.645948500 +0000
+@@ -930,6 +930,97 @@ static void exec_unlock(void)
+ 	pthread_mutex_unlock(&exec_mutex);
+ }
+ 
++#if defined(__CYGWIN__)
++/*
++ * Cygwin has no waitid(). Emulate the only forms used here, P_PID with
++ * WEXITED and optionally WNOHANG and WNOWAIT, with waitpid(). A child
++ * can't be observed without reaping it, so its status is kept in a
++ * small table until the following waitpid() call returns it.
++ */
++#ifndef P_PID
++#define P_PID 1
++#endif
++#ifndef WEXITED
++#define WEXITED 4
++#endif
++#ifndef WNOWAIT
++#define WNOWAIT 0x01000000
++#endif
++
++#define WAIT_CACHE_MAX 64
++
++static pthread_mutex_t wait_cache_mutex = PTHREAD_MUTEX_INITIALIZER;
++static pid_t wait_cache_pid[WAIT_CACHE_MAX];
++static int wait_cache_status[WAIT_CACHE_MAX];
++
++static int cygwin_waitid(int idtype, id_t id, siginfo_t* info, int options)
++{
++	pid_t pid = (pid_t)id;
++	pid_t ret;
++	int status;
++	int i;
++
++	(void)idtype;
++
++	pthread_mutex_lock(&wait_cache_mutex);
++	for (i = 0; i < WAIT_CACHE_MAX; ++i) {
++		if (wait_cache_pid[i] == pid) {
++			pthread_mutex_unlock(&wait_cache_mutex);
++			info->si_pid = pid;
++			return 0;
++		}
++	}
++	pthread_mutex_unlock(&wait_cache_mutex);
++
++	ret = waitpid(pid, &status, (options & WNOHANG) ? WNOHANG : 0);
++	if (ret < 0)
++		return -1;
++	if (ret == 0) {
++		info->si_pid = 0;
++		return 0;
++	}
++
++	pthread_mutex_lock(&wait_cache_mutex);
++	for (i = 0; i < WAIT_CACHE_MAX; ++i) {
++		if (wait_cache_pid[i] == 0) {
++			wait_cache_pid[i] = pid;
++			wait_cache_status[i] = status;
++			break;
++		}
++	}
++	pthread_mutex_unlock(&wait_cache_mutex);
++
++	if (i == WAIT_CACHE_MAX) {
++		errno = EAGAIN;
++		return -1;
++	}
++
++	info->si_pid = pid;
++	return 0;
++}
++
++static pid_t cygwin_waitpid(pid_t pid, int* status, int options)
++{
++	int i;
++
++	pthread_mutex_lock(&wait_cache_mutex);
++	for (i = 0; i < WAIT_CACHE_MAX; ++i) {
++		if (wait_cache_pid[i] == pid && pid > 0) {
++			wait_cache_pid[i] = 0;
++			*status = wait_cache_status[i];
++			pthread_mutex_unlock(&wait_cache_mutex);
++			return pid;
++		}
++	}
++	pthread_mutex_unlock(&wait_cache_mutex);
++
++	return waitpid(pid, status, options);
++}
++
++#define waitid(idtype, id, info, options) cygwin_waitid(idtype, id, info, options)
++#define waitpid(pid, status, options) cygwin_waitpid(pid, status, options)
++#endif
++
+ /**
+  * Forcibly terminate the specified raw process reference.
+  */
+--- origsrc/snapraid-15.2/os/unix.h	2026-11-11 20:58:59.000000000 +0000
++++ src/snapraid-15.2/os/unix.h	2026-11-24 23:31:09.645948500 +0000
+@@ -58,7 +58,9 @@ static inline int close_range_impl(unsig
+ #define FOPEN_TEXT ""
+ #define FOPEN_BINARY ""
+ 
++#if !defined(O_BINARY)
+ #define O_BINARY 0 /**< Not used in Unix. */
++#endif
+ #define O_SEQUENTIAL 0 /**< In Unix posix_fadvise() shall be used. */
+ 
+ /**

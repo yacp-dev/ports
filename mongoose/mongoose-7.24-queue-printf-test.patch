@@ -1,0 +1,15 @@
+Pass an unsigned long to the %p conversion in the mg_queue_printf test:
+mg_vsnprintf reads it as a long, so a uint32_t argument is undefined
+behavior (Cygwin x86_64 formats a different length).
+
+--- a/test/unit_test.c	2026-11-24 07:27:44.793758509 +0900
++++ b/test/unit_test.c	2026-11-24 07:27:44.803073009 +0900
+@@ -2492,7 +2492,7 @@
+   {  // mg_queue_printf()
+     struct mg_queue q;
+     char buf[128];
+-    uint32_t p = 0xffffffff;
++    unsigned long p = 0xffffffffUL;
+     size_t len;
+     mg_queue_init(&q, buf, sizeof(buf));
+     len = mg_queue_printf(&q, "A%p%p%pB", p, p, p);

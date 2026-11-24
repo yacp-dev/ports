@@ -1,0 +1,74 @@
+HOMEPAGE="https://github.com/socketio/${PN}"
+# The git submodules lib/asio, lib/websocketpp and lib/rapidjson, which the
+# tag's tarball leaves empty; keep them at the commits the tag points to
+ASIO_REV="230c0d2ae035c5ce1292233fcab03cea0d341264"
+WEBSOCKETPP_REV="56123c87598f8b1dd471be83ca841ceae07f95ba"
+RAPIDJSON_REV="a36110e11874bcf35af854940e0ce910c19a8b49"
+SRC_URI="
+	https://github.com/socketio/${PN}/archive/${PV}.tar.gz
+	https://github.com/chriskohlhoff/asio/archive/${ASIO_REV}.tar.gz#/asio-${ASIO_REV}.tar.gz
+	https://github.com/zaphoyd/websocketpp/archive/${WEBSOCKETPP_REV}.tar.gz#/websocketpp-${WEBSOCKETPP_REV}.tar.gz
+	https://github.com/miloyip/rapidjson/archive/${RAPIDJSON_REV}.tar.gz#/rapidjson-${RAPIDJSON_REV}.tar.gz
+"
+
+CATEGORY="Libs"
+SUMMARY="C++11 implementation of Socket.IO client"
+DESCRIPTION="${SUMMARY}"
+
+LICENSE="MIT AND BSL-1.0 AND BSD-3-Clause AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND BSL-1.0 AND BSD-3-Clause AND Zlib"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libssl-devel
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose rmdir lib/asio lib/websocketpp lib/rapidjson
+	verbose mv ${origsrcdir}/asio-${ASIO_REV} lib/asio
+	verbose mv ${origsrcdir}/websocketpp-${WEBSOCKETPP_REV} lib/websocketpp
+	verbose mv ${origsrcdir}/rapidjson-${RAPIDJSON_REV} lib/rapidjson
+	# Asio treats Cygwin as a Winsock platform, which its Windows code
+	# (_Interlocked*, TIMEVAL, __except) cannot build with GCC. Make it
+	# use the POSIX sockets Cygwin provides.
+	verbose find lib/asio -type f \( -name "*.hpp" -o -name "*.ipp" \) \
+		-exec sed -i "s/defined(__CYGWIN__)/0/g" {} +
+}
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_BUILD_TYPE:STRING=Release
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
+DOCS="
+	LICENSE
+	lib/asio/asio/LICENSE_1_0.txt
+	lib/rapidjson/license.txt
+	lib/websocketpp/COPYING
+"
+
+PKG_NAMES="
+	${PN}
+	libsioclient1
+	libsioclient-devel
+"
+socket_io_client_cpp_CONTENTS="
+	usr/share
+"
+libsioclient1_CONTENTS="
+	usr/bin/cygsioclient-1.dll
+	usr/bin/cygsioclient_tls-1.dll
+"
+libsioclient_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+socket_io_client_cpp_SUMMARY="${SUMMARY} (licensing & readmes)"
+libsioclient1_SUMMARY="${SUMMARY} (runtime)"
+libsioclient_devel_SUMMARY="${SUMMARY} (development)"

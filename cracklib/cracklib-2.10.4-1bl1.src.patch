@@ -1,0 +1,59 @@
+--- origsrc/cracklib-2.10.4/Makefile.am	2026-10-28 14:47:33.000000000 +0000
++++ src/cracklib-2.10.4/Makefile.am	2026-11-24 06:18:56.410244300 +0000
+@@ -1,6 +1,10 @@
+ SUBDIRS = lib util po doc python dicts
+ 
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = cracklib.pc
++
+ EXTRA_DIST = \
++		cracklib.pc.in \
+ 		cracklib.spec.in \
+ 		README-DAWG \
+ 		README-WORDS \
+--- origsrc/cracklib-2.10.4/configure.ac	2026-10-28 14:47:33.000000000 +0000
++++ src/cracklib-2.10.4/configure.ac	2026-11-24 06:18:56.410244300 +0000
+@@ -101,6 +101,7 @@ dnl Handle local dict compiling properly
+ AC_SUBST(CROSS_COMPILING, $cross_compiling)
+ AM_CONDITIONAL([NOT_CROSS_COMPILING], [test "$cross_compiling" = "no"])
+ 
++AC_CONFIG_FILES([cracklib.pc])
+ AC_CONFIG_FILES([util/Makefile lib/Makefile doc/Makefile python/Makefile Makefile \
+ 		python/setup.py \
+ 		po/Makefile.in dicts/Makefile cracklib.spec])
+--- origsrc/cracklib-2.10.4/cracklib.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/cracklib-2.10.4/cracklib.pc.in	2026-11-24 06:18:56.411873200 +0000
+@@ -0,0 +1,11 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: cracklib
++Description: Password checking library
++Version: @VERSION@
++Libs: -L${libdir} -lcrack
++Libs.private: @LTLIBINTL@ @LIBS@
++Cflags: -I${includedir}
+--- origsrc/cracklib-2.10.4/lib/Makefile.am	2024-07-29 23:14:17.000000000 +0000
++++ src/cracklib-2.10.4/lib/Makefile.am	2026-11-24 06:18:56.412255800 +0000
+@@ -15,7 +15,7 @@ libcrack_la_SOURCES = 	fascist.c \
+ # For next ABI changing release, use 3:0:0
+ # After that, follow the libtool recommended incrementing procedure
+ #
+-libcrack_la_LDFLAGS = -version-info 11:0:9
++libcrack_la_LDFLAGS = -no-undefined -version-info 11:0:9
+ 
+ # Link in NLS libs. Needed by FreeBSD build
+ libcrack_la_LIBADD = $(LTLIBINTL)
+--- origsrc/cracklib-2.10.4/python/Makefile.am	2023-03-16 13:38:03.000000000 +0000
++++ src/cracklib-2.10.4/python/Makefile.am	2026-11-24 06:18:56.412255800 +0000
+@@ -3,7 +3,7 @@ python_PYTHON = cracklib.py test_crackli
+ pyexec_LTLIBRARIES = _cracklib.la
+ AM_CFLAGS = -I$(top_srcdir)/lib -Wall
+ AM_CPPFLAGS = '-DLOCALEDIR="$(localedir)"'
+-_cracklib_la_LDFLAGS = -module -avoid-version $(top_builddir)/lib/libcrack.la
++_cracklib_la_LDFLAGS = -module -avoid-version -no-undefined -lpython$(PYTHON_VERSION) $(top_builddir)/lib/libcrack.la
+ DEFS += '-DDEFAULT_CRACKLIB_DICT="$(DEFAULT_CRACKLIB_DICT)"'
+ DEFS += '-DPYTHON_H="python@PYTHON_VERSION@/Python.h"'
+ endif

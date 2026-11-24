@@ -7,15 +7,15 @@ length-delimited strings.
 
 Runtime requirements:
   cygwin-3.6.12-1
-  libbase64-devel-0.5.2-1bl2
-  libbase64_0-0.5.2-1bl2
-  pkg-config-3.0.10-1
+  libbase64-devel-0.5.2-1bl3
+  libbase64_0-0.5.2-1bl3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   cmake-4.4.5-1
-  cygport-0.37.12-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   ninja-1.13.2-1
 
@@ -68,6 +68,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.5.2-1bl3 -----
+Fix test-base64-aklomp on CPUs without AVX512
 
 ----- version 0.5.2-1bl2 -----
 Rebuild with gcc-14.4.0

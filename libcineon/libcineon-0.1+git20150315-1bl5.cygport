@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/inequation/${PN}"
 GIT_URI="https://github.com/inequation/${PN}.git"
+GIT_REV="d4498137563114dc9103ce015dc29287308be048"
 
 CATEGORY="Libs"
 SUMMARY="Cineon image format reader/writer library"
@@ -9,9 +10,25 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libtiff-devel"
+BUILD_REQUIRES="
+	libtiff-devel
+"
 
 inherit git
+
+src_test()
+{
+	cd ${B}/tools
+	local t status
+	for t in cineonheader cineon2tiff
+	do
+		status=0
+		verbose ./${t}/${t}.exe > ${t}.out || status=$?
+		cat ${t}.out
+		# run without arguments: prints its usage and exits with 1
+		[ ${status} -eq 1 ] && grep -q '^usage: ' ${t}.out || return 1
+	done
+}
 
 PKG_NAMES="
 	${PN}

@@ -4,45 +4,42 @@ Mongoose is the most easy to use web server on the planet. A web server of
 choice for Web developers (PHP, Ruby, Python, etc) and Web designers.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libmongoose-devel-7.15-1bl1
-  libmongoose7.15-7.15-1bl1
-  libssl-devel-3.0.15-1
-  libssl3-3.0.15-1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libmongoose-devel-7.24-1bl1
+  libmongoose7.24-7.24-1bl1
+  libssl-devel-3.5.9-1
+  libssl3-3.5.9-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libssl-devel-3.0.15-1
-  libtool-2.4.7-1
-  make-4.4.1-2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libssl-devel-3.5.9-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/cesanta/mongoose
 
 Canonical download:
-  https://github.com/cesanta/mongoose/archive/refs/tags/7.15.tar.gz
+  https://github.com/cesanta/mongoose/archive/refs/tags/7.24.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack mongoose-7.15-X-src.tar.xz
+  1. unpack mongoose-7.24-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./mongoose-7.15-X.cygport all
+        % cygport ./mongoose-7.24-X.cygport all
 
 This will create:
-  /usr/src/mongoose-7.15-X-src.tar.xz
-  /usr/src/mongoose-7.15-X.tar.xz
-  /usr/src/libmongoose7.15-7.15-X.tar.xz
-  /usr/src/libmongoose-devel-7.15-X.tar.xz
+  /usr/src/mongoose-7.24-X-src.tar.xz
+  /usr/src/mongoose-7.24-X.tar.xz
+  /usr/src/libmongoose7.24-7.24-X.tar.xz
+  /usr/src/libmongoose-devel-7.24-X.tar.xz
 
 -------------------------------------------
 
@@ -53,8 +50,8 @@ Files included in the binary package:
   /usr/share/doc/mongoose/LICENSE
   /usr/share/doc/mongoose/README.md
 
-(libmongoose7.15)
-  /usr/bin/cygmongoose-7-15.dll
+(libmongoose7.24)
+  /usr/bin/cygmongoose-7-24.dll
 
 (libmongoose-devel)
   /usr/include/mongoose/mongoose.h
@@ -64,6 +61,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 7.24-1bl1 -----
+Version bump.
 
 ----- version 7.15-1bl1 -----
 Version bump.

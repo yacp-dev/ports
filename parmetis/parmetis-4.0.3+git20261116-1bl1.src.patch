@@ -1,0 +1,50 @@
+--- origsrc/ParMETIS/CMakeLists.txt	2026-11-24 15:03:06.000000000 +0000
++++ src/ParMETIS/CMakeLists.txt	2026-11-24 15:03:10.928248000 +0000
+@@ -41,3 +41,17 @@ add_subdirectory(programs)
+ 
+ # This is for testing during development and is not being distributed
+ #add_subdirectory(test)
++
++file(WRITE "${CMAKE_BINARY_DIR}/parmetis.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/lib
++includedir=\${prefix}/include
++
++Name: parmetis
++Description: Parallel Graph Partitioning and Fill-reducing Matrix Ordering
++Version: ${VERSION}
++Libs: -L\${libdir} -lparmetis
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_BINARY_DIR}/parmetis.pc" DESTINATION lib/pkgconfig)
+--- origsrc/ParMETIS/include/parmetis.h	2026-11-24 15:03:06.000000000 +0000
++++ src/ParMETIS/include/parmetis.h	2026-11-24 15:03:10.930261400 +0000
+@@ -17,7 +17,7 @@
+ #include <mpi.h>
+ #include <metis.h>
+ 
+-#ifndef _MSC_VER
++#if !defined(_MSC_VER) && !defined(__cdecl)
+ #define __cdecl
+ #endif
+ 
+--- origsrc/ParMETIS/libparmetis/CMakeLists.txt	2026-11-24 15:03:06.000000000 +0000
++++ src/ParMETIS/libparmetis/CMakeLists.txt	2026-11-24 15:03:10.930261400 +0000
+@@ -8,10 +8,14 @@ file(GLOB parmetis_sources *.c)
+ add_library(parmetis ${ParMETIS_LIBRARY_TYPE} ${parmetis_sources})
+ 
+ if(SHARED)
+-  target_link_libraries(parmetis metis GKlib)
++  target_link_libraries(parmetis metis GKlib ${MPI_LIBRARIES})
+ endif()
+  
++if(CYGWIN)
++  set_target_properties(parmetis PROPERTIES SOVERSION 4.0)
++endif()
++
+ install(TARGETS parmetis
+   LIBRARY DESTINATION lib
+-  RUNTIME DESTINATION lib
++  RUNTIME DESTINATION bin
+   ARCHIVE DESTINATION lib)

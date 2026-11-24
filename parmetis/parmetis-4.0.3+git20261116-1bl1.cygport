@@ -1,0 +1,64 @@
+HOMEPAGE="https://github.com/KarypisLab/ParMETIS"
+GIT_URI="https://github.com/KarypisLab/ParMETIS.git"
+GIT_REV="fc99804e3f043dd951e37775e30db697444816b8"
+
+CATEGORY="Science"
+SUMMARY="Parallel Graph Partitioning and Fill-reducing Matrix Ordering"
+DESCRIPTION="ParMETIS is an MPI-based parallel library that implements a variety of
+algorithms for partitioning unstructured graphs, meshes, and for computing
+fill-reducing orderings of sparse matrices."
+
+LICENSE="LicenseRef-custom"
+LICENSE_SPDX="SPDX-License-Identifier: LicenseRef-custom"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgklib-devel
+	libmetis-devel
+	libopenmpi-devel
+"
+
+inherit cmake
+inherit git
+
+CYGCMAKE_ARGS="
+	-DMPI_LIBRARIES:STRING=mpi
+	-DSHARED:BOOL=ON
+	-DVERSION:STRING=${PV%%+*}
+"
+
+# The license allows use by non-profit institutions and US government
+# agencies only and forbids redistribution without prior approval
+YACP_NO_REDISTRIBUTE=1
+
+PKG_NAMES="
+	parmetis
+	libparmetis4.0
+	libparmetis-devel
+"
+parmetis_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libparmetis4_0_CONTENTS="
+	usr/bin/cygparmetis-4.0.dll
+"
+libparmetis_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+parmetis_SUMMARY="${SUMMARY} (utilities)"
+libparmetis4_0_SUMMARY="${SUMMARY} (runtime)"
+libparmetis_devel_SUMMARY="${SUMMARY} (development)"
+
+# Upstream has no tests; check that the programs start
+src_test()
+{
+	cd ${B}/programs
+	export PATH=${B}/libparmetis:${PATH}
+	local prog
+	for prog in pm_dglpart pm_mtest pm_parmetis pm_pometis pm_ptest
+	do
+		verbose ./${prog}.exe --version || return 1
+	done
+}

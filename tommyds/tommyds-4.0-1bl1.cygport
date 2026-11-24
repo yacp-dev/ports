@@ -6,14 +6,19 @@ SUMMARY="C library of hashtables and tries designed to store objects with high p
 DESCRIPTION="TommyDS is a C library of array, hashtables and tries data structures,
 designed for high performance and providing an easy to use interface."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
-LICENSE_URI="LICENSE"
+LICENSE="BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND MIT"
+LICENSE_URI="COPYING"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DSOVERSION:STRING=${PV[1]}
+"
+
+DOCS="
+	LICENSES/BSD-2-Clause
+	LICENSES/MIT
 "
 
 PKG_NAMES="
@@ -24,7 +29,7 @@ PKG_NAMES="
 tommyds_CONTENTS="
 	usr/share
 "
-libtommyds3_CONTENTS="
+libtommyds4_CONTENTS="
 	usr/bin/cyg*-${PV[1]}.dll
 "
 libtommyds_devel_CONTENTS="
@@ -32,5 +37,5 @@ libtommyds_devel_CONTENTS="
 	usr/lib
 "
 tommyds_SUMMARY="${SUMMARY} (licensing & readmes)"
-libtommyds3_SUMMARY="${SUMMARY} (runtime)"
+libtommyds4_SUMMARY="${SUMMARY} (runtime)"
 libtommyds_devel_SUMMARY="${SUMMARY} (development)"

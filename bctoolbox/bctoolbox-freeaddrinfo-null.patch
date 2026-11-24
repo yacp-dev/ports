@@ -1,0 +1,18 @@
+Make bctbx_freeaddrinfo() accept NULL, like freeaddrinfo() does.
+
+bctbx_freeaddrinfo() dereferenced res->ai_canonname without checking res.
+On Cygwin, getaddrinfo() returns a single v4-mapped entry for a host
+without AAAA records, so the Addrinfo sort test frees a NULL tail and
+crashes, taking the whole tester down.
+
+diff --git a/src/utils/port.c b/src/utils/port.c
+--- a/src/utils/port.c
++++ b/src/utils/port.c
+@@ -1882,6 +1882,7 @@
+ 	struct addrinfo *it;
+ 	struct addrinfo *previt = NULL;
+ 	struct addrinfo *beginit = res;
++	if (res == NULL) return;
+ 	bool_t looking_for_allocated_by_bctbx = (res->ai_canonname == allocated_by_bctbx_magic) ? TRUE : FALSE;
+ 
+ 	for (it = res; it != NULL; it = it->ai_next) {

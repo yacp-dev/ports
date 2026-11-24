@@ -5,8 +5,13 @@ CATEGORY="Utils"
 SUMMARY="Backup program for disk arrays"
 DESCRIPTION="SnapRAID is a backup program for disk arrays."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND GPL-2.0-or-later AND BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND GPL-2.0-or-later AND BSD-2-Clause AND MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libblkid-devel libtommyds-devel"
+DOCS="
+	LICENSES/BSD-2-Clause
+	LICENSES/GPL-2.0
+	LICENSES/GPL-3.0
+"
+

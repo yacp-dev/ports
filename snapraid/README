@@ -3,39 +3,35 @@ snapraid
 SnapRAID is a backup program for disk arrays.
 
 Runtime requirements:
-  cygwin-3.6.0-1
-  libblkid1-2.40.2-2
-  libtommyds2-2.2-1bl2
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libblkid-devel-2.40.2-2
-  libtommyds-devel-2.2-1bl2
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
   https://github.com/amadvance/snapraid/
 
 Canonical download:
-  https://github.com/amadvance/snapraid/archive/refs/tags/v12.4.tar.gz
+  https://github.com/amadvance/snapraid/archive/refs/tags/v15.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack snapraid-12.4-X-src.tar.xz
+  1. unpack snapraid-15.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./snapraid-12.4-X.cygport all
+        % cygport ./snapraid-15.2-X.cygport all
 
 This will create:
-  /usr/src/snapraid-12.4-X-src.tar.xz
-  /usr/src/snapraid-12.4-X.tar.xz
+  /usr/src/snapraid-15.2-X-src.tar.xz
+  /usr/src/snapraid-15.2-X.tar.xz
 
 -------------------------------------------
 
@@ -45,15 +41,35 @@ Files included in the binary package:
   /usr/bin/snapraid.exe
   /usr/share/doc/Cygwin/snapraid.README
   /usr/share/doc/snapraid/AUTHORS
+  /usr/share/doc/snapraid/BSD-2-Clause
   /usr/share/doc/snapraid/COPYING
+  /usr/share/doc/snapraid/GPL-2.0
+  /usr/share/doc/snapraid/GPL-3.0
   /usr/share/doc/snapraid/HISTORY
   /usr/share/doc/snapraid/README
   /usr/share/doc/snapraid/TODO
+  /usr/share/man/de/man1/snapraid.1.gz
+  /usr/share/man/es/man1/snapraid.1.gz
+  /usr/share/man/fr/man1/snapraid.1.gz
+  /usr/share/man/it/man1/snapraid.1.gz
+  /usr/share/man/ja/man1/snapraid.1.gz
+  /usr/share/man/ko/man1/snapraid.1.gz
   /usr/share/man/man1/snapraid.1.gz
+  /usr/share/man/man1/snapraid_log.1.gz
+  /usr/share/man/pl/man1/snapraid.1.gz
+  /usr/share/man/pt/man1/snapraid.1.gz
+  /usr/share/man/ro/man1/snapraid.1.gz
+  /usr/share/man/ru/man1/snapraid.1.gz
+  /usr/share/man/sv/man1/snapraid.1.gz
+  /usr/share/man/uk/man1/snapraid.1.gz
+  /usr/share/man/zh/man1/snapraid.1.gz
 
 ------------------
 
 Port Notes:
+
+----- version 15.2-1bl1 -----
+Version bump.
 
 ----- version 12.4-1bl1 -----
 Version bump.

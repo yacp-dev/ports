@@ -1,0 +1,39 @@
+HOMEPAGE="https://github.com/voutcn/${PN}"
+SRC_URI="https://github.com/voutcn/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/m/megahit/1.2.9-5/debian/patches/fix-gcc13-ftbfs.patch
+"
+
+CATEGORY="Science"
+SUMMARY="Ultra-fast and memory-efficient (meta-)genome assembler"
+DESCRIPTION="MEGAHIT is an ultra-fast and memory-efficient NGS assembler. It is optimized
+for metagenomes, but also works well on generic single genome assembly (small
+or mammalian size) and single-cell assembly."
+
+LICENSE="GPL-3.0-or-later AND Apache-2.0 AND BSD-2-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND Apache-2.0 AND BSD-2-Clause AND MIT"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	python3
+	zlib-devel
+"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
+# OffsetFiller (sorting/base_engine.h) keeps two std::array<int64_t, 65536>, 1 MiB,
+# on the stack of the main thread and of every OpenMP worker; with Cygwin's
+# default 2 MiB stack megahit_core dies with SIGSEGV in ___chkstk_ms.
+LDFLAGS+=" -Wl,--stack,33554432"
+
+src_test()
+{
+	# the megahit script looks for test_data in the parent of its own directory
+	verbose cp -a ${S}/test_data ${B}/../test_data
+	cd ${B}
+	cygninja simple_test
+}

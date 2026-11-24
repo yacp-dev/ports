@@ -1,13 +1,16 @@
 HOMEPAGE="https://github.com/radareorg/${PN}"
 SRC_URI="https://github.com/radareorg/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	sdb-2.6.2-skip-rlimit-fsize-test.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Simple string-based Key/Value database"
 DESCRIPTION="Sdb is a simple string key/value database based on djb's cdb disk storage and
 supports JSON and arrays introspection."
 
-LICENSE="MIT"
-LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE="MIT AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND Apache-2.0"
 LICENSE_URI="COPYING"
 
 inherit meson
@@ -34,7 +37,7 @@ sdb_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libsdb2_3_4_CONTENTS="
+libsdb2_6_2_CONTENTS="
 	usr/bin/cyg*-${PV}.dll
 "
 libsdb_devel_CONTENTS="
@@ -43,5 +46,5 @@ libsdb_devel_CONTENTS="
 	usr/lib/pkgconfig
 "
 sdb_SUMMARY="${SUMMARY} (utilities)"
-libsdb2_3_4_SUMMARY="${SUMMARY} (runtime)"
+libsdb2_6_2_SUMMARY="${SUMMARY} (runtime)"
 libsdb_devel_SUMMARY="${SUMMARY} (development)"

@@ -8,81 +8,77 @@ Direct3D and OpenGL and provides an interface based on world objects and other
 intuitive classes.
 
 Runtime requirements:
-  cygwin-3.3.1-1
-  cygwin-devel-3.3.1-1
-  libEGL1-19.1.6-1
-  libGL1-19.1.6-1
-  libIlmImf22-2.2.0-1
+  cygwin-3.6.12-1
+  cygwin-devel-3.6.12-1
+  libEGL1-23.3.6-1
   libQt5Core5-5.9.4-2
+  libQt5Gui-devel-5.9.4-2
   libQt5Gui5-5.9.4-2
-  libSDL2-devel-2.0.7-1
-  libSDL2_2.0_0-2.0.7-1
-  libX11_6-1.7.2-1
-  libXaw7-1.0.14-1
-  libXrandr2-1.5.2-1
-  libXt6-1.2.1-1
-  libfreetype6-2.11.0-2
-  libgcc1-11.2.0-1
-  libilmbase12-2.2.0-1
-  libogre-devel-13.1.1-1bl1
-  libogre13.1-13.1.1-1bl1
+  libSDL2-devel-2.32.74-1
+  libSDL2_2.0_0-2.32.74-1
+  libX11_6-1.8.13-1
+  libXaw7-1.0.16-1
+  libXrandr2-1.5.5-1
+  libXt6-1.3.1-1
+  libfreetype6-2.13.3-1
+  libgcc1-14.4.0-1
+  libintl8-0.26-1
+  libogre-devel-14.6.3-1bl1
+  libogre14.6-14.6.3-1bl1
   libpugixml1-1.9-1
-  libstdc++6-11.2.0-1
-  pkg-config-1.6.3-1
-  python38-3.8.10-1
-  zlib0-1.2.11-1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.11-1
+  python312-3.12.12-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  binutils-2.37-2
-  bison-3.8.2-1
-  cmake-3.20.0-1
-  cygport-0.34.0-1
-  flex-2.6.4-2
-  gcc-core-11.2.0-1
-  gcc-g++-11.2.0-1
-  gcc-objc++-11.2.0-1
-  libEGL-devel-19.1.6-1
-  libGL-devel-19.1.6-1
-  libIlmImf-devel-2.2.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libEGL-devel-23.3.6-1
+  libGL-devel-23.3.6-1
   libQt5Core-devel-5.9.4-2
   libQt5Gui-devel-5.9.4-2
-  libSDL2-devel-2.0.7-1
-  libX11-devel-1.7.2-1
-  libXaw-devel-1.0.14-1
-  libXrandr-devel-1.5.2-1
-  libXt-devel-1.2.1-1
-  libfreetype-devel-2.11.0-2
-  libilmbase-devel-2.2.0-1
+  libSDL2-devel-2.32.74-1
+  libX11-devel-1.8.13-1
+  libXaw-devel-1.0.16-1
+  libXrandr-devel-1.5.5-1
+  libXt-devel-1.3.1-1
+  libfreetype-devel-2.13.3-1
+  libgtest-devel-1.18.0-1bl1
+  libopenexr-devel-2.5.8-1
   libpugixml-devel-1.9-1
-  make-4.3-1
-  ninja-1.10.2-1
-  python38-3.8.10-1
-  python38-devel-3.8.10-1
-  zlib-devel-1.2.11-1
+  make-4.4.1-2
+  ninja-1.13.2-1
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  swig-4.5.1-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://www.ogre3d.org/
 
 Canonical download:
-  https://github.com/OGRECave/ogre/archive/refs/tags/v13.1.1.tar.gz
+  https://github.com/OGRECave/ogre/archive/refs/tags/v14.6.3.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ogre-13.1.1-X-src.tar.xz
+  1. unpack ogre-14.6.3-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ogre-13.1.1-X.cygport all
+        % cygport ./ogre-14.6.3-X.cygport all
 
 This will create:
-  /usr/src/ogre-13.1.1-X-src.tar.xz
-  /usr/src/ogre-13.1.1-X.tar.xz
-  /usr/src/libogre13.1-13.1.1-X.tar.xz
-  /usr/src/libogre-devel-13.1.1-X.tar.xz
-  /usr/src/python38-ogre-13.1.1-X.tar.xz
+  /usr/src/ogre-14.6.3-X-src.tar.xz
+  /usr/src/ogre-14.6.3-X.tar.xz
+  /usr/src/libogre14.6-14.6.3-X.tar.xz
+  /usr/src/libogre-devel-14.6.3-X.tar.xz
+  /usr/src/python312-ogre-14.6.3-X.tar.xz
 
 -------------------------------------------
 
@@ -91,9 +87,7 @@ Files included in the binary package:
 (ogre)
   /usr/bin/OgreMeshUpgrader.exe
   /usr/bin/OgreXMLConverter.exe
-  /usr/bin/Test_Ogre.exe
   /usr/bin/VRMLConverter.exe
-  /usr/lib/OGRE/Codec_EXR.dll
   /usr/lib/OGRE/Codec_STBI.dll
   /usr/lib/OGRE/Plugin_BSPSceneManager.dll
   /usr/lib/OGRE/Plugin_DotScene.dll
@@ -103,77 +97,64 @@ Files included in the binary package:
   /usr/lib/OGRE/Plugin_ParticleFX.dll
   /usr/lib/OGRE/RenderSystem_GL.dll
   /usr/lib/OGRE/RenderSystem_GL3Plus.dll
-  /usr/lib/OGRE/RenderSystem_GLES2.dll
-  /usr/share/OGRE/GLX_backdrop.png
-  /usr/share/OGRE/Media/Main/DefaultShaders.metal
-  /usr/share/OGRE/Media/Main/GLSL_GL3Support.glsl
-  /usr/share/OGRE/Media/Main/HLSL_SM4Support.hlsl
-  /usr/share/OGRE/Media/Main/OgreUnifiedShader.h
-  /usr/share/OGRE/Media/Main/ShadowBlend.frag
-  /usr/share/OGRE/Media/Main/ShadowBlend.vert
-  /usr/share/OGRE/Media/Main/ShadowExtrudeDirLight.vert
-  /usr/share/OGRE/Media/Main/ShadowExtrudeDirLightFinite.vert
-  /usr/share/OGRE/Media/Main/ShadowExtrudePointLight.vert
-  /usr/share/OGRE/Media/Main/ShadowExtrudePointLightFinite.vert
-  /usr/share/OGRE/Media/Main/ShadowVolumeExtude.program
-  /usr/share/OGRE/Media/Main/spot_shadow_fade.dds
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/FFPLib_AlphaTest.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/FFPLib_Common.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/FFPLib_Fog.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/FFPLib_Texturing.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/FFPLib_Transform.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/SGXLib_DualQuaternion.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/SGXLib_IntegratedPSSM.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/SGXLib_LayeredBlending.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/SGXLib_NormalMap.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/SGXLib_PerPixelLighting.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/SGXLib_TriplanarTexturing.glsl
-  /usr/share/OGRE/Media/RTShaderLib/GLSL/SGXLib_WBOIT.glsl
-  /usr/share/OGRE/Media/RTShaderLib/HLSL_Cg/FFPLib_Transform.cg
-  /usr/share/OGRE/Media/Terrain/TerrainTransforms.glsl
-  /usr/share/OGRE/Media/packs/SdkTrays.zip
-  /usr/share/OGRE/Media/packs/profiler.zip
-  /usr/share/OGRE/plugins.cfg
-  /usr/share/OGRE/resources.cfg
-  /usr/share/OGRE/samples.cfg
-  /usr/share/OGRE/tests.cfg
+  /usr/share/OGRE-14.6/GLX_backdrop.png
+  /usr/share/OGRE-14.6/Media/Main/DefaultShaders.metal
+  /usr/share/OGRE-14.6/Media/Main/GLSL_GL3Support.glsl
+  /usr/share/OGRE-14.6/Media/Main/HLSL_SM4Support.hlsl
+  /usr/share/OGRE-14.6/Media/Main/OgreGizmos.material
+  /usr/share/OGRE-14.6/Media/Main/OgreUnifiedShader.h
+  /usr/share/OGRE-14.6/Media/Main/Shadow.material
+  /usr/share/OGRE-14.6/Media/Main/ShadowBlend.frag
+  /usr/share/OGRE-14.6/Media/Main/ShadowBlend.vert
+  /usr/share/OGRE-14.6/Media/Main/ShadowExtrudeDirLight.vert
+  /usr/share/OGRE-14.6/Media/Main/ShadowExtrudeDirLightFinite.vert
+  /usr/share/OGRE-14.6/Media/Main/ShadowExtrudePointLight.vert
+  /usr/share/OGRE-14.6/Media/Main/ShadowExtrudePointLightFinite.vert
+  /usr/share/OGRE-14.6/Media/Main/ShadowVolumeExtude.program
+  /usr/share/OGRE-14.6/Media/Main/spot_shadow_fade.dds
+  /usr/share/OGRE-14.6/Media/RTShaderLib/FFPLib_AlphaTest.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/FFPLib_Fog.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/FFPLib_Texturing.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/FFPLib_Transform.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/RTSLib_Colour.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/RTSLib_Froxels.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/RTSLib_IBL.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/RTSLib_LTC.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/RTSLib_Lighting.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/RTSSamplers.material
+  /usr/share/OGRE-14.6/Media/RTShaderLib/SGXLib_CookTorrance.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/SGXLib_DualQuaternion.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/SGXLib_IntegratedPSSM.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/SGXLib_LayeredBlending.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/SGXLib_NormalMap.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/SGXLib_PerPixelLighting.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/SGXLib_TriplanarTexturing.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/SGXLib_WBOIT.glsl
+  /usr/share/OGRE-14.6/Media/RTShaderLib/dfgLUTmultiscatter.dds
+  /usr/share/OGRE-14.6/Media/RTShaderLib/ltc_1.dds
+  /usr/share/OGRE-14.6/Media/RTShaderLib/ltc_2.dds
+  /usr/share/OGRE-14.6/Media/Terrain/TerrainSurface.glsl
+  /usr/share/OGRE-14.6/Media/Terrain/TerrainTransforms.glsl
+  /usr/share/OGRE-14.6/Media/packs/SdkTrays.zip
+  /usr/share/OGRE-14.6/Media/packs/profiler.zip
+  /usr/share/OGRE-14.6/plugins.cfg
+  /usr/share/OGRE-14.6/resources.cfg
   /usr/share/doc/Cygwin/ogre.README
-  /usr/share/doc/OGRE/1.10-Notes.md
-  /usr/share/doc/OGRE/1.11-Notes.md
-  /usr/share/doc/OGRE/1.12-Notes.md
-  /usr/share/doc/OGRE/13-Notes.md
-  /usr/share/doc/OGRE/AUTHORS
-  /usr/share/doc/OGRE/CMakeLists.txt
-  /usr/share/doc/OGRE/ChangeLog.md
-  /usr/share/doc/OGRE/CodingStandards.md
-  /usr/share/doc/OGRE/LICENSE
-  /usr/share/doc/OGRE/License.md
-  /usr/share/doc/OGRE/README.md
-  /usr/share/doc/OGRE/licenses/bsd.txt
-  /usr/share/doc/OGRE/licenses/freeimage.txt
-  /usr/share/doc/OGRE/licenses/freetype.txt
-  /usr/share/doc/OGRE/licenses/libjpeg.txt
-  /usr/share/doc/OGRE/licenses/libmng.txt
-  /usr/share/doc/OGRE/licenses/libpng.txt
-  /usr/share/doc/OGRE/licenses/libtiff.txt
-  /usr/share/doc/OGRE/licenses/mit.txt
-  /usr/share/doc/OGRE/licenses/mpl.txt
-  /usr/share/doc/OGRE/licenses/uiuc.txt
-  /usr/share/doc/OGRE/licenses/zlib.txt
-  /usr/share/doc/OGRE/ogre-logo.png
-  /usr/share/doc/OGRE/ogre_style.css
+  /usr/share/doc/ogre/AUTHORS
+  /usr/share/doc/ogre/LICENSE
+  /usr/share/doc/ogre/README.md
 
-(libogre13.1)
-  /usr/bin/cygOgreBites-13.1.dll
-  /usr/bin/cygOgreBitesQt-13.1.dll
-  /usr/bin/cygOgreMain-13.1.dll
-  /usr/bin/cygOgreMeshLodGenerator-13.1.dll
-  /usr/bin/cygOgreOverlay-13.1.dll
-  /usr/bin/cygOgrePaging-13.1.dll
-  /usr/bin/cygOgreProperty-13.1.dll
-  /usr/bin/cygOgreRTShaderSystem-13.1.dll
-  /usr/bin/cygOgreTerrain-13.1.dll
-  /usr/bin/cygOgreVolume-13.1.dll
+(libogre14.6)
+  /usr/bin/cygOgreBites-14.6.dll
+  /usr/bin/cygOgreBitesQt-14.6.dll
+  /usr/bin/cygOgreMain-14.6.dll
+  /usr/bin/cygOgreMeshLodGenerator-14.6.dll
+  /usr/bin/cygOgreOverlay-14.6.dll
+  /usr/bin/cygOgrePaging-14.6.dll
+  /usr/bin/cygOgreProperty-14.6.dll
+  /usr/bin/cygOgreRTShaderSystem-14.6.dll
+  /usr/bin/cygOgreTerrain-14.6.dll
+  /usr/bin/cygOgreVolume-14.6.dll
 
 (libogre-devel)
   /usr/include/OGRE/Bites/OgreAdvancedRenderControls.h
@@ -184,6 +165,7 @@ Files included in the binary package:
   /usr/include/OGRE/Bites/OgreBitesConfigDialog.h
   /usr/include/OGRE/Bites/OgreBitesPrerequisites.h
   /usr/include/OGRE/Bites/OgreCameraMan.h
+  /usr/include/OGRE/Bites/OgreGizmos.h
   /usr/include/OGRE/Bites/OgreImGuiInputListener.h
   /usr/include/OGRE/Bites/OgreInput.h
   /usr/include/OGRE/Bites/OgreSGTechniqueResolverListener.h
@@ -191,7 +173,6 @@ Files included in the binary package:
   /usr/include/OGRE/Bites/OgreTrays.h
   /usr/include/OGRE/Bites/OgreWindowEventUtilities.h
   /usr/include/OGRE/MeshLodGenerator/OgreLod0Stripifier.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodBuffer.h
   /usr/include/OGRE/MeshLodGenerator/OgreLodCollapseCost.h
   /usr/include/OGRE/MeshLodGenerator/OgreLodCollapseCostCurvature.h
   /usr/include/OGRE/MeshLodGenerator/OgreLodCollapseCostOutside.h
@@ -202,19 +183,10 @@ Files included in the binary package:
   /usr/include/OGRE/MeshLodGenerator/OgreLodConfigSerializer.h
   /usr/include/OGRE/MeshLodGenerator/OgreLodData.h
   /usr/include/OGRE/MeshLodGenerator/OgreLodInputProvider.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodInputProviderBuffer.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodInputProviderMesh.h
   /usr/include/OGRE/MeshLodGenerator/OgreLodOutputProvider.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodOutputProviderBuffer.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodOutputProviderCompressedBuffer.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodOutputProviderCompressedMesh.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodOutputProviderMesh.h
   /usr/include/OGRE/MeshLodGenerator/OgreLodOutsideMarker.h
   /usr/include/OGRE/MeshLodGenerator/OgreLodPrerequisites.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodWorkQueueInjector.h
   /usr/include/OGRE/MeshLodGenerator/OgreLodWorkQueueInjectorListener.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodWorkQueueRequest.h
-  /usr/include/OGRE/MeshLodGenerator/OgreLodWorkQueueWorker.h
   /usr/include/OGRE/MeshLodGenerator/OgreMeshLodGenerator.h
   /usr/include/OGRE/MeshLodGenerator/OgreSmallVector.h
   /usr/include/OGRE/MeshLodGenerator/OgreVectorSet.h
@@ -266,8 +238,6 @@ Files included in the binary package:
   /usr/include/OGRE/OgreDefaultDebugDrawer.h
   /usr/include/OGRE/OgreDefaultHardwareBufferManager.h
   /usr/include/OGRE/OgreDefaultWorkQueue.h
-  /usr/include/OGRE/OgreDefaultWorkQueueStandard.h
-  /usr/include/OGRE/OgreDefaultWorkQueueTBB.h
   /usr/include/OGRE/OgreDeflate.h
   /usr/include/OGRE/OgreDeprecated.h
   /usr/include/OGRE/OgreDepthBuffer.h
@@ -336,7 +306,6 @@ Files included in the binary package:
   /usr/include/OGRE/OgreMurmurHash3.h
   /usr/include/OGRE/OgreNameGenerator.h
   /usr/include/OGRE/OgreNode.h
-  /usr/include/OGRE/OgreNumerics.h
   /usr/include/OGRE/OgreOptimisedUtil.h
   /usr/include/OGRE/OgreParticle.h
   /usr/include/OGRE/OgreParticleAffector.h
@@ -387,7 +356,6 @@ Files included in the binary package:
   /usr/include/OGRE/OgreRoot.h
   /usr/include/OGRE/OgreRotationalSpline.h
   /usr/include/OGRE/OgreSceneManager.h
-  /usr/include/OGRE/OgreSceneManagerEnumerator.h
   /usr/include/OGRE/OgreSceneNode.h
   /usr/include/OGRE/OgreSceneQuery.h
   /usr/include/OGRE/OgreScriptCompiler.h
@@ -430,14 +398,11 @@ Files included in the binary package:
   /usr/include/OGRE/OgreThreadDefinesNone.h
   /usr/include/OGRE/OgreThreadDefinesPoco.h
   /usr/include/OGRE/OgreThreadDefinesSTD.h
-  /usr/include/OGRE/OgreThreadDefinesTBB.h
   /usr/include/OGRE/OgreThreadHeaders.h
   /usr/include/OGRE/OgreThreadHeadersBoost.h
   /usr/include/OGRE/OgreThreadHeadersPoco.h
   /usr/include/OGRE/OgreThreadHeadersSTD.h
-  /usr/include/OGRE/OgreThreadHeadersTBB.h
   /usr/include/OGRE/OgreTimer.h
-  /usr/include/OGRE/OgreUnifiedHighLevelGpuProgram.h
   /usr/include/OGRE/OgreUserObjectBindings.h
   /usr/include/OGRE/OgreVector.h
   /usr/include/OGRE/OgreVector2.h
@@ -495,8 +460,6 @@ Files included in the binary package:
   /usr/include/OGRE/Plugins/BSPSceneManager/OgreStaticFaceGroup.h
   /usr/include/OGRE/Plugins/DotScene/OgreDotSceneLoader.h
   /usr/include/OGRE/Plugins/DotScene/OgreDotScenePluginExports.h
-  /usr/include/OGRE/Plugins/EXRCodec/OgreEXRCodec.h
-  /usr/include/OGRE/Plugins/EXRCodec/OgreEXRCodecExports.h
   /usr/include/OGRE/Plugins/OctreeSceneManager/OgreOctree.h
   /usr/include/OGRE/Plugins/OctreeSceneManager/OgreOctreeCamera.h
   /usr/include/OGRE/Plugins/OctreeSceneManager/OgreOctreeNode.h
@@ -552,14 +515,10 @@ Files included in the binary package:
   /usr/include/OGRE/RTShaderSystem/OgreRTShaderConfig.h
   /usr/include/OGRE/RTShaderSystem/OgreRTShaderExports.h
   /usr/include/OGRE/RTShaderSystem/OgreRTShaderSystem.h
-  /usr/include/OGRE/RTShaderSystem/OgreShaderExGBuffer.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderExHardwareSkinning.h
-  /usr/include/OGRE/RTShaderSystem/OgreShaderExIntegratedPSSM3.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderExLayeredBlending.h
-  /usr/include/OGRE/RTShaderSystem/OgreShaderExTriplanarTexturing.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderFFPRenderState.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderFFPTexturing.h
-  /usr/include/OGRE/RTShaderSystem/OgreShaderFFPTransform.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderFunction.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderFunctionAtom.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderGenerator.h
@@ -567,20 +526,15 @@ Files included in the binary package:
   /usr/include/OGRE/RTShaderSystem/OgreShaderPrerequisites.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderProgram.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderProgramManager.h
-  /usr/include/OGRE/RTShaderSystem/OgreShaderProgramProcessor.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderProgramSet.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderProgramWriter.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderProgramWriterManager.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderRenderState.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderScriptTranslator.h
   /usr/include/OGRE/RTShaderSystem/OgreShaderSubRenderState.h
-  /usr/include/OGRE/RenderSystems/GL/GL/glew.h
-  /usr/include/OGRE/RenderSystems/GL/GL/glxew.h
-  /usr/include/OGRE/RenderSystems/GL/GL/wglew.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLContext.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLCopyingRenderTexture.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLDepthBufferCommon.h
-  /usr/include/OGRE/RenderSystems/GL/OgreGLFBOMultiRenderTarget.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLFBORenderTexture.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLFrameBufferObject.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLGpuNvparseProgram.h
@@ -591,6 +545,7 @@ Files included in the binary package:
   /usr/include/OGRE/RenderSystems/GL/OgreGLHardwareOcclusionQuery.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLHardwarePixelBuffer.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLHardwarePixelBufferCommon.h
+  /usr/include/OGRE/RenderSystems/GL/OgreGLMultiRenderTarget.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLNativeSupport.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLPBRenderTexture.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLPBuffer.h
@@ -602,6 +557,7 @@ Files included in the binary package:
   /usr/include/OGRE/RenderSystems/GL/OgreGLRenderTarget.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLRenderTexture.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLRenderToVertexBuffer.h
+  /usr/include/OGRE/RenderSystems/GL/OgreGLRenderToVertexBufferCommon.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLSLExtSupport.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLSLLinkProgram.h
   /usr/include/OGRE/RenderSystems/GL/OgreGLSLLinkProgramManager.h
@@ -637,7 +593,6 @@ Files included in the binary package:
   /usr/include/OGRE/RenderSystems/GL3Plus/GL/gl3w.h
   /usr/include/OGRE/RenderSystems/GL3Plus/GL/glcorearb.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGL3PlusExports.h
-  /usr/include/OGRE/RenderSystems/GL3Plus/OgreGL3PlusFBOMultiRenderTarget.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGL3PlusFBORenderTexture.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGL3PlusFrameBufferObject.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGL3PlusHardwareBuffer.h
@@ -656,11 +611,13 @@ Files included in the binary package:
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLContext.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLDepthBufferCommon.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLHardwarePixelBufferCommon.h
+  /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLMultiRenderTarget.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLNativeSupport.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLPBuffer.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLRenderSystemCommon.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLRenderTarget.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLRenderTexture.h
+  /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLRenderToVertexBufferCommon.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLStateCacheManagerCommon.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLSupportPrerequisites.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLTextureCommon.h
@@ -669,53 +626,8 @@ Files included in the binary package:
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLVertexArrayObject.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreGLWindow.h
   /usr/include/OGRE/RenderSystems/GL3Plus/OgreSPIRVShaderFactory.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLES2/gl2ext.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLES3/gl3.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLES3/gl3platform.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLES3/glesw.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLSLES/OgreGLSLESCgProgram.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLSLES/OgreGLSLESCgProgramFactory.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLSLES/OgreGLSLESExtSupport.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLSLES/OgreGLSLESLinkProgram.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLSLES/OgreGLSLESProgram.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLSLES/OgreGLSLESProgramCommon.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLSLES/OgreGLSLESProgramManager.h
-  /usr/include/OGRE/RenderSystems/GLES2/GLSLES/OgreGLSLESProgramPipeline.h
-  /usr/include/OGRE/RenderSystems/GLES2/KHR/khrplatform.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLContext.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLDepthBufferCommon.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2Config.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2Exports.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2FBOMultiRenderTarget.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2FBORenderTexture.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2FrameBufferObject.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2HardwareBuffer.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2HardwareBufferManager.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2HardwareOcclusionQuery.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2HardwarePixelBuffer.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2ManagedResource.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2ManagedResourceManager.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2PixelFormat.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2Plugin.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2Prerequisites.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2RenderSystem.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2RenderToVertexBuffer.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2StateCacheManager.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2Texture.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLES2TextureManager.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLHardwarePixelBufferCommon.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLNativeSupport.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLPBuffer.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLRenderSystemCommon.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLRenderTarget.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLRenderTexture.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLStateCacheManagerCommon.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLSupportPrerequisites.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLTextureCommon.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLUniformCache.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLUtil.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLVertexArrayObject.h
-  /usr/include/OGRE/RenderSystems/GLES2/OgreGLWindow.h
+  /usr/include/OGRE/RenderSystems/KHR/KHR/khrplatform.h
+  /usr/include/OGRE/RenderSystems/glad/glad/glad.h
   /usr/include/OGRE/Terrain/OgreTerrain.h
   /usr/include/OGRE/Terrain/OgreTerrainAutoUpdateLod.h
   /usr/include/OGRE/Terrain/OgreTerrainGroup.h
@@ -727,30 +639,23 @@ Files included in the binary package:
   /usr/include/OGRE/Terrain/OgreTerrainPaging.h
   /usr/include/OGRE/Terrain/OgreTerrainPrerequisites.h
   /usr/include/OGRE/Terrain/OgreTerrainQuadTreeNode.h
-  /usr/include/OGRE/Threading/OgreDefaultWorkQueue.h
-  /usr/include/OGRE/Threading/OgreDefaultWorkQueueStandard.h
-  /usr/include/OGRE/Threading/OgreDefaultWorkQueueTBB.h
   /usr/include/OGRE/Threading/OgreThreadDefines.h
   /usr/include/OGRE/Threading/OgreThreadDefinesBoost.h
   /usr/include/OGRE/Threading/OgreThreadDefinesNone.h
   /usr/include/OGRE/Threading/OgreThreadDefinesPoco.h
   /usr/include/OGRE/Threading/OgreThreadDefinesSTD.h
-  /usr/include/OGRE/Threading/OgreThreadDefinesTBB.h
   /usr/include/OGRE/Threading/OgreThreadHeaders.h
   /usr/include/OGRE/Threading/OgreThreadHeadersBoost.h
   /usr/include/OGRE/Threading/OgreThreadHeadersPoco.h
   /usr/include/OGRE/Threading/OgreThreadHeadersSTD.h
-  /usr/include/OGRE/Threading/OgreThreadHeadersTBB.h
   /usr/include/OGRE/Volume/OgreVolumeCSGSource.h
   /usr/include/OGRE/Volume/OgreVolumeCacheSource.h
   /usr/include/OGRE/Volume/OgreVolumeChunk.h
-  /usr/include/OGRE/Volume/OgreVolumeChunkHandler.h
   /usr/include/OGRE/Volume/OgreVolumeDualGridGenerator.h
   /usr/include/OGRE/Volume/OgreVolumeGridSource.h
   /usr/include/OGRE/Volume/OgreVolumeHalfFloatGridSource.h
   /usr/include/OGRE/Volume/OgreVolumeIsoSurface.h
   /usr/include/OGRE/Volume/OgreVolumeIsoSurfaceMC.h
-  /usr/include/OGRE/Volume/OgreVolumeIsoSurfaceTablesMC.h
   /usr/include/OGRE/Volume/OgreVolumeMeshBuilder.h
   /usr/include/OGRE/Volume/OgreVolumeOctreeNode.h
   /usr/include/OGRE/Volume/OgreVolumeOctreeNodeSplitPolicy.h
@@ -760,7 +665,7 @@ Files included in the binary package:
   /usr/include/OGRE/Volume/OgreVolumeTextureSource.h
   /usr/lib/cmake/OGRE/OGREConfig.cmake
   /usr/lib/cmake/OGRE/OGREConfigVersion.cmake
-  /usr/lib/cmake/OGRE/OgreTargets-release.cmake
+  /usr/lib/cmake/OGRE/OgreTargets-relwithdebinfo.cmake
   /usr/lib/cmake/OGRE/OgreTargets.cmake
   /usr/lib/libOgreBites.dll.a
   /usr/lib/libOgreBitesQt.dll.a
@@ -773,6 +678,7 @@ Files included in the binary package:
   /usr/lib/libOgreTerrain.dll.a
   /usr/lib/libOgreVolume.dll.a
   /usr/lib/pkgconfig/OGRE-Bites.pc
+  /usr/lib/pkgconfig/OGRE-BitesQt.pc
   /usr/lib/pkgconfig/OGRE-MeshLodGenerator.pc
   /usr/lib/pkgconfig/OGRE-Overlay.pc
   /usr/lib/pkgconfig/OGRE-PCZ.pc
@@ -783,49 +689,56 @@ Files included in the binary package:
   /usr/lib/pkgconfig/OGRE-Volume.pc
   /usr/lib/pkgconfig/OGRE.pc
 
-(python38-ogre)
-  /usr/lib/python3.8/dist-packages/Ogre/Bites.py
-  /usr/lib/python3.8/dist-packages/Ogre/ImGui.py
-  /usr/lib/python3.8/dist-packages/Ogre/Numpy.py
-  /usr/lib/python3.8/dist-packages/Ogre/Ogre.py
-  /usr/lib/python3.8/dist-packages/Ogre/Overlay.py
-  /usr/lib/python3.8/dist-packages/Ogre/RTShader.py
-  /usr/lib/python3.8/dist-packages/Ogre/Terrain.py
-  /usr/lib/python3.8/dist-packages/Ogre/_Bites.dll
-  /usr/lib/python3.8/dist-packages/Ogre/_ImGui.dll
-  /usr/lib/python3.8/dist-packages/Ogre/_Ogre.dll
-  /usr/lib/python3.8/dist-packages/Ogre/_Overlay.dll
-  /usr/lib/python3.8/dist-packages/Ogre/_RTShader.dll
-  /usr/lib/python3.8/dist-packages/Ogre/_Terrain.dll
-  /usr/lib/python3.8/dist-packages/Ogre/__init__.py
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Bites.cpython-38.opt-1.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Bites.cpython-38.opt-2.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Bites.cpython-38.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/ImGui.cpython-38.opt-1.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/ImGui.cpython-38.opt-2.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/ImGui.cpython-38.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Numpy.cpython-38.opt-1.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Numpy.cpython-38.opt-2.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Numpy.cpython-38.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Ogre.cpython-38.opt-1.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Ogre.cpython-38.opt-2.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Ogre.cpython-38.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Overlay.cpython-38.opt-1.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Overlay.cpython-38.opt-2.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Overlay.cpython-38.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/RTShader.cpython-38.opt-1.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/RTShader.cpython-38.opt-2.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/RTShader.cpython-38.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Terrain.cpython-38.opt-1.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Terrain.cpython-38.opt-2.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/Terrain.cpython-38.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/__init__.cpython-38.opt-1.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/__init__.cpython-38.opt-2.pyc
-  /usr/lib/python3.8/dist-packages/Ogre/__pycache__/__init__.cpython-38.pyc
+(python312-ogre)
+  /usr/lib/python3.12/dist-packages/Ogre/Bites.py
+  /usr/lib/python3.12/dist-packages/Ogre/HighPy.py
+  /usr/lib/python3.12/dist-packages/Ogre/ImGui.py
+  /usr/lib/python3.12/dist-packages/Ogre/Numpy.py
+  /usr/lib/python3.12/dist-packages/Ogre/Ogre.py
+  /usr/lib/python3.12/dist-packages/Ogre/Overlay.py
+  /usr/lib/python3.12/dist-packages/Ogre/RTShader.py
+  /usr/lib/python3.12/dist-packages/Ogre/Terrain.py
+  /usr/lib/python3.12/dist-packages/Ogre/_Bites.dll
+  /usr/lib/python3.12/dist-packages/Ogre/_ImGui.dll
+  /usr/lib/python3.12/dist-packages/Ogre/_Ogre.dll
+  /usr/lib/python3.12/dist-packages/Ogre/_Overlay.dll
+  /usr/lib/python3.12/dist-packages/Ogre/_RTShader.dll
+  /usr/lib/python3.12/dist-packages/Ogre/_Terrain.dll
+  /usr/lib/python3.12/dist-packages/Ogre/__init__.py
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Bites.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Bites.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Bites.cpython-312.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/HighPy.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/HighPy.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/HighPy.cpython-312.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/ImGui.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/ImGui.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/ImGui.cpython-312.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Numpy.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Numpy.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Numpy.cpython-312.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Ogre.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Ogre.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Ogre.cpython-312.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Overlay.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Overlay.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Overlay.cpython-312.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/RTShader.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/RTShader.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/RTShader.cpython-312.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Terrain.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Terrain.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/Terrain.cpython-312.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/__init__.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/__init__.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/dist-packages/Ogre/__pycache__/__init__.cpython-312.pyc
 
 ------------------
 
 Port Notes:
+
+----- version 14.6.3-1bl1 -----
+Version bump.
 
 ----- version 13.1.1-1bl1 -----
 Version bump.

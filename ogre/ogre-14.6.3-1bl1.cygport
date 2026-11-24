@@ -1,0 +1,91 @@
+HOMEPAGE="https://www.${PN}3d.org/"
+SRC_URI="https://github.com/OGRECave/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Open Source 3D Graphics Engine"
+DESCRIPTION="OGRE (Object-Oriented Graphics Rendering Engine) is a
+scene-oriented, flexible 3D engine written in C++ designed to make it easier
+and more intuitive for developers to produce games and demos utilising 3D
+hardware. The class library abstracts all the details of using the underlying
+system libraries like Direct3D and OpenGL and provides an interface based on
+world objects and other intuitive classes."
+
+LICENSE="MIT AND Apache-2.0 AND NCSA AND Zlib AND Unlicense"
+LICENSE_SPDX="SPDX-License-Identifier: MIT AND Apache-2.0 AND NCSA AND Zlib AND Unlicense"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libEGL-devel
+	libfreetype-devel
+	libGL-devel
+	libgtest-devel
+	libopenexr-devel
+	libpugixml-devel
+	libQt5Core-devel
+	libQt5Gui-devel
+	libSDL2-devel
+	libX11-devel
+	libXaw-devel
+	libXrandr-devel
+	libXt-devel
+	python3-devel
+	swig
+	zlib-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DOGRE_BUILD_COMPONENT_CSHARP:BOOL=OFF
+	-DOGRE_BUILD_DEPENDENCIES:BOOL=OFF
+	-DOGRE_BUILD_SAMPLES:BOOL=OFF
+	-DOGRE_BUILD_TESTS:BOOL=ON
+"
+
+src_test()
+{
+	cd ${B}/Tests
+	PATH=${B}/bin:${PATH} verbose ctest --output-on-failure
+}
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+	verbose rm -f ${D}/usr/lib/OGRE/lib*.dll.a
+	# unit test binary, installed by upstream
+	verbose rm -f ${D}/usr/bin/Test_Ogre.exe
+	# the plugins are dlopen()ed, not linked
+	verbose sed -i -e 's/ -lPlugin_[A-Za-z0-9_]*//g' ${D}/usr/lib/pkgconfig/OGRE-PCZ.pc
+}
+
+PKG_NAMES="
+	${PN}
+	lib${PN}${PV[1]}.${PV[2]}
+	lib${PN}-devel
+	python312-${PN}
+"
+ogre_CONTENTS="
+	usr/bin/*.exe
+	usr/lib/OGRE/*.dll
+	usr/share
+"
+libogre14_6_CONTENTS="
+	usr/bin/cyg*-14.6.dll
+"
+libogre_devel_CONTENTS="
+	usr/include
+	usr/lib/cmake
+	usr/lib/lib*.dll.a
+	usr/lib/pkgconfig
+"
+python312_ogre_CONTENTS="
+	usr/lib/python3.12
+"
+ogre_SUMMARY="${SUMMARY} (utilities)"
+libogre14_6_SUMMARY="${SUMMARY} (runtime)"
+libogre_devel_SUMMARY="${SUMMARY} (development)"
+python312_ogre_SUMMARY="${SUMMARY} (python312 bindings)"
+libogre_devel_REQUIRES="${PN}"

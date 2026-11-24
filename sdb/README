@@ -4,43 +4,40 @@ Sdb is a simple string key/value database based on djb's cdb disk storage and
 supports JSON and arrays introspection.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libsdb-devel-2.3.4-1bl1
-  libsdb2.3.4-2.3.4-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libsdb-devel-2.6.2-1bl1
+  libsdb2.6.2-2.6.2-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  lua-5.3.6-4
-  meson-1.5.2-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  meson-1.10.2-1
   ninja-1.13.2-1
-  vala-0.56.18-1
 
 Canonical website:
   https://github.com/radareorg/sdb
 
 Canonical download:
-  https://github.com/radareorg/sdb/archive/refs/tags/2.3.4.tar.gz
+  https://github.com/radareorg/sdb/archive/refs/tags/2.6.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack sdb-2.3.4-X-src.tar.xz
+  1. unpack sdb-2.6.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./sdb-2.3.4-X.cygport all
+        % cygport ./sdb-2.6.2-X.cygport all
 
 This will create:
-  /usr/src/sdb-2.3.4-X-src.tar.xz
-  /usr/src/sdb-2.3.4-X.tar.xz
-  /usr/src/libsdb2.3.4-2.3.4-X.tar.xz
-  /usr/src/libsdb-devel-2.3.4-X.tar.xz
+  /usr/src/sdb-2.6.2-X-src.tar.xz
+  /usr/src/sdb-2.6.2-X.tar.xz
+  /usr/src/libsdb2.6.2-2.6.2-X.tar.xz
+  /usr/src/libsdb-devel-2.6.2-X.tar.xz
 
 -------------------------------------------
 
@@ -54,8 +51,8 @@ Files included in the binary package:
   /usr/share/doc/sdb/README.md
   /usr/share/doc/sdb/TODO
 
-(libsdb2.3.4)
-  /usr/bin/cygsdb-2.3.4.dll
+(libsdb2.6.2)
+  /usr/bin/cygsdb-2.6.2.dll
 
 (libsdb-devel)
   /usr/include/sdb/asserts.h
@@ -87,6 +84,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.6.2-1bl1 -----
+Version bump.
 
 ----- version 2.3.4-1bl1 -----
 Version bump.

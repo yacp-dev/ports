@@ -1,0 +1,16 @@
+setrlimit(RLIMIT_FSIZE) fails on Cygwin, so
+test_sync_failure_preserves_database can't make sdb_sync() fail by
+limiting the output size. Skip it there, as on Windows.
+
+diff --git a/test/unit/test_sync.c b/test/unit/test_sync.c
+--- a/test/unit/test_sync.c
++++ b/test/unit/test_sync.c
+@@ -101,7 +101,7 @@
+ }
+ 
+ static bool test_sync_failure_preserves_database(void) {
+-#if __SDB_WINDOWS__
++#if __SDB_WINDOWS__ || defined (__CYGWIN__)
+ 	mu_ignore;
+ #else
+ 	const char *path = ".test-sync-failure.sdb";

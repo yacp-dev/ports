@@ -1,5 +1,5 @@
---- origsrc/opentracing-cpp-1.6.0/CMakeLists.txt	2019-09-19 06:59:25.000000000 +0900
-+++ src/opentracing-cpp-1.6.0/CMakeLists.txt	2025-09-17 18:29:16.386114100 +0900
+--- origsrc/opentracing-cpp-1.6.0/CMakeLists.txt	2019-09-18 21:59:25.000000000 +0000
++++ src/opentracing-cpp-1.6.0/CMakeLists.txt	2026-11-24 11:03:19.791061000 +0000
 @@ -96,7 +96,7 @@ option(BUILD_MOCKTRACER "Build mocktrace
  option(BUILD_DYNAMIC_LOADING "Build with dynamic loading support" ON)
  
@@ -18,8 +18,8 @@
            LIBRARY DESTINATION ${LIB_INSTALL_DIR}
            ARCHIVE DESTINATION ${LIB_INSTALL_DIR}
            )
---- origsrc/opentracing-cpp-1.6.0/mocktracer/CMakeLists.txt	2019-09-19 06:59:25.000000000 +0900
-+++ src/opentracing-cpp-1.6.0/mocktracer/CMakeLists.txt	2025-09-17 18:29:16.397069600 +0900
+--- origsrc/opentracing-cpp-1.6.0/mocktracer/CMakeLists.txt	2019-09-18 21:59:25.000000000 +0000
++++ src/opentracing-cpp-1.6.0/mocktracer/CMakeLists.txt	2026-11-24 11:03:19.793086300 +0000
 @@ -21,6 +21,7 @@ if (BUILD_SHARED_LIBS)
    install(TARGETS opentracing_mocktracer
            COMPONENT DIST

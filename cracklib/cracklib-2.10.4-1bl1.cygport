@@ -1,0 +1,60 @@
+HOMEPAGE="https://github.com/cracklib/cracklib/"
+SRC_URI="https://github.com/cracklib/cracklib/releases/download/v${PV}/${P}.tar.xz"
+
+CATEGORY="Libs"
+SUMMARY="Password checking library"
+DESCRIPTION="CrackLib tests passwords to determine whether they match certain
+security-oriented characteristics, such as being found in a dictionary. It
+provides a library for checking passwords and utilities for building and
+querying the dictionary."
+
+LICENSE="LGPL-2.1-only"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-only"
+LICENSE_URI="COPYING.LIB"
+
+BUILD_REQUIRES="
+	gettext-devel
+	python3-devel
+	zlib-devel
+"
+
+CYGCONF_ARGS="
+	--with-python
+"
+
+DOCS="
+	COPYING.LIB
+	README-DAWG
+	README-LICENSE
+	README-WORDS
+"
+
+PKG_NAMES="
+	${PN}
+	libcrack2
+	libcrack-devel
+	python312-${PN}
+"
+cracklib_CONTENTS="
+	usr/sbin
+	usr/share/cracklib
+	usr/share/doc
+	usr/share/man/man8
+"
+libcrack2_CONTENTS="
+	usr/bin/cygcrack-2.dll
+	usr/share/locale
+"
+libcrack_devel_CONTENTS="
+	usr/include
+	usr/lib/libcrack.dll.a
+	usr/lib/pkgconfig
+	usr/share/man/man3
+"
+python312_cracklib_CONTENTS="
+	usr/lib/python3.12
+"
+cracklib_SUMMARY="${SUMMARY} (utilities)"
+libcrack2_SUMMARY="${SUMMARY} (runtime)"
+libcrack_devel_SUMMARY="${SUMMARY} (development)"
+python312_cracklib_SUMMARY="${SUMMARY} (python312 binding)"

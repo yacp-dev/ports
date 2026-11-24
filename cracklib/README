@@ -1,0 +1,154 @@
+cracklib
+------------------------------------------
+CrackLib tests passwords to determine whether they match certain
+security-oriented characteristics, such as being found in a dictionary. It
+provides a library for checking passwords and utilities for building and
+querying the dictionary.
+
+Runtime requirements:
+  bash-5.2.21-1
+  cygwin-3.6.12-1
+  libcrack-devel-2.10.4-1bl1
+  libcrack2-2.10.4-1bl1
+  libintl8-0.26-1
+  pkg-config-3.0.11-1
+  python312-3.12.12-1
+  python312-cracklib-2.10.4-1bl1
+  zlib0-1.4-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  libtool-2.6.2-1
+  make-4.4.1-2
+  python3-3.12.12-1
+  python3-devel-3.12.12-1
+  zlib-devel-1.4-1
+
+Canonical website:
+  https://github.com/cracklib/cracklib/
+
+Canonical download:
+  https://github.com/cracklib/cracklib/releases/download/v2.10.4/cracklib-2.10.4.tar.xz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack cracklib-2.10.4-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./cracklib-2.10.4-X.cygport all
+
+This will create:
+  /usr/src/cracklib-2.10.4-X-src.tar.xz
+  /usr/src/cracklib-2.10.4-X.tar.xz
+  /usr/src/libcrack2-2.10.4-X.tar.xz
+  /usr/src/libcrack-devel-2.10.4-X.tar.xz
+  /usr/src/python312-cracklib-2.10.4-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(cracklib)
+  /usr/sbin/cracklib-check.exe
+  /usr/sbin/cracklib-format
+  /usr/sbin/cracklib-packer.exe
+  /usr/sbin/cracklib-unpacker.exe
+  /usr/sbin/cracklib-update
+  /usr/sbin/create-cracklib-dict
+  /usr/share/cracklib/cracklib-small
+  /usr/share/cracklib/cracklib.magic
+  /usr/share/doc/Cygwin/cracklib.README
+  /usr/share/doc/cracklib/AUTHORS
+  /usr/share/doc/cracklib/COPYING.LIB
+  /usr/share/doc/cracklib/NEWS
+  /usr/share/doc/cracklib/README
+  /usr/share/doc/cracklib/README-DAWG
+  /usr/share/doc/cracklib/README-LICENSE
+  /usr/share/doc/cracklib/README-WORDS
+  /usr/share/man/man8/cracklib-check.8.gz
+  /usr/share/man/man8/cracklib-format.8.gz
+  /usr/share/man/man8/cracklib-update.8.gz
+  /usr/share/man/man8/create-cracklib-dict.8.gz
+
+(libcrack2)
+  /usr/bin/cygcrack-2.dll
+  /usr/share/locale/as/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/be/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/bn_IN/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/ca/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/cs/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/da/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/de/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/el/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/es/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/eu/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/fi/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/fr/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/fur/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/gu/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/he/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/hi/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/hu/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/id/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/it/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/ja/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/ka/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/kk/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/kn/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/ko/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/lt/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/ml/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/mr/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/nb/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/nl/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/or/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/pa/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/pl/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/pt/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/pt_BR/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/ro/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/ru/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/si/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/sk/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/sl/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/sq/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/sv/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/ta/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/te/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/tr/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/uk/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/zh_CN/LC_MESSAGES/cracklib.mo
+  /usr/share/locale/zh_TW/LC_MESSAGES/cracklib.mo
+
+(libcrack-devel)
+  /usr/include/crack.h
+  /usr/include/packer.h
+  /usr/lib/libcrack.dll.a
+  /usr/lib/pkgconfig/cracklib.pc
+  /usr/share/man/man3/FascistCheck.3.gz
+
+(python312-cracklib)
+  /usr/lib/python3.12/site-packages/__pycache__/cracklib.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/cracklib.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/cracklib.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/test_cracklib.cpython-312.opt-1.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/test_cracklib.cpython-312.opt-2.pyc
+  /usr/lib/python3.12/site-packages/__pycache__/test_cracklib.cpython-312.pyc
+  /usr/lib/python3.12/site-packages/_cracklib.dll
+  /usr/lib/python3.12/site-packages/cracklib.py
+  /usr/lib/python3.12/site-packages/test_cracklib.py
+
+------------------
+
+Port Notes:
+
+----- version 2.10.4-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

@@ -1,0 +1,30 @@
+Make python/setup.py work in an out-of-tree build: it ran in the build
+directory and looked for ../src/pwquality.h and pwquality.c relative to it.
+Use the absolute source directory substituted by configure instead.
+Apply after setuptools.patch.
+
+--- a/python/setup.py.in
++++ b/python/setup.py.in
+@@ -22,18 +22,18 @@
+ class build_ext(_build_ext):
+     def run(self):
+         if not os.path.exists('constants.c'):
+-            genconstants('../src/pwquality.h', 'constants.c')
++            genconstants('@abs_top_srcdir@/src/pwquality.h', 'constants.c')
+         _build_ext.run(self)
+ 
+ class sdist(_sdist):
+     def run(self):
+         if not os.path.exists('constants.c'):
+-            genconstants('../src/pwquality.h', 'constants.c')
++            genconstants('@abs_top_srcdir@/src/pwquality.h', 'constants.c')
+         _sdist.run(self)
+ 
+ pwqmodule = Extension('pwquality',
+-            sources = ['pwquality.c'],
+-            include_dirs = ['../src'],
++            sources = ['@abs_top_srcdir@/python/pwquality.c'],
++            include_dirs = ['.', '@abs_top_srcdir@/src'],
+             library_dirs = ['../src/.libs'],
+             libraries = ['pwquality'])
+ 

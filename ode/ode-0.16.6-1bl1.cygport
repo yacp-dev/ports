@@ -10,9 +10,20 @@ detection with friction. ODE is useful for simulating vehicles, objects in
 virtual reality environments and virtual creatures. It is currently used in
 many computer games, 3D authoring tools and simulation tools."
 
+LICENSE="(LGPL-2.1-or-later OR BSD-3-Clause) AND BSD-3-Clause AND (LGPL-3.0-or-later OR BSD-3-Clause OR Zlib)"
+LICENSE_SPDX="SPDX-License-Identifier: (LGPL-2.1-or-later OR BSD-3-Clause) AND BSD-3-Clause AND (LGPL-3.0-or-later OR BSD-3-Clause OR Zlib)"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libGL-devel
+	libGLU-devel
+	libX11-devel
+"
+
 export CXXFLAGS="${CXXFLAGS} -fpermissive"
 
 CYGCONF_ARGS="
+	--with-libccd=internal
 	--enable-double-precision
 	--enable-libccd
 	--with-box-cylinder=libccd
@@ -25,20 +36,29 @@ src_test()
 	cygmake check
 }
 
+DOCS="
+	LICENSE.TXT
+	LICENSE-BSD.TXT
+	libccd/BSD-LICENSE
+	ou/LICENSE.TXT
+	ou/LICENSE-LESSER.TXT
+	ou/LICENSE-ZLIB.TXT
+"
+
 DIFF_EXCLUDES="
 	pkg.m4
 "
 
 PKG_NAMES="
 	${PN}
-	lib${PN}6
+	lib${PN}8
 	lib${PN}-devel
 "
 ode_CONTENTS="
 	usr/share
 "
-libode6_CONTENTS="
-	usr/bin/*.dll
+libode8_CONTENTS="
+	usr/bin/cygode-8.dll
 "
 libode_devel_CONTENTS="
 	usr/bin/${PN}-config
@@ -46,5 +66,5 @@ libode_devel_CONTENTS="
 	usr/lib
 "
 ode_SUMMARY="${SUMMARY} (licensing & readmes)"
-libode6_SUMMARY="${SUMMARY} (runtime)"
+libode8_SUMMARY="${SUMMARY} (runtime)"
 libode_devel_SUMMARY="${SUMMARY} (development)"

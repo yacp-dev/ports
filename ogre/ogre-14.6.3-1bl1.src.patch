@@ -1,0 +1,34 @@
+--- origsrc/ogre-14.6.3/CMake/InstallResources.cmake	2026-11-01 20:35:46.000000000 +0000
++++ src/ogre-14.6.3/CMake/InstallResources.cmake	2026-11-24 22:51:02.111405000 +0000
+@@ -239,6 +239,8 @@ include(CMakePackageConfigHelpers)
+ if (NOT OGRE_CMAKE_DIR)
+   if(WIN32 OR APPLE)
+     set(OGRE_CMAKE_DIR "CMake")
++  elseif(CYGWIN)
++    set(OGRE_CMAKE_DIR "${OGRE_LIB_DIRECTORY}/cmake/OGRE")
+   else()
+     set(OGRE_CMAKE_DIR "${OGRE_LIB_DIRECTORY}/OGRE/cmake")
+   endif()
+--- origsrc/ogre-14.6.3/Components/Python/CMakeLists.txt	2026-11-01 20:35:46.000000000 +0000
++++ src/ogre-14.6.3/Components/Python/CMakeLists.txt	2026-11-24 22:51:02.111405000 +0000
+@@ -55,7 +55,7 @@ set_source_files_properties(../../OgreMa
+ if(APPLE)
+     set(PYTHON_LIBRARIES "-Wl,-undefined,dynamic_lookup")
+ elseif(UNIX)
+-    set(PYTHON_LIBRARIES "")
++    set(PYTHON_LIBRARIES "${PYTHON_LIBRARY}")
+ endif()
+ 
+ swig_add_library(Ogre LANGUAGE python SOURCES ../../OgreMain/include/Ogre.i)
+--- origsrc/ogre-14.6.3/Tests/CMakeLists.txt	2026-11-01 20:35:46.000000000 +0000
++++ src/ogre-14.6.3/Tests/CMakeLists.txt	2026-11-24 22:51:02.113428500 +0000
+@@ -13,7 +13,8 @@ if (OGRE_BUILD_TESTS)
+   ENABLE_TESTING()
+   INCLUDE(CTest)
+ 
+-  if(NOT EXISTS ${PROJECT_BINARY_DIR}/googletest-1.16.0)
++  find_package(GTest CONFIG QUIET)
++  if(NOT GTest_FOUND AND NOT EXISTS ${PROJECT_BINARY_DIR}/googletest-1.16.0)
+     message(STATUS "Building gtest")
+     file(DOWNLOAD
+         https://github.com/google/googletest/releases/download/v1.16.0/googletest-1.16.0.tar.gz

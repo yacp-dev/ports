@@ -3,19 +3,18 @@ opentracing-cpp
 C++ implementation of the OpenTracing API
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libgcc1-13.4.0-1
-  libopentracing1-1.6.0-1bl3
-  libstdc++6-13.4.0-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libopentracing1-1.6.0-1bl4
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/opentracing/opentracing-cpp
@@ -47,6 +46,8 @@ Files included in the binary package:
   /usr/share/doc/opentracing-cpp/AUTHORS
   /usr/share/doc/opentracing-cpp/ChangeLog
   /usr/share/doc/opentracing-cpp/LICENSE
+  /usr/share/doc/opentracing-cpp/LICENSE.expected
+  /usr/share/doc/opentracing-cpp/LICENSE.variant
   /usr/share/doc/opentracing-cpp/NEWS
   /usr/share/doc/opentracing-cpp/README.md
 
@@ -80,7 +81,7 @@ Files included in the binary package:
   /usr/include/opentracing/version.h
   /usr/lib/cmake/OpenTracing/OpenTracingConfig.cmake
   /usr/lib/cmake/OpenTracing/OpenTracingConfigVersion.cmake
-  /usr/lib/cmake/OpenTracing/OpenTracingTargets-release.cmake
+  /usr/lib/cmake/OpenTracing/OpenTracingTargets-relwithdebinfo.cmake
   /usr/lib/cmake/OpenTracing/OpenTracingTargets.cmake
   /usr/lib/libopentracing.dll.a
   /usr/lib/libopentracing_mocktracer.dll.a
@@ -88,6 +89,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6.0-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.6.0-1bl3 -----
 Rebuild with gcc-13.4.0

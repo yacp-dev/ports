@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="OpenTracing API for C++"
 DESCRIPTION="C++ implementation of the OpenTracing API"
 
-LICENSE="Apache-2.0"
-LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
+LICENSE="Apache-2.0 AND BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND BSD-3-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
 inherit cmake
@@ -14,7 +14,18 @@ inherit cmake
 CYGCMAKE_ARGS="
 	-DBUILD_DYNAMIC_LOADING:BOOL=OFF
 	-DBUILD_STATIC_LIBS:BOOL=OFF
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+
+	cd ${S}
+	newdoc 3rd_party/include/opentracing/expected/LICENSE LICENSE.expected
+	newdoc 3rd_party/include/opentracing/variant/LICENSE LICENSE.variant
+}
 
 PKG_NAMES="
 	opentracing-cpp

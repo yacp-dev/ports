@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/BelledonneCommunications/${PN}"
 SRC_URI="https://github.com/BelledonneCommunications/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	bctoolbox-freeaddrinfo-null.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Utilities library used by Belledonne Communications softwares"

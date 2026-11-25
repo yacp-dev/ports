@@ -16,8 +16,8 @@ Runtime requirements:
   liblzma5-5.8.4-1
   libopenmpi-devel-4.1.6-1
   libopenmpi40-4.1.6-1
-  libptscotch7.0-7.0.18-1bl1
-  libscotch7.0-7.0.18-1bl1
+  libptscotch7.0-7.0.18-1bl2
+  libscotch7.0-7.0.18-1bl2
   zlib-devel-1.4-1
   zlib0-1.4-1
 
@@ -148,9 +148,9 @@ Files included in the binary package:
 
 (libscotch-devel)
   /usr/include/scotch/esmumps.h
-  /usr/include/scotch/metis.h
-  /usr/include/scotch/metisf.h
-  /usr/include/scotch/parmetis.h
+  /usr/include/scotch/metis/metis.h
+  /usr/include/scotch/metis/metisf.h
+  /usr/include/scotch/metis/parmetis.h
   /usr/include/scotch/ptscotch.h
   /usr/include/scotch/ptscotchf.h
   /usr/include/scotch/scotch.h
@@ -192,6 +192,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 7.0.18-1bl2 -----
+Move metis.h and parmetis.h to /usr/include/scotch/metis
 
 ----- version 7.0.18-1bl1 -----
 Initial release by yacp-dev <https://github.com/yacp-dev>

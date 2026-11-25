@@ -33,7 +33,10 @@ inherit cmake
 CFLAGS+=" -Wp,-U_FORTIFY_SOURCE"
 
 # Headers go in their own directory: metis.h and parmetis.h would clash
-# with libmetis-devel and libparmetis-devel
+# with libmetis-devel and libparmetis-devel. The .src.patch puts those
+# compatibility headers one level further down, in include/scotch/metis, so
+# the -isystem include/scotch that SCOTCH::scotch adds doesn't hide the real
+# METIS 5 metis.h from users of both (STRUMPACK).
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DCMAKE_INSTALL_INCLUDEDIR:STRING=include/${PN}

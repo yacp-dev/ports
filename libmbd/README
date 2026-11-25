@@ -4,20 +4,19 @@ Libmbd implements the many-body dispersion (MBD) method in several programming
 languages and frameworks.
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.12-1
   libgcc1-14.4.0-1
   libgfortran5-14.4.0-1
   liblapack0-3.12.0-1
-  libmbd-devel-0.15.0-1bl1
-  libmbd0-0.15.0-1bl1
-  libopenblas-0.3.25-1
-  pkg-config-3.0.5-1
+  libmbd-devel-0.16.0-1bl1
+  libmbd0-0.16.0-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   gcc-fortran-14.4.0-1
   liblapack-devel-3.12.0-1
@@ -27,22 +26,22 @@ Canonical website:
   https://github.com/libmbd/libmbd
 
 Canonical download:
-  https://github.com/libmbd/libmbd/archive/refs/tags/0.15.0.tar.gz
+  https://github.com/libmbd/libmbd/archive/refs/tags/0.16.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libmbd-0.15.0-X-src.tar.xz
+  1. unpack libmbd-0.16.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libmbd-0.15.0-X.cygport all
+        % cygport ./libmbd-0.16.0-X.cygport all
 
 This will create:
-  /usr/src/libmbd-0.15.0-X-src.tar.xz
-  /usr/src/libmbd-0.15.0-X.tar.xz
-  /usr/src/libmbd0-0.15.0-X.tar.xz
-  /usr/src/libmbd-devel-0.15.0-X.tar.xz
+  /usr/src/libmbd-0.16.0-X-src.tar.xz
+  /usr/src/libmbd-0.16.0-X.tar.xz
+  /usr/src/libmbd0-0.16.0-X.tar.xz
+  /usr/src/libmbd-devel-0.16.0-X.tar.xz
 
 -------------------------------------------
 
@@ -81,7 +80,7 @@ Files included in the binary package:
   /usr/include/mbd/mbd_utils.mod
   /usr/include/mbd/mbd_vdw_param.mod
   /usr/include/mbd/mbd_version.mod
-  /usr/lib/cmake/mbd/MbdConfig-release.cmake
+  /usr/lib/cmake/mbd/MbdConfig-relwithdebinfo.cmake
   /usr/lib/cmake/mbd/MbdConfig.cmake
   /usr/lib/libmbd.dll.a
   /usr/lib/pkgconfig/libmbd.pc
@@ -89,6 +88,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.16.0-1bl1 -----
+Version bump.
 
 ----- version 0.15.0-1bl1 -----
 Version bump.

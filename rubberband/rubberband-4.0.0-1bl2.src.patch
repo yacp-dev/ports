@@ -1,5 +1,5 @@
---- origsrc/rubberband-4.0.0/meson.build	2024-10-26 01:26:08.000000000 +0900
-+++ src/rubberband-4.0.0/meson.build	2025-09-16 12:19:01.171415800 +0900
+--- origsrc/rubberband-4.0.0/meson.build	2024-10-25 16:26:08.000000000 +0000
++++ src/rubberband-4.0.0/meson.build	2026-11-25 14:19:06.130946500 +0000
 @@ -726,9 +726,11 @@ if have_lv2
        lv2_symbol_args,
      ],

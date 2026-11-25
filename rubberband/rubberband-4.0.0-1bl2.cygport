@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/breakfastquay/${PN}"
 SRC_URI="https://github.com/breakfastquay/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://raw.githubusercontent.com/gentoo/gentoo/f9bfbdd2bfda33643aeca034dd28b84acabeb9bc/media-libs/rubberband/files/rubberband-4.0.0-cstdlib-include.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Audio time-stretching and pitch-shifting library"
@@ -34,10 +37,14 @@ DOCS="
 	CHANGELOG
 "
 
-PKG_IGNORE="
-	usr/lib/ladspa/ladspa-rubberband.dll.a
-	usr/lib/lv2/rubberband.lv2/lv2-rubberband.dll.a
-"
+src_install()
+{
+	cd ${S}
+	meson_install
+
+	verbose rm -f ${D}/usr/lib/ladspa/*.dll.a
+	verbose rm -f ${D}/usr/lib/lv2/rubberband.lv2/*.dll.a
+}
 
 PKG_NAMES="
 	rubberband

@@ -1,0 +1,73 @@
+--- origsrc/STRUMPACK-8.1.0/CMakeLists.txt	2026-10-05 22:48:31.000000000 +0000
++++ src/STRUMPACK-8.1.0/CMakeLists.txt	2026-11-25 11:50:24.716499100 +0000
+@@ -735,6 +735,7 @@ install(FILES
+   DESTINATION include)
+ 
+ install(TARGETS strumpack EXPORT STRUMPACKTargets
++  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ 
+@@ -764,3 +765,10 @@ install(FILES "${CMAKE_BINARY_DIR}/strum
+ install(DIRECTORY cmake/Modules/
+   DESTINATION ${ConfigPackageLocation}
+   FILES_MATCHING PATTERN "*.cmake")
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++configure_file(${CMAKE_SOURCE_DIR}/strumpack.pc.in ${CMAKE_BINARY_DIR}/strumpack.pc @ONLY)
++install(FILES ${CMAKE_BINARY_DIR}/strumpack.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+--- origsrc/STRUMPACK-8.1.0/src/HSS/HSSBasisID.hpp	2026-10-05 22:48:31.000000000 +0000
++++ src/STRUMPACK-8.1.0/src/HSS/HSSBasisID.hpp	2026-11-25 11:50:24.716499100 +0000
+@@ -33,6 +33,10 @@
+ 
+ #include "dense/DenseMatrix.hpp"
+ 
++#if defined(_P)
++#undef _P
++#endif
++
+ namespace strumpack {
+   namespace HSS {
+ 
+--- origsrc/STRUMPACK-8.1.0/src/HSS/HSSBasisIDMPI.hpp	2026-10-05 22:48:31.000000000 +0000
++++ src/STRUMPACK-8.1.0/src/HSS/HSSBasisIDMPI.hpp	2026-11-25 11:50:24.718506600 +0000
+@@ -32,6 +32,10 @@
+ 
+ #include "dense/DistributedMatrix.hpp"
+ 
++#if defined(_P)
++#undef _P
++#endif
++
+ namespace strumpack {
+   namespace HSS {
+ 
+--- origsrc/STRUMPACK-8.1.0/src/sparse/EliminationTreeMPIDist.hpp	2026-10-05 22:48:31.000000000 +0000
++++ src/STRUMPACK-8.1.0/src/sparse/EliminationTreeMPIDist.hpp	2026-11-25 11:50:24.718506600 +0000
+@@ -35,6 +35,10 @@
+ #include "PropMapSparseMatrix.hpp"
+ #include "dense/DistributedMatrix.hpp"
+ 
++#if defined(_P)
++#undef _P
++#endif
++
+ namespace strumpack {
+ 
+   // forward declarations
+--- origsrc/STRUMPACK-8.1.0/strumpack.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/STRUMPACK-8.1.0/strumpack.pc.in	2026-11-25 11:50:24.718506600 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: STRUMPACK
++Description: Structured Matrix Package
++Version: @PROJECT_VERSION@
++Libs: -L${libdir} -lstrumpack
++Cflags: -I${includedir}/strumpack

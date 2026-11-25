@@ -1,9 +1,9 @@
 HOMEPAGE="https://github.com/DaveGamble/cJSON"
 SRC_URI="https://github.com/DaveGamble/cJSON/archive/refs/tags/v${PV}.tar.gz"
-SRC_DIR="cJSON-${PV}"
 PATCH_URI="
 	https://sources.debian.org/data/main/${PN:0:1}/${PN}/1.7.19-2/debian/patches/0001-make-compatible-with-cmake-4.0.patch
 "
+SRC_DIR="cJSON-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="Ultralightweight JSON parser in ANSI C"
@@ -68,3 +68,5 @@ libcjson1_SUMMARY="${SUMMARY} (runtime)"
 libcjson_devel_SUMMARY="${SUMMARY} (development)"
 libcjson_utils1_SUMMARY="${SUMMARY} (runtime / utils)"
 libcjson_utils_devel_SUMMARY="${SUMMARY} (development / utils)"
+
+libcjson_devel_REQUIRES="libcjson_utils-devel"

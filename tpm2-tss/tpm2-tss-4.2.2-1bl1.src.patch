@@ -1,5 +1,5 @@
---- origsrc/tpm2-tss-4.2.1/Makefile.am	2026-10-30 08:20:05.000000000 +0000
-+++ src/tpm2-tss-4.2.1/Makefile.am	2026-11-09 07:16:46.808540100 +0000
+--- origsrc/tpm2-tss-4.2.2/Makefile.am	2026-11-12 08:35:17.000000000 +0000
++++ src/tpm2-tss-4.2.2/Makefile.am	2026-11-25 08:33:44.806194200 +0000
 @@ -277,7 +277,7 @@ pkgconfig_DATA += lib/tss2-mu.pc
  EXTRA_DIST += lib/tss2-mu.map lib/tss2-mu.def src/tss2-mu/tss2-mu.vcxproj
  
@@ -208,8 +208,8 @@
  if HAVE_LD_VERSION_SCRIPT
  src_tss2_fapi_libtss2_fapi_la_LDFLAGS += -Wl,--version-script=$(srcdir)/lib/tss2-fapi.map
  endif # HAVE_LD_VERSION_SCRIPT
---- origsrc/tpm2-tss-4.2.1/bootstrap	2026-10-30 08:20:05.000000000 +0000
-+++ src/tpm2-tss-4.2.1/bootstrap	2026-11-09 07:16:46.808540100 +0000
+--- origsrc/tpm2-tss-4.2.2/bootstrap	2026-11-12 08:35:17.000000000 +0000
++++ src/tpm2-tss-4.2.2/bootstrap	2026-11-25 08:33:44.808215100 +0000
 @@ -8,7 +8,7 @@
  
  set -e
@@ -219,8 +219,8 @@
  
  # generate list of source files for use in Makefile.am
  # if you add new source files, you must run ./bootstrap again
---- origsrc/tpm2-tss-4.2.1/configure.ac	2026-10-30 08:20:05.000000000 +0000
-+++ src/tpm2-tss-4.2.1/configure.ac	2026-11-09 07:16:46.810566600 +0000
+--- origsrc/tpm2-tss-4.2.2/configure.ac	2026-11-12 08:35:17.000000000 +0000
++++ src/tpm2-tss-4.2.2/configure.ac	2026-11-25 08:33:44.808215100 +0000
 @@ -45,6 +45,10 @@ case "${host_os}" in
          HOSTOS='BSD'
          LIBSOCKET_LDFLAGS=""
@@ -232,8 +232,8 @@
      *)
          #Assume linux
          HOSTOS='Linux'
---- origsrc/tpm2-tss-4.2.1/test/unit/dlopen-fail.c	2026-10-30 08:20:05.000000000 +0000
-+++ src/tpm2-tss-4.2.1/test/unit/dlopen-fail.c	2026-11-09 07:16:46.812582300 +0000
+--- origsrc/tpm2-tss-4.2.2/test/unit/dlopen-fail.c	2026-11-12 08:35:17.000000000 +0000
++++ src/tpm2-tss-4.2.2/test/unit/dlopen-fail.c	2026-11-25 08:33:44.810230500 +0000
 @@ -85,7 +85,11 @@ test_rc(void **state) {
  
      will_return(__wrap_dlopen, NULL);
@@ -246,8 +246,8 @@
  
      will_return(__wrap_dlopen, NULL);
      h = Tss2_RC_SetHandler(0, NULL, NULL);
---- origsrc/tpm2-tss-4.2.1/tss2-dlopen/tss2-dlopen-mu.c	2026-10-30 08:20:05.000000000 +0000
-+++ src/tpm2-tss-4.2.1/tss2-dlopen/tss2-dlopen-mu.c	2026-11-09 07:16:46.812582300 +0000
+--- origsrc/tpm2-tss-4.2.2/tss2-dlopen/tss2-dlopen-mu.c	2026-11-12 08:35:17.000000000 +0000
++++ src/tpm2-tss-4.2.2/tss2-dlopen/tss2-dlopen-mu.c	2026-11-25 08:33:44.812243100 +0000
 @@ -38,7 +38,11 @@
      } while (0)
  #endif /* ENABLE_WARN */
@@ -260,8 +260,8 @@
  static void *dlhandle = NULL;
  
  static TSS2_RC
---- origsrc/tpm2-tss-4.2.1/tss2-dlopen/tss2-dlopen-rc.c	2026-10-30 08:20:05.000000000 +0000
-+++ src/tpm2-tss-4.2.1/tss2-dlopen/tss2-dlopen-rc.c	2026-11-09 07:16:46.814596100 +0000
+--- origsrc/tpm2-tss-4.2.2/tss2-dlopen/tss2-dlopen-rc.c	2026-11-12 08:35:17.000000000 +0000
++++ src/tpm2-tss-4.2.2/tss2-dlopen/tss2-dlopen-rc.c	2026-11-25 08:33:44.812243100 +0000
 @@ -37,7 +37,11 @@
      } while (0)
  #endif /* ENABLE_WARN */

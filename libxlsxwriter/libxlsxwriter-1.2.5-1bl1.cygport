@@ -43,19 +43,19 @@ DOCS="
 
 PKG_NAMES="
 	${PN}
-	${PN}11
+	${PN}12
 	${PN}-devel
 "
 libxlsxwriter_CONTENTS="
 	usr/share
 "
-libxlsxwriter11_CONTENTS="
-	usr/bin/cyg*-11.dll
+libxlsxwriter12_CONTENTS="
+	usr/bin/cyg*-12.dll
 "
 libxlsxwriter_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 libxlsxwriter_SUMMARY="${SUMMARY} (licensing & readmes)"
-libxlsxwriter11_SUMMARY="${SUMMARY} (runtime)"
+libxlsxwriter12_SUMMARY="${SUMMARY} (runtime)"
 libxlsxwriter_devel_SUMMARY="${SUMMARY} (development)"

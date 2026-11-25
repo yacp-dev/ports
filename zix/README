@@ -3,18 +3,18 @@ zix
 Zix is a lightweight C library of portability wrappers and data structures.
 
 Runtime requirements:
-  cygwin-3.6.10-1
-  libzix0-devel-0.8.2-1bl1
-  libzix0_0-0.8.2-1bl1
-  pkg-config-3.0.4-1
+  cygwin-3.6.12-1
+  libzix0-devel-0.8.2-1bl2
+  libzix0_0-0.8.2-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
-  cygport-0.37.7-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
-  gcc-g++-14.4.0-1
-  meson-1.8.5-1
+  libglib2.0-devel-2.90.1-1
+  meson-1.10.2-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -75,6 +75,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.8.2-1bl2 -----
+Rebuild
 
 ----- version 0.8.2-1bl1 -----
 Version bump.

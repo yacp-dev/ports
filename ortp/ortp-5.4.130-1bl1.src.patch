@@ -1,14 +1,5 @@
---- origsrc/ortp-5.4.116/CMakeLists.txt	2025-12-08 21:13:19.000000000 +0900
-+++ src/ortp-5.4.116/CMakeLists.txt	2026-05-26 13:12:39.443502100 +0900
-@@ -22,7 +22,7 @@
- 
- cmake_minimum_required(VERSION 3.22)
- 
--project(Ortp VERSION 5.4.0)
-+project(Ortp VERSION 5.4.116)
- 
- 
- set(ORTP_MAJOR_VERSION ${PROJECT_VERSION_MAJOR})
+--- origsrc/ortp-5.4.130/CMakeLists.txt	2026-11-25 03:57:44.085946200 +0000
++++ src/ortp-5.4.130/CMakeLists.txt	2026-11-25 03:57:44.441410700 +0000
 @@ -197,7 +197,7 @@ if (ENABLE_PACKAGE_SOURCE)
  endif()
  
@@ -18,8 +9,8 @@
  configure_package_config_file("cmake/${PROJECT_NAME}Config.cmake.in" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
  	INSTALL_DESTINATION "${CMAKE_MODULES_INSTALL_DIR}"
  	NO_SET_AND_CHECK_MACRO
---- origsrc/ortp-5.4.116/src/rtpsession_inet.c	2025-12-08 21:13:19.000000000 +0900
-+++ src/ortp-5.4.116/src/rtpsession_inet.c	2026-05-26 14:00:39.120360700 +0900
+--- origsrc/ortp-5.4.130/src/rtpsession_inet.c	2026-11-05 09:47:04.000000000 +0000
++++ src/ortp-5.4.130/src/rtpsession_inet.c	2026-11-25 03:57:44.441410700 +0000
 @@ -537,9 +537,10 @@ int rtp_session_set_pktinfo(RtpSession *
  
  #ifdef IPV6_RECVPKTINFO

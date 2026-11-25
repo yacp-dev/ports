@@ -15,16 +15,20 @@ Rouson et al. (2017)).
 Runtime requirements:
   bash-5.2.21-1
   cygwin-3.6.12-1
-  libcaf_mpi3-2.10.3-1bl1
+  libcaf_mpi3-2.11.0-1bl1
+  libevent-devel-2.1.13-1
   libgfortran5-14.4.0-1
-  libopencoarrays_mod2-2.10.3-1bl1
+  libhwloc-devel-2.13.0-1
+  libopencoarrays_mod2-2.11.0-1bl1
+  libopenmpi-devel-4.1.6-1
   libopenmpi40-4.1.6-1
+  zlib-devel-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   cmake-4.4.5-1
-  cygport-0.37.12-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   gcc-fortran-14.4.0-1
   libevent-devel-2.1.13-1
@@ -37,24 +41,24 @@ Canonical website:
   https://github.com/sourceryinstitute/OpenCoarrays
 
 Canonical download:
-  https://github.com/sourceryinstitute/OpenCoarrays/archive/refs/tags/2.10.3.tar.gz
+  https://github.com/sourceryinstitute/OpenCoarrays/archive/refs/tags/2.11.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack OpenCoarrays-2.10.3-X-src.tar.xz
+  1. unpack OpenCoarrays-2.11.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./OpenCoarrays-2.10.3-X.cygport all
+        % cygport ./OpenCoarrays-2.11.0-X.cygport all
 
 This will create:
-  /usr/src/OpenCoarrays-2.10.3-X-src.tar.xz
-  /usr/src/OpenCoarrays-2.10.3-X.tar.xz
-  /usr/src/libcaf_mpi3-2.10.3-X.tar.xz
-  /usr/src/libcaf_mpi-devel-2.10.3-X.tar.xz
-  /usr/src/libopencoarrays_mod2-2.10.3-X.tar.xz
-  /usr/src/libopencoarrays_mod-devel-2.10.3-X.tar.xz
+  /usr/src/OpenCoarrays-2.11.0-X-src.tar.xz
+  /usr/src/OpenCoarrays-2.11.0-X.tar.xz
+  /usr/src/libcaf_mpi3-2.11.0-X.tar.xz
+  /usr/src/libcaf_mpi-devel-2.11.0-X.tar.xz
+  /usr/src/libopencoarrays_mod2-2.11.0-X.tar.xz
+  /usr/src/libopencoarrays_mod-devel-2.11.0-X.tar.xz
 
 -------------------------------------------
 
@@ -95,6 +99,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.11.0-1bl1 -----
+Version bump.
 
 ----- version 2.10.3-1bl1 -----
 Version bump.

@@ -12,10 +12,10 @@ Runtime requirements:
   liblapack0-3.12.0-1
   libmetis0-5.2.1-1
   libopenmpi40-4.1.6-1
-  libptscotch7.0-7.0.18-1bl1
+  libptscotch7.0-7.0.18-1bl2
   libstdc++6-14.4.0-1
-  libsuperlu_dist-devel-9.3.2-1bl1
-  libsuperlu_dist9-9.3.2-1bl1
+  libsuperlu_dist-devel-9.3.2-1bl2
+  libsuperlu_dist9-9.3.2-1bl2
   pkg-config-3.0.11-1
 
 Build requirements:
@@ -29,7 +29,7 @@ Build requirements:
   liblapack-devel-3.12.0-1
   libmetis-devel-5.2.1-1
   libopenmpi-devel-4.1.6-1
-  libscotch-devel-7.0.18-1bl1
+  libscotch-devel-7.0.18-1bl2
   make-4.4.1-2
 
 Canonical website:
@@ -170,6 +170,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 9.3.2-1bl2 -----
+Rebuild
 
 ----- version 9.3.2-1bl1 -----
 Version bump.

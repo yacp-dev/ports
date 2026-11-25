@@ -1,0 +1,53 @@
+--- origsrc/scotch-v7.0.18/src/libscotch/CMakeLists.txt	2026-10-31 17:19:25.000000000 +0000
++++ src/scotch-v7.0.18/src/libscotch/CMakeLists.txt	2026-11-25 10:01:46.217671000 +0000
+@@ -49,10 +49,10 @@
+ #  dummysizes  #
+ ################
+ 
+-add_executable(dummysizes dummysizes.c ${GENERATED_INCLUDE_DIR}/scotch.h)
++add_executable(dummysizes dummysizes.c)
+ set_target_properties(dummysizes PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+ if(BUILD_PTSCOTCH)
+-  add_executable(ptdummysizes dummysizes.c ${GENERATED_INCLUDE_DIR}/ptscotch.h)
++  add_executable(ptdummysizes dummysizes.c)
+   set_target_properties(ptdummysizes PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+   target_link_libraries(ptdummysizes PRIVATE MPI::MPI_C)
+   set_target_properties(ptdummysizes PROPERTIES
+--- origsrc/scotch-v7.0.18/src/libscotchmetis/CMakeLists.txt	2026-10-31 17:19:25.000000000 +0000
++++ src/scotch-v7.0.18/src/libscotchmetis/CMakeLists.txt	2026-11-25 10:01:46.218953000 +0000
+@@ -105,6 +105,8 @@ foreach(version 3 5)
+ 
+   if(INSTALL_METIS_HEADERS)
+     set_target_properties(scotchmetisv${version} PROPERTIES PUBLIC_HEADER "${GENERATED_INCLUDE_DIR}/metis.h;${GENERATED_INCLUDE_DIR}/metisf.h")
++    target_include_directories(scotchmetisv${version} INTERFACE
++      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/metis>)
+   endif()
+ 
+   if(APPLE)
+@@ -124,7 +126,7 @@ foreach(version 3 5)
+       RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+       ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+       LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-      PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
++      PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/metis)
+   else()
+     install(TARGETS scotchmetisv${version}
+       COMPONENT libscotch
+@@ -183,6 +185,8 @@ if(BUILD_PTSCOTCH)
+ 
+     if(INSTALL_METIS_HEADERS)
+       set_target_properties(ptscotchparmetisv${version} PROPERTIES PUBLIC_HEADER "${GENERATED_INCLUDE_DIR}/parmetis.h")
++      target_include_directories(ptscotchparmetisv${version} INTERFACE
++        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/metis>)
+     endif()
+ 
+     if(APPLE)
+@@ -203,7 +207,7 @@ if(BUILD_PTSCOTCH)
+         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
++        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/metis)
+     else()
+       install(TARGETS ptscotchparmetisv${version}
+         COMPONENT libptscotch

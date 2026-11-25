@@ -1,6 +1,6 @@
---- origsrc/libjuice-1.7.4/CMakeLists.txt	2026-09-26 22:11:40.000000000 +0000
-+++ src/libjuice-1.7.4/CMakeLists.txt	2026-10-18 06:45:46.786915500 +0000
-@@ -258,3 +258,10 @@ if(FUZZER)
+--- origsrc/libjuice-1.7.5/CMakeLists.txt	2026-11-20 23:35:20.000000000 +0000
++++ src/libjuice-1.7.5/CMakeLists.txt	2026-11-25 12:27:52.622647300 +0000
+@@ -264,3 +264,10 @@ if(FUZZER)
  	set_target_properties(stun-fuzzer PROPERTIES OUTPUT_NAME fuzzer)
  	target_link_libraries(stun-fuzzer juice-static ${LIB_FUZZING_ENGINE})
  endif()
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libjuice.pc.in ${CMAKE_BINARY_DIR}/libjuice.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libjuice.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libjuice-1.7.4/libjuice.pc.in	1970-01-01 00:00:00.000000000 +0000
-+++ src/libjuice-1.7.4/libjuice.pc.in	2026-10-18 06:45:46.788154400 +0000
+--- origsrc/libjuice-1.7.5/libjuice.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libjuice-1.7.5/libjuice.pc.in	2026-11-25 12:27:52.624673800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

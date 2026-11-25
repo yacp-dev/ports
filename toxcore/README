@@ -11,20 +11,20 @@ Runtime requirements:
   libopus-devel-1.6.1-1
   libopus0-1.6.1-1
   libsodium26-1.0.20-1
-  libtoxav-devel-0.2.24-1bl1
-  libtoxav2-0.2.24-1bl1
-  libtoxcore-devel-0.2.24-1bl1
-  libtoxcore2-0.2.24-1bl1
+  libtoxav-devel-0.2.25-1bl1
+  libtoxav2-0.2.25-1bl1
+  libtoxcore-devel-0.2.25-1bl1
+  libtoxcore2-0.2.25-1bl1
   libvpx-devel-1.17.0-1
   libvpx12-1.17.0-1
-  pkg-config-3.0.10-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   autoconf-20260320-3
-  automake-20260320-2
+  automake-20261107-1
   binutils-2.47-1
-  cygport-0.37.12-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   libcmp-devel-20-1bl3
   libopus-devel-1.6.1-1
@@ -37,24 +37,24 @@ Canonical website:
   https://tox.chat/
 
 Canonical download:
-  https://github.com/TokTok/c-toxcore/archive/refs/tags/v0.2.24.tar.gz
+  https://github.com/TokTok/c-toxcore/archive/refs/tags/v0.2.25.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack toxcore-0.2.24-X-src.tar.xz
+  1. unpack toxcore-0.2.25-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./toxcore-0.2.24-X.cygport all
+        % cygport ./toxcore-0.2.25-X.cygport all
 
 This will create:
-  /usr/src/toxcore-0.2.24-X-src.tar.xz
-  /usr/src/toxcore-0.2.24-X.tar.xz
-  /usr/src/libtoxcore2-0.2.24-X.tar.xz
-  /usr/src/libtoxcore-devel-0.2.24-X.tar.xz
-  /usr/src/libtoxav2-0.2.24-X.tar.xz
-  /usr/src/libtoxav-devel-0.2.24-X.tar.xz
+  /usr/src/toxcore-0.2.25-X-src.tar.xz
+  /usr/src/toxcore-0.2.25-X.tar.xz
+  /usr/src/libtoxcore2-0.2.25-X.tar.xz
+  /usr/src/libtoxcore-devel-0.2.25-X.tar.xz
+  /usr/src/libtoxav2-0.2.25-X.tar.xz
+  /usr/src/libtoxav-devel-0.2.25-X.tar.xz
 
 -------------------------------------------
 
@@ -102,6 +102,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.25-1bl1 -----
+Version bump.
 
 ----- version 0.2.24-1bl1 -----
 Version bump.

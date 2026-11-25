@@ -1,0 +1,112 @@
+HOMEPAGE="https://${PN}.io/"
+SRC_URI="http://download.${PN}.io/releases/${P}.tar.gz"
+
+CATEGORY="Net"
+SUMMARY="In-memory database that persists on disk"
+DESCRIPTION="Redis is an in-memory data structure store, used as a database,
+cache and message broker. It supports data structures such as strings, hashes,
+lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial
+indexes with radius queries and streams. Redis has built-in replication, Lua
+scripting, LRU eviction, transactions and different levels of on-disk
+persistence, and provides high availability via Redis Sentinel and automatic
+partitioning with Redis Cluster."
+
+LICENSE="(LicenseRef-RSALv2 OR SSPL-1.0 OR AGPL-3.0-only) AND BSD-3-Clause AND BSD-2-Clause AND MIT AND CC0-1.0 AND BSL-1.0 AND (Apache-2.0 OR MIT)"
+LICENSE_SPDX="SPDX-License-Identifier: (LicenseRef-RSALv2 OR SSPL-1.0 OR AGPL-3.0-only) AND BSD-3-Clause AND BSD-2-Clause AND MIT AND CC0-1.0 AND BSL-1.0 AND (Apache-2.0 OR MIT)"
+LICENSE_URI="LICENSE.txt"
+
+BUILD_REQUIRES="
+	libxxhash-devel
+	tcl
+"
+
+# the selected test files take ~9 minutes on the runner
+YACP_CHECK_TIMEOUT_MINUTES=20
+
+# Cygwin hides dladdr()/Dl_info under _XOPEN_SOURCE without _GNU_SOURCE
+export CFLAGS="${CFLAGS} -D_GNU_SOURCE"
+# Cygwin's ctype macros index arrays with char; hiredis builds with -Werror
+export CFLAGS="${CFLAGS} -Wno-error=char-subscripts"
+
+src_compile()
+{
+	cd ${B}
+	lndirs
+	# Build the programs only: "all" also builds tests/modules (*.so), which
+	# cannot link on Cygwin, and the top-level target builds the bundled modules
+	cd ${B}/src
+	cygmake \
+		redis-server \
+		redis-sentinel \
+		redis-cli \
+		redis-benchmark \
+		redis-check-rdb \
+		redis-check-aof
+}
+
+src_install()
+{
+	cd ${B}/src
+	dobin ${PN}-*.exe
+	cd ${D}/usr/bin
+	ln -fs redis-server redis-sentinel
+
+	# Texts of the bundled libraries' licenses; DOCS would flatten them into
+	# one directory and let LICENSE and LICENSE.txt overwrite each other.
+	cd ${S}
+	for d in croaring fpconv hdr_histogram hiredis lua tre
+	do
+		insinto /usr/share/doc/${PN}/licenses/${d}
+		doins $(ls deps/${d}/{LICENSE,LICENSE.txt,COPYING,COPYING.txt,COPYRIGHT} 2>/dev/null)
+	done
+
+	insinto /etc/${PN}
+	doins *.conf
+}
+
+src_test()
+{
+	cd ${B}
+	# An exception (a crashed server, a missing tool) aborts a whole runtest,
+	# so run each test file on its own to see the results of the others.
+	local status=0 t
+	for t in \
+		unit/acl-v2 \
+		unit/aofrw \
+		unit/auth \
+		unit/bitfield \
+		unit/bitops \
+		unit/bitroar \
+		unit/bless \
+		unit/dump \
+		unit/expire \
+		unit/functions \
+		unit/gcra \
+		unit/geo \
+		unit/hotkeys \
+		unit/hyperloglog \
+		unit/info-command \
+		unit/info-keysizes \
+		unit/info-stream \
+		unit/info \
+		unit/introspection-2 \
+		unit/introspection \
+		unit/keyspace \
+		unit/latency-monitor \
+		unit/lazyfree \
+		unit/limits \
+		unit/memefficiency \
+		unit/multi
+	do
+		verbose ./runtest --clients 1 --single ${t} || status=$?
+	done
+	return ${status}
+}
+
+DOCS="
+	00-RELEASENOTES
+	CONTRIBUTING.md
+	LICENSE.txt
+	MANIFESTO
+	REDISCONTRIBUTIONS.txt
+"

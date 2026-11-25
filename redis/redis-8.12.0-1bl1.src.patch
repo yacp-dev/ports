@@ -1,0 +1,44 @@
+--- origsrc/redis-8.12.0/src/Makefile	2026-11-22 12:33:24.000000000 +0000
++++ src/redis-8.12.0/src/Makefile	2026-11-25 03:53:15.611963400 +0000
+@@ -37,7 +37,7 @@ endif
+ ifneq ($(OPTIMIZATION),-O0)
+ 	OPTIMIZATION+=-fno-omit-frame-pointer
+ endif
+-DEPENDENCY_TARGETS=hiredis linenoise lua hdr_histogram fpconv xxhash tre croaring
++DEPENDENCY_TARGETS=hiredis linenoise lua hdr_histogram fpconv tre croaring
+ NODEPS:=clean distclean
+ 
+ # Default settings
+@@ -276,7 +276,7 @@ ifdef OPENSSL_PREFIX
+ endif
+ 
+ # Include paths to dependencies
+-FINAL_CFLAGS+= -I../deps/hiredis -I../deps/linenoise -I../deps/lua/src -I../deps/hdr_histogram -I../deps/fpconv -I../deps/xxhash -I../deps/croaring/include
++FINAL_CFLAGS+= -I../deps/hiredis -I../deps/linenoise -I../deps/lua/src -I../deps/hdr_histogram -I../deps/fpconv -I../deps/croaring/include
+ 
+ # Determine systemd support and/or build preference (defaulting to auto-detection)
+ BUILD_WITH_SYSTEMD=no
+@@ -474,7 +474,7 @@ endif
+ 
+ # redis-server
+ $(REDIS_SERVER_NAME): $(REDIS_SERVER_OBJ) $(REDIS_VEC_SETS_OBJ)
+-	$(REDIS_LD_RECURSIVE)$(REDIS_LD) -o $@ $^ ../deps/hiredis/libhiredis.a ../deps/lua/src/liblua.a ../deps/hdr_histogram/libhdrhistogram.a ../deps/fpconv/libfpconv.a ../deps/xxhash/libxxhash.a ../deps/tre/libtre.a ../deps/croaring/libroaring.a $(FINAL_LIBS)
++	$(REDIS_LD_RECURSIVE)$(REDIS_LD) -o $@ $^ ../deps/hiredis/libhiredis.a ../deps/lua/src/liblua.a ../deps/hdr_histogram/libhdrhistogram.a ../deps/fpconv/libfpconv.a -lxxhash ../deps/tre/libtre.a ../deps/croaring/libroaring.a $(FINAL_LIBS)
+ 
+ # redis-sentinel
+ $(REDIS_SENTINEL_NAME): $(REDIS_SERVER_NAME)
+--- origsrc/redis-8.12.0/src/sds.c	2026-11-22 12:33:24.000000000 +0000
++++ src/redis-8.12.0/src/sds.c	2026-11-25 03:53:15.613722700 +0000
+@@ -21,7 +21,11 @@
+ #include "sdsalloc.h"
+ #include "util.h"
+ 
+-const char *SDS_NOINIT = "SDS_NOINIT";
++/* A named array, not a string literal: under LTO a literal can be copied
++ * into each partition, and a linker that does not merge strings (PE/COFF)
++ * keeps the copies apart, so pointers to it would not compare equal. */
++static const char sds_noinit[] = "SDS_NOINIT";
++const char *SDS_NOINIT = sds_noinit;
+ 
+ /* Returns the minimum SDS type required to store a string of the given length.
+  * 

@@ -3,14 +3,17 @@ SRC_URI="https://github.com/pipacs/${PN}/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="OAuth 2.0 for Qt"
-DESCRIPTION="This library encapsulates the OAuth 1.0 and 2.0 client authentication flows,
-and the sending of authenticated HTTP requests."
+DESCRIPTION="This library encapsulates the OAuth 1.0 and 2.0 client
+authentication flows, and the sending of authenticated HTTP requests."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libQt5Core-devel libqt5keychain-devel"
+BUILD_REQUIRES="
+	libQt5Core-devel
+	libqt5keychain-devel
+"
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
@@ -27,9 +30,17 @@ CYGCMAKE_ARGS="
 	-Do2_WITH_SURVEYMONKEY:BOOL=ON
 	-Do2_WITH_SMUGMUG:BOOL=ON
 	-Do2_WITH_MSGRAPH:BOOL=ON
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 inherit cmake
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/^set(VER_PATCH \"[0-9]*\")/set(VER_PATCH \"${PV##*.}\")/" CMakeLists.txt
+}
 
 DOCS="
 	acknowledgements.md
@@ -44,7 +55,7 @@ o2_CONTENTS="
 	usr/share
 "
 libo2_1_0_0_CONTENTS="
-	usr/bin
+	usr/bin/cygo2-1.0.0.dll
 "
 libo2_devel_CONTENTS="
 	usr/include

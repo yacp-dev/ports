@@ -1,5 +1,5 @@
---- origsrc/opentelemetry-cpp/api/include/opentelemetry/nostd/internal/absl/base/policy_checks.h	2025-09-17 10:10:04.000000000 +0900
-+++ src/opentelemetry-cpp/api/include/opentelemetry/nostd/internal/absl/base/policy_checks.h	2025-09-17 10:14:53.206933500 +0900
+--- origsrc/opentelemetry-cpp/api/include/opentelemetry/nostd/internal/absl/base/policy_checks.h	2026-11-24 23:57:00.000000000 +0000
++++ src/opentelemetry-cpp/api/include/opentelemetry/nostd/internal/absl/base/policy_checks.h	2026-11-24 23:57:57.110310000 +0000
 @@ -33,14 +33,6 @@
  #endif
  
@@ -15,8 +15,8 @@
  // Compiler Check
  // -----------------------------------------------------------------------------
  
---- origsrc/opentelemetry-cpp/cmake/templates/config.pc.in	2025-09-17 10:10:04.000000000 +0900
-+++ src/opentelemetry-cpp/cmake/templates/config.pc.in	2025-09-17 10:14:53.214604600 +0900
+--- origsrc/opentelemetry-cpp/cmake/templates/config.pc.in	2026-11-24 23:57:00.000000000 +0000
++++ src/opentelemetry-cpp/cmake/templates/config.pc.in	2026-11-24 23:57:57.112319200 +0000
 @@ -1,7 +1,7 @@
  # Copyright The OpenTelemetry Authors
  # SPDX-License-Identifier: Apache-2.0

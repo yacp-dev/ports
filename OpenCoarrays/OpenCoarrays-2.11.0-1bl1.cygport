@@ -1,9 +1,5 @@
 HOMEPAGE="https://github.com/sourceryinstitute/${PN}"
 SRC_URI="https://github.com/sourceryinstitute/${PN}/archive/refs/tags/${PV}.tar.gz"
-PATCH_URI="
-	https://sources.debian.org/data/main/o/open-coarrays/2.10.3-4/debian/patches/pr800.patch
-	https://sources.debian.org/data/main/o/open-coarrays/2.10.3-4/debian/patches/pr801.patch
-"
 
 CATEGORY="Libs"
 SUMMARY="Parallel application binary interface for Fortran 2018 compilers"

@@ -1,6 +1,6 @@
---- origsrc/OpenCoarrays-2.10.3/CMakeLists.txt	2025-04-10 19:03:42.000000000 +0000
-+++ src/OpenCoarrays-2.10.3/CMakeLists.txt	2026-11-11 12:54:24.320599200 +0000
-@@ -543,7 +543,7 @@ endif()
+--- origsrc/OpenCoarrays-2.11.0/CMakeLists.txt	2026-11-23 14:45:16.000000000 +0000
++++ src/OpenCoarrays-2.11.0/CMakeLists.txt	2026-11-25 19:29:45.983216700 +0000
+@@ -552,7 +552,7 @@ endif()
  # Use standardized GNU install directory conventions
  #---------------------------------------------------
  include(GNUInstallDirs)
@@ -9,7 +9,7 @@
  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/${OpenCoarrays_dist_string}-tests")
  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
-@@ -584,10 +584,11 @@ function(caf_compile_executable target m
+@@ -597,10 +597,11 @@ function(caf_compile_executable target m
              ${includes} ${localDefs} ${config_Fortran_flags}
              -o "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}"
              "${CMAKE_CURRENT_SOURCE_DIR}/${main_depend}"
@@ -24,8 +24,34 @@
      VERBATIM
      )
    add_custom_target("build_${target}" ALL
---- origsrc/OpenCoarrays-2.10.3/src/runtime-libraries/mpi/CMakeLists.txt	2026-11-11 12:54:23.754499400 +0000
-+++ src/OpenCoarrays-2.10.3/src/runtime-libraries/mpi/CMakeLists.txt	2026-11-11 12:54:24.320599200 +0000
+--- origsrc/OpenCoarrays-2.11.0/cmake/UninstallTest.cmake	2026-11-23 14:45:16.000000000 +0000
++++ src/OpenCoarrays-2.11.0/cmake/UninstallTest.cmake	2026-11-25 19:29:45.985232200 +0000
+@@ -6,7 +6,7 @@
+ #         -Dmod_dir_tail=<module dir name> -DPROJECT_NAME=<name>
+ #         -P UninstallTest.cmake
+ foreach(var IN ITEMS UNINSTALL_TEMPLATE OUT_DIR CMAKE_INSTALL_BINDIR CMAKE_INSTALL_INCLUDEDIR
+-                     CMAKE_INSTALL_LIBDIR CMAKE_INSTALL_DATADIR mod_dir_tail PROJECT_NAME)
++                     CMAKE_INSTALL_LIBDIR CMAKE_INSTALL_DATADIR PROJECT_NAME)
+   if("${${var}}" STREQUAL "")
+     message(FATAL_ERROR "${var} is not set; see the usage at the top of ${CMAKE_CURRENT_LIST_FILE}")
+   endif()
+@@ -47,8 +47,12 @@ if(left)
+   list(JOIN left "\n  " left)
+   message(FATAL_ERROR "uninstall left files:\n  ${left}${log}")
+ endif()
+-foreach(dir IN ITEMS "${CMAKE_INSTALL_INCLUDEDIR}/${mod_dir_tail}" "${CMAKE_INSTALL_LIBDIR}/cmake/opencoarrays"
+-                     "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}")
++set(own_dirs "${CMAKE_INSTALL_LIBDIR}/cmake/opencoarrays" "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}")
++# An empty mod_dir_tail installs the module straight into the shared include dir
++if(NOT "${mod_dir_tail}" STREQUAL "")
++  list(PREPEND own_dirs "${CMAKE_INSTALL_INCLUDEDIR}/${mod_dir_tail}")
++endif()
++foreach(dir IN LISTS own_dirs)
+   if(EXISTS "${root}/${dir}")
+     message(FATAL_ERROR "uninstall did not remove the empty directory ${root}/${dir}${log}")
+   endif()
+--- origsrc/OpenCoarrays-2.11.0/src/runtime-libraries/mpi/CMakeLists.txt	2026-11-23 14:45:16.000000000 +0000
++++ src/OpenCoarrays-2.11.0/src/runtime-libraries/mpi/CMakeLists.txt	2026-11-25 19:29:45.985232200 +0000
 @@ -19,7 +19,7 @@ endif()
  #-----------------------------------------------------------
  # Add the actual library targets, then adjust them as needed
@@ -171,7 +197,7 @@
  
  #----------------------------------
  # Determine if we're using Open MPI
-@@ -184,14 +209,21 @@ CHECK_INCLUDE_FILE("alloca.h" HAVE_ALLOC
+@@ -208,14 +233,21 @@ CHECK_INCLUDE_FILE("alloca.h" HAVE_ALLOC
  if(NOT HAVE_ALLOCA)
    target_compile_definitions(caf_mpi
      PRIVATE -DALLOCA_MISSING)
@@ -195,7 +221,7 @@
  set(MPI_HAS_FAULT_TOL_EXT YES)
  
  CHECK_INCLUDE_FILE("signal.h" HAVE_SIGNAL_H)
-@@ -208,7 +240,7 @@ if(NOT HAVE_SIGKILL) # try -D_POSIX, nee
+@@ -232,7 +264,7 @@ if(NOT HAVE_SIGKILL) # try -D_POSIX, nee
    CHECK_SYMBOL_EXISTS(SIGKILL "signal.h" HAVE_SIGKILL2)
    if(HAVE_SIGKILL2)
      set(HAVE_SIGKILL ${HAVE_SIGKILL2})
@@ -204,7 +230,7 @@
        target_compile_definitions(${lib}
      	PUBLIC -D_POSIX)
      endforeach()
-@@ -245,7 +277,7 @@ set(MPI_HEADERS mpi.h)
+@@ -273,7 +305,7 @@ set(MPI_HEADERS mpi.h)
  include(CheckIncludeFiles)
  CHECK_INCLUDE_FILES("mpi.h;mpi-ext.h" HAVE_MPI_EXT)
  if(HAVE_MPI_EXT)
@@ -213,7 +239,7 @@
        target_compile_definitions(${lib}
      	PRIVATE -DHAVE_MPI_EXT_H)
      endforeach()
-@@ -283,7 +315,7 @@ else()
+@@ -311,7 +343,7 @@ else()
  endif()
  
  if(CAF_ENABLE_FAILED_IMAGES)
@@ -222,18 +248,18 @@
      target_compile_definitions(${lib}
        PUBLIC -DUSE_FAILED_IMAGES)
    endforeach()
-@@ -301,7 +333,7 @@ endif()
+@@ -328,7 +360,7 @@ else()
+ endif()
  CHECK_INCLUDE_FILES("mpi.h" HAVE_MPI_H)
- CHECK_SYMBOL_EXISTS(I_MPI_VERSION "mpi.h" HAVE_Intel_MPI)
  if(HAVE_Intel_MPI AND WIN32)
 -  foreach(lib caf_mpi caf_mpi_static)
 +  foreach(lib ${CAF_MPI_TARGETS})
      target_compile_definitions(${lib}
        PUBLIC -DUSE_GCC)
    endforeach()
-@@ -338,11 +370,13 @@ foreach( fcflag IN LISTS MPI_Fortran_COM
-   set(CAF_MPI_Fortran_COMPILE_FLAGS "${CAF_MPI_Fortran_COMPILE_FLAGS} ${fcflag}" )
+@@ -370,11 +402,13 @@ foreach( fcflag IN LISTS MPI_Fortran_COM
  endforeach()
+ unset(mpi_fortran_definition_flags)
  string(STRIP "${CAF_MPI_Fortran_COMPILE_FLAGS}" CAF_MPI_Fortran_COMPILE_FLAGS)
 -set_target_properties(caf_mpi_static
 -  PROPERTIES OUTPUT_NAME caf_mpi)
@@ -249,8 +275,8 @@
  
  configure_file("${CMAKE_SOURCE_DIR}/src/script-templates/caf.in" "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/caf"
    @ONLY)
---- origsrc/OpenCoarrays-2.10.3/src/tests/integration/pde_solvers/coarrayBurgers/CMakeLists.txt	2025-04-10 19:03:42.000000000 +0000
-+++ src/OpenCoarrays-2.10.3/src/tests/integration/pde_solvers/coarrayBurgers/CMakeLists.txt	2026-11-11 12:54:24.322608600 +0000
+--- origsrc/OpenCoarrays-2.11.0/src/tests/integration/pde_solvers/coarrayBurgers/CMakeLists.txt	2026-11-23 14:45:16.000000000 +0000
++++ src/OpenCoarrays-2.11.0/src/tests/integration/pde_solvers/coarrayBurgers/CMakeLists.txt	2026-11-25 19:29:45.987255400 +0000
 @@ -34,7 +34,7 @@ add_executable(coarray_burgers_pde
    global_field.F90
    main.F90
@@ -260,8 +286,8 @@
  target_link_libraries(coarray_burgers_pde PRIVATE cbp_local)
  set_target_properties(cbp_base cbp_local coarray_burgers_pde
    PROPERTIES
---- origsrc/OpenCoarrays-2.10.3/src/tests/integration/pde_solvers/coarrayHeatSimplified/CMakeLists.txt	2025-04-10 19:03:42.000000000 +0000
-+++ src/OpenCoarrays-2.10.3/src/tests/integration/pde_solvers/coarrayHeatSimplified/CMakeLists.txt	2026-11-11 12:54:24.322608600 +0000
+--- origsrc/OpenCoarrays-2.11.0/src/tests/integration/pde_solvers/coarrayHeatSimplified/CMakeLists.txt	2026-11-23 14:45:16.000000000 +0000
++++ src/OpenCoarrays-2.11.0/src/tests/integration/pde_solvers/coarrayHeatSimplified/CMakeLists.txt	2026-11-25 19:29:45.987255400 +0000
 @@ -4,7 +4,7 @@ add_library(global_field STATIC global_f
  add_executable(co_heat
    main.f90

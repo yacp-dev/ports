@@ -1,6 +1,6 @@
 HOMEPAGE="https://github.com/lvandeve/${PN}"
 GIT_URI="https://github.com/lvandeve/${PN}.git"
-GIT_REV="c45ed7951fb9df607351013d288d71faef6eea87"
+GIT_REV="7b2893e35891c0c85bee5595caafaf3c2044b409"
 PATCH_URI="
 	https://sources.debian.org/data/main/l/lodepng/0.0~git20250402.c45ed79-2/debian/patches/add-missing-api.patch
 	https://sources.debian.org/data/main/l/lodepng/0.0~git20250402.c45ed79-2/debian/patches/use-c-abi.patch
@@ -14,8 +14,16 @@ LICENSE="Zlib"
 LICENSE_SPDX="SPDX-License-Identifier: Zlib"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libSDL2-devel
+"
+
 inherit cmake
 inherit git
+
+SRC_URI+="
+	CMakeLists.txt
+"
 
 PKG_NAMES="
 	lodepng

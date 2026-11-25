@@ -1,0 +1,105 @@
+HOMEPAGE="https://gitlab.inria.fr/scotch/scotch"
+SRC_URI="https://gitlab.inria.fr/scotch/scotch/-/archive/v${PV}/scotch-v${PV}.tar.gz"
+SRC_DIR="scotch-v${PV}"
+
+CATEGORY="Science"
+SUMMARY="Graph partitioning and sparse matrix ordering library"
+DESCRIPTION="Scotch is a software package for graph and mesh/hypergraph
+partitioning, graph clustering, static mapping and sparse matrix ordering.
+PT-Scotch is its parallel, MPI-based version, and libptscotchparmetis provides
+a ParMETIS-compatible interface on top of it."
+
+LICENSE="CECILL-C AND LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: CECILL-C AND LGPL-2.1-or-later"
+LICENSE_URI="doc/CeCILL-C_V1-en.txt"
+
+BUILD_REQUIRES="
+	bison
+	flex
+	gcc-fortran
+	libbz2-devel
+	libevent-devel
+	libhwloc-devel
+	liblzma-devel
+	libopenmpi-devel
+	zlib-devel
+"
+
+inherit cmake
+
+# Upstream disables _FORTIFY_SOURCE ("known to cause problem with Scotch")
+# with -U_FORTIFY_SOURCE, but cygport's -Wp,-D_FORTIFY_SOURCE=3 comes later
+# and turns it back on: tests then abort with "buffer overflow detected"
+CFLAGS+=" -Wp,-U_FORTIFY_SOURCE"
+
+# Headers go in their own directory: metis.h and parmetis.h would clash
+# with libmetis-devel and libparmetis-devel
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+	-DCMAKE_INSTALL_INCLUDEDIR:STRING=include/${PN}
+	-DLIBPTSCOTCHERR:STRING=ptscotcherr
+	-DLIBSCOTCHERR:STRING=scotcherr
+"
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}/bin:${PATH} ninja_test
+}
+
+DOCS="
+	README.md
+	doc/CeCILL-C_V1-en.txt
+"
+
+PKG_NAMES="
+	scotch
+	ptscotch
+	libscotch7.0
+	libptscotch7.0
+	libscotch-devel
+"
+scotch_CONTENTS="
+	--exclude=dg*
+	--exclude=adm2dgr.exe
+	usr/bin/*.exe
+	usr/share/doc
+	usr/share/man/man1
+"
+ptscotch_CONTENTS="
+	usr/bin/adm2dgr.exe
+	usr/bin/dg*.exe
+	usr/share/man/man1/dg*
+"
+libscotch7_0_CONTENTS="
+	usr/bin/cygesmumps-7.0.dll
+	usr/bin/cygscotch-7.0.dll
+	usr/bin/cygscotcherr-7.0.dll
+	usr/bin/cygscotcherrexit-7.0.dll
+	usr/bin/cygscotchmetisv3-7.0.dll
+	usr/bin/cygscotchmetisv5-7.0.dll
+"
+libptscotch7_0_CONTENTS="
+	usr/bin/cygptesmumps-7.0.dll
+	usr/bin/cygptscotch-7.0.dll
+	usr/bin/cygptscotcherr-7.0.dll
+	usr/bin/cygptscotcherrexit-7.0.dll
+	usr/bin/cygptscotchparmetisv3-7.0.dll
+"
+libscotch_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+scotch_SUMMARY="${SUMMARY} (utilities)"
+ptscotch_SUMMARY="${SUMMARY} (MPI utilities)"
+libscotch7_0_SUMMARY="${SUMMARY} (runtime)"
+libptscotch7_0_SUMMARY="${SUMMARY} (MPI runtime)"
+libscotch_devel_SUMMARY="${SUMMARY} (development)"
+libscotch_devel_REQUIRES="
+	libbz2-devel
+	libevent-devel
+	libhwloc-devel
+	liblzma-devel
+	libopenmpi-devel
+	zlib-devel
+"

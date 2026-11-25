@@ -1,0 +1,197 @@
+scotch
+------------------------------------------
+Scotch is a software package for graph and mesh/hypergraph partitioning, graph
+clustering, static mapping and sparse matrix ordering. PT-Scotch is its
+parallel, MPI-based version, and libptscotchparmetis provides a
+ParMETIS-compatible interface on top of it.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  libbz2-devel-1.0.8-2
+  libbz2_1-1.0.8-2
+  libevent-devel-2.1.13-1
+  libgcc1-14.4.0-1
+  libhwloc-devel-2.13.0-1
+  liblzma-devel-5.8.4-1
+  liblzma5-5.8.4-1
+  libopenmpi-devel-4.1.6-1
+  libopenmpi40-4.1.6-1
+  libptscotch7.0-7.0.18-1bl1
+  libscotch7.0-7.0.18-1bl1
+  zlib-devel-1.4-1
+  zlib0-1.4-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  bison-3.8.2-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  flex-2.6.4-2
+  gcc-core-14.4.0-1
+  libbz2-devel-1.0.8-2
+  libevent-devel-2.1.13-1
+  libhwloc-devel-2.13.0-1
+  liblzma-devel-5.8.4-1
+  libopenmpi-devel-4.1.6-1
+  ninja-1.13.2-1
+  zlib-devel-1.4-1
+
+Canonical website:
+  https://gitlab.inria.fr/scotch/scotch
+
+Canonical download:
+  https://gitlab.inria.fr/scotch/scotch/-/archive/v7.0.18/scotch-v7.0.18.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack scotch-7.0.18-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./scotch-7.0.18-X.cygport all
+
+This will create:
+  /usr/src/scotch-7.0.18-X-src.tar.xz
+  /usr/src/scotch-7.0.18-X.tar.xz
+  /usr/src/ptscotch-7.0.18-X.tar.xz
+  /usr/src/libscotch7.0-7.0.18-X.tar.xz
+  /usr/src/libptscotch7.0-7.0.18-X.tar.xz
+  /usr/src/libscotch-devel-7.0.18-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(scotch)
+  /usr/bin/acpl.exe
+  /usr/bin/amk_ccc.exe
+  /usr/bin/amk_fft2.exe
+  /usr/bin/amk_grf.exe
+  /usr/bin/amk_hy.exe
+  /usr/bin/amk_m2.exe
+  /usr/bin/amk_p2.exe
+  /usr/bin/atst.exe
+  /usr/bin/gbase.exe
+  /usr/bin/gcv.exe
+  /usr/bin/gdump.exe
+  /usr/bin/gmap.exe
+  /usr/bin/gmk_hy.exe
+  /usr/bin/gmk_m2.exe
+  /usr/bin/gmk_m3.exe
+  /usr/bin/gmk_msh.exe
+  /usr/bin/gmk_ub2.exe
+  /usr/bin/gmtst.exe
+  /usr/bin/gord.exe
+  /usr/bin/gotst.exe
+  /usr/bin/gout.exe
+  /usr/bin/gpart.exe
+  /usr/bin/gscat.exe
+  /usr/bin/gtst.exe
+  /usr/bin/mcv.exe
+  /usr/bin/mmk_m2.exe
+  /usr/bin/mmk_m3.exe
+  /usr/bin/mord.exe
+  /usr/bin/mtst.exe
+  /usr/share/doc/Cygwin/scotch.README
+  /usr/share/doc/scotch/CeCILL-C_V1-en.txt
+  /usr/share/doc/scotch/README.md
+  /usr/share/man/man1/acpl.1.gz
+  /usr/share/man/man1/amk_ccc.1.gz
+  /usr/share/man/man1/amk_grf.1.gz
+  /usr/share/man/man1/atst.1.gz
+  /usr/share/man/man1/gbase.1.gz
+  /usr/share/man/man1/gcv.1.gz
+  /usr/share/man/man1/gdump.1.gz
+  /usr/share/man/man1/gmap.1.gz
+  /usr/share/man/man1/gmk_hy.1.gz
+  /usr/share/man/man1/gmk_m2.1.gz
+  /usr/share/man/man1/gmk_msh.1.gz
+  /usr/share/man/man1/gmtst.1.gz
+  /usr/share/man/man1/gord.1.gz
+  /usr/share/man/man1/gotst.1.gz
+  /usr/share/man/man1/gout.1.gz
+  /usr/share/man/man1/gtst.1.gz
+  /usr/share/man/man1/mcv.1.gz
+  /usr/share/man/man1/mmk_m2.1.gz
+  /usr/share/man/man1/mord.1.gz
+  /usr/share/man/man1/mtst.1.gz
+
+(ptscotch)
+  /usr/bin/adm2dgr.exe
+  /usr/bin/dggath.exe
+  /usr/bin/dgmap.exe
+  /usr/bin/dgord.exe
+  /usr/bin/dgpart.exe
+  /usr/bin/dgscat.exe
+  /usr/bin/dgtst.exe
+  /usr/share/man/man1/dgmap.1.gz
+  /usr/share/man/man1/dgord.1.gz
+  /usr/share/man/man1/dgscat.1.gz
+  /usr/share/man/man1/dgtst.1.gz
+
+(libscotch7.0)
+  /usr/bin/cygesmumps-7.0.dll
+  /usr/bin/cygscotch-7.0.dll
+  /usr/bin/cygscotcherr-7.0.dll
+  /usr/bin/cygscotcherrexit-7.0.dll
+  /usr/bin/cygscotchmetisv3-7.0.dll
+  /usr/bin/cygscotchmetisv5-7.0.dll
+
+(libptscotch7.0)
+  /usr/bin/cygptesmumps-7.0.dll
+  /usr/bin/cygptscotch-7.0.dll
+  /usr/bin/cygptscotcherr-7.0.dll
+  /usr/bin/cygptscotcherrexit-7.0.dll
+  /usr/bin/cygptscotchparmetisv3-7.0.dll
+
+(libscotch-devel)
+  /usr/include/scotch/esmumps.h
+  /usr/include/scotch/metis.h
+  /usr/include/scotch/metisf.h
+  /usr/include/scotch/parmetis.h
+  /usr/include/scotch/ptscotch.h
+  /usr/include/scotch/ptscotchf.h
+  /usr/include/scotch/scotch.h
+  /usr/include/scotch/scotchf.h
+  /usr/lib/cmake/scotch/SCOTCHConfig.cmake
+  /usr/lib/cmake/scotch/SCOTCHConfigVersion.cmake
+  /usr/lib/cmake/scotch/esmumpsTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/esmumpsTargets.cmake
+  /usr/lib/cmake/scotch/ptesmumpsTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/ptesmumpsTargets.cmake
+  /usr/lib/cmake/scotch/ptscotchTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/ptscotchTargets.cmake
+  /usr/lib/cmake/scotch/ptscotcherrTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/ptscotcherrTargets.cmake
+  /usr/lib/cmake/scotch/ptscotcherrexitTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/ptscotcherrexitTargets.cmake
+  /usr/lib/cmake/scotch/ptscotchparmetisTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/ptscotchparmetisTargets.cmake
+  /usr/lib/cmake/scotch/scotchTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/scotchTargets.cmake
+  /usr/lib/cmake/scotch/scotcherrTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/scotcherrTargets.cmake
+  /usr/lib/cmake/scotch/scotcherrexitTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/scotcherrexitTargets.cmake
+  /usr/lib/cmake/scotch/scotchmetisTargets-relwithdebinfo.cmake
+  /usr/lib/cmake/scotch/scotchmetisTargets.cmake
+  /usr/lib/libesmumps.dll.a
+  /usr/lib/libptesmumps.dll.a
+  /usr/lib/libptscotch.dll.a
+  /usr/lib/libptscotcherr.dll.a
+  /usr/lib/libptscotcherrexit.dll.a
+  /usr/lib/libptscotchparmetisv3.dll.a
+  /usr/lib/libscotch.dll.a
+  /usr/lib/libscotcherr.dll.a
+  /usr/lib/libscotcherrexit.dll.a
+  /usr/lib/libscotchmetisv3.dll.a
+  /usr/lib/libscotchmetisv5.dll.a
+
+------------------
+
+Port Notes:
+
+----- version 7.0.18-1bl1 -----
+Initial release by yacp-dev <https://github.com/yacp-dev>

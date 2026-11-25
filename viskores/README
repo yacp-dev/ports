@@ -11,14 +11,14 @@ Runtime requirements:
   cygwin-3.6.12-1
   libgcc1-14.4.0-1
   libstdc++6-14.4.0-1
-  libviskores1.2-1.2.0-1bl1
-  pkg-config-3.0.10-1
+  libviskores1.2-1.2.0-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
   binutils-2.47-1
   cmake-4.4.5-1
-  cygport-0.37.12-1
+  cygport-0.37.13-1
   gcc-g++-14.4.0-1
   ninja-1.13.2-1
 
@@ -54,6 +54,7 @@ Files included in the binary package:
 
 (libviskores1.2)
   /usr/bin/cygviskores_cont-1.2.dll
+  /usr/bin/cygviskores_cont_testing-1.2.dll
   /usr/bin/cygviskores_filter_clean_grid-1.2.dll
   /usr/bin/cygviskores_filter_connected_components-1.2.dll
   /usr/bin/cygviskores_filter_contour-1.2.dll
@@ -75,6 +76,7 @@ Files included in the binary package:
   /usr/bin/cygviskores_io-1.2.dll
   /usr/bin/cygviskores_rendering-1.2.dll
   /usr/bin/cygviskores_rendering_raytracing-1.2.dll
+  /usr/bin/cygviskores_rendering_testing-1.2.dll
   /usr/bin/cygviskores_source-1.2.dll
   /usr/bin/cygviskores_worklet-1.2.dll
   /usr/bin/cygviskoresdiympi_nompi-1.2.dll
@@ -352,6 +354,10 @@ Files included in the binary package:
   /usr/include/viskores-1.2/viskores/cont/tbb/internal/ParallelSortTBB.h
   /usr/include/viskores-1.2/viskores/cont/tbb/internal/ParallelSortTBB.hxx
   /usr/include/viskores-1.2/viskores/cont/tbb/internal/RuntimeDeviceConfigurationTBB.h
+  /usr/include/viskores-1.2/viskores/cont/testlib/ExplicitTestData.h
+  /usr/include/viskores-1.2/viskores/cont/testlib/MakeTestDataSet.h
+  /usr/include/viskores-1.2/viskores/cont/testlib/Testing.h
+  /usr/include/viskores-1.2/viskores/cont/testlib/viskores_cont_testing_export.h
   /usr/include/viskores-1.2/viskores/cont/viskores_cont_export.h
   /usr/include/viskores-1.2/viskores/exec/AtomicArrayExecutionObject.h
   /usr/include/viskores-1.2/viskores/exec/BoundaryState.h
@@ -1170,6 +1176,9 @@ Files included in the binary package:
   /usr/include/viskores-1.2/viskores/rendering/raytracing/VolumeRendererStructured.h
   /usr/include/viskores-1.2/viskores/rendering/raytracing/Worklets.h
   /usr/include/viskores-1.2/viskores/rendering/raytracing/viskores_rendering_raytracing_export.h
+  /usr/include/viskores-1.2/viskores/rendering/testlib/RenderTest.h
+  /usr/include/viskores-1.2/viskores/rendering/testlib/Testing.h
+  /usr/include/viskores-1.2/viskores/rendering/testlib/viskores_rendering_testing_export.h
   /usr/include/viskores-1.2/viskores/rendering/viskores_rendering_export.h
   /usr/include/viskores-1.2/viskores/source/Amr.h
   /usr/include/viskores-1.2/viskores/source/Oscillator.h
@@ -1406,6 +1415,7 @@ Files included in the binary package:
   /usr/lib/cmake/viskores/ViskoresTargets.cmake
   /usr/lib/cmake/viskores/ViskoresWrappers.cmake
   /usr/lib/libviskores_cont.dll.a
+  /usr/lib/libviskores_cont_testing.dll.a
   /usr/lib/libviskores_filter_clean_grid.dll.a
   /usr/lib/libviskores_filter_connected_components.dll.a
   /usr/lib/libviskores_filter_contour.dll.a
@@ -1427,6 +1437,7 @@ Files included in the binary package:
   /usr/lib/libviskores_io.dll.a
   /usr/lib/libviskores_rendering.dll.a
   /usr/lib/libviskores_rendering_raytracing.dll.a
+  /usr/lib/libviskores_rendering_testing.dll.a
   /usr/lib/libviskores_source.dll.a
   /usr/lib/libviskores_worklet.dll.a
   /usr/lib/libviskoresdiympi_nompi.dll.a
@@ -1436,6 +1447,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.0-1bl2 -----
+Fix missing viskores::cont_testing for VTK
 
 ----- version 1.2.0-1bl1 -----
 Initial release by yacp-dev <https://github.com/yacp-dev>

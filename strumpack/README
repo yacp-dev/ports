@@ -1,0 +1,189 @@
+strumpack
+------------------------------------------
+STRUMPACK - STRUctured Matrix PACKage - is a software library providing linear
+algebra routines and linear system solvers for sparse and for dense
+rank-structured linear systems. Many large dense matrices are rank structured,
+meaning they exhibit some kind of low-rank property, for instance in
+hierarchically defined sub-blocks. In sparse direct solvers based on LU
+factorization, the LU factors can often also be approximated well using
+rank-structured matrix compression, leading to robust preconditioners. The
+sparse solver in STRUMPACK can also be used as an exact direct solver, in which
+case it functions similarly as for instance SuperLU or superlu_dist. The
+STRUMPACK sparse direct solver delivers good performance and distributed memory
+scalability and provides excellent CUDA support.
+
+Runtime requirements:
+  cygwin-3.6.12-1
+  gcc-fortran-14.4.0-1
+  libgcc1-14.4.0-1
+  libgfortran5-14.4.0-1
+  libgomp1-14.4.0-1
+  liblapack-devel-3.12.0-1
+  liblapack0-3.12.0-1
+  libmetis-devel-5.2.1-1
+  libmetis0-5.2.1-1
+  libopenmpi40-4.1.6-1
+  libopenmpifh40-4.1.6-1
+  libptscotch7.0-7.0.18-1bl2
+  libscalapack2.2-2.2.3-1bl1
+  libscotch-devel-7.0.18-1bl2
+  libscotch7.0-7.0.18-1bl2
+  libstdc++6-14.4.0-1
+  libstrumpack-devel-8.1.0-1bl1
+  libstrumpack8.1-8.1.0-1bl1
+  libzfp-devel-1.0.1-1bl3
+  libzfp1-1.0.1-1bl3
+  pkg-config-3.0.11-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  gcc-g++-14.4.0-1
+  liblapack-devel-3.12.0-1
+  libmetis-devel-5.2.1-1
+  libopenmpi-devel-4.1.6-1
+  libscalapack-devel-2.2.3-1bl1
+  libscotch-devel-7.0.18-1bl2
+  libzfp-devel-1.0.1-1bl3
+  ninja-1.13.2-1
+
+Canonical website:
+  https://github.com/pghysels/STRUMPACK
+
+Canonical download:
+  https://github.com/pghysels/STRUMPACK/archive/refs/tags/v8.1.0.tar.gz
+
+-------------------------------------------
+
+Build instructions:
+  1. unpack strumpack-8.1.0-X-src.tar.xz
+  2. if you use setup to install this src package,
+     it will be unpacked under /usr/src automatically
+        % cd /usr/src
+        % cygport ./strumpack-8.1.0-X.cygport all
+
+This will create:
+  /usr/src/strumpack-8.1.0-X-src.tar.xz
+  /usr/src/strumpack-8.1.0-X.tar.xz
+  /usr/src/libstrumpack8.1-8.1.0-X.tar.xz
+  /usr/src/libstrumpack-devel-8.1.0-X.tar.xz
+
+-------------------------------------------
+
+Files included in the binary package:
+
+(strumpack)
+  /usr/share/doc/Cygwin/strumpack.README
+  /usr/share/doc/strumpack/CHANGELOG
+  /usr/share/doc/strumpack/LICENSE
+  /usr/share/doc/strumpack/README.md
+
+(libstrumpack8.1)
+  /usr/bin/cygstrumpack-8.1.dll
+
+(libstrumpack-devel)
+  /usr/include/strumpack/BLR/BLRExtendAdd.hpp
+  /usr/include/strumpack/BLR/BLRMatrix.hpp
+  /usr/include/strumpack/BLR/BLRMatrixMPI.hpp
+  /usr/include/strumpack/BLR/BLROptions.hpp
+  /usr/include/strumpack/BLR/BLRTile.hpp
+  /usr/include/strumpack/BLR/BLRTileBLAS.hpp
+  /usr/include/strumpack/BLR/DenseTile.hpp
+  /usr/include/strumpack/BLR/LRTile.hpp
+  /usr/include/strumpack/HODLR/HODLROptions.hpp
+  /usr/include/strumpack/HSS/DistElemMult.hpp
+  /usr/include/strumpack/HSS/DistSamples.hpp
+  /usr/include/strumpack/HSS/HSSBasisID.hpp
+  /usr/include/strumpack/HSS/HSSBasisIDMPI.hpp
+  /usr/include/strumpack/HSS/HSSExtra.hpp
+  /usr/include/strumpack/HSS/HSSExtraMPI.hpp
+  /usr/include/strumpack/HSS/HSSMatrix.hpp
+  /usr/include/strumpack/HSS/HSSMatrix.sketch.hpp
+  /usr/include/strumpack/HSS/HSSMatrixBase.hpp
+  /usr/include/strumpack/HSS/HSSMatrixMPI.hpp
+  /usr/include/strumpack/HSS/HSSOptions.hpp
+  /usr/include/strumpack/SparseSolverBase.hpp
+  /usr/include/strumpack/StrumpackConfig.h
+  /usr/include/strumpack/StrumpackConfig.hpp
+  /usr/include/strumpack/StrumpackFortranCInterface.h
+  /usr/include/strumpack/StrumpackOptions.hpp
+  /usr/include/strumpack/StrumpackParameters.hpp
+  /usr/include/strumpack/StrumpackSparseSolver.h
+  /usr/include/strumpack/StrumpackSparseSolver.hpp
+  /usr/include/strumpack/StrumpackSparseSolverMPIDist.hpp
+  /usr/include/strumpack/StrumpackSparseSolverMixedPrecision.hpp
+  /usr/include/strumpack/StrumpackSparseSolverMixedPrecisionMPIDist.hpp
+  /usr/include/strumpack/clustering/Clustering.hpp
+  /usr/include/strumpack/clustering/NeighborSearch.hpp
+  /usr/include/strumpack/dense/ACA.hpp
+  /usr/include/strumpack/dense/BACA.hpp
+  /usr/include/strumpack/dense/BLACSGrid.hpp
+  /usr/include/strumpack/dense/BLASLAPACKOpenMPTask.hpp
+  /usr/include/strumpack/dense/BLASLAPACKWrapper.hpp
+  /usr/include/strumpack/dense/DenseMatrix.hpp
+  /usr/include/strumpack/dense/DistributedMatrix.hpp
+  /usr/include/strumpack/dense/DistributedVector.hpp
+  /usr/include/strumpack/dense/GPUWrapper.hpp
+  /usr/include/strumpack/dense/ScaLAPACKWrapper.hpp
+  /usr/include/strumpack/iterative/IterativeSolvers.hpp
+  /usr/include/strumpack/iterative/IterativeSolversMPI.hpp
+  /usr/include/strumpack/kernel/Kernel.h
+  /usr/include/strumpack/kernel/Kernel.hpp
+  /usr/include/strumpack/kernel/KernelRegression.hpp
+  /usr/include/strumpack/kernel/Metrics.hpp
+  /usr/include/strumpack/misc/MPIWrapper.hpp
+  /usr/include/strumpack/misc/RandomWrapper.hpp
+  /usr/include/strumpack/misc/TaskTimer.hpp
+  /usr/include/strumpack/misc/Tools.hpp
+  /usr/include/strumpack/misc/Triplet.hpp
+  /usr/include/strumpack/python/STRUMPACKKernel.py
+  /usr/include/strumpack/sparse/CSRGraph.hpp
+  /usr/include/strumpack/sparse/CSRMatrix.hpp
+  /usr/include/strumpack/sparse/CSRMatrixMPI.hpp
+  /usr/include/strumpack/sparse/CompressedSparseMatrix.hpp
+  /usr/include/strumpack/sparse/EliminationTree.hpp
+  /usr/include/strumpack/sparse/EliminationTreeMPI.hpp
+  /usr/include/strumpack/sparse/EliminationTreeMPIDist.hpp
+  /usr/include/strumpack/sparse/PropMapSparseMatrix.hpp
+  /usr/include/strumpack/sparse/fronts/FrontFactory.hpp
+  /usr/include/strumpack/structured/ClusterTree.hpp
+  /usr/include/strumpack/structured/StructuredMatrix.h
+  /usr/include/strumpack/structured/StructuredMatrix.hpp
+  /usr/include/strumpack/structured/StructuredMatrixMPI.h
+  /usr/include/strumpack/structured/StructuredOptions.hpp
+  /usr/include/strumpack/strumpack.mod
+  /usr/include/strumpack/strumpack_dense.mod
+  /usr/lib/cmake/STRUMPACK/CommonFunctions.cmake
+  /usr/lib/cmake/STRUMPACK/FindMAGMA.cmake
+  /usr/lib/cmake/STRUMPACK/FindMETIS.cmake
+  /usr/lib/cmake/STRUMPACK/FindPAPI.cmake
+  /usr/lib/cmake/STRUMPACK/FindParMETIS.cmake
+  /usr/lib/cmake/STRUMPACK/strumpack-config-version.cmake
+  /usr/lib/cmake/STRUMPACK/strumpack-config.cmake
+  /usr/lib/cmake/STRUMPACK/strumpack-targets-relwithdebinfo.cmake
+  /usr/lib/cmake/STRUMPACK/strumpack-targets.cmake
+  /usr/lib/libstrumpack.dll.a
+  /usr/lib/pkgconfig/strumpack.pc
+
+------------------
+
+Port Notes:
+
+----- version 8.1.0-1bl1 -----
+Version bump.
+
+----- version 6.3.1-1bl1 -----
+Version bump.
+
+----- version 6.1.0-1bl1 -----
+Version bump.
+
+----- version 6.0.0-1bl1 -----
+Version bump.
+
+----- version 5.1.1-1bl1 -----
+Initial release by fd0 <https://github.com/fd00/>

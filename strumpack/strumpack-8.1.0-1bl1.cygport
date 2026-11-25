@@ -1,5 +1,6 @@
-HOMEPAGE="https://github.com/pghysels/${PN}"
-SRC_URI="https://github.com/pghysels/${PN}/archive/refs/tags/v${PV}.tar.gz"
+HOMEPAGE="https://github.com/pghysels/STRUMPACK"
+SRC_URI="https://github.com/pghysels/STRUMPACK/archive/refs/tags/v${PV}.tar.gz"
+SRC_DIR="STRUMPACK-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="Structured Matrix Package"
@@ -15,19 +16,32 @@ which case it functions similarly as for instance SuperLU or superlu_dist. The
 STRUMPACK sparse direct solver delivers good performance and distributed
 memory scalability and provides excellent CUDA support."
 
-BUILD_REQUIRES="libbutterflypack-devel liblapack-devel libmetis-devel libopenmpi-devel libparmetis-devel libscalapack-devel libzfp-devel"
+LICENSE="BSD-3-Clause-LBNL"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause-LBNL"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	gcc-fortran
+	liblapack-devel
+	libmetis-devel
+	libopenmpi-devel
+	libscalapack-devel
+	libscotch-devel
+	libzfp-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
-	-DSOVERSION:STRING=${PV[1]}
+	-DTPL_ENABLE_BPACK:BOOL=OFF
+	-DTPL_ENABLE_PARMETIS:BOOL=OFF
 "
 
 src_test()
 {
 	cd ${B}
-	ninja_test
+	PATH=${B}:${PATH} ninja_test
 }
 
 src_install()
@@ -47,20 +61,27 @@ DOCS="
 "
 
 PKG_NAMES="
-	STRUMPACK
-	libstrumpack${PV[1]}
+	${PN}
+	libstrumpack8.1
 	libstrumpack-devel
 "
-STRUMPACK_CONTENTS="
+strumpack_CONTENTS="
 	usr/share
 "
-libstrumpack6_CONTENTS="
-	usr/bin
+libstrumpack8_1_CONTENTS="
+	usr/bin/cygstrumpack-8.1.dll
 "
 libstrumpack_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
-STRUMPACK_SUMMARY="${SUMMARY} (licensing & readmes)"
-libstrumpack6_SUMMARY="${SUMMARY} (runtime)"
+strumpack_SUMMARY="${SUMMARY} (licensing & readmes)"
+libstrumpack8_1_SUMMARY="${SUMMARY} (runtime)"
 libstrumpack_devel_SUMMARY="${SUMMARY} (development)"
+libstrumpack_devel_REQUIRES="
+	gcc-fortran
+	liblapack-devel
+	libmetis-devel
+	libscotch-devel
+	libzfp-devel
+"

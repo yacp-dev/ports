@@ -9,12 +9,16 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	cmake
+"
+
 inherit meson
 
 CYGMESON_ARGS="
-	-Dbuild_examples=true
+	-Dbuild_examples=false
 	-Dbuild_tests=true
-	-Dcompile_library=true
+	-Dbuild_lib=true
 	-Ddefault_library=shared
 "
 

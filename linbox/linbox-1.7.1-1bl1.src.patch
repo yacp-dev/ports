@@ -1,5 +1,5 @@
---- origsrc/linbox-1.7.0/configure.ac	2021-12-14 19:16:03.000000000 +0900
-+++ src/linbox-1.7.0/configure.ac	2022-02-11 12:25:48.275287500 +0900
+--- origsrc/linbox-1.7.1/configure.ac	2025-07-24 10:50:50.000000000 +0000
++++ src/linbox-1.7.1/configure.ac	2026-11-25 19:09:44.211262100 +0000
 @@ -162,8 +162,8 @@ AS_ECHO(["LINBOX_CXXFLAGS = ${LINBOX_CXX
  AC_SUBST(LINBOX_CXXFLAGS)
  AC_SUBST(REQUIRED_FLAGS)
@@ -11,8 +11,8 @@
  
  AC_SUBST(LINBOX_DEPS_CFLAGS)
  AC_SUBST(LINBOX_DEPS_LIBS)
---- origsrc/linbox-1.7.0/linbox/Makefile.am	2021-12-14 19:16:03.000000000 +0900
-+++ src/linbox-1.7.0/linbox/Makefile.am	2022-02-11 11:15:09.651708100 +0900
+--- origsrc/linbox-1.7.1/linbox/Makefile.am	2025-07-24 10:50:50.000000000 +0000
++++ src/linbox-1.7.1/linbox/Makefile.am	2026-11-25 19:09:44.211262100 +0000
 @@ -52,6 +52,8 @@ lib_LTLIBRARIES=liblinbox.la
  
  liblinbox_la_SOURCES = dummy.C

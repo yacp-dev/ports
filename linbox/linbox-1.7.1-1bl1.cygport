@@ -1,0 +1,51 @@
+HOMEPAGE="https://github.com/linbox-team/${PN}/"
+SRC_URI="https://github.com/linbox-team/${PN}/archive/refs/tags/v${PV}.tar.gz"
+
+CATEGORY="Math"
+SUMMARY="C++ library for exact, high-performance linear algebra"
+DESCRIPTION="Linbox is a C++ template library for exact, high-performance linear
+algebra computation with dense, sparse, and structured matrices over the
+integers and over finite fields."
+
+LICENSE="LGPL-2.1-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE_URI="COPYING.LESSER"
+
+BUILD_REQUIRES="
+	fflas-ffpack
+	libflint-devel
+	libgivaro-devel
+	libgmp-devel
+	libiml-devel
+	liblapack-devel
+	libmpfr-devel
+	libntl-devel
+"
+
+CYGCONF_ARGS="
+	--without-archnative
+"
+
+# cygport check takes ~89 min to compile and run the test suite
+YACP_CHECK_TIMEOUT_MINUTES=105
+
+PKG_NAMES="
+	${PN}
+	lib${PN}0
+	lib${PN}-devel
+"
+linbox_CONTENTS="
+	usr/share/doc
+"
+liblinbox0_CONTENTS="
+	usr/bin/cyglinbox-0.dll
+"
+liblinbox_devel_CONTENTS="
+	usr/bin/${PN}-config
+	usr/include
+	usr/lib
+	usr/share/man
+"
+linbox_SUMMARY="${SUMMARY} (licensing & readmes)"
+liblinbox0_SUMMARY="${SUMMARY} (runtime)"
+liblinbox_devel_SUMMARY="${SUMMARY} (development)"

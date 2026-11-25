@@ -1,5 +1,6 @@
-HOMEPAGE="https://pagure.io/${PN}"
-SRC_URI="https://releases.pagure.org/${PN}/${P}.tar.bz2"
+HOMEPAGE="https://github.com/pete4abw/${PN}"
+SRC_URI="https://github.com/pete4abw/${PN}/archive/refs/tags/${P}.tar.gz"
+SRC_DIR="${PN}-${P}"
 
 CATEGORY="Utils"
 SUMMARY="Utility for removing files based on when they were last accessed"
@@ -17,5 +18,8 @@ LICENSE_URI="COPYING"
 src_test()
 {
 	cd ${B}
-	./${PN}.exe --help
+	# 2.13 has no --help: without arguments it prints its usage and exits 1
+	local status=0
+	verbose ./${PN}.exe > usage.out 2>&1 || status=$?
+	[ ${status} -eq 1 ] && grep -q '<hours-untouched> <dirs>' usage.out
 }

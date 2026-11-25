@@ -1,5 +1,5 @@
---- origsrc/libmbd-0.15.0/CMakeLists.txt	2026-07-25 03:17:48.000000000 +0900
-+++ src/libmbd-0.15.0/CMakeLists.txt	2026-08-10 12:15:53.591971400 +0900
+--- origsrc/libmbd-0.16.0/CMakeLists.txt	2026-11-22 17:03:18.000000000 +0000
++++ src/libmbd-0.16.0/CMakeLists.txt	2026-11-25 12:45:31.489578700 +0000
 @@ -118,3 +118,10 @@ add_subdirectory(src)
  if(BUILD_TESTING)
      add_subdirectory(tests)
@@ -11,8 +11,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libmbd.pc.in ${CMAKE_BINARY_DIR}/libmbd.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libmbd.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libmbd-0.15.0/libmbd.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libmbd-0.15.0/libmbd.pc.in	2026-08-10 12:15:53.602753500 +0900
+--- origsrc/libmbd-0.16.0/libmbd.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libmbd-0.16.0/libmbd.pc.in	2026-11-25 12:45:31.491600200 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -24,9 +24,9 @@
 +Version: @PROJECT_VERSION@
 +Libs: -L${libdir} -lmbd
 +Cflags: -I${includedir}/mbd
---- origsrc/libmbd-0.15.0/src/CMakeLists.txt	2026-08-10 12:15:52.122995900 +0900
-+++ src/libmbd-0.15.0/src/CMakeLists.txt	2026-08-10 12:15:53.602753500 +0900
-@@ -110,6 +110,7 @@ add_library(Mbd INTERFACE)
+--- origsrc/libmbd-0.16.0/src/CMakeLists.txt	2026-11-22 17:03:18.000000000 +0000
++++ src/libmbd-0.16.0/src/CMakeLists.txt	2026-11-25 12:45:31.491600200 +0000
+@@ -105,6 +105,7 @@ add_library(Mbd INTERFACE)
  target_link_libraries(Mbd INTERFACE mbd)
  if(CMAKE_INSTALL_LIBDIR)
      install(TARGETS mbd Mbd EXPORT MbdConfig

@@ -1,9 +1,5 @@
 HOMEPAGE="https://github.com/${PN}/${PN}"
 SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/${PV}.tar.gz"
-PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/74.patch
-"
-
 CATEGORY="Libs"
 SUMMARY="Many-body dispersion library"
 DESCRIPTION="Libmbd implements the many-body dispersion (MBD) method in several programming
@@ -26,10 +22,6 @@ src_patch_hook()
 }
 
 inherit cmake
-
-CYGCMAKE_ARGS="
-	-DSOVERSION:STRING=${PV[1]}
-"
 
 src_test()
 {

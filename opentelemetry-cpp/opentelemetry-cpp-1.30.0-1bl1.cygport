@@ -11,16 +11,21 @@ LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
+	libbenchmark-devel
 	libcurl-devel
 	libgmock-devel
 	libgtest-devel
 	libopentracing-devel
 	libprometheus-cpp-pull-devel
 	libprotobuf-devel
+	nlohmann_json
 	zlib-devel
 "
 
 export CXXFLAGS="${CXXFLAGS} -fpermissive"
+
+# the 1578 tests do not finish within the default 10 minutes on the runner
+YACP_CHECK_TIMEOUT_MINUTES=30
 
 inherit cmake
 inherit git
@@ -28,19 +33,23 @@ inherit git
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DOTELCPP_VERSIONED_LIBS:BOOL=ON
-	-DWITH_ASYNC_EXPORT_PREVIEW:BOOL=ON
-	-DWITH_ELASTICSEARCH:BOOL=ON
-	-DWITH_JAEGER:BOOL=ON
-	-DWITH_METRICS_PREVIEW:BOOL=ON
-	-DWITH_LOGS_PREVIEW:BOOL=ON
-	-DWITH_OPENTRACING:BOOL=ON
-	-DWITH_OTLP_FILE:BOOL=ON
-	-DWITH_OTLP_HTTP:BOOL=ON
-	-DWITH_OTLP_HTTP_COMPRESSION:BOOL=ON
-	-DWITH_PROMETHEUS:BOOL=ON
-	-DWITH_ZIPKIN:BOOL=ON
-	-DWITH_ZPAGES:BOOL=ON
+	-DOTELCPP_WITH_ASYNC_EXPORT_PREVIEW:BOOL=ON
+	-DOTELCPP_WITH_ELASTICSEARCH:BOOL=ON
+	-DOTELCPP_WITH_OPENTRACING:BOOL=ON
+	-DOTELCPP_WITH_OTLP_FILE:BOOL=ON
+	-DOTELCPP_WITH_OTLP_HTTP:BOOL=ON
+	-DOTELCPP_WITH_OTLP_HTTP_COMPRESSION:BOOL=ON
+	-DOTELCPP_WITH_PROMETHEUS:BOOL=ON
+	-DOTELCPP_WITH_ZIPKIN:BOOL=ON
 "
+
+src_compile()
+{
+	cd ${B}
+	: ${CYGCMAKE_GENERATOR=Ninja}
+	cygcmake -DOTELCPP_PROTO_PATH=${S}/third_party/opentelemetry-proto
+	cygninja
+}
 
 src_test()
 {
@@ -70,3 +79,4 @@ libopentelemetry_devel_CONTENTS="
 opentelemetry_cpp_SUMMARY="${SUMMARY} (licensing & readmes)"
 libopentelemetry1_SUMMARY="${SUMMARY} (runtime)"
 libopentelemetry_devel_SUMMARY="${SUMMARY} (development)"
+libopentelemetry_devel_REQUIRES="nlohmann_json libopentracing-devel"

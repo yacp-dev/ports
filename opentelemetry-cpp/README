@@ -3,34 +3,40 @@ opentelemetry-cpp
 OpenTelemetry C++ Client
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libcurl4-8.16.0-1
-  libgcc1-13.4.0-1
-  libopentelemetry-devel-1.22.0-1bl1
-  libopentelemetry1-1.22.0-1bl1
-  libopentracing1-1.6.0-1bl3
-  libprometheus-cpp-pull1.3-1.3.0-1bl1
-  libprotobuf32-21.12-1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
-  zlib0-1.3.1-1
+  cygwin-3.6.12-1
+  libcurl-devel-8.23.0-1
+  libcurl4-8.23.0-1
+  libgcc1-14.4.0-1
+  libopentelemetry-devel-1.30.0-1bl1
+  libopentelemetry1-1.30.0-1bl1
+  libopentracing-devel-1.6.0-1bl4
+  libopentracing1-1.6.0-1bl4
+  libprometheus-cpp-pull-devel-1.3.0-1bl2
+  libprometheus-cpp-pull1.3-1.3.0-1bl2
+  libprotobuf-devel-21.12-2
+  libprotobuf32-21.12-2
+  libstdc++6-14.4.0-1
+  nlohmann_json-3.12.0-1bl3
+  pkg-config-3.0.11-1
+  zlib-devel-1.4-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libcurl-devel-8.16.0-1
-  libgmock-devel-1.17.0-1bl1
-  libgtest-devel-1.17.0-1bl1
-  libopentracing-devel-1.6.0-1bl3
-  libprometheus-cpp-pull-devel-1.3.0-1bl1
-  libprotobuf-devel-21.12-1
-  make-4.4.1-2
-  ninja-1.13.1-1
-  zlib-devel-1.3.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libbenchmark-devel-1.10.0-1bl1
+  libcurl-devel-8.23.0-1
+  libgmock-devel-1.18.0-1bl1
+  libgtest-devel-1.18.0-1bl1
+  libopentracing-devel-1.6.0-1bl4
+  libprometheus-cpp-pull-devel-1.3.0-1bl2
+  libprotobuf-devel-21.12-2
+  ninja-1.13.2-1
+  nlohmann_json-3.12.0-1bl3
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/open-telemetry/opentelemetry-cpp
@@ -41,17 +47,17 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  1. unpack opentelemetry-cpp-1.22.0-X-src.tar.xz
+  1. unpack opentelemetry-cpp-1.30.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./opentelemetry-cpp-1.22.0-X.cygport all
+        % cygport ./opentelemetry-cpp-1.30.0-X.cygport all
 
 This will create:
-  /usr/src/opentelemetry-cpp-1.22.0-X-src.tar.xz
-  /usr/src/opentelemetry-cpp-1.22.0-X.tar.xz
-  /usr/src/libopentelemetry1-1.22.0-X.tar.xz
-  /usr/src/libopentelemetry-devel-1.22.0-X.tar.xz
+  /usr/src/opentelemetry-cpp-1.30.0-X-src.tar.xz
+  /usr/src/opentelemetry-cpp-1.30.0-X.tar.xz
+  /usr/src/libopentelemetry1-1.30.0-X.tar.xz
+  /usr/src/libopentelemetry-devel-1.30.0-X.tar.xz
 
 -------------------------------------------
 
@@ -71,26 +77,44 @@ Files included in the binary package:
 
 (libopentelemetry1)
   /usr/bin/cygopentelemetry_common-1.dll
+  /usr/bin/cygopentelemetry_configuration_core-1.dll
+  /usr/bin/cygopentelemetry_configuration_logs_builders-1.dll
+  /usr/bin/cygopentelemetry_configuration_metrics_builders-1.dll
+  /usr/bin/cygopentelemetry_configuration_registry_factory-1.dll
+  /usr/bin/cygopentelemetry_configuration_trace_builders-1.dll
   /usr/bin/cygopentelemetry_exporter_elasticsearch_logs-1.dll
   /usr/bin/cygopentelemetry_exporter_in_memory-1.dll
   /usr/bin/cygopentelemetry_exporter_in_memory_metric-1.dll
   /usr/bin/cygopentelemetry_exporter_ostream_logs-1.dll
+  /usr/bin/cygopentelemetry_exporter_ostream_logs_builder-1.dll
   /usr/bin/cygopentelemetry_exporter_ostream_metrics-1.dll
+  /usr/bin/cygopentelemetry_exporter_ostream_metrics_builder-1.dll
   /usr/bin/cygopentelemetry_exporter_ostream_span-1.dll
+  /usr/bin/cygopentelemetry_exporter_ostream_span_builder-1.dll
+  /usr/bin/cygopentelemetry_exporter_otlp_builder_utils-1.dll
   /usr/bin/cygopentelemetry_exporter_otlp_file-1.dll
+  /usr/bin/cygopentelemetry_exporter_otlp_file_builder-1.dll
   /usr/bin/cygopentelemetry_exporter_otlp_file_client-1.dll
   /usr/bin/cygopentelemetry_exporter_otlp_file_log-1.dll
+  /usr/bin/cygopentelemetry_exporter_otlp_file_log_builder-1.dll
   /usr/bin/cygopentelemetry_exporter_otlp_file_metric-1.dll
+  /usr/bin/cygopentelemetry_exporter_otlp_file_metric_builder-1.dll
   /usr/bin/cygopentelemetry_exporter_otlp_http-1.dll
+  /usr/bin/cygopentelemetry_exporter_otlp_http_builder-1.dll
   /usr/bin/cygopentelemetry_exporter_otlp_http_client-1.dll
   /usr/bin/cygopentelemetry_exporter_otlp_http_log-1.dll
+  /usr/bin/cygopentelemetry_exporter_otlp_http_log_builder-1.dll
   /usr/bin/cygopentelemetry_exporter_otlp_http_metric-1.dll
+  /usr/bin/cygopentelemetry_exporter_otlp_http_metric_builder-1.dll
   /usr/bin/cygopentelemetry_exporter_prometheus-1.dll
+  /usr/bin/cygopentelemetry_exporter_prometheus_builder-1.dll
   /usr/bin/cygopentelemetry_exporter_zipkin_trace-1.dll
   /usr/bin/cygopentelemetry_http_client_curl-1.dll
+  /usr/bin/cygopentelemetry_instrumentation_scope-1.dll
   /usr/bin/cygopentelemetry_logs-1.dll
   /usr/bin/cygopentelemetry_metrics-1.dll
   /usr/bin/cygopentelemetry_opentracing_shim-1.dll
+  /usr/bin/cygopentelemetry_otlp_common-1.dll
   /usr/bin/cygopentelemetry_otlp_recordable-1.dll
   /usr/bin/cygopentelemetry_proto-1.dll
   /usr/bin/cygopentelemetry_resources-1.dll
@@ -102,6 +126,7 @@ Files included in the binary package:
   /usr/include/opentelemetry/baggage/baggage_context.h
   /usr/include/opentelemetry/baggage/propagation/baggage_propagator.h
   /usr/include/opentelemetry/common/attribute_value.h
+  /usr/include/opentelemetry/common/detail/ascii.h
   /usr/include/opentelemetry/common/key_value_iterable.h
   /usr/include/opentelemetry/common/key_value_iterable_view.h
   /usr/include/opentelemetry/common/kv_properties.h
@@ -113,6 +138,7 @@ Files included in the binary package:
   /usr/include/opentelemetry/context/context.h
   /usr/include/opentelemetry/context/context_value.h
   /usr/include/opentelemetry/context/propagation/composite_propagator.h
+  /usr/include/opentelemetry/context/propagation/environment_carrier.h
   /usr/include/opentelemetry/context/propagation/global_propagator.h
   /usr/include/opentelemetry/context/propagation/noop_propagator.h
   /usr/include/opentelemetry/context/propagation/text_map_propagator.h
@@ -126,12 +152,16 @@ Files included in the binary package:
   /usr/include/opentelemetry/exporters/memory/in_memory_span_exporter.h
   /usr/include/opentelemetry/exporters/memory/in_memory_span_exporter_factory.h
   /usr/include/opentelemetry/exporters/ostream/common_utils.h
+  /usr/include/opentelemetry/exporters/ostream/console_log_record_builder.h
+  /usr/include/opentelemetry/exporters/ostream/console_push_metric_builder.h
+  /usr/include/opentelemetry/exporters/ostream/console_span_builder.h
   /usr/include/opentelemetry/exporters/ostream/log_record_exporter.h
   /usr/include/opentelemetry/exporters/ostream/log_record_exporter_factory.h
   /usr/include/opentelemetry/exporters/ostream/metric_exporter.h
   /usr/include/opentelemetry/exporters/ostream/metric_exporter_factory.h
   /usr/include/opentelemetry/exporters/ostream/span_exporter.h
   /usr/include/opentelemetry/exporters/ostream/span_exporter_factory.h
+  /usr/include/opentelemetry/exporters/otlp/otlp_builder_utils.h
   /usr/include/opentelemetry/exporters/otlp/otlp_environment.h
   /usr/include/opentelemetry/exporters/otlp/otlp_file_client.h
   /usr/include/opentelemetry/exporters/otlp/otlp_file_client_options.h
@@ -140,6 +170,7 @@ Files included in the binary package:
   /usr/include/opentelemetry/exporters/otlp/otlp_file_exporter_factory.h
   /usr/include/opentelemetry/exporters/otlp/otlp_file_exporter_options.h
   /usr/include/opentelemetry/exporters/otlp/otlp_file_exporter_runtime_options.h
+  /usr/include/opentelemetry/exporters/otlp/otlp_file_log_record_builder.h
   /usr/include/opentelemetry/exporters/otlp/otlp_file_log_record_exporter.h
   /usr/include/opentelemetry/exporters/otlp/otlp_file_log_record_exporter_factory.h
   /usr/include/opentelemetry/exporters/otlp/otlp_file_log_record_exporter_options.h
@@ -148,12 +179,16 @@ Files included in the binary package:
   /usr/include/opentelemetry/exporters/otlp/otlp_file_metric_exporter_factory.h
   /usr/include/opentelemetry/exporters/otlp/otlp_file_metric_exporter_options.h
   /usr/include/opentelemetry/exporters/otlp/otlp_file_metric_exporter_runtime_options.h
+  /usr/include/opentelemetry/exporters/otlp/otlp_file_push_metric_builder.h
+  /usr/include/opentelemetry/exporters/otlp/otlp_file_span_builder.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http.h
+  /usr/include/opentelemetry/exporters/otlp/otlp_http_builder_utils.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_client.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_exporter.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_exporter_factory.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_exporter_options.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_exporter_runtime_options.h
+  /usr/include/opentelemetry/exporters/otlp/otlp_http_log_record_builder.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_log_record_exporter.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_log_record_exporter_factory.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_log_record_exporter_options.h
@@ -162,6 +197,8 @@ Files included in the binary package:
   /usr/include/opentelemetry/exporters/otlp/otlp_http_metric_exporter_factory.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_metric_exporter_options.h
   /usr/include/opentelemetry/exporters/otlp/otlp_http_metric_exporter_runtime_options.h
+  /usr/include/opentelemetry/exporters/otlp/otlp_http_push_metric_builder.h
+  /usr/include/opentelemetry/exporters/otlp/otlp_http_span_builder.h
   /usr/include/opentelemetry/exporters/otlp/otlp_log_recordable.h
   /usr/include/opentelemetry/exporters/otlp/otlp_metric_utils.h
   /usr/include/opentelemetry/exporters/otlp/otlp_populate_attribute_utils.h
@@ -175,17 +212,14 @@ Files included in the binary package:
   /usr/include/opentelemetry/exporters/prometheus/exporter_factory.h
   /usr/include/opentelemetry/exporters/prometheus/exporter_options.h
   /usr/include/opentelemetry/exporters/prometheus/exporter_utils.h
+  /usr/include/opentelemetry/exporters/prometheus/prometheus_pull_builder.h
   /usr/include/opentelemetry/exporters/zipkin/zipkin_exporter.h
   /usr/include/opentelemetry/exporters/zipkin/zipkin_exporter_factory.h
   /usr/include/opentelemetry/exporters/zipkin/zipkin_exporter_options.h
-  /usr/include/opentelemetry/ext/http/client/curl/http_client_curl.h
-  /usr/include/opentelemetry/ext/http/client/curl/http_operation_curl.h
+  /usr/include/opentelemetry/ext/http/client/curl/http_client_factory_curl.h
   /usr/include/opentelemetry/ext/http/client/http_client.h
   /usr/include/opentelemetry/ext/http/client/http_client_factory.h
   /usr/include/opentelemetry/ext/http/common/url_parser.h
-  /usr/include/opentelemetry/ext/http/server/file_http_server.h
-  /usr/include/opentelemetry/ext/http/server/http_server.h
-  /usr/include/opentelemetry/ext/http/server/socket_tools.h
   /usr/include/opentelemetry/logs/event_id.h
   /usr/include/opentelemetry/logs/event_logger.h
   /usr/include/opentelemetry/logs/event_logger_provider.h
@@ -199,6 +233,7 @@ Files included in the binary package:
   /usr/include/opentelemetry/metrics/async_instruments.h
   /usr/include/opentelemetry/metrics/meter.h
   /usr/include/opentelemetry/metrics/meter_provider.h
+  /usr/include/opentelemetry/metrics/multi_observer_result.h
   /usr/include/opentelemetry/metrics/noop.h
   /usr/include/opentelemetry/metrics/observer_result.h
   /usr/include/opentelemetry/metrics/provider.h
@@ -243,16 +278,6 @@ Files included in the binary package:
   /usr/include/opentelemetry/opentracingshim/span_context_shim.h
   /usr/include/opentelemetry/opentracingshim/span_shim.h
   /usr/include/opentelemetry/opentracingshim/tracer_shim.h
-  /usr/include/opentelemetry/plugin/detail/dynamic_library_handle.h
-  /usr/include/opentelemetry/plugin/detail/dynamic_load_unix.h
-  /usr/include/opentelemetry/plugin/detail/dynamic_load_windows.h
-  /usr/include/opentelemetry/plugin/detail/loader_info.h
-  /usr/include/opentelemetry/plugin/detail/tracer_handle.h
-  /usr/include/opentelemetry/plugin/detail/utility.h
-  /usr/include/opentelemetry/plugin/dynamic_load.h
-  /usr/include/opentelemetry/plugin/factory.h
-  /usr/include/opentelemetry/plugin/hook.h
-  /usr/include/opentelemetry/plugin/tracer.h
   /usr/include/opentelemetry/proto/collector/logs/v1/logs_service.pb.h
   /usr/include/opentelemetry/proto/collector/metrics/v1/metrics_service.pb.h
   /usr/include/opentelemetry/proto/collector/profiles/v1development/profiles_service.pb.h
@@ -270,6 +295,7 @@ Files included in the binary package:
   /usr/include/opentelemetry/sdk/common/base64.h
   /usr/include/opentelemetry/sdk/common/circular_buffer.h
   /usr/include/opentelemetry/sdk/common/circular_buffer_range.h
+  /usr/include/opentelemetry/sdk/common/custom_hash_equality.h
   /usr/include/opentelemetry/sdk/common/disabled.h
   /usr/include/opentelemetry/sdk/common/empty_attributes.h
   /usr/include/opentelemetry/sdk/common/env_variables.h
@@ -278,43 +304,91 @@ Files included in the binary package:
   /usr/include/opentelemetry/sdk/common/thread_instrumentation.h
   /usr/include/opentelemetry/sdk/configuration/aggregation_configuration.h
   /usr/include/opentelemetry/sdk/configuration/aggregation_configuration_visitor.h
+  /usr/include/opentelemetry/sdk/configuration/always_off_sampler_builder.h
   /usr/include/opentelemetry/sdk/configuration/always_off_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/always_on_sampler_builder.h
   /usr/include/opentelemetry/sdk/configuration/always_on_sampler_configuration.h
   /usr/include/opentelemetry/sdk/configuration/attribute_limits_configuration.h
   /usr/include/opentelemetry/sdk/configuration/attribute_value_configuration.h
   /usr/include/opentelemetry/sdk/configuration/attribute_value_configuration_visitor.h
   /usr/include/opentelemetry/sdk/configuration/attributes_configuration.h
   /usr/include/opentelemetry/sdk/configuration/base2_exponential_bucket_histogram_aggregation_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/batch_log_record_processor_builder.h
   /usr/include/opentelemetry/sdk/configuration/batch_log_record_processor_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/batch_span_processor_builder.h
   /usr/include/opentelemetry/sdk/configuration/batch_span_processor_configuration.h
   /usr/include/opentelemetry/sdk/configuration/boolean_array_attribute_value_configuration.h
   /usr/include/opentelemetry/sdk/configuration/boolean_attribute_value_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/cardinality_limits_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_always_off_sampler_builder.h
+  /usr/include/opentelemetry/sdk/configuration/composable_always_off_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_always_on_sampler_builder.h
+  /usr/include/opentelemetry/sdk/configuration/composable_always_on_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_parent_threshold_sampler_builder.h
+  /usr/include/opentelemetry/sdk/configuration/composable_parent_threshold_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_probability_sampler_builder.h
+  /usr/include/opentelemetry/sdk/configuration/composable_probability_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_rule_based_sampler_builder.h
+  /usr/include/opentelemetry/sdk/configuration/composable_rule_based_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_rule_based_sampler_rule_attribute_patterns_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_rule_based_sampler_rule_attribute_values_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_rule_based_sampler_rule_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/composable_sampler_configuration_visitor.h
+  /usr/include/opentelemetry/sdk/configuration/composite_sampler_builder.h
+  /usr/include/opentelemetry/sdk/configuration/composite_sampler_configuration.h
   /usr/include/opentelemetry/sdk/configuration/configuration.h
-  /usr/include/opentelemetry/sdk/configuration/configuration_parser.h
+  /usr/include/opentelemetry/sdk/configuration/configured_sdk.h
+  /usr/include/opentelemetry/sdk/configuration/console_log_record_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/console_log_record_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/console_push_metric_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/console_push_metric_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/console_span_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/console_span_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/container_resource_detector_builder.h
+  /usr/include/opentelemetry/sdk/configuration/container_resource_detector_configuration.h
   /usr/include/opentelemetry/sdk/configuration/default_aggregation_configuration.h
   /usr/include/opentelemetry/sdk/configuration/default_histogram_aggregation.h
+  /usr/include/opentelemetry/sdk/configuration/distribution_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/distribution_entry_configuration.h
   /usr/include/opentelemetry/sdk/configuration/document.h
   /usr/include/opentelemetry/sdk/configuration/document_node.h
   /usr/include/opentelemetry/sdk/configuration/double_array_attribute_value_configuration.h
   /usr/include/opentelemetry/sdk/configuration/double_attribute_value_configuration.h
   /usr/include/opentelemetry/sdk/configuration/drop_aggregation_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/exemplar_filter.h
   /usr/include/opentelemetry/sdk/configuration/explicit_bucket_histogram_aggregation_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_composable_sampler_builder.h
+  /usr/include/opentelemetry/sdk/configuration/extension_composable_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_log_record_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/extension_log_record_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_log_record_processor_builder.h
   /usr/include/opentelemetry/sdk/configuration/extension_log_record_processor_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_metric_producer_builder.h
+  /usr/include/opentelemetry/sdk/configuration/extension_metric_producer_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_pull_metric_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/extension_pull_metric_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_push_metric_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/extension_push_metric_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_resource_detector_builder.h
+  /usr/include/opentelemetry/sdk/configuration/extension_resource_detector_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_sampler_builder.h
   /usr/include/opentelemetry/sdk/configuration/extension_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_span_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/extension_span_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/extension_span_processor_builder.h
   /usr/include/opentelemetry/sdk/configuration/extension_span_processor_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/grpc_tls_configuration.h
   /usr/include/opentelemetry/sdk/configuration/headers_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/host_resource_detector_builder.h
+  /usr/include/opentelemetry/sdk/configuration/host_resource_detector_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/http_tls_configuration.h
   /usr/include/opentelemetry/sdk/configuration/include_exclude_configuration.h
   /usr/include/opentelemetry/sdk/configuration/instrument_type.h
   /usr/include/opentelemetry/sdk/configuration/integer_array_attribute_value_configuration.h
   /usr/include/opentelemetry/sdk/configuration/integer_attribute_value_configuration.h
   /usr/include/opentelemetry/sdk/configuration/invalid_schema_exception.h
+  /usr/include/opentelemetry/sdk/configuration/jaeger_remote_sampler_builder.h
   /usr/include/opentelemetry/sdk/configuration/jaeger_remote_sampler_configuration.h
   /usr/include/opentelemetry/sdk/configuration/last_value_aggregation_configuration.h
   /usr/include/opentelemetry/sdk/configuration/log_record_exporter_configuration.h
@@ -322,36 +396,82 @@ Files included in the binary package:
   /usr/include/opentelemetry/sdk/configuration/log_record_limits_configuration.h
   /usr/include/opentelemetry/sdk/configuration/log_record_processor_configuration.h
   /usr/include/opentelemetry/sdk/configuration/log_record_processor_configuration_visitor.h
+  /usr/include/opentelemetry/sdk/configuration/logger_config_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/logger_configurator_builder.h
+  /usr/include/opentelemetry/sdk/configuration/logger_configurator_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/logger_matcher_and_config_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/logger_provider_builder.h
+  /usr/include/opentelemetry/sdk/configuration/logger_provider_builder_context.h
   /usr/include/opentelemetry/sdk/configuration/logger_provider_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/logs_builder_utils.h
+  /usr/include/opentelemetry/sdk/configuration/logs_builders.h
+  /usr/include/opentelemetry/sdk/configuration/meter_config_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/meter_configurator_builder.h
+  /usr/include/opentelemetry/sdk/configuration/meter_configurator_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/meter_matcher_and_config_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/meter_provider_builder.h
+  /usr/include/opentelemetry/sdk/configuration/meter_provider_builder_context.h
   /usr/include/opentelemetry/sdk/configuration/meter_provider_configuration.h
   /usr/include/opentelemetry/sdk/configuration/metric_producer_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/metric_producer_configuration_visitor.h
   /usr/include/opentelemetry/sdk/configuration/metric_reader_configuration.h
   /usr/include/opentelemetry/sdk/configuration/metric_reader_configuration_visitor.h
+  /usr/include/opentelemetry/sdk/configuration/metrics_builder_utils.h
+  /usr/include/opentelemetry/sdk/configuration/metrics_builders.h
+  /usr/include/opentelemetry/sdk/configuration/open_census_metric_producer_builder.h
+  /usr/include/opentelemetry/sdk/configuration/open_census_metric_producer_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/optional_value.h
+  /usr/include/opentelemetry/sdk/configuration/otlp_file_log_record_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/otlp_file_log_record_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/otlp_file_push_metric_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/otlp_file_push_metric_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/otlp_file_span_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/otlp_file_span_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/otlp_grpc_log_record_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/otlp_grpc_log_record_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/otlp_grpc_push_metric_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/otlp_grpc_push_metric_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/otlp_grpc_span_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/otlp_grpc_span_exporter_configuration.h
   /usr/include/opentelemetry/sdk/configuration/otlp_http_encoding.h
+  /usr/include/opentelemetry/sdk/configuration/otlp_http_log_record_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/otlp_http_log_record_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/otlp_http_push_metric_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/otlp_http_push_metric_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/otlp_http_span_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/otlp_http_span_exporter_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/parent_based_sampler_builder.h
   /usr/include/opentelemetry/sdk/configuration/parent_based_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/periodic_metric_reader_builder.h
   /usr/include/opentelemetry/sdk/configuration/periodic_metric_reader_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/probability_sampler_builder.h
+  /usr/include/opentelemetry/sdk/configuration/probability_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/process_resource_detector_builder.h
+  /usr/include/opentelemetry/sdk/configuration/process_resource_detector_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/prometheus_pull_metric_exporter_builder.h
   /usr/include/opentelemetry/sdk/configuration/prometheus_pull_metric_exporter_configuration.h
   /usr/include/opentelemetry/sdk/configuration/propagator_configuration.h
   /usr/include/opentelemetry/sdk/configuration/pull_metric_exporter_configuration.h
   /usr/include/opentelemetry/sdk/configuration/pull_metric_exporter_configuration_visitor.h
+  /usr/include/opentelemetry/sdk/configuration/pull_metric_reader_builder.h
   /usr/include/opentelemetry/sdk/configuration/pull_metric_reader_configuration.h
   /usr/include/opentelemetry/sdk/configuration/push_metric_exporter_configuration.h
   /usr/include/opentelemetry/sdk/configuration/push_metric_exporter_configuration_visitor.h
+  /usr/include/opentelemetry/sdk/configuration/registry.h
+  /usr/include/opentelemetry/sdk/configuration/registry_factory.h
   /usr/include/opentelemetry/sdk/configuration/resource_configuration.h
-  /usr/include/opentelemetry/sdk/configuration/ryml_document.h
-  /usr/include/opentelemetry/sdk/configuration/ryml_document_node.h
+  /usr/include/opentelemetry/sdk/configuration/resource_detection_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/resource_detector_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/resource_detector_configuration_visitor.h
   /usr/include/opentelemetry/sdk/configuration/sampler_configuration.h
   /usr/include/opentelemetry/sdk/configuration/sampler_configuration_visitor.h
+  /usr/include/opentelemetry/sdk/configuration/sdk_builder.h
+  /usr/include/opentelemetry/sdk/configuration/service_resource_detector_builder.h
+  /usr/include/opentelemetry/sdk/configuration/service_resource_detector_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/severity_number.h
+  /usr/include/opentelemetry/sdk/configuration/simple_log_record_processor_builder.h
   /usr/include/opentelemetry/sdk/configuration/simple_log_record_processor_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/simple_span_processor_builder.h
   /usr/include/opentelemetry/sdk/configuration/simple_span_processor_configuration.h
   /usr/include/opentelemetry/sdk/configuration/span_exporter_configuration.h
   /usr/include/opentelemetry/sdk/configuration/span_exporter_configuration_visitor.h
@@ -363,13 +483,23 @@ Files included in the binary package:
   /usr/include/opentelemetry/sdk/configuration/string_attribute_value_configuration.h
   /usr/include/opentelemetry/sdk/configuration/sum_aggregation_configuration.h
   /usr/include/opentelemetry/sdk/configuration/temporality_preference.h
+  /usr/include/opentelemetry/sdk/configuration/text_map_propagator_builder.h
+  /usr/include/opentelemetry/sdk/configuration/trace_builder_utils.h
+  /usr/include/opentelemetry/sdk/configuration/trace_builders.h
+  /usr/include/opentelemetry/sdk/configuration/trace_id_ratio_based_sampler_builder.h
   /usr/include/opentelemetry/sdk/configuration/trace_id_ratio_based_sampler_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/tracer_config_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/tracer_configurator_builder.h
+  /usr/include/opentelemetry/sdk/configuration/tracer_configurator_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/tracer_matcher_and_config_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/tracer_provider_builder.h
+  /usr/include/opentelemetry/sdk/configuration/tracer_provider_builder_context.h
   /usr/include/opentelemetry/sdk/configuration/tracer_provider_configuration.h
+  /usr/include/opentelemetry/sdk/configuration/translation_strategy.h
+  /usr/include/opentelemetry/sdk/configuration/unsupported_exception.h
   /usr/include/opentelemetry/sdk/configuration/view_configuration.h
   /usr/include/opentelemetry/sdk/configuration/view_selector_configuration.h
   /usr/include/opentelemetry/sdk/configuration/view_stream_configuration.h
-  /usr/include/opentelemetry/sdk/configuration/yaml_configuration_parser.h
-  /usr/include/opentelemetry/sdk/configuration/zipkin_span_exporter_configuration.h
   /usr/include/opentelemetry/sdk/instrumentationlibrary/instrumentation_library.h
   /usr/include/opentelemetry/sdk/instrumentationscope/instrumentation_scope.h
   /usr/include/opentelemetry/sdk/instrumentationscope/scope_configurator.h
@@ -381,6 +511,7 @@ Files included in the binary package:
   /usr/include/opentelemetry/sdk/logs/event_logger_provider.h
   /usr/include/opentelemetry/sdk/logs/event_logger_provider_factory.h
   /usr/include/opentelemetry/sdk/logs/exporter.h
+  /usr/include/opentelemetry/sdk/logs/log_record_limits.h
   /usr/include/opentelemetry/sdk/logs/logger.h
   /usr/include/opentelemetry/sdk/logs/logger_config.h
   /usr/include/opentelemetry/sdk/logs/logger_context.h
@@ -407,11 +538,13 @@ Files included in the binary package:
   /usr/include/opentelemetry/sdk/metrics/aggregation/lastvalue_aggregation.h
   /usr/include/opentelemetry/sdk/metrics/aggregation/sum_aggregation.h
   /usr/include/opentelemetry/sdk/metrics/async_instruments.h
+  /usr/include/opentelemetry/sdk/metrics/cardinality_limits.h
   /usr/include/opentelemetry/sdk/metrics/data/circular_buffer.h
   /usr/include/opentelemetry/sdk/metrics/data/exemplar_data.h
   /usr/include/opentelemetry/sdk/metrics/data/metric_data.h
   /usr/include/opentelemetry/sdk/metrics/data/point_data.h
   /usr/include/opentelemetry/sdk/metrics/exemplar/aligned_histogram_bucket_exemplar_reservoir.h
+  /usr/include/opentelemetry/sdk/metrics/exemplar/filter_predicate.h
   /usr/include/opentelemetry/sdk/metrics/exemplar/filter_type.h
   /usr/include/opentelemetry/sdk/metrics/exemplar/fixed_size_exemplar_reservoir.h
   /usr/include/opentelemetry/sdk/metrics/exemplar/no_exemplar_reservoir.h
@@ -432,9 +565,11 @@ Files included in the binary package:
   /usr/include/opentelemetry/sdk/metrics/meter_config.h
   /usr/include/opentelemetry/sdk/metrics/meter_context.h
   /usr/include/opentelemetry/sdk/metrics/meter_context_factory.h
+  /usr/include/opentelemetry/sdk/metrics/meter_enabled_state.h
   /usr/include/opentelemetry/sdk/metrics/meter_provider.h
   /usr/include/opentelemetry/sdk/metrics/meter_provider_factory.h
   /usr/include/opentelemetry/sdk/metrics/metric_reader.h
+  /usr/include/opentelemetry/sdk/metrics/multi_observer_result.h
   /usr/include/opentelemetry/sdk/metrics/observer_result.h
   /usr/include/opentelemetry/sdk/metrics/provider.h
   /usr/include/opentelemetry/sdk/metrics/push_metric_exporter.h
@@ -479,13 +614,27 @@ Files included in the binary package:
   /usr/include/opentelemetry/sdk/trace/samplers/always_off_factory.h
   /usr/include/opentelemetry/sdk/trace/samplers/always_on.h
   /usr/include/opentelemetry/sdk/trace/samplers/always_on_factory.h
+  /usr/include/opentelemetry/sdk/trace/samplers/composable_always_off.h
+  /usr/include/opentelemetry/sdk/trace/samplers/composable_always_on.h
+  /usr/include/opentelemetry/sdk/trace/samplers/composable_parent_threshold.h
+  /usr/include/opentelemetry/sdk/trace/samplers/composable_probability.h
+  /usr/include/opentelemetry/sdk/trace/samplers/composable_rule_based.h
+  /usr/include/opentelemetry/sdk/trace/samplers/composable_sampler.h
+  /usr/include/opentelemetry/sdk/trace/samplers/composite_sampler.h
+  /usr/include/opentelemetry/sdk/trace/samplers/composite_sampler_factory.h
   /usr/include/opentelemetry/sdk/trace/samplers/parent.h
   /usr/include/opentelemetry/sdk/trace/samplers/parent_factory.h
+  /usr/include/opentelemetry/sdk/trace/samplers/predicate.h
+  /usr/include/opentelemetry/sdk/trace/samplers/probability.h
+  /usr/include/opentelemetry/sdk/trace/samplers/probability_factory.h
+  /usr/include/opentelemetry/sdk/trace/samplers/rule_based_predicate.h
   /usr/include/opentelemetry/sdk/trace/samplers/trace_id_ratio.h
   /usr/include/opentelemetry/sdk/trace/samplers/trace_id_ratio_factory.h
   /usr/include/opentelemetry/sdk/trace/simple_processor.h
   /usr/include/opentelemetry/sdk/trace/simple_processor_factory.h
   /usr/include/opentelemetry/sdk/trace/span_data.h
+  /usr/include/opentelemetry/sdk/trace/span_limits.h
+  /usr/include/opentelemetry/sdk/trace/span_status.h
   /usr/include/opentelemetry/sdk/trace/tracer.h
   /usr/include/opentelemetry/sdk/trace/tracer_config.h
   /usr/include/opentelemetry/sdk/trace/tracer_context.h
@@ -494,29 +643,28 @@ Files included in the binary package:
   /usr/include/opentelemetry/sdk/trace/tracer_provider_factory.h
   /usr/include/opentelemetry/sdk/version/version.h
   /usr/include/opentelemetry/sdk_config.h
-  /usr/include/opentelemetry/semconv/azure_metrics.h
-  /usr/include/opentelemetry/semconv/cicd_metrics.h
   /usr/include/opentelemetry/semconv/client_attributes.h
   /usr/include/opentelemetry/semconv/code_attributes.h
-  /usr/include/opentelemetry/semconv/container_metrics.h
-  /usr/include/opentelemetry/semconv/cpu_metrics.h
+  /usr/include/opentelemetry/semconv/container_attributes.h
   /usr/include/opentelemetry/semconv/db_attributes.h
   /usr/include/opentelemetry/semconv/db_metrics.h
-  /usr/include/opentelemetry/semconv/dns_metrics.h
+  /usr/include/opentelemetry/semconv/deployment_attributes.h
   /usr/include/opentelemetry/semconv/error_attributes.h
   /usr/include/opentelemetry/semconv/exception_attributes.h
-  /usr/include/opentelemetry/semconv/faas_metrics.h
-  /usr/include/opentelemetry/semconv/gen_ai_metrics.h
+  /usr/include/opentelemetry/semconv/exception_events.h
   /usr/include/opentelemetry/semconv/http_attributes.h
   /usr/include/opentelemetry/semconv/http_metrics.h
-  /usr/include/opentelemetry/semconv/hw_metrics.h
   /usr/include/opentelemetry/semconv/incubating/app_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/app_events.h
   /usr/include/opentelemetry/semconv/incubating/artifact_attributes.h
   /usr/include/opentelemetry/semconv/incubating/aws_attributes.h
   /usr/include/opentelemetry/semconv/incubating/az_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/az_events.h
   /usr/include/opentelemetry/semconv/incubating/azure_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/azure_events.h
   /usr/include/opentelemetry/semconv/incubating/azure_metrics.h
   /usr/include/opentelemetry/semconv/incubating/browser_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/browser_events.h
   /usr/include/opentelemetry/semconv/incubating/cassandra_attributes.h
   /usr/include/opentelemetry/semconv/incubating/cicd_attributes.h
   /usr/include/opentelemetry/semconv/incubating/cicd_metrics.h
@@ -532,10 +680,12 @@ Files included in the binary package:
   /usr/include/opentelemetry/semconv/incubating/cpython_attributes.h
   /usr/include/opentelemetry/semconv/incubating/cpython_metrics.h
   /usr/include/opentelemetry/semconv/incubating/db_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/db_events.h
   /usr/include/opentelemetry/semconv/incubating/db_metrics.h
   /usr/include/opentelemetry/semconv/incubating/deployment_attributes.h
   /usr/include/opentelemetry/semconv/incubating/destination_attributes.h
   /usr/include/opentelemetry/semconv/incubating/device_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/device_events.h
   /usr/include/opentelemetry/semconv/incubating/disk_attributes.h
   /usr/include/opentelemetry/semconv/incubating/dns_attributes.h
   /usr/include/opentelemetry/semconv/incubating/dns_metrics.h
@@ -544,48 +694,68 @@ Files included in the binary package:
   /usr/include/opentelemetry/semconv/incubating/error_attributes.h
   /usr/include/opentelemetry/semconv/incubating/event_attributes.h
   /usr/include/opentelemetry/semconv/incubating/exception_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/exception_events.h
   /usr/include/opentelemetry/semconv/incubating/faas_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/faas_events.h
   /usr/include/opentelemetry/semconv/incubating/faas_metrics.h
   /usr/include/opentelemetry/semconv/incubating/feature_flag_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/feature_flag_events.h
   /usr/include/opentelemetry/semconv/incubating/file_attributes.h
   /usr/include/opentelemetry/semconv/incubating/gcp_attributes.h
   /usr/include/opentelemetry/semconv/incubating/gen_ai_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/gen_ai_events.h
   /usr/include/opentelemetry/semconv/incubating/gen_ai_metrics.h
   /usr/include/opentelemetry/semconv/incubating/geo_attributes.h
   /usr/include/opentelemetry/semconv/incubating/graphql_attributes.h
   /usr/include/opentelemetry/semconv/incubating/heroku_attributes.h
   /usr/include/opentelemetry/semconv/incubating/host_attributes.h
   /usr/include/opentelemetry/semconv/incubating/http_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/http_events.h
   /usr/include/opentelemetry/semconv/incubating/http_metrics.h
   /usr/include/opentelemetry/semconv/incubating/hw_attributes.h
   /usr/include/opentelemetry/semconv/incubating/hw_metrics.h
+  /usr/include/opentelemetry/semconv/incubating/jsonrpc_attributes.h
   /usr/include/opentelemetry/semconv/incubating/k8s_attributes.h
   /usr/include/opentelemetry/semconv/incubating/k8s_metrics.h
   /usr/include/opentelemetry/semconv/incubating/linux_attributes.h
   /usr/include/opentelemetry/semconv/incubating/log_attributes.h
   /usr/include/opentelemetry/semconv/incubating/mainframe_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/mcp_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/mcp_metrics.h
   /usr/include/opentelemetry/semconv/incubating/message_attributes.h
   /usr/include/opentelemetry/semconv/incubating/messaging_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/messaging_events.h
   /usr/include/opentelemetry/semconv/incubating/messaging_metrics.h
   /usr/include/opentelemetry/semconv/incubating/net_attributes.h
   /usr/include/opentelemetry/semconv/incubating/network_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/nfs_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/nfs_metrics.h
   /usr/include/opentelemetry/semconv/incubating/oci_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/onc_rpc_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/openai_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/openshift_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/openshift_metrics.h
   /usr/include/opentelemetry/semconv/incubating/opentracing_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/oracle_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/oracle_cloud_attributes.h
   /usr/include/opentelemetry/semconv/incubating/os_attributes.h
   /usr/include/opentelemetry/semconv/incubating/otel_attributes.h
   /usr/include/opentelemetry/semconv/incubating/otel_metrics.h
   /usr/include/opentelemetry/semconv/incubating/other_attributes.h
   /usr/include/opentelemetry/semconv/incubating/peer_attributes.h
   /usr/include/opentelemetry/semconv/incubating/pool_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/pprof_attributes.h
   /usr/include/opentelemetry/semconv/incubating/process_attributes.h
   /usr/include/opentelemetry/semconv/incubating/process_metrics.h
   /usr/include/opentelemetry/semconv/incubating/profile_attributes.h
   /usr/include/opentelemetry/semconv/incubating/rpc_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/rpc_events.h
   /usr/include/opentelemetry/semconv/incubating/rpc_metrics.h
   /usr/include/opentelemetry/semconv/incubating/security_rule_attributes.h
   /usr/include/opentelemetry/semconv/incubating/server_attributes.h
   /usr/include/opentelemetry/semconv/incubating/service_attributes.h
   /usr/include/opentelemetry/semconv/incubating/session_attributes.h
+  /usr/include/opentelemetry/semconv/incubating/session_events.h
   /usr/include/opentelemetry/semconv/incubating/source_attributes.h
   /usr/include/opentelemetry/semconv/incubating/system_attributes.h
   /usr/include/opentelemetry/semconv/incubating/system_metrics.h
@@ -600,21 +770,15 @@ Files included in the binary package:
   /usr/include/opentelemetry/semconv/incubating/vcs_metrics.h
   /usr/include/opentelemetry/semconv/incubating/webengine_attributes.h
   /usr/include/opentelemetry/semconv/incubating/zos_attributes.h
-  /usr/include/opentelemetry/semconv/k8s_metrics.h
-  /usr/include/opentelemetry/semconv/messaging_metrics.h
+  /usr/include/opentelemetry/semconv/k8s_attributes.h
   /usr/include/opentelemetry/semconv/network_attributes.h
   /usr/include/opentelemetry/semconv/otel_attributes.h
-  /usr/include/opentelemetry/semconv/otel_metrics.h
-  /usr/include/opentelemetry/semconv/process_metrics.h
-  /usr/include/opentelemetry/semconv/rpc_metrics.h
   /usr/include/opentelemetry/semconv/schema_url.h
   /usr/include/opentelemetry/semconv/server_attributes.h
   /usr/include/opentelemetry/semconv/service_attributes.h
-  /usr/include/opentelemetry/semconv/system_metrics.h
   /usr/include/opentelemetry/semconv/telemetry_attributes.h
   /usr/include/opentelemetry/semconv/url_attributes.h
   /usr/include/opentelemetry/semconv/user_agent_attributes.h
-  /usr/include/opentelemetry/semconv/vcs_metrics.h
   /usr/include/opentelemetry/std/shared_ptr.h
   /usr/include/opentelemetry/std/span.h
   /usr/include/opentelemetry/std/string_view.h
@@ -650,51 +814,70 @@ Files included in the binary package:
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-api-target.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-config-version.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-config.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_elasticsearch-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_elasticsearch-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_elasticsearch-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_in_memory-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_in_memory-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_in_memory-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_ostream-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_ostream-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_ostream-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_otlp_common-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_otlp_common-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_otlp_common-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_otlp_file-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_otlp_file-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_otlp_file-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_otlp_http-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_otlp_http-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_otlp_http-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_prometheus-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_prometheus-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_prometheus-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_zipkin-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_zipkin-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-exporters_zipkin-target.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-ext_common-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-ext_http_curl-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-ext_http-target.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-ext_http_curl-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-ext_http_curl-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-sdk-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-sdk-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-sdk-target.cmake
-  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-shims_opentracing-target-release.cmake
+  /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-shims_opentracing-target-relwithdebinfo.cmake
   /usr/lib/cmake/opentelemetry-cpp/opentelemetry-cpp-shims_opentracing-target.cmake
   /usr/lib/cmake/opentelemetry-cpp/thirdparty-dependency-definitions.cmake
   /usr/lib/libopentelemetry_common.dll.a
+  /usr/lib/libopentelemetry_configuration_core.dll.a
+  /usr/lib/libopentelemetry_configuration_logs_builders.dll.a
+  /usr/lib/libopentelemetry_configuration_metrics_builders.dll.a
+  /usr/lib/libopentelemetry_configuration_registry_factory.dll.a
+  /usr/lib/libopentelemetry_configuration_trace_builders.dll.a
   /usr/lib/libopentelemetry_exporter_elasticsearch_logs.dll.a
   /usr/lib/libopentelemetry_exporter_in_memory.dll.a
   /usr/lib/libopentelemetry_exporter_in_memory_metric.dll.a
   /usr/lib/libopentelemetry_exporter_ostream_logs.dll.a
+  /usr/lib/libopentelemetry_exporter_ostream_logs_builder.dll.a
   /usr/lib/libopentelemetry_exporter_ostream_metrics.dll.a
+  /usr/lib/libopentelemetry_exporter_ostream_metrics_builder.dll.a
   /usr/lib/libopentelemetry_exporter_ostream_span.dll.a
+  /usr/lib/libopentelemetry_exporter_ostream_span_builder.dll.a
+  /usr/lib/libopentelemetry_exporter_otlp_builder_utils.dll.a
   /usr/lib/libopentelemetry_exporter_otlp_file.dll.a
+  /usr/lib/libopentelemetry_exporter_otlp_file_builder.dll.a
   /usr/lib/libopentelemetry_exporter_otlp_file_client.dll.a
   /usr/lib/libopentelemetry_exporter_otlp_file_log.dll.a
+  /usr/lib/libopentelemetry_exporter_otlp_file_log_builder.dll.a
   /usr/lib/libopentelemetry_exporter_otlp_file_metric.dll.a
+  /usr/lib/libopentelemetry_exporter_otlp_file_metric_builder.dll.a
   /usr/lib/libopentelemetry_exporter_otlp_http.dll.a
+  /usr/lib/libopentelemetry_exporter_otlp_http_builder.dll.a
   /usr/lib/libopentelemetry_exporter_otlp_http_client.dll.a
   /usr/lib/libopentelemetry_exporter_otlp_http_log.dll.a
+  /usr/lib/libopentelemetry_exporter_otlp_http_log_builder.dll.a
   /usr/lib/libopentelemetry_exporter_otlp_http_metric.dll.a
+  /usr/lib/libopentelemetry_exporter_otlp_http_metric_builder.dll.a
   /usr/lib/libopentelemetry_exporter_prometheus.dll.a
+  /usr/lib/libopentelemetry_exporter_prometheus_builder.dll.a
   /usr/lib/libopentelemetry_exporter_zipkin_trace.dll.a
   /usr/lib/libopentelemetry_http_client_curl.dll.a
+  /usr/lib/libopentelemetry_instrumentation_scope.dll.a
   /usr/lib/libopentelemetry_logs.dll.a
   /usr/lib/libopentelemetry_metrics.dll.a
   /usr/lib/libopentelemetry_opentracing_shim.dll.a
+  /usr/lib/libopentelemetry_otlp_common.dll.a
   /usr/lib/libopentelemetry_otlp_recordable.dll.a
   /usr/lib/libopentelemetry_proto.dll.a
   /usr/lib/libopentelemetry_resources.dll.a
@@ -702,8 +885,45 @@ Files included in the binary package:
   /usr/lib/libopentelemetry_version.dll.a
   /usr/lib/pkgconfig/opentelemetry_api.pc
   /usr/lib/pkgconfig/opentelemetry_common.pc
+  /usr/lib/pkgconfig/opentelemetry_configuration_core.pc
+  /usr/lib/pkgconfig/opentelemetry_configuration_logs_builders.pc
+  /usr/lib/pkgconfig/opentelemetry_configuration_metrics_builders.pc
+  /usr/lib/pkgconfig/opentelemetry_configuration_registry_factory.pc
+  /usr/lib/pkgconfig/opentelemetry_configuration_trace_builders.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_elasticsearch_logs.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_in_memory.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_in_memory_metric.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_ostream_logs.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_ostream_logs_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_ostream_metrics.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_ostream_metrics_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_ostream_span.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_ostream_span_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_builder_utils.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_file.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_file_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_file_client.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_file_log.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_file_log_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_file_metric.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_file_metric_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_http.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_http_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_http_client.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_http_log.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_http_log_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_http_metric.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_otlp_http_metric_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_prometheus.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_prometheus_builder.pc
+  /usr/lib/pkgconfig/opentelemetry_exporter_zipkin_trace.pc
+  /usr/lib/pkgconfig/opentelemetry_http_client_curl.pc
+  /usr/lib/pkgconfig/opentelemetry_instrumentation_scope.pc
   /usr/lib/pkgconfig/opentelemetry_logs.pc
   /usr/lib/pkgconfig/opentelemetry_metrics.pc
+  /usr/lib/pkgconfig/opentelemetry_otlp_common.pc
+  /usr/lib/pkgconfig/opentelemetry_otlp_recordable.pc
+  /usr/lib/pkgconfig/opentelemetry_proto.pc
   /usr/lib/pkgconfig/opentelemetry_resources.pc
   /usr/lib/pkgconfig/opentelemetry_trace.pc
   /usr/lib/pkgconfig/opentelemetry_version.pc
@@ -711,6 +931,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.30.0-1bl1 -----
+Version bump.
 
 ----- version 1.22.0-1bl1 -----
 Version bump.

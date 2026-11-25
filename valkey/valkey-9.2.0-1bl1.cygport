@@ -1,8 +1,7 @@
 HOMEPAGE="https://github.com/${PN}-io/${PN}"
 SRC_URI="https://github.com/${PN}-io/${PN}/archive/refs/tags/${PV}.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/9.1.2-1/debian/patches/0002-Add-CPPFLAGS-to-upstream-makefiles.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/9.1.2-1/debian/patches/0003-Use-get_current_dir_name-over-PATHMAX.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/9.1.4-1/debian/patches/0003-Use-get_current_dir_name-over-PATHMAX.patch
 "
 
 CATEGORY="Net"
@@ -23,10 +22,14 @@ BUILD_REQUIRES="
 	libvalkey-devel
 	libvalkey_tls-devel
 	libtcmalloc-devel
+	procps-ng
 	tcl
 "
 
-export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DUSE_SYSTEM_HDR_HISTOGRAM -DUSE_SYSTEM_LINENOISE"
+# Cygwin has no epoll, so ae.c uses select(), whose fd_set holds only 64 fds
+# by default; 9.2.0 refuses an event loop larger than FD_SETSIZE, and the
+# server asks for maxclients + 128 (up to 3296 with Cygwin's 3200 fd limit).
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE -DUSE_SYSTEM_HDR_HISTOGRAM -DUSE_SYSTEM_LINENOISE -DFD_SETSIZE=4096"
 
 inherit cmake
 
@@ -76,5 +79,6 @@ DOCS="
 
 DIFF_EXCLUDES="
 	jemalloc
+	release.h
 	tmp
 "

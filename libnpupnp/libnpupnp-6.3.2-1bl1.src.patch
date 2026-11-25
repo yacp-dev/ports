@@ -1,5 +1,5 @@
---- origsrc/libnpupnp-6.3.1/meson.build	2026-11-13 15:22:38.000000000 +0000
-+++ src/libnpupnp-6.3.1/meson.build	2026-11-17 18:55:18.767054700 +0000
+--- origsrc/libnpupnp-6.3.2/meson.build	2026-11-24 14:08:47.000000000 +0000
++++ src/libnpupnp-6.3.2/meson.build	2026-11-25 12:28:59.544047500 +0000
 @@ -136,11 +136,10 @@ auto.set10('UPNP_HAVE_WEBSERVER', get_op
  cfile = configure_file(output: 'autoconfig.h', configuration: auto)
  subdir('inc')

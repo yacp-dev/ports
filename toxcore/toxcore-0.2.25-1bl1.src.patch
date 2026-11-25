@@ -1,5 +1,5 @@
---- origsrc/c-toxcore-0.2.24/auto_tests/network_test.c	2026-11-01 19:07:04.000000000 +0000
-+++ src/c-toxcore-0.2.24/auto_tests/network_test.c	2026-11-09 06:46:04.481624900 +0000
+--- origsrc/c-toxcore-0.2.25/auto_tests/network_test.c	2026-11-15 16:27:49.000000000 +0000
++++ src/c-toxcore-0.2.25/auto_tests/network_test.c	2026-11-25 04:01:28.153799700 +0000
 @@ -1,4 +1,7 @@
  #include <string.h>
 +#if defined(__CYGWIN__)
@@ -18,8 +18,8 @@
      errno = 0;
  #endif
  
---- origsrc/c-toxcore-0.2.24/configure.ac	2026-11-01 19:07:04.000000000 +0000
-+++ src/c-toxcore-0.2.24/configure.ac	2026-11-09 06:46:04.483647800 +0000
+--- origsrc/c-toxcore-0.2.25/configure.ac	2026-11-15 16:27:49.000000000 +0000
++++ src/c-toxcore-0.2.25/configure.ac	2026-11-25 04:01:28.154574000 +0000
 @@ -226,6 +226,9 @@ case $host_os in
          WIN32="yes"
          EXTRA_LT_LDFLAGS="$EXTRA_LT_LDFLAGS -no-undefined"
@@ -46,8 +46,8 @@
  if (test "x$BUILD_DHT_BOOTSTRAP_DAEMON" = "xyes") && \
     (test "x$LIBCONFIG_FOUND" = "xno"); then
      AC_CHECK_HEADER(libconfig.h,
---- origsrc/c-toxcore-0.2.24/toxcore/Makefile.inc	2026-11-01 19:07:04.000000000 +0000
-+++ src/c-toxcore-0.2.24/toxcore/Makefile.inc	2026-11-09 06:46:04.483647800 +0000
+--- origsrc/c-toxcore-0.2.25/toxcore/Makefile.inc	2026-11-15 16:27:49.000000000 +0000
++++ src/c-toxcore-0.2.25/toxcore/Makefile.inc	2026-11-25 04:01:28.155578900 +0000
 @@ -7,9 +7,7 @@ libtoxcore_la_include_HEADERS = \
  
  libtoxcore_la_includedir = $(includedir)/tox
@@ -75,8 +75,8 @@
  if SET_SO_VERSION
  
  EXTRA_libtoxcore_la_DEPENDENCIES = ../so.version
---- origsrc/c-toxcore-0.2.24/toxcore/bin_pack.c	2026-11-01 19:07:04.000000000 +0000
-+++ src/c-toxcore-0.2.24/toxcore/bin_pack.c	2026-11-09 06:46:04.484843100 +0000
+--- origsrc/c-toxcore-0.2.25/toxcore/bin_pack.c	2026-11-15 16:27:49.000000000 +0000
++++ src/c-toxcore-0.2.25/toxcore/bin_pack.c	2026-11-25 04:01:28.155578900 +0000
 @@ -7,7 +7,7 @@
  #include <assert.h>
  #include <string.h>
@@ -86,8 +86,8 @@
  #include "attributes.h"
  #include "ccompat.h"
  #include "logger.h"
---- origsrc/c-toxcore-0.2.24/toxcore/bin_unpack.c	2026-11-01 19:07:04.000000000 +0000
-+++ src/c-toxcore-0.2.24/toxcore/bin_unpack.c	2026-11-09 06:46:04.485667600 +0000
+--- origsrc/c-toxcore-0.2.25/toxcore/bin_unpack.c	2026-11-15 16:27:49.000000000 +0000
++++ src/c-toxcore-0.2.25/toxcore/bin_unpack.c	2026-11-25 04:01:28.157608000 +0000
 @@ -7,7 +7,7 @@
  #include <assert.h>
  #include <string.h>

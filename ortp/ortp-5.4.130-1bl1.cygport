@@ -23,6 +23,13 @@ CYGCMAKE_ARGS="
 	-DENABLE_TESTS:BOOL=ON
 "
 
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "s/^project(Ortp VERSION .*)/project(Ortp VERSION ${PV})/" CMakeLists.txt
+}
+
 src_test()
 {
 	cd ${B}

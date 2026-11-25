@@ -3,44 +3,44 @@ ortp
 oRTP is a GPLv2 licensed C library implementing the RTP protocol (rfc3550).
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libbctoolbox1-5.4.116-1bl1
-  libgcc1-13.4.0-1
-  libortp-devel-5.4.116-1bl1
-  libortp15-5.4.116-1bl1
-  libstdc++6-13.4.0-1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libbctoolbox1-5.4.130-1bl1
+  libgcc1-14.4.0-1
+  libortp-devel-5.4.130-1bl1
+  libortp15-5.4.130-1bl1
+  libstdc++6-14.4.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libbctoolbox-devel-5.4.116-1bl1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libbctoolbox-devel-5.4.130-1bl1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/BelledonneCommunications/ortp
 
 Canonical download:
-  https://github.com/BelledonneCommunications/ortp/archive/refs/tags/5.4.116.tar.gz
+  https://github.com/BelledonneCommunications/ortp/archive/refs/tags/5.4.130.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack ortp-5.4.116-X-src.tar.xz
+  1. unpack ortp-5.4.130-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./ortp-5.4.116-X.cygport all
+        % cygport ./ortp-5.4.130-X.cygport all
 
 This will create:
-  /usr/src/ortp-5.4.116-X-src.tar.xz
-  /usr/src/ortp-5.4.116-X.tar.xz
-  /usr/src/libortp15-5.4.116-X.tar.xz
-  /usr/src/libortp-devel-5.4.116-X.tar.xz
+  /usr/src/ortp-5.4.130-X-src.tar.xz
+  /usr/src/ortp-5.4.130-X.tar.xz
+  /usr/src/libortp15-5.4.130-X.tar.xz
+  /usr/src/libortp-devel-5.4.130-X.tar.xz
 
 -------------------------------------------
 
@@ -84,7 +84,7 @@ Files included in the binary package:
   /usr/include/ortp/utils.h
   /usr/lib/cmake/ortp/OrtpConfig.cmake
   /usr/lib/cmake/ortp/OrtpConfigVersion.cmake
-  /usr/lib/cmake/ortp/OrtpTargets-release.cmake
+  /usr/lib/cmake/ortp/OrtpTargets-relwithdebinfo.cmake
   /usr/lib/cmake/ortp/OrtpTargets.cmake
   /usr/lib/libortp.dll.a
   /usr/lib/pkgconfig/ortp.pc
@@ -92,6 +92,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 5.4.130-1bl1 -----
+Version bump.
 
 ----- version 5.4.116-1bl1 -----
 Version bump.

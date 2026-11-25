@@ -1,0 +1,61 @@
+--- origsrc/txr-303/jmp.S	2026-11-21 02:50:00.000000000 +0000
++++ src/txr-303/jmp.S	2026-11-25 10:23:34.476042900 +0000
+@@ -169,6 +169,16 @@ DEFUN(jmp_restore)
+ #define JR15 56
+ #define JRSI 64
+ #define JRDI 72
++#define JXMM6  80
++#define JXMM7  96
++#define JXMM8  112
++#define JXMM9  128
++#define JXMM10 144
++#define JXMM11 160
++#define JXMM12 176
++#define JXMM13 192
++#define JXMM14 208
++#define JXMM15 224
+ 
+ #define RETA  0
+ #define ARG2  8
+@@ -186,10 +196,30 @@ DEFUN(jmp_save)
+   mov %r15, JR15(%rcx)
+   mov %rsi, JRSI(%rcx)
+   mov %rdi, JRDI(%rcx)
++  movups %xmm6, JXMM6(%rcx)
++  movups %xmm7, JXMM7(%rcx)
++  movups %xmm8, JXMM8(%rcx)
++  movups %xmm9, JXMM9(%rcx)
++  movups %xmm10, JXMM10(%rcx)
++  movups %xmm11, JXMM11(%rcx)
++  movups %xmm12, JXMM12(%rcx)
++  movups %xmm13, JXMM13(%rcx)
++  movups %xmm14, JXMM14(%rcx)
++  movups %xmm15, JXMM15(%rcx)
+   xor %rax, %rax
+   ret
+ 
+ DEFUN(jmp_restore)
++  movups JXMM6(%rcx), %xmm6
++  movups JXMM7(%rcx), %xmm7
++  movups JXMM8(%rcx), %xmm8
++  movups JXMM9(%rcx), %xmm9
++  movups JXMM10(%rcx), %xmm10
++  movups JXMM11(%rcx), %xmm11
++  movups JXMM12(%rcx), %xmm12
++  movups JXMM13(%rcx), %xmm13
++  movups JXMM14(%rcx), %xmm14
++  movups JXMM15(%rcx), %xmm15
+   mov JRDI(%rcx), %rdi
+   mov JRSI(%rcx), %rsi
+   mov JR15(%rcx), %r15
+--- origsrc/txr-303/unwind.h	2026-11-21 02:50:00.000000000 +0000
++++ src/txr-303/unwind.h	2026-11-25 10:23:34.476042900 +0000
+@@ -51,6 +51,8 @@ struct jmp {
+ #if __CYGWIN__
+    unsigned long rsi;
+    unsigned long rdi;
++   /* xmm6-xmm15 are callee-saved in the Windows x64 ABI */
++   unsigned long xmm[20];
+ #endif
+ };
+ 

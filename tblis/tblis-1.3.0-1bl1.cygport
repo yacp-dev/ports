@@ -1,0 +1,47 @@
+HOMEPAGE="https://github.com/MatthewsResearchGroup/${PN}"
+SRC_URI="https://github.com/MatthewsResearchGroup/${PN}/archive/v${PV}.tar.gz"
+
+CATEGORY="Libs"
+SUMMARY="Library and framework for performing tensor operations"
+DESCRIPTION="TBLIS is a library and framework for performing tensor operations,
+especially tensor contraction, using efficient native algorithms."
+
+LICENSE="BSD-3-Clause AND BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause"
+LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libhwloc-devel
+	libtci-devel
+"
+
+export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
+export CXXFLAGS="${CXXFLAGS} -fpermissive"
+
+CYGCONF_ARGS="
+	--enable-maintainer-mode
+"
+
+src_test() {
+	cd ${B}
+	verbose ./bin/test
+}
+
+PKG_NAMES="
+	tblis
+	libtblis0
+	libtblis-devel
+"
+tblis_CONTENTS="
+	usr/share
+"
+libtblis0_CONTENTS="
+	usr/bin/cygtblis-0.dll
+"
+libtblis_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+tblis_SUMMARY="${SUMMARY} (licensing & readmes)"
+libtblis0_SUMMARY="${SUMMARY} (runtime)"
+libtblis_devel_SUMMARY="${SUMMARY} (development)"

@@ -1,0 +1,17 @@
+--- origsrc/zix-v0.8.2/src/posix/sem_posix.c	2026-06-11 18:52:36.000000000 +0000
++++ src/zix-v0.8.2/src/posix/sem_posix.c	2026-11-25 14:20:03.384762300 +0000
+@@ -87,6 +87,14 @@ zix_sem_timed_wait(ZixSem*        sem,
+     while ((r = sem_timedwait(&sem->sem, &ts)) && errno == EINTR) {
+       // Interrupted, try again
+     }
++
++#  ifdef __CYGWIN__
++    // Cygwin returns the error number when the time has already passed
++    if (r > 0) {
++      errno = r;
++      r     = -1;
++    }
++#  endif
+   }
+ 
+   return zix_errno_status_if(r);

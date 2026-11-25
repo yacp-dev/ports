@@ -7,50 +7,51 @@ pivoting with the scalability of Cholesky (no pivoting), to run accurately and
 efficiently on large numbers of processors.
 
 Runtime requirements:
-  cygwin-3.3.5-1
-  libgomp1-11.3.0-1
-  libmetis0-5.1.0-1
-  libopenblas-0.3.20-1
-  libopenmpi40-4.1.2-1
-  libparmetis0-4.0.3-1bl1
-  libsuperlu_dist-devel-8.1.0-1bl1
-  libsuperlu_dist8-8.1.0-1bl1
-  pkg-config-1.8.0-1
+  cygwin-3.6.12-1
+  libgomp1-14.4.0-1
+  liblapack0-3.12.0-1
+  libmetis0-5.2.1-1
+  libopenmpi40-4.1.6-1
+  libptscotch7.0-7.0.18-1bl1
+  libstdc++6-14.4.0-1
+  libsuperlu_dist-devel-9.3.2-1bl1
+  libsuperlu_dist9-9.3.2-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.38-1
-  cmake-3.23.2-1
-  cygport-0.35.2-1
-  gcc-core-11.3.0-1
-  gcc-fortran-11.3.0-1
-  gcc-g++-11.3.0-1
-  liblapack-devel-3.10.1-1
-  libmetis-devel-5.1.0-1
-  libopenmpi-devel-4.1.2-1
-  libparmetis-devel-4.0.3-1bl1
-  make-4.3-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  gcc-g++-14.4.0-1
+  liblapack-devel-3.12.0-1
+  libmetis-devel-5.2.1-1
+  libopenmpi-devel-4.1.6-1
+  libscotch-devel-7.0.18-1bl1
+  make-4.4.1-2
 
 Canonical website:
   https://github.com/xiaoyeli/superlu_dist
 
 Canonical download:
-  https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v8.1.0.tar.gz
+  https://github.com/xiaoyeli/superlu_dist/archive/refs/tags/v9.3.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack superlu_dist-8.1.0-X-src.tar.xz
+  1. unpack superlu_dist-9.3.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./superlu_dist-8.1.0-X.cygport all
+        % cygport ./superlu_dist-9.3.2-X.cygport all
 
 This will create:
-  /usr/src/superlu_dist-8.1.0-X-src.tar.xz
-  /usr/src/superlu_dist-8.1.0-X.tar.xz
-  /usr/src/libsuperlu_dist8-8.1.0-X.tar.xz
-  /usr/src/libsuperlu_dist-devel-8.1.0-X.tar.xz
+  /usr/src/superlu_dist-9.3.2-X-src.tar.xz
+  /usr/src/superlu_dist-9.3.2-X.tar.xz
+  /usr/src/libsuperlu_dist9-9.3.2-X.tar.xz
+  /usr/src/libsuperlu_dist-devel-9.3.2-X.tar.xz
 
 -------------------------------------------
 
@@ -68,6 +69,9 @@ Files included in the binary package:
   /usr/bin/pddrive3d1.exe
   /usr/bin/pddrive3d2.exe
   /usr/bin/pddrive3d3.exe
+  /usr/bin/pddrive3d_block_diag.exe
+  /usr/bin/pddrive3d_vbatch.exe
+  /usr/bin/pddrive3d_vbatch2.exe
   /usr/bin/pddrive4.exe
   /usr/bin/pddrive4_ABglobal.exe
   /usr/bin/pddrive_ABglobal.exe
@@ -80,6 +84,10 @@ Files included in the binary package:
   /usr/bin/psdrive3d1.exe
   /usr/bin/psdrive3d2.exe
   /usr/bin/psdrive3d3.exe
+  /usr/bin/psdrive3d_block_diag.exe
+  /usr/bin/psdrive3d_d2.exe
+  /usr/bin/psdrive3d_vbatch.exe
+  /usr/bin/psdrive3d_vbatch2.exe
   /usr/bin/psdrive4.exe
   /usr/bin/pzdrive.exe
   /usr/bin/pzdrive1.exe
@@ -92,41 +100,68 @@ Files included in the binary package:
   /usr/bin/pzdrive3d1.exe
   /usr/bin/pzdrive3d2.exe
   /usr/bin/pzdrive3d3.exe
+  /usr/bin/pzdrive3d_block_diag.exe
+  /usr/bin/pzdrive3d_qcd.exe
+  /usr/bin/pzdrive3d_vbatch.exe
+  /usr/bin/pzdrive3d_vbatch2.exe
   /usr/bin/pzdrive4.exe
   /usr/bin/pzdrive4_ABglobal.exe
   /usr/bin/pzdrive_ABglobal.exe
   /usr/bin/pzdrive_spawn.exe
   /usr/share/doc/Cygwin/superlu_dist.README
-  /usr/share/doc/superlu_dist/LICENSE.txt
   /usr/share/doc/superlu_dist/README.md
   /usr/share/doc/superlu_dist/ug.pdf
 
-(libsuperlu_dist8)
-  /usr/bin/cygsuperlu_dist-8.dll
-  /usr/bin/cygsuperlu_dist_fortran-8.dll
+(libsuperlu_dist9)
+  /usr/bin/cygsuperlu_dist-9.dll
+  /usr/bin/cygsuperlu_dist_fortran-9.dll
 
 (libsuperlu_dist-devel)
-  /usr/include/superlu_dist/FORTRAN/superlu_mod.mod
-  /usr/include/superlu_dist/FORTRAN/superlupara_mod.mod
-  /usr/include/superlu_dist/colamd.h
+  /usr/include/superlu_dist/anc25d-GPU_impl.hpp
+  /usr/include/superlu_dist/anc25d.hpp
+  /usr/include/superlu_dist/anc25d_impl.hpp
+  /usr/include/superlu_dist/batch_block_copy.h
+  /usr/include/superlu_dist/batch_factorize.h
+  /usr/include/superlu_dist/batch_factorize_marshall.h
+  /usr/include/superlu_dist/commWrapper.hpp
+  /usr/include/superlu_dist/cublas_cusolver_wrappers.hpp
+  /usr/include/superlu_dist/dAncestorFactor_impl.hpp
   /usr/include/superlu_dist/dcomplex.h
   /usr/include/superlu_dist/dlustruct_gpu.h
+  /usr/include/superlu_dist/dsparseTreeFactorGPU_impl.hpp
   /usr/include/superlu_dist/gpu_api_utils.h
   /usr/include/superlu_dist/gpu_wrapper.h
+  /usr/include/superlu_dist/l_panels_impl.hpp
+  /usr/include/superlu_dist/luAuxStructTemplated.hpp
+  /usr/include/superlu_dist/lu_common.hpp
+  /usr/include/superlu_dist/lupanelsComm3dGPU_impl.hpp
+  /usr/include/superlu_dist/lupanels_GPU.cuh
+  /usr/include/superlu_dist/lupanels_GPU_impl.hpp
+  /usr/include/superlu_dist/lupanels_comm3d_impl.hpp
+  /usr/include/superlu_dist/lupanels_impl.hpp
   /usr/include/superlu_dist/machines.h
+  /usr/include/superlu_dist/oneside.h
   /usr/include/superlu_dist/psymbfact.h
+  /usr/include/superlu_dist/schurCompUpdate_impl.cuh
   /usr/include/superlu_dist/slustruct_gpu.h
+  /usr/include/superlu_dist/sparseTreeFactor_impl.hpp
   /usr/include/superlu_dist/superlu_FCnames.h
   /usr/include/superlu_dist/superlu_FortranCInterface.h
+  /usr/include/superlu_dist/superlu_blas.hpp
   /usr/include/superlu_dist/superlu_ddefs.h
   /usr/include/superlu_dist/superlu_defs.h
   /usr/include/superlu_dist/superlu_dist_config.fh
   /usr/include/superlu_dist/superlu_dist_config.h
   /usr/include/superlu_dist/superlu_enum_consts.h
+  /usr/include/superlu_dist/superlu_mod.mod
   /usr/include/superlu_dist/superlu_sdefs.h
+  /usr/include/superlu_dist/superlu_upacked.h
   /usr/include/superlu_dist/superlu_zdefs.h
+  /usr/include/superlu_dist/superlupara_mod.mod
   /usr/include/superlu_dist/supermatrix.h
+  /usr/include/superlu_dist/u_panels_impl.hpp
   /usr/include/superlu_dist/util_dist.h
+  /usr/include/superlu_dist/xlupanels_GPU.cuh
   /usr/include/superlu_dist/zlustruct_gpu.h
   /usr/lib/libsuperlu_dist.dll.a
   /usr/lib/libsuperlu_dist_fortran.dll.a
@@ -135,6 +170,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 9.3.2-1bl1 -----
+Version bump.
 
 ----- version 8.1.0-1bl1 -----
 Version bump.

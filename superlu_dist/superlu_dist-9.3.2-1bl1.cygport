@@ -13,7 +13,13 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="License.txt"
 
-BUILD_REQUIRES="liblapack-devel libmetis-devel libopenmpi-devel libparmetis-devel"
+BUILD_REQUIRES="
+	gcc-fortran
+	liblapack-devel
+	libmetis-devel
+	libopenmpi-devel
+	libscotch-devel
+"
 
 inherit cmake
 
@@ -21,9 +27,10 @@ CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DBUILD_STATIC_LIBS:BOOL=OFF
 	-DCMAKE_INSTALL_INCLUDEDIR:STRING=include/${PN}
-	-DTPL_PARMETIS_INCLUDE_DIRS:STRING=/usr/include
-	-DTPL_PARMETIS_LIBRARIES:STRING=parmetis;metis
+	-DTPL_PARMETIS_INCLUDE_DIRS:STRING=/usr/include/scotch
+	-DTPL_PARMETIS_LIBRARIES:STRING=ptscotchparmetisv3;metis
 	-DXSDK_ENABLE_Fortran:BOOL=ON
+	-Denable_python:BOOL=OFF
 "
 
 # ninja: build stopped: multiple rules generate FORTRAN/superlupara_mod.mod.
@@ -32,7 +39,7 @@ CYGCMAKE_GENERATOR="Unix Makefiles"
 src_test()
 {
 	cd ${B}
-	PATH=${B}/SRC:${PATH} cygtest
+	OMPI_MCA_rmaps_base_oversubscribe=1 PATH=${B}/SRC:${PATH} cygtest
 }
 
 src_install()
@@ -56,20 +63,21 @@ DIFF_EXCLUDES="
 
 PKG_NAMES="
 	superlu_dist
-	libsuperlu_dist8
+	libsuperlu_dist9
 	libsuperlu_dist-devel
 "
 superlu_dist_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-libsuperlu_dist8_CONTENTS="
-	usr/bin/*.dll
+libsuperlu_dist9_CONTENTS="
+	usr/bin/cygsuperlu_dist-9.dll
+	usr/bin/cygsuperlu_dist_fortran-9.dll
 "
 libsuperlu_dist_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 superlu_dist_SUMMARY="${SUMMARY} (utilities)"
-libsuperlu_dist8_SUMMARY="${SUMMARY} (runtime)"
+libsuperlu_dist9_SUMMARY="${SUMMARY} (runtime)"
 libsuperlu_dist_devel_SUMMARY="${SUMMARY} (development)"

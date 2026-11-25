@@ -7,35 +7,35 @@ temporarily holding files (for example, /tmp). Tmpwatch ignores symlinks, won't
 switch filesystems and only removes empty directories and regular files.
 
 Runtime requirements:
-  cygwin-3.5.4-1
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
-  https://pagure.io/tmpwatch
+  https://github.com/pete4abw/tmpwatch
 
 Canonical download:
-  https://releases.pagure.org/tmpwatch/tmpwatch-2.11.tar.bz2
+  https://github.com/pete4abw/tmpwatch/archive/refs/tags/tmpwatch-2.13.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack tmpwatch-2.11-X-src.tar.xz
+  1. unpack tmpwatch-2.13-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./tmpwatch-2.11-X.cygport all
+        % cygport ./tmpwatch-2.13-X.cygport all
 
 This will create:
-  /usr/src/tmpwatch-2.11-X-src.tar.xz
-  /usr/src/tmpwatch-2.11-X.tar.xz
+  /usr/src/tmpwatch-2.13-X-src.tar.xz
+  /usr/src/tmpwatch-2.13-X.tar.xz
 
 -------------------------------------------
 
@@ -48,12 +48,15 @@ Files included in the binary package:
   /usr/share/doc/tmpwatch/COPYING
   /usr/share/doc/tmpwatch/ChangeLog
   /usr/share/doc/tmpwatch/NEWS
-  /usr/share/doc/tmpwatch/README
+  /usr/share/doc/tmpwatch/README.md
   /usr/share/man/man8/tmpwatch.8.gz
 
 ------------------
 
 Port Notes:
+
+----- version 2.13-1bl1 -----
+Version bump.
 
 ----- version 2.11-1bl2 -----
 Rebuild with gcc-12.4.0

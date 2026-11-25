@@ -1,13 +1,13 @@
---- origsrc/dpx/Makefile.am	2024-10-05 00:13:26.000000000 +0900
-+++ src/dpx/Makefile.am	2024-10-05 00:13:29.601991900 +0900
+--- origsrc/dpx/Makefile.am	2026-11-25 23:47:19.000000000 +0000
++++ src/dpx/Makefile.am	2026-11-25 23:47:21.049829000 +0000
 @@ -3,3 +3,5 @@ SUBDIRS = libdpx tools
  
  ACLOCAL_AMFLAGS = -I m4
  
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = dpx.pc
---- origsrc/dpx/configure.ac	2024-10-05 00:13:26.000000000 +0900
-+++ src/dpx/configure.ac	2024-10-05 00:13:29.601991900 +0900
+--- origsrc/dpx/configure.ac	2026-11-25 23:47:19.000000000 +0000
++++ src/dpx/configure.ac	2026-11-25 23:47:21.049829000 +0000
 @@ -16,7 +16,7 @@ AM_DISABLE_SHARED
  AM_PROG_LIBTOOL
  
@@ -32,8 +32,8 @@
  AC_MSG_RESULT([OpenDPX: build libtiff apps... "$have_libtiff"])
 -
 -
---- origsrc/dpx/dpx.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/dpx/dpx.pc.in	2024-10-05 00:13:29.601991900 +0900
+--- origsrc/dpx/dpx.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/dpx/dpx.pc.in	2026-11-25 23:47:21.051847100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -45,19 +45,9 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -ldpx
 +Cflags: -I${includedir}
---- origsrc/dpx/libdpx/Makefile.am	2024-10-05 00:13:26.000000000 +0900
-+++ src/dpx/libdpx/Makefile.am	2024-10-05 00:13:29.601991900 +0900
-@@ -1,7 +1,7 @@
- 
--lib_LIBRARIES = libdpx.a
-+lib_LTLIBRARIES = libdpx.la
- 
--libdpx_a_SOURCES = Codec.cpp \
-+libdpx_la_SOURCES = Codec.cpp \
-                    DPX.cpp \
-                    DPXHeader.cpp \
-                    ElementReadStream.cpp \
-@@ -12,6 +12,8 @@ libdpx_a_SOURCES = Codec.cpp \
+--- origsrc/dpx/libdpx/Makefile.am	2026-11-25 23:47:20.703985300 +0000
++++ src/dpx/libdpx/Makefile.am	2026-11-25 23:47:21.051847100 +0000
+@@ -12,6 +12,8 @@ libdpx_la_SOURCES = Codec.cpp \
  				   TestFunc.cpp \
                     Writer.cpp
  
@@ -66,24 +56,22 @@
  noinst_HEADERS = BaseTypeConverter.h \
  				 Codec.h \
  				 ElementReadStream.h \
---- origsrc/dpx/tools/dpx2tiff/Makefile.am	2024-10-05 00:13:26.000000000 +0900
-+++ src/dpx/tools/dpx2tiff/Makefile.am	2024-10-05 00:13:29.617604200 +0900
+--- origsrc/dpx/tools/dpx2tiff/Makefile.am	2026-11-25 23:47:20.703985300 +0000
++++ src/dpx/tools/dpx2tiff/Makefile.am	2026-11-25 23:47:21.051847100 +0000
 @@ -1,7 +1,7 @@
  
--LIBDPX = $(top_builddir)/libdpx/libdpx.a
-+LIBDPX = $(top_builddir)/libdpx/libdpx.la
+ LIBDPX = $(top_builddir)/libdpx/libdpx.la
  
 -INCLUDES = -I$(top_builddir)/libdpx
 +INCLUDES = -I$(top_srcdir)/libdpx
  
  bin_PROGRAMS = dpx2tiff
  
---- origsrc/dpx/tools/dpxheader/Makefile.am	2024-10-05 00:13:26.000000000 +0900
-+++ src/dpx/tools/dpxheader/Makefile.am	2024-10-05 00:13:29.617604200 +0900
+--- origsrc/dpx/tools/dpxheader/Makefile.am	2026-11-25 23:47:20.703985300 +0000
++++ src/dpx/tools/dpxheader/Makefile.am	2026-11-25 23:47:21.051847100 +0000
 @@ -1,7 +1,7 @@
  
--LIBDPX = $(top_builddir)/libdpx/libdpx.a
-+LIBDPX = $(top_builddir)/libdpx/libdpx.la
+ LIBDPX = $(top_builddir)/libdpx/libdpx.la
  
 -INCLUDES = -I$(top_builddir)/libdpx
 +INCLUDES = -I$(top_srcdir)/libdpx

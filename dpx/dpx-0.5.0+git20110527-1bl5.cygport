@@ -1,0 +1,54 @@
+HOMEPAGE="https://github.com/patrickpalmer/${PN}"
+GIT_URI="https://github.com/PatrickPalmer/${PN}.git"
+GIT_REV="8e9e70b3a49d5958a463219b0c7d67ec6d847edc"
+PATCH_URI="
+	https://raw.githubusercontent.com/pld-linux/dpx/d2e0fd5447c0264a500a3c9d191a222e660bb162/dpx-shared.patch
+"
+
+CATEGORY="Libs"
+SUMMARY="SMPTE DPX v2 Image Format reader/writer"
+DESCRIPTION="DPX image reader / writer library written in portable C++."
+
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libtiff-devel
+"
+
+inherit git
+
+# Upstream has no tests: smoke test that dpxheader starts with cygdpx-0.dll
+src_test()
+{
+	cd ${B}
+	export PATH=${B}/libdpx/.libs:${PATH}
+	# without arguments it prints its usage and exits with status 1
+	local status=0
+	verbose ./tools/dpxheader/dpxheader.exe > ${T}/dpxheader.out || status=$?
+	cat ${T}/dpxheader.out
+	[ ${status} -eq 1 ] || error "expected exit status 1, got ${status}"
+	grep -q '^usage: dpxheader ' ${T}/dpxheader.out \
+		|| error "dpxheader printed no usage"
+}
+
+PKG_NAMES="
+	${PN}
+	lib${PN}0
+	lib${PN}-devel
+"
+dpx_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libdpx0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libdpx_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+dpx_SUMMARY="${SUMMARY} (utilities)"
+libdpx0_SUMMARY="${SUMMARY} (runtime)"
+libdpx_devel_SUMMARY="${SUMMARY} (development)"

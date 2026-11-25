@@ -11,36 +11,37 @@ knife through butter. Many tasks can be accomplished with TXR one liners
 directly from your system prompt. TXR is relatively new: the project started
 in 2009."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
-	bison
-	flex
 	libcrypt-devel
 	libffi-devel
 	zlib-devel
 "
 
+# txr's Makefile uses V as a command prefix (@ or empty, from VERBOSE);
+# override the V=1 a verbose make wrapper passes, or commands run as "1touch".
 src_compile()
 {
 	cd ${B}
 	lndirs
 	./configure --prefix=/usr
-	cygmake
+	cygmake V=
 }
 
 src_test()
 {
 	cd ${B}
-	cygmake tests
+	# -k: one failing test shouldn't keep the rest of the suite from running
+	cygmake -k tests V=
 }
 
 src_install()
 {
 	cd ${B}
-	cyginstall
+	cyginstall V=
 
 	cd ${D}
 	verbose rm -f usr/share/txr/LICENSE

@@ -1,5 +1,5 @@
---- origsrc/yamcha-0.33/Makefile.am	2005-09-05 23:52:22.000000000 +0900
-+++ src/yamcha-0.33/Makefile.am	2022-09-21 17:11:27.936398200 +0900
+--- origsrc/yamcha-0.33/Makefile.am	2005-09-05 14:52:22.000000000 +0000
++++ src/yamcha-0.33/Makefile.am	2026-11-26 12:06:45.026486900 +0000
 @@ -81,3 +81,6 @@ export-package:
  #	scp ~/.rpm/SRPMS/yamcha-@VERSION@*.src.rpm      chasen.org:public_html/software/yamcha/redhat-9.x/SRPMS/
  #	scp ~/.rpm/RPMS/i386/yamcha-*@VERSION@*.i386.rpm chasen.org:public_html/software/yamcha/redhat-9.x/RPMS/i386/
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = yamcha.pc
---- origsrc/yamcha-0.33/configure.in	2004-12-06 05:24:42.000000000 +0900
-+++ src/yamcha-0.33/configure.in	2022-09-21 17:11:27.946474800 +0900
+--- origsrc/yamcha-0.33/configure.in	2004-12-05 20:24:42.000000000 +0000
++++ src/yamcha-0.33/configure.in	2026-11-26 12:06:45.028245800 +0000
 @@ -67,7 +67,7 @@ fi
  dnl
  dnl check C++ features
@@ -26,8 +26,8 @@
              Makefile 
  	    src/Makefile
  	    src/Makefile.bcc32
---- origsrc/yamcha-0.33/libexec/Makefile.am	2004-03-13 02:02:02.000000000 +0900
-+++ src/yamcha-0.33/libexec/Makefile.am	2022-09-21 18:38:29.439610500 +0900
+--- origsrc/yamcha-0.33/libexec/Makefile.am	2004-03-12 17:02:02.000000000 +0000
++++ src/yamcha-0.33/libexec/Makefile.am	2026-11-26 12:06:45.028245800 +0000
 @@ -4,7 +4,7 @@ EXTRA_DIST = PKE.pm PKI.pm
  mkdarts_SOURCES = mkdarts.cpp
  mktrie_SOURCES  = mktrie.cpp
@@ -37,8 +37,8 @@
  pkglibexec_PROGRAMS = mkdarts mktrie pkemine
  
  
---- origsrc/yamcha-0.33/libexec/mkdarts.cpp	2004-03-13 02:12:13.000000000 +0900
-+++ src/yamcha-0.33/libexec/mkdarts.cpp	2022-09-21 17:11:27.962409500 +0900
+--- origsrc/yamcha-0.33/libexec/mkdarts.cpp	2004-03-12 17:12:13.000000000 +0000
++++ src/yamcha-0.33/libexec/mkdarts.cpp	2026-11-26 12:06:45.028245800 +0000
 @@ -22,6 +22,7 @@
  */  
  
@@ -47,8 +47,8 @@
  #include <cstring>
  #include <iostream>
  #include <fstream>
---- origsrc/yamcha-0.33/src/param.cpp	2005-09-05 23:50:59.000000000 +0900
-+++ src/yamcha-0.33/src/param.cpp	2022-09-21 17:11:27.974521900 +0900
+--- origsrc/yamcha-0.33/src/param.cpp	2005-09-05 14:50:59.000000000 +0000
++++ src/yamcha-0.33/src/param.cpp	2026-11-26 12:06:45.030267600 +0000
 @@ -24,6 +24,7 @@
  #include <fstream>
  #include <strstream>
@@ -57,8 +57,8 @@
  #include "param.h"
  #include "common.h"
  
---- origsrc/yamcha-0.33/yamcha.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/yamcha-0.33/yamcha.pc.in	2022-09-21 17:15:28.634239700 +0900
+--- origsrc/yamcha-0.33/yamcha.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/yamcha-0.33/yamcha.pc.in	2026-11-26 12:06:45.030267600 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

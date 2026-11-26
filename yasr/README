@@ -4,18 +4,18 @@ Yasr is a general-purpose console screen reader for GNU/Linux and other
 Unix-like operating systems.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libintl8-0.22.5-1
+  cygwin-3.6.12-1
+  libintl8-0.26-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gettext-devel-0.22.5-1
-  libintl-devel-0.22.5-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  libintl-devel-0.26-1
   make-4.4.1-2
 
 Canonical website:
@@ -60,6 +60,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.6.9-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.6.9-1bl3 -----
 Rebuild with gcc-12.4.0

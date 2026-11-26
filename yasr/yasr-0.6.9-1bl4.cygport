@@ -1,0 +1,27 @@
+HOMEPAGE="https://sourceforge.net/projects/${PN}/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+PATCH_URI="
+	https://raw.githubusercontent.com/gentoo/gentoo/d1818df330a374f668db868f1be2086839530d5b/app-accessibility/${PN}/files/${P}-automake113.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/d1818df330a374f668db868f1be2086839530d5b/app-accessibility/${PN}/files/${P}-gettext019.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/d1818df330a374f668db868f1be2086839530d5b/app-accessibility/${PN}/files/${P}-gcc43.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/d1818df330a374f668db868f1be2086839530d5b/app-accessibility/${PN}/files/${P}-remove-m4.patch
+	https://raw.githubusercontent.com/pld-linux/yasr/620639251290960f117f4c001564333d31af6374/${PN}-conf_settings.patch
+	https://raw.githubusercontent.com/pld-linux/yasr/620639251290960f117f4c001564333d31af6374/${PN}-am.patch
+	https://sources.debian.org/data/main/y/yasr/0.6.9-12/debian/patches/40_dectalk_extended_chars
+	https://sources.debian.org/data/main/y/yasr/0.6.9-12/debian/patches/50_whatis
+	https://raw.githubusercontent.com/gentoo/gentoo/ed566252b1471bb64eb2eb66b4d805648d764d5b/app-accessibility/${PN}/files/${P}-gcc16.patch
+"
+
+CATEGORY="Utils"
+SUMMARY="General-purpose console screen reader"
+DESCRIPTION="Yasr is a general-purpose console screen reader for GNU/Linux and other
+Unix-like operating systems."
+
+LICENSE="LGPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	gettext-devel
+	libintl-devel
+"

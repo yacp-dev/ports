@@ -1,5 +1,5 @@
---- origsrc/yubico-c-client-ykclient-2.15/Makefile.am	2015-11-12 17:32:42.000000000 +0900
-+++ src/yubico-c-client-ykclient-2.15/Makefile.am	2024-05-08 17:57:51.485827200 +0900
+--- origsrc/yubico-c-client-ykclient-2.15/Makefile.am	2015-11-12 08:32:42.000000000 +0000
++++ src/yubico-c-client-ykclient-2.15/Makefile.am	2026-11-26 10:35:46.540825000 +0000
 @@ -28,7 +28,7 @@
  
  SUBDIRS = . tests
@@ -9,6 +9,15 @@
  ACLOCAL_AMFLAGS = -I m4
  AM_CFLAGS = $(WARN_CFLAGS)
  
+@@ -69,7 +69,7 @@ ykclient_LDADD = ./libykclient.la
+ dist_man_MANS = ykclient.1
+ DISTCLEANFILES = $(dist_man_MANS)
+ 
+-ykclient.1: $(builddir)/ykclient $(srcdir)/tool.c $(srcdir)/configure.ac
++ykclient.1: $(builddir)/ykclient$(EXEEXT) $(srcdir)/tool.c $(srcdir)/configure.ac
+ 	$(HELP2MAN) \
+ 		--output=$@ $(builddir)/ykclient$(EXEEXT) \
+ 		--name="YubiCloud One-Time-Password Validation Client" \
 @@ -136,3 +136,6 @@ release:
  	$(YUBICO_WWW_REPO)/publish $(PROJECT) $(VERSION) $(PACKAGE)-$(VERSION).tar.gz*
  	$(HELP2ADOC) -e ./ykclient -n "YubiCloud One-Time-Password Validation Client" > ykclient.1.txt
@@ -16,8 +25,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/yubico-c-client-ykclient-2.15/configure.ac	2015-11-12 17:32:42.000000000 +0900
-+++ src/yubico-c-client-ykclient-2.15/configure.ac	2024-05-08 17:57:51.485827200 +0900
+--- origsrc/yubico-c-client-ykclient-2.15/configure.ac	2015-11-12 08:32:42.000000000 +0000
++++ src/yubico-c-client-ykclient-2.15/configure.ac	2026-11-26 10:35:46.540068000 +0000
 @@ -95,7 +95,7 @@ AC_SUBST(YKCLIENT_VERSION_MINOR, `echo $
  AC_SUBST(YKCLIENT_VERSION_PATCH, 0)
  AC_SUBST(YKCLIENT_VERSION_NUMBER, `printf "0x%02x%02x%02x" $YKCLIENT_VERSION_MAJOR $YKCLIENT_VERSION_MINOR $YKCLIENT_VERSION_PATCH`)
@@ -27,8 +36,8 @@
    Makefile
    ykclient_version.h
    tests/Makefile
---- origsrc/yubico-c-client-ykclient-2.15/tests/Makefile.am	2015-11-12 17:32:42.000000000 +0900
-+++ src/yubico-c-client-ykclient-2.15/tests/Makefile.am	2024-05-08 17:57:51.485827200 +0900
+--- origsrc/yubico-c-client-ykclient-2.15/tests/Makefile.am	2015-11-12 08:32:42.000000000 +0000
++++ src/yubico-c-client-ykclient-2.15/tests/Makefile.am	2026-11-26 10:35:46.540825000 +0000
 @@ -29,7 +29,7 @@
  # Self tests.
  
@@ -38,8 +47,8 @@
  LDADD = ../libykclient.la
  selftest_SOURCES = selftest.c
  
---- origsrc/yubico-c-client-ykclient-2.15/ykclient.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/yubico-c-client-ykclient-2.15/ykclient.pc.in	2024-05-08 17:57:51.485827200 +0900
+--- origsrc/yubico-c-client-ykclient-2.15/ykclient.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/yubico-c-client-ykclient-2.15/ykclient.pc.in	2026-11-26 10:35:46.542090100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

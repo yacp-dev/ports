@@ -1,0 +1,25 @@
+HOMEPAGE="https://bioinfo.lifl.fr/${PN}/"
+SRC_URI="https://bioinfo.lifl.fr/${PN}/files/${P}/${P}.tar.gz"
+
+CATEGORY="Science"
+SUMMARY="Genomic similarity search with multiple transition constrained spaced seeds"
+DESCRIPTION="YASS is a genomic similarity search tool, for nucleic (DNA/RNA)
+sequences in fasta or plain text format (it produces local pairwise alignments).
+This tool is currently developed and maintained by L. Noe and G. Kucherov of the
+LIFL Bioinfo / INRIA Lille-Nord Europe Sequoia group. Like most of the heuristic
+DNA local alignment software (BLAST, FASTA, PATTERNHUNTER, BLASTZ ...), YASS
+uses seeds to detect potential similarity regions, and then tries to extend them
+to actual alignments. This genomic search tool uses multiple transition
+constrained spaced seeds that enable to search more fuzzy repeats, as non-coding
+DNA/RNA. Another simple, but interesting feature is that you can specify the
+seed pattern used in the search step (as provided by hedera or iedera)."
+
+LICENSE="CECILL-2.0 OR GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: CECILL-2.0 OR GPL-3.0-or-later"
+LICENSE_URI="COPYING"
+
+src_test()
+{
+	cd ${B}/src
+	verbose ./${PN}.exe -v
+}

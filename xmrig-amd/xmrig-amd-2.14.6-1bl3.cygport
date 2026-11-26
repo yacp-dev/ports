@@ -6,15 +6,23 @@ SUMMARY="Monero AMD (OpenCL) miner"
 DESCRIPTION="XMRig is high performance Monero (XMR) OpenCL miner, with the official full
 Windows support."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND Apache-2.0 AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND Apache-2.0 AND MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libmicrohttpd-devel libssl-devel libuv-devel"
+BUILD_REQUIRES="
+	libmicrohttpd-devel
+	libssl-devel
+	libuv-devel
+"
 
 export CXXFLAGS="${CXXFLAGS} -fpermissive"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
 
 src_test()
 {

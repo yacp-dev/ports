@@ -1,5 +1,16 @@
---- origsrc/xmrig-amd-2.14.6/src/Mem_unix.cpp	2019-08-31 11:48:26.000000000 +0900
-+++ src/xmrig-amd-2.14.6/src/Mem_unix.cpp	2024-09-23 23:19:25.780821000 +0900
+--- origsrc/xmrig-amd-2.14.6/src/3rdparty/rapidjson/document.h	2019-08-31 02:48:26.000000000 +0000
++++ src/xmrig-amd-2.14.6/src/3rdparty/rapidjson/document.h	2026-11-26 15:32:44.607254900 +0000
+@@ -316,8 +316,6 @@ struct GenericStringRef {
+ 
+     GenericStringRef(const GenericStringRef& rhs) : s(rhs.s), length(rhs.length) {}
+ 
+-    GenericStringRef& operator=(const GenericStringRef& rhs) { s = rhs.s; length = rhs.length; }
+-
+     //! implicit conversion to plain CharType pointer
+     operator const Ch *() const { return s; }
+ 
+--- origsrc/xmrig-amd-2.14.6/src/Mem_unix.cpp	2019-08-31 02:48:26.000000000 +0000
++++ src/xmrig-amd-2.14.6/src/Mem_unix.cpp	2026-11-26 15:32:44.609265600 +0000
 @@ -55,6 +55,8 @@ void Mem::allocate(MemInfo &info, bool e
      info.memory = static_cast<uint8_t*>(mmap(0, info.size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, VM_FLAGS_SUPERPAGE_SIZE_2MB, 0));
  #   elif defined(__FreeBSD__)

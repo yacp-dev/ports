@@ -1,5 +1,5 @@
---- origsrc/QR-Code-generator-1.8.0/CMakeLists.txt	2026-05-24 06:16:52.098081300 +0900
-+++ src/QR-Code-generator-1.8.0/CMakeLists.txt	2026-05-24 06:26:49.326714800 +0900
+--- origsrc/QR-Code-generator-1.8.0/CMakeLists.txt	2026-11-26 10:36:33.103088200 +0000
++++ src/QR-Code-generator-1.8.0/CMakeLists.txt	2026-11-26 10:36:33.398552400 +0000
 @@ -79,6 +79,7 @@ install(TARGETS ${QRCODEGEN_NAME}
      EXPORT ${QRCODEGEN_NAME}-targets
      RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}

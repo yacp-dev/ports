@@ -5,51 +5,52 @@ biological macromolecules using the Voronoi diagram of atomic balls.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.6-1
-  libGL1-19.1.6-1
+  cygwin-3.6.12-1
+  libGL1-23.3.6-1
   libGLEW2.1-2.1.0-1
-  libduktape207-2.7.0-1bl1
-  libgcc1-13.4.0-1
-  libglfw3-3.4-1bl2
-  libgomp1-13.4.0-1
-  libintl8-0.22.5-1
-  liblinenoise0-1.0+git20240223-1bl1
-  liblodepng0-0+git20250402-1bl1
-  libstdc++6-13.4.0-1
+  libduktape207-2.7.0-1bl2
+  libgcc1-14.4.0-1
+  libglfw3-3.5.1-1bl1
+  libgomp1-14.4.0-1
+  libintl8-0.26-1
+  liblinenoise0-2.0-1bl2
+  liblodepng0-0+git20261102-1bl1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libGL-devel-19.1.6-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  glm-devel-1.0.3-1
+  libGL-devel-23.3.6-1
   libGLEW-devel-2.1.0-1
-  libduktape-devel-2.7.0-1bl1
-  libglfw-devel-3.4-1bl2
-  liblinenoise-devel-1.0+git20240223-1bl1
-  liblodepng-devel-0+git20250402-1bl1
+  libXrandr-devel-1.5.5-1
+  libduktape-devel-2.7.0-1bl2
+  libglfw-devel-3.5.1-1bl1
+  liblinenoise-devel-2.0-1bl2
+  liblodepng-devel-0+git20261102-1bl1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/kliment-olechnovic/voronota
 
 Canonical download:
-  https://github.com/kliment-olechnovic/voronota/archive/refs/tags/v1.29.4415.tar.gz
+  https://github.com/kliment-olechnovic/voronota/archive/refs/tags/v1.29.4816.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack voronota-1.29.4415-X-src.tar.xz
+  1. unpack voronota-1.29.4816-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./voronota-1.29.4415-X.cygport all
+        % cygport ./voronota-1.29.4816-X.cygport all
 
 This will create:
-  /usr/src/voronota-1.29.4415-X-src.tar.xz
-  /usr/src/voronota-1.29.4415-X.tar.xz
+  /usr/src/voronota-1.29.4816-X-src.tar.xz
+  /usr/src/voronota-1.29.4816-X.tar.xz
 
 -------------------------------------------
 
@@ -86,12 +87,19 @@ Files included in the binary package:
   /usr/bin/voronota-voromqa
   /usr/bin/voronota.exe
   /usr/share/doc/Cygwin/voronota.README
+  /usr/share/doc/voronota/LICENSE.Apache-2.0
+  /usr/share/doc/voronota/LICENSE.BSD-2-Clause
+  /usr/share/doc/voronota/LICENSE.Zlib
+  /usr/share/doc/voronota/LICENSE.Zlib.tinf
   /usr/share/doc/voronota/LICENSE.txt
   /usr/share/doc/voronota/README.md
 
 ------------------
 
 Port Notes:
+
+----- version 1.29.4816-1bl1 -----
+Version bump.
 
 ----- version 1.29.4415-1bl1 -----
 Version bump.

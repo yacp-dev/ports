@@ -3,26 +3,26 @@ xmr-stak
 Free Monero RandomX Miner and unified CryptoNight miner
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libOpenCL1-2.3.2-1
-  libgcc1-12.4.0-3
-  libhwloc15-2.10.0-1
-  libmicrohttpd12-1.0.1-1bl1
-  libssl3-3.0.15-1
-  libstdc++6-12.4.0-3
+  cygwin-3.6.12-1
+  libOpenCL1-2.3.5-1
+  libgcc1-14.4.0-1
+  libhwloc15-2.13.0-1
+  libmicrohttpd12-1.0.11-1bl1
+  libssl3-3.5.9-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.43.1-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  libOpenCL-devel-2.3.2-1
-  libhwloc-devel-2.10.0-1
-  libmicrohttpd-devel-1.0.1-1bl1
-  libssl-devel-3.0.15-1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libOpenCL-devel-2.3.5-1
+  libhwloc-devel-2.13.0-1
+  libmicrohttpd-devel-1.0.11-1bl1
+  libssl-devel-3.5.9-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/fireice-uk/xmr-stak
@@ -54,6 +54,7 @@ Files included in the binary package:
   /usr/share/doc/xmr-stak/CONTRIBUTING.md
   /usr/share/doc/xmr-stak/FAQ.md
   /usr/share/doc/xmr-stak/LICENSE
+  /usr/share/doc/xmr-stak/LICENSE.txt
   /usr/share/doc/xmr-stak/README.md
   /usr/share/doc/xmr-stak/THIRD-PARTY-LICENSES
   /usr/share/doc/xmr-stak/_README.md
@@ -114,6 +115,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.10.8-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.10.8-1bl2 -----
 Rebuild for libssl

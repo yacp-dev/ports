@@ -1,5 +1,5 @@
---- origsrc/xmr-stak-2.10.8/CMakeLists.txt	2019-12-03 04:22:44.000000000 +0900
-+++ src/xmr-stak-2.10.8/CMakeLists.txt	2024-09-21 21:10:40.007273300 +0900
+--- origsrc/xmr-stak-2.10.8/CMakeLists.txt	2019-12-02 19:22:44.000000000 +0000
++++ src/xmr-stak-2.10.8/CMakeLists.txt	2026-11-26 16:09:31.009634700 +0000
 @@ -491,7 +491,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
      endif()
  endif()
@@ -18,8 +18,8 @@
              install(TARGETS xmrstak_opencl_backend
                  RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/${LIBRARY_OUTPUT_PATH}")
          else()
---- origsrc/xmr-stak-2.10.8/xmrstak/backend/cpu/crypto/cryptonight_common.cpp	2019-12-03 04:22:44.000000000 +0900
-+++ src/xmr-stak-2.10.8/xmrstak/backend/cpu/crypto/cryptonight_common.cpp	2024-09-21 21:10:40.007273300 +0900
+--- origsrc/xmr-stak-2.10.8/xmrstak/backend/cpu/crypto/cryptonight_common.cpp	2019-12-02 19:22:44.000000000 +0000
++++ src/xmr-stak-2.10.8/xmrstak/backend/cpu/crypto/cryptonight_common.cpp	2026-11-26 16:09:31.011657000 +0000
 @@ -260,7 +260,7 @@ cryptonight_ctx* cryptonight_alloc_ctx(s
  #elif defined(__FreeBSD__)
  	ptr->long_state = (uint8_t*)mmap(NULL, hashMemSize, PROT_READ | PROT_WRITE,
@@ -29,8 +29,8 @@
  	ptr->long_state = (uint8_t*)mmap(NULL, hashMemSize, PROT_READ | PROT_WRITE,
  		MAP_PRIVATE | MAP_ANON, -1, 0);
  #else
---- origsrc/xmr-stak-2.10.8/xmrstak/backend/plugin.hpp	2019-12-03 04:22:44.000000000 +0900
-+++ src/xmr-stak-2.10.8/xmrstak/backend/plugin.hpp	2024-09-21 21:10:40.007273300 +0900
+--- origsrc/xmr-stak-2.10.8/xmrstak/backend/plugin.hpp	2019-12-02 19:22:44.000000000 +0000
++++ src/xmr-stak-2.10.8/xmrstak/backend/plugin.hpp	2026-11-26 16:09:31.013088100 +0000
 @@ -46,8 +46,14 @@ struct plugin
  		// `.dylib` Mac OS X file extention for dynamic libraries
  		fileExtension = ".dylib";

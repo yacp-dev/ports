@@ -5,25 +5,37 @@ CATEGORY="Net"
 SUMMARY="Free Monero RandomX Miner and unified CryptoNight miner"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MIT"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libhwloc-devel libOpenCL-devel libmicrohttpd-devel libssl-devel"
+BUILD_REQUIRES="
+	libhwloc-devel
+	libOpenCL-devel
+	libmicrohttpd-devel
+	libssl-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
-export CXXFLAGS="${CXXFLAGS} -fpermissive"
+export CXXFLAGS="${CXXFLAGS} -fpermissive -include cstdio"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DXMR-STAK_COMPILE:STRING=generic
 	-DCUDA_ENABLE:BOOL=OFF
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 src_test()
 {
 	cd ${B}
-	./bin/xmr-stak.exe -V
+	local out status=0
+	# -V prints the version and leaves through win_exit(), whose default
+	# exit status is 1
+	out=$(./bin/xmr-stak.exe -V) || status=$?
+	echo "${out}"
+	[ ${status} -eq 1 ] && [[ ${out} == "Version: xmr-stak/${PV}/"* ]]
 }
 
 src_install()
@@ -40,4 +52,5 @@ src_install()
 DOCS="
 	CONTRIBUTING.md
 	THIRD-PARTY-LICENSES
+	xmrstak/cpputil/LICENSE.txt
 "

@@ -1,5 +1,5 @@
---- origsrc/z80dasm-1.2.0/test/Makefile.am	2023-02-27 21:46:40.000000000 +0900
-+++ src/z80dasm-1.2.0/test/Makefile.am	2023-09-04 21:23:32.954983700 +0900
+--- origsrc/z80dasm-1.2.0/test/Makefile.am	2023-02-27 12:46:40.000000000 +0000
++++ src/z80dasm-1.2.0/test/Makefile.am	2026-11-26 07:16:23.881814500 +0000
 @@ -252,14 +252,14 @@ EXTRA_DIST = 	stress \
  test: cleantest $(TEST_CASES:.bin=.generated.asm) stress_test
  

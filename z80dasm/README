@@ -7,17 +7,17 @@ Galaksija and many others). Generated assembly code can be assembled back with
 a number of Z80 assemblers. Compatibility with z80asm was thoroughly tested.
 
 Runtime requirements:
-  cygwin-3.5.0-0.411.gc4aa56bbf26f
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   make-4.4.1-2
-  z80asm-1.8-1bl4
+  z80asm-1.8-1bl6
 
 Canonical website:
   https://www.tablix.org/~avian/blog/articles/z80dasm/
@@ -54,6 +54,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.2.0-1bl1 -----
 Version bump.

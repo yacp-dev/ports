@@ -14,7 +14,9 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="z80asm"
+BUILD_REQUIRES="
+	z80asm
+"
 
 src_test()
 {

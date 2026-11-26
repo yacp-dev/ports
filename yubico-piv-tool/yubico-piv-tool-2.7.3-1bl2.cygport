@@ -1,11 +1,12 @@
 HOMEPAGE="https://github.com/Yubico/${PN}"
 SRC_URI="https://github.com/Yubico/${PN}/archive/refs/tags/${P}.tar.gz"
-SRC_DIR="${PN}-${P}"
 PATCH_URI="
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-auth/${PN}/files/${PN}-2.1.1-tests-optional.patch
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-auth/${PN}/files/${PN}-2.1.1-ykcs11-threads.patch
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sys-auth/${PN}/files/${PN}-2.3.0-no-Werror.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/022da5ba99be2b208ba8ae6ba60c15b118bbac5f/sys-auth/${PN}/files/${PN}-2.1.1-tests-optional.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/51d539606ca3bdf81ca3fa041ff17d8844db7c69/sys-auth/${PN}/files/${PN}-2.1.1-ykcs11-threads.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/bce7002ad8323ed377fd5c50a29c27d3b34611d4/sys-auth/${PN}/files/${PN}-2.3.0-no-Werror.patch
+	https://src.fedoraproject.org/rpms/yubico-piv-tool/raw/2dfd53d45885fdaab36ce6c4b1fdd925c1cec7c2/f/0001-Fix-const-correctness-in-OpenSSL-utils.patch
 "
+SRC_DIR="${PN}-${P}"
 
 CATEGORY="Security"
 SUMMARY="Command line tool for the YubiKey PIV application"
@@ -17,6 +18,8 @@ LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	check
+	gengetopt
 	help2man
 	libpcsclite-devel
 	libssl-devel
@@ -26,6 +29,7 @@ BUILD_REQUIRES="
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DBUILD_TESTING:BOOL=ON
 	-DBUILD_STATIC_LIB:BOOL=OFF
 "
 
@@ -40,7 +44,7 @@ src_compile()
 src_test()
 {
 	cd ${B}
-	PATH=${B}/lib:${PATH} ninja_test
+	PATH=${B}/lib:${B}/ykcs11:${PATH} ninja_test
 }
 
 DIFF_EXCLUDES="

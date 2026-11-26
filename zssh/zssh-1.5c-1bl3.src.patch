@@ -1,5 +1,5 @@
---- origsrc/zssh-1.5c/Makefile.in	2025-12-05 08:12:48.543645000 +0900
-+++ src/zssh-1.5c/Makefile.in	2025-12-05 08:13:20.327623000 +0900
+--- origsrc/zssh-1.5c/Makefile.in	2026-11-26 06:41:47.132134400 +0000
++++ src/zssh-1.5c/Makefile.in	2026-11-26 06:41:47.448158300 +0000
 @@ -35,12 +35,13 @@ EXTRA_DEPS	=  @EXTRA_DEPS@
  # is defined
  #CFLAGS += -DDUMB_KEYBOARD
@@ -24,8 +24,8 @@
  
  fun.h : $(SRC)
  	protos -o fun.h $(SRC)
---- origsrc/zssh-1.5c/configure.in	2025-12-05 08:12:47.082989400 +0900
-+++ src/zssh-1.5c/configure.in	2025-12-05 08:15:09.815756100 +0900
+--- origsrc/zssh-1.5c/configure.in	2026-11-26 06:41:46.800119400 +0000
++++ src/zssh-1.5c/configure.in	2026-11-26 06:41:47.448903000 +0000
 @@ -136,5 +136,5 @@ AC_SUBST(EXTRA_CFLAGS)
  AC_SUBST(EXTRA_LIBS)
  AC_SUBST(TERMCAP_LIB)

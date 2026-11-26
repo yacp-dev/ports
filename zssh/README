@@ -1,22 +1,23 @@
 zssh
 ------------------------------------------
-zssh (Zmodem SSH) is a program for interactively transferring files to a
-remote machine while using the secure  shell (ssh).  It  is intended to be a
-convenient alternative to scp , allowing to transfer files without  having  to
-open another session and re-authenticate oneself.
+zssh (Zmodem SSH) is a program for interactively transferring files to a remote
+machine while using the secure shell (ssh). It is intended to be a convenient
+alternative to scp , allowing to transfer files without having to open another
+session and re-authenticate oneself.
 
 Runtime requirements:
-  cygwin-3.6.5-1
+  cygwin-3.6.12-1
   libreadline8-8.3-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  binutils-2.45.1-1
-  cygport-0.37.4-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   libreadline-devel-8.3-1
   make-4.4.1-2
+  util-linux-2.40.2-2
 
 Canonical website:
   https://sourceforge.net/projects/zssh/
@@ -56,6 +57,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.5c-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.5c-1bl2 -----
 Rebuild with gcc-13.4.0

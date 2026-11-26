@@ -1,0 +1,59 @@
+HOMEPAGE="https://sourceforge.net/projects/${PN}/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tgz"
+PATCH_URI="
+	https://src.fedoraproject.org/rpms/${PN}/raw/c5e3f239a9cb7ad4982316eefdefa6aa48a05d8a/f/0001-Remove-build-instruction-about-lrzsz.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/c5e3f239a9cb7ad4982316eefdefa6aa48a05d8a/f/0002-Install-files-into-under-DESTDIR.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/c5e3f239a9cb7ad4982316eefdefa6aa48a05d8a/f/0003-Do-not-symlink-zssh-to-ztelnet.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/c5e3f239a9cb7ad4982316eefdefa6aa48a05d8a/f/0004-Use-GNU-openpty-library-for-pty.h.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/c5e3f239a9cb7ad4982316eefdefa6aa48a05d8a/f/0005-Do-not-call-strip-in-build-process.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/c5e3f239a9cb7ad4982316eefdefa6aa48a05d8a/f/0006-replace-CPPFunction-call-with-rl_completion_func_t.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/c5e3f239a9cb7ad4982316eefdefa6aa48a05d8a/f/0007-Fix-typo-in-man-page-zssh.1.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/c5e3f239a9cb7ad4982316eefdefa6aa48a05d8a/f/0008-Strip-build-date-from-version-string-to-enable-repro.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/952c35dd353cded80e2e34a10a4a9ac092076239/net-misc/${PN}/files/zssh-1.5a-gentoo-include.diff
+	https://src.fedoraproject.org/rpms/${PN}/raw/c5e3f239a9cb7ad4982316eefdefa6aa48a05d8a/f/zssh-c99.patch
+"
+
+CATEGORY="Net"
+SUMMARY="Interactive wrapper for ssh"
+DESCRIPTION="zssh (Zmodem SSH) is a program for interactively transferring files to a
+remote machine while using the secure  shell (ssh).  It  is intended to be a
+convenient alternative to scp , allowing to transfer files without  having  to
+open another session and re-authenticate oneself."
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libreadline-devel
+	util-linux
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	rm -fr '.#zmodem_act.c' fake_readline lrzsz-0.12.20
+}
+
+src_test()
+{
+	cd ${B}
+	# zssh calls tcgetattr(0) before parsing -V, so give it a pty: CI has no tty
+	verbose script -qec "./${PN}.exe -V" /dev/null
+}
+
+src_install()
+{
+	cd ${B}
+	dobin *.exe
+
+	cd ${S}
+	doman *.1
+}
+
+DIFF_EXCLUDES="
+	Makefile
+	install-sh
+	version.h
+"

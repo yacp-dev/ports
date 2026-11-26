@@ -1,5 +1,5 @@
---- origsrc/yasl-0.13.8/CMakeLists.txt	2026-04-05 12:20:17.000000000 +0900
-+++ src/yasl-0.13.8/CMakeLists.txt	2026-05-23 09:41:09.196466500 +0900
+--- origsrc/yasl-0.13.9/CMakeLists.txt	2026-08-16 14:52:45.000000000 +0000
++++ src/yasl-0.13.9/CMakeLists.txt	2026-11-26 12:31:50.831846300 +0000
 @@ -35,11 +35,11 @@ if (NOT "${CMAKE_CXX_COMPILER_ID}" MATCH
  endif()
  
@@ -14,7 +14,7 @@
  endif()
  
  if ("{CMAKE_C_COMPILER_ID}" MATCHES ".*TinyCC.*")
-@@ -63,61 +63,17 @@ include_directories(src/util)
+@@ -63,64 +63,17 @@ include_directories(src/util)
  include_directories(src/std)
  include_directories(test)
  
@@ -57,6 +57,7 @@
 -        src/std/yasl-std-io.c
 -        src/std/yasl-std-math.c
 -        src/std/yasl-std-require.c
+-        src/std/yasl-std-debug.c
 -        src/std/yasl-std-error.c
 -        src/data-structures/YASL_Set.c
 -        src/std/yasl-std-collections.c
@@ -65,7 +66,9 @@
 -        src/std/yasl-std-try.c
 -        src/util/hash_function.c
 -        src/util/IO.c
+-        src/util/glob.c
 -        src/util/prime.c
+-        src/util/prng.c
 -        src/util/varint.c
          src/util/yapp.h
          src/yasl_conf.h
@@ -80,7 +83,7 @@
          src/common/opcode.h
          src/yasl.c
          src/yasl_aux.c
-@@ -165,7 +121,11 @@ add_library(yaslapi
+@@ -171,7 +124,11 @@ add_library(yaslapi
          src/std/yasl-std-os.c
          src/std/yasl-std-try.c)
  
@@ -93,7 +96,7 @@
  
  add_executable(tests
          test/integration_tests.c
-@@ -209,18 +169,31 @@ add_library(test_module SHARED
+@@ -216,18 +173,38 @@ add_library(test_module SHARED
  
  set_property(TARGET test_module PROPERTY POSITION_INDEPENDENT_CODE ON)
  
@@ -123,22 +126,16 @@
 +install(TARGETS yasl RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
 +install(FILES src/yasl.h src/yasl_error.h src/yasl_aux.h src/yasl_conf.h DESTINATION include)
 +
-+set(prefix ${CMAKE_INSTALL_PREFIX})
-+set(exec_prefix ${CMAKE_INSTALL_PREFIX})
-+set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
-+set(includedir ${CMAKE_INSTALL_PREFIX}/include)
-+configure_file(${CMAKE_SOURCE_DIR}/yasl.pc.in ${CMAKE_BINARY_DIR}/yasl.pc @ONLY)
-+install(FILES ${CMAKE_BINARY_DIR}/yasl.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/yasl-0.13.8/yasl.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/yasl-0.13.8/yasl.pc.in	2026-05-23 09:42:08.108274800 +0900
-@@ -0,0 +1,10 @@
-+prefix=@prefix@
-+exec_prefix=@exec_prefix@
-+libdir=@libdir@
-+includedir=@includedir@
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/yasl.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/lib
++includedir=\${prefix}/include
 +
 +Name: yasl
 +Description: Bytecode Interpreter for Yet Another Scripting Language
-+Version: @VERSION@
-+Libs: -L${libdir} -lyasl
-+Cflags: -I${includedir}
++Version: ${VERSION}
++Libs: -L\${libdir} -lyasl
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/yasl.pc" DESTINATION lib/pkgconfig)

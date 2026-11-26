@@ -1,5 +1,8 @@
 HOMEPAGE="https://${PN}.io/"
 SRC_URI="https://github.com/TheLocehiliosan/${PN}/archive/refs/tags/${PV}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/y/yadm/3.5.0-1/debian/patches/fix-manpage-typo
+"
 
 CATEGORY="Utils"
 SUMMARY="Yet Another Dotfiles Manager"
@@ -16,10 +19,25 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	git
+"
+
+REQUIRES="git"
+
 src_compile()
 {
 	cd ${B}
 	lndirs
+}
+
+# upstream's "make test" runs pytest in a Linux docker image
+src_test()
+{
+	cd ${B}
+	verbose ./yadm --yadm-dir ${T}/yadm --yadm-data ${T}/yadm-data version
+	./yadm --yadm-dir ${T}/yadm --yadm-data ${T}/yadm-data version \
+		| grep -Fx "yadm version ${PV}"
 }
 
 src_install()

@@ -1,5 +1,5 @@
---- origsrc/argdata-0.8/CMakeLists.txt	2019-01-02 06:04:58.000000000 +0900
-+++ src/argdata-0.8/CMakeLists.txt	2025-08-10 15:55:59.062545800 +0900
+--- origsrc/argdata-0.8/CMakeLists.txt	2019-01-01 21:04:58.000000000 +0000
++++ src/argdata-0.8/CMakeLists.txt	2026-11-26 00:43:39.605119600 +0000
 @@ -62,10 +62,16 @@ set_property(
  		"1"
  )
@@ -29,8 +29,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/argdata.pc.in ${CMAKE_BINARY_DIR}/argdata.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/argdata.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/argdata-0.8/argdata.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/argdata-0.8/argdata.pc.in	2025-08-10 15:54:38.087983300 +0900
+--- origsrc/argdata-0.8/argdata.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/argdata-0.8/argdata.pc.in	2026-11-26 00:43:39.605119600 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

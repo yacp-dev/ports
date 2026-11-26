@@ -1,9 +1,9 @@
 yadm
 ------------------------------------------
 When you live in a command line, configurations are a deeply personal thing.
-They are often crafted over years of experience, battles lost, lessons
-learned, advice followed, and ingenuity rewarded. When you are away from your
-own configurations, you are an orphaned refugee in unfamiliar and hostile
+They are often crafted over years of experience, battles lost, lessons learned,
+advice followed, and ingenuity rewarded. When you are away from your own
+configurations, you are an orphaned refugee in unfamiliar and hostile
 surroundings. You feel clumsy and out of sorts. You are filled with a sense of
 longing to be back in a place you know. A place you built. A place where all
 the short-cuts have been worn bare by your own travels. A place you proudly
@@ -11,10 +11,12 @@ call... HOME.
 
 Runtime requirements:
   bash-5.2.21-1
+  git-2.51.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  cygport-0.37.3-1
+  cygport-0.37.13-1
+  git-2.51.0-1
   make-4.4.1-2
 
 Canonical website:
@@ -65,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.5.0-1bl2 -----
+Fix REQUIRES
 
 ----- version 3.5.0-1bl1 -----
 Version bump.

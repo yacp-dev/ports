@@ -4,19 +4,18 @@ Argdata is a binary serialisation format inspired by YAML, MessagePack and
 nvlists.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libargdata-devel-0.8-1bl2
-  libargdata1-0.8-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libargdata-devel-0.8-1bl3
+  libargdata1-0.8-1bl3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  ninja-1.13.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/NuxiNL/argdata
@@ -61,6 +60,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.8-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.8-1bl2 -----
 Rebuild with gcc-13.4.0

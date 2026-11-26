@@ -11,9 +11,16 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libcurl-devel libjansson-devel"
+BUILD_REQUIRES="
+	libcurl-devel
+	libjansson-devel
+"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
 
 src_test()
 {

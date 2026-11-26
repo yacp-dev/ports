@@ -1,0 +1,46 @@
+Description: allows externally defined CFLAGS and CXXFLAGS
+ This patch modifies configure.in file so that externally defined
+ CXXFLAGS and CFLAGS are not ignored anymore.
+Author: Giulio Paci <giuliopaci@gmail.com>
+Forwarded: no
+--- a/configure.in
++++ b/configure.in
+@@ -13,6 +13,21 @@
+ LTVERSION="3:0:2"
+ AC_SUBST(LTVERSION)
+ 
++AC_MSG_CHECKING([whether configure should try to set CFLAGS])
++if test "x${CFLAGS+set}" = xset; then
++   enable_cflags_setting=no
++else
++   enable_cflags_setting=yes
++fi
++AC_MSG_RESULT($enable_cflags_setting)
++AC_MSG_CHECKING([whether configure should try to set CXXFLAGS])
++if test "x${CXXFLAGS+set}" = xset; then
++   enable_cxxflags_setting=no
++else
++   enable_cxxflags_setting=yes
++fi
++AC_MSG_RESULT($enable_cxxflags_setting)
++
+ dnl Checks for programs.
+ AC_PROG_CC
+ AC_PROG_CXX
+@@ -81,9 +96,13 @@
+ dnl
+ dnl check gcc
+ dnl
+-if test -n "$GCC"; then
+-   CFLAGS="-Wall -O9 -funroll-all-loops -finline -ffast-math"
+-   CXXFLAGS="-Wall -O9 -funroll-all-loops -finline -ffast-math"
++if test "$GCC" = "yes"; then
++   if test "$enable_cflags_setting" = "yes"; then
++      CFLAGS="-Wall -O9 -funroll-all-loops -finline -ffast-math"
++   fi
++   if test "$enable_cxxflags_setting" = "yes"; then
++      CXXFLAGS="-Wall -O9 -funroll-all-loops -finline -ffast-math"
++   fi
+ fi
+ 
+ # On Intel systems with gcc, we may need to compile with -mieee-fp to

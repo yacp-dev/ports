@@ -1,0 +1,68 @@
+--- origsrc/TinySVM-0.09/configure.in	2026-11-26 11:17:18.332169200 +0000
++++ src/TinySVM-0.09/configure.in	2026-11-26 11:17:18.603346500 +0000
+@@ -1,6 +1,6 @@
+ dnl Process this file with autoconf to produce a configure script.
+-AC_INIT(src/svm_learn.cpp)
+-AM_INIT_AUTOMAKE(TinySVM,0.09)
++AC_INIT([tinysvm], [0.09])
++AM_INIT_AUTOMAKE
+ 
+ # Before making a release, the LTVERSION string should be modified.
+ # The string is of the form C:R:A.
+@@ -69,7 +69,7 @@ else
+         fi
+ fi
+ 
+-AC_DEFUN(ADD_CC_FLAG, [
++AC_DEFUN([ADD_CC_FLAG], [
+   AC_MSG_CHECKING(whether ${CC-cc} accepts $1)
+   AC_LANG_SAVE
+   AC_LANG_C
+@@ -81,7 +81,7 @@ AC_DEFUN(ADD_CC_FLAG, [
+   AC_LANG_RESTORE
+ ])
+ 
+-AC_DEFUN(ADD_CXX_FLAG, [
++AC_DEFUN([ADD_CXX_FLAG], [
+   AC_MSG_CHECKING(whether ${CXX-c++} accepts $1)
+   AC_LANG_SAVE
+   AC_LANG_CPLUSPLUS
+@@ -327,7 +327,6 @@ AC_OUTPUT([Makefile
+            tests/Makefile 	   
+ 	   man/Makefile 
+ 	   doc/Makefile 
+-	   java/Makefile
+ 	   python/Setup
+ 	   perl/Makefile.PL
+ 	   ruby/extconf.rb
+--- origsrc/TinySVM-0.09/src/getopt.c	2000-11-12 02:14:03.000000000 +0000
++++ src/TinySVM-0.09/src/getopt.c	2026-11-26 11:17:18.605109800 +0000
+@@ -62,7 +62,7 @@
+ 
+ /* This needs to come after some library #include
+    to get __GNU_LIBRARY__ defined.  */
+-#ifdef	__GNU_LIBRARY__
++#if defined (__GNU_LIBRARY__) || defined (__CYGWIN__)
+ /* Don't include stdlib.h for non-GNU C libraries because some of them
+    contain conflicting prototypes for getopt.  */
+ #include <stdlib.h>
+@@ -195,7 +195,7 @@ static enum
+ /* Value of POSIXLY_CORRECT environment variable.  */
+ static char *posixly_correct;
+ 
+-#ifdef	__GNU_LIBRARY__
++#if defined (__GNU_LIBRARY__) || defined (__CYGWIN__)
+ /* We want to avoid inclusion of string.h with non-GNU libraries
+    because there are many ways it can cause trouble.
+    On some systems, it contains special magic macros that don't work
+--- origsrc/TinySVM-0.09/src/getopt.h	2002-08-20 06:31:17.000000000 +0000
++++ src/TinySVM-0.09/src/getopt.h	2026-11-26 11:17:18.605623400 +0000
+@@ -122,7 +122,7 @@ struct option
+ #define optional_argument	2
+ 
+ #if defined (__STDC__) && __STDC__
+-#ifdef __GNU_LIBRARY__
++#if defined (__GNU_LIBRARY__) || defined (__CYGWIN__)
+ /* Many other libraries have conflicting prototypes for getopt, with
+    differences in the consts, in stdlib.h.  To avoid compilation
+    errors, only prototype getopt for the GNU C library.  */

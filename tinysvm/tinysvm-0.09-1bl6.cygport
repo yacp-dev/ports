@@ -1,10 +1,11 @@
 HOMEPAGE="http://chasen.org/~taku/software/TinySVM/"
 SRC_URI="http://chasen.org/~taku/software/TinySVM/src/TinySVM-${PV}.tar.gz"
-SRC_DIR="TinySVM-${PV}"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}%2Bdfsg-2/debian/patches/1003_autoconf_fixes.patch
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}%2Bdfsg-2/debian/patches/1004_developers_files.patch
+	1002_tests_reliability_improvements.patch
+	1003_autoconf_fixes.patch
+	1004_developers_files.patch
 "
+SRC_DIR="TinySVM-${PV}"
 
 CATEGORY="Math"
 SUMMARY="Support Vector Machines"
@@ -30,6 +31,15 @@ HTMLDOCS="
 	doc/*.css
 	doc/*.html
 "
+
+# The tests read their data from the current directory, ${B}/tests in an
+# out-of-tree build.
+src_test()
+{
+	cd ${B}
+	verbose cp ${S}/tests/train.svmdata ${S}/tests/train.svrdata ${S}/tests/test.svmdata tests/
+	cygtest
+}
 
 PKG_NAMES="
 	tinysvm

@@ -1,0 +1,48 @@
+Description: adds "set -e" command in test scripts
+Author: Giulio Paci <giuliopaci@gmail.com>
+Forwarded: no
+--- a/tests/test.sh
++++ b/tests/test.sh
+@@ -1,5 +1,6 @@
+ #!/bin/sh
+ 
++set -e
+ ../src/svm_learn  train.svmdata model
+ ../src/svm_classify test.svmdata model
+ ../src/svm_model model
+--- a/tests/test2.sh
++++ b/tests/test2.sh
+@@ -1,5 +1,6 @@
+ #!/bin/sh
+ 
++set -e
+ ../src/svm_learn -t 1 -d 2 -c 1 train.svmdata model
+ ../src/svm_classify test.svmdata model
+ ../src/svm_model model
+--- a/tests/test3.sh
++++ b/tests/test3.sh
+@@ -1,5 +1,6 @@
+ #!/bin/sh
+ 
++set -e
+ ../src/svm_learn -l 1 -t 1 train.svrdata model
+ ../src/svm_model model
+ rm -f model
+--- a/tests/test4.sh
++++ b/tests/test4.sh
+@@ -1,5 +1,6 @@
+ #!/bin/sh
+ 
++set -e
+ ../src/svm_learn -l 1 -t 1 -d 2 -c 1 train.svrdata model
+ ../src/svm_model model
+ rm -f model
+--- a/tests/test5.sh
++++ b/tests/test5.sh
+@@ -1,5 +1,6 @@
+ #!/bin/sh
+ 
++set -e
+ echo "900 -> 1000"
+ head -900 train.svmdata > train.900
+ ../src/svm_learn -I train.900 model.900

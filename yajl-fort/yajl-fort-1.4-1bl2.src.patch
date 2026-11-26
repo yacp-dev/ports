@@ -1,0 +1,46 @@
+--- origsrc/yajl-fort-1.4/CMakeLists.txt	2025-09-30 17:18:46.000000000 +0000
++++ src/yajl-fort-1.4/CMakeLists.txt	2026-11-26 11:45:01.673469800 +0000
+@@ -53,3 +53,20 @@ if(BUILD_HTML)
+   find_package(Sphinx REQUIRED)
+   add_subdirectory(doc/sphinx)
+ endif()
++
++include(GNUInstallDirs)
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/yajl-fort.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: yajl-fort
++Description: Modern Fortran interface to the YAJL library
++Version: ${VERSION}
++Requires.private: yajl
++Libs: -L\${libdir} -lyajl_fort
++Cflags: -I\${includedir}/yajl
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/yajl-fort.pc"
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/yajl-fort-1.4/src/CMakeLists.txt	2025-09-30 17:18:46.000000000 +0000
++++ src/yajl-fort-1.4/src/CMakeLists.txt	2026-11-26 11:45:01.675496700 +0000
+@@ -8,6 +8,10 @@ add_library(yajl_fort ${SRC})
+ set_target_properties(yajl_fort PROPERTIES
+     Fortran_MODULE_DIRECTORY ${LIB_MOD_DIR})
+ 
++if (DEFINED SOVERSION)
++    set_target_properties(yajl_fort PROPERTIES SOVERSION "${SOVERSION}")
++endif()
++
+ target_include_directories(yajl_fort PUBLIC
+     $<BUILD_INTERFACE:${LIB_MOD_DIR}>
+     $<INSTALL_INTERFACE:lib>
+@@ -19,7 +23,8 @@ target_link_libraries(yajl_fort YAJL::YA
+ 
+ install(TARGETS yajl_fort
+         EXPORT  yajl_fort
++        RUNTIME DESTINATION bin
+         LIBRARY DESTINATION lib
+         ARCHIVE DESTINATION lib
+ )
+-install(DIRECTORY ${LIB_MOD_DIR} DESTINATION lib)
++install(DIRECTORY ${LIB_MOD_DIR} DESTINATION include/yajl)

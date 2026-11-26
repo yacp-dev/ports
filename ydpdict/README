@@ -3,25 +3,25 @@ ydpdict
 Interface for Polish-English Collins Dictionary
 
 Runtime requirements:
-  cygwin-3.6.3-1
-  libao4-1.2.0-3
-  libintl8-0.22.5-1
+  cygwin-3.6.12-1
+  libao4-1.2.2-1
+  libintl8-0.26-1
   libncursesw10-6.5+20240427-1
-  libydpdict2-1.0.4-1bl3
+  libydpdict2-1.0.4-1bl4
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.44-1
-  cygport-0.37.1-1
-  gcc-core-12.4.0-3
-  gettext-devel-0.22.5-1
-  libao-devel-1.2.0-3
-  libintl-devel-0.22.5-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  libao-devel-1.2.2-1
+  libintl-devel-0.26-1
   libncurses-devel-6.5+20240427-1
-  libtool-2.5.4-1
-  libydpdict-devel-1.0.4-1bl3
+  libtool-2.6.2-1
+  libydpdict-devel-1.0.4-1bl4
   make-4.4.1-2
 
 Canonical website:
@@ -61,6 +61,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.5-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

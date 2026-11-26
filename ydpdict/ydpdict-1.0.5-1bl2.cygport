@@ -9,7 +9,13 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="gettext-devel libao-devel libintl-devel libncurses-devel libydpdict-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libao-devel
+	libintl-devel
+	libncurses-devel
+	libydpdict-devel
+"
 
 src_install()
 {

@@ -1,0 +1,113 @@
+--- origsrc/yahttp-0.2.1/Makefile.am	2017-05-18 10:17:33.000000000 +0000
++++ src/yahttp-0.2.1/Makefile.am	2026-11-26 11:45:51.526264300 +0000
+@@ -1,3 +1,6 @@
+ ACLOCAL_AMFLAGS=-I m4
+-SUBDIRS = yahttp docs tests examples
++SUBDIRS = yahttp tests examples
+ EXTRA_DIST = LICENSE README.md
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/yahttp-0.2.1/configure.ac	2026-11-26 11:45:51.324743900 +0000
++++ src/yahttp-0.2.1/configure.ac	2026-11-26 11:45:51.526264300 +0000
+@@ -34,5 +34,5 @@ fi
+ 
+ AC_CHECK_PROG([DOXYGEN], [doxygen], [doxygen], [true])
+ 
+-AC_CONFIG_FILES([Makefile yahttp/Makefile tests/Makefile examples/Makefile docs/Makefile])
++AC_CONFIG_FILES([yahttp.pc Makefile yahttp/Makefile tests/Makefile examples/Makefile docs/Makefile])
+ AC_OUTPUT
+--- origsrc/yahttp-0.2.1/tests/Makefile.am	2017-05-18 10:17:33.000000000 +0000
++++ src/yahttp-0.2.1/tests/Makefile.am	2026-11-26 11:45:51.528279900 +0000
+@@ -3,8 +3,8 @@ EXTRA_DIST=request-get-cookies-ok.txt re
+            request-issue-7.txt request-post-ok.txt response-binary.txt response-chunked-body.txt \
+            response-chunked-headers.txt response-google-200.txt response-incomplete.txt request-chunked.txt
+ 
+-test_CFLAGS=$(RELRO_CFLASG) $(PIE_CFLAGS) -I.. $(BOOST_CPPFLAGS)
+-test_CXXFLAGS=$(RELRO_CFLASG) $(PIE_CFLAGS) -I.. $(BOOST_CPPFLAGS)
++test_CFLAGS=$(RELRO_CFLASG) $(PIE_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS) -D_GNU_SOURCE
++test_CXXFLAGS=$(RELRO_CFLASG) $(PIE_CFLAGS) -I$(top_srcdir) $(BOOST_CPPFLAGS) -D_GNU_SOURCE
+ test_LDADD=$(RELRO_LDFLAGS) $(PIE_LDFLAGS) $(BOOST_UNIT_TEST_FRAMEWORK_LDFLAGS) $(BOOST_UNIT_TEST_FRAMEWORK_LIBS) ../yahttp/libyahttp.la
+ test_SOURCES=md5.h md5.c test-main.cpp test-md5.cpp test-utility.cpp test-url.cpp test-cookie.cpp test-request.cpp test-response.cpp test-router.cpp
+ 
+--- origsrc/yahttp-0.2.1/tests/test-utility.cpp	2017-05-18 10:17:33.000000000 +0000
++++ src/yahttp-0.2.1/tests/test-utility.cpp	2026-11-26 11:45:51.528279900 +0000
+@@ -43,7 +43,12 @@ BOOST_AUTO_TEST_CASE(test_utility_encode
+   BOOST_CHECK_EQUAL(YaHTTP::Utility::encodeURL("hello world", false), "hello%20world");
+   BOOST_CHECK_EQUAL(YaHTTP::Utility::encodeURL("Kääkkä", false), "K%c3%a4%c3%a4kk%c3%a4");
+   BOOST_CHECK_EQUAL(YaHTTP::Utility::encodeURL("鳥の桜", false), "%e9%b3%a5%e3%81%ae%e6%a1%9c");
++#ifdef __CYGWIN__
++  // wchar_t is 16 bits wide on Cygwin
++  BOOST_CHECK_EQUAL(YaHTTP::Utility::encodeURL(L"鳥の桜", false), "%e5%9cn0%5ch"); // as you can see it's not utf-8
++#else
+   BOOST_CHECK_EQUAL(YaHTTP::Utility::encodeURL(L"鳥の桜", false), "%e5%9c%00%00n0%00%00%5ch%00%00"); // as you can see it's not utf-8
++#endif
+   BOOST_CHECK_EQUAL(YaHTTP::Utility::encodeURL("DzE6fx2EtlPz3B787qYV/ezKBbIoihZpSb8DB3/ro1yuVniU4g2p3s6rnQZP66Rve6SNPtHwlr7FAAO27dzkBDikNVJxABoN7oYnqZ2QGVrb49tN10PaSDUlzPuDCV0UUjUY/KYz6gGpnBsU5l6G4zgF+m08bP0gqeJ00+iQ7EwGRpMbi1Yh04uj4T+mVObgj1EhYJm/Oq0nNQKyto7i3YtukjdtKrYEWDNdqPcMOHK7fu+LuMAGoziNbh0H9g/p8Zlx4TkElszvqPDpFHbz2rHME/ZA92VrfVeVDc9/2C2JzTjmB0FO4ml32TEj9TA2fFFiSGlbF3pVq1pvmnWVQ==\nPublicExponent: AQAB\nPrivateExponent: Xw+t8Gc/nCKKLPJa2TO0kguTNIfPvyBk9B5LFVLgVNjtmmqwWM5K+JcfdZVDxxH0UA/hjQGVgq6q6kD9F/mn094Fq8lNKPdqkeQcuJdocn+0mP4769zA+iOZ/QtY8/ixhGCXZrVYi5dzcmq1psGGeIk5Z5nSOJPcnZ9rsGr4uq/QyPZe6K3SM6oOn/e6Wn/8uXjqgMkdA3+50ur/tApyufol03wcakWke2kRAI3OGiJJIB7QphPfC0h7ZPF+RlRKXbNFhQaDB7B0A98A9WFQppY5ghhhOKHSEMI4xoQSWK/HIsJ+JBRPlsOYAeoBSVnqOiPHxgNNQs+UrNpavYlwAQ==", false), "DzE6fx2EtlPz3B787qYV%2fezKBbIoihZpSb8DB3%2fro1yuVniU4g2p3s6rnQZP66Rve6SNPtHwlr7FAAO27dzkBDikNVJxABoN7oYnqZ2QGVrb49tN10PaSDUlzPuDCV0UUjUY%2fKYz6gGpnBsU5l6G4zgF%2bm08bP0gqeJ00%2biQ7EwGRpMbi1Yh04uj4T%2bmVObgj1EhYJm%2fOq0nNQKyto7i3YtukjdtKrYEWDNdqPcMOHK7fu%2bLuMAGoziNbh0H9g%2fp8Zlx4TkElszvqPDpFHbz2rHME%2fZA92VrfVeVDc9%2f2C2JzTjmB0FO4ml32TEj9TA2fFFiSGlbF3pVq1pvmnWVQ%3d%3d%0aPublicExponent%3a%20AQAB%0aPrivateExponent%3a%20Xw%2bt8Gc%2fnCKKLPJa2TO0kguTNIfPvyBk9B5LFVLgVNjtmmqwWM5K%2bJcfdZVDxxH0UA%2fhjQGVgq6q6kD9F%2fmn094Fq8lNKPdqkeQcuJdocn%2b0mP4769zA%2biOZ%2fQtY8%2fixhGCXZrVYi5dzcmq1psGGeIk5Z5nSOJPcnZ9rsGr4uq%2fQyPZe6K3SM6oOn%2fe6Wn%2f8uXjqgMkdA3%2b50ur%2ftApyufol03wcakWke2kRAI3OGiJJIB7QphPfC0h7ZPF%2bRlRKXbNFhQaDB7B0A98A9WFQppY5ghhhOKHSEMI4xoQSWK%2fHIsJ%2bJBRPlsOYAeoBSVnqOiPHxgNNQs%2bUrNpavYlwAQ%3d%3d");
+   BOOST_CHECK_EQUAL(YaHTTP::Utility::encodeURL("https://test.org/(user)/michael/status.jsonp?merge=true", false), "https%3a%2f%2ftest%2eorg%2f%28user%29%2fmichael%2fstatus%2ejsonp%3fmerge%3dtrue");
+ 
+--- origsrc/yahttp-0.2.1/yahttp/Makefile.am	2017-05-18 10:17:33.000000000 +0000
++++ src/yahttp-0.2.1/yahttp/Makefile.am	2026-11-26 11:45:51.528279900 +0000
+@@ -1,5 +1,6 @@
+ lib_LTLIBRARIES=libyahttp.la
+ include_yahttpdir=$(includedir)/yahttp
+ include_yahttp_HEADERS=cookie.hpp exception.hpp reqresp.hpp router.hpp url.hpp utility.hpp yahttp.hpp yahttp-config.h
+-libyahttp_la_CXXFLAGS=-W -Wall $(RELRO_CFLAGS) $(PIE_CFLAGS) -D__STRICT_ANSI__
++libyahttp_la_CXXFLAGS=-W -Wall $(RELRO_CFLAGS) $(PIE_CFLAGS) -D_GNU_SOURCE
+ libyahttp_la_SOURCES=cookie.hpp exception.hpp reqresp.cpp reqresp.hpp router.cpp router.hpp url.hpp utility.hpp yahttp.hpp
++libyahttp_la_LDFLAGS=-no-undefined
+--- origsrc/yahttp-0.2.1/yahttp/utility.hpp	2017-05-18 10:17:33.000000000 +0000
++++ src/yahttp-0.2.1/yahttp/utility.hpp	2026-11-26 11:45:51.530297900 +0000
+@@ -154,9 +154,20 @@ namespace YaHTTP {
+      }; //<! converts this date into a HTTP Cookie date
+  
+      void parse822(const std::string &rfc822_date) {
+-       struct tm tm;
++       struct tm tm = {};
+        const char *ptr;
+-#ifdef HAVE_TM_GMTOFF
++#if defined(HAVE_TM_GMTOFF) && defined(__CYGWIN__)
++       // Cygwin's strptime has no %z: parse the +hhmm/-hhmm offset here
++       if ( (ptr = strptime(rfc822_date.c_str(), "%a, %d %b %Y %T", &tm)) != NULL) {
++          while(*ptr && YaHTTP::isspace(*ptr)) ptr++;
++          if ((*ptr != '+' && *ptr != '-') ||
++              !YaHTTP::isdigit(ptr[1]) || !YaHTTP::isdigit(ptr[2]) ||
++              !YaHTTP::isdigit(ptr[3]) || !YaHTTP::isdigit(ptr[4]))
++            throw YaHTTP::ParseError("Unparseable date");
++          tm.tm_gmtoff = (((ptr[1]-'0')*10 + (ptr[2]-'0'))*3600 +
++                          ((ptr[3]-'0')*10 + (ptr[4]-'0'))*60) * (*ptr == '-' ? -1 : 1);
++          ptr += 5;
++#elif defined(HAVE_TM_GMTOFF)
+        if ( (ptr = strptime(rfc822_date.c_str(), "%a, %d %b %Y %T %z", &tm)) != NULL) {
+ #else
+ 	if ( (ptr = strptime(rfc822_date.c_str(), "%a, %d %b %Y %T", &tm)) != NULL) {
+@@ -179,7 +190,7 @@ namespace YaHTTP {
+      }; //<! parses RFC-822 date
+ 
+      void parseCookie(const std::string &cookie_date) {
+-       struct tm tm;
++       struct tm tm = {};
+        const char *ptr;
+        if ( (ptr = strptime(cookie_date.c_str(), "%d-%b-%Y %T", &tm)) != NULL
+ #ifdef HAVE_TM_GMTOFF
+@@ -189,6 +200,8 @@ namespace YaHTTP {
+           ) {
+           while(*ptr != '\0' && ( YaHTTP::isspace(*ptr) || YaHTTP::isalnum(*ptr) )) ptr++;
+           if (*ptr != '\0') throw YaHTTP::ParseError("Unparseable date (non-final)"); // must be final.
++          // strptime need not fill in tm_wday (Cygwin's doesn't for %b)
++          timegm(&tm);
+           fromTm(&tm);
+           this->utc_offset = 0;
+        } else {
+--- origsrc/yahttp-0.2.1/yahttp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/yahttp-0.2.1/yahttp.pc.in	2026-11-26 11:45:51.530297900 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: yahttp
++Description: Yet Another HTTP Library
++Version: @VERSION@
++Libs: -L${libdir} -lyahttp
++Cflags: -I${includedir}/yahttp

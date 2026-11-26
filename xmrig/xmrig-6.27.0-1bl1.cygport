@@ -15,8 +15,8 @@ SUMMARY="Monero (XMR) CPU miner"
 DESCRIPTION="XMRig High performance, open source, cross platform RandomX,
 CryptoNight and Argon2 CPU/GPU miner, with official support for Windows."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC0-1.0 AND Apache-2.0"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MIT AND BSD-3-Clause AND CC0-1.0 AND Apache-2.0"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -24,6 +24,7 @@ BUILD_REQUIRES="
 	libhwloc-devel
 	libiconv-devel
 	libintl-devel
+	libOpenCL-devel
 	libssl-devel
 	libuv-devel
 "

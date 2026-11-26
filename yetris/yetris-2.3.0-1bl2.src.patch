@@ -1,5 +1,5 @@
---- origsrc/yetris-2.3.0/Makefile	2014-10-11 01:01:34.000000000 +0900
-+++ src/yetris-2.3.0/Makefile	2023-11-25 00:49:01.858832800 +0900
+--- origsrc/yetris-2.3.0/Makefile	2014-10-10 16:01:34.000000000 +0000
++++ src/yetris-2.3.0/Makefile	2026-11-26 13:11:06.574323300 +0000
 @@ -68,8 +68,8 @@ INCLUDESDIR = -I"src/" -I"deps/"
  LIBSDIR     =
  
@@ -11,8 +11,8 @@
  OBJECTS  = $(CFILES:.c=.o) \
             $(CXXFILES:.cpp=.o)
  
---- origsrc/yetris-2.3.0/src/Engine/Graphics/Ncurses.cpp	2014-10-11 01:01:34.000000000 +0900
-+++ src/yetris-2.3.0/src/Engine/Graphics/Ncurses.cpp	2023-11-25 00:50:39.071078400 +0900
+--- origsrc/yetris-2.3.0/src/Engine/Graphics/Ncurses.cpp	2014-10-10 16:01:34.000000000 +0000
++++ src/yetris-2.3.0/src/Engine/Graphics/Ncurses.cpp	2026-11-26 13:11:06.574323300 +0000
 @@ -16,7 +16,7 @@ bool Ncurses::init()
  	//
  	// VIM uses 25ms, so should you.

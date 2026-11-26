@@ -1,8 +1,8 @@
 HOMEPAGE="https://github.com/Yubico/${PN}"
 SRC_URI="https://github.com/Yubico/${PN}/archive/refs/tags/v${PV}.tar.gz"
 PATCH_URI="
-	https://raw.githubusercontent.com/haikuports/haikuports/master/sys-auth/ykpers/patches/0001-fix-boolean-value-with-json-c-0.14.patch
-	https://raw.githubusercontent.com/haikuports/haikuports/master/sys-auth/ykpers/patches/ykpers-1.20.0.patchset
+	https://raw.githubusercontent.com/haikuports/haikuports/0bbcd431ab6e8045e9c49d279bd1146a2674bc15/sys-auth/ykpers/patches/0001-fix-boolean-value-with-json-c-0.14.patch
+	https://raw.githubusercontent.com/haikuports/haikuports/adc6299c8900d003cfc0e8fe20500bb9975078b0/sys-auth/ykpers/patches/ykpers-1.20.0.patchset
 "
 
 CATEGORY="Security"
@@ -14,7 +14,12 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libjson-c-devel libusb1.0-devel libyubikey-devel"
+BUILD_REQUIRES="
+	asciidoc
+	libjson-c-devel
+	libusb1.0-devel
+	libyubikey-devel
+"
 
 DIFF_EXCLUDES="
 	*.1

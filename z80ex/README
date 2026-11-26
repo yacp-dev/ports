@@ -6,16 +6,16 @@ for each opcode (including I/O operations), multiple CPU contexts. disassembler
 is also included.
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libz80ex1-1.1.21-1bl3
+  cygwin-3.6.12-1
+  libz80ex1-1.1.21-1bl4
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.42-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-11.4.0-1
-  ninja-1.12.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://sourceforge.net/projects/z80ex/
@@ -63,6 +63,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.21-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.1.21-1bl3 -----
 Rebuild with gcc-11.4.0

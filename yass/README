@@ -3,25 +3,25 @@ yass
 YASS is a genomic similarity search tool, for nucleic (DNA/RNA) sequences in
 fasta or plain text format (it produces local pairwise alignments). This tool
 is currently developed and maintained by L. Noe and G. Kucherov of the LIFL
-Bioinfo / INRIA Lille-Nord Europe Sequoia group. Like most of the heuristic
-DNA local alignment software (BLAST, FASTA, PATTERNHUNTER, BLASTZ ...), YASS
-uses seeds to detect potential similarity regions, and then tries to extend
-them to actual alignments. This genomic search tool uses multiple transition
+Bioinfo / INRIA Lille-Nord Europe Sequoia group. Like most of the heuristic DNA
+local alignment software (BLAST, FASTA, PATTERNHUNTER, BLASTZ ...), YASS uses
+seeds to detect potential similarity regions, and then tries to extend them to
+actual alignments. This genomic search tool uses multiple transition
 constrained spaced seeds that enable to search more fuzzy repeats, as
 non-coding DNA/RNA. Another simple, but interesting feature is that you can
 specify the seed pattern used in the search step (as provided by hedera or
 iedera).
 
 Runtime requirements:
-  cygwin-3.6.4-1
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
@@ -59,6 +59,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.14-1bl5 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.14-1bl4 -----
 Rebuild with gcc-13.4.0

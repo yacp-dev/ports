@@ -8,8 +8,8 @@ handle over 100K connections on cheap \$5 (1024 MB) virtual machine. Reduce
 number of pool connections up to 256 times, 100K workers become just 391
 worker on pool side. Written on C++/libuv same as XMRig miner."
 
-LICENSE="GPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE="GPL-3.0-or-later AND MIT AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later AND MIT AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="

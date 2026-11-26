@@ -1,5 +1,5 @@
---- origsrc/xmrig-proxy-6.26.0/CMakeLists.txt	2026-03-28 22:04:41.000000000 +0900
-+++ src/xmrig-proxy-6.26.0/CMakeLists.txt	2026-05-30 05:54:45.667729700 +0900
+--- origsrc/xmrig-proxy-6.27.0/CMakeLists.txt	2026-11-23 02:30:31.000000000 +0000
++++ src/xmrig-proxy-6.27.0/CMakeLists.txt	2026-11-26 15:11:01.987315400 +0000
 @@ -192,11 +192,13 @@ if (WITH_DEBUG_LOG)
  endif()
  
@@ -16,9 +16,9 @@
  
  if (CMAKE_CXX_COMPILER_ID MATCHES Clang AND CMAKE_BUILD_TYPE STREQUAL Release AND NOT CMAKE_GENERATOR STREQUAL Xcode)
      add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_STRIP} "$<TARGET_FILE:${CMAKE_PROJECT_NAME}>")
---- origsrc/xmrig-proxy-6.26.0/src/base/base.cmake	2026-03-28 22:04:41.000000000 +0900
-+++ src/xmrig-proxy-6.26.0/src/base/base.cmake	2026-05-30 05:54:45.667729700 +0900
-@@ -88,7 +88,6 @@ set(HEADERS_BASE
+--- origsrc/xmrig-proxy-6.27.0/src/base/base.cmake	2026-11-23 02:30:31.000000000 +0000
++++ src/xmrig-proxy-6.27.0/src/base/base.cmake	2026-11-26 15:11:01.989071400 +0000
+@@ -89,7 +89,6 @@ set(HEADERS_BASE
     )
  
  set(SOURCES_BASE
@@ -26,32 +26,32 @@
      src/base/crypto/Algorithm.cpp
      src/base/crypto/Coin.cpp
      src/base/crypto/keccak.cpp
---- origsrc/xmrig-proxy-6.26.0/src/base/kernel/Process.cpp	2026-03-28 22:04:41.000000000 +0900
-+++ src/xmrig-proxy-6.26.0/src/base/kernel/Process.cpp	2026-05-30 05:54:45.681423200 +0900
+--- origsrc/xmrig-proxy-6.27.0/src/base/kernel/Process.cpp	2026-11-23 02:30:31.000000000 +0000
++++ src/xmrig-proxy-6.27.0/src/base/kernel/Process.cpp	2026-11-26 15:11:01.989071400 +0000
 @@ -22,7 +22,7 @@
  
  
  #include "base/kernel/Process.h"
 -#include "3rdparty/fmt/core.h"
-+#include <fmt/core.h>
++#include <fmt/format.h>
  #include "base/tools/Chrono.h"
  #include "version.h"
  
---- origsrc/xmrig-proxy-6.26.0/src/base/net/stratum/BaseClient.cpp	2026-03-28 22:04:41.000000000 +0900
-+++ src/xmrig-proxy-6.26.0/src/base/net/stratum/BaseClient.cpp	2026-05-30 05:54:45.684731700 +0900
+--- origsrc/xmrig-proxy-6.27.0/src/base/net/stratum/BaseClient.cpp	2026-11-23 02:30:31.000000000 +0000
++++ src/xmrig-proxy-6.27.0/src/base/net/stratum/BaseClient.cpp	2026-11-26 15:11:01.991082200 +0000
 @@ -17,8 +17,8 @@
   */
  
  #include "base/net/stratum/BaseClient.h"
 -#include "3rdparty/fmt/core.h"
 -#include "3rdparty/rapidjson/document.h"
-+#include <fmt/core.h>
++#include <fmt/format.h>
 +#include <rapidjson/document.h>
  #include "base/io/Env.h"
  #include "base/io/log/Log.h"
  #include "base/io/log/Tags.h"
---- origsrc/xmrig-proxy-6.26.0/src/base/net/stratum/Pool.cpp	2026-03-28 22:04:41.000000000 +0900
-+++ src/xmrig-proxy-6.26.0/src/base/net/stratum/Pool.cpp	2026-05-30 05:54:45.688190000 +0900
+--- origsrc/xmrig-proxy-6.27.0/src/base/net/stratum/Pool.cpp	2026-11-23 02:30:31.000000000 +0000
++++ src/xmrig-proxy-6.27.0/src/base/net/stratum/Pool.cpp	2026-11-26 15:11:01.991082200 +0000
 @@ -25,7 +25,7 @@
  
  

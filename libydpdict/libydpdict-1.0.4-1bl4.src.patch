@@ -1,5 +1,5 @@
---- origsrc/libydpdict-1.0.4/configure.ac	2018-11-07 04:58:12.000000000 +0900
-+++ src/libydpdict-1.0.4/configure.ac	2025-07-12 09:14:06.368860500 +0900
+--- origsrc/libydpdict-1.0.4/configure.ac	2018-11-06 19:58:12.000000000 +0000
++++ src/libydpdict-1.0.4/configure.ac	2026-11-26 13:25:06.821286400 +0000
 @@ -1,7 +1,7 @@
  dnl $Id$
  
@@ -10,8 +10,8 @@
  AC_PREREQ(2.50)
  AC_CONFIG_HEADERS(config.h)
  
---- origsrc/libydpdict-1.0.4/src/Makefile.am	2018-11-07 04:58:12.000000000 +0900
-+++ src/libydpdict-1.0.4/src/Makefile.am	2025-07-12 09:14:06.370870400 +0900
+--- origsrc/libydpdict-1.0.4/src/Makefile.am	2018-11-06 19:58:12.000000000 +0000
++++ src/libydpdict-1.0.4/src/Makefile.am	2026-11-26 13:25:06.823051200 +0000
 @@ -1,4 +1,4 @@
  lib_LTLIBRARIES = libydpdict.la
  libydpdict_la_SOURCES = ydpdict.c

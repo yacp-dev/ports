@@ -1,11 +1,11 @@
---- origsrc/z80ex-1.1.21/CMakeLists.txt	2013-07-29 08:45:44.000000000 +0900
-+++ src/z80ex-1.1.21/CMakeLists.txt	2024-05-08 17:43:43.561108200 +0900
+--- origsrc/z80ex-1.1.21/CMakeLists.txt	2013-07-28 23:45:44.000000000 +0000
++++ src/z80ex-1.1.21/CMakeLists.txt	2026-11-26 06:22:09.508568900 +0000
 @@ -11,7 +11,12 @@ option (OPSTEP_FAST_AND_ROUGH "Fast and
  
  #ALL_CFLAGS := -fPIC -fno-common -ansi -pedantic -Wall -pipe -O2 -I. -I./include
  if (CMAKE_COMPILER_IS_GNUCC)
 -    set (CMAKE_C_FLAGS "-fPIC -fno-common -ansi -pedantic -Wall -pipe -O2")
-+    set (CMAKE_C_FLAGS "-fno-common -Wall -pipe -O2")
++    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-common -Wall -pipe -O2")
 +    if (CYGWIN)
 +        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11")
 +    else ()

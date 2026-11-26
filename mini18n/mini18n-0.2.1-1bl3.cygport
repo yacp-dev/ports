@@ -1,7 +1,8 @@
 HOMEPAGE="https://sourceforge.net/projects/yabause/"
 SRC_URI="mirror://debian/pool/main/${PN:0:1}/${PN}/${PN}_${PV}.orig.tar.gz"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.2.1-2/debian/patches/0001-Use-GNUInstallDirs.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.2.1-3/debian/patches/0001-Use-GNUInstallDirs.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/0.2.1-3/debian/patches/0002-CMake4.patch
 "
 
 CATEGORY="Libs"
@@ -14,6 +15,14 @@ LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 inherit cmake
+
+# upstream has no test suite: check the example translates with example/fr
+src_test() {
+	cd ${B}/example
+	PATH=${B}/src:${PATH} verbose ./simple-example.exe ${S}/example/fr > simple.out
+	verbose cat simple.out
+	verbose grep -qx 'Bonjour !' simple.out
+}
 
 PKG_NAMES="
 	${PN}

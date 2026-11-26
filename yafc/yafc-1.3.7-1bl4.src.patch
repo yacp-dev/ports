@@ -1,5 +1,5 @@
---- origsrc/yafc-1.3.7/Makefile.am	2016-01-02 01:46:35.000000000 +0900
-+++ src/yafc-1.3.7/Makefile.am	2025-12-05 08:33:17.418930700 +0900
+--- origsrc/yafc-1.3.7/Makefile.am	2016-01-01 16:46:35.000000000 +0000
++++ src/yafc-1.3.7/Makefile.am	2026-11-26 11:19:07.830869100 +0000
 @@ -140,6 +140,7 @@ BUILT_SOURCES = src/yafcrc.h
  AM_CPPFLAGS = $(BSD_CFLAGS) \
  							$(SSH_CFLAGS) \
@@ -8,8 +8,8 @@
  							-I$(top_srcdir)/src \
  							-I$(top_srcdir)/src/ftp \
  							-I$(top_srcdir)/src/libmhe
---- origsrc/yafc-1.3.7/configure.ac	2016-01-02 01:46:35.000000000 +0900
-+++ src/yafc-1.3.7/configure.ac	2025-12-05 08:33:17.420929300 +0900
+--- origsrc/yafc-1.3.7/configure.ac	2016-01-01 16:46:35.000000000 +0000
++++ src/yafc-1.3.7/configure.ac	2026-11-26 11:19:07.831656300 +0000
 @@ -143,7 +143,7 @@ AC_SEARCH_LIBS(socket, socket, [],
    AC_MSG_WARN(cannot find socket function)
  ])
@@ -19,8 +19,8 @@
  [
    AC_LIBOBJ([getopt])
    AC_LIBOBJ([getopt1])
---- origsrc/yafc-1.3.7/lib/fnmatch.c	2016-01-02 01:46:35.000000000 +0900
-+++ src/yafc-1.3.7/lib/fnmatch.c	2025-12-05 08:33:17.422927200 +0900
+--- origsrc/yafc-1.3.7/lib/fnmatch.c	2016-01-01 16:46:35.000000000 +0000
++++ src/yafc-1.3.7/lib/fnmatch.c	2026-11-26 11:19:07.831656300 +0000
 @@ -21,7 +21,9 @@
  
  #include <config.h>

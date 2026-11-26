@@ -10,11 +10,24 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libintl-devel libncurses-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libintl-devel
+	libncurses-devel
+	util-linux
+"
 
 DIFF_EXCLUDES="
 	stamp-po
 "
+
+src_test()
+{
+	cd ${B}
+	# the curses tests exit 77 (skip) unless stdin and stdout are ttys: CI has
+	# none, so give them a pty
+	TERM=${TERM:-xterm} verbose script -qec "make -k ${MAKEOPTS} check TESTS_ENVIRONMENT='timeout --foreground -k 5 60'" /dev/null
+}
 
 PKG_NAMES="
 	libyacurs
@@ -26,6 +39,7 @@ libyacurs_CONTENTS="
 "
 libyacurs0_CONTENTS="
 	usr/bin/cyg*-0.dll
+	usr/share/locale
 "
 libyacurs_devel_CONTENTS="
 	usr/include

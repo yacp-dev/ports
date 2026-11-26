@@ -4,29 +4,28 @@ libyacurs is a curses widget library for fast development of curses
 applications.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libgcc1-12.4.0-3
-  libintl8-0.22.4-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libintl8-0.26-1
   libncursesw10-6.5+20240427-1
-  libstdc++6-12.4.0-3
-  libyacurs-devel-1.0.2-1bl3
-  libyacurs0-1.0.2-1bl3
-  pkg-config-2.3.0-1
+  libstdc++6-14.4.0-1
+  libyacurs-devel-1.0.2-1bl4
+  libyacurs0-1.0.2-1bl4
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2023.02.20-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gcc-g++-12.4.0-3
-  gettext-devel-0.22.4-1
-  libintl-devel-0.22.4-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  gettext-devel-0.26-1
+  libintl-devel-0.26-1
   libncurses-devel-6.5+20240427-1
-  libtool-2.4.7-1
+  libtool-2.6.2-1
   make-4.4.1-2
+  util-linux-2.40.2-2
 
 Canonical website:
   https://github.com/RafaelOstertag/libyacurs
@@ -63,6 +62,7 @@ Files included in the binary package:
 
 (libyacurs0)
   /usr/bin/cygyacurs-0.dll
+  /usr/share/locale/de/LC_MESSAGES/libyacurs.mo
 
 (libyacurs-devel)
   /usr/include/yacurs/area.h
@@ -129,6 +129,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.2-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.2-1bl3 -----
 Rebuild with gcc-12.4.0

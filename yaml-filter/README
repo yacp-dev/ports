@@ -3,18 +3,19 @@ yaml-filter
 YAML document filtering for libyaml
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libyaml-path-devel-0.2.0-1bl2
-  libyaml-path0-0.2.0-1bl2
+  cygwin-3.6.12-1
+  libyaml-devel-0.2.5-1
+  libyaml-path-devel-0.2.0-1bl3
+  libyaml-path0-0.2.0-1bl3
   libyaml0_2-0.2.5-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46.1-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   libyaml-devel-0.2.5-1
   ninja-1.13.2-1
 
@@ -62,6 +63,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.2.0-1bl2 -----
 Rebuild with gcc-13.4.0

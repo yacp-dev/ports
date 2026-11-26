@@ -1,0 +1,37 @@
+--- origsrc/yaml-filter-0.2.0/CMakeLists.txt	2020-09-28 20:36:56.000000000 +0000
++++ src/yaml-filter-0.2.0/CMakeLists.txt	2026-11-26 12:02:44.163172800 +0000
+@@ -11,8 +11,14 @@ include_directories(${YAML_INCLUDE_DIRS}
+ 
+ add_library(yaml-path src/yaml-path.c)
+ target_link_libraries(yaml-path ${YAML_LIBRARIES})
++if (DEFINED SOVERSION)
++	set_target_properties(yaml-path PROPERTIES SOVERSION ${SOVERSION})
++endif()
+ add_coverage(yaml-path)
+ 
++install(TARGETS yaml-path RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
++install(FILES src/yaml-path.h DESTINATION include)
++
+ add_executable(yamlp src/yamlp.c)
+ target_link_libraries(yamlp yaml-path)
+ add_coverage(yamlp)
+@@ -39,3 +45,19 @@ add_subdirectory("tests")
+ 
+ coverage_evaluate()
+ 
++include(GNUInstallDirs)
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/yaml-filter.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: yaml-filter
++Description: YAML document filtering for libyaml
++Version: ${VERSION}
++Requires: yaml-0.1
++Libs: -L\${libdir} -lyaml-path
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/yaml-filter.pc"
++	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)

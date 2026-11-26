@@ -9,13 +9,15 @@ LICENSE="GPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libncurses-devel"
+BUILD_REQUIRES="
+	libncurses-devel
+"
 
 src_compile()
 {
 	cd ${B}
 	lndirs
-	cygmake
+	cygmake CFLAGS_PLATFORM="${CXXFLAGS}" LDFLAGS_PLATFORM="${LDFLAGS}"
 }
 
 src_test()

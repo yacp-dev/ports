@@ -4,25 +4,26 @@ The YubiKey Personalization package contains a library and command line tool
 used to personalize (i.e., set a AES key) YubiKeys.
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libjson-c5-0.17-1
+  cygwin-3.6.12-1
+  libjson-c5-0.19-1
   libusb1.0-1.0.21-1
-  libykpers1-devel-1.20.0-1bl2
-  libykpers1_1-1.20.0-1bl2
-  libyubikey0-1.13-1bl2
-  pkg-config-2.2.0-1
+  libykpers1-devel-1.20.0-1bl3
+  libykpers1_1-1.20.0-1bl3
+  libyubikey0-1.13-1bl4
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.9-1
-  gcc-core-11.4.0-1
-  libjson-c-devel-0.17-1
-  libtool-2.4.7-1
+  asciidoc-10.2.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libjson-c-devel-0.19-1
+  libtool-2.6.2-1
   libusb1.0-devel-1.0.21-1
-  libyubikey-devel-1.13-1bl2
+  libyubikey-devel-1.13-1bl4
   make-4.4.1-2
 
 Canonical website:
@@ -79,6 +80,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.20.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.20.0-1bl2 -----
 Rebuild for libjson-c

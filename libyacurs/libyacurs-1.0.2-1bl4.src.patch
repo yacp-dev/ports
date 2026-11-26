@@ -1,5 +1,5 @@
---- origsrc/libyacurs-1.0.2/Makefile.am	2020-11-09 01:41:59.000000000 +0900
-+++ src/libyacurs-1.0.2/Makefile.am	2024-09-21 13:49:26.276133000 +0900
+--- origsrc/libyacurs-1.0.2/Makefile.am	2020-11-08 16:41:59.000000000 +0000
++++ src/libyacurs-1.0.2/Makefile.am	2026-11-26 13:25:31.391319400 +0000
 @@ -3,3 +3,6 @@ ACLOCAL_AMFLAGS= -I m4
  SUBDIRS = po include src tests
  
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libyacurs-1.0.2/configure.ac	2020-11-09 01:41:59.000000000 +0900
-+++ src/libyacurs-1.0.2/configure.ac	2024-09-21 13:49:26.276133000 +0900
+--- origsrc/libyacurs-1.0.2/configure.ac	2020-11-08 16:41:59.000000000 +0000
++++ src/libyacurs-1.0.2/configure.ac	2026-11-26 13:25:31.389295700 +0000
 @@ -229,7 +229,7 @@ AC_COMPILE_IFELSE(
  LIBS="$my_saved_LIBS"
  
@@ -18,8 +18,8 @@
  AC_OUTPUT
  
  AC_MSG_NOTICE([])
---- origsrc/libyacurs-1.0.2/libyacurs.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libyacurs-1.0.2/libyacurs.pc.in	2024-09-21 13:49:26.291765000 +0900
+--- origsrc/libyacurs-1.0.2/libyacurs.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libyacurs-1.0.2/libyacurs.pc.in	2026-11-26 13:25:31.390520000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -31,8 +31,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lyacurs
 +Cflags: -I${includedir}
---- origsrc/libyacurs-1.0.2/src/Makefile.am	2020-11-09 01:41:59.000000000 +0900
-+++ src/libyacurs-1.0.2/src/Makefile.am	2024-09-21 13:49:26.291765000 +0900
+--- origsrc/libyacurs-1.0.2/src/Makefile.am	2020-11-08 16:41:59.000000000 +0000
++++ src/libyacurs-1.0.2/src/Makefile.am	2026-11-26 13:25:31.393349200 +0000
 @@ -6,7 +6,7 @@ else
  lib_LTLIBRARIES = libyacurs.la
  endif
@@ -42,16 +42,40 @@
  
  libyacurs_la_CPPFLAGS = -D_XOPEN_SOURCE_EXTENDED=1	\
  -DPACKAGE=\"$(PACKAGE)\" -DLOCALEDIR=\"$(localedir)\"	\
---- origsrc/libyacurs-1.0.2/tests/Makefile.am	2020-11-09 01:41:59.000000000 +0900
-+++ src/libyacurs-1.0.2/tests/Makefile.am	2024-09-21 13:49:26.291765000 +0900
+--- origsrc/libyacurs-1.0.2/src/curswin.cc	2020-11-08 16:41:59.000000000 +0000
++++ src/libyacurs-1.0.2/src/curswin.cc	2026-11-26 13:25:31.392531200 +0000
+@@ -372,6 +372,10 @@ CursWin& CursWin::addlinex(const std::st
+ }
+ 
+ CursWin& CursWin::addnstr(const CurStr& str, int n) {
++    // ncurses 6.5 returns ERR for n == 0, which would throw below:
++    // writing nothing is not an error.
++    if (n == 0) return *this;
++
+     set_color(str.color());
+ 
+ #ifdef YACURS_USE_WCHAR
+--- origsrc/libyacurs-1.0.2/tests/Makefile.am	2020-11-08 16:41:59.000000000 +0000
++++ src/libyacurs-1.0.2/tests/Makefile.am	2026-11-26 13:25:31.395373800 +0000
 @@ -1,4 +1,4 @@
  # $Id$
  
 -SUBDIRS = preloadlib basic ui-interactive ui-non-interactive
 +SUBDIRS = basic ui-interactive ui-non-interactive
  
---- origsrc/libyacurs-1.0.2/tests/preloadlib/Makefile.am	2020-11-09 01:41:59.000000000 +0900
-+++ src/libyacurs-1.0.2/tests/preloadlib/Makefile.am	2024-09-21 13:49:26.291765000 +0900
+--- origsrc/libyacurs-1.0.2/tests/basic/Makefile.am	2020-11-08 16:41:59.000000000 +0000
++++ src/libyacurs-1.0.2/tests/basic/Makefile.am	2026-11-26 13:25:31.393349200 +0000
+@@ -6,7 +6,7 @@ check_PROGRAMS = cursorbuf1 area colorpa
+  eventconnector1 eventqueue1 eventqueue2 eventqueue3 eventqueue4   \
+  eventqueue5 eventqueue6 eventqueue7 eventqueue8 eventqueue9
+ 
+-interactive_tests = eventqueue9
++interactive_tests = eventqueue9$(EXEEXT)
+ 
+ TESTS = $(filter-out $(interactive_tests), $(check_PROGRAMS))
+ 
+--- origsrc/libyacurs-1.0.2/tests/preloadlib/Makefile.am	2020-11-08 16:41:59.000000000 +0000
++++ src/libyacurs-1.0.2/tests/preloadlib/Makefile.am	2026-11-26 13:25:31.396307500 +0000
 @@ -16,7 +16,7 @@ testpreload.lo: testpreload.cc
  	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) -shared $(STDCXX98_FLAG) $(myCPPFLAGS) $(CXXFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(AM_CPPFLAGS) -DHAVE_CONFIG_H -c -o $(builddir)/$@ $<
  

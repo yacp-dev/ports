@@ -5,27 +5,27 @@ functions that libsodium doesn't include. In general, the libsodium routines
 are used with the exception of the algorithms not in NaCl.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libglib2.0_0-2.64.6-1
-  libguile3.0_1-3.0.9-3
-  libsodium23-1.0.18-1
-  libyacl-devel-1.1.1-1bl2
-  libyacl1.1_8-1.1.1-1bl2
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libglib2.0_0-2.90.1-1
+  libguile3.0_1-3.0.11-1
+  libsodium26-1.0.20-1
+  libyacl-devel-1.1.1-1bl3
+  libyacl1.1_8-1.1.1-1bl3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2023.02.20-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gettext-devel-0.22.5-1
-  libglib2.0-devel-2.64.6-1
-  libguile3.0-devel-3.0.9-3
-  libsodium-devel-1.0.18-1
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  libglib2.0-devel-2.90.1-1
+  libgmp-devel-6.3.0-1
+  libguile3.0-devel-3.0.11-1
+  libsodium-devel-1.0.20-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -77,6 +77,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.1-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.1.1-1bl2 -----
 Rebuild for libguile

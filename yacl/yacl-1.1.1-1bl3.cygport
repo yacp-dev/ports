@@ -7,11 +7,17 @@ DESCRIPTION="Basically this is my wrapper around a much better library (libsodiu
 some functions that libsodium doesn't include. In general, the libsodium
 routines are used with the exception of the algorithms not in NaCl."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
-LICENSE_URI="COPYING"
+LICENSE="BSD-2-Clause AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause"
+LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="libglib2.0-devel libguile3.0-devel libsodium-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libglib2.0-devel
+	libgmp-devel
+	libguile3.0-devel
+	libsodium-devel
+"
 
 CYGCONF_ARGS="
 	--enable-opt

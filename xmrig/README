@@ -1,50 +1,51 @@
 xmrig
 ------------------------------------------
-XMRig High performance, open source, cross platform RandomX,
-CryptoNight and Argon2 CPU/GPU miner, with official support for Windows.
+XMRig High performance, open source, cross platform RandomX, CryptoNight and
+Argon2 CPU/GPU miner, with official support for Windows.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libfmt12-12.1.0-1bl1
+  cygwin-3.6.12-1
+  libfmt12-12.2.1-1bl1
   libhwloc15-2.13.0-1
   libiconv2-1.19-2
-  libintl8-0.22.5-1
-  libssl3-3.5.6-1
-  libuv1-1.50.0-1
+  libintl8-0.26-1
+  libssl3-3.5.9-1
+  libuv1-1.53.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libfmt-devel-12.1.0-1bl1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libOpenCL-devel-2.3.5-1
+  libfmt-devel-12.2.1-1bl1
   libhwloc-devel-2.13.0-1
   libiconv-devel-1.19-2
-  libintl-devel-0.22.5-1
-  libssl-devel-3.5.6-1
-  libuv-devel-1.50.0-1
+  libintl-devel-0.26-1
+  libssl-devel-3.5.9-1
+  libuv-devel-1.53.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/xmrig/xmrig
 
 Canonical download:
-  https://github.com/xmrig/xmrig/archive/refs/tags/v6.26.0.tar.gz
+  https://github.com/xmrig/xmrig/archive/refs/tags/v6.27.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack xmrig-6.26.0-X-src.tar.xz
+  1. unpack xmrig-6.27.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./xmrig-6.26.0-X.cygport all
+        % cygport ./xmrig-6.27.0-X.cygport all
 
 This will create:
-  /usr/src/xmrig-6.26.0-X-src.tar.xz
-  /usr/src/xmrig-6.26.0-X.tar.xz
+  /usr/src/xmrig-6.27.0-X-src.tar.xz
+  /usr/src/xmrig-6.27.0-X.tar.xz
 
 -------------------------------------------
 
@@ -96,6 +97,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 6.27.0-1bl1 -----
+Version bump.
 
 ----- version 6.26.0-1bl1 -----
 Version bump.

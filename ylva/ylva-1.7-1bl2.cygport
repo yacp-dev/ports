@@ -6,8 +6,8 @@ PATCH_URI="
 
 CATEGORY="Security"
 SUMMARY="Commandline password manager for Unix-like operating systems"
-DESCRIPTION="Password management belongs to the command line, deep into the Unix heartland,
-the shell."
+DESCRIPTION="Password management belongs to the command line, deep into the Unix
+heartland, the shell."
 
 LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"

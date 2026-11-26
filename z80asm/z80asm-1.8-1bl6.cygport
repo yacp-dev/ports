@@ -1,7 +1,7 @@
 HOMEPAGE="https://www.nongnu.org/${PN}/"
 SRC_URI="mirror://savannah/${PN}/${P}.tar.gz"
 PATCH_URI="
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-no-bundled-libs.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/e4c64e2b056d87efebc440a4e3d84cffa8651502/f/${P}-no-bundled-libs.patch
 "
 
 CATEGORY="Devel"

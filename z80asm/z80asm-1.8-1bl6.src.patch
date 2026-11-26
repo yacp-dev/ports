@@ -1,5 +1,5 @@
---- origsrc/z80asm-1.8/Makefile	2026-06-20 22:08:32.677799500 +0900
-+++ src/z80asm-1.8/Makefile	2026-06-20 22:09:56.813623700 +0900
+--- origsrc/z80asm-1.8/Makefile	2026-11-26 06:36:16.221713600 +0000
++++ src/z80asm-1.8/Makefile	2026-11-26 06:36:16.648472200 +0000
 @@ -16,8 +16,8 @@
  # You should have received a copy of the GNU General Public License
  # along with this program.  If not, see <http://www.gnu.org/licenses/>.

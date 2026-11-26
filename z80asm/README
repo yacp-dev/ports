@@ -8,13 +8,13 @@ system with a Z80 in it. Some header files with labels of MSX specific
 addresses (BIOS, BDOS, system variables) are included.
 
 Runtime requirements:
-  cygwin-3.6.9-1
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
@@ -61,6 +61,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.8-1bl6 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.8-1bl5 -----
 Rebuild with gcc-13.4.0

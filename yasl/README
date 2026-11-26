@@ -3,46 +3,45 @@ yasl
 YASL is written in C99, and compiled and tests on Windows (MinGW and MSVC),
 Ubuntu (GCC, G++, Clang, Clang++, TCC), and MacOS (Clang, Clang++). Tests are
 run on all platforms using Azure for CI. Additional tests for the command-line
-interpreter are also run on all non-Windows systems. If you find a C99
-compiler that YASL is not compatible with, please open an issue so I can do my
-best to fix this. YASL should eventually be completely compatible with any C99
-compiler on any platform.
+interpreter are also run on all non-Windows systems. If you find a C99 compiler
+that YASL is not compatible with, please open an issue so I can do my best to
+fix this. YASL should eventually be completely compatible with any C99 compiler
+on any platform.
 
 Runtime requirements:
-  cygwin-3.6.9-1
-  libyasl-devel-0.13.8-1bl1
-  libyasl0-0.13.8-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libyasl-devel-0.13.9-1bl1
+  libyasl0-0.13.9-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   ninja-1.13.2-1
 
 Canonical website:
   https://github.com/yasl-lang/yasl
 
 Canonical download:
-  https://github.com/yasl-lang/yasl/archive/refs/tags/v0.13.8.tar.gz
+  https://github.com/yasl-lang/yasl/archive/refs/tags/v0.13.9.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack yasl-0.13.8-X-src.tar.xz
+  1. unpack yasl-0.13.9-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./yasl-0.13.8-X.cygport all
+        % cygport ./yasl-0.13.9-X.cygport all
 
 This will create:
-  /usr/src/yasl-0.13.8-X-src.tar.xz
-  /usr/src/yasl-0.13.8-X.tar.xz
-  /usr/src/libyasl0-0.13.8-X.tar.xz
-  /usr/src/libyasl-devel-0.13.8-X.tar.xz
+  /usr/src/yasl-0.13.9-X-src.tar.xz
+  /usr/src/yasl-0.13.9-X.tar.xz
+  /usr/src/libyasl0-0.13.9-X.tar.xz
+  /usr/src/libyasl-devel-0.13.9-X.tar.xz
 
 -------------------------------------------
 
@@ -68,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.13.9-1bl1 -----
+Version bump.
 
 ----- version 0.13.8-1bl1 -----
 Version bump.

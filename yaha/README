@@ -4,14 +4,14 @@ Flexible, sensitive and accurate DNA alignment tool designed to find optimal
 split-read mappings on single-end queries from 100bp to 32kb.
 
 Runtime requirements:
-  cygwin-3.6.9-1
+  cygwin-3.6.12-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
   make-4.4.1-2
 
 Canonical website:
@@ -73,6 +73,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1.83-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1.83-1bl2 -----
 Rebuild with gcc-13.4.0

@@ -5,31 +5,29 @@ the venerable libxml2 C library.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  libxml2-2.10.4-2
-  libxml2-devel-2.10.4-2
-  libxmlwrapp-devel-0.10.0-1bl1
-  libxmlwrapp6-0.10.0-1bl1
-  libxslt-1.1.29-1
-  libxslt-devel-1.1.29-1
-  libxsltwrapp-devel-0.10.0-1bl1
-  libxsltwrapp4-0.10.0-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libxml2-devel-2.13.9-3
+  libxml2_2-2.13.9-3
+  libxmlwrapp-devel-0.10.0-1bl2
+  libxmlwrapp6-0.10.0-1bl2
+  libxslt-1.1.43-1
+  libxslt-devel-1.1.43-1
+  libxsltwrapp-devel-0.10.0-1bl2
+  libxsltwrapp4-0.10.0-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libtool-2.5.4-1
-  libxml2-devel-2.10.4-2
-  libxslt-devel-1.1.29-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libtool-2.6.2-1
+  libxml2-devel-2.13.9-3
+  libxslt-devel-1.1.43-1
   make-4.4.1-2
 
 Canonical website:
@@ -102,6 +100,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.10.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.10.0-1bl1 -----
 Version bump.

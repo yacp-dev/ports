@@ -1,0 +1,42 @@
+Description: add useful files for developers
+ Adds pkg-config file.
+Author: Giulio Paci <giuliopaci@gmail.com>
+Forwarded: no
+--- a/configure.in
++++ b/configure.in
+@@ -330,4 +330,5 @@
+ 	   java/Makefile
+ 	   perl/Makefile.PL
+ 	   ruby/extconf.rb
++	   tinysvm.pc
+ 	   tinysvm.spec])
+--- /dev/null
++++ b/tinysvm.pc.in
+@@ -0,0 +1,15 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++datarootdir=@datarootdir@
++datadir=@datadir@
++pkgdatadir=${datarootdir}/tinysvm
++libexecdir=@libexecdir@
++modeldir=@libexecdir@/model
++
++Name: tinysvm
++Description: SVM trainer and classifier toolkit
++Version: @VERSION@
++Libs: -L${libdir} -ltinysvm @LIBS@
++Cflags: -I${includedir}
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -9,6 +9,9 @@
+ EXTRA_DIRS = doc perl ruby python java
+ EXTRA_DIST = tinysvm.spec THANKS
+ 
++pkgconfigdir   = $(libdir)/pkgconfig
++pkgconfig_DATA = tinysvm.pc
++
+ SUBDIRS = $(always_built_SUBDIRS)
+ 
+ pkgdatadir = @datadir@/@PACKAGE@

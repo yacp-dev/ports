@@ -1,0 +1,31 @@
+--- origsrc/Zipios-2.3.4/CMakeLists.txt	2025-08-31 01:11:53.000000000 +0000
++++ src/Zipios-2.3.4/CMakeLists.txt	2026-11-26 05:10:08.414728500 +0000
+@@ -209,3 +209,17 @@ include(CPack)
+ # End:
+ 
+ # vim: ts=4 sw=4 et nocindent
++
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/zipios.pc" "prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: Zipios
++Description: C++ library for reading and writing Zip files using streams
++Version: ${CPACK_PACKAGE_VERSION}
++Requires.private: zlib
++Libs: -L\${libdir} -lzipios
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/zipios.pc" DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/Zipios-2.3.4/cmake/CMakeLists.txt	2025-08-31 01:11:53.000000000 +0000
++++ src/Zipios-2.3.4/cmake/CMakeLists.txt	2026-11-26 05:10:08.412705200 +0000
+@@ -22,7 +22,7 @@ install(
+         ZipIosConfig.cmake
+ 
+     DESTINATION
+-        share/cmake/ZipIos
++        lib/cmake/ZipIos
+ )
+ 
+ # vim: ts=4 sw=4 et nocindent

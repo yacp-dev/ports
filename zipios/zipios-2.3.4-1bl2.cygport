@@ -4,10 +4,10 @@ SRC_DIR="Zipios-${PV}"
 
 CATEGORY="Libs"
 SUMMARY="C++ library for reading and writing Zip files using streams"
-DESCRIPTION="Zipios is a small C++ library for reading and writing zip files. The structure
-and public interface are based (somewhat loosely) on the java.util.zip
-package. The streams created to access the individual entries in a zip file
-are based on the standard iostream library."
+DESCRIPTION="Zipios is a small C++ library for reading and writing zip files.
+The structure and public interface are based (somewhat loosely) on the
+java.util.zip package. The streams created to access the individual entries in a
+zip file are based on the standard iostream library."
 
 LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"

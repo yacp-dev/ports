@@ -1,28 +1,28 @@
 zipios
 ------------------------------------------
 Zipios is a small C++ library for reading and writing zip files. The structure
-and public interface are based (somewhat loosely) on the java.util.zip
-package. The streams created to access the individual entries in a zip file
-are based on the standard iostream library.
+and public interface are based (somewhat loosely) on the java.util.zip package.
+The streams created to access the individual entries in a zip file are based on
+the standard iostream library.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  libzipios-devel-2.3.4-1bl1
-  libzipios2-2.3.4-1bl1
-  pkg-config-2.5.1-1
-  zlib0-1.3.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libzipios-devel-2.3.4-1bl2
+  libzipios2-2.3.4-1bl2
+  pkg-config-3.0.11-1
+  zlib-devel-1.4-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
   ninja-1.13.2-1
-  zlib-devel-1.3.1-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://github.com/Zipios/Zipios
@@ -85,6 +85,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.3.4-1bl2 -----
+Fix zipios.pc
 
 ----- version 2.3.4-1bl1 -----
 Version bump.

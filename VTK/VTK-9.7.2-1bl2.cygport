@@ -17,12 +17,11 @@ cross-platform and runs on Linux, Windows, Mac, and Unix platforms. VTK is
 part of Kitware's collection of commercially supported open-source platforms
 for software development."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND BSD-2-Clause AND BSD-3-Clause-LBNL AND BSD-4-Clause AND BSL-1.0 AND MIT AND Zlib AND Apache-1.1 AND Apache-2.0 AND (WTFPL OR CC0-1.0) AND GPL-3.0-only WITH Bison-exception-2.2 AND LicenseRef-BSD-3-Clause-LANL-Triad-USGov AND LicenseRef-BSD-3-Clause-LANL-USGov AND LicenseRef-BSD-3-Clause-Sandia-LANL-USGov AND LicenseRef-BSD-3-Clause-Sandia-LANL-California-USGov AND LicenseRef-BSD-3-Clause-Sandia-NVIDIA-USGov AND LicenseRef-BSD-3-Clause-Sandia-USGov"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND BSD-2-Clause AND BSD-3-Clause-LBNL AND BSD-4-Clause AND BSL-1.0 AND MIT AND Zlib AND Apache-1.1 AND Apache-2.0 AND (WTFPL OR CC0-1.0) AND GPL-3.0-only WITH Bison-exception-2.2 AND LicenseRef-BSD-3-Clause-LANL-Triad-USGov AND LicenseRef-BSD-3-Clause-LANL-USGov AND LicenseRef-BSD-3-Clause-Sandia-LANL-USGov AND LicenseRef-BSD-3-Clause-Sandia-LANL-California-USGov AND LicenseRef-BSD-3-Clause-Sandia-NVIDIA-USGov AND LicenseRef-BSD-3-Clause-Sandia-USGov"
 LICENSE_URI="Copyright.txt"
 
 BUILD_REQUIRES="
-	cli11
 	eigen3
 	fast_float
 	libcgns-devel
@@ -65,6 +64,7 @@ CYGCMAKE_ARGS="
 	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DVTK_BUILD_EXAMPLES:BOOL=ON
 	-DVTK_ENABLE_KITS:BOOL=ON
+	-DVTK_MODULE_ENABLE_VTK_AcceleratorsVTKmFilters:STRING=YES
 	-DVTK_MODULE_USE_EXTERNAL_VTK_exprtk:BOOL=OFF
 	-DVTK_MODULE_USE_EXTERNAL_VTK_ioss:BOOL=OFF
 	-DVTK_MODULE_USE_EXTERNAL_VTK_nlohmannjson:BOOL=OFF
@@ -76,6 +76,13 @@ CYGCMAKE_ARGS="
 "
 
 inherit cmake
+
+src_install()
+{
+	cd ${B}
+	ninja_install
+	verbose rm -f ${D}/usr/share/licenses/${PN}/Copyright.txt
+}
 
 PKG_NAMES="
 	${PN}
@@ -89,7 +96,6 @@ VTK_CONTENTS="
 libVTK9_7_1_CONTENTS="
 	usr/bin/cyg*-1.dll
 "
-libVTK9_7_1_REQUIRES="libX11_6 libXcursor1"
 libVTK9_7_devel_CONTENTS="
 	usr/include
 	usr/lib
@@ -97,3 +103,37 @@ libVTK9_7_devel_CONTENTS="
 VTK_SUMMARY="${SUMMARY} (utilities)"
 libVTK9_7_1_SUMMARY="${SUMMARY} (runtime)"
 libVTK9_7_devel_SUMMARY="${SUMMARY} (development)"
+
+libVTK9_7_1_REQUIRES="libX11_6 libXcursor1"
+libVTK9_7_devel_REQUIRES="
+	eigen3
+	fast_float
+	libaec-devel
+	libcgns-devel
+	libexpat-devel
+	libfmt-devel
+	libfreetype-devel
+	libgl2ps-devel
+	libhdf5-devel
+	libhpdf-devel
+	libjpeg-devel
+	libjsoncpp-devel
+	libloguru-devel
+	liblz4-devel
+	liblzma-devel
+	libnetcdf-devel
+	libogg-devel
+	libpng-devel
+	libproj-devel
+	libpugixml-devel
+	libscn-devel
+	libsqlite3-devel
+	libtheora-devel
+	libtiff-devel
+	libviskores-devel
+	libX11-devel
+	libxml2-devel
+	utf8cpp-devel
+	VTK
+	zlib-devel
+"

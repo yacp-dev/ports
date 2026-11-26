@@ -11,6 +11,25 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="LICENSE"
 
+BUILD_REQUIRES="
+	libboost-devel
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_patch_hook()
+{
+	cd ${origsrcdir}/${SRC_DIR}
+	verbose sed -i -e "/^AC_INIT/s/\[git\]/[${PV}]/" configure.ac
+}
+
+src_test()
+{
+	cd ${B}
+	# the tests read their data files from the current directory
+	verbose cp ${S}/tests/*.txt tests/
+	cygtest
+}
+
 PKG_NAMES="
 	yahttp
 	libyahttp0

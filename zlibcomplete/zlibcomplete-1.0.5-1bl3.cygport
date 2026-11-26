@@ -10,11 +10,15 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="zlib-devel"
+BUILD_REQUIRES="
+	ruby
+	zlib-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DVERSION:STRING=${PV}
 	-DZLIBCOMPLETE_STATIC:BOOL=OFF
 	-DZLIBCOMPLETE_SHARED:BOOL=ON
@@ -23,9 +27,16 @@ CYGCMAKE_ARGS="
 
 src_test()
 {
-	cd ${B}
-	./cppzltest.exe
+	# upstream's test/runtests: the round trips through gzip and the
+	# examples (test/runrubytests, which finds them in its parent
+	# directory), then cppzltest
+	verbose cp -r ${S}/test ${B}/
+	verbose bash ${B}/test/runtests
 }
+
+DOCS="
+	README.md
+"
 
 PKG_NAMES="
 	${PN}

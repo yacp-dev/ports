@@ -1,0 +1,71 @@
+--- origsrc/zlibcomplete-1.0.5/CMakeLists.txt	2017-09-27 04:20:08.000000000 +0000
++++ src/zlibcomplete-1.0.5/CMakeLists.txt	2026-11-26 02:41:36.881067500 +0000
+@@ -53,14 +53,16 @@ target_link_libraries(zlibcomplete PUBLI
+ target_include_directories(zlibcomplete PUBLIC ${PROJECT_SOURCE_DIR}/lib ${ZLIB_INCLUDE_DIR})
+ target_compile_options(zlibcomplete PRIVATE ${WARNING_FLAGS})
+ 
+-install(DIRECTORY ${CMAKE_SOURCE_DIR}/src/zlibcomplete
++install(DIRECTORY ${CMAKE_SOURCE_DIR}/lib/zlc
+         DESTINATION include
+-        FILES_MATCHING PATTERN "*.h"
++        FILES_MATCHING PATTERN "*.hpp"
+        )
+ install(TARGETS zlibcomplete
++        RUNTIME DESTINATION bin
+         ARCHIVE DESTINATION lib
+         LIBRARY DESTINATION lib
+        )
++set_target_properties(zlibcomplete PROPERTIES SOVERSION 0)
+ 
+ # Documentation (Doxygen)
+ 
+@@ -106,3 +108,19 @@ if(ZLIBCOMPLETE_EXAMPLES)
+     endforeach()    
+ endif()
+ 
++include(GNUInstallDirs)
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/zlibcomplete.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: zlibcomplete
++Description: C++ interface to the ZLib library
++Version: ${VERSION}
++Requires: zlib
++Libs: -L\${libdir} -lzlibcomplete
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/zlibcomplete.pc"
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/zlibcomplete-1.0.5/lib/raw.cpp	2017-09-27 04:20:08.000000000 +0000
++++ src/zlibcomplete-1.0.5/lib/raw.cpp	2026-11-26 02:41:36.881067500 +0000
+@@ -6,9 +6,17 @@
+ 
+ namespace zlibcomplete {
+ 
++// zlib 1.2.9 and later refuse a raw deflate stream with an 8-bit window
++// (deflateInit2 returns Z_STREAM_ERROR), so take 8 as 9, as zlib itself
++// does for zlib streams. An inflater with a larger window still reads
++// streams written with a smaller one.
++static int rawWindowBits(int windowBits) {
++  return windowBits == 8 ? 9 : windowBits;
++}
++
+ RawDeflater::RawDeflater(int level, flush_parameter autoFlush,
+                                int windowBits) :
+-  ZLibBaseCompressor(level, autoFlush, -windowBits) {
++  ZLibBaseCompressor(level, autoFlush, -rawWindowBits(windowBits)) {
+ }
+ 
+ std::string RawDeflater::deflate(const std::string& input) {
+@@ -22,7 +30,7 @@ std::string RawDeflater::finish(void) {
+ RawDeflater::~RawDeflater(void) {
+ }
+ 
+-RawInflater::RawInflater(int window_bits) : ZLibBaseDecompressor(-window_bits) {
++RawInflater::RawInflater(int window_bits) : ZLibBaseDecompressor(-rawWindowBits(window_bits)) {
+ }
+ 
+ RawInflater::~RawInflater(void) {

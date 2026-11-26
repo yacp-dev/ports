@@ -4,22 +4,22 @@ YubiKey C Client Library (libykclient) is a C library used to validate an
 Yubikey OTP against Yubico’s servers.
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libcurl4-8.7.1-1
-  libykclient-devel-2.15-1bl2
-  libykclient3-2.15-1bl2
-  pkg-config-2.2.0-1
+  cygwin-3.6.12-1
+  libcurl4-8.23.0-1
+  libykclient-devel-2.15-1bl3
+  libykclient3-2.15-1bl3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.9-1
-  gcc-core-11.4.0-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
   help2man-1.49.3-1
-  libcurl-devel-8.7.1-1
-  libtool-2.4.7-1
+  libcurl-devel-8.23.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -70,6 +70,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.15-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.15-1bl2 -----
 Rebuild with gcc-11.4.0

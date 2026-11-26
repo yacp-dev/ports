@@ -11,7 +11,10 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="help2man libcurl-devel"
+BUILD_REQUIRES="
+	help2man
+	libcurl-devel
+"
 
 PKG_NAMES="
 	${PN}

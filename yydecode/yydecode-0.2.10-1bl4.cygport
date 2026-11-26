@@ -1,0 +1,33 @@
+HOMEPAGE="https://sourceforge.net/projects/${PN}/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+PATCH_URI="
+	https://raw.githubusercontent.com/gentoo/gentoo/909a43287489284ede0304fc3bd913c49d80c345/net-news/${PN}/files/${P}-fix-strcmp-not-found.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/73452e0414cee2f4328569d9fda921a3934c036a/net-news/${PN}/files/${P}-gcc15.patch
+"
+
+CATEGORY="Text"
+SUMMARY="Decode yEnc archives"
+DESCRIPTION="yydecode is a highly portable decoder for yEnc encoded binaries, which
+unfortunately has recently been spreading like wildfire on Usenet. The name
+yydecode is a play on the infamous uudecode program, although that's not the
+only similarity - yydecode aims to behave like uudecode; in normal
+circumstances it can be used as a direct drop-in replacement."
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+# The bundled getopt.c uses K&R declarations (getenv ()), invalid in C23
+CFLAGS+=" -std=gnu17"
+
+src_test()
+{
+	# The tests read their data from the current directory
+	cd ${B}/checks
+	verbose cp ${S}/checks/*.reference ${S}/checks/yEnc.*_* ${S}/checks/data.random .
+	cd ${B}
+	# TESTS_ENVIRONMENT = $(SHELL) predates automake's parallel harness, where
+	# it makes sh run /bin/sh as a script; run each test with sh instead.
+	# The tests share their data.output.* files, so they run one at a time.
+	verbose make -k -j1 check TESTS_ENVIRONMENT= LOG_COMPILER=sh
+}

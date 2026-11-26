@@ -1,5 +1,5 @@
---- origsrc/voronota-1.29.4415/expansion_gl/CMakeLists.txt	2026-02-06 20:29:08.649235200 +0900
-+++ src/voronota-1.29.4415/expansion_gl/CMakeLists.txt	2026-02-06 20:29:28.288179300 +0900
+--- origsrc/voronota-1.29.4816/expansion_gl/CMakeLists.txt	2026-11-26 07:09:25.800047500 +0000
++++ src/voronota-1.29.4816/expansion_gl/CMakeLists.txt	2026-11-26 07:09:29.870002600 +0000
 @@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.6)
  project(Voronota-GL)
  
@@ -17,8 +17,8 @@
 +target_link_libraries(voronota-gl m GL GLEW glfw lodepng duktape linenoise)
  
  install(TARGETS voronota-gl RUNTIME DESTINATION bin)
---- origsrc/voronota-1.29.4415/expansion_gl/src/dependencies/ImGuiFileDialog/ImGuiFileDialog.cpp	2025-06-25 00:16:03.000000000 +0900
-+++ src/voronota-1.29.4415/expansion_gl/src/dependencies/ImGuiFileDialog/ImGuiFileDialog.cpp	2026-02-06 20:29:28.293529200 +0900
+--- origsrc/voronota-1.29.4816/expansion_gl/src/dependencies/ImGuiFileDialog/ImGuiFileDialog.cpp	2026-08-13 06:27:27.000000000 +0000
++++ src/voronota-1.29.4816/expansion_gl/src/dependencies/ImGuiFileDialog/ImGuiFileDialog.cpp	2026-11-26 07:09:29.872026300 +0000
 @@ -66,7 +66,7 @@ SOFTWARE.
  		#define PATH_MAX 260
  	#endif // PATH_MAX
@@ -28,8 +28,22 @@
  	#define _IGFD_UNIX_
  	#define stricmp strcasecmp
  	#include <sys/types.h>
---- origsrc/voronota-1.29.4415/expansion_js/CMakeLists.txt	2026-02-06 20:29:08.649235200 +0900
-+++ src/voronota-1.29.4415/expansion_js/CMakeLists.txt	2026-02-06 20:29:28.293529200 +0900
+--- origsrc/voronota-1.29.4816/expansion_gl/src/dependencies/imgui/imgui_impl_glfw.cpp	2026-08-13 06:27:27.000000000 +0000
++++ src/voronota-1.29.4816/expansion_gl/src/dependencies/imgui/imgui_impl_glfw.cpp	2026-11-26 07:09:29.874037300 +0000
+@@ -120,9 +120,11 @@
+ #ifndef GLFW_EXPOSE_NATIVE_X11      // for glfwGetX11Window() on Freedesktop (Linux, BSD, etc.)
+ #define GLFW_EXPOSE_NATIVE_X11
+ #endif
++#if !defined(__CYGWIN__)            // GLFW on Cygwin has no Wayland backend
+ #ifndef GLFW_EXPOSE_NATIVE_WAYLAND
+ #define GLFW_EXPOSE_NATIVE_WAYLAND
+ #endif
++#endif
+ #include <GLFW/glfw3native.h>
+ #endif
+ #undef Status                   // X11 headers are leaking this.
+--- origsrc/voronota-1.29.4816/expansion_js/CMakeLists.txt	2026-11-26 07:09:25.802057900 +0000
++++ src/voronota-1.29.4816/expansion_js/CMakeLists.txt	2026-11-26 07:09:29.874037300 +0000
 @@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.6)
  project(Voronota-JS)
  

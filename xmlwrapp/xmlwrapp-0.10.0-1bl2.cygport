@@ -1,5 +1,8 @@
 HOMEPAGE="https://github.com/vslavik/${PN}"
 SRC_URI="https://github.com/vslavik/${PN}/archive/refs/tags/v${PV}.tar.gz"
+PATCH_URI="
+	https://github.com/vslavik/${PN}/commit/b535ef0340a3517840e8207916ea0f85e1742358.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Lightweight C++ XML parsing library"
@@ -16,6 +19,7 @@ BUILD_REQUIRES="
 "
 
 CYGCONF_ARGS="
+	--disable-docs
 	--enable-maintainer-mode
 "
 
@@ -31,7 +35,7 @@ xmlwrapp_CONTENTS="
 	usr/share/doc/${PN}/[ALNR]*
 "
 libxmlwrapp6_CONTENTS="
-	usr/bin/cygxmlwrapp-*.dll
+	usr/bin/cygxmlwrapp-6.dll
 "
 libxmlwrapp_devel_CONTENTS="
 	usr/bin/${PN}-config
@@ -40,7 +44,7 @@ libxmlwrapp_devel_CONTENTS="
 	usr/lib/pkgconfig/xmlwrapp.pc
 "
 libxsltwrapp4_CONTENTS="
-	usr/bin/cygxsltwrapp-*.dll
+	usr/bin/cygxsltwrapp-4.dll
 "
 libxsltwrapp_devel_CONTENTS="
 	usr/include/xsltwrapp

@@ -13,7 +13,9 @@ LICENSE="LGPL-2.1-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="TinySVM"
+BUILD_REQUIRES="
+	tinysvm
+"
 
 export CPPFLAGS="${CPPFLAGS} -std=c++03"
 
@@ -47,7 +49,7 @@ yamcha_CONTENTS="
 	usr/share
 "
 libyamcha1_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg${PN}-1.dll
 "
 libyamcha_devel_CONTENTS="
 	usr/bin/${PN}-config

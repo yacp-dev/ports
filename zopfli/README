@@ -4,16 +4,16 @@ Zopfli Compression Algorithm is a compression library programmed in C to
 perform very good, but slow, deflate or zlib compression.
 
 Runtime requirements:
-  cygwin-3.6.10-1
+  cygwin-3.6.12-1
   libgcc1-14.4.0-1
   libstdc++6-14.4.0-1
-  libzopfli1-1.0.3-1bl2
+  libzopfli1-1.0.3-1bl3
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46.1-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
   gcc-core-14.4.0-1
   gcc-g++-14.4.0-1
   ninja-1.13.2-1
@@ -59,7 +59,7 @@ Files included in the binary package:
 (libzopfli-devel)
   /usr/include/zopfli.h
   /usr/include/zopflipng_lib.h
-  /usr/lib/cmake/Zopfli/ZopfliConfig-release.cmake
+  /usr/lib/cmake/Zopfli/ZopfliConfig-relwithdebinfo.cmake
   /usr/lib/cmake/Zopfli/ZopfliConfig.cmake
   /usr/lib/cmake/Zopfli/ZopfliConfigVersion.cmake
   /usr/lib/libzopfli.dll.a
@@ -68,6 +68,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.3-1bl3 -----
+Fix libzopfli-devel REQUIRES
 
 ----- version 1.0.3-1bl2 -----
 Rebuild with gcc-14.4.0

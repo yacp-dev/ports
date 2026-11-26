@@ -1,0 +1,67 @@
+HOMEPAGE="https://github.com/google/${PN}"
+SRC_URI="https://github.com/google/${PN}/archive/refs/tags/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}-3/debian/patches/Check_for_greyscale_when_small_image_uses_palette.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/44d0d1953c2eb003d3599efeb557539f9ac27904/app-arch/${PN}/files/${P}-cmake4.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/0e956531c1785a838750c45f0fed19c54dc6c06e/app-arch/${PN}/files/${P}-fix-restrict-check.patch
+"
+SRC_DIR="${PN}-${P}"
+
+CATEGORY="Archive"
+SUMMARY="Zopfli Compression Algorithm"
+DESCRIPTION="Zopfli Compression Algorithm is a compression library programmed in C to
+perform very good, but slow, deflate or zlib compression."
+
+LICENSE="Apache-2.0 AND Zlib"
+LICENSE_SPDX="SPDX-License-Identifier: Apache-2.0 AND Zlib"
+LICENSE_URI="COPYING"
+
+inherit cmake
+
+CYGCMAKE_ARGS="
+	-DBUILD_SHARED_LIBS:BOOL=ON
+"
+
+DOCS="
+	README.zopflipng
+"
+
+# Upstream has no test suite: round-trip both programs instead.
+src_test()
+{
+	cd ${B}
+	# verbose echoes the command on stdout: keep it out of pipes.
+	verbose cp ${S}/COPYING ${T}/COPYING
+	verbose ./zopfli.exe ${T}/COPYING || error "zopfli failed"
+	gzip -dc ${T}/COPYING.gz | cmp - ${S}/COPYING \
+		|| error "zopfli: gzip round trip differs from COPYING"
+	verbose ./zopflipng.exe -y --iterations=1 \
+		${S}/go/zopflipng/testdata/zoidberg.png ${T}/zoidberg.png \
+		> ${T}/zopflipng.log \
+		|| error "zopflipng failed"
+	cat ${T}/zopflipng.log
+	grep -q 'verification of result failed' ${T}/zopflipng.log \
+		&& error "zopflipng: verification of result failed"
+	[ -s ${T}/zoidberg.png ] || error "zopflipng wrote no output"
+}
+
+PKG_NAMES="
+	${PN}
+	lib${PN}1
+	lib${PN}-devel
+"
+zopfli_CONTENTS="
+	usr/bin/*.exe
+	usr/share
+"
+libzopfli1_CONTENTS="
+	usr/bin/cyg*-1.dll
+"
+libzopfli_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+zopfli_SUMMARY="${SUMMARY} (utilities)"
+libzopfli1_SUMMARY="${SUMMARY} (runtime)"
+libzopfli_devel_SUMMARY="${SUMMARY} (development)"
+libzopfli_devel_REQUIRES="zopfli"

@@ -6,8 +6,8 @@ PATCH_URI="
 
 CATEGORY="Science"
 SUMMARY="Flexible, sensitive and accurate DNA alignment tool"
-DESCRIPTION="Flexible, sensitive and accurate DNA alignment tool designed to find optimal
-split-read mappings on single-end queries from 100bp to 32kb."
+DESCRIPTION="Flexible, sensitive and accurate DNA alignment tool designed to
+find optimal split-read mappings on single-end queries from 100bp to 32kb."
 
 LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"

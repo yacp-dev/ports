@@ -12,17 +12,21 @@ make it easier to use than ftp or sftp. While it's mostly developed on Linux,
 it's been known to work on similar platforms (FreeBSD, OSX), and some
 not-so-similar platforms (Windows), with a bit of effort."
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND BSD-3-Clause"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
+	gettext-devel
+	libglib2.0-devel
 	libkrb5-devel
 	libintl-devel
 	libreadline-devel
 	libssh-devel
 	libssl-devel
 "
+
+CFLAGS+=" -std=gnu17"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()

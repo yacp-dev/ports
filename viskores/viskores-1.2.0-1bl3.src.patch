@@ -1,5 +1,5 @@
 --- origsrc/viskores-1.2.0/viskores/thirdparty/loguru/viskoresloguru/loguru.cpp	2026-08-19 21:01:56.000000000 +0000
-+++ src/viskores-1.2.0/viskores/thirdparty/loguru/viskoresloguru/loguru.cpp	2026-11-25 14:10:01.130882600 +0000
++++ src/viskores-1.2.0/viskores/thirdparty/loguru/viskoresloguru/loguru.cpp	2026-11-25 23:30:35.826669900 +0000
 @@ -68,12 +68,18 @@
  
  // TODO: use defined(_POSIX_VERSION) for some of these things?

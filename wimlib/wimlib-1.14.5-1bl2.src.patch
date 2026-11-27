@@ -1,5 +1,5 @@
---- origsrc/wimlib-1.14.5/configure.ac	2024-10-27 08:59:19.000000000 +0900
-+++ src/wimlib-1.14.5/configure.ac	2026-02-07 11:47:05.488061500 +0900
+--- origsrc/wimlib-1.14.5/configure.ac	2024-10-26 23:59:19.000000000 +0000
++++ src/wimlib-1.14.5/configure.ac	2026-11-27 11:25:50.546092000 +0000
 @@ -48,6 +48,12 @@ linux*)
  	WITH_NTFS_3G_DEFAULT="yes"
  	WITH_FUSE_DEFAULT="yes"
@@ -13,8 +13,8 @@
  *)
  	# Other UNIX
  	WITH_NTFS_3G_DEFAULT="yes"
---- origsrc/wimlib-1.14.5/include/wimlib/file_io.h	2026-01-30 11:08:05.000000000 +0900
-+++ src/wimlib-1.14.5/include/wimlib/file_io.h	2026-02-07 11:47:05.503785700 +0900
+--- origsrc/wimlib-1.14.5/include/wimlib/file_io.h	2026-01-30 02:08:05.000000000 +0000
++++ src/wimlib-1.14.5/include/wimlib/file_io.h	2026-11-27 11:25:50.546092000 +0000
 @@ -26,7 +26,7 @@ full_write(struct filedes *fd, const voi
  int
  full_pwrite(struct filedes *fd, const void *buf, size_t count, off_t offset);
@@ -24,8 +24,8 @@
  #  define O_BINARY 0
  #endif
  
---- origsrc/wimlib-1.14.5/tests/test-imagex	2024-10-27 08:59:19.000000000 +0900
-+++ src/wimlib-1.14.5/tests/test-imagex	2026-02-07 11:47:05.505842200 +0900
+--- origsrc/wimlib-1.14.5/tests/test-imagex	2024-10-26 23:59:19.000000000 +0000
++++ src/wimlib-1.14.5/tests/test-imagex	2026-11-27 11:25:50.548100000 +0000
 @@ -5,9 +5,9 @@
  
  set -e
@@ -48,8 +48,8 @@
  mkdir dir/subdir
  echo 'hello' > dir/subdir/hello
  echo 'hello' > dir/subdir/hello2
---- origsrc/wimlib-1.14.5/tests/test-imagex-capture_and_apply	2024-10-27 08:59:19.000000000 +0900
-+++ src/wimlib-1.14.5/tests/test-imagex-capture_and_apply	2026-02-07 11:47:05.521772000 +0900
+--- origsrc/wimlib-1.14.5/tests/test-imagex-capture_and_apply	2024-10-26 23:59:19.000000000 +0000
++++ src/wimlib-1.14.5/tests/test-imagex-capture_and_apply	2026-11-27 11:25:50.548100000 +0000
 @@ -10,9 +10,9 @@
  
  set -e
@@ -81,8 +81,8 @@
  	if $macOS && [[ $t_file == */case_*sensitive ]]; then
  		# Exclude test cases that fail on case-insensitive filesystem
  		continue
---- origsrc/wimlib-1.14.5/tests/test-imagex-update_and_extract	2024-10-27 08:59:19.000000000 +0900
-+++ src/wimlib-1.14.5/tests/test-imagex-update_and_extract	2026-02-07 11:47:05.535392200 +0900
+--- origsrc/wimlib-1.14.5/tests/test-imagex-update_and_extract	2024-10-26 23:59:19.000000000 +0000
++++ src/wimlib-1.14.5/tests/test-imagex-update_and_extract	2026-11-27 11:25:50.550109100 +0000
 @@ -4,9 +4,9 @@
  
  set -e

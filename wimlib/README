@@ -1,26 +1,25 @@
 wimlib
 ------------------------------------------
-wimlib is a C library for creating, modifying, extracting, and mounting
-Windows Imaging (WIM) files. wimlib and its command-line frontend
-'wimlib-imagex' provide a free and cross-platform alternative to Microsoft's
-WIMGAPI, ImageX, and DISM.
+wimlib is a C library for creating, modifying, extracting, and mounting Windows
+Imaging (WIM) files. wimlib and its command-line frontend 'wimlib-imagex'
+provide a free and cross-platform alternative to Microsoft's WIMGAPI, ImageX,
+and DISM.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.6-1
-  libwim-devel-1.14.5-1bl1
-  libwim15-1.14.5-1bl1
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libwim-devel-1.14.5-1bl2
+  libwim15-1.14.5-1bl2
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2024.10.16-1
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -118,6 +117,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.14.5-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.14.5-1bl1 -----
 Version bump.

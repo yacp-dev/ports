@@ -1,5 +1,10 @@
+inherit cmake
+
 HOMEPAGE="https://github.com/cesanta/${PN}"
-SRC_URI="https://github.com/cesanta/${PN}/archive/refs/tags/${PV}.tar.gz"
+SRC_URI="
+	https://github.com/cesanta/${PN}/archive/refs/tags/${PV}.tar.gz
+	CMakeLists.txt
+"
 
 CATEGORY="Libs"
 SUMMARY="Embedded JavaScript engine for C/C++"
@@ -10,39 +15,29 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="LICENSE"
 
-export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
-
-src_test()
-{
-	cd ${B}
-	verbose cp ${S}/tests/want_ast.db .
-	TZ=UTC cygtest
-	verbose rm -f want_ast.db
-}
-
 DOCS="
 	*.md
 "
 
 DIFF_EXCLUDES="
-	Makefile
+	ecma_report.txt
 "
 
 PKG_NAMES="
 	${PN}
-	lib${PN}_0
+	lib${PN}_3
 	lib${PN}-devel
 "
 v7_CONTENTS="
 	usr/share
 "
-libv7_0_CONTENTS="
-	usr/bin/cyg*-0.dll
+libv7_3_CONTENTS="
+	usr/bin/cyg*-3.dll
 "
 libv7_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 v7_SUMMARY="${SUMMARY} (licensing & readmes)"
-libv7_0_SUMMARY="${SUMMARY} (runtime)"
+libv7_3_SUMMARY="${SUMMARY} (runtime)"
 libv7_devel_SUMMARY="${SUMMARY} (development)"

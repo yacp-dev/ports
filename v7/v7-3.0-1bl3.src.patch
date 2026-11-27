@@ -1,0 +1,27 @@
+--- origsrc/v7-3.0/v7.c	2016-05-19 09:35:11.000000000 +0000
++++ src/v7-3.0/v7.c	2026-11-27 13:06:10.709633000 +0000
+@@ -17265,10 +17265,15 @@ v7_val_t v7_mk_string(struct v7 *v7, con
+      * so, perform the reallocation by calling `mbuf_resize` manually, since we
+      * need to preallocate some extra space (`_V7_STRING_BUF_RESERVE`)
+      */
++    char *orig_base = m->buf;
++    uint8_t p_in_mbuf = p >= orig_base && p < orig_base + m->len;
+     if ((m->len + len) > m->size) {
+       heapusage_dont_count(1);
+       mbuf_resize(m, m->len + len + _V7_STRING_BUF_RESERVE);
+       heapusage_dont_count(0);
++      if (p_in_mbuf) {
++        p += m->buf - orig_base;
++      }
+     }
+     embed_string(m, m->len, p, len, EMBSTR_ZERO_TERM);
+     tag = V7_TAG_STRING_O;
+@@ -31573,7 +31578,7 @@ V7_PRIVATE void init_string(struct v7 *v
+ #include <locale.h>
+ #include <time.h>
+ 
+-#ifndef _WIN32
++#if !defined(_WIN32) && !defined(__CYGWIN__)
+ extern long timezone;
+ #include <sys/time.h>
+ #endif

@@ -1,5 +1,5 @@
---- origsrc/xmlf90-1.6.3/doc/Makefile.am	2023-10-26 22:53:47.000000000 +0900
-+++ src/xmlf90-1.6.3/doc/Makefile.am	2024-07-22 16:59:03.998578100 +0900
+--- origsrc/xmlf90-1.6.3/doc/Makefile.am	2023-10-26 13:53:47.000000000 +0000
++++ src/xmlf90-1.6.3/doc/Makefile.am	2026-11-27 09:18:39.503760100 +0000
 @@ -4,7 +4,7 @@
  # Makefile for the documentation of XMLF90
  #
@@ -9,8 +9,8 @@
  
  EXTRA_DIST = \
    ReleaseNotes-1.1 \
---- origsrc/xmlf90-1.6.3/src/Makefile.am	2023-10-26 22:53:47.000000000 +0900
-+++ src/xmlf90-1.6.3/src/Makefile.am	2024-07-22 16:59:03.998578100 +0900
+--- origsrc/xmlf90-1.6.3/src/Makefile.am	2023-10-26 13:53:47.000000000 +0000
++++ src/xmlf90-1.6.3/src/Makefile.am	2026-11-27 09:18:39.503760100 +0000
 @@ -22,7 +22,7 @@ SUBDIRS = wxml cml sax xpath dom .
  lib_LTLIBRARIES = libxmlf90.la
  

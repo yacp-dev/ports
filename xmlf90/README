@@ -3,22 +3,21 @@ xmlf90
 Suite of libraries to handle XML in Fortran
 
 Runtime requirements:
-  cygwin-3.5.3-1
-  libgfortran5-12.4.0-2
-  libxmlf90-devel-1.6.3-1bl2
-  libxmlf90_0-1.6.3-1bl2
-  pkg-config-2.2.0-1
+  cygwin-3.6.12-1
+  libgfortran5-14.4.0-1
+  libxmlf90-devel-1.6.3-1bl3
+  libxmlf90_0-1.6.3-1bl3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2023.02.20-1
-  automake-20240607-1
-  binutils-2.42-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-2
-  gcc-fortran-12.4.0-2
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -108,6 +107,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.6.3-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.6.3-1bl2 -----
 Rebuild with gcc-12.4.0

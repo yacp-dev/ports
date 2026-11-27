@@ -1,45 +1,45 @@
 x52pro
 ------------------------------------------
-x52 PRO linux library
+User-space library and tools to control the Multi-Function Display (MFD) and
+LEDs on Saitek X52 and X52 Pro joysticks.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libusb0-1.2.6.0-2
-  libx52pro-devel-0.1.2-1bl2
-  libx52pro0-0.1.2-1bl2
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libusb1.0-1.0.21-1
+  libusb1.0-devel-1.0.21-1
+  libx52pro-devel-0.2.0-1bl1
+  libx52pro0-0.2.0-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.5.3-1
-  libusb-devel-1.2.6.0-2
-  make-4.4.1-2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libusb1.0-devel-1.0.21-1
+  ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/seesturm/x52lib/
+  https://github.com/seesturm/x52lib
 
 Canonical download:
-  https://github.com/seesturm/x52lib.git
+  https://github.com/seesturm/x52lib/archive/refs/tags/v0.2.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack x52pro-0.1.2-X-src.tar.xz
+  1. unpack x52pro-0.2.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./x52pro-0.1.2-X.cygport all
+        % cygport ./x52pro-0.2.0-X.cygport all
 
 This will create:
-  /usr/src/x52pro-0.1.2-X-src.tar.xz
-  /usr/src/x52pro-0.1.2-X.tar.xz
-  /usr/src/libx52pro0-0.1.2-X.tar.xz
-  /usr/src/libx52pro-devel-0.1.2-X.tar.xz
+  /usr/src/x52pro-0.2.0-X-src.tar.xz
+  /usr/src/x52pro-0.2.0-X.tar.xz
+  /usr/src/libx52pro0-0.2.0-X.tar.xz
+  /usr/src/libx52pro-devel-0.2.0-X.tar.xz
 
 -------------------------------------------
 
@@ -52,6 +52,7 @@ Files included in the binary package:
   /usr/share/doc/x52pro/README
   /usr/share/doc/x52pro/changelog
   /usr/share/man/man1/x52output.1.gz
+  /usr/share/metainfo/at.hasenleithner.plasma.x52pro.metainfo.xml
 
 (libx52pro0)
   /usr/bin/cygx52pro-0.dll
@@ -64,6 +65,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.2.0-1bl1 -----
+Version bump.
 
 ----- version 0.1.2-1bl2 -----
 Rebuild with gcc-12.4.0

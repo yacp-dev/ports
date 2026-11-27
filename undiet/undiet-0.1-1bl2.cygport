@@ -5,9 +5,9 @@ CATEGORY="Libs"
 SUMMARY="Diet file decompressor"
 DESCRIPTION="${SUMMARY}"
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
-# LICENSE_URI=""
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="https://raw.githubusercontent.com/bokic/undiet/master/LICENSE"
 
 inherit cmake
 
@@ -15,6 +15,16 @@ CYGCMAKE_ARGS="
 	-DSOVERSION:STRING=0
 	-DVERSION:STRING=${PV}
 "
+
+src_test()
+{
+	cd ${B}
+	export PATH=${B}:${PATH}
+	local out status=0
+	out=$(verbose ./${PN}.exe 2>&1) || status=$?
+	echo "${out}"
+	[ ${status} -eq 1 ] && echo "${out}" | grep -q "Usage: undiet"
+}
 
 PKG_NAMES="
 	undiet

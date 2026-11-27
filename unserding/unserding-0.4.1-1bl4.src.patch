@@ -1,5 +1,5 @@
---- origsrc/unserding-0.4.1/m4/sxe-compiler.m4	2013-03-21 17:14:09.000000000 +0900
-+++ src/unserding-0.4.1/m4/sxe-compiler.m4	2024-11-28 13:21:16.146057000 +0900
+--- origsrc/unserding-0.4.1/m4/sxe-compiler.m4	2013-03-21 08:14:09.000000000 +0000
++++ src/unserding-0.4.1/m4/sxe-compiler.m4	2026-11-27 22:11:20.310539900 +0000
 @@ -270,10 +270,6 @@ AC_DEFUN([SXE_FEATFLAGS], [dnl
  		featflags="${featflags} -static-intel"
  		XCCLDFLAGS="${XCCLDFLAGS} \${XCCFLAG} -static-intel"], [:],
@@ -19,8 +19,8 @@
  	SXE_WARNFLAGS
  	SXE_OPTIFLAGS
  	SXE_CFLAGS="$SXE_CFLAGS $debugflags $optiflags $warnflags"
---- origsrc/unserding-0.4.1/src/Makefile.am	2013-03-21 17:14:09.000000000 +0900
-+++ src/unserding-0.4.1/src/Makefile.am	2024-11-28 13:21:39.707129400 +0900
+--- origsrc/unserding-0.4.1/src/Makefile.am	2013-03-21 08:14:09.000000000 +0000
++++ src/unserding-0.4.1/src/Makefile.am	2026-11-27 22:11:20.310539900 +0000
 @@ -2,7 +2,7 @@
  
  AM_CPPFLAGS = -D_BSD_SOURCE -D_POSIX_C_SOURCE=200112L -D_XOPEN_SOURCE=600

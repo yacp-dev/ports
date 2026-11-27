@@ -7,11 +7,13 @@ DESCRIPTION="Unserding is a simple pub-sub messaging library, much like 0mq or n
 without all the transports they support and without the reliability promise,
 made for heavy-duty realtime delivery of time series."
 
-# LICENSE=""
-# LICENSE_SPDX="SPDX-License-Identifier: "
-# LICENSE_URI=""
+LICENSE="BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 
-BUILD_REQUIRES="libev-devel"
+BUILD_REQUIRES="
+	gengetopt
+	libev-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 

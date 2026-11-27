@@ -1,0 +1,22 @@
+--- origsrc/win32pe-0.1.0/CMakeLists.txt	2017-12-02 19:27:56.000000000 +0000
++++ src/win32pe-0.1.0/CMakeLists.txt	2026-11-27 10:33:30.992894100 +0000
+@@ -17,3 +17,19 @@ if(BUILD_TESTS)
+     enable_testing()
+     add_subdirectory(tests)
+ endif()
++
++include(GNUInstallDirs)
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/win32pe.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: win32pe
++Description: C++ library for working with Win32 PE files
++Version: ${PROJECT_VERSION}
++Libs: -L\${libdir} -lwin32pe
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/win32pe.pc"
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)

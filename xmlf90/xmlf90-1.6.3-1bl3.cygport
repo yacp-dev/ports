@@ -9,7 +9,15 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="COPYING"
 
+BUILD_REQUIRES="
+	gcc-fortran
+"
+
 export FCFLAGS="${FCFLAGS} -Wno-line-truncation"
+
+DOCS="
+	README.md
+"
 
 PKG_NAMES="
 	xmlf90

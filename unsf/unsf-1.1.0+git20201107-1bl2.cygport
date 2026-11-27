@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/psi29a/${PN}"
 GIT_URI="https://github.com/psi29a/${PN}.git"
+GIT_REV="c5e5a8c30c88203d52f48a492ed57099e44a2ad2"
 
 CATEGORY="Libs"
 SUMMARY="Converts SoundFont .sf2 files into GUS-type instrument patches"
@@ -12,6 +13,10 @@ LICENSE_URI="LICENSE"
 inherit cmake
 inherit git
 
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
 PKG_NAMES="
 	unsf
 	libunsf0
@@ -22,7 +27,7 @@ unsf_CONTENTS="
 	usr/share
 "
 libunsf0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygunsf-1.dll
 "
 libunsf_devel_CONTENTS="
 	usr/include
@@ -31,3 +36,13 @@ libunsf_devel_CONTENTS="
 unsf_SUMMARY="${SUMMARY} (licensing & readmes)"
 libunsf0_SUMMARY="${SUMMARY} (runtime)"
 libunsf_devel_SUMMARY="${SUMMARY} (development)"
+
+src_test()
+{
+	cd ${B}
+	export PATH=${B}:${PATH}
+	local out status=0
+	out=$(verbose ./${PN}.exe 2>&1) || status=$?
+	echo "${out}"
+	[ ${status} -eq 1 ] && echo "${out}" | grep -q "usage: unsf"
+}

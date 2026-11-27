@@ -1,5 +1,5 @@
---- origsrc/unsf/CMakeLists.txt	2023-08-28 12:50:32.000000000 +0900
-+++ src/unsf/CMakeLists.txt	2023-08-28 13:00:52.173721800 +0900
+--- origsrc/unsf/CMakeLists.txt	2026-11-27 22:12:07.000000000 +0000
++++ src/unsf/CMakeLists.txt	2026-11-27 22:12:09.150995000 +0000
 @@ -154,19 +154,6 @@ ELSE () # everyone else uses .a and .so
      SET(LIBRARY_STATIC_NAME "unsf")
  ENDIF ()

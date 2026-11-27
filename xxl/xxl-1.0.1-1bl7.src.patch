@@ -1,5 +1,5 @@
---- origsrc/xxl-1.0.1/Makefile.am	2004-10-14 01:34:52.000000000 +0900
-+++ src/xxl-1.0.1/Makefile.am	2024-05-03 21:27:59.819705200 +0900
+--- origsrc/xxl-1.0.1/Makefile.am	2004-10-13 16:34:52.000000000 +0000
++++ src/xxl-1.0.1/Makefile.am	2026-11-27 09:25:35.498937800 +0000
 @@ -10,15 +10,18 @@ dist_libxxl_la_SOURCES		= xxl.c		\
  				  ixxl.h
  nodist_libxxl_la_SOURCES	= xxl.h
@@ -21,8 +21,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/xxl-1.0.1/configure.ac	2005-01-31 02:42:38.000000000 +0900
-+++ src/xxl-1.0.1/configure.ac	2024-05-03 21:27:59.819705200 +0900
+--- origsrc/xxl-1.0.1/configure.ac	2005-01-30 17:42:38.000000000 +0000
++++ src/xxl-1.0.1/configure.ac	2026-11-27 09:25:35.499466900 +0000
 @@ -1,10 +1,10 @@
  AC_PREREQ(2.57)
  AC_COPYRIGHT([(c) Copyright 2003-2005 Matt Messier, John Viega])
@@ -42,8 +42,8 @@
 -AC_CONFIG_FILES([Makefile], [chmod -w Makefile])
 +AC_CONFIG_FILES([xxl.pc Makefile], [chmod -w Makefile])
  AC_OUTPUT
---- origsrc/xxl-1.0.1/xxl.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/xxl-1.0.1/xxl.pc.in	2024-05-03 21:27:59.819705200 +0900
+--- origsrc/xxl-1.0.1/xxl.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/xxl-1.0.1/xxl.pc.in	2026-11-27 09:25:35.499466900 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

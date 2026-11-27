@@ -1,7 +1,7 @@
 HOMEPAGE="https://launchpad.net/${PN}/"
 SRC_URI="https://launchpad.net/xxl/${PV[1]}.${PV[2]}/${PV}/+download/${P}.tar.gz"
 PATCH_URI="
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/dev-libs/${PN}/files/${P}-nested-exception.patch?id=0625e74f6445ed4dfac4c91eb92c851dbbcccd4c
+	https://raw.githubusercontent.com/gentoo/gentoo/0625e74f6445ed4dfac4c91eb92c851dbbcccd4c/dev-libs/${PN}/files/${P}-nested-exception.patch
 "
 
 CATEGORY="Libs"

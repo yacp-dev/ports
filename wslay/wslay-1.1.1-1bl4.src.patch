@@ -1,5 +1,5 @@
---- origsrc/wslay-1.1.1/tests/Makefile.am	2020-06-20 16:00:03.000000000 +0900
-+++ src/wslay-1.1.1/tests/Makefile.am	2025-12-19 17:11:39.047984800 +0900
+--- origsrc/wslay-1.1.1/tests/Makefile.am	2020-06-20 07:00:03.000000000 +0000
++++ src/wslay-1.1.1/tests/Makefile.am	2026-11-27 10:09:24.769311400 +0000
 @@ -36,8 +36,7 @@ HFILES = wslay_session_test.h wslay_fram
  main_SOURCES = $(HFILES) $(OBJECTS)
  

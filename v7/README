@@ -4,21 +4,18 @@ V7 is a JavaScript engine written in C. It makes it possible to program
 Internet of Things (IoT) devices in JavaScript.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libv7-devel-3.0-1bl2
-  libv7_0-3.0-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libv7-devel-3.0-1bl3
+  libv7_3-3.0-1bl3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45.1-1
-  cygport-0.37.3-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libtool-2.5.4-1
-  make-4.4.1-2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/cesanta/v7
@@ -38,7 +35,7 @@ Build instructions:
 This will create:
   /usr/src/v7-3.0-X-src.tar.xz
   /usr/src/v7-3.0-X.tar.xz
-  /usr/src/libv7_0-3.0-X.tar.xz
+  /usr/src/libv7_3-3.0-X.tar.xz
   /usr/src/libv7-devel-3.0-X.tar.xz
 
 -------------------------------------------
@@ -52,8 +49,8 @@ Files included in the binary package:
   /usr/share/doc/v7/README.md
   /usr/share/doc/v7/ReleaseNotes.md
 
-(libv7_0)
-  /usr/bin/cygv7-0.dll
+(libv7_3)
+  /usr/bin/cygv7-3.dll
 
 (libv7-devel)
   /usr/include/v7.h
@@ -63,6 +60,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 3.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 3.0-1bl2 -----
 Rebuild with gcc-13.4.0

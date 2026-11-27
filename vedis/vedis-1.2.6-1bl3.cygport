@@ -1,5 +1,8 @@
-HOMEPAGE="http://${PN}.symisc.net/"
-SRC_URI="http://${PN}.symisc.net/db/${PN}-ds-${PV//./}.zip"
+HOMEPAGE="https://${PN}.symisc.net/"
+SRC_URI="
+	https://${PN}.symisc.net/db/${PN}-ds-${PV//./}.zip
+	CMakeLists.txt
+"
 
 CATEGORY="Libs"
 SUMMARY="Embeddable Datastore Engine"
@@ -7,10 +10,20 @@ DESCRIPTION="Vedis is an embeddable datastore C library built with over 70 comma
 in concept to Redis but without the networking layer since Vedis run in the
 same process of the host application."
 
+LICENSE="BSD-2-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE_URI="license.txt"
+
+DOCS="
+	license.txt
+"
+
 unzip()
 {
 	/usr/bin/unzip $* -d ${SRC_DIR}
 }
+
+inherit cmake
 
 PKG_NAMES="
 	${PN}
@@ -21,7 +34,7 @@ vedis_CONTENTS="
 	usr/share
 "
 libvedis0_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-0.dll
 "
 libvedis_devel_CONTENTS="
 	usr/include

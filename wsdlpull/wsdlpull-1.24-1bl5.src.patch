@@ -1,5 +1,5 @@
---- origsrc/wsdlpull-1.24/examples/print/Makefile.am	2010-07-19 06:16:58.000000000 +0900
-+++ src/wsdlpull-1.24/examples/print/Makefile.am	2024-10-24 05:17:06.950745700 +0900
+--- origsrc/wsdlpull-1.24/examples/print/Makefile.am	2010-07-18 21:16:58.000000000 +0000
++++ src/wsdlpull-1.24/examples/print/Makefile.am	2026-11-27 10:26:24.623052700 +0000
 @@ -3,19 +3,20 @@
  
  MAINTAINERCLEANFILES = Makefile.in
@@ -27,8 +27,8 @@
  
  EXTRA_DIST = $(docs_DATA)
  
---- origsrc/wsdlpull-1.24/examples/stocks/Makefile.am	2010-07-19 06:16:58.000000000 +0900
-+++ src/wsdlpull-1.24/examples/stocks/Makefile.am	2024-10-24 05:17:06.950745700 +0900
+--- origsrc/wsdlpull-1.24/examples/stocks/Makefile.am	2010-07-18 21:16:58.000000000 +0000
++++ src/wsdlpull-1.24/examples/stocks/Makefile.am	2026-11-27 10:26:24.623052700 +0000
 @@ -3,12 +3,14 @@
  
  MAINTAINERCLEANFILES = Makefile.in
@@ -48,8 +48,8 @@
  	$(top_builddir)/src/wsdlparser/libwsdlpull.la \
  	$(top_builddir)/src/schemaparser/libwsdlpullschema.la \
  	$(top_builddir)/src/xmlpull/libwsdlpullxml.la
---- origsrc/wsdlpull-1.24/examples/xml/Makefile.am	2010-07-19 06:16:58.000000000 +0900
-+++ src/wsdlpull-1.24/examples/xml/Makefile.am	2024-10-24 05:17:06.950745700 +0900
+--- origsrc/wsdlpull-1.24/examples/xml/Makefile.am	2010-07-18 21:16:58.000000000 +0000
++++ src/wsdlpull-1.24/examples/xml/Makefile.am	2026-11-27 10:26:24.625065900 +0000
 @@ -3,9 +3,11 @@
  
  MAINTAINERCLEANFILES = Makefile.in
@@ -65,8 +65,8 @@
 +wsdlpull_roundtrip_SOURCES = roundtrip.cpp
 +wsdlpull_roundtrip_LDFLAGS = $(top_builddir)/src/xmlpull/libwsdlpullxml.la
  
---- origsrc/wsdlpull-1.24/src/schemaparser/Makefile.am	2010-07-19 06:16:48.000000000 +0900
-+++ src/wsdlpull-1.24/src/schemaparser/Makefile.am	2024-10-24 05:17:06.950745700 +0900
+--- origsrc/wsdlpull-1.24/src/schemaparser/Makefile.am	2010-07-18 21:16:48.000000000 +0000
++++ src/wsdlpull-1.24/src/schemaparser/Makefile.am	2026-11-27 10:26:24.625065900 +0000
 @@ -5,13 +5,15 @@ MAINTAINERCLEANFILES = Makefile.in
  # src/schemaparser
  include $(srcdir)/sources.mk
@@ -84,8 +84,8 @@
  
  #
  pkginclude_HEADERS = $(schema_h_sources)
---- origsrc/wsdlpull-1.24/src/tools/Makefile.am	2010-07-19 06:16:45.000000000 +0900
-+++ src/wsdlpull-1.24/src/tools/Makefile.am	2024-10-24 05:17:06.950745700 +0900
+--- origsrc/wsdlpull-1.24/src/tools/Makefile.am	2010-07-18 21:16:45.000000000 +0000
++++ src/wsdlpull-1.24/src/tools/Makefile.am	2026-11-27 10:26:24.627078600 +0000
 @@ -4,6 +4,8 @@ include $(srcdir)/sources.mk
  
  MAINTAINERCLEANFILES = Makefile.in
@@ -95,8 +95,8 @@
  ## WSDL Invocation stuff
  bin_PROGRAMS = wsdlpull wsdlpull-schema
  
---- origsrc/wsdlpull-1.24/src/wsdlparser/Makefile.am	2010-07-19 06:16:47.000000000 +0900
-+++ src/wsdlpull-1.24/src/wsdlparser/Makefile.am	2024-10-24 05:17:06.950745700 +0900
+--- origsrc/wsdlpull-1.24/src/wsdlparser/Makefile.am	2010-07-18 21:16:47.000000000 +0000
++++ src/wsdlpull-1.24/src/wsdlparser/Makefile.am	2026-11-27 10:26:24.627078600 +0000
 @@ -7,13 +7,15 @@ MAINTAINERCLEANFILES = Makefile.in
  # Libraries to be exported
  lib_LTLIBRARIES = libwsdlpull.la
@@ -115,8 +115,8 @@
 -pkginclude_HEADERS = $(schema_h_sources)
 +pkginclude_HEADERS = $(wsdl_h_sources)
  pkgincludedir= $(includedir)/wsdlpull/wsdlparser
---- origsrc/wsdlpull-1.24/src/wsdlparser/sources.mk	2010-07-19 06:16:47.000000000 +0900
-+++ src/wsdlpull-1.24/src/wsdlparser/sources.mk	2024-10-24 05:17:06.950745700 +0900
+--- origsrc/wsdlpull-1.24/src/wsdlparser/sources.mk	2010-07-18 21:16:47.000000000 +0000
++++ src/wsdlpull-1.24/src/wsdlparser/sources.mk	2026-11-27 10:26:24.629091500 +0000
 @@ -1,11 +1,11 @@
 -wsdl_h_sources = \
 +wsdl_cc_sources = \
@@ -131,8 +131,8 @@
  	$(top_srcdir)/src/wsdlparser/WsdlParser.h \
  	$(top_srcdir)/src/wsdlparser/WsdlException.h \
  	$(top_srcdir)/src/wsdlparser/WsdlExtension.h \
---- origsrc/wsdlpull-1.24/src/xmlpull/Makefile.am	2010-07-19 06:16:48.000000000 +0900
-+++ src/wsdlpull-1.24/src/xmlpull/Makefile.am	2024-10-24 05:17:06.950745700 +0900
+--- origsrc/wsdlpull-1.24/src/xmlpull/Makefile.am	2010-07-18 21:16:48.000000000 +0000
++++ src/wsdlpull-1.24/src/xmlpull/Makefile.am	2026-11-27 10:26:24.629091500 +0000
 @@ -5,12 +5,12 @@ MAINTAINERCLEANFILES = Makefile.in
  # src/xmlpull
  include $(srcdir)/sources.mk

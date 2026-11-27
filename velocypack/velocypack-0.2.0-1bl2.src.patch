@@ -1,5 +1,5 @@
---- origsrc/velocypack-0.2.0/CMakeLists.txt	2022-10-27 17:37:37.000000000 +0900
-+++ src/velocypack-0.2.0/CMakeLists.txt	2025-08-20 09:00:12.226717200 +0900
+--- origsrc/velocypack-0.2.0/CMakeLists.txt	2022-10-27 08:37:37.000000000 +0000
++++ src/velocypack-0.2.0/CMakeLists.txt	2026-11-27 13:06:57.234558500 +0000
 @@ -47,7 +47,7 @@ endif()
  message(STATUS "VelocyPack build mode: ${CMAKE_BUILD_TYPE}")
  message(STATUS "VelocyPack interprocedural optimizations: ${IPO_ENABLED}")
@@ -48,7 +48,7 @@
   
   if(IS_ARM)
     target_include_directories(velocypack PRIVATE ${PROJECT_SOURCE_DIR}/external/sse2neon)
-@@ -128,13 +140,22 @@ if(Maintainer)
+@@ -128,13 +140,33 @@ if(Maintainer)
      )
  endif()
  
@@ -70,10 +70,21 @@
 +set(exec_prefix ${CMAKE_INSTALL_PREFIX})
 +set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
-+configure_file(${CMAKE_SOURCE_DIR}/velocypack.pc.in ${CMAKE_BINARY_DIR}/velocypack.pc @ONLY)
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/velocypack.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/lib
++includedir=\${prefix}/include
++
++Name: velocypack
++Description: Fast and compact format for serialization and storage
++Version: ${VELOCYPACK_VERSION}
++Libs: -L\${libdir} -lvelocypack
++Cflags: -I\${includedir}
++")
 +install(FILES ${CMAKE_BINARY_DIR}/velocypack.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/velocypack-0.2.0/tests/CMakeLists.txt	2022-10-27 17:37:37.000000000 +0900
-+++ src/velocypack-0.2.0/tests/CMakeLists.txt	2025-08-20 07:35:17.593389900 +0900
+--- origsrc/velocypack-0.2.0/tests/CMakeLists.txt	2022-10-27 08:37:37.000000000 +0000
++++ src/velocypack-0.2.0/tests/CMakeLists.txt	2026-11-27 13:06:57.234558500 +0000
 @@ -50,6 +50,9 @@ macro(standard_test test_name)
      if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
        set_source_files_properties(${testCpp} PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations")
@@ -84,8 +95,8 @@
      target_link_libraries(${testName} gtest velocypack ${CMAKE_THREAD_LIBS_INIT})
      add_test(${testName} ${testName})
  endmacro()
---- origsrc/velocypack-0.2.0/tools/CMakeLists.txt	2022-10-27 17:37:37.000000000 +0900
-+++ src/velocypack-0.2.0/tools/CMakeLists.txt	2025-08-20 08:14:06.956565000 +0900
+--- origsrc/velocypack-0.2.0/tools/CMakeLists.txt	2022-10-27 08:37:37.000000000 +0000
++++ src/velocypack-0.2.0/tools/CMakeLists.txt	2026-11-27 13:06:57.236576000 +0000
 @@ -35,21 +35,33 @@ endif()
  
  # build bench.cpp
@@ -126,16 +137,3 @@
  
    if(EnableSSE)
        target_compile_definitions(bench PRIVATE RAPIDJSON_SSE42)
---- origsrc/velocypack-0.2.0/velocypack.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/velocypack-0.2.0/velocypack.pc.in	2025-08-20 08:58:27.508492500 +0900
-@@ -0,0 +1,10 @@
-+prefix=@prefix@
-+exec_prefix=@exec_prefix@
-+libdir=@libdir@
-+includedir=@includedir@
-+
-+Name: velocypack
-+Description: Fast and compact format for serialization and storage
-+Version: @VELOCYPACK_VERSION@
-+Libs: -L${libdir} -lvelocypack
-+Cflags: -I${includedir}

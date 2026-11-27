@@ -1,0 +1,11 @@
+--- origsrc/unac-1.8.0.orig/Makefile.am	2026-11-27 14:10:31.805113339 +0000
++++ src/unac-1.8.0.orig/Makefile.am	2026-11-27 14:41:50.414601211 +0000
+@@ -37,7 +37,7 @@ unaccent_LDADD = @LIBOBJS@ libunac.la
+ # Library and headers
+ #
+ lib_LTLIBRARIES = libunac.la
+-libunac_la_LDFLAGS = -version-info $(MAJOR_VERSION):$(MINOR_VERSION):$(MICRO_VERSION)
++libunac_la_LDFLAGS = -no-undefined -version-info $(MAJOR_VERSION):$(MINOR_VERSION):$(MICRO_VERSION)
+ libunac_la_SOURCES = unac.c
+ 
+ include_HEADERS = \

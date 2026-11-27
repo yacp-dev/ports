@@ -1,13 +1,13 @@
 HOMEPAGE="https://www.nongnu.org/unac/"
 SRC_URI="mirror://debian/pool/main/u/unac/${P//-/_}.orig.tar.gz"
-SRC_DIR="${P}.orig"
 PATCH_URI="
 	https://sources.debian.org/data/main/u/unac/1.8.0-10/debian/patches/010_gcc-4-fix-bug-556379.patch
 	https://sources.debian.org/data/main/u/unac/1.8.0-10/debian/patches/020_update-autotools.patch
 	https://sources.debian.org/data/main/u/unac/1.8.0-10/debian/patches/030_fix-manpages.patch
 	https://sources.debian.org/data/main/u/unac/1.8.0-10/debian/patches/040_fix-national-encoding.patch
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/app-text/unac/files/unac-1.8.0-automake-1.13.1.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/56bd759df1d0c750a065b8c845e93d5dfa6b549d/app-text/unac/files/unac-1.8.0-automake-1.13.1.patch
 "
+SRC_DIR="${P}.orig"
 
 CATEGORY="Libs"
 SUMMARY="C library that removes accents from characters"
@@ -17,10 +17,15 @@ LICENSE="GPL-2.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libiconv-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libiconv-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode
+	ac_cv_func_iconv_open=yes
+	LIBS=-liconv
 "
 
 PKG_NAMES="

@@ -1,0 +1,41 @@
+--- origsrc/undiet-0.1/CMakeLists.txt	2023-11-05 04:05:16.000000000 +0000
++++ src/undiet-0.1/CMakeLists.txt	2026-11-27 22:14:10.721097300 +0000
+@@ -9,6 +9,10 @@ add_library(libundiet SHARED
+ )
+ set_target_properties(libundiet PROPERTIES OUTPUT_NAME "undiet")
+ 
++if (DEFINED SOVERSION)
++    set_target_properties(libundiet PROPERTIES SOVERSION "${SOVERSION}")
++endif()
++
+ add_executable(undiet
+     main.c
+ 
+@@ -16,8 +20,22 @@ add_executable(undiet
+ )
+ target_link_libraries(undiet libundiet)
+ 
+-set(CMAKE_INSTALL_PREFIX /usr)
+-install(TARGETS
+-    libundiet
+-    undiet
+-)
++include(GNUInstallDirs)
++install(TARGETS libundiet RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
++install(TARGETS undiet DESTINATION ${CMAKE_INSTALL_BINDIR})
++install(FILES undiet.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
++
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/undiet.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: undiet
++Description: Diet file decompressor
++Version: ${VERSION}
++Libs: -L\${libdir} -lundiet
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/undiet.pc"
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)

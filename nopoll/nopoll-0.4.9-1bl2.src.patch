@@ -1,10 +1,10 @@
---- origsrc/nopoll-0.4.9/VERSION	2024-10-22 17:05:41.000000000 +0900
-+++ src/nopoll-0.4.9/VERSION	2026-01-29 08:59:18.118881800 +0900
+--- origsrc/nopoll-0.4.9/VERSION	2024-10-22 08:05:41.000000000 +0000
++++ src/nopoll-0.4.9/VERSION	2026-11-27 13:27:15.468846500 +0000
 @@ -1 +1 @@
 -0.4.8.b456
 +0.4.9
---- origsrc/nopoll-0.4.9/src/nopoll_conn.c	2024-10-22 17:05:41.000000000 +0900
-+++ src/nopoll-0.4.9/src/nopoll_conn.c	2026-01-28 09:54:57.600045000 +0900
+--- origsrc/nopoll-0.4.9/src/nopoll_conn.c	2024-10-22 08:05:41.000000000 +0000
++++ src/nopoll-0.4.9/src/nopoll_conn.c	2026-11-27 13:27:15.470065600 +0000
 @@ -208,7 +208,7 @@ nopoll_bool                 nopoll_conn_
  	/* no local variable here please */
  

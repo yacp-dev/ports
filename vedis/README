@@ -5,26 +5,24 @@ in concept to Redis but without the networking layer since Vedis run in the
 same process of the host application.
 
 Runtime requirements:
-  cygwin-2.10.0-1
-  libvedis-devel-1.2.6-1bl2
-  libvedis0-1.2.6-1bl2
-  pkg-config-0.29.1-1
+  cygwin-3.6.12-1
+  libvedis-devel-1.2.6-1bl3
+  libvedis0-1.2.6-1bl3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-13-1
-  automake-10-1
-  binutils-2.29-1
-  cygport-0.31.0-1
-  gcc-core-6.4.0-5
-  libtool-2.4.6-5
-  make-4.2.1-2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  ninja-1.13.2-1
 
 Canonical website:
-  http://vedis.symisc.net/
+  https://vedis.symisc.net/
 
 Canonical download:
-  http://vedis.symisc.net/db/vedis-ds-126.zip
+  https://vedis.symisc.net/db/vedis-ds-126.zip
 
 -------------------------------------------
 
@@ -47,7 +45,7 @@ Files included in the binary package:
 
 (vedis)
   /usr/share/doc/Cygwin/vedis.README
-  /usr/share/doc/vedis/LICENSE.txt
+  /usr/share/doc/vedis/license.txt
 
 (libvedis0)
   /usr/bin/cygvedis-0.dll
@@ -60,6 +58,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.2.6-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.2.6-1bl2 -----
 Rebuild with gcc-6.4.0

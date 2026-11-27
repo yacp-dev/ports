@@ -7,11 +7,14 @@ DESCRIPTION="ulxmlrpcpp is a library to call methods on a remote server. It's ma
 to be as easy to use as possible but be fully compliant. It is object oriented
 and written in C++."
 
-LICENSE="LGPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
+LICENSE="LGPL-2.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later AND MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libexpat-devel"
+BUILD_REQUIRES="
+	gettext-devel
+	libexpat-devel
+"
 
 CYGCONF_ARGS="
 	--enable-unicode

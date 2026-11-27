@@ -1,6 +1,6 @@
---- origsrc/xxtea-c-1.0.1/CMakeLists.txt	2020-06-15 16:52:43.000000000 +0900
-+++ src/xxtea-c-1.0.1/CMakeLists.txt	2025-08-19 15:45:48.343895200 +0900
-@@ -3,17 +3,17 @@ cmake_minimum_required(VERSION 2.8.12)
+--- origsrc/xxtea-c-1.0.1/CMakeLists.txt	2020-06-15 07:52:43.000000000 +0000
++++ src/xxtea-c-1.0.1/CMakeLists.txt	2026-11-27 09:29:34.311346400 +0000
+@@ -3,17 +3,26 @@ cmake_minimum_required(VERSION 2.8.12)
  set(CMAKE_MACOSX_RPATH 1)
  set(LIBXXTEA_SRC xxtea.c)
  add_library(xxtea SHARED ${LIBXXTEA_SRC})
@@ -20,22 +20,18 @@
          ARCHIVE DESTINATION lib)
  install(FILES xxtea.h DESTINATION include)
 +
-+set(prefix ${CMAKE_INSTALL_PREFIX})
-+set(exec_prefix ${CMAKE_INSTALL_PREFIX})
-+set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
-+set(includedir ${CMAKE_INSTALL_PREFIX}/include)
-+configure_file(${CMAKE_SOURCE_DIR}/xxtea.pc.in ${CMAKE_BINARY_DIR}/xxtea.pc @ONLY)
-+install(FILES ${CMAKE_BINARY_DIR}/xxtea.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/xxtea-c-1.0.1/xxtea.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/xxtea-c-1.0.1/xxtea.pc.in	2025-08-19 15:29:27.188141400 +0900
-@@ -0,0 +1,10 @@
-+prefix=@prefix@
-+exec_prefix=@exec_prefix@
-+libdir=@libdir@
-+includedir=@includedir@
++include(GNUInstallDirs)
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/xxtea.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
 +
 +Name: xxtea-c
 +Description: XXTEA encryption algorithm library for C
-+Version: @VERSION@
-+Libs: -L${libdir} -lxxtea
-+Cflags: -I${includedir}
++Version: ${VERSION}
++Libs: -L\${libdir} -lxxtea
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/xxtea.pc"
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)

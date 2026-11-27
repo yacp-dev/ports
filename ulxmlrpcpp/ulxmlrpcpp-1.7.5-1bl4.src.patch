@@ -1,5 +1,5 @@
---- origsrc/ulxmlrpcpp-1.7.5/configure.in	2010-01-06 20:06:49.000000000 +0900
-+++ src/ulxmlrpcpp-1.7.5/configure.in	2024-10-27 07:34:40.868767700 +0900
+--- origsrc/ulxmlrpcpp-1.7.5/configure.in	2010-01-06 11:06:49.000000000 +0000
++++ src/ulxmlrpcpp-1.7.5/configure.in	2026-11-27 14:33:17.997302700 +0000
 @@ -370,6 +370,9 @@ AC_DEFINE(HAVE_STRCASECMP, 1, [Define if
  
  # ----------------------------------------------------------------------------
@@ -18,8 +18,8 @@
  EA_CHECK_SSL
  
  AC_SUBST(EA_EXTRA_INC)
---- origsrc/ulxmlrpcpp-1.7.5/ulxmlrpcpp/Makefile.am	2010-01-06 17:48:38.000000000 +0900
-+++ src/ulxmlrpcpp-1.7.5/ulxmlrpcpp/Makefile.am	2024-10-27 07:34:40.868767700 +0900
+--- origsrc/ulxmlrpcpp-1.7.5/ulxmlrpcpp/Makefile.am	2010-01-06 08:48:38.000000000 +0000
++++ src/ulxmlrpcpp-1.7.5/ulxmlrpcpp/Makefile.am	2026-11-27 14:33:17.998544600 +0000
 @@ -1,6 +1,9 @@
  INCLUDES = -I. -I $(top_srcdir)  $(all_includes) $(EA_EXTRA_INC)
  

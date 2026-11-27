@@ -7,11 +7,20 @@ DESCRIPTION="xmlroff is a fast, free, high-quality, multi-platform XSL formatter
 to excel at DocBook formatting and that integrates easily with other programs
 and with scripting languages."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT"
 LICENSE_URI="${PN}/COPYING"
 
-BUILD_REQUIRES="libcairo-devel libgdk_pixbuf2.0-devel libglib2.0-devel libpango1.0-devel libxml2-devel"
+BUILD_REQUIRES="
+	CUnit
+	docbook-xsl
+	libcairo-devel
+	libgdk_pixbuf2.0-devel
+	libglib2.0-devel
+	libpango1.0-devel
+	libxml2-devel
+	libxslt-devel
+"
 
 CYGCONF_ARGS="
 	--enable-maintainer-mode

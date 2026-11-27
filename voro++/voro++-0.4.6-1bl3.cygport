@@ -1,11 +1,11 @@
 HOMEPAGE="https://math.lbl.gov/${PN}/"
 SRC_URI="
 	https://math.lbl.gov/${PN}/download/dir/${P}.tar.xz
+	CMakeLists.txt
 "
 PATCH_URI="
-	https://gitweb.gentoo.org/repo/gentoo.git/plain/sci-libs/${PN}/files/${P}-cmake.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}_virtual-destructor.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${PN}_man.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/e650156da9a19fe83ff14ea159e34672b99d5f9e/f/${PN}_virtual-destructor.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/e650156da9a19fe83ff14ea159e34672b99d5f9e/f/${PN}_man.patch
 "
 
 CATEGORY="Libs"
@@ -22,19 +22,16 @@ LICENSE="BSD-3-Clause-LBNL"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause-LBNL"
 LICENSE_URI="LICENSE"
 
-CYGPORT_USE_UNSTABLE_API=1
-src_patch_hook()
-{
-	cd ${origsrcdir}/${SRC_DIR}
-	mv a/CMakeLists.txt .
-	rmdir a
-}
-
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 "
+
+src_test() {
+	cd ${B}
+	PATH="${B}:${PATH}" ./${PN}.exe -h
+}
 
 PKG_NAMES="
 	${PN}

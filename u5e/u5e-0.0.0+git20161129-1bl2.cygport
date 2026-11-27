@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/ruoso/${PN}"
 GIT_URI="https://github.com/ruoso/${PN}.git"
+GIT_REV="3b970d5bc251fdef341d039d66c84ec5eaf4cb6a"
 
 CATEGORY="Libs"
 SUMMARY="Unicode Text C++ library"
@@ -8,6 +9,10 @@ DESCRIPTION="${SUMMARY}"
 LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libgtest-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 
@@ -21,6 +26,7 @@ src_test()
 }
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DSOVERSION:STRING=0
 	-DVERSION:STRING=0.0.0

@@ -4,23 +4,22 @@ Freealut is a free implementation of OpenAL's ALUT standard.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.6.0-0.203.gf78009cb1ccf
-  libalut-devel-1.1.0+git20240802-1bl1
-  libalut0-1.1.0+git20240802-1bl1
-  libopenal-devel-1.23.1-2
-  libopenal1-1.23.1-2
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libalut-devel-1.1.0+git20240802-1bl2
+  libalut0-1.1.0+git20240802-1bl2
+  libopenal-devel-1.25.2-1
+  libopenal1-1.25.2-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  autoconf-archive-2023.02.20-1
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libopenal-devel-1.23.1-2
-  libtool-2.5.3-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libopenal-devel-1.25.2-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -68,6 +67,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.1.0+git20240802-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.1.0+git20240802-1bl1 -----
 Version bump.

@@ -3,26 +3,27 @@ welle.io
 DAB/DAB+ Software Defined Radio (SDR)
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  libfaad2-2.11.2-1bl1
-  libfftw3_3-3.3.10-1
-  libgcc1-13.4.0-1
+  cygwin-3.6.12-1
+  libfaad2-2.11.4-1bl1
+  libfftw3_3-3.3.11-1
+  libgcc1-14.4.0-1
   libmp3lame0-3.100-1
-  libmpg123_0-1.33.2-2
-  libstdc++6-13.4.0-1
+  libmpg123_0-1.33.7-1
+  libstdc++6-14.4.0-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-3.31.3-1
-  cygport-0.37.3-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libfaad-devel-2.11.2-1bl1
-  libfftw3-devel-3.3.10-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libfaad-devel-2.11.4-1bl1
+  libfftw3-devel-3.3.11-1
   libmp3lame-devel-3.100-1
-  libmpg123-devel-1.33.2-2
-  ninja-1.13.1-1
+  libmpg123-devel-1.33.7-1
+  ninja-1.13.2-1
+  xxd-9.1.1825-1
 
 Canonical website:
   https://github.com/AlbrechtL/welle.io
@@ -59,6 +60,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 2.7-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 2.7-1bl1 -----
 Initial release by fd0 <https://github.com/fd00/>

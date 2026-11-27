@@ -1,0 +1,44 @@
+--- origsrc/vxlog-1.0.3/CMakeLists.txt	2010-10-18 13:23:04.000000000 +0000
++++ src/vxlog-1.0.3/CMakeLists.txt	2026-11-27 13:43:39.942616200 +0000
+@@ -45,8 +45,10 @@ if(CMAKE_COMPILER_IS_GNUCXX)
+   set(CMAKE_CXX_FLAGS_DEBUGFULL      "-g -fno-inline")
+   set(CMAKE_CXX_FLAGS_PROFILE        "-g -fno-inline -ftest-coverage -fprofile-arcs")
+ 
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align -Wchar-subscripts -Wall -Wextra -Wpointer-arith -Wformat-security -fno-common -pedantic")
+-
++  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnon-virtual-dtor -Wno-long-long -Wundef -Wcast-align -Wchar-subscripts -Wall -Wextra -Wpointer-arith -Wformat-security -fno-common -pedantic")
++  if (NOT CYGWIN)
++    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ansi")
++  endif()
+ endif(CMAKE_COMPILER_IS_GNUCXX)
+ 
+ if(CMAKE_CXX_COMPILER MATCHES "clang")
+@@ -89,3 +91,18 @@ if(TESTING)
+   add_subdirectory(utests)
+ endif(TESTING)
+ 
++include(GNUInstallDirs)
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/vxlog.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: vxlog
++Description: C++ logging library
++Version: ${VERSION}
++Libs: -L\${libdir} -lvxlog
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/vxlog.pc"
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/vxlog-1.0.3/utests/logger-utest.cc	2010-10-18 13:23:04.000000000 +0000
++++ src/vxlog-1.0.3/utests/logger-utest.cc	2026-11-27 13:43:39.944624100 +0000
+@@ -22,7 +22,6 @@
+ 
+ #include "vxlog/logger.h"
+ #include <vector>
+-#include <vxlog/shared-ptr.h>
+ #include "vxlog/macros.h"
+ #include "utests/googletest.h"
+ #include "vxlog/outputter-interface.h"

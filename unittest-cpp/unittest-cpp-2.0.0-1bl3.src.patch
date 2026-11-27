@@ -1,5 +1,5 @@
---- origsrc/unittest-cpp-2.0.0/UnitTest++/Makefile.am	2017-01-14 06:55:01.000000000 +0900
-+++ src/unittest-cpp-2.0.0/UnitTest++/Makefile.am	2025-01-25 18:36:49.435480500 +0900
+--- origsrc/unittest-cpp-2.0.0/UnitTest++/Makefile.am	2017-01-13 21:55:01.000000000 +0000
++++ src/unittest-cpp-2.0.0/UnitTest++/Makefile.am	2026-11-27 15:18:11.133124500 +0000
 @@ -12,6 +12,6 @@ nobase_pkginclude_HEADERS += UnitTest++/
  UnitTest___libUnitTest___la_SOURCES += UnitTest++/Posix/SignalTranslator.cpp UnitTest++/Posix/TimeHelpers.cpp
  endif

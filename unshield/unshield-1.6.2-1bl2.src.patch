@@ -1,0 +1,31 @@
+--- origsrc/unshield/src/CMakeLists.txt	2026-11-27 15:44:30.000000000 +0000
++++ src/unshield/src/CMakeLists.txt	2026-11-27 15:44:42.476478100 +0000
+@@ -5,7 +5,7 @@ endif()
+ 
+ add_executable(unshield unshield.c)
+ target_link_libraries(unshield libunshield)
+-if(WIN32)
++if(WIN32 OR CYGWIN)
+     if(HAVE_ICONV)
+         target_link_libraries(unshield iconv)
+     endif()
+@@ -14,7 +14,7 @@ endif()
+ 
+ add_executable(unshield-deobfuscate unshield-deobfuscate.c)
+ target_link_libraries(unshield-deobfuscate libunshield)
+-if(WIN32)
++if(WIN32 OR CYGWIN)
+     target_link_libraries(unshield-deobfuscate ${ZLIB_LIBRARIES})
+ endif()
+ 
+--- origsrc/unshield/test/CMakeLists.txt	2026-11-27 15:44:30.000000000 +0000
++++ src/unshield/test/CMakeLists.txt	2026-11-27 15:44:42.478508900 +0000
+@@ -5,7 +5,7 @@ add_subdirectory(v0/avigomanager)
+ add_subdirectory(v0/baldurs_gate_patch_v1_1_4315_international)
+ add_subdirectory(v0/the-feeble-files-spanish)
+ add_subdirectory(v0/wireplay)
+-if(APPLE)
++if(APPLE OR CYGWIN)
+     # see https://github.com/twogood/unshield/issues/99
+     message(WARNING "TODO: Fix CVE-2015-1386 for Apple platforms")
+ else()

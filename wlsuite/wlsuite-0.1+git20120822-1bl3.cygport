@@ -1,8 +1,9 @@
 HOMEPAGE="https://github.com/kayahr/${PN}"
 GIT_URI="https://github.com/kayahr/${PN}.git"
+GIT_REV="d6e53bc5726c4c0ac57a0bf9ebde0b9cd3db8718"
 
 CATEGORY="Libs"
-SUMMARY="Library and a suite of programs for converting wasteland files into standard files and vice versa"
+SUMMARY="Library and suite of programs for converting Wasteland game files"
 DESCRIPTION="A shared library and a suite of programs for converting wasteland files into
 standard files and vice versa."
 
@@ -10,11 +11,23 @@ LICENSE="MIT"
 LICENSE_SPDX="SPDX-License-Identifier: MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libgd-devel"
+BUILD_REQUIRES="
+	libgd-devel
+"
 
 export CFLAGS="${CFLAGS//-Werror=format-security/}"
 
 inherit git
+
+src_test()
+{
+	cd ${B}
+	export PATH=${B}/src/libwasteland/.libs:${PATH}
+	local out status=0
+	out=$(verbose ./src/decodepic/wl_decodepic.exe -V 2>&1) || status=$?
+	echo "${out}"
+	[ ${status} -eq 1 ] && echo "${out}" | grep -q "wl_decodepic"
+}
 
 PKG_NAMES="
 	${PN}

@@ -1,0 +1,205 @@
+--- origsrc/wlsuite/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/Makefile.am	2026-11-27 11:38:00.651084400 +0000
+@@ -1,2 +1,5 @@
+ SUBDIRS = src
+ ACLOCAL_AMFLAGS = -I m4
++
++pkgconfigdir = $(libdir)/pkgconfig
++pkgconfig_DATA = $(PACKAGE).pc
+--- origsrc/wlsuite/configure.ac	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/configure.ac	2026-11-27 11:38:00.649074400 +0000
+@@ -1,6 +1,6 @@
+ AC_PREREQ([2.50])
+ AC_INIT([wlsuite], [0.1], [k@ailis.de])
+-AM_INIT_AUTOMAKE([foreign -Wall -Werror])
++AM_INIT_AUTOMAKE([foreign subdir-objects -Wall])
+ AC_CONFIG_MACRO_DIR([m4])
+ AC_CONFIG_HEADERS([config.h])
+ 
+@@ -34,5 +34,6 @@ AC_CONFIG_FILES(
+   src/decodecpa/Makefile
+   src/unpacktiles/Makefile
+   src/unpackpics/Makefile
++  wlsuite.pc
+ )
+ AC_OUTPUT
+--- origsrc/wlsuite/src/common/str.c	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/common/str.c	2026-11-27 11:38:00.651084400 +0000
+@@ -65,7 +65,7 @@ static int _strncasecmp(char *s1, char *
+  *
+  * @return The newly allocated empty string.
+  */
+-char *strCreate()
++char *strCreate(void)
+ {
+     char *ns;
+ 
+--- origsrc/wlsuite/src/common/str.h	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/common/str.h	2026-11-27 11:38:00.651084400 +0000
+@@ -116,8 +116,8 @@
+  */
+ #define strTrim(string) __strTrim(&string);
+ 
+-char *  strCreate();
+-char *  strDup();
++char *  strCreate(void);
++char *  strDup(char *string);
+ void    strFree(char *string);
+ size_t  strLength(char *string);
+ int     strEqualsIgnoreCase(char *string1, char *string2);
+--- origsrc/wlsuite/src/decodecpa/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/decodecpa/Makefile.am	2026-11-27 11:38:00.653092800 +0000
+@@ -3,4 +3,4 @@ wl_decodecpa_LDADD = ../libwasteland/lib
+ wl_decodecpa_SOURCES = \
+ 	decodecpa.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
+\ No newline at end of file
++AM_CFLAGS = -Wall -O2
+\ No newline at end of file
+--- origsrc/wlsuite/src/decodehuffman/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/decodehuffman/Makefile.am	2026-11-27 11:38:00.653092800 +0000
+@@ -3,4 +3,4 @@ wl_decodehuffman_LDADD = ../libwasteland
+ wl_decodehuffman_SOURCES = \
+ 	decodehuffman.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+--- origsrc/wlsuite/src/decodepic/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/decodepic/Makefile.am	2026-11-27 11:38:00.653092800 +0000
+@@ -3,4 +3,4 @@ wl_decodepic_LDADD = ../libwasteland/lib
+ wl_decodepic_SOURCES = \
+ 	decodepic.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+--- origsrc/wlsuite/src/encodehuffman/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/encodehuffman/Makefile.am	2026-11-27 11:38:00.654847200 +0000
+@@ -3,4 +3,4 @@ wl_encodehuffman_LDADD = ../libwasteland
+ wl_encodehuffman_SOURCES = \
+ 	encodehuffman.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+--- origsrc/wlsuite/src/encodepic/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/encodepic/Makefile.am	2026-11-27 11:38:00.654847200 +0000
+@@ -3,4 +3,4 @@ wl_encodepic_LDADD = ../libwasteland/lib
+ wl_encodepic_SOURCES = \
+ 	encodepic.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+--- origsrc/wlsuite/src/libwasteland/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/libwasteland/Makefile.am	2026-11-27 11:38:00.654847200 +0000
+@@ -18,7 +18,7 @@ libwasteland_la_SOURCES = \
+   pics.c
+ libwastelandincludedir = $(includedir)
+ libwastelandinclude_HEADERS = wasteland.h
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+ 
+ doc:
+ 	rm -f ../../doc/html/*.html ../../doc/html/*.gif
+--- origsrc/wlsuite/src/packcpa/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/packcpa/Makefile.am	2026-11-27 11:38:00.656858200 +0000
+@@ -3,4 +3,4 @@ wl_packcpa_LDADD = ../libwasteland/libwa
+ wl_packcpa_SOURCES = \
+ 	packcpa.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+--- origsrc/wlsuite/src/packcursors/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/packcursors/Makefile.am	2026-11-27 11:38:00.656858200 +0000
+@@ -3,4 +3,4 @@ wl_packcursors_LDADD = ../libwasteland/l
+ wl_packcursors_SOURCES = \
+ 	packcursors.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+--- origsrc/wlsuite/src/packfont/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/packfont/Makefile.am	2026-11-27 11:38:00.656858200 +0000
+@@ -3,4 +3,4 @@ wl_packfont_LDADD = ../libwasteland/libw
+ wl_packfont_SOURCES = \
+ 	packfont.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
+\ No newline at end of file
++AM_CFLAGS = -Wall -O2
+\ No newline at end of file
+--- origsrc/wlsuite/src/packsprites/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/packsprites/Makefile.am	2026-11-27 11:38:00.658867800 +0000
+@@ -4,4 +4,4 @@ wl_packsprites_SOURCES = \
+         ../common/str.c \
+ 	packsprites.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+--- origsrc/wlsuite/src/unpackcpa/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/unpackcpa/Makefile.am	2026-11-27 11:38:00.658867800 +0000
+@@ -3,4 +3,4 @@ wl_unpackcpa_LDADD = ../libwasteland/lib
+ wl_unpackcpa_SOURCES = \
+ 	unpackcpa.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
+\ No newline at end of file
++AM_CFLAGS = -Wall -O2
+\ No newline at end of file
+--- origsrc/wlsuite/src/unpackcursors/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/unpackcursors/Makefile.am	2026-11-27 11:38:00.658867800 +0000
+@@ -3,4 +3,4 @@ wl_unpackcursors_LDADD = ../libwasteland
+ wl_unpackcursors_SOURCES = \
+ 	unpackcursors.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
+\ No newline at end of file
++AM_CFLAGS = -Wall -O2
+\ No newline at end of file
+--- origsrc/wlsuite/src/unpackfont/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/unpackfont/Makefile.am	2026-11-27 11:38:00.660877000 +0000
+@@ -3,4 +3,4 @@ wl_unpackfont_LDADD = ../libwasteland/li
+ wl_unpackfont_SOURCES = \
+ 	unpackfont.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
+\ No newline at end of file
++AM_CFLAGS = -Wall -O2
+\ No newline at end of file
+--- origsrc/wlsuite/src/unpackpics/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/unpackpics/Makefile.am	2026-11-27 11:38:00.660877000 +0000
+@@ -3,4 +3,4 @@ wl_unpackpics_LDADD = ../libwasteland/li
+ wl_unpackpics_SOURCES = \
+ 	unpackpics.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+--- origsrc/wlsuite/src/unpacksprites/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/unpacksprites/Makefile.am	2026-11-27 11:38:00.660877000 +0000
+@@ -3,4 +3,4 @@ wl_unpacksprites_LDADD = ../libwasteland
+ wl_unpacksprites_SOURCES = \
+ 	unpacksprites.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
+\ No newline at end of file
++AM_CFLAGS = -Wall -O2
+\ No newline at end of file
+--- origsrc/wlsuite/src/unpacktiles/Makefile.am	2026-11-27 11:37:59.000000000 +0000
++++ src/wlsuite/src/unpacktiles/Makefile.am	2026-11-27 11:38:00.662884900 +0000
+@@ -3,4 +3,4 @@ wl_unpacktiles_LDADD = ../libwasteland/l
+ wl_unpacktiles_SOURCES = \
+ 	unpacktiles.c
+ 
+-AM_CFLAGS = -Wall -Werror -O2
++AM_CFLAGS = -Wall -O2
+--- origsrc/wlsuite/wlsuite.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/wlsuite/wlsuite.pc.in	2026-11-27 11:38:00.662884900 +0000
+@@ -0,0 +1,10 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: wlsuite
++Description: Library and a suite of programs for converting wasteland files into standard files and vice versa
++Version: @VERSION@
++Libs: -L${libdir} -lwasteland
++Cflags: -I${includedir}

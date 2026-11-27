@@ -1,5 +1,5 @@
---- origsrc/xlearn-0.4.4/CMakeLists.txt	2019-04-19 20:55:16.000000000 +0900
-+++ src/xlearn-0.4.4/CMakeLists.txt	2022-12-26 15:19:10.079359600 +0900
+--- origsrc/xlearn-0.4.4/CMakeLists.txt	2019-04-19 11:55:16.000000000 +0000
++++ src/xlearn-0.4.4/CMakeLists.txt	2026-11-27 09:11:13.204135700 +0000
 @@ -40,7 +40,7 @@ endif()
  #-------------------------------------------------------------------------------
  # Declare where our project will be installed.
@@ -9,19 +9,26 @@
  
  #-------------------------------------------------------------------------------
  # For Mac OSX
-@@ -82,3 +82,10 @@ add_subdirectory(src/distributed)
+@@ -82,3 +82,17 @@ add_subdirectory(src/distributed)
  add_subdirectory(src/c_api)
  add_subdirectory(python-package)
  #add_subdirectory(R-package)
 +
-+set(prefix ${CMAKE_INSTALL_PREFIX})
-+set(exec_prefix ${CMAKE_INSTALL_PREFIX})
-+set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
-+set(includedir ${CMAKE_INSTALL_PREFIX}/include)
-+configure_file(${CMAKE_SOURCE_DIR}/xlearn.pc.in ${CMAKE_BINARY_DIR}/xlearn.pc @ONLY)
++file(WRITE "${CMAKE_BINARY_DIR}/xlearn.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/lib
++includedir=\${prefix}/include
++
++Name: xlearn
++Description: High performance, easy-to-use, and scalable machine learning package
++Version: ${VERSION}
++Libs: -L\${libdir} -lxlearn_api
++Cflags: -I\${includedir}/xlearn
++")
 +install(FILES ${CMAKE_BINARY_DIR}/xlearn.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/xlearn-0.4.4/src/c_api/CMakeLists.txt	2019-04-19 20:55:16.000000000 +0900
-+++ src/xlearn-0.4.4/src/c_api/CMakeLists.txt	2022-12-26 15:14:33.332158700 +0900
+--- origsrc/xlearn-0.4.4/src/c_api/CMakeLists.txt	2019-04-19 11:55:16.000000000 +0000
++++ src/xlearn-0.4.4/src/c_api/CMakeLists.txt	2026-11-27 09:11:13.206157600 +0000
 @@ -34,6 +34,10 @@ set_target_properties(xlearn_api_shared
  set_target_properties(xlearn_api_shared PROPERTIES CLEAN_DIRECT_OUTPUT 1)
  set_target_properties(xlearn_api PROPERTIES CLEAN_DIRECT_OUTPUT 1)
@@ -42,8 +49,8 @@
 +install(FILES ${HEADER_FILES} DESTINATION include/c_api)
 +
 +install(TARGETS xlearn_api_shared RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
---- origsrc/xlearn-0.4.4/src/solver/CMakeLists.txt	2019-04-19 20:55:16.000000000 +0900
-+++ src/xlearn-0.4.4/src/solver/CMakeLists.txt	2022-12-26 15:23:48.949291300 +0900
+--- origsrc/xlearn-0.4.4/src/solver/CMakeLists.txt	2019-04-19 11:55:16.000000000 +0000
++++ src/xlearn-0.4.4/src/solver/CMakeLists.txt	2026-11-27 09:11:13.206157600 +0000
 @@ -11,7 +11,9 @@ target_link_libraries(solver ${STA_DEPS}
  endif()
  
@@ -55,16 +62,3 @@
  set(LIBS solver reader loss score data base pthread)
  else(WIN32)
  set(LIBS solver reader loss score data base Ws2_32)
---- origsrc/xlearn-0.4.4/xlearn.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/xlearn-0.4.4/xlearn.pc.in	2022-12-26 15:19:27.588792200 +0900
-@@ -0,0 +1,10 @@
-+prefix=@prefix@
-+exec_prefix=@exec_prefix@
-+libdir=@libdir@
-+includedir=@includedir@
-+
-+Name: xlearn
-+Description: High performance, easy-to-use, and scalable machine learning package
-+Version: @VERSION@
-+Libs: -L${libdir} -lxlearn_api
-+Cflags: -I${includedir}/xlearn

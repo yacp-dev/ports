@@ -1,5 +1,5 @@
---- origsrc/freealut/configure.ac	2024-10-10 22:51:01.000000000 +0900
-+++ src/freealut/configure.ac	2024-10-10 22:58:00.273660600 +0900
+--- origsrc/freealut/configure.ac	2026-11-27 13:00:30.000000000 +0000
++++ src/freealut/configure.ac	2026-11-27 13:00:31.068437500 +0000
 @@ -214,6 +214,9 @@ fi
  
  AC_SUBST([AM_CFLAGS])

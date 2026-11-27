@@ -9,9 +9,14 @@ command line tool for dynamic WSDL inspection and invocation.The command line
 tool is a generic web service client using which you can invoke most web
 services from command line without writing any code."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND MIT"
 LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	doxygen
+	libcurl-devel
+"
 
 CYGCONF_ARGS="
 	--enable-examples
@@ -25,7 +30,8 @@ src_install()
 	cyginstall
 
 	cd ${D}
-	rm -rf usr/share/doc/${P}/html
+	verbose rm -rf usr/share/doc/${P}/html
+	verbose rm -f usr/share/wsdlpull/README
 }
 
 PKG_NAMES="

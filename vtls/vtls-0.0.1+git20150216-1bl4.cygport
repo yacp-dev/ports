@@ -10,7 +10,10 @@ DESCRIPTION="${SUMMARY}"
 # LICENSE_SPDX="SPDX-License-Identifier: "
 # LICENSE_URI=""
 
-BUILD_REQUIRES="libgcrypt-devel libgnutls-devel"
+BUILD_REQUIRES="
+	libgcrypt-devel
+	libgnutls-devel
+"
 
 inherit git
 

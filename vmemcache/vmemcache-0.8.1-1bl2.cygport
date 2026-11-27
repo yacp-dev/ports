@@ -7,13 +7,17 @@ DESCRIPTION="libvmemcache is an embeddable and lightweight in-memory caching sol
 designed to fully take advantage of large capacity memory, such as Persistent
 Memory with DAX, through memory mapping in an efficient and scalable way."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
+LICENSE="BSD-3-Clause AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause AND MIT"
 LICENSE_URI="LICENSE"
 
 export CPPFLAGS="${CPPFLAGS} -D__USE_GNU -DMAP_POPULATE=0"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
 
 src_test()
 {

@@ -1,0 +1,134 @@
+--- origsrc/vmemcache-0.8.1/CMakeLists.txt	2020-10-21 13:24:38.000000000 +0000
++++ src/vmemcache-0.8.1/CMakeLists.txt	2026-11-27 13:34:28.085803900 +0000
+@@ -6,7 +6,8 @@ project(vmemcache C)
+ 
+ set(VERSION_MAJOR 0)
+ set(VERSION_MINOR 8)
+-set(VERSION ${VERSION_MAJOR}.${VERSION_MINOR})
++set(VERSION_PATCH 1)
++set(VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
+ 
+ set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
+ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+@@ -98,7 +99,7 @@ if(NOT MSVC)
+ 	add_c_flag(-fno-omit-frame-pointer RELWITHDEBINFO)
+ 
+ 	check_c_compiler_flag(-Wl,-z,relro LINKER_HAS_RELRO)
+-	if(LINKER_HAS_RELRO)
++	if(LINKER_HAS_RELRO AND NOT CYGWIN)
+ 		set(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS}  -Wl,-z,relro")
+ 		set(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS}  -Wl,-z,relro")
+ 	endif()
+--- origsrc/vmemcache-0.8.1/src/CMakeLists.txt	2020-10-21 13:24:38.000000000 +0000
++++ src/vmemcache-0.8.1/src/CMakeLists.txt	2026-11-27 13:34:28.087813800 +0000
+@@ -43,6 +43,7 @@ if(VALGRIND_FOUND)
+ endif()
+ 
+ install(TARGETS vmemcache
+-	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+ 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/)
+ install(FILES libvmemcache.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+--- origsrc/vmemcache-0.8.1/src/mmap.c	2020-10-21 13:24:38.000000000 +0000
++++ src/vmemcache-0.8.1/src/mmap.c	2026-11-27 13:34:28.087813800 +0000
+@@ -13,7 +13,9 @@
+ #include <sys/mman.h>
+ #include <unistd.h>
+ #include <sys/ioctl.h>
++#if defined(__linux__)
+ #include <linux/fs.h>
++#endif
+ 
+ #include "file.h"
+ #include "mmap.h"
+@@ -83,6 +85,7 @@ util_unmap(void *addr, size_t len)
+ 	return retval;
+ }
+ 
++#if defined(__linux__)
+ /*
+  * chattr -- (internal) set file attributes
+  */
+@@ -104,6 +107,7 @@ chattr(int fd, int set, int clear)
+ 		return;
+ 	}
+ }
++#endif
+ 
+ /*
+  * util_map_tmpfile -- reserve space in an unlinked file and memory-map it
+@@ -127,7 +131,9 @@ util_map_tmpfile(const char *dir, size_t
+ 		goto err;
+ 	}
+ 
++#if defined(__linux__)
+ 	chattr(fd, FS_NOCOW_FL, 0);
++#endif
+ 
+ 	if ((errno = os_posix_fallocate(fd, 0, (os_off_t)size)) != 0) {
+ 		ERR("!posix_fallocate");
+--- origsrc/vmemcache-0.8.1/src/os_thread.h	2020-10-21 13:24:38.000000000 +0000
++++ src/vmemcache-0.8.1/src/os_thread.h	2026-11-27 13:34:28.087813800 +0000
+@@ -72,7 +72,7 @@ typedef union {
+ 
+ #define OS_ONCE_INIT { .padding = {0} }
+ 
+-typedef unsigned os_tls_key_t;
++typedef uintptr_t os_tls_key_t;
+ 
+ typedef union {
+ 	long long align;
+--- origsrc/vmemcache-0.8.1/tests/CMakeLists.txt	2020-10-21 13:24:38.000000000 +0000
++++ src/vmemcache-0.8.1/tests/CMakeLists.txt	2026-11-27 13:34:28.089821800 +0000
+@@ -56,7 +56,7 @@ function(test name file tracer location)
+ 		-P ${CMAKE_CURRENT_SOURCE_DIR}/${file}.cmake)
+ 
+ 	set_tests_properties(${name} PROPERTIES
+-		ENVIRONMENT "LC_ALL=C;PATH=$ENV{PATH}"
++		ENVIRONMENT "LC_ALL=C"
+ 		TIMEOUT 300)
+ endfunction()
+ 
+--- origsrc/vmemcache-0.8.1/tests/helpers.cmake	2020-10-21 13:24:38.000000000 +0000
++++ src/vmemcache-0.8.1/tests/helpers.cmake	2026-11-27 13:34:28.089821800 +0000
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: BSD-3-Clause
+ # Copyright 2017-2019, Intel Corporation
+ 
+-cmake_minimum_required(VERSION 3.3)
++cmake_minimum_required(VERSION 3.5)
+ set(DIR ${PARENT_DIR}/${TEST_NAME})
+ 
+ if (WIN32)
+--- origsrc/vmemcache-0.8.1/tests/vmemcache_test_basic.c	2020-10-21 13:24:38.000000000 +0000
++++ src/vmemcache-0.8.1/tests/vmemcache_test_basic.c	2026-11-27 13:34:28.089821800 +0000
+@@ -293,7 +293,9 @@ test_new_delete(const char *dir, const c
+ 			"vmemcache_new did not fail with a file instead of a directory");
+ 
+ #define ERR_MSG_1 "open: Not a directory"
+-	if (strcmp(vmemcache_errormsg(), ERR_MSG_1))
++#define ERR_MSG_1bsd "mkstemp: Not a directory"
++	if (strcmp(vmemcache_errormsg(), ERR_MSG_1)
++		&& strcmp(vmemcache_errormsg(), ERR_MSG_1bsd))
+ 		UT_FATAL("wrong error message: '%s' (should be '"ERR_MSG_1"')",
+ 			vmemcache_errormsg());
+ 	vmemcache_delete(cache);
+--- origsrc/vmemcache-0.8.1/tests/vmemcache_test_heap_usage.c	2020-10-21 13:24:38.000000000 +0000
++++ src/vmemcache-0.8.1/tests/vmemcache_test_heap_usage.c	2026-11-27 13:34:28.091829900 +0000
+@@ -65,6 +65,7 @@ log_line(heap_usage *usage, size_t size,
+ 			prefix, size, ptr, usage->usage);
+ }
+ 
++#if defined(RTLD_NEXT)
+ /*
+  * malloc -- (internal) 'malloc' wrapper
+  */
+@@ -157,6 +158,7 @@ free(void *ptr)
+ 	actual_free(ptr);
+ 	trace = tmp_trace;
+ }
++#endif
+ 
+ /*
+  * test_heap_usage -- (internal) test heap usage

@@ -3,20 +3,20 @@ win32pe
 This library simplifies the task of working with PE files.
 
 Runtime requirements:
-  cygwin-3.6.7-1
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
-  libwin32pe-devel-0.1.0-1bl2
-  libwin32pe0-0.1.0-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
+  libwin32pe-devel-0.1.0-1bl3
+  libwin32pe0-0.1.0-1bl3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.46-1
-  cmake-4.2.1-1
-  cygport-0.37.7-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libboost-devel-1.66.0-1
   ninja-1.13.2-1
 
 Canonical website:
@@ -59,7 +59,7 @@ Files included in the binary package:
   /usr/include/win32pe/optionalheader.h
   /usr/include/win32pe/section.h
   /usr/include/win32pe/win32pe.h
-  /usr/lib/cmake/win32pe/win32peConfig-release.cmake
+  /usr/lib/cmake/win32pe/win32peConfig-relwithdebinfo.cmake
   /usr/lib/cmake/win32pe/win32peConfig.cmake
   /usr/lib/cmake/win32pe/win32peConfigVersion.cmake
   /usr/lib/libwin32pe.dll.a
@@ -68,6 +68,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1.0-1bl2 -----
 Rebuild with gcc-13.4.0

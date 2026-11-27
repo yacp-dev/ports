@@ -1,0 +1,58 @@
+HOMEPAGE="https://github.com/seesturm/x52lib"
+SRC_URI="
+	https://github.com/seesturm/x52lib/archive/refs/tags/v${PV}.tar.gz
+	CMakeLists.txt
+"
+SRC_DIR="x52lib-${PV}"
+
+CATEGORY="Libs"
+SUMMARY="x52 PRO linux library"
+DESCRIPTION="User-space library and tools to control the Multi-Function Display
+(MFD) and LEDs on Saitek X52 and X52 Pro joysticks."
+
+LICENSE="GPL-2.0-or-later AND LGPL-2.1-only"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.1-only"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	libusb1.0-devel
+"
+
+inherit cmake
+
+DOCS="
+	COPYING
+	README
+	changelog
+"
+
+# Upstream has no test suite: check that x52output starts and attempts device init
+src_test() {
+	cd ${B}
+	local rc=0
+	verbose ./x52output.exe > /dev/null 2> err.txt || rc=$?
+	[ ${rc} -eq 1 ] || return 1
+	verbose grep -q 'joystick not found' err.txt
+}
+
+PKG_NAMES="
+	${PN}
+	lib${PN}0
+	lib${PN}-devel
+"
+x52pro_CONTENTS="
+	usr/bin/*.exe
+	usr/share/doc
+	usr/share/man/man1
+	usr/share/metainfo
+"
+libx52pro0_CONTENTS="
+	usr/bin/cyg*-0.dll
+"
+libx52pro_devel_CONTENTS="
+	usr/include
+	usr/lib
+"
+x52pro_SUMMARY="${SUMMARY} (utilities)"
+libx52pro0_SUMMARY="${SUMMARY} (runtime)"
+libx52pro_devel_SUMMARY="${SUMMARY} (development)"

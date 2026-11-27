@@ -1,5 +1,5 @@
---- origsrc/unicorn-2.1.4/bindings/python/setup.py	2025-09-10 01:38:25.000000000 +0900
-+++ src/unicorn-2.1.4/bindings/python/setup.py	2025-09-11 07:48:00.072715700 +0900
+--- origsrc/unicorn-2.1.4/bindings/python/setup.py	2025-09-09 16:38:25.000000000 +0000
++++ src/unicorn-2.1.4/bindings/python/setup.py	2026-11-27 15:20:00.459094600 +0000
 @@ -24,7 +24,10 @@ BUILD_DIR = os.path.join(UC_DIR, 'build_
  if sys.platform == 'darwin':
      LIBRARY_FILE = "libunicorn.2.dylib"
@@ -12,8 +12,8 @@
      LIBRARY_FILE = "unicorn.dll"
      STATIC_LIBRARY_FILE = "unicorn.lib"
  else:
---- origsrc/unicorn-2.1.4/qemu/configure	2025-09-10 01:38:25.000000000 +0900
-+++ src/unicorn-2.1.4/qemu/configure	2025-09-11 07:48:00.087960500 +0900
+--- origsrc/unicorn-2.1.4/qemu/configure	2025-09-09 16:38:25.000000000 +0000
++++ src/unicorn-2.1.4/qemu/configure	2026-11-27 15:20:00.461120900 +0000
 @@ -416,6 +416,8 @@ elif check_define __NetBSD__; then
    targetos='NetBSD'
  elif check_define __APPLE__; then

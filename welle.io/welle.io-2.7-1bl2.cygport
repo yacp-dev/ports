@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="DAB/DAB+ Software Defined Radio (SDR)"
 DESCRIPTION="${SUMMARY}"
 
-LICENSE="GPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE="GPL-2.0-or-later AND LGPL-2.1-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.1-or-later AND MIT"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="
@@ -14,11 +14,13 @@ BUILD_REQUIRES="
 	libfftw3-devel
 	libmp3lame-devel
 	libmpg123-devel
+	xxd
 "
 
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DBUILD_WELLE_IO:BOOL=OFF
 	-DGIT_COMMIT_HASH:STRING='512558d'
 	-DGIT_DESCRIBE:STRING=v${PV}

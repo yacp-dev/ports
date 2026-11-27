@@ -12,7 +12,9 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="xlslib/LICENSE.txt"
 
-BUILD_REQUIRES="libiconv-devel"
+BUILD_REQUIRES="
+	libiconv-devel
+"
 
 src_compile()
 {
@@ -24,6 +26,14 @@ src_compile()
 	cygmake
 }
 
+src_test()
+{
+	cd ${B}
+	cp -f ${S}/${PN}/targets/test/*.md5 targets/test/
+	cygtest
+	rm -f targets/test/*.md5
+}
+
 DOCS="
 	${PN}/LICENSE.txt
 	${PN}/NEWS
@@ -31,6 +41,10 @@ DOCS="
 	${PN}/TODO
 	${PN}/*.pdf
 	${PN}/*.xls
+"
+
+DIFF_EXCLUDES="
+	ac-config.*.h
 "
 
 PKG_NAMES="

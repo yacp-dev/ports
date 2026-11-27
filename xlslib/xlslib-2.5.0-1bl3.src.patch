@@ -1,5 +1,5 @@
---- origsrc/xlslib/xlslib/Makefile.am	2014-11-03 08:10:50.000000000 +0900
-+++ src/xlslib/xlslib/Makefile.am	2024-10-27 00:06:19.080891100 +0900
+--- origsrc/xlslib/xlslib/Makefile.am	2014-11-02 23:10:50.000000000 +0000
++++ src/xlslib/xlslib/Makefile.am	2026-11-27 09:26:01.947592300 +0000
 @@ -14,6 +14,8 @@ MAINTAINERCLEANFILES 	= Makefile.in aclo
  #ACLOCAL				= aclocal
  ACLOCAL_AMFLAGS			= -I m4 ${ACLOCAL_FLAGS}
@@ -9,8 +9,8 @@
  
  ##dist-hook:
  ##	(cd $(distdir) && mkdir $(auxdir))
---- origsrc/xlslib/xlslib/configure.ac	2014-11-03 08:10:50.000000000 +0900
-+++ src/xlslib/xlslib/configure.ac	2024-10-27 00:06:19.080891100 +0900
+--- origsrc/xlslib/xlslib/configure.ac	2014-11-02 23:10:50.000000000 +0000
++++ src/xlslib/xlslib/configure.ac	2026-11-27 09:26:01.949612900 +0000
 @@ -370,7 +370,7 @@ AC_CONFIG_FILES([Makefile
  				 build/RadStudio/ac-config.win32.h
  				 build/BDS/ac-config.win32.h
@@ -20,8 +20,8 @@
  AC_OUTPUT
  
  
---- origsrc/xlslib/xlslib/src/Makefile.am	2014-11-03 08:10:50.000000000 +0900
-+++ src/xlslib/xlslib/src/Makefile.am	2024-10-27 00:06:19.080891100 +0900
+--- origsrc/xlslib/xlslib/src/Makefile.am	2014-11-02 23:10:50.000000000 +0000
++++ src/xlslib/xlslib/src/Makefile.am	2026-11-27 09:26:01.951626700 +0000
 @@ -14,7 +14,7 @@ lib_LTLIBRARIES         = libxls.la
  
  # DFH addition second spin, 3rd revision, back compat to 0 (http://sourceware.org/autobook/autobook/autobook_91.html)
@@ -31,8 +31,8 @@
  
  libxls_la_SOURCES     =       \
  xlslib/assert_assist.cpp      \
---- origsrc/xlslib/xlslib/targets/test/Makefile.am	2014-11-03 08:10:50.000000000 +0900
-+++ src/xlslib/xlslib/targets/test/Makefile.am	2024-10-27 00:06:19.080891100 +0900
+--- origsrc/xlslib/xlslib/targets/test/Makefile.am	2014-11-02 23:10:50.000000000 +0000
++++ src/xlslib/xlslib/targets/test/Makefile.am	2026-11-27 09:26:01.951626700 +0000
 @@ -1,21 +1,21 @@
  
 -AM_CPPFLAGS		=  \
@@ -60,8 +60,8 @@
  
  check_PROGRAMS = testCPP testC PR2859188 PR3076678
  
---- origsrc/xlslib/xlslib/xlslib.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/xlslib/xlslib/xlslib.pc.in	2024-10-27 00:06:19.080891100 +0900
+--- origsrc/xlslib/xlslib/xlslib.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/xlslib/xlslib/xlslib.pc.in	2026-11-27 09:26:01.953641800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

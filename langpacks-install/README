@@ -7,25 +7,25 @@ not then ask the PackageKit to install that package. Its then upto end user to
 check the PackageKit notification and install the package.
 
 Runtime requirements:
-  cygwin-3.6.1-1
-  libglib2.0_0-2.84.1-1
+  cygwin-3.6.12-1
+  libglib2.0_0-2.90.1-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.44-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  gettext-devel-0.22.5-1
-  libglib2.0-devel-2.84.1-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gettext-devel-0.26-1
+  libglib2.0-devel-2.90.1-1
   make-4.4.1-2
 
 Canonical website:
-  https://pagure.io/langpacks-install
+  https://github.com/pnemade/langpacks-install
 
 Canonical download:
-  https://pagure.io/langpacks-install.git
+  https://github.com/pnemade/langpacks-install/archive/refs/tags/1.0.0.tar.gz
 
 -------------------------------------------
 
@@ -58,6 +58,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.0.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.0.0-1bl2 -----
 Rebuild with gcc-12.4.0

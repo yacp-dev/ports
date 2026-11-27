@@ -1,0 +1,61 @@
+--- origsrc/u5e/CMakeLists.txt	2026-11-27 13:57:57.000000000 +0000
++++ src/u5e/CMakeLists.txt	2026-11-27 13:58:04.387596000 +0000
+@@ -10,8 +10,15 @@ add_library(u5e
+   src/u5e/props/compatibility_and_canonical_decomposition_mapping.cpp
+   )
+ target_include_directories(u5e PUBLIC include/)
+-target_compile_options(u5e PUBLIC -std=c++1y -Wall -Werror)
++target_compile_options(u5e PUBLIC -std=c++17 -Wall)
++if (DEFINED SOVERSION)
++  set_target_properties(u5e PROPERTIES SOVERSION "${SOVERSION}")
++endif()
++find_package(pkgconfig)
++pkg_check_modules(GTEST gtest)
++if (NOT GTEST_FOUND)
+ add_subdirectory(googletest/googletest)
++endif()
+ enable_testing()
+ 
+ include_directories(${u5e_SOURCE_DIR}/include ${gtest_SOURCE_DIR}/include)
+@@ -19,3 +26,20 @@ include_directories(${u5e_SOURCE_DIR}/in
+ add_subdirectory(t)
+ add_subdirectory(examples)
+ 
++include(GNUInstallDirs)
++install(TARGETS u5e RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
++install(DIRECTORY include/u5e DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
++
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/u5e.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: u5e
++Description: Unicode Text C++ library
++Version: ${VERSION}
++Libs: -L\${libdir} -lu5e
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/u5e.pc" DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/u5e/examples/CMakeLists.txt	2026-11-27 13:57:57.000000000 +0000
++++ src/u5e/examples/CMakeLists.txt	2026-11-27 13:58:04.388820100 +0000
+@@ -15,6 +15,6 @@ foreach(EXAMPLE
+     normalization_form_kc_utf32
+     )
+   add_executable(${EXAMPLE} ${EXAMPLE}.cpp)
+-  target_compile_options(${EXAMPLE} PUBLIC -std=c++1y)
++  target_compile_options(${EXAMPLE} PUBLIC -std=c++17)
+   target_link_libraries(${EXAMPLE} u5e)
+ endforeach(EXAMPLE)
+--- origsrc/u5e/t/CMakeLists.txt	2026-11-27 13:57:57.000000000 +0000
++++ src/u5e/t/CMakeLists.txt	2026-11-27 13:58:04.389620800 +0000
+@@ -19,7 +19,7 @@ foreach(TEST
+     019_normalization_form_kc_utf32ne
+     )
+   add_executable(${TEST}.t ${TEST}.t.cpp)
+-  target_compile_options(${TEST}.t PUBLIC -std=c++1y)
++  target_compile_options(${TEST}.t PUBLIC -std=c++17)
+   target_link_libraries(${TEST}.t u5e gtest gtest_main)
+   add_test(${TEST} ${TEST}.t)
+ endforeach(TEST)

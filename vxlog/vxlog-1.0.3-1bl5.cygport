@@ -8,9 +8,19 @@ a printf-like syntax. Messages can be output to file, the console, and using
 syslog. Output messages and journal modules can be filtered. The library is
 thread-safe."
 
+LICENSE="MIT"
+LICENSE_SPDX="SPDX-License-Identifier: MIT"
+LICENSE_URI="doc/COPYING.txt"
+
+BUILD_REQUIRES="
+	libgtest-devel
+	ninja
+"
+
 inherit cmake
 
 CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 	-DVERSION:STRING=${PV}
 "
 
@@ -33,7 +43,7 @@ vxlog_CONTENTS="
 	usr/share
 "
 libvxlog1_CONTENTS="
-	usr/bin
+	usr/bin/cyg*-1.dll
 "
 libvxlog_devel_CONTENTS="
 	usr/include

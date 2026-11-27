@@ -4,23 +4,23 @@ Simple and easy to use logging library. You can log messages to the console, a
 file, syslog or journald.
 
 Runtime requirements:
-  cygwin-3.6.5-1
-  liborcania-devel-2.3.3-1bl2
-  liborcania2.3-2.3.3-1bl2
-  libyder-devel-1.4.20-1bl2
-  libyder1.4-1.4.20-1bl2
-  pkg-config-2.5.1-1
+  cygwin-3.6.12-1
+  liborcania-devel-2.3.3-1bl3
+  liborcania2.3-2.3.3-1bl3
+  libyder-devel-1.4.20-1bl3
+  libyder1.4-1.4.20-1bl3
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
+  binutils-2.47-1
   check-0.15.2-1
-  cmake-4.1.3-1
-  cygport-0.37.3-1
-  gcc-core-13.4.0-1
-  liborcania-devel-2.3.3-1bl2
-  libsubunit-devel-1.4.2-1bl2
-  ninja-1.13.1-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  liborcania-devel-2.3.3-1bl3
+  libsubunit-devel-1.4.6-1bl1
+  ninja-1.13.2-1
 
 Canonical website:
   https://github.com/babelouest/yder
@@ -62,7 +62,7 @@ Files included in the binary package:
   /usr/lib/cmake/Yder/FindSystemd.cmake
   /usr/lib/cmake/Yder/YderConfig.cmake
   /usr/lib/cmake/Yder/YderConfigVersion.cmake
-  /usr/lib/cmake/Yder/YderTargets-release.cmake
+  /usr/lib/cmake/Yder/YderTargets-relwithdebinfo.cmake
   /usr/lib/cmake/Yder/YderTargets.cmake
   /usr/lib/libyder.dll.a
   /usr/lib/pkgconfig/libyder.pc
@@ -78,6 +78,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.4.20-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.4.20-1bl2 -----
 Rebuild with gcc-13.4.0

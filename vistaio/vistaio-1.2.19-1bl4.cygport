@@ -5,11 +5,15 @@ CATEGORY="Libs"
 SUMMARY="IO and data type part of the vista library"
 DESCRIPTION="This library includes the IO and data type part of the vista library."
 
-# LICENSE="BSD-2-Clause"
-# LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="HPND-sell-variant"
+LICENSE_SPDX="SPDX-License-Identifier: HPND-sell-variant"
 LICENSE_URI="COPYING"
 
 inherit cmake
+
+CYGCMAKE_ARGS="
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
 
 src_install()
 {

@@ -1,75 +1,78 @@
 pcl
 ------------------------------------------
-The Point Cloud Library (PCL) is a standalone, large scale, open project for
-3D point cloud processing.
+The Point Cloud Library (PCL) is a standalone, large scale, open project for 3D
+point cloud processing.
 
 Runtime requirements:
-  cygwin-3.6.4-1
+  cygwin-3.6.12-1
   eigen3-3.4.0-1
-  libGL1-19.1.6-1
+  libGL1-23.3.6-1
   libGLEW2.1-2.1.0-1
-  libGLU1-9.0.2-1
-  libVTK9.5_1-9.5.0-1bl1
-  libX11_6-1.8.10-1
+  libVTK9.7_1-9.7.2-1bl3
+  libX11_6-1.8.13-1
   libboost_filesystem1.66-1.66.0-1
   libboost_iostreams1.66-1.66.0-1
   libboost_system1.66-1.66.0-1
-  libcjson1-1.7.18-1bl2
-  libflann-devel-1.9.2-1bl2
-  libgcc1-13.4.0-1
+  libcjson1-1.7.19-1bl3
+  libflann-devel-1.9.2-1bl3
+  libgcc1-14.4.0-1
   libglut3-3.4.0-1
-  libgomp1-13.4.0-1
+  libgomp1-14.4.0-1
   liblz4_1-1.9.4-1
-  libpcl-devel-1.15.0-1bl1
-  libpcl1.15-1.15.0-1bl1
-  libpng16-1.6.47-2
+  libpcl-devel-1.15.1-1bl1
+  libpcl1.15-1.15.1-1bl1
+  libpng16-1.6.59-1
   libqhull_8-2020.2-1
-  libstdc++6-13.4.0-1
+  libstdc++6-14.4.0-1
   libusb1.0-1.0.21-1
-  pkg-config-2.5.1-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45-1
-  cmake-3.28.3-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libGL-devel-19.1.6-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  eigen3-3.4.0-1
+  gcc-core-14.4.0-1
+  gcc-g++-14.4.0-1
+  libGL-devel-23.3.6-1
   libGLEW-devel-2.1.0-1
-  libGLU-devel-9.0.2-1
-  libVTK9.5-devel-9.5.0-1bl1
-  libX11-devel-1.8.10-1
+  libGLU-devel-9.0.3-1
+  libVTK9.7-devel-9.7.2-1bl3
+  libX11-devel-1.8.13-1
+  libbenchmark-devel-1.10.0-1bl1
   libboost-devel-1.66.0-1
-  libcjson-devel-1.7.18-1bl2
-  libflann-devel-1.9.2-1bl2
+  libcjson-devel-1.7.19-1bl3
+  libflann-devel-1.9.2-1bl3
   libglut-devel-3.4.0-1
+  libgtest-devel-1.18.0-1bl1
   liblz4-devel-1.9.4-1
-  libpng-devel-1.6.47-2
+  libpng-devel-1.6.59-1
   libqhull-devel-2020.2-1
   libusb1.0-devel-1.0.21-1
-  ninja-1.13.1-1
+  ninja-1.13.2-1
+  qhull-2020.2-1
 
 Canonical website:
   https://github.com/PointCloudLibrary/pcl
 
 Canonical download:
-  https://github.com/PointCloudLibrary/pcl/archive/refs/tags/pcl-1.15.0.tar.gz
+  https://github.com/PointCloudLibrary/pcl/archive/refs/tags/pcl-1.15.1.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack pcl-1.15.0-X-src.tar.xz
+  1. unpack pcl-1.15.1-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./pcl-1.15.0-X.cygport all
+        % cygport ./pcl-1.15.1-X.cygport all
 
 This will create:
-  /usr/src/pcl-1.15.0-X-src.tar.xz
-  /usr/src/pcl-1.15.0-X.tar.xz
-  /usr/src/libpcl1.15-1.15.0-X.tar.xz
-  /usr/src/libpcl-devel-1.15.0-X.tar.xz
+  /usr/src/pcl-1.15.1-X-src.tar.xz
+  /usr/src/pcl-1.15.1-X.tar.xz
+  /usr/src/libpcl1.15-1.15.1-X.tar.xz
+  /usr/src/libpcl-devel-1.15.1-X.tar.xz
 
 -------------------------------------------
 
@@ -132,9 +135,6 @@ Files included in the binary package:
   /usr/bin/pcl_obj_rec_ransac_scene_opps.exe
   /usr/bin/pcl_octree_viewer.exe
   /usr/bin/pcl_outlier_removal.exe
-  /usr/bin/pcl_outofcore_print.exe
-  /usr/bin/pcl_outofcore_process.exe
-  /usr/bin/pcl_outofcore_viewer.exe
   /usr/bin/pcl_passthrough_filter.exe
   /usr/bin/pcl_pcd2ply.exe
   /usr/bin/pcl_pcd2png.exe
@@ -162,10 +162,6 @@ Files included in the binary package:
   /usr/bin/pcl_radius_filter.exe
   /usr/bin/pcl_registration_visualizer.exe
   /usr/bin/pcl_sac_segmentation_plane.exe
-  /usr/bin/pcl_sim_terminal_demo.exe
-  /usr/bin/pcl_sim_test_performance.exe
-  /usr/bin/pcl_sim_test_simple.exe
-  /usr/bin/pcl_sim_viewer.exe
   /usr/bin/pcl_spin_estimation.exe
   /usr/bin/pcl_statistical_multiscale_interest_region_extraction_example.exe
   /usr/bin/pcl_stereo_ground_segmentation.exe
@@ -215,7 +211,6 @@ Files included in the binary package:
   /usr/bin/cygpcl_search-1.15.dll
   /usr/bin/cygpcl_segmentation-1.15.dll
   /usr/bin/cygpcl_simulation-1.15.dll
-  /usr/bin/cygpcl_simulation_io-1.15.dll
   /usr/bin/cygpcl_stereo-1.15.dll
   /usr/bin/cygpcl_surface-1.15.dll
   /usr/bin/cygpcl_tracking-1.15.dll
@@ -923,6 +918,7 @@ Files included in the binary package:
   /usr/include/pcl-1.15/pcl/search/impl/organized.hpp
   /usr/include/pcl-1.15/pcl/search/impl/search.hpp
   /usr/include/pcl-1.15/pcl/search/kdtree.h
+  /usr/include/pcl-1.15/pcl/search/kdtree_nanoflann.h
   /usr/include/pcl-1.15/pcl/search/octree.h
   /usr/include/pcl-1.15/pcl/search/organized.h
   /usr/include/pcl-1.15/pcl/search/pcl_search.h
@@ -1162,7 +1158,6 @@ Files included in the binary package:
   /usr/lib/libpcl_search.dll.a
   /usr/lib/libpcl_segmentation.dll.a
   /usr/lib/libpcl_simulation.dll.a
-  /usr/lib/libpcl_simulation_io.dll.a
   /usr/lib/libpcl_stereo.dll.a
   /usr/lib/libpcl_surface.dll.a
   /usr/lib/libpcl_tracking.dll.a
@@ -1195,6 +1190,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.15.1-1bl1 -----
+Version bump.
 
 ----- version 1.15.0-1bl1 -----
 Version bump.

@@ -1,21 +1,27 @@
 HOMEPAGE="https://github.com/PointCloudLibrary/${PN}"
 SRC_URI="https://github.com/PointCloudLibrary/${PN}/archive/refs/tags/${P}.tar.gz"
-SRC_DIR="${PN}-${P}"
 PATCH_URI="
-	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}%2Bdfsg-2/debian/patches/0001-Fix-PCL_ROOT-path.patch
-	https://src.fedoraproject.org/rpms/${PN}/raw/rawhide/f/${P}-sse2.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}%2Bdfsg-4/debian/patches/0001-Fix-PCL_ROOT-path.patch
+	https://src.fedoraproject.org/rpms/${PN}/raw/14b9789c326d86725152914b6a343f5e4076be46/f/${PN}-1.15.0-sse2.patch
+	https://github.com/PointCloudLibrary/${PN}/commit/0290ff7340519d6213f78b067a2fd28d8dd13a56.patch#/${PN}-PR6412.patch
+	https://github.com/PointCloudLibrary/${PN}/commit/f76acdae162e77437582ea93856bb4f81109a359.patch#/${PN}-PR6394.patch
+	https://sources.debian.org/data/main/${PN:0:1}/${PN}/${PV}%2Bdfsg-4/debian/patches/0005-Add-x11-on-linux-when-vtk-9.6.patch
+	https://raw.githubusercontent.com/gentoo/gentoo/0dd2056b13e7486a5b982c81ae001b1a6d763fce/sci-libs/${PN}/files/${PN}-1.15.1-update-find-vtk.patch
 "
+SRC_DIR="${PN}-${P}"
 
 CATEGORY="Libs"
 SUMMARY="Point Cloud Library"
 DESCRIPTION="The Point Cloud Library (PCL) is a standalone, large scale, open project for
 3D point cloud processing."
 
-LICENSE="BSD-3-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
-LICENSE_URI="LICENSE.txt"
+LICENSE="BSD-2-Clause AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause"
+LICENSE_URI="LICENSE.txt io/src/lzf.cpp"
 
 BUILD_REQUIRES="
+	eigen3
+	libbenchmark-devel
 	libboost-devel
 	libcjson-devel
 	libflann-devel
@@ -23,12 +29,14 @@ BUILD_REQUIRES="
 	libGLEW-devel
 	libGLU-devel
 	libglut-devel
+	libgtest-devel
 	liblz4-devel
 	libpng-devel
 	libqhull-devel
 	libusb1.0-devel
-	libVTK9.5-devel
+	libVTK9.7-devel
 	libX11-devel
+	qhull
 "
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"

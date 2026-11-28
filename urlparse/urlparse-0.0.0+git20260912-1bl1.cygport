@@ -1,6 +1,6 @@
 HOMEPAGE="https://github.com/ngtcp2/${PN}"
 GIT_URI="https://github.com/ngtcp2/${PN}.git"
-GIT_REV="c8168839c89fc5c5917c375e1bd6ffeddf3f7f88"
+GIT_REV="5f81dc436b0b105f053a9672632b649e13df109c"
 
 CATEGORY="Libs"
 SUMMARY="URL parser compatible to url_parser_parse_url() from nodejs/http-parser"

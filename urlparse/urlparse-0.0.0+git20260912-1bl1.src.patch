@@ -1,5 +1,5 @@
---- origsrc/urlparse/Makefile.am	2026-01-27 12:05:03.000000000 +0900
-+++ src/urlparse/Makefile.am	2026-01-27 12:27:57.628338000 +0900
+--- origsrc/urlparse/Makefile.am	2026-11-28 07:37:28.000000000 +0000
++++ src/urlparse/Makefile.am	2026-11-28 07:37:31.579698800 +0000
 @@ -66,6 +66,9 @@ test_SOURCES = urlparse_test_main.c urlp
  test_CFLAGS = $(WARNCFLAGS) -I$(top_srcdir)
  test_CPPFLAGS = -I$(srcdir) -I$(srcdir)/munit
@@ -11,8 +11,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/urlparse/configure.ac	2026-01-27 12:05:03.000000000 +0900
-+++ src/urlparse/configure.ac	2026-01-27 12:27:57.646536700 +0900
+--- origsrc/urlparse/configure.ac	2026-11-28 07:37:28.000000000 +0000
++++ src/urlparse/configure.ac	2026-11-28 07:37:31.580062500 +0000
 @@ -25,7 +25,7 @@
  # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -30,8 +30,8 @@
  AC_OUTPUT
  
  AC_MSG_NOTICE([summary of build options:
---- origsrc/urlparse/urlparse.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/urlparse/urlparse.pc.in	2026-01-27 12:28:06.494656600 +0900
+--- origsrc/urlparse/urlparse.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/urlparse/urlparse.pc.in	2026-11-28 07:37:31.580062500 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

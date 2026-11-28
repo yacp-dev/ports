@@ -9,27 +9,27 @@ quantum chemistry software an easy way to add EFP support to their favourite
 package.
 
 Runtime requirements:
-  cygwin-3.5.7-1
-  libefp-devel-1.5.0-1bl2
-  libefp1.5-1.5.0-1bl2
-  liblapack0-3.12.1-2
-  libopenblas-0.3.26-1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libefp-devel-1.5.0-1bl3
+  libefp1.5-1.5.0-1bl3
+  liblapack-devel-3.12.0-1
+  liblapack0-3.12.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  liblapack-devel-3.12.1-2
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  liblapack-devel-3.12.0-1
+  ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/ilyak/libefp
+  https://github.com/libefp2/libefp
 
 Canonical download:
-  https://github.com/ilyak/libefp/archive/refs/tags/1.5.0.tar.gz
+  https://github.com/libefp2/libefp/archive/refs/tags/1.5.0.tar.gz
 
 -------------------------------------------
 
@@ -111,7 +111,7 @@ Files included in the binary package:
   /usr/lib/cmake/libefp/FindTargetLAPACK.cmake
   /usr/lib/cmake/libefp/libefpConfig.cmake
   /usr/lib/cmake/libefp/libefpConfigVersion.cmake
-  /usr/lib/cmake/libefp/libefpTargets-release.cmake
+  /usr/lib/cmake/libefp/libefpTargets-relwithdebinfo.cmake
   /usr/lib/cmake/libefp/libefpTargets.cmake
   /usr/lib/libefp.dll.a
   /usr/lib/pkgconfig/libefp.pc
@@ -119,6 +119,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.5.0-1bl3 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.5.0-1bl2 -----
 Rebuild with gcc-12.4.0

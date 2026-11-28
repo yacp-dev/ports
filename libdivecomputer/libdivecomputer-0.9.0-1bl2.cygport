@@ -6,8 +6,8 @@ SUMMARY="Library for communication with various dive computers"
 DESCRIPTION="Libdivecomputer is a cross-platform and open source library for communication
 with dive computers from various manufacturers."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND Unlicense"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND Unlicense"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="

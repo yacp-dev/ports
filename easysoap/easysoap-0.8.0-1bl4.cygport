@@ -7,8 +7,8 @@ SUMMARY="C++ library for SOAP"
 DESCRIPTION="EasySoap++ is a C++ library for SOAP, the Simple Object Access Protocol
 released under the GNU LGPL."
 
-LICENSE="LGPL-3.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
+LICENSE="LGPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
 LICENSE_URI="COPYING"
 
 BUILD_REQUIRES="

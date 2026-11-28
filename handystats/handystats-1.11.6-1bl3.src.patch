@@ -1,5 +1,5 @@
---- origsrc/handystats-1.11.6/CMakeLists.txt	2017-07-03 21:22:51.000000000 +0900
-+++ src/handystats-1.11.6/CMakeLists.txt	2026-07-09 19:14:47.245241200 +0900
+--- origsrc/handystats-1.11.6/CMakeLists.txt	2017-07-03 12:22:51.000000000 +0000
++++ src/handystats-1.11.6/CMakeLists.txt	2026-11-28 13:56:00.161336900 +0000
 @@ -3,12 +3,12 @@ CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
  
  SET (LIB_MAJOR_VERSION "1")
@@ -16,31 +16,27 @@
  
  
  GET_PROPERTY (LIB64 GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS)
-@@ -41,3 +41,9 @@ ADD_SUBDIRECTORY (benchmarks EXCLUDE_FRO
+@@ -41,3 +41,18 @@ ADD_SUBDIRECTORY (benchmarks EXCLUDE_FRO
  ENABLE_TESTING ()
  ADD_SUBDIRECTORY (tests)
  
-+SET(prefix ${CMAKE_INSTALL_PREFIX})
-+SET(exec_prefix ${CMAKE_INSTALL_PREFIX})
-+SET(libdir ${CMAKE_INSTALL_PREFIX}/lib)
-+SET(includedir ${CMAKE_INSTALL_PREFIX}/include)
-+CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/handystats.pc.in ${CMAKE_BINARY_DIR}/handystats.pc @ONLY)
-+INSTALL(FILES ${CMAKE_BINARY_DIR}/handystats.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/handystats-1.11.6/handystats.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/handystats-1.11.6/handystats.pc.in	2026-07-09 13:50:22.783680500 +0900
-@@ -0,0 +1,10 @@
-+prefix=@prefix@
-+exec_prefix=@exec_prefix@
-+libdir=@libdir@
-+includedir=@includedir@
++include(GNUInstallDirs)
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/handystats.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
 +
 +Name: handystats
 +Description: C++ library for collecting user-defined in-process runtime statistics with low overhead
-+Version: @LIB_MAJOR_VERSION@.@LIB_MINOR_VERSION@.@LIB_PATCH_VERSION@
-+Libs: -L${libdir} -lhandystats
-+Cflags: -I${includedir}
---- origsrc/handystats-1.11.6/include/handystats/rapidjson/writer.h	2017-07-03 21:22:51.000000000 +0900
-+++ src/handystats-1.11.6/include/handystats/rapidjson/writer.h	2026-07-09 13:50:22.791942400 +0900
++Version: ${LIB_MAJOR_VERSION}.${LIB_MINOR_VERSION}.${LIB_PATCH_VERSION}
++Libs: -L\${libdir} -lhandystats
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/handystats.pc"
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+--- origsrc/handystats-1.11.6/include/handystats/rapidjson/writer.h	2017-07-03 12:22:51.000000000 +0000
++++ src/handystats-1.11.6/include/handystats/rapidjson/writer.h	2026-11-28 13:56:00.163349200 +0000
 @@ -164,7 +164,12 @@ protected:
  
  	//! \todo Optimization with custom double-to-string converter.
@@ -55,8 +51,8 @@
  			d = 0;
  		}
  		char buffer[100];
---- origsrc/handystats-1.11.6/src/core.cpp	2017-07-03 21:22:51.000000000 +0900
-+++ src/handystats-1.11.6/src/core.cpp	2026-07-09 13:50:22.795964500 +0900
+--- origsrc/handystats-1.11.6/src/core.cpp	2017-07-03 12:22:51.000000000 +0000
++++ src/handystats-1.11.6/src/core.cpp	2026-11-28 13:56:00.163349200 +0000
 @@ -18,7 +18,9 @@
  #include <chrono>
  #include <algorithm>
@@ -79,8 +75,8 @@
  	while (is_enabled()) {
  		if (!message_queue::empty()) {
  			process_message_queue();
---- origsrc/handystats-1.11.6/tests/CMakeLists.txt	2017-07-03 21:22:51.000000000 +0900
-+++ src/handystats-1.11.6/tests/CMakeLists.txt	2026-07-09 18:44:47.360232100 +0900
+--- origsrc/handystats-1.11.6/tests/CMakeLists.txt	2017-07-03 12:22:51.000000000 +0000
++++ src/handystats-1.11.6/tests/CMakeLists.txt	2026-11-28 13:56:00.165361200 +0000
 @@ -44,8 +44,9 @@ ENDIF (NOT GTEST_FOUND)
  INCLUDE_DIRECTORIES (${GTEST_INCLUDE_DIRS})
  INCLUDE_DIRECTORIES (${GTEST_SOURCE_DIR} ${GTEST_SOURCE_DIR}/include)

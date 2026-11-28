@@ -2,13 +2,18 @@ HOMEPAGE="https://github.com/yandex/${PN}"
 SRC_URI="https://github.com/yandex/${PN}/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Libs"
-SUMMARY="C++ library for collecting user-defined in-process runtime statistics with low overhead"
+SUMMARY="C++ library for collecting user-defined runtime statistics"
 DESCRIPTION="Handystats is C++ library for collecting user-defined in-process runtime
 statistics with low overhead."
 
 LICENSE="LGPL-3.0-or-later"
 LICENSE_SPDX="SPDX-License-Identifier: LGPL-3.0-or-later"
 LICENSE_URI="LICENSE"
+
+BUILD_REQUIRES="
+	libboost-devel
+	libgtest-devel
+"
 
 export CPPFLAGS="${CPPFLAGS} -D_GNU_SOURCE"
 export CXXFLAGS="${CXXFLAGS} -fpermissive"

@@ -1,4 +1,4 @@
-HOMEPAGE="http://${PN}.sf.net/"
+HOMEPAGE="https://${PN}.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 CATEGORY="Libs"
@@ -6,6 +6,26 @@ SUMMARY="Automotive simulation framework"
 DESCRIPTION="Vamos is an automotive simulation framework with an emphasis on thorough
 physical modeling and good C++ design. Vamos includes a real-time,
 first-person, 3D driving application."
+
+LICENSE="GPL-3.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-3.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	autoconf-archive
+	libalut-devel
+	libboost-devel
+	libboost_python3-devel
+	libGL-devel
+	libGLU-devel
+	libglut-devel
+	libopenal-devel
+	libpng-devel
+	libSDL-devel
+	pkgconf
+	python3-devel
+	zlib-devel
+"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_patch_hook()
@@ -28,16 +48,18 @@ PKG_NAMES="
 	lib${PN}-devel
 "
 vamos_CONTENTS="
-	usr/bin --exclude=*.dll
+	usr/bin/*.exe
+	usr/bin/${PN}
+	usr/lib/python*
 	usr/share/doc
 	usr/share/${PN}
 "
 libvamos0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cyg*-0.dll
 "
 libvamos_devel_CONTENTS="
 	usr/include
-	usr/lib --exclude=python*
+	usr/lib/lib*.dll.a
 	usr/share/info
 "
 

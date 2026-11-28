@@ -22,20 +22,20 @@ inherit cmake
 
 PKG_NAMES="
 	urdfdom
-	liburdfdom${PV[1]}.0
+	liburdfdom6
 	liburdfdom-devel
 "
 urdfdom_CONTENTS="
 	usr/bin/*.exe
 	usr/share
 "
-liburdfdom5_0_CONTENTS="
-	usr/bin/cyg*-${PV[1]}.0.dll
+liburdfdom6_CONTENTS="
+	usr/bin/cyg*-6.dll
 "
 liburdfdom_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
 urdfdom_SUMMARY="${SUMMARY} (utilities)"
-liburdfdom5_0_SUMMARY="${SUMMARY} (runtime)"
+liburdfdom6_SUMMARY="${SUMMARY} (runtime)"
 liburdfdom_devel_SUMMARY="${SUMMARY} (development)"

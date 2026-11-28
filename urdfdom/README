@@ -4,48 +4,47 @@ URDF (U-Robot Description Format) library provides core data structures and a
 simple XML parsers for populating the class data structures from an URDF file.
 
 Runtime requirements:
-  cygwin-3.6.6-1
-  libconsole_bridge1.0-1.0.2-1bl2
-  libgcc1-13.4.0-1
-  libstdc++6-13.4.0-1
+  cygwin-3.6.12-1
+  libconsole_bridge1.0-1.0.2-1bl3
+  libgcc1-14.4.0-1
+  libstdc++6-14.4.0-1
   libtinyxml2_6-6.0.0-1
-  liburdfdom-devel-5.0.4-1bl1
-  liburdfdom5.0-5.0.4-1bl1
-  pkg-config-2.5.1-1
-  urdfdom_headers-2.1.0-1bl1
+  liburdfdom-devel-6.0.2-1bl1
+  liburdfdom6-6.0.2-1bl1
+  pkg-config-3.0.11-1
+  urdfdom_headers-3.0.1-1bl1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.45.1-1
-  cmake-4.2.1-1
-  cygport-0.37.6-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libconsole_bridge-devel-1.0.2-1bl2
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-g++-14.4.0-1
+  libconsole_bridge-devel-1.0.2-1bl3
   libtinyxml2-devel-6.0.0-1
   ninja-1.13.2-1
-  urdfdom_headers-2.1.0-1bl1
+  urdfdom_headers-3.0.1-1bl1
 
 Canonical website:
   https://github.com/ros/urdfdom
 
 Canonical download:
-  https://github.com/ros/urdfdom/archive/refs/tags/5.0.4.tar.gz
+  https://github.com/ros/urdfdom/archive/refs/tags/6.0.2.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack urdfdom-5.0.4-X-src.tar.xz
+  1. unpack urdfdom-6.0.2-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./urdfdom-5.0.4-X.cygport all
+        % cygport ./urdfdom-6.0.2-X.cygport all
 
 This will create:
-  /usr/src/urdfdom-5.0.4-X-src.tar.xz
-  /usr/src/urdfdom-5.0.4-X.tar.xz
-  /usr/src/liburdfdom5.0-5.0.4-X.tar.xz
-  /usr/src/liburdfdom-devel-5.0.4-X.tar.xz
+  /usr/src/urdfdom-6.0.2-X-src.tar.xz
+  /usr/src/urdfdom-6.0.2-X.tar.xz
+  /usr/src/liburdfdom6-6.0.2-X.tar.xz
+  /usr/src/liburdfdom-devel-6.0.2-X.tar.xz
 
 -------------------------------------------
 
@@ -60,17 +59,19 @@ Files included in the binary package:
   /usr/share/doc/urdfdom/README.md
   /usr/share/urdfdom/package.xml
 
-(liburdfdom5.0)
-  /usr/bin/cygurdfdom_model-5.0.dll
-  /usr/bin/cygurdfdom_sensor-5.0.dll
-  /usr/bin/cygurdfdom_world-5.0.dll
+(liburdfdom6)
+  /usr/bin/cygurdfdom_model-6.dll
+  /usr/bin/cygurdfdom_sensor-6.dll
+  /usr/bin/cygurdfdom_world-6.dll
 
 (liburdfdom-devel)
   /usr/include/urdfdom/urdf_parser/exportdecl.h
+  /usr/include/urdfdom/urdf_parser/exportdecl.hpp
   /usr/include/urdfdom/urdf_parser/urdf_parser.h
+  /usr/include/urdfdom/urdf_parser/urdf_parser.hpp
   /usr/lib/cmake/urdfdom/urdfdom-config.cmake
   /usr/lib/cmake/urdfdom/urdfdom-configVersion.cmake
-  /usr/lib/cmake/urdfdom/urdfdomExport-release.cmake
+  /usr/lib/cmake/urdfdom/urdfdomExport-relwithdebinfo.cmake
   /usr/lib/cmake/urdfdom/urdfdomExport.cmake
   /usr/lib/liburdfdom_model.dll.a
   /usr/lib/liburdfdom_sensor.dll.a
@@ -80,6 +81,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 6.0.2-1bl1 -----
+Version bump.
 
 ----- version 5.0.4-1bl1 -----
 Version bump.

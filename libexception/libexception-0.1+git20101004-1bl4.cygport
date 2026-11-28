@@ -1,5 +1,6 @@
 HOMEPAGE="https://github.com/hollow/${PN}"
 GIT_URI="https://github.com/hollow/${PN}.git"
+GIT_REV="2d58c5b54b72c62ff85a5811f71e79f6c8d3d43e"
 
 CATEGORY="Libs"
 SUMMARY="Exception handling library for C"

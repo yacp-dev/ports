@@ -1,12 +1,12 @@
---- origsrc/libexception/Makefile.am	2024-09-27 05:59:58.000000000 +0900
-+++ src/libexception/Makefile.am	2024-09-27 06:02:37.394484600 +0900
+--- origsrc/libexception/Makefile.am	2026-11-28 12:13:37.000000000 +0000
++++ src/libexception/Makefile.am	2026-11-28 12:13:38.543922700 +0000
 @@ -1 +1,4 @@
  SUBDIRS = src test
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libexception/configure.ac	2024-09-27 05:59:58.000000000 +0900
-+++ src/libexception/configure.ac	2024-09-27 06:02:37.394484600 +0900
+--- origsrc/libexception/configure.ac	2026-11-28 12:13:37.000000000 +0000
++++ src/libexception/configure.ac	2026-11-28 12:13:38.543922700 +0000
 @@ -69,6 +69,7 @@ AC_CONFIG_FILES(Makefile
                  Doxyfile
                  src/Makefile
@@ -15,8 +15,8 @@
  AC_OUTPUT
  
  AC_MSG_NOTICE([$SUMMARY])
---- origsrc/libexception/libexception.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libexception/libexception.pc.in	2024-09-27 06:02:37.379969200 +0900
+--- origsrc/libexception/libexception.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libexception/libexception.pc.in	2026-11-28 12:13:38.543922700 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -28,8 +28,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lexception
 +Cflags: -I${includedir}
---- origsrc/libexception/src/Makefile.am	2024-09-27 05:59:58.000000000 +0900
-+++ src/libexception/src/Makefile.am	2024-09-27 05:59:59.129033800 +0900
+--- origsrc/libexception/src/Makefile.am	2026-11-28 12:13:37.000000000 +0000
++++ src/libexception/src/Makefile.am	2026-11-28 12:13:38.545931900 +0000
 @@ -7,6 +7,6 @@ lib_LTLIBRARIES = libexception.la
  
  libexception_la_SOURCES = exception.c tryenv.c

@@ -6,19 +6,19 @@ level semantics implemented as macros to make exception handling in C
 unobtrusive and easy to use.
 
 Runtime requirements:
-  cygwin-3.5.4-1
-  libexception-devel-0.1+git20101004-1bl3
-  libexception0-0.1+git20101004-1bl3
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libexception-devel-0.1+git20101004-1bl4
+  libexception0-0.1+git20101004-1bl4
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -62,6 +62,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.1+git20101004-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.1+git20101004-1bl3 -----
 Rebuild with gcc-12.4.0

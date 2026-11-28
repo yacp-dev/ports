@@ -5,28 +5,28 @@ normalized formats. It's goal is to unify they currently many different
 representations that exist in the industry.
 
 Runtime requirements:
-  cygwin-3.5.0-0.438.g322c7150b25e
-  libee-devel-0.4.1-1bl3
-  libee0-0.4.1-1bl3
-  libestr0-0.1.11-1bl2
-  pkg-config-2.0.3-1
+  cygwin-3.6.12-1
+  libee-devel-0.4.1-1bl4
+  libee0-0.4.1-1bl4
+  libestr0-0.1.11-1bl4
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-1
-  automake-11-1
-  binutils-2.41-3
-  cygport-0.36.6-1
-  gcc-core-11.4.0-1
-  libestr-devel-0.1.11-1bl2
-  libtool-2.4.7-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libestr-devel-0.1.11-1bl4
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
-  https://www.libee.org/
+  http://www.libee.org/
 
 Canonical download:
-  https://www.libee.org/files/download/libee-0.4.1.tar.gz
+  http://www.libee.org/files/download/libee-0.4.1.tar.gz
 
 -------------------------------------------
 
@@ -87,6 +87,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.4.1-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.4.1-1bl3 -----
 Rebuild with gcc-11.4.0

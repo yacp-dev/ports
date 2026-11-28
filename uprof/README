@@ -5,26 +5,27 @@ applications in a domain specific way and generating reports than can quickly
 be digested and discussed.
 
 Runtime requirements:
-  cygwin-3.6.0-0.203.gf78009cb1ccf
+  cygwin-3.6.12-1
   libdbus-glib_1-devel-0.108-1
   libdbus-glib_1_2-0.108-1
-  libglib2.0-devel-2.64.6-1
-  libglib2.0_0-2.64.6-1
+  libglib2.0-devel-2.90.1-1
+  libglib2.0_0-2.90.1-1
   libncursesw10-6.5+20240427-1
-  libuprof0.3_0-0.3-1bl3
-  pkg-config-2.3.0-1
+  libuprof0.3_0-0.3-1bl4
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20240607-1
-  binutils-2.43.1-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gtk-doc-1.37.0-1
   libdbus-glib_1-devel-0.108-1
-  libglib2.0-devel-2.64.6-1
+  libglib2.0-devel-2.90.1-1
   libncurses-devel-6.5+20240427-1
-  libtool-2.5.3-1
+  libtool-2.6.2-1
   make-4.4.1-2
 
 Canonical website:
@@ -78,6 +79,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.3-1bl4 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.3-1bl3 -----
 Rebuild with gcc-12.4.0

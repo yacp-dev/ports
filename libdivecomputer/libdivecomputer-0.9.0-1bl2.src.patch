@@ -1,5 +1,5 @@
---- origsrc/libdivecomputer-0.9.0/src/context-private.h	2025-07-01 05:24:23.000000000 +0900
-+++ src/libdivecomputer-0.9.0/src/context-private.h	2026-01-17 17:03:04.593693700 +0900
+--- origsrc/libdivecomputer-0.9.0/src/context-private.h	2025-06-30 20:24:23.000000000 +0000
++++ src/libdivecomputer-0.9.0/src/context-private.h	2026-11-28 12:12:01.601770400 +0000
 @@ -42,6 +42,10 @@ extern "C" {
  #define FUNCTION __FUNCTION__
  #endif
@@ -11,8 +11,8 @@
  #ifdef ENABLE_LOGGING
  #define HEXDUMP(context, loglevel, prefix, data, size) dc_context_hexdump (context, loglevel, __FILE__, __LINE__, FUNCTION, prefix, data, size)
  #define SYSERROR(context, errcode) dc_context_syserror (context, DC_LOGLEVEL_ERROR, __FILE__, __LINE__, FUNCTION, errcode)
---- origsrc/libdivecomputer-0.9.0/src/oceanic_common.h	2025-07-01 05:24:23.000000000 +0900
-+++ src/libdivecomputer-0.9.0/src/oceanic_common.h	2026-01-17 17:03:04.598775500 +0900
+--- origsrc/libdivecomputer-0.9.0/src/oceanic_common.h	2025-06-30 20:24:23.000000000 +0000
++++ src/libdivecomputer-0.9.0/src/oceanic_common.h	2026-11-28 12:12:01.603779800 +0000
 @@ -131,6 +131,10 @@ extern "C" {
  #define I330R         0x4744
  #define I330R_C       0x474D
@@ -24,8 +24,8 @@
  #define PAGESIZE 0x10
  #define FPMAXSIZE 0x200
  
---- origsrc/libdivecomputer-0.9.0/src/serial_posix.c	2025-07-01 05:24:23.000000000 +0900
-+++ src/libdivecomputer-0.9.0/src/serial_posix.c	2026-01-17 17:03:04.600788900 +0900
+--- origsrc/libdivecomputer-0.9.0/src/serial_posix.c	2025-06-30 20:24:23.000000000 +0000
++++ src/libdivecomputer-0.9.0/src/serial_posix.c	2026-11-28 12:12:01.603779800 +0000
 @@ -298,6 +298,7 @@ dc_serial_open (dc_iostream_t **out, dc_
  		goto error_timer_free;
  	}

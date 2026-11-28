@@ -6,27 +6,27 @@ querying, and merging dnstable data files.
 
 Runtime requirements:
   bash-5.2.21-1
-  cygwin-3.5.1-1
-  libdnstable-devel-0.14.0-1bl1
-  libdnstable0-0.14.0-1bl1
-  libmtbl-devel-1.6.0-1bl1
-  libmtbl1-1.6.0-1bl1
-  libwdns1-0.12.0-1bl1
-  pkg-config-2.1.1-1
+  cygwin-3.6.12-1
+  libdnstable-devel-0.14.0-1bl2
+  libdnstable0-0.14.0-1bl2
+  libmtbl-devel-1.7.1-1bl2
+  libmtbl1-1.7.1-1bl2
+  libwdns1-0.13.0-1bl1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  asciidoc-10.2.0-1
-  autoconf-15-2
-  autoconf-archive-2023.02.20-1
-  automake-11-1
-  binutils-2.42-1
-  cygport-0.36.8-1
-  gcc-core-11.4.0-1
-  libmtbl-devel-1.6.0-1bl1
-  libtool-2.4.7-1
-  libwdns-devel-0.12.0-1bl1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  jq-1.8.1-1
+  libmtbl-devel-1.7.1-1bl2
+  libtool-2.6.2-1
+  libwdns-devel-0.13.0-1bl1
   make-4.4.1-2
+  mtbl-1.7.1-1bl2
 
 Canonical website:
   https://github.com/farsightsec/dnstable
@@ -85,6 +85,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.14.0-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 0.14.0-1bl1 -----
 Version bump.

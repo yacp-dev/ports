@@ -1,0 +1,86 @@
+--- origsrc/easylzma-0.0.7/CMakeLists.txt	2009-02-24 21:32:36.000000000 +0000
++++ src/easylzma-0.0.7/CMakeLists.txt	2026-11-28 13:04:24.326897100 +0000
+@@ -52,3 +52,20 @@ ENDIF (WIN32)
+ ADD_SUBDIRECTORY(src)
+ ADD_SUBDIRECTORY(elzma)
+ ADD_SUBDIRECTORY(test)
++
++include(GNUInstallDirs)
++file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/easylzma.pc"
++"prefix=${CMAKE_INSTALL_PREFIX}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}
++includedir=\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}
++
++Name: easylzma
++Description: C library and command line tools for LZMA compression and decompression
++Version: ${EASYLZMA_MAJOR}.${EASYLZMA_MINOR}.${EASYLZMA_MICRO}
++Libs: -L\${libdir} -leasylzma
++Cflags: -I\${includedir}
++")
++install(FILES "${CMAKE_CURRENT_BINARY_DIR}/easylzma.pc"
++        DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
++
+--- origsrc/easylzma-0.0.7/elzma/CMakeLists.txt	2009-02-24 21:32:36.000000000 +0000
++++ src/easylzma-0.0.7/elzma/CMakeLists.txt	2026-11-28 13:04:24.328925100 +0000
+@@ -29,11 +29,11 @@ LINK_DIRECTORIES(
+ )
+ 
+ ADD_EXECUTABLE(elzma ${SRCS})
++target_include_directories(elzma PRIVATE ${CMAKE_SOURCE_DIR}/src)
+ 
+-TARGET_LINK_LIBRARIES(elzma easylzma_s)
++TARGET_LINK_LIBRARIES(elzma easylzma)
+ 
+ # make a hard link (or copy on win32) from unelzma to elzma
+-GET_TARGET_PROPERTY(binPath elzma LOCATION)
+ IF (WIN32)
+   SET(exeExt ".exe") 
+   SET(hardLinkCommand ${CMAKE_COMMAND} -E copy_if_different) 
+@@ -42,6 +42,8 @@ ELSE (WIN32)
+   SET(exeExt ) 
+ ENDIF (WIN32)
+ ADD_CUSTOM_COMMAND(TARGET elzma POST_BUILD
+-      COMMAND ${CMAKE_COMMAND} -E copy_if_different ${binPath} ${binDir}
++      COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:elzma> ${binDir}
+       COMMAND ${hardLinkCommand} elzma${exeExt} unelzma${exeExt}
+       WORKING_DIRECTORY "${binDir}")    
++
++install(TARGETS elzma DESTINATION bin)
+--- origsrc/easylzma-0.0.7/src/CMakeLists.txt	2009-02-24 21:32:36.000000000 +0000
++++ src/easylzma-0.0.7/src/CMakeLists.txt	2026-11-28 13:04:24.328925100 +0000
+@@ -28,7 +28,6 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOUR
+ # get the built libs into the correct place
+ SET(LIBRARY_OUTPUT_PATH ${libDir})
+ 
+-ADD_LIBRARY(easylzma_s STATIC ${SRCS} ${HDRS})
+ ADD_LIBRARY(easylzma   SHARED ${SRCS} ${HDRS})
+ 
+ # setup shared library version numbering
+@@ -54,6 +53,9 @@ FILE(MAKE_DIRECTORY ${incDir})
+ # copy public headers to output directory
+ FOREACH (header ${PUB_HDRS})
+   # preserve relative pathing		
+-  ADD_CUSTOM_COMMAND(TARGET easylzma_s POST_BUILD
++  ADD_CUSTOM_COMMAND(TARGET easylzma POST_BUILD
+       COMMAND ${CMAKE_COMMAND} -E copy_if_different ${header} ${incDir})
+ ENDFOREACH (header ${PUB_HDRS})
++
++install(FILES ${PUB_HDRS} DESTINATION include/easylzma)
++install(TARGETS easylzma RUNTIME DESTINATION bin ARCHIVE DESTINATION lib)
+--- origsrc/easylzma-0.0.7/test/CMakeLists.txt	2009-02-24 21:32:36.000000000 +0000
++++ src/easylzma-0.0.7/test/CMakeLists.txt	2026-11-28 13:04:24.330953300 +0000
+@@ -18,10 +18,9 @@ LINK_DIRECTORIES(
+ )
+ 
+ ADD_EXECUTABLE(easylzma_test ${SRCS} ${HDRS})
++target_include_directories(easylzma_test PRIVATE ${CMAKE_SOURCE_DIR}/src)
+ 
+-TARGET_LINK_LIBRARIES(easylzma_test easylzma_s)
+-
+-GET_TARGET_PROPERTY(binPath easylzma_test LOCATION)
++TARGET_LINK_LIBRARIES(easylzma_test easylzma)
+ 
+ # a test target
+-ADD_CUSTOM_TARGET(test ${binPath})
++ADD_CUSTOM_TARGET(test COMMAND $<TARGET_FILE:easylzma_test>)

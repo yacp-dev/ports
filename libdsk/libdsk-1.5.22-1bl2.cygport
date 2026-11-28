@@ -5,8 +5,8 @@ CATEGORY="Libs"
 SUMMARY="Library for accessing discs and disc image files"
 DESCRIPTION="LIBDSK is a library for accessing discs and disc image files."
 
-LICENSE="LGPL-2.0-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later"
+LICENSE="LGPL-2.0-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.0-or-later AND MIT"
 LICENSE_URI="doc/COPYING"
 
 BUILD_REQUIRES="

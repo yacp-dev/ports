@@ -18,7 +18,7 @@ Runtime requirements:
   cygwin-3.6.12-1
   eigen3-3.4.0-1
   fast_float-8.4.0-1bl1
-  libVTK9.7_1-9.7.2-1bl2
+  libVTK9.7_1-9.7.2-1bl3
   libX11-devel-1.8.13-1
   libX11_6-1.8.13-1
   libXcursor1-1.2.3-1
@@ -4270,6 +4270,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 9.7.2-1bl3 -----
+Fix libVTK9.7-devel REQUIRES
 
 ----- version 9.7.2-1bl2 -----
 Fix libVTK9.7-devel REQUIRES

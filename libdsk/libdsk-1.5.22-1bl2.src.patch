@@ -1,5 +1,5 @@
---- origsrc/libdsk-1.5.22/Makefile.am	2020-11-26 09:50:28.000000000 +0900
-+++ src/libdsk-1.5.22/Makefile.am	2025-09-21 10:07:40.595559100 +0900
+--- origsrc/libdsk-1.5.22/Makefile.am	2020-11-26 00:50:28.000000000 +0000
++++ src/libdsk-1.5.22/Makefile.am	2026-11-28 12:21:24.593478100 +0000
 @@ -63,3 +63,6 @@ install-man:
  	cd man && make install-man
  
@@ -7,8 +7,8 @@
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/libdsk-1.5.22/configure.ac	2025-08-09 08:01:31.000000000 +0900
-+++ src/libdsk-1.5.22/configure.ac	2025-09-21 10:07:40.613326000 +0900
+--- origsrc/libdsk-1.5.22/configure.ac	2025-08-08 23:01:31.000000000 +0000
++++ src/libdsk-1.5.22/configure.ac	2026-11-28 12:21:24.593478100 +0000
 @@ -61,11 +61,13 @@ AC_CHECK_HEADERS(errno.h limits.h sys/io
  AC_CHECK_HEADERS(unistd.h termios.h libgen.h assert.h)
  AC_CHECK_HEADERS(dirent.h fcntl.h utime.h pwd.h time.h dir.h direct.h)
@@ -29,8 +29,8 @@
  AC_CONFIG_FILES([Makefile doc/Makefile include/Makefile lib/Makefile tools/Makefile man/Makefile])
 +AC_CONFIG_FILES([libdsk.pc])
  AC_OUTPUT
---- origsrc/libdsk-1.5.22/lib/Makefile.am	2025-07-04 19:10:25.000000000 +0900
-+++ src/libdsk-1.5.22/lib/Makefile.am	2025-09-21 09:52:36.789244200 +0900
+--- origsrc/libdsk-1.5.22/lib/Makefile.am	2025-07-04 10:10:25.000000000 +0000
++++ src/libdsk-1.5.22/lib/Makefile.am	2026-11-28 12:21:24.595486100 +0000
 @@ -86,6 +86,7 @@ libdsk_la_SOURCES = dskread.c  dskwrite.
  		   drvd64.h   drvd64.c \
  		   drvldbs.h  drvldbs.c ldbs.h ldbs.c \
@@ -39,8 +39,8 @@
  
  JARCLASSES=$(CLASSDPRE)/Drive.class \
  	   $(CLASSDPRE)/DskException.class \
---- origsrc/libdsk-1.5.22/libdsk.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libdsk-1.5.22/libdsk.pc.in	2025-09-21 10:07:40.525962000 +0900
+--- origsrc/libdsk-1.5.22/libdsk.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libdsk-1.5.22/libdsk.pc.in	2026-11-28 12:21:24.595486100 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

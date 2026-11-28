@@ -3,25 +3,24 @@ libdsk
 LIBDSK is a library for accessing discs and disc image files.
 
 Runtime requirements:
-  cygwin-3.6.4-1
-  libbz2_1-1.0.8-1
-  libdsk-devel-1.5.22-1bl1
-  libdsk5-1.5.22-1bl1
-  pkg-config-2.5.1-1
-  zlib0-1.3.1-1
+  cygwin-3.6.12-1
+  libbz2_1-1.0.8-2
+  libdsk-devel-1.5.22-1bl2
+  libdsk5-1.5.22-1bl2
+  pkg-config-3.0.11-1
+  zlib0-1.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf-15-2
-  automake-20250528-1
-  binutils-2.45-1
-  cygport-0.37.2-1
-  gcc-core-13.4.0-1
-  gcc-g++-13.4.0-1
-  libbz2-devel-1.0.8-1
-  libtool-2.5.4-1
+  autoconf-20260320-3
+  automake-20261107-1
+  binutils-2.47-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  libbz2-devel-1.0.8-2
+  libtool-2.6.2-1
   make-4.4.1-2
-  zlib-devel-1.3.1-1
+  zlib-devel-1.4-1
 
 Canonical website:
   https://www.seasip.info/Unix/LibDsk/
@@ -97,6 +96,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.5.22-1bl2 -----
+Rebuild with gcc-14.4.0
 
 ----- version 1.5.22-1bl1 -----
 Version bump.

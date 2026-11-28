@@ -1,4 +1,4 @@
-HOMEPAGE="http://${PN}.sf.net/"
+HOMEPAGE="https://${PN}.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 CATEGORY="Libs"
@@ -6,6 +6,14 @@ SUMMARY="C library for the creation and evaluation of interpolating cubic basis 
 DESCRIPTION="einspline is a C library for the creation and evaluation of interpolating
 cubic basis splines (B-splines) in 1, 2, and 3 dimensions. Fortran 77 wrappers
 are also included."
+
+LICENSE="GPL-2.0-or-later"
+LICENSE_SPDX="SPDX-License-Identifier: GPL-2.0-or-later"
+LICENSE_URI="COPYING"
+
+BUILD_REQUIRES="
+	gcc-fortran
+"
 
 PKG_NAMES="
 	${PN}
@@ -17,7 +25,7 @@ einspline_CONTENTS="
 	usr/share
 "
 libeinspline0_CONTENTS="
-	usr/bin/*.dll
+	usr/bin/cygeinspline-0.dll
 "
 libeinspline_devel_CONTENTS="
 	usr/include

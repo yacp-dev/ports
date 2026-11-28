@@ -1,5 +1,5 @@
---- origsrc/UProf-0.3/tests/Makefile.am	2010-08-02 23:16:45.000000000 +0900
-+++ src/UProf-0.3/tests/Makefile.am	2024-10-19 23:39:27.306887700 +0900
+--- origsrc/UProf-0.3/tests/Makefile.am	2010-08-02 14:16:45.000000000 +0000
++++ src/UProf-0.3/tests/Makefile.am	2026-11-28 06:23:19.240587900 +0000
 @@ -25,10 +25,6 @@ dlopen_LDFLAGS = \
  dlopen_LDADD = -ldl
  dbus_service_SOURCES = dbus-service.c
@@ -14,8 +14,8 @@
 +noinst_LTLIBRARIES = module.la
 +module_la_SOURCES = module.c
 +module_la_LDFLAGS = -module -avoid-version -no-undefined
---- origsrc/UProf-0.3/tests/dlopen.c	2010-08-02 23:16:45.000000000 +0900
-+++ src/UProf-0.3/tests/dlopen.c	2024-10-19 23:39:27.306887700 +0900
+--- origsrc/UProf-0.3/tests/dlopen.c	2010-08-02 14:16:45.000000000 +0000
++++ src/UProf-0.3/tests/dlopen.c	2026-11-28 06:23:19.240587900 +0000
 @@ -21,7 +21,11 @@ load_and_run_module ()
    void *handle;
    void (*run)(void);
@@ -28,8 +28,8 @@
    if (!handle)
      g_critical ("Failed to load test module: %s", dlerror ());
  
---- origsrc/UProf-0.3/uprof/Makefile.am	2010-08-02 23:16:45.000000000 +0900
-+++ src/UProf-0.3/uprof/Makefile.am	2024-10-19 23:43:03.521171600 +0900
+--- origsrc/UProf-0.3/uprof/Makefile.am	2010-08-02 14:16:45.000000000 +0000
++++ src/UProf-0.3/uprof/Makefile.am	2026-11-28 06:23:19.240587900 +0000
 @@ -38,6 +38,7 @@ libuprof_@UPROF_MAJOR_VERSION@_@UPROF_MI
  
  libuprof_@UPROF_MAJOR_VERSION@_@UPROF_MINOR_VERSION@_la_LIBADD = -lrt

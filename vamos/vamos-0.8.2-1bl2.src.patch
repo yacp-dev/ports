@@ -1,11 +1,11 @@
---- origsrc/vamos-0.8.2/body/Makefile.am	2014-03-31 09:23:32.000000000 +0900
-+++ src/vamos-0.8.2/body/Makefile.am	2015-03-07 00:17:55.529109900 +0900
+--- origsrc/vamos-0.8.2/body/Makefile.am	2014-03-31 00:23:32.000000000 +0000
++++ src/vamos-0.8.2/body/Makefile.am	2026-11-28 07:33:46.615185600 +0000
 @@ -21,6 +21,9 @@ libvamos_body_la_SOURCES = \
  	Tire.cc \
  	Transmission.cc \
  	Wheel.cc
 +libvamos_body_la_LDFLAGS = -no-undefined
-+libvamos_body_la_LIBADD = $(top_builddir)/geometry/libvamos-geometry.la \
++libvamos_body_la_LIBADD = $(OPENAL_LIBS) $(top_builddir)/geometry/libvamos-geometry.la \
 +    $(top_builddir)/media/libvamos-media.la
  
  pkginclude_HEADERS = \
@@ -29,7 +29,7 @@
 -	$(top_srcdir)/body/libvamos-body.la \
 -	$(top_srcdir)/geometry/libvamos-geometry.la \
 -	$(top_srcdir)/media/libvamos-media.la \
-+	$(top_builddir)/body/libvamos-body.la \
++	libvamos-body.la \
 +	$(top_builddir)/geometry/libvamos-geometry.la \
 +	$(top_builddir)/media/libvamos-media.la \
  	-l$(PYTHON_LIB) \
@@ -53,7 +53,7 @@
 -	$(top_srcdir)/body/libvamos-body.la \
 +	$(top_builddir)/geometry/libvamos-geometry.la \
 +	$(top_builddir)/media/libvamos-media.la \
-+	$(top_builddir)/body/libvamos-body.la \
++	libvamos-body.la \
  	-lboost_unit_test_framework
  test_Frame_SOURCES = test_Frame.cc
  test_Frame_CXXFLAGS = -DBOOST_TEST_DYN_LINK
@@ -78,7 +78,7 @@
 -	$(top_srcdir)/body/libvamos-body.la \
 +	$(top_builddir)/geometry/libvamos-geometry.la \
 +	$(top_builddir)/media/libvamos-media.la \
-+	$(top_builddir)/body/libvamos-body.la \
++	libvamos-body.la \
  	-lboost_unit_test_framework
  
  if DO_UNIT_TESTS
@@ -89,8 +89,22 @@
 +		$(top_builddir)/body/$$test; \
  	done
  endif
---- origsrc/vamos-0.8.2/caelum/Makefile.am	2014-03-01 06:11:01.000000000 +0900
-+++ src/vamos-0.8.2/caelum/Makefile.am	2015-03-07 00:24:23.866024000 +0900
+--- origsrc/vamos-0.8.2/body/bp-body.cc	2014-02-16 00:34:33.000000000 +0000
++++ src/vamos-0.8.2/body/bp-body.cc	2026-11-28 07:33:46.615185600 +0000
+@@ -21,6 +21,11 @@
+ #include "../geometry/Three_Vector.h"
+ #include "../geometry/Three_Matrix.h"
+ 
++#include <Python.h>
++#if defined(Py_SIZE)
++#undef Py_SIZE
++#define Py_SIZE(ob) (((PyVarObject*)(ob))->ob_size)
++#endif
+ #include <boost/python.hpp>
+ 
+ using namespace Vamos_Body;
+--- origsrc/vamos-0.8.2/caelum/Makefile.am	2014-02-28 21:11:01.000000000 +0000
++++ src/vamos-0.8.2/caelum/Makefile.am	2026-11-28 07:33:46.617193600 +0000
 @@ -1,4 +1,4 @@
 -noinst_PROGRAMS = caelum
 +bin_PROGRAMS = caelum
@@ -107,23 +121,18 @@
 +caelum_LDADD = $(SDL_LIBS) \
 +	$(top_builddir)/geometry/libvamos-geometry.la \
 +	$(top_builddir)/media/libvamos-media.la
---- origsrc/vamos-0.8.2/configure.ac	2014-04-03 06:55:37.000000000 +0900
-+++ src/vamos-0.8.2/configure.ac	2015-03-07 00:31:23.055477100 +0900
-@@ -32,27 +32,13 @@ dnl Python
- AX_PYTHON
+--- origsrc/vamos-0.8.2/configure.ac	2014-04-02 21:55:37.000000000 +0000
++++ src/vamos-0.8.2/configure.ac	2026-11-28 07:33:46.617193600 +0000
+@@ -37,22 +37,16 @@ AX_BOOST_PYTHON([1.46.0])
  
- dnl Boost
--AX_BOOST_BASE([1.46.0],, AC_MSG_ERROR([Boost >= v1.46.0 is required.]))
--AX_BOOST_PYTHON([1.46.0])
--
--dnl Error out if Boost Python was found but the library was not.
--if test "$ac_cv_boost_python" = "yes"; then
+ dnl Error out if Boost Python was found but the library was not.
+ if test "$ac_cv_boost_python" = "yes"; then
 -    if test "$ax_boost_python_lib" = ""; then
--        AC_MSG_ERROR([Boost Python found but the libraries were not.  You may need to set LDFLAGS or use --with-boost-python])
--    fi
--fi
-+BOOST_REQUIRE([1.46.0])
-+BOOST_PYTHON()
++    if test -z "$BOOST_PYTHON_LIB"; then
+         AC_MSG_ERROR([Boost Python found but the libraries were not.  You may need to set LDFLAGS or use --with-boost-python])
+     fi
++    BOOST_PYTHON_LIB=`echo "$BOOST_PYTHON_LIB" | sed -e 's/^-l//' -e 's/\.dll$//'`
+ fi
  
  dnl Checks for libraries.
 -AC_CHECK_LIB(SDL, SDL_Init,,
@@ -142,7 +151,7 @@
  
  dnl Checks for typedefs, structures, and compiler characteristics.
  
-@@ -119,15 +105,12 @@ else
+@@ -119,15 +113,12 @@ else
  fi
  
  dnl OpenGL
@@ -160,8 +169,8 @@
  
  AM_CONDITIONAL(DO_UNIT_TESTS, test x$unit_tests = xtrue)
  
---- origsrc/vamos-0.8.2/geometry/Makefile.am	2014-03-31 09:23:00.000000000 +0900
-+++ src/vamos-0.8.2/geometry/Makefile.am	2015-03-06 23:58:08.795413900 +0900
+--- origsrc/vamos-0.8.2/geometry/Makefile.am	2014-03-31 00:23:00.000000000 +0000
++++ src/vamos-0.8.2/geometry/Makefile.am	2026-11-28 07:33:46.618948000 +0000
 @@ -15,6 +15,7 @@ libvamos_geometry_la_SOURCES = \
  	Three_Vector.cc \
  	Two_Vector.cc \
@@ -187,7 +196,7 @@
 +geometry_la_LDFLAGS = -no-undefined -avoid-version -module
  geometry_la_LIBADD = \
 -	$(top_srcdir)/geometry/libvamos-geometry.la \
-+	$(top_builddir)/geometry/libvamos-geometry.la \
++	libvamos-geometry.la \
  	-l$(PYTHON_LIB) \
  	-l$(BOOST_PYTHON_LIB)
  
@@ -199,8 +208,33 @@
 +		$(top_builddir)/geometry/$$test; \
  	done
  endif
---- origsrc/vamos-0.8.2/media/Makefile.am	2014-03-31 09:23:22.000000000 +0900
-+++ src/vamos-0.8.2/media/Makefile.am	2015-03-07 00:07:30.419734900 +0900
+--- origsrc/vamos-0.8.2/geometry/bp-geometry.cc	2014-04-02 21:55:37.000000000 +0000
++++ src/vamos-0.8.2/geometry/bp-geometry.cc	2026-11-28 07:33:46.618948000 +0000
+@@ -20,6 +20,11 @@
+ #include "Three_Matrix.h"
+ #include "Three_Vector.h"
+ 
++#include <Python.h>
++#if defined(Py_SIZE)
++#undef Py_SIZE
++#define Py_SIZE(ob) (((PyVarObject*)(ob))->ob_size)
++#endif
+ #include <boost/python.hpp>
+ 
+ using namespace Vamos_Geometry;
+--- origsrc/vamos-0.8.2/media/Ac3d.cc	2014-04-02 21:55:37.000000000 +0000
++++ src/vamos-0.8.2/media/Ac3d.cc	2026-11-28 07:33:46.618948000 +0000
+@@ -892,7 +892,7 @@ Ac3d_Object::Ac3d_Object (std::string ty
+ 	m_rotation (rotation)
+   {
+ 	std::ifstream is (m_file.c_str ());
+-	if (is == 0)
++	if (!is)
+ 	  {
+ 		throw No_File (m_file);
+ 	  }
+--- origsrc/vamos-0.8.2/media/Makefile.am	2014-03-31 00:23:22.000000000 +0000
++++ src/vamos-0.8.2/media/Makefile.am	2026-11-28 07:33:46.620957400 +0000
 @@ -7,6 +7,9 @@ libvamos_media_la_SOURCES = \
  	Texture_Image.cc \
  	Two_D.cc \
@@ -230,7 +264,7 @@
 -	$(top_srcdir)/geometry/libvamos-geometry.la \
 -	$(top_srcdir)/media/libvamos-media.la \
 +	$(top_builddir)/geometry/libvamos-geometry.la \
-+	$(top_builddir)/media/libvamos-media.la \
++	libvamos-media.la \
  	-l$(PYTHON_LIB) \
  	-l$(BOOST_PYTHON_LIB)
  
@@ -242,8 +276,33 @@
 +		$(top_builddir)/media/$$test; \
  	done
  endif
---- origsrc/vamos-0.8.2/track/Makefile.am	2014-03-31 09:23:58.000000000 +0900
-+++ src/vamos-0.8.2/track/Makefile.am	2015-03-07 00:19:57.294734900 +0900
+--- origsrc/vamos-0.8.2/media/XML_Parser.cc	2014-02-03 01:08:19.000000000 +0000
++++ src/vamos-0.8.2/media/XML_Parser.cc	2026-11-28 07:33:46.620957400 +0000
+@@ -391,7 +391,7 @@ XML_Parser::read (std::string file)
+ {
+   m_file = file;
+   mp_stream = new std::ifstream (file.c_str ());
+-  if ((mp_stream == 0) || (*mp_stream == 0))
++  if ((mp_stream == 0) || (!*mp_stream))
+ 	{
+ 	  throw No_XML_File (m_file);
+ 	}
+--- origsrc/vamos-0.8.2/media/bp-media.cc	2014-02-15 01:08:40.000000000 +0000
++++ src/vamos-0.8.2/media/bp-media.cc	2026-11-28 07:33:46.620957400 +0000
+@@ -20,6 +20,11 @@
+ #include "../body/Gl_Car.h"
+ #include "XML_Parser.h"
+ 
++#include <Python.h>
++#if defined(Py_SIZE)
++#undef Py_SIZE
++#define Py_SIZE(ob) (((PyVarObject*)(ob))->ob_size)
++#endif
+ #include <boost/python.hpp>
+ 
+ using namespace Vamos_Media;
+--- origsrc/vamos-0.8.2/track/Makefile.am	2014-03-31 00:23:58.000000000 +0000
++++ src/vamos-0.8.2/track/Makefile.am	2026-11-28 07:33:46.622965600 +0000
 @@ -6,6 +6,9 @@ libvamos_track_la_SOURCES = \
  	Road_Segment.cc \
  	Strip_Track.cc \
@@ -275,7 +334,7 @@
 -	$(top_srcdir)/track/libvamos-track.la \
 +	$(top_builddir)/geometry/libvamos-geometry.la \
 +	$(top_builddir)/media/libvamos-media.la \
-+	$(top_builddir)/track/libvamos-track.la \
++	libvamos-track.la \
  	-l$(PYTHON_LIB) \
  	-l$(BOOST_PYTHON_LIB)
  
@@ -305,8 +364,22 @@
 +		$(top_builddir)/track/$$test; \
  	done
  endif
---- origsrc/vamos-0.8.2/vamos/Makefile.am	2014-04-03 06:55:37.000000000 +0900
-+++ src/vamos-0.8.2/vamos/Makefile.am	2015-03-07 00:23:20.739070900 +0900
+--- origsrc/vamos-0.8.2/track/bp-track.cc	2014-04-02 21:55:37.000000000 +0000
++++ src/vamos-0.8.2/track/bp-track.cc	2026-11-28 07:33:46.622965600 +0000
+@@ -20,6 +20,11 @@
+ #include "../geometry/Three_Vector.h"
+ #include "Strip_Track.h"
+ 
++#include <Python.h>
++#if defined(Py_SIZE)
++#undef Py_SIZE
++#define Py_SIZE(ob) (((PyVarObject*)(ob))->ob_size)
++#endif
+ #include <boost/python.hpp>
+ 
+ using namespace Vamos_Track;
+--- origsrc/vamos-0.8.2/vamos/Makefile.am	2014-04-02 21:55:37.000000000 +0000
++++ src/vamos-0.8.2/vamos/Makefile.am	2026-11-28 07:33:46.624982800 +0000
 @@ -2,19 +2,19 @@ pkgpython_PYTHON = vamos.py config.py
  bin_SCRIPTS = vamos
  CLEANFILES = $(bin_SCRIPTS)
@@ -334,14 +407,14 @@
  
 -AM_CXXFLAGS = -fPIC -Wall -pedantic -DDATADIR=\"$(pkgdatadir)\"
 +AM_CXXFLAGS = -Wall -pedantic -DDATADIR=\"$(pkgdatadir)\"
---- origsrc/vamos-0.8.2/world/Makefile.am	2014-03-31 09:23:46.000000000 +0900
-+++ src/vamos-0.8.2/world/Makefile.am	2015-03-07 00:22:09.263484900 +0900
+--- origsrc/vamos-0.8.2/world/Makefile.am	2014-03-31 00:23:46.000000000 +0000
++++ src/vamos-0.8.2/world/Makefile.am	2026-11-28 07:33:46.624982800 +0000
 @@ -10,6 +10,12 @@ libvamos_world_la_SOURCES = \
  	Sounds.cc \
  	Timing_Info.cc \
  	World.cc
 +libvamos_world_la_LDFLAGS = -no-undefined
-+libvamos_world_la_LIBADD = $(SDL_LIBS) \
++libvamos_world_la_LIBADD = $(SDL_LIBS) $(OPENAL_LIBS) $(FREEALUT_LIBS) \
 +	$(top_builddir)/body/libvamos-body.la \
 +	$(top_builddir)/geometry/libvamos-geometry.la \
 +	$(top_builddir)/media/libvamos-media.la \
@@ -374,7 +447,7 @@
 +	$(top_builddir)/geometry/libvamos-geometry.la \
 +	$(top_builddir)/media/libvamos-media.la \
 +	$(top_builddir)/track/libvamos-track.la \
-+	$(top_builddir)/world/libvamos-world.la \
++	libvamos-world.la \
  	-l$(PYTHON_LIB) \
  	-l$(BOOST_PYTHON_LIB)
  
@@ -386,3 +459,17 @@
 +		$(top_builddir)/world/$$test; \
  	done
  endif
+--- origsrc/vamos-0.8.2/world/bp-world.cc	2014-02-26 00:22:43.000000000 +0000
++++ src/vamos-0.8.2/world/bp-world.cc	2026-11-28 07:33:46.624982800 +0000
+@@ -26,6 +26,11 @@
+ #include "Gl_World.h"
+ #include "Sounds.h"
+ 
++#include <Python.h>
++#if defined(Py_SIZE)
++#undef Py_SIZE
++#define Py_SIZE(ob) (((PyVarObject*)(ob))->ob_size)
++#endif
+ #include <boost/python.hpp>
+ 
+ using namespace Vamos_Body;

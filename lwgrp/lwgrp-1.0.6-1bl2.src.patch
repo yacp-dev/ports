@@ -1,5 +1,5 @@
---- origsrc/lwgrp-1.0.6/src/Makefile.am	2024-06-29 02:45:40.000000000 +0900
-+++ src/lwgrp-1.0.6/src/Makefile.am	2024-07-27 19:48:01.185422500 +0900
+--- origsrc/lwgrp-1.0.6/src/Makefile.am	2024-06-28 17:45:40.000000000 +0000
++++ src/lwgrp-1.0.6/src/Makefile.am	2026-11-28 12:18:53.664440000 +0000
 @@ -29,5 +29,5 @@ liblwgrp_la_SOURCES = \
    lwgrp_comm.c \
    lwgrp_comm_split.c

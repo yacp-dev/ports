@@ -15,15 +15,20 @@ LICENSE="BSD-3-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-3-Clause"
 LICENSE_URI="LICENSE.TXT"
 
-BUILD_REQUIRES="libopenmpi-devel"
+BUILD_REQUIRES="
+	libopenmpi-devel
+"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	cd ${D}
+	verbose rm -rf usr/share/${PN}
+}
 
 DOCS="
 	*.TXT
-"
-
-PKG_IGNORE="
-	usr/share/lwgrp/LICENSE.TXT
-	usr/share/lwgrp/README
 "
 
 PKG_NAMES="

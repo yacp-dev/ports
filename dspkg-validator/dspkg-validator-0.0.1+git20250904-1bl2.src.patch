@@ -1,5 +1,5 @@
---- origsrc/dspkg-validator/CMakeLists.txt	2026-05-30 09:50:49.000000000 +0900
-+++ src/dspkg-validator/CMakeLists.txt	2026-05-30 09:52:11.823627000 +0900
+--- origsrc/dspkg-validator/CMakeLists.txt	2026-11-28 12:07:25.000000000 +0000
++++ src/dspkg-validator/CMakeLists.txt	2026-11-28 12:07:26.579985300 +0000
 @@ -61,6 +61,10 @@ add_library(${PROJECT_NAME}::${PROJECT_N
  find_package(nlohmann_json CONFIG REQUIRED)
  target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
@@ -11,16 +11,16 @@
  if (DSPKG_VALIDATOR_BUILD_TESTS)
      add_subdirectory(tests)
  endif ()
---- origsrc/dspkg-validator/dspkg-validator.pc.in	2026-05-30 09:50:49.000000000 +0900
-+++ src/dspkg-validator/dspkg-validator.pc.in	2026-05-30 09:51:41.340947600 +0900
+--- origsrc/dspkg-validator/dspkg-validator.pc.in	2026-11-28 12:07:25.000000000 +0000
++++ src/dspkg-validator/dspkg-validator.pc.in	2026-11-28 12:07:26.581995800 +0000
 @@ -1,4 +1,4 @@
 -prefix=${pcfiledir}/../..
 +prefix=@CMAKE_INSTALL_PREFIX@
  
  # dspkg-validator pkg-config file
  
---- origsrc/dspkg-validator/include/dspkg-validator/LanguageUtil.h	2026-05-30 09:50:49.000000000 +0900
-+++ src/dspkg-validator/include/dspkg-validator/LanguageUtil.h	2026-05-30 10:11:16.153835700 +0900
+--- origsrc/dspkg-validator/include/dspkg-validator/LanguageUtil.h	2026-11-28 12:07:25.000000000 +0000
++++ src/dspkg-validator/include/dspkg-validator/LanguageUtil.h	2026-11-28 12:07:26.581995800 +0000
 @@ -3,6 +3,7 @@
  
  #include <filesystem>

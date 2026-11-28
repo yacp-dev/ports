@@ -1,5 +1,5 @@
-HOMEPAGE="https://github.com/ilyak/${PN}"
-SRC_URI="https://github.com/ilyak/${PN}/archive/refs/tags/${PV}.tar.gz"
+HOMEPAGE="https://github.com/libefp2/${PN}"
+SRC_URI="https://github.com/libefp2/${PN}/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Effective Fragment Potential method"
@@ -15,13 +15,16 @@ LICENSE="BSD-2-Clause"
 LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
 LICENSE_URI="LICENSE"
 
-BUILD_REQUIRES="liblapack-devel"
+BUILD_REQUIRES="
+	liblapack-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DCMAKECONFIG_INSTALL_DIR:PATH=lib/cmake/${PN}
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 "
 
 PKG_NAMES="
@@ -42,3 +45,5 @@ libefp_devel_CONTENTS="
 libefp_SUMMARY="${SUMMARY} (licensing & readmes)"
 libefp1_5_SUMMARY="${SUMMARY} (runtime)"
 libefp_devel_SUMMARY="${SUMMARY} (development)"
+
+libefp_devel_REQUIRES="liblapack-devel"

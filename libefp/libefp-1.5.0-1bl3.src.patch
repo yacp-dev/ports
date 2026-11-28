@@ -1,5 +1,5 @@
---- origsrc/libefp-1.5.0/CMakeLists.txt	2017-12-23 13:08:41.000000000 +0900
-+++ src/libefp-1.5.0/CMakeLists.txt	2025-02-21 09:24:48.169627900 +0900
+--- origsrc/libefp-1.5.0/CMakeLists.txt	2017-12-23 04:08:41.000000000 +0000
++++ src/libefp-1.5.0/CMakeLists.txt	2026-11-28 12:21:03.321413000 +0000
 @@ -101,7 +101,7 @@ endif()
  install(TARGETS efp
          EXPORT "${PN}Targets"
@@ -29,8 +29,8 @@
 +set(includedir ${CMAKE_INSTALL_PREFIX}/include)
 +configure_file(${CMAKE_SOURCE_DIR}/libefp.pc.in ${CMAKE_BINARY_DIR}/libefp.pc @ONLY)
 +install(FILES ${CMAKE_BINARY_DIR}/libefp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
---- origsrc/libefp-1.5.0/libefp.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/libefp-1.5.0/libefp.pc.in	2025-02-21 09:24:58.875653400 +0900
+--- origsrc/libefp-1.5.0/libefp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/libefp-1.5.0/libefp.pc.in	2026-11-28 12:21:03.321413000 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

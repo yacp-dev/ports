@@ -1,5 +1,5 @@
 --- origsrc/VTK-9.7.2/Accelerators/Vtkm/Core/vtkmDataArray.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Accelerators/Vtkm/Core/vtkmDataArray.h	2026-11-26 13:23:50.104588000 +0000
++++ src/VTK-9.7.2/Accelerators/Vtkm/Core/vtkmDataArray.h	2026-11-27 22:10:11.150764400 +0000
 @@ -171,7 +171,7 @@ inline vtkmDataArray<typename viskores::
  }
  
@@ -10,7 +10,7 @@
  extern template class VTKACCELERATORSVTKMCORE_TEMPLATE_EXPORT vtkmDataArray<double>;
  extern template class VTKACCELERATORSVTKMCORE_TEMPLATE_EXPORT vtkmDataArray<float>;
 --- origsrc/VTK-9.7.2/Common/Core/vtkAOSDataArrayTemplate.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkAOSDataArrayTemplate.h	2026-11-26 13:23:50.106309600 +0000
++++ src/VTK-9.7.2/Common/Core/vtkAOSDataArrayTemplate.h	2026-11-27 22:10:11.152520600 +0000
 @@ -444,7 +444,7 @@ VTK_ABI_NAMESPACE_END
  // body; other VTK template classes using this pattern (e.g. vtkConstantArray,
  // vtkAffineArray) use vtkImplicitArrayTypeMacro instead and were not observed with this
@@ -21,7 +21,7 @@
  #define VTK_AOS_DATA_ARRAY_TEMPLATE_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Common/Core/vtkAffineArray.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkAffineArray.h	2026-11-26 13:23:50.107372600 +0000
++++ src/VTK-9.7.2/Common/Core/vtkAffineArray.h	2026-11-27 22:10:11.152520600 +0000
 @@ -143,7 +143,7 @@ VTK_ABI_NAMESPACE_END
    VTK_INSTANTIATE_VALUERANGE_ARRAYTYPE(vtkAffineArray<T>, T);                                      \
    VTK_ABI_NAMESPACE_END                                                                            \
@@ -32,7 +32,7 @@
  #define VTK_AFFINE_ARRAY_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Common/Core/vtkCompositeArray.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkCompositeArray.h	2026-11-26 13:23:50.108340400 +0000
++++ src/VTK-9.7.2/Common/Core/vtkCompositeArray.h	2026-11-27 22:10:11.154545200 +0000
 @@ -176,7 +176,7 @@ VTK_ABI_NAMESPACE_END
    VTK_INSTANTIATE_VALUERANGE_ARRAYTYPE(vtkCompositeArray<T>, T);                                   \
    VTK_ABI_NAMESPACE_END                                                                            \
@@ -43,7 +43,7 @@
  #define VTK_COMPOSITE_ARRAY_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Common/Core/vtkConstantArray.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkConstantArray.h	2026-11-26 13:23:50.109109300 +0000
++++ src/VTK-9.7.2/Common/Core/vtkConstantArray.h	2026-11-27 22:10:11.154545200 +0000
 @@ -133,7 +133,7 @@ VTK_ABI_NAMESPACE_END
    VTK_INSTANTIATE_VALUERANGE_ARRAYTYPE(vtkConstantArray<T>, T);                                    \
    VTK_ABI_NAMESPACE_END                                                                            \
@@ -54,7 +54,7 @@
  #define VTK_CONSTANT_ARRAY_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Common/Core/vtkIndexedArray.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkIndexedArray.h	2026-11-26 13:23:50.109109300 +0000
++++ src/VTK-9.7.2/Common/Core/vtkIndexedArray.h	2026-11-27 22:10:11.154545200 +0000
 @@ -159,7 +159,7 @@ VTK_ABI_NAMESPACE_END
    VTK_INSTANTIATE_VALUERANGE_ARRAYTYPE(vtkIndexedArray<T>, T);                                     \
    VTK_ABI_NAMESPACE_END                                                                            \
@@ -65,7 +65,7 @@
  #define VTK_INDEXED_ARRAY_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Common/Core/vtkLogger.cxx	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkLogger.cxx	2026-11-26 13:23:50.110363400 +0000
++++ src/VTK-9.7.2/Common/Core/vtkLogger.cxx	2026-11-27 22:10:11.156554200 +0000
 @@ -5,6 +5,8 @@
  #include "vtkObjectFactory.h"
  #include "vtkStringScanner.h"
@@ -76,7 +76,7 @@
  #include <vtk_loguru.h>
  #endif
 --- origsrc/VTK-9.7.2/Common/Core/vtkSOADataArrayTemplate.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkSOADataArrayTemplate.h	2026-11-26 13:23:50.111119300 +0000
++++ src/VTK-9.7.2/Common/Core/vtkSOADataArrayTemplate.h	2026-11-27 22:10:11.156554200 +0000
 @@ -333,7 +333,7 @@ VTK_ABI_NAMESPACE_END
  // body; other VTK template classes using this pattern (e.g. vtkConstantArray,
  // vtkAffineArray) use vtkImplicitArrayTypeMacro instead and were not observed with this
@@ -87,7 +87,7 @@
  #define VTK_SOA_DATA_ARRAY_TEMPLATE_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Common/Core/vtkScaledSOADataArrayTemplate.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkScaledSOADataArrayTemplate.h	2026-11-26 13:23:50.112393000 +0000
++++ src/VTK-9.7.2/Common/Core/vtkScaledSOADataArrayTemplate.h	2026-11-27 22:10:11.156554200 +0000
 @@ -336,7 +336,7 @@ VTK_ABI_NAMESPACE_END
  // body; other VTK template classes using this pattern (e.g. vtkConstantArray,
  // vtkAffineArray) use vtkImplicitArrayTypeMacro instead and were not observed with this
@@ -98,7 +98,7 @@
  #define VTK_SCALED_SOA_DATA_ARRAY_TEMPLATE_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Common/Core/vtkStdFunctionArray.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkStdFunctionArray.h	2026-11-26 13:23:50.113129500 +0000
++++ src/VTK-9.7.2/Common/Core/vtkStdFunctionArray.h	2026-11-27 22:10:11.158563300 +0000
 @@ -121,7 +121,7 @@ VTK_ABI_NAMESPACE_END
    VTK_INSTANTIATE_VALUERANGE_ARRAYTYPE(vtkStdFunctionArray<T>, T);                                 \
    VTK_ABI_NAMESPACE_END                                                                            \
@@ -109,7 +109,7 @@
  #define VTK_STD_FUNCTION_ARRAY_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Common/Core/vtkStridedArray.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkStridedArray.h	2026-11-26 13:23:50.113899700 +0000
++++ src/VTK-9.7.2/Common/Core/vtkStridedArray.h	2026-11-27 22:10:11.158563300 +0000
 @@ -226,7 +226,7 @@ VTK_ABI_NAMESPACE_END
    VTK_INSTANTIATE_VALUERANGE_ARRAYTYPE(vtkStridedArray<T>, T);                                     \
    VTK_ABI_NAMESPACE_END                                                                            \
@@ -120,7 +120,7 @@
  #define VTK_STRIDED_ARRAY_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Common/Core/vtkStructuredPointArray.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Common/Core/vtkStructuredPointArray.h	2026-11-26 13:23:50.115139500 +0000
++++ src/VTK-9.7.2/Common/Core/vtkStructuredPointArray.h	2026-11-27 22:10:11.160571600 +0000
 @@ -166,7 +166,7 @@ VTK_ABI_NAMESPACE_END
    VTK_INSTANTIATE_VALUERANGE_ARRAYTYPE(vtkStructuredPointArray<T>, T);                             \
    VTK_ABI_NAMESPACE_END                                                                            \
@@ -131,7 +131,7 @@
  #define VTK_STRUCTURED_POINT_ARRAY_EXTERN
  #ifdef _MSC_VER
 --- origsrc/VTK-9.7.2/Rendering/GL2PSOpenGL2/CMakeLists.txt	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Rendering/GL2PSOpenGL2/CMakeLists.txt	2026-11-26 13:23:50.115653700 +0000
++++ src/VTK-9.7.2/Rendering/GL2PSOpenGL2/CMakeLists.txt	2026-11-27 22:10:11.160571600 +0000
 @@ -14,3 +14,5 @@ vtk_module_add_module(VTK::RenderingGL2P
    SOURCES ${vtk_object_factory_source}
    PRIVATE_HEADERS ${vtk_object_factory_header})
@@ -139,7 +139,7 @@
 +vtk_module_link(VTK::RenderingGL2PSOpenGL2 PRIVATE GL)
 +
 --- origsrc/VTK-9.7.2/ThirdParty/ioss/vtkioss/cgns/Iocgns_Utils.C	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/ThirdParty/ioss/vtkioss/cgns/Iocgns_Utils.C	2026-11-26 13:23:50.117661300 +0000
++++ src/VTK-9.7.2/ThirdParty/ioss/vtkioss/cgns/Iocgns_Utils.C	2026-11-27 22:10:11.162581100 +0000
 @@ -99,7 +99,7 @@
    } while (0)
  
@@ -150,7 +150,7 @@
    {
      std::string lneedle(Ioss::Utils::lowercase(needle));
 --- origsrc/VTK-9.7.2/ThirdParty/loguru/CMakeLists.txt	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/ThirdParty/loguru/CMakeLists.txt	2026-11-26 13:23:50.118672200 +0000
++++ src/VTK-9.7.2/ThirdParty/loguru/CMakeLists.txt	2026-11-27 22:10:11.162581100 +0000
 @@ -6,7 +6,8 @@ vtk_third_party_extract(
    VERSION_FROM_TAG
      tag  loguru_version "^for/vtk-[0-9]*-([0-9\\.]+)$")
@@ -174,7 +174,7 @@
  
  configure_file(
 --- origsrc/VTK-9.7.2/ThirdParty/scn/vtkscn/include/vtkscn/scan.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/ThirdParty/scn/vtkscn/include/vtkscn/scan.h	2026-11-26 13:23:50.120682400 +0000
++++ src/VTK-9.7.2/ThirdParty/scn/vtkscn/include/vtkscn/scan.h	2026-11-27 22:10:11.166597700 +0000
 @@ -5019,7 +5019,11 @@ struct stdio_file_interface_impl<File, b
      }
      void fill_buffer()
@@ -188,7 +188,7 @@
              ++this->file->_r;
          }
 --- origsrc/VTK-9.7.2/ThirdParty/verdict/vtkverdict/verdict.h	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/ThirdParty/verdict/vtkverdict/verdict.h	2026-11-26 13:23:50.122282400 +0000
++++ src/VTK-9.7.2/ThirdParty/verdict/vtkverdict/verdict.h	2026-11-27 22:10:11.166597700 +0000
 @@ -46,7 +46,7 @@
  #endif
  
@@ -199,7 +199,7 @@
  #else
  #define VERDICT_EXPORT VERDICT_ABI_IMPORT VERDICT_HOST_DEVICE
 --- origsrc/VTK-9.7.2/Utilities/X11/vtkX11Functions.cxx	2026-11-04 19:33:05.000000000 +0000
-+++ src/VTK-9.7.2/Utilities/X11/vtkX11Functions.cxx	2026-11-26 13:23:50.122692100 +0000
++++ src/VTK-9.7.2/Utilities/X11/vtkX11Functions.cxx	2026-11-27 22:10:11.168351900 +0000
 @@ -13,9 +13,19 @@
  namespace
  {

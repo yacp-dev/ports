@@ -108,6 +108,7 @@ libVTK9_7_1_REQUIRES="libX11_6 libXcursor1"
 libVTK9_7_devel_REQUIRES="
 	eigen3
 	fast_float
+	hdf5
 	libaec-devel
 	libcgns-devel
 	libexpat-devel

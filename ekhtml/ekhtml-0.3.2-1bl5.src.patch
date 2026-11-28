@@ -1,12 +1,12 @@
---- origsrc/ekhtml-0.3.2/Makefile.am	2002-09-13 11:52:45.000000000 +0900
-+++ src/ekhtml-0.3.2/Makefile.am	2025-03-15 09:06:40.360824900 +0900
+--- origsrc/ekhtml-0.3.2/Makefile.am	2002-09-13 02:52:45.000000000 +0000
++++ src/ekhtml-0.3.2/Makefile.am	2026-11-28 14:02:37.422803800 +0000
 @@ -1 +1,4 @@
  SUBDIRS = src testsuite include docs
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/ekhtml-0.3.2/configure.in	2002-11-11 08:53:25.000000000 +0900
-+++ src/ekhtml-0.3.2/configure.in	2025-03-15 09:06:40.377210300 +0900
+--- origsrc/ekhtml-0.3.2/configure.in	2002-11-10 23:53:25.000000000 +0000
++++ src/ekhtml-0.3.2/configure.in	2026-11-28 14:02:37.424814400 +0000
 @@ -10,11 +10,10 @@ AM_CONFIG_HEADER(include/ekhtml_config.h
  
  AC_PROG_CC
@@ -21,8 +21,8 @@
          Makefile 
          docs/Doxyfile 
          docs/Makefile
---- origsrc/ekhtml-0.3.2/ekhtml.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/ekhtml-0.3.2/ekhtml.pc.in	2025-03-15 09:06:40.384738600 +0900
+--- origsrc/ekhtml-0.3.2/ekhtml.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/ekhtml-0.3.2/ekhtml.pc.in	2026-11-28 14:02:37.424814400 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@
@@ -34,8 +34,8 @@
 +Version: @VERSION@
 +Libs: -L${libdir} -lekhtml
 +Cflags: -I${includedir}
---- origsrc/ekhtml-0.3.2/src/Makefile.am	2002-09-18 05:15:10.000000000 +0900
-+++ src/ekhtml-0.3.2/src/Makefile.am	2025-03-15 09:06:40.384738600 +0900
+--- origsrc/ekhtml-0.3.2/src/Makefile.am	2002-09-17 20:15:10.000000000 +0000
++++ src/ekhtml-0.3.2/src/Makefile.am	2026-11-28 14:02:37.424814400 +0000
 @@ -9,14 +9,16 @@ libekhtml_la_SOURCES = 		\
  	hash.c
  
@@ -55,8 +55,8 @@
  
  CLEANFILES = ekhtml_tables.h
 +AM_CPPFLAGS = -I$(top_builddir)/include -I$(top_srcdir)/include
---- origsrc/ekhtml-0.3.2/testsuite/Makefile.am	2002-09-22 03:30:53.000000000 +0900
-+++ src/ekhtml-0.3.2/testsuite/Makefile.am	2025-03-15 09:06:40.393874300 +0900
+--- origsrc/ekhtml-0.3.2/testsuite/Makefile.am	2002-09-21 18:30:53.000000000 +0000
++++ src/ekhtml-0.3.2/testsuite/Makefile.am	2026-11-28 14:02:37.426823300 +0000
 @@ -1,4 +1,4 @@
 -EKHTML_LIB = $(top_srcdir)/src/libekhtml.la
 +EKHTML_LIB = $(top_builddir)/src/libekhtml.la

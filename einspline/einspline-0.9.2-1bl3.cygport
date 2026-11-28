@@ -15,6 +15,8 @@ BUILD_REQUIRES="
 	gcc-fortran
 "
 
+CFLAGS+=" -fgnu89-inline"
+
 PKG_NAMES="
 	${PN}
 	lib${PN}0

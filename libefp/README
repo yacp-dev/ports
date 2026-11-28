@@ -9,51 +9,55 @@ quantum chemistry software an easy way to add EFP support to their favourite
 package.
 
 Runtime requirements:
-  cygwin-3.5.7-1
-  libefp-devel-1.5.0-1bl2
-  libefp1.5-1.5.0-1bl2
-  liblapack0-3.12.1-2
-  libopenblas-0.3.26-1
-  pkg-config-2.3.0-1
+  cygwin-3.6.12-1
+  libefp-devel-1.8.0-1bl1
+  libefp1.8-1.8.0-1bl1
+  libgfortran5-14.4.0-1
+  liblapack-devel-3.12.0-1
+  liblapack0-3.12.0-1
+  pkg-config-3.0.11-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  binutils-2.44-1
-  cmake-3.28.3-1
-  cygport-0.36.9-1
-  gcc-core-12.4.0-3
-  liblapack-devel-3.12.1-2
-  ninja-1.12.1-1
+  binutils-2.47-1
+  cmake-4.4.5-1
+  cygport-0.37.13-1
+  gcc-core-14.4.0-1
+  gcc-fortran-14.4.0-1
+  liblapack-devel-3.12.0-1
+  ninja-1.13.2-1
 
 Canonical website:
-  https://github.com/ilyak/libefp
+  https://github.com/libefp2/libefp
 
 Canonical download:
-  https://github.com/ilyak/libefp/archive/refs/tags/1.5.0.tar.gz
+  https://github.com/libefp2/libefp/archive/refs/tags/1.8.0.tar.gz
 
 -------------------------------------------
 
 Build instructions:
-  1. unpack libefp-1.5.0-X-src.tar.xz
+  1. unpack libefp-1.8.0-X-src.tar.xz
   2. if you use setup to install this src package,
      it will be unpacked under /usr/src automatically
         % cd /usr/src
-        % cygport ./libefp-1.5.0-X.cygport all
+        % cygport ./libefp-1.8.0-X.cygport all
 
 This will create:
-  /usr/src/libefp-1.5.0-X-src.tar.xz
-  /usr/src/libefp-1.5.0-X.tar.xz
-  /usr/src/libefp1.5-1.5.0-X.tar.xz
-  /usr/src/libefp-devel-1.5.0-X.tar.xz
+  /usr/src/libefp-1.8.0-X-src.tar.xz
+  /usr/src/libefp-1.8.0-X.tar.xz
+  /usr/src/libefp1.8-1.8.0-X.tar.xz
+  /usr/src/libefp-devel-1.8.0-X.tar.xz
 
 -------------------------------------------
 
 Files included in the binary package:
 
 (libefp)
+  /usr/bin/efpmd.exe
   /usr/share/doc/Cygwin/libefp.README
   /usr/share/doc/libefp/CONTRIBUTORS
   /usr/share/doc/libefp/LICENSE
+  /usr/share/doc/libefp/License.txt
   /usr/share/doc/libefp/README.md
   /usr/share/libefp/fraglib/acetone.efp
   /usr/share/libefp/fraglib/c2h5oh.efp
@@ -98,20 +102,24 @@ Files included in the binary package:
   /usr/share/libefp/fraglib/ethane.efp
   /usr/share/libefp/fraglib/h2.efp
   /usr/share/libefp/fraglib/h2o.efp
+  /usr/share/libefp/fraglib/h2o_reduced.efp
   /usr/share/libefp/fraglib/nh3.efp
+  /usr/share/libefp/fraglib/oxalicb.efp
   /usr/share/libefp/fraglib/pentacene.efp
   /usr/share/libefp/fraglib/tetracene.efp
+  /usr/share/libefp/fraglib/xxii_exp_n2_1.efp
+  /usr/share/libefp/fraglib/xxii_exp_n2_2.efp
   /usr/share/libefp/makefp.inp
 
-(libefp1.5)
-  /usr/bin/cygefp-1.5.dll
+(libefp1.8)
+  /usr/bin/cygefp-1.8.dll
 
 (libefp-devel)
   /usr/include/efp.h
   /usr/lib/cmake/libefp/FindTargetLAPACK.cmake
   /usr/lib/cmake/libefp/libefpConfig.cmake
   /usr/lib/cmake/libefp/libefpConfigVersion.cmake
-  /usr/lib/cmake/libefp/libefpTargets-release.cmake
+  /usr/lib/cmake/libefp/libefpTargets-relwithdebinfo.cmake
   /usr/lib/cmake/libefp/libefpTargets.cmake
   /usr/lib/libefp.dll.a
   /usr/lib/pkgconfig/libefp.pc
@@ -119,6 +127,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 1.8.0-1bl1 -----
+Version bump.
 
 ----- version 1.5.0-1bl2 -----
 Rebuild with gcc-12.4.0

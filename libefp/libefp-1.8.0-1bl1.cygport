@@ -1,5 +1,5 @@
-HOMEPAGE="https://github.com/ilyak/${PN}"
-SRC_URI="https://github.com/ilyak/${PN}/archive/refs/tags/${PV}.tar.gz"
+HOMEPAGE="https://github.com/libefp2/${PN}"
+SRC_URI="https://github.com/libefp2/${PN}/archive/refs/tags/${PV}.tar.gz"
 
 CATEGORY="Libs"
 SUMMARY="Effective Fragment Potential method"
@@ -11,34 +11,51 @@ gas phase to condensed phases via QM/EFP. LIBEFP is designed to give
 developers of quantum chemistry software an easy way to add EFP support to
 their favourite package."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
-LICENSE_URI="LICENSE"
+LICENSE="BSD-2-Clause AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause"
+LICENSE_URI="LICENSE efpmd/libopt/License.txt"
 
-BUILD_REQUIRES="liblapack-devel"
+BUILD_REQUIRES="
+	gcc-fortran
+	liblapack-devel
+"
 
 inherit cmake
 
 CYGCMAKE_ARGS="
 	-DBUILD_SHARED_LIBS:BOOL=ON
 	-DCMAKECONFIG_INSTALL_DIR:PATH=lib/cmake/${PN}
+	-DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+"
+
+src_test()
+{
+	cd ${B}
+	PATH=${B}:${PATH} ninja_test
+}
+
+DOCS="
+	efpmd/libopt/License.txt
 "
 
 PKG_NAMES="
 	libefp
-	libefp1.5
+	libefp1.8
 	libefp-devel
 "
 libefp_CONTENTS="
+	usr/bin/efpmd.exe
 	usr/share
 "
-libefp1_5_CONTENTS="
-	usr/bin/cyg*-1.5.dll
+libefp1_8_CONTENTS="
+	usr/bin/cyg*-1.8.dll
 "
 libefp_devel_CONTENTS="
 	usr/include
 	usr/lib
 "
-libefp_SUMMARY="${SUMMARY} (licensing & readmes)"
-libefp1_5_SUMMARY="${SUMMARY} (runtime)"
+libefp_SUMMARY="${SUMMARY} (utilities)"
+libefp1_8_SUMMARY="${SUMMARY} (runtime)"
 libefp_devel_SUMMARY="${SUMMARY} (development)"
+
+libefp_devel_REQUIRES="liblapack-devel"

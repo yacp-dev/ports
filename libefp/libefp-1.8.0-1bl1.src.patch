@@ -1,0 +1,137 @@
+--- origsrc/libefp-1.8.0/CMakeLists.txt	2022-10-31 02:02:54.000000000 +0000
++++ src/libefp-1.8.0/CMakeLists.txt	2026-11-28 13:55:25.827989000 +0000
+@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
+ # project_VERSION* variables populated from project(... VERSION x.x.x) string
+ cmake_policy(SET CMP0048 NEW)
+ 
+-project(libefp VERSION 1.7.2 LANGUAGES C)
++project(libefp VERSION 1.8.0 LANGUAGES C)
+ set(libefp_AUTHORS "Ilya A. Kaliman, Lori A. Burns, Dmitry Morozov, Carlos H. Borca, Yen (Terri) Bui, Yongbin Kim, Lyudmila V. Slipchenko")
+ set(libefp_DESCRIPTION "Parallel implementation of the Effective Fragment Potential method")
+ set(libefp_URL "https://github.com/libefp2/libefp")
+@@ -101,7 +101,7 @@ endif()
+ install(TARGETS efp
+         EXPORT "${PN}Targets"
+         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
++        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+ 
+ # <<< Export Interface >>>
+ 
+@@ -112,7 +112,7 @@ target_include_directories(efp INTERFACE
+ # <<< Export Config >>>
+ 
+ # GNUInstallDirs "DATADIR" wrong here; CMake search path wants "share".
+-set(CMAKECONFIG_INSTALL_DIR "share/cmake/${PN}")
++option(CMAKECONFIG_INSTALL_DIR "cmakeconfig install directory" "share/cmake/${PN}")
+ configure_package_config_file(cmake/${PN}Config.cmake.in
+                               "${CMAKE_CURRENT_BINARY_DIR}/${PN}Config.cmake"
+                               INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR})
+@@ -132,3 +132,31 @@ install(EXPORT "${PN}Targets"
+ #   is testing with CTest. Also, when libefp is
+ #   compiled statically with OpenMP, will need to compile consuming
+ #   application with OpenMP, too, or supply link library.
++
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${CMAKE_INSTALL_PREFIX})
++set(libdir ${CMAKE_INSTALL_PREFIX}/lib)
++set(includedir ${CMAKE_INSTALL_PREFIX}/include)
++file(WRITE "${CMAKE_BINARY_DIR}/libefp.pc"
++"prefix=${prefix}
++exec_prefix=\${prefix}
++libdir=\${exec_prefix}/lib
++includedir=\${prefix}/include
++
++Name: libefp
++Description: Effective Fragment Potential method
++Version: ${PROJECT_VERSION}
++Libs: -L\${libdir} -lefp
++Cflags: -I\${includedir}
++")
++install(FILES ${CMAKE_BINARY_DIR}/libefp.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
++
++option(LIBEFP_ENABLE_EFPMD "Build standalone efpmd executable" ON)
++if(LIBEFP_ENABLE_EFPMD)
++    enable_language(Fortran)
++    add_subdirectory(efpmd)
++
++    enable_testing()
++    add_test(NAME efpmd_total_1a COMMAND efpmd ${CMAKE_CURRENT_SOURCE_DIR}/tests/total_1a.in WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
++    set_tests_properties(efpmd_total_1a PROPERTIES PASS_REGULAR_EXPRESSION "COMPLETED SUCCESSFULLY")
++endif()
+--- origsrc/libefp-1.8.0/efpmd/CMakeLists.txt	1970-01-01 00:00:00.000000000 +0000
++++ src/libefp-1.8.0/efpmd/CMakeLists.txt	2026-11-28 13:55:25.827989000 +0000
+@@ -0,0 +1,73 @@
++add_library(
++  libff
++  OBJECT
++    libff/ff.c
++)
++
++add_library(
++  libopt
++  OBJECT
++    libopt/opt.c
++    libopt/blas.f
++    libopt/lbfgsb.f
++    libopt/linpack.f
++    libopt/timer.f
++)
++
++add_executable(
++  efpmd
++  src/cfg.c
++  src/common.c
++  src/efield.c
++  src/energy.c
++  src/grad.c
++  src/gtest.c
++  src/hess.c
++  src/main.c
++  src/md.c
++  src/msg.c
++  src/opt.c
++  src/parse.c
++  src/rand.c
++  src/sp.c
++)
++
++target_include_directories(
++  efpmd
++  PRIVATE
++    libff/
++    libopt/
++    ../src/
++)
++
++target_link_libraries(
++  efpmd
++  PUBLIC
++    efp
++  PRIVATE
++    libff
++    libopt
++    tgt::lapack
++    m
++)
++
++target_compile_definitions(
++  efpmd
++  PRIVATE
++    FRAGLIB_PATH="${CMAKE_INSTALL_FULL_DATADIR}/${PN}/fraglib"
++)
++
++set_target_properties(
++  libff
++  libopt
++  efpmd
++  PROPERTIES
++    POSITION_INDEPENDENT_CODE ${BUILD_FPIC}
++)
++
++install(
++  TARGETS
++    efpmd
++  RUNTIME DESTINATION
++    ${CMAKE_INSTALL_BINDIR}
++)

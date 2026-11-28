@@ -1,5 +1,8 @@
-HOMEPAGE="https://www.${PN}.org/"
-SRC_URI="https://www.${PN}.org/files/download/${P}.tar.gz"
+HOMEPAGE="http://www.${PN}.org/"
+SRC_URI="http://www.${PN}.org/files/download/${P}.tar.gz"
+PATCH_URI="
+	https://sources.debian.org/data/main/libe/libee/0.4.1-2.1/debian/patches/makefile-dependencies.patch
+"
 
 CATEGORY="Libs"
 SUMMARY="Event Expression Library inspired by CEE"
@@ -7,11 +10,13 @@ DESCRIPTION="CEE is an upcoming standard used to describe network events in a nu
 normalized formats. It's goal is to unify they currently many different
 representations that exist in the industry."
 
-LICENSE="LGPL-2.1-or-later"
-LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later"
+LICENSE="LGPL-2.1-or-later AND MIT"
+LICENSE_SPDX="SPDX-License-Identifier: LGPL-2.1-or-later AND MIT"
 LICENSE_URI="COPYING"
 
-BUILD_REQUIRES="libestr-devel"
+BUILD_REQUIRES="
+	libestr-devel
+"
 
 MAKEOPTS="-j1"
 

@@ -1,5 +1,5 @@
---- origsrc/libee-0.4.1/src/Makefile.am	2012-04-12 01:26:18.000000000 +0900
-+++ src/libee-0.4.1/src/Makefile.am	2023-10-02 10:06:15.402020200 +0900
+--- origsrc/libee-0.4.1/src/Makefile.am	2026-11-28 12:29:27.155426100 +0000
++++ src/libee-0.4.1/src/Makefile.am	2026-11-28 12:29:27.470954400 +0000
 @@ -41,7 +41,7 @@ EXTRA_DIST = \
  
  libee_la_CPPFLAGS = $(LIBXML2_CFLAGS) $(LIBESTR_CFLAGS) $(LIBEE_CFLAGS)

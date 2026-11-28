@@ -1,14 +1,20 @@
---- origsrc/uripp-1.0.0/Makefile.am	2009-05-02 03:00:54.000000000 +0900
-+++ src/uripp-1.0.0/Makefile.am	2024-11-17 22:22:04.471030600 +0900
+--- origsrc/uripp-1.0.0/Makefile.am	2009-05-01 18:00:54.000000000 +0000
++++ src/uripp-1.0.0/Makefile.am	2026-11-28 07:49:33.286936200 +0000
 @@ -1,2 +1,5 @@
  ACLOCAL_AMFLAGS = -I m4
  SUBDIRS = src test
 +
 +pkgconfigdir = $(libdir)/pkgconfig
 +pkgconfig_DATA = $(PACKAGE).pc
---- origsrc/uripp-1.0.0/configure.ac	2009-05-02 03:00:54.000000000 +0900
-+++ src/uripp-1.0.0/configure.ac	2024-11-17 22:22:04.486646900 +0900
-@@ -10,7 +10,7 @@ AC_PROG_LIBTOOL
+--- origsrc/uripp-1.0.0/configure.ac	2009-05-01 18:00:54.000000000 +0000
++++ src/uripp-1.0.0/configure.ac	2026-11-28 07:49:33.286147000 +0000
+@@ -5,12 +5,13 @@ AC_PREREQ(2.59)
+ AC_INIT([uripp], [1.0.0])
+ AC_CONFIG_AUX_DIR([build-aux])
+ AM_INIT_AUTOMAKE([-Wall -Werror foreign])
++AM_PROG_AR
+ LT_INIT
+ AC_PROG_LIBTOOL
  AC_CONFIG_MACRO_DIR([m4])
  AC_CONFIG_SRCDIR([src/fragment.h])
  AC_CONFIG_HEADER([config.h])
@@ -17,15 +23,15 @@
      Makefile
      src/Makefile
      test/Makefile
---- origsrc/uripp-1.0.0/src/Makefile.am	2009-05-02 03:00:54.000000000 +0900
-+++ src/uripp-1.0.0/src/Makefile.am	2024-11-17 22:22:04.486646900 +0900
+--- origsrc/uripp-1.0.0/src/Makefile.am	2009-05-01 18:00:54.000000000 +0000
++++ src/uripp-1.0.0/src/Makefile.am	2026-11-28 07:49:33.288159000 +0000
 @@ -2,3 +2,4 @@
  lib_LTLIBRARIES = liburipp.la
  pkginclude_HEADERS = apidefs.h authority.h domain_name.h fragment.h ip_address.h ipv6_address.h path.h query.h scheme.h uri.h urisyn.h utils.h
  liburipp_la_SOURCES = authority.cpp domain_name.cpp fragment.cpp ip_address.cpp ipv6_address.cpp path.cpp query.cpp scheme.cpp uri.cpp urisyn.cpp utils.cpp
 +liburipp_la_LDFLAGS = -no-undefined
---- origsrc/uripp-1.0.0/src/query.cpp	2009-05-02 03:00:54.000000000 +0900
-+++ src/uripp-1.0.0/src/query.cpp	2024-11-17 22:22:04.486646900 +0900
+--- origsrc/uripp-1.0.0/src/query.cpp	2009-05-01 18:00:54.000000000 +0000
++++ src/uripp-1.0.0/src/query.cpp	2026-11-28 07:49:33.289415700 +0000
 @@ -21,6 +21,7 @@ THE SOFTWARE.
  */
  #include "query.h"
@@ -34,8 +40,8 @@
  #include <stdexcept>
  namespace uripp {
      const char query::PAIRS_SEP_CHAR = '&';
---- origsrc/uripp-1.0.0/src/utils.cpp	2009-05-02 03:00:54.000000000 +0900
-+++ src/uripp-1.0.0/src/utils.cpp	2024-11-17 22:22:04.502294500 +0900
+--- origsrc/uripp-1.0.0/src/utils.cpp	2009-05-01 18:00:54.000000000 +0000
++++ src/uripp-1.0.0/src/utils.cpp	2026-11-28 07:49:33.289415700 +0000
 @@ -137,7 +137,7 @@ namespace uripp {
          v = t;
          return true;
@@ -45,8 +51,8 @@
      std::string convert(ptrdiff_t v) {
  		if (sizeof(ptrdiff_t) == sizeof(unsigned int)) return convert((unsigned int)v);
  		return convert((unsigned long long int)v);
---- origsrc/uripp-1.0.0/uripp.pc.in	1970-01-01 09:00:00.000000000 +0900
-+++ src/uripp-1.0.0/uripp.pc.in	2024-11-17 22:22:04.502294500 +0900
+--- origsrc/uripp-1.0.0/uripp.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ src/uripp-1.0.0/uripp.pc.in	2026-11-28 07:49:33.291431800 +0000
 @@ -0,0 +1,10 @@
 +prefix=@prefix@
 +exec_prefix=@exec_prefix@

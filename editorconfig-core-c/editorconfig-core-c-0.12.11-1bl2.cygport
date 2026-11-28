@@ -11,8 +11,8 @@ editors which allow this file format to be read and used by those editors. For
 information on the file format and supported text editors, see the
 EditorConfig website."
 
-LICENSE="BSD-2-Clause"
-LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause"
+LICENSE="BSD-2-Clause AND BSD-3-Clause"
+LICENSE_SPDX="SPDX-License-Identifier: BSD-2-Clause AND BSD-3-Clause"
 LICENSE_URI="LICENSE"
 
 BUILD_REQUIRES="
@@ -53,3 +53,7 @@ libeditorconfig_devel_CONTENTS="
 editorconfig_core_c_SUMMARY="${SUMMARY} (utilities)"
 libeditorconfig0_SUMMARY="${SUMMARY} (runtime)"
 libeditorconfig_devel_SUMMARY="${SUMMARY} (development)"
+
+libeditorconfig_devel_REQUIRES="
+	libpcre2-devel
+"

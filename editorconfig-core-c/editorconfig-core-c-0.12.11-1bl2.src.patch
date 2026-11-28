@@ -1,5 +1,5 @@
---- origsrc/editorconfig-core-c/src/lib/CMakeLists.txt	2026-05-10 14:55:11.000000000 +0900
-+++ src/editorconfig-core-c/src/lib/CMakeLists.txt	2026-05-10 15:09:06.766924100 +0900
+--- origsrc/editorconfig-core-c/src/lib/CMakeLists.txt	2026-11-28 14:09:47.000000000 +0000
++++ src/editorconfig-core-c/src/lib/CMakeLists.txt	2026-11-28 14:09:50.423762800 +0000
 @@ -52,20 +52,6 @@ if (BUILD_STATICALLY_LINKED_EXE)
          EXCLUDE_FROM_ALL 1)
  endif()
